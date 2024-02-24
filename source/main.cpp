@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "spacecraft.hpp"
+#include "Spacecraft.hpp"
 
 int main() {
     return 1;

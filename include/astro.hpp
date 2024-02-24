@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "astro/constants/astronomical_constants.h"
-#include "astro/constants/gravitational_bodies.hpp"
+#include "astro/types/gravitational_bodies.hpp"
 #include "astro/constants/math_constants.h"
 #include "astro/constants/rk_constants.h"
 
@@ -10,6 +10,6 @@
 
 #include "astro/EquationsOfMotion.hpp"
 #include "astro/GravitationalBody.hpp"
-#include "astro/integrator.hpp"
+#include "astro/Integrator.hpp"
 #include "astro/LambertSolver.hpp"
-#include "astro/spacecraft.hpp"
+#include "astro/Spacecraft.hpp"

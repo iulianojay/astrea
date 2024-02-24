@@ -1,4 +1,4 @@
-#include "integrator.hpp"	    // Integrator class
+#include "Integrator.hpp"	    // Integrator class
 
 // Constructor and destructor
 Integrator::Integrator() : equationsOfMotion() {}

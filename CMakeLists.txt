@@ -9,7 +9,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 include(GNUInstallDirs)
 
 # Utility variables
-set(BASE /mnt/c/Users/iulia/source/common/astro)
+set(BASE ${CMAKE_CURRENT_SOURCE_DIR})
 set(INC ${BASE}/include)
 set(SRC ${BASE}/source)
 set(TEST ${BASE}/tests)
@@ -25,6 +25,7 @@ set(INCLUDE_DIRS
     ${INC}
     ${INC}/astro
     ${INC}/astro/constants
+    ${INC}/astro/types
     ${INC}/astro/utilities
     ${SRC}
     ${LIBPATH}
@@ -51,9 +52,10 @@ set(HDRS
     ${INC}/astro.hpp
 
     ${INC}/astro/constants/astronomical_constants.h
-    ${INC}/astro/constants/gravitational_bodies.hpp
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
+    
+    ${INC}/astro/types/gravitational_bodies.hpp
 
     ${INC}/astro/utilities/convert.hpp
     ${INC}/astro/utilities/math_c.hpp

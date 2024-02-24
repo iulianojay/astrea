@@ -1,6 +1,6 @@
 #pragma once
 
-#include "integrator.hpp"
+#include "Integrator.hpp"
 #include "GravitationalBody.hpp"
 #include "LambertSolver.hpp"
 

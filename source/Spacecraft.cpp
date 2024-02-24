@@ -1,5 +1,5 @@
 
-#include "spacecraft.hpp"
+#include "Spacecraft.hpp"
 
 // Constructor/Destructor
 Spacecraft::Spacecraft() : integrator(), centralBody(), lambertSolver() { }
