@@ -199,7 +199,6 @@ public:
 
     // Atmospheric Model
     std::string epoch = "2000-01-01 00:00:00";
-    bool useEarthGRAM = false;
 
     // Spacecraft properties
     double mass = 1000;

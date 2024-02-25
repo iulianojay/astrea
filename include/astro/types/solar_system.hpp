@@ -2,8 +2,10 @@
 
 #include <unordered_map>
 
+namespace SolarSystem {
+
 // Enums for bodies definitions
-enum bodyName {
+enum SolarObject {
     GC,			// Galactic Center
     Sun,
     Mercury,
@@ -29,14 +31,14 @@ enum bodyName {
     Triton
 };
 
-enum bodyType {
+enum SolarObjectType {
     Star,
     Planet,
     Satellite
 };
 
 //-------------------------------------------------- Maps -------------------------------------------------//
-static const std::unordered_map<std::string, bodyName> _nameMap = {
+static const std::unordered_map<std::string, SolarObject> _nameMap = {
     {"Sun",      Sun},
     {"Mercury",  Mercury},
     {"Venus",    Venus},
@@ -61,7 +63,7 @@ static const std::unordered_map<std::string, bodyName> _nameMap = {
     {"Triton",   Triton}
 };
 
-static const std::unordered_map<bodyName, std::string> _mapName = {
+static const std::unordered_map<SolarObject, std::string> _mapName = {
     {Sun,      "Sun"},
     {Mercury,  "Mercury"},
     {Venus,    "Venus"},
@@ -86,13 +88,13 @@ static const std::unordered_map<bodyName, std::string> _mapName = {
     {Triton,   "Triton"}
 };
 
-static const std::unordered_map<bodyType, std::string> _mapType = {
+static const std::unordered_map<SolarObjectType, std::string> _mapType = {
     {Star,      "Star"},
     {Planet,    "Planet"},
     {Satellite, "Satellite"},
 };
 
-static const std::unordered_map<bodyName, bodyType> _typeMap = {
+static const std::unordered_map<SolarObject, SolarObjectType> _typeMap = {
     {Sun,      Star},
     {Mercury,  Planet},
     {Venus,    Planet},
@@ -117,7 +119,7 @@ static const std::unordered_map<bodyName, bodyType> _typeMap = {
     {Triton,   Satellite}
 };
 
-static const std::unordered_map<bodyName, bodyName> _parentMap = {
+static const std::unordered_map<SolarObject, SolarObject> _parentMap = {
     {Sun,      GC},
     {Mercury,  Sun},
     {Venus,    Sun},
@@ -142,7 +144,7 @@ static const std::unordered_map<bodyName, bodyName> _parentMap = {
     {Triton,   Neptune}
 };
 
-static const std::unordered_map<bodyName, std::pair<int, int>> _idMap = {
+static const std::unordered_map<SolarObject, std::pair<int, int>> _idMap = {
     {Sun,      std::make_pair(0, 0)},
     {Mercury,  std::make_pair(1, 0)},
     {Venus,    std::make_pair(2, 0)},
@@ -166,3 +168,5 @@ static const std::unordered_map<bodyName, std::pair<int, int>> _idMap = {
     {Neptune,  std::make_pair(8, 0)},
     {Triton,   std::make_pair(8, 1)}
 };
+
+}

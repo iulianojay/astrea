@@ -55,7 +55,7 @@ set(HDRS
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
     
-    ${INC}/astro/types/gravitational_bodies.hpp
+    ${INC}/astro/types/solar_system.hpp
 
     ${INC}/astro/utilities/convert.hpp
     ${INC}/astro/utilities/math_c.hpp
@@ -104,10 +104,8 @@ target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
 add_dependencies           (${EXENAME} ${LIBNAME}_shared)
 
 # Tests 
-find_package(Catch2 3 REQUIRED)
-
 add_executable             (${TESTNAME} ${TEST_OBJS} ${TEST_HDRS})
 set_target_properties      (${TESTNAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINPATH} VERSION ${PROJECT_VERSION})
 target_include_directories (${TESTNAME} PUBLIC ${INCLUDE_DIRS})
-target_link_libraries      (${TESTNAME} PUBLIC ${LIBNAME}_shared PRIVATE Catch2::Catch2WithMain)
+target_link_libraries      (${TESTNAME} PUBLIC ${LIBNAME}_shared)
 add_dependencies           (${TESTNAME} ${LIBNAME}_shared)

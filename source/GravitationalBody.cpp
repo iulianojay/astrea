@@ -40,15 +40,15 @@ GravitationalBody::~GravitationalBody() {
 // Separate function to assign values so the class isn"t created twice
 void GravitationalBody::assign_properties(std::string inputName) {
 
-    _name = _nameMap.at(inputName);
+    _name = SolarSystem::_nameMap.at(inputName);
 
     // Identify object 
-    _planetId = _idMap.at(_name).first;
-    _moonId = _idMap.at(_name).second;
+    _planetId = SolarSystem::_idMap.at(_name).first;
+    _moonId = SolarSystem::_idMap.at(_name).second;
 
     // Assign body class and parent
-    _type = _typeMap.at(_name);
-    _parent = _parentMap.at(_name);
+    _type = SolarSystem::_typeMap.at(_name);
+    _parent = SolarSystem::_parentMap.at(_name);
 
     // Assign physical properties
     // Assign all properties from the astronomical_constants header
@@ -133,31 +133,31 @@ void GravitationalBody::find_radius_to_parent() {
 	double referenceJulianDate{};
 	double parentMu{};
 	switch (_type) {
-        case GC:
+        case SolarSystem::GC:
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = DBL_MAX;
-        case (Star || Planet):
+        case (SolarSystem::Star || SolarSystem::Planet):
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = gravitataionalParameter[0][0];
             break;
-        case Satellite:
+        case SolarSystem::Satellite:
             switch (_parent) {
-                case Earth:
+                case SolarSystem::Earth:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case Mars:
+                case SolarSystem::Mars:
                     referenceJulianDate = 2433282.5; // Jan 1, 1950 00:00:00
                     break;
-                case Jupiter:
+                case SolarSystem::Jupiter:
                     referenceJulianDate = 2450465;   // Jan 16, 1997 00:00:00
                     break;
-                case Saturn:
+                case SolarSystem::Saturn:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case Uranus:
+                case SolarSystem::Uranus:
                     referenceJulianDate = 2444240;   // Jan 1, 1980 00:00:00
                     break;
-                case Neptune:
+                case SolarSystem::Neptune:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
                 default:
@@ -292,7 +292,7 @@ void GravitationalBody::find_radius_to_parent() {
 void GravitationalBody::find_radius_to_sun() {
 
 	switch (_type) {
-		case Star:
+		case SolarSystem::Star:
 			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
                 _radiusSunToBody[ii][0] = 0.0;
                 _radiusSunToBody[ii][1] = 0.0;
@@ -304,7 +304,7 @@ void GravitationalBody::find_radius_to_sun() {
 			}
             break;
 
-		case Planet:
+		case SolarSystem::Planet:
 			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
                 for (int jj = 0; jj < 3; ++jj) {
 				    _radiusSunToBody[ii][jj] = _radiusParentToBody[ii][jj];
@@ -313,9 +313,9 @@ void GravitationalBody::find_radius_to_sun() {
 			}
             break;
             
-		case Satellite:
+		case SolarSystem::Satellite:
 			// Construct parent body
-			GravitationalBody *parentBody = new GravitationalBody(_mapName.at(_parent));
+			GravitationalBody *parentBody = new GravitationalBody(SolarSystem::_mapName.at(_parent));
             parentBody->set_dates(_julianDate, _lengthJulianDate);
 
 			// Find state relative to sun

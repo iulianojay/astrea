@@ -152,12 +152,6 @@ void Spacecraft::switch_nbody(bool onOff) {
     integrator.equationsOfMotion.nbody = onOff;
 }
 
-/*
-void Spacecraft::switch_EarthGRAM(bool onOff) {
-    integrator.equationsOfMotion.useEarthGRAM = onOff;
-    integrator.equationsOfMotion.initialize_EarthGRAM();
-}
-//*/
 
 // Set equations of motion
 void Spacecraft::switch_dynamics(std::string dynamics) {
@@ -193,17 +187,17 @@ void Spacecraft::switch_dynamics(std::string dynamics) {
 void Spacecraft::set_mu(double mu) {
     integrator.equationsOfMotion.mu = mu;
 }
-void Spacecraft::set_central_body(std::string bodyName) {
-    centralBody.assign_properties(bodyName);
+void Spacecraft::set_central_body(std::string name) {
+    centralBody.assign_properties(name);
 
     integrator.equationsOfMotion.assign_eom_properties(centralBody);
     integrator.equationsOfMotion.mu = centralBody.mu();
 }
-void Spacecraft::set_n_bodies(std::string* bodyNameStrings, int numberOfBodies) {
+void Spacecraft::set_n_bodies(std::string* bodyNames, int numberOfBodies) {
     // Pass data to central body
     centralBody.numberOfNBodies = numberOfBodies;
     for (int ii = 0; ii < numberOfBodies; ++ii) {
-        centralBody.nBodyNames[ii] = bodyNameStrings[ii];
+        centralBody.nBodyNames[ii] = bodyNames[ii];
     }
 
     integrator.equationsOfMotion.assign_eom_properties(centralBody);
@@ -220,13 +214,13 @@ void Spacecraft::set_crash_velocity(double crashVelocity) {
 //----------------------------------------------------------------------------------------------------------//
 
 // Spacecraft Property Getters
-double  Spacecraft::get_mass()                      { return mass; }
+double  Spacecraft::get_mass()                        { return mass; }
 double  Spacecraft::get_coefficient_of_drag()         { return coefficientOfDrag; }
 double  Spacecraft::get_coefficient_of_lift()         { return coefficientOfLift; }
 double  Spacecraft::get_coefficient_of_reflectivity() { return coefficientOfReflectivity; }
-double* Spacecraft::get_ram_area()                  { return areaRam; }
-double* Spacecraft::get_sun_area()                  { return areaSun; }
-double* Spacecraft::get_lift_area()                 { return areaLift; }
+double* Spacecraft::get_ram_area()                    { return areaRam; }
+double* Spacecraft::get_sun_area()                    { return areaSun; }
+double* Spacecraft::get_lift_area()                   { return areaLift; }
 
 // Integrator property getters
 int Spacecraft::get_state_history_size() { return (int)integrator.timeVector.size(); }
@@ -279,7 +273,7 @@ void Spacecraft::save() { integrator.save(); }
 void Spacecraft::save(std::string filename) { integrator.save(filename); }
 
 // Lambert Solver
-void Spacecraft::solve_LambertSolver(double timeInitial, double timeFinal, double* state0, double* statef) {
+void Spacecraft::lambert(double timeInitial, double timeFinal, double* state0, double* statef) {
     if (integrator.equationsOfMotion.mu != 1.0) {
         lambertSolver.solve_rv(state0, timeFinal-timeInitial, integrator.equationsOfMotion.mu, statef);
     }

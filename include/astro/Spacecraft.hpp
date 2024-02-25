@@ -147,12 +147,6 @@ public:
     //         "MEEs VoP" or "mees vop"             for modified equinoctial elements VoP
     void switch_dynamics(std::string dynamics);
 
-    /*
-    // Function: Switch EarthGRAM on or off
-    // Inputs: true -> on, false -> off
-    void switch_EarthGRAM(bool onOff);
-    //*/
-
     //-------------------------------------------Gravitational Body--------------------------------------------//
 
     // Function: Set the gravitational parameter used for integration. This does not effect the properties of the central body
@@ -269,5 +263,5 @@ public:
     //         final time (s)
     //         array of initial states ([km, km, km, km/s, km/s, km/s])
     //         array to write final states too ([km, km, km, km/s, km/s, km/s])
-    void solve_LambertSolver(double timeInitial, double timeFinal, double* state0, double* statef);
+    void lambert(double timeInitial, double timeFinal, double* state0, double* statef);
 };

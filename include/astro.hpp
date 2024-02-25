@@ -1,9 +1,10 @@
 #pragma once 
 
 #include "astro/constants/astronomical_constants.h"
-#include "astro/types/gravitational_bodies.hpp"
 #include "astro/constants/math_constants.h"
 #include "astro/constants/rk_constants.h"
+
+#include "astro/types/solar_system.hpp"
 
 #include "astro/utilities/convert.hpp"
 #include "astro/utilities/math_c.hpp"

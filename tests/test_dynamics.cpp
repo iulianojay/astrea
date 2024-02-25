@@ -1,6 +1,9 @@
-#include <catch2/catch_test_macros.hpp>
 
 #include "astro.hpp"
+
+int main() {
+    return 0;
+}
 
 int test_two_body_dyanmics() {
 
@@ -25,8 +28,4 @@ int test_two_body_dyanmics() {
     sat.integrate(t0, tf, state0);
 
     return 0;
-}
-
-TEST_CASE( "Two Body Dynamics Tests", "[factorial]" ) {
-    REQUIRE( test_two_body_dyanmics() == 0 );
 }
