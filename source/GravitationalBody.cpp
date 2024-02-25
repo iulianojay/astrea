@@ -136,28 +136,28 @@ void GravitationalBody::find_radius_to_parent() {
         case SolarSystem::GC:
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = DBL_MAX;
-        case (SolarSystem::Star || SolarSystem::Planet):
+        case (SolarSystem::STAR || SolarSystem::PLANET):
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = gravitataionalParameter[0][0];
             break;
-        case SolarSystem::Satellite:
+        case SolarSystem::SATELLITE:
             switch (_parent) {
-                case SolarSystem::Earth:
+                case SolarSystem::EARTH:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case SolarSystem::Mars:
+                case SolarSystem::MARS:
                     referenceJulianDate = 2433282.5; // Jan 1, 1950 00:00:00
                     break;
-                case SolarSystem::Jupiter:
+                case SolarSystem::JUPITER:
                     referenceJulianDate = 2450465;   // Jan 16, 1997 00:00:00
                     break;
-                case SolarSystem::Saturn:
+                case SolarSystem::SATURN:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case SolarSystem::Uranus:
+                case SolarSystem::URANUS:
                     referenceJulianDate = 2444240;   // Jan 1, 1980 00:00:00
                     break;
-                case SolarSystem::Neptune:
+                case SolarSystem::NEPTUNE:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
                 default:
@@ -292,7 +292,7 @@ void GravitationalBody::find_radius_to_parent() {
 void GravitationalBody::find_radius_to_sun() {
 
 	switch (_type) {
-		case SolarSystem::Star:
+		case SolarSystem::STAR:
 			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
                 _radiusSunToBody[ii][0] = 0.0;
                 _radiusSunToBody[ii][1] = 0.0;
@@ -304,7 +304,7 @@ void GravitationalBody::find_radius_to_sun() {
 			}
             break;
 
-		case SolarSystem::Planet:
+		case SolarSystem::PLANET:
 			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
                 for (int jj = 0; jj < 3; ++jj) {
 				    _radiusSunToBody[ii][jj] = _radiusParentToBody[ii][jj];
@@ -313,7 +313,7 @@ void GravitationalBody::find_radius_to_sun() {
 			}
             break;
             
-		case SolarSystem::Satellite:
+		case SolarSystem::SATELLITE:
 			// Construct parent body
 			GravitationalBody *parentBody = new GravitationalBody(SolarSystem::_mapName.at(_parent));
             parentBody->set_dates(_julianDate, _lengthJulianDate);

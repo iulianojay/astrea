@@ -92,3 +92,28 @@ public:
     double** radiusSunToBody()      { return _radiusSunToBody; };
     double** velocitySunToBody()    { return _velocitySunToBody; };
 };
+
+namespace SolarSystem {
+    static const GravitationalBody Sun("Sun");
+    static const GravitationalBody Mercury("Mercury");
+    static const GravitationalBody Venus("Venus");
+    static const GravitationalBody Earth("Earth");
+    static const GravitationalBody Moon("Moon");
+    static const GravitationalBody Mars("Mars");
+    static const GravitationalBody Phobos("Phobos");
+    static const GravitationalBody Deimos("Deimos");
+    static const GravitationalBody Jupiter("Jupiter");
+    static const GravitationalBody Ganymede("Ganymede");
+    static const GravitationalBody Callisto("Callisto");
+    static const GravitationalBody Io("Io");
+    static const GravitationalBody Europa("Europa");
+    static const GravitationalBody Saturn("Saturn");
+    static const GravitationalBody Titan("Titan");
+    static const GravitationalBody Rhea("Rhea");
+    static const GravitationalBody Iapetus("Iapetus");
+    static const GravitationalBody Uranus("Uranus");
+    static const GravitationalBody Titania("Titania");
+    static const GravitationalBody Oberon("Oberon");
+    static const GravitationalBody Neptune("Neptune");
+    static const GravitationalBody Triton("Triton");
+}
