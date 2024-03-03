@@ -4,13 +4,14 @@
 #include "astro/constants/math_constants.h"
 #include "astro/constants/rk_constants.h"
 
-#include "astro/types/solar_system.hpp"
+#include "astro/propagation/EquationsOfMotion.hpp"
+#include "astro/propagation/Integrator.hpp"
+#include "astro/propagation/LambertSolver.hpp"
+
+#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/solar_system.hpp"
 
 #include "astro/utilities/convert.hpp"
 #include "astro/utilities/math_c.hpp"
 
-#include "astro/EquationsOfMotion.hpp"
-#include "astro/GravitationalBody.hpp"
-#include "astro/Integrator.hpp"
-#include "astro/LambertSolver.hpp"
 #include "astro/Spacecraft.hpp"

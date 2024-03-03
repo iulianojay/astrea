@@ -25,7 +25,8 @@ set(INCLUDE_DIRS
     ${INC}
     ${INC}/astro
     ${INC}/astro/constants
-    ${INC}/astro/types
+    ${INC}/astro/propagation
+    ${INC}/astro/systems
     ${INC}/astro/utilities
     ${SRC}
     ${LIBPATH}
@@ -33,13 +34,15 @@ set(INCLUDE_DIRS
 
 # Objects
 set(OBJS
+    ${SRC}/propagation/EquationsOfMotion.cpp
+    ${SRC}/propagation/Integrator.cpp
+    ${SRC}/propagation/LambertSolver.cpp
+
+    ${SRC}/systems/GravitationalBody.cpp
+
     ${SRC}/utilities/convert.cpp
     ${SRC}/utilities/math_c.cpp
 
-    ${SRC}/EquationsOfMotion.cpp
-    ${SRC}/GravitationalBody.cpp
-    ${SRC}/Integrator.cpp
-    ${SRC}/LambertSolver.cpp
     ${SRC}/Spacecraft.cpp
 )
 
@@ -54,16 +57,17 @@ set(HDRS
     ${INC}/astro/constants/astronomical_constants.h
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
+
+    ${INC}/astro/propagation/EquationsOfMotion.hpp
+    ${INC}/astro/propagation/Integrator.hpp
+    ${INC}/astro/propagation/LambertSolver.hpp
     
-    ${INC}/astro/types/solar_system.hpp
+    ${INC}/astro/systems/solar_system.hpp
+    ${INC}/astro/systems/GravitationalBody.hpp
 
     ${INC}/astro/utilities/convert.hpp
     ${INC}/astro/utilities/math_c.hpp
 
-    ${INC}/astro/EquationsOfMotion.hpp
-    ${INC}/astro/GravitationalBody.hpp
-    ${INC}/astro/Integrator.hpp
-    ${INC}/astro/LambertSolver.hpp
     ${INC}/astro/Spacecraft.hpp
 )
 
