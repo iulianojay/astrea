@@ -16,8 +16,8 @@ private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    SolarSystem::SolarObject _name, _parent;
-    SolarSystem::SolarObjectType _type;
+    solar_system::SolarObject _name, _parent;
+    solar_system::SolarObjectType _type;
 
     int _planetId, _moonId, _lengthJulianDate;
 
@@ -40,7 +40,7 @@ public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
     GravitationalBody();
-    GravitationalBody(SolarSystem::SolarObject name);
+    GravitationalBody(solar_system::SolarObject name);
     GravitationalBody(std::string nameString);
     ~GravitationalBody();
 
@@ -49,9 +49,9 @@ public:
     void set_dates(double* inputJulianDate, int inputLengthJulianDate);
 
 	// Property getters
-    std::string name()   { return SolarSystem::_mapName.at(_name); };
-    std::string type()   { return SolarSystem::_mapType.at(_type); };
-    std::string parent() { return SolarSystem::_mapName.at(_parent); };
+    std::string name()   { return solar_system::_mapName.at(_name); };
+    std::string type()   { return solar_system::_mapType.at(_type); };
+    std::string parent() { return solar_system::_mapName.at(_parent); };
 
     int planetId() { return _planetId; };
     int moonId()   { return _moonId; };
@@ -95,7 +95,7 @@ public:
     double** velocitySunToBody()    { return _velocitySunToBody; };
 };
 
-namespace SolarSystem {
+namespace solar_system {
     static const GravitationalBody Sun("Sun");
     static const GravitationalBody Mercury("Mercury");
     static const GravitationalBody Venus("Venus");

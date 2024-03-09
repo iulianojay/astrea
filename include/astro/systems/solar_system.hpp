@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-namespace SolarSystem {
+namespace solar_system {
 
 // Enums for bodies definitions
 enum SolarObject {

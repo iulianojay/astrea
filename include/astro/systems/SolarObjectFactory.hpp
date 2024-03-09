@@ -6,7 +6,7 @@
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 
-namespace SolarSystem {
+namespace solar_system {
 
 class SolarObjectFactory {
 public:

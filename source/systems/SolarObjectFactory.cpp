@@ -1,7 +1,7 @@
 
 #include "SolarObjectFactory.hpp"
 
-namespace SolarSystem {
+namespace solar_system {
 
 GravitationalBody& SolarObjectFactory::create(std::string name) {
     return create(_nameMap.at(name));
