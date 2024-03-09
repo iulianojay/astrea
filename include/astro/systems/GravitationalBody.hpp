@@ -31,6 +31,7 @@ private:
     //------------------------------------------------ Methods ------------------------------------------------//
     void find_radius_to_parent();
     void find_radius_to_sun();
+
 public:
     //----------------------------------------------- Variables -----------------------------------------------//
     int numberOfNBodies = 0;
@@ -39,6 +40,7 @@ public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
     GravitationalBody();
+    GravitationalBody(SolarSystem::SolarObject name);
     GravitationalBody(std::string nameString);
     ~GravitationalBody();
 

@@ -39,6 +39,7 @@ set(OBJS
     ${SRC}/propagation/LambertSolver.cpp
 
     ${SRC}/systems/GravitationalBody.cpp
+    ${SRC}/systems/SolarObjectFactory.cpp
 
     ${SRC}/utilities/convert.cpp
     ${SRC}/utilities/math_c.cpp
@@ -64,6 +65,7 @@ set(HDRS
     
     ${INC}/astro/systems/solar_system.hpp
     ${INC}/astro/systems/GravitationalBody.hpp
+    ${INC}/astro/systems/SolarObjectFactory.hpp
 
     ${INC}/astro/utilities/convert.hpp
     ${INC}/astro/utilities/math_c.hpp

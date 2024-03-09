@@ -7,6 +7,13 @@ GravitationalBody::GravitationalBody() {
     double jdTemp = J2000;
     set_dates(&jdTemp, 1);
 }
+   
+GravitationalBody::GravitationalBody(SolarSystem::SolarObject name) {
+    assign_properties(SolarSystem::_mapName.at(name));
+
+    double jdTemp = J2000;
+    set_dates(&jdTemp, 1);
+}
 
 GravitationalBody::GravitationalBody(std::string inputName) {
     assign_properties(inputName);
