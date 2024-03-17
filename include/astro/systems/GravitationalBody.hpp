@@ -10,14 +10,25 @@
 #include "astronomical_constants.h"
 #include "solar_system.hpp"
 
-class GravitationalBody
-{
+// Forward declaration
+namespace solar_system {
+    class SolarObjectBuilder;
+}
+
+class GravitationalBody {
+
+    friend class solar_system::SolarObjectBuilder;
+
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
+
+    GravitationalBody* parentBody;
 
     // Properties
     solar_system::SolarObject _name, _parent;
     solar_system::SolarObjectType _type;
+
+    std::string _nameString, _parentString, _typeString;
 
     int _planetId, _moonId, _lengthJulianDate;
 
@@ -33,6 +44,7 @@ private:
     void find_radius_to_sun();
 
 public:
+
     //----------------------------------------------- Variables -----------------------------------------------//
     int numberOfNBodies = 0;
     std::string nBodyNames[30] = {};
@@ -40,18 +52,15 @@ public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
     GravitationalBody();
-    GravitationalBody(solar_system::SolarObject name);
-    GravitationalBody(std::string nameString);
     ~GravitationalBody();
 
     // Property assignment
-    void assign_properties(std::string nameString);
     void set_dates(double* inputJulianDate, int inputLengthJulianDate);
 
 	// Property getters
-    std::string name()   { return solar_system::_mapName.at(_name); };
-    std::string type()   { return solar_system::_mapType.at(_type); };
-    std::string parent() { return solar_system::_mapName.at(_parent); };
+    std::string name()   { return _nameString; };
+    std::string type()   { return _typeString; };
+    std::string parent() { return _parentString; };
 
     int planetId() { return _planetId; };
     int moonId()   { return _moonId; };
@@ -94,28 +103,3 @@ public:
     double** radiusSunToBody()      { return _radiusSunToBody; };
     double** velocitySunToBody()    { return _velocitySunToBody; };
 };
-
-namespace solar_system {
-    static const GravitationalBody Sun("Sun");
-    static const GravitationalBody Mercury("Mercury");
-    static const GravitationalBody Venus("Venus");
-    static const GravitationalBody Earth("Earth");
-    static const GravitationalBody Moon("Moon");
-    static const GravitationalBody Mars("Mars");
-    static const GravitationalBody Phobos("Phobos");
-    static const GravitationalBody Deimos("Deimos");
-    static const GravitationalBody Jupiter("Jupiter");
-    static const GravitationalBody Ganymede("Ganymede");
-    static const GravitationalBody Callisto("Callisto");
-    static const GravitationalBody Io("Io");
-    static const GravitationalBody Europa("Europa");
-    static const GravitationalBody Saturn("Saturn");
-    static const GravitationalBody Titan("Titan");
-    static const GravitationalBody Rhea("Rhea");
-    static const GravitationalBody Iapetus("Iapetus");
-    static const GravitationalBody Uranus("Uranus");
-    static const GravitationalBody Titania("Titania");
-    static const GravitationalBody Oberon("Oberon");
-    static const GravitationalBody Neptune("Neptune");
-    static const GravitationalBody Triton("Triton");
-}

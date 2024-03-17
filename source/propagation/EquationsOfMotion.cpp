@@ -3,7 +3,7 @@
 // Constructors 
 EquationsOfMotion::EquationsOfMotion() {
     // Make central Body
-    GravitationalBody centralBody;
+    centralBody = bodyFactory.create(solar_system::EARTH);
 
     // Assign properties from central body
     assign_eom_properties(centralBody);
@@ -47,7 +47,7 @@ void EquationsOfMotion::assign_eom_properties(GravitationalBody &centralBody) {
 
     for (int ii = 0; ii < numberOfBodies; ++ii) {
         // Create ith body
-        GravitationalBody ithBody(centralBody.nBodyNames[ii]);
+        GravitationalBody ithBody = bodyFactory.create(nBodies[ii]);
         ithBody.set_dates(centralBody.getJulianDate(), sizeOfDateArray);
 
         // Populate arrays

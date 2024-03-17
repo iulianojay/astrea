@@ -5,13 +5,14 @@
 
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
+#include "SolarObjectBuilder.hpp"
 
 namespace solar_system {
 
 class SolarObjectFactory {
 public:
 
-    SolarObjectFactory() {};
+    SolarObjectFactory() : builder() {};
     ~SolarObjectFactory() {};
 
     GravitationalBody& create(SolarObject name);
@@ -22,6 +23,7 @@ public:
 
 private:
 
+    SolarObjectBuilder builder;
     std::unordered_map<SolarObject, GravitationalBody> bodies;
 
 };

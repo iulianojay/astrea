@@ -2,22 +2,6 @@
 
 // Constructors 
 GravitationalBody::GravitationalBody() {
-    assign_properties("Earth");
-
-    double jdTemp = J2000;
-    set_dates(&jdTemp, 1);
-}
-   
-GravitationalBody::GravitationalBody(solar_system::SolarObject name) {
-    assign_properties(solar_system::_mapName.at(name));
-
-    double jdTemp = J2000;
-    set_dates(&jdTemp, 1);
-}
-
-GravitationalBody::GravitationalBody(std::string inputName) {
-    assign_properties(inputName);
-
     double jdTemp = J2000;
     set_dates(&jdTemp, 1);
 }
@@ -42,61 +26,6 @@ GravitationalBody::~GravitationalBody() {
     delete[] _velocityParentToBody;
     delete[] _radiusSunToBody;
     delete[] _velocitySunToBody;
-}
-
-// Separate function to assign values so the class isn"t created twice
-void GravitationalBody::assign_properties(std::string inputName) {
-
-    _name = solar_system::_nameMap.at(inputName);
-
-    // Identify object 
-    _planetId = solar_system::_idMap.at(_name).first;
-    _moonId = solar_system::_idMap.at(_name).second;
-
-    // Assign body class and parent
-    _type = solar_system::_typeMap.at(_name);
-    _parent = solar_system::_parentMap.at(_name);
-
-    // Assign physical properties
-    // Assign all properties from the astronomical_constants header
-    _gravitationalParameter = gravitataionalParameter [_moonId][_planetId];
-    _mass                   = mass [_moonId][_planetId];
-    _equitorialRadius       = equatorialRadius [_moonId][_planetId];
-    _polarRadius            = polarRadius [_moonId][_planetId];
-    _crashRadius            = crashRadius [_moonId][_planetId];
-    _sphereOfInfluence      = sphereOfInfluence [_moonId][_planetId];
-
-    _j2 = j2Oblateness[_moonId][_planetId];
-    _j3 = j3Oblateness[_moonId][_planetId];
-
-    _axialTilt      = axisTilt[_moonId][_planetId];
-    _rotationRate   = rotationalRate[_moonId][_planetId];
-    _siderealPeroid = siderealPeriod[_moonId][_planetId];
-
-    // Assign orbital properties
-    _semimajorAxis      = semimajorAxis[_moonId][_planetId];
-    _eccentricity       = eccentricity[_moonId][_planetId];
-    _inclination        = inclination[_moonId][_planetId];
-    _rightAscension     = rightAscension[_moonId][_planetId];
-    _argumentOfPerigee  = argumentOfPerigee[_moonId][_planetId];
-    _trueLatitude       = trueLatitude[_moonId][_planetId];
-
-    if (_moonId == 0) {
-        _semimajorAxisRate      = semimajorAxisRate[_moonId][_planetId];
-        _eccentricityRate       = eccentricityRate[_moonId][_planetId];
-        _inclinationRate        = inclinationRate[_moonId][_planetId];
-        _rightAscensionRate     = rightAscensionRate[_moonId][_planetId];
-        _argumentOfPerigeeRate  = argumentOfPerigeeRate[_moonId][_planetId];
-        _trueLatitudeRate       = trueLatitudeRate[_moonId][_planetId];
-    }
-    else {
-        _semimajorAxisRate = 0.0;
-        _eccentricityRate = 0.0;
-        _inclinationRate = 0.0;
-        _rightAscensionRate = 0.0;
-        _argumentOfPerigeeRate = 0.0;
-        _trueLatitudeRate = 0.0;
-    }
 }
 
 void GravitationalBody::set_dates(double* inputJulianDate, int inputLengthJulianDate) {
@@ -321,10 +250,6 @@ void GravitationalBody::find_radius_to_sun() {
             break;
             
 		case solar_system::SATELLITE:
-			// Construct parent body
-			GravitationalBody *parentBody = new GravitationalBody(solar_system::_mapName.at(_parent));
-            parentBody->set_dates(_julianDate, _lengthJulianDate);
-
 			// Find state relative to sun
 			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
                 for (int jj = 0; jj < 3; ++jj) {
@@ -332,9 +257,6 @@ void GravitationalBody::find_radius_to_sun() {
                     _velocitySunToBody[ii][jj] = parentBody->velocityParentToBody()[ii][jj] + _velocityParentToBody[ii][jj];
                 }
 			}
-
-			// Destroy parent body
-			delete parentBody;
             break;
 	}
 }

@@ -7,16 +7,23 @@
 #include <cmath>
 #include <algorithm>
 #include <stdio.h>
+#include <vector>
 
 #include "astronomical_constants.h"	// my tables of constants
 #include "math_constants.h"         // my common math constants
 #include "convert.hpp"
+
 #include "GravitationalBody.hpp"
+#include "SolarObjectFactory.hpp"
 
 class EquationsOfMotion
 {
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
+
+    solar_system::SolarObjectFactory bodyFactory;
+    GravitationalBody centralBody;
+    std::vector<solar_system::SolarObject> nBodies;
 
     // Central Body properties
     int planetId{}, moonId{};

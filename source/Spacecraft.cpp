@@ -188,8 +188,6 @@ void Spacecraft::set_mu(double mu) {
     integrator.equationsOfMotion.mu = mu;
 }
 void Spacecraft::set_central_body(std::string name) {
-    centralBody.assign_properties(name);
-
     integrator.equationsOfMotion.assign_eom_properties(centralBody);
     integrator.equationsOfMotion.mu = centralBody.mu();
 }

@@ -10,6 +10,8 @@
 
 #include "astro/systems/GravitationalBody.hpp"
 #include "astro/systems/solar_system.hpp"
+#include "astro/systems/SolarObjectBuilder.hpp"
+#include "astro/systems/SolarObjectFactory.hpp"
 
 #include "astro/utilities/convert.hpp"
 #include "astro/utilities/math_c.hpp"
