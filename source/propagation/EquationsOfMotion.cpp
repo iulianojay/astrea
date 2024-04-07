@@ -1,7 +1,8 @@
 #include "EquationsOfMotion.hpp"
+#include "conversions.hpp"
 
 // Constructors 
-EquationsOfMotion::EquationsOfMotion() {
+EquationsOfMotion::EquationsOfMotion() : spacecraft() {
     // Make central Body
     centralBody = bodyFactory.create(solar_system::EARTH);
 
@@ -218,8 +219,8 @@ void EquationsOfMotion::evaluate_coes_vop() {
         checkflag = true;
     }
 
-    // Convert COEs to r and v
-    convert::coes_to_bci(h,ecc,inc,w,raan,theta,mu,radius,velocity);
+    // conversions COEs to r and v
+    conversions::coes_to_bci(h,ecc,inc,w,raan,theta,mu,radius,velocity);
 
     x = radius[0]; 
     y = radius[1]; 
@@ -301,8 +302,8 @@ void EquationsOfMotion::evaluate_j2mean_coes_vop() {
         checkflag = true;
     }
 
-    // Convert COEs to r and v
-    convert::coes_to_bci(h, ecc, inc, w, raan, theta, mu, radius, velocity);
+    // conversions COEs to r and v
+    conversions::coes_to_bci(h, ecc, inc, w, raan, theta, mu, radius, velocity);
 
     x = radius[0]; 
     y = radius[1]; 
@@ -341,8 +342,8 @@ void EquationsOfMotion::evaluate_j2mean_coes_vop() {
 
 void EquationsOfMotion::evaluate_mees_vop() {
 
-    // Convert Modified Equinoctial Elements to COEs
-    convert::mees_to_coes(p, f, g, h, k, L, coes);
+    // conversions Modified Equinoctial Elements to COEs
+    conversions::mees_to_coes(p, f, g, h, k, L, coes);
 
     ecc = coes[1];
     inc = coes[2];
@@ -350,8 +351,8 @@ void EquationsOfMotion::evaluate_mees_vop() {
     raan = coes[4];
     theta = coes[5];
 
-    // Convert COEs to r and v
-    convert::coes_to_bci(sqrt(p*mu), ecc, inc, w, raan, theta, mu, radius, velocity);
+    // conversions COEs to r and v
+    conversions::coes_to_bci(sqrt(p*mu), ecc, inc, w, raan, theta, mu, radius, velocity);
 
     x = radius[0]; 
     y = radius[1]; 
@@ -450,7 +451,7 @@ void EquationsOfMotion::find_accel_oblateness() {
     }
     else { // Any NxM gravitational field
         // Find lat and long
-        convert::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
+        conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
 
         xBCBF = rBCBF[0];
         yBCBF = rBCBF[1];
@@ -540,7 +541,7 @@ void EquationsOfMotion::find_accel_oblateness() {
         accelOblatenessBCBF[2] = dVdr*drdrBCBF[2] + dVdlat*dlatdrBCBF[2];
 
         // Rotate back into inertial coordinates
-        convert::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
+        conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
     }
 }
 
@@ -555,6 +556,10 @@ void EquationsOfMotion::find_accel_drag() {
 
     // accel due to drag
     relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
+
+    double coefficientOfDrag = spacecraft.get_coefficient_of_drag();
+    double *areaRam = spacecraft.get_ram_area();
+    double mass = spacecraft.get_mass();
     dragMagnitude = -0.5*coefficientOfDrag*(areaRam[0] + areaRam[1] + areaRam[2])/mass*atmosphericDensity*relativeVelocityMagnitude;
 
     accelDrag[0] = dragMagnitude*relativeVelocity[0];
@@ -571,6 +576,9 @@ void EquationsOfMotion::find_accel_lift() {
     }
 
     // accel due to lift
+    double coefficientOfLift = spacecraft.get_coefficient_of_lift();
+    double* areaLift = spacecraft.get_lift_area();
+    double mass = spacecraft.get_mass();
     tempA = 0.5*coefficientOfLift*(areaLift[0] + areaLift[1] + areaLift[2])/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
     accelLift[0] = tempA*x;
     accelLift[1] = tempA*y;
@@ -632,6 +640,9 @@ void EquationsOfMotion::find_accel_srp() {
     }
 
     // accel due to srp
+    double coefficientOfReflectivity = spacecraft.get_coefficient_of_reflectivity();
+    double *areaSun = spacecraft.get_sun_area();
+    double mass = spacecraft.get_mass();
     tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeSpacecraftToSun*fractionOfRecievedSunlight;
     accelSRP[0] = tempA*radiusSpacecraftToSun[0];
     accelSRP[1] = tempA*radiusSpacecraftToSun[1];
@@ -687,8 +698,8 @@ void EquationsOfMotion::find_atmospheric_density() {
         altitude = std::max(R - equitorialR, 0.0);
     }
     else {
-        convert::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
-        convert::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
+        conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
+        conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
         altitude = lla[2];
     }
 
@@ -1148,4 +1159,94 @@ bool EquationsOfMotion::check_crash(double* state) {
         return true;
     }
     return false;
+}
+
+
+// Central Body stuff
+void EquationsOfMotion::set_mu(double mu) {
+    mu = mu;
+}
+void EquationsOfMotion::set_central_body(std::string name) {
+    assign_eom_properties(centralBody);
+    mu = centralBody.mu();
+}
+void EquationsOfMotion::set_n_bodies(std::string* bodyNames, int numberOfBodies) {
+    // Pass data to central body
+    centralBody.numberOfNBodies = numberOfBodies;
+    for (int ii = 0; ii < numberOfBodies; ++ii) {
+        centralBody.nBodyNames[ii] = bodyNames[ii];
+    }
+
+    assign_eom_properties(centralBody);
+}
+void EquationsOfMotion::set_crash_radius(double crashRadius) {
+    crashRadius = crashRadius;
+}
+void EquationsOfMotion::set_crash_velocity(double crashVelocity) {
+    crashVelocity = crashVelocity;
+}
+
+    // Central Body getter
+double EquationsOfMotion::get_mu() { return mu; }
+
+
+
+// Perturbation toggles
+void EquationsOfMotion::switch_oblateness(bool onOff) {
+    oblateness = onOff;
+}
+void EquationsOfMotion::switch_oblateness(int N, int M) {
+    // Switch perturbation toggle to true
+    oblateness = true;
+    NxMOblateness = true;
+
+    // Set N and M
+    N = N;
+    M = M;
+
+    // Get Cnm and Snm
+    get_oblateness_coefficients(N, M);
+}
+void EquationsOfMotion::switch_drag(bool onOff) {
+    drag = onOff;
+}
+void EquationsOfMotion::switch_lift(bool onOff) {
+    lift = onOff;
+}
+void EquationsOfMotion::switch_srp(bool onOff) {
+    srp = onOff;
+}
+void EquationsOfMotion::switch_nbody(bool onOff) {
+    nbody = onOff;
+}
+
+
+// Set equations of motion
+void EquationsOfMotion::switch_dynamics(std::string dynamics) {
+    // Turn all off
+    twoBody = false;
+    cowellsMethod = false;
+    coesVoP = false;
+    j2MeanVoP = false;
+    meesVoP = false;
+
+    // Turn selected on
+    if (dynamics == "Two Body" || dynamics == "two body"){
+        twoBody = true;
+    }
+    else if (dynamics == "Cowells Method" || dynamics == "cowells method") {
+        cowellsMethod = true;
+    }
+    else if (dynamics == "COEs VoP" || dynamics == "coes vop") {
+        coesVoP = true;
+    }
+    else if (dynamics == "J2 Mean VoP" || dynamics == "j2 mean vop") {
+        j2MeanVoP = true;
+    }
+    else if (dynamics == "MEEs VoP" || dynamics == "mees vop") {
+        meesVoP = true;
+    }
+    else {
+        std::cout << "Error: Selected dynamics set not recognized. \n\n";
+    }
 }

@@ -1,11 +1,15 @@
 
-#include "convert.hpp"
+#include "conversions.hpp"
+
+#include "math_constants.h"
+#include "astronomical_constants.h"
+#include "math_c.hpp"
 
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------- Frame Conversions --------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void convert::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, double* rBCBF) {
+void conversions::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, double* rBCBF) {
 
     double x{}, y{}, z{}, cosGST{}, greenwichSiderealTime{}, sinGST{};
 
@@ -30,7 +34,7 @@ void convert::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, doubl
     rBCBF[2] = z;
 }
 
-void convert::bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, double* rBCI) {
+void conversions::bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, double* rBCI) {
 
     double greenwichSiderealTime{}, cosGST{}, sinGST{};
 
@@ -50,7 +54,7 @@ void convert::bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, doub
     rBCI[2] = rBCBF[2];
 }
 
-void convert::bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRadius, double* lla) {
+void conversions::bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRadius, double* lla) {
 
     double xBCBF{}, yBCBF{}, zBCBF{}, f{}, e_2{}, dz{}, err{}, s{}, N{};
 
@@ -84,7 +88,7 @@ void convert::bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRa
     lla[2] = std::max(sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz)) - N, 0.0);
 }
 
-void convert::lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF) {
+void conversions::lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF) {
 
     double latitude{}, longitude{}, f{}, N{}, sinLat{}, cosLat{}, sinLong{}, cosLong{};
 
@@ -109,7 +113,12 @@ void convert::lla_to_bcbf(double* lla, double equitorialRadius, double polarRadi
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void convert::coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
+element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, GravitationalBody centralBody) {
+    element_set_pair setPair = std::make_pair(fromSet, toSet);
+    return conversions::elementSetConversions.at(setPair)(elements, centralBody);
+}
+
+void conversions::coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
     
     double ct{}, st{}, cw{}, sw{}, cr{}, sr{}, ci{}, si{}, A{}, B{}, x_peri{}, y_peri{}, vx_peri{}, vy_peri{};
     double DCM_peri2ECI_11{}, DCM_peri2ECI_12{}, DCM_peri2ECI_21{}, DCM_peri2ECI_22{}, DCM_peri2ECI_31{}, DCM_peri2ECI_32{};
@@ -161,7 +170,7 @@ void convert::coes_to_bci(double h, double ecc, double inc, double w, double raa
     velocity[2] = DCM_peri2ECI_31*vx_peri + DCM_peri2ECI_32*vy_peri;
 }
 
-void convert::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
+void conversions::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
     
     double hx{}, hy{}, hz{}, normH{}, Nx{}, Ny{}, normN{}, acos_Nx_Nnorm{};
     double R{}, V{}, dotRV{}, dot_ecc_r{}, dot_ecc_N{};
@@ -278,7 +287,7 @@ void convert::bci_to_coes(double* radius, double* velocity, double mu, double* c
     coes[5] = theta;
 }
 
-void convert::mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
+void conversions::mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
     
     double ecc{}, a{}, inc{}, raan{}, atopo{}, w{}, theta{};
 
@@ -300,11 +309,44 @@ void convert::mees_to_coes(double p, double f, double g, double h, double k, dou
     coes[5] = theta;
 }
 
+
+element_array conversions::coes_to_cartesian(element_array coes, GravitationalBody centralBody) {
+    element_array cartesian;
+    double radius[3];
+    double velocity[3];
+    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], centralBody.mu(), radius, velocity);
+    for (int ii = 0; ii < 3; ii++) {
+        cartesian[ii] = radius[ii];
+    }
+    for (int ii = 0; ii < 3; ii++) {
+        cartesian[ii+3] = velocity[ii];
+    }
+    return cartesian;
+};
+
+element_array conversions::cartesian_to_coes(element_array cartesian, GravitationalBody centralBody) {
+    double coes[6];
+    double radius[3];
+    double velocity[3];
+    for (int ii = 0; ii < 3; ii++) {
+        radius[ii] = cartesian[ii];
+    }
+    for (int ii = 0; ii < 3; ii++) {
+        velocity[ii] = cartesian[ii+3];
+    }
+    bci_to_coes(radius, velocity, centralBody.mu(), coes);
+    element_array coes_array;
+    for (int ii = 0; ii < 6; ii++) {
+        coes_array[ii] = coes[ii];
+    }
+    return coes_array;
+};
+
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------- Time Conversions ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-double convert::epoch_to_julian_date(std::string epochString) {
+double conversions::epoch_to_julian_date(std::string epochString) {
 
     std::string delimiter = "-";
     double year = std::stod(epochString.substr(0, epochString.find(delimiter)));
@@ -330,7 +372,7 @@ double convert::epoch_to_julian_date(std::string epochString) {
         floor((275.0*month)/9.0) + day + 1721013.5 + (hour + min/60.0 + sec/3600.0)/24.0;
 }
 
-double convert::julian_date_to_sidereal_time(double julianDate, double rotRate) {
+double conversions::julian_date_to_sidereal_time(double julianDate, double rotRate) {
 
     double hour{}, minute{}, second{}, universalTime{}, T0{}, greenwichUniversalTime{}, greenwichSiderealTime{};
 

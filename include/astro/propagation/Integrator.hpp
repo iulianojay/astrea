@@ -8,13 +8,22 @@
 #include <math.h>
 
 #include "rk_constants.h"			// RK Butcher Tableau
-#include "astronomical_constants.h"	// my tables of astronomical constants
-#include "math_constants.h"	        // my tables of math constants
 
 #include "EquationsOfMotion.hpp"
 
 class Integrator
 {
+public:
+	// Stepper
+	enum odeStepper {
+        rk45,	// Traditional Runge-Kutta 4(5)th order 6 stage method
+        rkf45,	// Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+        rkf78,	// Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+
+        dop45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+        dop78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+	};
+
 private:
 	//----------------------------------------------- Variables -----------------------------------------------//
 
@@ -86,6 +95,41 @@ private:
     int day = 1;
     int checkDay = 0;
 
+	// Tolerances
+	double absoluteTolerance = 1.0e-8;
+	double relativeTolerance = 1.0e-8;
+
+	// Initial step size
+	double timeStepInitial = 100.0;
+
+	// Iteration variables
+	int iterMax = 1e8; // absurdly high so it doesn't interfere with integration
+
+	// Run options
+	bool printOn = false;
+	bool timerOn = false;
+
+	odeStepper stepMethod = dop45;
+    
+    // Fake fixed step
+    bool useFixedStep = false;
+    double fixedTimeStep = 1.0;
+
+    // Equations of Motion
+    EquationsOfMotion equationsOfMotion;
+	
+	// Time and state vectors
+	std::vector<double> timeVector{};
+	std::vector<double> stateVectorOne{};
+	std::vector<double> stateVectorTwo{};
+	std::vector<double> stateVectorThree{};
+	std::vector<double> stateVectorFour{};
+	std::vector<double> stateVectorFive{};
+    std::vector<double> stateVectorSix{};
+
+    std::vector<double> extraVector{};
+    std::vector<double> extraVector2{};
+
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
@@ -116,51 +160,6 @@ private:
     void check_event();
 
 public:
-	//----------------------------------------------- Variables -----------------------------------------------//
-
-	// Tolerances
-	double absoluteTolerance = 1.0e-8;
-	double relativeTolerance = 1.0e-8;
-
-	// Initial step size
-	double timeStepInitial = 100.0;
-
-	// Iteration variables
-	int iterMax = 1e8; // absurdly high so it doesn't interfere with integration
-
-	// Run options
-	bool printOn = false;
-	bool timerOn = false;
-
-	// Stepper
-	enum odeStepper {
-        rk45,	// Traditional Runge-Kutta 4(5)th order 6 stage method
-        rkf45,	// Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        rkf78,	// Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-
-        dop45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        dop78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
-	};
-	odeStepper stepMethod = dop45;
-    
-    // Fake fixed step
-    bool useFixedStep = false;
-    double fixedTimeStep = 1.0;
-
-	// Time and state vectors
-	std::vector<double> timeVector{};
-	std::vector<double> stateVectorOne{};
-	std::vector<double> stateVectorTwo{};
-	std::vector<double> stateVectorThree{};
-	std::vector<double> stateVectorFour{};
-	std::vector<double> stateVectorFive{};
-    std::vector<double> stateVectorSix{};
-
-    std::vector<double> extraVector{};
-    std::vector<double> extraVector2{};
-
-    // Equations of Motion
-    EquationsOfMotion equationsOfMotion;
 
 	//------------------------------------------------ Methods ------------------------------------------------//
 
@@ -175,9 +174,65 @@ public:
 	void save();
 	void save(std::string filename);
 
+    // Function: Get total number of steps taken during integration
+    // Outputs: number of steps taken
+    int get_state_history_size();
+
+    // Function: Get all states during integration
+    // Inputs: Matrix to write state history too
+    void get_state_history(double** stateHistory);
+
     // Get final state
     void copy_final_state(double* state);
 
-    //---------------------------------------------- Subclasses -----------------------------------------------//
-    bool customEOM = false;
+    //---------------------------------------Integrator property setters---------------------------------------//
+
+    // Function: Set absolute tolerance of Integrator
+    // Inputs: absolute tolerance
+    void set_abs_tol(double absTol);
+
+    // Function: Set relative tolerance of Integrator
+    // Inputs: relative tolerance
+    void set_rel_tol(double relTol);
+
+    // Function: Set max number of steps Integrator is allowed to take before exiting
+    // Inputs: maximum number of steps
+    void set_max_iter(int itMax);
+
+    // Function: Turn output display on or off for Integrator
+    // Inputs: true -> on, false -> off
+    void switch_print(bool onOff);
+
+    // Function: Turn timer on or off for Integrator
+    // Inputs: true -> on, false -> off
+    void switch_timer(bool onOff);
+
+    // Function: Change Integrator internal stepping method
+    // Inputs: "rk45"  for Runge-Kutta 4(5) method
+    //         "rkf45" for Runge-Kutta-Felberg 4(5) method
+    //         "rkf78" for Runge-Kutta-Felberg 7(8) method
+    //         "dop45" for Dormand-Prince 4(5) method
+    //         "dop78" for Dormand-Prince 7(8) method
+    void set_step_method(std::string stepMethod);
+
+    // Function: Switch whether or not to use custom equations of motion. Custom EOMs can be modified inside the EquationsOfMotion class
+    // Inputs: true -> on, false -> off
+    void switch_custom_eom(bool onOff);
+
+    // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
+    // Inputs: initial timestep (s)
+    void set_initial_timestep(double dt0);
+
+    // Function: Switch whether or not to use a fixed timestep
+    // Inputs: true -> on, false -> off
+    void switch_fixed_timestep(bool onOff);
+
+    // Function: Switch whether or not to use a fixed timestep and declare that timestep
+    // Inputs: true -> on, false -> off
+    //         timestep (s)
+    void switch_fixed_timestep(bool onOff, double fixedTimeStep);
+
+    // Function: Set fixed timestep. Does not affect variable timestep
+    // Inputs: timestep (s)
+    void set_timestep(double fixedTimeStep);
 };

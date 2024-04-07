@@ -8,30 +8,10 @@ Integrator::~Integrator() {}
 //------------------------------------------ Equations of Motion -------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::evaluate_custom_state_derivative(double time, double* state, double* stateDerivative) {
-    // mu/R^3
-    double muOverRadiusCubed = gravitataionalParameter[0][3]/pow(state[0]*state[0] + state[1]*state[1] + state[2]*state[2], 1.5);
-
-    // Derivatives
-    stateDerivative[0] = state[3];
-    stateDerivative[1] = state[4];
-    stateDerivative[2] = state[5];
-    stateDerivative[3] = -muOverRadiusCubed*state[0];
-    stateDerivative[4] = -muOverRadiusCubed*state[1];
-    stateDerivative[5] = -muOverRadiusCubed*state[2];
-} 
-
 void Integrator::find_state_derivative(double time, double* state, double* stateDerivative) {
     
-    // Evaluate state derivative
-    if (customEOM) { 
-        // Hard-coded equations of motion
-        evaluate_custom_state_derivative(time, state, stateDerivative);
-    }
-    else{ 
-        // Ask eom object to evaluate
-        equationsOfMotion.evaluate_state_derivative(time, state, stateDerivative);
-    }
+    // Ask eom object to evaluate
+    equationsOfMotion.evaluate_state_derivative(time, state, stateDerivative);
 
     // Count fevals
     ++functionEvaluations;
@@ -568,9 +548,7 @@ void Integrator::copy_final_state(double* state) {
 void Integrator::check_event() {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    if (!customEOM){ 
-        eventTrigger =  equationsOfMotion.check_crash(state);
-    }
+    eventTrigger = equationsOfMotion.check_crash(state);
 
     // Break if hit nans or infs
     if (std::isinf(abs(time)) || std::isnan(abs(time))) {
@@ -582,5 +560,69 @@ void Integrator::check_event() {
                 eventTrigger = true;
             }
         }
+    }
+}
+
+
+
+// Integrator Properties
+void Integrator::set_abs_tol(double absTol) {
+    absoluteTolerance = absTol;
+}
+void Integrator::set_rel_tol(double relTol) {
+    relativeTolerance = relTol;
+}
+void Integrator::set_max_iter(int itMax) {
+    iterMax = itMax;
+}
+
+void Integrator::switch_print(bool onOff) {
+    printOn = onOff;
+}
+void Integrator::switch_timer(bool onOff) {
+    timerOn = onOff;
+}
+
+void Integrator::set_initial_timestep(double dt0) {
+    timeStepInitial = dt0;
+}
+void Integrator::switch_fixed_timestep(bool onOff) {
+    useFixedStep = onOff;
+}
+void Integrator::switch_fixed_timestep(bool onOff, double fixedTimeStep) {
+    useFixedStep = onOff;
+    fixedTimeStep = fixedTimeStep;
+}
+void Integrator::set_timestep(double fixedTimeStep) {
+    fixedTimeStep = fixedTimeStep;
+}
+
+void Integrator::set_step_method(std::string stepMethod) {
+    Integrator::odeStepper stepper{};
+    if      (stepMethod == "rk45" ) { stepper = Integrator::odeStepper::rk45; }
+    else if (stepMethod == "rkf45") { stepper = Integrator::odeStepper::rkf45; }
+    else if (stepMethod == "rkf78") { stepper = Integrator::odeStepper::rkf78; }
+    else if (stepMethod == "dop45") { stepper = Integrator::odeStepper::dop45; }
+    else if (stepMethod == "dop78") { stepper = Integrator::odeStepper::dop78; }
+    else { 
+        std::cout << "Warning: Unknown step method selected. No change applied. \n\n"; 
+    }
+    stepMethod = stepper;
+}
+
+
+// Integrator history getters
+int Integrator::get_state_history_size() { return (int)timeVector.size(); }
+void Integrator::get_state_history(double** stateHisotry) {
+    // Copy to double array
+    int sz = (int)timeVector.size();
+    for (int ii = 0; ii < sz; ++ii) {
+        stateHisotry[ii][0] = timeVector[ii];
+        stateHisotry[ii][1] = stateVectorOne[ii];
+        stateHisotry[ii][2] = stateVectorTwo[ii];
+        stateHisotry[ii][3] = stateVectorThree[ii];
+        stateHisotry[ii][4] = stateVectorFour[ii];
+        stateHisotry[ii][5] = stateVectorFive[ii];
+        stateHisotry[ii][6] = stateVectorSix[ii];
     }
 }

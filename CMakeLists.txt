@@ -25,11 +25,15 @@ set(INCLUDE_DIRS
     ${INC}
     ${INC}/astro
     ${INC}/astro/constants
+    ${INC}/astro/element_sets
     ${INC}/astro/propagation
     ${INC}/astro/systems
+    ${INC}/astro/types
     ${INC}/astro/utilities
     ${SRC}
     ${LIBPATH}
+
+    ${INC}/frozen
 )
 
 # Objects
@@ -42,7 +46,7 @@ set(OBJS
     ${SRC}/systems/SolarObjectBuilder.cpp
     ${SRC}/systems/SolarObjectFactory.cpp
 
-    ${SRC}/utilities/convert.cpp
+    ${SRC}/utilities/conversions.cpp
     ${SRC}/utilities/math_c.cpp
 
     ${SRC}/Spacecraft.cpp
@@ -60,6 +64,10 @@ set(HDRS
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
 
+    ${INC}/astro/element_sets/ElementSet.hpp
+    ${INC}/astro/element_sets/Frame.hpp
+    ${INC}/astro/element_sets/OrbitalElements.hpp
+
     ${INC}/astro/propagation/EquationsOfMotion.hpp
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp
@@ -69,7 +77,9 @@ set(HDRS
     ${INC}/astro/systems/SolarObjectBuilder.hpp
     ${INC}/astro/systems/SolarObjectFactory.hpp
 
-    ${INC}/astro/utilities/convert.hpp
+    ${INC}/astro/types/typedefs.hpp
+
+    ${INC}/astro/utilities/conversions.hpp
     ${INC}/astro/utilities/math_c.hpp
 
     ${INC}/astro/Spacecraft.hpp

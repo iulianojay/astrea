@@ -1,14 +1,10 @@
 #include "GravitationalBody.hpp"
 
-// Constructors 
-GravitationalBody::GravitationalBody() {
-    double jdTemp = J2000;
-    set_dates(&jdTemp, 1);
-}
-
 // Destructor
 GravitationalBody::~GravitationalBody() {
 
+    if (_lengthJulianDate == 0) { return; }
+    
     if (_lengthJulianDate > 1) {
         for (int ii = 0; ii < _lengthJulianDate; ++ii) {
             delete[] _radiusParentToBody[ii];

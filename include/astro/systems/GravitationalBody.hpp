@@ -30,7 +30,7 @@ private:
 
     std::string _nameString, _parentString, _typeString;
 
-    int _planetId, _moonId, _lengthJulianDate;
+    int _planetId = -1, _moonId = -1, _lengthJulianDate = 0;
 
     double _gravitationalParameter, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
         _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination, 
@@ -51,7 +51,7 @@ public:
 
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
-    GravitationalBody();
+    GravitationalBody() {};
     ~GravitationalBody();
 
     // Property assignment
