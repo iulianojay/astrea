@@ -113,9 +113,9 @@ void conversions::lla_to_bcbf(double* lla, double equitorialRadius, double polar
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, GravitationalBody centralBody) {
+element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, AstrodynamicsSystem* system) {
     element_set_pair setPair = std::make_pair(fromSet, toSet);
-    return conversions::elementSetConversions.at(setPair)(elements, centralBody);
+    return conversions::elementSetConversions.at(setPair)(elements, system);
 }
 
 void conversions::coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
@@ -310,11 +310,11 @@ void conversions::mees_to_coes(double p, double f, double g, double h, double k,
 }
 
 
-element_array conversions::coes_to_cartesian(element_array coes, GravitationalBody centralBody) {
+element_array conversions::coes_to_cartesian(element_array coes, AstrodynamicsSystem* system) {
     element_array cartesian;
     double radius[3];
     double velocity[3];
-    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], centralBody.mu(), radius, velocity);
+    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system->get_center().mu(), radius, velocity);
     for (int ii = 0; ii < 3; ii++) {
         cartesian[ii] = radius[ii];
     }
@@ -324,7 +324,7 @@ element_array conversions::coes_to_cartesian(element_array coes, GravitationalBo
     return cartesian;
 };
 
-element_array conversions::cartesian_to_coes(element_array cartesian, GravitationalBody centralBody) {
+element_array conversions::cartesian_to_coes(element_array cartesian, AstrodynamicsSystem* system) {
     double coes[6];
     double radius[3];
     double velocity[3];
@@ -334,7 +334,7 @@ element_array conversions::cartesian_to_coes(element_array cartesian, Gravitatio
     for (int ii = 0; ii < 3; ii++) {
         velocity[ii] = cartesian[ii+3];
     }
-    bci_to_coes(radius, velocity, centralBody.mu(), coes);
+    bci_to_coes(radius, velocity, system->get_center().mu(), coes);
     element_array coes_array;
     for (int ii = 0; ii < 6; ii++) {
         coes_array[ii] = coes[ii];

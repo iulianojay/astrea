@@ -1,9 +1,13 @@
+#include <algorithm>
 
 #include "Spacecraft.hpp"
 #include "conversions.hpp"
 
 // Constructor/Destructor
-Spacecraft::Spacecraft() { }
+Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) {
+    states.push_back({0.0, state0});
+    set_epoch(epoch);
+}
 Spacecraft::~Spacecraft() { }
 
 //----------------------------------------------------------------------------------------------------------//
@@ -60,6 +64,25 @@ void Spacecraft::set_epoch(std::string inputEpoch) {
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------------ Getters -------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
+
+State Spacecraft::get_initial_state() { return states[0]; }
+
+State Spacecraft::get_state(double time) {
+    // Get index of lower bound closest to input time
+    auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
+    
+    // Compare time before and after index
+    double lowerDiff = fabs(states[id].time - time);
+    double upperDiff = fabs(states[id+1].time - time);
+
+    // Return closest
+    if (lowerDiff < upperDiff) {
+        return states[id];
+    }
+    else {
+        return states[id+1];
+    }
+}
 
 // Spacecraft Property Getters
 double  Spacecraft::get_mass()                        { return mass; }

@@ -9,8 +9,6 @@ GravitationalBody::~GravitationalBody() {
         for (int ii = 0; ii < _lengthJulianDate; ++ii) {
             delete[] _radiusParentToBody[ii];
             delete[] _velocityParentToBody[ii];
-            delete[] _radiusSunToBody[ii];
-            delete[] _velocitySunToBody[ii];
         }
         delete[] _julianDate;
     }
@@ -20,11 +18,10 @@ GravitationalBody::~GravitationalBody() {
 
     delete[] _radiusParentToBody;
     delete[] _velocityParentToBody;
-    delete[] _radiusSunToBody;
-    delete[] _velocitySunToBody;
 }
 
-void GravitationalBody::set_dates(double* inputJulianDate, int inputLengthJulianDate) {
+void GravitationalBody::propagate(double endTime) {
+    
     // Assign julian date 
     _lengthJulianDate = inputLengthJulianDate;
     _julianDate = new double[_lengthJulianDate];
@@ -32,20 +29,15 @@ void GravitationalBody::set_dates(double* inputJulianDate, int inputLengthJulian
     // Create appropriately sized arrays
     _radiusParentToBody   = new double*[_lengthJulianDate];
     _velocityParentToBody = new double*[_lengthJulianDate];
-    _radiusSunToBody      = new double*[_lengthJulianDate];
-    _velocitySunToBody    = new double*[_lengthJulianDate];
     for (int ii = 0; ii < _lengthJulianDate; ++ii) {
         _julianDate[ii] = inputJulianDate[ii];
 
         _radiusParentToBody[ii]   = new double[3];
         _velocityParentToBody[ii] = new double[3];
-        _radiusSunToBody[ii]      = new double[3];
-        _velocitySunToBody[ii]    = new double[3];
     }
 
     // Find State Values
     find_radius_to_parent();
-    find_radius_to_sun();
 }
 
 // Find position of body relative to parent and relative to the sun
@@ -68,10 +60,13 @@ void GravitationalBody::find_radius_to_parent() {
         case solar_system::GC:
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = DBL_MAX;
+            break;
+
         case (solar_system::STAR || solar_system::PLANET):
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = gravitataionalParameter[0][0];
             break;
+
         case solar_system::SATELLITE:
             switch (_parent) {
                 case solar_system::EARTH:
@@ -97,52 +92,15 @@ void GravitationalBody::find_radius_to_parent() {
             }
             parentMu = gravitataionalParameter[0][_planetId];
             break;
+
         default:
             throw std::invalid_argument("Object's type not found.");
 	}
 
 	// Variables for loop
-	double t{};
-
-	double at{};
-	double ecct{};
-	double inct{};
-	double raant{};
-	double wt{};
-	double Lt{};
-
-	double ht{};
-	double Met{};
-	double thetat{};
-
-	double ecct_2{};
-	double ecct_3{};
-	double ecct_4{};
-	double ecct_5{};
-
-	double ct{};
-	double st{};
-	double ci{};
-	double si{};
-	double cr{};
-	double sr{};
-	double cw{};
-	double sw{};
-
-	double coes2perir{};
-	double coes2periv{};
-
-	double xPerifocal{};
-	double yPerifocal{};
-	double vxPerifocal{};
-	double vyPerifocal{};
-
-	double DCM_xx{};
-	double DCM_xy{};
-	double DCM_yx{};
-	double DCM_yy{};
-	double DCM_zx{};
-	double DCM_zy{};
+	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{}, ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{};
+	double coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{};
+	double DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
 
 	const double pi = 3.141592653575;
     const double rad2deg = 180.0/pi;
@@ -219,41 +177,5 @@ void GravitationalBody::find_radius_to_parent() {
         _velocityParentToBody[ii][1] = DCM_yx*vxPerifocal + DCM_yy*vyPerifocal;
         _velocityParentToBody[ii][2] = DCM_zx*vxPerifocal + DCM_zy*vyPerifocal;
     }
-}
-
-void GravitationalBody::find_radius_to_sun() {
-
-	switch (_type) {
-		case solar_system::STAR:
-			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
-                _radiusSunToBody[ii][0] = 0.0;
-                _radiusSunToBody[ii][1] = 0.0;
-                _radiusSunToBody[ii][2] = 0.0;
-
-                _velocitySunToBody[ii][0] = 0.0;
-                _velocitySunToBody[ii][1] = 0.0;
-                _velocitySunToBody[ii][2] = 0.0;
-			}
-            break;
-
-		case solar_system::PLANET:
-			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
-                for (int jj = 0; jj < 3; ++jj) {
-				    _radiusSunToBody[ii][jj] = _radiusParentToBody[ii][jj];
-				    _velocitySunToBody[ii][jj] = _velocityParentToBody[ii][jj];
-                }
-			}
-            break;
-            
-		case solar_system::SATELLITE:
-			// Find state relative to sun
-			for (int ii = 0; ii < _lengthJulianDate; ++ii) {
-                for (int jj = 0; jj < 3; ++jj) {
-                    _radiusSunToBody[ii][jj] = parentBody->radiusParentToBody()[ii][jj] + _radiusParentToBody[ii][jj];
-                    _velocitySunToBody[ii][jj] = parentBody->velocityParentToBody()[ii][jj] + _velocityParentToBody[ii][jj];
-                }
-			}
-            break;
-	}
 }
 

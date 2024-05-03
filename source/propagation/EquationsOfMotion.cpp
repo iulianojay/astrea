@@ -4,61 +4,15 @@
 // Constructors 
 EquationsOfMotion::EquationsOfMotion() : spacecraft() {
     // Make central Body
-    centralBody = bodyFactory.create(solar_system::EARTH);
+    const GravitationalBody& centralBody = system->get_center();
 
     // Assign properties from central body
-    assign_eom_properties(centralBody);
+    ;
 
     // Assign these defaults separately so they don't override mannual choices later
     mu = centralBody.mu();
     crashRadius = centralBody.crashR();
     crashVelocity = 0.0;
-}
-
-void EquationsOfMotion::assign_eom_properties(GravitationalBody &centralBody) {
-
-    // Assign properties from central body
-    planetId = centralBody.planetId();
-    moonId = centralBody.moonId();
-    equitorialR = centralBody.eqR();
-    polarR = centralBody.polR();
-    j2 = centralBody.j2();
-
-    bodyRotationRate = centralBody.rotRate(); // rad/s
-
-    initialJulianDate = centralBody.getJulianDate()[0];
-
-    // Get radius vector from central body
-    sizeOfDateArray = centralBody.lengthOfJulianDate();
-    radiusSunToCentralBody = new double*[sizeOfDateArray];
-    for (int ii = 0; ii < sizeOfDateArray; ++ii) {
-        radiusSunToCentralBody[ii] = new double[3];
-        for (int jj = 0; jj < 3; ++jj) {
-            radiusSunToCentralBody[ii][jj] = centralBody.radiusSunToBody()[ii][jj];
-        }
-    }
-
-    // Create arrays for n body calcs
-    numberOfBodies = centralBody.numberOfNBodies;
-    nBodyGravitationalParameter = new double[numberOfBodies];
-    radiusSunToNbody = new double*[sizeOfDateArray];
-    for (int ii = 0; ii < sizeOfDateArray; ++ii) {
-        radiusSunToNbody[ii] = new double[3*numberOfBodies]{};
-    }
-
-    for (int ii = 0; ii < numberOfBodies; ++ii) {
-        // Create ith body
-        GravitationalBody ithBody = bodyFactory.create(nBodies[ii]);
-        ithBody.set_dates(centralBody.getJulianDate(), sizeOfDateArray);
-
-        // Populate arrays
-        nBodyGravitationalParameter[ii] = ithBody.mu();
-        for (int jj = 0; jj < sizeOfDateArray; ++jj) {
-            radiusSunToNbody[jj][ii*3] = ithBody.radiusSunToBody()[jj][0];
-            radiusSunToNbody[jj][ii*3+1] = ithBody.radiusSunToBody()[jj][1];
-            radiusSunToNbody[jj][ii*3+2] = ithBody.radiusSunToBody()[jj][2];
-        }
-    }
 }
 
 // Destructor
@@ -97,13 +51,18 @@ EquationsOfMotion::~EquationsOfMotion(){
 //------------------------------------ Get Derivatives for Integrator --------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void EquationsOfMotion::evaluate_state_derivative(double time, double* state, double* stateDerivative) {
+void EquationsOfMotion::evaluate_state_derivative(double time, double* state, Spacecraft* sc, double* stateDerivative) {
+
+    // TODO: Fix this
+    spacecraft = sc;
+    system = sc->get_initial_state().elements.get_system();
+
     // Time
     t = time;
     julianDate = initialJulianDate + t*SEC_TO_DAY;
 
     // Assign state variables
-    if      ( twoBody || cowellsMethod ) {
+    if ( twoBody || cowellsMethod ) {
         x = state[0];
         y = state[1];
         z = state[2];
@@ -136,7 +95,7 @@ void EquationsOfMotion::evaluate_state_derivative(double time, double* state, do
     else if ( meesVoP       ) { evaluate_mees_vop(); }
 
     // Assign output variables
-    if      ( twoBody || cowellsMethod ) {
+    if ( twoBody || cowellsMethod ) {
         stateDerivative[0] = dxdt;
         stateDerivative[1] = dydt;
         stateDerivative[2] = dzdt;
@@ -557,9 +516,9 @@ void EquationsOfMotion::find_accel_drag() {
     // accel due to drag
     relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
 
-    double coefficientOfDrag = spacecraft.get_coefficient_of_drag();
-    double *areaRam = spacecraft.get_ram_area();
-    double mass = spacecraft.get_mass();
+    double coefficientOfDrag = spacecraft->get_coefficient_of_drag();
+    double *areaRam = spacecraft->get_ram_area();
+    double mass = spacecraft->get_mass();
     dragMagnitude = -0.5*coefficientOfDrag*(areaRam[0] + areaRam[1] + areaRam[2])/mass*atmosphericDensity*relativeVelocityMagnitude;
 
     accelDrag[0] = dragMagnitude*relativeVelocity[0];
@@ -576,9 +535,9 @@ void EquationsOfMotion::find_accel_lift() {
     }
 
     // accel due to lift
-    double coefficientOfLift = spacecraft.get_coefficient_of_lift();
-    double* areaLift = spacecraft.get_lift_area();
-    double mass = spacecraft.get_mass();
+    double coefficientOfLift = spacecraft->get_coefficient_of_lift();
+    double* areaLift = spacecraft->get_lift_area();
+    double mass = spacecraft->get_mass();
     tempA = 0.5*coefficientOfLift*(areaLift[0] + areaLift[1] + areaLift[2])/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
     accelLift[0] = tempA*x;
     accelLift[1] = tempA*y;
@@ -640,9 +599,9 @@ void EquationsOfMotion::find_accel_srp() {
     }
 
     // accel due to srp
-    double coefficientOfReflectivity = spacecraft.get_coefficient_of_reflectivity();
-    double *areaSun = spacecraft.get_sun_area();
-    double mass = spacecraft.get_mass();
+    double coefficientOfReflectivity = spacecraft->get_coefficient_of_reflectivity();
+    double *areaSun = spacecraft->get_sun_area();
+    double mass = spacecraft->get_mass();
     tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeSpacecraftToSun*fractionOfRecievedSunlight;
     accelSRP[0] = tempA*radiusSpacecraftToSun[0];
     accelSRP[1] = tempA*radiusSpacecraftToSun[1];
@@ -1166,19 +1125,7 @@ bool EquationsOfMotion::check_crash(double* state) {
 void EquationsOfMotion::set_mu(double mu) {
     mu = mu;
 }
-void EquationsOfMotion::set_central_body(std::string name) {
-    assign_eom_properties(centralBody);
-    mu = centralBody.mu();
-}
-void EquationsOfMotion::set_n_bodies(std::string* bodyNames, int numberOfBodies) {
-    // Pass data to central body
-    centralBody.numberOfNBodies = numberOfBodies;
-    for (int ii = 0; ii < numberOfBodies; ++ii) {
-        centralBody.nBodyNames[ii] = bodyNames[ii];
-    }
 
-    assign_eom_properties(centralBody);
-}
 void EquationsOfMotion::set_crash_radius(double crashRadius) {
     crashRadius = crashRadius;
 }
@@ -1186,10 +1133,8 @@ void EquationsOfMotion::set_crash_velocity(double crashVelocity) {
     crashVelocity = crashVelocity;
 }
 
-    // Central Body getter
+// Central Body getter
 double EquationsOfMotion::get_mu() { return mu; }
-
-
 
 // Perturbation toggles
 void EquationsOfMotion::switch_oblateness(bool onOff) {

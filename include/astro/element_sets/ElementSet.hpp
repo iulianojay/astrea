@@ -26,7 +26,7 @@ public:
     explicit operator bool() const = delete;
 
     // Utilities
-    constexpr frozen::string to_string() const { return toString.at(value); }
+    frozen::string to_string() const { return toString.at(value); }
 
 private:
     Values value;

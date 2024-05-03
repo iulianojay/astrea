@@ -1,13 +1,17 @@
 #pragma once
 
+#include <vector>
+
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
+#include "Barycenter.hpp"
 
 namespace solar_system {
 
 class SolarObjectBuilder {
 
     friend class SolarObjectFactory;
+    friend class BarycenterFactory;
 
 public:
 
@@ -15,6 +19,7 @@ public:
     ~SolarObjectBuilder() {}
 
     GravitationalBody build(SolarObject name);
+    Barycenter build(std::vector<SolarObject> names);
 
 private:
 

@@ -1,16 +1,17 @@
 #pragma once
 
+#include "AstrodynamicsSystem.hpp"
 #include "ElementSet.hpp"
 #include "GravitationalBody.hpp"
 #include "conversions.hpp"
 #include "typedefs.hpp"
-#include "solar_system.hpp"
 
 class OrbitalElements {
 public:
 
-    OrbitalElements(element_array elements, ElementSet set, GravitationalBody centralBody) : 
-        elements(elements), set(set), centralBody(centralBody) {}
+    OrbitalElements() : elements{0.0} {}
+    OrbitalElements(const element_array elements, const ElementSet set, AstrodynamicsSystem* system) : 
+        elements(elements), set(set), system(system) {}
 
     element_array convert(ElementSet newSet) {
         // Check if conversion is necessary
@@ -19,15 +20,18 @@ public:
         }
 
         // Generic conversion
-        elements = conversions::convert(elements, set, newSet, centralBody);
+        elements = conversions::convert(elements, set, newSet, system);
         set = newSet;
 
         // Return as convenience
         return elements;
     }
+
+    element_array as_array() { return elements; }
+    AstrodynamicsSystem* get_system() { return system; }
     
 private:
     element_array elements;
     ElementSet set;
-    GravitationalBody centralBody;
+    AstrodynamicsSystem* system;
 };

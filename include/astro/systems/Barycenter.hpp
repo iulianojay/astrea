@@ -1,19 +1,24 @@
 #pragma once
 
-#include <vector>
+#include <unordered_set>
 
-#include "Frame.hpp"
+#include "typedefs.hpp"
+#include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 
-template <class T>
+namespace solar_system {
+
 class Barycenter : public GravitationalBody {
 public:
 
-    Barycenter(std::vector<GravitationalBody> bodies, InertialFrame<T> frame) : referenceFrame(frame) {};
+    Barycenter(SolarObject referenceBody, std::unordered_set<SolarObject> bodies) : referenceBody(referenceBody), bodies(bodies) {};
     ~Barycenter() {};
 
 private:
     
-    basis center;
-    const InertialFrame<T> referenceFrame;
+    basis_array center;
+    SolarObject referenceBody;
+    std::unordered_set<SolarObject> bodies;
 };
+
+}

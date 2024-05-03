@@ -1,8 +1,14 @@
 #pragma once
 
 #include <string> 
+#include <unordered_map>
 
 #include "astronomical_constants.h"
+#include "typedefs.hpp"
+
+#include "OrbitalElements.hpp"
+#include "State.hpp"
+#include "JulianDateClock.hpp"
 
 class Spacecraft
 {
@@ -20,9 +26,11 @@ private:
     double areaSun[3] = { 0.01, 0.0, 0.0 };
     double areaLift[3] = { 0.01, 0.0, 0.0 };
 
+    // Orbital elements
+    std::vector<State> states;
+
     // Epoch variables
-    std::string epoch = "2000-01-01 12:00:00";
-    double epochJulianDate = J2000;
+    JulianDateTime epoch = J2000;
 
 public:
     //---------------------------------------------------------------------------------------------------------//
@@ -30,7 +38,7 @@ public:
     //---------------------------------------------------------------------------------------------------------//
 
     // Constructor
-    Spacecraft();
+    Spacecraft(OrbitalElements state0, std::string epoch="2000-01-01 12:00:00");
     
     // Destructor
     ~Spacecraft();
@@ -82,6 +90,9 @@ public:
     void set_epoch(std::string inputEpoch);
 
     //---------------------------------------Spacecraft property getters---------------------------------------//
+
+    State get_initial_state();
+    State get_state(double time);
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)

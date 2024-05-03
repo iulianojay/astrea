@@ -11,7 +11,7 @@ Integrator::~Integrator() {}
 void Integrator::find_state_derivative(double time, double* state, double* stateDerivative) {
     
     // Ask eom object to evaluate
-    equationsOfMotion.evaluate_state_derivative(time, state, stateDerivative);
+    equationsOfMotion->evaluate_state_derivative(time, state, spacecraft, stateDerivative);
 
     // Count fevals
     ++functionEvaluations;
@@ -20,6 +20,23 @@ void Integrator::find_state_derivative(double time, double* state, double* state
 //----------------------------------------------------------------------------------------------------------//
 //----------------------------------------------- Integrator -----------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
+
+void Integrator::propagate(double timeInitial, double timeFinal, Spacecraft sc, EquationsOfMotion eom) {					
+    
+    // TODO: Fix this nonsense
+    auto state0 = sc.get_initial_state().elements.as_array();
+    double stateInitial[6];
+    for (int ii = 0; ii < numberOfStates; ++ii) {
+        stateInitial[ii] = state0[ii]; // initial state
+    }
+
+    // Set for now TODO: Make this pass into the functions, no need to use pointers
+    spacecraft = &sc;
+    equationsOfMotion = &eom;
+
+    // Integrate
+    integrate(timeInitial, timeFinal, stateInitial);
+}
 
 void Integrator::integrate(double timeInitial, double timeFinal, double* stateInitial) {
 
@@ -31,8 +48,8 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
     }
     else { 
         timeStep = timeStepInitial; 
-    }						
-    
+    }	
+
     for (int ii = 0; ii < numberOfStates; ++ii) {
         state[ii] = stateInitial[ii]; // initial state
     }
@@ -548,7 +565,7 @@ void Integrator::copy_final_state(double* state) {
 void Integrator::check_event() {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    eventTrigger = equationsOfMotion.check_crash(state);
+    eventTrigger = equationsOfMotion->check_crash(state);
 
     // Break if hit nans or infs
     if (std::isinf(abs(time)) || std::isnan(abs(time))) {

@@ -4,9 +4,13 @@
 #include "astro.hpp"
 
 int main() {
-    // Setup
-    Spacecraft sc;
-    double state0[6] = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
+    // Setup system
+    AstrodynamicsSystem sys;
+
+    // Build spacecraft
+    element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
+    OrbitalElements elements0(state0, ElementSet::COE, &sys);
+    Spacecraft vehicle(elements0);
 
     // Build Integrator
     Integrator integrator;
@@ -21,7 +25,7 @@ int main() {
 
     // Integrate
     double statef[6];
-    integrator.integrate(0, 86400.0, state0);
+    integrator.propagate(0, 86400.0, vehicle, eom);
 
     // Print
     std::cout << "state0 = [" << state0[0];

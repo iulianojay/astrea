@@ -19,10 +19,66 @@ class GravitationalBody {
 
     friend class solar_system::SolarObjectBuilder;
 
+public:
+
+    //----------------------------------------------- Variables -----------------------------------------------//
+    int numberOfNBodies = 0;
+    std::string nBodyNames[30] = {};
+
+    //------------------------------------------------ Methods ------------------------------------------------//
+    // Constructor/destructor
+    GravitationalBody() {};
+    ~GravitationalBody();
+
+    // Property assignment
+    void propagate(double endTime);
+
+	// Property getters
+    const std::string name()   const { return _nameString; };
+    const std::string type()   const { return _typeString; };
+    const std::string parent() const { return _parentString; };
+
+    const int planetId() const { return _planetId; };
+    const int moonId()   const { return _moonId; };
+
+    const double mu()     const { return _gravitationalParameter; };
+    const double m()      const { return _mass; };
+    const double eqR()    const { return _equitorialRadius; };
+    const double polR()   const { return _polarRadius; };
+    const double crashR() const { return _crashRadius; };
+    const double SOI()    const { return _sphereOfInfluence; };
+
+    const double j2() const { return _j2; };
+    const double j3() const { return _j3; };
+
+    const double tilt()    const { return _axialTilt; };
+    const double rotRate() const { return _rotationRate; };
+    const double sidP()    const { return _siderealPeroid; };
+
+    const double a()     const { return _semimajorAxis; };
+    const double ecc()   const { return _eccentricity; };
+    const double inc()   const { return _inclination; };
+    const double raan()  const { return _rightAscension; };
+    const double w()     const { return _argumentOfPerigee; };
+    const double L()     const { return _trueLatitude; };
+    const double theta() const { return _trueAnomaly; };
+    const double Me()    const { return _meanAnomaly; };
+
+    const double adot()    const { return _semimajorAxisRate; };
+    const double eccdot()  const { return _eccentricityRate; };
+    const double incdot()  const { return _inclinationRate; };
+    const double raandot() const { return _rightAscensionRate; };
+    const double wdot()    const { return _argumentOfPerigeeRate; };
+    const double Ldot()    const { return _trueLatitudeRate; };
+
+    int lengthOfJulianDate() { return _lengthJulianDate; };
+
+    double*  getJulianDate()        { return _julianDate; };
+    double** radiusParentToBody()   { return _radiusParentToBody; };
+    double** velocityParentToBody() { return _velocityParentToBody; };
+
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
-
-    GravitationalBody* parentBody;
 
     // Properties
     solar_system::SolarObject _name, _parent;
@@ -37,69 +93,8 @@ private:
         _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate, 
         _eccentricityRate, _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
 
-    double *_julianDate, **_radiusParentToBody, **_velocityParentToBody, **_radiusSunToBody, **_velocitySunToBody;
+    double *_julianDate, **_radiusParentToBody, **_velocityParentToBody;
 
     //------------------------------------------------ Methods ------------------------------------------------//
     void find_radius_to_parent();
-    void find_radius_to_sun();
-
-public:
-
-    //----------------------------------------------- Variables -----------------------------------------------//
-    int numberOfNBodies = 0;
-    std::string nBodyNames[30] = {};
-
-    //------------------------------------------------ Methods ------------------------------------------------//
-    // Constructor/destructor
-    GravitationalBody() {};
-    ~GravitationalBody();
-
-    // Property assignment
-    void set_dates(double* inputJulianDate, int inputLengthJulianDate);
-
-	// Property getters
-    std::string name()   { return _nameString; };
-    std::string type()   { return _typeString; };
-    std::string parent() { return _parentString; };
-
-    int planetId() { return _planetId; };
-    int moonId()   { return _moonId; };
-
-    double mu()     { return _gravitationalParameter; };
-    double m()      { return _mass; };
-    double eqR()    { return _equitorialRadius; };
-    double polR()   { return _polarRadius; };
-    double crashR() { return _crashRadius; };
-    double SOI()    { return _sphereOfInfluence; };
-
-    double j2() { return _j2; };
-    double j3() { return _j3; };
-
-    double tilt()    { return _axialTilt; };
-    double rotRate() { return _rotationRate; };
-    double sidP()    { return _siderealPeroid; };
-
-    double a()     { return _semimajorAxis; };
-    double ecc()   { return _eccentricity; };
-    double inc()   { return _inclination; };
-    double raan()  { return _rightAscension; };
-    double w()     { return _argumentOfPerigee; };
-    double L()     { return _trueLatitude; };
-    double theta() { return _trueAnomaly; };
-    double Me()    { return _meanAnomaly; };
-
-    double adot()    { return _semimajorAxisRate; };
-    double eccdot()  { return _eccentricityRate; };
-    double incdot()  { return _inclinationRate; };
-    double raandot() { return _rightAscensionRate; };
-    double wdot()    { return _argumentOfPerigeeRate; };
-    double Ldot()    { return _trueLatitudeRate; };
-
-    int lengthOfJulianDate() { return _lengthJulianDate; };
-
-    double*  getJulianDate()        { return _julianDate; };
-    double** radiusParentToBody()   { return _radiusParentToBody; };
-    double** velocityParentToBody() { return _velocityParentToBody; };
-    double** radiusSunToBody()      { return _radiusSunToBody; };
-    double** velocitySunToBody()    { return _velocitySunToBody; };
 };

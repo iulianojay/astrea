@@ -15,11 +15,17 @@ public:
     SolarObjectFactory() : builder() {};
     ~SolarObjectFactory() {};
 
-    GravitationalBody& create(SolarObject name);
-    GravitationalBody& create(std::string name);
+    const GravitationalBody& create(const SolarObject name);
+    const GravitationalBody& create(const std::string name);
+
+    const GravitationalBody& get(const SolarObject name) const;
+    const GravitationalBody& get(const std::string name) const;
     
-    GravitationalBody& get(SolarObject name, bool buildIfMissing=false);
-    GravitationalBody& get(std::string name, bool buildIfMissing=false);
+    const GravitationalBody& get(const SolarObject name, const bool buildIfMissing=false);
+    const GravitationalBody& get(const std::string name, const bool buildIfMissing=false);
+
+    const size_t number_of_bodies() const { return bodies.size(); }
+    void propagate_bodies(double endTime);
 
 private:
 

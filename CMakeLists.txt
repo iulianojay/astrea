@@ -3,10 +3,9 @@ cmake_minimum_required(VERSION 3.16.3)
 
 project(astro VERSION 1.0.0 DESCRIPTION "C++ astodynamics library" LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-include(GNUInstallDirs)
 
 # Utility variables
 set(BASE ${CMAKE_CURRENT_SOURCE_DIR})
@@ -28,6 +27,7 @@ set(INCLUDE_DIRS
     ${INC}/astro/element_sets
     ${INC}/astro/propagation
     ${INC}/astro/systems
+    ${INC}/astro/time
     ${INC}/astro/types
     ${INC}/astro/utilities
     ${SRC}
@@ -42,6 +42,7 @@ set(OBJS
     ${SRC}/propagation/Integrator.cpp
     ${SRC}/propagation/LambertSolver.cpp
 
+    ${SRC}/systems/AstrodynamicsSystem.cpp
     ${SRC}/systems/GravitationalBody.cpp
     ${SRC}/systems/SolarObjectBuilder.cpp
     ${SRC}/systems/SolarObjectFactory.cpp
@@ -50,6 +51,7 @@ set(OBJS
     ${SRC}/utilities/math_c.cpp
 
     ${SRC}/Spacecraft.cpp
+    ${SRC}/State.cpp
 )
 
 set(TEST_OBJS
@@ -72,10 +74,14 @@ set(HDRS
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp
     
-    ${INC}/astro/systems/solar_system.hpp
+    ${INC}/astro/systems/AstrodynamicsSystem.hpp
+    ${INC}/astro/systems/Barycenter.hpp
     ${INC}/astro/systems/GravitationalBody.hpp
+    ${INC}/astro/systems/solar_system.hpp
     ${INC}/astro/systems/SolarObjectBuilder.hpp
     ${INC}/astro/systems/SolarObjectFactory.hpp
+    
+    ${INC}/astro/time/JulianDateClock.hpp
 
     ${INC}/astro/types/typedefs.hpp
 
@@ -83,6 +89,7 @@ set(HDRS
     ${INC}/astro/utilities/math_c.hpp
 
     ${INC}/astro/Spacecraft.hpp
+    ${INC}/astro/State.hpp
 )
 
 set(TEST_HDRS
@@ -93,14 +100,17 @@ set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} -std=c17")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS}")
+set(C_FLAGS "-std=c20")
+set(CXX_FLAGS "-std=c++20")
 
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${RELEASE_FLAGS} -std=c17")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${RELEASE_FLAGS}")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
 
-set(CMAKE_C_FLAGS_RELWITHHDEBINFO "${CMAKE_C_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS} -std=c17")
-set(CMAKE_CXX_FLAGS_RELWITHHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${RELEASE_FLAGS} ${C_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${RELEASE_FLAGS} ${CXX_FLAGS}")
+
+set(CMAKE_C_FLAGS_RELWITHHDEBINFO "${CMAKE_C_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS} ${C_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELWITHHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS} ${CXX_FLAGS}")
 
 # Shared library
 add_library                (${LIBNAME}_shared SHARED ${OBJS} ${HDRS})
