@@ -4,7 +4,7 @@
 #include "conversions.hpp"
 
 // Constructor/Destructor
-Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) {
+Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) : epoch(J2000) {
     states.push_back({0.0, state0});
     set_epoch(epoch);
 }
@@ -56,9 +56,7 @@ void Spacecraft::set_lift_area(double* aLift) {
 }
 
 void Spacecraft::set_epoch(std::string inputEpoch) {
-    // Update spacecraft
-    epoch = inputEpoch;
-    epochJulianDate = conversions::epoch_to_julian_date(inputEpoch);
+    epoch = Date(inputEpoch);
 }
 
 //----------------------------------------------------------------------------------------------------------//

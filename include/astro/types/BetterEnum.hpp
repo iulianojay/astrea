@@ -16,7 +16,7 @@ public:
     constexpr ~BetterEnum() {}
 
     // Allow switch and comparisons.
-    constexpr operator Values() const { return values; }
+    constexpr operator Values() const { return value; }
 
     // Prevent usage: if(BetterEnum)
     explicit operator bool() const = delete;

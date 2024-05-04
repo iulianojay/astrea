@@ -8,7 +8,7 @@
 
 #include "OrbitalElements.hpp"
 #include "State.hpp"
-#include "JulianDateClock.hpp"
+#include "Date.hpp"
 
 class Spacecraft
 {
@@ -30,7 +30,7 @@ private:
     std::vector<State> states;
 
     // Epoch variables
-    JulianDateTime epoch = J2000;
+    Date epoch;
 
 public:
     //---------------------------------------------------------------------------------------------------------//
@@ -38,7 +38,7 @@ public:
     //---------------------------------------------------------------------------------------------------------//
 
     // Constructor
-    Spacecraft(OrbitalElements state0, std::string epoch="2000-01-01 12:00:00");
+    Spacecraft(OrbitalElements state0, std::string epoch);
     
     // Destructor
     ~Spacecraft();

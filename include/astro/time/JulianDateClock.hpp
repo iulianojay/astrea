@@ -17,11 +17,6 @@ struct JulianDateClock
 
     static constexpr bool is_steady = false;
 
-    static time_point now() noexcept {
-        using namespace std::chrono;
-        return clock_cast<JulianDateClock>(system_clock::now());
-    }
-
     template <class Duration>
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept {
         using namespace std;
@@ -43,6 +38,13 @@ struct JulianDateClock
         using namespace std::chrono;
         return sys_time{timePoint - clock_cast<JulianDateClock>(sys_days{})};
     }
+
+    static time_point now() noexcept {
+        using namespace std::chrono;
+        return from_sys(system_clock::now());
+    }
 };
 
-static const JulianDateTime J2000(JulianDateClock::duration{2451545.0});
+using JulianDate = JulianDateClock::time_point;
+
+static const JulianDate J2000(JulianDateClock::duration{2451545.0});
