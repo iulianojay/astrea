@@ -81,7 +81,9 @@ set(HDRS
     ${INC}/astro/systems/SolarObjectBuilder.hpp
     ${INC}/astro/systems/SolarObjectFactory.hpp
     
+    ${INC}/astro/time/Date.hpp
     ${INC}/astro/time/JulianDateClock.hpp
+    ${INC}/astro/time/Time.hpp
 
     ${INC}/astro/types/typedefs.hpp
 

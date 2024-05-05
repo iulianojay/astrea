@@ -6,6 +6,7 @@
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 #include "SolarObjectBuilder.hpp"
+#include "Date.hpp"
 
 namespace solar_system {
 
@@ -25,7 +26,7 @@ public:
     const GravitationalBody& get(const std::string name, const bool buildIfMissing=false);
 
     const size_t number_of_bodies() const { return bodies.size(); }
-    void propagate_bodies(double endTime);
+    void propagate_bodies(Date epoch, double endTime);
 
 private:
 

@@ -9,6 +9,8 @@
 
 #include "astronomical_constants.h"
 #include "solar_system.hpp"
+#include "Time.hpp"
+#include "Date.hpp"
 
 // Forward declaration
 namespace solar_system {
@@ -31,7 +33,9 @@ public:
     ~GravitationalBody();
 
     // Property assignment
-    void propagate(double endTime);
+    void propagate(Date epoch, double propTime);
+    void propagate(Date epoch, Time propTime);
+    void propagate(Date epoch, Date endEpoch);
 
 	// Property getters
     const std::string name()   const { return _nameString; };
@@ -71,7 +75,7 @@ public:
     const double wdot()    const { return _argumentOfPerigeeRate; };
     const double Ldot()    const { return _trueLatitudeRate; };
 
-    int lengthOfJulianDate() { return _lengthJulianDate; };
+    int nDays() { return _nDays; };
 
     double*  getJulianDate()        { return _julianDate; };
     double** radiusParentToBody()   { return _radiusParentToBody; };
@@ -86,7 +90,7 @@ private:
 
     std::string _nameString, _parentString, _typeString;
 
-    int _planetId = -1, _moonId = -1, _lengthJulianDate = 0;
+    int _planetId = -1, _moonId = -1, _nDays = 0;
 
     double _gravitationalParameter, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
         _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination, 
@@ -96,5 +100,6 @@ private:
     double *_julianDate, **_radiusParentToBody, **_velocityParentToBody;
 
     //------------------------------------------------ Methods ------------------------------------------------//
-    void find_radius_to_parent();
+    void find_radius_to_parent(Date epoch, Date endEpoch);
+    void _propagate(Date epoch, Date endEpoch);
 };

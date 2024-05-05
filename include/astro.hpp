@@ -19,7 +19,9 @@
 #include "astro/systems/SolarObjectBuilder.hpp"
 #include "astro/systems/SolarObjectFactory.hpp"
 
+#include "astro/time/Date.hpp"
 #include "astro/time/JulianDateClock.hpp"
+#include "astro/time/Time.hpp"
 
 #include "astro/types/typedefs.hpp"
 

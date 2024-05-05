@@ -3,10 +3,10 @@
 // Destructor
 GravitationalBody::~GravitationalBody() {
 
-    if (_lengthJulianDate == 0) { return; }
+    if (_nDays == 0) { return; }
     
-    if (_lengthJulianDate > 1) {
-        for (int ii = 0; ii < _lengthJulianDate; ++ii) {
+    if (_nDays > 1) {
+        for (int ii = 0; ii < _nDays; ++ii) {
             delete[] _radiusParentToBody[ii];
             delete[] _velocityParentToBody[ii];
         }
@@ -20,28 +20,37 @@ GravitationalBody::~GravitationalBody() {
     delete[] _velocityParentToBody;
 }
 
-void GravitationalBody::propagate(double endTime) {
-    
-    // Assign julian date 
-    _lengthJulianDate = inputLengthJulianDate;
-    _julianDate = new double[_lengthJulianDate];
+void GravitationalBody::propagate(Date epoch, double propTime) {
+    Date endEpoch = epoch + Time(propTime);
+    _propagate(epoch, endEpoch);
+}
+void GravitationalBody::propagate(Date epoch, Time propTime) {
+    Date endEpoch = epoch + propTime;
+    _propagate(epoch, endEpoch);
+}
+void GravitationalBody::propagate(Date epoch, Date endEpoch) {
+    _propagate(epoch, endEpoch);
+}
+
+void GravitationalBody::_propagate(Date epoch, Date endEpoch) {
+
+    // Find duration 
+    _nDays = round((endEpoch.julian_day() - epoch.julian_day()).count());
 
     // Create appropriately sized arrays
-    _radiusParentToBody   = new double*[_lengthJulianDate];
-    _velocityParentToBody = new double*[_lengthJulianDate];
-    for (int ii = 0; ii < _lengthJulianDate; ++ii) {
-        _julianDate[ii] = inputJulianDate[ii];
-
+    _radiusParentToBody   = new double*[_nDays];
+    _velocityParentToBody = new double*[_nDays];
+    for (int ii = 0; ii < _nDays; ++ii) {
         _radiusParentToBody[ii]   = new double[3];
         _velocityParentToBody[ii] = new double[3];
     }
 
     // Find State Values
-    find_radius_to_parent();
+    find_radius_to_parent(epoch, endEpoch);
 }
 
 // Find position of body relative to parent and relative to the sun
-void GravitationalBody::find_radius_to_parent() {
+void GravitationalBody::find_radius_to_parent(Date epoch, Date endEpoch) {
 
 	// Get reference date
 	/*
@@ -54,7 +63,7 @@ void GravitationalBody::find_radius_to_parent() {
 
 	UTC = TT - 64 seconds
 	*/
-	double referenceJulianDate{};
+	int referenceJulianDate;
 	double parentMu{};
 	switch (_type) {
         case solar_system::GC:
@@ -96,6 +105,7 @@ void GravitationalBody::find_radius_to_parent() {
         default:
             throw std::invalid_argument("Object's type not found.");
 	}
+    Date refJulianDate = JulianDate(JulianDateClock::duration(referenceJulianDate));
 
 	// Variables for loop
 	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{}, ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{};
@@ -107,9 +117,9 @@ void GravitationalBody::find_radius_to_parent() {
     const double deg2rad = pi/180.0;
 
 	// Fruit loop
-    for (int ii = 0; ii < _lengthJulianDate; ++ii) {
+    for (int ii = 0; ii < _nDays; ++ii) {
         // Time since reference date
-        t = (_julianDate[ii] - referenceJulianDate)/36525; // Julian Centuries
+        t = (epoch.julian_day().count() - refJulianDate.julian_day().count())/36525; // Julian Centuries
 
         // COEs
         at = _semimajorAxis + _semimajorAxisRate*t;

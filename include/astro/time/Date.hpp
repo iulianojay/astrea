@@ -37,6 +37,18 @@ public:
         return *this;
     }
 
+    // Addition operator
+    Date operator+(const Time& time) {
+        const auto newTime = julianDate.time_since_epoch() + time.time;
+        return Date(JulianDate(newTime));
+    }
+
+    // Subtraction operator
+    Time operator-(const Date& other) {
+        const auto diff = other.julianDate - julianDate; 
+        return Time(diff);
+    }
+
     // Stream
     friend std::ostream& operator<<(std::ostream& os, const Date& obj) {
         os << obj.calendarDate;
@@ -44,7 +56,7 @@ public:
     }
 
     // Destructor
-    ~Date();
+    ~Date() {}
 
     // Utilities
     const auto julian_day() {

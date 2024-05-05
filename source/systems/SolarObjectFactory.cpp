@@ -42,12 +42,12 @@ const GravitationalBody& SolarObjectFactory::get(const SolarObject name, const b
 }
 
 
-void SolarObjectFactory::propagate_bodies(double endTime) {
+void SolarObjectFactory::propagate_bodies(Date epoch, double endTime) {
 
     // Go until end julian date
     for (auto [name, body]: bodies) {
         // Create ith body
-        body.propagate(endTime);
+        body.propagate(epoch, endTime);
     }
 }
 

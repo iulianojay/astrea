@@ -13,8 +13,7 @@ int test_two_body_dyanmics() {
     // Build spacecraft
     element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
     OrbitalElements elements0(state0, ElementSet::COE, &sys);
-    Spacecraft sat(elements0);
-    sat.set_epoch("Jan-01-2030 00:00:00.0");
+    Spacecraft sat(elements0, "Jan-01-2030 00:00:00.0");
 
     // Build Integrator
     Integrator integrator;
