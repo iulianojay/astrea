@@ -28,11 +28,15 @@ public:
     const size_t number_of_bodies() const { return bodies.size(); }
     void propagate_bodies(Date epoch, double endTime);
 
+    const SolarObject& get_root() const { return root; }
+
 private:
 
     SolarObjectBuilder builder;
     std::unordered_map<SolarObject, GravitationalBody> bodies;
+    SolarObject root;
 
+    void find_root();
 };
 
 }

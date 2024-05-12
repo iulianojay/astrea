@@ -1,13 +1,9 @@
 #include "EquationsOfMotion.hpp"
-#include "conversions.hpp"
 
 // Constructors 
-EquationsOfMotion::EquationsOfMotion() : spacecraft() {
+EquationsOfMotion::EquationsOfMotion(AstrodynamicsSystem* system) : spacecraft(), system(system) {
     // Make central Body
     const GravitationalBody& centralBody = system->get_center();
-
-    // Assign properties from central body
-    ;
 
     // Assign these defaults separately so they don't override mannual choices later
     mu = centralBody.mu();
@@ -55,7 +51,6 @@ void EquationsOfMotion::evaluate_state_derivative(double time, double* state, Sp
 
     // TODO: Fix this
     spacecraft = sc;
-    system = sc->get_initial_state().elements.get_system();
 
     // Time
     t = time;

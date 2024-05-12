@@ -31,9 +31,6 @@ void SolarObjectBuilder::assign_properties(GravitationalBody& body, SolarObject 
     // Assign body class and parent
     body._type = _typeMap.at(name);
     body._parent = _parentMap.at(name);
-    
-    body._typeString = _mapType.at(body._type);
-    body._parentString = _mapName.at(body._parent);
 
     // Assign physical properties
     // Assign all properties from the astronomical_constants header

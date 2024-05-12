@@ -11,9 +11,17 @@ class Time {
     friend Date;
 
 public:
-    Time(double time) : time(time) {}
     Time(JulianDateClock::duration dur) : time(dur) {}
     ~Time() {}
+
+    // conversion from double (constructor)
+    Time(const double& time) : time(time) {}
+
+    // conversion from double (assignment)
+    Time& operator=(const double& time) { return *this; }
+
+    // conversion to double (type-cast operator)
+    operator double() { return time.count(); }
     
     // Addition
     Time operator+(const Time& other) {
@@ -35,6 +43,17 @@ public:
         return time - Time(other).time;
     }
     
+    // Comparitors
+    bool operator<(const Time& other) {
+        return time < other.time;
+    }
+    bool operator>(const Time& other) {
+        return time > other.time;
+    }
+    bool operator==(const Time& other) {
+        return time == other.time;
+    }
+    
     // Multiplication
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     Time operator*(const T& other) {
@@ -49,6 +68,9 @@ public:
 
     // Forward count()
     auto count() const { return time.count(); }
+
+    // abs
+    auto abs() { return std::chrono::abs(time); }
 
 private:
 

@@ -12,6 +12,7 @@
 #include "astronomical_constants.h"	// my tables of constants
 #include "math_constants.h"         // my common math constants
 #include "math_c.hpp"
+#include "conversions.hpp"
 
 #include "Spacecraft.hpp"
 #include "GravitationalBody.hpp"
@@ -23,7 +24,7 @@ class EquationsOfMotion
 public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructors and destructor
-    EquationsOfMotion();
+    EquationsOfMotion(AstrodynamicsSystem* system);
     ~EquationsOfMotion();
 
     // Derivative eval

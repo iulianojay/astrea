@@ -2,12 +2,12 @@
 #pragma once
 
 #include <map>
+#include <iostream>
 
-#include "AstrodynamicsSystem.hpp"
 #include "typedefs.hpp"
 #include "ElementSet.hpp"
-#include "GravitationalBody.hpp"
 
+class AstrodynamicsSystem;
 
 namespace conversions {
 

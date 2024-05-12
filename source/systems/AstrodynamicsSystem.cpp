@@ -16,34 +16,49 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
 
     // Assign properties from central body
     GravitationalBody center = bodyFactory.get(centralBody);
+    const std::vector<State> centralBodyStates = center.get_states();
 
-    // Get radius vector from central body
-    size_t sizeOfDateArray = center.nDays();
-    double** radiusParentToCenter = new double*[sizeOfDateArray];
-    for (int ii = 0; ii < sizeOfDateArray; ++ii) {
-        radiusParentToCenter[ii] = new double[3];
-        for (int jj = 0; jj < 3; ++jj) {
-            radiusParentToCenter[ii][jj] = center.radiusParentToBody()[ii][jj];
+    // Get root body
+    SolarObject root = bodyFactory.get_root();
+    std::vector<State> centerToRoot = centralBodyStates;
+    if (centralBody != root) {
+        auto parent = center.parent();
+        while (parent != root) {
+            GravitationalBody parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody.get_states();
+            for (int ii = 0; ii < centerToRoot.size(); ii++) {
+                centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
+            }
+            parent = parentBody.parent();
         }
     }
 
-    // Create arrays for n body calcs
-    double* nBodyGravitationalParameter = new double[allBodies.size()];
-    double** radiusParentToNbody = new double*[sizeOfDateArray];
-    for (int ii = 0; ii < sizeOfDateArray; ++ii) {
-        radiusParentToNbody[ii] = new double[3*allBodies.size()]{};
-    }
-
-    int ii = 0;
+    // Get states for ith bodies to center
     for (const auto body: allBodies) {
-
-        // Populate arrays
-        GravitationalBody ithBody = bodyFactory.get(body);
-        for (int jj = 0; jj < sizeOfDateArray; ++jj) {
-            radiusParentToNbody[jj][ii*3] = ithBody.radiusParentToBody()[jj][0];
-            radiusParentToNbody[jj][ii*3+1] = ithBody.radiusParentToBody()[jj][1];
-            radiusParentToNbody[jj][ii*3+2] = ithBody.radiusParentToBody()[jj][2];
+        if (body == centralBody) {
+            continue;
         }
-        ii++;
+
+        // Get ith body states
+        GravitationalBody ithBody = bodyFactory.get(body);
+        statesToCenter.push_back(ithBody.get_states());
+
+        // If parent is not root, back track to root
+        auto parent = ithBody.parent();
+        auto& states = statesToCenter.back();
+        while (parent != root) {
+            GravitationalBody parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody.get_states();
+            for (int ii = 0; ii < states.size(); ii++) {
+                states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
+            }
+            parent = parentBody.parent();
+        }
+
+        // Convert to state relative to central body
+        for (int ii = 0; ii < states.size(); ii++) {
+            states[ii].elements = states[ii].elements - centerToRoot[ii].elements;
+        }
     }
+
 }

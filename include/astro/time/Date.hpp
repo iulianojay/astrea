@@ -60,7 +60,7 @@ public:
 
     // Utilities
     const auto julian_day() {
-        return julianDate.time_since_epoch();
+        return julianDate.time_since_epoch().count();
     }
     const auto utc() {
         using namespace std::chrono;

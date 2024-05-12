@@ -65,13 +65,13 @@ void Spacecraft::set_epoch(std::string inputEpoch) {
 
 State Spacecraft::get_initial_state() { return states[0]; }
 
-State Spacecraft::get_state(double time) {
+State Spacecraft::get_state(Time time) {
     // Get index of lower bound closest to input time
     auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
     
     // Compare time before and after index
-    double lowerDiff = fabs(states[id].time - time);
-    double upperDiff = fabs(states[id+1].time - time);
+    Time lowerDiff = (states[id].time - time);
+    Time upperDiff = (states[id+1].time - time);
 
     // Return closest
     if (lowerDiff < upperDiff) {

@@ -11,6 +11,7 @@
 #include "solar_system.hpp"
 #include "Time.hpp"
 #include "Date.hpp"
+#include "State.hpp"
 
 // Forward declaration
 namespace solar_system {
@@ -29,8 +30,8 @@ public:
 
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
-    GravitationalBody() {};
-    ~GravitationalBody();
+    GravitationalBody() {}
+    ~GravitationalBody() {}
 
     // Property assignment
     void propagate(Date epoch, double propTime);
@@ -38,9 +39,9 @@ public:
     void propagate(Date epoch, Date endEpoch);
 
 	// Property getters
-    const std::string name()   const { return _nameString; };
-    const std::string type()   const { return _typeString; };
-    const std::string parent() const { return _parentString; };
+    const std::string name()     const { return _nameString; };
+    const solar_system::SolarObjectType type() const { return _type; };
+    const solar_system::SolarObject parent()   const { return _parent; };
 
     const int planetId() const { return _planetId; };
     const int moonId()   const { return _moonId; };
@@ -76,10 +77,7 @@ public:
     const double Ldot()    const { return _trueLatitudeRate; };
 
     int nDays() { return _nDays; };
-
-    double*  getJulianDate()        { return _julianDate; };
-    double** radiusParentToBody()   { return _radiusParentToBody; };
-    double** velocityParentToBody() { return _velocityParentToBody; };
+    std::vector<State> get_states()   { return _states; };
 
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
@@ -88,7 +86,7 @@ private:
     solar_system::SolarObject _name, _parent;
     solar_system::SolarObjectType _type;
 
-    std::string _nameString, _parentString, _typeString;
+    std::string _nameString;
 
     int _planetId = -1, _moonId = -1, _nDays = 0;
 
@@ -97,9 +95,9 @@ private:
         _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate, 
         _eccentricityRate, _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
 
-    double *_julianDate, **_radiusParentToBody, **_velocityParentToBody;
+    std::vector<State> _states;
 
     //------------------------------------------------ Methods ------------------------------------------------//
-    void find_radius_to_parent(Date epoch, Date endEpoch);
+    void find_state_relative_to_parent(Date epoch, Date endEpoch);
     void _propagate(Date epoch, Date endEpoch);
 };

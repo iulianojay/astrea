@@ -35,6 +35,8 @@ private:
     const SolarObject centralBody;
     const std::unordered_set<SolarObject> allBodies;
     SolarObjectFactory bodyFactory;
+    
+    std::vector<std::vector<State>> statesToCenter;
 
     void create_all_bodies();
 };

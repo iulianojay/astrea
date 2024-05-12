@@ -9,7 +9,7 @@ int main() {
 
     // Build spacecraft
     element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
-    OrbitalElements elements0(state0, ElementSet::COE, &sys);
+    OrbitalElements elements0(state0, ElementSet::COE);
     Spacecraft vehicle(elements0, "Jan-01-2030 00:00:00.0");
 
     // Build Integrator
@@ -20,7 +20,7 @@ int main() {
     integrator.set_rel_tol(1.0e-8);
 
     // Build EoMs
-    EquationsOfMotion eom;
+    EquationsOfMotion eom(&sys);
     eom.switch_dynamics("two body");
 
     // Integrate

@@ -1,25 +1,5 @@
 #include "GravitationalBody.hpp"
 
-// Destructor
-GravitationalBody::~GravitationalBody() {
-
-    if (_nDays == 0) { return; }
-    
-    if (_nDays > 1) {
-        for (int ii = 0; ii < _nDays; ++ii) {
-            delete[] _radiusParentToBody[ii];
-            delete[] _velocityParentToBody[ii];
-        }
-        delete[] _julianDate;
-    }
-    else {
-        delete _julianDate;
-    }
-
-    delete[] _radiusParentToBody;
-    delete[] _velocityParentToBody;
-}
-
 void GravitationalBody::propagate(Date epoch, double propTime) {
     Date endEpoch = epoch + Time(propTime);
     _propagate(epoch, endEpoch);
@@ -35,22 +15,14 @@ void GravitationalBody::propagate(Date epoch, Date endEpoch) {
 void GravitationalBody::_propagate(Date epoch, Date endEpoch) {
 
     // Find duration 
-    _nDays = round((endEpoch.julian_day() - epoch.julian_day()).count());
-
-    // Create appropriately sized arrays
-    _radiusParentToBody   = new double*[_nDays];
-    _velocityParentToBody = new double*[_nDays];
-    for (int ii = 0; ii < _nDays; ++ii) {
-        _radiusParentToBody[ii]   = new double[3];
-        _velocityParentToBody[ii] = new double[3];
-    }
+    _nDays = round(endEpoch.julian_day() - epoch.julian_day());
 
     // Find State Values
-    find_radius_to_parent(epoch, endEpoch);
+    find_state_relative_to_parent(epoch, endEpoch);
 }
 
 // Find position of body relative to parent and relative to the sun
-void GravitationalBody::find_radius_to_parent(Date epoch, Date endEpoch) {
+void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
 
 	// Get reference date
 	/*
@@ -108,18 +80,20 @@ void GravitationalBody::find_radius_to_parent(Date epoch, Date endEpoch) {
     Date refJulianDate = JulianDate(JulianDateClock::duration(referenceJulianDate));
 
 	// Variables for loop
-	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{}, ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{};
-	double coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{};
-	double DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
+	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{}, 
+        ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{},
+        coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{},
+        DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
 
 	const double pi = 3.141592653575;
     const double rad2deg = 180.0/pi;
     const double deg2rad = pi/180.0;
 
-	// Fruit loop
+	// Loop over each day in the epoch range
     for (int ii = 0; ii < _nDays; ++ii) {
         // Time since reference date
-        t = (epoch.julian_day().count() - refJulianDate.julian_day().count())/36525; // Julian Centuries
+        Time jd = epoch.julian_day() + ii;
+        t = (jd.count() - refJulianDate.julian_day())/36525; // time in Julian Centuries
 
         // COEs
         at = _semimajorAxis + _semimajorAxisRate*t;
@@ -138,8 +112,10 @@ void GravitationalBody::find_radius_to_parent(Date epoch, Date endEpoch) {
         // assumed to be good for this calc since all these bodies are
         // nearly circular. Solving Kepler"s equations takes a very long
         // time
-        ecct_2 = pow(ecct, 2); ecct_3 = pow(ecct, 3);
-        ecct_4 = pow(ecct, 4); ecct_5 = pow(ecct, 5);
+        ecct_2 = ecct*ecct; 
+        ecct_3 = ecct_2*ecct;
+        ecct_4 = ecct_3*ecct;
+        ecct_5 = ecct_4*ecct;
 
         thetat = (Met + (2.0*ecct - 0.25*ecct_3 + 5.0/96.0*ecct_5)*sin(Met) + (1.25*ecct_2 - 11.0/24.0*ecct_4)*sin(2.0*Met) +
             (13.0/12.0*ecct_3 - 43.0/64.0*ecct_5)*sin(3.0*Met) + 103.0/96.0*ecct_4*sin(4*Met) + 1097.0/960.0*ecct_5*sin(5*Met))*rad2deg;
@@ -179,13 +155,18 @@ void GravitationalBody::find_radius_to_parent(Date epoch, Date endEpoch) {
         DCM_zy = si*cw;
 
         // Find radius and velocity vector
-        _radiusParentToBody[ii][0] = DCM_xx*xPerifocal  + DCM_xy*yPerifocal;
-        _radiusParentToBody[ii][1] = DCM_yx*xPerifocal  + DCM_yy*yPerifocal;
-        _radiusParentToBody[ii][2] = DCM_zx*xPerifocal  + DCM_zy*yPerifocal;
+        double bciState[6];
+        bciState[0] = DCM_xx*xPerifocal  + DCM_xy*yPerifocal;
+        bciState[1] = DCM_yx*xPerifocal  + DCM_yy*yPerifocal;
+        bciState[2] = DCM_zx*xPerifocal  + DCM_zy*yPerifocal;
 
-        _velocityParentToBody[ii][0] = DCM_xx*vxPerifocal + DCM_xy*vyPerifocal;
-        _velocityParentToBody[ii][1] = DCM_yx*vxPerifocal + DCM_yy*vyPerifocal;
-        _velocityParentToBody[ii][2] = DCM_zx*vxPerifocal + DCM_zy*vyPerifocal;
+        bciState[3] = DCM_xx*vxPerifocal + DCM_xy*vyPerifocal;
+        bciState[4] = DCM_yx*vxPerifocal + DCM_yy*vyPerifocal;
+        bciState[5] = DCM_zx*vxPerifocal + DCM_zy*vyPerifocal;
+
+        // Store
+        State state(jd, bciState, ElementSet::CARTESIAN);
+        _states.push_back(state);
     }
 }
 

@@ -92,7 +92,7 @@ public:
     //---------------------------------------Spacecraft property getters---------------------------------------//
 
     State get_initial_state();
-    State get_state(double time);
+    State get_state(Time time);
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
