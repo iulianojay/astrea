@@ -16,11 +16,11 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
 
     // Assign properties from central body
     GravitationalBody center = bodyFactory.get(centralBody);
-    const std::vector<State> centralBodyStates = center.get_states();
+    const std::vector<State> centerToParent = center.get_states();
 
     // Get root body
     SolarObject root = bodyFactory.get_root();
-    std::vector<State> centerToRoot = centralBodyStates;
+    std::vector<State> centerToRoot = centerToParent;
     if (centralBody != root) {
         auto parent = center.parent();
         while (parent != root) {
@@ -30,6 +30,33 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody.parent();
+        }
+    }
+    else {
+        const double noDiff[6] = {0.0};
+        for (int ii = 0; ii < centerToRoot.size(); ii++) {
+            centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
+        }
+    }
+
+    // Get root to Sun
+    if (centralBody != SUN) {
+        std::vector<State> centerToSun = centerToParent;
+        auto parent = center.parent();
+        auto& states = centerToSun.back();
+        while (parent != GC) {
+            GravitationalBody parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody.get_states();
+            for (int ii = 0; ii < centerToSun.size(); ii++) {
+                centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
+            }
+            parent = parentBody.parent();
+        }
+    }
+    else {
+        const double noDiff[6] = {0.0};
+        for (int ii = 0; ii < centerToSun.size(); ii++) {
+            centerToSun[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }
     }
 

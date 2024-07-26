@@ -37,6 +37,7 @@ private:
     SolarObjectFactory bodyFactory;
     
     std::vector<std::vector<State>> statesToCenter;
+    std::vector<State> centerToSun;
 
     void create_all_bodies();
 };
