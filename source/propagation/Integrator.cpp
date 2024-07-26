@@ -36,6 +36,9 @@ void Integrator::propagate(double timeInitial, double timeFinal, Spacecraft sc, 
 
     // Integrate
     integrate(timeInitial, timeFinal, stateInitial);
+
+    // Assign state history to spacecraft
+    
 }
 
 void Integrator::integrate(double timeInitial, double timeFinal, double* stateInitial) {

@@ -10,6 +10,7 @@ int main() {
     // Build spacecraft
     element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
     OrbitalElements elements0(state0, ElementSet::COE);
+    elements0.convert(ElementSet::CARTESIAN, &sys);
     Spacecraft vehicle(elements0, "Jan-01-2030 00:00:00.0");
 
     // Build Integrator
@@ -26,6 +27,7 @@ int main() {
     // Integrate
     double statef[6];
     integrator.propagate(0, 86400.0, vehicle, eom);
+    integrator.copy_final_state(statef);
 
     // Print
     std::cout << "state0 = [" << state0[0];
@@ -39,4 +41,6 @@ int main() {
         std::cout << ", " << statef[ii];
     }
     std::cout << "]\n";
+
+    return 1;
 }

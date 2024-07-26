@@ -120,7 +120,7 @@ element_array conversions::convert(element_array elements, ElementSet fromSet, E
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
 
-void conversions::coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
+void conversions::coes_to_bci(double a, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
     
     double ct{}, st{}, cw{}, sw{}, cr{}, sr{}, ci{}, si{}, A{}, B{}, x_peri{}, y_peri{}, vx_peri{}, vy_peri{};
     double DCM_peri2ECI_11{}, DCM_peri2ECI_12{}, DCM_peri2ECI_21{}, DCM_peri2ECI_22{}, DCM_peri2ECI_31{}, DCM_peri2ECI_32{};
@@ -140,6 +140,7 @@ void conversions::coes_to_bci(double h, double ecc, double inc, double w, double
     ci = cos(inc); 
     si = sin(inc);
 
+    double h = sqrt(mu*a*(1 - ecc));
     A = h*h/mu/(1 + ecc*ct);
     B = mu/h;
 

@@ -14,23 +14,6 @@ EquationsOfMotion::EquationsOfMotion(AstrodynamicsSystem* system) : spacecraft()
 // Destructor
 EquationsOfMotion::~EquationsOfMotion(){
     // Clean up
-    if (sizeOfDateArray > 1){
-        for (int ii = 0; ii < sizeOfDateArray; ++ii) {
-            delete[] radiusSunToCentralBody[ii];
-            delete[] radiusSunToNbody[ii];
-        }
-        delete[] radiusSunToCentralBody;
-        delete[] radiusSunToNbody;
-
-        delete[] nBodyGravitationalParameter;
-    }
-    else{
-        delete radiusSunToCentralBody;
-        delete radiusSunToNbody;
-
-        delete nBodyGravitationalParameter;
-    }
-
     if (NxMOblateness) {
         for (int ii = 0; ii < N; ++ii) {
             delete[] P[ii];
