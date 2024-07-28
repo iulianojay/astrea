@@ -601,7 +601,7 @@ void EquationsOfMotion::find_accel_n_body() {
     accelNBody[0] = 0.0;
     accelNBody[1] = 0.0;
     accelNBody[2] = 0.0;
-    for (int ii = 0; ii < numberOfBodies; ++ii) {
+    for (int ii = 0; ii < nBodies; ++ii) {
         // Find radius from central body and spacecraft to nth body
         radiusCentralBodyToNbody[0] = radiusSunToNbody[index][ii*3]   + radiusCentralBodyToSun[0];
         radiusCentralBodyToNbody[1] = radiusSunToNbody[index][ii*3+1] + radiusCentralBodyToSun[1];

@@ -51,6 +51,8 @@ public:
     double* get_net_accel();
     double* get_coes_rates();
 
+    AstrodynamicsSystem* get_system() { return system; }
+
     double netAccel[3] = { 0.0, 0.0, 0.0 };
     double dcoesdt[6] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
@@ -225,7 +227,7 @@ private:
     double radialMagnitudeCentralBodyToSun{}, radialMagnitudeSpacecraftToSun{};
 
     // N Body
-    int numberOfBodies{};
+    int nBodies{};
     double radiusCentralBodyToNbody[3] = { 0.0, 0.0, 0.0 };
     double radiusSpacecraftToNbody[3] = { 0.0, 0.0, 0.0 };
     double radiusSpacecraftToNbodyMagnitude{}, radiusCentralToNbodyMagnitude{};

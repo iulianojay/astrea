@@ -24,9 +24,12 @@ void Integrator::find_state_derivative(double time, double* state, double* state
 void Integrator::propagate(double timeInitial, double timeFinal, Spacecraft sc, EquationsOfMotion eom) {					
     
     // TODO: Fix this nonsense
-    auto state0 = sc.get_initial_state().elements.as_array();
+    auto state0 = sc.get_initial_state().elements;
+    state0.convert(ElementSet::CARTESIAN, eom.get_system());
+
+    // Copy
     double stateInitial[6];
-    for (int ii = 0; ii < numberOfStates; ++ii) {
+    for (int ii = 0; ii < nStates; ++ii) {
         stateInitial[ii] = state0[ii]; // initial state
     }
 
@@ -53,7 +56,7 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
         timeStep = timeStepInitial; 
     }	
 
-    for (int ii = 0; ii < numberOfStates; ++ii) {
+    for (int ii = 0; ii < nStates; ++ii) {
         state[ii] = stateInitial[ii]; // initial state
     }
     if (timeFinal < timeInitial) {
@@ -107,13 +110,13 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
 
             // Step time
             time += timeStep;
-            for (int ii = 0; ii < numberOfStates; ++ii) {
+            for (int ii = 0; ii < nStates; ++ii) {
                 // Step state
                 state[ii] = stateNew[ii] + stateError[ii]; // Adding the state error improves the next guess
 
                 // Store final function eval for Dormand-Prince methods
                 if (stepMethod == dop45 || stepMethod == dop78) {
-                    YFinalPrevious[ii] = kMatrix[numberOfStages-1][ii]/timeStep;
+                    YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
                 }
             }
         }
@@ -187,11 +190,11 @@ void Integrator::setup_stepper() {
         case rk45: // Traditional RK45
 
             // Delcare number of stages
-            numberOfStages = 6;
+            nStages = 6;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < numberOfStages; ++ii) {
-                for (int jj = 0; jj < numberOfStages; ++jj) {
+            for (int ii = 0; ii < nStages; ++ii) {
+                for (int jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rk45[ii][jj];
                 }
                 b[ii] = b_rk45[ii];
@@ -204,11 +207,11 @@ void Integrator::setup_stepper() {
         case rkf45: // RKF 45 Method
 
             // Delcare number of stages
-            numberOfStages = 6;
+            nStages = 6;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < numberOfStages; ++ii) {
-                for (int jj = 0; jj < numberOfStages; ++jj) {
+            for (int ii = 0; ii < nStages; ++ii) {
+                for (int jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf45[ii][jj];
                 }
                 b[ii] = b_rkf45[ii];
@@ -221,11 +224,11 @@ void Integrator::setup_stepper() {
         case rkf78: // Runge-Kutta-Felhlberg 78 Method
 
             // Delcare number of stages
-            numberOfStages = 13;
+            nStages = 13;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < numberOfStages; ++ii) {
-                for (int jj = 0; jj < numberOfStages; ++jj) {
+            for (int ii = 0; ii < nStages; ++ii) {
+                for (int jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf78[ii][jj];
                 }
                 b[ii] = b_rkf78[ii];
@@ -239,11 +242,11 @@ void Integrator::setup_stepper() {
         case dop45: // Dormand-Prince 45 Method
 
             // Delcare number of stages
-            numberOfStages = 7;
+            nStages = 7;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < numberOfStages; ++ii) {
-                for (int jj = 0; jj < numberOfStages; ++jj) {
+            for (int ii = 0; ii < nStages; ++ii) {
+                for (int jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop45[ii][jj];
                 }
                 b[ii] = b_dop45[ii];
@@ -256,11 +259,11 @@ void Integrator::setup_stepper() {
         case dop78: // Dormand-Prince 78 Method
 
             // Delcare number of stages
-            numberOfStages = 13;
+            nStages = 13;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < numberOfStages; ++ii) {
-                for (int jj = 0; jj < numberOfStages; ++jj) {
+            for (int ii = 0; ii < nStages; ++ii) {
+                for (int jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop78[ii][jj];
                 }
                 b[ii] = b_dop78[ii];
@@ -278,7 +281,7 @@ void Integrator::setup_stepper() {
 void Integrator::try_step() { // This is a generic form of an rk step method. Works for any rk, rkf, or dop method. 
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j]) 
-    for (int ii = 0; ii < numberOfStages; ++ii) {
+    for (int ii = 0; ii < nStages; ++ii) {
         // Find derivative
         if (ii == 0) {
             if (stepMethod == rk45 || stepMethod == rkf45 || stepMethod == rkf78) {
@@ -289,7 +292,7 @@ void Integrator::try_step() { // This is a generic form of an rk step method. Wo
                     find_state_derivative(time, state, kMatrix[0]);
                 }
                 else {
-                    for (int jj = 0; jj < numberOfStages; ++jj) {
+                    for (int jj = 0; jj < nStages; ++jj) {
                         kMatrix[0][jj] = YFinalPrevious[jj];
                     }
                 }
@@ -299,7 +302,7 @@ void Integrator::try_step() { // This is a generic form of an rk step method. Wo
             find_state_derivative(time + c[ii]*timeStep, statePlusKi, kMatrix[ii]);
         }
 
-        for (int jj = 0; jj < numberOfStates; ++jj) {
+        for (int jj = 0; jj < nStates; ++jj) {
             // Correct k value
             kMatrix[ii][jj] *= timeStep;
 
@@ -313,11 +316,11 @@ void Integrator::try_step() { // This is a generic form of an rk step method. Wo
 
     // Find max error from step
     errorMax = 0.0;
-    for (int ii = 0; ii < numberOfStates; ++ii) {
+    for (int ii = 0; ii < nStates; ++ii) {
 
         stateNew[ii] = state[ii];
         stateError[ii] = 0.0;
-        for (int jj = 0; jj < numberOfStages; ++jj) {
+        for (int jj = 0; jj < nStages; ++jj) {
             stateNew[ii] += kMatrix[jj][ii]*b[jj];
             stateError[ii] += kMatrix[jj][ii]*db[jj];
         }
@@ -351,13 +354,13 @@ void Integrator::check_error() {
 	if (errorMax <= 1.0) { // Step succeeded
 		// Step time
 		time += timeStep;
-		for (int ii = 0; ii < numberOfStates; ++ii) {
+		for (int ii = 0; ii < nStates; ++ii) {
             // Step state
 			state[ii] = stateNew[ii] + stateError[ii]; // Adding the state error improves the next guess
 
             // Store final function eval for Dormand-Prince methods
             if (stepMethod == dop45 || stepMethod == dop78) {
-                YFinalPrevious[ii] = kMatrix[numberOfStages-1][ii]/timeStep;
+                YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
             }
 		}
 
@@ -464,7 +467,7 @@ void Integrator::print_iteration(double timeFinal, double* stateInitial) {
                 std::cout << "Run Conditions: \n\n";
                 std::cout << "Initial Time = " << 0.0 << "\n";
                 std::cout << "Final Time =  " << timeFinal/86400.0 << " days \n";
-                for (int ii = 0; ii < numberOfStates; ++ii) {
+                for (int ii = 0; ii < nStates; ++ii) {
                     if (ii == 0) {
                         std::cout << "Initial State = [";
                     }
@@ -481,7 +484,7 @@ void Integrator::print_iteration(double timeFinal, double* stateInitial) {
 
                 std::cout << "Iteration: " << iteration+1 << "\n";
                 std::cout << "time = " << time/86400.0 << " days \n";
-                for (int ii = 0; ii < numberOfStates; ++ii) {
+                for (int ii = 0; ii < nStates; ++ii) {
                     if (ii == 0) {
                         std::cout << "state = [";
                     }
@@ -575,7 +578,7 @@ void Integrator::check_event() {
         eventTrigger = true;
     }
     else {
-        for (int ii = 0; ii < numberOfStates; ++ii) {
+        for (int ii = 0; ii < nStates; ++ii) {
             if (std::isinf(abs(state[ii])) || std::isnan(abs(state[ii]))) {
                 eventTrigger = true;
             }

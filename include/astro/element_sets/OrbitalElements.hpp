@@ -6,59 +6,60 @@
 
 class AstrodynamicsSystem;
 
-class OrbitalElements {
+class OrbitalElements : public element_array {
 public:
 
-    OrbitalElements() : elements{0.0} {}
-    OrbitalElements(const double elementsIn[6], const ElementSet set) : set(set) {
-        for (int ii = 0; ii < 6; ii++) {
-            elements[ii] = elementsIn[ii];
-        }
+    OrbitalElements() : set(ElementSet::CARTESIAN) {}
+    OrbitalElements(const element_array elements, const ElementSet set = ElementSet::CARTESIAN) : set(set) {
+        std::copy(std::begin(elements), std::end(elements), _M_elems);
     }
-    OrbitalElements(const element_array elements, const ElementSet set) : elements(elements), set(set) {}
 
-    element_array convert(ElementSet newSet, AstrodynamicsSystem* system) {
+    OrbitalElements convert(ElementSet newSet, AstrodynamicsSystem* system) {
         // Check if conversion is necessary
         if (newSet == set) {
-            return elements;
+            return (*this);
         }
 
         // Generic conversion
-        elements = conversions::convert(elements, set, newSet, system);
+        const auto newElements = conversions::convert((*this), set, newSet, system);
+        std::copy(std::begin(newElements), std::end(newElements), _M_elems);
         set = newSet;
 
         // Return as convenience
-        return elements;
+        return (*this);
     }
 
     // Addition
     OrbitalElements operator+(const OrbitalElements& other) {
+        // Check both element sets are the same
         if (other.set != set) {
             throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
         }
-        element_array sumElements = elements;
+
+        // Sum
+        element_array sumElements = (*this);
         for (int ii = 0; ii < 6; ii++) {
-            sumElements[ii] += other.elements[ii];
+            sumElements[ii] += other[ii];
         }
         return OrbitalElements(sumElements, set);
     }
 
     // Subtraction
     OrbitalElements operator-(const OrbitalElements& other) {
+        // Check both element sets are the same
         if (other.set != set) {
             throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be subtracted.");
         }
-        element_array diffElements = elements;
+
+        // Diff
+        element_array diffElements = (*this);
         for (int ii = 0; ii < 6; ii++) {
-            diffElements[ii] -= other.elements[ii];
+            diffElements[ii] -= other[ii];
         }
         return OrbitalElements(diffElements, set);
     }
     
-    // Utilities
-    element_array as_array() { return elements; }
-    
 private:
-    element_array elements;
+
     ElementSet set;
 };

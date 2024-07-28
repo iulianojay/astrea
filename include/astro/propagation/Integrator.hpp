@@ -122,7 +122,7 @@ private:
     int functionEvaluations = 0;
 
 	// Number of states
-	static const int numberOfStates = 6;
+	static const int nStates = 6;
 
 	// Time variables
 	double time{};
@@ -132,9 +132,9 @@ private:
     bool forwardTime = true;
 
 	// State variables
-	double state[numberOfStates] = {};		// state at current iteration
-	double stateNew[numberOfStates] = {};
-	double stateError[numberOfStates] = {};
+	double state[nStates] = {};		// state at current iteration
+	double stateNew[nStates] = {};
+	double stateError[nStates] = {};
 
 	// Error variables
     double error{};
@@ -145,18 +145,18 @@ private:
     bool eventTrigger = false;
 
     // Butcher Tablaeu
-    int numberOfStages{};
-    static const int maxNumberOfStages = 13;
-    double a[maxNumberOfStages][maxNumberOfStages] = {};
-    double b[maxNumberOfStages] = {};
-    double bhat[maxNumberOfStages] = {};
-    double db[maxNumberOfStages] = {};
-    double c[maxNumberOfStages] = {};
+    int nStages{};
+    static const int maxStages = 13;
+    double a[maxStages][maxStages] = {};
+    double b[maxStages] = {};
+    double bhat[maxStages] = {};
+    double db[maxStages] = {};
+    double c[maxStages] = {};
 
 	// ith order steps
-    double kMatrix[maxNumberOfStages][numberOfStates] = {};
-	double statePlusKi[numberOfStates] = {};
-	double YFinalPrevious[numberOfStates] = {};
+    double kMatrix[maxStages][nStates] = {};
+	double statePlusKi[nStates] = {};
+	double YFinalPrevious[nStates] = {};
 
 	// Clock variables
 	clock_t startClock{};

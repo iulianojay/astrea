@@ -155,7 +155,7 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
         DCM_zy = si*cw;
 
         // Find radius and velocity vector
-        double bciState[6];
+        element_array bciState;
         bciState[0] = DCM_xx*xPerifocal  + DCM_xy*yPerifocal;
         bciState[1] = DCM_yx*xPerifocal  + DCM_yy*yPerifocal;
         bciState[2] = DCM_zx*xPerifocal  + DCM_zy*yPerifocal;
