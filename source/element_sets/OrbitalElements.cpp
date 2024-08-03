@@ -1,11 +1,12 @@
 #include "OrbitalElements.hpp"
 
+#include <cstdio>
 
 std::ostream &operator<<(std::ostream& os, OrbitalElements const& elements) { 
-    os << "(" << elements.set << ") [" << elements[0];
+    os << "[" << elements[0];
     for (const auto& x: elements) {
         os << ", " << x;
     } 
-    os << "]";
+    os << "] (" << elements.set.to_char() << ")";
     return os;
 }

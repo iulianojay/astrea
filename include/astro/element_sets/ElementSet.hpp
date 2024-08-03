@@ -27,10 +27,15 @@ public:
 
     // Utilities
     frozen::string to_string() const { return toString.at(value); }
+    const char* to_char() const { return toChar.at(value); }
 
 private:
     _ENUM_ value;
     frozen::unordered_map<_ENUM_, frozen::string, 2> toString = {
+        {COE,       "COE"},
+        {CARTESIAN, "CARTESIAN"}
+    };
+    frozen::unordered_map<_ENUM_, const char*, 2> toChar = {
         {COE,       "COE"},
         {CARTESIAN, "CARTESIAN"}
     };

@@ -5,5 +5,5 @@ bool state_time_comparitor(State s, Time time ) {
 } 
 
 std::ostream &operator<<(std::ostream& os, const State& state) { 
-    return os << "(" << state.time << ") = " << state.elements << "\n";
+    return os << state.time << ", " << state.elements;
 }

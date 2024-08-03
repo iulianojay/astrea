@@ -13,9 +13,9 @@ GravitationalBody SolarObjectBuilder::build(SolarObject name) {
 }
 
 
-Barycenter build(std::vector<SolarObject> names) {
+// Barycenter build(std::vector<SolarObject> names) {
     
-}
+// }
 
 
 // Separate function to assign values so the class isn"t created twice

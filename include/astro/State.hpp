@@ -4,6 +4,9 @@
 #include "Time.hpp"
 
 class State {
+
+    friend std::ostream &operator<<(std::ostream& os, const State& state);
+
 public:
 
     State(Time time, OrbitalElements elements): time(time), elements(elements) {}

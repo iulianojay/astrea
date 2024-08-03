@@ -21,7 +21,7 @@ void Integrator::find_state_derivative(double time, double* state, double* state
 //----------------------------------------------- Integrator -----------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::propagate(double timeInitial, double timeFinal, Spacecraft sc, EquationsOfMotion eom) {					
+void Integrator::propagate(Interval interval, Spacecraft& sc, EquationsOfMotion& eom) {					
     
     // TODO: Fix this nonsense
     auto state0 = sc.get_initial_state().elements;
@@ -29,19 +29,18 @@ void Integrator::propagate(double timeInitial, double timeFinal, Spacecraft sc, 
 
     // Copy
     double stateInitial[6];
-    for (int ii = 0; ii < nStates; ++ii) {
-        stateInitial[ii] = state0[ii]; // initial state
-    }
+    std::copy(std::begin(state0), std::end(state0), stateInitial);
 
     // Set for now TODO: Make this pass into the functions, no need to use pointers
     spacecraft = &sc;
     equationsOfMotion = &eom;
 
     // Integrate
-    integrate(timeInitial, timeFinal, stateInitial);
+    integrate(interval.start, interval.end, stateInitial);
 
     // Assign state history to spacecraft
-    
+    auto states = get_state_history();
+    sc.set_states(states);
 }
 
 void Integrator::integrate(double timeInitial, double timeFinal, double* stateInitial) {
@@ -636,16 +635,36 @@ void Integrator::set_step_method(std::string stepMethod) {
 
 // Integrator history getters
 int Integrator::get_state_history_size() { return (int)timeVector.size(); }
-void Integrator::get_state_history(double** stateHisotry) {
-    // Copy to double array
+// void Integrator::get_state_history(double** stateHistory) {
+//     // Copy to double array
+//     int sz = (int)timeVector.size();
+//     for (int ii = 0; ii < sz; ++ii) {
+//         stateHistory[ii][0] = timeVector[ii];
+//         stateHistory[ii][1] = stateVectorOne[ii];
+//         stateHistory[ii][2] = stateVectorTwo[ii];
+//         stateHistory[ii][3] = stateVectorThree[ii];
+//         stateHistory[ii][4] = stateVectorFour[ii];
+//         stateHistory[ii][5] = stateVectorFive[ii];
+//         stateHistory[ii][6] = stateVectorSix[ii];
+//     }
+// }
+
+std::vector<State> Integrator::get_state_history() {
     int sz = (int)timeVector.size();
+    std::vector<State> states;
+    states.reserve(sz);
     for (int ii = 0; ii < sz; ++ii) {
-        stateHisotry[ii][0] = timeVector[ii];
-        stateHisotry[ii][1] = stateVectorOne[ii];
-        stateHisotry[ii][2] = stateVectorTwo[ii];
-        stateHisotry[ii][3] = stateVectorThree[ii];
-        stateHisotry[ii][4] = stateVectorFour[ii];
-        stateHisotry[ii][5] = stateVectorFive[ii];
-        stateHisotry[ii][6] = stateVectorSix[ii];
+        Time time(timeVector[ii]/86400.0);
+        OrbitalElements elements{{
+            stateVectorOne[ii],
+            stateVectorTwo[ii],
+            stateVectorThree[ii],
+            stateVectorFour[ii],
+            stateVectorFive[ii],
+            stateVectorSix[ii]
+        }};
+        states.push_back({time, elements});
     }
+
+    return states;
 }

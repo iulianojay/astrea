@@ -38,6 +38,8 @@ set(INCLUDE_DIRS
 
 # Objects
 set(OBJS
+    ${SRC}/element_sets/OrbitalElements.cpp
+
     ${SRC}/propagation/EquationsOfMotion.cpp
     ${SRC}/propagation/Integrator.cpp
     ${SRC}/propagation/LambertSolver.cpp
@@ -46,6 +48,8 @@ set(OBJS
     ${SRC}/systems/GravitationalBody.cpp
     ${SRC}/systems/SolarObjectBuilder.cpp
     ${SRC}/systems/SolarObjectFactory.cpp
+
+    ${SRC}/time/Time.cpp
 
     ${SRC}/utilities/conversions.cpp
     ${SRC}/utilities/math_c.cpp
@@ -82,6 +86,7 @@ set(HDRS
     ${INC}/astro/systems/SolarObjectFactory.hpp
     
     ${INC}/astro/time/Date.hpp
+    ${INC}/astro/time/Interval.hpp
     ${INC}/astro/time/JulianDateClock.hpp
     ${INC}/astro/time/Time.hpp
 

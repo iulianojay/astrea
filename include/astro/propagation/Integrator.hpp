@@ -9,6 +9,7 @@
 
 #include "rk_constants.h"			// RK Butcher Tableau
 
+#include "Interval.hpp"
 #include "EquationsOfMotion.hpp"
 #include "Spacecraft.hpp"
 
@@ -32,7 +33,7 @@ public:
     ~Integrator();
 
 	// Integrate
-    void propagate(double timeInitial, double timeFinal, Spacecraft spacecraft, EquationsOfMotion eom);
+    void propagate(Interval interval, Spacecraft& spacecraft, EquationsOfMotion& eom);
     void integrate(double timeInitial, double timeFinal, double* stateInitial);
      
 	// Save Results
@@ -45,7 +46,9 @@ public:
 
     // Function: Get all states during integration
     // Inputs: Matrix to write state history too
-    void get_state_history(double** stateHistory);
+    // void get_state_history(double** stateHistory);
+    
+    std::vector<State> get_state_history();
 
     // Get final state
     void copy_final_state(double* state);
