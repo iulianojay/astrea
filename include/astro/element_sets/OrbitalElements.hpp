@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "ElementSet.hpp"
 #include "conversions.hpp"
 #include "typedefs.hpp"
@@ -7,6 +9,9 @@
 class AstrodynamicsSystem;
 
 class OrbitalElements : public element_array {
+
+    friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
+
 public:
 
     OrbitalElements() : set(ElementSet::CARTESIAN) {}
@@ -14,19 +19,16 @@ public:
         std::copy(std::begin(elements), std::end(elements), _M_elems);
     }
 
-    OrbitalElements convert(ElementSet newSet, AstrodynamicsSystem* system) {
+    void convert(ElementSet newSet, AstrodynamicsSystem* system) {
         // Check if conversion is necessary
         if (newSet == set) {
-            return (*this);
+            return;
         }
 
         // Generic conversion
         const auto newElements = conversions::convert((*this), set, newSet, system);
         std::copy(std::begin(newElements), std::end(newElements), _M_elems);
         set = newSet;
-
-        // Return as convenience
-        return (*this);
     }
 
     // Addition
@@ -58,6 +60,8 @@ public:
         }
         return OrbitalElements(diffElements, set);
     }
+
+    static const int size() { return 6; }
     
 private:
 

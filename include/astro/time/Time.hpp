@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <iostream>
 
 #include "JulianDateClock.hpp"
 
@@ -9,6 +10,7 @@ class Date;
 class Time {
 
     friend Date;
+    friend std::ostream& operator<<(std::ostream&, Time const&);
 
 public:
     Time(JulianDateClock::duration dur) : time(dur) {}
