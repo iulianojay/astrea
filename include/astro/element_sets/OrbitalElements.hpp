@@ -31,6 +31,11 @@ public:
         set = newSet;
     }
 
+    const ElementSet& get_set() { return set; }
+    const bool same_set(const OrbitalElements& other) {
+        return other.set == set;
+    }
+
     // Addition
     OrbitalElements operator+(const OrbitalElements& other) {
         // Check both element sets are the same

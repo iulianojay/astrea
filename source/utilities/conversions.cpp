@@ -284,10 +284,10 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     // Assign to coes
     coes[0] = a;
     coes[1] = ecc;
-    coes[2] = inc;
-    coes[3] = raan;
-    coes[4] = w;
-    coes[5] = theta;
+    coes[2] = inc*RAD_TO_DEG;
+    coes[3] = raan*RAD_TO_DEG;
+    coes[4] = w*RAD_TO_DEG;
+    coes[5] = theta*RAD_TO_DEG;
 }
 
 void conversions::mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {

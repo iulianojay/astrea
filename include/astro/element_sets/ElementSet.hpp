@@ -17,7 +17,10 @@ public:
     constexpr ElementSet(frozen::string xStr) : value(fromString.at(xStr)) {}
 
     // Assignment
-    constexpr const ElementSet operator=(const ElementSet& x) { return ElementSet(value); }
+    constexpr ElementSet& operator=(const ElementSet& x) { 
+        value = x.value;
+        return *this; 
+    }
 
     // Allow switch and comparisons.
     constexpr operator _ENUM_() const { return value; }
