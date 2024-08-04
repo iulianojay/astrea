@@ -88,6 +88,7 @@ set(HDRS
     ${INC}/astro/time/Date.hpp
     ${INC}/astro/time/Interval.hpp
     ${INC}/astro/time/JulianDateClock.hpp
+    ${INC}/astro/time/time_units.hpp
     ${INC}/astro/time/Time.hpp
 
     ${INC}/astro/types/typedefs.hpp

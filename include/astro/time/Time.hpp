@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "JulianDateClock.hpp"
+#include "time_units.hpp"
 
 class Date;
 
@@ -20,10 +21,25 @@ public:
     Time(const double& time) : time(time) {}
 
     // conversion from double (assignment)
-    Time& operator=(const double& time) { return *this; }
+    Time& operator=(const double& t) { 
+        time = JulianDateClock::duration(t); 
+        return *this; 
+    }
 
     // conversion to double (type-cast operator)
     operator double() { return time.count(); }
+    
+
+    template <typename T>
+    Time(const std::chrono::duration<T>& dur) {
+        time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
+    }
+
+    template <typename T>
+    Time& operator=(const std::chrono::duration<T>& dur) {
+        time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
+        return *this;
+    }
     
     // Addition
     Time operator+(const Time& other) {
@@ -70,6 +86,9 @@ public:
 
     // Forward count()
     auto count() const { return time.count(); }
+
+    template <typename T>
+    auto count() { return std::chrono::duration_cast<T>(time).count(); }
 
     // abs
     auto abs() { return std::chrono::abs(time); }

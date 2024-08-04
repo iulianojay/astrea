@@ -37,7 +37,9 @@ void Integrator::propagate(Interval interval, Spacecraft& sc, EquationsOfMotion&
     equationsOfMotion = &eom;
 
     // Integrate
-    integrate(interval.start, interval.end, stateInitial);
+    const auto start = interval.start.count<seconds>();
+    const auto end = interval.end.count<seconds>();
+    integrate(start, end, stateInitial);
 
     // Get state history
     auto states = get_state_history();
