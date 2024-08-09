@@ -16,9 +16,13 @@ int main() {
     EquationsOfMotion eom(&sys);
     eom.switch_dynamics("two body");
 
-    // Integrate
-    Interval propInterval{seconds(0), seconds(86400)};
+    // Setup integrator
     Integrator integrator;
+    integrator.set_abs_tol(1.0e-13);
+    integrator.set_rel_tol(1.0e-13);
+
+    // Propagate
+    Interval propInterval{seconds(0), seconds(86400)};
     integrator.propagate(propInterval, vehicle, eom);
 
     // Print
