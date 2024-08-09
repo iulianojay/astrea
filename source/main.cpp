@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 
 #include "astro.hpp"
 
@@ -28,6 +29,19 @@ int main() {
     // Print
     std::cout << "state0 = " << vehicle.get_initial_state() << std::endl;
     std::cout << "statef = " << vehicle.get_final_state() << std::endl;
+
+    // Send to file
+    std::ofstream outfile;
+    outfile.open("./bin/results/main.csv");
+    outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
+    for (const auto& state: vehicle.get_states()) {
+        outfile << state.time.count<minutes>() << ",";
+        for (const auto& x: state.elements) {
+            outfile << x << ",";
+        }
+        outfile << "\n";
+    }
+    outfile.close();
 
     return 1;
 }
