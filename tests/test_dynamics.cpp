@@ -8,7 +8,7 @@ int main() {
     return 0;
 }
 
-int main() {
+int test_two_body_dynamics() {
     // Setup system
     AstrodynamicsSystem sys;
 

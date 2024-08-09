@@ -27,7 +27,7 @@ void conversions::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, d
                     -s_gst c_gst 0;
                         0      0  1]; */
 
-                        // Calculate ECEF radius vector
+    // Calculate ECEF radius vector
     cosGST = cos(greenwichSiderealTime);
     sinGST = sin(greenwichSiderealTime);
 
@@ -120,10 +120,7 @@ element_array conversions::convert(element_array elements, ElementSet fromSet, E
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
 
-void conversions::coes_to_bci(double a, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity) {
-    
-    double ct{}, st{}, cw{}, sw{}, cr{}, sr{}, ci{}, si{}, A{}, B{}, x_peri{}, y_peri{}, vx_peri{}, vy_peri{};
-    double DCM_peri2ECI_11{}, DCM_peri2ECI_12{}, DCM_peri2ECI_21{}, DCM_peri2ECI_22{}, DCM_peri2ECI_31{}, DCM_peri2ECI_32{};
+void conversions::coes_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
     
     // Precalculate
     theta *= DEG_TO_RAD;
@@ -131,37 +128,37 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double w, double
     raan *= DEG_TO_RAD;
     inc *= DEG_TO_RAD;
 
-    ct = cos(theta); 
-    st = sin(theta);
-    cw = cos(w); 
-    sw = sin(w);
-    cr = cos(raan); 
-    sr = sin(raan);
-    ci = cos(inc); 
-    si = sin(inc);
+    double cos_theta = cos(theta); 
+    double sin_theta = sin(theta);
+    double cos_w = cos(w); 
+    double sin_w = sin(w);
+    double cos_raan = cos(raan); 
+    double sin_raan = sin(raan);
+    double cos_inc = cos(inc); 
+    double sin_inc = sin(inc);
 
     double h = sqrt(mu*a*(1 - ecc));
-    A = h*h/mu/(1 + ecc*ct);
-    B = mu/h;
+    double A = h*h/mu/(1 + ecc*cos_theta);
+    double B = mu/h;
 
     // Perifocal Coordinates
-    x_peri = A*ct;
-    y_peri = A*st;
-    // z_peri = 0;
+    double x_peri = A*cos_theta;
+    double y_peri = A*sin_theta;
+    // double z_peri = 0.0;
 
-    vx_peri = -B*st;
-    vy_peri = B*(ecc + ct);
-    // vz_peri = 0;
+    double vx_peri = -B*sin_theta;
+    double vy_peri = B*(ecc + cos_theta);
+    // double vz_peri = 0.0;
 
     // Preallocate DCM values for speed
-    DCM_peri2ECI_11 = (cw*cr - sw*ci*sr);
-    DCM_peri2ECI_12 = (-sw*cr - cw*ci*sr);
+    double DCM_peri2ECI_11 = (cos_w*cos_raan - sin_w*cos_inc*sin_raan);
+    double DCM_peri2ECI_12 = (-sin_w*cos_raan - cos_w*cos_inc*sin_raan);
 
-    DCM_peri2ECI_21 = (cw*sr + sw*ci*cr);
-    DCM_peri2ECI_22 = (-sw*sr + cw*ci*cr);
+    double DCM_peri2ECI_21 = (cos_w*sin_raan + sin_w*cos_inc*cos_raan);
+    double DCM_peri2ECI_22 = (-sin_w*sin_raan + cos_w*cos_inc*cos_raan);
 
-    DCM_peri2ECI_31 = si*sw;
-    DCM_peri2ECI_32 = si*cw;
+    double DCM_peri2ECI_31 = sin_inc*sin_w;
+    double DCM_peri2ECI_32 = sin_inc*cos_w;
 
     // Inertial position and velocity
     radius[0] = DCM_peri2ECI_11*x_peri + DCM_peri2ECI_12*y_peri;
@@ -175,53 +172,50 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double w, double
 
 void conversions::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
     
-    double hx{}, hy{}, hz{}, normH{}, Nx{}, Ny{}, normN{}, acos_Nx_Nnorm{};
-    double R{}, V{}, dotRV{}, dot_ecc_r{}, dot_ecc_N{};
-    double eccVec[3] = {};
-    double a{}, ecc{}, inc{}, raan{}, w{}, theta{};
-    
     // Specific Relative Angular Momentum
-    hx = radius[1]*velocity[2] - radius[2]*velocity[1]; // h = cross(r, v)
-    hy = radius[2]*velocity[0] - radius[0]*velocity[2];
-    hz = radius[0]*velocity[1] - radius[1]*velocity[0];
+    double hx = radius[1]*velocity[2] - radius[2]*velocity[1]; // h = cos_raanoss(r, v)
+    double hy = radius[2]*velocity[0] - radius[0]*velocity[2];
+    double hz = radius[0]*velocity[1] - radius[1]*velocity[0];
 
-    normH = sqrt(hx*hx + hy*hy + hz*hz);
+    double normH = sqrt(hx*hx + hy*hy + hz*hz);
 
     // Setup
-    Nx = -hy;  // N = cross([0 0 1], h)
-    Ny = hx;
+    double Nx = -hy;  // N = cos_raanoss([0 0 1], h)
+    double Ny = hx;
 
-    normN = sqrt(Nx*Nx + Ny*Ny);
+    double normN = sqrt(Nx*Nx + Ny*Ny);
         
-    R = math_c::normalize(radius);
-    V = math_c::normalize(velocity);
+    double R = math_c::normalize(radius);
+    double V = math_c::normalize(velocity);
 
     // Semimajor Axis
-    a = 1.0/(2.0/R - V*V/mu);
+    double a = 1.0/(2.0/R - V*V/mu);
 
     // Eccentricity
-    dotRV = radius[0]*velocity[0] + radius[1]*velocity[1] + radius[2]*velocity[2];
+    double dotRV = radius[0]*velocity[0] + radius[1]*velocity[1] + radius[2]*velocity[2];
 
+    double eccVec[3];
     eccVec[0] = (1.0/mu)*((V*V - mu/R)*radius[0] - dotRV*velocity[0]);
     eccVec[1] = (1.0/mu)*((V*V - mu/R)*radius[1] - dotRV*velocity[1]);
     eccVec[2] = (1.0/mu)*((V*V - mu/R)*radius[2] - dotRV*velocity[2]);
 
-    ecc = math_c::normalize(eccVec,0,2);
+    double ecc = math_c::normalize(eccVec, 0, 2);
     /*
         If the orbit has an eccentricity of exactly 0, w is ill-defined, the
-        eccentricity vector is ill-defined, and true anomaly is ill defined.Force
-        eccentricity to be slightly greater than 0.
+        eccentricity vector is ill-defined, and true anomaly is ill defined. Force
+        eccentricity to be exactly 0.
     */
     if (abs(ecc) < 1.0e-10) {
-        ecc = 1.0e-10;
+        ecc = 0.0;
     }
 
-    // Inclination(rad)
-    inc = acos(hz/normH);
+    // Inclination (rad)
+    double inc = acos(hz/normH);
 
     // Right Ascension of Ascending Node(rad)
-    acos_Nx_Nnorm = acos(Nx/normN);
+    double acos_Nx_Nnorm = acos(Nx/normN);
 
+    double raan{};
     if (Ny > 0.0) {
         raan = acos_Nx_Nnorm;
     }
@@ -230,8 +224,8 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     }
 
     // True Anomaly(rad)
-    dot_ecc_r = eccVec[0]*radius[0] + eccVec[1]*radius[1] + eccVec[2]*radius[2];
-
+    double dot_ecc_r = eccVec[0]*radius[0] + eccVec[1]*radius[1] + eccVec[2]*radius[2];
+    double theta{};
     if (dot_ecc_r > 0.0) {
         theta = acos(dot_ecc_r/(ecc*R));
     }
@@ -240,8 +234,8 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     }
 
     // Argument of Parigee(degrees)
-    dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
-
+    double dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
+    double w{};
     if (eccVec[2] > 0.0){
         w = 2.0*PI - acos(dot_ecc_N/(ecc*normN));
     }
@@ -253,7 +247,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     // T = 2.0*PI*sqrt(a*a*a/mu);
 
     // Mean Motion(rad/s)
-    //n = 2.0*PI/T;
+    // n = 2.0*PI/T;
 
     /*
         Force rounding errors to assume zero values for angles. Assume complex

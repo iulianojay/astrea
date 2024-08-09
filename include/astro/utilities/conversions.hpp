@@ -19,7 +19,7 @@ namespace conversions {
     void lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF);
 
     //---------------------------------------- Element Set Conversions -----------------------------------------//
-    void coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity);
+    void coes_to_bci(double h, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity);
     void bci_to_coes(double* radius, double* velocity, double mu, double* coes);
 
     element_array coes_to_cartesian(element_array coes, AstrodynamicsSystem* centralBody);
