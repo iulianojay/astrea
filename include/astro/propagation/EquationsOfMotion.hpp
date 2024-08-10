@@ -108,6 +108,10 @@ public:
     void switch_dynamics(std::string dynamicsSet) {
         switch_dynamics(dyanmicsSetMap.at(dynamicsSet));
     };
+
+    const ElementSet& get_expected_set() {
+        return elementSetMap.at(dynamicsSet);
+    }
     
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
@@ -159,6 +163,13 @@ private:
         {"COES_VOP", COES_VOP},
         {"J2_MEAN", J2_MEAN},
         {"MEES_VOP", MEES_VOP}
+    };
+    const std::unordered_map<DynamicsSet, ElementSet> elementSetMap {
+        {TWO_BODY, ElementSet::CARTESIAN},
+        {COWELLS, ElementSet::CARTESIAN},
+        {COES_VOP, ElementSet::COE},
+        {J2_MEAN, ElementSet::COE},
+        {MEES_VOP, ElementSet::MEE}
     };
 
     //------------------------------------------------ Methods ------------------------------------------------//

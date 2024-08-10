@@ -26,7 +26,9 @@ void Integrator::propagate(Interval interval, Spacecraft& sc, EquationsOfMotion&
     // TODO: Fix this nonsense
     auto state0 = sc.get_initial_state().elements;
     const ElementSet originalSet = state0.get_set();
-    state0.convert(ElementSet::CARTESIAN, &eom.get_system());
+
+    const ElementSet expectedSet = eom.get_expected_set();
+    state0.convert(expectedSet, &eom.get_system());
 
     // Copy
     double stateInitial[6];
