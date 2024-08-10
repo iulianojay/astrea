@@ -38,20 +38,26 @@ void EquationsOfMotion::evaluate_state_derivative(double time, double* state, Sp
 
     // Evaluate derivative
     OrbitalElements dsdt;
-    if (twoBody) { 
-        dsdt = evaluate_two_body_dynamics(s); 
-    }
-    else if (cowellsMethod) { 
-        dsdt = evaluate_cowells_method(s); 
-    }
-    else if (coesVoP) { 
-        dsdt = evaluate_coes_vop(s); 
-    }
-    else if (j2MeanVoP) { 
-        dsdt = evaluate_j2mean_coes_vop(s); 
-    }
-    else if (meesVoP) { 
-        dsdt = evaluate_mees_vop(s); 
+    switch (dynamicsSet) {
+        case (COWELLS):
+            dsdt = evaluate_cowells_method(s); 
+            break;
+            
+        case (COES_VOP):
+            dsdt = evaluate_coes_vop(s); 
+            break;
+            
+        case (J2_MEAN):
+            dsdt = evaluate_j2mean_coes_vop(s); 
+            break;
+            
+        case (MEES_VOP):
+            dsdt = evaluate_mees_vop(s); 
+            break;
+
+        case (TWO_BODY):
+        default:
+            dsdt = evaluate_two_body_dynamics(s); 
     }
 
     // Assign output variables
@@ -1285,35 +1291,4 @@ void EquationsOfMotion::switch_srp(bool onOff) {
 }
 void EquationsOfMotion::switch_nbody(bool onOff) {
     nbody = onOff;
-}
-
-
-// Set equations of motion
-void EquationsOfMotion::switch_dynamics(std::string dynamics) {
-    // Turn all off
-    twoBody = false;
-    cowellsMethod = false;
-    coesVoP = false;
-    j2MeanVoP = false;
-    meesVoP = false;
-
-    // Turn selected on
-    if (dynamics == "Two Body" || dynamics == "two body"){
-        twoBody = true;
-    }
-    else if (dynamics == "Cowells Method" || dynamics == "cowells method") {
-        cowellsMethod = true;
-    }
-    else if (dynamics == "COEs VoP" || dynamics == "coes vop") {
-        coesVoP = true;
-    }
-    else if (dynamics == "J2 Mean VoP" || dynamics == "j2 mean vop") {
-        j2MeanVoP = true;
-    }
-    else if (dynamics == "MEEs VoP" || dynamics == "mees vop") {
-        meesVoP = true;
-    }
-    else {
-        std::cout << "Error: Selected dynamics set not recognized. \n\n";
-    }
 }

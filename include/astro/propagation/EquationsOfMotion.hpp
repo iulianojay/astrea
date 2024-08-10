@@ -27,6 +27,15 @@ public:
     // Constructors and destructor
     EquationsOfMotion(const AstrodynamicsSystem& system);
     ~EquationsOfMotion();
+    
+    // Enums
+    enum DynamicsSet {
+        TWO_BODY,
+        COWELLS,
+        COES_VOP,
+        J2_MEAN,
+        MEES_VOP
+    };
 
     // Derivative eval
     void evaluate_state_derivative(double time, double* state, Spacecraft* sc, double* stateDerivative);
@@ -41,9 +50,6 @@ public:
 
     // Getters
     const AstrodynamicsSystem& get_system() { return system; }
-
-    double netAccel[3] = { 0.0, 0.0, 0.0 };
-    double dcoesdt[6] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
     //-------------------------------------------Gravitational Body--------------------------------------------//
 
@@ -96,7 +102,12 @@ public:
     //         "COEs VoP" or "coes vop"             for traditional COEs VoP
     //         "J2 Mean VoP" or "j2 mean vop"       for J2 Mean VoP. All perturbations other than J2 will be ignored
     //         "MEEs VoP" or "mees vop"             for modified equinoctial elements VoP
-    void switch_dynamics(std::string dynamics);
+    void switch_dynamics(DynamicsSet _dynamicsSet) {
+        dynamicsSet = _dynamicsSet;
+    }
+    void switch_dynamics(std::string dynamicsSet) {
+        switch_dynamics(dyanmicsSetMap.at(dynamicsSet));
+    };
     
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
@@ -140,11 +151,15 @@ private:
     std::string epoch = "2000-01-01 00:00:00";
 
     // Equation set
-    bool twoBody = false;
-    bool cowellsMethod = true;
-    bool coesVoP = false;
-    bool j2MeanVoP = false;
-    bool meesVoP = false;
+    DynamicsSet dynamicsSet = TWO_BODY;
+    
+    const std::unordered_map<std::string, DynamicsSet> dyanmicsSetMap {
+        {"TWO_BODY", TWO_BODY},
+        {"COWELLS", COWELLS},
+        {"COES_VOP", COES_VOP},
+        {"J2_MEAN", J2_MEAN},
+        {"MEES_VOP", MEES_VOP}
+    };
 
     //------------------------------------------------ Methods ------------------------------------------------//
     const OrbitalElements evaluate_two_body_dynamics(const OrbitalElements& state) const;

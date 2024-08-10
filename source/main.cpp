@@ -15,8 +15,8 @@ int main() {
 
     // Build EoMs
     EquationsOfMotion eom(sys);
-    // eom.switch_dynamics("Two Body");
-    eom.switch_dynamics("Cowells Method");
+    // eom.switch_dynamics(EquationsOfMotion::TWO_BODY);
+    eom.switch_dynamics(EquationsOfMotion::COWELLS);
     eom.switch_oblateness(10, 10);
     // eom.switch_drag(true);
     // eom.switch_lift(true);
