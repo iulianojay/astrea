@@ -6,9 +6,16 @@ EquationsOfMotion::EquationsOfMotion(AstrodynamicsSystem* system) : spacecraft()
     const GravitationalBody& centralBody = system->get_center();
 
     // Assign these defaults separately so they don't override mannual choices later
+    // TODO: Fix this
     mu = centralBody.mu();
     crashRadius = centralBody.crashR();
     crashVelocity = 0.0;
+    j2 = centralBody.j2();
+    planetId = centralBody.planetId();
+    moonId = centralBody.moonId();
+    bodyRotationRate = centralBody.rotRate();
+    equitorialR = centralBody.eqR();
+    polarR = centralBody.polR();
 }
 
 // Destructor
@@ -37,7 +44,7 @@ void EquationsOfMotion::evaluate_state_derivative(double time, double* state, Sp
 
     // Time
     t = time;
-    julianDate = initialJulianDate + t*SEC_TO_DAY;
+    julianDate = spacecraft->get_epoch().julian_day() + t*SEC_TO_DAY;
 
     // Assign state variables
     if ( twoBody || cowellsMethod ) {
@@ -404,9 +411,9 @@ void EquationsOfMotion::find_accel_oblateness() {
         assign_legendre();
 
         // Calculate serivative of gravitational potential field with respect to
-        dVdr = 0;       // radius
-        dVdlat = 0;     // geocentric latitude
-        dVdlong = 0;    // longitude
+        dVdr = 0.0;       // radius
+        dVdlat = 0.0;     // geocentric latitude
+        dVdlong = 0.0;    // longitude
         for (int n = 2; n < N+1; ++n) {
             nn = (double)n;
 
@@ -992,8 +999,8 @@ void EquationsOfMotion::get_oblateness_coefficients(int N, int M) {
     while (file) {
         // Read line from stream
         std::getline(file, line);
-        std::stringstream  lineStream(line);
-        std::vector<double>   lineData;
+        std::stringstream lineStream(line);
+        std::vector<double> lineData;
         while (std::getline(lineStream, cell, ',')) {
             lineData.push_back(std::atof(cell.c_str()));
         }
@@ -1118,17 +1125,17 @@ double EquationsOfMotion::get_mu() { return mu; }
 void EquationsOfMotion::switch_oblateness(bool onOff) {
     oblateness = onOff;
 }
-void EquationsOfMotion::switch_oblateness(int N, int M) {
+void EquationsOfMotion::switch_oblateness(int _N, int _M) {
     // Switch perturbation toggle to true
     oblateness = true;
     NxMOblateness = true;
 
     // Set N and M
-    N = N;
-    M = M;
+    N = _N;
+    M = _M;
 
     // Get Cnm and Snm
-    get_oblateness_coefficients(N, M);
+    get_oblateness_coefficients(_N, _M);
 }
 void EquationsOfMotion::switch_drag(bool onOff) {
     drag = onOff;

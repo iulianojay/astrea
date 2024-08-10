@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv('./bin/results/main.csv',index_col=False)
+data = pd.read_csv('./bin/results/cowells_test/main.csv',index_col=False)
 
 t = data['time (min)'].to_numpy()
 sma = data['sma (km)'].to_numpy()
@@ -53,4 +53,4 @@ ax6.set_ylim([0, 360])
 plt.xlim(t[0], t[-1])
 fig.tight_layout()
 
-fig.savefig('./bin/results/main.png')
+fig.savefig('./bin/results/cowells_test/main.png')

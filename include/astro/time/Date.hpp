@@ -59,10 +59,10 @@ public:
     ~Date() {}
 
     // Utilities
-    const auto julian_day() {
+    const auto julian_day() const {
         return julianDate.time_since_epoch().count();
     }
-    const auto utc() {
+    const auto utc() const {
         return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate));
     }
 

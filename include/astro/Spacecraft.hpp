@@ -98,6 +98,8 @@ public:
     const State& get_state(Time time);
     auto& get_states() { return states; }
 
+    const Date& get_epoch() const { return epoch; } 
+
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
     double get_mass();
