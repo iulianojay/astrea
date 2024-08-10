@@ -18,7 +18,7 @@ int test_two_body_dynamics() {
     Spacecraft vehicle(elements0, "Jan-01-2030 00:00:00.0");
 
     // Build EoMs
-    EquationsOfMotion eom(&sys);
+    EquationsOfMotion eom(sys);
     eom.switch_dynamics("two body");
 
     // Setup integrator

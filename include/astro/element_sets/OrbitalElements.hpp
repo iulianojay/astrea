@@ -19,7 +19,7 @@ public:
         std::copy(std::begin(elements), std::end(elements), _M_elems);
     }
 
-    void convert(ElementSet newSet, AstrodynamicsSystem* system) {
+    void convert(ElementSet newSet, const AstrodynamicsSystem* system) {
         // Check if conversion is necessary
         if (newSet == set) {
             return;
@@ -31,7 +31,7 @@ public:
         set = newSet;
     }
 
-    const ElementSet& get_set() { return set; }
+    const ElementSet& get_set() const { return set; }
     const bool same_set(const OrbitalElements& other) {
         return other.set == set;
     }
@@ -49,6 +49,22 @@ public:
             sumElements[ii] += other[ii];
         }
         return OrbitalElements(sumElements, set);
+    }
+
+    // Addition
+    OrbitalElements& operator+=(const OrbitalElements& rhs) {
+        // Check both element sets are the same
+        if (rhs.set != set) {
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
+        }
+
+        // Sum
+        element_array& sumElements = (*this);
+        for (int ii = 0; ii < 6; ii++) {
+            sumElements[ii] += rhs[ii];
+        }
+
+        return (*this);
     }
 
     // Subtraction

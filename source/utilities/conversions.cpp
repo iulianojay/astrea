@@ -115,7 +115,7 @@ void conversions::lla_to_bcbf(double* lla, double equitorialRadius, double polar
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, AstrodynamicsSystem* system) {
+element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, const AstrodynamicsSystem* system) {
     element_set_pair setPair = std::make_pair(fromSet, toSet);
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
@@ -317,7 +317,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     coes[5] = theta*RAD_TO_DEG;
 }
 
-void conversions::mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
+void conversions::_mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
     
     double ecc{}, a{}, inc{}, raan{}, atopo{}, w{}, theta{};
 
@@ -340,7 +340,7 @@ void conversions::mees_to_coes(double p, double f, double g, double h, double k,
 }
 
 
-element_array conversions::coes_to_cartesian(element_array coes, AstrodynamicsSystem* system) {
+element_array conversions::coes_to_cartesian(element_array coes, const AstrodynamicsSystem* system) {
     element_array cartesian;
     double radius[3];
     double velocity[3];
@@ -354,7 +354,7 @@ element_array conversions::coes_to_cartesian(element_array coes, AstrodynamicsSy
     return cartesian;
 };
 
-element_array conversions::cartesian_to_coes(element_array cartesian, AstrodynamicsSystem* system) {
+element_array conversions::cartesian_to_coes(element_array cartesian, const AstrodynamicsSystem* system) {
     double coes[6];
     double radius[3];
     double velocity[3];
@@ -365,10 +365,28 @@ element_array conversions::cartesian_to_coes(element_array cartesian, Astrodynam
         velocity[ii] = cartesian[ii+3];
     }
     bci_to_coes(radius, velocity, system->get_center().mu(), coes);
+
     element_array coes_array;
-    for (int ii = 0; ii < 6; ii++) {
-        coes_array[ii] = coes[ii];
-    }
+    std::copy(coes, coes+6, coes_array.begin());
+
+    return coes_array;
+};
+
+
+element_array conversions::coes_to_mees(element_array coes, const AstrodynamicsSystem* system) {
+    element_array mees;
+    throw std::logic_error("This function has not been implemented yet");
+    return mees;
+};
+
+element_array conversions::mees_to_coes(element_array mees, const AstrodynamicsSystem* system) {
+
+    double coes[6];
+    _mees_to_coes(mees[0], mees[1], mees[2], mees[3], mees[4], mees[5], coes);
+
+    element_array coes_array;
+    std::copy(coes, coes+6, coes_array.begin());
+
     return coes_array;
 };
 
