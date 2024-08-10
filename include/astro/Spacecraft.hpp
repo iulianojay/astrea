@@ -1,8 +1,14 @@
 #pragma once
 
-#include "integrator.hpp"
-#include "GravitationalBody.hpp"
-#include "LambertSolver.hpp"
+#include <string> 
+#include <unordered_map>
+
+#include "astronomical_constants.h"
+#include "typedefs.hpp"
+
+#include "OrbitalElements.hpp"
+#include "State.hpp"
+#include "Date.hpp"
 
 class Spacecraft
 {
@@ -20,14 +26,11 @@ private:
     double areaSun[3] = { 0.01, 0.0, 0.0 };
     double areaLift[3] = { 0.01, 0.0, 0.0 };
 
-    // Epoch variables
-    std::string epoch = "2000-01-01 12:00:00";
-    double epochJulianDate = J2000;
+    // Orbital elements
+    std::vector<State> states;
 
-    // Subclasses
-    GravitationalBody centralBody;
-    Integrator integrator;
-    LambertSolver lambertSolver;
+    // Epoch variables
+    Date epoch;
 
 public:
     //---------------------------------------------------------------------------------------------------------//
@@ -35,7 +38,7 @@ public:
     //---------------------------------------------------------------------------------------------------------//
 
     // Constructor
-    Spacecraft();
+    Spacecraft(OrbitalElements state0, std::string epoch);
     
     // Destructor
     ~Spacecraft();
@@ -82,7 +85,14 @@ public:
     // Inputs: array of areas (m^2)
     void set_lift_area(double* aLift);
 
+    // Function: Set initial epoch of integration
+    // Inputs: Initial epoch string in the format: "MON-DY-YEAR HH:MM:SS.SS"
+    void set_epoch(std::string inputEpoch);
+
     //---------------------------------------Spacecraft property getters---------------------------------------//
+
+    State get_initial_state();
+    State get_state(Time time);
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
@@ -111,163 +121,4 @@ public:
     // Function: Get spacecraft earth-facing area
     // Outputs: net earth-facing area / array of areas (m^2)
     double* get_lift_area();
-
-    //------------------------------------------Perturbation toggles-------------------------------------------//
-
-    // Function: Switch oblateness perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_oblateness(bool onOff);
-
-    // Function: Switch oblateness perturbation on with a specifc spheroidal accuracey
-    // Inputs: N -> zonals
-    //         M -> Tessorals
-    void switch_oblateness(int N, int M);
-
-    // Function: Switch drag perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_drag(bool onOff);
-
-    // Function: Switch lift perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_lift(bool onOff);
-
-    // Function: Switch solar radiation pressure perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_srp(bool onOff);
-
-    // Function: Switch n-body effects on or off
-    // Inputs: true -> on, false -> off
-    void switch_nbody(bool onOff);
-
-    // Function: Switch dynamics set
-    // Inputs: "Two Body" or "two body"             for simple 2-body mechanics. Perturbations will be ignored
-    //         "Cowells Method" or "cowells method" for cowell's method VoP
-    //         "COEs VoP" or "coes vop"             for traditional COEs VoP
-    //         "J2 Mean VoP" or "j2 mean vop"       for J2 Mean VoP. All perturbations other than J2 will be ignored
-    //         "MEEs VoP" or "mees vop"             for modified equinoctial elements VoP
-    void switch_dynamics(std::string dynamics);
-
-    /*
-    // Function: Switch EarthGRAM on or off
-    // Inputs: true -> on, false -> off
-    void switch_EarthGRAM(bool onOff);
-    //*/
-
-    //-------------------------------------------Gravitational Body--------------------------------------------//
-
-    // Function: Set the gravitational parameter used for integration. This does not effect the properties of the central body
-    // Inputs: gravitational parameter, mu (km^3/s^2)
-    void set_mu(double mu);
-
-    // Function: Set the central body
-    // Inputs: Name of central body
-    void set_central_body(std::string inputCentralBody);
-
-    // Function: Set initial epoch of integration
-    // Inputs: Initial epoch string in the format: "MON-DY-YEAR HH:MM:SS.SS"
-    void set_epoch(std::string inputEpoch);
-
-    // Function: Set n-bodies to be considered for pertubation calculations
-    // Inputs: array of n-body names
-    //         integer number of input bodies
-    void set_n_bodies(std::string* bodyNames, int numberOfBodies);
-
-    // Function: Set radius at which the satellite will crash
-    // Inputs: Crash Radius (km)
-    void set_crash_radius(double crashRadius);
-
-    // Function: Set velocity at which the satellite will crash
-    // Inputs: Crash Velocity (km)
-    void set_crash_velocity(double crashVelocity);
-
-    // Function: Get the gravitational parameter used for integration. This is not the value of the graviational parameter for the central body
-    // Outputs: gravitational parameter, mu (km^3/s^2)
-    double get_mu();
-
-    //---------------------------------------Integrator property setters---------------------------------------//
-
-    // Function: Set absolute tolerance of Integrator
-    // Inputs: absolute tolerance
-    void set_abs_tol(double absTol);
-
-    // Function: Set relative tolerance of Integrator
-    // Inputs: relative tolerance
-    void set_rel_tol(double relTol);
-
-    // Function: Set max number of steps Integrator is allowed to take before exiting
-    // Inputs: maximum number of steps
-    void set_max_iter(int itMax);
-
-    // Function: Turn output display on or off for Integrator
-    // Inputs: true -> on, false -> off
-    void switch_print(bool onOff);
-
-    // Function: Turn timer on or off for Integrator
-    // Inputs: true -> on, false -> off
-    void switch_timer(bool onOff);
-
-    // Function: Change Integrator internal stepping method
-    // Inputs: "rk45"  for Runge-Kutta 4(5) method
-    //         "rkf45" for Runge-Kutta-Felberg 4(5) method
-    //         "rkf78" for Runge-Kutta-Felberg 7(8) method
-    //         "dop45" for Dormand-Prince 4(5) method
-    //         "dop78" for Dormand-Prince 7(8) method
-    void set_step_method(std::string stepMethod);
-
-    // Function: Switch whether or not to use custom equations of motion. Custom EOMs can be modified inside the EquationsOfMotion class
-    // Inputs: true -> on, false -> off
-    void switch_custom_eom(bool onOff);
-
-    // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
-    // Inputs: initial timestep (s)
-    void set_initial_timestep(double dt0);
-
-    // Function: Switch whether or not to use a fixed timestep
-    // Inputs: true -> on, false -> off
-    void switch_fixed_timestep(bool onOff);
-
-    // Function: Switch whether or not to use a fixed timestep and declare that timestep
-    // Inputs: true -> on, false -> off
-    //         timestep (s)
-    void switch_fixed_timestep(bool onOff, double fixedTimeStep);
-
-    // Function: Set fixed timestep. Does not affect variable timestep
-    // Inputs: timestep (s)
-    void set_timestep(double fixedTimeStep);
-
-    //---------------------------------------Integrator property getters---------------------------------------//
-
-    // Function: Get total number of steps taken during integration
-    // Outputs: number of steps taken
-    int get_state_history_size();
-
-    // Function: Get all states during integration
-    // Inputs: Matrix to write state history too
-    void get_state_history(double** stateHistory);
-
-    // Function: Get final state from integration
-    // Inputs: Array to write final state too
-    void get_final_state(double* state);
-
-    //----------------------------------------------Integration------------------------------------------------//
-
-    // Function: Integrate a given state from one time to another.
-    // Inputs: initial time (s)
-    //         final time (s)
-    //         array corresponding to initial state vector
-    void integrate(double timeInitial, double timeFinal, double* stateInitial);
-
-    // Function: Save results of integration to current working directory
-    void save();
-
-    // Function: Save results of integration
-    // Inputs: filename string
-    void save(std::string filename);
-
-    // Function: Integrate an orbit using a Lambert solver
-    // Inputs: initial time (s)
-    //         final time (s)
-    //         array of initial states ([km, km, km, km/s, km/s, km/s])
-    //         array to write final states too ([km, km, km, km/s, km/s, km/s])
-    void solve_LambertSolver(double timeInitial, double timeFinal, double* state0, double* statef);
 };

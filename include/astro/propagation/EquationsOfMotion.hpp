@@ -7,16 +7,111 @@
 #include <cmath>
 #include <algorithm>
 #include <stdio.h>
+#include <vector>
 
 #include "astronomical_constants.h"	// my tables of constants
 #include "math_constants.h"         // my common math constants
-#include "convert.hpp"
+#include "math_c.hpp"
+#include "conversions.hpp"
+
+#include "Spacecraft.hpp"
 #include "GravitationalBody.hpp"
+#include "AstrodynamicsSystem.hpp"
 
 class EquationsOfMotion
 {
+
+public:
+    //------------------------------------------------ Methods ------------------------------------------------//
+    // Constructors and destructor
+    EquationsOfMotion(AstrodynamicsSystem* system);
+    ~EquationsOfMotion();
+
+    // Derivative eval
+    void evaluate_state_derivative(double time, double* state, Spacecraft* sc, double* stateDerivative);
+
+    // Event check
+    bool check_crash(double* state);
+
+    // Initialize Cnm and Snm for oblateness pert
+    void get_oblateness_coefficients(int N, int M);
+
+    // Setters
+
+    // Getters
+    double get_atmospheric_density(double time, double* state);
+
+    double* get_accel_gravity();
+    double* get_accel_oblateness();
+    double* get_accel_drag();
+    double* get_accel_lift();
+    double* get_accel_srp();
+    double* get_accel_nBody();
+
+    double* get_net_accel();
+    double* get_coes_rates();
+
+    double netAccel[3] = { 0.0, 0.0, 0.0 };
+    double dcoesdt[6] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+
+    //-------------------------------------------Gravitational Body--------------------------------------------//
+
+    // Function: Set the gravitational parameter used for integration. This does not effect the properties of the central body
+    // Inputs: gravitational parameter, mu (km^3/s^2)
+    void set_mu(double mu);
+
+    // Function: Set radius at which the satellite will crash
+    // Inputs: Crash Radius (km)
+    void set_crash_radius(double crashRadius);
+
+    // Function: Set velocity at which the satellite will crash
+    // Inputs: Crash Velocity (km)
+    void set_crash_velocity(double crashVelocity);
+
+    // Function: Get the gravitational parameter used for integration. This is not the value of the graviational parameter for the central body
+    // Outputs: gravitational parameter, mu (km^3/s^2)
+    double get_mu();
+
+    //------------------------------------------Perturbation toggles-------------------------------------------//
+
+    // Function: Switch oblateness perturbation on or off
+    // Inputs: true -> on, false -> off
+    void switch_oblateness(bool onOff);
+
+    // Function: Switch oblateness perturbation on with a specifc spheroidal accuracey
+    // Inputs: N -> zonals
+    //         M -> Tessorals
+    void switch_oblateness(int N, int M);
+
+    // Function: Switch drag perturbation on or off
+    // Inputs: true -> on, false -> off
+    void switch_drag(bool onOff);
+
+    // Function: Switch lift perturbation on or off
+    // Inputs: true -> on, false -> off
+    void switch_lift(bool onOff);
+
+    // Function: Switch solar radiation pressure perturbation on or off
+    // Inputs: true -> on, false -> off
+    void switch_srp(bool onOff);
+
+    // Function: Switch n-body effects on or off
+    // Inputs: true -> on, false -> off
+    void switch_nbody(bool onOff);
+
+    // Function: Switch dynamics set
+    // Inputs: "Two Body" or "two body"             for simple 2-body mechanics. Perturbations will be ignored
+    //         "Cowells Method" or "cowells method" for cowell's method VoP
+    //         "COEs VoP" or "coes vop"             for traditional COEs VoP
+    //         "J2 Mean VoP" or "j2 mean vop"       for J2 Mean VoP. All perturbations other than J2 will be ignored
+    //         "MEEs VoP" or "mees vop"             for modified equinoctial elements VoP
+    void switch_dynamics(std::string dynamics);
+    
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
+
+    Spacecraft* spacecraft;
+    AstrodynamicsSystem* system;
 
     // Central Body properties
     int planetId{}, moonId{};
@@ -163,6 +258,32 @@ private:
     double CKnPrevious = {};
     double CKn = {};
 
+    // Perturbation toggles
+    bool oblateness = false;
+    int N = 2, M = 0;
+
+    bool NxMOblateness = false;
+    bool drag = false;
+    bool lift = false;
+    bool srp = false;
+    bool nbody = false;
+    
+    double crashRadius = 0.0;
+    double crashVelocity = 0.0;
+
+    // Allows for manually changing mu
+    double mu{};
+
+    // Atmospheric Model
+    std::string epoch = "2000-01-01 00:00:00";
+
+    // Equation set
+    bool twoBody = false;
+    bool cowellsMethod = true;
+    bool coesVoP = false;
+    bool j2MeanVoP = false;
+    bool meesVoP = false;
+
     //------------------------------------------------ Methods ------------------------------------------------//
     void evaluate_two_body_dynamics();
     void evaluate_cowells_method();
@@ -180,78 +301,5 @@ private:
 
     void assign_legendre();
     void find_atmospheric_density();
-
-public:
-    //----------------------------------------------- Variables -----------------------------------------------//
-
-    // Perturbation toggles
-    bool oblateness = false;
-    int N = 2, M = 0;
-
-    bool NxMOblateness = false;
-    bool drag = false;
-    bool lift = false;
-    bool srp = false;
-    bool nbody = false;
-
-    // Allows for chaning mu
-    double mu{};
-
-    // Atmospheric Model
-    std::string epoch = "2000-01-01 00:00:00";
-    bool useEarthGRAM = false;
-
-    // Spacecraft properties
-    double mass = 1000;
-    double coefficientOfDrag = 2.2;
-    double coefficientOfLift = 0.9;
-    double coefficientOfReflectivity = 1.1;
-    double areaRam[3] = { 0.01, 0.0, 0.0 };
-    double areaSun[3] = { 0.01, 0.0, 0.0 };
-    double areaLift[3] = { 0.01, 0.0, 0.0 };
-
-    // Equation set
-    bool twoBody = false;
-    bool cowellsMethod = true;
-    bool coesVoP = false;
-    bool j2MeanVoP = false;
-    bool meesVoP = false;
-
-    //------------------------------------------------ Methods ------------------------------------------------//
-    // Constructors and destructor
-    EquationsOfMotion();
-    ~EquationsOfMotion();
-
-    // Property assignment
-    void assign_eom_properties(GravitationalBody &centralBody);
-
-    // Derivative eval
-    void evaluate_state_derivative(double time, double* state, double* stateDerivative);
-
-    // Event check
-    bool check_crash(double* state);
-    double crashRadius = 0.0;
-    double crashVelocity = 0.0;
-
-    // Initialize Cnm and Snm for oblateness pert
-    void get_oblateness_coefficients(int N, int M);
-
-    // Setters
-
-    // Getters
-    double get_atmospheric_density(double time, double* state);
-
-    double* get_accel_gravity();
-    double* get_accel_oblateness();
-    double* get_accel_drag();
-    double* get_accel_lift();
-    double* get_accel_srp();
-    double* get_accel_nBody();
-
-    double* get_net_accel();
-    double* get_coes_rates();
-
-    double netAccel[3] = { 0.0, 0.0, 0.0 };
-    double dcoesdt[6] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 };
 

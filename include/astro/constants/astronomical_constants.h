@@ -7,7 +7,7 @@
 
 static const double AU = 1.49597871e8; // km
 static const double solarRadiationPressureAt1AU = 4.556485540406757e-3; // Average SRP at 1 AU
-static const double J2000 = 2451545.0;
+// static const double J2000 = 2451545.0;
 
 //----------------------------------------------------------------------------------------------------------//
 //-------------------------------------------- Planetary Data ----------------------------------------------//
