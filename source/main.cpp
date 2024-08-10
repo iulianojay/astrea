@@ -15,7 +15,7 @@ int main() {
 
     // Build EoMs
     EquationsOfMotion eom(&sys);
-    eom.switch_dynamics("two body");
+    eom.switch_dynamics("Two Body");
 
     // Setup integrator
     Integrator integrator;
@@ -34,7 +34,7 @@ int main() {
     std::ofstream outfile;
     outfile.open("./bin/results/main.csv");
     outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
-    for (const auto& state: vehicle.get_states()) {
+    for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
         for (const auto& x: state.elements) {
             outfile << x << ",";

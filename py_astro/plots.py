@@ -12,35 +12,45 @@ raan = data['raan (deg)'].to_numpy()
 w = data['w (deg)'].to_numpy()
 theta = data['theta (deg)'].to_numpy()
 
-fig = plt.gcf()
+fig, (ax1, ax2, ax3, ax4, ax5, ax6) = plt.subplots(nrows=6, ncols=1, figsize=(10, 8), sharex=True)
+fig.suptitle("Two Body Test")
 
-ax1 = plt.subplot(611)
-plt.plot(t, sma)
-plt.tick_params('x', labelsize=6)
-
-# share x only
-ax2 = plt.subplot(612, sharex=ax1)
-plt.plot(t, ecc)
-plt.tick_params('x', labelbottom=False)
+ax1.plot(t, sma)
+ax1.tick_params('x', labelsize=False)
+ax1.set_ylabel("Semimajor Axis\n(km)")
+ax1.grid(True)
 
 # share x only
-ax3 = plt.subplot(613, sharex=ax1)
-plt.plot(t, inc)
-plt.tick_params('x', labelbottom=False)
+ax2.plot(t, ecc)
+ax2.tick_params('x', labelbottom=False)
+ax2.set_ylabel("Eccentricity")
+ax2.grid(True)
 
 # share x only
-ax4 = plt.subplot(614, sharex=ax1)
-plt.plot(t, raan)
-plt.tick_params('x', labelbottom=False)
+ax3.plot(t, inc)
+ax3.tick_params('x', labelbottom=False)
+ax3.set_ylabel("Inclination\n(deg)")
+ax3.grid(True)
 
 # share x only
-ax5 = plt.subplot(615, sharex=ax1)
-plt.plot(t, w)
-plt.tick_params('x', labelbottom=False)
+ax4.plot(t, raan)
+ax4.tick_params('x', labelbottom=False)
+ax4.set_ylabel("Right Ascension\n(deg)")
+ax4.grid(True)
 
 # share x only
-ax6 = plt.subplot(616, sharex=ax1)
-plt.plot(t, theta)
-plt.tick_params('x', labelbottom=False)
+ax5.plot(t, w)
+ax5.tick_params('x', labelbottom=False)
+ax5.set_ylabel("Arg. Perigee\n(deg)")
+ax5.grid(True)
+
+# share x only
+ax6.plot(t, theta)
+ax6.set_ylabel("True Anomaly\n(deg)")
+ax6.grid(True)
+ax6.set_ylim([0, 360])
+
+plt.xlim(t[0], t[-1])
+fig.tight_layout()
 
 fig.savefig('./bin/results/main.png')

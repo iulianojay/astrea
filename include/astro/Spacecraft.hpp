@@ -96,7 +96,7 @@ public:
     const State& get_initial_state();
     const State& get_final_state();
     const State& get_state(Time time);
-    auto& get_states() const { return states; }
+    auto& get_states() { return states; }
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)

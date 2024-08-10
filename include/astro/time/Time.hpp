@@ -88,7 +88,7 @@ public:
     auto count() const { return time.count(); }
 
     template <typename T>
-    auto count() { return std::chrono::duration_cast<T>(time).count(); }
+    auto count() const { return std::chrono::duration_cast<T>(time).count(); }
 
     // abs
     auto abs() { return std::chrono::abs(time); }

@@ -17,6 +17,7 @@ lib/*
 
 # Specific files
 package.json
+get-pip.py
 
 # Must include
 !CMakeLists.txt

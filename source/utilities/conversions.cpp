@@ -172,15 +172,25 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
 
 void conversions::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
     
+    /*
+        Force rounding errors to assume zero values for angles. Assume complex
+        results are the result of rounding errors. Flip values near their antipode
+        to zero for simplicity. Assume NaN results are from singularities and force 
+        values to be 0.
+
+        No idea how much of this is just wrong.
+    */
+    double tol = 1e-10;
+
     // Specific Relative Angular Momentum
-    double hx = radius[1]*velocity[2] - radius[2]*velocity[1]; // h = cos_raanoss(r, v)
+    double hx = radius[1]*velocity[2] - radius[2]*velocity[1]; // h = cross(r, v)
     double hy = radius[2]*velocity[0] - radius[0]*velocity[2];
     double hz = radius[0]*velocity[1] - radius[1]*velocity[0];
 
     double normH = sqrt(hx*hx + hy*hy + hz*hz);
 
     // Setup
-    double Nx = -hy;  // N = cos_raanoss([0 0 1], h)
+    double Nx = -hy;  // N = cross([0 0 1], h)
     double Ny = hx;
 
     double normN = sqrt(Nx*Nx + Ny*Ny);
@@ -201,21 +211,24 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
 
     double ecc = math_c::normalize(eccVec, 0, 2);
     /*
-        If the orbit has an eccentricity of exactly 0, w is ill-defined, the
+        If the orbit has an inclination of exactly 0, w is ill-defined, the
         eccentricity vector is ill-defined, and true anomaly is ill defined. Force
-        eccentricity to be exactly 0.
+        eccentricity very close to 0 be exactly 0 to avoid issues where w and 
+        anomaly flail around wildly as ecc fluctuates.
     */
-    if (abs(ecc) < 1.0e-10) {
+    if (abs(ecc) < tol) {
         ecc = 0.0;
     }
 
     // Inclination (rad)
     double inc = acos(hz/normH);
+    if (isnan(inc) || abs(inc - PI) < tol){
+        inc = 0.0;
+    }
 
-    // Right Ascension of Ascending Node(rad)
-    double acos_Nx_Nnorm = acos(Nx/normN);
-
+    // Right Ascension of Ascending Node (rad)
     double raan{};
+    double acos_Nx_Nnorm = acos(Nx/normN);
     if (Ny > 0.0) {
         raan = acos_Nx_Nnorm;
     }
@@ -223,24 +236,70 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
         raan = 2.0*PI - acos_Nx_Nnorm;
     }
 
-    // True Anomaly(rad)
-    double dot_ecc_r = eccVec[0]*radius[0] + eccVec[1]*radius[1] + eccVec[2]*radius[2];
-    double theta{};
-    if (dot_ecc_r > 0.0) {
-        theta = acos(dot_ecc_r/(ecc*R));
-    }
-    else {
-        theta = 2.0*PI - acos(dot_ecc_r/(ecc*R));
+    if (normN == 0.0 || isnan(raan) || abs(raan - 2.0*PI) < tol) {
+        raan = 0.0;
     }
 
-    // Argument of Parigee(degrees)
-    double dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
-    double w{};
-    if (eccVec[2] > 0.0){
-        w = 2.0*PI - acos(dot_ecc_N/(ecc*normN));
+    // True Anomaly (rad)
+    double theta{};
+    if (ecc == 0.0) { // No argument of perigee, use nodal line
+        if (inc == 0.0) { // No nodal line, use true longitude
+            if (velocity[0] <= 0.0) {
+                theta = acos(radius[0]/R);
+            }
+            else {
+                theta = 2*PI - acos(radius[0]/R);
+            }
+        }
+        else { // Use argument of latitude 
+            double dot_n_r = Nx*radius[0] + Ny*radius[1];
+            if (radius[2] >= 0.0) {
+                theta = acos(dot_n_r/(normN*R));
+            }
+            else {
+                theta = 2*PI - acos(dot_n_r/(normN*R));
+            }
+        }
     }
     else {
-        w = acos(dot_ecc_N/(ecc*normN));
+        double dot_ecc_r = eccVec[0]*radius[0] + eccVec[1]*radius[1] + eccVec[2]*radius[2];
+        if (dotRV >= 0.0) {
+            theta = acos(dot_ecc_r/(ecc*R));
+        }
+        else {
+            theta = 2.0*PI - acos(dot_ecc_r/(ecc*R));
+        }
+    }
+    
+    if (isnan(theta) || abs(theta - 2.0*PI) < tol) {
+        theta = 0.0;
+    }
+
+    // Argument of Parigee (rad)
+    double w{};
+    if (ecc == 0.0) { // Ill-defined. Assume zero
+        w = 0.0;
+    }
+    else if (inc == 0.0) { // No nodal line, use ecc vec
+        if (hz > 0.0) {
+            w = atan2(eccVec[1], eccVec[0]);
+        }
+        else {
+            w = 2*PI - atan2(eccVec[1], eccVec[0]);
+        }
+    }
+    else {
+        double dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
+        if (eccVec[2] > 0.0){
+            w = 2.0*PI - acos(dot_ecc_N/(ecc*normN));
+        }
+        else {
+            w = acos(dot_ecc_N/(ecc*normN));
+        }
+    }
+
+    if (normN == 0.0 || isnan(w) || abs(w - 2.0*PI) < tol) {
+        w = 0.0;
     }
 
     // Period(s)
@@ -248,32 +307,6 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
 
     // Mean Motion(rad/s)
     // n = 2.0*PI/T;
-
-    /*
-        Force rounding errors to assume zero values for angles. Assume complex
-        results are the result of rounding errors. Flip values near their antipode
-        to zero for simplicity. If the orbit is in the equatorial plane,
-        N = [0 0 0], right ascension and argument of perigee are ill-defined. Force
-        to be zero. Assume NaN results are from singularities and force values to
-        be 0.
-
-        No idea how much of this is just wrong.
-    */
-    if (isnan(inc) || abs(inc - PI) < 1.0e-3){
-        inc = 0.0;
-    }
-
-    if (normN == 0.0 || isnan(raan) || abs(raan - 2.0*PI) < 1.0e-3) {
-        raan = 0.0;
-    }
-
-    if (normN == 0.0 || isnan(w) || abs(w - 2.0*PI) < 1.0e-3) {
-        w = 0.0;
-    }
-
-    if (isnan(theta) || abs(theta - 2.0*PI) < 1.0e-3) {
-        theta = 0.0;
-    }
 
     // Assign to coes
     coes[0] = a;
