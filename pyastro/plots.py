@@ -120,5 +120,7 @@ if __name__=='__main__':
     infile = './bin/results/cowells_test/main.csv'
     outfile = './bin/results/cowells_test/main.png'
 
-    # plot_coes(title, infile, outfile)
-    plot_cartesian(title, infile, outfile)
+    try:
+        plot_coes(title, infile, outfile)
+    except:
+        plot_cartesian(title, infile, outfile)

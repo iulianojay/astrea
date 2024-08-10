@@ -15,8 +15,11 @@ int main() {
 
     // Build EoMs
     EquationsOfMotion eom(sys);
+    // eom.switch_dynamics("Two Body");
     eom.switch_dynamics("Cowells Method");
-    eom.switch_oblateness(2, 0);
+    eom.switch_oblateness(10, 10);
+    // eom.switch_drag(true);
+    // eom.switch_lift(true);
 
     // Setup integrator
     Integrator integrator;
@@ -34,11 +37,11 @@ int main() {
     // Send to file
     std::ofstream outfile;
     outfile.open("./bin/results/cowells_test/main.csv");
-    // outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
-    outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
+    outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
+    // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
     for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
-        state.elements.convert(ElementSet::CARTESIAN, &sys);
+        // state.elements.convert(ElementSet::CARTESIAN, &sys);
         for (const auto& x: state.elements) {
             outfile << x << ",";
         }

@@ -14,7 +14,11 @@ class OrbitalElements : public element_array {
 
 public:
 
-    OrbitalElements() : set(ElementSet::CARTESIAN) {}
+    OrbitalElements() : set(ElementSet::CARTESIAN) {
+        for (int ii = 0; ii < 6; ++ii) {
+            _M_elems[ii] = 0.0;
+        }
+    }
     OrbitalElements(const element_array elements, const ElementSet set = ElementSet::CARTESIAN) : set(set) {
         std::copy(std::begin(elements), std::end(elements), _M_elems);
     }
@@ -51,7 +55,6 @@ public:
         return OrbitalElements(sumElements, set);
     }
 
-    // Addition
     OrbitalElements& operator+=(const OrbitalElements& rhs) {
         // Check both element sets are the same
         if (rhs.set != set) {
@@ -80,6 +83,21 @@ public:
             diffElements[ii] -= other[ii];
         }
         return OrbitalElements(diffElements, set);
+    }
+
+    OrbitalElements& operator-=(const OrbitalElements& rhs) {
+        // Check both element sets are the same
+        if (rhs.set != set) {
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
+        }
+
+        // Sum
+        element_array& sumElements = (*this);
+        for (int ii = 0; ii < 6; ii++) {
+            sumElements[ii] -= rhs[ii];
+        }
+
+        return (*this);
     }
 
     static const int size() { return 6; }

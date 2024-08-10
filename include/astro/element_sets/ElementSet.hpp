@@ -35,17 +35,17 @@ public:
 
 private:
     _ENUM_ value;
-    frozen::unordered_map<_ENUM_, frozen::string, 2> toString = {
+    frozen::unordered_map<_ENUM_, frozen::string, 3> toString = {
         {COE,       "COE"},
         {CARTESIAN, "CARTESIAN"},
         {MEE,       "MEE"}
     };
-    frozen::unordered_map<_ENUM_, const char*, 2> toChar = {
+    frozen::unordered_map<_ENUM_, const char*, 3> toChar = {
         {COE,       "COE"},
         {CARTESIAN, "CARTESIAN"},
         {MEE,       "MEE"}
     };
-    frozen::unordered_map<frozen::string, _ENUM_, 2> fromString = {
+    frozen::unordered_map<frozen::string, _ENUM_, 3> fromString = {
         {"COE",       COE},
         {"CARTESIAN", CARTESIAN},
         {"MEE",       MEE}
