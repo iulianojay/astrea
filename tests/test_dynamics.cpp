@@ -1,14 +1,11 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <gtest/gtest.h>
 
 #include "astro.hpp"
 
-int main() {
-    return 0;
-}
-
-int test_two_body_dynamics() {
+TEST(TwoBodyTest, BasicAssertions) {
     // Setup system
     AstrodynamicsSystem sys;
 
@@ -19,7 +16,7 @@ int test_two_body_dynamics() {
 
     // Build EoMs
     EquationsOfMotion eom(sys);
-    eom.switch_dynamics("two body");
+    eom.switch_dynamics(EquationsOfMotion::TWO_BODY);
 
     // Setup integrator
     Integrator integrator;
@@ -34,5 +31,5 @@ int test_two_body_dynamics() {
     std::cout << "state0 = " << vehicle.get_initial_state() << std::endl;
     std::cout << "statef = " << vehicle.get_final_state() << std::endl;
 
-    return 1;
+    EXPECT_EQ(1, 1);
 }

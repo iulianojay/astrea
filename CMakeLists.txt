@@ -5,6 +5,7 @@ project(astro VERSION 1.0.0 DESCRIPTION "C++ astodynamics library" LANGUAGES C C
 
 set(CMAKE_C_STANDARD 20)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Utility variables
@@ -58,10 +59,6 @@ set(OBJS
     ${SRC}/State.cpp
 )
 
-set(TEST_OBJS
-    ${TEST}/test_dynamics.cpp
-)
-
 # Headers
 set(HDRS
     ${INC}/astro.hpp
@@ -100,16 +97,13 @@ set(HDRS
     ${INC}/astro/State.hpp
 )
 
-set(TEST_HDRS
-)
-
 # Compiler flags
 set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-std=c20 -mfpmath=387")
-set(CXX_FLAGS "-std=c++20 -mfpmath=387")
+set(C_FLAGS "-mfpmath=387")
+set(CXX_FLAGS "-mfpmath=387")
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
@@ -137,9 +131,4 @@ target_include_directories (${EXENAME} PUBLIC ${INCLUDE_DIRS})
 target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
 add_dependencies           (${EXENAME} ${LIBNAME}_shared)
 
-# Tests 
-add_executable             (${TESTNAME} ${TEST_OBJS} ${TEST_HDRS})
-set_target_properties      (${TESTNAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINPATH} VERSION ${PROJECT_VERSION} OUTPUT_NAME ${TESTNAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (${TESTNAME} PUBLIC ${INCLUDE_DIRS})
-target_link_libraries      (${TESTNAME} PUBLIC ${LIBNAME}_shared)
-add_dependencies           (${TESTNAME} ${LIBNAME}_shared)
+include(${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt)

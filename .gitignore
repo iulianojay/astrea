@@ -1,9 +1,8 @@
 # Folders
-obj/*
 .vscode
 CMake*
-bin/*
-build/*
+**/bin/*
+**/build/*
 lib/*
 
 # File types
