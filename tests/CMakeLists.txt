@@ -21,12 +21,14 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-set(TEST_NAME TwoBodyTest)
-set(TEST_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+# Setup 
+set(TEST_NAME astro_tests)
+set(TEST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 set(BINPATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(LIBPATH ${CMAKE_CURRENT_SOURCE_DIR}/../lib)
-set(INCLUDEPATH ${CMAKE_CURRENT_SOURCE_DIR}/../include/)
 
+# Main library includes
+set(INCLUDEPATH ${CMAKE_CURRENT_SOURCE_DIR}/../include/)
 set(INCLUDE_DIRS 
     ${INCLUDEPATH}
     ${INCLUDEPATH}/astro
@@ -42,9 +44,15 @@ set(INCLUDE_DIRS
 # Find library
 find_library(ASTROLIB libastro.so PATHS ${LIBPATH})
 
+# Tests
+set(TEST_SRC
+    ${TEST_ROOT}/test_dynamics.cpp
+    ${TEST_ROOT}/test_conversions.cpp
+)
+
 # Build test executable
-add_executable             (${TEST_NAME} ${TEST_ROOT}/test_dynamics.cpp)
-set_target_properties      (${TEST_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINPATH} VERSION ${PROJECT_VERSION} OUTPUT_NAME ${TEST_NAME} CLEAN_DIRECT_OUTPUT 1)
+add_executable             (${TEST_NAME} ${TEST_SRC})
+set_target_properties      (${TEST_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINPATH})
 target_include_directories (${TEST_NAME} PUBLIC ${INCLUDE_DIRS})
 add_dependencies           (${TEST_NAME} GTest::gtest_main)
 target_link_libraries      (${TEST_NAME} ${ASTROLIB} GTest::gtest_main)

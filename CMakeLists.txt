@@ -102,8 +102,8 @@ set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-mfpmath=387")
-set(CXX_FLAGS "-mfpmath=387")
+set(C_FLAGS "-std=c20 -mfpmath=387")
+set(CXX_FLAGS "-std=c++20 -mfpmath=387")
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
@@ -130,5 +130,3 @@ set_target_properties      (${EXENAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BIN
 target_include_directories (${EXENAME} PUBLIC ${INCLUDE_DIRS})
 target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
 add_dependencies           (${EXENAME} ${LIBNAME}_shared)
-
-include(${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt)

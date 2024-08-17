@@ -137,7 +137,7 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
     double cos_inc = cos(inc); 
     double sin_inc = sin(inc);
 
-    double h = sqrt(mu*a*(1 - ecc));
+    double h = sqrt(mu*a*(1 - ecc*ecc));
     double A = h*h/mu/(1 + ecc*cos_theta);
     double B = mu/h;
 
@@ -290,7 +290,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     }
     else {
         double dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
-        if (eccVec[2] > 0.0){
+        if (eccVec[2] < 0.0){
             w = 2.0*PI - acos(dot_ecc_N/(ecc*normN));
         }
         else {
