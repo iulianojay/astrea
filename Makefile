@@ -21,7 +21,11 @@ verbose:
 .PHONY: build
 build: CMakeLists.txt
 	mkdir -p build
-	cmake -S . -B build -DCMAKE_BUILD_TYPE=${DFLAG} -DCMAKE_C_COMPILER=$(C_COMP) -DCMAKE_CXX_COMPILER=${CXX_COMP} -DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE}
+	CC=${C_COMP} CXX=${CXX_COMP} cmake -S . -B build \
+		-DCMAKE_BUILD_TYPE=${DFLAG} \
+		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
+		-DPython3_INCLUDE_DIR=/usr/include/python3.12 \
+		-DPython3_LIBRARY=/usr/bin/python3.12
 	cd build && make --no-print-directory -j 10
 
 .PHONY: clean

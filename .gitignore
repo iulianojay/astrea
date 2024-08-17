@@ -12,11 +12,11 @@ lib/*
 *.jpg
 *.zip
 *.pyc
-*.cmake
 
 # Specific files
 package.json
 get-pip.py
+pyastro/astro.py
 
 # Must include
 !CMakeLists.txt
