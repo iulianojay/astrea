@@ -27,8 +27,7 @@ build: CMakeLists.txt
 .PHONY: clean
 clean:
 	rm -rf ./bin/*
-	rm -f ./lib/*
 
-.PHONY: clean
-new:
+.PHONY: new
+new: clean
 	rm -rf ./build/*

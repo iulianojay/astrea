@@ -27,7 +27,7 @@ int main() {
     integrator.set_rel_tol(1.0e-13);
 
     // Propagate
-    Interval propInterval{seconds(0), seconds(86400)};
+    Interval propInterval{seconds(0), years(1)};
     integrator.propagate(propInterval, vehicle, eom);
 
     // Print

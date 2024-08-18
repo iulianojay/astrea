@@ -30,13 +30,13 @@ public:
     operator double() { return time.count(); }
     
 
-    template <typename T>
-    Time(const std::chrono::duration<T>& dur) {
+    template <typename T, typename R = std::ratio<1>>
+    Time(const std::chrono::duration<T, R>& dur) {
         time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
     }
 
-    template <typename T>
-    Time& operator=(const std::chrono::duration<T>& dur) {
+    template <typename T, typename R = std::ratio<1>>
+    Time& operator=(const std::chrono::duration<T, R>& dur) {
         time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
         return *this;
     }
