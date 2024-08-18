@@ -19,13 +19,16 @@ namespace conversions {
     void lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF);
 
     //---------------------------------------- Element Set Conversions -----------------------------------------//
-    void coes_to_bci(double h, double ecc, double inc, double w, double raan, double theta, double mu, double* radius, double* velocity);
+    void coes_to_bci(double h, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity);
     void bci_to_coes(double* radius, double* velocity, double mu, double* coes);
 
-    element_array coes_to_cartesian(element_array coes, AstrodynamicsSystem* centralBody);
-    element_array cartesian_to_coes(element_array cartesian, AstrodynamicsSystem* centralBody);
+    element_array coes_to_cartesian(element_array coes, const AstrodynamicsSystem* centralBody);
+    element_array cartesian_to_coes(element_array cartesian, const AstrodynamicsSystem* centralBody);
+    
+    element_array coes_to_mees(element_array mees, const AstrodynamicsSystem* centralBody);
+    element_array mees_to_coes(element_array coes, const AstrodynamicsSystem* centralBody);
 
-    void mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes);
+    void _mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes);
 
     //------------------------------------------- Time Conversions ---------------------------------------------//
     double epoch_to_julian_date(std::string epochString);
@@ -33,13 +36,15 @@ namespace conversions {
 
 
     // For the love of god, don't touch this
-    using set_conversion_function = std::function<element_array(element_array, AstrodynamicsSystem*)>;
+    using set_conversion_function = std::function<element_array(element_array, const AstrodynamicsSystem*)>;
     using element_set_pair = std::pair<ElementSet, ElementSet>;
 
     static const std::map<element_set_pair, set_conversion_function> elementSetConversions = {
         {element_set_pair(ElementSet::COE, ElementSet::CARTESIAN), coes_to_cartesian},
-        {element_set_pair(ElementSet::CARTESIAN, ElementSet::COE), cartesian_to_coes}
+        {element_set_pair(ElementSet::CARTESIAN, ElementSet::COE), cartesian_to_coes},
+        {element_set_pair(ElementSet::COE, ElementSet::MEE), coes_to_mees},
+        {element_set_pair(ElementSet::MEE, ElementSet::COE), mees_to_coes}
     };
 
-    element_array convert(element_array elements, ElementSet fromSet, ElementSet toSet, AstrodynamicsSystem* system);
+    element_array convert(element_array elements, ElementSet fromSet, ElementSet toSet, const AstrodynamicsSystem* system);
 }

@@ -8,7 +8,7 @@
 //----------------------------------------------------------------------------------------------------------//
 
 // Default vector norm
-double math_c::normalize(double* vec) {
+double math_c::normalize(const double* vec) {
     // default to 2 norm
     double norm = 0.0;
     for (int ii = 0; ii < 3; ++ii) {

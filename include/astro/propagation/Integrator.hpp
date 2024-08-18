@@ -9,6 +9,7 @@
 
 #include "rk_constants.h"			// RK Butcher Tableau
 
+#include "Interval.hpp"
 #include "EquationsOfMotion.hpp"
 #include "Spacecraft.hpp"
 
@@ -32,7 +33,7 @@ public:
     ~Integrator();
 
 	// Integrate
-    void propagate(double timeInitial, double timeFinal, Spacecraft spacecraft, EquationsOfMotion eom);
+    void propagate(Interval interval, Spacecraft& spacecraft, EquationsOfMotion& eom);
     void integrate(double timeInitial, double timeFinal, double* stateInitial);
      
 	// Save Results
@@ -45,7 +46,9 @@ public:
 
     // Function: Get all states during integration
     // Inputs: Matrix to write state history too
-    void get_state_history(double** stateHistory);
+    // void get_state_history(double** stateHistory);
+    
+    std::vector<State> get_state_history();
 
     // Get final state
     void copy_final_state(double* state);
@@ -122,7 +125,7 @@ private:
     int functionEvaluations = 0;
 
 	// Number of states
-	static const int numberOfStates = 6;
+	static const int nStates = 6;
 
 	// Time variables
 	double time{};
@@ -132,9 +135,9 @@ private:
     bool forwardTime = true;
 
 	// State variables
-	double state[numberOfStates] = {};		// state at current iteration
-	double stateNew[numberOfStates] = {};
-	double stateError[numberOfStates] = {};
+	double state[nStates] = {};		// state at current iteration
+	double stateNew[nStates] = {};
+	double stateError[nStates] = {};
 
 	// Error variables
     double error{};
@@ -145,18 +148,18 @@ private:
     bool eventTrigger = false;
 
     // Butcher Tablaeu
-    int numberOfStages{};
-    static const int maxNumberOfStages = 13;
-    double a[maxNumberOfStages][maxNumberOfStages] = {};
-    double b[maxNumberOfStages] = {};
-    double bhat[maxNumberOfStages] = {};
-    double db[maxNumberOfStages] = {};
-    double c[maxNumberOfStages] = {};
+    int nStages{};
+    static const int maxStages = 13;
+    double a[maxStages][maxStages] = {};
+    double b[maxStages] = {};
+    double bhat[maxStages] = {};
+    double db[maxStages] = {};
+    double c[maxStages] = {};
 
 	// ith order steps
-    double kMatrix[maxNumberOfStages][numberOfStates] = {};
-	double statePlusKi[numberOfStates] = {};
-	double YFinalPrevious[numberOfStates] = {};
+    double kMatrix[maxStages][nStates] = {};
+	double statePlusKi[nStates] = {};
+	double YFinalPrevious[nStates] = {};
 
 	// Clock variables
 	clock_t startClock{};

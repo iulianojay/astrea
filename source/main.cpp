@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 
 #include "astro.hpp"
 
@@ -10,37 +11,43 @@ int main() {
     // Build spacecraft
     element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
     OrbitalElements elements0(state0, ElementSet::COE);
-    elements0.convert(ElementSet::CARTESIAN, &sys);
     Spacecraft vehicle(elements0, "Jan-01-2030 00:00:00.0");
 
-    // Build Integrator
-    Integrator integrator;
-    LambertSolver lambertSolver;
-    
-    integrator.set_abs_tol(1.0e-8);
-    integrator.set_rel_tol(1.0e-8);
-
     // Build EoMs
-    EquationsOfMotion eom(&sys);
-    eom.switch_dynamics("two body");
+    EquationsOfMotion eom(sys);
+    // eom.switch_dynamics(EquationsOfMotion::TWO_BODY);
+    eom.switch_dynamics(EquationsOfMotion::COWELLS);
+    eom.switch_oblateness(10, 10);
+    // eom.switch_drag(true);
+    // eom.switch_lift(true);
 
-    // Integrate
-    double statef[6];
-    integrator.propagate(0, 86400.0, vehicle, eom);
-    integrator.copy_final_state(statef);
+    // Setup integrator
+    Integrator integrator;
+    integrator.set_abs_tol(1.0e-13);
+    integrator.set_rel_tol(1.0e-13);
+
+    // Propagate
+    Interval propInterval{seconds(0), seconds(86400)};
+    integrator.propagate(propInterval, vehicle, eom);
 
     // Print
-    std::cout << "state0 = [" << state0[0];
-    for (int ii = 1; ii < 6; ii++) {
-        std::cout << ", " << state0[ii];
-    }
-    std::cout << "]\n";
+    std::cout << "state0 = " << vehicle.get_initial_state() << std::endl;
+    std::cout << "statef = " << vehicle.get_final_state() << std::endl;
 
-    std::cout << "statef = [" << statef[0];
-    for (int ii = 1; ii < 6; ii++) {
-        std::cout << ", " << statef[ii];
+    // Send to file
+    std::ofstream outfile;
+    outfile.open("./bin/results/cowells_test/main.csv");
+    outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
+    // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
+    for (auto& state: vehicle.get_states()) {
+        outfile << state.time.count<minutes>() << ",";
+        // state.elements.convert(ElementSet::CARTESIAN, &sys);
+        for (const auto& x: state.elements) {
+            outfile << x << ",";
+        }
+        outfile << "\n";
     }
-    std::cout << "]\n";
+    outfile.close();
 
     return 1;
 }

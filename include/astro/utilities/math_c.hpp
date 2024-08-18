@@ -9,7 +9,7 @@ namespace math_c
 {
     //------------------------------------------------- Norms --------------------------------------------------//
     // Default vector norm
-    double normalize(double* vec);
+    double normalize(const double* vec);
     double normalize(double* vec, int startIndex, int endIndex);
 
     // Vector p-norm

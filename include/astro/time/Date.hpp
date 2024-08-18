@@ -59,12 +59,11 @@ public:
     ~Date() {}
 
     // Utilities
-    const auto julian_day() {
+    const auto julian_day() const {
         return julianDate.time_since_epoch().count();
     }
-    const auto utc() {
-        using namespace std::chrono;
-        return round<seconds>(clock_cast<system_clock>(julianDate));
+    const auto utc() const {
+        return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate));
     }
 
 
@@ -89,8 +88,7 @@ private:
     }
 
     void set_string_from_julian_date() {
-        using namespace std::chrono;
-        const auto sysTime = round<milliseconds>(clock_cast<system_clock>(julianDate));
+        const auto sysTime = round<std::chrono::milliseconds>(clock_cast<std::chrono::system_clock>(julianDate));
         std::stringstream ss;
         ss << sysTime;
         calendarDate = ss.str();

@@ -89,10 +89,16 @@ public:
     // Inputs: Initial epoch string in the format: "MON-DY-YEAR HH:MM:SS.SS"
     void set_epoch(std::string inputEpoch);
 
+    void set_states(std::vector<State> states);
+
     //---------------------------------------Spacecraft property getters---------------------------------------//
 
-    State get_initial_state();
-    State get_state(Time time);
+    const State& get_initial_state();
+    const State& get_final_state();
+    const State& get_state(Time time);
+    auto& get_states() { return states; }
+
+    const Date& get_epoch() const { return epoch; } 
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)

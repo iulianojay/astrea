@@ -1,14 +1,17 @@
 #pragma once
 
 #include <chrono>
+#include <iostream>
 
 #include "JulianDateClock.hpp"
+#include "time_units.hpp"
 
 class Date;
 
 class Time {
 
     friend Date;
+    friend std::ostream& operator<<(std::ostream&, Time const&);
 
 public:
     Time(JulianDateClock::duration dur) : time(dur) {}
@@ -18,10 +21,25 @@ public:
     Time(const double& time) : time(time) {}
 
     // conversion from double (assignment)
-    Time& operator=(const double& time) { return *this; }
+    Time& operator=(const double& t) { 
+        time = JulianDateClock::duration(t); 
+        return *this; 
+    }
 
     // conversion to double (type-cast operator)
     operator double() { return time.count(); }
+    
+
+    template <typename T>
+    Time(const std::chrono::duration<T>& dur) {
+        time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
+    }
+
+    template <typename T>
+    Time& operator=(const std::chrono::duration<T>& dur) {
+        time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
+        return *this;
+    }
     
     // Addition
     Time operator+(const Time& other) {
@@ -68,6 +86,9 @@ public:
 
     // Forward count()
     auto count() const { return time.count(); }
+
+    template <typename T>
+    auto count() const { return std::chrono::duration_cast<T>(time).count(); }
 
     // abs
     auto abs() { return std::chrono::abs(time); }

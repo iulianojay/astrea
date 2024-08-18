@@ -59,13 +59,19 @@ void Spacecraft::set_epoch(std::string inputEpoch) {
     epoch = Date(inputEpoch);
 }
 
+
+void Spacecraft::set_states(std::vector<State> statesIn) {
+    states = statesIn;
+}
+
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------------ Getters -------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-State Spacecraft::get_initial_state() { return states[0]; }
+const State& Spacecraft::get_initial_state() { return states[0]; }
+const State& Spacecraft::get_final_state() { return states[states.size()-1]; }
 
-State Spacecraft::get_state(Time time) {
+const State& Spacecraft::get_state(Time time) {
     // Get index of lower bound closest to input time
     auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
     

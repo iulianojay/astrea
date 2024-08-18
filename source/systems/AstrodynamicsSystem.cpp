@@ -33,7 +33,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         }
     }
     else {
-        const double noDiff[6] = {0.0};
+        const element_array noDiff = {0.0};
         for (int ii = 0; ii < centerToRoot.size(); ii++) {
             centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }
@@ -54,7 +54,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         }
     }
     else {
-        const double noDiff[6] = {0.0};
+        const element_array noDiff{0.0};
         for (int ii = 0; ii < centerToSun.size(); ii++) {
             centerToSun[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }

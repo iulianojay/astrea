@@ -1,14 +1,7 @@
 #include "EquationsOfMotion.hpp"
 
 // Constructors 
-EquationsOfMotion::EquationsOfMotion(AstrodynamicsSystem* system) : spacecraft(), system(system) {
-    // Make central Body
-    const GravitationalBody& centralBody = system->get_center();
-
-    // Assign these defaults separately so they don't override mannual choices later
-    mu = centralBody.mu();
-    crashRadius = centralBody.crashR();
-    crashVelocity = 0.0;
+EquationsOfMotion::EquationsOfMotion(const AstrodynamicsSystem& system) : spacecraft(), system(system), centralBody(system.get_center()) {
 }
 
 // Destructor
@@ -37,136 +30,157 @@ void EquationsOfMotion::evaluate_state_derivative(double time, double* state, Sp
 
     // Time
     t = time;
-    julianDate = initialJulianDate + t*SEC_TO_DAY;
+    julianDate = spacecraft->get_epoch().julian_day() + t*SEC_TO_DAY;
 
-    // Assign state variables
-    if ( twoBody || cowellsMethod ) {
-        x = state[0];
-        y = state[1];
-        z = state[2];
-        vx = state[3];
-        vy = state[4];
-        vz = state[5];
-    }
-    else if ( coesVoP || j2MeanVoP ) {
-        h = state[0];
-        ecc = state[1];
-        inc = state[2];
-        w = state[3];
-        raan = state[4];
-        theta = state[5];
-    }
-    else if ( meesVoP ) {
-        p = state[0];
-        f = state[1];
-        g = state[2];
-        h = state[3];
-        k = state[4];
-        L = state[5];
-    }
+    // Assign state variables // TODO: Fix this
+    OrbitalElements s;
+    std::copy(state, state+6, s.begin());
 
     // Evaluate derivative
-    if      ( twoBody       ) { evaluate_two_body_dynamics(); }
-    else if ( cowellsMethod ) { evaluate_cowells_method(); }
-    else if ( coesVoP       ) { evaluate_coes_vop(); }
-    else if ( j2MeanVoP     ) { evaluate_j2mean_coes_vop(); }
-    else if ( meesVoP       ) { evaluate_mees_vop(); }
+    OrbitalElements dsdt;
+    switch (dynamicsSet) {
+        case (COWELLS):
+            dsdt = evaluate_cowells_method(s); 
+            break;
+            
+        case (COES_VOP):
+            dsdt = evaluate_coes_vop(s); 
+            break;
+            
+        case (J2_MEAN):
+            dsdt = evaluate_j2mean_coes_vop(s); 
+            break;
+            
+        case (MEES_VOP):
+            dsdt = evaluate_mees_vop(s); 
+            break;
+
+        case (TWO_BODY):
+        default:
+            dsdt = evaluate_two_body_dynamics(s); 
+    }
 
     // Assign output variables
-    if ( twoBody || cowellsMethod ) {
-        stateDerivative[0] = dxdt;
-        stateDerivative[1] = dydt;
-        stateDerivative[2] = dzdt;
-        stateDerivative[3] = dvxdt;
-        stateDerivative[4] = dvydt;
-        stateDerivative[5] = dvzdt;
-    }
-    else if ( coesVoP || j2MeanVoP ) {
-        stateDerivative[0] = dhdt;
-        stateDerivative[1] = deccdt;
-        stateDerivative[2] = dincdt;
-        stateDerivative[3] = dwdt;
-        stateDerivative[4] = draandt;
-        stateDerivative[5] = dthetadt;
-    }
-    else if ( meesVoP ) {
-        stateDerivative[0] = dpdt;
-        stateDerivative[1] = dfdt;
-        stateDerivative[2] = dgdt;
-        stateDerivative[3] = dhdt;
-        stateDerivative[4] = dkdt;
-        stateDerivative[5] = dLdt;
-    }
+    std::copy(dsdt.begin(), dsdt.end(), stateDerivative);
 }
 
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------ Equations of Motion -------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void EquationsOfMotion::evaluate_two_body_dynamics() {
+const OrbitalElements EquationsOfMotion::evaluate_two_body_dynamics(const OrbitalElements& state) const {
+
+    if (state.get_set() != ElementSet::CARTESIAN) {
+        throw std::runtime_error("The two-body dynamics evaluator requires that the incoming Orbital Element set is in Cartesian coordinates.");
+    }
+
+    // Extract
+    const double& x = state[0];
+    const double& y = state[1];
+    const double& z = state[2];
+    const double& vx = state[3];
+    const double& vy = state[4];
+    const double& vz = state[5];
 
     // Calculate required values for force model
-    R = sqrt(x*x + y*y + z*z);
+    const double R = sqrt(x*x + y*y + z*z);
 
     // mu/R^3
-    muOverRadiusCubed = mu/(R*R*R);
+    const double muOverRadiusCubed = centralBody.mu()/(R*R*R);
 
     // Derivative
-    dxdt = vx;
-    dydt = vy;
-    dzdt = vz;
-    dvxdt = -muOverRadiusCubed*x;
-    dvydt = -muOverRadiusCubed*y;
-    dvzdt = -muOverRadiusCubed*z;
+    const OrbitalElements dsdt ({
+        vx,
+        vy,
+        vz,
+        (-muOverRadiusCubed*x),
+        (-muOverRadiusCubed*y),
+        (-muOverRadiusCubed*z)
+    },
+    ElementSet::CARTESIAN);
+
+    return dsdt;
 }
 
-void EquationsOfMotion::evaluate_cowells_method() {
+const OrbitalElements EquationsOfMotion::evaluate_cowells_method(const OrbitalElements& state) {
+
+    if (state.get_set() != ElementSet::CARTESIAN) {
+        throw std::runtime_error("The Cowell's Method dynamics evaluator requires that the incoming Orbital Element set is in Cartesian coordinates.");
+    }
+
+    // Extract
+    const double& x = state[0];
+    const double& y = state[1];
+    const double& z = state[2];
+    const double& vx = state[3];
+    const double& vy = state[4];
+    const double& vz = state[5];
 
     // Calculate required values for force model
-    radius[0] = x;
-    radius[1] = y;
-    radius[2] = z;
-    R = sqrt(x*x + y*y + z*z); // radius magnitude
+    const double R = sqrt(x*x + y*y + z*z); // radius magnitude
 
     // mu/R^3
-    muOverRadiusCubed = mu/(R*R*R);
+    const double muOverRadiusCubed = centralBody.mu()/(R*R*R);
 
     // Create force models in cartesian bci
-    find_perts();
+    const auto accelPerts = find_perts(state);
 
     // Derivative
-    dxdt = vx;
-    dydt = vy;
-    dzdt = vz;
-    dvxdt = -muOverRadiusCubed*x + accelPerts[0];
-    dvydt = -muOverRadiusCubed*y + accelPerts[1];
-    dvzdt = -muOverRadiusCubed*z + accelPerts[2];
+    const OrbitalElements dsdt ({
+        vx,
+        vy,
+        vz,
+        -muOverRadiusCubed*x + accelPerts[0],
+        -muOverRadiusCubed*y + accelPerts[1],
+        -muOverRadiusCubed*z + accelPerts[2]
+    },
+    ElementSet::CARTESIAN);
+
+    return dsdt;
 }
 
-void EquationsOfMotion::evaluate_coes_vop() {
+const OrbitalElements EquationsOfMotion::evaluate_coes_vop(const OrbitalElements& state) {
+
+    if (state.get_set() != ElementSet::COE) {
+        throw std::runtime_error("The COEs VoP dynamics evaluator requires that the incoming Orbital Element set is in COE coordinates.");
+    }
+
+    // Extract
+    const double& a = state[0];
+    const double& _ecc = state[1];
+    const double& _inc = state[2];
+    const double& raan = state[3];
+    const double& w = state[4];
+    const double& theta = state[5];
+
+    // h and mu
+    const double& mu = centralBody.mu();
+    const double h = sqrt(mu*a*(1 - _ecc));
 
     // Prevents singularities from occuring in the propagation. Will cause
     // inaccuracies.
-    if (ecc < 1.0e-5) {
-        ecc = 1.0e-5;
+    double ecc = _ecc;
+    if (ecc < checkTol) {
         checkflag = true;
+        ecc = checkTol;
     }
-    if (inc < 1.0e-5) {
-        inc = 1.0e-5;
+    double inc = _inc;
+    if (inc < checkTol) {
         checkflag = true;
+        inc = checkTol;
     }
 
     // conversions COEs to r and v
-    conversions::coes_to_bci(h,ecc,inc,w,raan,theta,mu,radius,velocity);
+    const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, &system);
 
-    x = radius[0]; 
-    y = radius[1]; 
-    z = radius[2];
-    R = sqrt(x*x + y*y + z*z);
+    const double& x = cartesianState[0]; 
+    const double& y = cartesianState[1]; 
+    const double& z = cartesianState[2];
+    const double R = sqrt(x*x + y*y + z*z);
 
-    vx = velocity[0]; 
-    vy = velocity[1]; 
-    vz = velocity[2];
+    const double& vx = cartesianState[3]; 
+    const double& vy = cartesianState[4]; 
+    const double& vz = cartesianState[5];
 
     // Define perturbation vectors relative to the satellites RNT body frame
     /*
@@ -174,131 +188,204 @@ void EquationsOfMotion::evaluate_coes_vop() {
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    Rhat[0] = x/R;
-    Rhat[1] = y/R;
-    Rhat[2] = z/R;
+    const double Rhat[3] = {
+        x/R,
+        y/R,
+        z/R
+    };
 
-    Nhat[0] = (y*vz - z*vy)/h;
-    Nhat[1] = (z*vx - x*vz)/h;
-    Nhat[2] = (x*vy - y*vx)/h;
+    const double Nhat[3] = {
+        (y*vz - z*vy)/h,
+        (z*vx - x*vz)/h,
+        (x*vy - y*vx)/h
+    };
 
-    Tv[0] = Nhat[1]*Rhat[2] - Nhat[2]*Rhat[1]; 
-    Tv[1] = Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2]; 
-    Tv[2] = Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0];
-
-    normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
-    That[0] = Tv[0]/normTv;
-    That[1] = Tv[1]/normTv;
-    That[2] = Tv[2]/normTv;
+    const double Tv[3] = {
+        Nhat[1]*Rhat[2] - Nhat[2]*Rhat[1],
+        Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2],
+        Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0]
+    };
+    const double normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
+    
+    const double That[3] = {
+        Tv[0]/normTv,
+        Tv[1]/normTv,
+        Tv[2]/normTv
+    };
 
     // Function for finding accel caused by perturbations
-    find_perts();
+    const auto accelPerts = find_perts(cartesianState);
 
     // Calculate R, N, and T
-    radialPert     = accelPerts[0]*Rhat[0] + accelPerts[1]*Rhat[1] + accelPerts[2]*Rhat[2];
-    normalPert     = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
-    tangentialPert = accelPerts[0]*That[0] + accelPerts[1]*That[1] + accelPerts[2]*That[2];
+    const double radialPert     = accelPerts[0]*Rhat[0] + accelPerts[1]*Rhat[1] + accelPerts[2]*Rhat[2];
+    const double normalPert     = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
+    const double tangentialPert = accelPerts[0]*That[0] + accelPerts[1]*That[1] + accelPerts[2]*That[2];
 
     // Argument of latitude
-    u = w + theta;
+    const double u = w + theta;
 
     // Precalculate
-    cosTA = cos(theta); 
-    sinTA = sin(theta);
-    cosU = cos(u); 
-    sinU = sin(u);
-    h_2 = h*h;
-    hOverR_2 = h/(R*R);
+    const double cosTA = cos(theta); 
+    const double sinTA = sin(theta);
+    const double cosU = cos(u); 
+    const double sinU = sin(u);
+    const double h_2 = h*h;
+    const double hOverR_2 = h/(R*R);
 
     // Calculate the derivatives of the COEs - from the notes
-    dhdt     = R*tangentialPert;
-    deccdt   = h/mu*sinTA*radialPert + 1/(mu*h)*((h_2 + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
-    dincdt   = R/h*cosU*normalPert;
-    dthetadt = hOverR_2 + (1/(ecc*h))*((h_2/mu)*cosTA*radialPert - (h_2/mu + R)*sinTA*tangentialPert);
-    draandt  = R*sinU/(h*sin(inc))*normalPert;
-    dwdt     = -dthetadt + (hOverR_2 - draandt*cos(inc));
+    const double dhdt     = R*tangentialPert;
+    const double _deccdt   = h/mu*sinTA*radialPert + 1/(mu*h)*((h_2 + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
+    const double _dincdt   = R/h*cosU*normalPert;
+    const double dthetadt = hOverR_2 + (1/(ecc*h))*((h_2/mu)*cosTA*radialPert - (h_2/mu + R)*sinTA*tangentialPert);
+    const double draandt  = R*sinU/(h*sin(inc))*normalPert;
+    const double dwdt     = -dthetadt + (hOverR_2 - draandt*cos(inc));
 
     // Check to prevent crashes due to circular and zero inclination orbits.
     // Will cause innaccuracies
-    if (ecc == 1e-5 && deccdt <= -1e-5) {
+    double deccdt = _deccdt;
+    if (ecc == checkTol && deccdt <= checkTol) {
         deccdt = 0.0;
         checkflag = true;
     }
-    if (inc == 1e-5 && dincdt <= -1e-5) {
+    double dincdt = _dincdt;
+    if (inc == checkTol && dincdt <= checkTol) {
         dincdt = 0.0;
         checkflag = true;
     }
+    
+    const OrbitalElements dsdt({
+        dhdt,
+        deccdt,
+        dincdt,
+        draandt,
+        dwdt,
+        dthetadt
+    },
+    ElementSet::COE);
+
+    return dsdt;
 }
 
-void EquationsOfMotion::evaluate_j2mean_coes_vop() {
+const OrbitalElements EquationsOfMotion::evaluate_j2mean_coes_vop(const OrbitalElements& state) {
+
+    if (state.get_set() != ElementSet::COE) {
+        throw std::runtime_error("The Mean J2 dynamics evaluator requires that the incoming Orbital Element set is in COE coordinates.");
+    }
+
+    // Extract
+    const double& a = state[0];
+    const double& _ecc = state[1];
+    const double& _inc = state[2];
+    const double& raan = state[3];
+    const double& w = state[4];
+    const double& theta = state[5];
+
+    // h and mu
+    const double& mu = centralBody.mu();
+    const double h = sqrt(mu*a*(1 - _ecc));
 
     // Prevents singularities from occuring in the propagation. Will cause
     // inaccuracies.
-    if (inc < 1.0e-5) {
-        inc = 1.0e-5;
+    double inc = _inc;
+    if (inc < checkTol) {
         checkflag = true;
+        inc = checkTol;
     }
 
     // conversions COEs to r and v
-    conversions::coes_to_bci(h, ecc, inc, w, raan, theta, mu, radius, velocity);
+    const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, &system);
 
-    x = radius[0]; 
-    y = radius[1]; 
-    z = radius[2];
-    R = sqrt(x*x + y*y + z*z);
+    const double& x = cartesianState[0]; 
+    const double& y = cartesianState[1]; 
+    const double& z = cartesianState[2];
+    const double R = sqrt(x*x + y*y + z*z);
+
+    const double& vx = cartesianState[3]; 
+    const double& vy = cartesianState[4]; 
+    const double& vz = cartesianState[5];
 
     // Define perturbation vectors relative to the satellites RNT body frame
     /*
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
     */
-    Nhat[0] = (y*vz - z*vy)/h;
-    Nhat[1] = (z*vx - x*vz)/h;
-    Nhat[2] = (x*vy - y*vx)/h;
+    const double Nhat[3] = {
+        (y*vz - z*vy)/h,
+        (z*vx - x*vz)/h,
+        (x*vy - y*vx)/h
+    };
 
     // Function for finding accel caused by perturbations
-    find_perts();
+    const auto accelPerts = find_perts(cartesianState);
 
     // Calculate R, N, and T
-    normalPert = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
+    const double normalPert = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
 
     // Calculate the derivatives of the COEs - only raan and w considered
-    dhdt = 0.0;
-    deccdt = 0.0;
-    dincdt = R/h*cos(w + theta)*normalPert;
-    dthetadt = h/(R*R);
-    draandt = R*sin(w + theta)/(h*sin(inc))*normalPert;
-    dwdt = -draandt*cos(inc);
+    const double dhdt = 0.0;
+    const double deccdt = 0.0;
+    const double _dincdt = R/h*cos(w + theta)*normalPert;
+    const double dthetadt = h/(R*R);
+    const double draandt = R*sin(w + theta)/(h*sin(inc))*normalPert;
+    const double dwdt = -draandt*cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
-    if (inc == 1e-5 && dincdt <= -1e-5) {
+    double dincdt = _dincdt;
+    if (inc == checkTol && dincdt <= checkTol) {
         dincdt = 0.0;
         checkflag = true;
     }
+    
+    const OrbitalElements dsdt({
+        dhdt,
+        deccdt,
+        dincdt,
+        draandt,
+        dwdt,
+        dthetadt
+    },
+    ElementSet::COE);
+
+    return dsdt;
 }
 
-void EquationsOfMotion::evaluate_mees_vop() {
+const OrbitalElements EquationsOfMotion::evaluate_mees_vop(const OrbitalElements& state) {
+
+    if (state.get_set() != ElementSet::MEE) {
+        throw std::runtime_error("The Mean Equinoctial dynamics evaluator requires that the incoming Orbital Element set is in MEE coordinates.");
+    }
+
+    // Extract 
+    const double& p = state[0];
+    const double& f = state[1];
+    const double& g = state[2];
+    const double& h = state[3];
+    const double& k = state[4];
+    const double& L = state[5];
 
     // conversions Modified Equinoctial Elements to COEs
-    conversions::mees_to_coes(p, f, g, h, k, L, coes);
+    const auto coesState = conversions::convert(state, ElementSet::MEE, ElementSet::COE, &system);
 
-    ecc = coes[1];
-    inc = coes[2];
-    w = coes[3];
-    raan = coes[4];
-    theta = coes[5];
+    const double& ecc = coesState[1];
+    const double& inc = coesState[2];
+    const double& w = coesState[3];
+    const double& raan = coesState[4];
+    const double& theta = coesState[5];
+
+    // h and mu
+    const double& mu = centralBody.mu();
 
     // conversions COEs to r and v
-    conversions::coes_to_bci(sqrt(p*mu), ecc, inc, w, raan, theta, mu, radius, velocity);
+    const auto cartesianState = conversions::convert(coesState, ElementSet::COE, ElementSet::CARTESIAN, &system);
 
-    x = radius[0]; 
-    y = radius[1]; 
-    z = radius[2];
-    R = sqrt(x*x + y*y + z*z);
+    const double& x = cartesianState[0]; 
+    const double& y = cartesianState[1]; 
+    const double& z = cartesianState[2];
+    const double R = sqrt(x*x + y*y + z*z);
 
-    vx = velocity[0]; 
-    vy = velocity[1]; 
-    vz = velocity[2];
+    const double& vx = cartesianState[3]; 
+    const double& vy = cartesianState[4]; 
+    const double& vz = cartesianState[5];
 
     // Define perturbation vectors relative to the satellites SNC body frame
     /*
@@ -306,69 +393,101 @@ void EquationsOfMotion::evaluate_mees_vop() {
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    Rhat[0] = x/R;
-    Rhat[1] = y/R;
-    Rhat[2] = z/R;
+    const double Rhat[3] = {
+        x/R,
+        y/R,
+        z/R
+    };
 
-    Nhat[0] = (y*vz - z*vy)/h;
-    Nhat[1] = (z*vx - x*vz)/h;
-    Nhat[2] = (x*vy - y*vx)/h;
+    const double Nhat[3] = {
+        (y*vz - z*vy)/h,
+        (z*vx - x*vz)/h,
+        (x*vy - y*vx)/h
+    };
 
-    Tv[0] = Nhat[1]*Rhat[2] - Nhat[2]*Rhat[1];
-    Tv[1] = Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2];
-    Tv[2] = Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0];
-
-    normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
-    That[0] = Tv[0]/normTv;
-    That[1] = Tv[1]/normTv;
-    That[2] = Tv[2]/normTv;
+    const double Tv[3] = {
+        Nhat[1]*Rhat[2] - Nhat[2]*Rhat[1],
+        Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2],
+        Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0]
+    };
+    const double normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
+    
+    const double That[3] = {
+        Tv[0]/normTv,
+        Tv[1]/normTv,
+        Tv[2]/normTv
+    };
 
     // Function for finding accel caused by perturbations
-    find_perts();
+    const auto accelPerts = find_perts(cartesianState);
 
     // Calculate R, N, and T
-    radialPert     = accelPerts[0]*Rhat[0] + accelPerts[1]*Rhat[1] + accelPerts[2]*Rhat[2];
-    normalPert     = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
-    tangentialPert = accelPerts[0]*That[0] + accelPerts[1]*That[1] + accelPerts[2]*That[2];
+    const double radialPert     = accelPerts[0]*Rhat[0] + accelPerts[1]*Rhat[1] + accelPerts[2]*Rhat[2];
+    const double normalPert     = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
+    const double tangentialPert = accelPerts[0]*That[0] + accelPerts[1]*That[1] + accelPerts[2]*That[2];
 
     // Variables precalculated for speed
-    cosL = cos(L);
-    sinL = sin(L);
+    const double cosL = cos(L);
+    const double sinL = sin(L);
 
-    tempA = sqrt(p/mu);
-    tempB = 1.0 + f*cos(L) + g*sin(L);
-    s_2 = 1.0 + h*h + k*k;
+    const double tempA = sqrt(p/mu);
+    const double tempB = 1.0 + f*cos(L) + g*sin(L);
+    const double s_2 = 1.0 + h*h + k*k;
 
-    tempC = (h*sinL - k*cosL)/tempB;
-    tempD = tempA*s_2/(2*tempB);
+    const double tempC = (h*sinL - k*cosL)/tempB;
+    const double tempD = tempA*s_2/(2*tempB);
 
     // Derivative functions
-    dpdt = 2*p/tempB*tempA*tangentialPert;
-    dfdt = tempA*( radialPert*sinL + ((tempB + 1)*cosL + f)/tempB*tangentialPert - g*tempC*normalPert);
-    dgdt = tempA*(-radialPert*cosL + ((tempB + 1)*sinL + g)/tempB*tangentialPert + f*tempC*normalPert);
-    dhdt = tempD*cosL*normalPert;
-    dkdt = tempD*sinL*normalPert;
-    dLdt = sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert;
+    const OrbitalElements dsdt({
+        2*p/tempB*tempA*tangentialPert,                                                                 // dpdt
+        tempA*( radialPert*sinL + ((tempB + 1)*cosL + f)/tempB*tangentialPert - g*tempC*normalPert),    // dfdt
+        tempA*(-radialPert*cosL + ((tempB + 1)*sinL + g)/tempB*tangentialPert + f*tempC*normalPert),    // dgdt
+        tempD*cosL*normalPert,                                                                          // dhdt
+        tempD*sinL*normalPert,                                                                          // dkdt
+        sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert                                           // dLdt
+    }, ElementSet::MEE);
+
+    return dsdt;
 }
 
 //----------------------------------------------------------------------------------------------------------//
 //--------------------------------------------- Force Models -----------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void EquationsOfMotion::find_perts() {
-    // Run find functions for force model
-    if (oblateness) { find_accel_oblateness(); }
-    if (drag)       { find_accel_drag(); }
-    if (lift)       { find_accel_lift(); }
-    if (srp)        { find_accel_srp(); }
-    if (nbody)      { find_accel_n_body(); }
+const OrbitalElements EquationsOfMotion::find_perts(const OrbitalElements& state) {
 
-    accelPerts[0] = accelOblateness[0] + accelDrag[0] + accelLift[0] + accelSRP[0] + accelNBody[0];
-    accelPerts[1] = accelOblateness[1] + accelDrag[1] + accelLift[1] + accelSRP[1] + accelNBody[1];
-    accelPerts[2] = accelOblateness[2] + accelDrag[2] + accelLift[2] + accelSRP[2] + accelNBody[2];
+    if (state.get_set() != ElementSet::CARTESIAN) {
+        throw std::runtime_error("The find_perts method requires that the incoming Orbital Element set is in CARTESIAN coordinates.");
+    }
+
+    // Run find functions for force model
+    OrbitalElements accelPerts;
+    if (oblateness) { accelPerts += find_accel_oblateness(state); }
+    if (drag)       { accelPerts += find_accel_drag(state); }
+    if (lift)       { accelPerts += find_accel_lift(state); }
+    if (srp)        { accelPerts += find_accel_srp(state); }
+    if (nbody)      { accelPerts += find_accel_n_body(state); }
+
+    return accelPerts;
 }
 
-void EquationsOfMotion::find_accel_oblateness() {
+const OrbitalElements EquationsOfMotion::find_accel_oblateness(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
+
+    const double& vx = state[3]; 
+    const double& vy = state[4]; 
+    const double& vz = state[5];
+
+    // Central body properties
+    const double& mu = centralBody.mu();
+    const double& equitorialR = centralBody.eqR();
+    const double& bodyRotationRate = centralBody.rotRate();
+    
     /* 
         To clarify this logic: Use J2 if
             1) NxM Oblateness is not selected
@@ -376,10 +495,12 @@ void EquationsOfMotion::find_accel_oblateness() {
             3) The central body is not Venus, Earth, the Moon, or Mars
             4) If Mars is the planet id, the moon id must be 0 to ensure the central body is not phobos or deimos
     */
-    if (!NxMOblateness || (N == 2 && M == 0) || (planetId != 2 && planetId != 3 && !(planetId == 4 && moonId == 0))) { // J2 oblateness only
+    double accelOblateness[3] = {0.0, 0.0, 0.0};
+    if (!NxMOblateness || (N == 2 && M == 0) || (centralBody.planetId() != 2 && centralBody.planetId() != 3 && !(centralBody.planetId() == 4 && centralBody.moonId() == 0))) { // J2 oblateness only
         // Variables to reduce calculations
-        tempA = -1.5*j2*mu*equitorialR*equitorialR/pow(R,5);
-        tempB = z*z/(R*R);
+        const double& J2 = centralBody.j2();
+        const double tempA = -1.5*J2*mu*equitorialR*equitorialR/pow(R,5);
+        const double tempB = z*z/(R*R);
 
         // accel due to oblateness
         accelOblateness[0] = tempA*(1.0 - 5.0*tempB)*x;
@@ -388,44 +509,47 @@ void EquationsOfMotion::find_accel_oblateness() {
     }
     else { // Any NxM gravitational field
         // Find lat and long
+        double radius[3] = {x, y, z};
+        double rBCBF[3];
         conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
 
-        xBCBF = rBCBF[0];
-        yBCBF = rBCBF[1];
+        const double& xBCBF = rBCBF[0];
+        const double& yBCBF = rBCBF[1];
 
-        longitude = atan2(yBCBF,xBCBF);
-        latitude = asin(z/R);
+        const double longitude = atan2(yBCBF,xBCBF);
+        const double latitude = asin(z/R);
 
-        cosLat = cos(latitude);
-        sinLat = sin(latitude);
-        tanLat = sinLat/cosLat;
+        const double cosLat = cos(latitude);
+        const double sinLat = sin(latitude);
+        const double tanLat = sinLat/cosLat;
 
         // Populate Legendre polynomial array
-        assign_legendre();
+        assign_legendre(latitude);
 
         // Calculate serivative of gravitational potential field with respect to
-        dVdr = 0;       // radius
-        dVdlat = 0;     // geocentric latitude
-        dVdlong = 0;    // longitude
+        double dVdr = 0.0;       // radius
+        double dVdlat = 0.0;     // geocentric latitude
+        double dVdlong = 0.0;    // longitude
         for (int n = 2; n < N+1; ++n) {
-            nn = (double)n;
+            const double nn = (double)n;
 
             // Reset inner sums
-            dVdrInnerSum = 0;
-            dVdlatInnerSum = 0;
-            dVdlongInnerSum = 0;
+            double dVdrInnerSum = 0.0;
+            double dVdlatInnerSum = 0.0;
+            double dVdlongInnerSum = 0.0;
 
             for (int m = 0; m < std::min(n,M)+1; ++m) {
-                mm = (double) m;
+                const double mm = (double) m;
 
                 // Precalculate common terms
-                cosLongM = cos(mm*longitude);
-                sinLongM = sin(mm*longitude);
+                const double cosLongM = cos(mm*longitude);
+                const double sinLongM = sin(mm*longitude);
 
                 // dVdr
                 dVdrInnerSum += (C[n][m]*cosLongM + S[n][m]*sinLongM)*P[n][m];
 
                 //dVdlat
+                double gamma;
                 if (m == 0) {
                     gamma = sqrt((nn - mm)*(nn + mm + 1.0)*0.5);
                 }
@@ -438,7 +562,7 @@ void EquationsOfMotion::find_accel_oblateness() {
                 dVdlongInnerSum += mm*(S[n][m]*cosLongM - C[n][m]*sinLongM)*P[n][m];
             }
             // Precalculate common terms
-            rRatio = pow(equitorialR/R, nn);
+            const double rRatio = pow(equitorialR/R, nn);
 
             // dVdr
             dVdr += rRatio*(nn + 1.0)*dVdrInnerSum;
@@ -451,80 +575,152 @@ void EquationsOfMotion::find_accel_oblateness() {
         }
 
         // Correct
-        tempA = mu/R;
+        double tempA = mu/R;
         dVdr *= tempA/R;
         dVdlat *= tempA;
         dVdlong *= tempA/R;
 
         // Calculate partials of radius, geocentric latitude, and longitude with respect to BCBF frame
-        drdrBCBF[0] = xBCBF/R;
-        drdrBCBF[1] = yBCBF/R;
-        drdrBCBF[2] = z/R;
+        const double drdrBCBF[3] = { 
+            xBCBF/R,
+            yBCBF/R,
+            z/R
+        };
 
         tempA = 1/sqrt(xBCBF*xBCBF + yBCBF*yBCBF);
-        tempB = z/(R*R);
-        dlatdrBCBF[0] = -tempA*xBCBF*tempB;
-        dlatdrBCBF[1] = -tempA*yBCBF*tempB;
-        dlatdrBCBF[2] =  tempA*(1 - z*tempB);
+        double tempB = z/(R*R);
+        const double dlatdrBCBF[3] = { 
+            -tempA*xBCBF*tempB,
+            -tempA*yBCBF*tempB,
+             tempA*(1 - z*tempB)
+        };
 
         tempA *= tempA;
-        dlongdrBCBF[0] = -tempA*yBCBF;
-        dlongdrBCBF[1] =  tempA*xBCBF;
-        // dlongdrBCBF[2] = 0;
+        const double dlongdrBCBF[3] = { 
+            -tempA*yBCBF,
+             tempA*xBCBF,
+             0.0
+        };
 
         // Calculate accel in BCBF (not with respect to BCBF)
-        accelOblatenessBCBF[0] = dVdr*drdrBCBF[0] + dVdlat*dlatdrBCBF[0] + dVdlong*dlongdrBCBF[0];
-        accelOblatenessBCBF[1] = dVdr*drdrBCBF[1] + dVdlat*dlatdrBCBF[1] + dVdlong*dlongdrBCBF[1];
-        accelOblatenessBCBF[2] = dVdr*drdrBCBF[2] + dVdlat*dlatdrBCBF[2];
+        double accelOblatenessBCBF[3] = { 
+            dVdr*drdrBCBF[0] + dVdlat*dlatdrBCBF[0] + dVdlong*dlongdrBCBF[0],
+            dVdr*drdrBCBF[1] + dVdlat*dlatdrBCBF[1] + dVdlong*dlongdrBCBF[1],
+            dVdr*drdrBCBF[2] + dVdlat*dlatdrBCBF[2]
+        };
 
         // Rotate back into inertial coordinates
         conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
     }
+    
+    const OrbitalElements accelOblate({
+        accelOblateness[0],
+        accelOblateness[1],
+        accelOblateness[2]
+    }, ElementSet::CARTESIAN);
+
+    return accelOblate;
 }
 
-void EquationsOfMotion::find_accel_drag() {
+const OrbitalElements EquationsOfMotion::find_accel_drag(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
+
+    const double& vx = state[3]; 
+    const double& vy = state[4]; 
+    const double& vz = state[5];
+
+    // Central body properties
+    const double& mu = centralBody.mu();
+    const double& bodyRotationRate = centralBody.rotRate();
+
     // Find velocity relative to atmosphere
-    relativeVelocity[0] = vx - y*bodyRotationRate*SEC_TO_DAY*DEG_TO_RAD;
-    relativeVelocity[1] = vy + x*bodyRotationRate*SEC_TO_DAY*DEG_TO_RAD;
-    relativeVelocity[2] = vz;
+    const double relativeVelocity[3] = {
+        vx - y*bodyRotationRate*SEC_TO_DAY*DEG_TO_RAD,
+        vy + x*bodyRotationRate*SEC_TO_DAY*DEG_TO_RAD,
+        vz
+    };
 
     // Exponential Drag Model
-    find_atmospheric_density();
+    const double atmosphericDensity = find_atmospheric_density(state);
 
     // accel due to drag
-    relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
+    const double relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
 
     double coefficientOfDrag = spacecraft->get_coefficient_of_drag();
     double *areaRam = spacecraft->get_ram_area();
     double mass = spacecraft->get_mass();
-    dragMagnitude = -0.5*coefficientOfDrag*(areaRam[0] + areaRam[1] + areaRam[2])/mass*atmosphericDensity*relativeVelocityMagnitude;
-
-    accelDrag[0] = dragMagnitude*relativeVelocity[0];
-    accelDrag[1] = dragMagnitude*relativeVelocity[1];
-    accelDrag[2] = dragMagnitude*relativeVelocity[2];
+    const double dragMagnitude = -0.5*coefficientOfDrag*(areaRam[0] + areaRam[1] + areaRam[2])/mass*atmosphericDensity*relativeVelocityMagnitude;
+    
+    const OrbitalElements accelDrag({
+        dragMagnitude*relativeVelocity[0],
+        dragMagnitude*relativeVelocity[1],
+        dragMagnitude*relativeVelocity[2]
+    }, ElementSet::CARTESIAN);
+    
+    return accelDrag;
 }
 
-void EquationsOfMotion::find_accel_lift() {
-    // Velocity in the radial direction
-    radialVelcityMagnitude = (vx*x + vy*y + vz*z)/R;
+const OrbitalElements EquationsOfMotion::find_accel_lift(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
 
+    const double& vx = state[3]; 
+    const double& vy = state[4]; 
+    const double& vz = state[5];
+
+    // Velocity in the radial direction
+    const double radialVelcityMagnitude = (vx*x + vy*y + vz*z)/R;
+
+    double atmosphericDensity = 0.0;
     if (!drag) { // no need to evaluate twice
-        find_atmospheric_density();
+        atmosphericDensity = find_atmospheric_density(state);
     }
 
     // accel due to lift
-    double coefficientOfLift = spacecraft->get_coefficient_of_lift();
-    double* areaLift = spacecraft->get_lift_area();
-    double mass = spacecraft->get_mass();
-    tempA = 0.5*coefficientOfLift*(areaLift[0] + areaLift[1] + areaLift[2])/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
-    accelLift[0] = tempA*x;
-    accelLift[1] = tempA*y;
-    accelLift[2] = tempA*z;
+    const double coefficientOfLift = spacecraft->get_coefficient_of_lift();
+    const double* areaLift = spacecraft->get_lift_area();
+    const double mass = spacecraft->get_mass();
+    const double tempA = 0.5*coefficientOfLift*(areaLift[0] + areaLift[1] + areaLift[2])/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
+
+    const OrbitalElements accelLift({
+        tempA*x,
+        tempA*y,
+        tempA*z
+    }, ElementSet::CARTESIAN);
+    
+    return accelLift;
 }
 
-void EquationsOfMotion::find_accel_srp() {
+const OrbitalElements EquationsOfMotion::find_accel_srp(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
+
+    const double& vx = state[3]; 
+    const double& vy = state[4]; 
+    const double& vz = state[5];
+
+    // Central body properties
+    const double& equitorialR = centralBody.eqR();
+
+    throw std::logic_error("This function has not been properly updated and is not currently functional.");
+
+    /*
+
     // Find day nearest to current time
-    index = std::min((int)round(t*SEC_TO_DAY), sizeOfDateArray-1);
+    const int index = std::min((int)round(t*SEC_TO_DAY), sizeOfDateArray-1);
 
     // Radius from central body to sun
     for (int jj = 0; jj < 3; ++jj) {
@@ -541,11 +737,11 @@ void EquationsOfMotion::find_accel_srp() {
     solarRadiationPressure = solarRadiationPressureAt1AU*AU*AU/(radialMagnitudeSpacecraftToSun*radialMagnitudeSpacecraftToSun); // Scale by(1AU/R)^2 for other bodies
     fractionOfRecievedSunlight = 1.0;
 
-    if (planetId != 0) {
-        /* 
-            This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
-            satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details. 
-        */
+    if (centralBody.planetId() != 0) {
+        // 
+        //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
+        //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details. 
+        //
 
         referenceAngle = acos((radiusCentralBodyToSun[0]*x + radiusCentralBodyToSun[1]*y + radiusCentralBodyToSun[2]*z)/(radialMagnitudeCentralBodyToSun*R));
         referenceAngle1 = acos(equitorialR/R);
@@ -577,31 +773,59 @@ void EquationsOfMotion::find_accel_srp() {
     }
 
     // accel due to srp
-    double coefficientOfReflectivity = spacecraft->get_coefficient_of_reflectivity();
-    double *areaSun = spacecraft->get_sun_area();
-    double mass = spacecraft->get_mass();
-    tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeSpacecraftToSun*fractionOfRecievedSunlight;
+    const double coefficientOfReflectivity = spacecraft->get_coefficient_of_reflectivity();
+    const double *areaSun = spacecraft->get_sun_area();
+    const double mass = spacecraft->get_mass();
+    const double tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeSpacecraftToSun*fractionOfRecievedSunlight;
+
     accelSRP[0] = tempA*radiusSpacecraftToSun[0];
     accelSRP[1] = tempA*radiusSpacecraftToSun[1];
     accelSRP[2] = tempA*radiusSpacecraftToSun[2];
+
+    */
+    const OrbitalElements accelSRP({
+        0.0,
+        0.0,
+        0.0
+    }, ElementSet::CARTESIAN);
+    
+    return accelSRP;
 }
 
-void EquationsOfMotion::find_accel_n_body() {
-    if (!srp) {
-        // Find day nearest to current time
-        index = std::min((int)round(t*SEC_TO_DAY), sizeOfDateArray-1);
+const OrbitalElements EquationsOfMotion::find_accel_n_body(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
 
-        // Radius from central body to sun
-        for (int jj = 0; jj < 3; ++jj) {
-            radiusCentralBodyToSun[jj] = -radiusSunToCentralBody[index][jj]; // flip vector direction
-        }
+    const double& vx = state[3]; 
+    const double& vy = state[4]; 
+    const double& vz = state[5];
+
+    // Central body properties
+    const double& mu = centralBody.mu();
+    const double& equitorialR = centralBody.eqR();
+    const double& bodyRotationRate = centralBody.rotRate();
+
+    throw std::logic_error("This function has not been properly updated and is not currently functional.");
+
+    /*
+    
+    // Find day nearest to current time
+    const int index = std::min((int)round(t*SEC_TO_DAY), sizeOfDateArray-1);
+
+    // Radius from central body to sun
+    for (int jj = 0; jj < 3; ++jj) {
+        radiusCentralBodyToSun[jj] = -radiusSunToCentralBody[index][jj]; // flip vector direction
     }
 
     // Reset perturbation
     accelNBody[0] = 0.0;
     accelNBody[1] = 0.0;
     accelNBody[2] = 0.0;
-    for (int ii = 0; ii < numberOfBodies; ++ii) {
+    for (int ii = 0; ii < nBodies; ++ii) {
         // Find radius from central body and spacecraft to nth body
         radiusCentralBodyToNbody[0] = radiusSunToNbody[index][ii*3]   + radiusCentralBodyToSun[0];
         radiusCentralBodyToNbody[1] = radiusSunToNbody[index][ii*3+1] + radiusCentralBodyToSun[1];
@@ -616,25 +840,49 @@ void EquationsOfMotion::find_accel_n_body() {
         radiusCentralToNbodyMagnitude = math_c::normalize(radiusCentralBodyToNbody);
 
         // Perturbational force from nth body
-        tempA = nBodyGravitationalParameter[ii]/(radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude);
-        tempB = nBodyGravitationalParameter[ii]/(radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude);
+        const double tempA = nBodyGravitationalParameter[ii]/(radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude);
+        const double tempB = nBodyGravitationalParameter[ii]/(radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude);
 
         accelNBody[0] += tempA*radiusSpacecraftToNbody[0] - tempB*radiusCentralBodyToNbody[0];
         accelNBody[1] += tempA*radiusSpacecraftToNbody[1] - tempB*radiusCentralBodyToNbody[1];
         accelNBody[2] += tempA*radiusSpacecraftToNbody[2] - tempB*radiusCentralBodyToNbody[2];
     }
+    */
+    const OrbitalElements accelNBody({
+        0.0,
+        0.0,
+        0.0
+    }, ElementSet::CARTESIAN);
+    
+    return accelNBody;
 }
 
 //----------------------------------------------------------------------------------------------------------//
 //--------------------------------------- Atmospheric Density Model ----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void EquationsOfMotion::find_atmospheric_density() {
+const double EquationsOfMotion::find_atmospheric_density(const OrbitalElements& state) {
+    
+    // Extract
+    const double& x = state[0]; 
+    const double& y = state[1]; 
+    const double& z = state[2];
+    const double R = sqrt(x*x + y*y + z*z);
+
+    // Central body properties
+    const double& equitorialR = centralBody.eqR();
+    const double& polarR = centralBody.polR();
+    const double& bodyRotationRate = centralBody.rotRate();
+
     // Find altitude
+    double altitude{};
     if (doEstimateAltitude) {
         altitude = std::max(R - equitorialR, 0.0);
     }
     else {
+        double radius[3] = {x, y, z};
+        double rBCBF[3]{};
+        double lla[3]{};
         conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
         conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
         altitude = lla[2];
@@ -644,8 +892,11 @@ void EquationsOfMotion::find_atmospheric_density() {
     // the atmosphere of the gas giants is defined by their radii, e.g.
     // outside of their equitorial radius, they have no noticible atmosphere
     // and inside that radius, the object will crash.
-    atmosphericDensity = 0.0;
-    switch (planetId) {
+    double atmosphericDensity = 0.0;
+    double referenceAltitude{};
+    double referenceDensity{};
+    double scaleHeight{};
+    switch (centralBody.planetId()) {
     case 2: // Venus
         if      (altitude < 3.0)   { atmosphericDensity = 5.53e1; } // kg/m^3
         else if (altitude < 6.0)   { atmosphericDensity = 4.75e1; }
@@ -830,117 +1081,13 @@ void EquationsOfMotion::find_atmospheric_density() {
         atmosphericDensity *= 1.0e12;  // g/cm^3->kg/km^3
         break;
     }
+
+    return atmosphericDensity;
 }
 
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------------- Getters ------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
-
-double* EquationsOfMotion::get_accel_gravity() {
-    // Inertial evaluation of accel
-    evaluate_two_body_dynamics();
-
-    // Collect
-    netAccel[0] = dvxdt;
-    netAccel[1] = dvydt;
-    netAccel[2] = dvzdt;
-
-    // Output
-    return netAccel;
-}
-
-double* EquationsOfMotion::get_accel_oblateness() {
-    // Inertial evaluation of accel
-    find_accel_oblateness();
-
-    // Output
-    return accelOblateness;
-}
-
-double* EquationsOfMotion::get_accel_drag() {
-    // Inertial evaluation of accel
-    find_accel_drag();
-
-    // Output
-    return accelDrag;
-}
-
-double* EquationsOfMotion::get_accel_lift() {
-    // Inertial evaluation of accel
-    find_accel_lift();
-
-    // Output
-    return accelLift;
-
-}
-
-double EquationsOfMotion::get_atmospheric_density(double time, double* state) {
-    // Assign common variables
-    t = time;
-
-    x = state[0];
-    y = state[1];
-    z = state[2];
-    vx = state[3];
-    vy = state[4];
-    vz = state[5];
-
-    // Calculate required values for force model
-    radius[0] = x;
-    radius[1] = y;
-    radius[2] = z;
-    R = sqrt(x*x + y*y + z*z);
-
-    find_atmospheric_density();
-
-    return atmosphericDensity;
-}
-
-double* EquationsOfMotion::get_accel_srp() {
-    // Inertial evaluation of accel
-    find_accel_srp();
-
-    // Output
-    return accelSRP;
-
-}
-
-double* EquationsOfMotion::get_accel_nBody() {
-    // Inertial evaluation of accel
-    find_accel_n_body();
-
-    // Output
-    return accelNBody;
-}
-
-double* EquationsOfMotion::get_net_accel() {
-    // Inertial evaluation of accel
-    evaluate_cowells_method();
-
-    // Collect
-    netAccel[0] = dvxdt;
-    netAccel[1] = dvydt;
-    netAccel[2] = dvzdt;
-
-    // Output
-    return netAccel;
-}
-
-double* EquationsOfMotion::get_coes_rates() {
-    // Inertial evaluation of dcoes
-    evaluate_coes_vop();
-
-    // Collect
-    dcoesdt[0] = dhdt;
-    dcoesdt[1] = deccdt;
-    dcoesdt[2] = dincdt;
-    dcoesdt[3] = dthetadt;
-    dcoesdt[4] = draandt;
-    dcoesdt[5] = dwdt;
-
-    // Output
-    return dcoesdt;
-}
 
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------ Supporting Functions ------------------------------------------//
@@ -952,16 +1099,16 @@ void EquationsOfMotion::get_oblateness_coefficients(int N, int M) {
     char path[100];
     sprintf(path, "./data/gravity_models/");
 
-    if (planetId == 2) { // Venus
+    if (centralBody.planetId() == 2) { // Venus
         sprintf(filename, "%sshgj120p.txt", path); // Normalized?
     }
-    else if (planetId == 3 && moonId == 0) { // Earth
+    else if (centralBody.planetId() == 3 && centralBody.moonId() == 0) { // Earth
         sprintf(filename, "%sEGM2008_to2190_ZeroTide_mod.txt", path); // Normalized
     }
-    else if (planetId == 3 && moonId == 1) { // Moon
+    else if (centralBody.planetId() == 3 && centralBody.moonId() == 1) { // Moon
         sprintf(filename, "%sjgl165p1.txt", path); // Normalized?
     }
-    else if (planetId == 3) { // Mars
+    else if (centralBody.planetId() == 3) { // Mars
         sprintf(filename, "%sgmm3120.txt", path); // Do not appear to be normalized
     }
     std::ifstream file(filename);
@@ -992,8 +1139,8 @@ void EquationsOfMotion::get_oblateness_coefficients(int N, int M) {
     while (file) {
         // Read line from stream
         std::getline(file, line);
-        std::stringstream  lineStream(line);
-        std::vector<double>   lineData;
+        std::stringstream lineStream(line);
+        std::vector<double> lineData;
         while (std::getline(lineStream, cell, ',')) {
             lineData.push_back(std::atof(cell.c_str()));
         }
@@ -1005,23 +1152,24 @@ void EquationsOfMotion::get_oblateness_coefficients(int N, int M) {
         S[n][m] = lineData[3];
 
         // Normalize coefficients if needed
-        if (planetId == 4) {
+        if (centralBody.planetId() == 4) {
             for (int m = 0; m < N+1; ++m) {
-                nPlusMFactorial = 1;
-                nMinusMFactorial = 1;
+                double nPlusMFactorial = 1;
+                double nMinusMFactorial = 1;
                 for (int ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
                     if (ii <= n-m) {
                         nMinusMFactorial *= ii;
                     }
                 }
+
+                double Nnm;
                 if (m == 0) {
                     Nnm = sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial);
                 }
                 else {
                     Nnm = sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
                 }
-
 
                 C[n][m] /= Nnm;
                 S[n][m] /= Nnm;
@@ -1033,7 +1181,7 @@ void EquationsOfMotion::get_oblateness_coefficients(int N, int M) {
     file.close();
 }
 
-void EquationsOfMotion::assign_legendre() {
+void EquationsOfMotion::assign_legendre(const double latitude) {
     // Populate Legendre polynomial array
     /*
         Pseudocode:
@@ -1053,18 +1201,20 @@ void EquationsOfMotion::assign_legendre() {
             P[n][n-1] = sqrt(2.0*(nn - 1.0) + 3.0)*sinLat*P[n-1][n-1];
         }
     */
+    const double cosLat = cos(latitude);
+    const double sinLat = sin(latitude);
     for (int n = 0; n < N+1; ++n) {
-        nn = (double)n;
+        const double nn = (double)n;
 
         for (int m = 0; m < M+1; ++m) {
-            mm = (double)m;
+            const double mm = (double)m;
 
             if (n == m) {
                 if (n == 0) {
                     P[n][m] = 1;
                 }
                 else {
-                    tau = 1.0;
+                    double tau = 1.0;
                     for (int ii = 2*n - 1; ii > 0; ii -= 2) {
                         tau *= (double)ii/((double)ii + 1.0);
                     }
@@ -1075,8 +1225,8 @@ void EquationsOfMotion::assign_legendre() {
                 P[n][m] = sqrt(2.0*mm + 3.0)*sinLat*P[m][m];
             }
             else if (n >= m + 2) {
-                alpha = sqrt((2.0*nn + 1.0)*(2.0*nn - 1.0)/((nn - mm)*(nn + mm)));
-                beta = sqrt((2.0*nn + 1.0)*(nn + mm - 1.0)*(nn - mm - 1.0)/((2.0*nn - 3.0)*(nn - mm)*(nn + mm)));
+                const double alpha = sqrt((2.0*nn + 1.0)*(2.0*nn - 1.0)/((nn - mm)*(nn + mm)));
+                const double beta = sqrt((2.0*nn + 1.0)*(nn + mm - 1.0)*(nn - mm - 1.0)/((2.0*nn - 3.0)*(nn - mm)*(nn + mm)));
 
                 P[n][m] = alpha*sinLat*P[n-1][m] + beta*P[n-2][m];
             }
@@ -1089,8 +1239,8 @@ void EquationsOfMotion::assign_legendre() {
 
 bool EquationsOfMotion::check_crash(double* state) {
 
-    R = math_c::normalize(state, 0, 2);
-    V = math_c::normalize(state, 3, 5);
+    const double R = math_c::normalize(state, 0, 2);
+    const double V = math_c::normalize(state, 3, 5);
 
     if ((R <= crashRadius) || (V <= crashVelocity)) {
         return true;
@@ -1112,23 +1262,23 @@ void EquationsOfMotion::set_crash_velocity(double crashVelocity) {
 }
 
 // Central Body getter
-double EquationsOfMotion::get_mu() { return mu; }
+double EquationsOfMotion::get_mu() { return centralBody.mu(); }
 
 // Perturbation toggles
 void EquationsOfMotion::switch_oblateness(bool onOff) {
     oblateness = onOff;
 }
-void EquationsOfMotion::switch_oblateness(int N, int M) {
+void EquationsOfMotion::switch_oblateness(int _N, int _M) {
     // Switch perturbation toggle to true
     oblateness = true;
     NxMOblateness = true;
 
     // Set N and M
-    N = N;
-    M = M;
+    N = _N;
+    M = _M;
 
     // Get Cnm and Snm
-    get_oblateness_coefficients(N, M);
+    get_oblateness_coefficients(_N, _M);
 }
 void EquationsOfMotion::switch_drag(bool onOff) {
     drag = onOff;
@@ -1141,35 +1291,4 @@ void EquationsOfMotion::switch_srp(bool onOff) {
 }
 void EquationsOfMotion::switch_nbody(bool onOff) {
     nbody = onOff;
-}
-
-
-// Set equations of motion
-void EquationsOfMotion::switch_dynamics(std::string dynamics) {
-    // Turn all off
-    twoBody = false;
-    cowellsMethod = false;
-    coesVoP = false;
-    j2MeanVoP = false;
-    meesVoP = false;
-
-    // Turn selected on
-    if (dynamics == "Two Body" || dynamics == "two body"){
-        twoBody = true;
-    }
-    else if (dynamics == "Cowells Method" || dynamics == "cowells method") {
-        cowellsMethod = true;
-    }
-    else if (dynamics == "COEs VoP" || dynamics == "coes vop") {
-        coesVoP = true;
-    }
-    else if (dynamics == "J2 Mean VoP" || dynamics == "j2 mean vop") {
-        j2MeanVoP = true;
-    }
-    else if (dynamics == "MEEs VoP" || dynamics == "mees vop") {
-        meesVoP = true;
-    }
-    else {
-        std::cout << "Error: Selected dynamics set not recognized. \n\n";
-    }
 }

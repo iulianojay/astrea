@@ -8,7 +8,8 @@ class ElementSet
 public:
     enum _ENUM_ : uint8_t {
         COE,
-        CARTESIAN
+        CARTESIAN,
+        MEE
     };
 
     // Constructors
@@ -17,7 +18,10 @@ public:
     constexpr ElementSet(frozen::string xStr) : value(fromString.at(xStr)) {}
 
     // Assignment
-    constexpr const ElementSet operator=(const ElementSet& x) { return ElementSet(value); }
+    constexpr ElementSet& operator=(const ElementSet& x) { 
+        value = x.value;
+        return *this; 
+    }
 
     // Allow switch and comparisons.
     constexpr operator _ENUM_() const { return value; }
@@ -27,15 +31,23 @@ public:
 
     // Utilities
     frozen::string to_string() const { return toString.at(value); }
+    const char* to_char() const { return toChar.at(value); }
 
 private:
     _ENUM_ value;
-    frozen::unordered_map<_ENUM_, frozen::string, 2> toString = {
+    frozen::unordered_map<_ENUM_, frozen::string, 3> toString = {
         {COE,       "COE"},
-        {CARTESIAN, "CARTESIAN"}
+        {CARTESIAN, "CARTESIAN"},
+        {MEE,       "MEE"}
     };
-    frozen::unordered_map<frozen::string, _ENUM_, 2> fromString = {
+    frozen::unordered_map<_ENUM_, const char*, 3> toChar = {
+        {COE,       "COE"},
+        {CARTESIAN, "CARTESIAN"},
+        {MEE,       "MEE"}
+    };
+    frozen::unordered_map<frozen::string, _ENUM_, 3> fromString = {
         {"COE",       COE},
-        {"CARTESIAN", CARTESIAN}
+        {"CARTESIAN", CARTESIAN},
+        {"MEE",       MEE}
     };
 };
