@@ -1,12 +1,12 @@
 #pragma once
 
-#include <vector>
+#ifndef SWIG
+    #include <vector>
+#endif
 
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 #include "Barycenter.hpp"
-
-namespace solar_system {
 
 class SolarObjectBuilder {
 
@@ -19,7 +19,7 @@ public:
     ~SolarObjectBuilder() {}
 
     GravitationalBody build(SolarObject name);
-    Barycenter build(std::vector<SolarObject> names);
+    //Barycenter build(std::vector<SolarObject> names); // TODO: implement
 
 private:
 
@@ -157,5 +157,3 @@ private:
         {TRITON,   std::make_pair(8, 1)}
     };
 };
-
-}

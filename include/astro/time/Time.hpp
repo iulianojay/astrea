@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef SWIG
+
 #include <chrono>
 #include <iostream>
 
@@ -7,7 +9,6 @@
 #include "time_units.hpp"
 
 class Date;
-
 class Time {
 
     friend Date;
@@ -28,7 +29,6 @@ public:
 
     // conversion to double (type-cast operator)
     operator double() { return time.count(); }
-    
 
     template <typename T, typename R = std::ratio<1>>
     Time(const std::chrono::duration<T, R>& dur) {
@@ -85,15 +85,31 @@ public:
     }
 
     // Forward count()
-    auto count() const { return time.count(); }
+    double count() const { return time.count(); }
 
     template <typename T>
-    auto count() const { return std::chrono::duration_cast<T>(time).count(); }
+    double count() const { return std::chrono::duration_cast<T>(time).count(); }
 
     // abs
-    auto abs() { return std::chrono::abs(time); }
+    JulianDateClock::duration abs() { return std::chrono::abs(time); }
+
 
 private:
 
     JulianDateClock::duration time;
 };
+
+#else
+
+class Time {
+    friend Date;
+
+public:
+    Time(const double& time) : time(time) {}
+    ~Time() {};
+
+private:
+    double time;
+};
+
+#endif

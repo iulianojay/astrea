@@ -1,6 +1,8 @@
 #pragma once
 
-#include <string>
+#ifndef SWIG
+  #include <string>
+#endif
 
 #include "typedefs.hpp"
 #include "GravitationalBody.hpp"

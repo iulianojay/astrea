@@ -1,7 +1,6 @@
 
 #include "SolarObjectFactory.hpp"
 
-namespace solar_system {
 
 const GravitationalBody& SolarObjectFactory::create(const std::string name) {
     return create(builder._nameMap.at(name));
@@ -87,6 +86,4 @@ void SolarObjectFactory::find_root() {
         // The only common root for multiple planets is the Sun
         root = SUN;
     }
-}
-
 }

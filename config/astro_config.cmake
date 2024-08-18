@@ -12,8 +12,6 @@ set(INCLUDE_DIRS
     ${INC}/astro/utilities
     ${SRC}
     ${LIBPATH}
-
-    ${INC}/frozen
 )
 
 # Headers

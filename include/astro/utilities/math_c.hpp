@@ -1,7 +1,9 @@
 
 #pragma once
 
-#include <math.h>
+#ifndef SWIG
+    #include <math.h>
+#endif
 
 #include "math_constants.h"
 
@@ -30,7 +32,12 @@ namespace math_c
         double* u{};
         double* v{};
         double* z{};
-        double xRef{}, dx{}, dxp1{}, zDiv6{}, zp1Div6{}, h2{};
+        double xRef{};
+        double dx{};
+        double dxp1{};
+        double zDiv6{};
+        double zp1Div6{};
+        double h2{};
 
         void size_arrays(const int n);
         void clear_arrays();

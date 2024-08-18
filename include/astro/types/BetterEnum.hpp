@@ -1,7 +1,9 @@
 #pragma once
 
-#include <unordered_map>
-#include <string>
+#ifndef SWIG
+    #include <unordered_map>
+    #include <string>
+#endif
 
 template <class T>
 class BetterEnum

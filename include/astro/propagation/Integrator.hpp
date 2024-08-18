@@ -1,11 +1,13 @@
 
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <ctime>
-#include <fstream>					// reading/writing to files
-#include <math.h>
+#ifndef SWIG
+    #include <iostream>
+    #include <vector>
+    #include <ctime>
+    #include <fstream>					// reading/writing to files
+    #include <math.h>
+#endif
 
 #include "rk_constants.h"			// RK Butcher Tableau
 
@@ -82,10 +84,6 @@ public:
     //         "dop45" for Dormand-Prince 4(5) method
     //         "dop78" for Dormand-Prince 7(8) method
     void set_step_method(std::string stepMethod);
-
-    // Function: Switch whether or not to use custom equations of motion. Custom EOMs can be modified inside the EquationsOfMotion class
-    // Inputs: true -> on, false -> off
-    void switch_custom_eom(bool onOff);
 
     // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
     // Inputs: initial timestep (s)

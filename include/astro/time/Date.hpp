@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef SWIG
+
 #include <string>
 #include <sstream>
 
@@ -66,7 +68,6 @@ public:
         return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate));
     }
 
-
 private:
     std::string calendarDate;
     JulianDate julianDate;
@@ -95,3 +96,16 @@ private:
     }
 
 };
+
+#else
+
+struct Date {
+public:
+    Date(std::string date) : calendarDate(date) {};
+    ~Date() {};
+
+private:
+    std::string calendarDate;
+};
+
+#endif

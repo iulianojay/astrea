@@ -22,7 +22,7 @@ struct JulianDateClock
         using namespace std;
         using namespace chrono;
         auto constexpr epoch = sys_days{November/24/-4713} + 12h;
-        using ddays = std::chrono::duration<long double, days::period>;
+        using ddays = std::chrono::duration<long double, std::chrono::days::period>;
         if constexpr (sys_time<ddays>{sys_time<Duration>::min()} < sys_time<ddays>{epoch}) {
             return JulianDateTime{timePoint - epoch};
         }

@@ -1,12 +1,13 @@
 #pragma once
 
-#include <unordered_set>
+#ifndef SWIG
+    #include <unordered_set>
+#endif
 
 #include "typedefs.hpp"
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 
-namespace solar_system {
 
 class Barycenter : public GravitationalBody {
 public:
@@ -20,5 +21,3 @@ private:
     SolarObject referenceBody;
     std::unordered_set<SolarObject> bodies;
 };
-
-}

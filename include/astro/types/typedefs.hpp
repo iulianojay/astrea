@@ -1,6 +1,13 @@
 #pragma once
 
-#include <array>
+#ifndef SWIG
+    #include <array>
+#else
+
+%ignore element_array;
+class element_array {};
+
+#endif
 
 using element_array = std::array<double, 6>;
 using basis_array = std::array<double, 3>;

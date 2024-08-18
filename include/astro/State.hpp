@@ -5,7 +5,9 @@
 
 class State {
 
+#ifndef SWIG
     friend std::ostream &operator<<(std::ostream& os, const State& state);
+#endif
 
 public:
 

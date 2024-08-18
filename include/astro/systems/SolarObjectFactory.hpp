@@ -1,14 +1,15 @@
 #pragma once
 
-#include <string>
-#include <unordered_map>
+#ifndef SWIG
+    #include <string>
+    #include <unordered_map>
+#endif
 
 #include "solar_system.hpp"
 #include "GravitationalBody.hpp"
 #include "SolarObjectBuilder.hpp"
 #include "Date.hpp"
 
-namespace solar_system {
 
 class SolarObjectFactory {
 public:
@@ -38,5 +39,3 @@ private:
 
     void find_root();
 };
-
-}

@@ -1,7 +1,9 @@
 #pragma once
 
-#include <unordered_set>
-#include <vector>
+#ifndef SWIG
+    #include <unordered_set>
+    #include <vector>
+#endif
 
 #include "typedefs.hpp"
 #include "solar_system.hpp"
@@ -10,7 +12,6 @@
 #include "SolarObjectFactory.hpp"
 #include "Date.hpp"
 
-using namespace solar_system;
 
 class AstrodynamicsSystem {
 public: 
@@ -27,7 +28,7 @@ public:
     const std::unordered_set<SolarObject>& all_bodies() const { return allBodies; }
 
     void propagate_bodies(double propTime);
-    basis_array get_radius_to_center(SolarObject target, double julianDate);
+    // basis_array get_radius_to_center(SolarObject target, double julianDate); //TODO: Implement
 
 private:
 

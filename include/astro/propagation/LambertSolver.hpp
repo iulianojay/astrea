@@ -1,9 +1,11 @@
 
 #pragma once
 
-#include <iostream>
-#include <math.h>
-#include <cmath>
+#ifndef SWIG
+    #include <iostream>
+    #include <math.h>
+    #include <cmath>
+#endif
 
 #include "math_constants.h"
 #include "astronomical_constants.h"
@@ -12,16 +14,36 @@ class LambertSolver
 {
 private:
     // Private members
-    double r0[3] = {}, v0[3] = {}, R0{}, V0{},
-           rf[3] = {}, vf[3] = {}, Rf{},
-           sqMU{}, r0v0_sqMU{},
-           dtheta{}, A{},
-           alpha{}, Xn{}, X{}, X2{},
-           z{}, zn{}, y{},
-           Cz{}, Sz{}, sqz{}, sqnz{},
-           F{}, dF{},
-           f{}, g{}, fdot{}, gdot{},
-           err{}, divG{};
+    double r0[3] = {};
+    double v0[3] = {};
+    double R0{};
+    double V0{};
+    double rf[3] = {};
+    double vf[3] = {};
+    double Rf{};
+    double sqMU{};
+    double r0v0_sqMU{};
+    double dtheta{};
+    double A{};
+    double alpha{};
+    double Xn{};
+    double X{};
+    double X2{};
+    double z{};
+    double zn{};
+    double y{};
+    double Cz{};
+    double Sz{};
+    double sqz{};
+    double sqnz{};
+    double F{};
+    double dF{};
+    double f{};
+    double g{};
+    double fdot{};
+    double gdot{};
+    double err{};
+    double divG{};
 
     int it = 0;
 

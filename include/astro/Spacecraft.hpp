@@ -1,7 +1,9 @@
 #pragma once
 
-#include <string> 
-#include <unordered_map>
+#ifndef SWIG
+    #include <string> 
+    #include <unordered_map>
+#endif
 
 #include "astronomical_constants.h"
 #include "typedefs.hpp"
@@ -96,7 +98,7 @@ public:
     const State& get_initial_state();
     const State& get_final_state();
     const State& get_state(Time time);
-    auto& get_states() { return states; }
+    std::vector<State>& get_states() { return states; }
 
     const Date& get_epoch() const { return epoch; } 
 

@@ -1,8 +1,11 @@
 
 #pragma once
 
-#include <map>
-#include <iostream>
+#ifndef SWIG
+    #include <map>
+    #include <iostream>
+    #include <functional>
+#endif
 
 #include "typedefs.hpp"
 #include "ElementSet.hpp"

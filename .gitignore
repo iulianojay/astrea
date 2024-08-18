@@ -4,6 +4,7 @@ CMake*
 **/bin/*
 **/build/*
 lib/*
+**__pycache__/
 
 # File types
 *.o

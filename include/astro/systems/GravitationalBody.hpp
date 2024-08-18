@@ -1,11 +1,13 @@
 #pragma once
 
-#include <iostream>
-#include <cmath>
-#include <cfloat>
-#include <string>
-#include <vector>
-#include <unordered_map>
+#ifndef SWIG
+    #include <iostream>
+    #include <cmath>
+    #include <cfloat>
+    #include <string>
+    #include <vector>
+    #include <unordered_map>
+#endif
 
 #include "astronomical_constants.h"
 #include "solar_system.hpp"
@@ -14,13 +16,11 @@
 #include "State.hpp"
 
 // Forward declaration
-namespace solar_system {
-    class SolarObjectBuilder;
-}
+class SolarObjectBuilder;
 
 class GravitationalBody {
 
-    friend class solar_system::SolarObjectBuilder;
+    friend class SolarObjectBuilder;
 
 public:
 
@@ -40,8 +40,8 @@ public:
 
 	// Property getters
     const std::string name()     const { return _nameString; };
-    const solar_system::SolarObjectType type() const { return _type; };
-    const solar_system::SolarObject parent()   const { return _parent; };
+    const SolarObjectType type() const { return _type; };
+    const SolarObject parent()   const { return _parent; };
 
     const int planetId() const { return _planetId; };
     const int moonId()   const { return _moonId; };
@@ -83,8 +83,8 @@ private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    solar_system::SolarObject _name, _parent;
-    solar_system::SolarObjectType _type;
+    SolarObject _name, _parent;
+    SolarObjectType _type;
 
     std::string _nameString;
 

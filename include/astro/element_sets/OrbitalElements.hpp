@@ -1,6 +1,8 @@
 #pragma once
 
-#include <iostream>
+#ifndef SWIG
+    #include <iostream>
+#endif
 
 #include "ElementSet.hpp"
 #include "conversions.hpp"
@@ -10,7 +12,9 @@ class AstrodynamicsSystem;
 
 class OrbitalElements : public element_array {
 
+#ifndef SWIG
     friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
+#endif
 
 public:
 
