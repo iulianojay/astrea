@@ -3,6 +3,7 @@
 #ifndef SWIG
     #include <cstdint>
     #include <unordered_map>
+    #include <string>
 #else
 
 %rename(ElementsSet) ElementSet;

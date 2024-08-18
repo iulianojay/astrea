@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16.3)
 
 project(astro VERSION 1.0.0 DESCRIPTION "C++ astodynamics library" LANGUAGES C CXX)
 
-set(CMAKE_C_STANDARD 20)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -61,9 +61,8 @@ target_include_directories (${LIBNAME}_static PUBLIC ${INCLUDE_DIRS})
 # target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
 # add_dependencies           (${EXENAME} ${LIBNAME}_shared)
 
-# SWIG
+# SWIG-Python 
 set(PY_SWIG_PROJECT_NAME py${PROJECT_NAME})
-set(JAVA_SWIG_PROJECT_NAME jv${PROJECT_NAME})
 
 find_package(Python3 COMPONENTS Interpreter Development)
 include_directories(${Python3_INCLUDE_DIR})
@@ -102,3 +101,55 @@ add_custom_command(
             ${CMAKE_SOURCE_DIR}/build/astro.py
             ${BASE}/${PY_SWIG_PROJECT_NAME}/astro.py
 )
+
+
+# SWIG-Java
+set(JAVA_SWIG_PROJECT_NAME jv${PROJECT_NAME})
+
+find_package(Java REQUIRED)
+find_package(JNI REQUIRED)
+include(UseJava)
+include(UseSWIG)
+
+include_directories(${JNI_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${JAVA_INCLUDE_PATH})
+include_directories(${JAVA_INCLUDE_PATH2})
+include_directories(
+    ${INC}
+    ${INC}/astro
+    ${INC}/astro/constants
+    ${INC}/astro/element_sets
+    ${INC}/astro/propagation
+    ${INC}/astro/systems
+    ${INC}/astro/time
+    ${INC}/astro/types
+    ${INC}/astro/utilities
+)
+
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+
+set(SWIG_SRC ${BASE}/swig)
+list(APPEND SWIG_INTERFACE_FILES
+    ${SWIG_SRC}/astro.i
+)
+
+set(CMAKE_SWIG_FLAGS "")
+
+set_source_files_properties(${SWIG_INTERFACE_FILES} PROPERTIES CPLUSPLUS ON)
+set_source_files_properties(${SWIG_INTERFACE_FILES} PROPERTIES SWIG_FLAGS "-includeall")
+set(CMAKE_SWIG_OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/java")
+
+SWIG_ADD_LIBRARY(${JAVA_SWIG_PROJECT_NAME} LANGUAGE java SOURCES ${SWIG_INTERFACE_FILES})
+SWIG_LINK_LIBRARIES(${JAVA_SWIG_PROJECT_NAME} ${LIBNAME}_shared)
+
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/classes")
+add_custom_command(
+    TARGET ${JAVA_SWIG_PROJECT_NAME} POST_BUILD
+    COMMAND "${Java_JAVAC_EXECUTABLE}" -d classes java/*.java
+    COMMAND "${Java_JAR_EXECUTABLE}" -cfM ${JAVA_SWIG_PROJECT_NAME}.jar -C classes .
+)
+
+# Store Path to native JAR in variable:
+set(ASTRO_JAR "${CMAKE_CURRENT_BINARY_DIR}/${JAVA_SWIG_PROJECT_NAME}.jar")
