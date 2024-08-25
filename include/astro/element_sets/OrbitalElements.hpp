@@ -2,6 +2,7 @@
 
 #ifndef SWIG
     #include <iostream>
+    #include <cmath>
 #endif
 
 #include "ElementSet.hpp"
@@ -102,6 +103,19 @@ public:
         }
 
         return (*this);
+    }
+    
+    
+    const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8) {
+        if (set != other.get_set()) {
+            return false;
+        }
+        for (int ii = 0; ii < (ignoreFastVariable ? 5 : 6); ii++) {
+            if (std::fabs((_M_elems[ii] - other[ii])/_M_elems[ii]) > tol) {
+                return false;
+            }
+        }
+        return true;
     }
 
     static const int size() { return 6; }

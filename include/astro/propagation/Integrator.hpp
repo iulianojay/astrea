@@ -28,6 +28,8 @@ public:
         dop78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
 	};
 
+    static inline Interval defaultInterval = Interval(days(0), days(1));
+
 	//------------------------------------------------ Methods ------------------------------------------------//
 
     // Constructor and destructor
@@ -174,8 +176,8 @@ private:
     int checkDay = 0;
 
 	// Tolerances
-	double absoluteTolerance = 1.0e-8;
-	double relativeTolerance = 1.0e-8;
+	double absoluteTolerance = 1.0e-13;
+	double relativeTolerance = 1.0e-13;
 
 	// Initial step size
 	double timeStepInitial = 100.0;

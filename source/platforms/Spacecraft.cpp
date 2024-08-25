@@ -7,6 +7,8 @@
 Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) : epoch(J2000) {
     states.push_back({0.0, state0});
     set_epoch(epoch);
+
+    generate_id_hash();
 }
 Spacecraft::~Spacecraft() { }
 
@@ -96,3 +98,14 @@ double  Spacecraft::get_coefficient_of_reflectivity() { return coefficientOfRefl
 double* Spacecraft::get_ram_area()                    { return areaRam; }
 double* Spacecraft::get_sun_area()                    { return areaSun; }
 double* Spacecraft::get_lift_area()                   { return areaLift; }
+
+
+void Spacecraft::generate_id_hash() { // TODO: Link this into the orbital elements somehow
+    id = std::hash<int>()(mass);
+    id ^= std::hash<int>()(coefficientOfDrag);
+    id ^= std::hash<int>()(coefficientOfLift);
+    id ^= std::hash<int>()(coefficientOfReflectivity);
+    id ^= std::hash<int>()(areaRam[0]) ^ std::hash<int>()(areaRam[1]) ^ std::hash<int>()(areaRam[2]);
+    id ^= std::hash<int>()(areaSun[0]) ^ std::hash<int>()(areaSun[1]) ^ std::hash<int>()(areaSun[2]);
+    id ^= std::hash<int>()(areaLift[0]) ^ std::hash<int>()(areaLift[1]) ^ std::hash<int>()(areaLift[2]);
+}

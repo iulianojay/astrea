@@ -23,6 +23,11 @@ set(TESTNAME tests)
 # Objects
 set(OBJS
     ${SRC}/element_sets/OrbitalElements.cpp
+    
+    ${SRC}/platforms/Constellation.cpp
+    ${SRC}/platforms/Plane.cpp
+    ${SRC}/platforms/Shell.cpp
+    ${SRC}/platforms/Spacecraft.cpp
 
     ${SRC}/propagation/EquationsOfMotion.cpp
     ${SRC}/propagation/Integrator.cpp
@@ -38,7 +43,6 @@ set(OBJS
     ${SRC}/utilities/conversions.cpp
     ${SRC}/utilities/math_c.cpp
 
-    ${SRC}/Spacecraft.cpp
     ${SRC}/State.cpp
 )
 
@@ -72,6 +76,7 @@ include_directories(
     ${INC}/astro
     ${INC}/astro/constants
     ${INC}/astro/element_sets
+    ${INC}/astro/platforms
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time
@@ -115,6 +120,7 @@ include_directories(
     ${INC}/astro
     ${INC}/astro/constants
     ${INC}/astro/element_sets
+    ${INC}/astro/platforms
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time

@@ -27,7 +27,7 @@ class EquationsOfMotion
 public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructors and destructor
-    EquationsOfMotion(const AstrodynamicsSystem& system);
+    EquationsOfMotion(const AstrodynamicsSystem& system = AstrodynamicsSystem());
     ~EquationsOfMotion();
     
     // Enums

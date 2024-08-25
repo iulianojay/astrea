@@ -25,6 +25,11 @@ set(HDRS
     ${INC}/astro/element_sets/ElementSet.hpp
     ${INC}/astro/element_sets/Frame.hpp
     ${INC}/astro/element_sets/OrbitalElements.hpp
+    
+    ${INC}/astro/platforms/Constellation.hpp
+    ${INC}/astro/platforms/Plane.hpp
+    ${INC}/astro/platforms/Shell.hpp
+    ${INC}/astro/platforms/Spacecraft.hpp
 
     ${INC}/astro/propagation/EquationsOfMotion.hpp
     ${INC}/astro/propagation/Integrator.hpp
@@ -47,8 +52,6 @@ set(HDRS
 
     ${INC}/astro/utilities/conversions.hpp
     ${INC}/astro/utilities/math_c.hpp
-
-    ${INC}/astro/Spacecraft.hpp
     ${INC}/astro/State.hpp
 )
 

@@ -12,40 +12,21 @@
 #include "State.hpp"
 #include "Date.hpp"
 
-class Spacecraft
-{
-private:
-    //---------------------------------------------------------------------------------------------------------//
-    //---------------------------------------------- Variabless -----------------------------------------------//
-    //---------------------------------------------------------------------------------------------------------//
+class Plane;
 
-    // Spacecraft properties
-    double mass = 1000.0;
-    double coefficientOfDrag = 2.2;
-    double coefficientOfLift = 0.9;
-    double coefficientOfReflectivity = 1.1;
-    double areaRam[3] = { 0.01, 0.0, 0.0 };
-    double areaSun[3] = { 0.01, 0.0, 0.0 };
-    double areaLift[3] = { 0.01, 0.0, 0.0 };
+class Spacecraft {
 
-    // Orbital elements
-    std::vector<State> states;
-
-    // Epoch variables
-    Date epoch;
+    friend class Plane;
+    friend class Shell;
+    friend class Constellation;
 
 public:
-    //---------------------------------------------------------------------------------------------------------//
-    //------------------------------------------------ Methods ------------------------------------------------//
-    //---------------------------------------------------------------------------------------------------------//
 
     // Constructor
     Spacecraft(OrbitalElements state0, std::string epoch);
     
     // Destructor
     ~Spacecraft();
-
-    //---------------------------------------Spacecraft property setters---------------------------------------//
 
     // Function: Set spacecraft mass
     // Inputs: mass (kg)
@@ -93,8 +74,6 @@ public:
 
     void set_states(std::vector<State> states);
 
-    //---------------------------------------Spacecraft property getters---------------------------------------//
-
     const State& get_initial_state();
     const State& get_final_state();
     const State& get_state(Time time);
@@ -129,4 +108,26 @@ public:
     // Function: Get spacecraft earth-facing area
     // Outputs: net earth-facing area / array of areas (m^2)
     double* get_lift_area();
+
+private:
+
+    int id;
+    std::string name;
+
+    // Spacecraft properties
+    double mass = 1000.0;
+    double coefficientOfDrag = 2.2;
+    double coefficientOfLift = 0.9;
+    double coefficientOfReflectivity = 1.1;
+    double areaRam[3] = { 0.01, 0.0, 0.0 };
+    double areaSun[3] = { 0.01, 0.0, 0.0 };
+    double areaLift[3] = { 0.01, 0.0, 0.0 };
+
+    // Orbital elements
+    std::vector<State> states;
+
+    // Epoch variables
+    Date epoch;
+
+    void generate_id_hash();
 };

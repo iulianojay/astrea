@@ -8,6 +8,11 @@
 #include "astro/element_sets/Frame.hpp"
 #include "astro/element_sets/OrbitalElements.hpp"
 
+#include "astro/platforms/Constellation.hpp"
+#include "astro/platforms/Shell.hpp"
+#include "astro/platforms/Plane.hpp"
+#include "astro/platforms/Spacecraft.hpp"
+
 #include "astro/propagation/EquationsOfMotion.hpp"
 #include "astro/propagation/Integrator.hpp"
 #include "astro/propagation/LambertSolver.hpp"
@@ -27,7 +32,6 @@
 #include "astro/utilities/conversions.hpp"
 #include "astro/utilities/math_c.hpp"
 
-#include "astro/Spacecraft.hpp"
 #include "astro/State.hpp"
 
 #ifndef SWIG

@@ -1,0 +1,120 @@
+# include "Constellation.hpp"
+
+
+Constellation::Constellation(std::vector<Shell> _shells) {
+    shells = _shells;
+    generate_id_hash();
+}
+
+
+Constellation::Constellation(std::vector<Plane> planes) {
+    Shell noShell(planes);
+    noShell.name = "NONE";
+
+    shells.push_back(noShell);
+
+    generate_id_hash();
+}
+
+
+Constellation::Constellation(std::vector<Spacecraft> satellites) {
+    Plane noPlane(satellites);
+    Shell noShell(std::vector<Plane>{noPlane});
+    noShell.name = "NONE";
+
+    shells.push_back(noShell);
+
+    generate_id_hash();
+}
+
+
+const size_t Constellation::size() const {
+    size_t size;
+    for (const auto& shell: shells) {
+        size += shells.size();
+    }
+    return size;
+}
+
+
+const size_t Constellation::n_shells() const {
+    return shells.size();
+}
+
+
+const size_t Constellation::n_planes() const {
+    size_t nPlane;
+    for (const auto& shell: shells) {
+        nPlane += shell.n_planes();
+    }
+    return nPlane;
+}
+
+
+void Constellation::add_shell(const Shell& shell) {
+    shells.push_back(shell);
+}
+
+
+void Constellation::add_plane(const Plane& plane, const int& shellId) {
+    for (auto& shell : shells) {
+        if (shell.id == shellId) {
+            shell.add_plane(plane);
+        }
+    }
+    throw std::runtime_error("No shell found with matching id: " + std::to_string(shellId) + "\n");
+}
+
+
+void Constellation::add_spacecraft(const Spacecraft& spacecraft, const int& planeId) {
+    for (auto& shell : shells) {
+        for (auto& plane : shell.planes) {
+            if (plane.id == planeId) {
+                plane.add_spacecraft(spacecraft);
+            }
+        }
+    }
+    throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
+}
+
+
+void Constellation::generate_id_hash() {
+    id = std::hash<int>()(shells[0].id);
+    for (int ii = 1; ii < shells.size(); ii++) {
+        id ^= std::hash<int>()(shells[ii].id);
+    }
+}
+
+
+void Constellation::propagate(const Interval& interval) {
+    EquationsOfMotion eom;
+    Integrator integrator;
+    propagate(eom, integrator, interval);
+}
+
+
+void Constellation::propagate(const AstrodynamicsSystem& sys, const Interval& interval) {
+    EquationsOfMotion eom(sys);
+    propagate(eom, interval);
+}
+
+
+void Constellation::propagate(EquationsOfMotion& eom, const Interval& interval) {
+    Integrator integrator;
+    propagate(eom, integrator, interval);
+}
+
+
+void Constellation::propagate(Integrator& integrator, const Interval& interval) {
+    EquationsOfMotion eom;
+    propagate(eom, integrator, interval);
+}
+
+
+
+void Constellation::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval) {
+    for (auto& shell : shells) {
+        shell.propagate(eom, integrator, interval);
+    }
+}
+
