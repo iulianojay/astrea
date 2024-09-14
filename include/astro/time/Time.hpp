@@ -15,6 +15,7 @@ class Time {
     friend std::ostream& operator<<(std::ostream&, Time const&);
 
 public:
+    Time() = default;
     Time(JulianDateClock::duration dur) : time(dur) {}
     ~Time() {}
 
@@ -105,6 +106,8 @@ class Time {
     friend Date;
 
 public:
+
+    Time() = default;
     Time(const double& time) : time(time) {}
     ~Time() {};
 

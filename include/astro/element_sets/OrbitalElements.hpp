@@ -45,6 +45,7 @@ public:
         return other.set == set;
     }
 
+#ifndef SWIGJAVA
     // Addition
     OrbitalElements operator+(const OrbitalElements& other) {
         // Check both element sets are the same
@@ -104,7 +105,7 @@ public:
 
         return (*this);
     }
-    
+#endif
     
     const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8) {
         if (set != other.get_set()) {
@@ -117,8 +118,6 @@ public:
         }
         return true;
     }
-
-    static const int size() { return 6; }
     
 private:
 

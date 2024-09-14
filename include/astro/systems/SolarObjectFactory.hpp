@@ -23,8 +23,8 @@ public:
     const GravitationalBody& get(const SolarObject name) const;
     const GravitationalBody& get(const std::string name) const;
     
-    const GravitationalBody& get(const SolarObject name, const bool buildIfMissing=false);
-    const GravitationalBody& get(const std::string name, const bool buildIfMissing=false);
+    const GravitationalBody& get_or_create(const SolarObject name);
+    const GravitationalBody& get_or_create(const std::string name);
 
     const size_t number_of_bodies() const { return bodies.size(); }
     void propagate_bodies(Date epoch, double endTime);

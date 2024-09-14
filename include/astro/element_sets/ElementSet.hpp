@@ -30,10 +30,10 @@ public:
         value = x.value;
         return *this; 
     }
-#endif
 
     // Allow switch and comparisons.
     operator _ENUM_() const { return value; }
+#endif
 
     // Prevent usage: if(ElementSet)
     explicit operator bool() const = delete;

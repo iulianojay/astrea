@@ -16,10 +16,15 @@ class Plane {
 
 public:
 
+    Plane() = default;
     Plane(std::vector<Spacecraft> satellites);
     ~Plane() = default;
     
     void add_spacecraft(const Spacecraft& spacecraft);
+
+    const std::vector<Spacecraft>& get_all_spacecraft() const;
+    
+    const Spacecraft& get_spacecraft(const int& spacecraftId) const;
 
     const size_t size() const;
 
@@ -36,3 +41,10 @@ private:
     void generate_id_hash();
 
 };
+
+
+#ifdef SWIG
+
+%template(PlaneVector) std::vector<Plane>;
+
+#endif

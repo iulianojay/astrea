@@ -37,6 +37,21 @@ void Plane::add_spacecraft(const Spacecraft& spacecraft) {
 }
 
 
+const std::vector<Spacecraft>& Plane::get_all_spacecraft() const {
+    return satellites;
+}
+
+
+const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
+    for (const auto& sat: satellites) {
+        if (sat.id == spacecraftId) {
+            return sat;
+        }
+    }
+    throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
+}
+
+
 void Plane::generate_id_hash() {
     id = std::hash<int>()(satellites[0].id);
     for (int ii = 1; ii < satellites.size(); ii++) {

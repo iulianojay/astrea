@@ -2,6 +2,7 @@ DFLAG = Release
 C_COMP = gcc
 CXX_COMP = g++
 VERBOSE = OFF
+JAVA_INSTALL_DIR = /mnt/c/Users/iulia/IdeaProjects/newtool/lib/
 
 .PHONY: all
 all: build
@@ -27,6 +28,12 @@ build: CMakeLists.txt
 		-DPython3_INCLUDE_DIR=/usr/include/python3.12 \
 		-DPython3_LIBRARY=/usr/bin/python3.12
 	cd build && make --no-print-directory -j 10
+	
+.PHONY: install-java
+install-java:
+	cp ./build/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
+	cp ./build/java/libjvastro.so ${JAVA_INSTALL_DIR} -rf
+	cp ./include ${JAVA_INSTALL_DIR} -rf
 
 .PHONY: clean
 clean:

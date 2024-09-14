@@ -12,6 +12,7 @@ class Date {
 
 public:
     // Build from string
+    Date() = default;
     Date(const std::string calendarDate) {
         set_julian_date_from_string(calendarDate, defaultDateFormat);
     }

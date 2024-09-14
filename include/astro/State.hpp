@@ -11,6 +11,7 @@ class State {
 
 public:
 
+    State() = default;
     State(Time time, OrbitalElements elements): time(time), elements(elements) {}
     State(Time time, element_array elements, ElementSet set): time(time), elements(elements, set) {}
 
@@ -20,3 +21,10 @@ public:
 };
 
 bool state_time_comparitor(State s, Time time);
+
+
+#ifdef SWIG
+
+%template(StateVector) std::vector<State>;
+
+#endif

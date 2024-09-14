@@ -16,6 +16,7 @@ class Shell {
 
 public:
 
+    Shell() = default;
     Shell(std::vector<Plane> planes);
     Shell(std::vector<Spacecraft> satellites);
     ~Shell() = default;
@@ -25,6 +26,13 @@ public:
 
     void add_plane(const Plane& plane);
     void add_spacecraft(const Spacecraft& spacecraft, const int& planeId);
+    void add_spacecraft(const Spacecraft& spacecraft);
+    
+    const std::vector<Plane>& get_all_planes() const;
+    const std::vector<Spacecraft> get_all_spacecraft() const;
+    
+    const Plane& get_plane(const int& planeId) const;
+    const Spacecraft& get_spacecraft(const int& spacecraftId) const;
     
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
@@ -37,3 +45,10 @@ private:
     void generate_id_hash();
 
 };
+
+
+#ifdef SWIG
+
+%template(ShellVector) std::vector<Shell>;
+
+#endif

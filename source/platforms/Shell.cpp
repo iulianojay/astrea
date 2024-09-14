@@ -44,6 +44,47 @@ void Shell::add_spacecraft(const Spacecraft& spacecraft, const int& planeId) {
     throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
 }
 
+void Shell::add_spacecraft(const Spacecraft& spacecraft) {
+    Plane noPlane(std::vector<Spacecraft>{spacecraft});
+    planes.push_back(noPlane);
+}
+
+
+const std::vector<Plane>& Shell::get_all_planes() const {
+    return planes;
+}
+
+const std::vector<Spacecraft> Shell::get_all_spacecraft() const {
+    std::vector<Spacecraft> allSpacecraft;
+    for (auto& plane : planes) {
+        const auto& shellSpacecraft = plane.get_all_spacecraft();
+        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft.begin(), shellSpacecraft.end());
+    }
+    return allSpacecraft;
+}
+
+
+const Plane& Shell::get_plane(const int& planeId) const {
+    for (const auto& plane: planes) {
+        if (plane.id == planeId) {
+            return plane;
+        }
+    }
+    throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
+}
+
+
+const Spacecraft& Shell::get_spacecraft(const int& spacecraftId) const {
+    for (const auto& plane: planes) {
+        for (const auto& sat: plane.satellites) {
+            if (sat.id == spacecraftId) {
+                return sat;
+            }
+        }
+    }
+    throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
+}
+
 
 void Shell::generate_id_hash() {
     id = std::hash<int>()(planes[0].id);

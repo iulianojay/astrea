@@ -151,7 +151,7 @@ file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/java/classes")
 add_custom_command(
     TARGET ${JAVA_SWIG_PROJECT_NAME} POST_BUILD
     COMMAND "${Java_JAVAC_EXECUTABLE}" -d java/classes java/*.java
-    COMMAND "${Java_JAR_EXECUTABLE}" -cfM java/${JAVA_SWIG_PROJECT_NAME}.jar -C java/classes .
+    COMMAND "${Java_JAR_EXECUTABLE}" -cfM java/${JAVA_SWIG_PROJECT_NAME}.jar -C java/classes . java/lib${JAVA_SWIG_PROJECT_NAME}.so
 )
 
 # Store Path to native JAR in variable:

@@ -12,6 +12,7 @@ class Constellation {
 
 public:
 
+    Constellation() = default;
     Constellation(std::vector<Shell> shells);
     Constellation(std::vector<Plane> planes);
     Constellation(std::vector<Spacecraft> satellites);
@@ -25,7 +26,17 @@ public:
     //TODO: Add + overloads that accomplish similar things to these methods
     void add_shell(const Shell& shell);
     void add_plane(const Plane& plane, const int& shellId);
+    void add_plane(const Plane& plane);
     void add_spacecraft(const Spacecraft& spacecraft, const int& planeId);
+    void add_spacecraft(const Spacecraft& spacecraft);
+
+    const std::vector<Shell>& get_all_shells() const;
+    const std::vector<Plane> get_all_planes() const;
+    const std::vector<Spacecraft> get_all_spacecraft() const;
+
+    const Shell& get_shell(const int& shellId) const;
+    const Plane& get_plane(const int& planeId) const;
+    const Spacecraft& get_spacecraft(const int& spacecraftId) const;
 
     void propagate(const Interval& interval = Integrator::defaultInterval);
     void propagate(const AstrodynamicsSystem& sys, const Interval& interval = Integrator::defaultInterval);

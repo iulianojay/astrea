@@ -26,18 +26,15 @@ const GravitationalBody& SolarObjectFactory::get(const SolarObject name) const {
     throw std::out_of_range("Input gravitational body," + builder._mapName.at(name) + ", not found.");
 }
 
-const GravitationalBody& SolarObjectFactory::get(const std::string name, const bool buildIfMissing) {
-    return get(builder._nameMap.at(name), buildIfMissing);
+const GravitationalBody& SolarObjectFactory::get_or_create(const std::string name) {
+    return get_or_create(builder._nameMap.at(name));
 }
 
-const GravitationalBody& SolarObjectFactory::get(const SolarObject name, const bool buildIfMissing) {
-    if (bodies.count(name)) {
-        return bodies.at(name);
+const GravitationalBody& SolarObjectFactory::get_or_create(const SolarObject name) {
+    if (!bodies.count(name)) {
+        create(name); 
     }
-    else if (buildIfMissing) {
-        create(name);
-    }
-    throw std::out_of_range("Input gravitational body," + builder._mapName.at(name) + ", not found.");
+    return bodies.at(name);
 }
 
 

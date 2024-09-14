@@ -23,6 +23,7 @@ class Spacecraft {
 public:
 
     // Constructor
+    Spacecraft() = default;
     Spacecraft(OrbitalElements state0, std::string epoch);
     
     // Destructor
@@ -131,3 +132,10 @@ private:
 
     void generate_id_hash();
 };
+
+
+#ifdef SWIG
+
+%template(SpacecraftVector) std::vector<Spacecraft>;
+
+#endif
