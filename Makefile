@@ -12,11 +12,11 @@ debug:
 	${eval DFLAG = Debug}
 
 .PHONY: release
-release: 
+release:
 	${eval DFLAG = Release}
 
 .PHONY: verbose
-verbose: 
+verbose:
 	${eval VERBOSE = ON}
 
 .PHONY: build
@@ -28,7 +28,7 @@ build: CMakeLists.txt
 		-DPython3_INCLUDE_DIR=/usr/include/python3.12 \
 		-DPython3_LIBRARY=/usr/bin/python3.12
 	cd build && make --no-print-directory -j 10
-	
+
 .PHONY: install-java
 install-java:
 	cp ./build/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
