@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <string> 
+    #include <string>
     #include <unordered_map>
 #endif
 
@@ -25,7 +25,7 @@ public:
     // Constructor
     Spacecraft() = default;
     Spacecraft(OrbitalElements state0, std::string epoch);
-    
+
     // Destructor
     ~Spacecraft();
 
@@ -80,7 +80,9 @@ public:
     const State& get_state(Time time);
     std::vector<State>& get_states() { return states; }
 
-    const Date& get_epoch() const { return epoch; } 
+    const size_t n_states() { return states.size(); }
+
+    const Date& get_epoch() const { return epoch; }
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
