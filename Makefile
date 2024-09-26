@@ -2,6 +2,9 @@ DFLAG = Release
 C_COMP = gcc
 CXX_COMP = g++
 VERBOSE = OFF
+BUILD_SWIG = OFF
+CROSS_COMIPLE = OFF
+# JAVA_INSTALL_DIR = /home/jayiuliano/repos/newtool/lib/
 JAVA_INSTALL_DIR = /mnt/c/Users/iulia/IdeaProjects/newtool/lib/
 
 .PHONY: all
@@ -15,9 +18,21 @@ debug:
 release:
 	${eval DFLAG = Release}
 
+.PHONY: relwdebug
+relwdebug:
+	${eval DFLAG = RelWithDebInfo}
+
 .PHONY: verbose
 verbose:
 	${eval VERBOSE = ON}
+
+.PHONY: swig
+swig:
+	${eval BUILD_SWIG = ON}
+
+.PHONY: xcomp
+swig:
+	${eval CROSS_COMIPLE = ON}
 
 .PHONY: build
 build: CMakeLists.txt
@@ -25,8 +40,8 @@ build: CMakeLists.txt
 	CC=${C_COMP} CXX=${CXX_COMP} cmake -S . -B build \
 		-DCMAKE_BUILD_TYPE=${DFLAG} \
 		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
-		-DPython3_INCLUDE_DIR=/usr/include/python3.12 \
-		-DPython3_LIBRARY=/usr/bin/python3.12
+		-DBUILD_SWIG::BOOL=${BUILD_SWIG} \
+		-DCROSS_COMIPLE::BOOL=${CROSS_COMIPLE}
 	cd build && make --no-print-directory -j 10
 
 .PHONY: install-java
