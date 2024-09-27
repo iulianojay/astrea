@@ -8,18 +8,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-if (CROSS_COMIPLE)
-    include(config/windows_toolchain.cmake)
-endif()
-
 # Utility variables
 set(BASE ${CMAKE_CURRENT_SOURCE_DIR})
 set(INC ${BASE}/include)
 set(SRC ${BASE}/source)
 set(TEST ${BASE}/tests)
 
-set(BINPATH ${BASE}/bin)
-set(LIBPATH ${BASE}/lib)
+set(BINPATH ${BASE}/bin/${OS})
+set(LIBPATH ${BASE}/lib/${OS})
 set(LIBNAME astro)
 set(EXENAME astro_exe)
 set(TESTNAME tests)
