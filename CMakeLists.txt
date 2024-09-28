@@ -61,26 +61,26 @@ include_directories(
 
 include(config/astro_config.cmake)
 
-# # Find packages
-# find_package(Arrow REQUIRED)
-# find_package(Parquet REQUIRED)
+# Set outputs
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIBPATH})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIBPATH})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINPATH})
 
 # Shared library
 add_library                (${LIBNAME}_shared SHARED ${OBJS} ${HDRS})
-set_target_properties      (${LIBNAME}_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBPATH} VERSION ${PROJECT_VERSION} OUTPUT_NAME ${LIBNAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties      (${LIBNAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${LIBNAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${LIBNAME}_shared PUBLIC ${INCLUDE_DIRS})
 
 # Static library
 add_library                (${LIBNAME}_static STATIC ${OBJS} ${HDRS})
-set_target_properties      (${LIBNAME}_static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${LIBPATH} VERSION ${PROJECT_VERSION} OUTPUT_NAME ${LIBNAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties      (${LIBNAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${LIBNAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${LIBNAME}_static PUBLIC ${INCLUDE_DIRS})
 
 # Executable
 add_executable             (${EXENAME} ${SRC}/main.cpp)
-set_target_properties      (${EXENAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINPATH} VERSION ${PROJECT_VERSION} OUTPUT_NAME ${EXENAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties      (${EXENAME} PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${EXENAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${EXENAME} PUBLIC ${INCLUDE_DIRS})
 target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
-# target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared PRIVATE Arrow::arrow_shared Parquet::parquet_shared)
 add_dependencies           (${EXENAME} ${LIBNAME}_shared)
 
 if (BUILD_SWIG)

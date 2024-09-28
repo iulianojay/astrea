@@ -10,14 +10,11 @@ BUILD_DIR = build/${OS}
 TOOLCHAIN_FILE =
 
 # JAVA_INSTALL_DIR = /home/jayiuliano/repos/newtool/lib/
-JAVA_INSTALL_DIR = /mnt/c/Users/iulia/IdeaProjects/newtool/lib/
+JAVA_INSTALL_DIR = C:/Users/iulia/IdeaProjects/newtool/lib/
 
 # Umbrella recipies
 .PHONY: default
-default: linux build
-
-.PHONY: all
-all: linux windows
+default: linux
 
 # Compile instructions
 .PHONY: debug
@@ -47,7 +44,14 @@ windows_setup:
 	${eval TOOLCHAIN_FILE = config/windows_toolchain.cmake}
 
 .PHONY: windows
-windows: windows_setup build
+windows: windows_setup CMakeLists.txt
+	mkdir -p build
+	CC=${C_COMP} CXX=${CXX_COMP} cmake -G Ninja -S . -B ${BUILD_DIR} \
+		-DCMAKE_BUILD_TYPE=${DFLAG} \
+		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
+		-DOS=${OS} \
+		-DBUILD_SWIG::BOOL=${BUILD_SWIG}
+	cd ${BUILD_DIR} && cmake --build .
 
 .PHONY: linux_setup
 linux_setup:
@@ -55,7 +59,14 @@ linux_setup:
 	${eval TOOLCHAIN_FILE = }
 
 .PHONY: linux
-linux: linux_setup build
+linux: linux_setup CMakeLists.txt
+	mkdir -p build
+	CC=${C_COMP} CXX=${CXX_COMP} cmake -S . -B ${BUILD_DIR} \
+		-DCMAKE_BUILD_TYPE=${DFLAG} \
+		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
+		-DOS=${OS} \
+		-DBUILD_SWIG::BOOL=${BUILD_SWIG}
+	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
 
 # Build
 .PHONY: build
@@ -65,8 +76,7 @@ build: CMakeLists.txt
 		-DCMAKE_BUILD_TYPE=${DFLAG} \
 		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
 		-DOS=${OS} \
-		-DBUILD_SWIG::BOOL=${BUILD_SWIG} \
-		-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
+		-DBUILD_SWIG::BOOL=${BUILD_SWIG}
 	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
 
 # Install
