@@ -1,3 +1,4 @@
+# Setup
 DFLAG = Release
 C_COMP = gcc
 CXX_COMP = g++
@@ -11,12 +12,14 @@ TOOLCHAIN_FILE =
 # JAVA_INSTALL_DIR = /home/jayiuliano/repos/newtool/lib/
 JAVA_INSTALL_DIR = /mnt/c/Users/iulia/IdeaProjects/newtool/lib/
 
+# Umbrella recipies
 .PHONY: default
 default: linux build
 
 .PHONY: all
-all: linux build windows build
+all: linux windows
 
+# Compile instructions
 .PHONY: debug
 debug:
 	${eval DFLAG = Debug}
@@ -37,6 +40,7 @@ verbose:
 swig:
 	${eval BUILD_SWIG = ON}
 
+# OS instructions
 .PHONY: windows_setup
 windows_setup:
 	${eval OS = windows}
@@ -53,6 +57,7 @@ linux_setup:
 .PHONY: linux
 linux: linux_setup build
 
+# Build
 .PHONY: build
 build: CMakeLists.txt
 	mkdir -p build
@@ -62,14 +67,16 @@ build: CMakeLists.txt
 		-DOS=${OS} \
 		-DBUILD_SWIG::BOOL=${BUILD_SWIG} \
 		-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
-	cd ${BUILD_DIR} && make --no-print-directory -j 10
+	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
 
+# Install
 .PHONY: install-java
 install-java:
 	cp ./build/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
 	cp ./build/java/libjvastro.so ${JAVA_INSTALL_DIR} -rf
 	cp ./include ${JAVA_INSTALL_DIR} -rf
 
+# Clean
 .PHONY: clean
 clean:
 	rm -rf ./bin/*

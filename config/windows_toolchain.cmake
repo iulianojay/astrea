@@ -1,9 +1,6 @@
 # the name of the target operating system
 set(CMAKE_SYSTEM_NAME Windows)
 
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_CXX_STANDARD 20)
-
 # which compilers to use for C and C++
 set(TOOLCHAIN_PREFIX x86_64-w64-mingw32)
 set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}-gcc)

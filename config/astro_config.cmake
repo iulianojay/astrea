@@ -25,7 +25,7 @@ set(HDRS
     ${INC}/astro/element_sets/ElementSet.hpp
     ${INC}/astro/element_sets/Frame.hpp
     ${INC}/astro/element_sets/OrbitalElements.hpp
-    
+
     ${INC}/astro/platforms/Constellation.hpp
     ${INC}/astro/platforms/Plane.hpp
     ${INC}/astro/platforms/Shell.hpp
@@ -34,14 +34,14 @@ set(HDRS
     ${INC}/astro/propagation/EquationsOfMotion.hpp
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp
-    
+
     ${INC}/astro/systems/AstrodynamicsSystem.hpp
     ${INC}/astro/systems/Barycenter.hpp
     ${INC}/astro/systems/GravitationalBody.hpp
     ${INC}/astro/systems/solar_system.hpp
     ${INC}/astro/systems/SolarObjectBuilder.hpp
     ${INC}/astro/systems/SolarObjectFactory.hpp
-    
+
     ${INC}/astro/time/Date.hpp
     ${INC}/astro/time/Interval.hpp
     ${INC}/astro/time/JulianDateClock.hpp
@@ -60,8 +60,8 @@ set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-std=c20 -mfpmath=387")
-set(CXX_FLAGS "-std=c++20 -mfpmath=387")
+set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive")
+set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive")
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
