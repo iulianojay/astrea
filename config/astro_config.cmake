@@ -60,8 +60,8 @@ set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive")
-set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive")
+set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive -Wl,--kill-at")
+set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive -Wl,--kill-at")
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")

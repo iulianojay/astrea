@@ -78,7 +78,7 @@ target_include_directories (${LIBNAME}_static PUBLIC ${INCLUDE_DIRS})
 
 # Executable
 add_executable             (${EXENAME} ${SRC}/main.cpp)
-set_target_properties      (${EXENAME} PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${EXENAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties      (${EXENAME} PROPERTIES VERSION ${PROJECT_VERSION})
 target_include_directories (${EXENAME} PUBLIC ${INCLUDE_DIRS})
 target_link_libraries      (${EXENAME} PUBLIC ${LIBNAME}_shared)
 add_dependencies           (${EXENAME} ${LIBNAME}_shared)

@@ -75,16 +75,14 @@ build: CMakeLists.txt
 	CC=${C_COMP} CXX=${CXX_COMP} cmake -S . -B ${BUILD_DIR} \
 		-DCMAKE_BUILD_TYPE=${DFLAG} \
 		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
-		-DOS=${OS} \
-		-DBUILD_SWIG::BOOL=${BUILD_SWIG}
+		-DBUILD_SWIG::BOOL=${BUILD_SWIG} \
+		-DOS=${OS}
 	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
 
 # Install
 .PHONY: install-java
 install-java:
-	cp ./build/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
-	cp ./build/java/libjvastro.so ${JAVA_INSTALL_DIR} -rf
-	cp ./include ${JAVA_INSTALL_DIR} -rf
+	cp ./build/windows/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
 
 # Clean
 .PHONY: clean
