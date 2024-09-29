@@ -23,9 +23,9 @@ public:
     Time(const double& time) : time(time) {}
 
     // conversion from double (assignment)
-    Time& operator=(const double& t) { 
-        time = JulianDateClock::duration(t); 
-        return *this; 
+    Time& operator=(const double& t) {
+        time = JulianDateClock::duration(t);
+        return *this;
     }
 
     // conversion to double (type-cast operator)
@@ -41,7 +41,7 @@ public:
         time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
         return *this;
     }
-    
+
     // Addition
     Time operator+(const Time& other) {
         return time + other.time;
@@ -51,7 +51,7 @@ public:
     Time operator+(const T& other) {
         return time + Time(other).time;
     }
-    
+
     // Subtraction
     Time operator-(const Time& other) {
         return time - other.time;
@@ -61,24 +61,18 @@ public:
     Time operator-(const T& other) {
         return time - Time(other).time;
     }
-    
+
     // Comparitors
-    bool operator<(const Time& other) {
-        return time < other.time;
-    }
-    bool operator>(const Time& other) {
-        return time > other.time;
-    }
-    bool operator==(const Time& other) {
-        return time == other.time;
-    }
-    
+    inline bool operator<(const Time& other) const { return time < other.time; }
+    inline bool operator>(const Time& other) const { return time > other.time; }
+    inline bool operator==(const Time& other) const { return time == other.time; }
+
     // Multiplication
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     Time operator*(const T& other) {
         return time*other;
     }
-    
+
     // Division
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     Time operator/(const T& other) {

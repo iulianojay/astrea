@@ -8,6 +8,7 @@
 #include "astronomical_constants.h"
 #include "typedefs.hpp"
 
+#include "Sensor.hpp"
 #include "OrbitalElements.hpp"
 #include "State.hpp"
 #include "Date.hpp"
@@ -112,6 +113,9 @@ public:
     // Outputs: net earth-facing area / array of areas (m^2)
     double* get_lift_area();
 
+    void attach(Sensor& sensor);
+    void attach(std::vector<Sensor>& sensors);
+
 private:
 
     int id;
@@ -131,6 +135,11 @@ private:
 
     // Epoch variables
     Date epoch;
+
+    // Access data
+    std::vector<Access> accesses;
+    std::vector<Sensor> sensors;
+    std::vector<Antenna> antennas;
 
     void generate_id_hash();
 };

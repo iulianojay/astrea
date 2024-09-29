@@ -24,10 +24,16 @@ set(TESTNAME tests)
 set(OBJS
     ${SRC}/element_sets/OrbitalElements.cpp
 
-    ${SRC}/platforms/Constellation.cpp
-    ${SRC}/platforms/Plane.cpp
-    ${SRC}/platforms/Shell.cpp
-    ${SRC}/platforms/Spacecraft.cpp
+    ${SRC}/platforms/access/FieldOfView.cpp
+    ${SRC}/platforms/access/RiseSetArray.cpp
+    ${SRC}/platforms/access/Sensor.cpp
+
+    ${SRC}/platforms/ground/GroundStation.cpp
+
+    ${SRC}/platforms/space/Constellation.cpp
+    ${SRC}/platforms/space/Plane.cpp
+    ${SRC}/platforms/space/Shell.cpp
+    ${SRC}/platforms/space/Spacecraft.cpp
 
     ${SRC}/propagation/EquationsOfMotion.cpp
     ${SRC}/propagation/Integrator.cpp
@@ -52,6 +58,9 @@ include_directories(
     ${INC}/astro/constants
     ${INC}/astro/element_sets
     ${INC}/astro/platforms
+    ${INC}/astro/platforms/access
+    ${INC}/astro/platforms/ground
+    ${INC}/astro/platforms/space
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time
