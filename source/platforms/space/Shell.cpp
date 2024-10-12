@@ -87,9 +87,9 @@ const Spacecraft& Shell::get_spacecraft(const int& spacecraftId) const {
 
 
 void Shell::generate_id_hash() {
-    id = std::hash<int>()(planes[0].id);
+    id = std::hash<size_t>()(planes[0].id);
     for (int ii = 1; ii < planes.size(); ii++) {
-        id ^= std::hash<int>()(planes[ii].id);
+        id ^= std::hash<size_t>()(planes[ii].id);
     }
 }
 

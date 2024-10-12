@@ -3,14 +3,17 @@
 #include <array>
 #include <vector>
 
+#include "riseset_utils.hpp"
 #include "Time.hpp"
 
 class RiseSetArray {
 
 public:
 
+    RiseSetArray() = default;
     RiseSetArray(const std::vector<Time>& risesets);
-    ~RiseSetArray();
+    RiseSetArray(const RiseSetArray& other);
+    ~RiseSetArray() = default;
 
     const size_t size() const { return risesets.size(); }
 
@@ -20,20 +23,19 @@ public:
     }
 
     // Union
-    RiseSetArray operator||(const RiseSetArray& other) const {
-        return make_union(*this, other);
+    RiseSetArray operator|(const RiseSetArray& other) const {
+        return riseset_union(*this, other);
     }
 
     // Intersection
-    RiseSetArray operator&&(const RiseSetArray& other) const {
-        return make_intersection(*this, other);
+    RiseSetArray operator&(const RiseSetArray& other) const {
+        return riseset_intersection(*this, other);
     }
 
 private:
 
     std::vector<Time> risesets;
 
-    RiseSetArray make_union(const RiseSetArray& first, const RiseSetArray& second) const;
-    RiseSetArray make_intersection(const RiseSetArray& first, const RiseSetArray& second) const;
+    void validate_risesets(const std::vector<Time>& risesets) const;
 
 };

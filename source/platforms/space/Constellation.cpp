@@ -174,9 +174,9 @@ const Spacecraft& Constellation::get_spacecraft(const int& spacecraftId) const {
 
 
 void Constellation::generate_id_hash() {
-    id = std::hash<int>()(shells[0].id);
+    id = std::hash<size_t>()(shells[0].id);
     for (int ii = 1; ii < shells.size(); ii++) {
-        id ^= std::hash<int>()(shells[ii].id);
+        id ^= std::hash<size_t>()(shells[ii].id);
     }
 }
 

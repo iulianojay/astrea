@@ -26,11 +26,13 @@ set(HDRS
     ${INC}/astro/element_sets/Frame.hpp
     ${INC}/astro/element_sets/OrbitalElements.hpp
 
-    ${SRC}/platforms/access/FieldOfView.hpp
-    ${SRC}/platforms/access/RiseSetArray.hpp
-    ${SRC}/platforms/access/Sensor.hpp
+    ${INC}/astro/platforms/access/Access.hpp
+    ${INC}/astro/platforms/access/Antenna.hpp
+    ${INC}/astro/platforms/access/FieldOfView.hpp
+    ${INC}/astro/platforms/access/RiseSetArray.hpp
+    ${INC}/astro/platforms/access/Sensor.hpp
 
-    ${SRC}/platforms/ground/GroundStation.hpp
+    ${INC}/astro/platforms/ground/GroundStation.hpp
 
     ${INC}/astro/platforms/space/Constellation.hpp
     ${INC}/astro/platforms/space/Plane.hpp

@@ -113,12 +113,12 @@ public:
     // Outputs: net earth-facing area / array of areas (m^2)
     double* get_lift_area();
 
-    void attach(Sensor& sensor);
-    void attach(std::vector<Sensor>& sensors);
+    void attach(Sensor& sensor) { sensors.push_back(sensor); }
+    void attach(std::vector<Sensor>& _sensors) { sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors)); }
 
 private:
 
-    int id;
+    size_t id;
     std::string name;
 
     // Spacecraft properties
@@ -137,9 +137,8 @@ private:
     Date epoch;
 
     // Access data
-    std::vector<Access> accesses;
+    AccessArray accesses;
     std::vector<Sensor> sensors;
-    std::vector<Antenna> antennas;
 
     void generate_id_hash();
 };

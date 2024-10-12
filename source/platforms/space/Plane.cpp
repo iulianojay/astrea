@@ -27,8 +27,8 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
 }
 
 
-const size_t Plane::size() const { 
-    return satellites.size(); 
+const size_t Plane::size() const {
+    return satellites.size();
 }
 
 
@@ -53,9 +53,9 @@ const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
 
 
 void Plane::generate_id_hash() {
-    id = std::hash<int>()(satellites[0].id);
+    id = std::hash<size_t>()(satellites[0].id);
     for (int ii = 1; ii < satellites.size(); ii++) {
-        id ^= std::hash<int>()(satellites[ii].id);
+        id ^= std::hash<size_t>()(satellites[ii].id);
     }
 }
 

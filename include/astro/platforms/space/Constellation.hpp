@@ -46,7 +46,7 @@ public:
 
 private:
 
-    int id;
+    size_t id;
     std::string name;
     std::vector<Shell> shells;
 

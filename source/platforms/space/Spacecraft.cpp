@@ -76,7 +76,7 @@ const State& Spacecraft::get_final_state() { return states[states.size()-1]; }
 const State& Spacecraft::get_state(Time time) {
     // Get index of lower bound closest to input time
     auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
-    
+
     // Compare time before and after index
     Time lowerDiff = (states[id].time - time);
     Time upperDiff = (states[id+1].time - time);
@@ -100,12 +100,15 @@ double* Spacecraft::get_sun_area()                    { return areaSun; }
 double* Spacecraft::get_lift_area()                   { return areaLift; }
 
 
-void Spacecraft::generate_id_hash() { // TODO: Link this into the orbital elements somehow
-    id = std::hash<int>()(mass);
-    id ^= std::hash<int>()(coefficientOfDrag);
-    id ^= std::hash<int>()(coefficientOfLift);
-    id ^= std::hash<int>()(coefficientOfReflectivity);
-    id ^= std::hash<int>()(areaRam[0]) ^ std::hash<int>()(areaRam[1]) ^ std::hash<int>()(areaRam[2]);
-    id ^= std::hash<int>()(areaSun[0]) ^ std::hash<int>()(areaSun[1]) ^ std::hash<int>()(areaSun[2]);
-    id ^= std::hash<int>()(areaLift[0]) ^ std::hash<int>()(areaLift[1]) ^ std::hash<int>()(areaLift[2]);
+void Spacecraft::generate_id_hash() {
+    const auto elements0 = states[0].elements;
+    id  = std::hash<double>()(elements0[0]) ^ std::hash<double>()(elements0[1]) ^ std::hash<double>()(elements0[2]) ^
+          std::hash<double>()(elements0[3]) ^ std::hash<double>()(elements0[4]) ^ std::hash<double>()(elements0[5]);
+    id ^= std::hash<double>()(mass);
+    id ^= std::hash<double>()(coefficientOfDrag);
+    id ^= std::hash<double>()(coefficientOfLift);
+    id ^= std::hash<double>()(coefficientOfReflectivity);
+    id ^= std::hash<double>()(areaRam[0]) ^ std::hash<double>()(areaRam[1]) ^ std::hash<double>()(areaRam[2]);
+    id ^= std::hash<double>()(areaSun[0]) ^ std::hash<double>()(areaSun[1]) ^ std::hash<double>()(areaSun[2]);
+    id ^= std::hash<double>()(areaLift[0]) ^ std::hash<double>()(areaLift[1]) ^ std::hash<double>()(areaLift[2]);
 }
