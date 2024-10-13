@@ -26,10 +26,8 @@ set(HDRS
     ${INC}/astro/element_sets/Frame.hpp
     ${INC}/astro/element_sets/OrbitalElements.hpp
 
-    ${INC}/astro/platforms/access/Access.hpp
+    ${INC}/astro/platforms/access/fov/FieldOfView.hpp
     ${INC}/astro/platforms/access/Antenna.hpp
-    ${INC}/astro/platforms/access/FieldOfView.hpp
-    ${INC}/astro/platforms/access/RiseSetArray.hpp
     ${INC}/astro/platforms/access/Sensor.hpp
 
     ${INC}/astro/platforms/ground/GroundStation.hpp
@@ -55,12 +53,50 @@ set(HDRS
     ${INC}/astro/time/JulianDateClock.hpp
     ${INC}/astro/time/time_units.hpp
     ${INC}/astro/time/Time.hpp
+    ${INC}/astro/time/access/AccessArray.hpp
+    ${INC}/astro/time/access/RiseSetArray.hpp
 
     ${INC}/astro/types/typedefs.hpp
 
     ${INC}/astro/utilities/conversions.hpp
     ${INC}/astro/utilities/math_c.hpp
+
     ${INC}/astro/State.hpp
+
+    # Forward declaration headers
+    ${INC}/fwd/element_sets/ElementSet.fwd.hpp
+    ${INC}/fwd/element_sets/Frame.fwd.hpp
+    ${INC}/fwd/element_sets/OrbitalElements.fwd.hpp
+
+    ${INC}/fwd/platforms/access/fov/FieldOfView.fwd.hpp
+    ${INC}/fwd/platforms/access/Antenna.fwd.hpp
+    ${INC}/fwd/platforms/access/Sensor.fwd.hpp
+
+    ${INC}/fwd/platforms/ground/GroundStation.fwd.hpp
+
+    ${INC}/fwd/platforms/space/Constellation.fwd.hpp
+    ${INC}/fwd/platforms/space/Plane.fwd.hpp
+    ${INC}/fwd/platforms/space/Shell.fwd.hpp
+    ${INC}/fwd/platforms/space/Spacecraft.fwd.hpp
+
+    ${INC}/fwd/propagation/EquationsOfMotion.fwd.hpp
+    ${INC}/fwd/propagation/Integrator.fwd.hpp
+    ${INC}/fwd/propagation/LambertSolver.fwd.hpp
+
+    ${INC}/fwd/systems/AstrodynamicsSystem.fwd.hpp
+    ${INC}/fwd/systems/Barycenter.fwd.hpp
+    ${INC}/fwd/systems/GravitationalBody.fwd.hpp
+    ${INC}/fwd/systems/SolarObjectBuilder.fwd.hpp
+    ${INC}/fwd/systems/SolarObjectFactory.fwd.hpp
+
+    ${INC}/fwd/time/Date.fwd.hpp
+    ${INC}/fwd/time/Interval.fwd.hpp
+    ${INC}/fwd/time/JulianDateClock.fwd.hpp
+    ${INC}/fwd/time/Time.fwd.hpp
+    ${INC}/fwd/time/access/AccessArray.fwd.hpp
+    ${INC}/fwd/time/access/RiseSetArray.fwd.hpp
+
+    ${INC}/fwd/State.fwd.hpp
 )
 
 # Compiler flags

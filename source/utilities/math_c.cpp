@@ -165,21 +165,6 @@ void math_c::Spline::clear_arrays() {
 //----------------------------------------------------------------------------------------------------------//
 //----------------------------------------- Vector and Matrix Math -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
-template<typename T>
-void math_c::copy_array(T* copythis, T* intothis, int arraySize) {
-    for (int ii = 0; ii < arraySize; ii++) {
-        intothis[ii] = copythis[ii];
-    }
-}
-
-template<typename T>
-void math_c::copy_matrix(T** copythis, T** intothis, int nRows, int nColumns) {
-    for (int ii = 0; ii < nRows; ii++) {
-        for (int jj = 0; jj < nColumns; jj++) {
-            intothis[ii][jj] = copythis[ii][jj];
-        }
-    }
-}
 
 double math_c::array_mean(double* vec, int arraySize) {
     double mean = 0.0;

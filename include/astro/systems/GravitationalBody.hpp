@@ -16,7 +16,7 @@
 #include "State.hpp"
 
 // Forward declaration
-class SolarObjectBuilder;
+#include "SolarObjectBuilder.fwd.hpp"
 
 class GravitationalBody {
 
@@ -91,8 +91,8 @@ private:
     int _planetId = -1, _moonId = -1, _nDays = 0;
 
     double _gravitationalParameter, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
-        _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination, 
-        _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate, 
+        _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination,
+        _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate,
         _eccentricityRate, _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
 
     std::vector<State> _states;

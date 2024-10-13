@@ -13,7 +13,9 @@
 #include "State.hpp"
 #include "Date.hpp"
 
-class Plane;
+#include "Plane.fwd.hpp"
+#include "Shell.fwd.hpp"
+#include "Constellation.fwd.hpp"
 
 class Spacecraft {
 

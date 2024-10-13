@@ -1,24 +1,28 @@
 #pragma once
 
+#include <memory>
+
+#include "AccessArray.hpp"
 #include "FieldOfView.hpp"
-#include "Access.hpp"
+#include "typedefs.hpp"
 
 class Sensor {
 
 public:
 
-    Sensor(const FieldOfView& fov) : fov(fov) {}
+    Sensor(FieldOfView* fov) : fov(fov) {}
     ~Sensor() = default;
 
-    const bool contains(const basis_array& target) const {
-        return fov.contains(target);
+    virtual const bool contains(const basis_array& target) const {
+        return fov->contains(boresight, target);
     }
 
 private:
 
     size_t id;
     int parentId;
-    FieldOfView fov;
+    basis_array boresight;
+    FieldOfView* fov;
     AccessArray accesses;
 
     void generate_id_hash();

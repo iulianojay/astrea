@@ -9,7 +9,7 @@
 #include "conversions.hpp"
 #include "typedefs.hpp"
 
-class AstrodynamicsSystem;
+#include "AstrodynamicsSystem.fwd.hpp"
 
 class OrbitalElements : public element_array {
 
@@ -106,7 +106,7 @@ public:
         return (*this);
     }
 #endif
-    
+
     const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8) {
         if (set != other.get_set()) {
             return false;
@@ -118,7 +118,7 @@ public:
         }
         return true;
     }
-    
+
 private:
 
     ElementSet set;

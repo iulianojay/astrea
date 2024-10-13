@@ -8,7 +8,8 @@
 #include "JulianDateClock.hpp"
 #include "time_units.hpp"
 
-class Date;
+#include "Date.fwd.hpp"
+
 class Time {
 
     friend Date;

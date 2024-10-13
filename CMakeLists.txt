@@ -24,8 +24,7 @@ set(TESTNAME tests)
 set(OBJS
     ${SRC}/element_sets/OrbitalElements.cpp
 
-    ${SRC}/platforms/access/FieldOfView.cpp
-    ${SRC}/platforms/access/RiseSetArray.cpp
+    ${SRC}/platforms/access/fov/FieldOfView.cpp
     ${SRC}/platforms/access/Sensor.cpp
 
     ${SRC}/platforms/ground/GroundStation.cpp
@@ -45,6 +44,7 @@ set(OBJS
     ${SRC}/systems/SolarObjectFactory.cpp
 
     ${SRC}/time/Time.cpp
+    ${SRC}/time/access/RiseSetArray.cpp
 
     ${SRC}/utilities/conversions.cpp
     ${SRC}/utilities/math_c.cpp
@@ -59,13 +59,29 @@ include_directories(
     ${INC}/astro/element_sets
     ${INC}/astro/platforms
     ${INC}/astro/platforms/access
+    ${INC}/astro/platforms/access/fov
     ${INC}/astro/platforms/ground
     ${INC}/astro/platforms/space
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time
+    ${INC}/astro/time/access
     ${INC}/astro/types
     ${INC}/astro/utilities
+
+    ${INC}/fwd/constants
+    ${INC}/fwd/element_sets
+    ${INC}/fwd/platforms
+    ${INC}/fwd/platforms/access
+    ${INC}/fwd/platforms/access/fov
+    ${INC}/fwd/platforms/ground
+    ${INC}/fwd/platforms/space
+    ${INC}/fwd/propagation
+    ${INC}/fwd/systems
+    ${INC}/fwd/time
+    ${INC}/fwd/time/access
+    ${INC}/fwd/types
+    ${INC}/fwd/utilities
 )
 
 include(config/astro_config.cmake)

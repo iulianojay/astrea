@@ -8,7 +8,7 @@
 #include "Plane.hpp"
 #include "Integrator.hpp"
 
-class Constellation;
+#include "Constellation.fwd.hpp"
 
 class Shell {
 

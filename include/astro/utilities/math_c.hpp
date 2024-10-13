@@ -2,7 +2,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <math.h>
+    #include <cmath>
 #endif
 
 #include "math_constants.h"
@@ -11,7 +11,17 @@ namespace math_c
 {
     //------------------------------------------------- Norms --------------------------------------------------//
     // Default vector norm
+    template<typename T, size_t Size>
+    T normalize(const std::array<T, Size>& array, const size_t& p) {
+        T norm = 0.0;
+        for (size_t ii = 0; ii < Size; ++ii) {
+            norm += pow(array[ii], p);
+        }
+        return (T)pow(norm, 1.0/p);
+    }
+
     double normalize(const double* vec);
+
     double normalize(double* vec, int startIndex, int endIndex);
 
     // Vector p-norm
@@ -22,6 +32,7 @@ namespace math_c
 
     // Matrix p-norm
     double normalize(double** matrix, int startRow, int endRow, int startColumn, int endColumn, int p);
+
 
     //---------------------------------------------- Spline Class ----------------------------------------------//
     class Spline
@@ -50,11 +61,6 @@ namespace math_c
     };
 
     //----------------------------------------- Vector and Matrix Math -----------------------------------------//
-    template<typename T>
-    void copy_array(T* copythis, T* intothis, int arraySize);
-    
-    template<typename T>
-    void copy_matrix(T** copythis, T** intothis, int nRows, int nColumns);
 
     double array_mean(double* vec, int arraySize);
 

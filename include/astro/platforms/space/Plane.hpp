@@ -7,7 +7,8 @@
 #include "Spacecraft.hpp"
 #include "Integrator.hpp"
 
-class Constellation;
+#include "Constellation.fwd.hpp"
+#include "Shell.fwd.hpp"
 
 class Plane {
 

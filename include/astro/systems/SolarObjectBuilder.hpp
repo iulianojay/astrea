@@ -8,6 +8,8 @@
 #include "GravitationalBody.hpp"
 #include "Barycenter.hpp"
 
+#include "SolarObjectFactory.fwd.hpp"
+
 class SolarObjectBuilder {
 
     friend class SolarObjectFactory;
