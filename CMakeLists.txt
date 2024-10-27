@@ -22,6 +22,8 @@ set(TESTNAME tests)
 
 # Objects
 set(OBJS
+    ${SRC}/access/access.cpp
+
     ${SRC}/element_sets/OrbitalElements.cpp
 
     ${SRC}/platforms/access/fov/FieldOfView.cpp
@@ -47,7 +49,9 @@ set(OBJS
     ${SRC}/time/access/RiseSetArray.cpp
 
     ${SRC}/utilities/conversions.cpp
-    ${SRC}/utilities/math_c.cpp
+    ${SRC}/utilities/riseset_utils.cpp
+    ${SRC}/utilities/math/math_c.cpp
+    ${SRC}/utilities/math/interpolation.cpp
 
     ${SRC}/State.cpp
 )
@@ -55,6 +59,7 @@ set(OBJS
 include_directories(
     ${INC}
     ${INC}/astro
+    ${INC}/astro/access
     ${INC}/astro/constants
     ${INC}/astro/element_sets
     ${INC}/astro/platforms
@@ -68,6 +73,7 @@ include_directories(
     ${INC}/astro/time/access
     ${INC}/astro/types
     ${INC}/astro/utilities
+    ${INC}/astro/utilities/math
 
     ${INC}/fwd/constants
     ${INC}/fwd/element_sets

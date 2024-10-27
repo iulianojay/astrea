@@ -1,7 +1,9 @@
+#include "Spacecraft.hpp"
+
 #include <algorithm>
 
-#include "Spacecraft.hpp"
 #include "conversions.hpp"
+#include "interpolation.hpp"
 
 // Constructor/Destructor
 Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) : epoch(J2000) {
@@ -70,16 +72,25 @@ void Spacecraft::set_states(std::vector<State> statesIn) {
 //------------------------------------------------ Getters -------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-const State& Spacecraft::get_initial_state() { return states[0]; }
-const State& Spacecraft::get_final_state() { return states[states.size()-1]; }
+const State& Spacecraft::get_initial_state() const { return states[0]; }
+const State& Spacecraft::get_final_state() const { return states[states.size()-1]; }
 
-const State& Spacecraft::get_state(Time time) {
+const State& Spacecraft::get_closest_state(const Time& time) const {
+
+    // Check if input time is out of bounds
+    if (time <= states[0].time) {
+        return states[0];
+    }
+    else if (time >= states[states.size()-1].time) {
+        return states[states.size()-1];
+    }
+
     // Get index of lower bound closest to input time
-    auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
+    const auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
 
     // Compare time before and after index
-    Time lowerDiff = (states[id].time - time);
-    Time upperDiff = (states[id+1].time - time);
+    const Time lowerDiff = (states[id].time - time);
+    const Time upperDiff = (states[id+1].time - time);
 
     // Return closest
     if (lowerDiff < upperDiff) {
@@ -88,6 +99,62 @@ const State& Spacecraft::get_state(Time time) {
     else {
         return states[id+1];
     }
+}
+
+const State Spacecraft::get_state_at(const Time& time) const {
+
+    // Check if input time is out of bounds
+    if (time < states[0].time || time >= states[states.size()-1].time) {
+        throw std::runtime_error("Cannot extrapolate to state outside of existing propagation bounds. Try repropagating to include all desired times.");
+    };
+
+    // Get index of lower bound closest to input time
+    const auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
+
+    // If exact, return
+    if (states[id].time == time) {
+        return states[id];
+    }
+
+    // Separate time and elements
+    const size_t nStates = states.size();
+    std::vector<double> times;
+    std::vector<double> splineTimes;
+    std::vector<std::vector<double>> elements;
+
+    times.resize(nStates);
+    splineTimes.resize(nStates+1);
+    elements.resize(6);
+    for (size_t ii = 0; ii < 6; ++ii) {
+        elements[ii].resize(nStates);
+    }
+
+    for (size_t ii = 0; ii < nStates; ++ii) {
+        times[ii] = states[ii].time;
+        if (ii <= id) {
+            splineTimes[ii] = times[ii];
+        }
+        else if (ii == id + 1) {
+            splineTimes[ii] = time;
+        }
+        else {
+            splineTimes[ii] = times[ii-1];
+        }
+        for (size_t jj = 0; jj < 6; ++jj) {
+            elements[jj][ii] = states[ii].elements[jj];
+        }
+    }
+    splineTimes[nStates] = times[nStates-1];
+
+    // Interpolate one element at a time to reduce error
+    OrbitalElements splinedElements = states[0].elements; // copy so element set is the same
+    for (size_t ii = 0; ii < 6; ++ii) {
+        const std::vector<double>& elem = elements[ii];
+        const auto output = cubic_spline(times, elem, splineTimes);
+        splinedElements[ii] = output[id+1];
+    }
+
+    return State({time, splinedElements});
 }
 
 // Spacecraft Property Getters

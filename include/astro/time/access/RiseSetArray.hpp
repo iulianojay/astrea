@@ -1,6 +1,5 @@
 #pragma once
 
-#include <array>
 #include <vector>
 
 #include "riseset_utils.hpp"
@@ -14,6 +13,10 @@ public:
     RiseSetArray(const std::vector<Time>& risesets);
     RiseSetArray(const RiseSetArray& other);
     ~RiseSetArray() = default;
+
+    void append(const Time& rise, const Time& set);
+    void prepend(const Time& rise, const Time& set);
+    void insert(const Time& rise, const Time& set);
 
     const size_t size() const { return risesets.size(); }
 
@@ -36,6 +39,7 @@ private:
 
     std::vector<Time> risesets;
 
+    void validate_riseset(const Time& rise, const Time& set) const;
     void validate_risesets(const std::vector<Time>& risesets) const;
 
 };

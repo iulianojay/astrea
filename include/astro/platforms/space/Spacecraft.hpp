@@ -78,9 +78,10 @@ public:
 
     void set_states(std::vector<State> states);
 
-    const State& get_initial_state();
-    const State& get_final_state();
-    const State& get_state(Time time);
+    const State& get_initial_state() const;
+    const State& get_final_state() const;
+    const State& get_closest_state(const Time& time) const;
+    const State get_state_at(const Time& time) const;
     std::vector<State>& get_states() { return states; }
 
     const size_t n_states() { return states.size(); }
@@ -117,6 +118,14 @@ public:
 
     void attach(Sensor& sensor) { sensors.push_back(sensor); }
     void attach(std::vector<Sensor>& _sensors) { sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors)); }
+
+    std::vector<Sensor>& get_sensors() { return sensors; }
+
+    const size_t& get_id() { return id; }
+
+    void add_access(const size_t& receiverId, const RiseSetArray& access) {
+        accesses[id, receiverId] = access;
+    }
 
 private:
 

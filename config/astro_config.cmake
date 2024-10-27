@@ -18,6 +18,8 @@ set(INCLUDE_DIRS
 set(HDRS
     ${INC}/astro.hpp
 
+    ${INC}/astro/access/access.hpp
+
     ${INC}/astro/constants/astronomical_constants.h
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
@@ -59,7 +61,9 @@ set(HDRS
     ${INC}/astro/types/typedefs.hpp
 
     ${INC}/astro/utilities/conversions.hpp
-    ${INC}/astro/utilities/math_c.hpp
+    ${INC}/astro/utilities/riseset_utils.hpp
+    ${INC}/astro/utilities/math/math_c.hpp
+    ${INC}/astro/utilities/math/interpolation.hpp
 
     ${INC}/astro/State.hpp
 
