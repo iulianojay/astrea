@@ -31,6 +31,10 @@ public:
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
+    using iterator = std::vector<Spacecraft>::iterator;
+    iterator begin() { return satellites.begin(); }
+    iterator end() { return satellites.end(); }
+
 private:
 
     size_t id;

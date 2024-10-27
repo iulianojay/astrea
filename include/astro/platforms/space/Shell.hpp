@@ -36,6 +36,64 @@ public:
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
+
+    using iterator = std::vector<Plane>::iterator;
+
+    class sat_iterator {
+    private:
+
+        iterator iterPlane;
+        Plane::iterator iterSat;
+
+    public:
+
+        sat_iterator(iterator _iterPlane, Plane::iterator _iterSat) :
+            iterPlane(_iterPlane), iterSat(_iterSat) {} // TODO: Sanitize inputs
+
+        sat_iterator& operator++() {
+            ++iterSat;
+            if (iterSat == (*iterPlane).end()) {
+                ++iterPlane;
+                iterSat = (*iterPlane).begin();
+            }
+            return *this;
+        }
+        sat_iterator operator++(int) {
+            sat_iterator retval = *this; ++(*this);
+            return retval;
+        }
+
+        sat_iterator& operator--() {
+            --iterSat;
+            if (iterSat < (*iterPlane).begin()) {
+                --iterPlane;
+                iterSat = (*iterPlane).end();
+            }
+            return *this;
+        }
+        sat_iterator operator--(int) {
+            sat_iterator retval = *this; --(*this);
+            return retval;
+        }
+
+        bool operator==(sat_iterator other) const { return iterPlane == other.iterPlane && iterSat == other.iterSat; }
+        bool operator!=(sat_iterator other) const { return !(*this == other); }
+        Spacecraft operator*() { return *iterSat; }
+
+        // iterator traits
+        using difference_type = Plane::iterator;
+        using value_type = Plane::iterator;
+        using pointer = const Plane::iterator*;
+        using reference = const Plane::iterator&;
+        using iterator_category = std::forward_iterator_tag;
+    };
+
+    iterator begin() { return planes.begin(); }
+    iterator end() { return planes.end(); }
+
+    sat_iterator sat_begin() { return sat_iterator(planes.begin(), (*planes.begin()).begin()); }
+    sat_iterator sat_end() { return sat_iterator(planes.end(), (*planes.end()).end()); }
+
 private:
 
     size_t id;
