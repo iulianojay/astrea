@@ -1,5 +1,6 @@
 # include "Shell.hpp"
 
+#include "stdexcept"
 
 Shell::Shell(std::vector<Plane> _planes) {
     planes = _planes;
@@ -12,6 +13,41 @@ Shell::Shell(std::vector<Spacecraft> satellites) {
 
     planes.push_back(noPlane);
 
+    generate_id_hash();
+}
+
+Shell::Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F,
+        const double& anchorRAAN, const double& anchorAnomaly) {
+
+    if (T % P) {
+        throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total number of of satellites.");
+    }
+
+    const size_t satsPerPlane = T/P;
+    const double deltaRAAN =  360.0/double(P);
+    const double deltaAnomaly =  F*360.0/double(T);
+
+    planes.resize(P);
+    size_t iAnom = 0;
+    size_t iPlane = 0;
+    for (auto& plane : planes) {
+        plane.satellites.resize(satsPerPlane);
+        for (auto& sat: plane.satellites) {
+            sat = Spacecraft(
+                OrbitalElements({
+                    semimajor,
+                    0.0,
+                    inclination,
+                    anchorRAAN + deltaRAAN*iPlane,
+                    0.0,
+                    anchorAnomaly + deltaAnomaly*iAnom
+                }, ElementSet::COE),
+                "Jan-01-2030 00:00:00.0"
+            );
+            ++iAnom;
+        }
+        plane.generate_id_hash();
+    }
     generate_id_hash();
 }
 

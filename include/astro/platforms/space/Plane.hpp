@@ -35,6 +35,8 @@ public:
     iterator begin() { return satellites.begin(); }
     iterator end() { return satellites.end(); }
 
+    const size_t get_id() const { return id; }
+
 private:
 
     size_t id;

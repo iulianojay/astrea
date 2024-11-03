@@ -19,6 +19,8 @@ public:
     Shell() = default;
     Shell(std::vector<Plane> planes);
     Shell(std::vector<Spacecraft> satellites);
+    Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F,
+        const double& anchorRAAN = 0.0, const double& anchorAnomaly = 0.0);
     ~Shell() = default;
 
     const size_t size() const;
@@ -39,6 +41,14 @@ public:
 
     using iterator = std::vector<Plane>::iterator;
 
+    iterator begin() { return planes.begin(); }
+    iterator end() { return planes.end(); }
+
+    class sat_iterator;
+
+    sat_iterator sat_begin() { return sat_iterator(planes.begin(), planes.begin()->begin()); }
+    sat_iterator sat_end() { return sat_iterator(planes.end(), planes.end()->end()); }
+
     class sat_iterator {
     private:
 
@@ -52,9 +62,9 @@ public:
 
         sat_iterator& operator++() {
             ++iterSat;
-            if (iterSat == (*iterPlane).end()) {
+            if (iterSat == iterPlane->end()) {
                 ++iterPlane;
-                iterSat = (*iterPlane).begin();
+                iterSat = iterPlane->begin();
             }
             return *this;
         }
@@ -65,9 +75,9 @@ public:
 
         sat_iterator& operator--() {
             --iterSat;
-            if (iterSat < (*iterPlane).begin()) {
+            if (iterSat < iterPlane->begin()) {
                 --iterPlane;
-                iterSat = (*iterPlane).end();
+                iterSat = iterPlane->end();
             }
             return *this;
         }
@@ -76,8 +86,12 @@ public:
             return retval;
         }
 
-        bool operator==(sat_iterator other) const { return iterPlane == other.iterPlane && iterSat == other.iterSat; }
-        bool operator!=(sat_iterator other) const { return !(*this == other); }
+        bool operator==(const sat_iterator& other) const { return iterPlane == other.iterPlane && iterSat == other.iterSat; }
+        bool operator!=(const sat_iterator& other) const { return !(*this == other); }
+        bool operator<(const sat_iterator& other) const { return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat < other.iterSat); }
+        bool operator>(const sat_iterator& other) const { return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat > other.iterSat); }
+        bool operator<=(const sat_iterator& other) const { return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat <= other.iterSat); }
+        bool operator>=(const sat_iterator& other) const { return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat >= other.iterSat); }
         Spacecraft operator*() { return *iterSat; }
 
         // iterator traits
@@ -88,11 +102,7 @@ public:
         using iterator_category = std::forward_iterator_tag;
     };
 
-    iterator begin() { return planes.begin(); }
-    iterator end() { return planes.end(); }
-
-    sat_iterator sat_begin() { return sat_iterator(planes.begin(), (*planes.begin()).begin()); }
-    sat_iterator sat_end() { return sat_iterator(planes.end(), (*planes.end()).end()); }
+    const size_t get_id() const { return id; }
 
 private:
 

@@ -30,6 +30,15 @@ Constellation::Constellation(std::vector<Spacecraft> satellites) {
 }
 
 
+Constellation::Constellation(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F,
+        const double& anchorRAAN, const double& anchorAnomaly) {
+
+    shells.emplace_back(Shell(semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+
+    generate_id_hash();
+}
+
+
 const size_t Constellation::size() const {
     size_t size;
     for (const auto& shell: shells) {
