@@ -3,6 +3,30 @@
 #include <stdexcept>
 #include <cmath>
 
+
+double interpolate(const std::vector<double>& x, const std::vector<double>& y, const double& sx) {
+
+    const double xf = x[x.size()-1];
+    if (sx < x[0] || sx > xf) {
+        throw std::runtime_error("Asked for interpolation outside of dataset bounds.");
+    }
+    if (sx == xf) { return y[x.size()-1]; }
+
+    // Find indexes
+    const auto lower = std::lower_bound(x.begin(), x.end(), sx);
+    const size_t idx = std::distance(x.begin(), lower);
+
+    const double x0 = x[idx];
+    const double x1 = x[idx+1];
+    const double y0 = y[idx];
+    const double y1 = y[idx+1];
+
+    if (sx == x0) { return y0; }
+
+    return y0 + (sx - x0)*(y1 - y0)/(x1 - x0);
+}
+
+
 // Cubic Spline
 /*
     x is the input knot vector with corresponding points y

@@ -104,7 +104,7 @@ const State& Spacecraft::get_closest_state(const Time& time) const {
 const State Spacecraft::get_state_at(const Time& time) const {
 
     // Check if input time is out of bounds
-    if (time < states[0].time || time >= states[states.size()-1].time) {
+    if (time < states[0].time || time > states[states.size()-1].time) {
         throw std::runtime_error("Cannot extrapolate to state outside of existing propagation bounds. Try repropagating to include all desired times.");
     };
 
@@ -119,11 +119,9 @@ const State Spacecraft::get_state_at(const Time& time) const {
     // Separate time and elements
     const size_t nStates = states.size();
     std::vector<double> times;
-    std::vector<double> splineTimes;
     std::vector<std::vector<double>> elements;
 
     times.resize(nStates);
-    splineTimes.resize(nStates+1);
     elements.resize(6);
     for (size_t ii = 0; ii < 6; ++ii) {
         elements[ii].resize(nStates);
@@ -131,27 +129,15 @@ const State Spacecraft::get_state_at(const Time& time) const {
 
     for (size_t ii = 0; ii < nStates; ++ii) {
         times[ii] = states[ii].time;
-        if (ii <= id) {
-            splineTimes[ii] = times[ii];
-        }
-        else if (ii == id + 1) {
-            splineTimes[ii] = time;
-        }
-        else {
-            splineTimes[ii] = times[ii-1];
-        }
         for (size_t jj = 0; jj < 6; ++jj) {
             elements[jj][ii] = states[ii].elements[jj];
         }
     }
-    splineTimes[nStates] = times[nStates-1];
 
     // Interpolate one element at a time to reduce error
     OrbitalElements splinedElements = states[0].elements; // copy so element set is the same
     for (size_t ii = 0; ii < 6; ++ii) {
-        const std::vector<double>& elem = elements[ii];
-        const auto output = cubic_spline(times, elem, splineTimes);
-        splinedElements[ii] = output[id+1];
+        splinedElements[ii] = interpolate(times, elements[ii], states[id+1].time);
     }
 
     return State({time, splinedElements});

@@ -1,6 +1,6 @@
 #include "access.hpp"
 
-void find_accesses(Constellation constel, const Time& resolution, const AstrodynamicsSystem* sys) {
+void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem* sys) {
 
     // Get all sats
     auto allSats = constel.get_all_spacecraft();
@@ -52,7 +52,7 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
             times[ii] = startTime + ii*resolution;
         }
         else {
-            times[ii] = endTime + ii*resolution;
+            times[ii] = endTime;
         }
     }
 
