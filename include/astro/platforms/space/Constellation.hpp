@@ -118,3 +118,10 @@ private:
 
     void generate_id_hash();
 };
+
+
+#ifdef SWIG
+
+%template(ConstellationVector) std::vector<Constellation>;
+
+#endif

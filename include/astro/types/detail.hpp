@@ -1,6 +1,8 @@
 #pragma once
 
-#include <iterator>
+#ifndef SWIG
+    #include <iterator>
+#endif
 
 namespace detail
 {

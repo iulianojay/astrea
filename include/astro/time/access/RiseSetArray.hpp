@@ -1,6 +1,8 @@
 #pragma once
 
-#include <vector>
+#ifndef SWIG
+    #include <vector>
+#endif
 
 #include "riseset_utils.hpp"
 #include "Time.hpp"

@@ -1,6 +1,8 @@
 #pragma once
 
-#include <vector>
+#ifndef SWIG
+    #include <vector>
+#endif
 
 #include "Sensor.hpp"
 
@@ -22,3 +24,10 @@ private:
     std::vector<Channel> channels;
 
 };
+
+
+#ifdef SWIG
+
+%template(AntennaVector) std::vector<Antenna>;
+
+#endif

@@ -82,6 +82,7 @@ build: CMakeLists.txt
 # Install
 .PHONY: install-java
 install-java:
+	mkdir ${JAVA_INSTALL_DIR}
 	cp ./build/windows/java/jvastro.jar ${JAVA_INSTALL_DIR} -rf
 
 # Clean

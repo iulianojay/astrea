@@ -122,4 +122,6 @@ private:
     double time;
 };
 
+%template(TimeVector) std::vector<Time>;
+
 #endif

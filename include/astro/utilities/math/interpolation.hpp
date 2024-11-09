@@ -1,6 +1,8 @@
 #pragma once
 
-#include <vector>
+#ifndef SWIG
+    #include <vector>
+#endif
 
 #include "Time.hpp"
 

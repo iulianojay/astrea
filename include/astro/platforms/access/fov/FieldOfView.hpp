@@ -1,7 +1,9 @@
 #pragma once
 
-#include <unordered_map>
-#include <numbers>
+#ifndef SWIG
+    #include <unordered_map>
+    #include <numbers>
+#endif
 
 #include "typedefs.hpp"
 

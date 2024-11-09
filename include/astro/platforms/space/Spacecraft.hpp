@@ -158,5 +158,6 @@ private:
 #ifdef SWIG
 
 %template(SpacecraftVector) std::vector<Spacecraft>;
+%template(SpacecraftVectorVector) std::vector<std::vector<Spacecraft>>;
 
 #endif

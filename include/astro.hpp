@@ -34,8 +34,6 @@
 
 #include "astro/time/Date.hpp"
 #include "astro/time/Interval.hpp"
-#include "astro/time/JulianDateClock.hpp"
-#include "astro/time/time_units.hpp"
 #include "astro/time/Time.hpp"
 #include "astro/time/access/AccessArray.hpp"
 #include "astro/time/access/RiseSetArray.hpp"

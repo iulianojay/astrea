@@ -1,6 +1,8 @@
 #pragma once
 
-#include <memory>
+#ifndef SWIG
+    #include <memory>
+#endif
 
 #include "AccessArray.hpp"
 #include "FieldOfView.hpp"
@@ -36,3 +38,10 @@ private:
     void generate_id_hash();
 
 };
+
+
+#ifdef SWIG
+
+%template(SensorVector) std::vector<Sensor>;
+
+#endif

@@ -1,6 +1,8 @@
 #pragma once
 
-#include <chrono>
+#ifndef SWIG
+    #include <chrono>
+#endif
 
 // Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14
 struct JulianDateClock;

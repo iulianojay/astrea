@@ -1,6 +1,8 @@
 #pragma once
 
-#include <vector>
+#ifndef SWIG
+    #include <vector>
+#endif
 
 #include "RiseSetArray.hpp"
 #include "Constellation.hpp"
@@ -8,7 +10,6 @@
 #include "State.hpp"
 
 void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem* sys);
-void find_accesses(std::vector<Constellation>& constels, const Time& resolution, const AstrodynamicsSystem* sys);
 
 std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem* sys);
 std::vector<std::vector<State>> interpolate_states(const std::vector<Spacecraft>& allSats, const std::vector<Time>& times, const AstrodynamicsSystem* sys);

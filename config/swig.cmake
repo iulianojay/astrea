@@ -60,14 +60,21 @@ include_directories(${JAVA_INCLUDE_PATH2})
 include_directories(
     ${INC}
     ${INC}/astro
+    ${INC}/astro/access
     ${INC}/astro/constants
     ${INC}/astro/element_sets
     ${INC}/astro/platforms
+    ${INC}/astro/platforms/access
+    ${INC}/astro/platforms/access/fov
+    ${INC}/astro/platforms/ground
+    ${INC}/astro/platforms/space
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time
+    ${INC}/astro/time/access
     ${INC}/astro/types
     ${INC}/astro/utilities
+    ${INC}/astro/utilities/math
 )
 
 find_package(SWIG REQUIRED)

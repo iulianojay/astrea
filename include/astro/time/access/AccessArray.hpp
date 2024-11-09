@@ -1,6 +1,8 @@
 #pragma once
 
-#include <unordered_map>
+#ifndef SWIG
+    #include <unordered_map>
+#endif
 
 #include "RiseSetArray.hpp"
 
