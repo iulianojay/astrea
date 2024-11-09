@@ -3,6 +3,7 @@
 
 #ifndef SWIG
     #include <cmath>
+    #include <array>
 #endif
 
 #include "math_constants.h"

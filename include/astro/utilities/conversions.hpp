@@ -2,7 +2,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <map>
+    #include <unordered_map>
     #include <iostream>
     #include <functional>
 #endif
@@ -17,7 +17,7 @@ namespace conversions {
     //------------------------------------------- Frame Conversions --------------------------------------------//
     void bci_to_bcbf(double* rBCI, double julianDate, double rotRate, double* rBCBF);
     void bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, double* rBCI);
-    
+
     void bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRadius, double* lla);
     void lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF);
 
@@ -27,7 +27,7 @@ namespace conversions {
 
     element_array coes_to_cartesian(element_array coes, const AstrodynamicsSystem* centralBody);
     element_array cartesian_to_coes(element_array cartesian, const AstrodynamicsSystem* centralBody);
-    
+
     element_array coes_to_mees(element_array mees, const AstrodynamicsSystem* centralBody);
     element_array mees_to_coes(element_array coes, const AstrodynamicsSystem* centralBody);
 
@@ -42,7 +42,7 @@ namespace conversions {
     using set_conversion_function = std::function<element_array(element_array, const AstrodynamicsSystem*)>;
     using element_set_pair = std::pair<ElementSet, ElementSet>;
 
-    static const std::map<element_set_pair, set_conversion_function> elementSetConversions = {
+    const std::unordered_map<element_set_pair, set_conversion_function> elementSetConversions = {
         {element_set_pair(ElementSet::COE, ElementSet::CARTESIAN), coes_to_cartesian},
         {element_set_pair(ElementSet::CARTESIAN, ElementSet::COE), cartesian_to_coes},
         {element_set_pair(ElementSet::COE, ElementSet::MEE), coes_to_mees},

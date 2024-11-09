@@ -60,13 +60,13 @@ int main() {
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{seconds(0), days(1)};
+    Interval propInterval{seconds(0), months(1)};
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end = std::chrono::steady_clock::now();
-    auto diff = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    auto diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-    std::cout << "Propagation Time: " << diff.count() << " (s)" << std::endl;
+    std::cout << "Propagation Time: " << diff.count()/1e9 << " (s)" << std::endl;
 
     // Access
     start = std::chrono::steady_clock::now();
@@ -75,23 +75,23 @@ int main() {
     find_accesses(walkerBall, accessResolution, &sys);
 
     end = std::chrono::steady_clock::now();
-    diff = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-    std::cout << "Access Analysis Time: " << diff.count() << " (s)" << std::endl;
+    std::cout << "Access Analysis Time: " << diff.count()/1e9 << " (s)" << std::endl;
 
     // Check propagation
-    std::cout << "\n\n" << "Walker: [" << T << ", " << P << ", " << F << "]" << std::endl;
-    for (auto& shell : walkerBall) {
-        std::cout << "Shell: " << shell.get_id() << std::endl;
-        for (auto& plane : shell) {
-            std::cout << "\tPlane: " << plane.get_id() << std::endl;
-            for (auto& sat : plane) {
-                std::cout << "\t\tSat: " << sat.get_id() << std::endl;
-                std::cout << "\t\tstate0 = " << sat.get_initial_state() << std::endl;
-                std::cout << "\t\tstatef = " << sat.get_final_state() << std::endl << std::endl;
-            }
-        }
-    }
+    // std::cout << "\n\n" << "Walker: [" << T << ", " << P << ", " << F << "]" << std::endl;
+    // for (auto& shell : walkerBall) {
+    //     std::cout << "Shell: " << shell.get_id() << std::endl;
+    //     for (auto& plane : shell) {
+    //         std::cout << "\tPlane: " << plane.get_id() << std::endl;
+    //         for (auto& sat : plane) {
+    //             std::cout << "\t\tSat: " << sat.get_id() << std::endl;
+    //             std::cout << "\t\tstate0 = " << sat.get_initial_state() << std::endl;
+    //             std::cout << "\t\tstatef = " << sat.get_final_state() << std::endl << std::endl;
+    //         }
+    //     }
+    // }
 
     // // Send to file
     // std::ofstream outfile;

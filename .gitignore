@@ -5,6 +5,7 @@ CMake*
 **/build/*
 lib/*
 **__pycache__/
+tests/profiling/results
 
 # File types
 *.o
