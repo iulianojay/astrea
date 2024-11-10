@@ -42,7 +42,7 @@ const std::vector<Spacecraft>& Plane::get_all_spacecraft() const {
 }
 
 
-const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
+const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const {
     for (const auto& sat: satellites) {
         if (sat.id == spacecraftId) {
             return sat;
@@ -54,7 +54,7 @@ const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
 
 void Plane::generate_id_hash() {
     id = std::hash<size_t>()(satellites[0].id);
-    for (int ii = 1; ii < satellites.size(); ii++) {
+    for (size_t ii = 1; ii < satellites.size(); ii++) {
         id ^= std::hash<size_t>()(satellites[ii].id);
     }
 }

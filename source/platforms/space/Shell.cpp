@@ -53,7 +53,7 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
 
 
 const size_t Shell::size() const {
-    size_t size;
+    size_t size = 0;
     for (const auto& plane: planes) {
         size += plane.size();
     }
@@ -71,7 +71,7 @@ void Shell::add_plane(const Plane& plane) {
 }
 
 
-void Shell::add_spacecraft(const Spacecraft& spacecraft, const int& planeId) {
+void Shell::add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId) {
     for (auto& plane : planes) {
         if (plane.id == planeId) {
             plane.add_spacecraft(spacecraft);
@@ -100,7 +100,7 @@ const std::vector<Spacecraft> Shell::get_all_spacecraft() const {
 }
 
 
-const Plane& Shell::get_plane(const int& planeId) const {
+const Plane& Shell::get_plane(const size_t& planeId) const {
     for (const auto& plane: planes) {
         if (plane.id == planeId) {
             return plane;
@@ -110,7 +110,7 @@ const Plane& Shell::get_plane(const int& planeId) const {
 }
 
 
-const Spacecraft& Shell::get_spacecraft(const int& spacecraftId) const {
+const Spacecraft& Shell::get_spacecraft(const size_t& spacecraftId) const {
     for (const auto& plane: planes) {
         for (const auto& sat: plane.satellites) {
             if (sat.id == spacecraftId) {
@@ -124,7 +124,7 @@ const Spacecraft& Shell::get_spacecraft(const int& spacecraftId) const {
 
 void Shell::generate_id_hash() {
     id = std::hash<size_t>()(planes[0].id);
-    for (int ii = 1; ii < planes.size(); ii++) {
+    for (size_t ii = 1; ii < planes.size(); ii++) {
         id ^= std::hash<size_t>()(planes[ii].id);
     }
 }
