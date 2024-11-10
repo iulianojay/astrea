@@ -8,7 +8,6 @@ void find_accesses(Constellation& constel, const Time& resolution, const Astrody
 
     // Create time array
     std::vector<Time> times = create_time_vector(allSats[0].get_states(), resolution, sys); // TODO: Check all state histories for common time frame
-    const size_t nTimes = times.size();
 
     // Get and store interpolated states in cartesian to reduce overhead
     std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);

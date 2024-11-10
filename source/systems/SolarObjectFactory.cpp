@@ -32,7 +32,7 @@ const GravitationalBody& SolarObjectFactory::get_or_create(const std::string nam
 
 const GravitationalBody& SolarObjectFactory::get_or_create(const SolarObject name) {
     if (!bodies.count(name)) {
-        create(name); 
+        create(name);
     }
     return bodies.at(name);
 }
@@ -55,17 +55,17 @@ void SolarObjectFactory::find_root() {
 
     // Count total planets
     int planetCount = 0;
-    for (const auto [object, body]: bodies) {
+    for (const auto& [object, body]: bodies) {
         if (body.type() == PLANET) {
             planetCount++;
             root = object;
         }
     }
-    
-    // Check if other bodies are children of only planet - 
+
+    // Check if other bodies are children of only planet -
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
-        for (const auto [object, _]: bodies) {
+        for (const auto& [object, _]: bodies) {
             SolarObject parent = object;
             while (parent != SUN && parent != root) {
                 parent = builder._parentMap.at(parent);
