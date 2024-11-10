@@ -60,7 +60,7 @@ int main() {
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{seconds(0), months(1)};
+    Interval propInterval{seconds(0), days(1)};
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end = std::chrono::steady_clock::now();
