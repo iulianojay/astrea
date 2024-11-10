@@ -57,6 +57,17 @@ public:
         return time.count() + Time(other).time.count();
     }
 
+    constexpr Time& operator+=(const Time& other) {
+        time += other.time;
+        return *this;
+    }
+
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator+=(const T& other) {
+        time += Time(other).time;
+        return *this;
+    }
+
     // Subtraction
     constexpr Time operator-(const Time& other) const {
         return time.count() - other.time.count();
@@ -65,6 +76,17 @@ public:
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     constexpr Time operator-(const T& other) const {
         return time.count() - Time(other).time.count();
+    }
+
+    constexpr Time& operator-=(const Time& other) {
+        time -= other.time;
+        return *this;
+    }
+
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator-=(const T& other) {
+        time -= Time(other).time;
+        return *this;
     }
 
     // Comparitors
@@ -83,6 +105,12 @@ public:
         return time.count()*Time(other).count();
     }
 
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator*=(const T& other) {
+        time *= other;
+        return *this;
+    }
+
     // Division
     constexpr Time operator/(const Time& other) const {
         return time.count()/other.time.count();
@@ -90,6 +118,12 @@ public:
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
     constexpr Time operator/(const T& other) const {
         return time.count()/Time(other).count();
+    }
+
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator/=(const T& other) {
+        time /= other;
+        return *this;
     }
 
     // Forward count()

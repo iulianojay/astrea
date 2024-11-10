@@ -1,6 +1,7 @@
 #include "FieldOfView.hpp"
 
 #include <cmath>
+#include <stdexcept>
 
 #include "math_c.hpp"
 
@@ -20,10 +21,15 @@ PolygonalFieldOfView::PolygonalFieldOfView(const double& halfConeAngle, const in
 }
 
 PolygonalFieldOfView::PolygonalFieldOfView(const double& halfConeWidth, const double& halfConeHeight, const int& nPoints) {
+
+    throw std::logic_error("This function has not been properly updated and is not currently functional.");
+
+    /*
     const double sinw = sin(halfConeWidth);
     const double sinh = sin(halfConeHeight);
 
     for (double theta = 0.0; theta < std::numbers::pi*2.0; theta += (std::numbers::pi*2.0/nPoints)) {
         points[theta] = 0.0;
     }
+    */
 }

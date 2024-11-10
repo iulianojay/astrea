@@ -42,7 +42,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     if (centralBody != SUN) {
         std::vector<State> centerToSun = centerToParent;
         auto parent = center.parent();
-        auto& states = centerToSun.back();
+        // auto& states = centerToSun.back();
         while (parent != GC) {
             GravitationalBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();

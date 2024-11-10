@@ -29,7 +29,7 @@ public:
     // Constructors and destructor
     EquationsOfMotion(const AstrodynamicsSystem& system = AstrodynamicsSystem());
     ~EquationsOfMotion();
-    
+
     // Enums
     enum DynamicsSet {
         TWO_BODY,
@@ -40,10 +40,10 @@ public:
     };
 
     // Derivative eval
-    void evaluate_state_derivative(double time, double* state, Spacecraft* sc, double* stateDerivative);
+    OrbitalElements evaluate_state_derivative(const Time& time, const OrbitalElements& state, Spacecraft* sc);
 
     // Event check
-    bool check_crash(double* state);
+    bool check_crash(const OrbitalElements& state);
 
     // Initialize Cnm and Snm for oblateness pert
     void get_oblateness_coefficients(int N, int M);
@@ -80,7 +80,7 @@ public:
     // Function: Switch oblateness perturbation on with a specifc spheroidal accuracey
     // Inputs: N -> zonals
     //         M -> Tessorals
-    void switch_oblateness(int N, int M);
+    void switch_oblateness(size_t N, size_t M);
 
     // Function: Switch drag perturbation on or off
     // Inputs: true -> on, false -> off
@@ -114,7 +114,7 @@ public:
     const ElementSet& get_expected_set() {
         return elementSetMap.at(dynamicsSet);
     }
-    
+
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
@@ -128,28 +128,28 @@ private:
     // VoP Variables
     bool checkflag = false;
     const double checkTol = 1e-10;
-    
+
     // Oblateness
-    double** P = {};
-    double** C = {};
-    double** S = {};
+    std::vector<std::vector<double>> P = {};
+    std::vector<std::vector<double>> C = {};
+    std::vector<std::vector<double>> S = {};
 
     // Drag
     double doEstimateAltitude = false;
 
     // ECEF and LLA conversions
-    double julianDate{};
+    Time julianDate{};
 
     // Perturbation toggles
     bool oblateness = false;
-    int N = 2, M = 0;
+    size_t N = 2, M = 0;
 
     bool NxMOblateness = false;
     bool drag = false;
     bool lift = false;
     bool srp = false;
     bool nbody = false;
-    
+
     double crashRadius = 0.0;
     double crashVelocity = 0.0;
 
@@ -158,7 +158,7 @@ private:
 
     // Equation set
     DynamicsSet dynamicsSet = TWO_BODY;
-    
+
     const std::unordered_map<std::string, DynamicsSet> dyanmicsSetMap {
         {"TWO_BODY", TWO_BODY},
         {"COWELLS", COWELLS},

@@ -63,7 +63,7 @@ def plot_cartesian(title: str, infile: str, outfile: str) -> None:
 def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], titles: List[str], limits: List[Tuple[float, float]]) -> None:
 
     df = pd.read_csv(infile,index_col=False)
-    
+
     t = df['time (min)'].to_numpy()
     data = [df[col].to_numpy() for col in columns]
 
@@ -87,9 +87,10 @@ def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], 
 
 if __name__=='__main__':
 
+    test = 'cowells'
     title = 'Cowells Method Test'
-    infile = './bin/results/cowells_test/main.csv'
-    outfile = './bin/results/cowells_test/main.png'
+    infile = './bin/results/' + test + '/main.csv'
+    outfile = './bin/results/' + test + '/main.png'
 
     try:
         plot_coes(title, infile, outfile)
