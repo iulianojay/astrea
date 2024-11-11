@@ -5,11 +5,12 @@
     #include <cmath>
 #endif
 
-#include "ElementSet.hpp"
-#include "conversions.hpp"
-#include "typedefs.hpp"
+#include "astro/element_sets/ElementSet.hpp"
+#include "astro/element_sets/Frame.hpp"
+#include "astro/utilities/conversions.hpp"
+#include "astro/types/typedefs.hpp"
 
-#include "AstrodynamicsSystem.fwd.hpp"
+#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
 
 class OrbitalElements : public element_array {
 
@@ -24,11 +25,11 @@ public:
             _M_elems[ii] = 0.0;
         }
     }
-    OrbitalElements(const element_array elements, const ElementSet set = ElementSet::CARTESIAN) : set(set) {
+    OrbitalElements(const element_array& elements, const ElementSet& set = ElementSet::CARTESIAN) : set(set) {
         std::copy(std::begin(elements), std::end(elements), _M_elems);
     }
 
-    void convert(const ElementSet& newSet, const AstrodynamicsSystem* system) {
+    void convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
         // Check if conversion is necessary
         if (newSet == set) {
             return;
@@ -40,7 +41,7 @@ public:
         set = newSet;
     }
 
-    OrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem* system) const {
+    OrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
         // Check if conversion is necessary
         if (newSet == set) {
             return OrbitalElements(*this);

@@ -139,13 +139,13 @@ const State Spacecraft::get_state_at(const Time& time) const {
 }
 
 // Spacecraft Property Getters
-double  Spacecraft::get_mass()                        { return mass; }
-double  Spacecraft::get_coefficient_of_drag()         { return coefficientOfDrag; }
-double  Spacecraft::get_coefficient_of_lift()         { return coefficientOfLift; }
-double  Spacecraft::get_coefficient_of_reflectivity() { return coefficientOfReflectivity; }
-double* Spacecraft::get_ram_area()                    { return areaRam; }
-double* Spacecraft::get_sun_area()                    { return areaSun; }
-double* Spacecraft::get_lift_area()                   { return areaLift; }
+const double& Spacecraft::get_mass()                        const { return mass; }
+const double& Spacecraft::get_coefficient_of_drag()         const { return coefficientOfDrag; }
+const double& Spacecraft::get_coefficient_of_lift()         const { return coefficientOfLift; }
+const double& Spacecraft::get_coefficient_of_reflectivity() const { return coefficientOfReflectivity; }
+const basis_array& Spacecraft::get_ram_area()               const { return areaRam; }
+const basis_array& Spacecraft::get_sun_area()               const { return areaSun; }
+const basis_array& Spacecraft::get_lift_area()              const { return areaLift; }
 
 
 void Spacecraft::generate_id_hash() {

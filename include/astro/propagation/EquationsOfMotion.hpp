@@ -2,8 +2,6 @@
 
 #ifndef SWIG
     #include <string>
-    #include <fstream>
-    #include <sstream>
     #include <iostream>
     #include <cmath>
     #include <algorithm>
@@ -12,23 +10,24 @@
     #include <exception>
 #endif
 
-#include "astronomical_constants.h"	// my tables of constants
-#include "math_constants.h"         // my common math constants
-#include "math_c.hpp"
-#include "conversions.hpp"
+#include "astro/constants/astronomical_constants.h"
+#include "astro/constants/math_constants.h"
+#include "astro/utilities/math/math_c.hpp"
+#include "astro/utilities/conversions.hpp"
 
-#include "Spacecraft.hpp"
-#include "GravitationalBody.hpp"
-#include "AstrodynamicsSystem.hpp"
+#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/AstrodynamicsSystem.hpp"
 
-class EquationsOfMotion
-{
+#include "astro/propagation/force_models/Force.hpp"
+#include "astro/propagation/force_models/ForceModel.hpp"
+#include "astro/propagation/force_models/AtmosphericForce.hpp"
+#include "astro/propagation/force_models/NBodyForce.hpp"
+#include "astro/propagation/force_models/OblatenessForce.hpp"
+#include "astro/propagation/force_models/SolarRadiationPressureForce.hpp"
 
+class EquationsOfMotion {
 public:
-    //------------------------------------------------ Methods ------------------------------------------------//
-    // Constructors and destructor
-    EquationsOfMotion(const AstrodynamicsSystem& system = AstrodynamicsSystem());
-    ~EquationsOfMotion();
 
     // Enums
     enum DynamicsSet {
@@ -39,25 +38,21 @@ public:
         MEES_VOP
     };
 
+    EquationsOfMotion(const AstrodynamicsSystem& system, const std::vector<DynamicForce> _forces) : system(system) {
+        for (const auto& force : _forces) {
+            forces.build(force);
+        }
+    };
+    ~EquationsOfMotion() = default;
+
     // Derivative eval
-    OrbitalElements evaluate_state_derivative(const Time& time, const OrbitalElements& state, Spacecraft* sc);
+    OrbitalElements evaluate_state_derivative(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
 
     // Event check
-    bool check_crash(const OrbitalElements& state);
+    bool check_crash(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const;
 
     // Initialize Cnm and Snm for oblateness pert
     void get_oblateness_coefficients(int N, int M);
-
-    // Setters
-
-    // Getters
-    const AstrodynamicsSystem& get_system() { return system; }
-
-    //-------------------------------------------Gravitational Body--------------------------------------------//
-
-    // Function: Set the gravitational parameter used for integration. This does not effect the properties of the central body
-    // Inputs: gravitational parameter, mu (km^3/s^2)
-    void set_mu(double mu);
 
     // Function: Set radius at which the satellite will crash
     // Inputs: Crash Radius (km)
@@ -66,12 +61,6 @@ public:
     // Function: Set velocity at which the satellite will crash
     // Inputs: Crash Velocity (km)
     void set_crash_velocity(double crashVelocity);
-
-    // Function: Get the gravitational parameter used for integration. This is not the value of the graviational parameter for the central body
-    // Outputs: gravitational parameter, mu (km^3/s^2)
-    double get_mu();
-
-    //------------------------------------------Perturbation toggles-------------------------------------------//
 
     // Function: Switch oblateness perturbation on or off
     // Inputs: true -> on, false -> off
@@ -111,28 +100,17 @@ public:
         switch_dynamics(dyanmicsSetMap.at(dynamicsSet));
     };
 
-    const ElementSet& get_expected_set() {
+    const ElementSet& get_expected_set() const {
         return elementSetMap.at(dynamicsSet);
     }
 
 private:
-    //----------------------------------------------- Variables -----------------------------------------------//
 
-    Spacecraft* spacecraft;
-    const AstrodynamicsSystem system;
-    const GravitationalBody centralBody;
-
-    // Time
-    double t{};
+    AstrodynamicsSystem system;
 
     // VoP Variables
     bool checkflag = false;
     const double checkTol = 1e-10;
-
-    // Oblateness
-    std::vector<std::vector<double>> P = {};
-    std::vector<std::vector<double>> C = {};
-    std::vector<std::vector<double>> S = {};
 
     // Drag
     double doEstimateAltitude = false;
@@ -152,6 +130,8 @@ private:
 
     double crashRadius = 0.0;
     double crashVelocity = 0.0;
+
+    ForceModel forces;
 
     // Atmospheric Model
     std::string epoch = "2000-01-01 00:00:00";
@@ -175,21 +155,21 @@ private:
     };
 
     //------------------------------------------------ Methods ------------------------------------------------//
-    const OrbitalElements evaluate_two_body_dynamics(const OrbitalElements& state) const;
-    const OrbitalElements evaluate_cowells_method(const OrbitalElements& state);
-    const OrbitalElements evaluate_coes_vop(const OrbitalElements& state);
-    const OrbitalElements evaluate_j2mean_coes_vop(const OrbitalElements& state);
-    const OrbitalElements evaluate_mees_vop(const OrbitalElements& state);
+    const OrbitalElements evaluate_two_body_dynamics(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements evaluate_cowells_method(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements evaluate_coes_vop(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements evaluate_j2mean_coes_vop(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements evaluate_mees_vop(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
 
-    const OrbitalElements find_perts(const OrbitalElements& state);
+    const basis_array find_perts(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
 
-    const OrbitalElements find_accel_oblateness(const OrbitalElements& state);
-    const OrbitalElements find_accel_drag(const OrbitalElements& state);
-    const OrbitalElements find_accel_lift(const OrbitalElements& state);
-    const OrbitalElements find_accel_srp(const OrbitalElements& state);
-    const OrbitalElements find_accel_n_body(const OrbitalElements& state);
+    const OrbitalElements find_accel_oblateness(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements find_accel_drag(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements find_accel_lift(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements find_accel_srp(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
+    const OrbitalElements find_accel_n_body(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
 
     void assign_legendre(const double latitude);
-    const double find_atmospheric_density(const OrbitalElements& state);
+    const double find_atmospheric_density(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft);
 };
 

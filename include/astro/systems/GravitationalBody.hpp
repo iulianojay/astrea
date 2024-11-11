@@ -24,11 +24,6 @@ class GravitationalBody {
 
 public:
 
-    //----------------------------------------------- Variables -----------------------------------------------//
-    int nNBodies = 0;
-    std::string nBodyNames[30] = {};
-
-    //------------------------------------------------ Methods ------------------------------------------------//
     // Constructor/destructor
     GravitationalBody() {}
     ~GravitationalBody() {}

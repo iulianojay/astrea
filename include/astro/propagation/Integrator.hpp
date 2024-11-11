@@ -33,12 +33,12 @@ public:
 	//------------------------------------------------ Methods ------------------------------------------------//
 
     // Constructor and destructor
-    Integrator();
-    ~Integrator();
+    Integrator() = default;
+    ~Integrator() = default;
 
 	// Integrate
-    void propagate(Interval interval, Spacecraft& spacecraft, EquationsOfMotion& eom);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial);
+    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Save Results
 	void save() const;
@@ -178,21 +178,17 @@ private:
     bool useFixedStep = false;
     Time fixedTimeStep = seconds(1.0);
 
-    // Equations of Motion
-    Spacecraft* spacecraft;
-    EquationsOfMotion* equationsOfMotion;
-
 	// Time and state vectors
 	std::vector<State> stateHistory{};
 
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state);
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Stepping methods
     void setup_stepper();
-    void try_step(Time& time, Time& timeStep, OrbitalElements& state);
+    void try_step(Time& time, Time& timeStep, OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Error Methods
 	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,

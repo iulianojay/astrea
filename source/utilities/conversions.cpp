@@ -11,7 +11,7 @@
 //------------------------------------------- Frame Conversions --------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void conversions::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, double* rBCBF) {
+void conversions::bci_to_bcbf(const basis_array& rBCI, double julianDate, double rotRate, basis_array& rBCBF) {
 
     double x{}, y{}, z{}, cosGST{}, greenwichSiderealTime{}, sinGST{};
 
@@ -36,7 +36,7 @@ void conversions::bci_to_bcbf(double* rBCI, double julianDate, double rotRate, d
     rBCBF[2] = z;
 }
 
-void conversions::bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, double* rBCI) {
+void conversions::bcbf_to_bci(const basis_array& rBCBF, double julianDate, double rotRate, basis_array& rBCI) {
 
     double greenwichSiderealTime{}, cosGST{}, sinGST{};
 
@@ -56,7 +56,7 @@ void conversions::bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, 
     rBCI[2] = rBCBF[2];
 }
 
-void conversions::bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRadius, double* lla) {
+void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorialRadius, const double& polarRadius, basis_array& lla) {
 
     double xBCBF{}, yBCBF{}, zBCBF{}, f{}, e_2{}, dz{}, err{}, s{}, N{};
 
@@ -90,24 +90,20 @@ void conversions::bcbf_to_lla(double* rBCBF, double equitorialRadius, double pol
     lla[2] = std::max(sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz)) - N, 0.0);
 }
 
-void conversions::lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF) {
+void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRadius, const double& polarRadius, basis_array& rBCBF) {
 
-    double latitude{}, longitude{}, f{}, N{}, sinLat{}, cosLat{}, sinLong{}, cosLong{};
+    const double latitude = lla[0]*DEG_TO_RAD;
+    const double longitude = lla[1]*DEG_TO_RAD;
 
-    latitude = lla[0]*DEG_TO_RAD;
-    longitude = lla[1]*DEG_TO_RAD;
+    const double sinLat = sin(latitude);
+    const double cosLat = cos(latitude);
 
-    sinLat = sin(latitude);
-    cosLat = cos(latitude);
-    sinLong = sin(longitude);
-    cosLong = cos(longitude);
-
-    f = (equitorialRadius - polarRadius)/equitorialRadius;
-    N = equitorialRadius/sqrt(1-f*(2-f)*sinLat*sinLat);
+    const double f = (equitorialRadius - polarRadius)/equitorialRadius;
+    const double N = equitorialRadius/sqrt(1-f*(2-f)*sinLat*sinLat);
 
     // BCBF coordinates
-    rBCBF[0] = (N + lla[2])*cosLat*cosLong;
-    rBCBF[1] = (N + lla[2])*cosLat*sinLong;
+    rBCBF[0] = (N + lla[2])*cosLat*cos(longitude);
+    rBCBF[1] = (N + lla[2])*cosLat*sin(longitude);
     rBCBF[2] = ((1-f)*(1-f)*N + lla[2])*sinLat;
 }
 
@@ -115,7 +111,7 @@ void conversions::lla_to_bcbf(double* lla, double equitorialRadius, double polar
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-element_array conversions::convert(element_array elements, ElementSet fromSet, ElementSet toSet, const AstrodynamicsSystem* system) {
+element_array conversions::convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system) {
     element_set_pair setPair = std::make_pair(fromSet, toSet);
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
@@ -340,11 +336,11 @@ void conversions::_mees_to_coes(double p, double f, double g, double h, double k
 }
 
 
-element_array conversions::coes_to_cartesian(element_array coes, const AstrodynamicsSystem* system) {
+element_array conversions::coes_to_cartesian(const element_array& coes, const AstrodynamicsSystem& system) {
     element_array cartesian;
     double radius[3];
     double velocity[3];
-    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system->get_center().mu(), radius, velocity);
+    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center().mu(), radius, velocity);
     for (int ii = 0; ii < 3; ii++) {
         cartesian[ii] = radius[ii];
     }
@@ -354,7 +350,7 @@ element_array conversions::coes_to_cartesian(element_array coes, const Astrodyna
     return cartesian;
 };
 
-element_array conversions::cartesian_to_coes(element_array cartesian, const AstrodynamicsSystem* system) {
+element_array conversions::cartesian_to_coes(const element_array& cartesian, const AstrodynamicsSystem& system) {
     double coes[6];
     double radius[3];
     double velocity[3];
@@ -364,7 +360,7 @@ element_array conversions::cartesian_to_coes(element_array cartesian, const Astr
     for (int ii = 0; ii < 3; ii++) {
         velocity[ii] = cartesian[ii+3];
     }
-    bci_to_coes(radius, velocity, system->get_center().mu(), coes);
+    bci_to_coes(radius, velocity, system.get_center().mu(), coes);
 
     element_array coes_array;
     std::copy(coes, coes+6, coes_array.begin());
@@ -373,13 +369,13 @@ element_array conversions::cartesian_to_coes(element_array cartesian, const Astr
 };
 
 
-element_array conversions::coes_to_mees(element_array coes, const AstrodynamicsSystem* system) {
+element_array conversions::coes_to_mees(const element_array& coes, const AstrodynamicsSystem& system) {
     element_array mees;
     throw std::logic_error("This function has not been implemented yet");
     return mees;
 };
 
-element_array conversions::mees_to_coes(element_array mees, const AstrodynamicsSystem* system) {
+element_array conversions::mees_to_coes(const element_array& mees, const AstrodynamicsSystem& system) {
 
     double coes[6];
     _mees_to_coes(mees[0], mees[1], mees[2], mees[3], mees[4], mees[5], coes);

@@ -15,21 +15,21 @@ class AstrodynamicsSystem;
 namespace conversions {
 
     //------------------------------------------- Frame Conversions --------------------------------------------//
-    void bci_to_bcbf(double* rBCI, double julianDate, double rotRate, double* rBCBF);
-    void bcbf_to_bci(double* rBCBF, double julianDate, double rotRate, double* rBCI);
+    void bci_to_bcbf(const basis_array& rBCI, double julianDate, double rotRate, basis_array& rBCBF);
+    void bcbf_to_bci(const basis_array& rBCBF, double julianDate, double rotRate, basis_array& rBCI);
 
-    void bcbf_to_lla(double* rBCBF, double equitorialRadius, double polarRadius, double* lla);
-    void lla_to_bcbf(double* lla, double equitorialRadius, double polarRadius, double* rBCBF);
+    void bcbf_to_lla(const basis_array& rBCBF, const double& equitorialRadius, const double& polarRadius, basis_array& lla);
+    void lla_to_bcbf(const basis_array& lla, const double& equitorialRadius, const double& polarRadius, basis_array& rBCBF);
 
     //---------------------------------------- Element Set Conversions -----------------------------------------//
     void coes_to_bci(double h, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity);
     void bci_to_coes(double* radius, double* velocity, double mu, double* coes);
 
-    element_array coes_to_cartesian(element_array coes, const AstrodynamicsSystem* centralBody);
-    element_array cartesian_to_coes(element_array cartesian, const AstrodynamicsSystem* centralBody);
+    element_array coes_to_cartesian(const element_array& coes, const AstrodynamicsSystem& centralBody);
+    element_array cartesian_to_coes(const element_array& cartesian, const AstrodynamicsSystem& centralBody);
 
-    element_array coes_to_mees(element_array mees, const AstrodynamicsSystem* centralBody);
-    element_array mees_to_coes(element_array coes, const AstrodynamicsSystem* centralBody);
+    element_array coes_to_mees(const element_array& mees, const AstrodynamicsSystem& centralBody);
+    element_array mees_to_coes(const element_array& coes, const AstrodynamicsSystem& centralBody);
 
     void _mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes);
 
@@ -39,7 +39,7 @@ namespace conversions {
 
 
     // For the love of god, don't touch this
-    using set_conversion_function = std::function<element_array(element_array, const AstrodynamicsSystem*)>;
+    using set_conversion_function = std::function<element_array(const element_array&, const AstrodynamicsSystem&)>;
     using element_set_pair = std::pair<ElementSet, ElementSet>;
 
     const std::unordered_map<element_set_pair, set_conversion_function> elementSetConversions = {
@@ -49,5 +49,5 @@ namespace conversions {
         {element_set_pair(ElementSet::MEE, ElementSet::COE), mees_to_coes}
     };
 
-    element_array convert(element_array elements, ElementSet fromSet, ElementSet toSet, const AstrodynamicsSystem* system);
+    element_array convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system);
 }

@@ -34,6 +34,7 @@ private:
 
     const SolarObject centralBody;
     const std::unordered_set<SolarObject> allBodies;
+
     Date epoch;
     SolarObjectFactory bodyFactory;
 

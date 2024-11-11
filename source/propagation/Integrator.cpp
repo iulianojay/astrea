@@ -1,55 +1,40 @@
-#include "Integrator.hpp"	    // Integrator class
+#include "Integrator.hpp"
 
-// Constructor and destructor
-Integrator::Integrator() : equationsOfMotion() {}
-Integrator::~Integrator() {}
-
-//----------------------------------------------------------------------------------------------------------//
-//------------------------------------------ Equations of Motion -------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
-
-OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state) {
+OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Count fevals
     ++functionEvaluations;
 
     // Ask eom object to evaluate
-    return equationsOfMotion->evaluate_state_derivative(time, state, spacecraft);
+    return eom.evaluate_state_derivative(time, state, spacecraft);
 }
 
-//----------------------------------------------------------------------------------------------------------//
-//----------------------------------------------- Integrator -----------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
 
-void Integrator::propagate(Interval interval, Spacecraft& sc, EquationsOfMotion& eom) {
+void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // TODO: Fix this nonsense
-    auto state0 = sc.get_initial_state().elements;
+    auto state0 = spacecraft.get_initial_state().elements;
     const ElementSet originalSet = state0.get_set();
 
-    const ElementSet expectedSet = eom.get_expected_set();
-    state0.convert(expectedSet, &eom.get_system());
-
-    // Set for now TODO: Make this pass into the functions, no need to use pointers
-    spacecraft = &sc;
-    equationsOfMotion = &eom;
+    const ElementSet& expectedSet = eom.get_expected_set();
+    state0.convert(expectedSet, eom.get_system());
 
     // Integrate
     const auto start = interval.start.count<seconds>();
     const auto end = interval.end.count<seconds>();
-    integrate(start, end, state0);
+    integrate(start, end, state0, eom, spacecraft);
 
     // Get state history
     auto states = get_state_history();
 
     // Revconvert to original set
     for (auto& state: states) {
-        state.elements.convert(originalSet, &eom.get_system());
+        state.elements.convert(originalSet, eom.get_system());
     }
-    sc.set_states(states);
+    spacecraft.set_states(states);
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial) {
+void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Time
     Time time = timeInitial;
@@ -263,7 +248,7 @@ void Integrator::setup_stepper() {
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state) {
+void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
     auto statePlusKi = state;
