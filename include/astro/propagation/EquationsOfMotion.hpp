@@ -29,7 +29,6 @@
 class EquationsOfMotion {
 public:
 
-    // Enums
     enum DynamicsSet {
         TWO_BODY,
         COWELLS,
@@ -38,7 +37,7 @@ public:
         MEES_VOP
     };
 
-    EquationsOfMotion(const AstrodynamicsSystem& system, const std::vector<DynamicForce> _forces) : system(system) {
+    EquationsOfMotion(const AstrodynamicsSystem& system, const std::vector<DynamicForce> _forces = {}) : system(system) {
         for (const auto& force : _forces) {
             forces.build(force);
         }
@@ -103,6 +102,8 @@ public:
     const ElementSet& get_expected_set() const {
         return elementSetMap.at(dynamicsSet);
     }
+
+    const AstrodynamicsSystem& get_system() const { return system; }
 
 private:
 

@@ -30,14 +30,13 @@ struct EnumClassHash {
 class ForceModel {
 private:
 
-    using UnqForcePtr = std::unique_ptr<Force>;
-    using builder_function = std::function<UnqForcePtr()>;
+    using BuilderFunc = std::function<std::unique_ptr<Force>()>;
 
 public:
     ForceModel() = default;
     ~ForceModel() = default;
 
-    const UnqForcePtr& build(const DynamicForce& force) {
+    const std::unique_ptr<Force>& build(const DynamicForce& force) {
         if (forces.count(force) == 0) {
             forces[force] = builders.at(force)();
         }
@@ -55,18 +54,21 @@ public:
         return sum;
     }
 
+    std::unique_ptr<Force>& operator[](const DynamicForce& force) {
+        return forces[force];
+    }
+
+    const std::unique_ptr<Force>& at(const DynamicForce& force) const {
+        return forces.at(force);
+    }
+
 private:
 
-    std::unordered_map<DynamicForce, builder_function> builders = {
-        {DynamicForce::ATMOSPHERIC, std::bind(build_atmospheric)},
-        {DynamicForce::NBODY,       std::bind(build_nbody)},
-        {DynamicForce::OBLATENESS,  std::bind(build_oblateness)},
-        {DynamicForce::SRP,         std::bind(build_srp)}
+    const std::unordered_map<DynamicForce, BuilderFunc> builders = {
+        {DynamicForce::ATMOSPHERIC, build_atmospheric},
+        {DynamicForce::NBODY,       build_nbody},
+        {DynamicForce::OBLATENESS,  build_oblateness},
+        {DynamicForce::SRP,         build_srp}
     };
-    std::unordered_map<DynamicForce, UnqForcePtr> forces;
-
-    static UnqForcePtr build_atmospheric() { return UnqForcePtr(new AtmosphericForce()); }
-    static UnqForcePtr build_nbody()       { return UnqForcePtr(new NBodyForce()); }
-    static UnqForcePtr build_oblateness()  { return UnqForcePtr(new OblatenessForce()); }
-    static UnqForcePtr build_srp()         { return UnqForcePtr(new SolarRadiationPressureForce()); }
+    std::unordered_map<DynamicForce, std::unique_ptr<Force>> forces;
 };

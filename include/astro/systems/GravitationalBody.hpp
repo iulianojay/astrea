@@ -9,14 +9,15 @@
     #include <unordered_map>
 #endif
 
-#include "astronomical_constants.h"
-#include "solar_system.hpp"
-#include "Time.hpp"
-#include "Date.hpp"
-#include "State.hpp"
+#include "astro/constants/astronomical_constants.h"
+#include "astro/systems/solar_system.hpp"
+#include "astro/time/Time.hpp"
+#include "astro/time/Date.hpp"
+#include "astro/types/typedefs.hpp"
 
-// Forward declaration
-#include "SolarObjectBuilder.fwd.hpp"
+// Forward declarations
+#include "fwd/systems/SolarObjectBuilder.fwd.hpp"
+#include "fwd/State.fwd.hpp"
 
 class GravitationalBody {
 

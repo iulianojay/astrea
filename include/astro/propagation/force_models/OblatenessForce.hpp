@@ -11,7 +11,8 @@ public:
     OblatenessForce() = default;
     ~OblatenessForce() = default;
 
-    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
+    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
+    void get_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
 
 private:
 
@@ -22,6 +23,7 @@ private:
     size_t N = 2, M = 0;
     bool NxMOblateness = false;
 
-    void get_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
     void assign_legendre(const double& latitude) const;
 };
+
+std::unique_ptr<Force> build_oblateness();

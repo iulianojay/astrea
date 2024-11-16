@@ -164,7 +164,7 @@ void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t&
     C.resize(N + 1);
     S.resize(N + 1);
     P.resize(N + 1);
-    for (int n = 0; n < N+1; ++n) {
+    for (size_t n = 0; n < N+1; ++n) {
         C[n].resize(M + 1);
         S[n].resize(M + 1);
         P[n].resize(M + 1);
@@ -176,7 +176,7 @@ void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t&
 
     std::string cell;
 
-    int n = 0, m = 0;
+    size_t n = 0, m = 0;
     while (file) {
         // Read line from stream
         std::getline(file, line);
@@ -194,10 +194,10 @@ void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t&
 
         // Normalize coefficients if needed
         if (sys.get_center().planetId() == 4) {
-            for (int m = 0; m < N+1; ++m) {
+            for (size_t m = 0; m < N+1; ++m) {
                 double nPlusMFactorial = 1;
                 double nMinusMFactorial = 1;
-                for (int ii = n + m; ii > 0; --ii) {
+                for (size_t ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
                     if (ii <= n-m) {
                         nMinusMFactorial *= ii;
@@ -279,3 +279,5 @@ void OblatenessForce::assign_legendre(const double& latitude) const {
         }
     }
 }
+
+std::unique_ptr<Force> build_oblateness() { return std::make_unique<OblatenessForce>(); }

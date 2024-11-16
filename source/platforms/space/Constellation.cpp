@@ -190,13 +190,6 @@ void Constellation::generate_id_hash() {
 }
 
 
-void Constellation::propagate(const Interval& interval) {
-    EquationsOfMotion eom;
-    Integrator integrator;
-    propagate(eom, integrator, interval);
-}
-
-
 void Constellation::propagate(const AstrodynamicsSystem& sys, const Interval& interval) {
     EquationsOfMotion eom(sys);
     propagate(eom, interval);
@@ -207,13 +200,6 @@ void Constellation::propagate(EquationsOfMotion& eom, const Interval& interval) 
     Integrator integrator;
     propagate(eom, integrator, interval);
 }
-
-
-void Constellation::propagate(Integrator& integrator, const Interval& interval) {
-    EquationsOfMotion eom;
-    propagate(eom, integrator, interval);
-}
-
 
 
 void Constellation::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval) {

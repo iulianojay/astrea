@@ -100,7 +100,7 @@ int main() {
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
-        state.elements.convert(ElementSet::COE, &sys);
+        state.elements.convert(ElementSet::COE, sys);
         for (const auto& x: state.elements) {
             outfile << x << ",";
         }

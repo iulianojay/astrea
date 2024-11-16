@@ -451,7 +451,10 @@ void EquationsOfMotion::switch_oblateness(size_t _N, size_t _M) {
     M = _M;
 
     // Get Cnm and Snm
-    get_oblateness_coefficients(_N, _M);
+    auto& oblatnessRef = forces[DynamicForce::OBLATENESS];
+    auto* oblatnessPtr = oblatnessRef.get();
+    auto* derived = static_cast< OblatenessForce* >(oblatnessPtr);
+    derived->get_oblateness_coefficients(_N, _M, system);
 }
 void EquationsOfMotion::switch_drag(bool onOff) {
     drag = onOff;

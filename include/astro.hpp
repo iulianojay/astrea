@@ -24,6 +24,12 @@
 #include "astro/propagation/EquationsOfMotion.hpp"
 #include "astro/propagation/Integrator.hpp"
 #include "astro/propagation/LambertSolver.hpp"
+#include "astro/propagation/force_models/AtmosphericForce.hpp"
+#include "astro/propagation/force_models/Force.hpp"
+#include "astro/propagation/force_models/ForceModel.hpp"
+#include "astro/propagation/force_models/NBodyForce.hpp"
+#include "astro/propagation/force_models/OblatenessForce.hpp"
+#include "astro/propagation/force_models/SolarRadiationPressureForce.hpp"
 
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/systems/Barycenter.hpp"

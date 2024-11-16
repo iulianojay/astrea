@@ -91,3 +91,6 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
 
     return accelSRP;
 }
+
+
+std::unique_ptr<Force> build_srp() { return std::make_unique<SolarRadiationPressureForce>(); }

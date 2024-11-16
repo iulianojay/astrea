@@ -11,7 +11,9 @@ public:
     SolarRadiationPressureForce() = default;
     ~SolarRadiationPressureForce() = default;
 
-    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
+    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
 
 private:
 };
+
+std::unique_ptr<Force> build_srp();

@@ -11,11 +11,13 @@ public:
     AtmosphericForce() = default;
     ~AtmosphericForce() = default;
 
-    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
+    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
 
 private:
 
     const OrbitalElements find_accel_drag_and_lift(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
-    const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const AstrodynamicsSystem& sys) const;
+    const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const AstrodynamicsSystem& sys) const;
 
 };
+
+std::unique_ptr<Force> build_atmospheric();

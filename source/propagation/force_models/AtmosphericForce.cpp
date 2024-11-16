@@ -277,3 +277,5 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
 
     return atmosphericDensity;
 }
+
+std::unique_ptr<Force> build_atmospheric() { return std::make_unique<AtmosphericForce>(); }

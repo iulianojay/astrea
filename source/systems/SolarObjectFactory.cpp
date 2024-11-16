@@ -1,6 +1,8 @@
 
 #include "SolarObjectFactory.hpp"
 
+#include "State.hpp"
+
 
 const GravitationalBody& SolarObjectFactory::create(const std::string name) {
     return create(builder._nameMap.at(name));

@@ -6,10 +6,9 @@
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
 class Force {
-protected:
-    Force() = default;
-    virtual ~Force() = default;
-
 public:
+    Force() = default;
+    ~Force() = default;
+
     virtual basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };

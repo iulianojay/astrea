@@ -37,7 +37,7 @@ public:
     ~Integrator() = default;
 
 	// Integrate
-    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void propagate(const Interval& interval, EquationsOfMotion& eom, Spacecraft& spacecraft);
     void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Save Results
@@ -203,5 +203,5 @@ private:
 	void endTimer() { if (timerOn) { endClock = clock(); } }
 
     // Event Function
-    void check_event(const Time& time, const OrbitalElements& state);
+    void check_event(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
 };

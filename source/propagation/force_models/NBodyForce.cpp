@@ -64,3 +64,6 @@ basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalEle
 
     return accelNBody;
 }
+
+
+std::unique_ptr<Force> build_nbody() { return std::make_unique<NBodyForce>(); }

@@ -39,6 +39,10 @@ set(OBJS
     ${SRC}/propagation/EquationsOfMotion.cpp
     ${SRC}/propagation/Integrator.cpp
     ${SRC}/propagation/LambertSolver.cpp
+    ${SRC}/propagation/force_models/AtmosphericForce.cpp
+    ${SRC}/propagation/force_models/NBodyForce.cpp
+    ${SRC}/propagation/force_models/OblatenessForce.cpp
+    ${SRC}/propagation/force_models/SolarRadiationPressureForce.cpp
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
     ${SRC}/systems/GravitationalBody.cpp
@@ -68,6 +72,7 @@ include_directories(
     ${INC}/astro/platforms/ground
     ${INC}/astro/platforms/space
     ${INC}/astro/propagation
+    ${INC}/astro/propagation/force_models
     ${INC}/astro/systems
     ${INC}/astro/time
     ${INC}/astro/time/access

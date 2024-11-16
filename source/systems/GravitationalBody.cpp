@@ -1,5 +1,8 @@
 #include "GravitationalBody.hpp"
 
+#include "astro/State.hpp"
+#include "astro/element_sets/OrbitalElements.hpp"
+
 void GravitationalBody::propagate(Date epoch, double propTime) {
     Date endEpoch = epoch + Time(propTime);
     _propagate(epoch, endEpoch);
@@ -14,7 +17,7 @@ void GravitationalBody::propagate(Date epoch, Date endEpoch) {
 
 void GravitationalBody::_propagate(Date epoch, Date endEpoch) {
 
-    // Find duration 
+    // Find duration
     _nDays = round(endEpoch.julian_day() - epoch.julian_day());
 
     // Find State Values
@@ -80,7 +83,7 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
     Date refJulianDate = JulianDate(JulianDateClock::duration(referenceJulianDate));
 
 	// Variables for loop
-	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{}, 
+	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{},
         ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{},
         coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{},
         DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
@@ -112,7 +115,7 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
         // assumed to be good for this calc since all these bodies are
         // nearly circular. Solving Kepler"s equations takes a very long
         // time
-        ecct_2 = ecct*ecct; 
+        ecct_2 = ecct*ecct;
         ecct_3 = ecct_2*ecct;
         ecct_4 = ecct_3*ecct;
         ecct_5 = ecct_4*ecct;

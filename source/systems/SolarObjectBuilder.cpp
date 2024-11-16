@@ -1,5 +1,7 @@
 #include "SolarObjectBuilder.hpp"
 
+#include "State.hpp"
+
 
 GravitationalBody SolarObjectBuilder::build(SolarObject name) {
     // Build object
@@ -13,7 +15,7 @@ GravitationalBody SolarObjectBuilder::build(SolarObject name) {
 
 
 // Barycenter build(std::vector<SolarObject> names) {
-    
+
 // }
 
 
@@ -23,7 +25,7 @@ void SolarObjectBuilder::assign_properties(GravitationalBody& body, SolarObject 
     body._name = name;
     body._nameString = _mapName.at(name);
 
-    // Identify object 
+    // Identify object
     body._planetId = _idMap.at(name).first;
     body._moonId = _idMap.at(name).second;
 
