@@ -430,41 +430,21 @@ bool EquationsOfMotion::check_crash(const Time& time, const OrbitalElements& sta
     return false;
 }
 
-void EquationsOfMotion::set_crash_radius(double crashRadius) {
-    crashRadius = crashRadius;
+void EquationsOfMotion::set_crash_radius(double _crashRadius) {
+    crashRadius = _crashRadius;
 }
-void EquationsOfMotion::set_crash_velocity(double crashVelocity) {
-    crashVelocity = crashVelocity;
+void EquationsOfMotion::set_crash_velocity(double _crashVelocity) {
+    crashVelocity = _crashVelocity;
 }
 
 // Perturbation toggles
-void EquationsOfMotion::switch_oblateness(bool onOff) {
-    oblateness = onOff;
+void EquationsOfMotion::toggle_force(DynamicForce force, bool onOff) {
+    forces.toggle_force(force, onOff);
 }
-void EquationsOfMotion::switch_oblateness(size_t _N, size_t _M) {
-    // Switch perturbation toggle to true
-    oblateness = true;
-    NxMOblateness = true;
 
-    // Set N and M
-    N = _N;
-    M = _M;
-
-    // Get Cnm and Snm
+void EquationsOfMotion::set_oblateness(size_t _N, size_t _M) {
     auto& oblatnessRef = forces[DynamicForce::OBLATENESS];
     auto* oblatnessPtr = oblatnessRef.get();
     auto* derived = static_cast< OblatenessForce* >(oblatnessPtr);
     derived->get_oblateness_coefficients(_N, _M, system);
-}
-void EquationsOfMotion::switch_drag(bool onOff) {
-    drag = onOff;
-}
-void EquationsOfMotion::switch_lift(bool onOff) {
-    lift = onOff;
-}
-void EquationsOfMotion::switch_srp(bool onOff) {
-    srp = onOff;
-}
-void EquationsOfMotion::switch_nbody(bool onOff) {
-    nbody = onOff;
 }

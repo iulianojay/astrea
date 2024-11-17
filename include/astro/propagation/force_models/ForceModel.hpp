@@ -44,11 +44,13 @@ public:
     }
 
     basis_array compute_forces(const double &julianDate, const OrbitalElements &state, const Spacecraft &vehicle, const AstrodynamicsSystem &sys) {
-        basis_array sum;
-        for (auto& [_, force] : forces) {
-            const auto result = force->compute_force(julianDate, state, vehicle, sys);
-            for (size_t ii = 0; ii < 3; ++ii) {
-                sum[ii] += result[ii];
+        basis_array sum = {0.0, 0.0, 0.0};
+        for (auto& [forceName, force] : forces) {
+            if (toggles[forceName]) {
+                const auto result = force->compute_force(julianDate, state, vehicle, sys);
+                for (size_t ii = 0; ii < 3; ++ii) {
+                    sum[ii] += result[ii];
+                }
             }
         }
         return sum;
@@ -62,6 +64,12 @@ public:
         return forces.at(force);
     }
 
+    void toggle_force(DynamicForce force, bool onOff) {
+        if (toggles.count(force) > 0) {
+            toggles[force] = onOff;
+        }
+    }
+
 private:
 
     const std::unordered_map<DynamicForce, BuilderFunc> builders = {
@@ -70,5 +78,13 @@ private:
         {DynamicForce::OBLATENESS,  build_oblateness},
         {DynamicForce::SRP,         build_srp}
     };
+
     std::unordered_map<DynamicForce, std::unique_ptr<Force>> forces;
+
+    std::unordered_map<DynamicForce, bool> toggles {
+        {DynamicForce::ATMOSPHERIC, false},
+        {DynamicForce::NBODY,       false},
+        {DynamicForce::OBLATENESS,  false},
+        {DynamicForce::SRP,         false}
+    };
 };

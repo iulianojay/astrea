@@ -186,8 +186,8 @@ void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t&
             lineData.push_back(std::atof(cell.c_str()));
         }
 
-        n = (int)lineData[0];
-        m = (int)lineData[1];
+        n = (size_t)lineData[0];
+        m = (size_t)lineData[1];
 
         C[n][m] = lineData[2];
         S[n][m] = lineData[3];
@@ -200,17 +200,13 @@ void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t&
                 for (size_t ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
                     if (ii <= n-m) {
-                        nMinusMFactorial *= ii;
+                        nMinusMFactorial *= double(ii);
                     }
                 }
 
-                double Nnm;
-                if (m == 0) {
-                    Nnm = sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial);
-                }
-                else {
-                    Nnm = sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
-                }
+                double Nnm = (m == 0) ?
+                    sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial) :
+                        sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
 
                 C[n][m] /= Nnm;
                 S[n][m] /= Nnm;

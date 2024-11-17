@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 // #include <arrow/api.h>
 // #include <arrow/csv/api.h>
@@ -59,7 +60,7 @@ int main() {
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{seconds(0), days(1)};
+    Interval propInterval{seconds(0), years(1)};
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end = std::chrono::steady_clock::now();
@@ -94,6 +95,7 @@ int main() {
 
     // Send to file
     std::ofstream outfile;
+    std::filesystem::create_directories("./bin/results/cowells/");
     outfile.open("./bin/results/cowells/main.csv");
     outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
     // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";

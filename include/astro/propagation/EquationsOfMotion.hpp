@@ -50,9 +50,6 @@ public:
     // Event check
     bool check_crash(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const;
 
-    // Initialize Cnm and Snm for oblateness pert
-    void get_oblateness_coefficients(int N, int M);
-
     // Function: Set radius at which the satellite will crash
     // Inputs: Crash Radius (km)
     void set_crash_radius(double crashRadius);
@@ -61,30 +58,10 @@ public:
     // Inputs: Crash Velocity (km)
     void set_crash_velocity(double crashVelocity);
 
-    // Function: Switch oblateness perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_oblateness(bool onOff);
-
     // Function: Switch oblateness perturbation on with a specifc spheroidal accuracey
     // Inputs: N -> zonals
     //         M -> Tessorals
-    void switch_oblateness(size_t N, size_t M);
-
-    // Function: Switch drag perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_drag(bool onOff);
-
-    // Function: Switch lift perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_lift(bool onOff);
-
-    // Function: Switch solar radiation pressure perturbation on or off
-    // Inputs: true -> on, false -> off
-    void switch_srp(bool onOff);
-
-    // Function: Switch n-body effects on or off
-    // Inputs: true -> on, false -> off
-    void switch_nbody(bool onOff);
+    void set_oblateness(size_t N, size_t M);
 
     // Function: Switch dynamics set
     // Inputs: "Two Body" or "two body"             for simple 2-body mechanics. Perturbations will be ignored
@@ -105,6 +82,8 @@ public:
 
     const AstrodynamicsSystem& get_system() const { return system; }
 
+    void toggle_force(DynamicForce force, bool onOff);
+
 private:
 
     AstrodynamicsSystem system;
@@ -113,25 +92,14 @@ private:
     bool checkflag = false;
     const double checkTol = 1e-10;
 
-    // Drag
-    double doEstimateAltitude = false;
+    // Event
+    double crashRadius = 0.0;
+    double crashVelocity = 0.0;
 
     // ECEF and LLA conversions
     Time julianDate{};
 
     // Perturbation toggles
-    bool oblateness = false;
-    size_t N = 2, M = 0;
-
-    bool NxMOblateness = false;
-    bool drag = false;
-    bool lift = false;
-    bool srp = false;
-    bool nbody = false;
-
-    double crashRadius = 0.0;
-    double crashVelocity = 0.0;
-
     ForceModel forces;
 
     // Atmospheric Model
@@ -142,16 +110,16 @@ private:
 
     const std::unordered_map<std::string, DynamicsSet> dyanmicsSetMap {
         {"TWO_BODY", TWO_BODY},
-        {"COWELLS", COWELLS},
+        {"COWELLS",  COWELLS},
         {"COES_VOP", COES_VOP},
-        {"J2_MEAN", J2_MEAN},
+        {"J2_MEAN",  J2_MEAN},
         {"MEES_VOP", MEES_VOP}
     };
     const std::unordered_map<DynamicsSet, ElementSet> elementSetMap {
         {TWO_BODY, ElementSet::CARTESIAN},
-        {COWELLS, ElementSet::CARTESIAN},
+        {COWELLS,  ElementSet::CARTESIAN},
         {COES_VOP, ElementSet::COE},
-        {J2_MEAN, ElementSet::COE},
+        {J2_MEAN,  ElementSet::COE},
         {MEES_VOP, ElementSet::MEE}
     };
 
