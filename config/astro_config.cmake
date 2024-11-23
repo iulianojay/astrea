@@ -39,9 +39,22 @@ set(HDRS
     ${INC}/astro/platforms/space/Shell.hpp
     ${INC}/astro/platforms/space/Spacecraft.hpp
 
-    ${INC}/astro/propagation/EquationsOfMotion.hpp
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp
+
+    ${INC}/astro/propagation/force_models/AtmosphericForce.hpp
+    ${INC}/astro/propagation/force_models/Force.hpp
+    ${INC}/astro/propagation/force_models/ForceModel.hpp
+    ${INC}/astro/propagation/force_models/NBodyForce.hpp
+    ${INC}/astro/propagation/force_models/OblatenessForce.hpp
+    ${INC}/astro/propagation/force_models/SolarRadiationPressureForce.hpp
+
+    ${INC}/astro/propagation/equations_of_motion/CoesVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/CowellsMethod.hpp
+    ${INC}/astro/propagation/equations_of_motion/EquationsOfMotion.hpp
+    ${INC}/astro/propagation/equations_of_motion/J2MeanVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/MeesVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/TwoBody.hpp
 
     ${INC}/astro/systems/AstrodynamicsSystem.hpp
     ${INC}/astro/systems/Barycenter.hpp
@@ -83,9 +96,10 @@ set(HDRS
     ${INC}/fwd/platforms/space/Shell.fwd.hpp
     ${INC}/fwd/platforms/space/Spacecraft.fwd.hpp
 
-    ${INC}/fwd/propagation/EquationsOfMotion.fwd.hpp
     ${INC}/fwd/propagation/Integrator.fwd.hpp
     ${INC}/fwd/propagation/LambertSolver.fwd.hpp
+
+    ${INC}/fwd/propagation/equations_of_motion/EquationsOfMotion.fwd.hpp
 
     ${INC}/fwd/systems/AstrodynamicsSystem.fwd.hpp
     ${INC}/fwd/systems/Barycenter.fwd.hpp

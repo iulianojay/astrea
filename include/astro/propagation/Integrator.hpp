@@ -37,8 +37,8 @@ public:
     ~Integrator() = default;
 
 	// Integrate
-    void propagate(const Interval& interval, EquationsOfMotion& eom, Spacecraft& spacecraft);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Save Results
 	void save() const;
@@ -184,11 +184,11 @@ private:
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Stepping methods
     void setup_stepper();
-    void try_step(Time& time, Time& timeStep, OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Error Methods
 	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
@@ -203,5 +203,5 @@ private:
 	void endTimer() { if (timerOn) { endClock = clock(); } }
 
     // Event Function
-    void check_event(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 };

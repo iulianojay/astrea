@@ -21,15 +21,22 @@
 #include "astro/platforms/space/Plane.hpp"
 #include "astro/platforms/space/Spacecraft.hpp"
 
-#include "astro/propagation/EquationsOfMotion.hpp"
 #include "astro/propagation/Integrator.hpp"
 #include "astro/propagation/LambertSolver.hpp"
+
 #include "astro/propagation/force_models/AtmosphericForce.hpp"
 #include "astro/propagation/force_models/Force.hpp"
 #include "astro/propagation/force_models/ForceModel.hpp"
 #include "astro/propagation/force_models/NBodyForce.hpp"
 #include "astro/propagation/force_models/OblatenessForce.hpp"
 #include "astro/propagation/force_models/SolarRadiationPressureForce.hpp"
+
+#include "astro/propagation/equations_of_motion/CoesVop.hpp"
+#include "astro/propagation/equations_of_motion/CowellsMethod.hpp"
+#include "astro/propagation/equations_of_motion/EquationsOfMotion.hpp"
+#include "astro/propagation/equations_of_motion/J2MeanVop.hpp"
+#include "astro/propagation/equations_of_motion/MeesVop.hpp"
+#include "astro/propagation/equations_of_motion/TwoBody.hpp"
 
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/systems/Barycenter.hpp"

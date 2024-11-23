@@ -25,19 +25,6 @@ int main() {
     const double F = 1.0;
     Constellation walkerBall(10000.0, 45.0, T, P, F);
 
-    // Print to ensure proper build
-    // std::cout << "Walker: [" << T << ", " << P << ", " << F << "]" << std::endl;
-    // for (auto& shell : walkerBall) {
-    //     std::cout << "Shell: " << shell.get_id() << std::endl;
-    //     for (auto& plane : shell) {
-    //         std::cout << "\tPlane: " << plane.get_id() << std::endl;
-    //         for (auto& sat : plane) {
-    //             std::cout << "\t\tSat: " << sat.get_id() << std::endl;
-    //         }
-    //     }
-    // }
-    // std::cout << std::endl;
-
     // int count = 0; //TODO: Fix this. Comparitor doesn't work and iterates past end, for some reason
     // for (auto satIter = walkerBall.sat_begin(); satIter < walkerBall.sat_end(); ++satIter) {
     //     if (count == 100) {
@@ -53,8 +40,7 @@ int main() {
     forces.add<OblatenessForce>(2, 0, sys);
 
     // Build EoMs
-    EquationsOfMotion eom(sys, forces);
-    eom.switch_dynamics(EquationsOfMotion::J2_MEAN);
+    J2MeanVop eom(sys, forces);
 
     // Setup integrator
     Integrator integrator;

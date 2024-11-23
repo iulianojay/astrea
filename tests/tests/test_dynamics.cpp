@@ -14,7 +14,7 @@ protected:
     const int nElements = 1000;
     const double REL_TOL = 1e-6;
 
-    DynamicsTest() : 
+    DynamicsTest() :
         eom(sys),
         rng(rd()),
         semimajor_dist(6380.0, 40000.0),
@@ -59,7 +59,7 @@ protected:
         };
         return OrbitalElements(elements, ElementSet::COE);
     }
-    
+
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true) {
         if (first.get_set() != second.get_set()) {
             return false;

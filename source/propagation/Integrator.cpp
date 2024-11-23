@@ -1,16 +1,16 @@
 #include "Integrator.hpp"
 
-OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft) {
+OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Count fevals
     ++functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom.evaluate_state_derivative(time, state, spacecraft);
+    return eom(time, state, spacecraft);
 }
 
 
-void Integrator::propagate(const Interval& interval, EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // TODO: Fix this nonsense
     auto state0 = spacecraft.get_initial_state().elements;
@@ -34,7 +34,7 @@ void Integrator::propagate(const Interval& interval, EquationsOfMotion& eom, Spa
     spacecraft.set_states(states);
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Time
     Time time = timeInitial;
@@ -248,7 +248,7 @@ void Integrator::setup_stepper() {
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
     auto statePlusKi = state;
@@ -443,7 +443,7 @@ void Integrator::save(std::string filename) const {
 void Integrator::print_iteration(const Time& time, const Time& timeFinal, const OrbitalElements& state) {
 	// This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        int day = (int) floor(time*SEC_TO_DAY);
+        int day = days(time).count();
         if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
             if (iteration == 0) {
                 std::cout << "Run Conditions:"<< std::endl << std::endl;
@@ -507,7 +507,7 @@ void Integrator::print_performance() const {
 //--------------------------------------------- Event Function ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::check_event(const Time& time, const OrbitalElements& state, EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
     eventTrigger = eom.check_crash(time, state, spacecraft);

@@ -36,13 +36,19 @@ set(OBJS
     ${SRC}/platforms/space/Shell.cpp
     ${SRC}/platforms/space/Spacecraft.cpp
 
-    ${SRC}/propagation/EquationsOfMotion.cpp
     ${SRC}/propagation/Integrator.cpp
     ${SRC}/propagation/LambertSolver.cpp
+
     ${SRC}/propagation/force_models/AtmosphericForce.cpp
     ${SRC}/propagation/force_models/NBodyForce.cpp
     ${SRC}/propagation/force_models/OblatenessForce.cpp
     ${SRC}/propagation/force_models/SolarRadiationPressureForce.cpp
+
+    ${SRC}/propagation/equations_of_motion/CoesVop.cpp
+    ${SRC}/propagation/equations_of_motion/CowellsMethod.cpp
+    ${SRC}/propagation/equations_of_motion/J2MeanVop.cpp
+    ${SRC}/propagation/equations_of_motion/MeesVop.cpp
+    ${SRC}/propagation/equations_of_motion/TwoBody.cpp
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
     ${SRC}/systems/GravitationalBody.cpp
@@ -73,6 +79,7 @@ include_directories(
     ${INC}/astro/platforms/space
     ${INC}/astro/propagation
     ${INC}/astro/propagation/force_models
+    ${INC}/astro/propagation/equations_of_motion
     ${INC}/astro/systems
     ${INC}/astro/time
     ${INC}/astro/time/access
