@@ -47,10 +47,14 @@ int main() {
     //     ++count;
     // }
 
+    // Build Force Model
+    ForceModel forces;
+    forces.add<AtmosphericForce>();
+    forces.add<OblatenessForce>(2, 0, sys);
+
     // Build EoMs
-    EquationsOfMotion eom(sys);
+    EquationsOfMotion eom(sys, forces);
     eom.switch_dynamics(EquationsOfMotion::J2_MEAN);
-    // eom.switch_oblateness(10, 10);
 
     // Setup integrator
     Integrator integrator;
@@ -98,7 +102,6 @@ int main() {
     std::filesystem::create_directories("./bin/results/cowells/");
     outfile.open("./bin/results/cowells/main.csv");
     outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
-    // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
@@ -112,3 +115,111 @@ int main() {
 
     return 1;
 }
+
+// #include <unordered_map>
+// #include <functional>
+// #include <string>
+// #include <memory>
+// #include <array>
+// #include <iostream>
+
+// class Force {
+// public:
+//     Force() = default;
+//     virtual ~Force() = default;
+
+//     virtual std::array<double, 3> compute_force(...) const = 0;
+// };
+
+// class DerivedForceA : public Force {
+// public:
+//     DerivedForceA() = default;
+//     ~DerivedForceA() = default;
+
+//     std::array<double, 3> compute_force(...) const override {
+//         std::array<double, 3> someArray{0.0, 0.0, 0.0};
+//         return someArray;
+//     }
+// };
+
+// class DerivedForceB : public Force {
+// public:
+//     DerivedForceB() = default;
+//     ~DerivedForceB() = default;
+
+//     std::array<double, 3> compute_force(...) const override {
+//         std::array<double, 3> someArray{1.0, 1.0, 1.0};
+//         return someArray;
+//     }
+
+//     void set_coefficients(size_t n) {
+//         std::cout << "Size Before: " << _data.size() << std::endl;
+//         _data.resize(n);
+//         std::cout << "Size After: " << _data.size() << std::endl;
+//     }
+
+// private:
+
+//     mutable std::vector<std::vector<double>> _data{};
+// };
+
+// std::unique_ptr<Force> build_a() { return std::make_unique<DerivedForceA>(); }
+// std::unique_ptr<Force> build_b() { return std::make_unique<DerivedForceB>(); }
+
+// class ForceFactory {
+// private:
+
+//     using BuilderFunc = std::function<std::unique_ptr<Force>()>;
+
+//     const std::unordered_map<std::string, BuilderFunc> builders = {
+//         {"DerivedForceA",  build_a},
+//         {"DerivedForceB",  build_b}
+//     };
+
+//     std::unordered_map<std::string, std::unique_ptr<Force>> forces;
+
+// public:
+//     // Build call for pre-defined, derived Forces
+//     const std::unique_ptr<Force>& build(const std::string& force) {
+//         if (forces.count(force) == 0) {
+//             forces[force] = builders.at(force)();
+//         }
+//         return forces[force];
+//     }
+
+//     void set_b_coefficients(size_t n) {
+//         auto& baseRef = forces.at("DerivedForceB");
+//         auto* basePtr = baseRef.get();
+//         auto* derived = dynamic_cast< DerivedForceB* >(basePtr);
+//         derived->set_coefficients(n);
+//     }
+
+//     std::unique_ptr<Force>& operator[](const std::string& force) {
+//         return forces[force];
+//     }
+
+//     const std::unique_ptr<Force>& at(const std::string& force) const {
+//         return forces.at(force);
+//     }
+// };
+
+
+// int main() {
+
+//     ForceFactory allForces;
+//     allForces.build("DerivedForceA");
+//     allForces.build("DerivedForceB");
+
+//     for (int ii = 0; ii < 5; ++ii) {
+//         allForces.set_b_coefficients(ii);
+//     }
+
+//     for (int ii = 5; ii < 10; ++ii) {
+//         auto& baseRef = allForces.at("DerivedForceB");
+//         auto* basePtr = baseRef.get();
+//         auto* derived = dynamic_cast< DerivedForceB* >(basePtr);
+//         derived->set_coefficients(ii);
+//     }
+
+//     return 0;
+// }

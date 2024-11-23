@@ -4,6 +4,7 @@
 #include "astro/types/typedefs.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/propagation/force_models/Force.hpp"
+#include "astro/propagation/force_models/ForceModel.hpp"
 
 class AtmosphericForce : public Force {
 public:
@@ -19,5 +20,3 @@ private:
     const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const AstrodynamicsSystem& sys) const;
 
 };
-
-std::unique_ptr<Force> build_atmospheric();

@@ -5,6 +5,84 @@
 #include <iostream>
 #include <string>
 
+OblatenessForce::OblatenessForce(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys) {
+    // Open coefficients file
+    std::string filename;
+    std::string path;
+    path = "./data/gravity_models/";
+
+    if (sys.get_center().planetId() == 2) { // Venus
+        filename = path + "shgj120p.txt"; // Normalized?
+    }
+    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 0) { // Earth
+        filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+    }
+    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 1) { // Moon
+        filename = path + "jgl165p1.txt"; // Normalized?
+    }
+    else if (sys.get_center().planetId() == 3) { // Mars
+        filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
+    }
+    std::ifstream file(filename);
+
+    // Size arrays (size Legendre array now so it only happens once)
+    C.resize(N + 1);
+    S.resize(N + 1);
+    P.resize(N + 1);
+    for (size_t n = 0; n < N+1; ++n) {
+        C[n].resize(M + 1);
+        S[n].resize(M + 1);
+        P[n].resize(M + 1);
+    }
+
+    // Read coefficients from file
+    std::string line;
+    std::vector<std::vector<double>> coefficients;
+
+    std::string cell;
+
+    size_t n = 0, m = 0;
+    while (file) {
+        // Read line from stream
+        std::getline(file, line);
+        std::stringstream lineStream(line);
+        std::vector<double> lineData;
+        while (std::getline(lineStream, cell, ',')) {
+            lineData.push_back(std::atof(cell.c_str()));
+        }
+
+        n = (size_t)lineData[0];
+        m = (size_t)lineData[1];
+
+        C[n][m] = lineData[2];
+        S[n][m] = lineData[3];
+
+        // Normalize coefficients if needed
+        if (sys.get_center().planetId() == 4) {
+            for (size_t m = 0; m < N+1; ++m) {
+                double nPlusMFactorial = 1;
+                double nMinusMFactorial = 1;
+                for (size_t ii = n + m; ii > 0; --ii) {
+                    nPlusMFactorial *= ii;
+                    if (ii <= n-m) {
+                        nMinusMFactorial *= double(ii);
+                    }
+                }
+
+                double Nnm = (m == 0) ?
+                    sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial) :
+                        sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
+
+                C[n][m] /= Nnm;
+                S[n][m] /= Nnm;
+            }
+        }
+
+        if (n >= N && m >= M) { break; }
+    }
+    file.close();
+}
+
 basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
 
     // Extract
@@ -140,84 +218,6 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     return accelOblateness;
 }
 
-void OblatenessForce::get_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys) {
-    // Open coefficients file
-    std::string filename;
-    std::string path;
-    path = "./data/gravity_models/";
-
-    if (sys.get_center().planetId() == 2) { // Venus
-        filename = path + "shgj120p.txt"; // Normalized?
-    }
-    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 0) { // Earth
-        filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
-    }
-    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 1) { // Moon
-        filename = path + "jgl165p1.txt"; // Normalized?
-    }
-    else if (sys.get_center().planetId() == 3) { // Mars
-        filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
-    }
-    std::ifstream file(filename);
-
-    // Size arrays (size Legendre array now so it only happens once)
-    C.resize(N + 1);
-    S.resize(N + 1);
-    P.resize(N + 1);
-    for (size_t n = 0; n < N+1; ++n) {
-        C[n].resize(M + 1);
-        S[n].resize(M + 1);
-        P[n].resize(M + 1);
-    }
-
-    // Read coefficients from file
-    std::string line;
-    std::vector<std::vector<double>> coefficients;
-
-    std::string cell;
-
-    size_t n = 0, m = 0;
-    while (file) {
-        // Read line from stream
-        std::getline(file, line);
-        std::stringstream lineStream(line);
-        std::vector<double> lineData;
-        while (std::getline(lineStream, cell, ',')) {
-            lineData.push_back(std::atof(cell.c_str()));
-        }
-
-        n = (size_t)lineData[0];
-        m = (size_t)lineData[1];
-
-        C[n][m] = lineData[2];
-        S[n][m] = lineData[3];
-
-        // Normalize coefficients if needed
-        if (sys.get_center().planetId() == 4) {
-            for (size_t m = 0; m < N+1; ++m) {
-                double nPlusMFactorial = 1;
-                double nMinusMFactorial = 1;
-                for (size_t ii = n + m; ii > 0; --ii) {
-                    nPlusMFactorial *= ii;
-                    if (ii <= n-m) {
-                        nMinusMFactorial *= double(ii);
-                    }
-                }
-
-                double Nnm = (m == 0) ?
-                    sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial) :
-                        sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
-
-                C[n][m] /= Nnm;
-                S[n][m] /= Nnm;
-            }
-        }
-
-        if (n >= N && m >= M) { break; }
-    }
-    file.close();
-}
-
 void OblatenessForce::assign_legendre(const double& latitude) const {
     // Populate Legendre polynomial array
     /*
@@ -275,5 +275,3 @@ void OblatenessForce::assign_legendre(const double& latitude) const {
         }
     }
 }
-
-std::unique_ptr<Force> build_oblateness() { return std::make_unique<OblatenessForce>(); }

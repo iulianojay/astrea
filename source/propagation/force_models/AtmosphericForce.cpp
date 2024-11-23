@@ -66,7 +66,6 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     const double& x = state[0];
     const double& y = state[1];
     const double& z = state[2];
-    const double R = sqrt(x*x + y*y + z*z);
 
     // Central body properties
     const double& equitorialR = sys.get_center().eqR();
@@ -277,5 +276,3 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
 
     return atmosphericDensity;
 }
-
-std::unique_ptr<Force> build_atmospheric() { return std::make_unique<AtmosphericForce>(); }

@@ -37,11 +37,7 @@ public:
         MEES_VOP
     };
 
-    EquationsOfMotion(const AstrodynamicsSystem& system, const std::vector<DynamicForce> _forces = {}) : system(system) {
-        for (const auto& force : _forces) {
-            forces.build(force);
-        }
-    };
+    EquationsOfMotion(const AstrodynamicsSystem& system, const ForceModel& forces) : system(system), forces(forces) {};
     ~EquationsOfMotion() = default;
 
     // Derivative eval
@@ -82,11 +78,12 @@ public:
 
     const AstrodynamicsSystem& get_system() const { return system; }
 
-    void toggle_force(DynamicForce force, bool onOff);
+    void toggle_force(std::string force, bool onOff);
 
 private:
 
-    AstrodynamicsSystem system;
+    const AstrodynamicsSystem& system;
+    const ForceModel& forces;
 
     // VoP Variables
     bool checkflag = false;
@@ -98,9 +95,6 @@ private:
 
     // ECEF and LLA conversions
     Time julianDate{};
-
-    // Perturbation toggles
-    ForceModel forces;
 
     // Atmospheric Model
     std::string epoch = "2000-01-01 00:00:00";

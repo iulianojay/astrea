@@ -39,7 +39,6 @@ public:
     const Plane& get_plane(const size_t& planeId) const;
     const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
 
-    void propagate(const AstrodynamicsSystem& sys, const Interval& interval = Integrator::defaultInterval);
     void propagate(EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 

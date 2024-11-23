@@ -401,9 +401,6 @@ const OrbitalElements EquationsOfMotion::evaluate_mees_vop(const Time& time, con
     return dsdt;
 }
 
-//----------------------------------------------------------------------------------------------------------//
-//--------------------------------------------- Force Models -----------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
 
 const basis_array EquationsOfMotion::find_perts(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) {
 
@@ -416,6 +413,7 @@ const basis_array EquationsOfMotion::find_perts(const Time& time, const OrbitalE
 
     return accelPerts;
 }
+
 
 bool EquationsOfMotion::check_crash(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
@@ -435,16 +433,4 @@ void EquationsOfMotion::set_crash_radius(double _crashRadius) {
 }
 void EquationsOfMotion::set_crash_velocity(double _crashVelocity) {
     crashVelocity = _crashVelocity;
-}
-
-// Perturbation toggles
-void EquationsOfMotion::toggle_force(DynamicForce force, bool onOff) {
-    forces.toggle_force(force, onOff);
-}
-
-void EquationsOfMotion::set_oblateness(size_t _N, size_t _M) {
-    auto& oblatnessRef = forces[DynamicForce::OBLATENESS];
-    auto* oblatnessPtr = oblatnessRef.get();
-    auto* derived = static_cast< OblatenessForce* >(oblatnessPtr);
-    derived->get_oblateness_coefficients(_N, _M, system);
 }

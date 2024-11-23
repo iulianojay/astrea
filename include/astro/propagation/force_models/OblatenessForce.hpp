@@ -5,14 +5,15 @@
 #include "astro/platforms/space/Spacecraft.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/propagation/force_models/Force.hpp"
+#include "astro/propagation/force_models/ForceModel.hpp"
 
 class OblatenessForce : public Force {
 public:
-    OblatenessForce() = default;
+    OblatenessForce(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
     ~OblatenessForce() = default;
 
     basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
-    void get_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
+    void set_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
 
 private:
 
@@ -25,5 +26,3 @@ private:
 
     void assign_legendre(const double& latitude) const;
 };
-
-std::unique_ptr<Force> build_oblateness();

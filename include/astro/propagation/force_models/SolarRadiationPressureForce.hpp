@@ -5,6 +5,7 @@
 #include "astro/platforms/space/Spacecraft.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/propagation/force_models/Force.hpp"
+#include "astro/propagation/force_models/ForceModel.hpp"
 
 class SolarRadiationPressureForce : public Force {
 public:
@@ -15,5 +16,3 @@ public:
 
 private:
 };
-
-std::unique_ptr<Force> build_srp();

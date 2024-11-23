@@ -296,8 +296,8 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, Eq
 
     // Find max error from step
     double maxError = 0.0;
-    OrbitalElements stateNew;
-    OrbitalElements stateError;
+    OrbitalElements stateNew(state.get_set());
+    OrbitalElements stateError(state.get_set());
     for (size_t ii = 0; ii < state.size(); ++ii) {
 
         stateNew[ii] = state[ii];
@@ -446,59 +446,59 @@ void Integrator::print_iteration(const Time& time, const Time& timeFinal, const 
         int day = (int) floor(time*SEC_TO_DAY);
         if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
             if (iteration == 0) {
-                std::cout << "Run Conditions: \n\n";
-                std::cout << "Initial Time = " << 0.0 << "\n";
-                std::cout << "Final Time =  " << timeFinal/86400.0 << " days \n";
+                std::cout << "Run Conditions:"<< std::endl << std::endl;
+                std::cout << "Initial Time = " << 0.0 << std::endl;
+                std::cout << "Final Time =  " << timeFinal << std::endl;
                 for (size_t ii = 0; ii < state.size(); ++ii) {
                     if (ii == 0) {
                         std::cout << "Initial State = [";
                     }
                     std::cout << " " << state[ii] << " ";
                 }
-                std::cout << "]" << "\n";
-                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km \n";
-                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s \n\n";
-                std::cout << "Integration Tolerance: " << relativeTolerance << "\n\n\n";
-                std::cout << "Run:"<< "\n\n";
+                std::cout << "]" << std::endl;
+                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km" << std::endl;
+                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s" << std::endl << std::endl;
+                std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl << std::endl;
+                std::cout << "Run:" << std::endl << std::endl;
             }
             else {
                 checkDay = day;
 
-                std::cout << "Iteration: " << iteration+1 << "\n";
-                std::cout << "time = " << time/86400.0 << " days \n";
+                std::cout << "Iteration: " << iteration+1 << std::endl;
+                std::cout << "time = " << time/86400.0 << " days" << std::endl;
                 for (size_t ii = 0; ii < state.size(); ++ii) {
                     if (ii == 0) {
                         std::cout << "state = [";
                     }
                     std::cout << " " << state[ii] << " ";
                 }
-                std::cout << "] \n";
-                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km \n";
-                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s \n\n";
+                std::cout << "]" << std::endl;
+                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km" << std::endl;
+                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s" << std::endl << std::endl;
             }
         }
         if (time == timeFinal) {
-            std::cout << "Run Completed. \n\n";
+            std::cout << "Run Completed." << std::endl << std::endl;
         }
     }
 }
 
 void Integrator::print_performance() const {
 	if (printOn) {
-		std::cout << "Number of Steps:                " << iteration << " iter \n";
-		std::cout << "Number of Function Evaluations: " << functionEvaluations << " fval \n";
+		std::cout << "Number of Steps:                " << iteration << " iter" << std::endl;
+		std::cout << "Number of Function Evaluations: " << functionEvaluations << " fval" << std::endl;
 
 		double runtime{};
 		if (timerOn) {
 			runtime = ( (double) endClock - (double) startClock)/( (double) CLOCKS_PER_SEC);
-			std::cout << "Runtime:                        " << runtime << " s \n";
+			std::cout << "Runtime:                        " << runtime << " s" << std::endl;
 		}
 
-		std::cout <<   "\nAverage Function Evaluations per Step:   " << (double)functionEvaluations/(double)iteration << " fval/iter \n";
+		std::cout <<   "\nAverage Function Evaluations per Step:   " << (double)functionEvaluations/(double)iteration << " fval/iter" << std::endl;
 
 		if (timerOn) {
-			std::cout << "Average Runtime per Step:                " << runtime/(double)iteration << " s/iter \n";
-			std::cout << "Average Runtime per Function Evaluation: " << runtime/(double)functionEvaluations << " s/fval \n\n";
+			std::cout << "Average Runtime per Step:                " << runtime/(double)iteration << " s/iter" << std::endl;
+			std::cout << "Average Runtime per Function Evaluation: " << runtime/(double)functionEvaluations << " s/fval" << std::endl << std::endl;
 		}
 	}
 }

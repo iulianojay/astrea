@@ -19,8 +19,7 @@ class OrbitalElements : public element_array {
 #endif
 
 public:
-
-    OrbitalElements() : set(ElementSet::CARTESIAN) {
+    OrbitalElements(const ElementSet& set = ElementSet::CARTESIAN) : set(set) {
         for (int ii = 0; ii < 6; ++ii) {
             _M_elems[ii] = 0.0;
         }
@@ -58,6 +57,16 @@ public:
     }
 
 #ifndef SWIGJAVA
+    // Copy assignment
+    OrbitalElements& operator=(const OrbitalElements& other) {
+        set = other.set;
+        element_array elements = (*this);
+        for (size_t ii = 0; ii < 6; ii++) {
+            elements[ii] = other[ii];
+        }
+        return *this;
+    }
+
     // Addition
     OrbitalElements operator+(const OrbitalElements& other) const {
         // Check both element sets are the same
@@ -73,16 +82,16 @@ public:
         return OrbitalElements(sumElements, set);
     }
 
-    OrbitalElements& operator+=(const OrbitalElements& rhs) {
+    OrbitalElements& operator+=(const OrbitalElements& other) {
         // Check both element sets are the same
-        if (rhs.set != set) {
+        if (other.set != set) {
             throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
         }
 
         // Sum
         element_array& sumElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
-            sumElements[ii] += rhs[ii];
+            sumElements[ii] += other[ii];
         }
 
         return (*this);
@@ -103,16 +112,16 @@ public:
         return OrbitalElements(diffElements, set);
     }
 
-    OrbitalElements& operator-=(const OrbitalElements& rhs) {
+    OrbitalElements& operator-=(const OrbitalElements& other) {
         // Check both element sets are the same
-        if (rhs.set != set) {
+        if (other.set != set) {
             throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
         }
 
         // Sum
         element_array& sumElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
-            sumElements[ii] -= rhs[ii];
+            sumElements[ii] -= other[ii];
         }
 
         return (*this);
