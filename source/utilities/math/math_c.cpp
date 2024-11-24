@@ -38,7 +38,7 @@ double math_c::normalize(double* vec, int startIndex, int endIndex, int p) {
     // p norm
     double norm = 0.0;
     for (int ii = startIndex; ii < endIndex+1; ++ii) {
-        norm += std::pow(abs(vec[ii]),p);
+        norm += std::pow(std::abs(vec[ii]), p);
     }
     return std::pow(norm, 1/p);
 }

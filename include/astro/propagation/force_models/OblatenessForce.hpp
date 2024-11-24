@@ -21,9 +21,13 @@ private:
     mutable std::vector<std::vector<double>> C{};
     mutable std::vector<std::vector<double>> S{};
 
+    std::vector<std::vector<double>> alpha;
+    std::vector<std::vector<double>> beta;
+    std::vector<std::vector<double>> gamma;
+    std::vector<std::vector<double>> Pbase;
+
     const size_t N;
     const size_t M;
-
     const GravitationalBody& center;
 
     void assign_legendre(const double& latitude) const;

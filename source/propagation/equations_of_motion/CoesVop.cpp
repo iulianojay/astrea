@@ -70,7 +70,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     };
 
     // Function for finding accel caused by perturbations
-    Time julianDate = spacecraft.get_epoch().julian_day() + time;
+    auto julianDate = spacecraft.get_epoch().julian_day() + time.count<days>();
     basis_array accelPerts = forces.compute_forces(julianDate, cartesianState, spacecraft, system);
 
     // Calculate R, N, and T

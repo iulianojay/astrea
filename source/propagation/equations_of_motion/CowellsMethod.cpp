@@ -21,7 +21,7 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const double muOverRadiusCubed = mu/(R*R*R);
 
     // Run find functions for force model
-    Time julianDate = spacecraft.get_epoch().julian_day() + time;
+    auto julianDate = spacecraft.get_epoch().julian_day() + time.count<days>();
     basis_array accelPerts = forces.compute_forces(julianDate, state, spacecraft, system);
 
     // Derivative
