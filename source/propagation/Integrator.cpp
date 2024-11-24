@@ -20,14 +20,12 @@ void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eo
     state0.convert(expectedSet, eom.get_system());
 
     // Integrate
-    std::cout << "Propagation Interval: [" << interval.start << ", " << interval.end << "]\n";
     integrate(interval.start, interval.end, state0, eom, spacecraft);
 
     // Get state history
     auto states = get_state_history();
 
     // Revconvert to original set
-    std::cout << "Output: [" << states[0].time << ", " << states[states.size()-1].time << "]\n";
     for (auto& state: states) {
         state.elements.convert(originalSet, eom.get_system());
     }

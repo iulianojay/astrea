@@ -72,6 +72,7 @@ set(HDRS
     ${INC}/astro/time/access/RiseSetArray.hpp
 
     ${INC}/astro/types/typedefs.hpp
+    ${INC}/astro/types/tuple_hash.hpp
 
     ${INC}/astro/utilities/conversions.hpp
     ${INC}/astro/utilities/riseset_utils.hpp

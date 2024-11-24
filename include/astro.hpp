@@ -52,6 +52,7 @@
 #include "astro/time/access/RiseSetArray.hpp"
 
 #include "astro/types/typedefs.hpp"
+#include "astro/types/tuple_hash.hpp"
 
 #include "astro/utilities/conversions.hpp"
 #include "astro/utilities/riseset_utils.hpp"
