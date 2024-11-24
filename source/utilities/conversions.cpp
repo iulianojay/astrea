@@ -28,8 +28,8 @@ void conversions::bci_to_bcbf(const basis_array& rBCI, double julianDate, double
                         0      0  1]; */
 
     // Calculate ECEF radius vector
-    cosGST = cos(greenwichSiderealTime);
-    sinGST = sin(greenwichSiderealTime);
+    cosGST = math_c::cos(greenwichSiderealTime);
+    sinGST = math_c::sin(greenwichSiderealTime);
 
     rBCBF[0] = cosGST*x + sinGST*y;
     rBCBF[1] = -sinGST*x + cosGST*y;
@@ -49,7 +49,7 @@ void conversions::bcbf_to_bci(const basis_array& rBCBF, double julianDate, doubl
     //                    0         0     1];
 
     // Calculate ECEF radius vector
-    cosGST = cos(-greenwichSiderealTime); sinGST = sin(-greenwichSiderealTime);
+    cosGST = cos(-greenwichSiderealTime); sinGST = math_c::sin(-greenwichSiderealTime);
 
     rBCI[0] =  cosGST*rBCBF[0] + sinGST*rBCBF[1];
     rBCI[1] = -sinGST*rBCBF[0] + cosGST*rBCBF[1];
@@ -95,15 +95,15 @@ void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRa
     const double latitude = lla[0]*DEG_TO_RAD;
     const double longitude = lla[1]*DEG_TO_RAD;
 
-    const double sinLat = sin(latitude);
-    const double cosLat = cos(latitude);
+    const double sinLat = math_c::sin(latitude);
+    const double cosLat = math_c::cos(latitude);
 
     const double f = (equitorialRadius - polarRadius)/equitorialRadius;
     const double N = equitorialRadius/sqrt(1-f*(2-f)*sinLat*sinLat);
 
     // BCBF coordinates
-    rBCBF[0] = (N + lla[2])*cosLat*cos(longitude);
-    rBCBF[1] = (N + lla[2])*cosLat*sin(longitude);
+    rBCBF[0] = (N + lla[2])*cosLat*math_c::cos(longitude);
+    rBCBF[1] = (N + lla[2])*cosLat*math_c::sin(longitude);
     rBCBF[2] = ((1-f)*(1-f)*N + lla[2])*sinLat;
 }
 
@@ -124,14 +124,14 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
     raan *= DEG_TO_RAD;
     inc *= DEG_TO_RAD;
 
-    double cos_theta = cos(theta);
-    double sin_theta = sin(theta);
-    double cos_w = cos(w);
-    double sin_w = sin(w);
-    double cos_raan = cos(raan);
-    double sin_raan = sin(raan);
-    double cos_inc = cos(inc);
-    double sin_inc = sin(inc);
+    double cos_theta = math_c::cos(theta);
+    double sin_theta = math_c::sin(theta);
+    double cos_w = math_c::cos(w);
+    double sin_w = math_c::sin(w);
+    double cos_raan = math_c::cos(raan);
+    double sin_raan = math_c::sin(raan);
+    double cos_inc = math_c::cos(inc);
+    double sin_inc = math_c::sin(inc);
 
     double h = sqrt(mu*a*(1 - ecc*ecc));
     double A = h*h/mu/(1 + ecc*cos_theta);

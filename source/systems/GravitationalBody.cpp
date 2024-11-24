@@ -1,7 +1,8 @@
 #include "GravitationalBody.hpp"
 
-#include "astro/State.hpp"
-#include "astro/element_sets/OrbitalElements.hpp"
+#include "State.hpp"
+#include "OrbitalElements.hpp"
+#include "math_c.hpp"
 
 void GravitationalBody::propagate(Date epoch, double propTime) {
     Date endEpoch = epoch + Time(propTime);
@@ -120,18 +121,18 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
         ecct_4 = ecct_3*ecct;
         ecct_5 = ecct_4*ecct;
 
-        thetat = (Met + (2.0*ecct - 0.25*ecct_3 + 5.0/96.0*ecct_5)*sin(Met) + (1.25*ecct_2 - 11.0/24.0*ecct_4)*sin(2.0*Met) +
-            (13.0/12.0*ecct_3 - 43.0/64.0*ecct_5)*sin(3.0*Met) + 103.0/96.0*ecct_4*sin(4*Met) + 1097.0/960.0*ecct_5*sin(5*Met))*rad2deg;
+        thetat = (Met + (2.0*ecct - 0.25*ecct_3 + 5.0/96.0*ecct_5)*math_c::sin(Met) + (1.25*ecct_2 - 11.0/24.0*ecct_4)*math_c::sin(2.0*Met) +
+            (13.0/12.0*ecct_3 - 43.0/64.0*ecct_5)*math_c::sin(3.0*Met) + 103.0/96.0*ecct_4*math_c::sin(4*Met) + 1097.0/960.0*ecct_5*math_c::sin(5*Met))*rad2deg;
 
         // Store mean and true anomaly
         _meanAnomaly = Met;
         _trueAnomaly = thetat;
 
         // Calculate once for speed
-        ct = cos(thetat*deg2rad); st = sin(thetat*deg2rad);
-        cw = cos(wt*deg2rad);     sw = sin(wt*deg2rad);
-        cr = cos(raant*deg2rad);  sr = sin(raant*deg2rad);
-        ci = cos(inct*deg2rad);   si = sin(inct*deg2rad);
+        ct = cos(thetat*deg2rad); st = math_c::sin(thetat*deg2rad);
+        cw = cos(wt*deg2rad);     sw = math_c::sin(wt*deg2rad);
+        cr = cos(raant*deg2rad);  sr = math_c::sin(raant*deg2rad);
+        ci = cos(inct*deg2rad);   si = math_c::sin(inct*deg2rad);
 
         coes2perir = ht*ht/parentMu/(1 + ecct*ct);
         coes2periv = parentMu/ht;

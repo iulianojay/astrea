@@ -1,5 +1,7 @@
 #include "CoesVop.hpp"
 
+#include "math_c.hpp"
+
 OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
     if (state.get_set() != ElementSet::COE) {
@@ -80,10 +82,10 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double u = w + theta;
 
     // Precalculate
-    const double cosTA = cos(theta);
-    const double sinTA = sin(theta);
-    const double cosU = cos(u);
-    const double sinU = sin(u);
+    const double cosTA = math_c::cos(theta);
+    const double sinTA = math_c::sin(theta);
+    const double cosU = math_c::cos(u);
+    const double sinU = math_c::sin(u);
     const double h_2 = h*h;
     const double hOverR_2 = h/(R*R);
 
@@ -92,8 +94,8 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double _deccdt   = h/mu*sinTA*radialPert + 1/(mu*h)*((h_2 + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
     const double _dincdt   = R/h*cosU*normalPert;
     const double dthetadt = hOverR_2 + (1/(ecc*h))*((h_2/mu)*cosTA*radialPert - (h_2/mu + R)*sinTA*tangentialPert);
-    const double draandt  = R*sinU/(h*sin(inc))*normalPert;
-    const double dwdt     = -dthetadt + (hOverR_2 - draandt*cos(inc));
+    const double draandt  = R*sinU/(h*math_c::sin(inc))*normalPert;
+    const double dwdt     = -dthetadt + (hOverR_2 - draandt*math_c::cos(inc));
 
     // Check to prevent crashes due to circular and zero inclination orbits.
     // Will cause innaccuracies

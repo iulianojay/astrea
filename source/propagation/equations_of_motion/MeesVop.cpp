@@ -1,5 +1,7 @@
 #include "MeesVop.hpp"
 
+#include "math_c.hpp"
+
 OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
     if (state.get_set() != ElementSet::MEE) {
@@ -70,11 +72,11 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
     const double tangentialPert = accelPerts[0]*That[0] + accelPerts[1]*That[1] + accelPerts[2]*That[2];
 
     // Variables precalculated for speed
-    const double cosL = cos(L);
-    const double sinL = sin(L);
+    const double cosL = math_c::cos(L);
+    const double sinL = math_c::sin(L);
 
     const double tempA = sqrt(p/mu);
-    const double tempB = 1.0 + f*cos(L) + g*sin(L);
+    const double tempB = 1.0 + f*math_c::cos(L) + g*math_c::sin(L);
     const double s_2 = 1.0 + h*h + k*k;
 
     const double tempC = (h*sinL - k*cosL)/tempB;

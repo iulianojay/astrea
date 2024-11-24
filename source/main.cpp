@@ -40,7 +40,7 @@ int main() {
     forces.add<OblatenessForce>(sys, 2, 0);
 
     // Build EoMs
-    J2MeanVop eom(sys);
+    CoesVop eom(sys, forces);
 
     // Setup integrator
     Integrator integrator;

@@ -1,5 +1,6 @@
-
 #include "LambertSolver.hpp"
+
+#include "math_c.hpp"
 
 // Constructor and destructor
 LambertSolver::LambertSolver(){}
@@ -164,7 +165,7 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
         }
     }
 
-    A = sin(dtheta)*sqrt(R0*Rf/(1 - cos(dtheta)));
+    A = math_c::sin(dtheta)*sqrt(R0*Rf/(1 - cos(dtheta)));
 
     // Find z
     zn = 0.0;
@@ -220,8 +221,8 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
 void LambertSolver::evaluate_stumpff() {
     if (z > 0.0) {
         sqz = sqrt(z);
-        Cz = (1.0 - cos(sqz))/z;
-        Sz = (sqz - sin(sqz))/(sqz*sqz*sqz);
+        Cz = (1.0 - math_c::cos(sqz))/z;
+        Sz = (sqz - math_c::sin(sqz))/(sqz*sqz*sqz);
     }
     else if (z < 0.0) {
         sqnz = sqrt(-z);

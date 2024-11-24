@@ -119,16 +119,19 @@ set(HDRS
 )
 
 # Compiler flags
-set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
-set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
+set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX")
+set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -mfpmath=387 -ffast-math -fpermissive -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
+set(C_FLAGS "-std=c20")
+set(CXX_FLAGS "-std=c++20")
+
 if (${OS} STREQUAL linux)
-    set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive -Wall")
-    set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive -Wall")
+    set(C_FLAGS "${C_FLAGS} -Wall")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wall")
 else()
-    set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive -Wl,--kill-at")
-    set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive -Wl,--kill-at")
+    set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at")
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")

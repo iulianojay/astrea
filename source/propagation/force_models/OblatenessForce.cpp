@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#include "math_c.hpp"
+
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) : N(_N), M(_M), center(sys.get_center()) {
     // Open coefficients file
     std::string filename;
@@ -125,8 +127,8 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
         const double longitude = atan2(yBCBF,xBCBF);
         const double latitude = asin(z/R);
 
-        const double cosLat = cos(latitude);
-        const double sinLat = sin(latitude);
+        const double cosLat = math_c::cos(latitude);
+        const double sinLat = math_c::sin(latitude);
         const double tanLat = sinLat/cosLat;
 
         // Populate Legendre polynomial array
@@ -148,8 +150,8 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
                 const double mm = (double) m;
 
                 // Precalculate common terms
-                const double cosLongM = cos(mm*longitude);
-                const double sinLongM = sin(mm*longitude);
+                const double cosLongM = math_c::cos(mm*longitude);
+                const double sinLongM = math_c::sin(mm*longitude);
 
                 // dVdr
                 dVdrInnerSum += (C[n][m]*cosLongM + S[n][m]*sinLongM)*P[n][m];
@@ -238,8 +240,8 @@ void OblatenessForce::assign_legendre(const double& latitude) const {
 
         Developers Note: Fuck this function
     */
-    const double cosLat = cos(latitude);
-    const double sinLat = sin(latitude);
+    const double cosLat = math_c::cos(latitude);
+    const double sinLat = math_c::sin(latitude);
     for (size_t n = 0; n < N+1; ++n) {
         const double nn = (double)n;
 
