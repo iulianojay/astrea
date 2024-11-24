@@ -37,7 +37,7 @@ int main() {
     // Build Force Model
     ForceModel forces;
     forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 2, 0);
+    forces.add<OblatenessForce>(sys, 20, 20);
 
     // Build EoMs
     CoesVop eom(sys, forces);

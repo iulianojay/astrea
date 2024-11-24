@@ -25,7 +25,7 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
     const double& z = cartesianState[2];
-    const double R = sqrt(x*x + y*y + z*z);
+    const double R = std::sqrt(x*x + y*y + z*z);
 
     const double& vx = cartesianState[3];
     const double& vy = cartesianState[4];
@@ -54,7 +54,7 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
         Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2],
         Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0]
     };
-    const double normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
+    const double normTv = std::sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
 
     const double That[3] = {
         Tv[0]/normTv,
@@ -75,7 +75,7 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
     const double cosL = math_c::cos(L);
     const double sinL = math_c::sin(L);
 
-    const double tempA = sqrt(p/mu);
+    const double tempA = std::sqrt(p/mu);
     const double tempB = 1.0 + f*math_c::cos(L) + g*math_c::sin(L);
     const double s_2 = 1.0 + h*h + k*k;
 
@@ -89,7 +89,7 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
         tempA*(-radialPert*cosL + ((tempB + 1)*sinL + g)/tempB*tangentialPert + f*tempC*normalPert),    // dgdt
         tempD*cosL*normalPert,                                                                          // dhdt
         tempD*sinL*normalPert,                                                                          // dkdt
-        sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert                                           // dLdt
+        std::sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert                                           // dLdt
     }, ElementSet::MEE);
 
     return dsdt;

@@ -24,7 +24,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     }
 
     // h and mu
-    const double h = sqrt(mu*a*(1 - ecc));
+    const double h = std::sqrt(mu*a*(1 - ecc));
 
     // conversions COEs to r and v
     const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);
@@ -32,7 +32,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
     const double& z = cartesianState[2];
-    const double R = sqrt(x*x + y*y + z*z);
+    const double R = std::sqrt(x*x + y*y + z*z);
 
     const double& vx = cartesianState[3];
     const double& vy = cartesianState[4];
@@ -61,7 +61,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
         Nhat[2]*Rhat[0] - Nhat[0]*Rhat[2],
         Nhat[0]*Rhat[1] - Nhat[1]*Rhat[0]
     };
-    const double normTv = sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
+    const double normTv = std::sqrt(Tv[0]*Tv[0] + Tv[1]*Tv[1] + Tv[2]*Tv[2]);
 
     const double That[3] = {
         Tv[0]/normTv,

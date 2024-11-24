@@ -14,7 +14,7 @@ protected:
     const int nElements = 1000;
     const double REL_TOL = 1e-6;
 
-    ConversionTest() : 
+    ConversionTest() :
         rng(rd()),
         semimajor_dist(6380.0, 40000.0),
         ecc_dist(0.0, 0.99),
@@ -47,7 +47,7 @@ protected:
         };
         return OrbitalElements(elements, ElementSet::COE);
     }
-    
+
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second) {
         if (first.get_set() != second.get_set()) {
             return false;
@@ -101,7 +101,7 @@ TEST_F(ConversionTest, COE_TO_CARTESIAN) {
     elements.convert(ElementSet::CARTESIAN, &sys);
 
     const double mu = sys.get_center().mu();
-    const double V = sqrt(mu/elements[0]); 
+    const double V = std::sqrt(mu/elements[0]);
     OrbitalElements expectedElements({semimajor, 0.0, 0.0, 0.0, V, 0.0}, ElementSet::CARTESIAN);
 
     assert_nearly_equal(elements, expectedElements);
@@ -111,7 +111,7 @@ TEST_F(ConversionTest, CARTESIAN_TO_COE) {
 
     const double semimajor = 10000.0;
     const double mu = sys.get_center().mu();
-    const double V = sqrt(mu/semimajor); 
+    const double V = std::sqrt(mu/semimajor);
 
     OrbitalElements elements({semimajor, 0.0, 0.0, 0.0, V, 0.0}, ElementSet::CARTESIAN);
     elements.convert(ElementSet::COE, &sys);

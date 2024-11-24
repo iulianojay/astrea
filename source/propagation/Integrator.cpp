@@ -368,12 +368,12 @@ void Integrator::check_error(const double& maxError, const OrbitalElements& stat
 				timeStep *= minErrorStepFactor;
 			}
 			else {
-				timeStep *= pow(epsilon/maxError, 0.2);
+				timeStep *= std::pow(epsilon/maxError, 0.2);
 			}
 		}
 		else {
 			// Predicted relative step size
-			const double relativeTimeStep = abs(timeStep/timeStepPrevious)*pow(epsilon/maxError, 0.08)*pow(maxError/maxErrorPrevious, 0.06);
+			const double relativeTimeStep = abs(timeStep/timeStepPrevious)*std::pow(epsilon/maxError, 0.08)*std::pow(maxError/maxErrorPrevious, 0.06);
 
 			// Store step and error after computing relative time step
 			timeStepPrevious = timeStep;
@@ -388,7 +388,7 @@ void Integrator::check_error(const double& maxError, const OrbitalElements& stat
 	}
 	else { // Error is too large . truncate stepsize
 		// Predicted relative step size
-		const double relativeTimeStep = pow(epsilon/maxError, 0.2);
+		const double relativeTimeStep = std::pow(epsilon/maxError, 0.2);
 
 		// Keep step from getting too small too fast
 		if (relativeTimeStep < minRelativeStepSize) { // step size is too small

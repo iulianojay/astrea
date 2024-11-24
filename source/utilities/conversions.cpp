@@ -72,8 +72,8 @@ void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorial
 
     int ii = 0;
     while (err > 1.0e-9 && ii < 1000) {
-        s = (zBCBF + dz)/sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz));
-        N = equitorialRadius/sqrt(1 - e_2*s*s);
+        s = (zBCBF + dz)/std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz));
+        N = equitorialRadius/std::sqrt(1 - e_2*s*s);
         err = fabs(dz - N*e_2*s);
         dz = N*e_2*s;
         ++ii;
@@ -85,9 +85,9 @@ void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorial
 
     // Lat, long, alt (respectively)
     lla[0] = atan2(yBCBF, xBCBF)*RAD_TO_DEG;
-    lla[1] = atan2(yBCBF + dz, sqrt(xBCBF*xBCBF + yBCBF*yBCBF))*RAD_TO_DEG; // geodetic
-    // lla[2] = asin(zbcbf/sqrt(xBCBF*xBCBF + yBCBF*yBCBF + zBCBF*zBCBF))*rad2deg; // geocentric
-    lla[2] = std::max(sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz)) - N, 0.0);
+    lla[1] = atan2(yBCBF + dz, std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF))*RAD_TO_DEG; // geodetic
+    // lla[2] = asin(zbcbf/std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF + zBCBF*zBCBF))*rad2deg; // geocentric
+    lla[2] = std::max(std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz)) - N, 0.0);
 }
 
 void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRadius, const double& polarRadius, basis_array& rBCBF) {
@@ -99,7 +99,7 @@ void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRa
     const double cosLat = math_c::cos(latitude);
 
     const double f = (equitorialRadius - polarRadius)/equitorialRadius;
-    const double N = equitorialRadius/sqrt(1-f*(2-f)*sinLat*sinLat);
+    const double N = equitorialRadius/std::sqrt(1-f*(2-f)*sinLat*sinLat);
 
     // BCBF coordinates
     rBCBF[0] = (N + lla[2])*cosLat*math_c::cos(longitude);
@@ -133,7 +133,7 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
     double cos_inc = math_c::cos(inc);
     double sin_inc = math_c::sin(inc);
 
-    double h = sqrt(mu*a*(1 - ecc*ecc));
+    double h = std::sqrt(mu*a*(1 - ecc*ecc));
     double A = h*h/mu/(1 + ecc*cos_theta);
     double B = mu/h;
 
@@ -183,13 +183,13 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     double hy = radius[2]*velocity[0] - radius[0]*velocity[2];
     double hz = radius[0]*velocity[1] - radius[1]*velocity[0];
 
-    double normH = sqrt(hx*hx + hy*hy + hz*hz);
+    double normH = std::sqrt(hx*hx + hy*hy + hz*hz);
 
     // Setup
     double Nx = -hy;  // N = cross([0 0 1], h)
     double Ny = hx;
 
-    double normN = sqrt(Nx*Nx + Ny*Ny);
+    double normN = std::sqrt(Nx*Nx + Ny*Ny);
 
     double R = math_c::normalize(radius);
     double V = math_c::normalize(velocity);
@@ -299,7 +299,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     }
 
     // Period(s)
-    // T = 2.0*PI*sqrt(a*a*a/mu);
+    // T = 2.0*PI*std::sqrt(a*a*a/mu);
 
     // Mean Motion(rad/s)
     // n = 2.0*PI/T;
@@ -317,9 +317,9 @@ void conversions::_mees_to_coes(double p, double f, double g, double h, double k
 
     double ecc{}, a{}, inc{}, raan{}, atopo{}, w{}, theta{};
 
-    ecc = sqrt(f*f + g*g);
+    ecc = std::sqrt(f*f + g*g);
     a = p/(1 - ecc*ecc);            // km
-    inc = 2*atan(sqrt(h*h + k*k));  // rad
+    inc = 2*atan(std::sqrt(h*h + k*k));  // rad
 
     raan = math_c::atan3(k, h);     // rad
     atopo = math_c::atan3(g, f);

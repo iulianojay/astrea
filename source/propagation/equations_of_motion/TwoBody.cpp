@@ -16,7 +16,7 @@ OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& sta
     const double& vz = state[5];
 
     // Calculate required values for force model
-    const double R = sqrt(x*x + y*y + z*z);
+    const double R = std::sqrt(x*x + y*y + z*z);
 
     // mu/R^3
     const double muOverRadiusCubed = mu/(R*R*R);

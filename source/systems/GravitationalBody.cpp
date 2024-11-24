@@ -108,7 +108,7 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
         Lt = _trueLatitude + _trueLatitudeRate*t;
 
         // Calculations
-        ht = pow(parentMu*at*(1 - ecct*ecct), 0.5);
+        ht = std::pow(parentMu*at*(1 - ecct*ecct), 0.5);
         wt = wt - raant;
         Met = (Lt - wt)*deg2rad;
 

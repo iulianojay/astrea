@@ -19,7 +19,7 @@ void LambertSolver::solve_rv(double* state0, double dt, double mu, double* state
     R0 = normalize(r0);
     V0 = normalize(v0);
 
-    sqMU = sqrt(mu);
+    sqMU = std::sqrt(mu);
     r0v0_sqMU = (r0[0]*v0[0] + r0[1]*v0[1] + r0[2]*v0[2])/sqMU;
 
     // Find X
@@ -149,7 +149,7 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
     R0 = normalize(r0);
     Rf = normalize(rf);
 
-    sqMU = sqrt(mu);
+    sqMU = std::sqrt(mu);
 
     // Change in TA
     dtheta = acos((r0[0]*rf[0] + r0[1]*rf[1] + r0[2]*rf[2])/(R0*Rf));
@@ -165,7 +165,7 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
         }
     }
 
-    A = math_c::sin(dtheta)*sqrt(R0*Rf/(1 - cos(dtheta)));
+    A = math_c::sin(dtheta)*std::sqrt(R0*Rf/(1 - cos(dtheta)));
 
     // Find z
     zn = 0.0;
@@ -177,15 +177,15 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
 
         // Evaluate Stumpff Functions
         evaluate_stumpff();
-        y = R0 + Rf + A*(z*Sz - 1.0)/sqrt(Cz);
+        y = R0 + Rf + A*(z*Sz - 1.0)/std::sqrt(Cz);
 
         // Newton Functions
-        F = pow(y/Cz, 1.5)*Sz + A*sqrt(y) - sqMU*dt;
+        F = std::pow(y/Cz, 1.5)*Sz + A*std::sqrt(y) - sqMU*dt;
         if (z == 0.0){
-            dF = sqrt(2.0)/40.0*pow(y, 1.5) + A/8*(sqrt(y) + A*sqrt(1.0/(2.0*y)));
+            dF = std::sqrt(2.0)/40.0*std::pow(y, 1.5) + A/8*(std::sqrt(y) + A*std::sqrt(1.0/(2.0*y)));
         }
         else{
-            dF = pow(y/Cz, 1.5)*(1.0/(2.0*z)*(Cz - 3.0*Sz/(2.0*Cz)) + 3.0*Sz*Sz/(4.0*Cz)) + A/8.0*(3.0*Sz/Cz*sqrt(y) + A*sqrt(Cz/y));
+            dF = std::pow(y/Cz, 1.5)*(1.0/(2.0*z)*(Cz - 3.0*Sz/(2.0*Cz)) + 3.0*Sz*Sz/(4.0*Cz)) + A/8.0*(3.0*Sz/Cz*std::sqrt(y) + A*std::sqrt(Cz/y));
         }
 
         // Step
@@ -197,11 +197,11 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
 
     // Recalculate for final values
     evaluate_stumpff();
-    y = R0 + Rf + A*(z*Sz - 1.0)/sqrt(Cz);
+    y = R0 + Rf + A*(z*Sz - 1.0)/std::sqrt(Cz);
 
     // f and g functions
     f = 1.0 - y/R0;
-    g = A*sqrt(y)/sqMU;
+    g = A*std::sqrt(y)/sqMU;
 
     gdot = 1.0 - y/Rf;
 
@@ -220,12 +220,12 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
 // Helpful methods
 void LambertSolver::evaluate_stumpff() {
     if (z > 0.0) {
-        sqz = sqrt(z);
+        sqz = std::sqrt(z);
         Cz = (1.0 - math_c::cos(sqz))/z;
         Sz = (sqz - math_c::sin(sqz))/(sqz*sqz*sqz);
     }
     else if (z < 0.0) {
-        sqnz = sqrt(-z);
+        sqnz = std::sqrt(-z);
         Cz = (1.0 - cosh(sqnz))/z;
         Sz = (sinh(sqnz) - sqnz)/(sqnz*sqnz*sqnz);
     }
@@ -236,5 +236,5 @@ void LambertSolver::evaluate_stumpff() {
 }
 
 double LambertSolver::normalize(double* vec) {
-    return sqrt(vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
+    return std::sqrt(vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
 }

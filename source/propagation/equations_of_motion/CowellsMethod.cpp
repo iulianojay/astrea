@@ -15,7 +15,7 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const double& vz = state[5];
 
     // Calculate required values for force model
-    const double R = sqrt(x*x + y*y + z*z); // radius magnitude
+    const double R = std::sqrt(x*x + y*y + z*z); // radius magnitude
 
     // mu/R^3
     const double muOverRadiusCubed = mu/(R*R*R);

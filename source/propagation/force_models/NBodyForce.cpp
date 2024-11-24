@@ -10,7 +10,7 @@ basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalEle
     const double& x = state[0];
     const double& y = state[1];
     const double& z = state[2];
-    const double R = sqrt(x*x + y*y + z*z);
+    const double R = std::sqrt(x*x + y*y + z*z);
 
     const double& vx = state[3];
     const double& vy = state[4];

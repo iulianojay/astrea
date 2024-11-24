@@ -93,7 +93,7 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
         const double h2 = h[jj]*h[jj];
 
         // Spline
-        sy[ii] = (zDiv6*pow(dxp1, 3) + zp1Div6*pow(dx, 3) + (y[jj+1] - zp1Div6*h2)*dx + (y[jj] - h2*zDiv6)*dxp1)/h[jj];
+        sy[ii] = (zDiv6*std::pow(dxp1, 3) + zp1Div6*std::pow(dx, 3) + (y[jj+1] - zp1Div6*h2)*dx + (y[jj] - h2*zDiv6)*dxp1)/h[jj];
     }
 
     return sy;

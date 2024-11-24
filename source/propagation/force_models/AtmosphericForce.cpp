@@ -11,7 +11,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double& x = state[0];
     const double& y = state[1];
     const double& z = state[2];
-    const double& R = sqrt(x*x + y*y + z*z);
+    const double& R = std::sqrt(x*x + y*y + z*z);
 
     const double& vx = state[3];
     const double& vy = state[4];
@@ -114,7 +114,7 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
                 scaleHeight = 1.0;
             }
 
-            atmosphericDensity = referenceDensity*exp((referenceAltitude - altitude)/scaleHeight)*1.0e9; // kg/m^3 -> kg/km^3
+            atmosphericDensity = referenceDensity*std::exp((referenceAltitude - altitude)/scaleHeight)*1.0e9; // kg/m^3 -> kg/km^3
             break;
         }
         case 4: {// Mars
@@ -126,10 +126,12 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
                 atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0;
             }
             else if (altitude < 200.0) {
-                atmosphericDensity = exp(-2.55314e-10*pow(altitude, 5) + 2.31927e-7*pow(altitude, 4) - 8.33206e-5*pow(altitude, 3) + 0.0151947*pow(altitude, 2) - 1.52799*altitude + 48.69659);
+                atmosphericDensity = std::exp(-2.55314e-10*std::pow(altitude, 5) + 2.31927e-7*std::pow(altitude, 4) - 8.33206e-5*std::pow(altitude, 3) +
+                                         0.0151947*std::pow(altitude, 2) - 1.52799*altitude + 48.69659);
             }
             else if (altitude < 300.0) {
-                atmosphericDensity = exp(2.65472e-11*pow(altitude, 5) - 2.45558e-8*pow(altitude, 4) + 6.31410e-6*pow(altitude, 3) + 4.73359e-4*pow(altitude, 2) - 0.443712*altitude + 23.79408);
+                atmosphericDensity = std::exp(2.65472e-11*std::pow(altitude, 5) - 2.45558e-8*std::pow(altitude, 4) + 6.31410e-6*std::pow(altitude, 3) +
+                                         4.73359e-4*std::pow(altitude, 2) - 0.443712*altitude + 23.79408);
             }
             else {
                 atmosphericDensity = 0.0;

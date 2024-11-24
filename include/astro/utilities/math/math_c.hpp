@@ -16,9 +16,9 @@ namespace math_c
     T normalize(const std::array<T, Size>& array, const double p, const size_t idx0, const size_t idxf) {
         T norm = 0.0;
         for (size_t ii = idx0; ii < idxf; ++ii) {
-            norm += pow(array[ii], p);
+            norm += std::pow(array[ii], p);
         }
-        return (T)pow(norm, 1.0/p);
+        return (T)std::pow(norm, 1.0/p);
     }
 
     template<typename T, size_t Size>
