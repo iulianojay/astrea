@@ -20,14 +20,14 @@ void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eo
     state0.convert(expectedSet, eom.get_system());
 
     // Integrate
-    const auto start = interval.start.count<seconds>();
-    const auto end = interval.end.count<seconds>();
-    integrate(start, end, state0, eom, spacecraft);
+    std::cout << "Propagation Interval: [" << interval.start << ", " << interval.end << "]\n";
+    integrate(interval.start, interval.end, state0, eom, spacecraft);
 
     // Get state history
     auto states = get_state_history();
 
     // Revconvert to original set
+    std::cout << "Output: [" << states[0].time << ", " << states[states.size()-1].time << "]\n";
     for (auto& state: states) {
         state.elements.convert(originalSet, eom.get_system());
     }
@@ -77,7 +77,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         // Check for event
         check_event(time, state, eom, spacecraft);
         if (eventTrigger) {
-            print_iteration(time, timeFinal, stateInitial);
+            print_iteration(time, state, timeFinal, stateInitial);
 
             if (printOn){
                 std::cout << crashMessage;
@@ -131,7 +131,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         }
 
         // Print time and state
-        print_iteration(time, timeFinal, stateInitial);
+        print_iteration(time, state, timeFinal, stateInitial);
 
         // Step iteration
         ++iteration;
@@ -296,11 +296,10 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 
     // Find max error from step
     double maxError = 0.0;
-    OrbitalElements stateNew(state.get_set());
+    OrbitalElements stateNew = state;
     OrbitalElements stateError(state.get_set());
     for (size_t ii = 0; ii < state.size(); ++ii) {
 
-        stateNew[ii] = state[ii];
         stateError[ii] = 0.0;
         for (size_t jj = 0; jj < nStages; ++jj) {
             stateNew[ii] += kMatrix[jj][ii]*b[jj];
@@ -323,7 +322,6 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         }
     }
 
-
     // Check error of step
     if (!useFixedStep) {
         check_error(maxError, stateNew, stateError, time, timeStep, state);
@@ -332,14 +330,15 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         // Step time
         time += timeStep;
         for (size_t ii = 0; ii < state.size(); ++ii) {
-            // Step state
-            state[ii] = stateNew[ii] + stateError[ii]; // Adding the state error improves the next guess
 
             // Store final function eval for Dormand-Prince methods
             if (stepMethod == DOP45 || stepMethod == DOP78) {
                 YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
             }
         }
+
+        // Adding the state error improves the next guess
+        state = stateNew + stateError;
     }
 }
 
@@ -436,47 +435,28 @@ void Integrator::save(std::string filename) const {
     if (printOn) { std::cout << "Saving Complete. \n\n"; }
 }
 
-//----------------------------------------------------------------------------------------------------------//
-//-------------------------------------------- Printing Methods --------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
 
-void Integrator::print_iteration(const Time& time, const Time& timeFinal, const OrbitalElements& state) {
+void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial) {
 	// This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
         int day = days(time).count();
-        if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
+        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
             if (iteration == 0) {
                 std::cout << "Run Conditions:"<< std::endl << std::endl;
                 std::cout << "Initial Time = " << 0.0 << std::endl;
                 std::cout << "Final Time =  " << timeFinal << std::endl;
-                for (size_t ii = 0; ii < state.size(); ++ii) {
-                    if (ii == 0) {
-                        std::cout << "Initial State = [";
-                    }
-                    std::cout << " " << state[ii] << " ";
-                }
-                std::cout << "]" << std::endl;
-                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km" << std::endl;
-                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s" << std::endl << std::endl;
-                std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl << std::endl;
+                std::cout << "Initial State = " << stateInitial << std::endl;
+                std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl;
                 std::cout << "Run:" << std::endl << std::endl;
             }
             else {
                 checkDay = day;
 
                 std::cout << "Iteration: " << iteration+1 << std::endl;
-                std::cout << "time = " << time/86400.0 << " days" << std::endl;
-                for (size_t ii = 0; ii < state.size(); ++ii) {
-                    if (ii == 0) {
-                        std::cout << "state = [";
-                    }
-                    std::cout << " " << state[ii] << " ";
-                }
-                std::cout << "]" << std::endl;
-                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km" << std::endl;
-                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s" << std::endl << std::endl;
+                std::cout << "time = " << time << std::endl;
+                std::cout << "state = " << state << std::endl << std::endl;
             }
-        }
+        // }
         if (time == timeFinal) {
             std::cout << "Run Completed." << std::endl << std::endl;
         }

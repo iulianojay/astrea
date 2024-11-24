@@ -9,7 +9,7 @@
 
 class MeesVop : public EquationsOfMotion {
 public:
-    MeesVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces) {};
+    MeesVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
     ~MeesVop() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
@@ -22,4 +22,6 @@ private:
 
     const ElementSet expectedSet = ElementSet::MEE;
     const ForceModel& forces;
+
+    const double mu;
 };

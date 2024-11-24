@@ -37,7 +37,6 @@ namespace conversions {
     double epoch_to_julian_date(std::string epochString);
     double julian_date_to_sidereal_time(double julianDate, double rotRate);
 
-
     // For the love of god, don't touch this
     using set_conversion_function = std::function<element_array(const element_array&, const AstrodynamicsSystem&)>;
     using element_set_pair = std::pair<ElementSet, ElementSet>;

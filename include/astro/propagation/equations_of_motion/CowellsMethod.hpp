@@ -9,7 +9,7 @@
 
 class CowellsMethod : public EquationsOfMotion {
 public:
-    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces) {};
+    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
     ~CowellsMethod() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
@@ -19,4 +19,6 @@ private:
 
     const ElementSet expectedSet = ElementSet::CARTESIAN;
     const ForceModel& forces;
+
+    const double mu;
 };

@@ -17,8 +17,8 @@
 class AstrodynamicsSystem {
 public:
 
-    AstrodynamicsSystem(SolarObject _centralBody = EARTH, std::unordered_set<SolarObject> _allBodies = {EARTH}, Date epoch = J2000) :
-        centralBody(_centralBody), allBodies(_allBodies), epoch(epoch) {
+    AstrodynamicsSystem(SolarObject centralBody = EARTH, std::unordered_set<SolarObject> allBodies = {EARTH}, Date epoch = J2000) :
+        centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
         create_all_bodies();
     };
     ~AstrodynamicsSystem() {}

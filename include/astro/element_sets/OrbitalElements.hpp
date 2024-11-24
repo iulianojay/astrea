@@ -60,9 +60,8 @@ public:
     // Copy assignment
     OrbitalElements& operator=(const OrbitalElements& other) {
         set = other.set;
-        element_array elements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
-            elements[ii] = other[ii];
+            (*this)[ii] = other[ii];
         }
         return *this;
     }
@@ -89,9 +88,8 @@ public:
         }
 
         // Sum
-        element_array& sumElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
-            sumElements[ii] += other[ii];
+            (*this)[ii] += other[ii];
         }
 
         return (*this);
@@ -119,9 +117,8 @@ public:
         }
 
         // Sum
-        element_array& sumElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
-            sumElements[ii] -= other[ii];
+            (*this)[ii] -= other[ii];
         }
 
         return (*this);

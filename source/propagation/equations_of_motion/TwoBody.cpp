@@ -19,7 +19,7 @@ OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& sta
     const double R = sqrt(x*x + y*y + z*z);
 
     // mu/R^3
-    const double muOverRadiusCubed = system.get_center().mu()/(R*R*R);
+    const double muOverRadiusCubed = mu/(R*R*R);
 
     // Derivative
     const OrbitalElements dsdt ({

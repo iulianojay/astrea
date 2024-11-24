@@ -45,7 +45,7 @@ public:
     }
 
     // cast to double
-    constexpr operator double() const { return time.count(); }
+    constexpr operator double() const { return seconds(time).count(); }
 
     // Addition
     constexpr Time operator+(const Time& other) const {
@@ -134,7 +134,6 @@ public:
 
     // abs
     constexpr JulianDateClock::duration abs() { return std::chrono::abs(time); }
-
 
 private:
 

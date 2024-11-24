@@ -5,22 +5,22 @@
 #include <iostream>
 #include <string>
 
-OblatenessForce::OblatenessForce(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys) {
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) : N(_N), M(_M), center(sys.get_center()) {
     // Open coefficients file
     std::string filename;
     std::string path;
     path = "./data/gravity_models/";
 
-    if (sys.get_center().planetId() == 2) { // Venus
+    if (center.planetId() == 2) { // Venus
         filename = path + "shgj120p.txt"; // Normalized?
     }
-    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 0) { // Earth
+    else if (center.planetId() == 3 && center.moonId() == 0) { // Earth
         filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
     }
-    else if (sys.get_center().planetId() == 3 && sys.get_center().moonId() == 1) { // Moon
+    else if (center.planetId() == 3 && center.moonId() == 1) { // Moon
         filename = path + "jgl165p1.txt"; // Normalized?
     }
-    else if (sys.get_center().planetId() == 3) { // Mars
+    else if (center.planetId() == 3) { // Mars
         filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
     }
     std::ifstream file(filename);
@@ -37,8 +37,6 @@ OblatenessForce::OblatenessForce(const size_t& N, const size_t& M, const Astrody
 
     // Read coefficients from file
     std::string line;
-    std::vector<std::vector<double>> coefficients;
-
     std::string cell;
 
     size_t n = 0, m = 0;
@@ -58,7 +56,7 @@ OblatenessForce::OblatenessForce(const size_t& N, const size_t& M, const Astrody
         S[n][m] = lineData[3];
 
         // Normalize coefficients if needed
-        if (sys.get_center().planetId() == 4) {
+        if (center.planetId() == 4) {
             for (size_t m = 0; m < N+1; ++m) {
                 double nPlusMFactorial = 1;
                 double nMinusMFactorial = 1;
@@ -92,9 +90,9 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     const double R = sqrt(x*x + y*y + z*z);
 
     // Central body properties
-    const double& mu = sys.get_center().mu();
-    const double& equitorialR = sys.get_center().eqR();
-    const double& bodyRotationRate = sys.get_center().rotRate();
+    const double& mu = center.mu();
+    const double& equitorialR = center.eqR();
+    const double& bodyRotationRate = center.rotRate();
 
     /*
         To clarify this logic: Use J2 if
@@ -104,9 +102,9 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
             4) If Mars is the planet id, the moon id must be 0 to ensure the central body is not phobos or deimos
     */
     basis_array accelOblateness = {0.0, 0.0, 0.0};
-    if (!NxMOblateness || (N == 2 && M == 0) || (sys.get_center().planetId() != 2 && sys.get_center().planetId() != 3 && !(sys.get_center().planetId() == 4 && sys.get_center().moonId() == 0))) { // J2 oblateness only
+    if ((N == 2 && M == 0) || (center.planetId() != 2 && center.planetId() != 3 && !(center.planetId() == 4 && center.moonId() == 0))) { // J2 oblateness only
         // Variables to reduce calculations
-        const double& J2 = sys.get_center().j2();
+        const double& J2 = center.j2();
         const double tempA = -1.5*J2*mu*equitorialR*equitorialR/pow(R,5);
         const double tempB = z*z/(R*R);
 

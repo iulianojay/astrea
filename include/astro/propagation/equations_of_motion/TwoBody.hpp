@@ -8,7 +8,7 @@
 
 class TwoBody : public EquationsOfMotion {
 public:
-    TwoBody(const AstrodynamicsSystem& system) : EquationsOfMotion(system) {};
+    TwoBody(const AstrodynamicsSystem& system) : EquationsOfMotion(system), mu(system.get_center().mu()) {};
     ~TwoBody() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
@@ -17,4 +17,5 @@ public:
 private:
 
     const ElementSet expectedSet = ElementSet::CARTESIAN;
+    const double mu;
 };

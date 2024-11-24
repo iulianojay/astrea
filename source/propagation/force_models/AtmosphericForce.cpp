@@ -5,6 +5,8 @@
 
 basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
 
+    const GravitationalBody& center = sys.get_center();
+
     // Extract
     const double& x = state[0];
     const double& y = state[1];
@@ -16,7 +18,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double& vz = state[5];
 
     // Central body properties
-    const double& bodyRotationRate = sys.get_center().rotRate();
+    const double& bodyRotationRate = center.rotRate();
 
     // Find velocity relative to atmosphere
     const double relativeVelocity[3] = {
@@ -26,7 +28,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     };
 
     // Exponential Drag Model
-    const double atmosphericDensity = find_atmospheric_density(julianDate, state, sys);
+    const double atmosphericDensity = find_atmospheric_density(julianDate, state, center);
 
     // accel due to drag
     const double relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
@@ -60,7 +62,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
 }
 
 
-const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const AstrodynamicsSystem& sys) const {
+const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const GravitationalBody& center) const {
 
     // Extract
     const double& x = state[0];
@@ -68,9 +70,9 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     const double& z = state[2];
 
     // Central body properties
-    const double& equitorialR = sys.get_center().eqR();
-    const double& polarR = sys.get_center().polR();
-    const double& bodyRotationRate = sys.get_center().rotRate();
+    const double& equitorialR = center.eqR();
+    const double& polarR = center.polR();
+    const double& bodyRotationRate = center.rotRate();
 
     // Find altitude
     basis_array radius = {x, y, z};
@@ -88,7 +90,7 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     double referenceAltitude{};
     double referenceDensity{};
     double scaleHeight{};
-    switch (sys.get_center().planetId()) {
+    switch (center.planetId()) {
     case 2: // Venus
         if      (altitude < 3.0)   { atmosphericDensity = 5.53e1; } // kg/m^3
         else if (altitude < 6.0)   { atmosphericDensity = 4.75e1; }

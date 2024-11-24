@@ -18,7 +18,7 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const double R = sqrt(x*x + y*y + z*z); // radius magnitude
 
     // mu/R^3
-    const double muOverRadiusCubed = system.get_center().mu()/(R*R*R);
+    const double muOverRadiusCubed = mu/(R*R*R);
 
     // Run find functions for force model
     Time julianDate = spacecraft.get_epoch().julian_day() + time;

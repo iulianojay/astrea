@@ -22,7 +22,6 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     }
 
     // h and mu
-    const double& mu = system.get_center().mu();
     const double h = sqrt(mu*a*(1 - ecc));
 
     // conversions COEs to r and v

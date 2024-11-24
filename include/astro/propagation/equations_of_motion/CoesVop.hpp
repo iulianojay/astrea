@@ -9,7 +9,7 @@
 
 class CoesVop : public EquationsOfMotion {
 public:
-    CoesVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces) {};
+    CoesVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
     ~CoesVop() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
@@ -22,4 +22,6 @@ private:
 
     const ElementSet expectedSet = ElementSet::COE;
     const ForceModel& forces;
+
+    const double mu;
 };

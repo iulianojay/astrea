@@ -9,7 +9,7 @@
 
 class OblatenessForce : public Force {
 public:
-    OblatenessForce(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
+    OblatenessForce(const AstrodynamicsSystem& sys, const size_t& N = 2, const size_t& M = 0);
     ~OblatenessForce() = default;
 
     basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
@@ -21,8 +21,10 @@ private:
     mutable std::vector<std::vector<double>> C{};
     mutable std::vector<std::vector<double>> S{};
 
-    size_t N = 2, M = 0;
-    bool NxMOblateness = false;
+    const size_t N;
+    const size_t M;
+
+    const GravitationalBody& center;
 
     void assign_legendre(const double& latitude) const;
 };

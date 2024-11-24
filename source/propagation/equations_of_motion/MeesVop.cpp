@@ -17,9 +17,6 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
     // conversions Modified Equinoctial Elements to COEs
     const auto coesState = conversions::convert(state, ElementSet::MEE, ElementSet::COE, system);
 
-    // h and mu
-    const double& mu = system.get_center().mu();
-
     // conversions COEs to r and v
     const auto cartesianState = conversions::convert(coesState, ElementSet::COE, ElementSet::CARTESIAN, system);
 

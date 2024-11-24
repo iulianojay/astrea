@@ -195,7 +195,7 @@ private:
                      Time& time, Time& timeStep, OrbitalElements& state);
 
 	// Print details
-    void print_iteration(const Time& time, const Time& timeFinal, const OrbitalElements& state);
+    void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);
 	void print_performance() const;
 
 	// Timer

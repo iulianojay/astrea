@@ -17,6 +17,6 @@ public:
 private:
 
     const OrbitalElements find_accel_drag_and_lift(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
-    const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const AstrodynamicsSystem& sys) const;
+    const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const GravitationalBody& center) const;
 
 };
