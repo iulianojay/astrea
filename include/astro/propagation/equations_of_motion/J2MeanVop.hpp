@@ -13,7 +13,12 @@
 
 class J2MeanVop : public EquationsOfMotion {
 public:
-    J2MeanVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
+
+    J2MeanVop(const AstrodynamicsSystem& system) : EquationsOfMotion(system),
+        mu(system.get_center().mu()),
+        J2(system.get_center().j2()),
+        equitorialR(system.get_center().eqR())
+    {};
     ~J2MeanVop() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
@@ -25,6 +30,8 @@ private:
     const double checkTol = 1e-10;
 
     const ElementSet expectedSet = ElementSet::COE;
-    const ForceModel& forces;
+
     const double mu;
+    const double J2;
+    const double equitorialR;
 };

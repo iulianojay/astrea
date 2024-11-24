@@ -54,12 +54,19 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
         (x*vy - y*vx)/h
     };
 
-    // Function for finding accel caused by perturbations
-    Time julianDate = spacecraft.get_epoch().julian_day() + time;
-    basis_array accelPerts = forces.compute_forces(julianDate, cartesianState, spacecraft, system);
+    // Variables to reduce calculations
+    const double tempA = -1.5*J2*mu*equitorialR*equitorialR/pow(R,5);
+    const double tempB = z*z/(R*R);
+
+    // accel due to oblateness
+    basis_array accelOblateness = {
+        tempA*(1.0 - 5.0*tempB)*x,
+        tempA*(1.0 - 5.0*tempB)*y,
+        tempA*(1.0 - 3.0*tempB)*z
+    };
 
     // Calculate R, N, and T
-    const double normalPert = accelPerts[0]*Nhat[0] + accelPerts[1]*Nhat[1] + accelPerts[2]*Nhat[2];
+    const double normalPert = accelOblateness[0]*Nhat[0] + accelOblateness[1]*Nhat[1] + accelOblateness[2]*Nhat[2];
 
     // Calculate the derivatives of the COEs - only raan and w considered
     const double dhdt = 0.0;
