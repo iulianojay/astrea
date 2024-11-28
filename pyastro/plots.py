@@ -1,35 +1,36 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from typing import List, Tuple
 
 
-def plot_coes(title: str, infile: str, outfile: str) -> None:
+def plot_keplerian(title: str, infile: str, outfile: str) -> None:
 
     columns = [
         'sma (km)',
         'ecc',
-        'inc (deg)',
-        'raan (deg)',
-        'w (deg)',
-        'theta (deg)'
+        'inc (rad)',
+        'raan (rad)',
+        'w (rad)',
+        'theta (rad)'
     ]
 
     titles = [
         "Semimajor Axis\n(km)",
         "Eccentricity",
-        "Inclination\n(deg)",
-        "Right Ascension\n(deg)",
-        "Arg. Perigee\n(deg)",
-        "True Anomaly\n(deg)"
+        "Inclination\n(rad)",
+        "Right Ascension\n(rad)",
+        "Arg. Perigee\n(rad)",
+        "True Anomaly\n(rad)"
     ]
 
     limits = [
         None,
-        None,
-        None,
-        None,
-        None,
-        [0, 360]
+        [0, 1],
+        [0, np.pi],
+        [0, 2*np.pi],
+        [0, 2*np.pi],
+        [0, 2*np.pi]
     ]
 
     plot_element_set(title, infile, outfile, columns, titles, limits)
@@ -63,9 +64,10 @@ def plot_cartesian(title: str, infile: str, outfile: str) -> None:
 def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], titles: List[str], limits: List[Tuple[float, float]]) -> None:
 
     df = pd.read_csv(infile,index_col=False)
-    
+
     t = df['time (min)'].to_numpy()
     data = [df[col].to_numpy() for col in columns]
+    data[-1] = [x % (2*np.pi) for x in data[-1]]
 
     fig, axes = plt.subplots(nrows=6, ncols=1, figsize=(10, 8), sharex=True)
     fig.suptitle(title)
@@ -73,13 +75,13 @@ def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], 
     for ax, vals, axTitle, axLimits in zip(axes, data, titles, limits):
         ax.plot(t, vals)
         ax.grid(True)
-        ax.tick_params('x', labelsize=False)
         if axTitle is not None:
             ax.set_ylabel(axTitle)
         if axLimits is not None:
             ax.set_ylim(axLimits)
 
     plt.xlim(t[0], t[-1])
+    plt.xlabel("Time (minutes)")
     fig.tight_layout()
 
     fig.savefig(outfile)
@@ -87,11 +89,20 @@ def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], 
 
 if __name__=='__main__':
 
-    title = 'Cowells Method Test'
-    infile = './bin/results/cowells_test/main.csv'
-    outfile = './bin/results/cowells_test/main.png'
+    # test = 'two_body'
+    # title = 'Two-Body Test'
+    # test = 'j2mean'
+    # title = 'J2 Mean VoP Test'
+    # test = 'cowells'
+    # title = 'Cowells Method Test'
+    # test = 'coes'
+    # title = 'Keplerian VoP Test'
+    test = 'mees'
+    title = 'Equinoctial VoP Test'
+    infile = './bin/results/' + test + '/main.csv'
+    outfile = './bin/results/' + test + '/main.png'
 
     try:
-        plot_coes(title, infile, outfile)
+        plot_keplerian(title, infile, outfile)
     except:
         plot_cartesian(title, infile, outfile)

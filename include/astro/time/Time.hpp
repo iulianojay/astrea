@@ -16,91 +16,124 @@ class Time {
     friend std::ostream& operator<<(std::ostream&, Time const&);
 
 public:
-    Time() = default;
-    Time(const Time& other) = default;
-    Time(JulianDateClock::duration dur) : time(dur) {}
-    ~Time() {}
+    constexpr Time() = default;
+    constexpr Time(const Time& other) = default;
+    constexpr Time(JulianDateClock::duration dur) : time(dur) {}
+    constexpr ~Time() {}
 
     // constructor from arithmetic type
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    Time(const T& time) : time(double(time)) {}
+    constexpr Time(const T& time) : time(double(time)) {}
 
     // constructor from chrono::duration
     template <typename T, typename R = std::ratio<1>>
-    Time(const std::chrono::duration<T, R>& dur) {
+    constexpr Time(const std::chrono::duration<T, R>& dur) {
         time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
     }
 
     // assignment from double
-    Time& operator=(const double& t) {
+    constexpr Time& operator=(const double& t) {
         time = JulianDateClock::duration(t);
         return *this;
     }
 
     // assignment from chrono::duration
     template <typename T, typename R = std::ratio<1>>
-    Time& operator=(const std::chrono::duration<T, R>& dur) {
+    constexpr Time& operator=(const std::chrono::duration<T, R>& dur) {
         time = std::chrono::duration_cast<JulianDateClock::duration>(dur);
         return *this;
     }
 
     // cast to double
-    operator double() const { return time.count(); }
+    constexpr operator double() const { return seconds(time).count(); }
 
     // Addition
-    Time operator+(const Time& other) const {
+    constexpr Time operator+(const Time& other) const {
         return time.count() + other.time.count();
     }
 
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    Time operator+(const T& other) const {
+    constexpr Time operator+(const T& other) const {
         return time.count() + Time(other).time.count();
     }
 
+    constexpr Time& operator+=(const Time& other) {
+        time += other.time;
+        return *this;
+    }
+
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator+=(const T& other) {
+        time += Time(other).time;
+        return *this;
+    }
+
     // Subtraction
-    Time operator-(const Time& other) const {
+    constexpr Time operator-(const Time& other) const {
         return time.count() - other.time.count();
     }
 
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    Time operator-(const T& other) const {
+    constexpr Time operator-(const T& other) const {
         return time.count() - Time(other).time.count();
     }
 
+    constexpr Time& operator-=(const Time& other) {
+        time -= other.time;
+        return *this;
+    }
+
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator-=(const T& other) {
+        time -= Time(other).time;
+        return *this;
+    }
+
     // Comparitors
-    inline bool operator<(const Time& other) const { return time < other.time; }
-    inline bool operator>(const Time& other) const { return time > other.time; }
-    inline bool operator==(const Time& other) const { return time == other.time; }
-    inline bool operator<=(const Time& other) const { return time <= other.time; }
-    inline bool operator>=(const Time& other) const { return time >= other.time; }
+    constexpr inline bool operator<(const Time& other) const { return time < other.time; }
+    constexpr inline bool operator>(const Time& other) const { return time > other.time; }
+    constexpr inline bool operator==(const Time& other) const { return time == other.time; }
+    constexpr inline bool operator<=(const Time& other) const { return time <= other.time; }
+    constexpr inline bool operator>=(const Time& other) const { return time >= other.time; }
 
     // Multiplication
-    Time operator*(const Time& other) const {
+    constexpr Time operator*(const Time& other) const {
         return time.count()*other.time.count();
     }
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    Time operator*(const T& other) const {
+    constexpr Time operator*(const T& other) const {
         return time.count()*Time(other).count();
     }
 
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator*=(const T& other) {
+        time *= other;
+        return *this;
+    }
+
     // Division
-    Time operator/(const Time& other) const {
+    constexpr Time operator/(const Time& other) const {
         return time.count()/other.time.count();
     }
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    Time operator/(const T& other) const {
+    constexpr Time operator/(const T& other) const {
         return time.count()/Time(other).count();
     }
 
+    template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+    constexpr Time operator/=(const T& other) {
+        time /= other;
+        return *this;
+    }
+
     // Forward count()
-    double count() const { return time.count(); }
+    constexpr double count() const { return time.count(); }
 
     template <typename T>
-    double count() const { return std::chrono::duration_cast<T>(time).count(); }
+    constexpr double count() const { return std::chrono::duration_cast<T>(time).count(); }
 
     // abs
-    JulianDateClock::duration abs() { return std::chrono::abs(time); }
-
+    constexpr JulianDateClock::duration abs() { return std::chrono::abs(time); }
 
 private:
 

@@ -5,18 +5,19 @@
     #include <vector>
 #endif
 
-#include "typedefs.hpp"
-#include "solar_system.hpp"
-#include "Barycenter.hpp"
-#include "GravitationalBody.hpp"
-#include "SolarObjectFactory.hpp"
-#include "Date.hpp"
+#include "astro/types/typedefs.hpp"
+#include "astro/systems/solar_system.hpp"
+#include "astro/systems/Barycenter.hpp"
+#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/SolarObjectFactory.hpp"
+#include "astro/time/Date.hpp"
+#include "astro/platforms/space/Spacecraft.hpp"
 
 
 class AstrodynamicsSystem {
-public: 
+public:
 
-    AstrodynamicsSystem(SolarObject centralBody = EARTH, std::unordered_set<SolarObject> allBodies = {EARTH}, Date epoch = J2000) : 
+    AstrodynamicsSystem(SolarObject centralBody = EARTH, std::unordered_set<SolarObject> allBodies = {EARTH}, Date epoch = J2000) :
         centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
         create_all_bodies();
     };
@@ -32,11 +33,12 @@ public:
 
 private:
 
-    Date epoch; 
     const SolarObject centralBody;
     const std::unordered_set<SolarObject> allBodies;
+
+    Date epoch;
     SolarObjectFactory bodyFactory;
-    
+
     std::vector<std::vector<State>> statesToCenter;
     std::vector<State> centerToSun;
 

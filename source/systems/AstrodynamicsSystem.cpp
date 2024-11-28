@@ -25,7 +25,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         while (parent != root) {
             GravitationalBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
-            for (int ii = 0; ii < centerToRoot.size(); ii++) {
+            for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody.parent();
@@ -33,7 +33,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     }
     else {
         const element_array noDiff = {0.0};
-        for (int ii = 0; ii < centerToRoot.size(); ii++) {
+        for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
             centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }
     }
@@ -42,11 +42,11 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     if (centralBody != SUN) {
         std::vector<State> centerToSun = centerToParent;
         auto parent = center.parent();
-        auto& states = centerToSun.back();
+        // auto& states = centerToSun.back();
         while (parent != GC) {
             GravitationalBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
-            for (int ii = 0; ii < centerToSun.size(); ii++) {
+            for (size_t ii = 0; ii < centerToSun.size(); ii++) {
                 centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody.parent();
@@ -54,7 +54,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     }
     else {
         const element_array noDiff{0.0};
-        for (int ii = 0; ii < centerToSun.size(); ii++) {
+        for (size_t ii = 0; ii < centerToSun.size(); ii++) {
             centerToSun[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }
     }
@@ -75,14 +75,14 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         while (parent != root) {
             GravitationalBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
-            for (int ii = 0; ii < states.size(); ii++) {
+            for (size_t ii = 0; ii < states.size(); ii++) {
                 states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody.parent();
         }
 
         // Convert to state relative to central body
-        for (int ii = 0; ii < states.size(); ii++) {
+        for (size_t ii = 0; ii < states.size(); ii++) {
             states[ii].elements = states[ii].elements - centerToRoot[ii].elements;
         }
     }

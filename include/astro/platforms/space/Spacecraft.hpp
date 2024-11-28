@@ -90,31 +90,31 @@ public:
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
-    double get_mass();
+    const double& get_mass() const;
 
     // Function: Get spacecraft coefficient of drag
     // Outputs: coefficient of drag (--)
-    double get_coefficient_of_drag();
+    const double& get_coefficient_of_drag() const;
 
     // Function: Get spacecraft coefficient of lift
     // Outputs: coefficient of lift (--)
-    double get_coefficient_of_lift();
+    const double& get_coefficient_of_lift() const;
 
     // Function: Get spacecraft coefficient of reflectivity
     // Outputs: coefficient of reflectivity (--)
-    double get_coefficient_of_reflectivity();
+    const double& get_coefficient_of_reflectivity() const;
 
     // Function: Get spacecraft ram-facing area
     // Outputs: net ram-facing area / array of areas (m^2)
-    double* get_ram_area();
+    const basis_array& get_ram_area() const;
 
     // Function: Get spacecraft sun-facing area
     // Outputs: net sun-facing area / array of areas (m^2)
-    double* get_sun_area();
+    const basis_array& get_sun_area() const;
 
     // Function: Get spacecraft earth-facing area
     // Outputs: net earth-facing area / array of areas (m^2)
-    double* get_lift_area();
+    const basis_array& get_lift_area() const;
 
     void attach(Sensor& sensor) { sensors.push_back(sensor); }
     void attach(std::vector<Sensor>& _sensors) { sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors)); }
@@ -137,9 +137,9 @@ private:
     double coefficientOfDrag = 2.2;
     double coefficientOfLift = 0.9;
     double coefficientOfReflectivity = 1.1;
-    double areaRam[3] = { 0.01, 0.0, 0.0 };
-    double areaSun[3] = { 0.01, 0.0, 0.0 };
-    double areaLift[3] = { 0.01, 0.0, 0.0 };
+    basis_array areaRam = { 0.01, 0.0, 0.0 };
+    basis_array areaSun = { 0.01, 0.0, 0.0 };
+    basis_array areaLift = { 0.01, 0.0, 0.0 };
 
     // Orbital elements
     std::vector<State> states;

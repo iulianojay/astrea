@@ -15,7 +15,7 @@ double math_c::normalize(const double* vec) {
         norm += vec[ii]*vec[ii];
     }
 
-    return sqrt(norm);
+    return std::sqrt(norm);
 }
 
 double math_c::normalize(double* vec, int startIndex, int endIndex) {
@@ -25,7 +25,7 @@ double math_c::normalize(double* vec, int startIndex, int endIndex) {
         norm += vec[ii]*vec[ii];
     }
 
-    return sqrt(norm);
+    return std::sqrt(norm);
 }
 
 // Vector p-norm
@@ -38,9 +38,9 @@ double math_c::normalize(double* vec, int startIndex, int endIndex, int p) {
     // p norm
     double norm = 0.0;
     for (int ii = startIndex; ii < endIndex+1; ++ii) {
-        norm += pow(abs(vec[ii]),p);
+        norm += std::pow(std::abs(vec[ii]), p);
     }
-    return pow(norm, 1/p);
+    return std::pow(norm, 1/p);
 }
 
 // Default matrix norm
@@ -53,7 +53,7 @@ double math_c::normalize(double** matrix, int startRow, int endRow, int startCol
         }
     }
 
-    return sqrt(norm);
+    return std::sqrt(norm);
 }
 
 // Matrix p-norm
@@ -67,10 +67,10 @@ double math_c::normalize(double** matrix, int startRow, int endRow, int startCol
     double norm = 0.0;
     for (int ii = startRow; ii < endRow+1; ++ii) {
         for (int jj = startColumn; jj < endColumn+1; ++jj) {
-            norm += pow(abs(matrix[ii][jj]),p);
+            norm += std::pow(abs(matrix[ii][jj]),p);
         }
     }
-    return pow(norm, 1/p);
+    return std::pow(norm, 1/p);
 }
 
 //----------------------------------------------------------------------------------------------------------//

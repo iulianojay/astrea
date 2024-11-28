@@ -1,6 +1,6 @@
 #include "access.hpp"
 
-void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem* sys) {
+void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem& sys) {
 
     // Get all sats
     auto allSats = constel.get_all_spacecraft();
@@ -8,7 +8,6 @@ void find_accesses(Constellation& constel, const Time& resolution, const Astrody
 
     // Create time array
     std::vector<Time> times = create_time_vector(allSats[0].get_states(), resolution, sys); // TODO: Check all state histories for common time frame
-    const size_t nTimes = times.size();
 
     // Get and store interpolated states in cartesian to reduce overhead
     std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);
@@ -35,7 +34,7 @@ void find_accesses(Constellation& constel, const Time& resolution, const Astrody
     }
 }
 
-std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem* sys) {
+std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem& sys) {
     // Setup
     const size_t nSates = states.size();
     const Time& startTime = states[0].time;
@@ -59,7 +58,7 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
     return times;
 }
 
-std::vector<std::vector<State>> interpolate_states(const std::vector<Spacecraft>& allSats, const std::vector<Time>& times, const AstrodynamicsSystem* sys) {
+std::vector<std::vector<State>> interpolate_states(const std::vector<Spacecraft>& allSats, const std::vector<Time>& times, const AstrodynamicsSystem& sys) {
 
     const size_t nTimes = times.size();
     const size_t nSats = allSats.size();

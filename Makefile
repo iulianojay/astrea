@@ -66,7 +66,7 @@ linux: linux_setup CMakeLists.txt
 		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
 		-DOS=${OS} \
 		-DBUILD_SWIG::BOOL=${BUILD_SWIG}
-	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
+	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 20
 
 # Build
 .PHONY: build
@@ -77,7 +77,7 @@ build: CMakeLists.txt
 		-DCMAKE_VERBOSE_MAKEFILE::BOOL=${VERBOSE} \
 		-DBUILD_SWIG::BOOL=${BUILD_SWIG} \
 		-DOS=${OS}
-	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 1
+	cd ${BUILD_DIR} && rm -f build_output.txt && make --no-print-directory -j 20
 
 # Install
 .PHONY: install-java

@@ -4,22 +4,23 @@
 #include <cmath>
 
 
-double interpolate(const std::vector<double>& x, const std::vector<double>& y, const double& sx) {
+double interpolate(const std::vector<Time>& x, const std::vector<double>& y, const Time& sx) {
 
-    const double xf = x[x.size()-1];
-    if (sx < x[0] || sx > xf) {
+    const Time& xi = x[0];
+    const Time& xf = x[x.size()-1];
+    if (sx < xi || sx > xf) {
         throw std::runtime_error("Asked for interpolation outside of dataset bounds.");
     }
+    if (sx == xi) { return y[0]; }
     if (sx == xf) { return y[x.size()-1]; }
 
     // Find indexes
-    const auto lower = std::lower_bound(x.begin(), x.end(), sx);
-    const size_t idx = std::distance(x.begin(), lower);
+    const size_t idx = std::distance(x.begin(), std::lower_bound(x.begin(), x.end(), sx));
 
-    const double x0 = x[idx];
-    const double x1 = x[idx+1];
-    const double y0 = y[idx];
-    const double y1 = y[idx+1];
+    const Time& x0 = x[idx];
+    const Time& x1 = x[idx+1];
+    const double& y0 = y[idx];
+    const double& y1 = y[idx+1];
 
     if (sx == x0) { return y0; }
 
@@ -68,7 +69,7 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
         v[ii+1] = b[ii+1] - b[ii] - h[ii]*v[ii]/u[ii];
     }
 
-    for (size_t ii = n-2; ii > -1; --ii) {
+    for (size_t ii = n-2; ii >= 0; --ii) {
         z[ii+1] = (v[ii+1] - h[ii+1]*z[ii+2])/u[ii+1];
     }
 
@@ -92,7 +93,7 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
         const double h2 = h[jj]*h[jj];
 
         // Spline
-        sy[ii] = (zDiv6*pow(dxp1, 3) + zp1Div6*pow(dx, 3) + (y[jj+1] - zp1Div6*h2)*dx + (y[jj] - h2*zDiv6)*dxp1)/h[jj];
+        sy[ii] = (zDiv6*std::pow(dxp1, 3) + zp1Div6*std::pow(dx, 3) + (y[jj+1] - zp1Div6*h2)*dx + (y[jj] - h2*zDiv6)*dxp1)/h[jj];
     }
 
     return sy;

@@ -10,55 +10,30 @@
 
 #endif
 
-class ElementSet
-{
-public:
-    enum _ENUM_ : uint8_t {
-        COE,
-        CARTESIAN,
-        MEE
-    };
-
-    // Constructors
-    ElementSet() = default;
-    ElementSet(_ENUM_ x) : value(x) {}
-    ElementSet(std::string xStr) : value(fromString.at(xStr)) {}
-
-    // Assignment
-#ifndef SWIG
-    ElementSet& operator=(const ElementSet& x) { 
-        value = x.value;
-        return *this; 
-    }
-
-    // Allow switch and comparisons.
-    operator _ENUM_() const { return value; }
-#endif
-
-    // Prevent usage: if(ElementSet)
-    explicit operator bool() const = delete;
-
-    // Utilities
-    std::string to_string() const { return toString.at(value); }
-    const char* to_char() const { return toChar.at(value); }
-
-private:
-    _ENUM_ value;
-    std::unordered_map<_ENUM_, std::string> toString = {
-        {COE,       "COE"},
-        {CARTESIAN, "CARTESIAN"},
-        {MEE,       "MEE"}
-    };
-    std::unordered_map<_ENUM_, const char*> toChar = {
-        {COE,       "COE"},
-        {CARTESIAN, "CARTESIAN"},
-        {MEE,       "MEE"}
-    };
-    std::unordered_map<std::string, _ENUM_> fromString = {
-        {"COE",       COE},
-        {"CARTESIAN", CARTESIAN},
-        {"MEE",       MEE}
-    };
+enum class ElementSet : uint32_t {
+    KEPLERIAN,
+    CARTESIAN,
+    EQUINOCTIAL
 };
 
-typedef ElementSet::_ENUM_ ElementsSet;
+template <>
+struct std::hash<std::pair<ElementSet, ElementSet>> {
+    std::size_t operator () (const std::pair<ElementSet, ElementSet> &p) const {
+        auto h1 = std::hash<ElementSet>{}(p.first);
+        auto h2 = std::hash<ElementSet>{}(p.second);
+        return h1 ^ h2;
+    }
+};
+
+
+const std::unordered_map<ElementSet, std::string> ElementSetToString = {
+    {ElementSet::KEPLERIAN,   "KEPLERIAN"},
+    {ElementSet::CARTESIAN,   "CARTESIAN"},
+    {ElementSet::EQUINOCTIAL, "EQUINOCTIAL"}
+};
+
+const std::unordered_map<std::string, ElementSet> StringToElementSet = {
+    {"KEPLERIAN",   ElementSet::KEPLERIAN},
+    {"CARTESIAN",   ElementSet::CARTESIAN},
+    {"EQUINOCTIAL", ElementSet::EQUINOCTIAL}
+};

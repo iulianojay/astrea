@@ -20,12 +20,12 @@ class Integrator
 public:
 	// Stepper
 	enum odeStepper {
-        rk45,	// Traditional Runge-Kutta 4(5)th order 6 stage method
-        rkf45,	// Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        rkf78,	// Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+        RK45,	// Traditional Runge-Kutta 4(5)th order 6 stage method
+        RKF45,	// Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+        RKF78,	// Runge-Kutta-Fehlberg 7(8)th order 13 stage method
 
-        dop45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        dop78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+        DOP45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+        DOP78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
 	};
 
     static inline Interval defaultInterval = Interval(days(0), days(1));
@@ -33,29 +33,25 @@ public:
 	//------------------------------------------------ Methods ------------------------------------------------//
 
     // Constructor and destructor
-    Integrator();
-    ~Integrator();
+    Integrator() = default;
+    ~Integrator() = default;
 
 	// Integrate
-    void propagate(Interval interval, Spacecraft& spacecraft, EquationsOfMotion& eom);
-    void integrate(double timeInitial, double timeFinal, double* stateInitial);
-     
+    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+
 	// Save Results
-	void save();
-	void save(std::string filename);
+	void save() const;
+	void save(std::string filename) const;
 
     // Function: Get total number of steps taken during integration
     // Outputs: number of steps taken
-    int get_state_history_size();
+    size_t get_state_history_size() const;
 
     // Function: Get all states during integration
     // Inputs: Matrix to write state history too
     // void get_state_history(double** stateHistory);
-    
-    std::vector<State> get_state_history();
-
-    // Get final state
-    void copy_final_state(double* state);
+    std::vector<State>& get_state_history();
 
     //---------------------------------------Integrator property setters---------------------------------------//
 
@@ -80,11 +76,11 @@ public:
     void switch_timer(bool onOff);
 
     // Function: Change Integrator internal stepping method
-    // Inputs: "rk45"  for Runge-Kutta 4(5) method
-    //         "rkf45" for Runge-Kutta-Felberg 4(5) method
-    //         "rkf78" for Runge-Kutta-Felberg 7(8) method
-    //         "dop45" for Dormand-Prince 4(5) method
-    //         "dop78" for Dormand-Prince 7(8) method
+    // Inputs: "RK45"  for Runge-Kutta 4(5) method
+    //         "RKF45" for Runge-Kutta-Felberg 4(5) method
+    //         "RKF78" for Runge-Kutta-Felberg 7(8) method
+    //         "DOP45" for Dormand-Prince 4(5) method
+    //         "DOP78" for Dormand-Prince 7(8) method
     void set_step_method(std::string stepMethod);
 
     // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
@@ -104,62 +100,52 @@ public:
     // Inputs: timestep (s)
     void set_timestep(double fixedTimeStep);
 
+    int n_func_evals() { return functionEvaluations; }
+
 private:
-	//----------------------------------------------- Variables -----------------------------------------------//
 
 	// Integrator constants
-	const double epsilon = 0.8;				// relative local step error tolerance usually 0.8 or 0.9. 
+	const double epsilon = 0.8;				// relative local step error tolerance usually 0.8 or 0.9.
 
 	const double minErrorCatch = 2.0e-4;	// if maximum error is less than this,
 	const double minErrorStepFactor = 5.0;  // increase step by this factor
 
-	const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative 
+	const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative
 										    // step size to this value
 
 	// Iteration variables
-    int iteration = 0;
-	int variableStepIteration = 0;				// Inner loop iteration count
-	const int maxVariableStepIterations = 1000; // max iterations for step sizing loop -> jj shouldn't get above ~10
+    unsigned long iteration = 0;
+	unsigned long variableStepIteration = 0;	// Inner loop iteration count
+	const unsigned long maxVariableStepIterations = 1000; // max iterations for step sizing loop -> jj shouldn't get above ~10
 
     // Function evals
     int functionEvaluations = 0;
 
 	// Number of states
-	static const int nStates = 6;
+	static const size_t maxStates = 10;
 
 	// Time variables
-	double time{};
-	double timeStep{};                      // initial timestep
-	double timeStepPrevious{};			    // store for IP step controller
-	double relativeTimeStep{};			    // predicted relative change in step size
     bool forwardTime = true;
-
-	// State variables
-	double state[nStates] = {};		// state at current iteration
-	double stateNew[nStates] = {};
-	double stateError[nStates] = {};
+    Time timeStepPrevious;
 
 	// Error variables
-    double error{};
-	double errorMax{};
-	double errorMaxPrevious{};
-
 	bool stepSuccess = false;
     bool eventTrigger = false;
+    double maxErrorPrevious;
 
     // Butcher Tablaeu
-    int nStages{};
-    static const int maxStages = 13;
-    double a[maxStages][maxStages] = {};
-    double b[maxStages] = {};
-    double bhat[maxStages] = {};
-    double db[maxStages] = {};
-    double c[maxStages] = {};
+    size_t nStages{};
+    static const size_t maxStages = 13;
+    std::array<std::array<double, maxStages>, maxStages> a = {};
+    std::array<double, maxStages> b = {};
+    std::array<double, maxStages> bhat = {};
+    std::array<double, maxStages> db = {};
+    std::array<double, maxStages> c = {};
 
 	// ith order steps
-    double kMatrix[maxStages][nStates] = {};
-	double statePlusKi[nStates] = {};
-	double YFinalPrevious[nStates] = {};
+    std::array<std::array<double, maxStates>, maxStages> kMatrix = {};
+	std::array<double, maxStates> statePlusKi = {};
+	std::array<double, maxStates> YFinalPrevious = {};
 
 	// Clock variables
 	clock_t startClock{};
@@ -172,7 +158,6 @@ private:
     const std::string crashMessage = "Note: Object crashed into central body. \n\n";
 
     // Print variables
-    int day = 1;
     int checkDay = 0;
 
 	// Tolerances
@@ -180,62 +165,45 @@ private:
 	double relativeTolerance = 1.0e-13;
 
 	// Initial step size
-	double timeStepInitial = 100.0;
+	Time timeStepInitial = seconds(100.0);
 
 	// Iteration variables
-	int iterMax = 1e8; // absurdly high so it doesn't interfere with integration
+	unsigned long iterMax = 1e8; // absurdly high so it doesn't interfere with integration
 
 	// Run options
 	bool printOn = false;
 	bool timerOn = false;
 
-	odeStepper stepMethod = dop45;
-    
+	odeStepper stepMethod = DOP45;
+
     // Fake fixed step
     bool useFixedStep = false;
-    double fixedTimeStep = 1.0;
+    Time fixedTimeStep = seconds(1.0);
 
-    // Equations of Motion
-    Spacecraft* spacecraft;
-    EquationsOfMotion* equationsOfMotion;
-	
 	// Time and state vectors
-	std::vector<double> timeVector{};
-	std::vector<double> stateVectorOne{};
-	std::vector<double> stateVectorTwo{};
-	std::vector<double> stateVectorThree{};
-	std::vector<double> stateVectorFour{};
-	std::vector<double> stateVectorFive{};
-    std::vector<double> stateVectorSix{};
-
-    std::vector<double> extraVector{};
-    std::vector<double> extraVector2{};
+	std::vector<State> stateHistory{};
 
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
-    void find_state_derivative(double time, double* state, double* stateDerivative);
-
-	// Vector utilities
-	void reserve_space(int N);
-	void store_iteration();
-    void cleanup();
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Stepping methods
     void setup_stepper();
-    void try_step();
+    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 
 	// Error Methods
-	void check_error();
+	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
+                     Time& time, Time& timeStep, OrbitalElements& state);
 
 	// Print details
-	void print_iteration(double timeFinal, double* stateInitial);
-	void print_performance();
+    void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);
+	void print_performance() const;
 
 	// Timer
 	void startTimer() { if (timerOn) { startClock = clock(); } };
 	void endTimer() { if (timerOn) { endClock = clock(); } }
 
     // Event Function
-    void check_event();
+    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
 };

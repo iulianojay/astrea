@@ -1,7 +1,10 @@
 #pragma once
 
-#include "OrbitalElements.hpp"
-#include "Time.hpp"
+#include <iostream>
+
+#include "astro/types/typedefs.hpp"
+#include "astro/element_sets/OrbitalElements.hpp"
+#include "astro/time/Time.hpp"
 
 class State {
 

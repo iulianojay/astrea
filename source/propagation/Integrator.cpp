@@ -1,83 +1,56 @@
-#include "Integrator.hpp"	    // Integrator class
+#include "Integrator.hpp"
 
-// Constructor and destructor
-Integrator::Integrator() : equationsOfMotion() {}
-Integrator::~Integrator() {}
-
-//----------------------------------------------------------------------------------------------------------//
-//------------------------------------------ Equations of Motion -------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
-
-void Integrator::find_state_derivative(double time, double* state, double* stateDerivative) {
-    
-    // Ask eom object to evaluate
-    equationsOfMotion->evaluate_state_derivative(time, state, spacecraft, stateDerivative);
+OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
     // Count fevals
     ++functionEvaluations;
+
+    // Ask eom object to evaluate
+    return eom(time, state, spacecraft);
 }
 
-//----------------------------------------------------------------------------------------------------------//
-//----------------------------------------------- Integrator -----------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
 
-void Integrator::propagate(Interval interval, Spacecraft& sc, EquationsOfMotion& eom) {					
-    
+void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+
     // TODO: Fix this nonsense
-    auto state0 = sc.get_initial_state().elements;
+    auto state0 = spacecraft.get_initial_state().elements;
     const ElementSet originalSet = state0.get_set();
 
-    const ElementSet expectedSet = eom.get_expected_set();
-    state0.convert(expectedSet, &eom.get_system());
-
-    // Copy
-    double stateInitial[6];
-    std::copy(std::begin(state0), std::end(state0), stateInitial);
-
-    // Set for now TODO: Make this pass into the functions, no need to use pointers
-    spacecraft = &sc;
-    equationsOfMotion = &eom;
+    const ElementSet& expectedSet = eom.get_expected_set();
+    state0.convert(expectedSet, eom.get_system());
 
     // Integrate
-    const auto start = interval.start.count<seconds>();
-    const auto end = interval.end.count<seconds>();
-    integrate(start, end, stateInitial);
+    integrate(interval.start, interval.end, state0, eom, spacecraft);
 
     // Get state history
     auto states = get_state_history();
 
     // Revconvert to original set
     for (auto& state: states) {
-        state.elements.convert(originalSet, &eom.get_system());
+        state.elements.convert(originalSet, eom.get_system());
     }
-    sc.set_states(states);
+    spacecraft.set_states(states);
 }
 
-void Integrator::integrate(double timeInitial, double timeFinal, double* stateInitial) {
+void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
-    // Setup dem variables
-    time = timeInitial; // time at current iteration
+    // Time
+    Time time = timeInitial;
+    Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
 
-    if (useFixedStep) { // time step at current iteration
-        timeStep = fixedTimeStep; 
-    }
-    else { 
-        timeStep = timeStepInitial; 
-    }	
-
-    for (int ii = 0; ii < nStates; ++ii) {
-        state[ii] = stateInitial[ii]; // initial state
-    }
     if (timeFinal < timeInitial) {
         forwardTime = false;
-        timeStep *= -1.0;
+        timeStep = -timeStep;
     }
 
-    // Clean up vectors so Integrator can be used multiple times
-    cleanup();
+    // States
+    OrbitalElements state = stateInitial;
+
+    // Clean up history so integrator can be used multiple times
+    stateHistory.clear();
 
     // Predict number of steps
-    reserve_space((int) ceil(timeFinal/30)); // guess 1 point every 30 seconds
+    stateHistory.reserve((int) ceil(timeFinal/30)); // guess 1 point every 30 seconds
 
     // Ensure count restarts
     functionEvaluations = 0;
@@ -85,49 +58,35 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
     // Setup stepper
     setup_stepper();
 
-    // Fruit Loop 
+    // Fruit Loop
     iteration = 0;
     startTimer();
     while (iteration < iterMax) {
 
         // Break if final time is reached
-        if (( forwardTime && time > timeFinal) || 
+        if (( forwardTime && time > timeFinal) ||
             (!forwardTime && time < timeFinal)) {
             break;
         }
 
         // Add time and state to storage file
-        store_iteration();
+	    stateHistory.emplace_back(State{time, state});
 
         // Check for event
-        check_event();
+        check_event(time, state, eom, spacecraft);
         if (eventTrigger) {
-            print_iteration(timeFinal, stateInitial);
+            print_iteration(time, state, timeFinal, stateInitial);
 
-            if (printOn){ 
-                std::cout << crashMessage; 
-            }
+            std::cout << crashMessage;
             return;
         }
 
         if (useFixedStep) {
             // Step without error correction
-            // I think an interesting choice would allow the user to use the fixed timestep but the 
-            // Integrator would use variable stepper to each fixed timestep. This would give the 
+            // I think an interesting choice would allow the user to use the fixed timestep but the
+            // Integrator would use variable stepper to each fixed timestep. This would give the
             // desired output with the ensured accuracy of the variable stepper
-            try_step();
-
-            // Step time
-            time += timeStep;
-            for (int ii = 0; ii < nStates; ++ii) {
-                // Step state
-                state[ii] = stateNew[ii] + stateError[ii]; // Adding the state error improves the next guess
-
-                // Store final function eval for Dormand-Prince methods
-                if (stepMethod == dop45 || stepMethod == dop78) {
-                    YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
-                }
-            }
+            try_step(time, timeStep, state, eom, spacecraft);
         }
         else { // Variable time step
             // Loop to find step size that meets tolerance
@@ -135,16 +94,11 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
             stepSuccess = false;
             while (variableStepIteration < maxVariableStepIterations) {
                 // Try to step
-                try_step();
-
-                // Check error of step
-                check_error();
+                try_step(time, timeStep, state, eom, spacecraft);
 
                 // Catch underflow
                 if (time + timeStep == time) {
-                    if (printOn) { 
-                        std::cout << underflowErrorMessage; 
-                    }
+                    std::cout << underflowErrorMessage;
                     return;
                 }
 
@@ -157,21 +111,19 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
 
             // Exceeded max inner loop iterations
             if (variableStepIteration >= maxVariableStepIterations) {
-                if (printOn) { 
-                    std::cout << innerLoopStepOverflowErrorMessage; 
-                }
+                std::cout << innerLoopStepOverflowErrorMessage;
                 return;
             }
         }
 
         // Ensure last step goes to exact final time
-        if (( forwardTime && time + timeStep > timeFinal && time < timeFinal) || 
+        if (( forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
             (!forwardTime && time + timeStep < timeFinal && time > timeFinal)) {
             timeStep = timeFinal - time;
         }
 
-        // Print time and state 
-        print_iteration(timeFinal, stateInitial);
+        // Print time and state
+        print_iteration(time, state, timeFinal, stateInitial);
 
         // Step iteration
         ++iteration;
@@ -180,9 +132,7 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
 
     // Exceeded max outer loop iterations
     if (iteration >= iterMax) {
-        if (printOn) {
-            std::cout << outerLoopStepOverflowErrorMessage;
-        }
+        std::cout << outerLoopStepOverflowErrorMessage;
     }
 
     // Performance
@@ -196,14 +146,14 @@ void Integrator::integrate(double timeInitial, double timeFinal, double* stateIn
 void Integrator::setup_stepper() {
     switch (stepMethod) {
         //----------------------------------- Runge-Kutta(-Fehlberg) Methods -----------------------------------//
-        case rk45: // Traditional RK45
+        case RK45: // Traditional RK45
 
             // Delcare number of stages
             nStages = 6;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < nStages; ++ii) {
-                for (int jj = 0; jj < nStages; ++jj) {
+            for (size_t ii = 0; ii < nStages; ++ii) {
+                for (size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rk45[ii][jj];
                 }
                 b[ii] = b_rk45[ii];
@@ -213,14 +163,14 @@ void Integrator::setup_stepper() {
             }
             break;
 
-        case rkf45: // RKF 45 Method
+        case RKF45: // RKF 45 Method
 
             // Delcare number of stages
             nStages = 6;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < nStages; ++ii) {
-                for (int jj = 0; jj < nStages; ++jj) {
+            for (size_t ii = 0; ii < nStages; ++ii) {
+                for (size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf45[ii][jj];
                 }
                 b[ii] = b_rkf45[ii];
@@ -230,14 +180,14 @@ void Integrator::setup_stepper() {
             }
             break;
 
-        case rkf78: // Runge-Kutta-Felhlberg 78 Method
+        case RKF78: // Runge-Kutta-Felhlberg 78 Method
 
             // Delcare number of stages
             nStages = 13;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < nStages; ++ii) {
-                for (int jj = 0; jj < nStages; ++jj) {
+            for (size_t ii = 0; ii < nStages; ++ii) {
+                for (size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf78[ii][jj];
                 }
                 b[ii] = b_rkf78[ii];
@@ -248,14 +198,14 @@ void Integrator::setup_stepper() {
             break;
 
         //--------------------------------------- Dormand-Prince Methods ---------------------------------------//
-        case dop45: // Dormand-Prince 45 Method
+        case DOP45: // Dormand-Prince 45 Method
 
             // Delcare number of stages
             nStages = 7;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < nStages; ++ii) {
-                for (int jj = 0; jj < nStages; ++jj) {
+            for (size_t ii = 0; ii < nStages; ++ii) {
+                for (size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop45[ii][jj];
                 }
                 b[ii] = b_dop45[ii];
@@ -265,14 +215,14 @@ void Integrator::setup_stepper() {
             }
             break;
 
-        case dop78: // Dormand-Prince 78 Method
+        case DOP78: // Dormand-Prince 78 Method
 
             // Delcare number of stages
             nStages = 13;
 
             // Get Butcher Tableau
-            for (int ii = 0; ii < nStages; ++ii) {
-                for (int jj = 0; jj < nStages; ++jj) {
+            for (size_t ii = 0; ii < nStages; ++ii) {
+                for (size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop78[ii][jj];
                 }
                 b[ii] = b_dop78[ii];
@@ -283,116 +233,143 @@ void Integrator::setup_stepper() {
             break;
 
         default:
-            throw std::invalid_argument("THATS NOT A STEPPING METHOD, SIR.");
+            throw std::invalid_argument("Error: Stepping method not found. Options are {RK45, RKF45, RKF78, DOP45, DOP78}.");
     }
 }
 
-void Integrator::try_step() { // This is a generic form of an rk step method. Works for any rk, rkf, or dop method. 
+// This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
+void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
 
-    // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j]) 
-    for (int ii = 0; ii < nStages; ++ii) {
+    // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
+    auto statePlusKi = state;
+    for (size_t ii = 0; ii < nStages; ++ii) {
         // Find derivative
         if (ii == 0) {
-            if (stepMethod == rk45 || stepMethod == rkf45 || stepMethod == rkf78) {
-                find_state_derivative(time, state, kMatrix[0]);
+            if (stepMethod == RK45 || stepMethod == RKF45 || stepMethod == RKF78) {
+                const auto dstate = find_state_derivative(time, state, eom, spacecraft);
+                for (size_t iState = 0; iState < state.size(); ++iState) {
+                    kMatrix[0][iState] = dstate[iState];
+                }
             }
-            else if (stepMethod == dop45 || stepMethod == dop78) {
+            else if (stepMethod == DOP45 || stepMethod == DOP78) {
                 if (iteration == 0) {
-                    find_state_derivative(time, state, kMatrix[0]);
+                    const auto dstate = find_state_derivative(time, state, eom, spacecraft);
+                    for (size_t iState = 0; iState < state.size(); ++iState) {
+                        kMatrix[0][iState] = dstate[iState];
+                    }
                 }
                 else {
-                    for (int jj = 0; jj < nStages; ++jj) {
+                    for (size_t jj = 0; jj < nStages; ++jj) {
                         kMatrix[0][jj] = YFinalPrevious[jj];
                     }
                 }
             }
         }
         else {
-            find_state_derivative(time + c[ii]*timeStep, statePlusKi, kMatrix[ii]);
+            const auto dstate = find_state_derivative(time + c[ii]*timeStep, statePlusKi, eom, spacecraft);
+            for (size_t iState = 0; iState < state.size(); ++iState) {
+                kMatrix[ii][iState] = dstate[iState];
+            }
         }
 
-        for (int jj = 0; jj < nStates; ++jj) {
+        for (size_t jj = 0; jj < state.size(); ++jj) {
             // Correct k value
             kMatrix[ii][jj] *= timeStep;
 
             // Get k next step
             statePlusKi[jj] = state[jj];
-            for (int kk = 0; kk < ii+1; ++kk) {
+            for (size_t kk = 0; kk < ii+1; ++kk) {
                 statePlusKi[jj] += kMatrix[kk][jj]*a[ii+1][kk];
             }
         }
     }
 
     // Find max error from step
-    errorMax = 0.0;
-    for (int ii = 0; ii < nStates; ++ii) {
+    double maxError = 0.0;
+    OrbitalElements stateNew = state;
+    OrbitalElements stateError(state.get_set());
+    for (size_t ii = 0; ii < state.size(); ++ii) {
 
-        stateNew[ii] = state[ii];
         stateError[ii] = 0.0;
-        for (int jj = 0; jj < nStages; ++jj) {
+        for (size_t jj = 0; jj < nStages; ++jj) {
             stateNew[ii] += kMatrix[jj][ii]*b[jj];
             stateError[ii] += kMatrix[jj][ii]*db[jj];
         }
 
         if (!useFixedStep){
             // Error
-            error = abs(stateError[ii])/(absoluteTolerance + abs(stateNew[ii])*relativeTolerance);
-            if (error > errorMax) {
-                errorMax = error;
-            }
+            maxError = std::max(maxError, abs(stateError[ii])/(absoluteTolerance + abs(stateNew[ii])*relativeTolerance));
 
             // Catch huge steps
-            /* There has to be a better way to do this. It's still possible for the integration to 
+            /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
-            if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) { 
+            if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
                    it to lower the step slightly and try again without killing the run */
-                errorMax = 2.0; // Force step failure
+                maxError = 2.0; // Force step failure
             }
         }
     }
-}
 
-//----------------------------------------------------------------------------------------------------------//
-//---------------------------------------------- Error Methods ---------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
-
-void Integrator::check_error() {
-
-	if (errorMax <= 1.0) { // Step succeeded
-		// Step time
-		time += timeStep;
-		for (int ii = 0; ii < nStates; ++ii) {
-            // Step state
-			state[ii] = stateNew[ii] + stateError[ii]; // Adding the state error improves the next guess
+    // Check error of step
+    if (!useFixedStep) {
+        check_error(maxError, stateNew, stateError, time, timeStep, state);
+    }
+    else {
+        // Step time
+        time += timeStep;
+        for (size_t ii = 0; ii < state.size(); ++ii) {
 
             // Store final function eval for Dormand-Prince methods
-            if (stepMethod == dop45 || stepMethod == dop78) {
+            if (stepMethod == DOP45 || stepMethod == DOP78) {
                 YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
             }
-		}
+        }
+
+        // Adding the state error improves the next guess
+        state = stateNew + stateError;
+    }
+}
+
+
+void Integrator::check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
+                             Time& time, Time& timeStep, OrbitalElements& state) {
+
+	if (maxError <= 1.0) { // Step succeeded
+		// Step time
+		time += timeStep;
+
+        // Step state
+        state = stateNew + stateError; // Adding the state error improves the next guess
+
+        // Store final function eval for Dormand-Prince methods
+        if (stepMethod == DOP45 || stepMethod == DOP78) {
+            for (size_t ii = 0; ii < state.size(); ++ii) {
+                YFinalPrevious[ii] = kMatrix[nStages-1][ii]/timeStep;
+            }
+        }
 
 		// Get new step after stepping time
 		if (iteration == 0) {
 			// Store step and error
 			timeStepPrevious = timeStep;
-			errorMaxPrevious = errorMax;
+			maxErrorPrevious = maxError;
 
-			if (errorMax < minErrorCatch) { // Step is too small
+			if (maxError < minErrorCatch) { // Step is too small
 				timeStep *= minErrorStepFactor;
 			}
 			else {
-				timeStep *= pow(epsilon/errorMax, 0.2);
+				timeStep *= std::pow(epsilon/maxError, 0.2);
 			}
 		}
 		else {
 			// Predicted relative step size
-			relativeTimeStep = abs(timeStep/timeStepPrevious)*pow(epsilon/errorMax, 0.08)*pow(errorMax/errorMaxPrevious, 0.06);
+			const double relativeTimeStep = abs(timeStep/timeStepPrevious)*std::pow(epsilon/maxError, 0.08)*std::pow(maxError/maxErrorPrevious, 0.06);
 
 			// Store step and error after computing relative time step
 			timeStepPrevious = timeStep;
-			errorMaxPrevious = errorMax;
+			maxErrorPrevious = maxError;
 
 			// New step size
 			timeStep *= relativeTimeStep;
@@ -403,7 +380,7 @@ void Integrator::check_error() {
 	}
 	else { // Error is too large . truncate stepsize
 		// Predicted relative step size
-		relativeTimeStep = pow(epsilon/errorMax, 0.2);
+		const double relativeTimeStep = std::pow(epsilon/maxError, 0.2);
 
 		// Keep step from getting too small too fast
 		if (relativeTimeStep < minRelativeStepSize) { // step size is too small
@@ -419,43 +396,28 @@ void Integrator::check_error() {
 // ---------------------------------------------Saving Methods ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::save() {
-
-    if (printOn) { std::cout << "Saving... \n"; }
-
-	// Create file to write results too
-	std::ofstream outf("last_run.txt");
-	char buffer[200];
-	snprintf(buffer, 200, "%-15s, %-15s, %-15s, %-15s, %-15s, %-15s, %-15s \n", 
-             "Time (s)", "x (km)", "y (km)", "z (km)", "vx (km/s)", "vy (km/s)", "vz (km/s)");
-	outf << buffer;
-
-	for (int ii = 0; ii < (int)timeVector.size(); ++ii) {
-		snprintf(buffer, 200, "%-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g \n", 
-                 timeVector[ii], stateVectorOne[ii], stateVectorTwo[ii], stateVectorThree[ii], 
-                 stateVectorFour[ii], stateVectorFive[ii], stateVectorSix[ii]);
-		outf << buffer;
-	}
-    outf.close();
-
-    if (printOn) { std::cout << "Saving Complete. \n\n"; }
+void Integrator::save() const {
+    save("last_run.txt");
 }
 
-void Integrator::save(std::string filename) {
+void Integrator::save(std::string filename) const {
 
     if (printOn){ std::cout << "Saving... \n"; }
 
 	// Create file to write results too
 	std::ofstream outf(filename);
 	char buffer[200];
-	snprintf(buffer, 200, "%-15s, %-15s, %-15s, %-15s, %-15s, %-15s, %-15s \n", 
+	snprintf(buffer, 200, "%-15s, %-15s, %-15s, %-15s, %-15s, %-15s, %-15s \n",
              "Time (s)", "x (km)", "y (km)", "z (km)", "vx (km/s)", "vy (km/s)", "vz (km/s)");
 	outf << buffer;
 
-	for (int ii = 0; ii < (int)timeVector.size(); ++ii) {
-		snprintf(buffer, 200, "%-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g \n", 
-                 timeVector[ii], stateVectorOne[ii], stateVectorTwo[ii], stateVectorThree[ii], 
-                 stateVectorFour[ii], stateVectorFive[ii], stateVectorSix[ii]);
+	for (const auto& state : stateHistory) {
+
+        const Time& time = state.time;
+        const OrbitalElements& elements = state.elements;
+
+		snprintf(buffer, 200, "%-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g \n",
+                 double(time), elements[0], elements[1], elements[2], elements[3], elements[4], elements[5]);
 		outf << buffer;
 	}
     outf.close();
@@ -463,132 +425,70 @@ void Integrator::save(std::string filename) {
     if (printOn) { std::cout << "Saving Complete. \n\n"; }
 }
 
-//----------------------------------------------------------------------------------------------------------//
-//-------------------------------------------- Printing Methods --------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
 
-void Integrator::print_iteration(double timeFinal, double* stateInitial) {
+void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial) {
 	// This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        day = (int) floor(time*SEC_TO_DAY);
-        if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
+        int day = days(time).count();
+        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
             if (iteration == 0) {
-                std::cout << "Run Conditions: \n\n";
-                std::cout << "Initial Time = " << 0.0 << "\n";
-                std::cout << "Final Time =  " << timeFinal/86400.0 << " days \n";
-                for (int ii = 0; ii < nStates; ++ii) {
-                    if (ii == 0) {
-                        std::cout << "Initial State = [";
-                    }
-                    std::cout << " " << stateInitial[ii] << " ";
-                }
-                std::cout << "]" << "\n";
-                std::cout << "R = " << sqrt(stateInitial[0]*stateInitial[0] + stateInitial[1]*stateInitial[1] + stateInitial[2]*stateInitial[2]) << " km \n";
-                std::cout << "V = " << sqrt(stateInitial[3]*stateInitial[3] + stateInitial[4]*stateInitial[4] + stateInitial[5]*stateInitial[5]) << " km/s \n\n";
-                std::cout << "Integration Tolerance: " << relativeTolerance << "\n\n\n";
-                std::cout << "Run:"<< "\n\n";
+                std::cout << "Run Conditions:"<< std::endl << std::endl;
+                std::cout << "Initial Time = " << 0.0 << std::endl;
+                std::cout << "Final Time =  " << timeFinal << std::endl;
+                std::cout << "Initial State = " << stateInitial << std::endl;
+                std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl;
+                std::cout << "Run:" << std::endl << std::endl;
             }
             else {
                 checkDay = day;
 
-                std::cout << "Iteration: " << iteration+1 << "\n";
-                std::cout << "time = " << time/86400.0 << " days \n";
-                for (int ii = 0; ii < nStates; ++ii) {
-                    if (ii == 0) {
-                        std::cout << "state = [";
-                    }
-                    std::cout << " " << state[ii] << " ";
-                }
-                std::cout << "] \n";
-                std::cout << "R = " << sqrt(state[0]*state[0] + state[1]*state[1] + state[2]*state[2]) << " km \n";
-                std::cout << "V = " << sqrt(state[3]*state[3] + state[4]*state[4] + state[5]*state[5]) << " km/s \n\n";
+                std::cout << "Iteration: " << iteration+1 << std::endl;
+                std::cout << "time = " << time << std::endl;
+                std::cout << "state = " << state << std::endl << std::endl;
             }
-        }
+        // }
         if (time == timeFinal) {
-            std::cout << "Run Completed. \n\n";
+            std::cout << "Run Completed." << std::endl << std::endl;
         }
     }
 }
 
-void Integrator::print_performance() {
+void Integrator::print_performance() const {
 	if (printOn) {
-		std::cout << "Number of Steps:                " << iteration << " iter \n";
-		std::cout << "Number of Function Evaluations: " << functionEvaluations << " fval \n";
+		std::cout << "Number of Steps:                " << iteration << " iter" << std::endl;
+		std::cout << "Number of Function Evaluations: " << functionEvaluations << " fval" << std::endl;
 
 		double runtime{};
 		if (timerOn) {
 			runtime = ( (double) endClock - (double) startClock)/( (double) CLOCKS_PER_SEC);
-			std::cout << "Runtime:                        " << runtime << " s \n";
+			std::cout << "Runtime:                        " << runtime << " s" << std::endl;
 		}
 
-		std::cout <<   "\nAverage Function Evaluations per Step:   " << (double)functionEvaluations/(double)iteration << " fval/iter \n";
+		std::cout <<   "\nAverage Function Evaluations per Step:   " << (double)functionEvaluations/(double)iteration << " fval/iter" << std::endl;
 
 		if (timerOn) {
-			std::cout << "Average Runtime per Step:                " << runtime/(double)iteration << " s/iter \n";
-			std::cout << "Average Runtime per Function Evaluation: " << runtime/(double)functionEvaluations << " s/fval \n\n";
+			std::cout << "Average Runtime per Step:                " << runtime/(double)iteration << " s/iter" << std::endl;
+			std::cout << "Average Runtime per Function Evaluation: " << runtime/(double)functionEvaluations << " s/fval" << std::endl << std::endl;
 		}
 	}
-}
-
-//----------------------------------------------------------------------------------------------------------//
-//--------------------------------------------- Vector Methods ---------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
-
-void Integrator::reserve_space(int N) {
-	timeVector.reserve(N);
-	stateVectorOne.reserve(N);
-	stateVectorTwo.reserve(N);
-	stateVectorThree.reserve(N);
-	stateVectorFour.reserve(N);
-	stateVectorFive.reserve(N);
-	stateVectorSix.reserve(N);
-}
-
-void Integrator::store_iteration() {
-	timeVector.push_back(time);
-	stateVectorOne.push_back(state[0]);
-	stateVectorTwo.push_back(state[1]);
-	stateVectorThree.push_back(state[2]);
-	stateVectorFour.push_back(state[3]);
-	stateVectorFive.push_back(state[4]);
-	stateVectorSix.push_back(state[5]);
-}
-
-void Integrator::cleanup() {
-    timeVector.clear();
-    stateVectorOne.clear();
-    stateVectorTwo.clear();
-    stateVectorThree.clear();
-    stateVectorFour.clear();
-    stateVectorFive.clear();
-    stateVectorSix.clear();
-}
-
-void Integrator::copy_final_state(double* state) {
-    state[0] = stateVectorOne.back();
-    state[1] = stateVectorTwo.back();
-    state[2] = stateVectorThree.back();
-    state[3] = stateVectorFour.back();
-    state[4] = stateVectorFive.back();
-    state[5] = stateVectorSix.back();
 }
 
 //----------------------------------------------------------------------------------------------------------//
 //--------------------------------------------- Event Function ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::check_event() {
+void Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    eventTrigger = equationsOfMotion->check_crash(state);
+    eventTrigger = eom.check_crash(time, state, spacecraft);
 
     // Break if hit nans or infs
     if (std::isinf(abs(time)) || std::isnan(abs(time))) {
         eventTrigger = true;
     }
     else {
-        for (int ii = 0; ii < nStates; ++ii) {
-            if (std::isinf(abs(state[ii])) || std::isnan(abs(state[ii]))) {
+        for (const auto& x : state) {
+            if (std::isinf(abs(x)) || std::isnan(abs(x))) {
                 eventTrigger = true;
             }
         }
@@ -631,50 +531,18 @@ void Integrator::set_timestep(double fixedTimeStep) {
 
 void Integrator::set_step_method(std::string stepMethod) {
     Integrator::odeStepper stepper{};
-    if      (stepMethod == "rk45" ) { stepper = Integrator::odeStepper::rk45; }
-    else if (stepMethod == "rkf45") { stepper = Integrator::odeStepper::rkf45; }
-    else if (stepMethod == "rkf78") { stepper = Integrator::odeStepper::rkf78; }
-    else if (stepMethod == "dop45") { stepper = Integrator::odeStepper::dop45; }
-    else if (stepMethod == "dop78") { stepper = Integrator::odeStepper::dop78; }
-    else { 
-        std::cout << "Warning: Unknown step method selected. No change applied. \n\n"; 
+    if      (stepMethod == "RK45" ) { stepper = Integrator::odeStepper::RK45; }
+    else if (stepMethod == "RKF45") { stepper = Integrator::odeStepper::RKF45; }
+    else if (stepMethod == "RKF78") { stepper = Integrator::odeStepper::RKF78; }
+    else if (stepMethod == "DOP45") { stepper = Integrator::odeStepper::DOP45; }
+    else if (stepMethod == "DOP78") { stepper = Integrator::odeStepper::DOP78; }
+    else {
+        std::cout << "Warning: Unknown step method selected. No change applied. \n\n";
     }
     stepMethod = stepper;
 }
 
 
-// Integrator history getters
-int Integrator::get_state_history_size() { return (int)timeVector.size(); }
-// void Integrator::get_state_history(double** stateHistory) {
-//     // Copy to double array
-//     int sz = (int)timeVector.size();
-//     for (int ii = 0; ii < sz; ++ii) {
-//         stateHistory[ii][0] = timeVector[ii];
-//         stateHistory[ii][1] = stateVectorOne[ii];
-//         stateHistory[ii][2] = stateVectorTwo[ii];
-//         stateHistory[ii][3] = stateVectorThree[ii];
-//         stateHistory[ii][4] = stateVectorFour[ii];
-//         stateHistory[ii][5] = stateVectorFive[ii];
-//         stateHistory[ii][6] = stateVectorSix[ii];
-//     }
-// }
-
-std::vector<State> Integrator::get_state_history() {
-    int sz = (int)timeVector.size();
-    std::vector<State> states;
-    states.reserve(sz);
-    for (int ii = 0; ii < sz; ++ii) {
-        Time time(timeVector[ii]/86400.0);
-        OrbitalElements elements{{
-            stateVectorOne[ii],
-            stateVectorTwo[ii],
-            stateVectorThree[ii],
-            stateVectorFour[ii],
-            stateVectorFive[ii],
-            stateVectorSix[ii]
-        }};
-        states.push_back({time, elements});
-    }
-
-    return states;
-}
+// Getters
+size_t Integrator::get_state_history_size() const { return stateHistory.size(); }
+std::vector<State>& Integrator::get_state_history() { return stateHistory; }

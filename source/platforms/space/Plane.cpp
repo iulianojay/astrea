@@ -9,14 +9,14 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
 
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
-    elements.convert(ElementSet::COE, &sys);
+    elements.convert(ElementSet::KEPLERIAN, sys);
     elements[5] = 0.0;
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat: satellites) {
         OrbitalElements satElements = sat.states[0].elements;
-        satElements.convert(ElementSet::COE, &sys);
+        satElements.convert(ElementSet::KEPLERIAN, sys);
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
             break;
@@ -42,7 +42,7 @@ const std::vector<Spacecraft>& Plane::get_all_spacecraft() const {
 }
 
 
-const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
+const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const {
     for (const auto& sat: satellites) {
         if (sat.id == spacecraftId) {
             return sat;
@@ -54,7 +54,7 @@ const Spacecraft& Plane::get_spacecraft(const int& spacecraftId) const {
 
 void Plane::generate_id_hash() {
     id = std::hash<size_t>()(satellites[0].id);
-    for (int ii = 1; ii < satellites.size(); ii++) {
+    for (size_t ii = 1; ii < satellites.size(); ii++) {
         id ^= std::hash<size_t>()(satellites[ii].id);
     }
 }
@@ -62,6 +62,6 @@ void Plane::generate_id_hash() {
 
 void Plane::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval) {
     for (auto& sat : satellites) {
-        integrator.propagate(interval, sat, eom);
+        integrator.propagate(interval, eom, sat);
     }
 }

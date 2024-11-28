@@ -27,14 +27,14 @@ public:
     const size_t n_planes() const;
 
     void add_plane(const Plane& plane);
-    void add_spacecraft(const Spacecraft& spacecraft, const int& planeId);
+    void add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId);
     void add_spacecraft(const Spacecraft& spacecraft);
 
     const std::vector<Plane>& get_all_planes() const;
     const std::vector<Spacecraft> get_all_spacecraft() const;
 
-    const Plane& get_plane(const int& planeId) const;
-    const Spacecraft& get_spacecraft(const int& spacecraftId) const;
+    const Plane& get_plane(const size_t& planeId) const;
+    const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 

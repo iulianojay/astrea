@@ -4,6 +4,7 @@
 
 #include "conversions.hpp"
 #include "interpolation.hpp"
+#include "Time.hpp"
 
 // Constructor/Destructor
 Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) : epoch(J2000) {
@@ -109,48 +110,42 @@ const State Spacecraft::get_state_at(const Time& time) const {
     };
 
     // Get index of lower bound closest to input time
-    const auto id = std::distance(states.begin(), std::lower_bound(states.begin(), states.end(), time, state_time_comparitor));
+    const auto lower = std::lower_bound(states.begin(), states.end(), time, state_time_comparitor);
+    const auto idx = std::distance(states.begin(), lower);
 
     // If exact, return
-    if (states[id].time == time) {
-        return states[id];
+    if (states[idx].time == time) {
+        return states[idx];
     }
 
     // Separate time and elements
-    const size_t nStates = states.size();
-    std::vector<double> times;
-    std::vector<std::vector<double>> elements;
-
-    times.resize(nStates);
-    elements.resize(6);
-    for (size_t ii = 0; ii < 6; ++ii) {
-        elements[ii].resize(nStates);
-    }
-
-    for (size_t ii = 0; ii < nStates; ++ii) {
-        times[ii] = states[ii].time;
-        for (size_t jj = 0; jj < 6; ++jj) {
-            elements[jj][ii] = states[ii].elements[jj];
-        }
-    }
+    std::vector<Time> times{ states[idx-1].time, states[idx].time };
+    std::vector<std::vector<double>> elements{
+        { states[idx-1].elements[0], states[idx].elements[0] },
+        { states[idx-1].elements[1], states[idx].elements[1] },
+        { states[idx-1].elements[2], states[idx].elements[2] },
+        { states[idx-1].elements[3], states[idx].elements[3] },
+        { states[idx-1].elements[4], states[idx].elements[4] },
+        { states[idx-1].elements[5], states[idx].elements[5] }
+    };
 
     // Interpolate one element at a time to reduce error
-    OrbitalElements splinedElements = states[0].elements; // copy so element set is the same
+    OrbitalElements interpolatedElements = states[0].elements; // copy so element set is the same
     for (size_t ii = 0; ii < 6; ++ii) {
-        splinedElements[ii] = interpolate(times, elements[ii], states[id+1].time);
+        interpolatedElements[ii] = interpolate(times, elements[ii], time);
     }
 
-    return State({time, splinedElements});
+    return State({time, interpolatedElements});
 }
 
 // Spacecraft Property Getters
-double  Spacecraft::get_mass()                        { return mass; }
-double  Spacecraft::get_coefficient_of_drag()         { return coefficientOfDrag; }
-double  Spacecraft::get_coefficient_of_lift()         { return coefficientOfLift; }
-double  Spacecraft::get_coefficient_of_reflectivity() { return coefficientOfReflectivity; }
-double* Spacecraft::get_ram_area()                    { return areaRam; }
-double* Spacecraft::get_sun_area()                    { return areaSun; }
-double* Spacecraft::get_lift_area()                   { return areaLift; }
+const double& Spacecraft::get_mass()                        const { return mass; }
+const double& Spacecraft::get_coefficient_of_drag()         const { return coefficientOfDrag; }
+const double& Spacecraft::get_coefficient_of_lift()         const { return coefficientOfLift; }
+const double& Spacecraft::get_coefficient_of_reflectivity() const { return coefficientOfReflectivity; }
+const basis_array& Spacecraft::get_ram_area()               const { return areaRam; }
+const basis_array& Spacecraft::get_sun_area()               const { return areaSun; }
+const basis_array& Spacecraft::get_lift_area()              const { return areaLift; }
 
 
 void Spacecraft::generate_id_hash() {

@@ -39,9 +39,22 @@ set(HDRS
     ${INC}/astro/platforms/space/Shell.hpp
     ${INC}/astro/platforms/space/Spacecraft.hpp
 
-    ${INC}/astro/propagation/EquationsOfMotion.hpp
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp
+
+    ${INC}/astro/propagation/force_models/AtmosphericForce.hpp
+    ${INC}/astro/propagation/force_models/Force.hpp
+    ${INC}/astro/propagation/force_models/ForceModel.hpp
+    ${INC}/astro/propagation/force_models/NBodyForce.hpp
+    ${INC}/astro/propagation/force_models/OblatenessForce.hpp
+    ${INC}/astro/propagation/force_models/SolarRadiationPressureForce.hpp
+
+    ${INC}/astro/propagation/equations_of_motion/KeplerianVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/CowellsMethod.hpp
+    ${INC}/astro/propagation/equations_of_motion/EquationsOfMotion.hpp
+    ${INC}/astro/propagation/equations_of_motion/J2MeanVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/EquinoctialVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/TwoBody.hpp
 
     ${INC}/astro/systems/AstrodynamicsSystem.hpp
     ${INC}/astro/systems/Barycenter.hpp
@@ -59,6 +72,7 @@ set(HDRS
     ${INC}/astro/time/access/RiseSetArray.hpp
 
     ${INC}/astro/types/typedefs.hpp
+    ${INC}/astro/types/tuple_hash.hpp
 
     ${INC}/astro/utilities/conversions.hpp
     ${INC}/astro/utilities/riseset_utils.hpp
@@ -83,9 +97,10 @@ set(HDRS
     ${INC}/fwd/platforms/space/Shell.fwd.hpp
     ${INC}/fwd/platforms/space/Spacecraft.fwd.hpp
 
-    ${INC}/fwd/propagation/EquationsOfMotion.fwd.hpp
     ${INC}/fwd/propagation/Integrator.fwd.hpp
     ${INC}/fwd/propagation/LambertSolver.fwd.hpp
+
+    ${INC}/fwd/propagation/equations_of_motion/EquationsOfMotion.fwd.hpp
 
     ${INC}/fwd/systems/AstrodynamicsSystem.fwd.hpp
     ${INC}/fwd/systems/Barycenter.fwd.hpp
@@ -104,12 +119,20 @@ set(HDRS
 )
 
 # Compiler flags
-set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -DLINUX")
-set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -DLINUX")
+set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX")
+set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -mfpmath=387 -ffast-math -fpermissive -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-std=c20 -mfpmath=387 -fpermissive -Wl,--kill-at")
-set(CXX_FLAGS "-std=c++20 -mfpmath=387 -fpermissive -Wl,--kill-at")
+set(C_FLAGS "-std=c20")
+set(CXX_FLAGS "-std=c++20")
+
+if (${OS} STREQUAL linux)
+    set(C_FLAGS "${C_FLAGS} -Wall")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wall")
+else()
+    set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at")
+endif()
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")

@@ -25,7 +25,7 @@ public:
 
     const std::vector<Spacecraft>& get_all_spacecraft() const;
 
-    const Spacecraft& get_spacecraft(const int& spacecraftId) const;
+    const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
 
     const size_t size() const;
 
