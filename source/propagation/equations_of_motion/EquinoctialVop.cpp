@@ -1,11 +1,11 @@
-#include "MeesVop.hpp"
+#include "EquinoctialVop.hpp"
 
 #include "math_c.hpp"
 
-OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
-    if (state.get_set() != ElementSet::MEE) {
-        throw std::runtime_error("The Mean Equinoctial dynamics evaluator requires that the incoming Orbital Element set is in MEE coordinates.");
+    if (state.get_set() != ElementSet::EQUINOCTIAL) {
+        throw std::runtime_error("The Mean Equinoctial dynamics evaluator requires that the incoming Orbital Element set is in EQUINOCTIAL coordinates.");
     }
 
     // Extract
@@ -16,11 +16,11 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
     const double& k = state[4];
     const double& L = state[5];
 
-    // conversions Modified Equinoctial Elements to COEs
-    const auto coesState = conversions::convert(state, ElementSet::MEE, ElementSet::COE, system);
+    // conversions Modified Equinoctial Elements to KEPLERIANs
+    const auto coesState = conversions::convert(state, ElementSet::EQUINOCTIAL, ElementSet::KEPLERIAN, system);
 
-    // conversions COEs to r and v
-    const auto cartesianState = conversions::convert(coesState, ElementSet::COE, ElementSet::CARTESIAN, system);
+    // conversions KEPLERIANs to r and v
+    const auto cartesianState = conversions::convert(coesState, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, system);
 
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
@@ -90,7 +90,7 @@ OrbitalElements MeesVop::operator()(const Time& time, const OrbitalElements& sta
         tempD*cosL*normalPert,                                                                          // dhdt
         tempD*sinL*normalPert,                                                                          // dkdt
         std::sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert                                           // dLdt
-    }, ElementSet::MEE);
+    }, ElementSet::EQUINOCTIAL);
 
     return dsdt;
 }

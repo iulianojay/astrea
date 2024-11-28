@@ -1,11 +1,11 @@
-#include "CoesVop.hpp"
+#include "KeplerianVop.hpp"
 
 #include "math_c.hpp"
 
-OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
-    if (state.get_set() != ElementSet::COE) {
-        throw std::runtime_error("The COEs VoP dynamics evaluator requires that the incoming Orbital Element set is in COE coordinates.");
+    if (state.get_set() != ElementSet::KEPLERIAN) {
+        throw std::runtime_error("The KEPLERIANs VoP dynamics evaluator requires that the incoming Orbital Element set is in KEPLERIAN coordinates.");
     }
 
     // Extract
@@ -26,8 +26,8 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     // h
     const double h = std::sqrt(mu*a*(1 - ecc*ecc));
 
-    // conversions COEs to r and v
-    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);
+    // conversions KEPLERIANs to r and v
+    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, system);
 
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
@@ -90,7 +90,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double hSquared = h*h;
     const double hOverRSquared = h/(R*R);
 
-    // Calculate the derivatives of the COEs - from the notes
+    // Calculate the derivatives of the KEPLERIANs - from the notes
     const double dhdt     = R*tangentialPert;
     const double deccdt  = h/mu*sinTA*radialPert + 1/(mu*h)*((hSquared + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
     const double dincdt  = R/h*cosU*normalPert;
@@ -108,12 +108,12 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
         dwdt,
         dthetadt
     },
-    ElementSet::COE);
+    ElementSet::KEPLERIAN);
 
     return dsdt;
 }
 
-void CoesVop::check_degenerate(const double& ecc, const double& inc) const {
+void KeplerianVop::check_degenerate(const double& ecc, const double& inc) const {
     if (ecc <= checkTol || inc <= checkTol) {
         std::string title;
         if (ecc <= checkTol && inc <= checkTol) {

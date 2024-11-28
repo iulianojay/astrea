@@ -57,7 +57,7 @@ protected:
             w_dist(rng),
             theta_dist(rng)
         };
-        return OrbitalElements(elements, ElementSet::COE);
+        return OrbitalElements(elements, ElementSet::KEPLERIAN);
     }
 
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true) {

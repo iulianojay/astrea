@@ -116,7 +116,7 @@ element_array conversions::convert(const element_array& elements, const ElementS
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
 
-void conversions::coes_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
+void conversions::keplerian_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
 
     // Precalculate
     const double cos_theta = math_c::cos(theta);
@@ -161,7 +161,7 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
     velocity[2] = DCM_peri2ECI_31*vx_peri + DCM_peri2ECI_32*vy_peri;
 }
 
-void conversions::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
+void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, double* coes) {
 
     /*
         Force rounding errors to assume zero values for angles. Assume complex
@@ -308,7 +308,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     coes[5] = theta;
 }
 
-void conversions::_mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
+void conversions::_equinoctial_to_keplerian(double p, double f, double g, double h, double k, double L, double* coes) {
 
     double ecc{}, a{}, inc{}, raan{}, atopo{}, w{}, theta{};
 
@@ -331,11 +331,11 @@ void conversions::_mees_to_coes(double p, double f, double g, double h, double k
 }
 
 
-element_array conversions::coes_to_cartesian(const element_array& coes, const AstrodynamicsSystem& system) {
+element_array conversions::keplerian_to_cartesian(const element_array& coes, const AstrodynamicsSystem& system) {
     element_array cartesian;
     double radius[3];
     double velocity[3];
-    coes_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center().mu(), radius, velocity);
+    keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center().mu(), radius, velocity);
     for (int ii = 0; ii < 3; ii++) {
         cartesian[ii] = radius[ii];
     }
@@ -345,7 +345,7 @@ element_array conversions::coes_to_cartesian(const element_array& coes, const As
     return cartesian;
 };
 
-element_array conversions::cartesian_to_coes(const element_array& cartesian, const AstrodynamicsSystem& system) {
+element_array conversions::cartesian_to_keplerian(const element_array& cartesian, const AstrodynamicsSystem& system) {
     double coes[6];
     double radius[3];
     double velocity[3];
@@ -355,30 +355,30 @@ element_array conversions::cartesian_to_coes(const element_array& cartesian, con
     for (int ii = 0; ii < 3; ii++) {
         velocity[ii] = cartesian[ii+3];
     }
-    bci_to_coes(radius, velocity, system.get_center().mu(), coes);
+    bci_to_keplerian(radius, velocity, system.get_center().mu(), coes);
 
-    element_array coes_array;
-    std::copy(coes, coes+6, coes_array.begin());
+    element_array keplerian_array;
+    std::copy(coes, coes+6, keplerian_array.begin());
 
-    return coes_array;
+    return keplerian_array;
 };
 
 
-element_array conversions::coes_to_mees(const element_array& coes, const AstrodynamicsSystem& system) {
+element_array conversions::keplerian_to_equinoctial(const element_array& coes, const AstrodynamicsSystem& system) {
     element_array mees;
     throw std::logic_error("This function has not been implemented yet");
     return mees;
 };
 
-element_array conversions::mees_to_coes(const element_array& mees, const AstrodynamicsSystem& system) {
+element_array conversions::equinoctial_to_keplerian(const element_array& mees, const AstrodynamicsSystem& system) {
 
     double coes[6];
-    _mees_to_coes(mees[0], mees[1], mees[2], mees[3], mees[4], mees[5], coes);
+    _equinoctial_to_keplerian(mees[0], mees[1], mees[2], mees[3], mees[4], mees[5], coes);
 
-    element_array coes_array;
-    std::copy(coes, coes+6, coes_array.begin());
+    element_array keplerian_array;
+    std::copy(coes, coes+6, keplerian_array.begin());
 
-    return coes_array;
+    return keplerian_array;
 };
 
 //----------------------------------------------------------------------------------------------------------//

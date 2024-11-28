@@ -11,8 +11,8 @@
 
 OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
 
-    if (state.get_set() != ElementSet::COE) {
-        throw std::runtime_error("The Mean J2 dynamics evaluator requires that the incoming Orbital Element set is in COE coordinates.");
+    if (state.get_set() != ElementSet::KEPLERIAN) {
+        throw std::runtime_error("The Mean J2 dynamics evaluator requires that the incoming Orbital Element set is in KEPLERIAN coordinates.");
     }
 
     // Extract
@@ -32,8 +32,8 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     // h and mu
     const double h = std::sqrt(mu*a*(1 - ecc*ecc));
 
-    // conversions COEs to r and v
-    const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);
+    // conversions KEPLERIANs to r and v
+    const auto cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, system);
 
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
@@ -68,7 +68,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     // Calculate R, N, and T
     const double normalPert = accelOblateness[0]*Nhat[0] + accelOblateness[1]*Nhat[1] + accelOblateness[2]*Nhat[2];
 
-    // Calculate the derivatives of the COEs - only raan and w considered
+    // Calculate the derivatives of the KEPLERIANs - only raan and w considered
     const double dhdt = 0.0;
     const double deccdt = 0.0;
     const double _dincdt = R/h*cos(w + theta)*normalPert;
@@ -92,7 +92,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
         dwdt,
         dthetadt
     },
-    ElementSet::COE);
+    ElementSet::KEPLERIAN);
 
     return dsdt;
 }

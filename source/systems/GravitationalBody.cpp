@@ -99,7 +99,7 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
         Time jd = epoch.julian_day() + ii;
         t = (jd.count() - refJulianDate.julian_day())/36525; // time in Julian Centuries
 
-        // COEs
+        // KEPLERIANs
         at = _semimajorAxis + _semimajorAxisRate*t;
         ecct = _eccentricity + _eccentricityRate*t;
         inct = _inclination + _inclinationRate*t;

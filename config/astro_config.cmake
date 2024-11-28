@@ -49,11 +49,11 @@ set(HDRS
     ${INC}/astro/propagation/force_models/OblatenessForce.hpp
     ${INC}/astro/propagation/force_models/SolarRadiationPressureForce.hpp
 
-    ${INC}/astro/propagation/equations_of_motion/CoesVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/KeplerianVop.hpp
     ${INC}/astro/propagation/equations_of_motion/CowellsMethod.hpp
     ${INC}/astro/propagation/equations_of_motion/EquationsOfMotion.hpp
     ${INC}/astro/propagation/equations_of_motion/J2MeanVop.hpp
-    ${INC}/astro/propagation/equations_of_motion/MeesVop.hpp
+    ${INC}/astro/propagation/equations_of_motion/EquinoctialVop.hpp
     ${INC}/astro/propagation/equations_of_motion/TwoBody.hpp
 
     ${INC}/astro/systems/AstrodynamicsSystem.hpp

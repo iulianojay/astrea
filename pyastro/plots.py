@@ -4,7 +4,7 @@ import numpy as np
 from typing import List, Tuple
 
 
-def plot_coes(title: str, infile: str, outfile: str) -> None:
+def plot_keplerian(title: str, infile: str, outfile: str) -> None:
 
     columns = [
         'sma (km)',
@@ -96,11 +96,11 @@ if __name__=='__main__':
     # test = 'cowells'
     # title = 'Cowells Method Test'
     test = 'coes'
-    title = 'COEs VoP Test'
+    title = 'KEPLERIANs VoP Test'
     infile = './bin/results/' + test + '/main.csv'
     outfile = './bin/results/' + test + '/main.png'
 
     try:
-        plot_coes(title, infile, outfile)
+        plot_keplerian(title, infile, outfile)
     except:
         plot_cartesian(title, infile, outfile)

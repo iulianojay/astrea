@@ -43,7 +43,7 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
                     (anchorRAAN + deltaRAAN*iPlane)*deg2rad,
                     0.0,
                     (anchorAnomaly + deltaAnomaly*iAnom)*deg2rad
-                }, ElementSet::COE),
+                }, ElementSet::KEPLERIAN),
                 "Jan-01-2030 00:00:00.0"
             );
             ++iAnom;

@@ -31,11 +31,11 @@
 #include "astro/propagation/force_models/OblatenessForce.hpp"
 #include "astro/propagation/force_models/SolarRadiationPressureForce.hpp"
 
-#include "astro/propagation/equations_of_motion/CoesVop.hpp"
+#include "astro/propagation/equations_of_motion/KeplerianVop.hpp"
 #include "astro/propagation/equations_of_motion/CowellsMethod.hpp"
 #include "astro/propagation/equations_of_motion/EquationsOfMotion.hpp"
 #include "astro/propagation/equations_of_motion/J2MeanVop.hpp"
-#include "astro/propagation/equations_of_motion/MeesVop.hpp"
+#include "astro/propagation/equations_of_motion/EquinoctialVop.hpp"
 #include "astro/propagation/equations_of_motion/TwoBody.hpp"
 
 #include "astro/systems/AstrodynamicsSystem.hpp"

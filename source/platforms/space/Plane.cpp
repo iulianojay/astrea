@@ -9,14 +9,14 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
 
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
-    elements.convert(ElementSet::COE, sys);
+    elements.convert(ElementSet::KEPLERIAN, sys);
     elements[5] = 0.0;
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat: satellites) {
         OrbitalElements satElements = sat.states[0].elements;
-        satElements.convert(ElementSet::COE, sys);
+        satElements.convert(ElementSet::KEPLERIAN, sys);
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
             break;

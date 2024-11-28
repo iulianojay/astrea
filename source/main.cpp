@@ -19,8 +19,8 @@ int main() {
     // Setup system
     AstrodynamicsSystem sys;
 
-    const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::COE);
-    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, sys);
+    const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::KEPLERIAN);
+    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
 
     // Build constellation
     const int T = 1;
@@ -50,7 +50,7 @@ int main() {
     // std::string propagator = "cowells";
     // CowellsMethod eom(sys, forces);
     std::string propagator = "coes";
-    CoesVop eom(sys, forces, false);
+    KeplerianVop eom(sys, forces, false);
 
     // Setup integrator
     Integrator integrator;
@@ -102,7 +102,7 @@ int main() {
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
-        state.elements.convert(ElementSet::COE, sys);
+        state.elements.convert(ElementSet::KEPLERIAN, sys);
         for (const auto& x: state.elements) {
             outfile << x << ",";
         }

@@ -44,10 +44,10 @@ set(OBJS
     ${SRC}/propagation/force_models/OblatenessForce.cpp
     ${SRC}/propagation/force_models/SolarRadiationPressureForce.cpp
 
-    ${SRC}/propagation/equations_of_motion/CoesVop.cpp
+    ${SRC}/propagation/equations_of_motion/KeplerianVop.cpp
     ${SRC}/propagation/equations_of_motion/CowellsMethod.cpp
     ${SRC}/propagation/equations_of_motion/J2MeanVop.cpp
-    ${SRC}/propagation/equations_of_motion/MeesVop.cpp
+    ${SRC}/propagation/equations_of_motion/EquinoctialVop.cpp
     ${SRC}/propagation/equations_of_motion/TwoBody.cpp
 
     ${SRC}/systems/AstrodynamicsSystem.cpp

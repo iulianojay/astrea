@@ -30,7 +30,7 @@ private:
     mutable bool checkflag = false;
     const double checkTol = 1e-10;
 
-    const ElementSet expectedSet = ElementSet::COE;
+    const ElementSet expectedSet = ElementSet::KEPLERIAN;
 
     const double mu;
     const double J2;

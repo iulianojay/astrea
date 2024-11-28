@@ -11,9 +11,9 @@
 #endif
 
 enum class ElementSet : uint32_t {
-    COE,
+    KEPLERIAN,
     CARTESIAN,
-    MEE
+    EQUINOCTIAL
 };
 
 template <>
@@ -27,13 +27,13 @@ struct std::hash<std::pair<ElementSet, ElementSet>> {
 
 
 const std::unordered_map<ElementSet, std::string> ElementSetToString = {
-    {ElementSet::COE,       "COE"},
-    {ElementSet::CARTESIAN, "CARTESIAN"},
-    {ElementSet::MEE,       "MEE"}
+    {ElementSet::KEPLERIAN,   "KEPLERIAN"},
+    {ElementSet::CARTESIAN,   "CARTESIAN"},
+    {ElementSet::EQUINOCTIAL, "EQUINOCTIAL"}
 };
 
 const std::unordered_map<std::string, ElementSet> StringToElementSet = {
-    {"COE",       ElementSet::COE},
-    {"CARTESIAN", ElementSet::CARTESIAN},
-    {"MEE",       ElementSet::MEE}
+    {"KEPLERIAN",   ElementSet::KEPLERIAN},
+    {"CARTESIAN",   ElementSet::CARTESIAN},
+    {"EQUINOCTIAL", ElementSet::EQUINOCTIAL}
 };
