@@ -2,52 +2,111 @@
 #include <iostream>
 #include <fstream>
 
+// #include <arrow/api.h>
+// #include <arrow/csv/api.h>
+// #include <arrow/io/api.h>
+// #include <arrow/ipc/api.h>
+// #include <parquet/arrow/reader.h>
+// #include <parquet/arrow/writer.h>
+
+#include <iostream>
+
 #include "astro.hpp"
 
 int main() {
+    std::cout << "\n\n";
+
     // Setup system
     AstrodynamicsSystem sys;
 
-    // Build spacecraft
-    element_array state0 = {10000.0, 0.0, 45.0, 0.0, 0.0, 0.0};
-    OrbitalElements elements0(state0, ElementSet::COE);
-    Spacecraft vehicle(elements0, "Jan-01-2030 00:00:00.0");
+    // Build constellation
+    const int T = 100;
+    const int P = 10;
+    const double F = 1.0;
+    Constellation walkerBall(10000.0, 45.0, T, P, F);
+
+    // Print to ensure proper build
+    // std::cout << "Walker: [" << T << ", " << P << ", " << F << "]" << std::endl;
+    // for (auto& shell : walkerBall) {
+    //     std::cout << "Shell: " << shell.get_id() << std::endl;
+    //     for (auto& plane : shell) {
+    //         std::cout << "\tPlane: " << plane.get_id() << std::endl;
+    //         for (auto& sat : plane) {
+    //             std::cout << "\t\tSat: " << sat.get_id() << std::endl;
+    //         }
+    //     }
+    // }
+    // std::cout << std::endl;
+
+    // int count = 0; //TODO: Fix this. Comparitor doesn't work and iterates past end, for some reason
+    // for (auto satIter = walkerBall.sat_begin(); satIter < walkerBall.sat_end(); ++satIter) {
+    //     if (count == 100) {
+    //         std::cout << "stop";
+    //     }
+    //     std::cout << "sat(" << count << ") id = " << (*satIter).get_id() << std::endl;
+    //     ++count;
+    // }
 
     // Build EoMs
     EquationsOfMotion eom(sys);
-    // eom.switch_dynamics(EquationsOfMotion::TWO_BODY);
-    eom.switch_dynamics(EquationsOfMotion::COWELLS);
-    eom.switch_oblateness(10, 10);
-    // eom.switch_drag(true);
-    // eom.switch_lift(true);
+    eom.switch_dynamics(EquationsOfMotion::TWO_BODY);
 
     // Setup integrator
     Integrator integrator;
     integrator.set_abs_tol(1.0e-13);
     integrator.set_rel_tol(1.0e-13);
+    // integrator.switch_fixed_timestep(true, 60.0);
 
     // Propagate
-    Interval propInterval{seconds(0), years(1)};
-    integrator.propagate(propInterval, vehicle, eom);
+    auto start = std::chrono::steady_clock::now();
 
-    // Print
-    std::cout << "state0 = " << vehicle.get_initial_state() << std::endl;
-    std::cout << "statef = " << vehicle.get_final_state() << std::endl;
+    Interval propInterval{seconds(0), days(1)};
+    walkerBall.propagate(eom, integrator, propInterval);
 
-    // Send to file
-    std::ofstream outfile;
-    outfile.open("./bin/results/cowells_test/main.csv");
-    outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
-    // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
-    for (auto& state: vehicle.get_states()) {
-        outfile << state.time.count<minutes>() << ",";
-        // state.elements.convert(ElementSet::CARTESIAN, &sys);
-        for (const auto& x: state.elements) {
-            outfile << x << ",";
+    auto end = std::chrono::steady_clock::now();
+    auto diff = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+    std::cout << "Propagation Time: " << diff.count() << " (s)" << std::endl;
+
+    // Access
+    start = std::chrono::steady_clock::now();
+
+    Time accessResolution = minutes(5);
+    find_accesses(walkerBall, accessResolution, &sys);
+
+    end = std::chrono::steady_clock::now();
+    diff = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+    std::cout << "Access Analysis Time: " << diff.count() << " (s)" << std::endl;
+
+    // Check propagation
+    std::cout << "\n\n" << "Walker: [" << T << ", " << P << ", " << F << "]" << std::endl;
+    for (auto& shell : walkerBall) {
+        std::cout << "Shell: " << shell.get_id() << std::endl;
+        for (auto& plane : shell) {
+            std::cout << "\tPlane: " << plane.get_id() << std::endl;
+            for (auto& sat : plane) {
+                std::cout << "\t\tSat: " << sat.get_id() << std::endl;
+                std::cout << "\t\tstate0 = " << sat.get_initial_state() << std::endl;
+                std::cout << "\t\tstatef = " << sat.get_final_state() << std::endl << std::endl;
+            }
         }
-        outfile << "\n";
     }
-    outfile.close();
+
+    // // Send to file
+    // std::ofstream outfile;
+    // outfile.open("./bin/results/cowells_test/main.csv");
+    // outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
+    // // outfile << "time (min),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)\n";
+    // for (auto& state: vehicle.get_states()) {
+    //     outfile << state.time.count<minutes>() << ",";
+    //     // state.elements.convert(ElementSet::CARTESIAN, &sys);
+    //     for (const auto& x: state.elements) {
+    //         outfile << x << ",";
+    //     }
+    //     outfile << "\n";
+    // }
+    // outfile.close();
 
     return 1;
 }

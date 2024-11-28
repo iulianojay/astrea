@@ -74,7 +74,7 @@ void conversions::bcbf_to_lla(double* rBCBF, double equitorialRadius, double pol
     while (err > 1.0e-9 && ii < 1000) {
         s = (zBCBF + dz)/sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz));
         N = equitorialRadius/sqrt(1 - e_2*s*s);
-        err = abs(dz - N*e_2*s);
+        err = fabs(dz - N*e_2*s);
         dz = N*e_2*s;
         ++ii;
     }
@@ -121,20 +121,20 @@ element_array conversions::convert(element_array elements, ElementSet fromSet, E
 }
 
 void conversions::coes_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
-    
+
     // Precalculate
     theta *= DEG_TO_RAD;
     w *= DEG_TO_RAD;
     raan *= DEG_TO_RAD;
     inc *= DEG_TO_RAD;
 
-    double cos_theta = cos(theta); 
+    double cos_theta = cos(theta);
     double sin_theta = sin(theta);
-    double cos_w = cos(w); 
+    double cos_w = cos(w);
     double sin_w = sin(w);
-    double cos_raan = cos(raan); 
+    double cos_raan = cos(raan);
     double sin_raan = sin(raan);
-    double cos_inc = cos(inc); 
+    double cos_inc = cos(inc);
     double sin_inc = sin(inc);
 
     double h = sqrt(mu*a*(1 - ecc*ecc));
@@ -171,11 +171,11 @@ void conversions::coes_to_bci(double a, double ecc, double inc, double raan, dou
 }
 
 void conversions::bci_to_coes(double* radius, double* velocity, double mu, double* coes) {
-    
+
     /*
         Force rounding errors to assume zero values for angles. Assume complex
         results are the result of rounding errors. Flip values near their antipode
-        to zero for simplicity. Assume NaN results are from singularities and force 
+        to zero for simplicity. Assume NaN results are from singularities and force
         values to be 0.
 
         No idea how much of this is just wrong.
@@ -194,7 +194,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     double Ny = hx;
 
     double normN = sqrt(Nx*Nx + Ny*Ny);
-        
+
     double R = math_c::normalize(radius);
     double V = math_c::normalize(velocity);
 
@@ -213,16 +213,16 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     /*
         If the orbit has an inclination of exactly 0, w is ill-defined, the
         eccentricity vector is ill-defined, and true anomaly is ill defined. Force
-        eccentricity very close to 0 be exactly 0 to avoid issues where w and 
+        eccentricity very close to 0 be exactly 0 to avoid issues where w and
         anomaly flail around wildly as ecc fluctuates.
     */
-    if (abs(ecc) < tol) {
+    if (fabs(ecc) < tol) {
         ecc = 0.0;
     }
 
     // Inclination (rad)
     double inc = acos(hz/normH);
-    if (isnan(inc) || abs(inc - PI) < tol){
+    if (std::isnan(inc) || fabs(inc - PI) < tol){
         inc = 0.0;
     }
 
@@ -236,7 +236,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
         raan = 2.0*PI - acos_Nx_Nnorm;
     }
 
-    if (normN == 0.0 || isnan(raan) || abs(raan - 2.0*PI) < tol) {
+    if (normN == 0.0 || std::isnan(raan) || fabs(raan - 2.0*PI) < tol) {
         raan = 0.0;
     }
 
@@ -251,7 +251,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
                 theta = 2*PI - acos(radius[0]/R);
             }
         }
-        else { // Use argument of latitude 
+        else { // Use argument of latitude
             double dot_n_r = Nx*radius[0] + Ny*radius[1];
             if (radius[2] >= 0.0) {
                 theta = acos(dot_n_r/(normN*R));
@@ -270,8 +270,8 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
             theta = 2.0*PI - acos(dot_ecc_r/(ecc*R));
         }
     }
-    
-    if (isnan(theta) || abs(theta - 2.0*PI) < tol) {
+
+    if (std::isnan(theta) || fabs(theta - 2.0*PI) < tol) {
         theta = 0.0;
     }
 
@@ -298,7 +298,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
         }
     }
 
-    if (normN == 0.0 || isnan(w) || abs(w - 2.0*PI) < tol) {
+    if (normN == 0.0 || std::isnan(w) || fabs(w - 2.0*PI) < tol) {
         w = 0.0;
     }
 
@@ -318,7 +318,7 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
 }
 
 void conversions::_mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {
-    
+
     double ecc{}, a{}, inc{}, raan{}, atopo{}, w{}, theta{};
 
     ecc = sqrt(f*f + g*g);
@@ -331,7 +331,7 @@ void conversions::_mees_to_coes(double p, double f, double g, double h, double k
     w = std::fmod(atopo - raan, 2*PI);    // rad
     theta = std::fmod(L - atopo, 2*PI);   // rad
 
-    coes[0] = a; 
+    coes[0] = a;
     coes[1] = ecc;
     coes[2] = inc;
     coes[3] = w;

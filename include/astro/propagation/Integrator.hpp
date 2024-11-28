@@ -1,11 +1,13 @@
 
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <ctime>
-#include <fstream>					// reading/writing to files
-#include <math.h>
+#ifndef SWIG
+    #include <iostream>
+    #include <vector>
+    #include <ctime>
+    #include <fstream>					// reading/writing to files
+    #include <math.h>
+#endif
 
 #include "rk_constants.h"			// RK Butcher Tableau
 
@@ -25,6 +27,8 @@ public:
         dop45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
         dop78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
 	};
+
+    static inline Interval defaultInterval = Interval(days(0), days(1));
 
 	//------------------------------------------------ Methods ------------------------------------------------//
 
@@ -82,10 +86,6 @@ public:
     //         "dop45" for Dormand-Prince 4(5) method
     //         "dop78" for Dormand-Prince 7(8) method
     void set_step_method(std::string stepMethod);
-
-    // Function: Switch whether or not to use custom equations of motion. Custom EOMs can be modified inside the EquationsOfMotion class
-    // Inputs: true -> on, false -> off
-    void switch_custom_eom(bool onOff);
 
     // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
     // Inputs: initial timestep (s)
@@ -176,8 +176,8 @@ private:
     int checkDay = 0;
 
 	// Tolerances
-	double absoluteTolerance = 1.0e-8;
-	double relativeTolerance = 1.0e-8;
+	double absoluteTolerance = 1.0e-13;
+	double relativeTolerance = 1.0e-13;
 
 	// Initial step size
 	double timeStepInitial = 100.0;

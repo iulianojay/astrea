@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef SWIG
+
 #include <string>
 #include <sstream>
 
@@ -10,6 +12,7 @@ class Date {
 
 public:
     // Build from string
+    Date() = default;
     Date(const std::string calendarDate) {
         set_julian_date_from_string(calendarDate, defaultDateFormat);
     }
@@ -66,7 +69,6 @@ public:
         return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate));
     }
 
-
 private:
     std::string calendarDate;
     JulianDate julianDate;
@@ -95,3 +97,16 @@ private:
     }
 
 };
+
+#else
+
+struct Date {
+public:
+    Date(std::string date) : calendarDate(date) {};
+    ~Date() {};
+
+private:
+    std::string calendarDate;
+};
+
+#endif

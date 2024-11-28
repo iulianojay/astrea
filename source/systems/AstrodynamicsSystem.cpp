@@ -1,6 +1,5 @@
 #include "AstrodynamicsSystem.hpp"
 
-using namespace solar_system;
 
 void AstrodynamicsSystem::create_all_bodies() {
     for (const auto body: allBodies) {

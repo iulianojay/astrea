@@ -1,9 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-
-namespace solar_system {
-
 // Enums for bodies definitions
 enum SolarObject {
     GC,			// Galactic Center
@@ -36,5 +32,3 @@ enum SolarObjectType {
     PLANET,
     SATELLITE
 };
-
-}

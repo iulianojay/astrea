@@ -1,49 +1,36 @@
 #pragma once
 
-#include <string> 
-#include <unordered_map>
+#ifndef SWIG
+    #include <string>
+    #include <unordered_map>
+#endif
 
 #include "astronomical_constants.h"
 #include "typedefs.hpp"
 
+#include "Sensor.hpp"
 #include "OrbitalElements.hpp"
 #include "State.hpp"
 #include "Date.hpp"
 
-class Spacecraft
-{
-private:
-    //---------------------------------------------------------------------------------------------------------//
-    //---------------------------------------------- Variabless -----------------------------------------------//
-    //---------------------------------------------------------------------------------------------------------//
+#include "Plane.fwd.hpp"
+#include "Shell.fwd.hpp"
+#include "Constellation.fwd.hpp"
 
-    // Spacecraft properties
-    double mass = 1000.0;
-    double coefficientOfDrag = 2.2;
-    double coefficientOfLift = 0.9;
-    double coefficientOfReflectivity = 1.1;
-    double areaRam[3] = { 0.01, 0.0, 0.0 };
-    double areaSun[3] = { 0.01, 0.0, 0.0 };
-    double areaLift[3] = { 0.01, 0.0, 0.0 };
+class Spacecraft {
 
-    // Orbital elements
-    std::vector<State> states;
-
-    // Epoch variables
-    Date epoch;
+    friend class Plane;
+    friend class Shell;
+    friend class Constellation;
 
 public:
-    //---------------------------------------------------------------------------------------------------------//
-    //------------------------------------------------ Methods ------------------------------------------------//
-    //---------------------------------------------------------------------------------------------------------//
 
     // Constructor
+    Spacecraft() = default;
     Spacecraft(OrbitalElements state0, std::string epoch);
-    
+
     // Destructor
     ~Spacecraft();
-
-    //---------------------------------------Spacecraft property setters---------------------------------------//
 
     // Function: Set spacecraft mass
     // Inputs: mass (kg)
@@ -91,14 +78,15 @@ public:
 
     void set_states(std::vector<State> states);
 
-    //---------------------------------------Spacecraft property getters---------------------------------------//
+    const State& get_initial_state() const;
+    const State& get_final_state() const;
+    const State& get_closest_state(const Time& time) const;
+    const State get_state_at(const Time& time) const;
+    std::vector<State>& get_states() { return states; }
 
-    const State& get_initial_state();
-    const State& get_final_state();
-    const State& get_state(Time time);
-    auto& get_states() { return states; }
+    const size_t n_states() { return states.size(); }
 
-    const Date& get_epoch() const { return epoch; } 
+    const Date& get_epoch() const { return epoch; }
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
@@ -127,4 +115,49 @@ public:
     // Function: Get spacecraft earth-facing area
     // Outputs: net earth-facing area / array of areas (m^2)
     double* get_lift_area();
+
+    void attach(Sensor& sensor) { sensors.push_back(sensor); }
+    void attach(std::vector<Sensor>& _sensors) { sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors)); }
+
+    std::vector<Sensor>& get_sensors() { return sensors; }
+
+    const size_t& get_id() { return id; }
+
+    void add_access(const size_t& receiverId, const RiseSetArray& access) {
+        accesses[id, receiverId] = access;
+    }
+
+private:
+
+    size_t id;
+    std::string name;
+
+    // Spacecraft properties
+    double mass = 1000.0;
+    double coefficientOfDrag = 2.2;
+    double coefficientOfLift = 0.9;
+    double coefficientOfReflectivity = 1.1;
+    double areaRam[3] = { 0.01, 0.0, 0.0 };
+    double areaSun[3] = { 0.01, 0.0, 0.0 };
+    double areaLift[3] = { 0.01, 0.0, 0.0 };
+
+    // Orbital elements
+    std::vector<State> states;
+
+    // Epoch variables
+    Date epoch;
+
+    // Access data
+    AccessArray accesses;
+    std::vector<Sensor> sensors;
+
+    void generate_id_hash();
 };
+
+
+#ifdef SWIG
+
+%template(SpacecraftVector) std::vector<Spacecraft>;
+%template(SpacecraftVectorVector) std::vector<std::vector<Spacecraft>>;
+
+#endif

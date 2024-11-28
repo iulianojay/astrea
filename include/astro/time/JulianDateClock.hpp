@@ -1,6 +1,8 @@
 #pragma once
 
-#include <chrono>
+#ifndef SWIG
+    #include <chrono>
+#endif
 
 // Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14
 struct JulianDateClock;
@@ -22,7 +24,7 @@ struct JulianDateClock
         using namespace std;
         using namespace chrono;
         auto constexpr epoch = sys_days{November/24/-4713} + 12h;
-        using ddays = std::chrono::duration<long double, days::period>;
+        using ddays = std::chrono::duration<long double, std::chrono::days::period>;
         if constexpr (sys_time<ddays>{sys_time<Duration>::min()} < sys_time<ddays>{epoch}) {
             return JulianDateTime{timePoint - epoch};
         }

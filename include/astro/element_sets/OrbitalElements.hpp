@@ -1,16 +1,21 @@
 #pragma once
 
-#include <iostream>
+#ifndef SWIG
+    #include <iostream>
+    #include <cmath>
+#endif
 
 #include "ElementSet.hpp"
 #include "conversions.hpp"
 #include "typedefs.hpp"
 
-class AstrodynamicsSystem;
+#include "AstrodynamicsSystem.fwd.hpp"
 
 class OrbitalElements : public element_array {
 
+#ifndef SWIG
     friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
+#endif
 
 public:
 
@@ -40,6 +45,7 @@ public:
         return other.set == set;
     }
 
+#ifndef SWIGJAVA
     // Addition
     OrbitalElements operator+(const OrbitalElements& other) {
         // Check both element sets are the same
@@ -99,9 +105,20 @@ public:
 
         return (*this);
     }
+#endif
 
-    static const int size() { return 6; }
-    
+    const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8) {
+        if (set != other.get_set()) {
+            return false;
+        }
+        for (int ii = 0; ii < (ignoreFastVariable ? 5 : 6); ii++) {
+            if (std::fabs((_M_elems[ii] - other[ii])/_M_elems[ii]) > tol) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 private:
 
     ElementSet set;

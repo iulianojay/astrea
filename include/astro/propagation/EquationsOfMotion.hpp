@@ -1,14 +1,16 @@
 #pragma once
 
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <stdio.h>
-#include <vector>
-#include <exception>
+#ifndef SWIG
+    #include <string>
+    #include <fstream>
+    #include <sstream>
+    #include <iostream>
+    #include <cmath>
+    #include <algorithm>
+    #include <stdio.h>
+    #include <vector>
+    #include <exception>
+#endif
 
 #include "astronomical_constants.h"	// my tables of constants
 #include "math_constants.h"         // my common math constants
@@ -25,7 +27,7 @@ class EquationsOfMotion
 public:
     //------------------------------------------------ Methods ------------------------------------------------//
     // Constructors and destructor
-    EquationsOfMotion(const AstrodynamicsSystem& system);
+    EquationsOfMotion(const AstrodynamicsSystem& system = AstrodynamicsSystem());
     ~EquationsOfMotion();
     
     // Enums

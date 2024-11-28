@@ -1,11 +1,13 @@
 #pragma once
 
-#include <iostream>
-#include <cmath>
-#include <cfloat>
-#include <string>
-#include <vector>
-#include <unordered_map>
+#ifndef SWIG
+    #include <iostream>
+    #include <cmath>
+    #include <cfloat>
+    #include <string>
+    #include <vector>
+    #include <unordered_map>
+#endif
 
 #include "astronomical_constants.h"
 #include "solar_system.hpp"
@@ -14,13 +16,11 @@
 #include "State.hpp"
 
 // Forward declaration
-namespace solar_system {
-    class SolarObjectBuilder;
-}
+#include "SolarObjectBuilder.fwd.hpp"
 
 class GravitationalBody {
 
-    friend class solar_system::SolarObjectBuilder;
+    friend class SolarObjectBuilder;
 
 public:
 
@@ -40,8 +40,8 @@ public:
 
 	// Property getters
     const std::string name()     const { return _nameString; };
-    const solar_system::SolarObjectType type() const { return _type; };
-    const solar_system::SolarObject parent()   const { return _parent; };
+    const SolarObjectType type() const { return _type; };
+    const SolarObject parent()   const { return _parent; };
 
     const int planetId() const { return _planetId; };
     const int moonId()   const { return _moonId; };
@@ -83,16 +83,16 @@ private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    solar_system::SolarObject _name, _parent;
-    solar_system::SolarObjectType _type;
+    SolarObject _name, _parent;
+    SolarObjectType _type;
 
     std::string _nameString;
 
     int _planetId = -1, _moonId = -1, _nDays = 0;
 
     double _gravitationalParameter, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
-        _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination, 
-        _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate, 
+        _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination,
+        _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate,
         _eccentricityRate, _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
 
     std::vector<State> _states;

@@ -1,6 +1,5 @@
 #include "SolarObjectBuilder.hpp"
 
-namespace solar_system {
 
 GravitationalBody SolarObjectBuilder::build(SolarObject name) {
     // Build object
@@ -74,6 +73,4 @@ void SolarObjectBuilder::assign_properties(GravitationalBody& body, SolarObject 
         body._argumentOfPerigeeRate = 0.0;
         body._trueLatitudeRate = 0.0;
     }
-}
-
 }

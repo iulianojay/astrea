@@ -38,34 +38,34 @@ void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch)
 	int referenceJulianDate;
 	double parentMu{};
 	switch (_type) {
-        case solar_system::GC:
+        case GC:
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = DBL_MAX;
             break;
 
-        case (solar_system::STAR || solar_system::PLANET):
+        case (STAR || PLANET):
             referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
             parentMu = gravitataionalParameter[0][0];
             break;
 
-        case solar_system::SATELLITE:
+        case SATELLITE:
             switch (_parent) {
-                case solar_system::EARTH:
+                case EARTH:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case solar_system::MARS:
+                case MARS:
                     referenceJulianDate = 2433282.5; // Jan 1, 1950 00:00:00
                     break;
-                case solar_system::JUPITER:
+                case JUPITER:
                     referenceJulianDate = 2450465;   // Jan 16, 1997 00:00:00
                     break;
-                case solar_system::SATURN:
+                case SATURN:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
-                case solar_system::URANUS:
+                case URANUS:
                     referenceJulianDate = 2444240;   // Jan 1, 1980 00:00:00
                     break;
-                case solar_system::NEPTUNE:
+                case NEPTUNE:
                     referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
                     break;
                 default:
