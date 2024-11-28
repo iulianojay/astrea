@@ -84,8 +84,8 @@ void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorial
     }
 
     // Lat, long, alt (respectively)
-    lla[0] = atan2(yBCBF, xBCBF)*RAD_TO_DEG;
-    lla[1] = atan2(yBCBF + dz, std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF))*RAD_TO_DEG; // geodetic
+    lla[0] = atan2(yBCBF, xBCBF);
+    lla[1] = atan2(yBCBF + dz, std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF)); // geodetic
     // lla[2] = asin(zbcbf/std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF + zBCBF*zBCBF))*rad2deg; // geocentric
     lla[2] = std::max(std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF + (zBCBF + dz)*(zBCBF + dz)) - N, 0.0);
 }
@@ -119,42 +119,37 @@ element_array conversions::convert(const element_array& elements, const ElementS
 void conversions::coes_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
 
     // Precalculate
-    theta *= DEG_TO_RAD;
-    w *= DEG_TO_RAD;
-    raan *= DEG_TO_RAD;
-    inc *= DEG_TO_RAD;
+    const double cos_theta = math_c::cos(theta);
+    const double sin_theta = math_c::sin(theta);
+    const double cos_w = math_c::cos(w);
+    const double sin_w = math_c::sin(w);
+    const double cos_raan = math_c::cos(raan);
+    const double sin_raan = math_c::sin(raan);
+    const double cos_inc = math_c::cos(inc);
+    const double sin_inc = math_c::sin(inc);
 
-    double cos_theta = math_c::cos(theta);
-    double sin_theta = math_c::sin(theta);
-    double cos_w = math_c::cos(w);
-    double sin_w = math_c::sin(w);
-    double cos_raan = math_c::cos(raan);
-    double sin_raan = math_c::sin(raan);
-    double cos_inc = math_c::cos(inc);
-    double sin_inc = math_c::sin(inc);
-
-    double h = std::sqrt(mu*a*(1 - ecc*ecc));
-    double A = h*h/mu/(1 + ecc*cos_theta);
-    double B = mu/h;
+    const double h = std::sqrt(mu*a*(1 - ecc*ecc));
+    const double A = h*h/mu/(1 + ecc*cos_theta);
+    const double B = mu/h;
 
     // Perifocal Coordinates
-    double x_peri = A*cos_theta;
-    double y_peri = A*sin_theta;
+    const double x_peri = A*cos_theta;
+    const double y_peri = A*sin_theta;
     // double z_peri = 0.0;
 
-    double vx_peri = -B*sin_theta;
-    double vy_peri = B*(ecc + cos_theta);
+    const double vx_peri = -B*sin_theta;
+    const double vy_peri = B*(ecc + cos_theta);
     // double vz_peri = 0.0;
 
     // Preallocate DCM values for speed
-    double DCM_peri2ECI_11 = (cos_w*cos_raan - sin_w*cos_inc*sin_raan);
-    double DCM_peri2ECI_12 = (-sin_w*cos_raan - cos_w*cos_inc*sin_raan);
+    const double DCM_peri2ECI_11 = (cos_w*cos_raan - sin_w*cos_inc*sin_raan);
+    const double DCM_peri2ECI_12 = (-sin_w*cos_raan - cos_w*cos_inc*sin_raan);
 
-    double DCM_peri2ECI_21 = (cos_w*sin_raan + sin_w*cos_inc*cos_raan);
-    double DCM_peri2ECI_22 = (-sin_w*sin_raan + cos_w*cos_inc*cos_raan);
+    const double DCM_peri2ECI_21 = (cos_w*sin_raan + sin_w*cos_inc*cos_raan);
+    const double DCM_peri2ECI_22 = (-sin_w*sin_raan + cos_w*cos_inc*cos_raan);
 
-    double DCM_peri2ECI_31 = sin_inc*sin_w;
-    double DCM_peri2ECI_32 = sin_inc*cos_w;
+    const double DCM_peri2ECI_31 = sin_inc*sin_w;
+    const double DCM_peri2ECI_32 = sin_inc*cos_w;
 
     // Inertial position and velocity
     radius[0] = DCM_peri2ECI_11*x_peri + DCM_peri2ECI_12*y_peri;
@@ -307,10 +302,10 @@ void conversions::bci_to_coes(double* radius, double* velocity, double mu, doubl
     // Assign to coes
     coes[0] = a;
     coes[1] = ecc;
-    coes[2] = inc*RAD_TO_DEG;
-    coes[3] = raan*RAD_TO_DEG;
-    coes[4] = w*RAD_TO_DEG;
-    coes[5] = theta*RAD_TO_DEG;
+    coes[2] = inc;
+    coes[3] = raan;
+    coes[4] = w;
+    coes[5] = theta;
 }
 
 void conversions::_mees_to_coes(double p, double f, double g, double h, double k, double L, double* coes) {

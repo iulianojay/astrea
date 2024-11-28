@@ -19,15 +19,15 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double& ecc = (state[1] < checkTol) ? checkTol : state[1];
     const double& inc = (state[2] < checkTol) ? checkTol : state[2];
 
-    if (ecc == checkTol || inc == checkTol) {
-        checkflag = true;
+    if (doWarn) {
+        check_degenerate(ecc, inc);
     }
 
-    // h and mu
-    const double h = std::sqrt(mu*a*(1 - ecc));
+    // h
+    const double h = std::sqrt(mu*a*(1 - ecc*ecc));
 
     // conversions COEs to r and v
-    const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);
+    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);
 
     const double& x = cartesianState[0];
     const double& y = cartesianState[1];
@@ -35,6 +35,7 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double R = std::sqrt(x*x + y*y + z*z);
 
     const double& vx = cartesianState[3];
+
     const double& vy = cartesianState[4];
     const double& vz = cartesianState[5];
 
@@ -86,32 +87,21 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     const double sinTA = math_c::sin(theta);
     const double cosU = math_c::cos(u);
     const double sinU = math_c::sin(u);
-    const double h_2 = h*h;
-    const double hOverR_2 = h/(R*R);
+    const double hSquared = h*h;
+    const double hOverRSquared = h/(R*R);
 
     // Calculate the derivatives of the COEs - from the notes
     const double dhdt     = R*tangentialPert;
-    const double _deccdt   = h/mu*sinTA*radialPert + 1/(mu*h)*((h_2 + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
-    const double _dincdt   = R/h*cosU*normalPert;
-    const double dthetadt = hOverR_2 + (1/(ecc*h))*((h_2/mu)*cosTA*radialPert - (h_2/mu + R)*sinTA*tangentialPert);
+    const double deccdt  = h/mu*sinTA*radialPert + 1/(mu*h)*((hSquared + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
+    const double dincdt  = R/h*cosU*normalPert;
+    const double dthetadt = hOverRSquared + (1/(ecc*h))*((hSquared/mu)*cosTA*radialPert - (hSquared/mu + R)*sinTA*tangentialPert);
     const double draandt  = R*sinU/(h*math_c::sin(inc))*normalPert;
-    const double dwdt     = -dthetadt + (hOverR_2 - draandt*math_c::cos(inc));
+    const double dwdt     = -dthetadt + (hOverRSquared - draandt*math_c::cos(inc));
 
-    // Check to prevent crashes due to circular and zero inclination orbits.
-    // Will cause innaccuracies
-    double deccdt = _deccdt;
-    if (ecc == checkTol && deccdt <= checkTol) {
-        deccdt = 0.0;
-        checkflag = true;
-    }
-    double dincdt = _dincdt;
-    if (inc == checkTol && dincdt <= checkTol) {
-        dincdt = 0.0;
-        checkflag = true;
-    }
+    const double dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
 
     const OrbitalElements dsdt({
-        dhdt,
+        dadt,
         deccdt,
         dincdt,
         draandt,
@@ -121,4 +111,21 @@ OrbitalElements CoesVop::operator()(const Time& time, const OrbitalElements& sta
     ElementSet::COE);
 
     return dsdt;
+}
+
+void CoesVop::check_degenerate(const double& ecc, const double& inc) const {
+    if (ecc <= checkTol || inc <= checkTol) {
+        std::string title;
+        if (ecc <= checkTol && inc <= checkTol) {
+            title = "Eccentricity and inclination";
+        }
+        else if (ecc <= checkTol) {
+            title = "Eccentricity";
+        }
+        else {
+            title = "Inclination";
+        }
+        std::cout << "WARNING: Degenerate case. " << title << " smaller than acceptable tolerance (" << checkTol
+            << "). Results may be inaccurate." << std::endl << std::endl;
+    }
 }

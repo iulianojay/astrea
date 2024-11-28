@@ -14,7 +14,8 @@
 class J2MeanVop : public EquationsOfMotion {
 public:
 
-    J2MeanVop(const AstrodynamicsSystem& system) : EquationsOfMotion(system),
+    J2MeanVop(const AstrodynamicsSystem& system) :
+        EquationsOfMotion(system),
         mu(system.get_center().mu()),
         J2(system.get_center().j2()),
         equitorialR(system.get_center().eqR())

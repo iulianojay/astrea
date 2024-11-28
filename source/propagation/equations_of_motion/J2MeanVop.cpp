@@ -30,7 +30,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     }
 
     // h and mu
-    const double h = std::sqrt(mu*a*(1 - ecc));
+    const double h = std::sqrt(mu*a*(1 - ecc*ecc));
 
     // conversions COEs to r and v
     const auto cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, system);

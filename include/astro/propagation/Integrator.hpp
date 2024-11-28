@@ -100,6 +100,8 @@ public:
     // Inputs: timestep (s)
     void set_timestep(double fixedTimeStep);
 
+    int n_func_evals() { return functionEvaluations; }
+
 private:
 
 	// Integrator constants

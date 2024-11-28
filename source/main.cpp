@@ -19,6 +19,9 @@ int main() {
     // Setup system
     AstrodynamicsSystem sys;
 
+    const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::COE);
+    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::COE, ElementSet::CARTESIAN, sys);
+
     // Build constellation
     const int T = 1;
     const int P = 1;
@@ -36,11 +39,18 @@ int main() {
 
     // Build Force Model
     ForceModel forces;
-    forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 20, 20);
+    // forces.add<AtmosphericForce>();
+    forces.add<OblatenessForce>(sys, 2, 0);
 
     // Build EoMs
-    CoesVop eom(sys, forces);
+    // std::string propagator = "two_body";
+    // TwoBody eom(sys);
+    // std::string propagator = "j2mean";
+    // J2MeanVop eom(sys);
+    // std::string propagator = "cowells";
+    // CowellsMethod eom(sys, forces);
+    std::string propagator = "coes";
+    CoesVop eom(sys, forces, false);
 
     // Setup integrator
     Integrator integrator;
@@ -50,12 +60,13 @@ int main() {
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{seconds(0), weeks(1)};
+    Interval propInterval{seconds(0), hours(12)};
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
+    std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
     std::cout << "Propagation Time: " << diff.count()/1e9 << " (s)" << std::endl;
 
     // Access
@@ -85,9 +96,9 @@ int main() {
 
     // Send to file
     std::ofstream outfile;
-    std::filesystem::create_directories("./bin/results/cowells/");
-    outfile.open("./bin/results/cowells/main.csv");
-    outfile << "time (min),sma (km),ecc,inc (deg),raan (deg),w (deg),theta (deg)\n";
+    std::filesystem::create_directories("./bin/results/" + propagator + "/");
+    outfile.open("./bin/results/" + propagator +"/main.csv");
+    outfile << "time (min),sma (km),ecc,inc (rad),raan (rad),w (rad),theta (rad)\n";
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& state: vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";

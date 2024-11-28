@@ -27,6 +27,8 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
     const double deltaRAAN =  360.0/double(P);
     const double deltaAnomaly =  F*360.0/double(T);
 
+    const double deg2rad = M_PI/180.0;
+
     planes.resize(P);
     size_t iAnom = 0;
     size_t iPlane = 0;
@@ -37,10 +39,10 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
                 OrbitalElements({
                     semimajor,
                     0.0,
-                    inclination,
-                    anchorRAAN + deltaRAAN*iPlane,
+                    inclination*deg2rad,
+                    (anchorRAAN + deltaRAAN*iPlane)*deg2rad,
                     0.0,
-                    anchorAnomaly + deltaAnomaly*iAnom
+                    (anchorAnomaly + deltaAnomaly*iAnom)*deg2rad
                 }, ElementSet::COE),
                 "Jan-01-2030 00:00:00.0"
             );

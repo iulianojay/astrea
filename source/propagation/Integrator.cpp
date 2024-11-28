@@ -77,9 +77,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         if (eventTrigger) {
             print_iteration(time, state, timeFinal, stateInitial);
 
-            if (printOn){
-                std::cout << crashMessage;
-            }
+            std::cout << crashMessage;
             return;
         }
 
@@ -100,9 +98,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
 
                 // Catch underflow
                 if (time + timeStep == time) {
-                    if (printOn) {
-                        std::cout << underflowErrorMessage;
-                    }
+                    std::cout << underflowErrorMessage;
                     return;
                 }
 
@@ -115,9 +111,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
 
             // Exceeded max inner loop iterations
             if (variableStepIteration >= maxVariableStepIterations) {
-                if (printOn) {
-                    std::cout << innerLoopStepOverflowErrorMessage;
-                }
+                std::cout << innerLoopStepOverflowErrorMessage;
                 return;
             }
         }
@@ -138,9 +132,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
 
     // Exceeded max outer loop iterations
     if (iteration >= iterMax) {
-        if (printOn) {
-            std::cout << outerLoopStepOverflowErrorMessage;
-        }
+        std::cout << outerLoopStepOverflowErrorMessage;
     }
 
     // Performance
