@@ -40,7 +40,7 @@ int main() {
     // Build Force Model
     ForceModel forces;
     // forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 2, 0);
+    forces.add<OblatenessForce>(sys, 2, 2);
 
     // Build EoMs
     // std::string propagator = "two_body";
@@ -49,13 +49,13 @@ int main() {
     // J2MeanVop eom(sys);
     // std::string propagator = "cowells";
     // CowellsMethod eom(sys, forces);
-    std::string propagator = "coes";
-    KeplerianVop eom(sys, forces, false);
+    // std::string propagator = "coes";
+    // KeplerianVop eom(sys, forces, false);
 
     // Setup integrator
     Integrator integrator;
-    integrator.set_abs_tol(1.0e-13);
-    integrator.set_rel_tol(1.0e-13);
+    integrator.set_abs_tol(1.0e-10);
+    integrator.set_rel_tol(1.0e-10);
 
     // Propagate
     auto start = std::chrono::steady_clock::now();

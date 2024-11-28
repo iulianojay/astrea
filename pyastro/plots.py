@@ -95,8 +95,10 @@ if __name__=='__main__':
     # title = 'J2 Mean VoP Test'
     # test = 'cowells'
     # title = 'Cowells Method Test'
-    test = 'coes'
-    title = 'KEPLERIANs VoP Test'
+    # test = 'coes'
+    # title = 'Keplerian VoP Test'
+    test = 'mees'
+    title = 'Equinoctial VoP Test'
     infile = './bin/results/' + test + '/main.csv'
     outfile = './bin/results/' + test + '/main.png'
 

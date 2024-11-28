@@ -31,4 +31,6 @@ private:
     const GravitationalBody& center;
 
     void assign_legendre(const double& latitude) const;
+    void size_vectors(const size_t& N, const size_t& M);
+    void ingest_legendre_coefficient_file(const size_t& N, const size_t& M);
 };

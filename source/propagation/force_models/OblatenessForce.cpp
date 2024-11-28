@@ -8,26 +8,47 @@
 #include "math_c.hpp"
 
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) : N(_N), M(_M), center(sys.get_center()) {
-    // Open coefficients file
-    std::string filename;
-    std::string path;
-    path = "./data/gravity_models/";
-
-    if (center.planetId() == 2) { // Venus
-        filename = path + "shgj120p.txt"; // Normalized?
-    }
-    else if (center.planetId() == 3 && center.moonId() == 0) { // Earth
-        filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
-    }
-    else if (center.planetId() == 3 && center.moonId() == 1) { // Moon
-        filename = path + "jgl165p1.txt"; // Normalized?
-    }
-    else if (center.planetId() == 3) { // Mars
-        filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
-    }
-    std::ifstream file(filename);
 
     // Size arrays (size Legendre array now so it only happens once)
+    size_vectors(N, M);
+
+    // Read coefficients from file
+    ingest_legendre_coefficient_file(N, M);
+
+    // Precompute as much as possible
+    const double sqrtOneHalf = std::sqrt(0.5);
+    for (size_t n = 0; n < N+1; ++n) {
+        const double nn = (double)n;
+
+        for (size_t m = 0; m < M+1; ++m) {
+            const double mm = (double)m;
+
+            if (n == m) {
+                if (n != 0) {
+                    double tau = 1.0;
+                    for (int ii = 2*n - 1; ii > 0; ii -= 2) {
+                        tau *= (double)ii/((double)ii + 1.0);
+                    }
+                    Pbase[n][m] = std::sqrt(2.0*(2.0*nn + 1.0)*tau);
+                }
+            }
+            else if (n == m + 1) {
+                Pbase[n][m] = std::sqrt(2.0*mm + 3.0);
+            }
+            else if (n >= m + 2) {
+                alpha[n][m] = std::sqrt((2.0*nn + 1.0)*(2.0*nn - 1.0)/((nn - mm)*(nn + mm)));
+                beta[n][m] = std::sqrt((2.0*nn + 1.0)*(nn + mm - 1.0)*(nn - mm - 1.0)/((2.0*nn - 3.0)*(nn - mm)*(nn + mm)));
+            }
+
+            gamma[n][m] = std::sqrt((nn - mm)*(nn + mm + 1.0));
+            if (m == 0) {
+                gamma[n][m] *= sqrtOneHalf;
+            }
+        }
+    }
+}
+
+void OblatenessForce::size_vectors(const size_t& N, const size_t& M) {
     C.resize(N + 1);
     S.resize(N + 1);
     P.resize(N + 1);
@@ -44,6 +65,28 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _
         gamma[n].resize(M + 1);
         Pbase[n].resize(M + 1);
     }
+}
+
+
+void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const size_t& M) {
+
+    // Open coefficients file
+    std::string filename;
+    std::string path;
+    path = "./data/gravity_models/";
+    if (center.planetId() == 2) { // Venus
+        filename = path + "shgj120p.txt"; // Normalized?
+    }
+    else if (center.planetId() == 3 && center.moonId() == 0) { // Earth
+        filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+    }
+    else if (center.planetId() == 3 && center.moonId() == 1) { // Moon
+        filename = path + "jgl165p1.txt"; // Normalized?
+    }
+    else if (center.planetId() == 3) { // Mars
+        filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
+    }
+    std::ifstream file(filename);
 
     // Read coefficients from file
     std::string line;
@@ -89,39 +132,8 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _
         if (n >= N && m >= M) { break; }
     }
     file.close();
-
-    // Precompute as much as possible
-    const double sqrtOneHalf = std::sqrt(0.5);
-    for (size_t n = 0; n < N+1; ++n) {
-        const double nn = (double)n;
-
-        for (size_t m = 0; m < M+1; ++m) {
-            const double mm = (double)m;
-
-            if (n == m) {
-                if (n != 0) {
-                    double tau = 1.0;
-                    for (int ii = 2*n - 1; ii > 0; ii -= 2) {
-                        tau *= (double)ii/((double)ii + 1.0);
-                    }
-                    Pbase[n][m] = std::sqrt(2.0*(2.0*nn + 1.0)*tau);
-                }
-            }
-            else if (n == m + 1) {
-                Pbase[n][m] = std::sqrt(2.0*mm + 3.0);
-            }
-            else if (n >= m + 2) {
-                alpha[n][m] = std::sqrt((2.0*nn + 1.0)*(2.0*nn - 1.0)/((nn - mm)*(nn + mm)));
-                beta[n][m] = std::sqrt((2.0*nn + 1.0)*(nn + mm - 1.0)*(nn - mm - 1.0)/((2.0*nn - 3.0)*(nn - mm)*(nn + mm)));
-            }
-
-            gamma[n][m] = std::sqrt((nn - mm)*(nn + mm + 1.0));
-            if (m == 0) {
-                gamma[n][m] *= sqrtOneHalf;
-            }
-        }
-    }
 }
+
 
 basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
 
