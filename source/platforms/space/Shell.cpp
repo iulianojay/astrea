@@ -115,7 +115,7 @@ const Plane& Shell::get_plane(const size_t& planeId) const {
 const Spacecraft& Shell::get_spacecraft(const size_t& spacecraftId) const {
     for (const auto& plane: planes) {
         for (const auto& sat: plane.satellites) {
-            if (sat.id == spacecraftId) {
+            if (sat.get_id() == spacecraftId) {
                 return sat;
             }
         }

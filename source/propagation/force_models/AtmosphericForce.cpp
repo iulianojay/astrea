@@ -34,9 +34,9 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double relativeVelocityMagnitude = math_c::normalize(relativeVelocity);
 
     const double coefficientOfDrag = vehicle.get_coefficient_of_drag();
-    const basis_array areaRam = vehicle.get_ram_area();
+    const double areaRam = vehicle.get_ram_area();
     const double mass = vehicle.get_mass();
-    const double dragMagnitude = -0.5*coefficientOfDrag*(areaRam[0] + areaRam[1] + areaRam[2])/mass*atmosphericDensity*relativeVelocityMagnitude;
+    const double dragMagnitude = -0.5*coefficientOfDrag*(areaRam)/mass*atmosphericDensity*relativeVelocityMagnitude;
 
     const basis_array accelDrag{
         dragMagnitude*relativeVelocity[0],
@@ -49,8 +49,8 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
 
     // accel due to lift
     const double coefficientOfLift = vehicle.get_coefficient_of_lift();
-    const basis_array areaLift = vehicle.get_lift_area();
-    const double tempA = 0.5*coefficientOfLift*(areaLift[0] + areaLift[1] + areaLift[2])/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
+    const double areaLift = vehicle.get_lift_area();
+    const double tempA = 0.5*coefficientOfLift*areaLift/mass*atmosphericDensity*radialVelcityMagnitude*radialVelcityMagnitude/R;
 
     const basis_array accelLift{
         tempA*x,

@@ -19,10 +19,6 @@
 
 class Spacecraft {
 
-    friend class Plane;
-    friend class Shell;
-    friend class Constellation;
-
 public:
 
     // Constructor
@@ -32,124 +28,91 @@ public:
     // Destructor
     ~Spacecraft();
 
-    // Function: Set spacecraft mass
-    // Inputs: mass (kg)
-    void set_mass(double m);
-
-    // Function: Set spacecraft coefficient of drag
-    // Inputs: coefficient of drag (--)
-    void set_coefficient_of_drag(double Cd);
-
-    // Function: Set spacecraft coefficient of lift
-    // Inputs: coefficient of lift (--)
-    void set_coefficient_of_lift(double Cl);
-
     // Function: Set spacecraft coefficient of reflectivity
     // Inputs: coefficient of reflectivity (--)
     void coefficient_of_reflectivity(double Cr);
-
-    // Function: Set spacecraft ram-facing area
-    // Inputs: net ram-facing area (m^2)
-    void set_ram_area(double aRam);
-
-    // Function: Set spacecraft ram-facing areas
-    // Inputs: array of areas (m^2)
-    void set_ram_area(double* aRam);
-
-    // Function: Set spacecraft sun-facing area
-    // Inputs: net sun-facing area (m^2)
-    void set_sun_area(double aSun);
-
-    // Function: Set spacecraft sun-facing areas
-    // Inputs: array of areas (m^2)
-    void set_sun_area(double* aSun);
-
-    // Function: Set spacecraft earth-facing area
-    // Inputs: net earth-facing area (m^2)
-    void set_lift_area(double aLift);
-
-    // Function: Set spacecraft earth-facing areas
-    // Inputs: array of areas (m^2)
-    void set_lift_area(double* aLift);
 
     // Function: Set initial epoch of integration
     // Inputs: Initial epoch string in the format: "MON-DY-YEAR HH:MM:SS.SS"
     void set_epoch(std::string inputEpoch);
 
-    void set_states(std::vector<State> states);
+    void update_state(const State& state);
 
     const State& get_initial_state() const;
     const State& get_final_state() const;
     const State& get_closest_state(const Time& time) const;
-    const State get_state_at(const Time& time) const;
-    std::vector<State>& get_states() { return states; }
+    State get_state_at(const Time& time) const;
+    std::vector<State>& get_states() { return _states; }
+    const std::vector<State>& get_states() const { return _states; }
 
-    const size_t n_states() { return states.size(); }
+    size_t n_states() const { return _states.size(); }
 
-    const Date& get_epoch() const { return epoch; }
+    const Date& get_epoch() const { return _epoch; }
 
     // Function: Get spacecraft mass
     // Outputs: mass (kg)
-    const double& get_mass() const;
+    double get_mass() const;
 
     // Function: Get spacecraft coefficient of drag
     // Outputs: coefficient of drag (--)
-    const double& get_coefficient_of_drag() const;
+    double get_coefficient_of_drag() const;
 
     // Function: Get spacecraft coefficient of lift
     // Outputs: coefficient of lift (--)
-    const double& get_coefficient_of_lift() const;
+    double get_coefficient_of_lift() const;
 
     // Function: Get spacecraft coefficient of reflectivity
     // Outputs: coefficient of reflectivity (--)
-    const double& get_coefficient_of_reflectivity() const;
+    double get_coefficient_of_reflectivity() const;
 
     // Function: Get spacecraft ram-facing area
     // Outputs: net ram-facing area / array of areas (m^2)
-    const basis_array& get_ram_area() const;
+    double get_ram_area() const;
 
     // Function: Get spacecraft sun-facing area
     // Outputs: net sun-facing area / array of areas (m^2)
-    const basis_array& get_sun_area() const;
+    double get_solar_area() const;
 
     // Function: Get spacecraft earth-facing area
     // Outputs: net earth-facing area / array of areas (m^2)
-    const basis_array& get_lift_area() const;
+    double get_lift_area() const;
 
-    void attach(Sensor& sensor) { sensors.push_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors) { sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors)); }
+    void attach(Sensor& sensor) { _sensors.emplace_back(sensor); }
+    void attach(std::vector<Sensor>& _sensors) { _sensors.insert(std::end(_sensors), std::begin(_sensors), std::end(_sensors)); }
 
-    std::vector<Sensor>& get_sensors() { return sensors; }
+    std::vector<Sensor>& get_sensors() { return _sensors; }
+    const std::vector<Sensor>& get_sensors() const { return _sensors; }
 
-    const size_t& get_id() { return id; }
+    size_t get_id() const { return _id; }
 
     void add_access(const size_t& receiverId, const RiseSetArray& access) {
-        accesses[id, receiverId] = access;
+        _accesses[_id, receiverId] = access;
     }
 
 private:
 
-    size_t id;
-    std::string name;
+    size_t _id;
+    std::string _name;
 
     // Spacecraft properties
-    double mass = 1000.0;
-    double coefficientOfDrag = 2.2;
-    double coefficientOfLift = 0.9;
-    double coefficientOfReflectivity = 1.1;
-    basis_array areaRam = { 0.01, 0.0, 0.0 };
-    basis_array areaSun = { 0.01, 0.0, 0.0 };
-    basis_array areaLift = { 0.01, 0.0, 0.0 };
+    double _mass = 1000.0;
+    double _coefficientOfDrag = 2.2;
+    double _coefficientOfLift = 0.9;
+    double _coefficientOfReflectivity = 1.1;
+    double _ramArea = 1.0;
+    double _sunArea = 1.0;
+    double _liftArea = 1.0;
 
     // Orbital elements
-    std::vector<State> states;
+    State _state;
+    std::vector<State> _states;
 
     // Epoch variables
-    Date epoch;
+    Date _epoch;
 
     // Access data
-    AccessArray accesses;
-    std::vector<Sensor> sensors;
+    AccessArray _accesses;
+    std::vector<Sensor> _sensors;
 
     void generate_id_hash();
 };

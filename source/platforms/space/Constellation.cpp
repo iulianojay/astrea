@@ -172,7 +172,7 @@ const Spacecraft& Constellation::get_spacecraft(const size_t& spacecraftId) cons
     for (const auto& shell: shells) {
         for (const auto& plane: shell.planes) {
             for (const auto& sat: plane.satellites) {
-                if (sat.id == spacecraftId) {
+                if (sat.get_id() == spacecraftId) {
                     return sat;
                 }
             }

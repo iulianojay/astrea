@@ -5,7 +5,7 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
     satellites = _satellites;
 
     // Grab first element set as plane set
-    elements = satellites[0].states[0].elements;
+    elements = satellites[0].get_initial_state().elements;
 
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
@@ -15,7 +15,7 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat: satellites) {
-        OrbitalElements satElements = sat.states[0].elements;
+        OrbitalElements satElements = sat.get_initial_state().elements;
         satElements.convert(ElementSet::KEPLERIAN, sys);
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
@@ -44,7 +44,7 @@ const std::vector<Spacecraft>& Plane::get_all_spacecraft() const {
 
 const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const {
     for (const auto& sat: satellites) {
-        if (sat.id == spacecraftId) {
+        if (sat.get_id() == spacecraftId) {
             return sat;
         }
     }
@@ -53,9 +53,9 @@ const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const {
 
 
 void Plane::generate_id_hash() {
-    id = std::hash<size_t>()(satellites[0].id);
+    id = std::hash<size_t>()(satellites[0].get_id());
     for (size_t ii = 1; ii < satellites.size(); ii++) {
-        id ^= std::hash<size_t>()(satellites[ii].id);
+        id ^= std::hash<size_t>()(satellites[ii].get_id());
     }
 }
 

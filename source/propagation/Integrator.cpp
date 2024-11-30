@@ -29,7 +29,6 @@ void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eo
     for (auto& state: states) {
         state.elements.convert(originalSet, eom.get_system());
     }
-    spacecraft.set_states(states);
 }
 
 void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
