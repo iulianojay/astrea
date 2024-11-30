@@ -49,8 +49,8 @@ int main() {
     // J2MeanVop eom(sys);
     // std::string propagator = "cowells";
     // CowellsMethod eom(sys, forces);
-    // std::string propagator = "coes";
-    // KeplerianVop eom(sys, forces, false);
+    std::string propagator = "coes";
+    KeplerianVop eom(sys, forces, false);
 
     // Setup integrator
     Integrator integrator;

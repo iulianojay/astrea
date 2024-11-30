@@ -38,6 +38,7 @@ set(HDRS
     ${INC}/astro/platforms/space/Plane.hpp
     ${INC}/astro/platforms/space/Shell.hpp
     ${INC}/astro/platforms/space/Spacecraft.hpp
+    ${INC}/astro/platforms/Vehicle.hpp
 
     ${INC}/astro/propagation/Integrator.hpp
     ${INC}/astro/propagation/LambertSolver.hpp

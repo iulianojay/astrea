@@ -35,6 +35,7 @@ set(OBJS
     ${SRC}/platforms/space/Plane.cpp
     ${SRC}/platforms/space/Shell.cpp
     ${SRC}/platforms/space/Spacecraft.cpp
+    ${SRC}/platforms/Vehicle.cpp
 
     ${SRC}/propagation/Integrator.cpp
     ${SRC}/propagation/LambertSolver.cpp
@@ -77,6 +78,7 @@ include_directories(
     ${INC}/astro/platforms/access/fov
     ${INC}/astro/platforms/ground
     ${INC}/astro/platforms/space
+    ${INC}/astro/platforms/vehicles
     ${INC}/astro/propagation
     ${INC}/astro/propagation/force_models
     ${INC}/astro/propagation/equations_of_motion
