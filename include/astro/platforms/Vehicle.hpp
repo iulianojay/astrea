@@ -6,142 +6,74 @@
 #include <typeindex>
 #include <typeinfo>
 #include <utility>
+#include <concepts>
 
 #include "astro/State.hpp"
 #include "astro/time/Date.hpp"
 #include "astro/types/type_traits.hpp"
 #include "astro/types/typeid_name_extract.hpp"
 
-/**
- * The SFINAE done in this file can be done very cleanly with concepts, but would require C++20 support
- */
 
 template <typename T>
-class has_update_state
-{
-    template <typename U>
-    using update_state_t = decltype(std::declval<const U &>().update_state());
-    static const bool implementation_defined = std::is_same<detected_t<update_state_t, T>, void>::value;
+concept has_update_state = requires(T vehicle, const State& state) {
+    { vehicle.update_state(state) };
+};
 
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
+
+template <typename T>
+concept has_get_state = requires(T vehicle) {
+    { vehicle.get_state() } -> std::same_as<State>;
+};
+
+
+template <typename T>
+concept has_get_mass = requires(T vehicle) {
+    { vehicle.get_mass() } -> std::same_as<double>;
+};
+
+
+template <typename T>
+concept has_get_ram_area = requires(T vehicle) {
+    { vehicle.get_ram_area() } -> std::same_as<double>;
 };
 
 template <typename T>
-class has_get_state
-{
-    template <typename U>
-    using get_state_t = decltype(std::declval<const U &>().get_state());
-    static const bool implementation_defined = std::is_same<State, detected_t<get_state_t, T>>::value;
+concept has_get_coefficient_of_drag = requires(T vehicle) {
+    { vehicle.get_coefficient_of_drag() } -> std::same_as<double>;
+};
 
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
+
+template <typename T>
+concept has_get_lift_area = requires(T vehicle) {
+    { vehicle.get_lift_area() } -> std::same_as<double>;
 };
 
 template <typename T>
-class has_get_mass
-{
-    template <typename U>
-    using get_mass_t = decltype(std::declval<const U &>().get_mass());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_mass_t, T>>::value;
+concept has_get_coefficient_of_lift = requires(T vehicle) {
+    { vehicle.get_coefficient_of_lift() } -> std::same_as<double>;
+};
 
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
+
+template <typename T>
+concept has_get_solar_area = requires(T vehicle) {
+    { vehicle.get_solar_area() } -> std::same_as<double>;
 };
 
 template <typename T>
-class has_get_ram_area
-{
-    template <typename U>
-    using get_ram_area_t = decltype(std::declval<const U &>().get_ram_area());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_ram_area_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
+concept has_get_coefficient_of_reflectivity = requires(T vehicle) {
+    { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<double>;
 };
 
 template <typename T>
-class has_get_coefficient_of_drag
-{
-    template <typename U>
-    using get_coefficient_of_drag_t = decltype(std::declval<const U &>().get_coefficient_of_drag());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_coefficient_of_drag_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
-};
-
-template <typename T>
-class has_get_lift_area
-{
-    template <typename U>
-    using get_lift_area_t = decltype(std::declval<const U &>().get_lift_area());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_lift_area_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
-};
-
-template <typename T>
-class has_get_coefficient_of_lift
-{
-    template <typename U>
-    using get_coefficient_of_lift_t = decltype(std::declval<const U &>().get_coefficient_of_lift());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_coefficient_of_lift_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
-};
-
-template <typename T>
-class has_get_solar_area
-{
-    template <typename U>
-    using get_solar_area_t = decltype(std::declval<const U &>().get_solar_area());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_solar_area_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
-};
-
-template <typename T>
-class has_get_coefficient_of_reflectivity
-{
-    template <typename U>
-    using get_coefficient_of_reflectivity_t = decltype(std::declval<const U &>().get_coefficient_of_reflectivity());
-    static const bool implementation_defined = std::is_same<double, detected_t<get_coefficient_of_reflectivity_t, T>>::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
-};
-
-template <typename T>
-class is_user_defined_vehicle
-{
-    static const bool implementation_defined
-        = std::conjunction<
-            std::is_same<T, remove_cv_ref<T>>,
-            std::is_default_constructible<T>,
-            std::is_copy_constructible<T>,
-            std::is_move_constructible<T>,
-            std::is_destructible<T>,
-            has_update_state<T>,
-            has_get_state<T>,
-            has_get_mass<T>
-        >::value;
-
-public:
-    /// Value of the type trait.
-    static constexpr bool value = implementation_defined;
+concept IsUserDefinedVehicle = requires(T) {
+    std::is_same<T, remove_cv_ref<T>>::value;
+    std::is_default_constructible<T>::value;
+    std::is_copy_constructible<T>::value;
+    std::is_move_constructible<T>::value;
+    std::is_destructible<T>::value;
+    requires has_update_state<T>;
+    requires has_get_state<T>;
+    requires has_get_mass<T>;
 };
 
 namespace detail {
@@ -218,56 +150,68 @@ public:
     }
 
     // Use templates to switch between defined or default implementations
-    template <typename U, std::enable_if_t<!has_get_ram_area<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_ram_area<U>)
     static double get_ram_area_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_ram_area<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_ram_area<U>)
     static double get_ram_area_impl(const U& value) {
         return value.get_ram_area();
     }
 
-    template <typename U, std::enable_if_t<!has_get_lift_area<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_lift_area<U>)
     static double get_lift_area_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_lift_area<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_lift_area<U>)
     static double get_lift_area_impl(const U& value) {
         return value.get_lift_area();
     }
 
-    template <typename U, std::enable_if_t<!has_get_solar_area<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_solar_area<U>)
     static double get_solar_area_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_solar_area<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_solar_area<U>)
     static double get_solar_area_impl(const U& value) {
         return value.get_solar_area();
     }
 
-    template <typename U, std::enable_if_t<!has_get_coefficient_of_drag<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_coefficient_of_drag<U>)
     static double get_coefficient_of_drag_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_coefficient_of_drag<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_coefficient_of_drag<U>)
     static double get_coefficient_of_drag_impl(const U& value) {
         return value.get_coefficient_of_drag();
     }
 
-    template <typename U, std::enable_if_t<!has_get_coefficient_of_lift<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_coefficient_of_lift<U>)
     static double get_coefficient_of_lift_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_coefficient_of_lift<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_coefficient_of_lift<U>)
     static double get_coefficient_of_lift_impl(const U& value) {
         return value.get_coefficient_of_lift();
     }
 
-    template <typename U, std::enable_if_t<!has_get_coefficient_of_reflectivity<U>::value, int> = 0>
+    template <typename U>
+    requires(!has_get_coefficient_of_reflectivity<U>)
     static double get_coefficient_of_reflectivity_impl(const U&) {
         return 0.0;
     }
-    template <typename U, std::enable_if_t<has_get_coefficient_of_reflectivity<U>::value, int> = 0>
+    template <typename U>
+    requires(has_get_coefficient_of_reflectivity<U>)
     static double get_coefficient_of_reflectivity_impl(const U& value) {
         return value.get_coefficient_of_reflectivity();
     }
@@ -291,14 +235,17 @@ public:
 
 } // namespace detail
 
+class Vehicle;
+
+template <typename T>
+concept IsGenericallyConstructable = requires(T) {
+    requires IsUserDefinedVehicle<T>;
+    std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
+};
+
 
 class Vehicle {
 private:
-
-    template <typename T>
-    using generic_ctor_enabler = std::enable_if_t<
-            std::negation< std::is_same<Vehicle, remove_cv_ref<T> >
-    >::value, int>;
 
 public:
 
@@ -311,7 +258,8 @@ private:
 
 public:
 
-    template <typename T, generic_ctor_enabler<T> = 0>
+    template <typename T>
+    requires(IsGenericallyConstructable<T>)
     explicit Vehicle(T &&x)
         : _ptr( std::make_unique< detail::VehicleInner<remove_cv_ref<T>> >(std::forward<T>(x)) )
     {
@@ -331,7 +279,8 @@ public:
     Vehicle& operator=(const Vehicle&);
 
     /// Assignment from a user-defined Vehicle
-    template <typename T, generic_ctor_enabler<T> = 0>
+    template <typename T>
+    requires(IsGenericallyConstructable<T>)
     Vehicle& operator=(T&& x) {
         return (*this) = Vehicle(std::forward<T>(x));
     }
