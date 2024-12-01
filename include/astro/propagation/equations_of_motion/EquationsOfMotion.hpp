@@ -10,7 +10,7 @@
     #include <exception>
 #endif
 
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
 #include "astro/propagation/force_models/Force.hpp"

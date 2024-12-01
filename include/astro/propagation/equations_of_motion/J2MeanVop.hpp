@@ -1,6 +1,6 @@
 #pragma once
 
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 #include "astro/systems/GravitationalBody.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
@@ -9,7 +9,7 @@
 #include "astro/time/Time.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/OrbitalElements.hpp"
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 
 class J2MeanVop : public EquationsOfMotion {
 public:

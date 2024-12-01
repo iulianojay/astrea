@@ -19,7 +19,7 @@
 #include "astro/platforms/space/Constellation.hpp"
 #include "astro/platforms/space/Shell.hpp"
 #include "astro/platforms/space/Plane.hpp"
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 
 #include "astro/propagation/Integrator.hpp"
 #include "astro/propagation/LambertSolver.hpp"

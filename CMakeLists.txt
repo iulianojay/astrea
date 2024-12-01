@@ -34,7 +34,7 @@ set(OBJS
     ${SRC}/platforms/space/Constellation.cpp
     ${SRC}/platforms/space/Plane.cpp
     ${SRC}/platforms/space/Shell.cpp
-    ${SRC}/platforms/space/Spacecraft.cpp
+    ${SRC}/platforms/vehicles/Spacecraft.cpp
     ${SRC}/platforms/Vehicle.cpp
 
     ${SRC}/propagation/Integrator.cpp

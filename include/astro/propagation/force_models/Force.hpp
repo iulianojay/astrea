@@ -2,7 +2,7 @@
 
 #include "astro/element_sets/OrbitalElements.hpp"
 #include "astro/types/typedefs.hpp"
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
 class Force {

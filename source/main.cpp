@@ -20,7 +20,7 @@ int main() {
     AstrodynamicsSystem sys;
 
     const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::KEPLERIAN);
-    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
+    // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
 
     // Build constellation
     const int T = 1;

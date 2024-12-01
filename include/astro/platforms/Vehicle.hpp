@@ -3,9 +3,6 @@
 #include <cassert>
 #include <memory>
 #include <type_traits>
-#include <typeindex>
-#include <typeinfo>
-#include <utility>
 #include <concepts>
 
 #include "astro/State.hpp"
@@ -19,18 +16,20 @@ concept has_update_state = requires(T vehicle, const State& state) {
     { vehicle.update_state(state) };
 };
 
-
 template <typename T>
 concept has_get_state = requires(T vehicle) {
     { vehicle.get_state() } -> std::same_as<State>;
 };
 
+template <typename T>
+concept has_get_epoch = requires(T vehicle) {
+    { vehicle.get_epoch() } -> std::same_as<Date>;
+};
 
 template <typename T>
 concept has_get_mass = requires(T vehicle) {
     { vehicle.get_mass() } -> std::same_as<double>;
 };
-
 
 template <typename T>
 concept has_get_ram_area = requires(T vehicle) {
@@ -42,7 +41,6 @@ concept has_get_coefficient_of_drag = requires(T vehicle) {
     { vehicle.get_coefficient_of_drag() } -> std::same_as<double>;
 };
 
-
 template <typename T>
 concept has_get_lift_area = requires(T vehicle) {
     { vehicle.get_lift_area() } -> std::same_as<double>;
@@ -52,7 +50,6 @@ template <typename T>
 concept has_get_coefficient_of_lift = requires(T vehicle) {
     { vehicle.get_coefficient_of_lift() } -> std::same_as<double>;
 };
-
 
 template <typename T>
 concept has_get_solar_area = requires(T vehicle) {
@@ -73,6 +70,7 @@ concept IsUserDefinedVehicle = requires(T) {
     std::is_destructible<T>::value;
     requires has_update_state<T>;
     requires has_get_state<T>;
+    requires has_get_epoch<T>;
     requires has_get_mass<T>;
 };
 
@@ -85,6 +83,7 @@ struct VehicleInnerBase {
     // Required methods
     virtual void update_state(const State& state) = 0;
     virtual State get_state() const = 0;
+    virtual Date get_epoch() const = 0;
     virtual double get_mass() const = 0;
 
     // Optional methods
@@ -103,8 +102,8 @@ struct VehicleInnerBase {
 };
 
 template <typename T>
-class VehicleInner final : public VehicleInnerBase {
-public:
+struct VehicleInner final : public VehicleInnerBase {
+
     // Default constructor
     VehicleInner() = default;
 
@@ -124,6 +123,9 @@ public:
     }
     State get_state() const final {
         return _value.get_state();
+    }
+    Date get_epoch() const final {
+        return _value.get_epoch();
     }
     double get_mass() const final {
         return _value.get_mass();
@@ -245,8 +247,6 @@ concept IsGenericallyConstructable = requires(T) {
 
 
 class Vehicle {
-private:
-
 public:
 
     // Default constructor
@@ -293,12 +293,17 @@ public:
     // Update state
     void update_state(const State&);
 
-    // get_mass
+    // Get state
     State get_state() const {
         return _state;
     }
 
-    // get_mass
+    // Get state
+    Date get_epoch() const {
+        return _epoch;
+    }
+
+    // Get mass
     double get_mass() const {
         return _mass;
     }
@@ -308,7 +313,7 @@ public:
         return _ramArea;
     }
 
-    // Ram area
+    // Lift area
     double get_lift_area() const {
         return _liftArea;
     }
@@ -344,6 +349,7 @@ private:
 
     // Members
     State _state;
+    Date _epoch;
     double _mass;
     double _ramArea;
     double _liftArea;

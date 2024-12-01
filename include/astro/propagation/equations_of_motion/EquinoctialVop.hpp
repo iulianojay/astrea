@@ -5,7 +5,7 @@
 #include "astro/time/Time.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/OrbitalElements.hpp"
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 
 class EquinoctialVop : public EquationsOfMotion {
 public:

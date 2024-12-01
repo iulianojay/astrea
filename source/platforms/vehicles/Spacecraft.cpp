@@ -7,18 +7,11 @@
 #include "Time.hpp"
 
 // Constructor/Destructor
-Spacecraft::Spacecraft(OrbitalElements state0, std::string epoch) : _epoch(J2000) {
+Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) : _epoch(epoch) {
     update_state({0.0, state0});
-    set_epoch(epoch);
-
     generate_id_hash();
 }
 Spacecraft::~Spacecraft() { }
-
-
-void Spacecraft::set_epoch(std::string inputEpoch) {
-    _epoch = Date(inputEpoch);
-}
 
 
 void Spacecraft::update_state(const State& state) {
