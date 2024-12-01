@@ -18,7 +18,7 @@ concept has_update_state = requires(T vehicle, const State& state) {
 
 template <typename T>
 concept has_get_state = requires(T vehicle) {
-    { vehicle.get_state() } -> std::same_as<State>;
+    { vehicle.get_state() } -> std::same_as<State&>;
 };
 
 template <typename T>
@@ -82,7 +82,7 @@ struct VehicleInnerBase {
 
     // Required methods
     virtual void update_state(const State& state) = 0;
-    virtual State get_state() const = 0;
+    virtual State& get_state() = 0;
     virtual Date get_epoch() const = 0;
     virtual double get_mass() const = 0;
 
@@ -121,7 +121,7 @@ struct VehicleInner final : public VehicleInnerBase {
     void update_state(const State& state) final {
         _value.update_state(state);
     }
-    State get_state() const final {
+    State& get_state() final {
         return _value.get_state();
     }
     Date get_epoch() const final {
@@ -240,7 +240,7 @@ struct VehicleInner final : public VehicleInnerBase {
 class Vehicle;
 
 template <typename T>
-concept IsGenericallyConstructable = requires(T) {
+concept IsGenericallyConstructableVehicle = requires(T) {
     requires IsUserDefinedVehicle<T>;
     std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
 };
@@ -259,7 +259,7 @@ private:
 public:
 
     template <typename T>
-    requires(IsGenericallyConstructable<T>)
+    requires(IsGenericallyConstructableVehicle<T>)
     explicit Vehicle(T &&x)
         : _ptr( std::make_unique< detail::VehicleInner<remove_cv_ref<T>> >(std::forward<T>(x)) )
     {
@@ -280,62 +280,66 @@ public:
 
     /// Assignment from a user-defined Vehicle
     template <typename T>
-    requires(IsGenericallyConstructable<T>)
+    requires(IsGenericallyConstructableVehicle<T>)
     Vehicle& operator=(T&& x) {
         return (*this) = Vehicle(std::forward<T>(x));
     }
 
     template <typename T>
+    requires(IsGenericallyConstructableVehicle<T>)
     const T *extract() const noexcept {
-        return detail::typeid_name_extract<T>(*this);
+        auto p = static_cast<const detail::VehicleInner<T> *>(ptr());
+        return p == nullptr ? nullptr : &(p->_value);
     }
 
     // Update state
-    void update_state(const State&);
+    void update_state(const State& state) {
+        return _ptr->update_state(state);
+    }
 
     // Get state
-    State get_state() const {
-        return _state;
+    State& get_state() {
+        return _ptr->get_state();
     }
 
     // Get state
     Date get_epoch() const {
-        return _epoch;
+        return _ptr->get_epoch();
     }
 
     // Get mass
     double get_mass() const {
-        return _mass;
+        return _ptr->get_mass();
     }
 
     // Ram area
     double get_ram_area() const {
-        return _ramArea;
+        return _ptr->get_ram_area();
     }
 
     // Lift area
     double get_lift_area() const {
-        return _liftArea;
+        return _ptr->get_lift_area();
     }
 
     // Solar area
     double get_solar_area() const {
-        return _solarArea;
+        return _ptr->get_solar_area();
     }
 
     // Coefficient of drag
     double get_coefficient_of_drag() const {
-        return _coefficientOfDrag;
+        return _ptr->get_coefficient_of_drag();
     }
 
     // Coefficient of lift
     double get_coefficient_of_lift() const {
-        return _coefficientOfLift;
+        return _ptr->get_coefficient_of_lift();
     }
 
     // Coefficient of reflectivity
     double get_coefficient_of_reflectivity() const {
-        return _coefficientOfReflectivity;
+        return _ptr->get_coefficient_of_reflectivity();
     }
 
     // Pointer to user-defined vehicle

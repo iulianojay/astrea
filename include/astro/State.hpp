@@ -18,6 +18,10 @@ public:
     State(Time time, OrbitalElements elements): time(time), elements(elements) {}
     State(Time time, element_array elements, ElementSet set): time(time), elements(elements, set) {}
 
+    void convert(const ElementSet& set, const AstrodynamicsSystem& sys) {
+        elements.convert(set, sys);
+    }
+
     Time time;
     OrbitalElements elements;
 

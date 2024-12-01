@@ -11,7 +11,7 @@ public:
     {}
 
     void update_state(const State& state) { _state = state; }
-    State get_state() const { return _state; }
+    State& get_state() { return _state; }
     Date get_epoch() const { return _epoch; }
     double get_mass() const { return _mass; }
 

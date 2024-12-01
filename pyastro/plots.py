@@ -89,16 +89,16 @@ def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], 
 
 if __name__=='__main__':
 
-    # test = 'two_body'
-    # title = 'Two-Body Test'
+    test = 'two_body'
+    title = 'Two-Body Test'
     # test = 'j2mean'
     # title = 'J2 Mean VoP Test'
     # test = 'cowells'
     # title = 'Cowells Method Test'
     # test = 'coes'
     # title = 'Keplerian VoP Test'
-    test = 'mees'
-    title = 'Equinoctial VoP Test'
+    # test = 'mees'
+    # title = 'Equinoctial VoP Test'
     infile = './bin/results/' + test + '/main.csv'
     outfile = './bin/results/' + test + '/main.png'
 

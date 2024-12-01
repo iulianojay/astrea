@@ -88,11 +88,6 @@ Vehicle& Vehicle::operator=(const Vehicle& other) {
     return *this = Vehicle(other);
 }
 
-// Update state
-void Vehicle::update_state(const State& state) {
-    _state = std::move(state);
-}
-
 // Pointer to user-defined vehicle
 const void* Vehicle::get_ptr() const {
     return ptr()->get_ptr();

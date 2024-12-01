@@ -13,25 +13,20 @@ OrbitalElements Integrator::find_state_derivative(const Time& time, const Orbita
 void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // TODO: Fix this nonsense
-    auto state0 = vehicle.get_state().elements;
-    const ElementSet originalSet = state0.get_set();
+    auto& state0 = vehicle.get_state();
 
     const ElementSet& expectedSet = eom.get_expected_set();
+
+    if (state0.elements.get_set() != expectedSet) {
+        std::cout << "Initial element set conversion was required to propagate chosen EoMs. This may cause inaccuracies." << std::endl;
+    }
     state0.convert(expectedSet, eom.get_system());
 
     // Integrate
-    integrate(interval.start, interval.end, state0, eom, vehicle);
-
-    // Get state history
-    auto states = get_state_history();
-
-    // Revconvert to original set
-    for (auto& state: states) {
-        state.elements.convert(originalSet, eom.get_system());
-    }
+    integrate(interval.start, interval.end, eom, vehicle);
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Vehicle& vehicle) {
+void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // Time
     Time time = timeInitial;
@@ -43,13 +38,8 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
     }
 
     // States
+    const OrbitalElements stateInitial = vehicle.get_state().elements;
     OrbitalElements state = stateInitial;
-
-    // Clean up history so integrator can be used multiple times
-    stateHistory.clear();
-
-    // Predict number of steps
-    stateHistory.reserve((int) ceil(timeFinal/30)); // guess 1 point every 30 seconds
 
     // Ensure count restarts
     functionEvaluations = 0;
@@ -67,9 +57,6 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
             (!forwardTime && time < timeFinal)) {
             break;
         }
-
-        // Add time and state to storage file
-	    stateHistory.emplace_back(State{time, state});
 
         // Check for event
         check_event(time, state, eom, vehicle);
@@ -114,6 +101,8 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
                 return;
             }
         }
+
+        vehicle.update_state({time, state});
 
         // Ensure last step goes to exact final time
         if (( forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
@@ -232,7 +221,7 @@ void Integrator::setup_stepper() {
             break;
 
         default:
-            throw std::invalid_argument("Error: Stepping method not found. Options are {RK45, RKF45, RKF78, DOP45, DOP78}.");
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, RKF78, DOP45, DOP78}.");
     }
 }
 
@@ -391,39 +380,6 @@ void Integrator::check_error(const double& maxError, const OrbitalElements& stat
 	}
 }
 
-//----------------------------------------------------------------------------------------------------------//
-// ---------------------------------------------Saving Methods ---------------------------------------------//
-//----------------------------------------------------------------------------------------------------------//
-
-void Integrator::save() const {
-    save("last_run.txt");
-}
-
-void Integrator::save(std::string filename) const {
-
-    if (printOn){ std::cout << "Saving... \n"; }
-
-	// Create file to write results too
-	std::ofstream outf(filename);
-	char buffer[200];
-	snprintf(buffer, 200, "%-15s, %-15s, %-15s, %-15s, %-15s, %-15s, %-15s \n",
-             "Time (s)", "x (km)", "y (km)", "z (km)", "vx (km/s)", "vy (km/s)", "vz (km/s)");
-	outf << buffer;
-
-	for (const auto& state : stateHistory) {
-
-        const Time& time = state.time;
-        const OrbitalElements& elements = state.elements;
-
-		snprintf(buffer, 200, "%-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g, %-15.8g \n",
-                 double(time), elements[0], elements[1], elements[2], elements[3], elements[4], elements[5]);
-		outf << buffer;
-	}
-    outf.close();
-
-    if (printOn) { std::cout << "Saving Complete. \n\n"; }
-}
-
 
 void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial) {
 	// This message is not lined up with iteration since ti and statei are advanced before this but it's okay
@@ -540,8 +496,3 @@ void Integrator::set_step_method(std::string stepMethod) {
     }
     stepMethod = stepper;
 }
-
-
-// Getters
-size_t Integrator::get_state_history_size() const { return stateHistory.size(); }
-std::vector<State>& Integrator::get_state_history() { return stateHistory; }

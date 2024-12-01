@@ -62,6 +62,8 @@ void Plane::generate_id_hash() {
 
 void Plane::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval) {
     for (auto& sat : satellites) {
-        integrator.propagate(interval, eom, sat);
+        Vehicle vehicle{sat};
+        integrator.propagate(interval, eom, vehicle);
+        sat = *vehicle.extract<Spacecraft>();
     }
 }

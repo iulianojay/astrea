@@ -29,6 +29,10 @@ public:
     ~Spacecraft();
 
     void update_state(const State& state);
+    State& get_state() { return _state; };
+    Date get_epoch() const { return _epoch; }
+    double get_mass() const;
+
     const State& get_initial_state() const;
     const State& get_final_state() const;
     const State& get_closest_state(const Time& time) const;
@@ -37,9 +41,6 @@ public:
     const std::vector<State>& get_states() const { return _states; }
     size_t n_states() const { return _states.size(); }
 
-    const Date& get_epoch() const { return _epoch; }
-
-    double get_mass() const;
     double get_coefficient_of_drag() const;
     double get_coefficient_of_lift() const;
     double get_coefficient_of_reflectivity() const;

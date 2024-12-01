@@ -38,20 +38,7 @@ public:
 
 	// Integrate
     void propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Vehicle& vehicle);
-
-	// Save Results
-	void save() const;
-	void save(std::string filename) const;
-
-    // Function: Get total number of steps taken during integration
-    // Outputs: number of steps taken
-    size_t get_state_history_size() const;
-
-    // Function: Get all states during integration
-    // Inputs: Matrix to write state history too
-    // void get_state_history(double** stateHistory);
-    std::vector<State>& get_state_history();
+    void integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     //---------------------------------------Integrator property setters---------------------------------------//
 
@@ -152,8 +139,8 @@ private:
 	clock_t endClock{};
 
 	// Error Messages
-	const std::string underflowErrorMessage = "Error: Stepsize underflow. \n\n";
-	const std::string innerLoopStepOverflowErrorMessage = "Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
+	const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n";
+	const std::string innerLoopStepOverflowErrorMessage = "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
 	const std::string outerLoopStepOverflowErrorMessage = "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n";
     const std::string crashMessage = "Note: Object crashed into central body. \n\n";
 
@@ -179,9 +166,6 @@ private:
     // Fake fixed step
     bool useFixedStep = false;
     Time fixedTimeStep = seconds(1.0);
-
-	// Time and state vectors
-	std::vector<State> stateHistory{};
 
 	//------------------------------------------------ Methods ------------------------------------------------//
 
