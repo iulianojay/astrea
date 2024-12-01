@@ -3,7 +3,7 @@
 #include "astro/constants/math_constants.h"
 #include "astro/utilities/math/math_c.hpp"
 
-basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     const GravitationalBody& center = sys.get_center();
 

@@ -1,6 +1,6 @@
 #include "CowellsMethod.hpp"
 
-OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
 
     if (state.get_set() != ElementSet::CARTESIAN) {
         throw std::runtime_error("The Cowell's Method dynamics evaluator requires that the incoming Orbital Element set is in Cartesian coordinates.");
@@ -21,8 +21,8 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const double muOverRadiusCubed = mu/(R*R*R);
 
     // Run find functions for force model
-    auto julianDate = spacecraft.get_epoch().julian_day() + time.count<days>();
-    basis_array accelPerts = forces.compute_forces(julianDate, state, spacecraft, system);
+    auto julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
+    basis_array accelPerts = forces.compute_forces(julianDate, state, vehicle, system);
 
     // Derivative
     const OrbitalElements dsdt ({

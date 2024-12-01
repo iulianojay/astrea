@@ -1,6 +1,5 @@
 #pragma once
 
-#include "astro/platforms/vehicles/Spacecraft.hpp"
 #include "astro/systems/GravitationalBody.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
@@ -9,7 +8,7 @@
 #include "astro/time/Time.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/OrbitalElements.hpp"
-#include "astro/platforms/vehicles/Spacecraft.hpp"
+#include "astro/platforms/Vehicle.hpp"
 
 class J2MeanVop : public EquationsOfMotion {
 public:
@@ -22,7 +21,7 @@ public:
     {};
     ~J2MeanVop() = default;
 
-    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
+    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
 private:

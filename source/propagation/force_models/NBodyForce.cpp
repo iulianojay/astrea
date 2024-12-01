@@ -1,6 +1,6 @@
 #include "NBodyForce.hpp"
 
-basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     throw std::logic_error("This function has not been properly updated and is not currently functional.");
 
@@ -39,21 +39,21 @@ basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalEle
         radiusCentralBodyToNbody[1] = radiusSunToNbody[index][ii*3+1] + radiusCentralBodyToSun[1];
         radiusCentralBodyToNbody[2] = radiusSunToNbody[index][ii*3+2] + radiusCentralBodyToSun[2];
 
-        radiusSpacecraftToNbody[0] = radiusCentralBodyToNbody[0] - x;
-        radiusSpacecraftToNbody[1] = radiusCentralBodyToNbody[1] - y;
-        radiusSpacecraftToNbody[2] = radiusCentralBodyToNbody[2] - z;
+        radiusVehicleToNbody[0] = radiusCentralBodyToNbody[0] - x;
+        radiusVehicleToNbody[1] = radiusCentralBodyToNbody[1] - y;
+        radiusVehicleToNbody[2] = radiusCentralBodyToNbody[2] - z;
 
         // Normalize
-        radiusSpacecraftToNbodyMagnitude = math_c::normalize(radiusSpacecraftToNbody);
+        radiusVehicleToNbodyMagnitude = math_c::normalize(radiusVehicleToNbody);
         radiusCentralToNbodyMagnitude = math_c::normalize(radiusCentralBodyToNbody);
 
         // Perturbational force from nth body
-        const double tempA = nBodyGravitationalParameter[ii]/(radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude*radiusSpacecraftToNbodyMagnitude);
+        const double tempA = nBodyGravitationalParameter[ii]/(radiusVehicleToNbodyMagnitude*radiusVehicleToNbodyMagnitude*radiusVehicleToNbodyMagnitude);
         const double tempB = nBodyGravitationalParameter[ii]/(radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude*radiusCentralToNbodyMagnitude);
 
-        accelNBody[0] += tempA*radiusSpacecraftToNbody[0] - tempB*radiusCentralBodyToNbody[0];
-        accelNBody[1] += tempA*radiusSpacecraftToNbody[1] - tempB*radiusCentralBodyToNbody[1];
-        accelNBody[2] += tempA*radiusSpacecraftToNbody[2] - tempB*radiusCentralBodyToNbody[2];
+        accelNBody[0] += tempA*radiusVehicleToNbody[0] - tempB*radiusCentralBodyToNbody[0];
+        accelNBody[1] += tempA*radiusVehicleToNbody[1] - tempB*radiusCentralBodyToNbody[1];
+        accelNBody[2] += tempA*radiusVehicleToNbody[2] - tempB*radiusCentralBodyToNbody[2];
     }
     */
     const basis_array accelNBody{

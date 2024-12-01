@@ -5,14 +5,14 @@
 #include "astro/time/Time.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/OrbitalElements.hpp"
-#include "astro/platforms/vehicles/Spacecraft.hpp"
+#include "astro/platforms/Vehicle.hpp"
 
 class CowellsMethod : public EquationsOfMotion {
 public:
     CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
     ~CowellsMethod() = default;
 
-    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const override;
+    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
 private:

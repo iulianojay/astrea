@@ -1,26 +1,26 @@
 #include "Integrator.hpp"
 
-OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+OrbitalElements Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // Count fevals
     ++functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(time, state, spacecraft);
+    return eom(time, state, vehicle);
 }
 
 
-void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // TODO: Fix this nonsense
-    auto state0 = spacecraft.get_initial_state().elements;
+    auto state0 = vehicle.get_state().elements;
     const ElementSet originalSet = state0.get_set();
 
     const ElementSet& expectedSet = eom.get_expected_set();
     state0.convert(expectedSet, eom.get_system());
 
     // Integrate
-    integrate(interval.start, interval.end, state0, eom, spacecraft);
+    integrate(interval.start, interval.end, state0, eom, vehicle);
 
     // Get state history
     auto states = get_state_history();
@@ -31,7 +31,7 @@ void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eo
     }
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // Time
     Time time = timeInitial;
@@ -72,7 +72,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
 	    stateHistory.emplace_back(State{time, state});
 
         // Check for event
-        check_event(time, state, eom, spacecraft);
+        check_event(time, state, eom, vehicle);
         if (eventTrigger) {
             print_iteration(time, state, timeFinal, stateInitial);
 
@@ -85,7 +85,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
             // I think an interesting choice would allow the user to use the fixed timestep but the
             // Integrator would use variable stepper to each fixed timestep. This would give the
             // desired output with the ensured accuracy of the variable stepper
-            try_step(time, timeStep, state, eom, spacecraft);
+            try_step(time, timeStep, state, eom, vehicle);
         }
         else { // Variable time step
             // Loop to find step size that meets tolerance
@@ -93,7 +93,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
             stepSuccess = false;
             while (variableStepIteration < maxVariableStepIterations) {
                 // Try to step
-                try_step(time, timeStep, state, eom, spacecraft);
+                try_step(time, timeStep, state, eom, vehicle);
 
                 // Catch underflow
                 if (time + timeStep == time) {
@@ -237,7 +237,7 @@ void Integrator::setup_stepper() {
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle) {
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
     auto statePlusKi = state;
@@ -245,14 +245,14 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         // Find derivative
         if (ii == 0) {
             if (stepMethod == RK45 || stepMethod == RKF45 || stepMethod == RKF78) {
-                const auto dstate = find_state_derivative(time, state, eom, spacecraft);
+                const auto dstate = find_state_derivative(time, state, eom, vehicle);
                 for (size_t iState = 0; iState < state.size(); ++iState) {
                     kMatrix[0][iState] = dstate[iState];
                 }
             }
             else if (stepMethod == DOP45 || stepMethod == DOP78) {
                 if (iteration == 0) {
-                    const auto dstate = find_state_derivative(time, state, eom, spacecraft);
+                    const auto dstate = find_state_derivative(time, state, eom, vehicle);
                     for (size_t iState = 0; iState < state.size(); ++iState) {
                         kMatrix[0][iState] = dstate[iState];
                     }
@@ -265,7 +265,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
         else {
-            const auto dstate = find_state_derivative(time + c[ii]*timeStep, statePlusKi, eom, spacecraft);
+            const auto dstate = find_state_derivative(time + c[ii]*timeStep, statePlusKi, eom, vehicle);
             for (size_t iState = 0; iState < state.size(); ++iState) {
                 kMatrix[ii][iState] = dstate[iState];
             }
@@ -476,10 +476,10 @@ void Integrator::print_performance() const {
 //--------------------------------------------- Event Function ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft) {
+void Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle) {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    eventTrigger = eom.check_crash(time, state, spacecraft);
+    eventTrigger = eom.check_crash(time, state, vehicle);
 
     // Break if hit nans or infs
     if (std::isinf(abs(time)) || std::isnan(abs(time))) {

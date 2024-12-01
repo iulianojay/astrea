@@ -9,11 +9,11 @@
     #include <math.h>
 #endif
 
-#include "rk_constants.h"			// RK Butcher Tableau
+#include "astro/constants/rk_constants.h"			// RK Butcher Tableau
 
-#include "Interval.hpp"
-#include "EquationsOfMotion.hpp"
-#include "Spacecraft.hpp"
+#include "astro/time/Interval.hpp"
+#include "astro/propagation/equations_of_motion/EquationsOfMotion.hpp"
+#include "astro/platforms/Vehicle.hpp"
 
 class Integrator
 {
@@ -37,8 +37,8 @@ public:
     ~Integrator() = default;
 
 	// Integrate
-    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Vehicle& vehicle);
 
 	// Save Results
 	void save() const;
@@ -186,11 +186,11 @@ private:
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
 	// Stepping methods
     void setup_stepper();
-    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
 	// Error Methods
 	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
@@ -205,5 +205,5 @@ private:
 	void endTimer() { if (timerOn) { endClock = clock(); } }
 
     // Event Function
-    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 };

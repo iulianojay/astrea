@@ -1,6 +1,6 @@
 #include "SolarRadiationPressureForce.hpp"
 
-basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     throw std::logic_error("This function has not been properly updated and is not currently functional.");
 
@@ -28,13 +28,13 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     }
     radialMagnitudeCentralBodyToSun = math_c::normalize(radiusCentralBodyToSun);
 
-    radiusSpacecraftToSun[0] = radiusCentralBodyToSun[0] - x;
-    radiusSpacecraftToSun[1] = radiusCentralBodyToSun[1] - y;
-    radiusSpacecraftToSun[2] = radiusCentralBodyToSun[2] - z;
-    radialMagnitudeSpacecraftToSun = math_c::normalize(radiusSpacecraftToSun);
+    radiusVehicleToSun[0] = radiusCentralBodyToSun[0] - x;
+    radiusVehicleToSun[1] = radiusCentralBodyToSun[1] - y;
+    radiusVehicleToSun[2] = radiusCentralBodyToSun[2] - z;
+    radialMagnitudeVehicleToSun = math_c::normalize(radiusVehicleToSun);
 
     // Solar radiation pressure
-    solarRadiationPressure = solarRadiationPressureAt1AU*AU*AU/(radialMagnitudeSpacecraftToSun*radialMagnitudeSpacecraftToSun); // Scale by(1AU/R)^2 for other bodies
+    solarRadiationPressure = solarRadiationPressureAt1AU*AU*AU/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
     fractionOfRecievedSunlight = 1.0;
 
     if (system.get_center().planetId() != 0) {
@@ -76,11 +76,11 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double coefficientOfReflectivity = spacecraft->get_coefficient_of_reflectivity();
     const double *areaSun = spacecraft->get_sun_area();
     const double mass = spacecraft->get_mass();
-    const double tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeSpacecraftToSun*fractionOfRecievedSunlight;
+    const double tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeVehicleToSun*fractionOfRecievedSunlight;
 
-    accelSRP[0] = tempA*radiusSpacecraftToSun[0];
-    accelSRP[1] = tempA*radiusSpacecraftToSun[1];
-    accelSRP[2] = tempA*radiusSpacecraftToSun[2];
+    accelSRP[0] = tempA*radiusVehicleToSun[0];
+    accelSRP[1] = tempA*radiusVehicleToSun[1];
+    accelSRP[2] = tempA*radiusVehicleToSun[2];
 
     */
     const basis_array accelSRP{

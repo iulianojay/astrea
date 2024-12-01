@@ -9,7 +9,7 @@
 #include "math_c.hpp"
 #include "conversions.hpp"
 
-OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
 
     if (state.get_set() != ElementSet::KEPLERIAN) {
         throw std::runtime_error("The Mean J2 dynamics evaluator requires that the incoming Orbital Element set is in KEPLERIAN coordinates.");

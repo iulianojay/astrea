@@ -10,7 +10,7 @@
     #include <exception>
 #endif
 
-#include "astro/platforms/vehicles/Spacecraft.hpp"
+#include "astro/platforms/Vehicle.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
 #include "astro/propagation/force_models/Force.hpp"
@@ -22,8 +22,8 @@ public:
     EquationsOfMotion(const AstrodynamicsSystem& system) : system(system) {};
     virtual ~EquationsOfMotion() = default;
 
-    virtual OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const = 0;
-    virtual bool check_crash(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+    virtual OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+    virtual bool check_crash(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
         for (const auto& x : state) {
             if (x != 0.0) {
                 return false;

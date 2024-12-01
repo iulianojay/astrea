@@ -2,7 +2,7 @@
 
 #include "math_c.hpp"
 
-OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
 
     if (state.get_set() != ElementSet::KEPLERIAN) {
         throw std::runtime_error("The KEPLERIANs VoP dynamics evaluator requires that the incoming Orbital Element set is in KEPLERIAN coordinates.");
@@ -71,8 +71,8 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     };
 
     // Function for finding accel caused by perturbations
-    auto julianDate = spacecraft.get_epoch().julian_day() + time.count<days>();
-    basis_array accelPerts = forces.compute_forces(julianDate, cartesianState, spacecraft, system);
+    auto julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
+    basis_array accelPerts = forces.compute_forces(julianDate, cartesianState, vehicle, system);
 
     // Calculate R, N, and T
     const double radialPert     = accelPerts[0]*Rhat[0] + accelPerts[1]*Rhat[1] + accelPerts[2]*Rhat[2];
