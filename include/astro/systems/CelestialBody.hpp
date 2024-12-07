@@ -37,7 +37,7 @@ public:
 	// Property getters
     const std::string name()     const { return _nameString; };
     const CelestialBodyType type() const { return _type; };
-    const CelestialBody parent()   const { return _parent; };
+    const SolarBody parent()   const { return _parent; };
 
     const int planetId() const { return _planetId; };
     const int moonId()   const { return _moonId; };
@@ -81,7 +81,7 @@ private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    CelestialBody _name, _parent;
+    SolarBody _name, _parent;
     CelestialBodyType _type;
 
     std::string _nameString;

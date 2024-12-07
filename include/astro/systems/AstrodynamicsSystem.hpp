@@ -17,24 +17,24 @@
 class AstrodynamicsSystem {
 public:
 
-    AstrodynamicsSystem(CelestialBody centralBody = EARTH, std::unordered_set<CelestialBody> allBodies = {EARTH}, Date epoch = J2000) :
+    AstrodynamicsSystem(SolarBody centralBody = EARTH, std::unordered_set<SolarBody> allBodies = {EARTH}, Date epoch = J2000) :
         centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
         create_all_bodies();
     };
     ~AstrodynamicsSystem() {}
 
-    const CelestialBody& center() const { return centralBody; }
+    const SolarBody& center() const { return centralBody; }
     const CelestialBody& get_center() const { return bodyFactory.get(centralBody); }
 
-    const std::unordered_set<CelestialBody>& all_bodies() const { return allBodies; }
+    const std::unordered_set<SolarBody>& all_bodies() const { return allBodies; }
 
     void propagate_bodies(double propTime);
     // basis_array get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 private:
 
-    const CelestialBody centralBody;
-    const std::unordered_set<CelestialBody> allBodies;
+    const SolarBody centralBody;
+    const std::unordered_set<SolarBody> allBodies;
 
     Date epoch;
     CelestialBodyFactory bodyFactory;

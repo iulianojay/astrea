@@ -8,7 +8,7 @@ const CelestialBody& CelestialBodyFactory::create(const std::string& name) {
     return create(builder._nameMap.at(name));
 }
 
-const CelestialBody& CelestialBodyFactory::create(const CelestialBody& name) {
+const CelestialBody& CelestialBodyFactory::create(const SolarBody& name) {
     if (!bodies.count(name)) {
         CelestialBody body = builder.build(name);
         bodies.insert({name, body});
@@ -21,7 +21,7 @@ const CelestialBody& CelestialBodyFactory::get(const std::string& name) const {
     return get(builder._nameMap.at(name));
 }
 
-const CelestialBody& CelestialBodyFactory::get(const CelestialBody& name) const {
+const CelestialBody& CelestialBodyFactory::get(const SolarBody& name) const {
     if (bodies.count(name)) {
         return bodies.at(name);
     }
@@ -32,7 +32,7 @@ const CelestialBody& CelestialBodyFactory::get_or_create(const std::string& name
     return get_or_create(builder._nameMap.at(name));
 }
 
-const CelestialBody& CelestialBodyFactory::get_or_create(const CelestialBody& name) {
+const CelestialBody& CelestialBodyFactory::get_or_create(const SolarBody& name) {
     if (!bodies.count(name)) {
         create(name);
     }
@@ -68,7 +68,7 @@ void CelestialBodyFactory::find_root() {
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
         for (const auto& [object, _]: bodies) {
-            CelestialBody parent = object;
+            SolarBody parent = object;
             while (parent != SUN && parent != root) {
                 parent = builder._parentMap.at(parent);
             }

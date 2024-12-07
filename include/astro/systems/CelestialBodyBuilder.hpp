@@ -20,15 +20,15 @@ public:
     CelestialBodyBuilder() {}
     ~CelestialBodyBuilder() {}
 
-    CelestialBody build(CelestialBody name);
+    CelestialBody build(SolarBody name);
     //Barycenter build(std::vector<CelestialBody> names); // TODO: implement
 
 private:
 
-    void assign_properties(CelestialBody& body, CelestialBody name);
+    void assign_properties(CelestialBody& body, SolarBody name);
 
     //-------------------------------------------------- Maps -------------------------------------------------//
-    const std::unordered_map<std::string, CelestialBody> _nameMap = {
+    const std::unordered_map<std::string, SolarBody> _nameMap = {
         {"Sun",      SUN},
         {"Mercury",  MERCURY},
         {"Venus",    VENUS},
@@ -53,7 +53,7 @@ private:
         {"Triton",   TRITON}
     };
 
-    const std::unordered_map<CelestialBody, std::string> _mapName = {
+    const std::unordered_map<SolarBody, std::string> _mapName = {
         {SUN,      "Sun"},
         {MERCURY,  "Mercury"},
         {VENUS,    "Venus"},
@@ -84,7 +84,7 @@ private:
         {SATELLITE, "Satellite"},
     };
 
-    const std::unordered_map<CelestialBody, CelestialBodyType> _typeMap = {
+    const std::unordered_map<SolarBody, CelestialBodyType> _typeMap = {
         {SUN,      STAR},
         {MERCURY,  PLANET},
         {VENUS,    PLANET},
@@ -109,7 +109,7 @@ private:
         {TRITON,   SATELLITE}
     };
 
-    const std::unordered_map<CelestialBody, CelestialBody> _parentMap = {
+    const std::unordered_map<SolarBody, SolarBody> _parentMap = {
         {SUN,      GC},
         {MERCURY,  SUN},
         {VENUS,    SUN},
@@ -134,7 +134,7 @@ private:
         {TRITON,   NEPTUNE}
     };
 
-    const std::unordered_map<CelestialBody, std::pair<int, int>> _idMap = {
+    const std::unordered_map<SolarBody, std::pair<int, int>> _idMap = {
         {SUN,      std::make_pair(0, 0)},
         {MERCURY,  std::make_pair(1, 0)},
         {VENUS,    std::make_pair(2, 0)},

@@ -1,7 +1,7 @@
 #pragma once
 
 // Enums for bodies definitions
-enum CelestialBody {
+enum SolarBody {
     GC,			// Galactic Center
     SUN,
     MERCURY,
