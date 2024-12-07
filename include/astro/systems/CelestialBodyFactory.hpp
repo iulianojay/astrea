@@ -6,7 +6,7 @@
 #endif
 
 #include "astro/systems/solar_system.hpp"
-#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/CelestialBody.hpp"
 #include "astro/systems/CelestialBodyBuilder.hpp"
 #include "astro/time/Date.hpp"
 
@@ -17,14 +17,14 @@ public:
     CelestialBodyFactory() : builder() {};
     ~CelestialBodyFactory() {};
 
-    const GravitationalBody& create(const CelestialBody& name);
-    const GravitationalBody& create(const std::string& name);
+    const CelestialBody& create(const CelestialBody& name);
+    const CelestialBody& create(const std::string& name);
 
-    const GravitationalBody& get(const CelestialBody& name) const;
-    const GravitationalBody& get(const std::string& name) const;
+    const CelestialBody& get(const CelestialBody& name) const;
+    const CelestialBody& get(const std::string& name) const;
 
-    const GravitationalBody& get_or_create(const CelestialBody& name);
-    const GravitationalBody& get_or_create(const std::string& name);
+    const CelestialBody& get_or_create(const CelestialBody& name);
+    const CelestialBody& get_or_create(const std::string& name);
 
     const size_t number_of_bodies() const { return bodies.size(); }
     void propagate_bodies(const Date& epoch, const Time& endTime);
@@ -34,7 +34,7 @@ public:
 private:
 
     CelestialBodyBuilder builder;
-    std::unordered_map<CelestialBody, GravitationalBody> bodies;
+    std::unordered_map<CelestialBody, CelestialBody> bodies;
     CelestialBody root;
 
     void find_root();

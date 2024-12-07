@@ -5,7 +5,7 @@
 
 basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    static const GravitationalBody& center = sys.get_center();
+    static const CelestialBody& center = sys.get_center();
 
     // Extract
     const double& x = state[0];
@@ -62,7 +62,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
 }
 
 
-const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const GravitationalBody& center) const {
+const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const CelestialBody& center) const {
 
     // Extract
     const double& x = state[0];

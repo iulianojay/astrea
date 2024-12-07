@@ -14,7 +14,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     bodyFactory.propagate_bodies(epoch, propTime);
 
     // Assign properties from central body
-    GravitationalBody center = bodyFactory.get(centralBody);
+    CelestialBody center = bodyFactory.get(centralBody);
     const std::vector<State> centerToParent = center.get_states();
 
     // Get root body
@@ -23,7 +23,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     if (centralBody != root) {
         auto parent = center.parent();
         while (parent != root) {
-            GravitationalBody parentBody = bodyFactory.get(parent);
+            CelestialBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
             for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
@@ -44,7 +44,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         auto parent = center.parent();
         // auto& states = centerToSun.back();
         while (parent != GC) {
-            GravitationalBody parentBody = bodyFactory.get(parent);
+            CelestialBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
             for (size_t ii = 0; ii < centerToSun.size(); ii++) {
                 centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
@@ -66,14 +66,14 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         }
 
         // Get ith body states
-        GravitationalBody ithBody = bodyFactory.get(body);
+        CelestialBody ithBody = bodyFactory.get(body);
         statesToCenter.push_back(ithBody.get_states());
 
         // If parent is not root, back track to root
         auto parent = ithBody.parent();
         auto& states = statesToCenter.back();
         while (parent != root) {
-            GravitationalBody parentBody = bodyFactory.get(parent);
+            CelestialBody parentBody = bodyFactory.get(parent);
             auto parentToGrandParent = parentBody.get_states();
             for (size_t ii = 0; ii < states.size(); ii++) {
                 states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;

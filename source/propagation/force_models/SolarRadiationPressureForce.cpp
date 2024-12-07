@@ -4,7 +4,7 @@
 
 basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    static const GravitationalBody& center = sys.get_center();
+    static const CelestialBody& center = sys.get_center();
 
     // Extract
     const double& x = state[0];

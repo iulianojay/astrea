@@ -52,7 +52,7 @@ set(OBJS
     ${SRC}/propagation/equations_of_motion/TwoBody.cpp
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
-    ${SRC}/systems/GravitationalBody.cpp
+    ${SRC}/systems/CelestialBody.cpp
     ${SRC}/systems/CelestialBodyBuilder.cpp
     ${SRC}/systems/CelestialBodyFactory.cpp
 

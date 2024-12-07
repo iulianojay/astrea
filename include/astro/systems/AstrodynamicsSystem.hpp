@@ -8,7 +8,7 @@
 #include "astro/types/typedefs.hpp"
 #include "astro/systems/solar_system.hpp"
 #include "astro/systems/Barycenter.hpp"
-#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/CelestialBody.hpp"
 #include "astro/systems/CelestialBodyFactory.hpp"
 #include "astro/time/Date.hpp"
 #include "astro/platforms/vehicles/Spacecraft.hpp"
@@ -24,7 +24,7 @@ public:
     ~AstrodynamicsSystem() {}
 
     const CelestialBody& center() const { return centralBody; }
-    const GravitationalBody& get_center() const { return bodyFactory.get(centralBody); }
+    const CelestialBody& get_center() const { return bodyFactory.get(centralBody); }
 
     const std::unordered_set<CelestialBody>& all_bodies() const { return allBodies; }
 

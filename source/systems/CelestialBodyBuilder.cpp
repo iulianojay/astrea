@@ -3,9 +3,9 @@
 #include "State.hpp"
 
 
-GravitationalBody CelestialBodyBuilder::build(CelestialBody name) {
+CelestialBody CelestialBodyBuilder::build(CelestialBody name) {
     // Build object
-    GravitationalBody body;
+    CelestialBody body;
 
     // Assign properties
     assign_properties(body, name);
@@ -20,7 +20,7 @@ GravitationalBody CelestialBodyBuilder::build(CelestialBody name) {
 
 
 // Separate function to assign values so the class isn"t created twice
-void CelestialBodyBuilder::assign_properties(GravitationalBody& body, CelestialBody name) {
+void CelestialBodyBuilder::assign_properties(CelestialBody& body, CelestialBody name) {
 
     body._name = name;
     body._nameString = _mapName.at(name);

@@ -6,10 +6,10 @@
 
 #include "typedefs.hpp"
 #include "solar_system.hpp"
-#include "GravitationalBody.hpp"
+#include "CelestialBody.hpp"
 
 
-class Barycenter : public GravitationalBody {
+class Barycenter : public CelestialBody {
 public:
 
     Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies) : referenceBody(referenceBody), bodies(bodies) {};

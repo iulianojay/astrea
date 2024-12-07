@@ -4,35 +4,35 @@
 #include "State.hpp"
 
 
-const GravitationalBody& CelestialBodyFactory::create(const std::string& name) {
+const CelestialBody& CelestialBodyFactory::create(const std::string& name) {
     return create(builder._nameMap.at(name));
 }
 
-const GravitationalBody& CelestialBodyFactory::create(const CelestialBody& name) {
+const CelestialBody& CelestialBodyFactory::create(const CelestialBody& name) {
     if (!bodies.count(name)) {
-        GravitationalBody body = builder.build(name);
+        CelestialBody body = builder.build(name);
         bodies.insert({name, body});
     }
     return get(name);
 }
 
 
-const GravitationalBody& CelestialBodyFactory::get(const std::string& name) const {
+const CelestialBody& CelestialBodyFactory::get(const std::string& name) const {
     return get(builder._nameMap.at(name));
 }
 
-const GravitationalBody& CelestialBodyFactory::get(const CelestialBody& name) const {
+const CelestialBody& CelestialBodyFactory::get(const CelestialBody& name) const {
     if (bodies.count(name)) {
         return bodies.at(name);
     }
     throw std::out_of_range("Input gravitational body," + builder._mapName.at(name) + ", not found.");
 }
 
-const GravitationalBody& CelestialBodyFactory::get_or_create(const std::string& name) {
+const CelestialBody& CelestialBodyFactory::get_or_create(const std::string& name) {
     return get_or_create(builder._nameMap.at(name));
 }
 
-const GravitationalBody& CelestialBodyFactory::get_or_create(const CelestialBody& name) {
+const CelestialBody& CelestialBodyFactory::get_or_create(const CelestialBody& name) {
     if (!bodies.count(name)) {
         create(name);
     }

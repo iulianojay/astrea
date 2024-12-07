@@ -1,22 +1,22 @@
-#include "GravitationalBody.hpp"
+#include "CelestialBody.hpp"
 
 #include "State.hpp"
 #include "OrbitalElements.hpp"
 #include "math_c.hpp"
 
-void GravitationalBody::propagate(Date epoch, double propTime) {
+void CelestialBody::propagate(Date epoch, double propTime) {
     Date endEpoch = epoch + Time(propTime);
     _propagate(epoch, endEpoch);
 }
-void GravitationalBody::propagate(Date epoch, Time propTime) {
+void CelestialBody::propagate(Date epoch, Time propTime) {
     Date endEpoch = epoch + propTime;
     _propagate(epoch, endEpoch);
 }
-void GravitationalBody::propagate(Date epoch, Date endEpoch) {
+void CelestialBody::propagate(Date epoch, Date endEpoch) {
     _propagate(epoch, endEpoch);
 }
 
-void GravitationalBody::_propagate(Date epoch, Date endEpoch) {
+void CelestialBody::_propagate(Date epoch, Date endEpoch) {
 
     // Find duration
     _nDays = round(endEpoch.julian_day() - epoch.julian_day());
@@ -26,7 +26,7 @@ void GravitationalBody::_propagate(Date epoch, Date endEpoch) {
 }
 
 // Find position of body relative to parent and relative to the sun
-void GravitationalBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
+void CelestialBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
 
 	// Get reference date
 	/*

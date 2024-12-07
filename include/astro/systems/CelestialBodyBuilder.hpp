@@ -5,7 +5,7 @@
 #endif
 
 #include "solar_system.hpp"
-#include "GravitationalBody.hpp"
+#include "CelestialBody.hpp"
 #include "Barycenter.hpp"
 
 #include "CelestialBodyFactory.fwd.hpp"
@@ -20,12 +20,12 @@ public:
     CelestialBodyBuilder() {}
     ~CelestialBodyBuilder() {}
 
-    GravitationalBody build(CelestialBody name);
+    CelestialBody build(CelestialBody name);
     //Barycenter build(std::vector<CelestialBody> names); // TODO: implement
 
 private:
 
-    void assign_properties(GravitationalBody& body, CelestialBody name);
+    void assign_properties(CelestialBody& body, CelestialBody name);
 
     //-------------------------------------------------- Maps -------------------------------------------------//
     const std::unordered_map<std::string, CelestialBody> _nameMap = {

@@ -19,15 +19,15 @@
 #include "fwd/systems/CelestialBodyBuilder.fwd.hpp"
 #include "fwd/State.fwd.hpp"
 
-class GravitationalBody {
+class CelestialBody {
 
     friend class CelestialBodyBuilder;
 
 public:
 
     // Constructor/destructor
-    GravitationalBody() {}
-    ~GravitationalBody() {}
+    CelestialBody() {}
+    ~CelestialBody() {}
 
     // Property assignment
     void propagate(Date epoch, double propTime);
