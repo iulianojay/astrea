@@ -135,7 +135,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 }
 
 
-basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     // Extract
     const double& x = state[0];

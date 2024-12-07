@@ -20,7 +20,7 @@ int main() {
     AstrodynamicsSystem sys;
 
     const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::KEPLERIAN);
-    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
+    // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
 
     // Build constellation
     const int T = 1;
@@ -46,8 +46,8 @@ int main() {
     // std::string propagator = "two_body";
     // TwoBody eom(sys);
     // std::string propagator = "j2mean";
-    // J2MeanVop eom(sys);
-    // std::string propagator = "cowells";
+    J2MeanVop eom(sys);
+    std::string propagator = "cowells";
     // CowellsMethod eom(sys, forces);
     // std::string propagator = "coes";
     // KeplerianVop eom(sys, forces, false);

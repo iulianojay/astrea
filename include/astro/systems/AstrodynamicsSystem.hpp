@@ -11,7 +11,7 @@
 #include "astro/systems/GravitationalBody.hpp"
 #include "astro/systems/SolarObjectFactory.hpp"
 #include "astro/time/Date.hpp"
-#include "astro/platforms/space/Spacecraft.hpp"
+#include "astro/platforms/vehicles/Spacecraft.hpp"
 
 
 class AstrodynamicsSystem {

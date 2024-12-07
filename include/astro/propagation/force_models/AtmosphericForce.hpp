@@ -16,11 +16,11 @@ public:
     AtmosphericForce() = default;
     ~AtmosphericForce() = default;
 
-    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const override;
+    basis_array compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
 private:
 
-    const OrbitalElements find_accel_drag_and_lift(const double& julianDate, const OrbitalElements& state, const Spacecraft& vehicle, const AstrodynamicsSystem& sys) const;
+    const OrbitalElements find_accel_drag_and_lift(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
     const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const GravitationalBody& center) const;
 
     static const std::map<double, double> venutianAtmosphere;

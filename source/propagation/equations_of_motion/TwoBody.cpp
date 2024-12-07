@@ -1,7 +1,7 @@
 #include "TwoBody.hpp"
 
 
-OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& state, const Spacecraft& spacecraft) const {
+OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
 
     if (state.get_set() != ElementSet::CARTESIAN) {
         throw std::runtime_error("The two-body dynamics evaluator requires that the incoming Orbital Element set is in Cartesian coordinates.");

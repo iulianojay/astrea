@@ -9,11 +9,11 @@
     #include <math.h>
 #endif
 
-#include "rk_constants.h"			// RK Butcher Tableau
+#include "astro/constants/rk_constants.h"			// RK Butcher Tableau
 
-#include "Interval.hpp"
-#include "EquationsOfMotion.hpp"
-#include "Spacecraft.hpp"
+#include "astro/time/Interval.hpp"
+#include "astro/propagation/equations_of_motion/EquationsOfMotion.hpp"
+#include "astro/platforms/Vehicle.hpp"
 
 class Integrator
 {
@@ -37,21 +37,8 @@ public:
     ~Integrator() = default;
 
 	// Integrate
-    void propagate(const Interval& interval, const EquationsOfMotion& eom, Spacecraft& spacecraft);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const OrbitalElements& stateInitial, const EquationsOfMotion& eom, Spacecraft& spacecraft);
-
-	// Save Results
-	void save() const;
-	void save(std::string filename) const;
-
-    // Function: Get total number of steps taken during integration
-    // Outputs: number of steps taken
-    size_t get_state_history_size() const;
-
-    // Function: Get all states during integration
-    // Inputs: Matrix to write state history too
-    // void get_state_history(double** stateHistory);
-    std::vector<State>& get_state_history();
+    void propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     //---------------------------------------Integrator property setters---------------------------------------//
 
@@ -152,8 +139,8 @@ private:
 	clock_t endClock{};
 
 	// Error Messages
-	const std::string underflowErrorMessage = "Error: Stepsize underflow. \n\n";
-	const std::string innerLoopStepOverflowErrorMessage = "Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
+	const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n";
+	const std::string innerLoopStepOverflowErrorMessage = "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
 	const std::string outerLoopStepOverflowErrorMessage = "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n";
     const std::string crashMessage = "Note: Object crashed into central body. \n\n";
 
@@ -180,17 +167,14 @@ private:
     bool useFixedStep = false;
     Time fixedTimeStep = seconds(1.0);
 
-	// Time and state vectors
-	std::vector<State> stateHistory{};
-
 	//------------------------------------------------ Methods ------------------------------------------------//
 
 	// Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
 	// Stepping methods
     void setup_stepper();
-    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
 	// Error Methods
 	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
@@ -205,5 +189,5 @@ private:
 	void endTimer() { if (timerOn) { endClock = clock(); } }
 
     // Event Function
-    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Spacecraft& spacecraft);
+    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 };
