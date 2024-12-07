@@ -9,7 +9,7 @@
 #include "astro/systems/solar_system.hpp"
 #include "astro/systems/Barycenter.hpp"
 #include "astro/systems/GravitationalBody.hpp"
-#include "astro/systems/SolarObjectFactory.hpp"
+#include "astro/systems/CelestialBodyFactory.hpp"
 #include "astro/time/Date.hpp"
 #include "astro/platforms/vehicles/Spacecraft.hpp"
 
@@ -17,27 +17,27 @@
 class AstrodynamicsSystem {
 public:
 
-    AstrodynamicsSystem(SolarObject centralBody = EARTH, std::unordered_set<SolarObject> allBodies = {EARTH}, Date epoch = J2000) :
+    AstrodynamicsSystem(CelestialBody centralBody = EARTH, std::unordered_set<CelestialBody> allBodies = {EARTH}, Date epoch = J2000) :
         centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
         create_all_bodies();
     };
     ~AstrodynamicsSystem() {}
 
-    const SolarObject& center() const { return centralBody; }
+    const CelestialBody& center() const { return centralBody; }
     const GravitationalBody& get_center() const { return bodyFactory.get(centralBody); }
 
-    const std::unordered_set<SolarObject>& all_bodies() const { return allBodies; }
+    const std::unordered_set<CelestialBody>& all_bodies() const { return allBodies; }
 
     void propagate_bodies(double propTime);
-    // basis_array get_radius_to_center(SolarObject target, double julianDate); //TODO: Implement
+    // basis_array get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 private:
 
-    const SolarObject centralBody;
-    const std::unordered_set<SolarObject> allBodies;
+    const CelestialBody centralBody;
+    const std::unordered_set<CelestialBody> allBodies;
 
     Date epoch;
-    SolarObjectFactory bodyFactory;
+    CelestialBodyFactory bodyFactory;
 
     std::vector<std::vector<State>> statesToCenter;
     std::vector<State> centerToSun;

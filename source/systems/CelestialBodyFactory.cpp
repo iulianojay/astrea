@@ -1,14 +1,14 @@
 
-#include "SolarObjectFactory.hpp"
+#include "CelestialBodyFactory.hpp"
 
 #include "State.hpp"
 
 
-const GravitationalBody& SolarObjectFactory::create(const std::string& name) {
+const GravitationalBody& CelestialBodyFactory::create(const std::string& name) {
     return create(builder._nameMap.at(name));
 }
 
-const GravitationalBody& SolarObjectFactory::create(const SolarObject& name) {
+const GravitationalBody& CelestialBodyFactory::create(const CelestialBody& name) {
     if (!bodies.count(name)) {
         GravitationalBody body = builder.build(name);
         bodies.insert({name, body});
@@ -17,22 +17,22 @@ const GravitationalBody& SolarObjectFactory::create(const SolarObject& name) {
 }
 
 
-const GravitationalBody& SolarObjectFactory::get(const std::string& name) const {
+const GravitationalBody& CelestialBodyFactory::get(const std::string& name) const {
     return get(builder._nameMap.at(name));
 }
 
-const GravitationalBody& SolarObjectFactory::get(const SolarObject& name) const {
+const GravitationalBody& CelestialBodyFactory::get(const CelestialBody& name) const {
     if (bodies.count(name)) {
         return bodies.at(name);
     }
     throw std::out_of_range("Input gravitational body," + builder._mapName.at(name) + ", not found.");
 }
 
-const GravitationalBody& SolarObjectFactory::get_or_create(const std::string& name) {
+const GravitationalBody& CelestialBodyFactory::get_or_create(const std::string& name) {
     return get_or_create(builder._nameMap.at(name));
 }
 
-const GravitationalBody& SolarObjectFactory::get_or_create(const SolarObject& name) {
+const GravitationalBody& CelestialBodyFactory::get_or_create(const CelestialBody& name) {
     if (!bodies.count(name)) {
         create(name);
     }
@@ -40,7 +40,7 @@ const GravitationalBody& SolarObjectFactory::get_or_create(const SolarObject& na
 }
 
 
-void SolarObjectFactory::propagate_bodies(const Date& epoch, const Time& endTime) {
+void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTime) {
 
     // Find root object for reference
     find_root();
@@ -53,7 +53,7 @@ void SolarObjectFactory::propagate_bodies(const Date& epoch, const Time& endTime
 }
 
 
-void SolarObjectFactory::find_root() {
+void CelestialBodyFactory::find_root() {
 
     // Count total planets
     int planetCount = 0;
@@ -68,7 +68,7 @@ void SolarObjectFactory::find_root() {
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
         for (const auto& [object, _]: bodies) {
-            SolarObject parent = object;
+            CelestialBody parent = object;
             while (parent != SUN && parent != root) {
                 parent = builder._parentMap.at(parent);
             }

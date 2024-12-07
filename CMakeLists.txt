@@ -53,8 +53,8 @@ set(OBJS
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
     ${SRC}/systems/GravitationalBody.cpp
-    ${SRC}/systems/SolarObjectBuilder.cpp
-    ${SRC}/systems/SolarObjectFactory.cpp
+    ${SRC}/systems/CelestialBodyBuilder.cpp
+    ${SRC}/systems/CelestialBodyFactory.cpp
 
     ${SRC}/time/Time.cpp
     ${SRC}/time/access/RiseSetArray.cpp

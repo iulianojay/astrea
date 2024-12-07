@@ -1,9 +1,9 @@
-#include "SolarObjectBuilder.hpp"
+#include "CelestialBodyBuilder.hpp"
 
 #include "State.hpp"
 
 
-GravitationalBody SolarObjectBuilder::build(SolarObject name) {
+GravitationalBody CelestialBodyBuilder::build(CelestialBody name) {
     // Build object
     GravitationalBody body;
 
@@ -14,13 +14,13 @@ GravitationalBody SolarObjectBuilder::build(SolarObject name) {
 }
 
 
-// Barycenter build(std::vector<SolarObject> names) {
+// Barycenter build(std::vector<CelestialBody> names) {
 
 // }
 
 
 // Separate function to assign values so the class isn"t created twice
-void SolarObjectBuilder::assign_properties(GravitationalBody& body, SolarObject name) {
+void CelestialBodyBuilder::assign_properties(GravitationalBody& body, CelestialBody name) {
 
     body._name = name;
     body._nameString = _mapName.at(name);

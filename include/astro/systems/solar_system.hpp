@@ -1,7 +1,7 @@
 #pragma once
 
 // Enums for bodies definitions
-enum SolarObject {
+enum CelestialBody {
     GC,			// Galactic Center
     SUN,
     MERCURY,
@@ -27,7 +27,7 @@ enum SolarObject {
     TRITON
 };
 
-enum SolarObjectType {
+enum CelestialBodyType {
     STAR,
     PLANET,
     SATELLITE

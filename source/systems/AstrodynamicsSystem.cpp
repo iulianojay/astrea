@@ -18,7 +18,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     const std::vector<State> centerToParent = center.get_states();
 
     // Get root body
-    SolarObject root = bodyFactory.get_root();
+    CelestialBody root = bodyFactory.get_root();
     std::vector<State> centerToRoot = centerToParent;
     if (centralBody != root) {
         auto parent = center.parent();

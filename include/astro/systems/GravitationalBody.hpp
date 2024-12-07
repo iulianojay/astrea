@@ -16,12 +16,12 @@
 #include "astro/types/typedefs.hpp"
 
 // Forward declarations
-#include "fwd/systems/SolarObjectBuilder.fwd.hpp"
+#include "fwd/systems/CelestialBodyBuilder.fwd.hpp"
 #include "fwd/State.fwd.hpp"
 
 class GravitationalBody {
 
-    friend class SolarObjectBuilder;
+    friend class CelestialBodyBuilder;
 
 public:
 
@@ -36,8 +36,8 @@ public:
 
 	// Property getters
     const std::string name()     const { return _nameString; };
-    const SolarObjectType type() const { return _type; };
-    const SolarObject parent()   const { return _parent; };
+    const CelestialBodyType type() const { return _type; };
+    const CelestialBody parent()   const { return _parent; };
 
     const int planetId() const { return _planetId; };
     const int moonId()   const { return _moonId; };
@@ -73,14 +73,16 @@ public:
     const double Ldot()    const { return _trueLatitudeRate; };
 
     int nDays() { return _nDays; };
-    std::vector<State> get_states()   { return _states; };
+    std::vector<State>& get_states() { return _states; };
+
+    State get_state_at(Time time);
 
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    SolarObject _name, _parent;
-    SolarObjectType _type;
+    CelestialBody _name, _parent;
+    CelestialBodyType _type;
 
     std::string _nameString;
 

@@ -61,8 +61,8 @@ set(HDRS
     ${INC}/astro/systems/Barycenter.hpp
     ${INC}/astro/systems/GravitationalBody.hpp
     ${INC}/astro/systems/solar_system.hpp
-    ${INC}/astro/systems/SolarObjectBuilder.hpp
-    ${INC}/astro/systems/SolarObjectFactory.hpp
+    ${INC}/astro/systems/CelestialBodyBuilder.hpp
+    ${INC}/astro/systems/CelestialBodyFactory.hpp
 
     ${INC}/astro/time/Date.hpp
     ${INC}/astro/time/Interval.hpp
@@ -106,8 +106,8 @@ set(HDRS
     ${INC}/fwd/systems/AstrodynamicsSystem.fwd.hpp
     ${INC}/fwd/systems/Barycenter.fwd.hpp
     ${INC}/fwd/systems/GravitationalBody.fwd.hpp
-    ${INC}/fwd/systems/SolarObjectBuilder.fwd.hpp
-    ${INC}/fwd/systems/SolarObjectFactory.fwd.hpp
+    ${INC}/fwd/systems/CelestialBodyBuilder.fwd.hpp
+    ${INC}/fwd/systems/CelestialBodyFactory.fwd.hpp
 
     ${INC}/fwd/time/Date.fwd.hpp
     ${INC}/fwd/time/Interval.fwd.hpp

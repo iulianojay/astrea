@@ -5,7 +5,7 @@
 
 basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    const GravitationalBody& center = sys.get_center();
+    static const GravitationalBody& center = sys.get_center();
 
     // Extract
     const double& x = state[0];
@@ -18,7 +18,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double& vz = state[5];
 
     // Central body properties
-    const double& bodyRotationRate = center.rotRate();
+    static const double& bodyRotationRate = center.rotRate();
 
     // Find velocity relative to atmosphere
     const double relativeVelocity[3] = {
@@ -70,9 +70,9 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     const double& z = state[2];
 
     // Central body properties
-    const double& equitorialR = center.eqR();
-    const double& polarR = center.polR();
-    const double& bodyRotationRate = center.rotRate();
+    static const double& equitorialR = center.eqR();
+    static const double& polarR = center.polR();
+    static const double& bodyRotationRate = center.rotRate();
 
     // Find altitude
     basis_array radius = {x, y, z};
