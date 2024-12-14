@@ -1,0 +1,45 @@
+{
+    "Name" : "Titan",
+    "Parent" : "Saturn",
+    "Type" : "SATELLITE",
+
+    "Gravitational Parameter" : { "magnitude": 8978.1, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.13455, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 2575.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 2575.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 2575.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 0.004333361603448, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 27.359, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 22.577014429408919, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 15.94542, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 2000 12:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 1221.83e3, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.0292, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.33, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 28.060, "units": "deg" },
+            "rate" :  { "magnitude": 183934.15, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 208.592, "units": "deg" },
+            "rate" :  { "magnitude": 551990.5, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 371.902, "units": "deg" },
+            "rate" :  { "magnitude": 2969198512.13, "units": "deg/JC" }
+        }
+    }
+}

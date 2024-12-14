@@ -1,0 +1,45 @@
+{
+    "Name" : "Body Name",
+    "Parent" : "Sun",
+    "Type" : "PLANET",
+
+    "Gravitational Parameter" : { "magnitude": 6836529.0, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 102.0, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 24764.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 24341.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 24764.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 8.651147189326089, "units": "AU" },
+    "J2" :                      { "magnitude": 3411e-6, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 28.32, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 536.3128491620112, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 60189, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 2000 12:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 4.498252919784751e9, "units": "km" },
+            "rate" :  { "magnitude": -187290.5505771600, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.00858587, "units": "" },
+            "rate" :  { "magnitude": 0.0000251, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 131.72169, "units": "deg" },
+            "rate" :  { "magnitude": -0.001011111111111111, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 44.97135, "units": "deg" },
+            "rate" :  { "magnitude": -151.25, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 304.88003, "units": "deg" },
+            "rate" :  { "magnitude": -844.43, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": -187290.5505771600, "units": "deg" },
+            "rate" :  { "magnitude": 786449.21, "units": "deg/JC" }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Name" : "Eurpoa",
+    "Parent" : "Jupiter",
+    "Type" : "SATELLITE",
+
+    "Gravitational Parameter" : { "magnitude": 3202.7, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.04800, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 1560.8, "units": "km" },
+    "Polar Radius" :            { "magnitude": 1560.8, "units": "km" },
+    "Crash Radius" :            { "magnitude": 1560.8, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 9.72669393872e-04, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 3.146, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 101.3747257602471, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 3.551181, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 16, 1997 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 671.1e3, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.009, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.47, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 219.106, "units": "deg" },
+            "rate" :  { "magnitude": 4293665.52, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 308.076, "units": "deg" },
+            "rate" :  { "magnitude": 97263536.4, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 479.092, "units": "deg" },
+            "rate" :  { "magnitude": 13427026021.5, "units": "deg/JC" }
+        }
+    }
+}
