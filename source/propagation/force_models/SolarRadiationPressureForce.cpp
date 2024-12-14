@@ -12,20 +12,19 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double& z = state[2];
     const double R = std::sqrt(x*x + y*y + z*z);
 
-    const double& vx = state[3];
-    const double& vy = state[4];
-    const double& vz = state[5];
-
     // Central body properties
     static const double& equitorialR = center->get_equitorial_radius();
     static const bool isSun = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State stateSunToCentralBody = center->get_state_at(julianDate);
-    const basis_array radiusSunToCentralBody{};// = center->get_state_at(julianDate);
+    const State& stateSunToCentralBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
 
     // Radius from central body to sun
-    const basis_array radiusCentralBodyToSun{};// = -radiusSunToCentralBody; // flip vector direction
+    const basis_array radiusCentralBodyToSun{ // flip vector direction
+        -stateSunToCentralBody.elements[0],
+        -stateSunToCentralBody.elements[1],
+        -stateSunToCentralBody.elements[2]
+    };
     const double radialMagnitudeCentralBodyToSun = math_c::normalize(radiusCentralBodyToSun, 2);
 
     const basis_array radiusVehicleToSun{

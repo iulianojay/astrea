@@ -81,7 +81,7 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
 	*/
 
 	// Variables for loop
-	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{},
+	double at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{},
         ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{},
         coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{},
         DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
@@ -91,18 +91,18 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
 
 	// Loop over each day in the epoch range
     const int nDays = (endEpoch - epoch).count<days>();
-    for (int ii = 0; ii < nDays; ++ii) {
+    for (int iDay = 0; iDay < nDays; ++iDay) {
         // Time since reference date
-        Time jd = epoch.julian_day() + ii;
-        t = (jd.count() - _referenceDate.julian_day())/36525; // time in Julian Centuries
+        const double daysSinceReferenceEpoch =  epoch.julian_day() - _referenceDate.julian_day();
+        const double julianCenturies = (static_cast<double>(iDay) + daysSinceReferenceEpoch)/36525.0; // time in Julian Centuries
 
         // KEPLERIANs
-        at = _semimajorAxis + _semimajorAxisRate*t;
-        ecct = _eccentricity + _eccentricityRate*t;
-        inct = _inclination + _inclinationRate*t;
-        raant = _rightAscension + _rightAscensionRate*t;
-        wt = _argumentOfPerigee + _argumentOfPerigeeRate*t;
-        Lt = _trueLatitude + _trueLatitudeRate*t;
+        at    = _semimajorAxis + _semimajorAxisRate*julianCenturies;
+        ecct  = _eccentricity + _eccentricityRate*julianCenturies;
+        inct  = _inclination + _inclinationRate*julianCenturies;
+        raant = _rightAscension + _rightAscensionRate*julianCenturies;
+        wt    = _argumentOfPerigee + _argumentOfPerigeeRate*julianCenturies;
+        Lt    = _trueLatitude + _trueLatitudeRate*julianCenturies;
 
         // Calculations
         ht = std::pow(parentMu*at*(1 - ecct*ecct), 0.5);
@@ -126,10 +126,10 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
         _trueAnomaly = thetat;
 
         // Calculate once for speed
-        ct = cos(thetat*deg2rad); st = math_c::sin(thetat*deg2rad);
-        cw = cos(wt*deg2rad);     sw = math_c::sin(wt*deg2rad);
-        cr = cos(raant*deg2rad);  sr = math_c::sin(raant*deg2rad);
-        ci = cos(inct*deg2rad);   si = math_c::sin(inct*deg2rad);
+        ct = math_c::cos(thetat*deg2rad); st = math_c::sin(thetat*deg2rad);
+        cw = math_c::cos(wt*deg2rad);     sw = math_c::sin(wt*deg2rad);
+        cr = math_c::cos(raant*deg2rad);  sr = math_c::sin(raant*deg2rad);
+        ci = math_c::cos(inct*deg2rad);   si = math_c::sin(inct*deg2rad);
 
         coes2perir = ht*ht/parentMu/(1 + ecct*ct);
         coes2periv = parentMu/ht;
@@ -166,8 +166,33 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
         bciState[5] = DCM_zx*vxPerifocal + DCM_zy*vyPerifocal;
 
         // Store
-        State state(jd, bciState, ElementSet::CARTESIAN);
+        State state(days(iDay), bciState, ElementSet::CARTESIAN);
         _states.push_back(state);
     }
 }
 
+const State& CelestialBody::get_closest_state(const Time& time) const {
+
+    // Check if input time is out of bounds
+    if (time <= _states[0].time) {
+        return _states[0];
+    }
+    else if (time >= _states[_states.size()-1].time) {
+        return _states[_states.size()-1];
+    }
+
+    // Get index of lower bound closest to input time
+    const auto id = std::distance(_states.begin(), std::lower_bound(_states.begin(), _states.end(), time, state_time_comparitor));
+
+    // Compare time before and after index
+    const Time lowerDiff = (_states[id].time - time);
+    const Time upperDiff = (_states[id+1].time - time);
+
+    // Return closest
+    if (lowerDiff < upperDiff) {
+        return _states[id];
+    }
+    else {
+        return _states[id+1];
+    }
+}

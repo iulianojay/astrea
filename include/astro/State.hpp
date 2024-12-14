@@ -21,6 +21,9 @@ public:
     void convert(const ElementSet& set, const AstrodynamicsSystem& sys) {
         elements.convert(set, sys);
     }
+    State convert(const ElementSet& set, const AstrodynamicsSystem& sys) const {
+        return {time, elements.convert(set, sys)};
+    }
 
     Time time;
     OrbitalElements elements;

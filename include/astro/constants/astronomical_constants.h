@@ -12,6 +12,8 @@ static const double SRP_1AU = 4.556485540406757e-3; // Average SRP at 1 AU
 //-------------------------------------------- Planetary Data ----------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
+/*
+
 // Gravitational Parameter (km^3/s^2)
 static const double
 gravitataionalParameter[5][9] = { { 1.32712e11 , 22032.0 , 324860.0 , 398600.44189 ,  42828.0 , 126686535.0 , 37931187.0 , 5793939.0 , 6836529.0 },
@@ -45,11 +47,11 @@ polarRadius[5][9] = { { 695700.0 , 2439.7 , 6051.8 , 6356.752 , 3376.2 , 66854.0
 					  {      0.0 ,    0.0 ,    0.0 ,      0.0 ,    0.0 ,  1560.8 ,     0.0 ,     0.0 ,     0.0 } };
 
 // Crash Radius(km)
-/* These are made up based on reasonable assumptions. In general, the "entry"
-   radius is considered to be either at the highest geologic feature
-   or the point where the atmospheric pressure gets reasonably high. For
-   smooth objects with no atmosphere, and for the gas giants the radius
-   listed here is the same as the equitorial(maximum) radius. */
+// These are made up based on reasonable assumptions. In general, the "entry"
+// radius is considered to be either at the highest geologic feature
+// or the point where the atmospheric pressure gets reasonably high. For
+// smooth objects with no atmosphere, and for the gas giants the radius
+// listed here is the same as the equitorial(maximum) radius.
 static const double
 crashRadius[5][9] = { { 795700.0 , 2464.7 , 6301.8 , 6478.1 , 3496.2 , 71492.0 , 60268.0 , 25559.0 , 24764.0 },
 					  {      0.0 ,    0.0 ,    0.0 , 1737.5 ,  11.15 ,  2631.2 ,  2575.0 ,  1568.9 ,  1353.4 },
@@ -66,11 +68,11 @@ sphereOfInfluence[5][9] = { { 1.0e18 , 0.011239389492058 , 0.061640255733634 , 0
 							{    0.0 ,    			 0.0 ,    			 0.0 ,    			 0.0 ,    			 0.0 , 9.72669393872e-04 ,				  0.0 ,				  0.0 ,     		  0.0 } };
 
 // Oblateness Coefficients
-/* It is assumed non planetary bodies have no oblateness. This is not
-   always the case but it is often the case. Considering the difficulty in
-   finding these numbers and the relatively small effect of the perturbation
-   given the low mass of most of these bodies (generally, the smaller the
-   body, the more oblate), they are simply not included. */
+// It is assumed non planetary bodies have no oblateness. This is not
+// always the case but it is often the case. Considering the difficulty in
+// finding these numbers and the relatively small effect of the perturbation
+// given the low mass of most of these bodies (generally, the smaller the
+// body, the more oblate), they are simply not included.
 static const double
 j2Oblateness[5][9] = { { 0.2e-6 , 60.0e-6 , 4.458e-6 , 1082.63e-6 , 1960.45e-6 , 14736e-6 , 16298e-6 , 3343.43e-6 , 3411e-6 },
 					   {    0.0 ,     0.0 ,      0.0 ,        0.0 ,        0.0 ,      0.0 ,      0.0 ,        0.0 ,     0.0 },
@@ -194,6 +196,6 @@ trueLatitudeRate[5][9] = { { 0.0 , 538101628.29 , 210664136.06 ,  129597740.63 ,
 						   { 0.0 ,			0.0 ,		   0.0 ,		   0.0 ,  37503046910.7 ,  2837392757.1 , 10489285497.13 , 3517441116.43 ,			 0.0 },
 						   { 0.0 ,			0.0 ,		   0.0 ,		   0.0 ,			0.0 , 26853983280.3 ,    59680892.45 ,		     0.0 ,			 0.0 },
 						   { 0.0 ,			0.0 ,		   0.0 ,		   0.0 ,			0.0 , 13427026021.5 ,			 0.0 ,		     0.0 ,			 0.0 } };
-
+*/
 
 #endif//ASTRO_CONSTANTS_H

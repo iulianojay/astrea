@@ -33,9 +33,9 @@ public:
     void propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
 
 	// Property getters
-    const std::string& get_name()       const { return _name; };
-    const std::string& get_parent()     const { return _parent; };
-    const std::string& get_type() const { return _type; };
+    const std::string& get_name()   const { return _name; };
+    const std::string& get_parent() const { return _parent; };
+    const std::string& get_type()   const { return _type; };
 
     const double& get_mu()                  const { return _mu; };
     const double& get_mass()                const { return _mass; };
@@ -68,7 +68,7 @@ public:
     const double& get_true_latitude_rate()       const { return _trueLatitudeRate; };
 
     std::vector<State>& get_states() { return _states; };
-    State get_state_at(const Time& time) { return _states[0]; }; // TODO: This should be a static function that ingests a vehicle
+    const State& get_closest_state(const Time& time) const;
 
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
@@ -87,7 +87,8 @@ private:
     void _propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
 };
 
-template<> struct std::hash<CelestialBody> {
+template<>
+struct std::hash<CelestialBody> {
     std::size_t operator()(CelestialBody const& body) const noexcept {
 
         size_t h = std::hash<double>{}(body.get_mu());
