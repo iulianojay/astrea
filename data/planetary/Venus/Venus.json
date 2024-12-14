@@ -1,7 +1,7 @@
 {
     "Name" : "Venus",
     "Parent" : "Sun",
-    "Type" : "PLANET",
+    "Type" : "Planet",
 
     "Gravitational Parameter" : { "magnitude": 324860.0, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 4.87, "units": "10^24 * kg" },

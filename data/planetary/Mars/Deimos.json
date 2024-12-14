@@ -1,7 +1,7 @@
 {
     "Name" : "Deimos",
     "Parent" : "Mars",
-    "Type" : "SATELLITE",
+    "Type" : "Satellite",
 
     "Gravitational Parameter" : { "magnitude": 7.112e-4, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 10.6e-9, "units": "10^24 * kg" },

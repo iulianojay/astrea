@@ -9,93 +9,107 @@
     #include <unordered_map>
 #endif
 
+// Astro
 #include "astro/constants/astronomical_constants.h"
-#include "astro/systems/solar_system.hpp"
 #include "astro/time/Time.hpp"
 #include "astro/time/Date.hpp"
 #include "astro/types/typedefs.hpp"
-
-// Forward declarations
-#include "fwd/systems/CelestialBodyBuilder.fwd.hpp"
-#include "fwd/State.fwd.hpp"
+#include "astro/State.hpp"
 
 class CelestialBody {
-
-    friend class CelestialBodyBuilder;
-
 public:
 
     // Constructor/destructor
-    CelestialBody() {}
-    ~CelestialBody() {}
+    CelestialBody() = default;
+    CelestialBody(const CelestialBody& other) = default;
+    CelestialBody(const std::string& file);
+    ~CelestialBody() = default;
+
+    // Operators
+    bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
 
     // Property assignment
-    void propagate(Date epoch, double propTime);
-    void propagate(Date epoch, Time propTime);
-    void propagate(Date epoch, Date endEpoch);
+    void propagate(const Date& epoch, const Time& propTime, const double parentMu);
+    void propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
 
 	// Property getters
-    const std::string name()     const { return _nameString; };
-    const CelestialBodyType type() const { return _type; };
-    const SolarBody parent()   const { return _parent; };
+    const std::string& get_name()       const { return _name; };
+    const std::string& get_parent()     const { return _parent; };
+    const std::string& get_type() const { return _type; };
 
-    const int planetId() const { return _planetId; };
-    const int moonId()   const { return _moonId; };
+    const double& get_mu()                  const { return _mu; };
+    const double& get_mass()                const { return _mass; };
+    const double& get_equitorial_radius()   const { return _equitorialRadius; };
+    const double& get_polar_radius()        const { return _polarRadius; };
+    const double& get_crash_radius()        const { return _crashRadius; };
+    const double& get_sphere_of_influence() const { return _sphereOfInfluence; };
 
-    const double mu()     const { return _gravitationalParameter; };
-    const double m()      const { return _mass; };
-    const double eqR()    const { return _equitorialRadius; };
-    const double polR()   const { return _polarRadius; };
-    const double crashR() const { return _crashRadius; };
-    const double SOI()    const { return _sphereOfInfluence; };
+    const double& get_j2() const { return _j2; };
+    const double& get_j3() const { return _j3; };
 
-    const double j2() const { return _j2; };
-    const double j3() const { return _j3; };
+    const double& get_axial_tilt()      const { return _axialTilt; };
+    const double& get_rotation_rate()   const { return _rotationRate; };
+    const double& get_siderial_period() const { return _siderialPeroid; };
 
-    const double tilt()    const { return _axialTilt; };
-    const double rotRate() const { return _rotationRate; };
-    const double sidP()    const { return _siderealPeroid; };
+    const double& get_semimajor()           const { return _semimajorAxis; };
+    const double& get_eccentricity()        const { return _eccentricity; };
+    const double& get_inclination()         const { return _inclination; };
+    const double& get_right_ascension()     const { return _rightAscension; };
+    const double& get_argument_of_perigee() const { return _argumentOfPerigee; };
+    const double& get_true_latitude()       const { return _trueLatitude; };
+    const double& get_true_anomaly()        const { return _trueAnomaly; };
+    const double& get_mean_anomaly()        const { return _meanAnomaly; };
 
-    const double a()     const { return _semimajorAxis; };
-    const double ecc()   const { return _eccentricity; };
-    const double inc()   const { return _inclination; };
-    const double raan()  const { return _rightAscension; };
-    const double w()     const { return _argumentOfPerigee; };
-    const double L()     const { return _trueLatitude; };
-    const double theta() const { return _trueAnomaly; };
-    const double Me()    const { return _meanAnomaly; };
+    const double& get_semimajor_rate()           const { return _semimajorAxisRate; };
+    const double& get_eccentricity_rate()        const { return _eccentricityRate; };
+    const double& get_inclination_rate()         const { return _inclinationRate; };
+    const double& get_right_ascension_rate()     const { return _rightAscensionRate; };
+    const double& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
+    const double& get_true_latitude_rate()       const { return _trueLatitudeRate; };
 
-    const double adot()    const { return _semimajorAxisRate; };
-    const double eccdot()  const { return _eccentricityRate; };
-    const double incdot()  const { return _inclinationRate; };
-    const double raandot() const { return _rightAscensionRate; };
-    const double wdot()    const { return _argumentOfPerigeeRate; };
-    const double Ldot()    const { return _trueLatitudeRate; };
-
-    int nDays() { return _nDays; };
     std::vector<State>& get_states() { return _states; };
-
-    State get_state_at(Time time);
+    State get_state_at(const Time& time) { return _states[0]; }; // TODO: This should be a static function that ingests a vehicle
 
 private:
     //----------------------------------------------- Variables -----------------------------------------------//
 
     // Properties
-    SolarBody _name, _parent;
-    CelestialBodyType _type;
-
-    std::string _nameString;
-
-    int _planetId = -1, _moonId = -1, _nDays = 0;
-
-    double _gravitationalParameter, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
-        _j2, _j3, _axialTilt, _rotationRate, _siderealPeroid , _semimajorAxis, _eccentricity, _inclination,
+    std::string _name, _parent, _type;
+    Date _referenceDate;
+    double _mu, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence,
+        _j2, _j3, _axialTilt, _rotationRate, _siderialPeroid , _semimajorAxis, _eccentricity, _inclination,
         _rightAscension, _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly , _semimajorAxisRate,
         _eccentricityRate, _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
 
     std::vector<State> _states;
 
     //------------------------------------------------ Methods ------------------------------------------------//
-    void find_state_relative_to_parent(Date epoch, Date endEpoch);
-    void _propagate(Date epoch, Date endEpoch);
+    void _propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
+};
+
+template<> struct std::hash<CelestialBody> {
+    std::size_t operator()(CelestialBody const& body) const noexcept {
+
+        size_t h = std::hash<double>{}(body.get_mu());
+        h ^= (std::hash<double>{}(body.get_mass()) << 1);
+        /* // These are probably overkill
+        h ^= (std::hash<double>{}(body.get_equitorial_radius()) << 1);
+        h ^= (std::hash<double>{}(body.get_polar_radius()) << 1);
+        h ^= (std::hash<double>{}(body.get_crash_radius()) << 1);
+        h ^= (std::hash<double>{}(body.get_sphere_of_influence()) << 1);
+        h ^= (std::hash<double>{}(body.get_j2()) << 1);
+        h ^= (std::hash<double>{}(body.get_j3()) << 1);
+        h ^= (std::hash<double>{}(body.get_axial_tilt()) << 1);
+        h ^= (std::hash<double>{}(body.get_rotation_rate()) << 1);
+        h ^= (std::hash<double>{}(body.get_siderial_period()) << 1);
+        h ^= (std::hash<double>{}(body.get_semimajor()) << 1);
+        h ^= (std::hash<double>{}(body.get_eccentricity()) << 1);
+        h ^= (std::hash<double>{}(body.get_inclination()) << 1);
+        h ^= (std::hash<double>{}(body.get_right_ascension()) << 1);
+        h ^= (std::hash<double>{}(body.get_argument_of_perigee()) << 1);
+        h ^= (std::hash<double>{}(body.get_true_latitude()) << 1);
+        */
+
+        return h;
+    }
 };

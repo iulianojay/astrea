@@ -41,14 +41,14 @@ public:
     }
 
     // Addition operator
-    Date operator+(const Time& time) {
+    Date operator+(const Time& time) const {
         const auto newTime = julianDate.time_since_epoch() + time.time;
         return Date(JulianDate(newTime));
     }
 
     // Subtraction operator
-    Time operator-(const Date& other) {
-        const auto diff = other.julianDate - julianDate; 
+    Time operator-(const Date& other) const {
+        const auto diff = other.julianDate - julianDate;
         return Time(diff);
     }
 

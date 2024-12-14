@@ -1,7 +1,7 @@
 {
     "Name" : "Io",
     "Parent" : "Jupiter",
-    "Type" : "SATELLITE",
+    "Type" : "Satellite",
 
     "Gravitational Parameter" : { "magnitude": 5959.9, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 0.08932, "units": "10^24 * kg" },

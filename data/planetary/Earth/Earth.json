@@ -1,7 +1,7 @@
 {
     "Name" : "Earth",
     "Parent" : "Sun",
-    "Type" : "PLANET",
+    "Type" : "Planet",
 
     "Gravitational Parameter" : { "magnitude": 398600.44189, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 5.97, "units": "10^24 * kg" },
@@ -16,7 +16,7 @@
     "Sidereal Peroid" :         { "magnitude": 365.256, "units": "days" },
 
     "State" : {
-        "Epoch" : "Jan 1, 2000 12:00:00",
+        "Epoch" : "Jan 1, 2000 00:00:00",
         "Semimajor Axis" : {
             "value" : { "magnitude": 0.149597887455766e9, "units": "km" },
             "rate" :  { "magnitude": -7.4798935500, "units": "km/JC" }

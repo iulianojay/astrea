@@ -1,7 +1,7 @@
 {
     "Name" : "Sun",
     "Parent" : "None",
-    "Type" : "STAR",
+    "Type" : "Star",
 
     "Gravitational Parameter" : { "magnitude": 1.32712e11, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 1988500.0, "units": "10^24 * kg" },

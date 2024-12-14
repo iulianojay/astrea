@@ -5,7 +5,6 @@
 #endif
 
 #include "typedefs.hpp"
-#include "solar_system.hpp"
 #include "CelestialBody.hpp"
 
 

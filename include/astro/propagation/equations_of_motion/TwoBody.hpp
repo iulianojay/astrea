@@ -8,7 +8,7 @@
 
 class TwoBody : public EquationsOfMotion {
 public:
-    TwoBody(const AstrodynamicsSystem& system) : EquationsOfMotion(system), mu(system.get_center().mu()) {};
+    TwoBody(const AstrodynamicsSystem& system) : EquationsOfMotion(system), mu(system.get_center()->get_mu()) {};
     ~TwoBody() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;

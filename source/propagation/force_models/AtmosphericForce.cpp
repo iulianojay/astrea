@@ -5,7 +5,7 @@
 
 basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    static const CelestialBody& center = sys.get_center();
+    static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
     const double& x = state[0];
@@ -18,7 +18,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double& vz = state[5];
 
     // Central body properties
-    static const double& bodyRotationRate = center.rotRate();
+    static const double& bodyRotationRate = center->get_rotation_rate();
 
     // Find velocity relative to atmosphere
     const double relativeVelocity[3] = {
@@ -62,7 +62,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
 }
 
 
-const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const CelestialBody& center) const {
+const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const CelestialBodyUniquePtr& center) const {
 
     // Extract
     const double& x = state[0];
@@ -70,9 +70,10 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     const double& z = state[2];
 
     // Central body properties
-    static const double& equitorialR = center.eqR();
-    static const double& polarR = center.polR();
-    static const double& bodyRotationRate = center.rotRate();
+    static const double& equitorialR = center->get_equitorial_radius();
+    static const double& polarR = center->get_polar_radius();
+    static const double& bodyRotationRate = center->get_rotation_rate();
+    static const std::string& centerName = center->get_name();
 
     // Find altitude
     basis_array radius = {x, y, z};
@@ -87,68 +88,59 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     // outside of their equitorial radius, they have no noticible atmosphere
     // and inside that radius, the object will crash.
     double atmosphericDensity = 0.0;
-    switch (center.planetId()) {
-        case 2: { // Venus
-
-            const auto iter = venutianAtmosphere.upper_bound(altitude);
-            atmosphericDensity = (iter != venutianAtmosphere.end()) ? iter->second : 0.0;
-            atmosphericDensity *= 1.0e9; // kg/m^3 -> kg/km^3
-            break;
-        }
-        case 3: {// Earth
-
-            double referenceAltitude{};
-            double referenceDensity{};
-            double scaleHeight{};
-
-            const auto iter = earthAtmosphere.upper_bound(altitude);
-            if (iter != earthAtmosphere.end()) {
-                const auto atmo = iter->second;
-                referenceAltitude = std::get<0>(atmo);
-                referenceDensity = std::get<1>(atmo);
-                scaleHeight = std::get<2>(atmo);
-            }
-            else {
-                referenceAltitude = 1100.0;
-                referenceDensity = 0.0;
-                scaleHeight = 1.0;
-            }
-
-            atmosphericDensity = referenceDensity*std::exp((referenceAltitude - altitude)/scaleHeight)*1.0e9; // kg/m^3 -> kg/km^3
-            break;
-        }
-        case 4: {// Mars
-            // The values up to 80 km are almost definitely wrong.I can't find any
-            // sources that contradict them though.Please fix them(and the
-            // associated crash radius of Mars) if you can find better numbers.
-            if (altitude <= 80.0)  {
-                const auto iter = martianAtmosphere.upper_bound(altitude);
-                atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0;
-            }
-            else if (altitude < 200.0) {
-                atmosphericDensity = std::exp(-2.55314e-10*std::pow(altitude, 5) + 2.31927e-7*std::pow(altitude, 4) - 8.33206e-5*std::pow(altitude, 3) +
-                                         0.0151947*std::pow(altitude, 2) - 1.52799*altitude + 48.69659);
-            }
-            else if (altitude < 300.0) {
-                atmosphericDensity = std::exp(2.65472e-11*std::pow(altitude, 5) - 2.45558e-8*std::pow(altitude, 4) + 6.31410e-6*std::pow(altitude, 3) +
-                                         4.73359e-4*std::pow(altitude, 2) - 0.443712*altitude + 23.79408);
-            }
-            else {
-                atmosphericDensity = 0.0;
-            }
-
-            atmosphericDensity *= 1.0e9;  // kg/m^3->kg/km^3
-            break;
-        }
-        case 5: {// Titan
-
-            const auto iter = titanicAtmosphere.upper_bound(altitude);
-            atmosphericDensity = (iter != titanicAtmosphere.end()) ? iter->second : 0.0;
-
-            atmosphericDensity *= 1.0e12;  // g/cm^3->kg/km^3
-            break;
-        }
+    if (centerName == "Venus") {
+        const auto iter = venutianAtmosphere.upper_bound(altitude);
+        atmosphericDensity = (iter != venutianAtmosphere.end()) ? iter->second : 0.0;
+        atmosphericDensity *= 1.0e9; // kg/m^3 -> kg/km^3
     }
+    else if (centerName == "Earth") {
+        double referenceAltitude{};
+        double referenceDensity{};
+        double scaleHeight{};
+
+        const auto iter = earthAtmosphere.upper_bound(altitude);
+        if (iter != earthAtmosphere.end()) {
+            const auto atmo = iter->second;
+            referenceAltitude = std::get<0>(atmo);
+            referenceDensity = std::get<1>(atmo);
+            scaleHeight = std::get<2>(atmo);
+        }
+        else {
+            referenceAltitude = 1100.0;
+            referenceDensity = 0.0;
+            scaleHeight = 1.0;
+        }
+
+        atmosphericDensity = referenceDensity*std::exp((referenceAltitude - altitude)/scaleHeight)*1.0e9; // kg/m^3 -> kg/km^3
+    }
+    else if (centerName == "Mars") {
+        // The values up to 80 km are almost definitely wrong.I can't find any
+        // sources that contradict them though.Please fix them(and the
+        // associated crash radius of Mars) if you can find better numbers.
+        if (altitude <= 80.0)  {
+            const auto iter = martianAtmosphere.upper_bound(altitude);
+            atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0;
+        }
+        else if (altitude < 200.0) {
+            atmosphericDensity = std::exp(-2.55314e-10*std::pow(altitude, 5) + 2.31927e-7*std::pow(altitude, 4) - 8.33206e-5*std::pow(altitude, 3) +
+                                        0.0151947*std::pow(altitude, 2) - 1.52799*altitude + 48.69659);
+        }
+        else if (altitude < 300.0) {
+            atmosphericDensity = std::exp(2.65472e-11*std::pow(altitude, 5) - 2.45558e-8*std::pow(altitude, 4) + 6.31410e-6*std::pow(altitude, 3) +
+                                        4.73359e-4*std::pow(altitude, 2) - 0.443712*altitude + 23.79408);
+        }
+        else {
+            atmosphericDensity = 0.0;
+        }
+        atmosphericDensity *= 1.0e9;  // kg/m^3->kg/km^3
+    }
+    else if (centerName == "Titan") {
+        const auto iter = titanicAtmosphere.upper_bound(altitude);
+        atmosphericDensity = (iter != titanicAtmosphere.end()) ? iter->second : 0.0;
+
+        atmosphericDensity *= 1.0e12;  // g/cm^3->kg/km^3
+    }
+
     return atmosphericDensity;
 }
 

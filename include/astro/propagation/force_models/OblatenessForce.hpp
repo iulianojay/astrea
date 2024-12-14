@@ -28,7 +28,7 @@ private:
 
     const size_t N;
     const size_t M;
-    const CelestialBody& center;
+    const CelestialBodyUniquePtr& center;
 
     void assign_legendre(const double& latitude) const;
     void size_vectors(const size_t& N, const size_t& M);

@@ -1,32 +1,72 @@
 #include "CelestialBody.hpp"
 
-#include "State.hpp"
+#include <fstream>
+
+#include "nlohmann/json.hpp"
+
 #include "OrbitalElements.hpp"
 #include "math_c.hpp"
 
-void CelestialBody::propagate(Date epoch, double propTime) {
-    Date endEpoch = epoch + Time(propTime);
-    _propagate(epoch, endEpoch);
+
+CelestialBody::CelestialBody(const std::string& file) {
+
+    using json = nlohmann::json;
+
+    // Read file into JSON
+    // TODO: Add checks to make sure its a valid JSON
+    std::ifstream fileStream(file);
+
+    // Parse
+    const json planetaryData = json::parse(fileStream);
+    const json state = planetaryData["State"];
+
+    // Store
+    _name   = planetaryData["Name"].template get<std::string>();
+    _parent = planetaryData["Parent"].template get<std::string>();
+    _type   = planetaryData["Type"].template get<std::string>();
+
+    _mu                = planetaryData["Gravitational Parameter"]["magnitude"];
+    _mass              = planetaryData["Mass"]["magnitude"];
+    _equitorialRadius  = planetaryData["Equitorial Radius"]["magnitude"];
+    _polarRadius       = planetaryData["Polar Radius"]["magnitude"];
+    _crashRadius       = planetaryData["Crash Radius"]["magnitude"];
+    _sphereOfInfluence = planetaryData["Sphere Of Influence"]["magnitude"];
+    _j2                = planetaryData["J2"]["magnitude"];
+    _j3                = planetaryData["J3"]["magnitude"];
+    _axialTilt         = planetaryData["Axial Tilt"]["magnitude"];
+    _rotationRate      = planetaryData["Rotation Rate"]["magnitude"];
+    _siderialPeroid    = planetaryData["Sidereal Peroid"]["magnitude"];
+
+    _referenceDate = Date(state["Epoch"].template get<std::string>());
+
+    _semimajorAxis     = state["Semimajor Axis"]["value"]["magnitude"];
+    _eccentricity      = state["Eccentricity"]["value"]["magnitude"];
+    _inclination       = state["Inclination"]["value"]["magnitude"];
+    _rightAscension    = state["Right Ascension"]["value"]["magnitude"];
+    _argumentOfPerigee = state["Argument Of Perigee"]["value"]["magnitude"];
+    _trueLatitude      = state["True Latitude"]["value"]["magnitude"];
+
+    _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"];
+    _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"];
+    _inclinationRate       = state["Inclination"]["rate"]["magnitude"];
+    _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"];
+    _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"];
+    _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"];
+
+    // TODO: Add checks to validate this object
 }
-void CelestialBody::propagate(Date epoch, Time propTime) {
+
+
+void CelestialBody::propagate(const Date& epoch, const Time& propTime, const double parentMu) {
     Date endEpoch = epoch + propTime;
-    _propagate(epoch, endEpoch);
+    _propagate(epoch, endEpoch, parentMu);
 }
-void CelestialBody::propagate(Date epoch, Date endEpoch) {
-    _propagate(epoch, endEpoch);
-}
-
-void CelestialBody::_propagate(Date epoch, Date endEpoch) {
-
-    // Find duration
-    _nDays = round(endEpoch.julian_day() - epoch.julian_day());
-
-    // Find State Values
-    find_state_relative_to_parent(epoch, endEpoch);
+void CelestialBody::propagate(const Date& epoch, const Date& endEpoch, const double parentMu) {
+    _propagate(epoch, endEpoch, parentMu);
 }
 
 // Find position of body relative to parent and relative to the sun
-void CelestialBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
+void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const double parentMu) {
 
 	// Get reference date
 	/*
@@ -39,49 +79,6 @@ void CelestialBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
 
 	UTC = TT - 64 seconds
 	*/
-	int referenceJulianDate;
-	double parentMu{};
-	switch (_type) {
-        case GC:
-            referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
-            parentMu = DBL_MAX;
-            break;
-
-        case (STAR || PLANET):
-            referenceJulianDate = 2451545;  // Jan 1, 2000 00:00:00
-            parentMu = gravitataionalParameter[0][0];
-            break;
-
-        case SATELLITE:
-            switch (_parent) {
-                case EARTH:
-                    referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
-                    break;
-                case MARS:
-                    referenceJulianDate = 2433282.5; // Jan 1, 1950 00:00:00
-                    break;
-                case JUPITER:
-                    referenceJulianDate = 2450465;   // Jan 16, 1997 00:00:00
-                    break;
-                case SATURN:
-                    referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
-                    break;
-                case URANUS:
-                    referenceJulianDate = 2444240;   // Jan 1, 1980 00:00:00
-                    break;
-                case NEPTUNE:
-                    referenceJulianDate = 2451545.5; // Jan 1, 2000 12:00:00
-                    break;
-                default:
-                    throw std::invalid_argument("Object's parent not found.");
-            }
-            parentMu = gravitataionalParameter[0][_planetId];
-            break;
-
-        default:
-            throw std::invalid_argument("Object's type not found.");
-	}
-    Date refJulianDate = JulianDate(JulianDateClock::duration(referenceJulianDate));
 
 	// Variables for loop
 	double t{}, at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{},
@@ -89,15 +86,15 @@ void CelestialBody::find_state_relative_to_parent(Date epoch, Date endEpoch) {
         coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{},
         DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
 
-	const double pi = 3.141592653575;
-    const double rad2deg = 180.0/pi;
-    const double deg2rad = pi/180.0;
+    const double rad2deg = 180.0/M_PI;
+    const double deg2rad = M_PI/180.0;
 
 	// Loop over each day in the epoch range
-    for (int ii = 0; ii < _nDays; ++ii) {
+    const int nDays = (endEpoch - epoch).count<days>();
+    for (int ii = 0; ii < nDays; ++ii) {
         // Time since reference date
         Time jd = epoch.julian_day() + ii;
-        t = (jd.count() - refJulianDate.julian_day())/36525; // time in Julian Centuries
+        t = (jd.count() - _referenceDate.julian_day())/36525; // time in Julian Centuries
 
         // KEPLERIANs
         at = _semimajorAxis + _semimajorAxisRate*t;

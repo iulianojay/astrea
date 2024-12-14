@@ -9,7 +9,7 @@
 
 class EquinoctialVop : public EquationsOfMotion {
 public:
-    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
+    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center()->get_mu()) {};
     ~EquinoctialVop() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;

@@ -2,7 +2,7 @@
 
 
 void AstrodynamicsSystem::create_all_bodies() {
-    for (const auto body: allBodies) {
+    for (const auto& body: allBodies) {
         bodyFactory.create(body);
     }
 };
@@ -14,21 +14,21 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     bodyFactory.propagate_bodies(epoch, propTime);
 
     // Assign properties from central body
-    CelestialBody center = bodyFactory.get(centralBody);
-    const std::vector<State> centerToParent = center.get_states();
+    const CelestialBodyUniquePtr& center = bodyFactory.get(centralBody);
+    const std::vector<State> centerToParent = center->get_states();
 
     // Get root body
-    SolarBody root = bodyFactory.get_root();
+    std::string root = bodyFactory.get_root();
     std::vector<State> centerToRoot = centerToParent;
     if (centralBody != root) {
-        auto parent = center.parent();
+        auto parent = center->get_parent();
         while (parent != root) {
-            CelestialBody parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody.get_states();
+            const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody->get_states();
             for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
             }
-            parent = parentBody.parent();
+            parent = parentBody->get_parent();
         }
     }
     else {
@@ -39,17 +39,17 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     }
 
     // Get root to Sun
-    if (centralBody != SUN) {
+    if (centralBody != "Sun") {
         std::vector<State> centerToSun = centerToParent;
-        auto parent = center.parent();
+        auto parent = center->get_parent();
         // auto& states = centerToSun.back();
-        while (parent != GC) {
-            CelestialBody parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody.get_states();
+        while (parent != "None") {
+            const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody->get_states();
             for (size_t ii = 0; ii < centerToSun.size(); ii++) {
                 centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
             }
-            parent = parentBody.parent();
+            parent = parentBody->get_parent();
         }
     }
     else {
@@ -60,25 +60,25 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     }
 
     // Get states for ith bodies to center
-    for (const auto body: allBodies) {
+    for (const auto& body: allBodies) {
         if (body == centralBody) {
             continue;
         }
 
         // Get ith body states
-        CelestialBody ithBody = bodyFactory.get(body);
-        statesToCenter.push_back(ithBody.get_states());
+        const CelestialBodyUniquePtr& ithBody = bodyFactory.get(body);
+        statesToCenter.push_back(ithBody->get_states());
 
         // If parent is not root, back track to root
-        auto parent = ithBody.parent();
+        auto parent = ithBody->get_parent();
         auto& states = statesToCenter.back();
         while (parent != root) {
-            CelestialBody parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody.get_states();
+            const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
+            auto parentToGrandParent = parentBody->get_states();
             for (size_t ii = 0; ii < states.size(); ii++) {
                 states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
             }
-            parent = parentBody.parent();
+            parent = parentBody->get_parent();
         }
 
         // Convert to state relative to central body

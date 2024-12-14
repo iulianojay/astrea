@@ -4,7 +4,7 @@
 
 basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    static const CelestialBody& center = sys.get_center();
+    static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
     const double& x = state[0];
@@ -17,14 +17,15 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double& vz = state[5];
 
     // Central body properties
-    static const double& equitorialR = center.eqR();
-    static const int& centerId = center.planetId();
+    static const double& equitorialR = center->get_equitorial_radius();
+    static const bool isSun = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const basis_array radiusSunToCentralBody = center.get_state_at(julianDate);
+    const State stateSunToCentralBody = center->get_state_at(julianDate);
+    const basis_array radiusSunToCentralBody{};// = center->get_state_at(julianDate);
 
     // Radius from central body to sun
-    const basis_array radiusCentralBodyToSun = -radiusSunToCentralBody;// flip vector direction
+    const basis_array radiusCentralBodyToSun{};// = -radiusSunToCentralBody; // flip vector direction
     const double radialMagnitudeCentralBodyToSun = math_c::normalize(radiusCentralBodyToSun, 2);
 
     const basis_array radiusVehicleToSun{
@@ -35,9 +36,9 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double radialMagnitudeVehicleToSun = math_c::normalize(radiusVehicleToSun, 2);
 
     // Solar radiation pressure
-    const double solarRadiationPressure = solarRadiationPressureAt1AU*(AU*AU)/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
+    const double solarRadiationPressure = SRP_1AU*(AU*AU)/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
     double fractionOfRecievedSunlight = 1.0;
-    if (centerId != 0) {
+    if (isSun) {
         //
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.

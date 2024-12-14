@@ -1,7 +1,7 @@
 {
     "Name" : "Uranus",
     "Parent" : "Sun",
-    "Type" : "PLANET",
+    "Type" : "Planet",
 
     "Gravitational Parameter" : { "magnitude": 5793939.0, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 86.8, "units": "10^24 * kg" },
@@ -16,7 +16,7 @@
     "Sidereal Peroid" :         { "magnitude": 30685.4, "units": "days" },
 
     "State" : {
-        "Epoch" : "Jan 1, 1980 00:00:00",
+        "Epoch" : "Jan 1, 2000 00:00:00",
         "Semimajor Axis" : {
             "value" : { "magnitude": 2.870972225727093e9, "units": "km" },
             "rate" :  { "magnitude": 227426.1633877500, "units": "km/JC" }

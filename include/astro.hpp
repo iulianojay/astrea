@@ -41,8 +41,6 @@
 #include "astro/systems/AstrodynamicsSystem.hpp"
 #include "astro/systems/Barycenter.hpp"
 #include "astro/systems/CelestialBody.hpp"
-#include "astro/systems/solar_system.hpp"
-#include "astro/systems/CelestialBodyBuilder.hpp"
 #include "astro/systems/CelestialBodyFactory.hpp"
 
 #include "astro/time/Date.hpp"

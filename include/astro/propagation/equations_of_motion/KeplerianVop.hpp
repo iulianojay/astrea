@@ -13,7 +13,7 @@ public:
     KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true) :
         EquationsOfMotion(system),
         forces(forces),
-        mu(system.get_center().mu()),
+        mu(system.get_center()->get_mu()),
         doWarn(doWarn)
     {};
     ~KeplerianVop() = default;

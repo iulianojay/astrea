@@ -53,7 +53,6 @@ set(OBJS
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
     ${SRC}/systems/CelestialBody.cpp
-    ${SRC}/systems/CelestialBodyBuilder.cpp
     ${SRC}/systems/CelestialBodyFactory.cpp
 
     ${SRC}/time/Time.cpp
@@ -102,6 +101,8 @@ include_directories(
     ${INC}/fwd/time/access
     ${INC}/fwd/types
     ${INC}/fwd/utilities
+
+    ${INC}/extern/json
 )
 
 include(config/astro_config.cmake)

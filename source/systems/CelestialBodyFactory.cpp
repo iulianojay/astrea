@@ -4,36 +4,22 @@
 #include "State.hpp"
 
 
-const CelestialBody& CelestialBodyFactory::create(const std::string& name) {
-    return create(builder._nameMap.at(name));
-}
-
-const CelestialBody& CelestialBodyFactory::create(const SolarBody& name) {
-    if (!bodies.count(name)) {
-        CelestialBody body = builder.build(name);
-        bodies.insert({name, body});
+const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name) {
+    if (bodies.count(name) == 0) {
+        bodies[name] = std::make_unique<CelestialBody>(buildFiles.at(name));
     }
     return get(name);
 }
 
-
-const CelestialBody& CelestialBodyFactory::get(const std::string& name) const {
-    return get(builder._nameMap.at(name));
-}
-
-const CelestialBody& CelestialBodyFactory::get(const SolarBody& name) const {
-    if (bodies.count(name)) {
+const CelestialBodyUniquePtr& CelestialBodyFactory::get(const std::string& name) const {
+    if (bodies.count(name) > 0) {
         return bodies.at(name);
     }
-    throw std::out_of_range("Input gravitational body," + builder._mapName.at(name) + ", not found.");
+    throw std::out_of_range("Input gravitational body," + name + ", not found.");
 }
 
-const CelestialBody& CelestialBodyFactory::get_or_create(const std::string& name) {
-    return get_or_create(builder._nameMap.at(name));
-}
-
-const CelestialBody& CelestialBodyFactory::get_or_create(const SolarBody& name) {
-    if (!bodies.count(name)) {
+const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const std::string& name) {
+    if (bodies.count(name) == 0) {
         create(name);
     }
     return bodies.at(name);
@@ -45,10 +31,16 @@ void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTi
     // Find root object for reference
     find_root();
 
-    // Go until end julian date
-    for (auto [name, body]: bodies) {
-        // Create ith body
-        body.propagate(epoch, endTime);
+    // Propagate everything except the Sun
+    for (auto& [name, body]: bodies) {
+        if (name != "Sun") {
+            // Get parent mu
+            const std::string parent = body->get_parent();
+            const double parentMu = get(parent)->get_mu();
+
+            // Propagate
+            body->propagate(epoch, endTime, parentMu);
+        }
     }
 }
 
@@ -58,7 +50,7 @@ void CelestialBodyFactory::find_root() {
     // Count total planets
     int planetCount = 0;
     for (const auto& [object, body]: bodies) {
-        if (body.type() == PLANET) {
+        if (body->get_type() == "Planet") {
             planetCount++;
             root = object;
         }
@@ -68,21 +60,21 @@ void CelestialBodyFactory::find_root() {
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
         for (const auto& [object, _]: bodies) {
-            SolarBody parent = object;
-            while (parent != SUN && parent != root) {
-                parent = builder._parentMap.at(parent);
+            std::string parent = object;
+            while (parent != "Sun" && parent != root) {
+                parent = get(parent)->get_name();
             }
 
             // If any object not in same planetary system, the common root
             // must be the Sun
-            if (parent == SUN) {
-                root = SUN;
+            if (parent == "Sun") {
+                root = "Sun";
                 break;
             }
         }
     }
     else {
         // The only common root for multiple planets is the Sun
-        root = SUN;
+        root = "Sun";
     }
 }

@@ -1,7 +1,7 @@
 {
     "Name" : "Phobos",
     "Parent" : "Mars",
-    "Type" : "SATELLITE",
+    "Type" : "Satellite",
 
     "Gravitational Parameter" : { "magnitude": 9.85e-5, "units": "km^3 / s^2" },
     "Mass" :                    { "magnitude": 2.4e-9, "units": "10^24 * kg" },

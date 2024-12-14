@@ -6,7 +6,6 @@
 #endif
 
 #include "astro/types/typedefs.hpp"
-#include "astro/systems/solar_system.hpp"
 #include "astro/systems/Barycenter.hpp"
 #include "astro/systems/CelestialBody.hpp"
 #include "astro/systems/CelestialBodyFactory.hpp"
@@ -17,24 +16,24 @@
 class AstrodynamicsSystem {
 public:
 
-    AstrodynamicsSystem(SolarBody centralBody = EARTH, std::unordered_set<SolarBody> allBodies = {EARTH}, Date epoch = J2000) :
+    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = {"Earth", "Moon"}, Date epoch = J2000) :
         centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
         create_all_bodies();
     };
     ~AstrodynamicsSystem() {}
 
-    const SolarBody& center() const { return centralBody; }
-    const CelestialBody& get_center() const { return bodyFactory.get(centralBody); }
+    const std::string& center() const { return centralBody; }
+    const CelestialBodyUniquePtr& get_center() const { return bodyFactory.get(centralBody); }
 
-    const std::unordered_set<SolarBody>& all_bodies() const { return allBodies; }
+    const std::unordered_set<std::string>& all_bodies() const { return allBodies; }
 
     void propagate_bodies(double propTime);
     // basis_array get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 private:
 
-    const SolarBody centralBody;
-    const std::unordered_set<SolarBody> allBodies;
+    const std::string centralBody;
+    const std::unordered_set<std::string> allBodies;
 
     Date epoch;
     CelestialBodyFactory bodyFactory;

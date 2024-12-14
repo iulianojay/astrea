@@ -9,7 +9,7 @@
 
 class CowellsMethod : public EquationsOfMotion {
 public:
-    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center().mu()) {};
+    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) : EquationsOfMotion(system), forces(forces), mu(system.get_center()->get_mu()) {};
     ~CowellsMethod() = default;
 
     OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
