@@ -1,0 +1,20 @@
+[requires]
+mp-units/2.4.0
+
+[options]
+# The below mp-units options are set to defaults by Conan.
+# Uncomment and set to an explicit value to override the defaults.
+#
+# mp-units*:cxx_modules=True
+# mp-units*:import_std=False
+# mp-units*:std_format=True
+# mp-units*:no_crtp=True
+# mp-units*:contracts=gsl-lite
+# mp-units*:freestanding=False
+
+[layout]
+cmake_layout
+
+[generators]
+CMakeToolchain
+CMakeDeps
