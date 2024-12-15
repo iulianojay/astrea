@@ -41,7 +41,7 @@ int main() {
     ForceModel forces;
     // forces.add<AtmosphericForce>();
     // forces.add<OblatenessForce>(sys, 2, 2);
-    forces.add<SolarRadiationPressureForce>();
+    forces.add<NBodyForce>();
 
     // Build EoMs
     // std::string propagator = "two_body";

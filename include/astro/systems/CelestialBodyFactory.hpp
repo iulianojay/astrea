@@ -1,6 +1,7 @@
 #pragma once
 
 #ifndef SWIG
+    #include <vector>
     #include <string>
     #include <unordered_map>
 #endif
@@ -24,6 +25,11 @@ public:
     void propagate_bodies(const Date& epoch, const Time& endTime);
 
     const std::string& get_root() const { return root; }
+
+    using iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
+    using const_iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::const_iterator;
+    auto begin() const { return bodies.begin(); }
+    auto end() const { return bodies.end(); }
 
 private:
 
