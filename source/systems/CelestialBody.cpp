@@ -96,12 +96,11 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
         const double ecct  = _eccentricity + _eccentricityRate*julianCenturies;
         const double inct  = _inclination + _inclinationRate*julianCenturies;
         const double raant = _rightAscension + _rightAscensionRate*julianCenturies;
-        const double wt    = _argumentOfPerigee + _argumentOfPerigeeRate*julianCenturies;
+        const double wt    = _argumentOfPerigee + _argumentOfPerigeeRate*julianCenturies - raant;
         const double Lt    = _trueLatitude + _trueLatitudeRate*julianCenturies;
 
         // Calculations
         const double ht = std::pow(parentMu*at*(1 - ecct*ecct), 0.5);
-        const double wt = wt - raant;
         const double Met = (Lt - wt)*deg2rad;
 
         // This approximation has error on the order of ecc^6. It is
