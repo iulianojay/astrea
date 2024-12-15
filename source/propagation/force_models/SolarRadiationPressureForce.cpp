@@ -2,7 +2,8 @@
 
 #include "math_c.hpp"
 
-basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state,
+                                                       const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
@@ -38,17 +39,15 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double solarRadiationPressure = SRP_1AU*(AU*AU)/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
     double fractionOfRecievedSunlight = 1.0;
     if (isSun) {
-        //
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
-        //
 
-        const double referenceAngle = acos((radiusCentralBodyToSun[0]*x + radiusCentralBodyToSun[1]*y + radiusCentralBodyToSun[2]*z)/(radialMagnitudeCentralBodyToSun*R));
-        const double referenceAngle1 = acos(equitorialR/R);
-        const double referenceAngle2 = acos(equitorialR/radialMagnitudeCentralBodyToSun);
+        const double refAngle = acos((radiusCentralBodyToSun[0]*x + radiusCentralBodyToSun[1]*y + radiusCentralBodyToSun[2]*z)/(radialMagnitudeCentralBodyToSun*R));
+        const double refAngle1 = acos(equitorialR/R);
+        const double refAngle2 = acos(equitorialR/radialMagnitudeCentralBodyToSun);
 
-        if (referenceAngle1 + referenceAngle2 <= referenceAngle) { // In shadow
-            const double Xu = equitorialR*radialMagnitudeCentralBodyToSun/(696000.0 - equitorialR); // that constant has something to do with the diameter of the sun
+        if (refAngle1 + refAngle2 <= refAngle) { // In shadow
+            const double Xu = equitorialR*radialMagnitudeCentralBodyToSun/(696000.0 - equitorialR); // that constant is the diameter of the sun
 
             const basis_array rP{
                 -Xu*radiusCentralBodyToSun[0]/radialMagnitudeCentralBodyToSun,

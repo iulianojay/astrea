@@ -81,66 +81,67 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
 	*/
 
 	// Variables for loop
-	double at{}, ecct{}, inct{}, raant{}, wt{}, Lt{}, ht{}, Met{}, thetat{},
-        ecct_2{}, ecct_3{}, ecct_4{}, ecct_5{}, ct{}, st{}, ci{}, si{}, cr{}, sr{}, cw{}, sw{},
-        coes2perir{}, coes2periv{}, xPerifocal{}, yPerifocal{}, vxPerifocal{}, vyPerifocal{},
-        DCM_xx{}, DCM_xy{}, DCM_yx{}, DCM_yy{}, DCM_zx{}, DCM_zy{};
-
     const double rad2deg = 180.0/M_PI;
     const double deg2rad = M_PI/180.0;
 
 	// Loop over each day in the epoch range
     const int nDays = (endEpoch - epoch).count<days>();
+    const double daysSinceReferenceEpoch =  epoch.julian_day() - _referenceDate.julian_day();
     for (int iDay = 0; iDay < nDays; ++iDay) {
         // Time since reference date
-        const double daysSinceReferenceEpoch =  epoch.julian_day() - _referenceDate.julian_day();
         const double julianCenturies = (static_cast<double>(iDay) + daysSinceReferenceEpoch)/36525.0; // time in Julian Centuries
 
         // KEPLERIANs
-        at    = _semimajorAxis + _semimajorAxisRate*julianCenturies;
-        ecct  = _eccentricity + _eccentricityRate*julianCenturies;
-        inct  = _inclination + _inclinationRate*julianCenturies;
-        raant = _rightAscension + _rightAscensionRate*julianCenturies;
-        wt    = _argumentOfPerigee + _argumentOfPerigeeRate*julianCenturies;
-        Lt    = _trueLatitude + _trueLatitudeRate*julianCenturies;
+        const double at    = _semimajorAxis + _semimajorAxisRate*julianCenturies;
+        const double ecct  = _eccentricity + _eccentricityRate*julianCenturies;
+        const double inct  = _inclination + _inclinationRate*julianCenturies;
+        const double raant = _rightAscension + _rightAscensionRate*julianCenturies;
+        const double wt    = _argumentOfPerigee + _argumentOfPerigeeRate*julianCenturies;
+        const double Lt    = _trueLatitude + _trueLatitudeRate*julianCenturies;
 
         // Calculations
-        ht = std::pow(parentMu*at*(1 - ecct*ecct), 0.5);
-        wt = wt - raant;
-        Met = (Lt - wt)*deg2rad;
+        const double ht = std::pow(parentMu*at*(1 - ecct*ecct), 0.5);
+        const double wt = wt - raant;
+        const double Met = (Lt - wt)*deg2rad;
 
         // This approximation has error on the order of ecc^6. It is
         // assumed to be good for this calc since all these bodies are
         // nearly circular. Solving Kepler"s equations takes a very long
         // time
-        ecct_2 = ecct*ecct;
-        ecct_3 = ecct_2*ecct;
-        ecct_4 = ecct_3*ecct;
-        ecct_5 = ecct_4*ecct;
+        const double ecct_2 = ecct*ecct;
+        const double ecct_3 = ecct_2*ecct;
+        const double ecct_4 = ecct_3*ecct;
+        const double ecct_5 = ecct_4*ecct;
 
-        thetat = (Met + (2.0*ecct - 0.25*ecct_3 + 5.0/96.0*ecct_5)*math_c::sin(Met) + (1.25*ecct_2 - 11.0/24.0*ecct_4)*math_c::sin(2.0*Met) +
-            (13.0/12.0*ecct_3 - 43.0/64.0*ecct_5)*math_c::sin(3.0*Met) + 103.0/96.0*ecct_4*math_c::sin(4*Met) + 1097.0/960.0*ecct_5*math_c::sin(5*Met))*rad2deg;
+        const double thetat = (
+            Met +
+            (2.0*ecct - 0.25*ecct_3 + 5.0/96.0*ecct_5)*math_c::sin(Met) +
+            (1.25*ecct_2 - 11.0/24.0*ecct_4)*math_c::sin(2.0*Met) +
+            (13.0/12.0*ecct_3 - 43.0/64.0*ecct_5)*math_c::sin(3.0*Met) +
+            103.0/96.0*ecct_4*math_c::sin(4*Met) +
+            1097.0/960.0*ecct_5*math_c::sin(5*Met)
+        )*rad2deg;
 
         // Store mean and true anomaly
         _meanAnomaly = Met;
         _trueAnomaly = thetat;
 
         // Calculate once for speed
-        ct = math_c::cos(thetat*deg2rad); st = math_c::sin(thetat*deg2rad);
-        cw = math_c::cos(wt*deg2rad);     sw = math_c::sin(wt*deg2rad);
-        cr = math_c::cos(raant*deg2rad);  sr = math_c::sin(raant*deg2rad);
-        ci = math_c::cos(inct*deg2rad);   si = math_c::sin(inct*deg2rad);
+        const double ct = math_c::cos(thetat*deg2rad); const double st = math_c::sin(thetat*deg2rad);
+        const double cw = math_c::cos(wt*deg2rad);     const double sw = math_c::sin(wt*deg2rad);
+        const double cr = math_c::cos(raant*deg2rad);  const double sr = math_c::sin(raant*deg2rad);
+        const double ci = math_c::cos(inct*deg2rad);   const double si = math_c::sin(inct*deg2rad);
 
-        coes2perir = ht*ht/parentMu/(1 + ecct*ct);
-        coes2periv = parentMu/ht;
+        const double coes2perir = ht*ht/parentMu/(1 + ecct*ct);
+        const double coes2periv = parentMu/ht;
 
         // Perifocal frame
         // z_peri is 0 by definition
-        xPerifocal = coes2perir*ct;
-        yPerifocal = coes2perir*st;
+        const double xPerifocal = coes2perir*ct;
+        const double yPerifocal = coes2perir*st;
 
-        vxPerifocal = -coes2periv*st;
-        vyPerifocal = coes2periv*(ecct + ct);
+        const double vxPerifocal = -coes2periv*st;
+        const double vyPerifocal = coes2periv*(ecct + ct);
 
         // Translate to inertial frame
         /*
@@ -148,12 +149,12 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
                         |-sw cw 0| |0  ci si| |-sr cr 0|
                         |  0  0 1| |0 -si ci| |  0  0 1|
         */
-        DCM_xx = cw*cr - ci*sw*sr;
-        DCM_xy = -sw*cr - ci*cw*sr;
-        DCM_yx = cw*sr + ci*sw*cr;
-        DCM_yy = -sw*sr + ci*cw*cr;
-        DCM_zx = si*sw;
-        DCM_zy = si*cw;
+        const double DCM_xx = cw*cr - ci*sw*sr;
+        const double DCM_xy = -sw*cr - ci*cw*sr;
+        const double DCM_yx = cw*sr + ci*sw*cr;
+        const double DCM_yy = -sw*sr + ci*cw*cr;
+        const double DCM_zx = si*sw;
+        const double DCM_zy = si*cw;
 
         // Find radius and velocity vector
         element_array bciState;
