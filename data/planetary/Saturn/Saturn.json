@@ -1,0 +1,45 @@
+{
+    "Name" : "Saturn",
+    "Parent" : "Sun",
+    "Type" : "Planet",
+
+    "Gravitational Parameter" : { "magnitude": 37931187.0, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 568.0, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 60268.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 54364.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 60268.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 5.453426873248700, "units": "AU" },
+    "J2" :                      { "magnitude": 16298e-6, "units": "" },
+    "J3" :                      { "magnitude": 26.73, "units": "" },
+    "Axial Tilt" :              { "magnitude": 0.0, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 810.8108108108107, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 10759.22, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 2000 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 1.426725415449289e9, "units": "km" },
+            "rate" :  { "magnitude": -451082.4604262999, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.05415060, "units": "" },
+            "rate" :  { "magnitude": -0.00036762, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 2.48446, "units": "deg" },
+            "rate" :  { "magnitude": 0.0016972222222222224, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 113.71504, "units": "deg" },
+            "rate" :  { "magnitude": -1591.05, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 92.43194, "units": "deg" },
+            "rate" :  { "magnitude": -1948.89, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 49.94432, "units": "deg" },
+            "rate" :  { "magnitude": 4401052.95, "units": "deg/JC" }
+        }
+    }
+}

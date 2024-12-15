@@ -74,16 +74,17 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
     std::string filename;
     std::string path;
     path = "./data/gravity_models/";
-    if (center.planetId() == 2) { // Venus
+    std::string centerName = center->get_name();
+    if (centerName == "Venus") { // Venus
         filename = path + "shgj120p.txt"; // Normalized?
     }
-    else if (center.planetId() == 3 && center.moonId() == 0) { // Earth
+    else if (centerName == "Earth") { // Earth
         filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
     }
-    else if (center.planetId() == 3 && center.moonId() == 1) { // Moon
+    else if (centerName == "Moon") { // Moon
         filename = path + "jgl165p1.txt"; // Normalized?
     }
-    else if (center.planetId() == 3) { // Mars
+    else if (centerName == "Mars") { // Mars
         filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
     }
     std::ifstream file(filename);
@@ -109,7 +110,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
         S[n][m] = lineData[3];
 
         // Normalize coefficients if needed
-        if (center.planetId() == 4) {
+        if (centerName == "Mars") {
             for (size_t m = 0; m < N+1; ++m) {
                 double nPlusMFactorial = 1;
                 double nMinusMFactorial = 1;
@@ -145,9 +146,9 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     const double oneOverR = 1.0/R;
 
     // Central body properties
-    const double& mu = center.mu();
-    const double& equitorialR = center.eqR();
-    const double& bodyRotationRate = center.rotRate();
+    static const double& mu = center->get_mu();
+    static const double& equitorialR = center->get_equitorial_radius();
+    static const double& bodyRotationRate = center->get_rotation_rate();
 
     // Find lat and long
     basis_array radius = {x, y, z};

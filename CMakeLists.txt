@@ -52,9 +52,8 @@ set(OBJS
     ${SRC}/propagation/equations_of_motion/TwoBody.cpp
 
     ${SRC}/systems/AstrodynamicsSystem.cpp
-    ${SRC}/systems/GravitationalBody.cpp
-    ${SRC}/systems/SolarObjectBuilder.cpp
-    ${SRC}/systems/SolarObjectFactory.cpp
+    ${SRC}/systems/CelestialBody.cpp
+    ${SRC}/systems/CelestialBodyFactory.cpp
 
     ${SRC}/time/Time.cpp
     ${SRC}/time/access/RiseSetArray.cpp
@@ -102,6 +101,8 @@ include_directories(
     ${INC}/fwd/time/access
     ${INC}/fwd/types
     ${INC}/fwd/utilities
+
+    ${INC}/extern/json
 )
 
 include(config/astro_config.cmake)

@@ -5,19 +5,18 @@
 #endif
 
 #include "typedefs.hpp"
-#include "solar_system.hpp"
-#include "GravitationalBody.hpp"
+#include "CelestialBody.hpp"
 
 
-class Barycenter : public GravitationalBody {
+class Barycenter : public CelestialBody {
 public:
 
-    Barycenter(SolarObject referenceBody, std::unordered_set<SolarObject> bodies) : referenceBody(referenceBody), bodies(bodies) {};
+    Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies) : referenceBody(referenceBody), bodies(bodies) {};
     ~Barycenter() {};
 
 private:
-    
+
     basis_array center;
-    SolarObject referenceBody;
-    std::unordered_set<SolarObject> bodies;
+    CelestialBody referenceBody;
+    std::unordered_set<CelestialBody> bodies;
 };

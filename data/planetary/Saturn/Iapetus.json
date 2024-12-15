@@ -1,0 +1,45 @@
+{
+    "Name" : "Iapetus",
+    "Parent" : "Saturn",
+    "Type" : "Satellite",
+
+    "Gravitational Parameter" : { "magnitude": 153.94, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.00231, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 765.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 762.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 765.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 3.67746912467e-04, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 26.766, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 79.690094078583286, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 4.517500, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 2000 12:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 527.04e3, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.0010, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.35, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 351.042, "units": "deg" },
+            "rate" :  { "magnitude": 3616878.77, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 232.661, "units": "deg" },
+            "rate" :  { "magnitude": 10841361.7, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 412.44, "units": "deg" },
+            "rate" :  { "magnitude": 10489285497.13, "units": "deg/JC" }
+        }
+    }
+}

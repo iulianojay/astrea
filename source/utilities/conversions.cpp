@@ -20,7 +20,7 @@ void conversions::bci_to_bcbf(const basis_array& rBCI, double julianDate, double
     z = rBCI[2];
 
     // Calculate Greenwich Sidereal Time
-    greenwichSiderealTime = julian_date_to_sidereal_time(julianDate, rotRate);
+    greenwichSiderealTime = julian_date_to_siderial_time(julianDate, rotRate);
 
     // Calculate ECI-to-ECEF transformation matrix
     /* C_bci2bcbf = [c_gst s_gst 0;
@@ -41,7 +41,7 @@ void conversions::bcbf_to_bci(const basis_array& rBCBF, double julianDate, doubl
     double greenwichSiderealTime{}, cosGST{}, sinGST{};
 
     // Calculate Greenwich Sidereal Time
-    greenwichSiderealTime = julian_date_to_sidereal_time(julianDate, rotRate);
+    greenwichSiderealTime = julian_date_to_siderial_time(julianDate, rotRate);
 
     // Calculate ECEC-to-ECI transformation matrix
     // C_ecef2eci = [cos(-gst) sin(-gst) 0;
@@ -335,7 +335,7 @@ element_array conversions::keplerian_to_cartesian(const element_array& coes, con
     element_array cartesian;
     double radius[3];
     double velocity[3];
-    keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center().mu(), radius, velocity);
+    keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center()->get_mu(), radius, velocity);
     for (int ii = 0; ii < 3; ii++) {
         cartesian[ii] = radius[ii];
     }
@@ -355,7 +355,7 @@ element_array conversions::cartesian_to_keplerian(const element_array& cartesian
     for (int ii = 0; ii < 3; ii++) {
         velocity[ii] = cartesian[ii+3];
     }
-    bci_to_keplerian(radius, velocity, system.get_center().mu(), coes);
+    bci_to_keplerian(radius, velocity, system.get_center()->get_mu(), coes);
 
     element_array keplerian_array;
     std::copy(coes, coes+6, keplerian_array.begin());
@@ -411,7 +411,7 @@ double conversions::epoch_to_julian_date(std::string epochString) {
         floor((275.0*month)/9.0) + day + 1721013.5 + (hour + min/60.0 + sec/3600.0)/24.0;
 }
 
-double conversions::julian_date_to_sidereal_time(double julianDate, double rotRate) {
+double conversions::julian_date_to_siderial_time(double julianDate, double rotRate) {
 
     double hour{}, minute{}, second{}, universalTime{}, T0{}, greenwichUniversalTime{}, greenwichSiderealTime{};
 

@@ -1,10 +1,11 @@
 #include "SolarRadiationPressureForce.hpp"
 
-basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
+#include "math_c.hpp"
 
-    throw std::logic_error("This function has not been properly updated and is not currently functional.");
+basis_array SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state,
+                                                       const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
-    /*
+    static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
     const double& x = state[0];
@@ -12,56 +13,57 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     const double& z = state[2];
     const double R = std::sqrt(x*x + y*y + z*z);
 
-    const double& vx = state[3];
-    const double& vy = state[4];
-    const double& vz = state[5];
-
     // Central body properties
-    const double& equitorialR = system.get_center().eqR();
+    static const double& equitorialR = center->get_equitorial_radius();
+    static const bool isSun = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const int index = std::min((int)round(t*SEC_TO_DAY), sizeOfDateArray-1);
+    const State& stateSunToCentralBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
 
     // Radius from central body to sun
-    for (int jj = 0; jj < 3; ++jj) {
-        radiusCentralBodyToSun[jj] = -radiusSunToCentralBody[index][jj]; // flip vector direction
-    }
-    radialMagnitudeCentralBodyToSun = math_c::normalize(radiusCentralBodyToSun);
+    const basis_array radiusCentralBodyToSun{ // flip vector direction
+        -stateSunToCentralBody.elements[0],
+        -stateSunToCentralBody.elements[1],
+        -stateSunToCentralBody.elements[2]
+    };
+    const double radialMagnitudeCentralBodyToSun = math_c::normalize(radiusCentralBodyToSun, 2);
 
-    radiusVehicleToSun[0] = radiusCentralBodyToSun[0] - x;
-    radiusVehicleToSun[1] = radiusCentralBodyToSun[1] - y;
-    radiusVehicleToSun[2] = radiusCentralBodyToSun[2] - z;
-    radialMagnitudeVehicleToSun = math_c::normalize(radiusVehicleToSun);
+    const basis_array radiusVehicleToSun{
+        radiusCentralBodyToSun[0] - x,
+        radiusCentralBodyToSun[1] - y,
+        radiusCentralBodyToSun[2] - z
+    };
+    const double radialMagnitudeVehicleToSun = math_c::normalize(radiusVehicleToSun, 2);
 
     // Solar radiation pressure
-    solarRadiationPressure = solarRadiationPressureAt1AU*AU*AU/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
-    fractionOfRecievedSunlight = 1.0;
-
-    if (system.get_center().planetId() != 0) {
-        //
+    const double solarRadiationPressure = SRP_1AU*(AU*AU)/(radialMagnitudeVehicleToSun*radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
+    double fractionOfRecievedSunlight = 1.0;
+    if (isSun) {
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
-        //
 
-        referenceAngle = acos((radiusCentralBodyToSun[0]*x + radiusCentralBodyToSun[1]*y + radiusCentralBodyToSun[2]*z)/(radialMagnitudeCentralBodyToSun*R));
-        referenceAngle1 = acos(equitorialR/R);
-        referenceAngle2 = acos(equitorialR/radialMagnitudeCentralBodyToSun);
+        const double refAngle = acos((radiusCentralBodyToSun[0]*x + radiusCentralBodyToSun[1]*y + radiusCentralBodyToSun[2]*z)/(radialMagnitudeCentralBodyToSun*R));
+        const double refAngle1 = acos(equitorialR/R);
+        const double refAngle2 = acos(equitorialR/radialMagnitudeCentralBodyToSun);
 
-        if (referenceAngle1 + referenceAngle2 <= referenceAngle) { // In shadow
-            Xu = equitorialR*radialMagnitudeCentralBodyToSun/(696000.0 - equitorialR); // that constant has something to do with the diameter of the sun
+        if (refAngle1 + refAngle2 <= refAngle) { // In shadow
+            const double Xu = equitorialR*radialMagnitudeCentralBodyToSun/(696000.0 - equitorialR); // that constant is the diameter of the sun
 
-            rP[0] = -Xu*radiusCentralBodyToSun[0]/radialMagnitudeCentralBodyToSun;
-            rP[1] = -Xu*radiusCentralBodyToSun[1]/radialMagnitudeCentralBodyToSun;
-            rP[2] = -Xu*radiusCentralBodyToSun[2]/radialMagnitudeCentralBodyToSun;
+            const basis_array rP{
+                -Xu*radiusCentralBodyToSun[0]/radialMagnitudeCentralBodyToSun,
+                -Xu*radiusCentralBodyToSun[1]/radialMagnitudeCentralBodyToSun,
+                -Xu*radiusCentralBodyToSun[2]/radialMagnitudeCentralBodyToSun
+            };
+            const double normRP = math_c::normalize(rP, 2);
 
-            rPs[0] = x - rP[0];
-            rPs[1] = y - rP[1];
-            rPs[2] = z - rP[2];
+            const basis_array rPs{
+                x - rP[0],
+                y - rP[1],
+                z - rP[2]
+            };
+            const double normRPs = math_c::normalize(rPs, 2);
 
-            normRP = math_c::normalize(rP);
-            normRPs = math_c::normalize(rPs);
-
-            alphaps = abs(asin((-rPs[0]*rP[0] - rPs[1]*rP[1] - rPs[2]*rP[2])/(normRP*normRPs)));
+            const double alphaps = abs(asin((-rPs[0]*rP[0] - rPs[1]*rP[1] - rPs[2]*rP[2])/(normRP*normRPs)));
 
             if (alphaps < asin(equitorialR/Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0;
@@ -73,20 +75,15 @@ basis_array SolarRadiationPressureForce::compute_force(const double& julianDate,
     }
 
     // accel due to srp
-    const double coefficientOfReflectivity = spacecraft->get_coefficient_of_reflectivity();
-    const double *areaSun = spacecraft->get_sun_area();
-    const double mass = spacecraft->get_mass();
-    const double tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun[0] + areaSun[1] + areaSun[2])/mass/radialMagnitudeVehicleToSun*fractionOfRecievedSunlight;
+    const double coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
+    const double areaSun = vehicle.get_solar_area();
+    const double mass = vehicle.get_mass();
+    const double tempA = -solarRadiationPressure*coefficientOfReflectivity*(areaSun)/mass/radialMagnitudeVehicleToSun*fractionOfRecievedSunlight;
 
-    accelSRP[0] = tempA*radiusVehicleToSun[0];
-    accelSRP[1] = tempA*radiusVehicleToSun[1];
-    accelSRP[2] = tempA*radiusVehicleToSun[2];
-
-    */
     const basis_array accelSRP{
-        0.0,
-        0.0,
-        0.0
+        tempA*radiusVehicleToSun[0],
+        tempA*radiusVehicleToSun[1],
+        tempA*radiusVehicleToSun[2]
     };
 
     return accelSRP;

@@ -1,0 +1,45 @@
+{
+    "Name" : "Oberon",
+    "Parent" : "Uranus",
+    "Type" : "Satellite",
+
+    "Gravitational Parameter" : { "magnitude": 192.4, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.00288, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 761.4, "units": "km" },
+    "Polar Radius" :            { "magnitude": 761.4, "units": "km" },
+    "Crash Radius" :            { "magnitude": 761.4, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 9.42735725907e-04, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 0.0, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 26.739489189595904, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 13.4632, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 1980 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 583.50e3, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.0014, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.07, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 279.771, "units": "deg" },
+            "rate" :  { "magnitude": 663356.7, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 24.171, "units": "deg" },
+            "rate" :  { "magnitude": 1465734.12, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 307.259, "units": "deg" },
+            "rate" :  { "magnitude": 3517441116.43, "units": "deg/JC" }
+        }
+    }
+}

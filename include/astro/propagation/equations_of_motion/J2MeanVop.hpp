@@ -1,6 +1,6 @@
 #pragma once
 
-#include "astro/systems/GravitationalBody.hpp"
+#include "astro/systems/CelestialBody.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
 
 #include "astro/propagation/equations_of_motion/EquationsOfMotion.hpp"
@@ -15,9 +15,9 @@ public:
 
     J2MeanVop(const AstrodynamicsSystem& system) :
         EquationsOfMotion(system),
-        mu(system.get_center().mu()),
-        J2(system.get_center().j2()),
-        equitorialR(system.get_center().eqR())
+        mu(system.get_center()->get_mu()),
+        J2(system.get_center()->get_j2()),
+        equitorialR(system.get_center()->get_equitorial_radius())
     {};
     ~J2MeanVop() = default;
 

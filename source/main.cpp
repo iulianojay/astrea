@@ -40,14 +40,15 @@ int main() {
     // Build Force Model
     ForceModel forces;
     // forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 2, 2);
+    // forces.add<OblatenessForce>(sys, 2, 2);
+    forces.add<SolarRadiationPressureForce>();
 
     // Build EoMs
     // std::string propagator = "two_body";
     // TwoBody eom(sys);
-    // std::string propagator = "j2mean";
+    std::string propagator = "j2mean";
     J2MeanVop eom(sys);
-    std::string propagator = "cowells";
+    // std::string propagator = "cowells";
     // CowellsMethod eom(sys, forces);
     // std::string propagator = "coes";
     // KeplerianVop eom(sys, forces, false);

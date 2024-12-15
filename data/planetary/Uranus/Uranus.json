@@ -1,0 +1,45 @@
+{
+    "Name" : "Uranus",
+    "Parent" : "Sun",
+    "Type" : "Planet",
+
+    "Gravitational Parameter" : { "magnitude": 5793939.0, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 86.8, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 25559.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 24973.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 25559.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 5.176385869757780, "units": "AU" },
+    "J2" :                      { "magnitude": 3343.43e-6, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 82.23, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": -501.1600928074246, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 30685.4, "units": "days" },
+
+    "State" : {
+        "Epoch" : "Jan 1, 2000 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 2.870972225727093e9, "units": "km" },
+            "rate" :  { "magnitude": 227426.1633877500, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.04716771, "units": "" },
+            "rate" :  { "magnitude": -0.00019150, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.76986, "units": "deg" },
+            "rate" :  { "magnitude": -0.0005805555555555555, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 74.22988, "units": "deg" },
+            "rate" :  { "magnitude": -1681.40, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 170.96424, "units": "deg" },
+            "rate" :  { "magnitude": 1312.56, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 313.23218, "units": "deg" },
+            "rate" :  { "magnitude": 1542547.79, "units": "deg/JC" }
+        }
+    }
+}
