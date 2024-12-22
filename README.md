@@ -83,3 +83,4 @@ tools.cmake.cmake_layout:build_folder_vars=["settings.compiler", "settings.compi
 > cmake --build --preset conan-release
 
 NOTE: If the 3rd or 4th steps fail, they should give you a list of options to use instead of "conan-default" and "conan-release"
+> i.e. cmake --build --preset conan-gcc-13-23-release

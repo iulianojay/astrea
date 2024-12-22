@@ -5,6 +5,7 @@ set(INCLUDE_DIRS
     ${INC}/astro
     ${INC}/astro/constants
     ${INC}/astro/element_sets
+    ${INC}/astro/element_sets/orbital_elements
     ${INC}/astro/propagation
     ${INC}/astro/systems
     ${INC}/astro/time
@@ -23,6 +24,9 @@ set(HDRS
     ${INC}/astro/constants/astronomical_constants.h
     ${INC}/astro/constants/math_constants.h
     ${INC}/astro/constants/rk_constants.h
+
+    ${INC}/astro/element_sets/orbital_elements/Cartesian.hpp
+    ${INC}/astro/element_sets/orbital_elements/Keplerian.hpp
 
     ${INC}/astro/element_sets/ElementSet.hpp
     ${INC}/astro/element_sets/Frame.hpp
