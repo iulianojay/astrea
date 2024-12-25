@@ -28,7 +28,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys) 
     static const quantity twoPiRad = 2.0 * (mag<pi>*rad);
 
     // Get mu
-    quantity mu = sys.get_center()->get_mu() * km*km*km/(s*s);
+    const quantity mu = sys.get_center()->get_mu() * km*km*km/(s*s);
 
     // Get r and v
     const auto& x = elements.get_x();
@@ -38,130 +38,142 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys) 
     const auto& vy = elements.get_vy();
     const auto& vz = elements.get_vz();
 
-    quantity R = sqrt(x*x + y*y + z*z);
-    quantity V = sqrt(vx*vx + vy*vy + vz*vz);
+    const quantity R = sqrt(x*x + y*y + z*z);
+    const quantity V = sqrt(vx*vx + vy*vy + vz*vz);
 
     // Specific Relative Angular Momentum
-    quantity hx = y*vz - z*vy; // h = cross(r, v)
-    quantity hy = z*vx - x*vz;
-    quantity hz = x*vy - y*vx;
+    const quantity hx = y*vz - z*vy; // h = cross(r, v)
+    const quantity hy = z*vx - x*vz;
+    const quantity hz = x*vy - y*vx;
 
-    quantity normH = sqrt(hx*hx + hy*hy + hz*hz);
+    const quantity normH = sqrt(hx*hx + hy*hy + hz*hz);
 
     // Setup
-    quantity Nx = -hy;  // N = cross([0 0 1], h)
-    quantity Ny = hx;
+    const quantity Nx = -hy;  // N = cross([0 0 1], h)
+    const quantity Ny = hx;
 
-    quantity normN = sqrt(Nx*Nx + Ny*Ny);
+    const quantity normN = sqrt(Nx*Nx + Ny*Ny);
 
     // Semimajor Axis
-    quantity a = 1.0/(2.0/R - V*V/mu);
+    semimajor = 1.0/(2.0/R - V*V/mu);
 
     // Eccentricity
-    quantity dotRV = x*vx + y*vy + z*vz;
+    const quantity dotRV = x*vx + y*vy + z*vz;
+    const quantity oneOverMu = (1.0/mu);
+    const quantity vSquaredMinuMuTimesR = (V*V - mu/R);
 
-    quantity eccX = (1.0/mu)*((V*V - mu/R)*x - dotRV*vx);
-    quantity eccY = (1.0/mu)*((V*V - mu/R)*y - dotRV*vy);
-    quantity eccZ = (1.0/mu)*((V*V - mu/R)*z - dotRV*vz);
+    const quantity eccX = oneOverMu*(vSquaredMinuMuTimesR*x - dotRV*vx);
+    const quantity eccY = oneOverMu*(vSquaredMinuMuTimesR*y - dotRV*vy);
+    const quantity eccZ = oneOverMu*(vSquaredMinuMuTimesR*z - dotRV*vz);
 
-    quantity ecc = sqrt(eccX*eccX + eccY*eccY + eccZ*eccZ);
+    eccentricity = sqrt(eccX*eccX + eccY*eccY + eccZ*eccZ);
+
     /*
         If the orbit has an inclination of exactly 0, w is ill-defined, the
         eccentricity vector is ill-defined, and true anomaly is ill defined. Force
         eccentricity very close to 0 be exactly 0 to avoid issues where w and
         anomaly flail around wildly as ecc fluctuates.
     */
-    if (abs(ecc) < tol) {
-        ecc = 0.0 * one;
+    if (eccentricity < tol) {
+        eccentricity = 0.0 * one;
     }
 
     // Inclination (rad)
-    quantity<rad> inc = acos(hz/normH);
-    if (isnan(inc) || abs(inc - piRad) < tol){
-        inc = 0.0 * rad;
+    inclination = acos(hz/normH);
+    if (abs(inclination - piRad) < tol){
+        inclination = 0.0 * rad;
     }
 
     // Right Ascension of Ascending Node (rad)
-    quantity<rad> raan{};
-    quantity acos_Nx_Nnorm = acos(Nx/normN);
-    if (Ny > 0.0 * (km*km/s)) {
-        raan = acos_Nx_Nnorm;
+    if (inclination == 0.0 * rad) { // No nodal line
+        rightAscension = 0.0 * rad;
     }
     else {
-        raan = twoPiRad - acos_Nx_Nnorm;
-    }
+        if (Ny > 0.0 * (km*km/s)) {
+            rightAscension = acos(Nx/normN);
+        }
+        else {
+            rightAscension = twoPiRad - acos(Nx/normN);
+        }
 
-    if (normN == 0.0 * (km*km/s) || isnan(raan) || abs(raan - twoPiRad) < tol) {
-        raan = 0.0 * rad;
+        if (abs(rightAscension - twoPiRad) < tol) {
+            rightAscension = 0.0 * rad;
+        }
     }
 
     // True Anomaly (rad)
-    quantity<rad> theta{};
-    if (ecc == 0.0 * one) { // No argument of perigee, use nodal line
-        if (inc == 0.0 * rad) { // No nodal line, use true longitude
+    if (eccentricity == 0.0 * one) { // No argument of perigee, use nodal line
+        if (inclination == 0.0 * rad) { // No nodal line, use true longitude
             if (vx <= 0.0 * km/s) {
-                theta = acos(x/R);
+                trueAnomaly = acos(x/R);
             }
             else {
-                theta = 2*piRad - acos(x/R);
+                trueAnomaly = 2*piRad - acos(x/R);
             }
         }
         else { // Use argument of latitude
-            quantity dot_n_r = Nx*x + Ny*y;
+            const quantity nDotR = Nx*x + Ny*y;
             if (z >= 0.0 * km) {
-                theta = acos(dot_n_r/(normN*R));
+                trueAnomaly = acos(nDotR/(normN*R));
             }
             else {
-                theta = 2*piRad - acos(dot_n_r/(normN*R));
+                trueAnomaly = 2*piRad - acos(nDotR/(normN*R));
             }
         }
     }
     else {
-        quantity dot_ecc_r = eccX*x + eccY*y + eccZ*z;
+        const quantity eccDotR = eccX*x + eccY*y + eccZ*z;
         if (dotRV >= 0.0 * (km*km/s)) {
-            theta = acos(dot_ecc_r/(ecc*R));
+            trueAnomaly = acos(eccDotR/(eccentricity*R));
         }
         else {
-            theta = twoPiRad - acos(dot_ecc_r/(ecc*R));
+            trueAnomaly = twoPiRad - acos(eccDotR/(eccentricity*R));
         }
-    }
-
-    if (isnan(theta) || abs(theta - twoPiRad) < tol) {
-        theta = 0.0 * rad;
     }
 
     // Argument of Parigee (rad)
-    quantity<rad> w{};
-    if (ecc == 0.0 * one) { // Ill-defined. Assume zero
-        w = 0.0 * rad;
+    if (eccentricity == 0.0 * one) { // Ill-defined. Assume zero
+        argPerigee = 0.0 * rad;
     }
-    else if (inc == 0.0 * rad) { // No nodal line, use ecc vec
+    else if (inclination == 0.0 * rad) { // No nodal line, use ecc vec
         if (hz > 0.0 * (km*km/s)) {
-            w = atan2(eccY, eccX);
+            argPerigee = atan2(eccY, eccX);
         }
         else {
-            w = 2*piRad - atan2(eccY, eccX);
+            argPerigee = 2*piRad - atan2(eccY, eccX);
         }
     }
     else {
-        quantity dot_ecc_N = eccX*Nx + eccY*Ny;
+        const quantity eccDotN = eccX*Nx + eccY*Ny;
         if (eccZ < 0.0 * one){
-            w = twoPiRad - acos(dot_ecc_N/(ecc*normN));
+            argPerigee = twoPiRad - acos(eccDotN/(eccentricity*normN));
         }
         else {
-            w = acos(dot_ecc_N/(ecc*normN));
+            argPerigee = acos(eccDotN/(eccentricity*normN));
         }
     }
 
-    if (normN == 0.0 * (km*km/s) || isnan(w) || abs(w - twoPiRad) < tol) {
-        w = 0.0 * rad;
+    // Catch garbage
+    if (normN == 0.0 * (km*km/s) || abs(argPerigee - twoPiRad) < tol) {
+        trueAnomaly += argPerigee;
+        argPerigee = 0.0 * rad;
     }
 
-    // Assign to coes
-    semimajor = a;
-    eccentricity = ecc;
-    inclination = inc;
-    rightAscension = raan;
-    argPerigee = w;
-    trueAnomaly = theta;
+    if (abs(trueAnomaly - twoPiRad) < tol) {
+        trueAnomaly = 0.0 * rad;
+    }
+}
+
+
+
+std::ostream &operator<<(std::ostream& os, Keplerian const& elements) {
+    os << "[";
+    os << elements.get_semimajor() << ", ";
+    os << elements.get_eccentricity() << ", ";
+    os << elements.get_inclination() << ", ";
+    os << elements.get_right_ascension() << ", ";
+    os << elements.get_argument_of_perigee() << ", ";
+    os << elements.get_true_anomaly();
+    os << "] (Keplerian)";
+    return os;
 }

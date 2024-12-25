@@ -34,29 +34,29 @@ int main()
     using namespace mp_units::si::unit_symbols;
     using namespace mp_units::international::unit_symbols;
 
-    quantity q = 1.0 * m / s;
-    std::cout << "Value: " << q.in(m / s) << std::endl;
-    std::cout << "Value: " << q.in(km / s) << std::endl;
-
-    std::array<quantity<km>, 3> r     = { 10000.0 * km, 0.0 * km, 0.0 * km };
-    std::array<quantity<km / s>, 3> v = { 0.0 * km / s, 6.0 * km / s, 0.0 * km / s };
+    const double R                    = 10000;
+    const double V                    = sqrt(398600.0 / 10000.0);
+    std::array<quantity<km>, 3> r     = { R * km, 0.0 * km, 0.0 * km };
+    std::array<quantity<km / s>, 3> v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
 
     Cartesian cart(r, v);
+    std::cout << std::endl;
     Keplerian kepl(cart, sys);
+    std::cout << std::endl;
+    Cartesian cart2(kepl, sys);
 
-    std::cout << "x: " << cart.get_x() << std::endl;
-    std::cout << "y: " << cart.get_y() << std::endl;
-    std::cout << "z: " << cart.get_z() << std::endl;
-    std::cout << "vx: " << cart.get_vx() << std::endl;
-    std::cout << "vy: " << cart.get_vy() << std::endl;
-    std::cout << "vz: " << cart.get_vz() << std::endl;
+    OrbitalElements comp({ R, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
+    comp.convert(ElementSet::KEPLERIAN, sys);
 
-    std::cout << "semimajor: " << kepl.get_semimajor() << std::endl;
-    std::cout << "eccentricity: " << kepl.get_eccentricity() << std::endl;
-    std::cout << "inclination: " << kepl.get_inclination() << std::endl;
-    std::cout << "right_ascension: " << kepl.get_right_ascension() << std::endl;
-    std::cout << "argument_of_perigee: " << kepl.get_argument_of_perigee() << std::endl;
-    std::cout << "true_anomaly: " << kepl.get_true_anomaly() << std::endl;
+    std::cout << "Before: " << cart << std::endl << std::endl;
+
+    std::cout << "Converted: " << kepl << std::endl;
+    std::cout << "Correct: " << comp << std::endl << std::endl;
+
+    comp.convert(ElementSet::CARTESIAN, sys);
+
+    std::cout << "After: " << cart2 << std::endl;
+    std::cout << "Correct: " << comp << std::endl << std::endl;
 
     return 0;
 

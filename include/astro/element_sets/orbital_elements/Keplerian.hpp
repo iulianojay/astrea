@@ -21,6 +21,8 @@ class Cartesian;
 
 class Keplerian {
 
+    friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+
 public:
 
     Keplerian() :
