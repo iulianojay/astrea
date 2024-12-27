@@ -17,6 +17,8 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include "astro/element_sets/ElementSet.hpp"
+
 #include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
 class Keplerian;
 
@@ -82,8 +84,8 @@ public:
 
     ~Cartesian() = default;
 
-    const RadiusVector& get__radius() const { return _radius; }
-    const VelocityVector& get__velocity() const { return _velocity; }
+    const RadiusVector& get_radius() const { return _radius; }
+    const VelocityVector& get_velocity() const { return _velocity; }
 
     const auto& get_x() const { return _radius[0]; }
     const auto& get_y() const { return _radius[1]; }
@@ -92,7 +94,11 @@ public:
     const auto& get_vy() const { return _velocity[1]; }
     const auto& get_vz() const { return _velocity[2]; }
 
+    const enum_type& get_set_id() const { return _setId; }
+
 private:
+
+    const enum_type _setId = static_cast<int>(ElementSet::CARTESIAN);
 
     RadiusVector _radius;
     VelocityVector _velocity;

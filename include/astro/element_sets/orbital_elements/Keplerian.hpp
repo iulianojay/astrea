@@ -16,6 +16,8 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include "astro/element_sets/ElementSet.hpp"
+
 #include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
 class Cartesian;
 
@@ -56,7 +58,11 @@ public:
     const auto& get_argument_of_perigee() const { return _argPerigee; }
     const auto& get_true_anomaly() const { return _trueAnomaly; }
 
+    const enum_type& get_set_id() const { return _setId; }
+
 private:
+
+    const enum_type _setId = static_cast<int>(ElementSet::KEPLERIAN);
 
     mp_units::quantity<mp_units::si::unit_symbols::km>  _semimajor;
     mp_units::quantity<mp_units::one>                   _eccentricity;

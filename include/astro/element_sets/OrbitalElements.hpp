@@ -32,6 +32,11 @@
 #include "astro/element_sets/orbital_elements/Keplerian.hpp"
 
 
+template <typename T>
+concept HasGetSetId = requires(const T elements) {
+    { elements.get_set_id() } -> std::same_as<const enum_type&>;
+};
+
 template <typename T, typename U>
 concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys) {
     { U(elements, sys) };
@@ -56,10 +61,10 @@ concept IsUserDefinedOrbitalElements = requires(T) {
     std::is_destructible<T>::value;
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
     requires std::is_same<T, Keplerian>::value || IsConstructableTo<T, Keplerian> || HasDirectKeplerianConversion<T>;
+    requires HasGetSetId<T>;
 };
 
 namespace detail {
-
 
 struct OrbitalElementsInnerBase {
 
@@ -74,6 +79,7 @@ struct OrbitalElementsInnerBase {
     // Required methods
     virtual Cartesian to_cartesian(const AstrodynamicsSystem& sys) const = 0;
     virtual Keplerian to_keplerian(const AstrodynamicsSystem& sys) const = 0;
+    virtual const enum_type& get_set_id() const = 0;
 
     // Optional methods
 
@@ -103,6 +109,11 @@ struct OrbitalElementsInner final : public OrbitalElementsInnerBase {
     // Constructors from T (copy and move variants).
     explicit OrbitalElementsInner(const T &x) : _value(x) {}
     explicit OrbitalElementsInner(T &&x) : _value(std::move(x)) {}
+
+    // Get set
+    const enum_type& get_set_id() const {
+        return _value.get_set_id();
+    }
 
     // Cartesian conversion
     Cartesian to_cartesian(const AstrodynamicsSystem& system) const {
@@ -195,7 +206,9 @@ public:
 
 private:
 
-    void generic_ctor_impl() {};
+    void generic_ctor_impl() {
+        _setId = ptr()->get_set_id();
+    };
 
 public:
 
@@ -235,10 +248,14 @@ public:
 
     // Utilities
     void convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
+        if (static_cast<enum_type>(newSet) == _setId) { return; }
+
         const auto newElements = convert_impl(newSet, system);
         (*this) = newElements;
     }
     NewOrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
+        if (static_cast<enum_type>(newSet) == _setId) { return (*this); }
+
         return convert_impl(newSet, system);
     }
 
@@ -249,14 +266,13 @@ public:
         return ptr()->to_keplerian(system);
     }
 
-    // const std::string& get_name() const {
-    //     return ptr()->get_name();
-    // }
-    // const bool same_set(const NewOrbitalElements& other) const {
-    //     return (other._set == _set);
-    // }
+    const enum_type& get_set_id() const {
+        return ptr()->get_set_id();
+    }
 
-    // const bool nearly_equal(const NewOrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8);
+    const bool same_set(const NewOrbitalElements& other) const {
+        return (_setId != other._setId);
+    }
 
     // Pointer to user-defined elements
     const void* get_ptr() const;
@@ -268,7 +284,7 @@ private:
     std::unique_ptr<detail::OrbitalElementsInnerBase> _ptr;
 
     // Members
-    std::string _set;
+    enum_type _setId;
 
     // Ensure the pointer actually points to something
     detail::OrbitalElementsInnerBase const *ptr() const {
@@ -289,7 +305,7 @@ private:
                 return NewOrbitalElements(to_keplerian(system));
 
             default:
-                throw std::logic_error("Invalid element set.");
+                throw std::logic_error("This conversion is not directly available from this class.");
         }
     }
 };
