@@ -40,23 +40,29 @@ int main()
     std::array<quantity<km / s>, 3> v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
 
     Cartesian cart(r, v);
-    std::cout << std::endl;
     Keplerian kepl(cart, sys);
-    std::cout << std::endl;
     Cartesian cart2(kepl, sys);
 
     OrbitalElements comp({ R, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
     comp.convert(ElementSet::KEPLERIAN, sys);
 
-    std::cout << "Before: " << cart << std::endl << std::endl;
+    NewOrbitalElements newCart(cart);
+
+    std::cout << "Before: " << cart << std::endl;
+    std::cout << "New: " << newCart << std::endl << std::endl;
+
+    newCart.convert(ElementSet::KEPLERIAN, sys);
 
     std::cout << "Converted: " << kepl << std::endl;
-    std::cout << "Correct: " << comp << std::endl << std::endl;
+    std::cout << "Correct: " << comp << std::endl;
+    std::cout << "New: " << newCart << std::endl << std::endl;
 
     comp.convert(ElementSet::CARTESIAN, sys);
+    newCart.convert(ElementSet::CARTESIAN, sys);
 
     std::cout << "After: " << cart2 << std::endl;
-    std::cout << "Correct: " << comp << std::endl << std::endl;
+    std::cout << "Correct: " << comp << std::endl;
+    std::cout << "New: " << newCart << std::endl << std::endl;
 
     return 0;
 

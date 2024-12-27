@@ -26,30 +26,43 @@ class Keplerian {
 public:
 
     Keplerian() :
-        semimajor{0.0 * mp_units::si::unit_symbols::km},
-        eccentricity{0.0 * mp_units::one},
-        inclination{0.0 * mp_units::si::unit_symbols::rad},
-        rightAscension{0.0 * mp_units::si::unit_symbols::rad},
-        argPerigee{0.0 * mp_units::si::unit_symbols::rad},
-        trueAnomaly{0.0 * mp_units::si::unit_symbols::rad}
+        _semimajor{0.0 * mp_units::si::unit_symbols::km},
+        _eccentricity{0.0 * mp_units::one},
+        _inclination{0.0 * mp_units::si::unit_symbols::rad},
+        _rightAscension{0.0 * mp_units::si::unit_symbols::rad},
+        _argPerigee{0.0 * mp_units::si::unit_symbols::rad},
+        _trueAnomaly{0.0 * mp_units::si::unit_symbols::rad}
     {}
     Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
+
+    // Copy constructor
+    Keplerian(const Keplerian&);
+
+    // Move constructor
+    Keplerian(Keplerian&&) noexcept;
+
+    // Move assignment operator
+    Keplerian& operator=(Keplerian&&) noexcept;
+
+    // Copy assignment operator
+    Keplerian& operator=(const Keplerian&);
+
     ~Keplerian() = default;
 
-    const auto& get_semimajor() const { return semimajor; }
-    const auto& get_eccentricity() const { return eccentricity; }
-    const auto& get_inclination() const { return inclination; }
-    const auto& get_right_ascension() const { return rightAscension; }
-    const auto& get_argument_of_perigee() const { return argPerigee; }
-    const auto& get_true_anomaly() const { return trueAnomaly; }
+    const auto& get_semimajor() const { return _semimajor; }
+    const auto& get_eccentricity() const { return _eccentricity; }
+    const auto& get_inclination() const { return _inclination; }
+    const auto& get_right_ascension() const { return _rightAscension; }
+    const auto& get_argument_of_perigee() const { return _argPerigee; }
+    const auto& get_true_anomaly() const { return _trueAnomaly; }
 
 private:
 
-    mp_units::quantity<mp_units::si::unit_symbols::km>  semimajor;
-    mp_units::quantity<mp_units::one>                   eccentricity;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> inclination;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> rightAscension;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> argPerigee;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> trueAnomaly;
+    mp_units::quantity<mp_units::si::unit_symbols::km>  _semimajor;
+    mp_units::quantity<mp_units::one>                   _eccentricity;
+    mp_units::quantity<mp_units::si::unit_symbols::rad> _inclination;
+    mp_units::quantity<mp_units::si::unit_symbols::rad> _rightAscension;
+    mp_units::quantity<mp_units::si::unit_symbols::rad> _argPerigee;
+    mp_units::quantity<mp_units::si::unit_symbols::rad> _trueAnomaly;
 
 };

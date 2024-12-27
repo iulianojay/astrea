@@ -144,3 +144,30 @@ std::ostream &operator<<(std::ostream& os, OrbitalElements const& elements) {
     os << "] (" << ElementSetToString.at(elements.set) << ")";
     return os;
 }
+
+
+// Copy constructor
+NewOrbitalElements::NewOrbitalElements(const NewOrbitalElements& other) :
+    _ptr(other._ptr->clone()),
+    _set(other._set)
+{}
+
+// Move constructor
+NewOrbitalElements::NewOrbitalElements(NewOrbitalElements&& other) noexcept :
+    _ptr(std::move(other._ptr)),
+    _set(std::move(other._set))
+{}
+
+// Move assignment operator
+NewOrbitalElements& NewOrbitalElements::operator=(NewOrbitalElements&& other) noexcept {
+    if (this != &other) {
+        _ptr = std::move(other._ptr);
+        _set = std::move(other._set);
+    }
+    return *this;
+}
+
+// Copy assignment operator
+NewOrbitalElements& NewOrbitalElements::operator=(const NewOrbitalElements& other) {
+    return *this = NewOrbitalElements(other);
+}

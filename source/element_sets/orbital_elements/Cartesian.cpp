@@ -64,14 +64,41 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys) 
     const quantity DcmPeri2Eci31 = sinInc*sinW;
     const quantity DcmPeri2Eci32 = sinInc*cosW;
 
-    // Inertial position and velocity
-    radius[0] = DcmPeri2Eci11*xPeri + DcmPeri2Eci12*yPeri;
-    radius[1] = DcmPeri2Eci21*xPeri + DcmPeri2Eci22*yPeri;
-    radius[2] = DcmPeri2Eci31*xPeri + DcmPeri2Eci32*yPeri;
+    // Inertial position and _velocity
+    _radius[0] = DcmPeri2Eci11*xPeri + DcmPeri2Eci12*yPeri;
+    _radius[1] = DcmPeri2Eci21*xPeri + DcmPeri2Eci22*yPeri;
+    _radius[2] = DcmPeri2Eci31*xPeri + DcmPeri2Eci32*yPeri;
 
-    velocity[0] = DcmPeri2Eci11*vxPeri + DcmPeri2Eci12*vyPeri;
-    velocity[1] = DcmPeri2Eci21*vxPeri + DcmPeri2Eci22*vyPeri;
-    velocity[2] = DcmPeri2Eci31*vxPeri + DcmPeri2Eci32*vyPeri;
+    _velocity[0] = DcmPeri2Eci11*vxPeri + DcmPeri2Eci12*vyPeri;
+    _velocity[1] = DcmPeri2Eci21*vxPeri + DcmPeri2Eci22*vyPeri;
+    _velocity[2] = DcmPeri2Eci31*vxPeri + DcmPeri2Eci32*vyPeri;
+}
+
+
+// Copy constructor
+Cartesian::Cartesian(const Cartesian& other) :
+    _radius(other._radius),
+    _velocity(other._velocity)
+{}
+
+// Move constructor
+Cartesian::Cartesian(Cartesian&& other) noexcept :
+    _radius(std::move(other._radius)),
+    _velocity(std::move(other._velocity))
+{}
+
+// Move assignment operator
+Cartesian& Cartesian::operator=(Cartesian&& other) noexcept {
+    if (this != &other) {
+        _radius = std::move(other._radius);
+        _velocity = std::move(other._velocity);
+    }
+    return *this;
+}
+
+// Copy assignment operator
+Cartesian& Cartesian::operator=(const Cartesian& other) {
+    return *this = Cartesian(other);
 }
 
 
