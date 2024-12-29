@@ -1,165 +1,24 @@
 #include "OrbitalElements.hpp"
 
-#include <cstdio>
-
-
-OrbitalElements::OrbitalElements(const ElementSet& set) : set(set) {
-    for (int ii = 0; ii < 6; ++ii) {
-        _M_elems[ii] = 0.0;
-    }
+// Generic implicit constructor
+void OrbitalElements::generic_ctor_impl() {
+    _setId = ptr()->get_set_id();
 }
-
-
-OrbitalElements::OrbitalElements(const element_array& elements, const ElementSet& set) : set(set) {
-    std::copy(std::begin(elements), std::end(elements), _M_elems);
-}
-
-
-void OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
-    // Check if conversion is necessary
-    if (newSet == set) {
-        return;
-    }
-
-    // Generic conversion
-    const auto newElements = conversions::convert((*this), set, newSet, system);
-    std::copy(std::begin(newElements), std::end(newElements), _M_elems);
-    set = newSet;
-}
-
-
-OrbitalElements OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
-    // Check if conversion is necessary
-    if (newSet == set) {
-        return OrbitalElements(*this);
-    }
-
-    // Generic conversion
-    const auto newElements = conversions::convert((*this), set, newSet, system);
-    return OrbitalElements(newElements, newSet);
-}
-
-
-const ElementSet& OrbitalElements::get_set() const {
-    return set;
-}
-
-
-const bool OrbitalElements::same_set(const OrbitalElements& other) {
-    return other.set == set;
-}
-
-
-// Copy assignment
-OrbitalElements& OrbitalElements::operator=(const OrbitalElements& other) {
-    set = other.set;
-    for (size_t ii = 0; ii < 6; ii++) {
-        (*this)[ii] = other[ii];
-    }
-    return *this;
-}
-
-
-// Addition
-OrbitalElements OrbitalElements::operator+(const OrbitalElements& other) const {
-    // Check both element sets are the same
-    if (other.set != set) {
-        throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
-    }
-
-    // Sum
-    element_array sumElements = (*this);
-    for (size_t ii = 0; ii < 6; ii++) {
-        sumElements[ii] += other[ii];
-    }
-    return OrbitalElements(sumElements, set);
-}
-
-
-OrbitalElements& OrbitalElements::operator+=(const OrbitalElements& other) {
-    // Check both element sets are the same
-    if (other.set != set) {
-        throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
-    }
-
-    // Sum
-    for (size_t ii = 0; ii < 6; ii++) {
-        (*this)[ii] += other[ii];
-    }
-
-    return (*this);
-}
-
-// Subtraction
-OrbitalElements OrbitalElements::operator-(const OrbitalElements& other) const {
-    // Check both element sets are the same
-    if (other.set != set) {
-        throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be subtracted.");
-    }
-
-    // Diff
-    element_array diffElements = (*this);
-    for (size_t ii = 0; ii < 6; ii++) {
-        diffElements[ii] -= other[ii];
-    }
-    return OrbitalElements(diffElements, set);
-}
-
-
-OrbitalElements& OrbitalElements::operator-=(const OrbitalElements& other) {
-    // Check both element sets are the same
-    if (other.set != set) {
-        throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be added.");
-    }
-
-    // Sum
-    for (size_t ii = 0; ii < 6; ii++) {
-        (*this)[ii] -= other[ii];
-    }
-
-    return (*this);
-}
-
-
-const bool OrbitalElements::nearly_equal(const OrbitalElements& other, bool ignoreFastVariable, const double& tol) {
-    if (set != other.get_set()) {
-        return false;
-    }
-    for (int ii = 0; ii < (ignoreFastVariable ? 5 : 6); ii++) {
-        if (std::fabs((_M_elems[ii] - other[ii])/_M_elems[ii]) > tol) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-std::ostream &operator<<(std::ostream& os, OrbitalElements const& elements) {
-    os << "[" << elements[0];
-    bool skipFirst = true;
-    for (const auto& x: elements) {
-        if (skipFirst) { skipFirst = false; continue; }
-        os << ", " << x;
-    }
-    os << "] (" << ElementSetToString.at(elements.set) << ")";
-    return os;
-}
-
 
 // Copy constructor
-NewOrbitalElements::NewOrbitalElements(const NewOrbitalElements& other) :
+OrbitalElements::OrbitalElements(const OrbitalElements& other) :
     _ptr(other._ptr->clone()),
     _setId(other._setId)
 {}
 
 // Move constructor
-NewOrbitalElements::NewOrbitalElements(NewOrbitalElements&& other) noexcept :
+OrbitalElements::OrbitalElements(OrbitalElements&& other) noexcept :
     _ptr(std::move(other._ptr)),
     _setId(std::move(other._setId))
 {}
 
 // Move assignment operator
-NewOrbitalElements& NewOrbitalElements::operator=(NewOrbitalElements&& other) noexcept {
+OrbitalElements& OrbitalElements::operator=(OrbitalElements&& other) noexcept {
     if (this != &other) {
         _ptr = std::move(other._ptr);
         _setId = std::move(other._setId);
@@ -168,6 +27,78 @@ NewOrbitalElements& NewOrbitalElements::operator=(NewOrbitalElements&& other) no
 }
 
 // Copy assignment operator
-NewOrbitalElements& NewOrbitalElements::operator=(const NewOrbitalElements& other) {
-    return *this = NewOrbitalElements(other);
+OrbitalElements& OrbitalElements::operator=(const OrbitalElements& other) {
+    return *this = OrbitalElements(other);
+}
+
+
+/// Assignment from a user-defined OrbitalElements
+template <typename T>
+requires(IsGenericallyConstructableOrbitalElements<T>)
+OrbitalElements& OrbitalElements::operator=(T&& x) {
+    return (*this) = OrbitalElements(std::forward<T>(x));
+}
+
+template <typename T>
+requires(IsGenericallyConstructableOrbitalElements<T>)
+const T *OrbitalElements::extract() const noexcept {
+    auto p = static_cast<const detail::OrbitalElementsInner<T> *>(ptr());
+    return p == nullptr ? nullptr : &(p->_value);
+}
+
+// Utilities
+void OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
+    if (static_cast<enum_type>(newSet) == _setId) { return; }
+
+    const auto newElements = convert_impl(newSet, system);
+    (*this) = newElements;
+}
+OrbitalElements OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
+    if (static_cast<enum_type>(newSet) == _setId) { return (*this); }
+
+    return convert_impl(newSet, system);
+}
+
+Cartesian OrbitalElements::to_cartesian(const AstrodynamicsSystem& system) const {
+    return ptr()->to_cartesian(system);
+}
+Keplerian OrbitalElements::to_keplerian(const AstrodynamicsSystem& system) const {
+    return ptr()->to_keplerian(system);
+}
+
+const enum_type& OrbitalElements::get_set_id() const {
+    return ptr()->get_set_id();
+}
+
+const bool OrbitalElements::same_set(const OrbitalElements& other) const {
+    return (_setId != other._setId);
+}
+
+// Ensure the pointer actually points to something
+detail::OrbitalElementsInnerBase const *OrbitalElements::ptr() const {
+    assert(_ptr.get() != nullptr);
+    return _ptr.get();
+}
+detail::OrbitalElementsInnerBase *OrbitalElements::ptr() {
+    assert(_ptr.get() != nullptr);
+    return _ptr.get();
+}
+
+OrbitalElements OrbitalElements::convert_impl(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
+    switch (newSet) {
+        case (ElementSet::CARTESIAN) :
+            return OrbitalElements(to_cartesian(system));
+
+        case (ElementSet::KEPLERIAN) :
+            return OrbitalElements(to_keplerian(system));
+
+        default:
+            throw std::logic_error("This conversion is not directly available from this class.");
+    }
+}
+
+
+std::ostream& operator<<(std::ostream& os, OrbitalElements const& elements) {
+    os << (*elements.ptr());
+    return os;
 }

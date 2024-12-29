@@ -2,6 +2,7 @@
 
 #ifndef SWIG
     #include <iostream>
+    #include <iomanip>
     #include <cmath>
     #include <array>
 #endif
@@ -10,13 +11,11 @@
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
 
-#include <iomanip>
-#include <iostream>
-
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include "astro/types/typedefs.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 
 #include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
@@ -25,18 +24,6 @@ class Keplerian;
 class Cartesian {
 
     friend std::ostream& operator<<(std::ostream&, Cartesian const&);
-
-    using RadiusVector = std::array<
-        mp_units::quantity<
-            mp_units::si::unit_symbols::km
-        >,
-    3>;
-
-    using VelocityVector = std::array<
-        mp_units::quantity<
-            mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s
-        >,
-    3>;
 
 public:
 

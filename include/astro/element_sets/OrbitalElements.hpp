@@ -8,14 +8,6 @@
     #include <stdexcept>
 #endif
 
-// mp-units
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
-
-#include <mp-units/format.h>
-#include <mp-units/ostream.h>
-#include <mp-units/systems/si.h>
-
 // Astro
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/Frame.hpp"
@@ -183,96 +175,68 @@ private:
 
 } // namespace detail
 
-class NewOrbitalElements;
+class OrbitalElements;
 
 template <typename T>
 concept IsGenericallyConstructableOrbitalElements = requires(T) {
     requires IsUserDefinedOrbitalElements<remove_cv_ref<T>>;
-    std::negation<std::is_same<NewOrbitalElements, remove_cv_ref<T>>>::value;
+    std::negation<std::is_same<OrbitalElements, remove_cv_ref<T>>>::value;
 };
 
 
-class NewOrbitalElements {
+class OrbitalElements {
 
-    friend std::ostream& operator<<(std::ostream& os, NewOrbitalElements const& elements) {
-        os << (*elements.ptr());
-        return os;
-    }
+    friend std::ostream& operator<<(std::ostream& os, OrbitalElements const& elements);
 
 public:
 
     // Default constructor
-    NewOrbitalElements();
+    OrbitalElements();
 
 private:
 
-    void generic_ctor_impl() {
-        _setId = ptr()->get_set_id();
-    };
+    void generic_ctor_impl();
 
 public:
 
     template <typename T>
     requires(IsGenericallyConstructableOrbitalElements<T>)
-    explicit NewOrbitalElements(T &&x) :
+    explicit OrbitalElements(T &&x) :
         _ptr( std::make_unique< detail::OrbitalElementsInner<remove_cv_ref<T>> >(std::forward<T>(x)) )
     {
         generic_ctor_impl();
     }
 
     // Copy constructor
-    NewOrbitalElements(const NewOrbitalElements&);
+    OrbitalElements(const OrbitalElements&);
 
     // Move constructor
-    NewOrbitalElements(NewOrbitalElements&&) noexcept;
+    OrbitalElements(OrbitalElements&&) noexcept;
 
     // Move assignment operator
-    NewOrbitalElements& operator=(NewOrbitalElements&&) noexcept;
+    OrbitalElements& operator=(OrbitalElements&&) noexcept;
 
     // Copy assignment operator
-    NewOrbitalElements& operator=(const NewOrbitalElements&);
+    OrbitalElements& operator=(const OrbitalElements&);
 
     /// Assignment from a user-defined OrbitalElements
     template <typename T>
     requires(IsGenericallyConstructableOrbitalElements<T>)
-    NewOrbitalElements& operator=(T&& x) {
-        return (*this) = NewOrbitalElements(std::forward<T>(x));
-    }
+    OrbitalElements& operator=(T&& x);
 
     template <typename T>
     requires(IsGenericallyConstructableOrbitalElements<T>)
-    const T *extract() const noexcept {
-        auto p = static_cast<const detail::OrbitalElementsInner<T> *>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
-    }
+    const T *extract() const noexcept;
 
     // Utilities
-    void convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
-        if (static_cast<enum_type>(newSet) == _setId) { return; }
+    void convert(const ElementSet& newSet, const AstrodynamicsSystem& system);
+    OrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const;
 
-        const auto newElements = convert_impl(newSet, system);
-        (*this) = newElements;
-    }
-    NewOrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
-        if (static_cast<enum_type>(newSet) == _setId) { return (*this); }
+    Cartesian to_cartesian(const AstrodynamicsSystem& system) const;
+    Keplerian to_keplerian(const AstrodynamicsSystem& system) const;
 
-        return convert_impl(newSet, system);
-    }
-
-    Cartesian to_cartesian(const AstrodynamicsSystem& system) const {
-        return ptr()->to_cartesian(system);
-    }
-    Keplerian to_keplerian(const AstrodynamicsSystem& system) const {
-        return ptr()->to_keplerian(system);
-    }
-
-    const enum_type& get_set_id() const {
-        return ptr()->get_set_id();
-    }
-
-    const bool same_set(const NewOrbitalElements& other) const {
-        return (_setId != other._setId);
-    }
+    const enum_type& get_set_id() const;
+    const bool same_set(const OrbitalElements& other) const;
 
     // Pointer to user-defined elements
     const void* get_ptr() const;
@@ -287,61 +251,8 @@ private:
     enum_type _setId;
 
     // Ensure the pointer actually points to something
-    detail::OrbitalElementsInnerBase const *ptr() const {
-        assert(_ptr.get() != nullptr);
-        return _ptr.get();
-    }
-    detail::OrbitalElementsInnerBase *ptr() {
-        assert(_ptr.get() != nullptr);
-        return _ptr.get();
-    }
+    detail::OrbitalElementsInnerBase const *ptr() const;
+    detail::OrbitalElementsInnerBase *ptr();
 
-    NewOrbitalElements convert_impl(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
-        switch (newSet) {
-            case (ElementSet::CARTESIAN) :
-                return NewOrbitalElements(to_cartesian(system));
-
-            case (ElementSet::KEPLERIAN) :
-                return NewOrbitalElements(to_keplerian(system));
-
-            default:
-                throw std::logic_error("This conversion is not directly available from this class.");
-        }
-    }
-};
-
-class OrbitalElements : public element_array {
-
-    friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
-
-public:
-
-    // Constructors
-    OrbitalElements(const ElementSet& set = ElementSet::CARTESIAN);
-    OrbitalElements(const element_array& elements, const ElementSet& set = ElementSet::CARTESIAN);
-    ~OrbitalElements() = default;
-
-    // Copy assignment
-    OrbitalElements& operator=(const OrbitalElements& other);
-
-    // Addition
-    OrbitalElements operator+(const OrbitalElements& other) const;
-    OrbitalElements& operator+=(const OrbitalElements& other);
-
-    // Subtraction
-    OrbitalElements operator-(const OrbitalElements& other) const;
-    OrbitalElements& operator-=(const OrbitalElements& other);
-
-    // Utilities
-    void convert(const ElementSet& newSet, const AstrodynamicsSystem& system);
-    OrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const;
-
-    const ElementSet& get_set() const;
-    const bool same_set(const OrbitalElements& other);
-
-    const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8);
-
-private:
-
-    ElementSet set;
+    OrbitalElements convert_impl(const ElementSet& newSet, const AstrodynamicsSystem& system) const;
 };

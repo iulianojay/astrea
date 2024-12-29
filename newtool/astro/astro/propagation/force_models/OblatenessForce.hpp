@@ -12,24 +12,28 @@ class OblatenessForce : public Force {
     OblatenessForce(const AstrodynamicsSystem& sys, const size_t& N = 2, const size_t& M = 0);
     ~OblatenessForce() = default;
 
-    BasisArray compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector
+        compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
     void set_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
 
   private:
-    mutable std::vector<std::vector<double>> P{};
-    mutable std::vector<std::vector<double>> C{};
-    mutable std::vector<std::vector<double>> S{};
+    using Altitude = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using Unitless = mp_units::quantity<mp_units::one>;
 
-    std::vector<std::vector<double>> alpha;
-    std::vector<std::vector<double>> beta;
-    std::vector<std::vector<double>> gamma;
-    std::vector<std::vector<double>> Pbase;
+    mutable std::vector<std::vector<Unitless>> P{};
+    mutable std::vector<std::vector<Unitless>> C{};
+    mutable std::vector<std::vector<Unitless>> S{};
+
+    std::vector<std::vector<Unitless>> alpha;
+    std::vector<std::vector<Unitless>> beta;
+    std::vector<std::vector<Unitless>> gamma;
+    std::vector<std::vector<Unitless>> Pbase;
 
     const size_t N;
     const size_t M;
     const CelestialBodyUniquePtr& center;
 
-    void assign_legendre(const double& latitude) const;
+    void assign_legendre(const Altitude& latitude) const;
     void size_vectors(const size_t& N, const size_t& M);
     void ingest_legendre_coefficient_file(const size_t& N, const size_t& M);
 };

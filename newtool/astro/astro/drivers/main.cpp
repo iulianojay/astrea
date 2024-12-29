@@ -48,22 +48,6 @@ int main()
 
     NewOrbitalElements newCart(cart);
 
-    std::cout << "Before: " << cart << std::endl;
-    std::cout << "New: " << newCart << std::endl << std::endl;
-
-    newCart.convert(ElementSet::KEPLERIAN, sys);
-
-    std::cout << "Converted: " << kepl << std::endl;
-    std::cout << "Correct: " << comp << std::endl;
-    std::cout << "New: " << newCart << std::endl << std::endl;
-
-    comp.convert(ElementSet::CARTESIAN, sys);
-    newCart.convert(ElementSet::CARTESIAN, sys);
-
-    std::cout << "After: " << cart2 << std::endl;
-    std::cout << "Correct: " << comp << std::endl;
-    std::cout << "New: " << newCart << std::endl << std::endl;
-
     return 0;
 
     const OrbitalElements state({ 10000.0, 0.0, 45.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);

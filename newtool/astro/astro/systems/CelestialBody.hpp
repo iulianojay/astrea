@@ -15,6 +15,18 @@
 #include <astro/types/typedefs.hpp>
 
 class CelestialBody {
+
+    // Unit shortcuts
+    using GravParam = mp_units::quantity<(mp_units::si::unit_symbols::km * pow<3>) / (mp_units::si::unit_symbols::s * pow<2>)>;
+    using Mass         = mp_units::quantity<mp_units::si::unit_symbols::kg * mp_units::mag_power<10, 24>>;
+    using Distance     = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using Speed        = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s>;
+    using Unitless     = mp_units::quantity<mp_units::one>;
+    using EccRate      = mp_units::quantity<mp_units::one / mp_units::si::unit_symbols::s>;
+    using Angle        = mp_units::quantity<mp_units::si::unit_symbols::rad>;
+    using AnglularRate = mp_units::quantity<mp_units::si::unit_symbols::rad / mp_units::si::unit_symbols::s>;
+    using Period       = mp_units::quantity<mp_units::si::unit_symbols::s>;
+
   public:
     // Constructor/destructor
     CelestialBody()                           = default;
@@ -35,53 +47,75 @@ class CelestialBody {
     const std::string& get_parent() const { return _parent; };
     const std::string& get_type() const { return _type; };
 
-    const double& get_mu() const { return _mu; };
-    const double& get_mass() const { return _mass; };
-    const double& get_equitorial_radius() const { return _equitorialRadius; };
-    const double& get_polar_radius() const { return _polarRadius; };
-    const double& get_crash_radius() const { return _crashRadius; };
-    const double& get_sphere_of_influence() const { return _sphereOfInfluence; };
+    const GravParam& get_mu() const { return _mu; };
+    const Mass& get_mass() const { return _mass; };
+    const Distance& get_equitorial_radius() const { return _equitorialRadius; };
+    const Distance& get_polar_radius() const { return _polarRadius; };
+    const Distance& get_crash_radius() const { return _crashRadius; };
+    const Distance& get_sphere_of_influence() const { return _sphereOfInfluence; };
 
-    const double& get_j2() const { return _j2; };
-    const double& get_j3() const { return _j3; };
+    const Unitless& get_j2() const { return _j2; };
+    const Unitless& get_j3() const { return _j3; };
 
-    const double& get_axial_tilt() const { return _axialTilt; };
-    const double& get_rotation_rate() const { return _rotationRate; };
-    const double& get_siderial_period() const { return _siderialPeroid; };
+    const Angle& get_axial_tilt() const { return _axialTilt; };
+    const AnglularRate& get_rotation_rate() const { return _rotationRate; };
+    const Period& get_siderial_period() const { return _siderialPeroid; };
 
-    const double& get_semimajor() const { return _semimajorAxis; };
-    const double& get_eccentricity() const { return _eccentricity; };
-    const double& get_inclination() const { return _inclination; };
-    const double& get_right_ascension() const { return _rightAscension; };
-    const double& get_argument_of_perigee() const { return _argumentOfPerigee; };
-    const double& get_true_latitude() const { return _trueLatitude; };
-    const double& get_true_anomaly() const { return _trueAnomaly; };
-    const double& get_mean_anomaly() const { return _meanAnomaly; };
+    const Distance& get_semimajor() const { return _semimajorAxis; };
+    const Unitless& get_eccentricity() const { return _eccentricity; };
+    const Angle& get_inclination() const { return _inclination; };
+    const Angle& get_right_ascension() const { return _rightAscension; };
+    const Angle& get_argument_of_perigee() const { return _argumentOfPerigee; };
+    const Angle& get_true_latitude() const { return _trueLatitude; };
+    const Angle& get_true_anomaly() const { return _trueAnomaly; };
+    const Angle& get_mean_anomaly() const { return _meanAnomaly; };
 
-    const double& get_semimajor_rate() const { return _semimajorAxisRate; };
-    const double& get_eccentricity_rate() const { return _eccentricityRate; };
-    const double& get_inclination_rate() const { return _inclinationRate; };
-    const double& get_right_ascension_rate() const { return _rightAscensionRate; };
-    const double& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
-    const double& get_true_latitude_rate() const { return _trueLatitudeRate; };
+    const Speed& get_semimajor_rate() const { return _semimajorAxisRate; };
+    const EccRate& get_eccentricity_rate() const { return _eccentricityRate; };
+    const AnglularRate& get_inclination_rate() const { return _inclinationRate; };
+    const AnglularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
+    const AnglularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
+    const AnglularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
 
     std::vector<State>& get_states() { return _states; };
     const State& get_closest_state(const Time& time) const;
 
-  private:
-    //----------------------------------------------- Variables -----------------------------------------------//
 
+  private:
     // Properties
     std::string _name, _parent, _type;
     Date _referenceDate;
-    double _mu, _mass, _equitorialRadius, _polarRadius, _crashRadius, _sphereOfInfluence, _j2, _j3, _axialTilt,
-        _rotationRate, _siderialPeroid, _semimajorAxis, _eccentricity, _inclination, _rightAscension,
-        _argumentOfPerigee, _trueLatitude, _trueAnomaly, _meanAnomaly, _semimajorAxisRate, _eccentricityRate,
-        _inclinationRate, _rightAscensionRate, _argumentOfPerigeeRate, _trueLatitudeRate;
+    GravParam _mu;
+    Mass _mass;
+    Distance _equitorialRadius;
+    Distance _polarRadius;
+    Distance _crashRadius;
+    Distance _sphereOfInfluence;
+
+    Unitless _j2;
+    Unitless _j3;
+    Angle _axialTilt;
+    Angle _rotationRate;
+    Period _siderialPeroid;
+
+    Distance _semimajorAxis;
+    Unitless _eccentricity;
+    Angle _inclination;
+    Angle _rightAscension;
+    Angle _argumentOfPerigee;
+    Angle _trueLatitude;
+    Angle _trueAnomaly;
+    Angle _meanAnomaly;
+
+    Speed _semimajorAxisRate;
+    EccRate _eccentricityRate;
+    AnglularRate _inclinationRate;
+    AnglularRate _rightAscensionRate;
+    AnglularRate _argumentOfPerigeeRate;
+    AnglularRate _trueLatitudeRate;
 
     std::vector<State> _states;
 
-    //------------------------------------------------ Methods ------------------------------------------------//
     void _propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
 };
 
