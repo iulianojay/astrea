@@ -6,6 +6,9 @@
 
 #include "AstrodynamicsSystem.hpp"
 #include "Keplerian.hpp"
+#include "Equinoctial.hpp"
+#include "Time.hpp"
+#include "OrbitalElements.hpp"
 
 
 using namespace mp_units;
@@ -20,7 +23,7 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys) 
     static const quantity twoPiRad = 2.0 * (mag<pi>*rad);
 
     // Get mu
-    const quantity mu = sys.get_center()->get_mu() * km*km*km/(s*s);
+    const quantity mu = sys.get_center()->get_mu();
 
     // Extract elements
     const auto& a = elements.get_semimajor();
@@ -43,8 +46,8 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys) 
     const quantity cosInc = cos(inc);
     const quantity sinInc = sin(inc);
 
-    const quantity h = sqrt(mu*a*(1 - ecc*ecc));
-    const quantity A = h*h/mu/(1 + ecc*cosTheta);
+    const quantity h = sqrt(mu*a*(1.0 - ecc*ecc));
+    const quantity A = h*h/mu/(1.0 + ecc*cosTheta);
     const quantity B = mu/h;
 
     // Perifocal Coordinates
@@ -75,6 +78,46 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys) 
 }
 
 
+Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys) {
+
+    // Get mu
+    const quantity mu = sys.get_center()->get_mu();
+
+    // Extract
+    const auto& semilatus = elements.get_semilatus();
+    const auto& f = elements.get_f();
+    const auto& g = elements.get_g();
+    const auto& h = elements.get_h();
+    const auto& k = elements.get_k();
+    const auto& trueLongitude = elements.get_true_longitude();
+
+    // Precalculate
+    const auto cosL = cos(trueLongitude);
+    const auto sinL = sin(trueLongitude);
+
+    const auto alphaSq = h*h - k*k;
+    const auto sSq = 1.0 + h*h + k*k;
+    const auto w = 1.0 + f*cosL + g*sinL;
+    const auto r = semilatus/w;
+
+    const auto rOverSSq = r/sSq;
+    const auto twoHK = 2.0*h*k;
+
+    const auto gamma = 1.0/sSq*sqrt(mu/p);
+
+    // Radius
+    _radius[0] = rOverSSq*(cosL*(1.0 + alphaSq) + twoHK*sinL);
+    _radius[1] = rOverSSq*(sinL*(1.0 - alphaSq) + twoHK*cosL);
+    _radius[2] = 2.0*rOverSSq*(h*sinL* - k*cosL);
+
+    // Velocity
+    _velocity[0] = -gamma*(sinL*(1.0 + alphaSq) - twoHK*(cosL + f) + g*(1.0 + alphSq));
+    _velocity[1] = -gamma*(cosL*(-1.0 + alphaSq) + twoHK*(sinL + g) + f*(-1.0 + alphSq));
+    _velocity[2] = 2.0*gamma*(h*cosL + k*sinL + f*h + g*k);
+
+}
+
+
 // Copy constructor
 Cartesian::Cartesian(const Cartesian& other) :
     _radius(other._radius),
@@ -99,6 +142,47 @@ Cartesian& Cartesian::operator=(Cartesian&& other) noexcept {
 // Copy assignment operator
 Cartesian& Cartesian::operator=(const Cartesian& other) {
     return *this = Cartesian(other);
+}
+
+
+OrbitalElements Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const {
+
+    Cartesian elements = other.to_cartesian(sys);
+
+    const quantity interpx  = ::interpolate({thisTime, otherTime}, {_x,  elements.get_x()},  targetTime);
+    const quantity interpy  = ::interpolate({thisTime, otherTime}, {_y,  elements.get_y()},  targetTime);
+    const quantity interpz  = ::interpolate({thisTime, otherTime}, {_z,  elements.get_z()},  targetTime);
+    const quantity interpvx = ::interpolate({thisTime, otherTime}, {_vx, elements.get_vx()}, targetTime);
+    const quantity interpvy = ::interpolate({thisTime, otherTime}, {_vy, elements.get_vy()}, targetTime);
+    const quantity interpvz = ::interpolate({thisTime, otherTime}, {_vz, elements.get_vz()}, targetTime);
+
+    Cartesian iterpCart({interpx, interpy, interpz}, {interpvx, interpvy, interpvz});
+
+    return OrbitalElements(iterpCart);
+}
+
+std::vector<double> Cartesian::to_vector() const {
+    return {
+        value_cast<double>(_radius[0]),
+        value_cast<double>(_radius[1]),
+        value_cast<double>(_radius[2]),
+        value_cast<double>(_velocity[0]),
+        value_cast<double>(_velocity[1]),
+        value_cast<double>(_velocity[2])
+    };
+}
+
+void Cartesian::update_from_vector(const std::vector<double>& vec) {
+    _radius = {
+        vec[0] * km,
+        vec[1] * km,
+        vec[2] * km
+    }
+    _velocity = {
+        vec[0] * km / s,
+        vec[1] * km / s,
+        vec[2] * km / s
+    }
 }
 
 

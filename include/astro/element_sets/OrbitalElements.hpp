@@ -18,15 +18,19 @@
 #include "astro/types/typedefs.hpp"
 #include "astro/types/typeid_name_extract.hpp"
 
-#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
-
 #include "astro/element_sets/orbital_elements/Cartesian.hpp"
 #include "astro/element_sets/orbital_elements/Keplerian.hpp"
+#include "astro/element_sets/orbital_elements/Equinoctial.hpp"
 
+#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
+#include "fwd/time/Time.fwd.hpp"
+
+
+class OrbitalElements;
 
 template <typename T>
 concept HasGetSetId = requires(const T elements) {
-    { elements.get_set_id() } -> std::same_as<const enum_type&>;
+    { elements.get_set_id() } -> std::same_as<EnumType>;
 };
 
 template <typename T, typename U>
@@ -45,6 +49,31 @@ concept HasDirectKeplerianConversion = requires(const T elements, const Astrodyn
 };
 
 template <typename T>
+concept HasDirectEquinoctialConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
+    { elements.to_equinoctial(sys) } -> std::same_as<Equinoctial>;
+};
+
+template <typename T>
+concept HasIterpolate = requires(const T elements, const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) {
+    { elements.interpolate(thisTime, otherTime, other, sys, targetTime) } -> std::same_as<OrbitalElements>;
+};
+
+template <typename T>
+concept HasToVector = requires(const T elements) {
+    { elements.to_vector() } -> std::same_as<std::vector<double>>;
+};
+
+template <typename T>
+concept HasUpdateFromVector = requires(T elements, const std::vector<double> vec) {
+    { elements.update_from_vector(vec) };
+};
+
+template <typename T>
+concept HasVectorConstructor = requires(const std::vector<double>& elements, const EnumType& setId) {
+    { T(elements, setId) };
+};
+
+template <typename T>
 concept IsUserDefinedOrbitalElements = requires(T) {
     std::is_same<T, remove_cv_ref<T>>::value;
     std::is_default_constructible<T>::value;
@@ -52,8 +81,9 @@ concept IsUserDefinedOrbitalElements = requires(T) {
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
-    requires std::is_same<T, Keplerian>::value || IsConstructableTo<T, Keplerian> || HasDirectKeplerianConversion<T>;
     requires HasGetSetId<T>;
+    requires HasToVector<T>;
+    requires HasUpdateFromVector<T>;
 };
 
 namespace detail {
@@ -71,9 +101,14 @@ struct OrbitalElementsInnerBase {
     // Required methods
     virtual Cartesian to_cartesian(const AstrodynamicsSystem& sys) const = 0;
     virtual Keplerian to_keplerian(const AstrodynamicsSystem& sys) const = 0;
-    virtual const enum_type& get_set_id() const = 0;
+    virtual Equinoctial to_equinoctial(const AstrodynamicsSystem& sys) const = 0;
+    virtual EnumType get_set_id() const = 0;
+    virtual std::vector<double> to_vector() const = 0;
+    virtual void update_from_vector(const std::vector<double>& vec) = 0;
 
     // Optional methods
+    virtual OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other,
+        const AstrodynamicsSystem& sys, const Time& targetTime) const = 0;
 
     // Implementation utilities
     virtual std::unique_ptr<OrbitalElementsInnerBase> clone() const = 0;
@@ -103,9 +138,21 @@ struct OrbitalElementsInner final : public OrbitalElementsInnerBase {
     explicit OrbitalElementsInner(T &&x) : _value(std::move(x)) {}
 
     // Get set
-    const enum_type& get_set_id() const {
+    EnumType get_set_id() const final {
         return _value.get_set_id();
     }
+
+    std::vector<double> to_vector() const final {
+        return _value.to_vector();
+    }
+
+    void update_from_vector(const std::vector<double>& vec) final {
+        _value.update_from_vector(vec);
+    }
+
+    // Interpolate
+    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other,
+        const AstrodynamicsSystem& sys, const Time& targetTime) const final;
 
     // Cartesian conversion
     Cartesian to_cartesian(const AstrodynamicsSystem& system) const {
@@ -149,6 +196,32 @@ struct OrbitalElementsInner final : public OrbitalElementsInnerBase {
         return value.to_keplerian(system);
     }
 
+    // Equinoctial conversion
+    Equinoctial to_equinoctial(const AstrodynamicsSystem& system) const {
+        return to_equinoctial_impl(_value, system);
+    }
+
+    template <typename U>
+    requires(std::is_same<U, Equinoctial>::value)
+    Equinoctial to_equinoctial_impl(const U& value, const AstrodynamicsSystem& system) const {
+        return Equinoctial(value);
+    }
+    template <typename U>
+    requires(IsConstructableTo<U, Equinoctial>)
+    Equinoctial to_equinoctial_impl(const U& value, const AstrodynamicsSystem& system) const {
+        return Equinoctial(value, system);
+    }
+    template <typename U>
+    requires(!IsConstructableTo<U, Equinoctial> && HasDirectEquinoctialConversion<U>)
+    Equinoctial to_equinoctial_impl(const U& value, const AstrodynamicsSystem& system) const {
+        return value.to_equinoctial(system);
+    }
+    template <typename U>
+    requires(!IsConstructableTo<U, Equinoctial> && !HasDirectEquinoctialConversion<U>)
+    Equinoctial to_equinoctial_impl(const U& value, const AstrodynamicsSystem& system) const {
+        throw std::logic_error("No conversion from this set to equinoctial elements has been defined.");
+    }
+
     // The clone method, used in the copy constructor of OrbitalElements.
     std::unique_ptr<OrbitalElementsInnerBase> clone() const final {
         return std::make_unique<OrbitalElementsInner>(_value);
@@ -174,8 +247,6 @@ private:
 };
 
 } // namespace detail
-
-class OrbitalElements;
 
 template <typename T>
 concept IsGenericallyConstructableOrbitalElements = requires(T) {
@@ -229,14 +300,29 @@ public:
     const T *extract() const noexcept;
 
     // Utilities
+    template <typename T>
+    requires(IsGenericallyConstructableOrbitalElements<T> && HasVectorConstructor<T>)
+    void convert(const AstrodynamicsSystem& system);
+
+    template <typename T>
+    requires(IsGenericallyConstructableOrbitalElements<T> && HasVectorConstructor<T>)
+    OrbitalElements convert(const AstrodynamicsSystem& system) const;
+
     void convert(const ElementSet& newSet, const AstrodynamicsSystem& system);
     OrbitalElements convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const;
 
     Cartesian to_cartesian(const AstrodynamicsSystem& system) const;
     Keplerian to_keplerian(const AstrodynamicsSystem& system) const;
+    Equinoctial to_equinoctial(const AstrodynamicsSystem& system) const;
 
-    const enum_type& get_set_id() const;
+    EnumType get_set_id() const;
     const bool same_set(const OrbitalElements& other) const;
+
+    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other,
+        const AstrodynamicsSystem& sys, const Time& targetTime) const;
+
+    std::vector<double> to_vector() const;
+    void update_from_vector(const std::vector<double>& vec);
 
     // Pointer to user-defined elements
     const void* get_ptr() const;
@@ -248,7 +334,7 @@ private:
     std::unique_ptr<detail::OrbitalElementsInnerBase> _ptr;
 
     // Members
-    enum_type _setId;
+    EnumType _setId;
 
     // Ensure the pointer actually points to something
     detail::OrbitalElementsInnerBase const *ptr() const;

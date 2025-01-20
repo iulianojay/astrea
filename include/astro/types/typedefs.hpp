@@ -35,7 +35,7 @@ using AccelerationVector = std::array<
     >,
 3>;
 
-using enum_type = uint32_t;
+using EnumType = uint32_t;
 
 #ifdef SWIG
 

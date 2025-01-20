@@ -6,6 +6,10 @@
 
 #include "AstrodynamicsSystem.hpp"
 #include "Cartesian.hpp"
+#include "Equinoctial.hpp"
+#include "interpolation.hpp"
+#include "Time.hpp"
+#include "OrbitalElements.hpp"
 
 
 using namespace mp_units;
@@ -28,7 +32,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys) 
     static const quantity twoPiRad = 2.0 * (mag<pi>*rad);
 
     // Get mu
-    const quantity mu = sys.get_center()->get_mu() * km*km*km/(s*s);
+    const quantity mu = sys.get_center()->get_mu();
 
     // Get r and v
     const auto& x = elements.get_x();
@@ -164,6 +168,37 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys) 
     }
 }
 
+Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys) {
+
+    const auto& semilatus = elements.get_semilatus();
+    const auto& f = elements.get_f();
+    const auto& g = elements.get_g();
+    const auto& h = elements.get_h();
+    const auto& k = elements.get_k();
+    const auto& trueLongitude = elements.get_true_longitude();
+
+    // Semimajor
+    const auto eccSq = f*f + g*g;
+    _semimajor = semilatus/(1 - eccSq);
+
+    // Eccentricity
+    _eccentricity = sqrt(eccSq);
+
+    // Inclination
+    const auto hSqPlusKSq = h*h + k*k;
+    _inclination = atan2(2.0*sqrt(hSqPlusKSq), 1 - hSqPlusKSq);
+
+    // Arg perigee
+    _argPerigee = atan2(g*h - f*k, f*h + g*k);
+
+    // Right ascension
+    _rightAscension = atan2(k, h);
+
+    // Anomaly
+    _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
+
+}
+
 // Copy constructor
 Keplerian::Keplerian(const Keplerian& other) :
     _semimajor(other._semimajor),
@@ -202,6 +237,41 @@ Keplerian& Keplerian::operator=(const Keplerian& other) {
     return *this = Keplerian(other);
 }
 
+
+OrbitalElements Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const {
+    Keplerian elements = other.to_keplerian(sys);
+
+    const quantity<km>  interpSemimajor = ::interpolate({thisTime, otherTime}, {_semimajor,      elements.get_semimajor()},           targetTime);
+    const quantity<one> interpEcc       = ::interpolate({thisTime, otherTime}, {_eccentricity,   elements.get_eccentricity()},        targetTime);
+    const quantity<rad> interpInc       = ::interpolate({thisTime, otherTime}, {_inclination,    elements.get_inclination()},         targetTime);
+    const quantity<rad> interpRaan      = ::interpolate({thisTime, otherTime}, {_rightAscension, elements.get_right_ascension()},     targetTime);
+    const quantity<rad> interpArgPer    = ::interpolate({thisTime, otherTime}, {_argPerigee,     elements.get_argument_of_perigee()}, targetTime);
+    const quantity<rad> interpTheta     = ::interpolate({thisTime, otherTime}, {_trueAnomaly,    elements.get_true_anomaly()},        targetTime);
+
+    Keplerian iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
+
+    return OrbitalElements(iterpKepl);
+}
+
+std::vector<double> Keplerian::to_vector() const {
+    return {
+        value_cast<double>(_semimajor),
+        value_cast<double>(_eccentricity),
+        value_cast<double>(_inclination),
+        value_cast<double>(_rightAscension),
+        value_cast<double>(_argPerigee),
+        value_cast<double>(_trueAnomaly)
+    };
+}
+
+void Keplerian::update_from_vector(const std::vector<double>& vec) {
+    _semimajor = vec[0] * km;
+    _eccentricity = vec[1] * one;
+    _inclination = vec[2] * rad;
+    _rightAscension = vec[3] * rad;
+    _argPerigee = vec[4] * rad;
+    _trueAnomaly = vec[5] * rad;
+}
 
 std::ostream &operator<<(std::ostream& os, Keplerian const& elements) {
     os << "[";

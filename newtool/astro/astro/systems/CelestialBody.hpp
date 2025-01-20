@@ -17,8 +17,9 @@
 class CelestialBody {
 
     // Unit shortcuts
-    using GravParam = mp_units::quantity<(mp_units::si::unit_symbols::km * pow<3>) / (mp_units::si::unit_symbols::s * pow<2>)>;
-    using Mass         = mp_units::quantity<mp_units::si::unit_symbols::kg * mp_units::mag_power<10, 24>>;
+    using GravParam =
+        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
+    using Mass         = mp_units::quantity<mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg>;
     using Distance     = mp_units::quantity<mp_units::si::unit_symbols::km>;
     using Speed        = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s>;
     using Unitless     = mp_units::quantity<mp_units::one>;
@@ -95,7 +96,7 @@ class CelestialBody {
     Unitless _j2;
     Unitless _j3;
     Angle _axialTilt;
-    Angle _rotationRate;
+    AnglularRate _rotationRate;
     Period _siderialPeroid;
 
     Distance _semimajorAxis;
@@ -124,8 +125,10 @@ struct std::hash<CelestialBody> {
     std::size_t operator()(CelestialBody const& body) const noexcept
     {
 
-        size_t h = std::hash<double>{}(body.get_mu());
-        h ^= (std::hash<double>{}(body.get_mass()) << 1);
+        size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(
+            mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)
+        ));
+        h ^= (std::hash<double>{}(body.get_mass().numerical_value_in(mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)) << 1);
         /* // These are probably overkill
         h ^= (std::hash<double>{}(body.get_equitorial_radius()) << 1);
         h ^= (std::hash<double>{}(body.get_polar_radius()) << 1);

@@ -52,7 +52,7 @@ concept HasGetRamArea = requires(T vehicle) {
 
 template <typename T>
 concept HasGetRamAreaUnits = requires(T vehicle) {
-    { vehicle.get_ram_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2> * mp_units::si::unit_symbols::m>>;
+    { vehicle.get_ram_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>>;
 };
 
 template <typename T>
@@ -72,7 +72,7 @@ concept HasGetLiftArea = requires(T vehicle) {
 
 template <typename T>
 concept HasGetLiftAreaUnits = requires(T vehicle) {
-    { vehicle.get_lift_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2> * mp_units::si::unit_symbols::m>>;
+    { vehicle.get_lift_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>>;
 };
 
 template <typename T>
@@ -92,7 +92,7 @@ concept HasGetSolarArea = requires(T vehicle) {
 
 template <typename T>
 concept HasGetSolarAreaUnits = requires(T vehicle) {
-    { vehicle.get_solar_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2> * mp_units::si::unit_symbols::m>>;
+    { vehicle.get_solar_area() } -> std::same_as<mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>>;
 };
 
 template <typename T>
@@ -124,7 +124,7 @@ struct VehicleInnerBase {
 
     // Unit shortcuts
     using Mass = mp_units::quantity<mp_units::si::unit_symbols::kg>;
-    using Area = mp_units::quantity<mp_units::pow<2> * mp_units::si::unit_symbols::m>;
+    using Area = mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>;
     using Unitless = mp_units::quantity<mp_units::one>;
 
     // Virtual destructor
@@ -183,14 +183,14 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     template <typename U>
-    requies(HasGetMassUnits<U>)
-    Mass get_mass_impl(const U& value) const final {
+    requires(HasGetMassUnits<U>)
+    Mass get_mass_impl(const U& value) const {
         return value.get_mass();
     }
 
     template <typename U>
-    requies(!HasGetMassUnits<U>)
-    Mass get_mass_impl(const U& value) const final {
+    requires(!HasGetMassUnits<U>)
+    Mass get_mass_impl(const U& value) const {
         return Mass(value.get_mass());
     }
 
@@ -204,13 +204,13 @@ struct VehicleInner final : public VehicleInnerBase {
     Area get_solar_area() const final {
         return get_solar_area_impl(_value);
     }
-    Area get_coefficient_of_drag() const final {
+    Unitless get_coefficient_of_drag() const final {
         return get_coefficient_of_drag_impl(_value);
     }
-    Area get_coefficient_of_lift() const final {
+    Unitless get_coefficient_of_lift() const final {
         return get_coefficient_of_lift_impl(_value);
     }
-    Area get_coefficient_of_reflectivity() const final {
+    Unitless get_coefficient_of_reflectivity() const final {
         return get_coefficient_of_reflectivity_impl(_value);
     }
 
@@ -218,7 +218,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetRamArea<U>)
     static Area get_ram_area_impl(const U&) {
-        return Area(0.0);
+        return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
     requires(HasGetRamArea<U> && HasGetRamAreaUnits<U>)
@@ -234,7 +234,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetLiftArea<U>)
     static Area get_lift_area_impl(const U&) {
-        return Area(0.0);
+        return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
     requires(HasGetLiftArea<U> && HasGetLiftAreaUnits<U>)
@@ -250,7 +250,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetSolarArea<U>)
     static Area get_solar_area_impl(const U&) {
-        return Area(0.0);
+        return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
     requires(HasGetSolarArea<U> && HasGetSolarAreaUnits<U>)
@@ -266,7 +266,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetCoefficientOfDrag<U>)
     static Unitless get_coefficient_of_drag_impl(const U&) {
-        return Unitless(0.0);
+        return 0.0 * mp_units::one;
     }
     template <typename U>
     requires(HasGetCoefficientOfDrag<U> && HasGetCoefficientOfDragUnits<U>)
@@ -282,7 +282,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetCoefficientOfLift<U>)
     static Unitless get_coefficient_of_lift_impl(const U&) {
-        return Unitless(0.0);
+        return 0.0 * mp_units::one;
     }
     template <typename U>
     requires(HasGetCoefficientOfLift<U> && HasGetCoefficientOfLiftUnits<U>)
@@ -298,7 +298,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetCoefficientOfReflectivity<U>)
     static Unitless get_coefficient_of_reflectivity_impl(const U&) {
-        return Unitless(0.0);
+        return 0.0 * mp_units::one;
     }
     template <typename U>
     requires(HasGetCoefficientOfReflectivity<U> && HasGetCoefficientOfReflectivityUnits<U>)
@@ -306,7 +306,7 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_coefficient_of_reflectivity();
     }
     template <typename U>
-    requires(HasGetCoefficientOfReflectivity<U> && HasGetCoefficientOfReflectivityUnits<U>)
+    requires(HasGetCoefficientOfReflectivity<U> && !HasGetCoefficientOfReflectivityUnits<U>)
     static Unitless get_coefficient_of_reflectivity_impl(const U& value) {
         return Unitless(value.get_coefficient_of_reflectivity());
     }
@@ -343,7 +343,7 @@ class Vehicle {
 
     // Unit shortcuts
     using Mass = mp_units::quantity<mp_units::si::unit_symbols::kg>;
-    using Area = mp_units::quantity<mp_units::pow<2> * mp_units::si::unit_symbols::m>;
+    using Area = mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>;
     using Unitless = mp_units::quantity<mp_units::one>;
 
 public:

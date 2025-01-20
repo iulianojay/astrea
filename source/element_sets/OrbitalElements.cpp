@@ -1,5 +1,17 @@
 #include "OrbitalElements.hpp"
 
+namespace detail {
+
+// Interpolate
+template <typename T>
+OrbitalElements OrbitalElementsInner<T>::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other,
+                                                     const AstrodynamicsSystem& sys, const Time& targetTime) const
+{
+    return _value.interpolate(thisTime, otherTime, other, sys, targetTime);
+}
+
+} // namespace detail
+
 // Generic implicit constructor
 void OrbitalElements::generic_ctor_impl() {
     _setId = ptr()->get_set_id();
@@ -48,16 +60,31 @@ const T *OrbitalElements::extract() const noexcept {
 
 // Utilities
 void OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) {
-    if (static_cast<enum_type>(newSet) == _setId) { return; }
-
+    if (newSet == _setId) { return; }
     const auto newElements = convert_impl(newSet, system);
     (*this) = newElements;
 }
 OrbitalElements OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const {
-    if (static_cast<enum_type>(newSet) == _setId) { return (*this); }
-
+    if (newSet == _setId) { return (*this); }
     return convert_impl(newSet, system);
 }
+
+template <typename T>
+requires(IsGenericallyConstructableOrbitalElements<T> && HasVectorConstructor<T>)
+void OrbitalElements::convert(const AstrodynamicsSystem& system) {
+    const auto rawElements = ptr()->to_vector();
+    T convertedElements(rawElements, _setId);
+    (*this) = OrbitalElements(convertedElements);
+}
+
+template <typename T>
+requires(IsGenericallyConstructableOrbitalElements<T> && HasVectorConstructor<T>)
+OrbitalElements OrbitalElements::convert(const AstrodynamicsSystem& system) const {
+    const auto rawElements = ptr()->to_vector();
+    T convertedElements(rawElements, _setId);
+    return OrbitalElements(convertedElements);
+}
+
 
 Cartesian OrbitalElements::to_cartesian(const AstrodynamicsSystem& system) const {
     return ptr()->to_cartesian(system);
@@ -65,8 +92,11 @@ Cartesian OrbitalElements::to_cartesian(const AstrodynamicsSystem& system) const
 Keplerian OrbitalElements::to_keplerian(const AstrodynamicsSystem& system) const {
     return ptr()->to_keplerian(system);
 }
+Equinoctial OrbitalElements::to_equinoctial(const AstrodynamicsSystem& system) const {
+    return ptr()->to_equinoctial(system);
+}
 
-const enum_type& OrbitalElements::get_set_id() const {
+EnumType OrbitalElements::get_set_id() const {
     return ptr()->get_set_id();
 }
 
@@ -95,6 +125,21 @@ OrbitalElements OrbitalElements::convert_impl(const ElementSet& newSet, const As
         default:
             throw std::logic_error("This conversion is not directly available from this class.");
     }
+}
+
+
+OrbitalElements OrbitalElements::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other,
+    const AstrodynamicsSystem& sys, const Time& targetTime) const {
+    return ptr()->interpolate(thisTime, otherTime, other, sys, targetTime);
+}
+
+
+std::vector<double> OrbitalElements::to_vector() const {
+    return ptr()->to_vector();
+}
+
+void OrbitalElements::update_from_vector(const std::vector<double>& vec) {
+    ptr()->update_from_vector(vec);
 }
 
 

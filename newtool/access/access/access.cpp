@@ -78,10 +78,10 @@ std::vector<std::vector<State>>
 
         for (size_t iSat = 0; iSat < nSats; ++iSat) {
 
-            const Viewer& sat = allSats[iSat];
-            const State state = sat.get_state_at(time);
+            const Spacecraft& sat = allSats[iSat];
+            const State state     = sat.get_state_at(time, sys);
 
-            const auto elements = conversions::convert(state.elements, state.elements.get_set(), ElementSet::CARTESIAN, sys);
+            const auto elements       = state.elements.to_cartesian(sys);
             interpStates[iTime][iSat] = State{ time, elements };
         }
     }

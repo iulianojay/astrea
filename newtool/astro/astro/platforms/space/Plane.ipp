@@ -8,14 +8,12 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
 
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
-    elements.convert(ElementSet::KEPLERIAN, sys);
-    elements[5] = 0.0;
+    elements.to_keplerian(sys);
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        OrbitalElements satElements = sat.get_initial_state().elements;
-        satElements.convert(ElementSet::KEPLERIAN, sys);
+        OrbitalElements satElements = sat.get_initial_state().elements.to_keplerian(sys);
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
             break;

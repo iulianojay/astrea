@@ -1,5 +1,14 @@
 #pragma once
 
+// mp-units
+#include <mp-units/compat_macros.h>
+#include <mp-units/ext/format.h>
+
+#include <mp-units/format.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
+
+// astro
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
@@ -8,6 +17,10 @@
 #include <astro/time/Time.hpp>
 
 class CowellsMethod : public EquationsOfMotion {
+
+    using GravParam =
+        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
+
   public:
     CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
@@ -22,5 +35,5 @@ class CowellsMethod : public EquationsOfMotion {
     const ElementSet expectedSet = ElementSet::CARTESIAN;
     const ForceModel& forces;
 
-    const double mu;
+    const GravParam mu;
 };

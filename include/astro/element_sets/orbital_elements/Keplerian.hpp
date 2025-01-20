@@ -19,11 +19,18 @@
 #include "astro/element_sets/ElementSet.hpp"
 
 #include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
+#include "fwd/time/Time.fwd.hpp"
 class Cartesian;
+class Equinoctial;
+class OrbitalElements;
 
 class Keplerian {
 
     friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+
+    using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using Unitless = mp_units::quantity<mp_units::one>;
+    using Angle = mp_units::quantity<mp_units::si::unit_symbols::rad>;
 
 public:
 
@@ -35,7 +42,25 @@ public:
         _argPerigee{0.0 * mp_units::si::unit_symbols::rad},
         _trueAnomaly{0.0 * mp_units::si::unit_symbols::rad}
     {}
+    Keplerian(const std::vector<double>& elements) :
+        _semimajor{elements[0] * mp_units::si::unit_symbols::km},
+        _eccentricity{elements[1] * mp_units::one},
+        _inclination{elements[2] * mp_units::si::unit_symbols::rad},
+        _rightAscension{elements[3] * mp_units::si::unit_symbols::rad},
+        _argPerigee{elements[4] * mp_units::si::unit_symbols::rad},
+        _trueAnomaly{elements[5] * mp_units::si::unit_symbols::rad}
+    {}
+    Keplerian(const Distance& semimajor, const Unitless& eccentricity, const Angle& inclination,
+        const Angle& rightAscension, const Angle& argPerigee, const Angle& trueAnomaly) :
+        _semimajor{semimajor},
+        _eccentricity{eccentricity},
+        _inclination{inclination},
+        _rightAscension{rightAscension},
+        _argPerigee{argPerigee},
+        _trueAnomaly{trueAnomaly}
+    {}
     Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
+    Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
     Keplerian(const Keplerian&);
@@ -51,24 +76,28 @@ public:
 
     ~Keplerian() = default;
 
-    const auto& get_semimajor() const { return _semimajor; }
-    const auto& get_eccentricity() const { return _eccentricity; }
-    const auto& get_inclination() const { return _inclination; }
-    const auto& get_right_ascension() const { return _rightAscension; }
-    const auto& get_argument_of_perigee() const { return _argPerigee; }
-    const auto& get_true_anomaly() const { return _trueAnomaly; }
+    const Distance& get_semimajor() const { return _semimajor; }
+    const Unitless& get_eccentricity() const { return _eccentricity; }
+    const Angle& get_inclination() const { return _inclination; }
+    const Angle& get_right_ascension() const { return _rightAscension; }
+    const Angle& get_argument_of_perigee() const { return _argPerigee; }
+    const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
-    const enum_type& get_set_id() const { return _setId; }
+    constexpr EnumType get_set_id() const { return _setId; }
+    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+
+    std::vector<double> to_vector() const;
+    void update_from_vector(const std::vector<double>& vec);
 
 private:
 
-    const enum_type _setId = static_cast<int>(ElementSet::KEPLERIAN);
+    constexpr static EnumType _setId = ElementSet::KEPLERIAN;
 
-    mp_units::quantity<mp_units::si::unit_symbols::km>  _semimajor;
-    mp_units::quantity<mp_units::one>                   _eccentricity;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> _inclination;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> _rightAscension;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> _argPerigee;
-    mp_units::quantity<mp_units::si::unit_symbols::rad> _trueAnomaly;
+    Distance _semimajor;
+    Unitless _eccentricity;
+    Angle _inclination;
+    Angle _rightAscension;
+    Angle _argPerigee;
+    Angle _trueAnomaly;
 
 };

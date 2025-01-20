@@ -39,7 +39,7 @@ CelestialBody::CelestialBody(const std::string& file)
     _parent = planetaryData["Parent"].template get<std::string>();
     _type   = planetaryData["Type"].template get<std::string>();
 
-    _mu                = planetaryData["Gravitational Parameter"]["magnitude"] * (km * pow<3>) / (s * pow<2>);
+    _mu                = planetaryData["Gravitational Parameter"]["magnitude"] * (pow<2>(km * pow<3>) / (s) >);
     _mass              = planetaryData["Mass"]["magnitude"] * kg * mag_power<10, 24>;
     _equitorialRadius  = planetaryData["Equitorial Radius"]["magnitude"] * km;
     _polarRadius       = planetaryData["Polar Radius"]["magnitude"] * km;

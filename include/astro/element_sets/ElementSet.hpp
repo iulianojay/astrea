@@ -12,7 +12,7 @@
 
 #include "astro/types/typedefs.hpp"
 
-enum class ElementSet : enum_type {
+enum ElementSet : EnumType {
     KEPLERIAN = 0,
     CARTESIAN = 1,
     EQUINOCTIAL = 2

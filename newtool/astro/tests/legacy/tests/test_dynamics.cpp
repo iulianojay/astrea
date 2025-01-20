@@ -56,7 +56,7 @@ class DynamicsTest : public testing::Test {
 
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true)
     {
-        if (first.get_set() != second.get_set()) { return false; }
+        if (first.get_set_id() != second.get_set_id()) { return false; }
         const int endInd = ignoreAnomaly ? 5 : 6;
         for (int ii = 0; ii < endInd; ii++) {
             if (fabs((first[ii] - second[ii]) / first[ii]) > REL_TOL) { return false; }

@@ -22,9 +22,9 @@
 
 class AtmosphericForce : public Force {
 
-    using HeightQuantity = quantity<mp_units::si::unit_symbols::km>;
-    using DensityQuantity = quantity<mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m))>;
-    using TitanDensityQuantity = quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
+    using HeightQuantity = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using DensityQuantity = mp_units::quantity<mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m))>;
+    using TitanDensityQuantity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
 
 public:
 

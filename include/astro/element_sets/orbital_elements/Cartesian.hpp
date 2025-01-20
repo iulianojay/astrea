@@ -5,6 +5,7 @@
     #include <iomanip>
     #include <cmath>
     #include <array>
+    #include <vector>
 #endif
 
 // mp-units
@@ -15,15 +16,22 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+// astro
 #include "astro/types/typedefs.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 
 #include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
+#include "fwd/time/Time.fwd.hpp"
 class Keplerian;
+class Equinoctial;
+class OrbitalElements;
 
 class Cartesian {
 
     friend std::ostream& operator<<(std::ostream&, Cartesian const&);
+
+    using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using Velocity = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s>;
 
 public:
 
@@ -39,23 +47,24 @@ public:
             0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s
         }
     {}
-    Cartesian(double x, double y, double z, double vx, double vy, double vz) :
-        _radius{
-            x * mp_units::si::unit_symbols::km,
-            y * mp_units::si::unit_symbols::km,
-            z * mp_units::si::unit_symbols::km
-        },
-        _velocity{
-            vx * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-            vy * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-            vz * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s
-        }
+    Cartesian(const std::vector<double>& r, const std::vector<double>& v) :
+        _radius({
+            r[0] * mp_units::si::unit_symbols::km,
+            r[1] * mp_units::si::unit_symbols::km,
+            r[2] * mp_units::si::unit_symbols::km
+        }),
+        _velocity({
+            v[0] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
+            v[1] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
+            v[2] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s
+        })
     {}
-    Cartesian(RadiusVector r, VelocityVector v) :
+    Cartesian(const RadiusVector& r, const VelocityVector& v) :
         _radius(r),
         _velocity(v)
     {}
     Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
     Cartesian(const Cartesian&);
@@ -74,18 +83,22 @@ public:
     const RadiusVector& get_radius() const { return _radius; }
     const VelocityVector& get_velocity() const { return _velocity; }
 
-    const auto& get_x() const { return _radius[0]; }
-    const auto& get_y() const { return _radius[1]; }
-    const auto& get_z() const { return _radius[2]; }
-    const auto& get_vx() const { return _velocity[0]; }
-    const auto& get_vy() const { return _velocity[1]; }
-    const auto& get_vz() const { return _velocity[2]; }
+    const Distance& get_x() const { return _radius[0]; }
+    const Distance& get_y() const { return _radius[1]; }
+    const Distance& get_z() const { return _radius[2]; }
+    const Velocity& get_vx() const { return _velocity[0]; }
+    const Velocity& get_vy() const { return _velocity[1]; }
+    const Velocity& get_vz() const { return _velocity[2]; }
 
-    const enum_type& get_set_id() const { return _setId; }
+    std::vector<double> to_vector() const;
+    void update_from_vector(const std::vector<double>& vec);
+
+    constexpr EnumType get_set_id() const { return _setId; }
+    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
 private:
 
-    const enum_type _setId = static_cast<int>(ElementSet::CARTESIAN);
+    constexpr static EnumType _setId = ElementSet::CARTESIAN;
 
     RadiusVector _radius;
     VelocityVector _velocity;
