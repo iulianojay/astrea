@@ -36,7 +36,6 @@ class Shell;
 class Spacecraft;
 
 // Element Sets
-class ElementSet;
 class Cartesian;
 class Keplerian;
 class Equinoctial;

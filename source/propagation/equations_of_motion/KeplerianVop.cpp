@@ -94,8 +94,8 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     const quantity deccdt   = h/mu*sinTA*radialPert + 1/(mu*h)*((hSquared + mu*R)*cosTA + mu*ecc*R)*tangentialPert;
     const quantity dincdt   = R/h*cosU*normalPert;
     const quantity dthetadt = hOverRSquared + (1/(ecc*h))*((hSquared/mu)*cosTA*radialPert - (hSquared/mu + R)*sinTA*tangentialPert);
-    const quantity draandt  = R*sinU/(h*math_c::sin(inc))*normalPert;
-    const quantity dwdt     = -dthetadt + (hOverRSquared - draandt*math_c::cos(inc));
+    const quantity draandt  = R*sinU/(h*sin(inc))*normalPert;
+    const quantity dwdt     = -dthetadt + (hOverRSquared - draandt*cos(inc));
 
     const quantity dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
 

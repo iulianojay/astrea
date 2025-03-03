@@ -9,6 +9,7 @@
 #include "Equinoctial.hpp"
 #include "Time.hpp"
 #include "OrbitalElements.hpp"
+#include "interpolation.hpp"
 
 
 using namespace mp_units;
@@ -103,7 +104,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     const auto rOverSSq = r/sSq;
     const auto twoHK = 2.0*h*k;
 
-    const auto gamma = 1.0/sSq*sqrt(mu/p);
+    const auto gamma = 1.0/sSq*sqrt(mu/semilatus);
 
     // Radius
     _radius[0] = rOverSSq*(cosL*(1.0 + alphaSq) + twoHK*sinL);
@@ -114,7 +115,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     _velocity[0] = -gamma*(sinL*(1.0 + alphaSq) - twoHK*(cosL + f) + g*(1.0 + alphSq));
     _velocity[1] = -gamma*(cosL*(-1.0 + alphaSq) + twoHK*(sinL + g) + f*(-1.0 + alphSq));
     _velocity[2] = 2.0*gamma*(h*cosL + k*sinL + f*h + g*k);
-
+    
 }
 
 

@@ -10,5 +10,5 @@ public:
     Force() = default;
     virtual ~Force() = default;
 
-    virtual AccelerationVector compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
+    virtual AccelerationVector compute_force(const mp_units::quantity<mp_units::non_si::day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };

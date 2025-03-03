@@ -15,6 +15,7 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
@@ -150,15 +151,13 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 
 
 AccelerationVector
-    OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const quantity<day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
-    const Cartesian cart = state.to_cartesian(sys);
-
     // Extract
-    const quantity& x       = cart.get_x();
-    const quantity& y       = cart.get_y();
-    const quantity& z       = cart.get_z();
+    const quantity& x       = state.get_x();
+    const quantity& y       = state.get_y();
+    const quantity& z       = state.get_z();
     const quantity R        = sqrt(x * x + y * y + z * z);
     const quantity oneOverR = 1.0 / R;
 

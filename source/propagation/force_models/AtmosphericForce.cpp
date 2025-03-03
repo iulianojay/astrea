@@ -14,21 +14,19 @@ using namespace mp_units;
 using namespace mp_units::si;
 using namespace mp_units::si::unit_symbols;
 
-
-AccelerationVector AtmosphericForce::compute_force(const quantity& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
+AccelerationVector AtmosphericForce::compute_force(const quantity<day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
-    const Cartesian cart = state.to_cartesian(sys);
 
     // Extract
-    const quantity& x = cart.get_x();
-    const quantity& y = cart.get_y();
-    const quantity& z = cart.get_z();
+    const quantity& x = state.get_x();
+    const quantity& y = state.get_y();
+    const quantity& z = state.get_z();
     const quantity& R = sqrt(x*x + y*y + z*z);
 
-    const quantity& vx = cart.get_vx();
-    const quantity& vy = cart.get_vy();
-    const quantity& vz = cart.get_vz();
+    const quantity& vx = state.get_vx();
+    const quantity& vy = state.get_vy();
+    const quantity& vz = state.get_vz();
 
     // Central body properties
     static const quantity& bodyRotationRate = center->get_rotation_rate();
@@ -72,12 +70,12 @@ AccelerationVector AtmosphericForce::compute_force(const quantity& julianDate, c
 }
 
 
-const DensityQuantity AtmosphericForce::find_atmospheric_density(const quantity& julianDate, const Cartesian& cart, const CelestialBodyUniquePtr& center) const {
+const DensityQuantity AtmosphericForce::find_atmospheric_density(const quantity& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const {
 
     // Extract
-    const quantity& x = cart.get_x();
-    const quantity& y = cart.get_y();
-    const quantity& z = cart.get_z();
+    const quantity& x = state.get_x();
+    const quantity& y = state.get_y();
+    const quantity& z = state.get_z();
 
     // Central body properties
     static const quantity equitorialR = center->get_equitorial_radius();
@@ -86,7 +84,7 @@ const DensityQuantity AtmosphericForce::find_atmospheric_density(const quantity&
     static const std::string& centerName = center->get_name();
 
     // Find altitude
-    const auto radius = cart.get_radius();
+    const auto radius = state.get_radius();
     basis_array rBCBF{};
     basis_array lla{};
     conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);

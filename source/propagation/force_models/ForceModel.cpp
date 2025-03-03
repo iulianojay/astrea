@@ -4,6 +4,7 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
 template<typename T, typename ...Args>
@@ -15,7 +16,7 @@ const std::unique_ptr<Force>& ForceModel::add(Args&&... args) {
     return forces.at(name);
 }
 
-AccelerationVector ForceModel::compute_forces(const double &julianDate, const OrbitalElements &state, const Vehicle &vehicle, const AstrodynamicsSystem &sys) const {
+AccelerationVector ForceModel::compute_forces(const quantity<day>& julianDate, const Cartesian &state, const Vehicle &vehicle, const AstrodynamicsSystem &sys) const {
     AccelerationVector sum{0.0 * km/(s*s), 0.0 * km/(s*s), 0.0 * km/(s*s)};
     for (const auto& [name, force] : forces) {
         const auto result = force->compute_force(julianDate, state, vehicle, sys);

@@ -15,8 +15,12 @@ class ForceModel {
     template <typename T, typename... Args>
     const std::unique_ptr<Force>& add(Args&&... args);
 
-    AccelerationVector
-        compute_forces(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
+    AccelerationVector compute_forces(
+        const mp_units::quantity<mp_units::non_si::day>& julianDate,
+        const Cartesian& state,
+        const Vehicle& vehicle,
+        const AstrodynamicsSystem& sys
+    ) const;
 
     const std::unique_ptr<Force>& at(const std::string& name) const;
 

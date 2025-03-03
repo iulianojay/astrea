@@ -11,20 +11,20 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
 
-AccelerationVector SolarRadiationPressureForce::compute_force(const double& julianDate, const OrbitalElements& state,
+AccelerationVector SolarRadiationPressureForce::compute_force(const quantity<day>& julianDate, const Cartesian& state,
                                                        const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
-    const Cartesian cart = state.to_cartesian(sys);
 
     // Extract
-    const quantity& x = cart.get_x();
-    const quantity& y = cart.get_y();
-    const quantity& z = cart.get_z();
+    const quantity& x = state.get_x();
+    const quantity& y = state.get_y();
+    const quantity& z = state.get_z();
     const quantity R = sqrt(x*x + y*y + z*z);
 
     // Central body properties
@@ -33,7 +33,7 @@ AccelerationVector SolarRadiationPressureForce::compute_force(const double& juli
 
     // Find day nearest to current time
     const State& stateSunToCenter = (center->get_closest_state(julianDate));
-    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_cartesian(sys).get_radius();
+    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_Cartesian(sys).get_radius();
 
     // Radius from central body to sun
     const RadiusVector radiusCenterToSun{ // flip vector direction

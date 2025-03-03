@@ -12,7 +12,6 @@
 #include <mp-units/systems/si.h>
 
 // astro
-#include "astro/element_sets/OrbitalElements.hpp"
 #include "astro/types/typedefs.hpp"
 #include "astro/types/tuple_hash.hpp"
 #include "astro/systems/AstrodynamicsSystem.hpp"
@@ -31,11 +30,11 @@ public:
     AtmosphericForce() = default;
     ~AtmosphericForce() = default;
 
-    AccelerationVector compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector compute_force(const mp_units::quantity<mp_units::non_si::day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
 private:
 
-    const DensityQuantity find_atmospheric_density(const double& julianDate, const Cartesian& cart, const CelestialBodyUniquePtr& center) const;
+    const DensityQuantity find_atmospheric_density(const mp_units::quantity<mp_units::non_si::day>& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
 
     static const std::map<HeightQuantity, DensityQuantity> venutianAtmosphere;
     static const std::map<HeightQuantity, std::tuple<HeightQuantity, DensityQuantity, HeightQuantity>> earthAtmosphere;
