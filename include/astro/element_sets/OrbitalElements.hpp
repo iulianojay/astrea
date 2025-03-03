@@ -22,8 +22,7 @@
 #include "astro/element_sets/orbital_elements/Keplerian.hpp"
 #include "astro/element_sets/orbital_elements/Equinoctial.hpp"
 
-#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
-#include "fwd/time/Time.fwd.hpp"
+#include "astro.fwd.hpp"
 
 
 class OrbitalElements;

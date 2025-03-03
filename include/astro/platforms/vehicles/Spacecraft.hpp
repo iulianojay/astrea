@@ -13,9 +13,7 @@
 #include "astro/State.hpp"
 #include "astro/time/Date.hpp"
 
-#include "fwd/platforms/space/Plane.fwd.hpp"
-#include "fwd/platforms/space/Shell.fwd.hpp"
-#include "fwd/platforms/space/Constellation.fwd.hpp"
+#include "astro.fwd.hpp"
 
 class Spacecraft {
 

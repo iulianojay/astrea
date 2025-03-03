@@ -84,40 +84,8 @@ set(HDRS
 
     ${INC}/astro/State.hpp
 
-    # Forward declaration headers
-    ${INC}/fwd/element_sets/ElementSet.fwd.hpp
-    ${INC}/fwd/element_sets/Frame.fwd.hpp
-    ${INC}/fwd/element_sets/OrbitalElements.fwd.hpp
-
-    ${INC}/fwd/platforms/access/fov/FieldOfView.fwd.hpp
-    ${INC}/fwd/platforms/access/Antenna.fwd.hpp
-    ${INC}/fwd/platforms/access/Sensor.fwd.hpp
-
-    ${INC}/fwd/platforms/ground/GroundStation.fwd.hpp
-
-    ${INC}/fwd/platforms/space/Constellation.fwd.hpp
-    ${INC}/fwd/platforms/space/Plane.fwd.hpp
-    ${INC}/fwd/platforms/space/Shell.fwd.hpp
-    ${INC}/fwd/platforms/space/Spacecraft.fwd.hpp
-
-    ${INC}/fwd/propagation/Integrator.fwd.hpp
-    ${INC}/fwd/propagation/LambertSolver.fwd.hpp
-
-    ${INC}/fwd/propagation/equations_of_motion/EquationsOfMotion.fwd.hpp
-
-    ${INC}/fwd/systems/AstrodynamicsSystem.fwd.hpp
-    ${INC}/fwd/systems/Barycenter.fwd.hpp
-    ${INC}/fwd/systems/CelestialBody.fwd.hpp
-    ${INC}/fwd/systems/CelestialBodyFactory.fwd.hpp
-
-    ${INC}/fwd/time/Date.fwd.hpp
-    ${INC}/fwd/time/Interval.fwd.hpp
-    ${INC}/fwd/time/JulianDateClock.fwd.hpp
-    ${INC}/fwd/time/Time.fwd.hpp
-    ${INC}/fwd/time/access/AccessArray.fwd.hpp
-    ${INC}/fwd/time/access/RiseSetArray.fwd.hpp
-
-    ${INC}/fwd/State.fwd.hpp
+    # Forward declaration header
+    ${INC}/astro.fwd.hpp
 
     # Extern
     ${INC}/extern/nlohmann/json.hpp

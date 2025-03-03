@@ -20,11 +20,7 @@
 
 #include "astro/element_sets/ElementSet.hpp"
 
-#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
-#include "fwd/time/Time.fwd.hpp"
-class Cartesian;
-class Keplerian;
-class OrbitalElements;
+#include "astro.fwd.hpp"
 
 class Equinoctial {
 
