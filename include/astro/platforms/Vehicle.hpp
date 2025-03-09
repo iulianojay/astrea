@@ -191,7 +191,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetMassUnits<U>)
     Mass get_mass_impl(const U& value) const {
-        return Mass(value.get_mass());
+        return value.get_mass() * mp_units::si::unit_symbols::kg;
     }
 
     // Invoke implicit implementations for optional methods
@@ -228,7 +228,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetRamArea<U> && !HasGetRamAreaUnits<U>)
     static Area get_ram_area_impl(const U& value) {
-        return Area(value.get_ram_area());
+        return value.get_ram_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
 
     template <typename U>
@@ -244,7 +244,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetLiftArea<U> && !HasGetLiftAreaUnits<U>)
     static Area get_lift_area_impl(const U& value) {
-        return Area(value.get_lift_area());
+        return value.get_lift_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
 
     template <typename U>
@@ -260,7 +260,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetSolarArea<U> && !HasGetSolarAreaUnits<U>)
     static Area get_solar_area_impl(const U& value) {
-        return Area(value.get_solar_area());
+        return value.get_solar_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
 
     template <typename U>
@@ -276,7 +276,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetCoefficientOfDrag<U> && !HasGetCoefficientOfDragUnits<U>)
     static Unitless get_coefficient_of_drag_impl(const U& value) {
-        return Unitless(value.get_coefficient_of_drag());
+        return value.get_coefficient_of_drag() * mp_units::one;
     }
 
     template <typename U>
@@ -292,7 +292,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetCoefficientOfLift<U> && !HasGetCoefficientOfLiftUnits<U>)
     static Unitless get_coefficient_of_lift_impl(const U& value) {
-        return Unitless(value.get_coefficient_of_lift());
+        return value.get_coefficient_of_lift() * mp_units::one;
     }
 
     template <typename U>
@@ -308,7 +308,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(HasGetCoefficientOfReflectivity<U> && !HasGetCoefficientOfReflectivityUnits<U>)
     static Unitless get_coefficient_of_reflectivity_impl(const U& value) {
-        return Unitless(value.get_coefficient_of_reflectivity());
+        return value.get_coefficient_of_reflectivity() * mp_units::one;
     }
 
     // The clone method, used in the copy constructor of Vehicle.

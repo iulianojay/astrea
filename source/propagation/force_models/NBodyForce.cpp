@@ -14,19 +14,19 @@ using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
-AccelerationVector NBodyForce::compute_force(const quantity<day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
+AccelerationVector NBodyForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
 
     // Extract
-    const quantity& x = state.get_x();
-    const quantity& y = state.get_y();
-    const quantity& z = state.get_z();
+    const auto& x = state.get_x();
+    const auto& y = state.get_y();
+    const auto& z = state.get_z();
 
     // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Find day nearest to current time
     const State& stateSunToCenter = (center->get_closest_state(julianDate));
-    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_Cartesian(sys).get_radius();
+    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_cartesian(sys).get_radius();
 
     // Radius from central body to sun
     const RadiusVector radiusCenterToSun{ // flip vector direction
@@ -36,7 +36,7 @@ AccelerationVector NBodyForce::compute_force(const quantity<day>& julianDate, co
     };
 
     // Reset perturbation
-    RadiusVector accelNBody{0.0};
+    AccelerationVector accelNBody{0.0 * km/(s*s)};
     for (auto&& [name, body] : sys) {
 
         if (body == center) {
@@ -44,9 +44,8 @@ AccelerationVector NBodyForce::compute_force(const quantity<day>& julianDate, co
         }
 
         // Find day nearest to current time
-        const State& stateSunToNBody = (center->get_closest_state(julianDate)).convert(ElementSet::Cartesian, sys);
-        const State& stateSunToNBody = (center->get_closest_state(julianDate));
-        const RadiusVector radiusSunToNbody = stateSunToCenter.elements.to_Cartesian(sys).get_radius();
+        const State& stateSunToNBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
+        const RadiusVector radiusSunToNbody = stateSunToCenter.elements.to_cartesian(sys).get_radius();
 
         // Find radius from central body and spacecraft to nth body
         const RadiusVector radiusCenterToNbody{

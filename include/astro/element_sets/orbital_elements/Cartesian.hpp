@@ -19,6 +19,7 @@
 // astro
 #include "astro/types/typedefs.hpp"
 #include "astro/element_sets/ElementSet.hpp"
+#include "astro/time/Time.hpp"
 
 #include "astro.fwd.hpp"
 
@@ -59,6 +60,10 @@ public:
         _radius(r),
         _velocity(v)
     {}
+    Cartesian(const Distance& x, const Distance& y, const Distance& z, const Velocity& vx, const Velocity& vy, const Velocity& vz) :
+        _radius({x, y, z}),
+        _velocity({vx, vy, vz})
+    {}
     Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
@@ -76,12 +81,31 @@ public:
 
     ~Cartesian() = default;
 
+    // Comparitors operators
+    bool operator==(const Cartesian& other) const;
+    bool operator!=(const Cartesian& other) const;
+
+    // Mathmatical operators
+    Cartesian operator+(const Cartesian& other) const;
+    Cartesian& operator+=(const Cartesian& other);
+
+    Cartesian operator-(const Cartesian& other) const;
+    Cartesian& operator-=(const Cartesian& other);
+
+    Cartesian operator*(const double& multiplier) const;
+    Cartesian& operator*=(const double& multiplier);
+
+    Cartesian operator/(const double& divisor) const;
+    Cartesian& operator/=(const double& divisor);
+
+    // Element access
     const RadiusVector& get_radius() const { return _radius; }
     const VelocityVector& get_velocity() const { return _velocity; }
 
     const Distance& get_x() const { return _radius[0]; }
     const Distance& get_y() const { return _radius[1]; }
     const Distance& get_z() const { return _radius[2]; }
+    
     const Velocity& get_vx() const { return _velocity[0]; }
     const Velocity& get_vy() const { return _velocity[1]; }
     const Velocity& get_vz() const { return _velocity[2]; }

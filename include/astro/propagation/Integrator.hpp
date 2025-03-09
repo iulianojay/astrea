@@ -122,17 +122,16 @@ private:
 
     // Butcher Tablaeu
     size_t nStages{};
-    static const size_t maxStages = 13;
-    std::array<std::array<double, maxStages>, maxStages> a = {};
-    std::array<double, maxStages> b = {};
-    std::array<double, maxStages> bhat = {};
-    std::array<double, maxStages> db = {};
-    std::array<double, maxStages> c = {};
+    std::vector<std::vector<double>> a;
+    std::vector<double> b;
+    std::vector<double> bhat;
+    std::vector<double> db;
+    std::vector<double> c;
 
 	// ith order steps
-    std::array<std::array<double, maxStates>, maxStages> kMatrix = {};
-	std::array<double, maxStates> statePlusKi = {};
-	std::array<double, maxStates> YFinalPrevious = {};
+    std::vector<std::vector<double>> kMatrix;
+	std::vector<double> statePlusKi;
+	std::vector<double> YFinalPrevious;
 
 	// Clock variables
 	clock_t startClock{};

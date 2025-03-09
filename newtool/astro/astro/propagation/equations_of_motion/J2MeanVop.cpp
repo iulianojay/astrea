@@ -43,7 +43,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     const quantity<km>& x = cartesian.get_x();
     const quantity<km>& y = cartesian.get_y();
     const quantity<km>& z = cartesian.get_z();
-    const quantity R      = sqrt(x * x + y * y + z * z);
+    const quantity<km> R  = sqrt(x * x + y * y + z * z);
 
     const quantity<km / s>& vx = cartesian.get_vx();
     const quantity<km / s>& vy = cartesian.get_vy();
@@ -53,12 +53,12 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     /*
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
     */
-    const quantity Nhatx = (y * vz - z * vy) / h;
-    const quantity Nhaty = (z * vx - x * vz) / h;
-    const quantity Nhatz = (x * vy - y * vx) / h;
+    const quantity<one> Nhatx = (y * vz - z * vy) / h;
+    const quantity<one> Nhaty = (z * vx - x * vz) / h;
+    const quantity<one> Nhatz = (x * vy - y * vx) / h;
 
     // Variables to reduce calculations
-    const quantity tempA = -1.5 * J2 * mu * equitorialR * equitorialR / pow<5.0>(R);
+    const quantity tempA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
     const quantity tempB = z * z / (R * R);
 
     // accel due to oblateness
@@ -67,25 +67,26 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
                                            tempA * (1.0 - 3.0 * tempB) * z };
 
     // Calculate R, N, and T
-    const quantity normalPert = accelOblateness[0] * Nhatx + accelOblateness[1] * Nhaty + accelOblateness[2] * Nhatz;
+    const quantity<km / pow<2>(s)> normalPert =
+        accelOblateness[0] * Nhatx + accelOblateness[1] * Nhaty + accelOblateness[2] * Nhatz;
 
     // Calculate the derivatives of the KEPLERIANs - only raan and w considered
-    const quantity dhdt     = 0.0;
-    const quantity deccdt   = 0.0;
-    const quantity _dincdt  = R / h * cos(w + theta) * normalPert;
-    const quantity dthetadt = h / (R * R);
-    const quantity draandt  = R * math_c::sin(w + theta) / (h * math_c::sin(inc)) * normalPert;
-    const quantity dwdt     = -draandt * math_c::cos(inc);
+    const quantity<km / s> dadt      = 0.0;
+    const quantity<one / s> deccdt   = 0.0;
+    const quantity<rad / s> _dincdt  = R / h * cos(w + theta) * normalPert;
+    const quantity<rad / s> dthetadt = h / (R * R);
+    const quantity<rad / s> draandt  = R * sin(w + theta) / (h * sin(inc)) * normalPert;
+    const quantity<rad / s> dwdt     = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
-    quantity dincdt = _dincdt;
+    quantity<rad / s> dincdt = _dincdt;
     if (inc == checkTol && dincdt <= checkTol) {
         dincdt    = 0.0;
         checkflag = true;
     }
 
-    const OrbitalElements dsdt({ dhdt, deccdt, dincdt, draandt, dwdt, dthetadt }, ElementSet::KEPLERIAN);
+    const Keplerian dsdt(dadt * s, deccdt * s, dincdt * s, draandt * s, dwdt * s, dthetadt * s);
 
-    return dsdt;
+    return OrbitalElements(dsdt);
 }

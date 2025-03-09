@@ -151,20 +151,20 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 
 
 AccelerationVector
-    OblatenessForce::compute_force(const quantity<day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     // Extract
-    const quantity& x       = state.get_x();
-    const quantity& y       = state.get_y();
-    const quantity& z       = state.get_z();
+    const auto& x           = state.get_x();
+    const auto& y           = state.get_y();
+    const auto& z           = state.get_z();
     const quantity R        = sqrt(x * x + y * y + z * z);
     const quantity oneOverR = 1.0 / R;
 
     // Central body properties
-    static const quantity& mu               = center->get_mu();
-    static const quantity& equitorialR      = center->get_equitorial_radius();
-    static const quantity& bodyRotationRate = center->get_rotation_rate();
+    static const auto& mu               = center->get_mu();
+    static const auto& equitorialR      = center->get_equitorial_radius();
+    static const auto& bodyRotationRate = center->get_rotation_rate();
 
     // Find lat and long
     RadiusVector radius = { x, y, z };

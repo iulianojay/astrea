@@ -77,16 +77,32 @@ Equinoctial& Equinoctial::operator=(const Equinoctial& other) {
     return *this = Equinoctial(other);
 }
 
+// Comparitors operators
+bool Equinoctial::operator==(const Equinoctial& other) const {
+    return (
+        _semilatus == other._semilatus &&
+        _f == other._f &&
+        _g == other._g &&
+        _h == other._h &&
+        _k == other._k &&
+        _trueLongitude == other._trueLongitude 
+    );
+}
+
+bool Equinoctial::operator!=(const Equinoctial& other) const {
+    return !(*this == other);
+}
+
 
 OrbitalElements Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const {
-    Equinoctial elements = other.to_keplerian(sys);
+    Equinoctial elements = other.to_equinoctial(sys);
 
-    const quantity<km>  interpSemimajor = ::interpolate({thisTime, otherTime}, {_semilatus,      elements.get_semilatus()},           targetTime);
-    const quantity<one> interpEcc       = ::interpolate({thisTime, otherTime}, {_f,   elements.get_f()},        targetTime);
-    const quantity<rad> interpInc       = ::interpolate({thisTime, otherTime}, {_g,    elements.get_g()},         targetTime);
-    const quantity<rad> interpRaan      = ::interpolate({thisTime, otherTime}, {_h, elements.get_h()},     targetTime);
-    const quantity<rad> interpArgPer    = ::interpolate({thisTime, otherTime}, {_k,     elements.get_k()}, targetTime);
-    const quantity<rad> interpTheta     = ::interpolate({thisTime, otherTime}, {_trueLongitude,    elements.get_true_longitude()},        targetTime);
+    const Distance interpSemimajor = ::interpolate<Time, Distance>({thisTime, otherTime}, {_semilatus,     elements.get_semilatus()},      targetTime);
+    const Unitless interpEcc       = ::interpolate<Time, Unitless>({thisTime, otherTime}, {_f,             elements.get_f()},              targetTime);
+    const Unitless interpInc       = ::interpolate<Time, Unitless>({thisTime, otherTime}, {_g,             elements.get_g()},              targetTime);
+    const Unitless interpRaan      = ::interpolate<Time, Unitless>({thisTime, otherTime}, {_h,             elements.get_h()},              targetTime);
+    const Unitless interpArgPer    = ::interpolate<Time, Unitless>({thisTime, otherTime}, {_k,             elements.get_k()},              targetTime);
+    const Angle    interpTheta     = ::interpolate<Time, Angle   >({thisTime, otherTime}, {_trueLongitude, elements.get_true_longitude()}, targetTime);
 
     Equinoctial iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 
@@ -95,16 +111,16 @@ OrbitalElements Equinoctial::interpolate(const Time& thisTime, const Time& other
 
 std::vector<double> Equinoctial::to_vector() const {
     return {
-        value_cast<double>(_semilatus),
-        value_cast<double>(_f),
-        value_cast<double>(_g),
-        value_cast<double>(_h),
-        value_cast<double>(_k),
-        value_cast<double>(_trueLongitude)
+        _semilatus.numerical_value_ref_in(_semilatus.unit),
+        _f.numerical_value_ref_in(_f.unit),
+        _g.numerical_value_ref_in(_g.unit),
+        _h.numerical_value_ref_in(_h.unit),
+        _k.numerical_value_ref_in(_k.unit),
+        _trueLongitude.numerical_value_ref_in(_trueLongitude.unit)
     };
 }
 
-void Keplerian::update_from_vector(const std::vector<double>& vec) {
+void Equinoctial::update_from_vector(const std::vector<double>& vec) {
     _semilatus = vec[0] * km;
     _f = vec[1] * one;
     _g = vec[2] * one;

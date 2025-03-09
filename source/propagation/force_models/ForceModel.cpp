@@ -16,7 +16,7 @@ const std::unique_ptr<Force>& ForceModel::add(Args&&... args) {
     return forces.at(name);
 }
 
-AccelerationVector ForceModel::compute_forces(const quantity<day>& julianDate, const Cartesian &state, const Vehicle &vehicle, const AstrodynamicsSystem &sys) const {
+AccelerationVector ForceModel::compute_forces(const JulianDate& julianDate, const Cartesian &state, const Vehicle &vehicle, const AstrodynamicsSystem &sys) const {
     AccelerationVector sum{0.0 * km/(s*s), 0.0 * km/(s*s), 0.0 * km/(s*s)};
     for (const auto& [name, force] : forces) {
         const auto result = force->compute_force(julianDate, state, vehicle, sys);

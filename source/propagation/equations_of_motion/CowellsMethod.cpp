@@ -10,6 +10,7 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
 OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
@@ -29,18 +30,18 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const quantity muOverRadiusCubed = mu/(R*R*R);
 
     // Run find functions for force model
-    const auto julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
-    AccelerationVector accelPerts = forces.compute_forces(julianDate, state, vehicle, system);
+    const quantity<day> julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
+    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Derivative
-    const OrbitalElements dsdt (Cartesian{
-        vx,
-        vy,
-        vz,
-        -muOverRadiusCubed*x + accelPerts[0],
-        -muOverRadiusCubed*y + accelPerts[1],
-        -muOverRadiusCubed*z + accelPerts[2]
-    });
+    const Cartesian dsdt(
+        vx * s,
+        vy * s,
+        vz * s,
+        -muOverRadiusCubed*x + accelPerts[0] * s,
+        -muOverRadiusCubed*y + accelPerts[1] * s,
+        -muOverRadiusCubed*z + accelPerts[2] * s
+    );
 
-    return dsdt;
+    return OrbitalElements(dsdt);
 }

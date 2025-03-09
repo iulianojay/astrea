@@ -8,7 +8,7 @@
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/si/math.h>
 
-#include <nlohmann/json.hpp>
+#include <extern/nlohmann/json.hpp>
 
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <math/utils.hpp>
@@ -23,8 +23,8 @@ using namespace mp_units::iau::unit_symbols;
 CelestialBody::CelestialBody(const std::string& file)
 {
 
-    using json = nlohmann::json;
-    using jc   = 36525 * day;
+    using json          = nlohmann::json;
+    using JulianCentury = 36525 * day;
 
     // Read file into JSON
     // TODO: Add checks to make sure its a valid JSON
@@ -60,12 +60,12 @@ CelestialBody::CelestialBody(const std::string& file)
     _argumentOfPerigee = state["Argument Of Perigee"]["value"]["magnitude"] * deg;
     _trueLatitude      = state["True Latitude"]["value"]["magnitude"] * deg;
 
-    _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"] * km / jc;
-    _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"] * one / jc;
-    _inclinationRate       = state["Inclination"]["rate"]["magnitude"] * deg / jc;
-    _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"] * deg / jc;
-    _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"] * deg / jc;
-    _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"] * deg / jc;
+    _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"] * km / JulianCentury;
+    _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"] * one / JulianCentury;
+    _inclinationRate       = state["Inclination"]["rate"]["magnitude"] * deg / JulianCentury;
+    _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"] * deg / JulianCentury;
+    _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"] * deg / JulianCentury;
+    _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"] * deg / JulianCentury;
 
     // TODO: Add checks to validate this object
 }

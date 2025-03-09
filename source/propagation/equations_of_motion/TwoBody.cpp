@@ -30,15 +30,14 @@ OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& sta
     const quantity muOverRadiusCubed = mu/(R*R*R);
 
     // Derivative
-    const OrbitalElements dsdt ({
-        vx,
-        vy,
-        vz,
-        (-muOverRadiusCubed*x),
-        (-muOverRadiusCubed*y),
-        (-muOverRadiusCubed*z)
-    },
-    ElementSet::CARTESIAN);
+    const Cartesian dsdt (
+        vx * s,
+        vy * s,
+        vz * s,
+        (-muOverRadiusCubed*x) * s,
+        (-muOverRadiusCubed*y) * s,
+        (-muOverRadiusCubed*z) * s
+    );
 
-    return dsdt;
+    return OrbitalElements(dsdt);
 }

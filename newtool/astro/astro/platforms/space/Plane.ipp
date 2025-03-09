@@ -13,7 +13,7 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        OrbitalElements satElements = sat.get_initial_state().elements.to_keplerian(sys);
+        OrbitalElements satElements{ sat.get_initial_state().elements.to_keplerian(sys) };
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
             break;

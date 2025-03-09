@@ -17,6 +17,7 @@
 #include <mp-units/systems/si.h>
 
 #include "astro/element_sets/ElementSet.hpp"
+#include "astro/time/Time.hpp"
 
 #include "astro.fwd.hpp"
 
@@ -69,9 +70,28 @@ public:
 
     // Copy assignment operator
     Keplerian& operator=(const Keplerian&);
-
+    
+    // Destructor
     ~Keplerian() = default;
 
+    // Comparitors operators
+    bool operator==(const Keplerian& other) const;
+    bool operator!=(const Keplerian& other) const;
+
+    // Mathmatical operators
+    Keplerian operator+(const Keplerian& other) const;
+    Keplerian& operator+=(const Keplerian& other);
+    
+    Keplerian operator-(const Keplerian& other) const;
+    Keplerian& operator-=(const Keplerian& other);
+
+    Keplerian operator*(const double& multiplier) const;
+    Keplerian& operator*=(const double& multiplier);
+
+    Keplerian operator/(const double& divisor) const;
+    Keplerian& operator/=(const double& divisor);
+
+    // Element access
     const Distance& get_semimajor() const { return _semimajor; }
     const Unitless& get_eccentricity() const { return _eccentricity; }
     const Angle& get_inclination() const { return _inclination; }

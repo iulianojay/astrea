@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 
+#include <mp-units/systems/si/chrono.h>
+
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/Time.hpp>
 
@@ -18,6 +20,11 @@ class Date {
     }
 
     // Build from JulianDate
+    Date(const double& julianDay)
+    {
+        julianDate = JulianDate{ JulianDateClock::duration{ julianDay } };
+        set_string_from_julian_date();
+    }
     Date(const JulianDate jdate)
     {
         julianDate = jdate;
@@ -40,7 +47,7 @@ class Date {
     // Addition operator
     Date operator+(const Time& time) const
     {
-        const auto newTime = julianDate.time_since_epoch() + time.time;
+        const auto newTime = julianDate.time_since_epoch() + JulianDateClock::duration(time);
         return Date(JulianDate(newTime));
     }
 
@@ -93,4 +100,15 @@ class Date {
         ss << sysTime;
         calendarDate = ss.str();
     }
+};
+
+template <>
+struct mp_units::quantity_point_like_traits<Date> {
+    static constexpr auto reference       = non_si::day;
+    static constexpr auto point_origin    = J2K;
+    static constexpr bool explicit_import = false;
+    static constexpr bool explicit_export = true;
+    using rep                             = double;
+    static constexpr rep to_numerical_value(Date date) { return date.julian_day(); }
+    static constexpr Date from_numerical_value(rep v) { return Date(v); }
 };

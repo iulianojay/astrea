@@ -19,6 +19,7 @@
 #include <mp-units/systems/si.h>
 
 #include "astro/element_sets/ElementSet.hpp"
+#include "astro/time/Time.hpp"
 
 #include "astro.fwd.hpp"
 
@@ -61,6 +62,24 @@ public:
 
     ~Equinoctial() = default;
 
+    // Comparitors operators
+    bool operator==(const Equinoctial& other) const;
+    bool operator!=(const Equinoctial& other) const;
+
+    // Mathmatical operators
+    Equinoctial operator+(const Equinoctial& other) const;
+    Equinoctial& operator+=(const Equinoctial& other);
+    
+    Equinoctial operator-(const Equinoctial& other) const;
+    Equinoctial& operator-=(const Equinoctial& other);
+
+    Equinoctial operator*(const double& multiplier) const;
+    Equinoctial& operator*=(const double& multiplier);
+
+    Equinoctial operator/(const double& divisor) const;
+    Equinoctial& operator/=(const double& divisor);
+
+    // Element access
     const Distance& get_semilatus() const { return _semilatus; }
     const Unitless& get_f() const { return _f; }
     const Unitless& get_g() const { return _g; }

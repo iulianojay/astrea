@@ -3,30 +3,6 @@
 #include <stdexcept>
 #include <cmath>
 
-template<auto R, typename Rep>
-mp_units::quantity<R, Rep> interpolate(const std::vector<Time>& x, const std::vector<mp_units::quantity<R, Rep>>& y, const Time& sx) {
-
-    const Time& xi = x[0];
-    const Time& xf = x[x.size()-1];
-    if (sx < xi || sx > xf) {
-        throw std::runtime_error("Asked for interpolation outside of dataset bounds.");
-    }
-    if (sx == xi) { return y[0]; }
-    if (sx == xf) { return y[x.size()-1]; }
-
-    // Find indexes
-    const size_t idx = std::distance(x.begin(), std::lower_bound(x.begin(), x.end(), sx));
-
-    const Time& x0 = x[idx];
-    const Time& x1 = x[idx+1];
-    const mp_units::quantity<R, Rep>& y0 = y[idx];
-    const mp_units::quantity<R, Rep>& y1 = y[idx+1];
-
-    if (sx == x0) { return y0; }
-
-    return y0 + (sx - x0)*(y1 - y0)/(x1 - x0);
-}
-
 
 // Cubic Spline
 /*

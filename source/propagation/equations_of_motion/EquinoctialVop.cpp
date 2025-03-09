@@ -11,6 +11,7 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
 OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
@@ -31,7 +32,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<km>& x = cartesian.get_x();
     const quantity<km>& y = cartesian.get_y();
     const quantity<km>& z = cartesian.get_z();
-    const quantity R = sqrt(x*x + y*y + z*z);
+    const quantity<km> R = sqrt(x*x + y*y + z*z);
 
     const quantity<km/s>& vx = cartesian.get_vx();
     const quantity<km/s>& vy = cartesian.get_vy();
@@ -43,36 +44,37 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    const quantity Rhatx = x/R;
-    const quantity Rhaty = y/R;
-    const quantity Rhatz = z/R;
+    const quantity<one> Rhatx = x/R;
+    const quantity<one> Rhaty = y/R;
+    const quantity<one> Rhatz = z/R;
 
-    const quantity Nhatx = (y*vz - z*vy)/h;
-    const quantity Nhaty = (z*vx - x*vz)/h;
-    const quantity Nhatz = (x*vy - y*vx)/h;
+    const quantity<pow<2>(km)/s> relSpecAngMom = sqrt(mu*a*(1 - ecc*ecc));
+    const quantity<one> Nhatx = (y*vz - z*vy)/relSpecAngMom;
+    const quantity<one> Nhaty = (z*vx - x*vz)/relSpecAngMom;
+    const quantity<one> Nhatz = (x*vy - y*vx)/relSpecAngMom;
 
-    const quantity Tvx = Nhaty*Rhatz - Nhatz*Rhaty;
-    const quantity Tvy = Nhatz*Rhatx - Nhatx*Rhatz;
-    const quantity Tvz = Nhatx*Rhaty - Nhaty*Rhatx;
+    const quantity<one> Tvx = Nhaty*Rhatz - Nhatz*Rhaty;
+    const quantity<one> Tvy = Nhatz*Rhatx - Nhatx*Rhatz;
+    const quantity<one> Tvz = Nhatx*Rhaty - Nhaty*Rhatx;
 
-    const quantity normTv = sqrt(Tvx*Tvx + Tvy*Tvy + Tvz*Tvz);
+    const quantity<one> normTv = sqrt(Tvx*Tvx + Tvy*Tvy + Tvz*Tvz);
 
-    const quantity Thatx = Tvx/normTv;
-    const quantity Thaty = Tvy/normTv;
-    const quantity Thatz = Tvz/normTv;
+    const quantity<one> Thatx = Tvx/normTv;
+    const quantity<one> Thaty = Tvy/normTv;
+    const quantity<one> Thatz = Tvz/normTv;
 
     // Function for finding accel caused by perturbations
-    const auto julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
-    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesianState, vehicle, system);
+    const quantity<day> julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
+    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Calculate R, N, and T
-    const quantity radialPert     = accelPerts[0]*Rhatx + accelPerts[1]*Rhaty + accelPerts[2]*Rhatz;
-    const quantity normalPert     = accelPerts[0]*Nhatx + accelPerts[1]*Nhaty + accelPerts[2]*Nhatz;
-    const quantity tangentialPert = accelPerts[0]*Thatx + accelPerts[1]*Thaty + accelPerts[2]*Thatz;
+    const quantity<km/pow<2>(s)> radialPert     = accelPerts[0]*Rhatx + accelPerts[1]*Rhaty + accelPerts[2]*Rhatz;
+    const quantity<km/pow<2>(s)> normalPert     = accelPerts[0]*Nhatx + accelPerts[1]*Nhaty + accelPerts[2]*Nhatz;
+    const quantity<km/pow<2>(s)> tangentialPert = accelPerts[0]*Thatx + accelPerts[1]*Thaty + accelPerts[2]*Thatz;
 
     // Variables precalculated for speed
-    const quantity cosL = cos(L);
-    const quantity sinL = sin(L);
+    const quantity<one> cosL = cos(L);
+    const quantity<one> sinL = sin(L);
 
     const quantity tempA = sqrt(p/mu);
     const quantity tempB = 1.0 + f*cos(L) + g*sin(L);
@@ -82,14 +84,21 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity tempD = tempA*sSq/(2*tempB);
 
     // Derivative functions
-    const OrbitalElements dsdt({
-        2*p/tempB*tempA*tangentialPert,                                                                 // dpdt
-        tempA*( radialPert*sinL + ((tempB + 1)*cosL + f)/tempB*tangentialPert - g*tempC*normalPert),    // dfdt
-        tempA*(-radialPert*cosL + ((tempB + 1)*sinL + g)/tempB*tangentialPert + f*tempC*normalPert),    // dgdt
-        tempD*cosL*normalPert,                                                                          // dhdt
-        tempD*sinL*normalPert,                                                                          // dkdt
-        sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert                                           // dLdt
-    }, ElementSet::EQUINOCTIAL);
+    const quantity<km/s> dpdt = 2*p/tempB*tempA*tangentialPert;
+    const quantity<one/s> dfdt = tempA*( radialPert*sinL + ((tempB + 1)*cosL + f)/tempB*tangentialPert - g*tempC*normalPert);
+    const quantity<one/s> dgdt = tempA*(-radialPert*cosL + ((tempB + 1)*sinL + g)/tempB*tangentialPert + f*tempC*normalPert);
+    const quantity<one/s> dhdt = tempD*cosL*normalPert;
+    const quantity<one/s> dkdt = tempD*sinL*normalPert;
+    const quantity<rad/s> dLdt = sqrt(mu*p)*tempB*tempB/(p*p) + tempA*tempC*normalPert;
 
-    return dsdt;
+    const Equinoctial dsdt(
+        dpdt * s,
+        dfdt * s,
+        dgdt * s,
+        dhdt * s,
+        dkdt * s,
+        dLdt * s
+    );
+
+    return OrbitalElements(dsdt);
 }

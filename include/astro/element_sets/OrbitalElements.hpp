@@ -323,6 +323,8 @@ public:
     std::vector<double> to_vector() const;
     void update_from_vector(const std::vector<double>& vec);
 
+    bool nearly_equal(const OrbitalElements& other, const double& tol = 1.0e-6);
+
     // Pointer to user-defined elements
     const void* get_ptr() const;
     void* get_ptr();

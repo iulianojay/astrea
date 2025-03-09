@@ -3,7 +3,7 @@
 class State;
 
 // Time
-class Time;
+// class Time;
 class Date;
 class Interval;
 struct JulianDateClock;

@@ -12,7 +12,7 @@ public:
     NBodyForce() = default;
     ~NBodyForce() = default;
 
-    AccelerationVector compute_force(const mp_units::quantity<mp_units::non_si::day>& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
 private:
 };
