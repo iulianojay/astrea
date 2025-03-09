@@ -124,9 +124,6 @@ set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -mfpmath=387 -ffast-math -fpermissive -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
-set(C_FLAGS "-std=c20")
-set(CXX_FLAGS "-std=c++20")
-
 if (${OS} STREQUAL linux)
     set(C_FLAGS "${C_FLAGS} -Wall")
     set(CXX_FLAGS "${CXX_FLAGS} -Wall")

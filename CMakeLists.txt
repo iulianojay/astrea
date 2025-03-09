@@ -1,9 +1,8 @@
 
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.31.6)
 
-project(astro VERSION 1.0.0 DESCRIPTION "C++ astodynamics library" LANGUAGES C CXX)
+project(astro VERSION 1.0.0 DESCRIPTION "C++ astodynamics library" LANGUAGES CXX)
 
-set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)

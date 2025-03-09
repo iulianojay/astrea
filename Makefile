@@ -1,7 +1,7 @@
 # Setup
 DFLAG = Release
-C_COMP = gcc
-CXX_COMP = g++
+C_COMP = gcc-13
+CXX_COMP = g++-13
 VERBOSE = OFF
 BUILD_SWIG = OFF
 

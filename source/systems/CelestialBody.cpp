@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include "nlohmann/json.hpp"
+#include <extern/nlohmann/json.hpp>
 
 #include "OrbitalElements.hpp"
 #include "math_c.hpp"
