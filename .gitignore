@@ -4,6 +4,7 @@ CMake*
 **/bin/*
 **/build/*
 lib/*
+install/*
 **__pycache__/
 tests/profiling/results
 

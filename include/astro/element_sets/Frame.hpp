@@ -4,9 +4,8 @@
   #include <string>
 #endif
 
+#include "astro.fwd.hpp"
 #include "astro/types/typedefs.hpp"
-#include "fwd/systems/CelestialBody.fwd.hpp"
-#include "fwd/platforms/space/Spacecraft.fwd.hpp"
 
 
 template <class T>

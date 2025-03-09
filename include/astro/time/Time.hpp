@@ -8,7 +8,7 @@
 #include "JulianDateClock.hpp"
 #include "time_units.hpp"
 
-#include "Date.fwd.hpp"
+#include "astro.fwd.hpp"
 
 class Time {
 

@@ -5,12 +5,11 @@
     #include <cmath>
 #endif
 
+#include "astro.fwd.hpp"
 #include "astro/element_sets/ElementSet.hpp"
 #include "astro/element_sets/Frame.hpp"
 #include "astro/utilities/conversions.hpp"
 #include "astro/types/typedefs.hpp"
-
-#include "fwd/systems/AstrodynamicsSystem.fwd.hpp"
 
 class OrbitalElements : public element_array {
 
