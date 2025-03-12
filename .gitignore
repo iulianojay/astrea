@@ -1,12 +1,12 @@
 # Folders
 .vscode
 CMake*
-**/bin/*
-**/build/*
-lib/*
-install/*
-**__pycache__/
-tests/profiling/results
+bin
+build
+lib
+install
+__pycache__
+results
 
 # File types
 *.o
