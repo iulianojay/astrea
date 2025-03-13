@@ -8,14 +8,15 @@ project(
     LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 23)
+
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
-    ${ASTRO_BASE}/platforms/ground/GroundStation.cpp
-
     ${ASTRO_BASE}/platforms/space/Constellation.cpp
     ${ASTRO_BASE}/platforms/space/Plane.cpp
     ${ASTRO_BASE}/platforms/space/Shell.cpp
+    
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
 
@@ -61,7 +62,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/element_sets/Frame.hpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
 
-    ${ASTRO_BASE}/platforms/ground/GroundStation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Plane.hpp
     ${ASTRO_BASE}/platforms/space/Shell.hpp
@@ -107,42 +107,66 @@ set(ASTRO_HEADERS
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
 
-# Includes
-set(ASTRO_DIRS
-    ${ASTRO_BASE}
-    ${EXTERN_BASE}
-)
-
 # Set outputs
+set(INSTALL_PATHING install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
+set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/${INSTALL_PATHING})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
+# Dependencies
+if (PROJECT_IS_TOP_LEVEL) 
+    set(MATH_BASE ${CMAKE_SOURCE_DIR}/../math)
+else()
+    set(MATH_BASE ${CMAKE_SOURCE_DIR}/newtool/math)
+endif()
+find_package(math REQUIRED PATHS ${MATH_BASE}/${INSTALL_PATHING})
+
+# Includes
+set(ASTRO_DIRS
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${EXTERN_BASE}
+    ${MATH_BASE}/${INSTALL_PATHING}/include
+)
+include_directories(${ASTRO_DIRS})
+
 # Shared library
-add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
-set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
+add_library           (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 
 # Static library
-add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
-set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ASTRO CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
+add_library           (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
 
-# Executable
-add_executable             (${PROJECT_NAME} ${ASTRO_BASE}/main.cpp)
-set_target_properties      (${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
-target_include_directories (${PROJECT_NAME} PUBLIC ${ASTRO_DIRS})
-target_link_libraries      (${PROJECT_NAME} PUBLIC ${PROJECT_NAME}_shared)
-add_dependencies           (${PROJECT_NAME} ${PROJECT_NAME}_shared)
-
+# Install and export the targets.
 # Copy include
 file(COPY
     DIRECTORY ${ASTRO_BASE}
     DESTINATION ${CMAKE_INSTALL_PREFIX}/include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.h
+)
+install(
+    TARGETS ${PROJECT_NAME}_shared ${PROJECT_NAME}_static
+    EXPORT ${PROJECT_NAME}Config
+    ARCHIVE DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+    LIBRARY DESTINATION ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
+    RUNTIME DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+)
+
+export(
+    TARGETS ${PROJECT_NAME}_shared ${PROJECT_NAME}_static
+    NAMESPACE ${PROJECT_NAME}::
+    FILE "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}Config.cmake"
+)
+
+install(
+    EXPORT ${PROJECT_NAME}Config
+    DESTINATION "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/cmake"
+    NAMESPACE ${PROJECT_NAME}::
 )
 
 if (BUILD_SWIG)
-    include(config/swig.cmake)
+    include(cmake/swig.cmake)
 endif()

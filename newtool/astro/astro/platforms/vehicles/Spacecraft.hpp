@@ -5,8 +5,6 @@
     #include <unordered_map>
 #endif
 
-#include <access/platforms/Sensor.hpp>
-
 #include <astro/constants/astronomical_constants.h>
 #include <astro/types/typedefs.hpp>
 
@@ -26,7 +24,7 @@ public:
     Spacecraft(OrbitalElements state0, Date epoch = J2000);
 
     // Destructor
-    ~Spacecraft();
+    virtual ~Spacecraft();
 
     void update_state(const State& state);
     State& get_state() { return _state; };
@@ -49,19 +47,9 @@ public:
     double get_solar_area() const;
     double get_lift_area() const;
 
-    void attach(Sensor& sensor) { _sensors.emplace_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors) { _sensors.insert(std::end(_sensors), std::begin(_sensors), std::end(_sensors)); }
-
-    std::vector<Sensor>& get_sensors() { return _sensors; }
-    const std::vector<Sensor>& get_sensors() const { return _sensors; }
-
     size_t get_id() const { return _id; }
 
-    void add_access(const size_t& receiverId, const RiseSetArray& access) {
-        _accesses[_id, receiverId] = access;
-    }
-
-private:
+protected:
 
     size_t _id;
     std::string _name;
@@ -81,10 +69,6 @@ private:
 
     // Epoch variables
     Date _epoch;
-
-    // Access data
-    AccessArray _accesses;
-    std::vector<Sensor> _sensors;
 
     void generate_id_hash();
 };

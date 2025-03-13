@@ -156,12 +156,12 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
 
     if (r0[0]*rf[1] - r0[1]*rf[0] >= 0){
         if (I == -1) { // Retrograde
-            dtheta = 2.0*PI - dtheta;
+            dtheta = 2.0*M_PI - dtheta;
         }
     }
     else {
         if (I == 1) { // Prograde
-            dtheta = 2.0*PI - dtheta;
+            dtheta = 2.0*M_PI - dtheta;
         }
     }
 

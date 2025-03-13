@@ -115,7 +115,7 @@ element_array conversions::convert(const element_array& elements, const ElementS
     return conversions::elementSetConversions.at(setPair)(elements, system);
 }
 
-void conversions::keplerian_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu, double* radius, double* velocity) {
+std::vector<double> conversions::keplerian_to_bci(double a, double ecc, double inc, double raan, double w, double theta, double mu) {
 
     // Precalculate
     const double cos_theta = math::cos(theta);
@@ -151,16 +151,18 @@ void conversions::keplerian_to_bci(double a, double ecc, double inc, double raan
     const double DCM_peri2ECI_32 = sin_inc*cos_w;
 
     // Inertial position and velocity
-    radius[0] = DCM_peri2ECI_11*x_peri + DCM_peri2ECI_12*y_peri;
-    radius[1] = DCM_peri2ECI_21*x_peri + DCM_peri2ECI_22*y_peri;
-    radius[2] = DCM_peri2ECI_31*x_peri + DCM_peri2ECI_32*y_peri;
-
-    velocity[0] = DCM_peri2ECI_11*vx_peri + DCM_peri2ECI_12*vy_peri;
-    velocity[1] = DCM_peri2ECI_21*vx_peri + DCM_peri2ECI_22*vy_peri;
-    velocity[2] = DCM_peri2ECI_31*vx_peri + DCM_peri2ECI_32*vy_peri;
+    const std::vector<double> cartesian = {
+        DCM_peri2ECI_11*x_peri + DCM_peri2ECI_12*y_peri,
+        DCM_peri2ECI_21*x_peri + DCM_peri2ECI_22*y_peri,
+        DCM_peri2ECI_31*x_peri + DCM_peri2ECI_32*y_peri,
+        DCM_peri2ECI_11*vx_peri + DCM_peri2ECI_12*vy_peri,
+        DCM_peri2ECI_21*vx_peri + DCM_peri2ECI_22*vy_peri,
+        DCM_peri2ECI_31*vx_peri + DCM_peri2ECI_32*vy_peri
+    };
+    return cartesian;
 }
 
-void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, double* coes) {
+std::vector<double> conversions::bci_to_keplerian(const std::vector<double>& radius, const std::vector<double>& velocity, double mu) {
 
     /*
         Force rounding errors to assume zero values for angles. Assume complex
@@ -194,12 +196,12 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
     // Eccentricity
     double dotRV = radius[0]*velocity[0] + radius[1]*velocity[1] + radius[2]*velocity[2];
 
-    double eccVec[3];
-    eccVec[0] = (1.0/mu)*((V*V - mu/R)*radius[0] - dotRV*velocity[0]);
-    eccVec[1] = (1.0/mu)*((V*V - mu/R)*radius[1] - dotRV*velocity[1]);
-    eccVec[2] = (1.0/mu)*((V*V - mu/R)*radius[2] - dotRV*velocity[2]);
-
-    double ecc = math::normalize(eccVec, 0, 2);
+    const std::vector<double> eccVec = {
+        (1.0/mu)*((V*V - mu/R)*radius[0] - dotRV*velocity[0]),
+        (1.0/mu)*((V*V - mu/R)*radius[1] - dotRV*velocity[1]),
+        (1.0/mu)*((V*V - mu/R)*radius[2] - dotRV*velocity[2])
+    };
+    double ecc = math::normalize(eccVec);
     /*
         If the orbit has an inclination of exactly 0, w is ill-defined, the
         eccentricity vector is ill-defined, and true anomaly is ill defined. Force
@@ -212,7 +214,7 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
 
     // Inclination (rad)
     double inc = acos(hz/normH);
-    if (std::isnan(inc) || fabs(inc - PI) < tol){
+    if (std::isnan(inc) || fabs(inc - M_PI) < tol){
         inc = 0.0;
     }
 
@@ -223,10 +225,10 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
         raan = acos_Nx_Nnorm;
     }
     else {
-        raan = 2.0*PI - acos_Nx_Nnorm;
+        raan = 2.0*M_PI - acos_Nx_Nnorm;
     }
 
-    if (normN == 0.0 || std::isnan(raan) || fabs(raan - 2.0*PI) < tol) {
+    if (normN == 0.0 || std::isnan(raan) || fabs(raan - 2.0*M_PI) < tol) {
         raan = 0.0;
     }
 
@@ -238,7 +240,7 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
                 theta = acos(radius[0]/R);
             }
             else {
-                theta = 2*PI - acos(radius[0]/R);
+                theta = 2*M_PI - acos(radius[0]/R);
             }
         }
         else { // Use argument of latitude
@@ -247,7 +249,7 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
                 theta = acos(dot_n_r/(normN*R));
             }
             else {
-                theta = 2*PI - acos(dot_n_r/(normN*R));
+                theta = 2*M_PI - acos(dot_n_r/(normN*R));
             }
         }
     }
@@ -257,11 +259,11 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
             theta = acos(dot_ecc_r/(ecc*R));
         }
         else {
-            theta = 2.0*PI - acos(dot_ecc_r/(ecc*R));
+            theta = 2.0*M_PI - acos(dot_ecc_r/(ecc*R));
         }
     }
 
-    if (std::isnan(theta) || fabs(theta - 2.0*PI) < tol) {
+    if (std::isnan(theta) || fabs(theta - 2.0*M_PI) < tol) {
         theta = 0.0;
     }
 
@@ -275,36 +277,39 @@ void conversions::bci_to_keplerian(double* radius, double* velocity, double mu, 
             w = atan2(eccVec[1], eccVec[0]);
         }
         else {
-            w = 2*PI - atan2(eccVec[1], eccVec[0]);
+            w = 2*M_PI - atan2(eccVec[1], eccVec[0]);
         }
     }
     else {
         double dot_ecc_N = eccVec[0]*Nx + eccVec[1]*Ny;
         if (eccVec[2] < 0.0){
-            w = 2.0*PI - acos(dot_ecc_N/(ecc*normN));
+            w = 2.0*M_PI - acos(dot_ecc_N/(ecc*normN));
         }
         else {
             w = acos(dot_ecc_N/(ecc*normN));
         }
     }
 
-    if (normN == 0.0 || std::isnan(w) || fabs(w - 2.0*PI) < tol) {
+    if (normN == 0.0 || std::isnan(w) || fabs(w - 2.0*M_PI) < tol) {
         w = 0.0;
     }
 
     // Period(s)
-    // T = 2.0*PI*std::sqrt(a*a*a/mu);
+    // T = 2.0*M_PI*std::sqrt(a*a*a/mu);
 
     // Mean Motion(rad/s)
-    // n = 2.0*PI/T;
+    // n = 2.0*M_PI/T;
 
     // Assign to coes
-    coes[0] = a;
-    coes[1] = ecc;
-    coes[2] = inc;
-    coes[3] = raan;
-    coes[4] = w;
-    coes[5] = theta;
+    const std::vector<double> coes = {
+        a,
+        ecc,
+        inc,
+        raan,
+        w,
+        theta
+    };
+    return coes;
 }
 
 void conversions::_equinoctial_to_keplerian(double p, double f, double g, double h, double k, double L, double* coes) {
@@ -318,8 +323,8 @@ void conversions::_equinoctial_to_keplerian(double p, double f, double g, double
     raan = math::atan3(k, h);     // rad
     atopo = math::atan3(g, f);
 
-    w = std::fmod(atopo - raan, 2*PI);    // rad
-    theta = std::fmod(L - atopo, 2*PI);   // rad
+    w = std::fmod(atopo - raan, 2*M_PI);    // rad
+    theta = std::fmod(L - atopo, 2*M_PI);   // rad
 
     coes[0] = a;
     coes[1] = ecc;
@@ -334,30 +339,30 @@ element_array conversions::keplerian_to_cartesian(const element_array& coes, con
     element_array cartesian;
     double radius[3];
     double velocity[3];
-    keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center()->get_mu(), radius, velocity);
-    for (int ii = 0; ii < 3; ii++) {
-        cartesian[ii] = radius[ii];
-    }
-    for (int ii = 0; ii < 3; ii++) {
-        cartesian[ii+3] = velocity[ii];
+    const auto elements = keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center()->get_mu());
+    for (int ii = 0; ii < 6; ii++) {
+        cartesian[ii] = elements[ii];
     }
     return cartesian;
 };
 
 element_array conversions::cartesian_to_keplerian(const element_array& cartesian, const AstrodynamicsSystem& system) {
-    double coes[6];
-    double radius[3];
-    double velocity[3];
-    for (int ii = 0; ii < 3; ii++) {
-        radius[ii] = cartesian[ii];
-    }
-    for (int ii = 0; ii < 3; ii++) {
-        velocity[ii] = cartesian[ii+3];
-    }
-    bci_to_keplerian(radius, velocity, system.get_center()->get_mu(), coes);
+    std::vector<double> radius = {
+        cartesian[0],
+        cartesian[1],
+        cartesian[2]
+    };
+    std::vector<double> velocity = {
+        cartesian[3],
+        cartesian[4],
+        cartesian[5]
+    };
+    const std::vector<double> coes = bci_to_keplerian(radius, velocity, system.get_center()->get_mu());
 
     element_array keplerian_array;
-    std::copy(coes, coes+6, keplerian_array.begin());
+    for (int ii = 0; ii < 6; ii++) {
+        keplerian_array[ii] = coes[ii];
+    }
 
     return keplerian_array;
 };

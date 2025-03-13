@@ -1,4 +1,4 @@
-#include <astro/platforms/ground/GroundStation.hpp>
+#include <access/platforms/ground/GroundStation.hpp>
 
 
 void GroundStation::generate_id_hash() {

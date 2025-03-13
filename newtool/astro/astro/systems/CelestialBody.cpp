@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include <extern/nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <math/utils.hpp>

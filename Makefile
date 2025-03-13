@@ -5,7 +5,9 @@ config_path := .
 source_path := source
 include_path := include
 examples_path := examples
+arch := x86_64
 os := linux
+comp := gnu-13.1.0
 tests_path := tests
 
 build_type = Debug
@@ -13,10 +15,7 @@ cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
 
-build_path := $(abspath $(shell pwd)/build/$(os)/$(cxx)/$(build_type))
-install_path := $(abspath $(shell pwd)/install/$(os)/$(cxx)/$(build_type))
-lib_path :=  $(install_path)/lib
-exec_path :=  $(install_path)/bin
+build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type))
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -40,7 +39,6 @@ configure: $(build_path)/Makefile
 $(build_path)/Makefile: CMakeLists.txt $(OPTIONS_INPUT)
 	CXX=$(cxx) cmake -S $(config_path) -B $(build_path) \
 		-DCMAKE_BUILD_TYPE=$(build_type) \
-		-DCMAKE_INSTALL_PREFIX=$(install_path) \
 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=OPTIONS
@@ -56,26 +54,17 @@ tests: install
 .PHONY: debug
 debug: 
 	$(eval build_type = Debug)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(os)/$(cxx)/$(build_type)))
-	$(eval install_path = $(abspath $(shell pwd)/install/$(os)/$(cxx)/$(build_type)))
-	$(eval lib_path = $(install_path)/lib)
-	$(eval exec_path = $(install_path)/bin)
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
 	
 .PHONY: release
 release: 
 	$(eval build_type = Release)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(os)/$(cxx)/$(build_type)))
-	$(eval install_path = $(abspath $(shell pwd)/install/$(os)/$(cxx)/$(build_type)))
-	$(eval lib_path = $(install_path)/lib)
-	$(eval exec_path = $(install_path)/bin)
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
 	
 .PHONY: relwdebug
 relwdebug: 
 	$(eval build_type = RelWithDebInfo)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(os)/$(cxx)/$(build_type)))
-	$(eval install_path = $(abspath $(shell pwd)/install/$(os)/$(cxx)/$(build_type)))
-	$(eval lib_path = $(install_path)/lib)
-	$(eval exec_path = $(install_path)/bin)
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
 
 .PHONY: verbose
 verbose:
