@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <vector>
+#include <vector>
 #endif
 
 #include <access/platforms/Sensor.hpp>
@@ -13,16 +13,13 @@ struct Channel {
 
 
 class Antenna : public Sensor {
-public:
-
+  public:
     using Sensor::Sensor;
 
-private:
-
+  private:
     double gain;
     double wavelength;
     std::vector<Channel> channels;
-
 };
 
 

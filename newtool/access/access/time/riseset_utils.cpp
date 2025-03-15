@@ -1,17 +1,16 @@
 #include <access/time/riseset_utils.hpp>
 
-#include <vector>
 #include <limits>
+#include <vector>
 
-#include <astro/time/Time.hpp>
 #include <access/time/RiseSetArray.hpp>
+#include <astro/time/Time.hpp>
 
-RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b) {
+RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
+{
 
     // If one is empty, union is the other
-    if (a.size() == 0) {
-        return b;
-    }
+    if (a.size() == 0) { return b; }
     else if (b.size() == 0) {
         return a;
     }
@@ -33,9 +32,7 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b) {
 
         // Compare values
         double diff;
-        if (aIdx >= lenA) {
-            diff = 1;
-        }
+        if (aIdx >= lenA) { diff = 1; }
         else if (bIdx >= lenB) {
             diff = -1;
         }
@@ -75,11 +72,11 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b) {
 
     // Remove duplicates
     auto temp_c = c;
-    cIdx = 0;
+    cIdx        = 0;
     for (size_t ii = 0; ii < lenC - 1; ii += 2) {
-        if (temp_c[ii] == temp_c[ii+1]) {
-            c[cIdx] = temp_c[ii];
-            c[cIdx+1] = temp_c[ii+1];
+        if (temp_c[ii] == temp_c[ii + 1]) {
+            c[cIdx]     = temp_c[ii];
+            c[cIdx + 1] = temp_c[ii + 1];
             cIdx += 2;
         }
     }
@@ -88,12 +85,11 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b) {
     return RiseSetArray(c);
 }
 
-RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b) {
+RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
+{
 
     // If one is empty, intersection is empty
-    if (a.size() == 0 || b.size() == 0) {
-        return RiseSetArray();
-    }
+    if (a.size() == 0 || b.size() == 0) { return RiseSetArray(); }
 
     // Setup
     size_t aIdx = 0;
@@ -111,20 +107,18 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b) 
     while (aIdx < lenA && bIdx < lenB) {
 
         // Left and right interval bounds
-        const double left  = (a[aIdx]   < b[bIdx])   ? b[bIdx]   : a[aIdx];
-        const double right = (a[aIdx+1] > b[bIdx+1]) ? b[bIdx+1] : a[aIdx+1];
+        const double left  = (a[aIdx] < b[bIdx]) ? b[bIdx] : a[aIdx];
+        const double right = (a[aIdx + 1] > b[bIdx + 1]) ? b[bIdx + 1] : a[aIdx + 1];
 
         // Only store if it's valid
         if (left < right) {
-            c[cIdx] = left;
-            c[cIdx+1] = right;
+            c[cIdx]     = left;
+            c[cIdx + 1] = right;
             cIdx += 2;
         }
 
         // Increment
-        if (a[aIdx+1] <= b[bIdx+1]) {
-            aIdx += 2;
-        }
+        if (a[aIdx + 1] <= b[bIdx + 1]) { aIdx += 2; }
         else {
             bIdx += 2;
         }

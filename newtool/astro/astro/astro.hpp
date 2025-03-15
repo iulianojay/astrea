@@ -7,11 +7,9 @@
 #include <astro/element_sets/Frame.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 
-#include <astro/platforms/ground/GroundStation.hpp>
-
 #include <astro/platforms/space/Constellation.hpp>
-#include <astro/platforms/space/Shell.hpp>
 #include <astro/platforms/space/Plane.hpp>
+#include <astro/platforms/space/Shell.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 
 #include <astro/propagation/Integrator.hpp>
@@ -24,11 +22,11 @@
 #include <astro/propagation/force_models/OblatenessForce.hpp>
 #include <astro/propagation/force_models/SolarRadiationPressureForce.hpp>
 
-#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
+#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -40,8 +38,8 @@
 #include <astro/time/Interval.hpp>
 #include <astro/time/Time.hpp>
 
-#include <astro/types/typedefs.hpp>
 #include <astro/types/tuple_hash.hpp>
+#include <astro/types/typedefs.hpp>
 
 #include <astro/utilities/conversions.hpp>
 

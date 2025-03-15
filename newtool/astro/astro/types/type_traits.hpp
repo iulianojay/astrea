@@ -7,28 +7,27 @@
 #include <type_traits>
 #include <utility>
 
-namespace detail
-{
+namespace detail {
 
 // http://en.cppreference.com/w/cpp/experimental/is_detected
 template <class Default, class AlwaysVoid, template <class...> class Op, class... Args>
 struct detector {
     using value_t = std::false_type;
-    using type = Default;
+    using type    = Default;
 };
 
 template <class Default, template <class...> class Op, class... Args>
 struct detector<Default, std::void_t<Op<Args...>>, Op, Args...> {
     using value_t = std::true_type;
-    using type = Op<Args...>;
+    using type    = Op<Args...>;
 };
 
 // http://en.cppreference.com/w/cpp/experimental/nonesuch
 struct nonesuch {
-    nonesuch() = delete;
-    ~nonesuch() = delete;
-    nonesuch(nonesuch const &) = delete;
-    void operator=(nonesuch const &) = delete;
+    nonesuch()                      = delete;
+    ~nonesuch()                     = delete;
+    nonesuch(nonesuch const&)       = delete;
+    void operator=(nonesuch const&) = delete;
 };
 
 } // namespace detail

@@ -1,24 +1,23 @@
 #pragma once
 
 #ifndef SWIG
-    #include <string>
-    #include <unordered_map>
+#include <string>
+#include <unordered_map>
 #endif
 
 #include <astro/constants/astronomical_constants.h>
 #include <astro/types/typedefs.hpp>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/State.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/time/Time.hpp>
 
 #include <astro/astro.fwd.hpp>
 
 class Spacecraft {
 
-public:
-
+  public:
     // Constructor
     Spacecraft() = default;
     Spacecraft(OrbitalElements state0, Date epoch = J2000);
@@ -49,19 +48,18 @@ public:
 
     size_t get_id() const { return _id; }
 
-protected:
-
+  protected:
     size_t _id;
     std::string _name;
 
     // Spacecraft properties
-    double _mass = 1000.0;
-    double _coefficientOfDrag = 2.2;
-    double _coefficientOfLift = 0.9;
+    double _mass                      = 1000.0;
+    double _coefficientOfDrag         = 2.2;
+    double _coefficientOfLift         = 0.9;
     double _coefficientOfReflectivity = 1.1;
-    double _ramArea = 1.0;
-    double _sunArea = 1.0;
-    double _liftArea = 1.0;
+    double _ramArea                   = 1.0;
+    double _sunArea                   = 1.0;
+    double _liftArea                  = 1.0;
 
     // Orbital elements
     State _state;

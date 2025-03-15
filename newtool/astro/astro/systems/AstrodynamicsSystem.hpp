@@ -1,23 +1,23 @@
 #pragma once
 
 #ifndef SWIG
-    #include <unordered_set>
-    #include <vector>
+#include <unordered_set>
+#include <vector>
 #endif
 
-#include <astro/types/typedefs.hpp>
+#include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyFactory.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/types/typedefs.hpp>
 
 
 class AstrodynamicsSystem {
-public:
-
-    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = {"Earth", "Moon"}, Date epoch = J2000) :
-        centralBody(centralBody), allBodies(allBodies), epoch(epoch) {
+  public:
+    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = { "Earth", "Moon" }, Date epoch = J2000)
+        : centralBody(centralBody), allBodies(allBodies), epoch(epoch)
+    {
         create_all_bodies();
     };
     ~AstrodynamicsSystem() {}
@@ -32,13 +32,12 @@ public:
     // basis_array get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 
-    using iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
+    using iterator       = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
     using const_iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::const_iterator;
     auto begin() const { return bodyFactory.begin(); }
     auto end() const { return bodyFactory.end(); }
 
-private:
-
+  private:
     const std::string centralBody;
     const std::unordered_set<std::string> allBodies;
 

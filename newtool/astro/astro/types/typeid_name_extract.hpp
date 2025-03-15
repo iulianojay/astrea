@@ -8,8 +8,7 @@
 
 /* This file is duplicated from the pagmo repo */
 
-namespace detail
-{
+namespace detail {
 
 // This is an implementation of the extract() functionality
 // for UDx classes based on the name() of the UDx C++ type,
@@ -22,24 +21,21 @@ namespace detail
 // https://github.com/pybind/pybind11/issues/912#issuecomment-310157016
 // https://bugs.llvm.org/show_bug.cgi?id=33542
 template <typename T, typename C>
-inline typename std::conditional<std::is_const<C>::value, const T *, T *>::type typeid_name_extract(C &class_inst)
+inline typename std::conditional<std::is_const<C>::value, const T*, T*>::type typeid_name_extract(C& class_inst)
 {
     // NOTE: typeid() strips away both reference and cv qualifiers. Thus,
     // if T is cv-qualified or a reference type, return nullptr preemptively
     // (in any case, extraction cannot be successful in such cases).
-    if (!std::is_same<T, remove_cv_ref<T>>::value || std::is_reference<T>::value) {
-        return nullptr;
-    }
+    if (!std::is_same<T, remove_cv_ref<T>>::value || std::is_reference<T>::value) { return nullptr; }
 
     if (std::strcmp(class_inst.get_type_index().name(), typeid(T).name())) {
         // The names differ, return null.
         return nullptr;
-    } else {
+    }
+    else {
         // The names match, cast to the correct type and return.
-        return static_cast<typename std::conditional<std::is_const<C>::value, const T *, T *>::type>(
-            class_inst.get_ptr());
+        return static_cast<typename std::conditional<std::is_const<C>::value, const T*, T*>::type>(class_inst.get_ptr());
     }
 }
 
 } // namespace detail
-

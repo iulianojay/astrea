@@ -1,30 +1,32 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 
-void AstrodynamicsSystem::create_all_bodies() {
-    for (const auto& body: allBodies) {
+void AstrodynamicsSystem::create_all_bodies()
+{
+    for (const auto& body : allBodies) {
         bodyFactory.create(body);
     }
 };
 
 
-void AstrodynamicsSystem::propagate_bodies(double propTime) {
+void AstrodynamicsSystem::propagate_bodies(double propTime)
+{
 
     // Ask factory to propagate
     bodyFactory.propagate_bodies(epoch, propTime);
 
     // Assign properties from central body
-    const CelestialBodyUniquePtr& center = bodyFactory.get(centralBody);
+    const CelestialBodyUniquePtr& center    = bodyFactory.get(centralBody);
     const std::vector<State> centerToParent = center->get_states();
 
     // Get root body
-    std::string root = bodyFactory.get_root();
+    std::string root                = bodyFactory.get_root();
     std::vector<State> centerToRoot = centerToParent;
     if (centralBody != root) {
         auto parent = center->get_parent();
         while (parent != root) {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody->get_states();
+            auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
             }
@@ -32,7 +34,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
         }
     }
     else {
-        const element_array noDiff = {0.0};
+        const element_array noDiff = { 0.0 };
         for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
             centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }
@@ -41,10 +43,10 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     // Get root to Sun
     if (centralBody != "Sun") {
         std::vector<State> centerToSun = centerToParent;
-        auto parent = center->get_parent();
+        auto parent                    = center->get_parent();
         while (parent != "None") {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody->get_states();
+            auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < centerToSun.size(); ii++) {
                 centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
             }
@@ -53,25 +55,23 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
     }
     else {
         for (size_t ii = 0; ii < centerToSun.size(); ii++) {
-            centerToSun[ii].elements = OrbitalElements({0.0}, ElementSet::CARTESIAN);
+            centerToSun[ii].elements = OrbitalElements({ 0.0 }, ElementSet::CARTESIAN);
         }
     }
 
     // Get states for ith bodies to center
-    for (auto&& [name, ithBody]: bodyFactory) {
-        if (name == centralBody) {
-            continue;
-        }
+    for (auto&& [name, ithBody] : bodyFactory) {
+        if (name == centralBody) { continue; }
 
         // Get ith body states
         statesToCenter.push_back(ithBody->get_states());
 
         // If parent is not root, back track to root
-        auto parent = ithBody->get_parent();
+        auto parent  = ithBody->get_parent();
         auto& states = statesToCenter.back();
         while (parent != root) {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent = parentBody->get_states();
+            auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < states.size(); ii++) {
                 states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
             }
@@ -83,5 +83,4 @@ void AstrodynamicsSystem::propagate_bodies(double propTime) {
             states[ii].elements = states[ii].elements - centerToRoot[ii].elements;
         }
     }
-
 }

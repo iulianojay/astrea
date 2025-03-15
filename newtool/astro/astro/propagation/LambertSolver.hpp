@@ -2,16 +2,15 @@
 #pragma once
 
 #ifndef SWIG
-    #include <iostream>
-    #include <math.h>
-    #include <cmath>
+#include <cmath>
+#include <iostream>
+#include <math.h>
 #endif
 
 #include <astro/constants/astronomical_constants.h>
 
-class LambertSolver
-{
-private:
+class LambertSolver {
+  private:
     // Private members
     double r0[3] = {};
     double v0[3] = {};
@@ -49,12 +48,13 @@ private:
     // Private methods
     void evaluate_stumpff();
     double normalize(double* vec);
-public:
+
+  public:
     LambertSolver();
     ~LambertSolver();
 
     // Members
-    int itMax = 1000;
+    int itMax  = 1000;
     double tol = 1.0e-12;
 
     // Methods
@@ -63,4 +63,3 @@ public:
 
     void solve_rr(double* r0, double* rf, double dt, double mu, int I, double* v0, double* vf); // Starts with r and r and ouputs v and v for the given dt
 };
-

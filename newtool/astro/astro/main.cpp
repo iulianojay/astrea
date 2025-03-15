@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
 #include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <stdio.h>
 
 // #include <arrow/api.h>
 // #include <arrow/csv/api.h>
@@ -14,17 +14,18 @@
 
 #include <astro/astro.hpp>
 
-int main() {
+int main()
+{
 
     // Setup system
-    AstrodynamicsSystem sys("Earth", {"Earth", "Moon", "Sun", "Jupiter"});
+    AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
 
-    const OrbitalElements state({10000.0, 0.0, 45.0, 0.0, 0.0, 0.0}, ElementSet::KEPLERIAN);
+    const OrbitalElements state({ 10000.0, 0.0, 45.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
     // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
 
     // Build constellation
-    const int T = 1;
-    const int P = 1;
+    const int T    = 1;
+    const int P    = 1;
     const double F = 1.0;
     Constellation walkerBall(10000.0, 45.0, T, P, F);
 
@@ -61,14 +62,14 @@ int main() {
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{seconds(0), years(1)};
+    Interval propInterval{ seconds(0), years(1) };
     walkerBall.propagate(eom, integrator, propInterval);
 
-    auto end = std::chrono::steady_clock::now();
+    auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
-    std::cout << "Propagation Time: " << diff.count()/1e9 << " (s)" << std::endl;
+    std::cout << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
 
     // Access
     // start = std::chrono::steady_clock::now();
@@ -98,13 +99,13 @@ int main() {
     // Send to file
     std::ofstream outfile;
     std::filesystem::create_directories("./bin/results/" + propagator + "/");
-    outfile.open("./bin/results/" + propagator +"/main.csv");
+    outfile.open("./bin/results/" + propagator + "/main.csv");
     outfile << "time (min),sma (km),ecc,inc (rad),raan (rad),w (rad),theta (rad)\n";
     auto vehicle = walkerBall.get_all_spacecraft()[0];
-    for (auto& state: vehicle.get_states()) {
+    for (auto& state : vehicle.get_states()) {
         outfile << state.time.count<minutes>() << ",";
         state.elements.convert(ElementSet::KEPLERIAN, sys);
-        for (const auto& x: state.elements) {
+        for (const auto& x : state.elements) {
             outfile << x << ",";
         }
         outfile << "\n";

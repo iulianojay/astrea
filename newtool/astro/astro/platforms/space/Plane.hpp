@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <vector>
+#include <vector>
 #endif
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
@@ -14,8 +14,7 @@ class Plane {
     friend class Shell;
     friend class Constellation;
 
-public:
-
+  public:
     Plane() = default;
     Plane(std::vector<Spacecraft> satellites);
     ~Plane() = default;
@@ -36,8 +35,7 @@ public:
 
     const size_t get_id() const { return id; }
 
-private:
-
+  private:
     size_t id;
     OrbitalElements elements;
     std::vector<Spacecraft> satellites;
@@ -45,7 +43,6 @@ private:
     bool strict;
 
     void generate_id_hash();
-
 };
 
 

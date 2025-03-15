@@ -1,13 +1,17 @@
 #include <astro/propagation/force_models/OblatenessForce.hpp>
 
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include <math/utils.hpp>
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) : N(_N), M(_M), center(sys.get_center()) {
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) :
+    N(_N),
+    M(_M),
+    center(sys.get_center())
+{
 
     // Size arrays (size Legendre array now so it only happens once)
     size_vectors(N, M);
@@ -17,38 +21,38 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _
 
     // Precompute as much as possible
     const double sqrtOneHalf = std::sqrt(0.5);
-    for (size_t n = 0; n < N+1; ++n) {
+    for (size_t n = 0; n < N + 1; ++n) {
         const double nn = (double)n;
 
-        for (size_t m = 0; m < M+1; ++m) {
+        for (size_t m = 0; m < M + 1; ++m) {
             const double mm = (double)m;
 
             if (n == m) {
                 if (n != 0) {
                     double tau = 1.0;
-                    for (int ii = 2*n - 1; ii > 0; ii -= 2) {
-                        tau *= (double)ii/((double)ii + 1.0);
+                    for (int ii = 2 * n - 1; ii > 0; ii -= 2) {
+                        tau *= (double)ii / ((double)ii + 1.0);
                     }
-                    Pbase[n][m] = std::sqrt(2.0*(2.0*nn + 1.0)*tau);
+                    Pbase[n][m] = std::sqrt(2.0 * (2.0 * nn + 1.0) * tau);
                 }
             }
             else if (n == m + 1) {
-                Pbase[n][m] = std::sqrt(2.0*mm + 3.0);
+                Pbase[n][m] = std::sqrt(2.0 * mm + 3.0);
             }
             else if (n >= m + 2) {
-                alpha[n][m] = std::sqrt((2.0*nn + 1.0)*(2.0*nn - 1.0)/((nn - mm)*(nn + mm)));
-                beta[n][m] = std::sqrt((2.0*nn + 1.0)*(nn + mm - 1.0)*(nn - mm - 1.0)/((2.0*nn - 3.0)*(nn - mm)*(nn + mm)));
+                alpha[n][m] = std::sqrt((2.0 * nn + 1.0) * (2.0 * nn - 1.0) / ((nn - mm) * (nn + mm)));
+                beta[n][m] =
+                    std::sqrt((2.0 * nn + 1.0) * (nn + mm - 1.0) * (nn - mm - 1.0) / ((2.0 * nn - 3.0) * (nn - mm) * (nn + mm)));
             }
 
-            gamma[n][m] = std::sqrt((nn - mm)*(nn + mm + 1.0));
-            if (m == 0) {
-                gamma[n][m] *= sqrtOneHalf;
-            }
+            gamma[n][m] = std::sqrt((nn - mm) * (nn + mm + 1.0));
+            if (m == 0) { gamma[n][m] *= sqrtOneHalf; }
         }
     }
 }
 
-void OblatenessForce::size_vectors(const size_t& N, const size_t& M) {
+void OblatenessForce::size_vectors(const size_t& N, const size_t& M)
+{
     C.resize(N + 1);
     S.resize(N + 1);
     P.resize(N + 1);
@@ -56,7 +60,7 @@ void OblatenessForce::size_vectors(const size_t& N, const size_t& M) {
     beta.resize(N + 1);
     gamma.resize(N + 1);
     Pbase.resize(N + 1);
-    for (size_t n = 0; n < N+1; ++n) {
+    for (size_t n = 0; n < N + 1; ++n) {
         C[n].resize(M + 1);
         S[n].resize(M + 1);
         P[n].resize(M + 1);
@@ -68,23 +72,24 @@ void OblatenessForce::size_vectors(const size_t& N, const size_t& M) {
 }
 
 
-void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const size_t& M) {
+void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const size_t& M)
+{
 
     // Open coefficients file
     std::string filename;
     std::string path;
-    path = "./data/gravity_models/";
+    path                   = "./data/gravity_models/";
     std::string centerName = center->get_name();
-    if (centerName == "Venus") { // Venus
+    if (centerName == "Venus") {          // Venus
         filename = path + "shgj120p.txt"; // Normalized?
     }
-    else if (centerName == "Earth") { // Earth
+    else if (centerName == "Earth") {                        // Earth
         filename = path + "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
     }
-    else if (centerName == "Moon") { // Moon
+    else if (centerName == "Moon") {      // Moon
         filename = path + "jgl165p1.txt"; // Normalized?
     }
-    else if (centerName == "Mars") { // Mars
+    else if (centerName == "Mars") {       // Mars
         filename = path + "%sgmm3120.txt"; // Do not appear to be normalized
     }
     std::ifstream file(filename);
@@ -111,19 +116,16 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 
         // Normalize coefficients if needed
         if (centerName == "Mars") {
-            for (size_t m = 0; m < N+1; ++m) {
-                double nPlusMFactorial = 1;
+            for (size_t m = 0; m < N + 1; ++m) {
+                double nPlusMFactorial  = 1;
                 double nMinusMFactorial = 1;
                 for (size_t ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
-                    if (ii <= n-m) {
-                        nMinusMFactorial *= double(ii);
-                    }
+                    if (ii <= n - m) { nMinusMFactorial *= double(ii); }
                 }
 
-                double Nnm = (m == 0) ?
-                    std::sqrt(nMinusMFactorial*(2*n + 1)/nPlusMFactorial) :
-                        std::sqrt(nMinusMFactorial*(2*n + 1)*2/nPlusMFactorial);
+                double Nnm = (m == 0) ? std::sqrt(nMinusMFactorial * (2 * n + 1) / nPlusMFactorial) :
+                                        std::sqrt(nMinusMFactorial * (2 * n + 1) * 2 / nPlusMFactorial);
 
                 C[n][m] /= Nnm;
                 S[n][m] /= Nnm;
@@ -136,22 +138,23 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 }
 
 
-basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const {
+basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+{
 
     // Extract
-    const double& x = state[0];
-    const double& y = state[1];
-    const double& z = state[2];
-    const double R = std::sqrt(x*x + y*y + z*z);
-    const double oneOverR = 1.0/R;
+    const double& x       = state[0];
+    const double& y       = state[1];
+    const double& z       = state[2];
+    const double R        = std::sqrt(x * x + y * y + z * z);
+    const double oneOverR = 1.0 / R;
 
     // Central body properties
-    static const double& mu = center->get_mu();
-    static const double& equitorialR = center->get_equitorial_radius();
+    static const double& mu               = center->get_mu();
+    static const double& equitorialR      = center->get_equitorial_radius();
     static const double& bodyRotationRate = center->get_rotation_rate();
 
     // Find lat and long
-    basis_array radius = {x, y, z};
+    basis_array radius = { x, y, z };
     basis_array rBCBF;
     conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
 
@@ -159,100 +162,87 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     const double& yBCBF = rBCBF[1];
 
     const double longitude = atan2(yBCBF, xBCBF);
-    const double latitude = asin(z*oneOverR);
+    const double latitude  = asin(z * oneOverR);
 
     const double cosLat = math::cos(latitude);
     const double sinLat = math::sin(latitude);
-    const double tanLat = sinLat/cosLat;
+    const double tanLat = sinLat / cosLat;
 
     // Populate Legendre polynomial array
     assign_legendre(latitude);
 
     // Calculate serivative of gravitational potential field with respect to
-    double dVdr = 0.0;       // radius
-    double dVdlat = 0.0;     // geocentric latitude
-    double dVdlong = 0.0;    // longitude
-    for (size_t n = 2; n < N+1; ++n) {
+    double dVdr    = 0.0; // radius
+    double dVdlat  = 0.0; // geocentric latitude
+    double dVdlong = 0.0; // longitude
+    for (size_t n = 2; n < N + 1; ++n) {
         const double nn = (double)n;
 
         // Reset inner sums
-        double dVdrInnerSum = 0.0;
-        double dVdlatInnerSum = 0.0;
+        double dVdrInnerSum    = 0.0;
+        double dVdlatInnerSum  = 0.0;
         double dVdlongInnerSum = 0.0;
 
-        for (size_t m = 0; m < std::min(n, M)+1; ++m) {
-            const double mm = (double) m;
+        for (size_t m = 0; m < std::min(n, M) + 1; ++m) {
+            const double mm = (double)m;
 
             // Precalculate common terms
-            const double cosLongM = math::cos(mm*longitude);
-            const double sinLongM = math::sin(mm*longitude);
-            const double temp = (C[n][m]*cosLongM + S[n][m]*sinLongM);
+            const double cosLongM = math::cos(mm * longitude);
+            const double sinLongM = math::sin(mm * longitude);
+            const double temp     = (C[n][m] * cosLongM + S[n][m] * sinLongM);
 
             // dVdr
-            dVdrInnerSum += temp*P[n][m];
+            dVdrInnerSum += temp * P[n][m];
 
-            //dVdlat
-            dVdlatInnerSum += temp*(gamma[n][m]*P[n][m+1] - mm*tanLat*P[n][m]);
+            // dVdlat
+            dVdlatInnerSum += temp * (gamma[n][m] * P[n][m + 1] - mm * tanLat * P[n][m]);
 
             // dVdlong
-            dVdlongInnerSum += mm*(S[n][m]*cosLongM - C[n][m]*sinLongM)*P[n][m];
+            dVdlongInnerSum += mm * (S[n][m] * cosLongM - C[n][m] * sinLongM) * P[n][m];
         }
         // Precalculate common terms
-        const double rRatio = std::pow(equitorialR*oneOverR, n);
+        const double rRatio = std::pow(equitorialR * oneOverR, n);
 
         // dVdr
-        dVdr += rRatio*(nn + 1.0)*dVdrInnerSum;
+        dVdr += rRatio * (nn + 1.0) * dVdrInnerSum;
 
         // dVdlat
-        dVdlat += rRatio*dVdlatInnerSum;
+        dVdlat += rRatio * dVdlatInnerSum;
 
         // dVdlong
-        dVdlong += rRatio*dVdlongInnerSum;
+        dVdlong += rRatio * dVdlongInnerSum;
     }
 
     // Correct
-    double tempA = mu*oneOverR;
-    dVdr *= tempA*oneOverR;
+    double tempA = mu * oneOverR;
+    dVdr *= tempA * oneOverR;
     dVdlat *= tempA;
-    dVdlong *= tempA*oneOverR;
+    dVdlong *= tempA * oneOverR;
 
     // Calculate partials of radius, geocentric latitude, and longitude with respect to BCBF frame
-    const double drdrBCBF[3] = {
-        xBCBF*oneOverR,
-        yBCBF*oneOverR,
-        z*oneOverR
-    };
+    const double drdrBCBF[3] = { xBCBF * oneOverR, yBCBF * oneOverR, z * oneOverR };
 
-    tempA = 1/std::sqrt(xBCBF*xBCBF + yBCBF*yBCBF);
-    double tempB = z/(R*R);
-    const double dlatdrBCBF[3] = {
-        -tempA*xBCBF*tempB,
-        -tempA*yBCBF*tempB,
-        tempA*(1 - z*tempB)
-    };
+    tempA                      = 1 / std::sqrt(xBCBF * xBCBF + yBCBF * yBCBF);
+    double tempB               = z / (R * R);
+    const double dlatdrBCBF[3] = { -tempA * xBCBF * tempB, -tempA * yBCBF * tempB, tempA * (1 - z * tempB) };
 
     tempA *= tempA;
-    const double dlongdrBCBF[3] = {
-        -tempA*yBCBF,
-        tempA*xBCBF,
-        0.0
-    };
+    const double dlongdrBCBF[3] = { -tempA * yBCBF, tempA * xBCBF, 0.0 };
 
     // Calculate accel in BCBF (not with respect to BCBF)
-    basis_array accelOblatenessBCBF = {
-        dVdr*drdrBCBF[0] + dVdlat*dlatdrBCBF[0] + dVdlong*dlongdrBCBF[0],
-        dVdr*drdrBCBF[1] + dVdlat*dlatdrBCBF[1] + dVdlong*dlongdrBCBF[1],
-        dVdr*drdrBCBF[2] + dVdlat*dlatdrBCBF[2]
-    };
+    basis_array accelOblatenessBCBF = { dVdr * drdrBCBF[0] + dVdlat * dlatdrBCBF[0] + dVdlong * dlongdrBCBF[0],
+                                        dVdr * drdrBCBF[1] + dVdlat * dlatdrBCBF[1] + dVdlong * dlongdrBCBF[1],
+                                        dVdr * drdrBCBF[2] + dVdlat * dlatdrBCBF[2] };
 
     // Rotate back into inertial coordinates
-    basis_array accelOblateness = {0.0, 0.0, 0.0};
+    basis_array accelOblateness = { 0.0, 0.0, 0.0 };
     conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
 
     return accelOblateness;
 }
 
-void OblatenessForce::assign_legendre(const double& latitude) const {
+void OblatenessForce::assign_legendre(const double& latitude) const
+{
     // Populate Legendre polynomial array
     /*
         Pseudocode:
@@ -276,22 +266,20 @@ void OblatenessForce::assign_legendre(const double& latitude) const {
     */
     const double cosLat = math::cos(latitude);
     const double sinLat = math::sin(latitude);
-    for (size_t n = 0; n < N+1; ++n) {
+    for (size_t n = 0; n < N + 1; ++n) {
         const double costLatPowN = std::pow(cosLat, n);
-        for (size_t m = 0; m < M+1; ++m) {
+        for (size_t m = 0; m < M + 1; ++m) {
             if (n == m) {
-                if (n == 0) {
-                    P[n][m] = 1;
-                }
+                if (n == 0) { P[n][m] = 1; }
                 else {
-                    P[n][m] = Pbase[n][m]*costLatPowN;
+                    P[n][m] = Pbase[n][m] * costLatPowN;
                 }
             }
             else if (n == m + 1) {
-                P[n][m] = Pbase[n][m]*sinLat*P[m][m];
+                P[n][m] = Pbase[n][m] * sinLat * P[m][m];
             }
             else if (n >= m + 2) {
-                P[n][m] = alpha[n][m]*sinLat*P[n-1][m] + beta[n][m]*P[n-2][m];
+                P[n][m] = alpha[n][m] * sinLat * P[n - 1][m] + beta[n][m] * P[n - 2][m];
             }
             else {
                 P[n][m] = 0.0;

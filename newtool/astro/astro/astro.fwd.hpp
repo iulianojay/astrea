@@ -5,12 +5,18 @@ class State;
 // ELement sets
 class OrbitalElements;
 
-template <class T> class Frame;
-template <class T> class InertialFrame;
-template <class T> class RotatingFrame;
-template <class T> class BodyFixedFrame;
-template <class T> class FixedOffsetFrame;
-template <class T> class DynamicFrame;
+template <class T>
+class Frame;
+template <class T>
+class InertialFrame;
+template <class T>
+class RotatingFrame;
+template <class T>
+class BodyFixedFrame;
+template <class T>
+class FixedOffsetFrame;
+template <class T>
+class DynamicFrame;
 
 // Platforms
 class FieldOfView;
@@ -46,4 +52,3 @@ class Date;
 class Interval;
 struct JulianDateClock;
 class Time;
-

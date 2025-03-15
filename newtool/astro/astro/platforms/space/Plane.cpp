@@ -1,7 +1,8 @@
 #include <astro/platforms/space/Plane.hpp>
 
 
-Plane::Plane(std::vector<Spacecraft> _satellites) {
+Plane::Plane(std::vector<Spacecraft> _satellites)
+{
     satellites = _satellites;
 
     // Grab first element set as plane set
@@ -14,7 +15,7 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
 
     // Check if other satellites are actually in-plane
     strict = true;
-    for (const auto& sat: satellites) {
+    for (const auto& sat : satellites) {
         OrbitalElements satElements = sat.get_initial_state().elements;
         satElements.convert(ElementSet::KEPLERIAN, sys);
         if (!elements.nearly_equal(satElements, true)) {
@@ -27,32 +28,26 @@ Plane::Plane(std::vector<Spacecraft> _satellites) {
 }
 
 
-const size_t Plane::size() const {
-    return satellites.size();
-}
+const size_t Plane::size() const { return satellites.size(); }
 
 
-void Plane::add_spacecraft(const Spacecraft& spacecraft) {
-    satellites.push_back(spacecraft);
-}
+void Plane::add_spacecraft(const Spacecraft& spacecraft) { satellites.push_back(spacecraft); }
 
 
-const std::vector<Spacecraft>& Plane::get_all_spacecraft() const {
-    return satellites;
-}
+const std::vector<Spacecraft>& Plane::get_all_spacecraft() const { return satellites; }
 
 
-const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const {
-    for (const auto& sat: satellites) {
-        if (sat.get_id() == spacecraftId) {
-            return sat;
-        }
+const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const
+{
+    for (const auto& sat : satellites) {
+        if (sat.get_id() == spacecraftId) { return sat; }
     }
     throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
 }
 
 
-void Plane::generate_id_hash() {
+void Plane::generate_id_hash()
+{
     id = std::hash<size_t>()(satellites[0].get_id());
     for (size_t ii = 1; ii < satellites.size(); ii++) {
         id ^= std::hash<size_t>()(satellites[ii].get_id());
@@ -60,9 +55,10 @@ void Plane::generate_id_hash() {
 }
 
 
-void Plane::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval) {
+void Plane::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+{
     for (auto& sat : satellites) {
-        Vehicle vehicle{sat};
+        Vehicle vehicle{ sat };
         integrator.propagate(interval, eom, vehicle);
         sat = *vehicle.extract<Spacecraft>();
     }

@@ -1,21 +1,20 @@
 #pragma once
 
 #ifndef SWIG
-    #include <unordered_set>
+#include <unordered_set>
 #endif
 
-#include <astro/types/typedefs.hpp>
 #include <astro/systems/CelestialBody.hpp>
+#include <astro/types/typedefs.hpp>
 
 
 class Barycenter : public CelestialBody {
-public:
+  public:
+    Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies)
+        : referenceBody(referenceBody), bodies(bodies){};
+    ~Barycenter(){};
 
-    Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies) : referenceBody(referenceBody), bodies(bodies) {};
-    ~Barycenter() {};
-
-private:
-
+  private:
     basis_array center;
     CelestialBody referenceBody;
     std::unordered_set<CelestialBody> bodies;

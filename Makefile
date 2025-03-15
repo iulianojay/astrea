@@ -2,8 +2,7 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := .
-source_path := source
-include_path := include
+source_path := newtool
 examples_path := examples
 arch := x86_64
 os := linux
@@ -41,7 +40,7 @@ $(build_path)/Makefile: CMakeLists.txt $(OPTIONS_INPUT)
 		-DCMAKE_BUILD_TYPE=$(build_type) \
 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=OPTIONS
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 .PHONY: examples
 examples: install
@@ -82,7 +81,5 @@ new:
 CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
 .PHONY: check
 check: build
-	command find $(source_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)
-	command find $(include_path) -type f -name '*.hpp' | xargs $(CLANG_TIDY_CMD)
-	command find $(examples_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)
-	command find $(tests_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)
+	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
+	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)

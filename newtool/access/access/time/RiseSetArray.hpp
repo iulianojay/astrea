@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef SWIG
-    #include <vector>
+#include <vector>
 #endif
 
 #include <access/time/riseset_utils.hpp>
@@ -9,8 +9,7 @@
 
 class RiseSetArray {
 
-public:
-
+  public:
     RiseSetArray() = default;
     RiseSetArray(const std::vector<Time>& risesets);
     RiseSetArray(const RiseSetArray& other);
@@ -23,25 +22,17 @@ public:
     const size_t size() const { return risesets.size(); }
 
     // Element access
-    const Time& operator[](const size_t& ind) const {
-        return risesets[ind];
-    }
+    const Time& operator[](const size_t& ind) const { return risesets[ind]; }
 
     // Union
-    RiseSetArray operator|(const RiseSetArray& other) const {
-        return riseset_union(*this, other);
-    }
+    RiseSetArray operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
 
     // Intersection
-    RiseSetArray operator&(const RiseSetArray& other) const {
-        return riseset_intersection(*this, other);
-    }
+    RiseSetArray operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
 
-private:
-
+  private:
     std::vector<Time> risesets;
 
     void validate_riseset(const Time& rise, const Time& set) const;
     void validate_risesets(const std::vector<Time>& risesets) const;
-
 };

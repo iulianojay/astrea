@@ -2,11 +2,15 @@
 
 #include <cstdio>
 
-std::ostream &operator<<(std::ostream& os, OrbitalElements const& elements) {
+std::ostream& operator<<(std::ostream& os, OrbitalElements const& elements)
+{
     os << "[" << elements[0];
     bool skipFirst = true;
-    for (const auto& x: elements) {
-        if (skipFirst) { skipFirst = false; continue; }
+    for (const auto& x : elements) {
+        if (skipFirst) {
+            skipFirst = false;
+            continue;
+        }
         os << ", " << x;
     }
     os << "] (" << ElementSetToString.at(elements.set) << ")";

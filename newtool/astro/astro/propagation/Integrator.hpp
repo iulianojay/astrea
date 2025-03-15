@@ -2,41 +2,40 @@
 #pragma once
 
 #ifndef SWIG
-    #include <iostream>
-    #include <vector>
-    #include <ctime>
-    #include <fstream>					// reading/writing to files
-    #include <math.h>
+#include <ctime>
+#include <fstream> // reading/writing to files
+#include <iostream>
+#include <math.h>
+#include <vector>
 #endif
 
 #include <astro/constants/rk_constants.h> // RK Butcher Tableau
 
-#include <astro/time/Interval.hpp>
-#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/time/Interval.hpp>
 
-class Integrator
-{
-public:
-	// Stepper
-	enum odeStepper {
-        RK45,	// Traditional Runge-Kutta 4(5)th order 6 stage method
-        RKF45,	// Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        RKF78,	// Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+class Integrator {
+  public:
+    // Stepper
+    enum odeStepper {
+        RK45,  // Traditional Runge-Kutta 4(5)th order 6 stage method
+        RKF45, // Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+        RKF78, // Runge-Kutta-Fehlberg 7(8)th order 13 stage method
 
-        DOP45,	// Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        DOP78,	// Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
-	};
+        DOP45, // Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+        DOP78, // Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+    };
 
     static inline Interval defaultInterval = Interval(days(0), days(1));
 
-	//------------------------------------------------ Methods ------------------------------------------------//
+    //------------------------------------------------ Methods ------------------------------------------------//
 
     // Constructor and destructor
-    Integrator() = default;
+    Integrator()  = default;
     ~Integrator() = default;
 
-	// Integrate
+    // Integrate
     void propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
     void integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle);
 
@@ -89,104 +88,116 @@ public:
 
     int n_func_evals() { return functionEvaluations; }
 
-private:
+  private:
+    // Integrator constants
+    const double epsilon = 0.8; // relative local step error tolerance usually 0.8 or 0.9.
 
-	// Integrator constants
-	const double epsilon = 0.8;				// relative local step error tolerance usually 0.8 or 0.9.
+    const double minErrorCatch      = 2.0e-4; // if maximum error is less than this,
+    const double minErrorStepFactor = 5.0;    // increase step by this factor
 
-	const double minErrorCatch = 2.0e-4;	// if maximum error is less than this,
-	const double minErrorStepFactor = 5.0;  // increase step by this factor
+    const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative
+                                            // step size to this value
 
-	const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative
-										    // step size to this value
-
-	// Iteration variables
-    unsigned long iteration = 0;
-	unsigned long variableStepIteration = 0;	// Inner loop iteration count
-	const unsigned long maxVariableStepIterations = 1000; // max iterations for step sizing loop -> jj shouldn't get above ~10
+    // Iteration variables
+    unsigned long iteration                       = 0;
+    unsigned long variableStepIteration           = 0; // Inner loop iteration count
+    const unsigned long maxVariableStepIterations = 1000; // max iterations for step sizing loop -> jj shouldn't get above ~10
 
     // Function evals
     int functionEvaluations = 0;
 
-	// Number of states
-	static const size_t maxStates = 10;
+    // Number of states
+    static const size_t maxStates = 10;
 
-	// Time variables
+    // Time variables
     bool forwardTime = true;
     Time timeStepPrevious;
 
-	// Error variables
-	bool stepSuccess = false;
+    // Error variables
+    bool stepSuccess  = false;
     bool eventTrigger = false;
     double maxErrorPrevious;
 
     // Butcher Tablaeu
     size_t nStages{};
-    static const size_t maxStages = 13;
+    static const size_t maxStages                          = 13;
     std::array<std::array<double, maxStages>, maxStages> a = {};
-    std::array<double, maxStages> b = {};
-    std::array<double, maxStages> bhat = {};
-    std::array<double, maxStages> db = {};
-    std::array<double, maxStages> c = {};
+    std::array<double, maxStages> b                        = {};
+    std::array<double, maxStages> bhat                     = {};
+    std::array<double, maxStages> db                       = {};
+    std::array<double, maxStages> c                        = {};
 
-	// ith order steps
+    // ith order steps
     std::array<std::array<double, maxStates>, maxStages> kMatrix = {};
-	std::array<double, maxStates> statePlusKi = {};
-	std::array<double, maxStates> YFinalPrevious = {};
+    std::array<double, maxStates> statePlusKi                    = {};
+    std::array<double, maxStates> YFinalPrevious                 = {};
 
-	// Clock variables
-	clock_t startClock{};
-	clock_t endClock{};
+    // Clock variables
+    clock_t startClock{};
+    clock_t endClock{};
 
-	// Error Messages
-	const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n";
-	const std::string innerLoopStepOverflowErrorMessage = "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
-	const std::string outerLoopStepOverflowErrorMessage = "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n";
+    // Error Messages
+    const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n";
+    const std::string innerLoopStepOverflowErrorMessage =
+        "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
+    const std::string outerLoopStepOverflowErrorMessage =
+        "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n";
     const std::string crashMessage = "Note: Object crashed into central body. \n\n";
 
     // Print variables
     int checkDay = 0;
 
-	// Tolerances
-	double absoluteTolerance = 1.0e-13;
-	double relativeTolerance = 1.0e-13;
+    // Tolerances
+    double absoluteTolerance = 1.0e-13;
+    double relativeTolerance = 1.0e-13;
 
-	// Initial step size
-	Time timeStepInitial = seconds(100.0);
+    // Initial step size
+    Time timeStepInitial = seconds(100.0);
 
-	// Iteration variables
-	unsigned long iterMax = 1e8; // absurdly high so it doesn't interfere with integration
+    // Iteration variables
+    unsigned long iterMax = 1e8; // absurdly high so it doesn't interfere with integration
 
-	// Run options
-	bool printOn = false;
-	bool timerOn = false;
+    // Run options
+    bool printOn = false;
+    bool timerOn = false;
 
-	odeStepper stepMethod = DOP45;
+    odeStepper stepMethod = DOP45;
 
     // Fake fixed step
-    bool useFixedStep = false;
+    bool useFixedStep  = false;
     Time fixedTimeStep = seconds(1.0);
 
-	//------------------------------------------------ Methods ------------------------------------------------//
+    //------------------------------------------------ Methods ------------------------------------------------//
 
-	// Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    // Equations of motion
+    OrbitalElements
+    find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
-	// Stepping methods
+    // Stepping methods
     void setup_stepper();
     void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
-	// Error Methods
-	void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError,
-                     Time& time, Time& timeStep, OrbitalElements& state);
+    // Error Methods
+    void check_error(const double& maxError,
+        const OrbitalElements& stateNew,
+        const OrbitalElements stateError,
+        Time& time,
+        Time& timeStep,
+        OrbitalElements& state);
 
-	// Print details
+    // Print details
     void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);
-	void print_performance() const;
+    void print_performance() const;
 
-	// Timer
-	void startTimer() { if (timerOn) { startClock = clock(); } };
-	void endTimer() { if (timerOn) { endClock = clock(); } }
+    // Timer
+    void startTimer()
+    {
+        if (timerOn) { startClock = clock(); }
+    };
+    void endTimer()
+    {
+        if (timerOn) { endClock = clock(); }
+    }
 
     // Event Function
     void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);

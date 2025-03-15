@@ -1,13 +1,13 @@
 #pragma once
 
 #ifndef SWIG
-    #include <string>
-    #include <iostream>
-    #include <cmath>
-    #include <algorithm>
-    #include <stdio.h>
-    #include <vector>
-    #include <exception>
+#include <algorithm>
+#include <cmath>
+#include <exception>
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <vector>
 #endif
 
 #include <astro/platforms/Vehicle.hpp>
@@ -17,25 +17,22 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 
 class EquationsOfMotion {
-public:
-
-    EquationsOfMotion(const AstrodynamicsSystem& system) : system(system) {};
+  public:
+    EquationsOfMotion(const AstrodynamicsSystem& system) :
+        system(system){};
     virtual ~EquationsOfMotion() = default;
 
     virtual OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
-    virtual bool check_crash(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const {
+    virtual bool check_crash(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+    {
         for (const auto& x : state) {
-            if (x != 0.0) {
-                return false;
-            }
+            if (x != 0.0) { return false; }
         }
         return true;
     };
     virtual const ElementSet& get_expected_set() const = 0;
     const AstrodynamicsSystem& get_system() const { return system; }
 
-protected:
-
+  protected:
     const AstrodynamicsSystem& system;
 };
-

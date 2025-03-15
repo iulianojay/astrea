@@ -1,8 +1,8 @@
 #pragma once
 
 #ifndef SWIG
-    #include <vector>
-    #include <string>
+#include <string>
+#include <vector>
 #endif
 
 #include <astro/platforms/space/Plane.hpp>
@@ -14,13 +14,18 @@ class Shell {
 
     friend class Constellation;
 
-public:
-
+  public:
     Shell() = default;
     Shell(std::vector<Plane> planes);
     Shell(std::vector<Spacecraft> satellites);
-    Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F,
-        const double& anchorRAAN = 0.0, const double& anchorAnomaly = 0.0);
+    Shell(
+        const double& semimajor,
+        const double& inclination,
+        const size_t& T,
+        const size_t& P,
+        const double& F,
+        const double& anchorRAAN    = 0.0,
+        const double& anchorAnomaly = 0.0);
     ~Shell() = default;
 
     const size_t size() const;
@@ -50,17 +55,19 @@ public:
     sat_iterator sat_end() { return sat_iterator(planes.end(), planes.end()->end()); }
 
     class sat_iterator {
-    private:
-
+      private:
         iterator iterPlane;
         Plane::iterator iterSat;
 
-    public:
-
+      public:
         sat_iterator(iterator _iterPlane, Plane::iterator _iterSat) :
-            iterPlane(_iterPlane), iterSat(_iterSat) {} // TODO: Sanitize inputs
+            iterPlane(_iterPlane),
+            iterSat(_iterSat)
+        {
+        } // TODO: Sanitize inputs
 
-        sat_iterator& operator++() {
+        sat_iterator& operator++()
+        {
             ++iterSat;
             if (iterSat == iterPlane->end()) {
                 ++iterPlane;
@@ -68,12 +75,15 @@ public:
             }
             return *this;
         }
-        sat_iterator operator++(int) {
-            sat_iterator retval = *this; ++(*this);
+        sat_iterator operator++(int)
+        {
+            sat_iterator retval = *this;
+            ++(*this);
             return retval;
         }
 
-        sat_iterator& operator--() {
+        sat_iterator& operator--()
+        {
             --iterSat;
             if (iterSat < iterPlane->begin()) {
                 --iterPlane;
@@ -81,37 +91,52 @@ public:
             }
             return *this;
         }
-        sat_iterator operator--(int) {
-            sat_iterator retval = *this; --(*this);
+        sat_iterator operator--(int)
+        {
+            sat_iterator retval = *this;
+            --(*this);
             return retval;
         }
 
-        bool operator==(const sat_iterator& other) const { return iterPlane == other.iterPlane && iterSat == other.iterSat; }
+        bool operator==(const sat_iterator& other) const
+        {
+            return iterPlane == other.iterPlane && iterSat == other.iterSat;
+        }
         bool operator!=(const sat_iterator& other) const { return !(*this == other); }
-        bool operator<(const sat_iterator& other) const { return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat < other.iterSat); }
-        bool operator>(const sat_iterator& other) const { return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat > other.iterSat); }
-        bool operator<=(const sat_iterator& other) const { return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat <= other.iterSat); }
-        bool operator>=(const sat_iterator& other) const { return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat >= other.iterSat); }
+        bool operator<(const sat_iterator& other) const
+        {
+            return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat < other.iterSat);
+        }
+        bool operator>(const sat_iterator& other) const
+        {
+            return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat > other.iterSat);
+        }
+        bool operator<=(const sat_iterator& other) const
+        {
+            return iterPlane < other.iterPlane || (iterPlane == other.iterPlane && iterSat <= other.iterSat);
+        }
+        bool operator>=(const sat_iterator& other) const
+        {
+            return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat >= other.iterSat);
+        }
         Spacecraft operator*() { return *iterSat; }
 
         // iterator traits
-        using difference_type = Plane::iterator;
-        using value_type = Plane::iterator;
-        using pointer = const Plane::iterator*;
-        using reference = const Plane::iterator&;
+        using difference_type   = Plane::iterator;
+        using value_type        = Plane::iterator;
+        using pointer           = const Plane::iterator*;
+        using reference         = const Plane::iterator&;
         using iterator_category = std::forward_iterator_tag;
     };
 
     const size_t get_id() const { return id; }
 
-private:
-
+  private:
     size_t id;
     std::string name;
     std::vector<Plane> planes;
 
     void generate_id_hash();
-
 };
 
 
