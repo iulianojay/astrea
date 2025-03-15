@@ -5,8 +5,8 @@ config_path := .
 source_path := newtool
 examples_path := examples
 arch := x86_64
-os := linux
-comp := gnu-13.1.0
+os := Linux
+comp := GNU-13.1.0
 tests_path := tests
 
 build_type = Debug
@@ -14,7 +14,7 @@ cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
 
-build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type))
+build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -53,17 +53,17 @@ tests: install
 .PHONY: debug
 debug: 
 	$(eval build_type = Debug)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
 	
 .PHONY: release
 release: 
 	$(eval build_type = Release)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
 	
 .PHONY: relwdebug
 relwdebug: 
 	$(eval build_type = RelWithDebInfo)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)-$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
 
 .PHONY: verbose
 verbose:

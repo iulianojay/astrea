@@ -113,8 +113,7 @@ void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRa
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-element_array
-conversions::convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system)
+element_array conversions::convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system)
 {
     element_set_pair setPair = std::make_pair(fromSet, toSet);
     return conversions::elementSetConversions.at(setPair)(elements, system);
@@ -157,12 +156,11 @@ std::vector<double> conversions::keplerian_to_bci(double a, double ecc, double i
     const double DCM_peri2ECI_32 = sin_inc * cos_w;
 
     // Inertial position and velocity
-    const std::vector<double> cartesian = { DCM_peri2ECI_11 * x_peri + DCM_peri2ECI_12 * y_peri,
-        DCM_peri2ECI_21 * x_peri + DCM_peri2ECI_22 * y_peri,
-        DCM_peri2ECI_31 * x_peri + DCM_peri2ECI_32 * y_peri,
-        DCM_peri2ECI_11 * vx_peri + DCM_peri2ECI_12 * vy_peri,
-        DCM_peri2ECI_21 * vx_peri + DCM_peri2ECI_22 * vy_peri,
-        DCM_peri2ECI_31 * vx_peri + DCM_peri2ECI_32 * vy_peri };
+    const std::vector<double> cartesian = {
+        DCM_peri2ECI_11 * x_peri + DCM_peri2ECI_12 * y_peri,   DCM_peri2ECI_21 * x_peri + DCM_peri2ECI_22 * y_peri,
+        DCM_peri2ECI_31 * x_peri + DCM_peri2ECI_32 * y_peri,   DCM_peri2ECI_11 * vx_peri + DCM_peri2ECI_12 * vy_peri,
+        DCM_peri2ECI_21 * vx_peri + DCM_peri2ECI_22 * vy_peri, DCM_peri2ECI_31 * vx_peri + DCM_peri2ECI_32 * vy_peri
+    };
     return cartesian;
 }
 
@@ -202,8 +200,8 @@ std::vector<double> conversions::bci_to_keplerian(const std::vector<double>& rad
     double dotRV = radius[0] * velocity[0] + radius[1] * velocity[1] + radius[2] * velocity[2];
 
     const std::vector<double> eccVec = { (1.0 / mu) * ((V * V - mu / R) * radius[0] - dotRV * velocity[0]),
-        (1.0 / mu) * ((V * V - mu / R) * radius[1] - dotRV * velocity[1]),
-        (1.0 / mu) * ((V * V - mu / R) * radius[2] - dotRV * velocity[2]) };
+                                         (1.0 / mu) * ((V * V - mu / R) * radius[1] - dotRV * velocity[1]),
+                                         (1.0 / mu) * ((V * V - mu / R) * radius[2] - dotRV * velocity[2]) };
     double ecc                       = math::normalize(eccVec);
     /*
         If the orbit has an inclination of exactly 0, w is ill-defined, the
@@ -313,8 +311,6 @@ void conversions::_equinoctial_to_keplerian(double p, double f, double g, double
 element_array conversions::keplerian_to_cartesian(const element_array& coes, const AstrodynamicsSystem& system)
 {
     element_array cartesian;
-    double radius[3];
-    double velocity[3];
     const auto elements = keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center()->get_mu());
     for (int ii = 0; ii < 6; ii++) {
         cartesian[ii] = elements[ii];
