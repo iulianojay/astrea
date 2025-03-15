@@ -76,8 +76,8 @@ clean:
 
 .PHONY: new
 new: 
-	rm -rf build
-	rm -rf install
+	rm -rf ../../build
+	rm -rf ../../install
 
 CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
 .PHONY: check

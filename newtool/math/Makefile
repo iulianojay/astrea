@@ -41,7 +41,7 @@ $(build_path)/Makefile: CMakeLists.txt $(OPTIONS_INPUT)
 		-DCMAKE_BUILD_TYPE=$(build_type) \
 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=OPTIONS
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 .PHONY: examples
 examples: install
@@ -76,8 +76,8 @@ clean:
 
 .PHONY: new
 new: 
-	rm -rf build
-	rm -rf install
+	rm -rf ../../build
+	rm -rf ../../install
 
 CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
 .PHONY: check

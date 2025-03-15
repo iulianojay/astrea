@@ -10,6 +10,10 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
+if (PROJECT_IS_TOP_LEVEL) 
+    add_subdirectory(../math ../math)
+endif()
+
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
@@ -46,11 +50,7 @@ set(ASTRO_SOURCES
 )
 
 # Headers
-if (PROJECT_IS_TOP_LEVEL) 
-    set(EXTERN_BASE ${CMAKE_SOURCE_DIR}/../../extern)
-else()
-    set(EXTERN_BASE ${CMAKE_SOURCE_DIR}/extern)
-endif()
+set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
