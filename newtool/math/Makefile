@@ -2,7 +2,8 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := .
-source_path := newtool
+source_path := source
+include_path := include
 examples_path := examples
 arch := x86_64
 os := Linux
@@ -14,7 +15,7 @@ cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
 
-build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
+build_path := $(abspath $(shell pwd)/../../build/$(arch)-$(os)/$(comp)/$(build_type))
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -53,17 +54,17 @@ tests: install
 .PHONY: debug
 debug: 
 	$(eval build_type = Debug)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/../../build/$(arch)-$(os)/$(comp)/$(build_type)))
 	
 .PHONY: release
 release: 
 	$(eval build_type = Release)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/../../build/$(arch)-$(os)/$(comp)/$(build_type)))
 	
 .PHONY: relwdebug
 relwdebug: 
 	$(eval build_type = RelWithDebInfo)
-	$(eval build_path = $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type)))
+	$(eval build_path = $(abspath $(shell pwd)/../../build/$(arch)-$(os)/$(comp)/$(build_type)))
 
 .PHONY: verbose
 verbose:
@@ -75,11 +76,13 @@ clean:
 
 .PHONY: new
 new: 
-	rm -rf build
-	rm -rf install
+	rm -rf ../../build
+	rm -rf ../../install
 
 CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
 .PHONY: check
 check: build
-	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
-	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
+	command find $(source_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)
+	command find $(include_path) -type f -name '*.hpp' | xargs $(CLANG_TIDY_CMD)
+	command find $(examples_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)
+	command find $(tests_path) -type f -name '*.cpp' | xargs $(CLANG_TIDY_CMD)

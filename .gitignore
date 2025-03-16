@@ -1,11 +1,12 @@
 # Folders
 .vscode
 CMake*
-**/bin/*
-**/build/*
-lib/*
-**__pycache__/
-tests/profiling/results
+bin
+build
+lib
+install
+__pycache__
+results
 
 # File types
 *.o
@@ -16,6 +17,7 @@ tests/profiling/results
 *.pyc
 
 # Specific files
+build.txt
 package.json
 get-pip.py
 pyastro/astro.py
