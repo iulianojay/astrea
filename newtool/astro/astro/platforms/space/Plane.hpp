@@ -9,27 +9,30 @@
 
 #include <astro/astro.fwd.hpp>
 
+template <class Spacecraft_T>
 class Plane {
 
-    friend class Shell;
-    friend class Constellation;
+    static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Planes must be built of Spacecraft or Derived classes.");
+
+    friend class Shell<Spacecraft_T>;
+    friend class Constellation<Spacecraft_T>;
 
   public:
     Plane() = default;
-    Plane(std::vector<Spacecraft> satellites);
+    Plane(std::vector<Spacecraft_T> satellites);
     ~Plane() = default;
 
-    void add_spacecraft(const Spacecraft& spacecraft);
+    void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Spacecraft>& get_all_spacecraft() const;
+    const std::vector<Spacecraft_T>& get_all_spacecraft() const;
 
-    const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
+    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
 
     const size_t size() const;
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
-    using iterator = std::vector<Spacecraft>::iterator;
+    using iterator = std::vector<Spacecraft_T>::iterator;
     iterator begin() { return satellites.begin(); }
     iterator end() { return satellites.end(); }
 
@@ -38,7 +41,7 @@ class Plane {
   private:
     size_t id;
     OrbitalElements elements;
-    std::vector<Spacecraft> satellites;
+    std::vector<Spacecraft_T> satellites;
 
     bool strict;
 

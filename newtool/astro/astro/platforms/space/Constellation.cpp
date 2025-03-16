@@ -2,16 +2,18 @@
 
 static const size_t DEFAULT_SHELL_ID = SIZE_MAX;
 
-Constellation::Constellation(std::vector<Shell> _shells)
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(std::vector<Shell<Spacecraft_T>> _shells)
 {
     shells = _shells;
     generate_id_hash();
 }
 
 
-Constellation::Constellation(std::vector<Plane> planes)
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(std::vector<Plane<Spacecraft_T>> planes)
 {
-    Shell noShell(planes);
+    Shell<Spacecraft_T> noShell(planes);
     noShell.name = "DEFAULT";
     noShell.id   = DEFAULT_SHELL_ID;
 
@@ -21,10 +23,11 @@ Constellation::Constellation(std::vector<Plane> planes)
 }
 
 
-Constellation::Constellation(std::vector<Spacecraft> satellites)
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 {
-    Plane noPlane(satellites);
-    Shell noShell(std::vector<Plane>{ noPlane });
+    Plane<Spacecraft_T> noPlane(satellites);
+    Shell<Spacecraft_T> noShell(std::vector<Plane<Spacecraft_T>>{ noPlane });
     noShell.name = "DEFAULT";
 
     shells.push_back(noShell);
@@ -33,23 +36,26 @@ Constellation::Constellation(std::vector<Spacecraft> satellites)
 }
 
 
-Constellation::Constellation(
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(
     const double& semimajor,
     const double& inclination,
     const size_t& T,
     const size_t& P,
     const double& F,
     const double& anchorRAAN,
-    const double& anchorAnomaly)
+    const double& anchorAnomaly
+)
 {
 
-    shells.emplace_back(Shell(semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+    shells.emplace_back(Shell<Spacecraft_T>(semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
     generate_id_hash();
 }
 
 
-const size_t Constellation::size() const
+template <class Spacecraft_T>
+const size_t Constellation<Spacecraft_T>::size() const
 {
     size_t size = 0;
     for (const auto& shell : shells) {
@@ -59,10 +65,15 @@ const size_t Constellation::size() const
 }
 
 
-const size_t Constellation::n_shells() const { return shells.size(); }
+template <class Spacecraft_T>
+const size_t Constellation<Spacecraft_T>::n_shells() const
+{
+    return shells.size();
+}
 
 
-const size_t Constellation::n_planes() const
+template <class Spacecraft_T>
+const size_t Constellation<Spacecraft_T>::n_planes() const
 {
     size_t nPlane = 0;
     for (const auto& shell : shells) {
@@ -72,10 +83,15 @@ const size_t Constellation::n_planes() const
 }
 
 
-void Constellation::add_shell(const Shell& shell) { shells.push_back(shell); }
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::add_shell(const Shell<Spacecraft_T>& shell)
+{
+    shells.push_back(shell);
+}
 
 
-void Constellation::add_plane(const Plane& plane, const size_t& shellId)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::add_plane(const Plane<Spacecraft_T>& plane, const size_t& shellId)
 {
     for (auto& shell : shells) {
         if (shell.id == shellId) { shell.add_plane(plane); }
@@ -84,7 +100,8 @@ void Constellation::add_plane(const Plane& plane, const size_t& shellId)
 }
 
 
-void Constellation::add_plane(const Plane& plane)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::add_plane(const Plane<Spacecraft_T>& plane)
 {
     for (auto& shell : shells) {
         if (shell.id == DEFAULT_SHELL_ID) {
@@ -93,7 +110,7 @@ void Constellation::add_plane(const Plane& plane)
         }
     }
 
-    Shell noShell(std::vector<Plane>{ plane });
+    Shell<Spacecraft_T> noShell(std::vector<Plane<Spacecraft_T>>{ plane });
     noShell.name = "DEFAULT";
     noShell.id   = DEFAULT_SHELL_ID;
 
@@ -101,7 +118,8 @@ void Constellation::add_plane(const Plane& plane)
 }
 
 
-void Constellation::add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId)
 {
     for (auto& shell : shells) {
         for (auto& plane : shell.planes) {
@@ -112,7 +130,8 @@ void Constellation::add_spacecraft(const Spacecraft& spacecraft, const size_t& p
 }
 
 
-void Constellation::add_spacecraft(const Spacecraft& spacecraft)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
 {
     for (auto& shell : shells) {
         if (shell.id == DEFAULT_SHELL_ID) {
@@ -121,7 +140,7 @@ void Constellation::add_spacecraft(const Spacecraft& spacecraft)
         }
     }
 
-    Shell noShell(std::vector<Plane>{ std::vector<Spacecraft>{ spacecraft } });
+    Shell<Spacecraft_T> noShell(std::vector<Plane<Spacecraft_T>>{ std::vector<Spacecraft_T>{ spacecraft } });
     noShell.name = "DEFAULT";
     noShell.id   = DEFAULT_SHELL_ID;
 
@@ -129,12 +148,17 @@ void Constellation::add_spacecraft(const Spacecraft& spacecraft)
 }
 
 
-const std::vector<Shell>& Constellation::get_all_shells() const { return shells; }
-
-
-const std::vector<Plane> Constellation::get_all_planes() const
+template <class Spacecraft_T>
+const std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_all_shells() const
 {
-    std::vector<Plane> allPlanes;
+    return shells;
+}
+
+
+template <class Spacecraft_T>
+const std::vector<Plane<Spacecraft_T>> Constellation<Spacecraft_T>::get_all_planes() const
+{
+    std::vector<Plane<Spacecraft_T>> allPlanes;
     for (auto& shell : shells) {
         const auto& shellPlanes = shell.get_all_planes();
         allPlanes.insert(allPlanes.end(), shellPlanes.begin(), shellPlanes.end());
@@ -143,18 +167,20 @@ const std::vector<Plane> Constellation::get_all_planes() const
 }
 
 
-const std::vector<Spacecraft> Constellation::get_all_spacecraft() const
+template <class Spacecraft_T>
+const std::vector<Spacecraft_T> Constellation<Spacecraft_T>::get_all_spacecraft() const
 {
-    std::vector<Spacecraft> allSpacecraft;
+    std::vector<Spacecraft_T> allSpacecraft;
     for (auto& shell : shells) {
-        const auto shellSpacecraft = shell.get_all_spacecraft();
-        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft.begin(), shellSpacecraft.end());
+        const auto shellSpacecraft_T = shell.get_all_spacecraft();
+        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft_T.begin(), shellSpacecraft_T.end());
     }
     return allSpacecraft;
 }
 
 
-const Shell& Constellation::get_shell(const size_t& shellId) const
+template <class Spacecraft_T>
+const Shell<Spacecraft_T>& Constellation<Spacecraft_T>::get_shell(const size_t& shellId) const
 {
     for (const auto& shell : shells) {
         if (shell.id == shellId) { return shell; }
@@ -163,7 +189,8 @@ const Shell& Constellation::get_shell(const size_t& shellId) const
 }
 
 
-const Plane& Constellation::get_plane(const size_t& planeId) const
+template <class Spacecraft_T>
+const Plane<Spacecraft_T>& Constellation<Spacecraft_T>::get_plane(const size_t& planeId) const
 {
     for (const auto& shell : shells) {
         for (const auto& plane : shell.planes) {
@@ -174,7 +201,8 @@ const Plane& Constellation::get_plane(const size_t& planeId) const
 }
 
 
-const Spacecraft& Constellation::get_spacecraft(const size_t& spacecraftId) const
+template <class Spacecraft_T>
+const Spacecraft_T& Constellation<Spacecraft_T>::get_spacecraft(const size_t& spacecraftId) const
 {
     for (const auto& shell : shells) {
         for (const auto& plane : shell.planes) {
@@ -187,7 +215,8 @@ const Spacecraft& Constellation::get_spacecraft(const size_t& spacecraftId) cons
 }
 
 
-void Constellation::generate_id_hash()
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::generate_id_hash()
 {
     id = std::hash<size_t>()(shells[0].id);
     for (size_t ii = 1; ii < shells.size(); ii++) {
@@ -196,14 +225,16 @@ void Constellation::generate_id_hash()
 }
 
 
-void Constellation::propagate(EquationsOfMotion& eom, const Interval& interval)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, const Interval& interval)
 {
     Integrator integrator;
     propagate(eom, integrator, interval);
 }
 
 
-void Constellation::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& shell : shells) {
         shell.propagate(eom, integrator, interval);

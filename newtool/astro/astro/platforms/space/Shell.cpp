@@ -2,23 +2,26 @@
 
 #include <stdexcept>
 
-Shell::Shell(std::vector<Plane> _planes)
+template <class Spacecraft_T>
+Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
+    planes(_planes)
 {
-    planes = _planes;
     generate_id_hash();
 }
 
 
-Shell::Shell(std::vector<Spacecraft> satellites)
+template <class Spacecraft_T>
+Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 {
-    Plane noPlane(satellites);
+    Plane<Spacecraft_T> noPlane(satellites);
 
     planes.push_back(noPlane);
 
     generate_id_hash();
 }
 
-Shell::Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F, const double& anchorRAAN, const double& anchorAnomaly)
+template <class Spacecraft_T>
+Shell<Spacecraft_T>::Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F, const double& anchorRAAN, const double& anchorAnomaly)
 {
 
     if (T % P) {
@@ -38,11 +41,13 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
         for (auto& sat : plane.satellites) {
-            sat = Spacecraft(
+            sat = Spacecraft_T(
                 OrbitalElements(
                     { semimajor, 0.0, inclination * deg2rad, (anchorRAAN + deltaRAAN * iPlane) * deg2rad, 0.0, (anchorAnomaly + deltaAnomaly * iAnom) * deg2rad },
-                    ElementSet::KEPLERIAN),
-                Date("Jan-01-2030 00:00:00.0"));
+                    ElementSet::KEPLERIAN
+                ),
+                Date("Jan-01-2030 00:00:00.0")
+            );
             ++iAnom;
         }
         plane.generate_id_hash();
@@ -51,7 +56,8 @@ Shell::Shell(const double& semimajor, const double& inclination, const size_t& T
 }
 
 
-const size_t Shell::size() const
+template <class Spacecraft_T>
+const size_t Shell<Spacecraft_T>::size() const
 {
     size_t size = 0;
     for (const auto& plane : planes) {
@@ -61,13 +67,22 @@ const size_t Shell::size() const
 }
 
 
-const size_t Shell::n_planes() const { return planes.size(); }
+template <class Spacecraft_T>
+const size_t Shell<Spacecraft_T>::n_planes() const
+{
+    return planes.size();
+}
 
 
-void Shell::add_plane(const Plane& plane) { planes.push_back(plane); }
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::add_plane(const Plane<Spacecraft_T>& plane)
+{
+    planes.push_back(plane);
+}
 
 
-void Shell::add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId)
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId)
 {
     for (auto& plane : planes) {
         if (plane.id == planeId) { plane.add_spacecraft(spacecraft); }
@@ -75,27 +90,34 @@ void Shell::add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId)
     throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
 }
 
-void Shell::add_spacecraft(const Spacecraft& spacecraft)
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
 {
-    Plane noPlane(std::vector<Spacecraft>{ spacecraft });
+    Plane<Spacecraft_T> noPlane(std::vector<Spacecraft_T>{ spacecraft });
     planes.push_back(noPlane);
 }
 
 
-const std::vector<Plane>& Shell::get_all_planes() const { return planes; }
-
-const std::vector<Spacecraft> Shell::get_all_spacecraft() const
+template <class Spacecraft_T>
+const std::vector<Plane<Spacecraft_T>>& Shell<Spacecraft_T>::get_all_planes() const
 {
-    std::vector<Spacecraft> allSpacecraft;
+    return planes;
+}
+
+template <class Spacecraft_T>
+const std::vector<Spacecraft_T> Shell<Spacecraft_T>::get_all_spacecraft() const
+{
+    std::vector<Spacecraft_T> allSpacecraft_T;
     for (auto& plane : planes) {
-        const auto& shellSpacecraft = plane.get_all_spacecraft();
-        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft.begin(), shellSpacecraft.end());
+        const auto& shellSpacecraft_T = plane.get_all_spacecraft();
+        allSpacecraft_T.insert(allSpacecraft_T.end(), shellSpacecraft_T.begin(), shellSpacecraft_T.end());
     }
-    return allSpacecraft;
+    return allSpacecraft_T;
 }
 
 
-const Plane& Shell::get_plane(const size_t& planeId) const
+template <class Spacecraft_T>
+const Plane<Spacecraft_T>& Shell<Spacecraft_T>::get_plane(const size_t& planeId) const
 {
     for (const auto& plane : planes) {
         if (plane.id == planeId) { return plane; }
@@ -104,7 +126,8 @@ const Plane& Shell::get_plane(const size_t& planeId) const
 }
 
 
-const Spacecraft& Shell::get_spacecraft(const size_t& spacecraftId) const
+template <class Spacecraft_T>
+const Spacecraft_T& Shell<Spacecraft_T>::get_spacecraft(const size_t& spacecraftId) const
 {
     for (const auto& plane : planes) {
         for (const auto& sat : plane.satellites) {
@@ -115,7 +138,8 @@ const Spacecraft& Shell::get_spacecraft(const size_t& spacecraftId) const
 }
 
 
-void Shell::generate_id_hash()
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::generate_id_hash()
 {
     id = std::hash<size_t>()(planes[0].id);
     for (size_t ii = 1; ii < planes.size(); ii++) {
@@ -124,7 +148,8 @@ void Shell::generate_id_hash()
 }
 
 
-void Shell::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& plane : planes) {
         plane.propagate(eom, integrator, interval);

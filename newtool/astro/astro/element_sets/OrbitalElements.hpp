@@ -71,8 +71,8 @@ class OrbitalElements : public element_array {
     {
         // Check both element sets are the same
         if (other.set != set) {
-            throw std::runtime_error(
-                "Orbital elements must be converted to the same Element Set before they can be added.");
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be "
+                                     "added.");
         }
 
         // Sum
@@ -87,8 +87,8 @@ class OrbitalElements : public element_array {
     {
         // Check both element sets are the same
         if (other.set != set) {
-            throw std::runtime_error(
-                "Orbital elements must be converted to the same Element Set before they can be added.");
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be "
+                                     "added.");
         }
 
         // Sum
@@ -104,8 +104,8 @@ class OrbitalElements : public element_array {
     {
         // Check both element sets are the same
         if (other.set != set) {
-            throw std::runtime_error(
-                "Orbital elements must be converted to the same Element Set before they can be subtracted.");
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be "
+                                     "subtracted.");
         }
 
         // Diff
@@ -120,8 +120,8 @@ class OrbitalElements : public element_array {
     {
         // Check both element sets are the same
         if (other.set != set) {
-            throw std::runtime_error(
-                "Orbital elements must be converted to the same Element Set before they can be added.");
+            throw std::runtime_error("Orbital elements must be converted to the same Element Set before they can be "
+                                     "added.");
         }
 
         // Sum

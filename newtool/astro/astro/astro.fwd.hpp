@@ -19,16 +19,11 @@ template <class T>
 class DynamicFrame;
 
 // Platforms
-class FieldOfView;
-
-struct Channel;
-class Antenna;
-class Sensor;
-
-class GroundStation;
-
+template <class Spacecraft_T>
 class Constellation;
+template <class Spacecraft_T>
 class Plane;
+template <class Spacecraft_T>
 class Shell;
 class Spacecraft;
 

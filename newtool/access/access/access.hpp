@@ -11,7 +11,7 @@
 #include <access/platforms/vehicles/Viewer.hpp>
 #include <access/time/RiseSetArray.hpp>
 
-void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem& sys);
+void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const AstrodynamicsSystem& sys);
 
 std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem& sys);
 std::vector<std::vector<State>>

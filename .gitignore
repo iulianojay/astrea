@@ -17,6 +17,7 @@ results
 *.pyc
 
 # Specific files
+build.txt
 package.json
 get-pip.py
 pyastro/astro.py

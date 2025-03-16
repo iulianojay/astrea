@@ -2,7 +2,7 @@
 
 #include <access/platforms/Sensor.hpp>
 
-void find_accesses(Constellation& constel, const Time& resolution, const AstrodynamicsSystem& sys)
+void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
 
     // Get all sats
@@ -13,29 +13,29 @@ void find_accesses(Constellation& constel, const Time& resolution, const Astrody
     std::vector<Time> times =
         create_time_vector(allSats[0].get_states(), resolution, sys); // TODO: Check all state histories for common time frame
 
-    // // Get and store interpolated states in cartesian to reduce overhead
-    // std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);
+    // Get and store interpolated states in cartesian to reduce overhead
+    std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);
 
-    // // For each sat
-    // for (size_t iSat = 0; iSat < nSats; ++iSat) {
-    //     Viewer& sat1 = allSats[iSat];
-    //     const size_t id1 = sat1.get_id();
+    // For each sat
+    for (size_t iSat = 0; iSat < nSats; ++iSat) {
+        Viewer& sat1     = allSats[iSat];
+        const size_t id1 = sat1.get_id();
 
-    //     // For every other sat
-    //     for (size_t jSat = iSat+1; jSat < nSats; ++jSat) {
-    //         Viewer& sat2 = allSats[jSat];
-    //         const size_t id2 = sat2.get_id();
+        // For every other sat
+        for (size_t jSat = iSat + 1; jSat < nSats; ++jSat) {
+            Viewer& sat2     = allSats[jSat];
+            const size_t id2 = sat2.get_id();
 
-    //         // Satellite-level access for sat1 -> sat2
-    //         RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates);
+            // Satellite-level access for sat1 -> sat2
+            RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates);
 
-    //         // Store
-    //         if (satAccess.size() > 0) {
-    //             sat1.add_access(id2, satAccess);
-    //             sat2.add_access(id1, satAccess);
-    //         }
-    //     }
-    // }
+            // Store
+            if (satAccess.size() > 0) {
+                sat1.add_access(id2, satAccess);
+                sat2.add_access(id1, satAccess);
+            }
+        }
+    }
 }
 
 std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem& sys)

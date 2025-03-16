@@ -1,9 +1,10 @@
 #include <astro/platforms/space/Plane.hpp>
 
 
-Plane::Plane(std::vector<Spacecraft> _satellites)
+template <class Spacecraft_T>
+Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
+    satellites(_satellites)
 {
-    satellites = _satellites;
 
     // Grab first element set as plane set
     elements = satellites[0].get_initial_state().elements;
@@ -28,16 +29,29 @@ Plane::Plane(std::vector<Spacecraft> _satellites)
 }
 
 
-const size_t Plane::size() const { return satellites.size(); }
+template <class Spacecraft_T>
+const size_t Plane<Spacecraft_T>::size() const
+{
+    return satellites.size();
+}
 
 
-void Plane::add_spacecraft(const Spacecraft& spacecraft) { satellites.push_back(spacecraft); }
+template <class Spacecraft_T>
+void Plane<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
+{
+    satellites.push_back(spacecraft);
+}
 
 
-const std::vector<Spacecraft>& Plane::get_all_spacecraft() const { return satellites; }
+template <class Spacecraft_T>
+const std::vector<Spacecraft_T>& Plane<Spacecraft_T>::get_all_spacecraft() const
+{
+    return satellites;
+}
 
 
-const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const
+template <class Spacecraft_T>
+const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraftId) const
 {
     for (const auto& sat : satellites) {
         if (sat.get_id() == spacecraftId) { return sat; }
@@ -46,7 +60,8 @@ const Spacecraft& Plane::get_spacecraft(const size_t& spacecraftId) const
 }
 
 
-void Plane::generate_id_hash()
+template <class Spacecraft_T>
+void Plane<Spacecraft_T>::generate_id_hash()
 {
     id = std::hash<size_t>()(satellites[0].get_id());
     for (size_t ii = 1; ii < satellites.size(); ii++) {
@@ -55,11 +70,12 @@ void Plane::generate_id_hash()
 }
 
 
-void Plane::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+template <class Spacecraft_T>
+void Plane<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         integrator.propagate(interval, eom, vehicle);
-        sat = *vehicle.extract<Spacecraft>();
+        sat = *vehicle.extract<Spacecraft_T>();
     }
 }

@@ -10,14 +10,17 @@
 
 #include <astro/astro.fwd.hpp>
 
+template <class Spacecraft_T>
 class Shell {
 
-    friend class Constellation;
+    static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Shells must be built of Spacecraft or Derived classes.");
+
+    friend class Constellation<Spacecraft_T>;
 
   public:
     Shell() = default;
-    Shell(std::vector<Plane> planes);
-    Shell(std::vector<Spacecraft> satellites);
+    Shell(std::vector<Plane<Spacecraft_T>> planes);
+    Shell(std::vector<Spacecraft_T> satellites);
     Shell(
         const double& semimajor,
         const double& inclination,
@@ -25,26 +28,27 @@ class Shell {
         const size_t& P,
         const double& F,
         const double& anchorRAAN    = 0.0,
-        const double& anchorAnomaly = 0.0);
+        const double& anchorAnomaly = 0.0
+    );
     ~Shell() = default;
 
     const size_t size() const;
     const size_t n_planes() const;
 
-    void add_plane(const Plane& plane);
-    void add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId);
-    void add_spacecraft(const Spacecraft& spacecraft);
+    void add_plane(const Plane<Spacecraft_T>& plane);
+    void add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId);
+    void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Plane>& get_all_planes() const;
-    const std::vector<Spacecraft> get_all_spacecraft() const;
+    const std::vector<Plane<Spacecraft_T>>& get_all_planes() const;
+    const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
-    const Plane& get_plane(const size_t& planeId) const;
-    const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
+    const Plane<Spacecraft_T>& get_plane(const size_t& planeId) const;
+    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Plane>::iterator;
+    using iterator = std::vector<Plane<Spacecraft_T>>::iterator;
 
     iterator begin() { return planes.begin(); }
     iterator end() { return planes.end(); }
@@ -57,10 +61,10 @@ class Shell {
     class sat_iterator {
       private:
         iterator iterPlane;
-        Plane::iterator iterSat;
+        Plane<Spacecraft_T>::iterator iterSat;
 
       public:
-        sat_iterator(iterator _iterPlane, Plane::iterator _iterSat) :
+        sat_iterator(iterator _iterPlane, Plane<Spacecraft_T>::iterator _iterSat) :
             iterPlane(_iterPlane),
             iterSat(_iterSat)
         {
@@ -119,13 +123,13 @@ class Shell {
         {
             return iterPlane > other.iterPlane || (iterPlane == other.iterPlane && iterSat >= other.iterSat);
         }
-        Spacecraft operator*() { return *iterSat; }
+        Spacecraft_T operator*() { return *iterSat; }
 
         // iterator traits
-        using difference_type   = Plane::iterator;
-        using value_type        = Plane::iterator;
-        using pointer           = const Plane::iterator*;
-        using reference         = const Plane::iterator&;
+        using difference_type   = Plane<Spacecraft_T>::iterator;
+        using value_type        = Plane<Spacecraft_T>::iterator;
+        using pointer           = const Plane<Spacecraft_T>::iterator*;
+        using reference         = const Plane<Spacecraft_T>::iterator&;
         using iterator_category = std::forward_iterator_tag;
     };
 
@@ -134,7 +138,7 @@ class Shell {
   private:
     size_t id;
     std::string name;
-    std::vector<Plane> planes;
+    std::vector<Plane<Spacecraft_T>> planes;
 
     void generate_id_hash();
 };

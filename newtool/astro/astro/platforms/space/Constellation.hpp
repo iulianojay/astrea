@@ -8,12 +8,16 @@
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/Integrator.hpp>
 
+template <class Spacecraft_T>
 class Constellation {
+
+    static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Constellations must be built of Spacecraft or Derived classes.");
+
   public:
     Constellation() = default;
-    Constellation(std::vector<Shell> shells);
-    Constellation(std::vector<Plane> planes);
-    Constellation(std::vector<Spacecraft> satellites);
+    Constellation(std::vector<Shell<Spacecraft_T>> shells);
+    Constellation(std::vector<Plane<Spacecraft_T>> planes);
+    Constellation(std::vector<Spacecraft_T> satellites);
     Constellation(
         const double& semimajor,
         const double& inclination,
@@ -21,7 +25,8 @@ class Constellation {
         const size_t& P,
         const double& F,
         const double& anchorRAAN    = 0.0,
-        const double& anchorAnomaly = 0.0);
+        const double& anchorAnomaly = 0.0
+    );
 
     ~Constellation() = default;
 
@@ -30,25 +35,25 @@ class Constellation {
     const size_t n_planes() const;
 
     // TODO: Add + overloads that accomplish similar things to these methods
-    void add_shell(const Shell& shell);
-    void add_plane(const Plane& plane, const size_t& shellId);
-    void add_plane(const Plane& plane);
-    void add_spacecraft(const Spacecraft& spacecraft, const size_t& planeId);
-    void add_spacecraft(const Spacecraft& spacecraft);
+    void add_shell(const Shell<Spacecraft_T>& shell);
+    void add_plane(const Plane<Spacecraft_T>& plane, const size_t& shellId);
+    void add_plane(const Plane<Spacecraft_T>& plane);
+    void add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId);
+    void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Shell>& get_all_shells() const;
-    const std::vector<Plane> get_all_planes() const;
-    const std::vector<Spacecraft> get_all_spacecraft() const;
+    const std::vector<Shell<Spacecraft_T>>& get_all_shells() const;
+    const std::vector<Plane<Spacecraft_T>> get_all_planes() const;
+    const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
-    const Shell& get_shell(const size_t& shellId) const;
-    const Plane& get_plane(const size_t& planeId) const;
-    const Spacecraft& get_spacecraft(const size_t& spacecraftId) const;
+    const Shell<Spacecraft_T>& get_shell(const size_t& shellId) const;
+    const Plane<Spacecraft_T>& get_plane(const size_t& planeId) const;
+    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
 
     void propagate(EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Shell>::iterator;
+    using iterator = std::vector<Shell<Spacecraft_T>>::iterator;
 
     iterator begin() { return shells.begin(); }
     iterator end() { return shells.end(); }
@@ -61,10 +66,10 @@ class Constellation {
     class sat_iterator {
       private:
         iterator iterShell;
-        Shell::sat_iterator iterSat;
+        Shell<Spacecraft_T>::sat_iterator iterSat;
 
       public:
-        sat_iterator(iterator _iterShell, Shell::sat_iterator _iterSat) :
+        sat_iterator(iterator _iterShell, Shell<Spacecraft_T>::sat_iterator _iterSat) :
             iterShell(_iterShell),
             iterSat(_iterSat)
         {
@@ -123,21 +128,21 @@ class Constellation {
         {
             return iterShell > other.iterShell || (iterShell == other.iterShell && iterSat >= other.iterSat);
         }
-        Spacecraft operator*() { return *iterSat; }
+        Spacecraft_T operator*() { return *iterSat; }
 
       private:
         // iterator traits
-        using difference_type   = Plane::iterator;
-        using value_type        = Plane::iterator;
-        using pointer           = const Plane::iterator*;
-        using reference         = const Plane::iterator&;
+        using difference_type   = Plane<Spacecraft_T>::iterator;
+        using value_type        = Plane<Spacecraft_T>::iterator;
+        using pointer           = const Plane<Spacecraft_T>::iterator*;
+        using reference         = const Plane<Spacecraft_T>::iterator&;
         using iterator_category = std::forward_iterator_tag;
     };
 
   private:
     size_t id;
     std::string name;
-    std::vector<Shell> shells;
+    std::vector<Shell<Spacecraft_T>> shells;
 
     void generate_id_hash();
 };
