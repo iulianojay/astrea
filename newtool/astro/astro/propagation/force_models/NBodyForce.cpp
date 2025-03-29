@@ -2,7 +2,7 @@
 
 #include <math/utils.hpp>
 
-basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+BasisArray NBodyForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     // Extract
@@ -17,14 +17,14 @@ basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalEle
     const State& stateSunToCentralBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
 
     // Radius from central body to sun
-    const basis_array radiusCentralBodyToSun{ // flip vector direction
-                                              -stateSunToCentralBody.elements[0],
-                                              -stateSunToCentralBody.elements[1],
-                                              -stateSunToCentralBody.elements[2]
+    const BasisArray radiusCentralBodyToSun{ // flip vector direction
+                                             -stateSunToCentralBody.elements[0],
+                                             -stateSunToCentralBody.elements[1],
+                                             -stateSunToCentralBody.elements[2]
     };
 
     // Reset perturbation
-    basis_array accelNBody{ 0.0 };
+    BasisArray accelNBody{ 0.0 };
     for (auto&& [name, body] : sys) {
 
         if (body == center) { continue; }
@@ -33,20 +33,20 @@ basis_array NBodyForce::compute_force(const double& julianDate, const OrbitalEle
         const State& stateSunToNBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
 
         // Radius from central body to sun
-        const basis_array radiusSunToNbody{ // flip vector direction
-                                            -stateSunToNBody.elements[0],
-                                            -stateSunToNBody.elements[1],
-                                            -stateSunToNBody.elements[2]
+        const BasisArray radiusSunToNbody{ // flip vector direction
+                                           -stateSunToNBody.elements[0],
+                                           -stateSunToNBody.elements[1],
+                                           -stateSunToNBody.elements[2]
         };
 
         // Find radius from central body and spacecraft to nth body
-        const basis_array radiusCentralBodyToNbody{ radiusSunToNbody[0] + radiusCentralBodyToSun[0],
-                                                    radiusSunToNbody[1] + radiusCentralBodyToSun[1],
-                                                    radiusSunToNbody[2] + radiusCentralBodyToSun[2] };
+        const BasisArray radiusCentralBodyToNbody{ radiusSunToNbody[0] + radiusCentralBodyToSun[0],
+                                                   radiusSunToNbody[1] + radiusCentralBodyToSun[1],
+                                                   radiusSunToNbody[2] + radiusCentralBodyToSun[2] };
 
-        const basis_array radiusVehicleToNbody{ radiusCentralBodyToNbody[0] - x,
-                                                radiusCentralBodyToNbody[1] - y,
-                                                radiusCentralBodyToNbody[2] - z };
+        const BasisArray radiusVehicleToNbody{ radiusCentralBodyToNbody[0] - x,
+                                               radiusCentralBodyToNbody[1] - y,
+                                               radiusCentralBodyToNbody[2] - z };
 
         // Normalize
         const double radiusVehicleToNbodyMagnitude = math::normalize(radiusVehicleToNbody, 2);

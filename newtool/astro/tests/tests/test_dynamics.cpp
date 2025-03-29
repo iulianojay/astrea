@@ -1,18 +1,17 @@
 
-#include <vector>
-#include <random>
 #include <gtest/gtest.h>
+#include <random>
+#include <vector>
 
 #include <astro/astro.hpp>
 
 
 class DynamicsTest : public testing::Test {
-protected:
-
+  protected:
     // Test Options
     const int nConversion = 1e3;
-    const int nElements = 1000;
-    const double REL_TOL = 1e-6;
+    const int nElements   = 1000;
+    const double REL_TOL  = 1e-6;
 
     DynamicsTest() :
         eom(sys),
@@ -34,10 +33,10 @@ protected:
     Integrator integrator;
     std::string epoch = "Jan-01-2030 00:00:00.0";
 
-    Interval oneDay{seconds(0), days(1)};
-    Interval oneWeek{seconds(0), weeks(1)};
-    Interval oneMonth{seconds(0), months(1)};
-    Interval oneYear{seconds(0), years(1)};
+    Interval oneDay{ seconds(0), days(1) };
+    Interval oneWeek{ seconds(0), weeks(1) };
+    Interval oneMonth{ seconds(0), months(1) };
+    Interval oneYear{ seconds(0), years(1) };
 
     std::random_device rd;
     std::default_random_engine rng;
@@ -48,48 +47,43 @@ protected:
     std::uniform_real_distribution<double> w_dist;
     std::uniform_real_distribution<double> theta_dist;
 
-    OrbitalElements random_elements() {
-        element_array elements{
-            semimajor_dist(rng),
-            ecc_dist(rng),
-            inc_dist(rng),
-            raan_dist(rng),
-            w_dist(rng),
-            theta_dist(rng)
-        };
+    OrbitalElements random_elements()
+    {
+        ElementArray elements{ semimajor_dist(rng), ecc_dist(rng), inc_dist(rng),
+                               raan_dist(rng),      w_dist(rng),   theta_dist(rng) };
         return OrbitalElements(elements, ElementSet::KEPLERIAN);
     }
 
-    const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true) {
-        if (first.get_set() != second.get_set()) {
-            return false;
-        }
+    const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true)
+    {
+        if (first.get_set() != second.get_set()) { return false; }
         const int endInd = ignoreAnomaly ? 5 : 6;
         for (int ii = 0; ii < endInd; ii++) {
-            if (fabs((first[ii] - second[ii])/first[ii]) > REL_TOL) {
-                return false;
-            }
+            if (fabs((first[ii] - second[ii]) / first[ii]) > REL_TOL) { return false; }
         }
         return true;
     }
 
-    void assert_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements, const bool& ignoreAnomaly = false) {
-        ASSERT_TRUE( nearly_equal(elements, expectedElements, ignoreAnomaly) ) <<
-                    "Conversion caused issues greater than " << REL_TOL*100 << "\n" <<
-                    "Converted Set: " << elements << "\n" <<
-                    "Expected Set : " << expectedElements << "\n\n";
+    void assert_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements, const bool& ignoreAnomaly = false)
+    {
+        ASSERT_TRUE(nearly_equal(elements, expectedElements, ignoreAnomaly))
+            << "Conversion caused issues greater than " << REL_TOL * 100 << "\n"
+            << "Converted Set: " << elements << "\n"
+            << "Expected Set : " << expectedElements << "\n\n";
     }
 
-    void expect_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements, const bool& ignoreAnomaly = false) {
-        EXPECT_TRUE( nearly_equal(elements, expectedElements, ignoreAnomaly) ) <<
-                    "Conversion caused issues greater than " << REL_TOL*100 << "\n" <<
-                    "Converted Set: " << elements << "\n" <<
-                    "Expected Set : " << expectedElements << "\n\n";
+    void expect_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements, const bool& ignoreAnomaly = false)
+    {
+        EXPECT_TRUE(nearly_equal(elements, expectedElements, ignoreAnomaly))
+            << "Conversion caused issues greater than " << REL_TOL * 100 << "\n"
+            << "Converted Set: " << elements << "\n"
+            << "Expected Set : " << expectedElements << "\n\n";
     }
 };
 
 
-TEST_F(DynamicsTest, TwoBody) {
+TEST_F(DynamicsTest, TwoBody)
+{
     // Build spacecraft
     OrbitalElements elements0 = random_elements();
     Spacecraft vehicle(elements0, epoch);
@@ -106,7 +100,8 @@ TEST_F(DynamicsTest, TwoBody) {
     }
 }
 
-TEST_F(DynamicsTest, CowellsNoPert) {
+TEST_F(DynamicsTest, CowellsNoPert)
+{
     // Build spacecraft
     OrbitalElements elements0 = random_elements();
     Spacecraft vehicle(elements0, epoch);

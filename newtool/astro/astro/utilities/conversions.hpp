@@ -34,21 +34,21 @@ static const double AU_TO_KM = 1.49597871e8;
 namespace conversions {
 
 //------------------------------------------- Frame Conversions --------------------------------------------//
-void bci_to_bcbf(const basis_array& rBCI, double julianDate, double rotRate, basis_array& rBCBF);
-void bcbf_to_bci(const basis_array& rBCBF, double julianDate, double rotRate, basis_array& rBCI);
+void bci_to_bcbf(const BasisArray& rBCI, double julianDate, double rotRate, BasisArray& rBCBF);
+void bcbf_to_bci(const BasisArray& rBCBF, double julianDate, double rotRate, BasisArray& rBCI);
 
-void bcbf_to_lla(const basis_array& rBCBF, const double& equitorialRadius, const double& polarRadius, basis_array& lla);
-void lla_to_bcbf(const basis_array& lla, const double& equitorialRadius, const double& polarRadius, basis_array& rBCBF);
+void bcbf_to_lla(const BasisArray& rBCBF, const double& equitorialRadius, const double& polarRadius, BasisArray& lla);
+void lla_to_bcbf(const BasisArray& lla, const double& equitorialRadius, const double& polarRadius, BasisArray& rBCBF);
 
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 std::vector<double> keplerian_to_bci(double h, double ecc, double inc, double raan, double w, double theta, double mu);
 std::vector<double> bci_to_keplerian(const std::vector<double>& radius, const std::vector<double>& velocity, double mu);
 
-element_array keplerian_to_cartesian(const element_array& coes, const AstrodynamicsSystem& centralBody);
-element_array cartesian_to_keplerian(const element_array& cartesian, const AstrodynamicsSystem& centralBody);
+ElementArray keplerian_to_cartesian(const ElementArray& coes, const AstrodynamicsSystem& centralBody);
+ElementArray cartesian_to_keplerian(const ElementArray& cartesian, const AstrodynamicsSystem& centralBody);
 
-element_array keplerian_to_equinoctial(const element_array& mees, const AstrodynamicsSystem& centralBody);
-element_array equinoctial_to_keplerian(const element_array& coes, const AstrodynamicsSystem& centralBody);
+ElementArray keplerian_to_equinoctial(const ElementArray& mees, const AstrodynamicsSystem& centralBody);
+ElementArray equinoctial_to_keplerian(const ElementArray& coes, const AstrodynamicsSystem& centralBody);
 
 void _equinoctial_to_keplerian(double p, double f, double g, double h, double k, double L, double* coes);
 
@@ -57,7 +57,7 @@ double epoch_to_julian_date(std::string epochString);
 double julian_date_to_siderial_time(double julianDate, double rotRate);
 
 // For the love of god, don't touch this
-using set_conversion_function = std::function<element_array(const element_array&, const AstrodynamicsSystem&)>;
+using set_conversion_function = std::function<ElementArray(const ElementArray&, const AstrodynamicsSystem&)>;
 using element_set_pair        = std::pair<ElementSet, ElementSet>;
 
 const std::unordered_map<element_set_pair, set_conversion_function> elementSetConversions = {
@@ -67,6 +67,5 @@ const std::unordered_map<element_set_pair, set_conversion_function> elementSetCo
     { element_set_pair(ElementSet::EQUINOCTIAL, ElementSet::KEPLERIAN), equinoctial_to_keplerian }
 };
 
-element_array
-convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system);
+ElementArray convert(const ElementArray& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system);
 } // namespace conversions

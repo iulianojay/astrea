@@ -15,7 +15,8 @@ class Frame {
         std::is_same<T, CelestialBody>::value || std::is_base_of<T, CelestialBody>::value ||
             std::is_same<T, Spacecraft>::value || std::is_same<T, Frame>::value,
         "Frames must be defined in reference to one of the following types: [CelestialBody, Barycenter, Spacecraft, "
-        "Frame].");
+        "Frame]."
+    );
 
   public:
     Frame(){};
@@ -24,7 +25,7 @@ class Frame {
     std::string name;
 
   private:
-    basis_array x, y, z;
+    BasisArray x, y, z;
     T origin;
 };
 
@@ -35,7 +36,8 @@ class InertialFrame : public Frame<T> {
     static_assert(
         std::is_same<T, CelestialBody>::value || std::is_base_of<T, CelestialBody>::value || std::is_same<T, InertialFrame>::value,
         "Inertial frames must be defined in reference to one of the following types: [CelestialBody, Barycenter, "
-        "InertialFrame].");
+        "InertialFrame]."
+    );
 };
 
 
@@ -51,7 +53,8 @@ class BodyFixedFrame : public Frame<T> {
 
     static_assert(
         std::is_same<T, CelestialBody>::value || std::is_base_of<T, CelestialBody>::value || std::is_same<T, InertialFrame<T>>::value,
-        "Body-fixed frames must be defined in reference to one of the following types: [CelestialBody, Spacecraft].");
+        "Body-fixed frames must be defined in reference to one of the following types: [CelestialBody, Spacecraft]."
+    );
 };
 
 

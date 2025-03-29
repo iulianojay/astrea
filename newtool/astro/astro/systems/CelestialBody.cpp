@@ -117,9 +117,9 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
         const double ecct_5 = ecct_4 * ecct;
 
         const double thetat = (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * math::sin(Met) +
-                                  (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * math::sin(2.0 * Met) +
-                                  (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * math::sin(3.0 * Met) +
-                                  103.0 / 96.0 * ecct_4 * math::sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * math::sin(5 * Met)) *
+                               (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * math::sin(2.0 * Met) +
+                               (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * math::sin(3.0 * Met) +
+                               103.0 / 96.0 * ecct_4 * math::sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * math::sin(5 * Met)) *
                               rad2deg;
 
         // Store mean and true anomaly
@@ -161,7 +161,7 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const do
         const double DCM_zy = si * cw;
 
         // Find radius and velocity vector
-        element_array bciState;
+        ElementArray bciState;
         bciState[0] = DCM_xx * xPerifocal + DCM_xy * yPerifocal;
         bciState[1] = DCM_yx * xPerifocal + DCM_yy * yPerifocal;
         bciState[2] = DCM_zx * xPerifocal + DCM_zy * yPerifocal;

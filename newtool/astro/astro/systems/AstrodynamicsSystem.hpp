@@ -15,8 +15,10 @@
 
 class AstrodynamicsSystem {
   public:
-    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = { "Earth", "Moon" }, Date epoch = J2000)
-        : centralBody(centralBody), allBodies(allBodies), epoch(epoch)
+    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = { "Earth", "Moon" }, Date epoch = J2000) :
+        centralBody(centralBody),
+        allBodies(allBodies),
+        epoch(epoch)
     {
         create_all_bodies();
     };
@@ -29,7 +31,7 @@ class AstrodynamicsSystem {
     const std::unordered_set<std::string>& all_bodies() const { return allBodies; }
 
     void propagate_bodies(double propTime);
-    // basis_array get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
+    // BasisArray get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 
     using iterator       = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;

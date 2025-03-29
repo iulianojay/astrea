@@ -54,7 +54,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     const double tempB = z * z / (R * R);
 
     // accel due to oblateness
-    basis_array accelOblateness = { tempA * (1.0 - 5.0 * tempB) * x, tempA * (1.0 - 5.0 * tempB) * y, tempA * (1.0 - 3.0 * tempB) * z };
+    BasisArray accelOblateness = { tempA * (1.0 - 5.0 * tempB) * x, tempA * (1.0 - 5.0 * tempB) * y, tempA * (1.0 - 3.0 * tempB) * z };
 
     // Calculate R, N, and T
     const double normalPert = accelOblateness[0] * Nhat[0] + accelOblateness[1] * Nhat[1] + accelOblateness[2] * Nhat[2];

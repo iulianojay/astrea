@@ -23,13 +23,14 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const double muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    auto julianDate        = vehicle.get_epoch().julian_day() + time.count<days>();
-    basis_array accelPerts = forces.compute_forces(julianDate, state, vehicle, system);
+    auto julianDate       = vehicle.get_epoch().julian_day() + time.count<days>();
+    BasisArray accelPerts = forces.compute_forces(julianDate, state, vehicle, system);
 
     // Derivative
     const OrbitalElements dsdt(
         { vx, vy, vz, -muOverRadiusCubed * x + accelPerts[0], -muOverRadiusCubed * y + accelPerts[1], -muOverRadiusCubed * z + accelPerts[2] },
-        ElementSet::CARTESIAN);
+        ElementSet::CARTESIAN
+    );
 
     return dsdt;
 }

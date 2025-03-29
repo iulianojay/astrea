@@ -42,4 +42,5 @@ struct hash<std::tuple<TT...>> {
         return seed;
     }
 };
+
 } // namespace std

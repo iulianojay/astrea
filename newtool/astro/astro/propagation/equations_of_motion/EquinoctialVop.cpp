@@ -51,8 +51,8 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const double That[3] = { Tv[0] / normTv, Tv[1] / normTv, Tv[2] / normTv };
 
     // Function for finding accel caused by perturbations
-    auto julianDate        = vehicle.get_epoch().julian_day() + time.count<days>();
-    basis_array accelPerts = forces.compute_forces(julianDate, cartesianState, vehicle, system);
+    auto julianDate       = vehicle.get_epoch().julian_day() + time.count<days>();
+    BasisArray accelPerts = forces.compute_forces(julianDate, cartesianState, vehicle, system);
 
     // Calculate R, N, and T
     const double radialPert     = accelPerts[0] * Rhat[0] + accelPerts[1] * Rhat[1] + accelPerts[2] * Rhat[2];
@@ -80,7 +80,8 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
             tempD * sinL * normalPert,                                               // dkdt
             std::sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert // dLdt
         },
-        ElementSet::EQUINOCTIAL);
+        ElementSet::EQUINOCTIAL
+    );
 
     return dsdt;
 }

@@ -9,7 +9,7 @@
 
 class GroundStation {
   public:
-    GroundStation(const basis_array& lla, const std::vector<Sensor>& sensors) :
+    GroundStation(const BasisArray& lla, const std::vector<Sensor>& sensors) :
         lla(lla),
         sensors(sensors)
     {
@@ -25,7 +25,7 @@ class GroundStation {
 
   private:
     size_t id;
-    basis_array lla;
+    BasisArray lla;
 
     std::vector<Sensor> sensors;
 

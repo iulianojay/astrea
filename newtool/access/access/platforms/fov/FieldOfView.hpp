@@ -13,7 +13,7 @@ class FieldOfView {
     ~FieldOfView() = default;
 
   public:
-    virtual bool contains(const basis_array& boresight, const basis_array& target) const { return false; };
+    virtual bool contains(const BasisArray& boresight, const BasisArray& target) const { return false; };
 };
 
 
@@ -25,7 +25,7 @@ class CircularFieldOfView : public FieldOfView {
     }
     ~CircularFieldOfView() = default;
 
-    bool contains(const basis_array& boresight, const basis_array& target) const;
+    bool contains(const BasisArray& boresight, const BasisArray& target) const;
 
   private:
     double halfConeAngle;
@@ -42,7 +42,7 @@ class PolygonalFieldOfView : public FieldOfView {
     }
     ~PolygonalFieldOfView() = default;
 
-    bool contains(const basis_array& boresight, const basis_array& target) const { return false; };
+    bool contains(const BasisArray& boresight, const BasisArray& target) const { return false; };
 
   private:
     std::unordered_map<double, double> points;

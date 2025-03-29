@@ -6,7 +6,7 @@
 #include <math/utils.hpp>
 
 
-bool CircularFieldOfView::contains(const basis_array& boresight, const basis_array& target) const
+bool CircularFieldOfView::contains(const BasisArray& boresight, const BasisArray& target) const
 {
     const double B     = math::normalize(boresight, 2);
     const double T     = math::normalize(target, 2);

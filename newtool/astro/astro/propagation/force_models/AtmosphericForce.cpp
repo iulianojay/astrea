@@ -1,7 +1,7 @@
 #include <astro/propagation/force_models/AtmosphericForce.hpp>
 #include <math/utils.hpp>
 
-basis_array AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+BasisArray AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
@@ -36,7 +36,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double mass              = vehicle.get_mass();
     const double dragMagnitude = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
 
-    const basis_array accelDrag{
+    const BasisArray accelDrag{
         dragMagnitude * relativeVelocity[0],
         dragMagnitude * relativeVelocity[1],
         dragMagnitude * relativeVelocity[2],
@@ -51,7 +51,7 @@ basis_array AtmosphericForce::compute_force(const double& julianDate, const Orbi
     const double tempA =
         0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * radialVelcityMagnitude * radialVelcityMagnitude / R;
 
-    const basis_array accelLift{
+    const BasisArray accelLift{
         tempA * x,
         tempA * y,
         tempA * z,
@@ -79,9 +79,9 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
     static const std::string& centerName  = center->get_name();
 
     // Find altitude
-    basis_array radius = { x, y, z };
-    basis_array rBCBF{};
-    basis_array lla{};
+    BasisArray radius = { x, y, z };
+    BasisArray rBCBF{};
+    BasisArray lla{};
     conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
     conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
     const double altitude = lla[2];
@@ -127,12 +127,14 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
         else if (altitude < 200.0) {
             atmosphericDensity = std::exp(
                 -2.55314e-10 * std::pow(altitude, 5) + 2.31927e-7 * std::pow(altitude, 4) -
-                8.33206e-5 * std::pow(altitude, 3) + 0.0151947 * std::pow(altitude, 2) - 1.52799 * altitude + 48.69659);
+                8.33206e-5 * std::pow(altitude, 3) + 0.0151947 * std::pow(altitude, 2) - 1.52799 * altitude + 48.69659
+            );
         }
         else if (altitude < 300.0) {
             atmosphericDensity = std::exp(
                 2.65472e-11 * std::pow(altitude, 5) - 2.45558e-8 * std::pow(altitude, 4) +
-                6.31410e-6 * std::pow(altitude, 3) + 4.73359e-4 * std::pow(altitude, 2) - 0.443712 * altitude + 23.79408);
+                6.31410e-6 * std::pow(altitude, 3) + 4.73359e-4 * std::pow(altitude, 2) - 0.443712 * altitude + 23.79408
+            );
         }
         else {
             atmosphericDensity = 0.0;

@@ -34,7 +34,7 @@ void AstrodynamicsSystem::propagate_bodies(double propTime)
         }
     }
     else {
-        const element_array noDiff = { 0.0 };
+        const ElementArray noDiff = { 0.0 };
         for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
             centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
         }

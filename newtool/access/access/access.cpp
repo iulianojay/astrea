@@ -143,9 +143,9 @@ RiseSetArray find_sensor_to_sensor_accesses(
         const State& state1 = states[iTime][iSat];
         const State& state2 = states[iTime][jSat];
 
-        const basis_array& state1to2 = { state2.elements[0] - state1.elements[0],
-                                         state2.elements[1] - state1.elements[1],
-                                         state2.elements[2] - state1.elements[2] };
+        const BasisArray& state1to2 = { state2.elements[0] - state1.elements[0],
+                                        state2.elements[1] - state1.elements[1],
+                                        state2.elements[2] - state1.elements[2] };
 
         // Manage bookends
         if (iTime == 0) {

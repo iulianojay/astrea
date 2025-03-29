@@ -21,7 +21,7 @@ class Sensor {
 
     const size_t& get_id() { return id; }
 
-    virtual const bool contains(const basis_array& sensor2target) const
+    virtual const bool contains(const BasisArray& sensor2target) const
     {
         return fov->contains(boresight, sensor2target);
     }
@@ -31,8 +31,8 @@ class Sensor {
   private:
     size_t id;
     int parentId;
-    basis_array attachmentPoint;
-    basis_array boresight;
+    BasisArray attachmentPoint;
+    BasisArray boresight;
     FieldOfView* fov;
     AccessArray accesses;
 

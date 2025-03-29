@@ -11,7 +11,7 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
-class OrbitalElements : public element_array {
+class OrbitalElements : public ElementArray {
 
 #ifndef SWIG
     friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
@@ -25,7 +25,7 @@ class OrbitalElements : public element_array {
             _M_elems[ii] = 0.0;
         }
     }
-    OrbitalElements(const element_array& elements, const ElementSet& set = ElementSet::CARTESIAN) :
+    OrbitalElements(const ElementArray& elements, const ElementSet& set = ElementSet::CARTESIAN) :
         set(set)
     {
         std::copy(std::begin(elements), std::end(elements), _M_elems);
@@ -76,7 +76,7 @@ class OrbitalElements : public element_array {
         }
 
         // Sum
-        element_array sumElements = (*this);
+        ElementArray sumElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
             sumElements[ii] += other[ii];
         }
@@ -109,7 +109,7 @@ class OrbitalElements : public element_array {
         }
 
         // Diff
-        element_array diffElements = (*this);
+        ElementArray diffElements = (*this);
         for (size_t ii = 0; ii < 6; ii++) {
             diffElements[ii] -= other[ii];
         }

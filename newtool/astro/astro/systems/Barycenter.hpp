@@ -10,12 +10,13 @@
 
 class Barycenter : public CelestialBody {
   public:
-    Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies)
-        : referenceBody(referenceBody), bodies(bodies){};
+    Barycenter(CelestialBody referenceBody, std::unordered_set<CelestialBody> bodies) :
+        referenceBody(referenceBody),
+        bodies(bodies){};
     ~Barycenter(){};
 
   private:
-    basis_array center;
+    BasisArray center;
     CelestialBody referenceBody;
     std::unordered_set<CelestialBody> bodies;
 };

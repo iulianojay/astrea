@@ -10,7 +10,7 @@
 //------------------------------------------- Frame Conversions --------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void conversions::bci_to_bcbf(const basis_array& rBCI, double julianDate, double rotRate, basis_array& rBCBF)
+void conversions::bci_to_bcbf(const BasisArray& rBCI, double julianDate, double rotRate, BasisArray& rBCBF)
 {
 
     double x{}, y{}, z{}, cosGST{}, greenwichSiderealTime{}, sinGST{};
@@ -36,7 +36,7 @@ void conversions::bci_to_bcbf(const basis_array& rBCI, double julianDate, double
     rBCBF[2] = z;
 }
 
-void conversions::bcbf_to_bci(const basis_array& rBCBF, double julianDate, double rotRate, basis_array& rBCI)
+void conversions::bcbf_to_bci(const BasisArray& rBCBF, double julianDate, double rotRate, BasisArray& rBCI)
 {
 
     double greenwichSiderealTime{}, cosGST{}, sinGST{};
@@ -58,7 +58,7 @@ void conversions::bcbf_to_bci(const basis_array& rBCBF, double julianDate, doubl
     rBCI[2] = rBCBF[2];
 }
 
-void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorialRadius, const double& polarRadius, basis_array& lla)
+void conversions::bcbf_to_lla(const BasisArray& rBCBF, const double& equitorialRadius, const double& polarRadius, BasisArray& lla)
 {
 
     double xBCBF{}, yBCBF{}, zBCBF{}, f{}, e_2{}, dz{}, err{}, s{}, N{};
@@ -91,7 +91,7 @@ void conversions::bcbf_to_lla(const basis_array& rBCBF, const double& equitorial
     lla[2] = std::max(std::sqrt(xBCBF * xBCBF + yBCBF * yBCBF + (zBCBF + dz) * (zBCBF + dz)) - N, 0.0);
 }
 
-void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRadius, const double& polarRadius, basis_array& rBCBF)
+void conversions::lla_to_bcbf(const BasisArray& lla, const double& equitorialRadius, const double& polarRadius, BasisArray& rBCBF)
 {
 
     const double latitude  = lla[0] * DEG_TO_RAD;
@@ -113,7 +113,7 @@ void conversions::lla_to_bcbf(const basis_array& lla, const double& equitorialRa
 //---------------------------------------- Element Set Conversions -----------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-element_array conversions::convert(const element_array& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system)
+ElementArray conversions::convert(const ElementArray& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system)
 {
     element_set_pair setPair = std::make_pair(fromSet, toSet);
     return conversions::elementSetConversions.at(setPair)(elements, system);
@@ -308,9 +308,9 @@ void conversions::_equinoctial_to_keplerian(double p, double f, double g, double
 }
 
 
-element_array conversions::keplerian_to_cartesian(const element_array& coes, const AstrodynamicsSystem& system)
+ElementArray conversions::keplerian_to_cartesian(const ElementArray& coes, const AstrodynamicsSystem& system)
 {
-    element_array cartesian;
+    ElementArray cartesian;
     const auto elements = keplerian_to_bci(coes[0], coes[1], coes[2], coes[3], coes[4], coes[5], system.get_center()->get_mu());
     for (int ii = 0; ii < 6; ii++) {
         cartesian[ii] = elements[ii];
@@ -318,13 +318,13 @@ element_array conversions::keplerian_to_cartesian(const element_array& coes, con
     return cartesian;
 };
 
-element_array conversions::cartesian_to_keplerian(const element_array& cartesian, const AstrodynamicsSystem& system)
+ElementArray conversions::cartesian_to_keplerian(const ElementArray& cartesian, const AstrodynamicsSystem& system)
 {
     std::vector<double> radius     = { cartesian[0], cartesian[1], cartesian[2] };
     std::vector<double> velocity   = { cartesian[3], cartesian[4], cartesian[5] };
     const std::vector<double> coes = bci_to_keplerian(radius, velocity, system.get_center()->get_mu());
 
-    element_array keplerian_array;
+    ElementArray keplerian_array;
     for (int ii = 0; ii < 6; ii++) {
         keplerian_array[ii] = coes[ii];
     }
@@ -333,20 +333,20 @@ element_array conversions::cartesian_to_keplerian(const element_array& cartesian
 };
 
 
-element_array conversions::keplerian_to_equinoctial(const element_array& coes, const AstrodynamicsSystem& system)
+ElementArray conversions::keplerian_to_equinoctial(const ElementArray& coes, const AstrodynamicsSystem& system)
 {
-    element_array mees;
+    ElementArray mees;
     throw std::logic_error("This function has not been implemented yet");
     return mees;
 };
 
-element_array conversions::equinoctial_to_keplerian(const element_array& mees, const AstrodynamicsSystem& system)
+ElementArray conversions::equinoctial_to_keplerian(const ElementArray& mees, const AstrodynamicsSystem& system)
 {
 
     double coes[6];
     _equinoctial_to_keplerian(mees[0], mees[1], mees[2], mees[3], mees[4], mees[5], coes);
 
-    element_array keplerian_array;
+    ElementArray keplerian_array;
     std::copy(coes, coes + 6, keplerian_array.begin());
 
     return keplerian_array;

@@ -15,8 +15,7 @@ class AtmosphericForce : public Force {
     AtmosphericForce()  = default;
     ~AtmosphericForce() = default;
 
-    basis_array
-        compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    BasisArray compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
     const OrbitalElements

@@ -10,6 +10,6 @@ class Force {
     Force()          = default;
     virtual ~Force() = default;
 
-    virtual basis_array
+    virtual BasisArray
         compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };

@@ -21,9 +21,9 @@ class ForceModel {
         return forces.at(name);
     }
 
-    basis_array compute_forces(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    BasisArray compute_forces(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
     {
-        basis_array sum = { 0.0, 0.0, 0.0 };
+        BasisArray sum = { 0.0, 0.0, 0.0 };
         for (const auto& [name, force] : forces) {
             const auto result = force->compute_force(julianDate, state, vehicle, sys);
             for (size_t ii = 0; ii < 3; ++ii) {

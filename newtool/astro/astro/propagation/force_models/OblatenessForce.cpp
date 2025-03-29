@@ -138,7 +138,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 }
 
 
-basis_array OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+BasisArray OblatenessForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     // Extract
@@ -154,8 +154,8 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     static const double& bodyRotationRate = center->get_rotation_rate();
 
     // Find lat and long
-    basis_array radius = { x, y, z };
-    basis_array rBCBF;
+    BasisArray radius = { x, y, z };
+    BasisArray rBCBF;
     conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
 
     const double& xBCBF = rBCBF[0];
@@ -230,12 +230,12 @@ basis_array OblatenessForce::compute_force(const double& julianDate, const Orbit
     const double dlongdrBCBF[3] = { -tempA * yBCBF, tempA * xBCBF, 0.0 };
 
     // Calculate accel in BCBF (not with respect to BCBF)
-    basis_array accelOblatenessBCBF = { dVdr * drdrBCBF[0] + dVdlat * dlatdrBCBF[0] + dVdlong * dlongdrBCBF[0],
-                                        dVdr * drdrBCBF[1] + dVdlat * dlatdrBCBF[1] + dVdlong * dlongdrBCBF[1],
-                                        dVdr * drdrBCBF[2] + dVdlat * dlatdrBCBF[2] };
+    BasisArray accelOblatenessBCBF = { dVdr * drdrBCBF[0] + dVdlat * dlatdrBCBF[0] + dVdlong * dlongdrBCBF[0],
+                                       dVdr * drdrBCBF[1] + dVdlat * dlatdrBCBF[1] + dVdlong * dlongdrBCBF[1],
+                                       dVdr * drdrBCBF[2] + dVdlat * dlatdrBCBF[2] };
 
     // Rotate back into inertial coordinates
-    basis_array accelOblateness = { 0.0, 0.0, 0.0 };
+    BasisArray accelOblateness = { 0.0, 0.0, 0.0 };
     conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
 
     return accelOblateness;
