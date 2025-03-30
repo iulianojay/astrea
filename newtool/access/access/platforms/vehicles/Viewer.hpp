@@ -26,7 +26,7 @@ class Viewer : public Spacecraft {
         Spacecraft(state0, epoch){};
 
     // Destructor
-    ~Viewer();
+    ~Viewer() = default;
 
     void attach(Sensor& sensor) { _sensors.emplace_back(sensor); }
     void attach(std::vector<Sensor>& _sensors)

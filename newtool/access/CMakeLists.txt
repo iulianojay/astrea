@@ -25,6 +25,7 @@ set(ACCESS_SOURCES
     ${ACCESS_BASE}/platforms/fov/FieldOfView.cpp
 
     ${ACCESS_BASE}/time/RiseSetArray.cpp
+    ${ACCESS_BASE}/time/riseset_utils.cpp
 )
 
 # Headers
@@ -67,6 +68,12 @@ target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared)
 add_library           (${PROJECT_NAME}_static STATIC ${ACCESS_SOURCES} ${ACCESS_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
 target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static)
+
+# Executable
+add_executable             (${PROJECT_NAME}_exe ${ACCESS_BASE}/drivers/main.cpp)
+set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ACCESS_DIRS})
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
 
 # Install headers
 file(COPY
