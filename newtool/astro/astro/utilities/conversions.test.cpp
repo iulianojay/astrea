@@ -17,10 +17,10 @@ class ConversionTest : public testing::Test {
         rng(rd()),
         semimajor_dist(6380.0, 40000.0),
         ecc_dist(0.0, 0.99),
-        inc_dist(0.0, 180.0),
-        raan_dist(0.0, 360.0),
-        w_dist(0.0, 360.0),
-        theta_dist(0.0, 360.0)
+        inc_dist(0.0, M_PI),
+        raan_dist(0.0, 2 * M_PI),
+        w_dist(0.0, 2 * M_PI),
+        theta_dist(0.0, 2 * M_PI)
     {
     }
 
@@ -77,7 +77,6 @@ int main(int argc, char** argv)
 
 TEST_F(ConversionTest, CartesianKeplerianCycle)
 {
-
     for (int ii = 0; ii < nElements; ii++) {
         const auto originalElements = random_elements();
         auto elements               = originalElements;

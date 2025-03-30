@@ -22,7 +22,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         set(BUILD_GMOCK OFF)
 
         # Includes
-        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
+        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/extern)
 
         # Dependencies
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
