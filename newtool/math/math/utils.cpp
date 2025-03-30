@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-using namespace math;
+namespace math {
 
 double array_mean(double* vec, int arraySize)
 {
@@ -34,3 +34,5 @@ double atan3(double a, double b)
         return (2 - sa) * M_PI / 2 + sa * sb * (abs(atan(a / b)) - M_PI / 2);
     }
 }
+
+} // namespace math

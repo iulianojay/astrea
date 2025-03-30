@@ -7,6 +7,7 @@
 #include <astro/element_sets/Frame.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/platforms/space/Shell.hpp>
@@ -43,7 +44,7 @@
 
 #include <astro/utilities/conversions.hpp>
 
-#include <astro/State.hpp>
+#include <astro/state/State.hpp>
 
 #ifndef SWIG
 

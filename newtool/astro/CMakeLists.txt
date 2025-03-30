@@ -17,10 +17,8 @@ endif()
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
-    ${ASTRO_BASE}/platforms/space/Constellation.cpp
-    ${ASTRO_BASE}/platforms/space/Plane.cpp
-    ${ASTRO_BASE}/platforms/space/Shell.cpp
-    
+    ${ASTRO_BASE}/element_sets/OrbitalElements.cpp
+
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
 
@@ -38,6 +36,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
+    ${ASTRO_BASE}/state/State.cpp
+
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
@@ -45,8 +45,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/time/Time.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
-
-    ${ASTRO_BASE}/State.cpp
 )
 
 # Headers
@@ -63,8 +61,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
+    ${ASTRO_BASE}/platforms/space/Constellation.ipp
     ${ASTRO_BASE}/platforms/space/Plane.hpp
+    ${ASTRO_BASE}/platforms/space/Plane.ipp
     ${ASTRO_BASE}/platforms/space/Shell.hpp
+    ${ASTRO_BASE}/platforms/space/Shell.ipp
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.hpp
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
@@ -85,6 +86,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
+    ${ASTRO_BASE}/state/State.hpp
+
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/Barycenter.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
@@ -100,8 +103,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
-
-    ${ASTRO_BASE}/State.hpp
 
     # Extern
     ${EXTERN_BASE}/nlohmann/json.hpp
@@ -132,11 +133,18 @@ add_library           (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HE
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
 target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static)
 
+# Executable
+add_executable             (${PROJECT_NAME}_exe ${ASTRO_BASE}/drivers/main.cpp)
+set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ASTRO_DIRS})
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+
 # Install headers
 file(COPY
     DIRECTORY ${ASTRO_BASE}
     DESTINATION ${CMAKE_INSTALL_PREFIX}/include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )

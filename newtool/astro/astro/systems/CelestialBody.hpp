@@ -10,8 +10,8 @@
 #endif
 
 // Astro
-#include <astro/State.hpp>
 #include <astro/constants/astronomical_constants.h>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>

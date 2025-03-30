@@ -1,6 +1,6 @@
 #pragma once
 
-#include <astro/State.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 
 class NullVehicle {

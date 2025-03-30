@@ -8,7 +8,7 @@
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/Integrator.hpp>
 
-template <class Spacecraft_T>
+template <class Spacecraft_T = Spacecraft>
 class Constellation {
 
     static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Constellations must be built of Spacecraft or Derived classes.");
@@ -146,6 +146,8 @@ class Constellation {
 
     void generate_id_hash();
 };
+
+#include <astro/platforms/space/Constellation.ipp>
 
 
 #ifdef SWIG

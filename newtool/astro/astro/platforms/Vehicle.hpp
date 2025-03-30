@@ -5,7 +5,7 @@
 #include <memory>
 #include <type_traits>
 
-#include <astro/State.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typeid_name_extract.hpp>

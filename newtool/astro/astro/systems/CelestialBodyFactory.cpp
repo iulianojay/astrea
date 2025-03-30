@@ -1,7 +1,7 @@
 
 #include <astro/systems/CelestialBodyFactory.hpp>
 
-#include <astro/State.hpp>
+#include <astro/state/State.hpp>
 
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name)

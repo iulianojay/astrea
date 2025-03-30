@@ -4,8 +4,8 @@
 #include <vector>
 #endif
 
-#include <astro/State.hpp>
 #include <astro/platforms/space/Constellation.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Time.hpp>
 
 #include <access/platforms/vehicles/Viewer.hpp>

@@ -1,6 +1,3 @@
-#include <astro/platforms/space/Plane.hpp>
-
-
 template <class Spacecraft_T>
 Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)

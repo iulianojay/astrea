@@ -1,5 +1,3 @@
-#include "Constellation.hpp"
-
 static const size_t DEFAULT_SHELL_ID = SIZE_MAX;
 
 template <class Spacecraft_T>

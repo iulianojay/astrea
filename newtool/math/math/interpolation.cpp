@@ -3,7 +3,7 @@
 #include <cmath>
 #include <stdexcept>
 
-using namespace math;
+namespace math {
 
 
 // Cubic Spline
@@ -73,9 +73,11 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
 
         // Spline
         sy[ii] = (zDiv6 * std::pow(dxp1, 3) + zp1Div6 * std::pow(dx, 3) + (y[jj + 1] - zp1Div6 * h2) * dx +
-                     (y[jj] - h2 * zDiv6) * dxp1) /
+                  (y[jj] - h2 * zDiv6) * dxp1) /
                  h[jj];
     }
 
     return sy;
 }
+
+} // namespace math

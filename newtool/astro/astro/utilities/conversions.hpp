@@ -8,6 +8,8 @@
 #include <unordered_map>
 #endif
 
+#include <math/utils.hpp>
+
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 

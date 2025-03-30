@@ -5,10 +5,10 @@
 #include <unordered_map>
 #endif
 
-#include <astro/State.hpp>
 #include <astro/constants/astronomical_constants.h>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>

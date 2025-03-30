@@ -1,5 +1,3 @@
-#include <astro/platforms/space/Shell.hpp>
-
 #include <stdexcept>
 
 template <class Spacecraft_T>

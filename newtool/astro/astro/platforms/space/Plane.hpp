@@ -9,7 +9,7 @@
 
 #include <astro/astro.fwd.hpp>
 
-template <class Spacecraft_T>
+template <class Spacecraft_T = Spacecraft>
 class Plane {
 
     static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Planes must be built of Spacecraft or Derived classes.");
@@ -47,6 +47,9 @@ class Plane {
 
     void generate_id_hash();
 };
+
+
+#include <astro/platforms/space/Plane.ipp>
 
 
 #ifdef SWIG

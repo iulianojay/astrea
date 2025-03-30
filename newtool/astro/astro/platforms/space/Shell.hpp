@@ -10,7 +10,7 @@
 
 #include <astro/astro.fwd.hpp>
 
-template <class Spacecraft_T>
+template <class Spacecraft_T = Spacecraft>
 class Shell {
 
     static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Shells must be built of Spacecraft or Derived classes.");
@@ -143,6 +143,7 @@ class Shell {
     void generate_id_hash();
 };
 
+#include <astro/platforms/space/Shell.ipp>
 
 #ifdef SWIG
 

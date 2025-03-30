@@ -7,7 +7,7 @@
 #include <access/platforms/fov/FieldOfView.hpp>
 #include <access/time/AccessArray.hpp>
 
-#include <astro/State.hpp>
+#include <astro/state/State.hpp>
 #include <astro/types/typedefs.hpp>
 
 class Sensor {
