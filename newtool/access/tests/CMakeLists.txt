@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.31.6)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
 # Get sources
-set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
-file(GLOB_RECURSE UNIT_TEST_SOURCES ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
+file(GLOB_RECURSE UNIT_TEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/**/diver.cpp)
 
 # Set install rpath

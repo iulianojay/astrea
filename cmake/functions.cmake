@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.31.6)
 
 # Test build function
-function(build_tests TEST_TYPE TEST_FILES)
+function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
 
     foreach(TEST_FILE ${TEST_FILES})
+
+        message("Building Test: ${TEST_FILE}")
 
         # Get executable name and build target
         if (${TEST_TYPE} STREQUAL "UNIT")
@@ -23,19 +25,19 @@ function(build_tests TEST_TYPE TEST_FILES)
         target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
 
         # Dependencies
-        target_link_libraries(${TEST_EXE} PRIVATE ${PROJECT_NAME}_shared GTest::gtest_main)
+        target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
 
         # Send to gtest
         gtest_discover_tests(${TEST_EXE})
 
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")
-            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/../tests/${PROJECT_NAME}/unit)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/unit)
         else()
-            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/../tests/${PROJECT_NAME}/regression)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/regression)
         endif()
 
-        add_dependencies(${PROJECT_NAME}_tests ${TEST_EXE})
+        add_dependencies(${CURRENT_PROJECT}_tests ${TEST_EXE})
 
     endforeach(TEST_FILE ${TEST_FILES})
 

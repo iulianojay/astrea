@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.31.6)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
 # Get sources
-file(GLOB_RECURSE UNIT_TEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME}/*.test.cpp)
+set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
+file(GLOB_RECURSE UNIT_TEST_SOURCES ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/**/diver.cpp)
 
 # Set install rpath
@@ -28,5 +29,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 include(GoogleTest)
 
-build_tests("UNIT" "${UNIT_TEST_SOURCES}")
+include(../../../cmake/functions.cmake)
+
+build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}")
 # build_tests("REGRESSION" "${REGRESSION_TEST_SOURCES}")

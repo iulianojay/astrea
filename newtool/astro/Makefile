@@ -50,6 +50,10 @@ examples: install
 .PHONY: tests
 tests: install
 	$(MAKE) -C $(build_path)/$(tests_path) install
+	
+.PHONY: run_tests
+run_tests: tests
+	cd $(build_path)/tests && ctest
 
 .PHONY: debug
 debug: 

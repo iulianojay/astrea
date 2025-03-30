@@ -1,7 +1,7 @@
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
-config_path := .
+config_path := $(abspath $(shell pwd))
 source_path := newtool
 examples_path := examples
 arch := x86_64
@@ -15,7 +15,6 @@ verbose_makefile = OFF
 warnings_as_errors = OFF
 
 build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
-test_path := $(abspath $(shell pwd)/install/$(arch)-$(os)/$(comp)/$(build_type)/tests)
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -36,12 +35,12 @@ build: configure
 .PHONY: configure
 configure: $(build_path)/Makefile
 
-$(build_path)/Makefile: CMakeLists.txt $(OPTIONS_INPUT)
-	CXX=$(cxx) cmake -S $(config_path) -B $(build_path) \
+$(build_path)/Makefile: CMakeLists.txt
+	cmake -S $(config_path) -B $(build_path) \
 		-DCMAKE_BUILD_TYPE=$(build_type) \
 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON  
 
 .PHONY: examples
 examples: install
@@ -49,11 +48,13 @@ examples: install
 	
 .PHONY: tests
 tests: install
-	$(MAKE) -C $(build_path)/newtool/*/$(tests_path) install
+	$(MAKE) -C $(build_path)/newtool/math/$(tests_path) install 
+	$(MAKE) -C $(build_path)/newtool/astro/$(tests_path) install 
 	
 .PHONY: run_tests
 run_tests: tests
-	cd $(build_path)/newtool/*/tests && ctest
+	cd $(build_path)/newtool/math/tests && ctest
+	cd $(build_path)/newtool/astro/tests && ctest
 
 .PHONY: debug
 debug: 
