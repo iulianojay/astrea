@@ -164,8 +164,8 @@ BasisArray OblatenessForce::compute_force(const double& julianDate, const Orbita
     const double longitude = atan2(yBCBF, xBCBF);
     const double latitude  = asin(z * oneOverR);
 
-    const double cosLat = math::cos(latitude);
-    const double sinLat = math::sin(latitude);
+    const double cosLat = std::cos(latitude);
+    const double sinLat = std::sin(latitude);
     const double tanLat = sinLat / cosLat;
 
     // Populate Legendre polynomial array
@@ -187,8 +187,8 @@ BasisArray OblatenessForce::compute_force(const double& julianDate, const Orbita
             const double mm = (double)m;
 
             // Precalculate common terms
-            const double cosLongM = math::cos(mm * longitude);
-            const double sinLongM = math::sin(mm * longitude);
+            const double cosLongM = std::cos(mm * longitude);
+            const double sinLongM = std::sin(mm * longitude);
             const double temp     = (C[n][m] * cosLongM + S[n][m] * sinLongM);
 
             // dVdr
@@ -264,8 +264,8 @@ void OblatenessForce::assign_legendre(const double& latitude) const
 
         Developers Note: Fuck this function
     */
-    const double cosLat = math::cos(latitude);
-    const double sinLat = math::sin(latitude);
+    const double cosLat = std::cos(latitude);
+    const double sinLat = std::sin(latitude);
     for (size_t n = 0; n < N + 1; ++n) {
         const double costLatPowN = std::pow(cosLat, n);
         for (size_t m = 0; m < M + 1; ++m) {

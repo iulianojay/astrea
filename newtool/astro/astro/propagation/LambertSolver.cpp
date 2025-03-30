@@ -168,7 +168,7 @@ void LambertSolver::solve_rr(double* r0, double* rf, double dt, double mu, int I
         }
     }
 
-    A = math::sin(dtheta) * std::sqrt(R0 * Rf / (1 - cos(dtheta)));
+    A = std::sin(dtheta) * std::sqrt(R0 * Rf / (1 - cos(dtheta)));
 
     // Find z
     zn  = 0.0;
@@ -226,8 +226,8 @@ void LambertSolver::evaluate_stumpff()
 {
     if (z > 0.0) {
         sqz = std::sqrt(z);
-        Cz  = (1.0 - math::cos(sqz)) / z;
-        Sz  = (sqz - math::sin(sqz)) / (sqz * sqz * sqz);
+        Cz  = (1.0 - std::cos(sqz)) / z;
+        Sz  = (sqz - std::sin(sqz)) / (sqz * sqz * sqz);
     }
     else if (z < 0.0) {
         sqnz = std::sqrt(-z);

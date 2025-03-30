@@ -16,17 +16,8 @@ function(build_tests TEST_TYPE TEST_FILES)
 
         # Set properties
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE}.exe)
-        
-        # Add google test
-        include(FetchContent)
-        FetchContent_Declare(
-            googletest
-            URL https://github.com/google/googletest/releases/download/v1.16.0/googletest-1.16.0.tar.gz
-        )
-        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-        FetchContent_MakeAvailable(googletest)
-        
-        include(GoogleTest)
+        set(GTEST_CREATE_SHARED_LIBRARY 1)
+        set(BUILD_GMOCK OFF)
 
         # Includes
         target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include)

@@ -5,6 +5,8 @@
 #include <unordered_map>
 #endif
 
+#include <math/utils.hpp>
+
 #include <astro/types/typedefs.hpp>
 
 class FieldOfView {

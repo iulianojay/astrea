@@ -28,9 +28,38 @@ T normalize(std::vector<T> vector, double p = 2)
     return (T)std::pow(norm, 1.0 / p);
 }
 
-double array_mean(double* vec, int arraySize);
+template <typename T>
+T mean(std::vector<T> vec)
+{
+    T mean = 0.0;
+    for (const auto& x : vec) {
+        mean += x;
+    }
+    return mean / (static_cast<T>(vec.size()));
+}
 
-double atan3(double a, double b);
+template <typename T>
+T atan3(T a, T b)
+{
+    T sa{}, sb{};
+    if (a >= 0) { sa = 1; }
+    else {
+        sa = -1;
+    }
+    if (b >= 0) { sb = 1; }
+    else {
+        sb = -1;
+    }
+
+    static constexpr T PI_T = static_cast<T>(M_PI);
+    if (std::abs(a) < 1e-10) { return (1 - sb) * PI_T / 2.0; }
+    else if (std::abs(b) < 1e-10) {
+        return (2.0 - sa) * PI_T / 2.0;
+    }
+    else {
+        return (2.0 - sa) * PI_T / 2 + sa * sb * (std::abs(std::atan(a / b)) - PI_T / 2.0);
+    }
+}
 
 // These two implementations were taken from here:
 // https://stackoverflow.com/questions/18662261/fastest-implementation-of-sine-cosine-and-square-root-in-c-doesnt-need-to-b

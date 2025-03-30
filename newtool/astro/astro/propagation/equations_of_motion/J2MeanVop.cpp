@@ -64,8 +64,8 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     const double deccdt   = 0.0;
     const double _dincdt  = R / h * cos(w + theta) * normalPert;
     const double dthetadt = h / (R * R);
-    const double draandt  = R * math::sin(w + theta) / (h * math::sin(inc)) * normalPert;
-    const double dwdt     = -draandt * math::cos(inc);
+    const double draandt  = R * std::sin(w + theta) / (h * std::sin(inc)) * normalPert;
+    const double dwdt     = -draandt * std::cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error

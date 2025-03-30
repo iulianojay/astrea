@@ -28,8 +28,8 @@ PolygonalFieldOfView::PolygonalFieldOfView(const double& halfConeWidth, const do
     throw std::logic_error("This function has not been properly updated and is not currently functional.");
 
     /*
-    const double sinw = math::sin(halfConeWidth);
-    const double sinh = math::sin(halfConeHeight);
+    const double sinw = std::sin(halfConeWidth);
+    const double sinh = std::sin(halfConeHeight);
 
     for (double theta = 0.0; theta < std::numbers::pi*2.0; theta += (std::numbers::pi*2.0/nPoints)) {
         points[theta] = 0.0;

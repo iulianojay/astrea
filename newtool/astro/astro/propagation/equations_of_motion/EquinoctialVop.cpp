@@ -60,11 +60,11 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const double tangentialPert = accelPerts[0] * That[0] + accelPerts[1] * That[1] + accelPerts[2] * That[2];
 
     // Variables precalculated for speed
-    const double cosL = math::cos(L);
-    const double sinL = math::sin(L);
+    const double cosL = std::cos(L);
+    const double sinL = std::sin(L);
 
     const double tempA = std::sqrt(p / mu);
-    const double tempB = 1.0 + f * math::cos(L) + g * math::sin(L);
+    const double tempB = 1.0 + f * std::cos(L) + g * std::sin(L);
     const double s_2   = 1.0 + h * h + k * k;
 
     const double tempC = (h * sinL - k * cosL) / tempB;

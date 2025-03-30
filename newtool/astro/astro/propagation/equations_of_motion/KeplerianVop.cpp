@@ -69,10 +69,10 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     const double u = w + theta;
 
     // Precalculate
-    const double cosTA         = math::cos(theta);
-    const double sinTA         = math::sin(theta);
-    const double cosU          = math::cos(u);
-    const double sinU          = math::sin(u);
+    const double cosTA         = std::cos(theta);
+    const double sinTA         = std::sin(theta);
+    const double cosU          = std::cos(u);
+    const double sinU          = std::sin(u);
     const double hSquared      = h * h;
     const double hOverRSquared = h / (R * R);
 
@@ -82,8 +82,8 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     const double dincdt = R / h * cosU * normalPert;
     const double dthetadt =
         hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert);
-    const double draandt = R * sinU / (h * math::sin(inc)) * normalPert;
-    const double dwdt    = -dthetadt + (hOverRSquared - draandt * math::cos(inc));
+    const double draandt = R * sinU / (h * std::sin(inc)) * normalPert;
+    const double dwdt    = -dthetadt + (hOverRSquared - draandt * std::cos(inc));
 
     const double dadt = (-2 * mu / (h * h * h) * dhdt) * (1 - ecc * ecc) + (mu / (h * h)) * (-2 * ecc * deccdt); // TODO: Fix this
 

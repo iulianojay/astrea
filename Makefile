@@ -15,6 +15,7 @@ verbose_makefile = OFF
 warnings_as_errors = OFF
 
 build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
+test_path := $(abspath $(shell pwd)/install/$(arch)-$(os)/$(comp)/$(build_type)/tests)
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -49,6 +50,10 @@ examples: install
 .PHONY: tests
 tests: install
 	$(MAKE) -C $(build_path)/newtool/*/$(tests_path) install
+	
+.PHONY: run_tests
+run_tests: tests
+	cd $(build_path)/newtool/*/tests && ctest
 
 .PHONY: debug
 debug: 

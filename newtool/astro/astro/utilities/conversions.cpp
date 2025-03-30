@@ -28,8 +28,8 @@ void conversions::bci_to_bcbf(const BasisArray& rBCI, double julianDate, double 
                         0      0  1]; */
 
     // Calculate ECEF radius vector
-    cosGST = math::cos(greenwichSiderealTime);
-    sinGST = math::sin(greenwichSiderealTime);
+    cosGST = std::cos(greenwichSiderealTime);
+    sinGST = std::sin(greenwichSiderealTime);
 
     rBCBF[0] = cosGST * x + sinGST * y;
     rBCBF[1] = -sinGST * x + cosGST * y;
@@ -51,7 +51,7 @@ void conversions::bcbf_to_bci(const BasisArray& rBCBF, double julianDate, double
 
     // Calculate ECEF radius vector
     cosGST = cos(-greenwichSiderealTime);
-    sinGST = math::sin(-greenwichSiderealTime);
+    sinGST = std::sin(-greenwichSiderealTime);
 
     rBCI[0] = cosGST * rBCBF[0] + sinGST * rBCBF[1];
     rBCI[1] = -sinGST * rBCBF[0] + cosGST * rBCBF[1];
@@ -97,15 +97,15 @@ void conversions::lla_to_bcbf(const BasisArray& lla, const double& equitorialRad
     const double latitude  = lla[0] * DEG_TO_RAD;
     const double longitude = lla[1] * DEG_TO_RAD;
 
-    const double sinLat = math::sin(latitude);
-    const double cosLat = math::cos(latitude);
+    const double sinLat = std::sin(latitude);
+    const double cosLat = std::cos(latitude);
 
     const double f = (equitorialRadius - polarRadius) / equitorialRadius;
     const double N = equitorialRadius / std::sqrt(1 - f * (2 - f) * sinLat * sinLat);
 
     // BCBF coordinates
-    rBCBF[0] = (N + lla[2]) * cosLat * math::cos(longitude);
-    rBCBF[1] = (N + lla[2]) * cosLat * math::sin(longitude);
+    rBCBF[0] = (N + lla[2]) * cosLat * std::cos(longitude);
+    rBCBF[1] = (N + lla[2]) * cosLat * std::sin(longitude);
     rBCBF[2] = ((1 - f) * (1 - f) * N + lla[2]) * sinLat;
 }
 
@@ -123,14 +123,14 @@ std::vector<double> conversions::keplerian_to_bci(double a, double ecc, double i
 {
 
     // Precalculate
-    const double cos_theta = math::cos(theta);
-    const double sin_theta = math::sin(theta);
-    const double cos_w     = math::cos(w);
-    const double sin_w     = math::sin(w);
-    const double cos_raan  = math::cos(raan);
-    const double sin_raan  = math::sin(raan);
-    const double cos_inc   = math::cos(inc);
-    const double sin_inc   = math::sin(inc);
+    const double cos_theta = std::cos(theta);
+    const double sin_theta = std::sin(theta);
+    const double cos_w     = std::cos(w);
+    const double sin_w     = std::sin(w);
+    const double cos_raan  = std::cos(raan);
+    const double sin_raan  = std::sin(raan);
+    const double cos_inc   = std::cos(inc);
+    const double sin_inc   = std::sin(inc);
 
     const double h = std::sqrt(mu * a * (1 - ecc * ecc));
     const double A = h * h / mu / (1 + ecc * cos_theta);
