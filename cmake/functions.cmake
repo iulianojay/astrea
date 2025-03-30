@@ -27,15 +27,15 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         # Dependencies
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
 
-        # Send to gtest
-        gtest_discover_tests(${TEST_EXE})
-
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")
-            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/unit)
+            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/unit)
         else()
-            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/regression)
+            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/regression)
         endif()
+
+        # Send to gtest
+        gtest_discover_tests(${TEST_EXE})
 
         add_dependencies(${CURRENT_PROJECT}_tests ${TEST_EXE})
 
