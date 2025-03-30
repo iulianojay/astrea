@@ -39,25 +39,25 @@ T mean(std::vector<T> vec)
 }
 
 template <typename T>
-T atan3(T a, T b)
+T atan3(T y, T x)
 {
-    T sa{}, sb{};
-    if (a >= 0) { sa = 1; }
+    T sy{}, sx{};
+    if (y >= 0) { sy = 1; }
     else {
-        sa = -1;
+        sy = -1;
     }
-    if (b >= 0) { sb = 1; }
+    if (x >= 0) { sx = 1; }
     else {
-        sb = -1;
+        sx = -1;
     }
 
     static constexpr T PI_T = static_cast<T>(M_PI);
-    if (std::abs(a) < 1e-10) { return (1 - sb) * PI_T / 2.0; }
-    else if (std::abs(b) < 1e-10) {
-        return (2.0 - sa) * PI_T / 2.0;
+    if (std::abs(y) < 1e-10) { return (1 - sx) * PI_T / 2.0; }
+    else if (std::abs(x) < 1e-10) {
+        return (2.0 - sy) * PI_T / 2.0;
     }
     else {
-        return (2.0 - sa) * PI_T / 2 + sa * sb * (std::abs(std::atan(a / b)) - PI_T / 2.0);
+        return (2.0 - sy) * PI_T / 2 + sy * sx * (std::abs(std::atan(y / x)) - PI_T / 2.0);
     }
 }
 
