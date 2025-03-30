@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.31.6)
 project(
     newtool 
     VERSION 0.0.1 
-    DESCRIPTION "New Tool Back-end Simulation Library" 
+    DESCRIPTION "New Tool Back-End Simulation Library" 
     LANGUAGES CXX
 )
 
@@ -29,7 +29,6 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
 endif()
 
-add_subdirectory(newtool)
+include(cmake/functions.cmake)
 
-# add_subdirectory(examples EXCLUDE_FROM_ALL)
-# add_subdirectory(tests EXCLUDE_FROM_ALL)
+add_subdirectory(newtool)

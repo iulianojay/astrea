@@ -48,7 +48,7 @@ examples: install
 	
 .PHONY: tests
 tests: install
-	$(MAKE) -C $(build_path)/$(tests_path) install
+	$(MAKE) -C $(build_path)/newtool/*/$(tests_path) install
 
 .PHONY: debug
 debug: 

@@ -52,3 +52,6 @@ file(COPY
     PATTERN *.hpp
     PATTERN *.h
 )
+
+# add_subdirectory(examples EXCLUDE_FROM_ALL)
+add_subdirectory(tests EXCLUDE_FROM_ALL)
