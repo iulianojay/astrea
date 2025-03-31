@@ -2,11 +2,13 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    "math" 
+    vehicles 
     VERSION 0.0.1 
     DESCRIPTION "Library for Simple Math Utilities" 
     LANGUAGES CXX
 )
+
+### Go line by line and change Math with Vehicle
 
 set(CMAKE_CXX_STANDARD 23)
 
@@ -21,7 +23,12 @@ set(MATH_SOURCES
 set(MATH_HEADERS
     ${MATH_BASE}/utils.hpp
     ${MATH_BASE}/interpolation.hpp
+
+    # Extern
+    # $(EXTERN_BASE or something like that)
 )
+
+# Do not touch below this line---------
 
 # Includes
 set(MATH_DIRS
