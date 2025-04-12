@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef SWIG
-
 #include <sstream>
 #include <string>
 
@@ -96,17 +94,3 @@ class Date {
         calendarDate = ss.str();
     }
 };
-
-#else
-
-struct Date {
-  public:
-    Date(std::string date) :
-        calendarDate(date){};
-    ~Date(){};
-
-  private:
-    std::string calendarDate;
-};
-
-#endif

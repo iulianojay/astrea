@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
 #include <unordered_map>
-#endif
 
 #include <astro/constants/astronomical_constants.h>
 #include <astro/element_sets/OrbitalElements.hpp>
@@ -43,11 +41,3 @@ class Viewer : public Spacecraft {
     AccessArray _accesses;
     std::vector<Sensor> _sensors;
 };
-
-
-#ifdef SWIG
-
-%template(ViewerVector) std::vector<Viewer>;
-%template(ViewerVectorVector) std::vector<std::vector<Viewer>>;
-
-#endif

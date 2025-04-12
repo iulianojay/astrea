@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <numbers>
 #include <unordered_map>
-#endif
 
 #include <math/utils.hpp>
 

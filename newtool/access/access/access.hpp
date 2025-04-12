@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <vector>
-#endif
 
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>

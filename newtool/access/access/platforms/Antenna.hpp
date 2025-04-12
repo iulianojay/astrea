@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <vector>
-#endif
 
 #include <access/platforms/Sensor.hpp>
 
@@ -21,10 +19,3 @@ class Antenna : public Sensor {
     double wavelength;
     std::vector<Channel> channels;
 };
-
-
-#ifdef SWIG
-
-%template(AntennaVector) std::vector<Antenna>;
-
-#endif

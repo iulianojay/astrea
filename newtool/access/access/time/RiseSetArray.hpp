@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <vector>
-#endif
 
 #include <access/time/riseset_utils.hpp>
 #include <astro/time/Time.hpp>

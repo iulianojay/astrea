@@ -37,7 +37,9 @@
 
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
+#include <astro/time/JulianDateClock.hpp>
 #include <astro/time/Time.hpp>
+#include <astro/time/time_units.hpp>
 
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
@@ -45,10 +47,3 @@
 #include <astro/utilities/conversions.hpp>
 
 #include <astro/state/State.hpp>
-
-#ifndef SWIG
-
-#include <astro/time/JulianDateClock.hpp>
-#include <astro/time/time_units.hpp>
-
-#endif

@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <cmath>
 #include <iostream>
-#endif
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
@@ -13,9 +11,7 @@
 
 class OrbitalElements : public ElementArray {
 
-#ifndef SWIG
     friend std::ostream& operator<<(std::ostream&, OrbitalElements const&);
-#endif
 
   public:
     OrbitalElements(const ElementSet& set = ElementSet::CARTESIAN) :
@@ -55,7 +51,6 @@ class OrbitalElements : public ElementArray {
     const ElementSet& get_set() const { return set; }
     const bool same_set(const OrbitalElements& other) { return other.set == set; }
 
-#ifndef SWIGJAVA
     // Copy assignment
     OrbitalElements& operator=(const OrbitalElements& other)
     {
@@ -131,7 +126,6 @@ class OrbitalElements : public ElementArray {
 
         return (*this);
     }
-#endif
 
     const bool nearly_equal(const OrbitalElements& other, bool ignoreFastVariable = false, const double& tol = 1e-8)
     {

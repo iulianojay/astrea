@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <chrono>
-#endif
 
 /// nanoseconds
 using nanoseconds = std::chrono::duration<double, std::nano>;

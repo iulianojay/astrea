@@ -1,10 +1,8 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
 #include <unordered_map>
 #include <vector>
-#endif
 
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>

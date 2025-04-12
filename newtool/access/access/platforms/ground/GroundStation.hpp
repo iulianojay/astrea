@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <vector>
-#endif
 
 #include <access/platforms/Sensor.hpp>
 #include <astro/types/typedefs.hpp>

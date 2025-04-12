@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
-#endif
 
 #include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>

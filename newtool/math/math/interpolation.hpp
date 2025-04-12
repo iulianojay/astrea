@@ -1,10 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <stdexcept>
 #include <vector>
-
-#endif
 
 namespace math {
 

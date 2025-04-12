@@ -1,13 +1,11 @@
 #pragma once
 
-#ifndef SWIG
 #include <cfloat>
 #include <cmath>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 #include <vector>
-#endif
 
 // Astro
 #include <astro/constants/astronomical_constants.h>

@@ -8,9 +8,7 @@
 
 class State {
 
-#ifndef SWIG
     friend std::ostream& operator<<(std::ostream& os, const State& state);
-#endif
 
   public:
     State() = default;
@@ -36,10 +34,3 @@ class State {
 };
 
 bool state_time_comparitor(State s, Time time);
-
-
-#ifdef SWIG
-
-%template(StateVector) std::vector<State>;
-
-#endif

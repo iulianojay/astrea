@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
 #include <vector>
-#endif
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/Integrator.hpp>
@@ -148,10 +146,3 @@ class Constellation {
 };
 
 #include <astro/platforms/space/Constellation.ipp>
-
-
-#ifdef SWIG
-
-%template(ConstellationVector) std::vector<Constellation>;
-
-#endif

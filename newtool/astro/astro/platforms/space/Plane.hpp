@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <vector>
-#endif
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/Integrator.hpp>
@@ -50,10 +48,3 @@ class Plane {
 
 
 #include <astro/platforms/space/Plane.ipp>
-
-
-#ifdef SWIG
-
-%template(PlaneVector) std::vector<Plane>;
-
-#endif

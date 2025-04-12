@@ -1,14 +1,8 @@
 #pragma once
 
-#ifndef SWIG
 #include <cstdint>
 #include <string>
 #include <unordered_map>
-#else
-
-% rename(ElementsSet) ElementSet;
-
-#endif
 
 enum class ElementSet : uint32_t { KEPLERIAN, CARTESIAN, EQUINOCTIAL };
 

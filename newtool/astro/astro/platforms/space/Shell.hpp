@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
 #include <vector>
-#endif
 
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/propagation/Integrator.hpp>
@@ -144,9 +142,3 @@ class Shell {
 };
 
 #include <astro/platforms/space/Shell.ipp>
-
-#ifdef SWIG
-
-%template(ShellVector) std::vector<Shell>;
-
-#endif

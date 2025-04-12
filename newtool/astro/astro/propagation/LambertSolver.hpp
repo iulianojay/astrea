@@ -1,11 +1,9 @@
 
 #pragma once
 
-#ifndef SWIG
 #include <cmath>
 #include <iostream>
 #include <math.h>
-#endif
 
 #include <astro/constants/astronomical_constants.h>
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef SWIG
-
 #include <chrono>
 #include <iostream>
 
@@ -18,12 +16,16 @@ class Time {
   public:
     constexpr Time()                  = default;
     constexpr Time(const Time& other) = default;
-    constexpr Time(JulianDateClock::duration dur) : time(dur) {}
+    constexpr Time(JulianDateClock::duration dur) :
+        time(dur)
+    {
+    }
     constexpr ~Time() {}
 
     // constructor from arithmetic type
     template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-    constexpr Time(const T& time) : time(double(time))
+    constexpr Time(const T& time) :
+        time(double(time))
     {
     }
 
@@ -148,21 +150,3 @@ class Time {
   private:
     JulianDateClock::duration time;
 };
-
-#else
-
-class Time {
-    friend Date;
-
-  public:
-    Time() = default;
-    Time(const double& time) : time(time) {}
-    ~Time(){};
-
-  private:
-    double time;
-};
-
-% template(TimeVector) std::vector<Time>;
-
-#endif

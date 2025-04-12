@@ -1,6 +1,5 @@
 #pragma once
 
-#ifndef SWIG
 #include <algorithm>
 #include <cmath>
 #include <exception>
@@ -8,7 +7,6 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#endif
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>

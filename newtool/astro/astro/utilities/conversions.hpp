@@ -1,12 +1,10 @@
 
 #pragma once
 
-#ifndef SWIG
 #include <cmath>
 #include <functional>
 #include <iostream>
 #include <unordered_map>
-#endif
 
 #include <math/utils.hpp>
 

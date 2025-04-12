@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <unordered_set>
 #include <vector>
-#endif
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/systems/Barycenter.hpp>

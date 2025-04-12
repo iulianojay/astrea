@@ -1,10 +1,8 @@
 #pragma once
 
-#ifndef SWIG
 #include <array>
 #include <cmath>
 #include <vector>
-#endif
 
 namespace math {
 

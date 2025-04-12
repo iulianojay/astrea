@@ -1,9 +1,7 @@
 #pragma once
 
-#ifndef SWIG
 #include <string>
 #include <unordered_map>
-#endif
 
 #include <astro/constants/astronomical_constants.h>
 #include <astro/types/typedefs.hpp>
@@ -70,11 +68,3 @@ class Spacecraft {
 
     void generate_id_hash();
 };
-
-
-#ifdef SWIG
-
-%template(SpacecraftVector) std::vector<Spacecraft>;
-%template(SpacecraftVectorVector) std::vector<std::vector<Spacecraft>>;
-
-#endif

@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef SWIG
 #include <iterator>
-#endif
 
 namespace detail {
 // To allow ADL with custom begin/end
