@@ -1,5 +1,6 @@
 #include <astro/systems/CelestialBody.hpp>
 
+#include <filesystem>
 #include <fstream>
 
 #include <nlohmann/json.hpp>
@@ -11,7 +12,7 @@
 CelestialBody::CelestialBody(const std::string& file)
 {
 
-    using json = nlohmann::json;
+    using nlohmann::json;
 
     // Read file into JSON
     // TODO: Add checks to make sure its a valid JSON

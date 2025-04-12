@@ -1,12 +1,17 @@
-
 #include <astro/systems/CelestialBodyFactory.hpp>
 
+#include <filesystem>
+
 #include <astro/state/State.hpp>
+
+// TODO: Fix this trash
+static const std::filesystem::path ROOT = "/home/jay/projects/newtoollib";
 
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name)
 {
-    if (bodies.count(name) == 0) { bodies[name] = std::make_unique<CelestialBody>(buildFiles.at(name)); }
+    const auto file = std::filesystem::absolute(ROOT / buildFiles.at(name)).lexically_normal();
+    if (bodies.count(name) == 0) { bodies[name] = std::make_unique<CelestialBody>(file); }
     return get(name);
 }
 

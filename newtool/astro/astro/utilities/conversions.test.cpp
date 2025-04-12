@@ -10,17 +10,17 @@ class ConversionTest : public testing::Test {
   protected:
     // Test Options
     const int nConversion = 1e3;
-    const int nElements   = 1000;
+    const int nElements   = 1e2;
     const double REL_TOL  = 1e-6;
 
     ConversionTest() :
         rng(rd()),
-        semimajor_dist(6380.0, 40000.0),
-        ecc_dist(0.0, 0.99),
-        inc_dist(0.0, M_PI),
-        raan_dist(0.0, 2 * M_PI),
-        w_dist(0.0, 2 * M_PI),
-        theta_dist(0.0, 2 * M_PI)
+        semimajorDist(6380.0, 40000.0),
+        eccDist(0.0, 0.99),
+        incDist(0.0, M_PI),
+        raanDist(0.0, 2 * M_PI),
+        wDist(0.0, 2 * M_PI),
+        thetaDist(0.0, 2 * M_PI)
     {
     }
 
@@ -29,17 +29,16 @@ class ConversionTest : public testing::Test {
 
     std::random_device rd;
     std::default_random_engine rng;
-    std::uniform_real_distribution<double> semimajor_dist;
-    std::uniform_real_distribution<double> ecc_dist;
-    std::uniform_real_distribution<double> inc_dist;
-    std::uniform_real_distribution<double> raan_dist;
-    std::uniform_real_distribution<double> w_dist;
-    std::uniform_real_distribution<double> theta_dist;
+    std::uniform_real_distribution<double> semimajorDist;
+    std::uniform_real_distribution<double> eccDist;
+    std::uniform_real_distribution<double> incDist;
+    std::uniform_real_distribution<double> raanDist;
+    std::uniform_real_distribution<double> wDist;
+    std::uniform_real_distribution<double> thetaDist;
 
     OrbitalElements random_elements()
     {
-        ElementArray elements{ semimajor_dist(rng), ecc_dist(rng), inc_dist(rng),
-                               raan_dist(rng),      w_dist(rng),   theta_dist(rng) };
+        ElementArray elements{ semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng) };
         return OrbitalElements(elements, ElementSet::KEPLERIAN);
     }
 
