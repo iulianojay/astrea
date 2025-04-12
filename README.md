@@ -67,7 +67,7 @@ os=Linux
 tools.build:compiler_executables={"c": "gcc-13", "cpp": "g++-13"}
 ```
 
-3. Add to ~/.conan2/global.config
+3. Add the following line to ~/.conan2/global.config
 ```
 tools.cmake.cmake_layout:build_folder_vars=["settings.compiler", "settings.compiler.version", "settings.compiler.cppstd"]
 ```

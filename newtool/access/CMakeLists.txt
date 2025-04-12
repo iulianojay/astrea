@@ -44,30 +44,32 @@ set(ACCESS_HEADERS
 )
 
 # Set outputs
-set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
+# set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
+# set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(ACCESS_DIRS
-    ${CMAKE_CURRENT_LIST_DIR}
     ${EXTERN_BASE}
-    ${CMAKE_INSTALL_PREFIX}/../math/include
-    ${CMAKE_INSTALL_PREFIX}/../astro/include
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../math
+    ${CMAKE_CURRENT_LIST_DIR}/../astro
+    $ENV{HOME}/open-source/mp-units/src/core/include
+    $ENV{HOME}/open-source/mp-units/src/systems/include
 )
 include_directories(${ACCESS_DIRS})
 
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${ACCESS_SOURCES} ${ACCESS_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared mp-units::mp-units)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${ACCESS_SOURCES} ${ACCESS_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static mp-units::mp-units)
 
 # Executable
 add_executable             (${PROJECT_NAME}_exe ${ACCESS_BASE}/drivers/main.cpp)
@@ -76,13 +78,13 @@ target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ACCESS_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
 
 # Install headers
-file(COPY
-    DIRECTORY ${ACCESS_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
-    FILES_MATCHING
-    PATTERN *.hpp
-    PATTERN *.h
-)
+# file(COPY
+#     DIRECTORY ${ACCESS_BASE}
+#     DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+#     FILES_MATCHING
+#     PATTERN *.hpp
+#     PATTERN *.h
+# )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
 add_subdirectory(tests EXCLUDE_FROM_ALL)

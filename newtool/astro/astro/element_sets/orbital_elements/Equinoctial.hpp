@@ -3,8 +3,8 @@
 #pragma once
 
 #ifndef SWIG
-    #include <iostream>
-    #include <array>
+#include <array>
+#include <iostream>
 #endif
 
 // mp-units
@@ -18,10 +18,10 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
-#include "astro/element_sets/ElementSet.hpp"
-#include "astro/time/Time.hpp"
+#include <astro/element_sets/ElementSet.hpp>
+#include <astro/time/Time.hpp>
 
-#include "astro.fwd.hpp"
+#include <astro/astro.fwd.hpp>
 
 class Equinoctial {
 
@@ -29,23 +29,27 @@ class Equinoctial {
 
     using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
     using Unitless = mp_units::quantity<mp_units::one>;
-    using Angle = mp_units::quantity<mp_units::si::unit_symbols::rad>;
+    using Angle    = mp_units::quantity<mp_units::si::unit_symbols::rad>;
 
-public:
-
+  public:
     Equinoctial() :
-        _semilatus{0.0 * mp_units::si::unit_symbols::km},
-        _f{0.0 * mp_units::one},
-        _g{0.0 * mp_units::one},
-        _h{0.0 * mp_units::one},
-        _k{0.0 * mp_units::one},
-        _trueLongitude{0.0 * mp_units::si::unit_symbols::rad}
-    {}
-    Equinoctial(const Distance& semilatus, const Unitless& f, const Unitless& g,
-        const Unitless& h, const Unitless& k, const Angle& trueLongitude) :
-        _semilatus{semilatus}, _f{f}, _g{g},
-        _h{h}, _k{k}, _trueLongitude{trueLongitude}
-    {}
+        _semilatus{ 0.0 * mp_units::si::unit_symbols::km },
+        _f{ 0.0 * mp_units::one },
+        _g{ 0.0 * mp_units::one },
+        _h{ 0.0 * mp_units::one },
+        _k{ 0.0 * mp_units::one },
+        _trueLongitude{ 0.0 * mp_units::si::unit_symbols::rad }
+    {
+    }
+    Equinoctial(const Distance& semilatus, const Unitless& f, const Unitless& g, const Unitless& h, const Unitless& k, const Angle& trueLongitude) :
+        _semilatus{ semilatus },
+        _f{ f },
+        _g{ g },
+        _h{ h },
+        _k{ k },
+        _trueLongitude{ trueLongitude }
+    {
+    }
     Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
@@ -69,7 +73,7 @@ public:
     // Mathmatical operators
     Equinoctial operator+(const Equinoctial& other) const;
     Equinoctial& operator+=(const Equinoctial& other);
-    
+
     Equinoctial operator-(const Equinoctial& other) const;
     Equinoctial& operator-=(const Equinoctial& other);
 
@@ -88,13 +92,13 @@ public:
     const Angle& get_true_longitude() const { return _trueLongitude; }
 
     constexpr EnumType get_set_id() const { return _setId; }
-    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    OrbitalElements
+        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
     std::vector<double> to_vector() const;
     void update_from_vector(const std::vector<double>& vec);
 
-private:
-
+  private:
     constexpr static EnumType _setId = ElementSet::EQUINOCTIAL;
 
     Distance _semilatus;
@@ -103,5 +107,4 @@ private:
     Unitless _h;
     Unitless _k;
     Angle _trueLongitude;
-
 };
