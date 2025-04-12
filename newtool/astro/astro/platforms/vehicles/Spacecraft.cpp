@@ -6,11 +6,18 @@
 #include <astro/utilities/conversions.hpp>
 #include <math/interpolation.hpp>
 
+
+using namespace mp_units;
+using namespace mp_units::si;
+using namespace mp_units::non_si;
+using namespace mp_units::si::unit_symbols;
+
+
 // Constructor/Destructor
 Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) :
     _epoch(epoch)
 {
-    update_state({ 0.0, state0 });
+    update_state(State(0.0 * day, state0));
     generate_id_hash();
 }
 Spacecraft::~Spacecraft() {}
@@ -48,7 +55,7 @@ const State& Spacecraft::get_closest_state(const Time& time) const
     }
 }
 
-State Spacecraft::get_state_at(const Time& time) const
+State Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys) const
 {
 
     // Check if input time is out of bounds
@@ -64,44 +71,40 @@ State Spacecraft::get_state_at(const Time& time) const
     // If exact, return
     if (_states[idx].time == time) { return _states[idx]; }
 
-    // Separate time and elements
-    std::vector<Time> times{ _states[idx - 1].time, _states[idx].time };
-    std::vector<std::vector<double>> elements{ { _states[idx - 1].elements[0], _states[idx].elements[0] },
-                                               { _states[idx - 1].elements[1], _states[idx].elements[1] },
-                                               { _states[idx - 1].elements[2], _states[idx].elements[2] },
-                                               { _states[idx - 1].elements[3], _states[idx].elements[3] },
-                                               { _states[idx - 1].elements[4], _states[idx].elements[4] },
-                                               { _states[idx - 1].elements[5], _states[idx].elements[5] } };
+    // Interpolate
+    const State& preState              = _states[idx - 1];
+    const Time& preTime                = preState.time;
+    const OrbitalElements& preElements = preState.elements;
 
-    // Interpolate one element at a time to reduce error
-    OrbitalElements interpolatedElements = _states[0].elements; // copy so element set is the same
-    for (size_t ii = 0; ii < 6; ++ii) {
-        interpolatedElements[ii] = math::interpolate(times, elements[ii], time);
-    }
+    const State& postState              = _states[idx];
+    const Time& postTime                = postState.time;
+    const OrbitalElements& postElements = postState.elements;
+
+    OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, sys, time);
 
     return State({ time, interpolatedElements });
 }
 
 // Spacecraft Property Getters
-double Spacecraft::get_mass() const { return _mass; }
-double Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
-double Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
-double Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
-double Spacecraft::get_ram_area() const { return _ramArea; }
-double Spacecraft::get_solar_area() const { return _sunArea; }
-double Spacecraft::get_lift_area() const { return _liftArea; }
+quantity<kg> Spacecraft::get_mass() const { return _mass; }
+quantity<one> Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
+quantity<one> Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
+quantity<one> Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
+quantity<m * m> Spacecraft::get_ram_area() const { return _ramArea; }
+quantity<m * m> Spacecraft::get_solar_area() const { return _sunArea; }
+quantity<m * m> Spacecraft::get_lift_area() const { return _liftArea; }
 
 
 void Spacecraft::generate_id_hash()
 {
-    const auto elements0 = _states[0].elements;
-    _id = std::hash<double>()(elements0[0]) ^ std::hash<double>()(elements0[1]) ^ std::hash<double>()(elements0[2]) ^
-          std::hash<double>()(elements0[3]) ^ std::hash<double>()(elements0[4]) ^ std::hash<double>()(elements0[5]);
-    _id ^= std::hash<double>()(_mass);
-    _id ^= std::hash<double>()(_coefficientOfDrag);
-    _id ^= std::hash<double>()(_coefficientOfLift);
-    _id ^= std::hash<double>()(_coefficientOfReflectivity);
-    _id ^= std::hash<double>()(_ramArea);
-    _id ^= std::hash<double>()(_sunArea);
-    _id ^= std::hash<double>()(_liftArea);
+    const auto elements0 = _states[0].elements.to_vector();
+    // _id  = std::hash<double>()(elements0[0]) ^ std::hash<double>()(elements0[1]) ^ std::hash<double>()(elements0[2]) ^
+    //        std::hash<double>()(elements0[3]) ^ std::hash<double>()(elements0[4]) ^ std::hash<double>()(elements0[5]); // TODO: Fix this
+    _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));
+    _id ^= std::hash<double>()(_coefficientOfDrag.numerical_value_ref_in(_coefficientOfDrag.unit));
+    _id ^= std::hash<double>()(_coefficientOfLift.numerical_value_ref_in(_coefficientOfLift.unit));
+    _id ^= std::hash<double>()(_coefficientOfReflectivity.numerical_value_ref_in(_coefficientOfReflectivity.unit));
+    _id ^= std::hash<double>()(_ramArea.numerical_value_ref_in(_ramArea.unit));
+    _id ^= std::hash<double>()(_sunArea.numerical_value_ref_in(_sunArea.unit));
+    _id ^= std::hash<double>()(_liftArea.numerical_value_ref_in(_liftArea.unit));
 }

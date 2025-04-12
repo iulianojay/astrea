@@ -3,6 +3,7 @@
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
 
 class Force {
@@ -10,6 +11,6 @@ class Force {
     Force()          = default;
     virtual ~Force() = default;
 
-    virtual BasisArray
-        compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
+    virtual AccelerationVector
+        compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };

@@ -12,7 +12,8 @@ class NBodyForce : public Force {
     NBodyForce()  = default;
     ~NBodyForce() = default;
 
-    BasisArray compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector
+        compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
 };

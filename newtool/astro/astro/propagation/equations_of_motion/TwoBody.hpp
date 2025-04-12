@@ -7,6 +7,10 @@
 #include <astro/time/Time.hpp>
 
 class TwoBody : public EquationsOfMotion {
+
+    using GravParam =
+        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
+
   public:
     TwoBody(const AstrodynamicsSystem& system) :
         EquationsOfMotion(system),
@@ -18,5 +22,5 @@ class TwoBody : public EquationsOfMotion {
 
   private:
     const ElementSet expectedSet = ElementSet::CARTESIAN;
-    const double mu;
+    const GravParam mu;
 };
