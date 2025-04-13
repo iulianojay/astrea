@@ -1,6 +1,14 @@
 #include <access/access.hpp>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
+
 #include <access/platforms/Sensor.hpp>
+
+
+using namespace mp_units;
+using namespace mp_units::si;
 
 void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
@@ -46,9 +54,8 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
     const Time& endTime   = states[nSates - 1].time;
 
     // Reserve
-    const size_t nTimes = std::ceil((endTime - startTime) / resolution) + 1;
-    std::vector<Time> times;
-    times.resize(nTimes);
+    const size_t nTimes = (ceil((endTime - startTime) / resolution)).numerical_value_ref_in(one) + 1;
+    std::vector<Time> times(nTimes);
 
     // Fill
     for (size_t ii = 0; ii < nTimes; ++ii) {

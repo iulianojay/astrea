@@ -5,7 +5,6 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/element_sets/OrbitalElements.hpp>
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Time.hpp>
 #include <math/interpolation.hpp>
@@ -97,13 +96,13 @@ OrbitalElements
     Equinoctial elements = other.to_equinoctial(sys);
 
     const Distance interpSemimajor =
-        ::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, elements.get_semilatus() }, targetTime);
-    const Unitless interpEcc = ::interpolate<Time, Unitless>({ thisTime, otherTime }, { _f, elements.get_f() }, targetTime);
-    const Unitless interpInc = ::interpolate<Time, Unitless>({ thisTime, otherTime }, { _g, elements.get_g() }, targetTime);
-    const Unitless interpRaan = ::interpolate<Time, Unitless>({ thisTime, otherTime }, { _h, elements.get_h() }, targetTime);
-    const Unitless interpArgPer = ::interpolate<Time, Unitless>({ thisTime, otherTime }, { _k, elements.get_k() }, targetTime);
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, elements.get_semilatus() }, targetTime);
+    const Unitless interpEcc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _f, elements.get_f() }, targetTime);
+    const Unitless interpInc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _g, elements.get_g() }, targetTime);
+    const Unitless interpRaan = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _h, elements.get_h() }, targetTime);
+    const Unitless interpArgPer = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _k, elements.get_k() }, targetTime);
     const Angle interpTheta =
-        ::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, elements.get_true_longitude() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, elements.get_true_longitude() }, targetTime);
 
     Equinoctial iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 

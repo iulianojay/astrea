@@ -31,18 +31,11 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const quantity<day> julianDate = vehicle.get_epoch().julian_day() + time.count<days>();
-    AccelerationVector accelPerts  = forces.compute_forces(julianDate, cartesian, vehicle, system);
+    const JulianDate julianDate   = vehicle.get_epoch().julian_day() + time;
+    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Derivative
-    const Cartesian dsdt(
-        vx * s,
-        vy * s,
-        vz * s,
-        -muOverRadiusCubed * x + accelPerts[0] * s,
-        -muOverRadiusCubed * y + accelPerts[1] * s,
-        -muOverRadiusCubed * z + accelPerts[2] * s
-    );
+    const Cartesian dsdt(vx * s, vy * s, vz * s, -muOverRadiusCubed * x + vx * s, -muOverRadiusCubed * y + vy * s, -muOverRadiusCubed * z + vz * s);
 
     return OrbitalElements(dsdt);
 }

@@ -28,7 +28,7 @@ class AstrodynamicsSystem {
 
     const std::unordered_set<std::string>& all_bodies() const { return allBodies; }
 
-    void propagate_bodies(double propTime);
+    void propagate_bodies(const Time& propTime);
     // BasisArray get_radius_to_center(CelestialBody target, double julianDate); //TODO: Implement
 
 

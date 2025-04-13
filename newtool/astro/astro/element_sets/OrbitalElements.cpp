@@ -65,13 +65,13 @@ requires(IsGenericallyConstructableOrbitalElements<T>) const T* OrbitalElements:
 // Utilities
 void OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system)
 {
-    if (newSet == _setId) { return; }
+    if (static_cast<EnumType>(newSet) == _setId) { return; }
     const auto newElements = convert_impl(newSet, system);
     (*this)                = newElements;
 }
 OrbitalElements OrbitalElements::convert(const ElementSet& newSet, const AstrodynamicsSystem& system) const
 {
-    if (newSet == _setId) { return (*this); }
+    if (static_cast<EnumType>(newSet) == _setId) { return (*this); }
     return convert_impl(newSet, system);
 }
 

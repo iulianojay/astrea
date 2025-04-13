@@ -277,15 +277,18 @@ OrbitalElements
 
     Cartesian elements = other.to_cartesian(sys);
 
-    const Distance interpx = ::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[0], elements.get_x() }, targetTime);
-    const Distance interpy = ::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[1], elements.get_y() }, targetTime);
-    const Distance interpz = ::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[2], elements.get_z() }, targetTime);
+    const Distance interpx =
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[0], elements.get_x() }, targetTime);
+    const Distance interpy =
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[1], elements.get_y() }, targetTime);
+    const Distance interpz =
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[2], elements.get_z() }, targetTime);
     const Velocity interpvx =
-        ::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[0], elements.get_vx() }, targetTime);
+        math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[0], elements.get_vx() }, targetTime);
     const Velocity interpvy =
-        ::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[1], elements.get_vy() }, targetTime);
+        math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[1], elements.get_vy() }, targetTime);
     const Velocity interpvz =
-        ::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[2], elements.get_vz() }, targetTime);
+        math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[2], elements.get_vz() }, targetTime);
 
     Cartesian iterpCart({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
 

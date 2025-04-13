@@ -5,7 +5,6 @@
 
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/time_units.hpp>
-// #ifndef SWIG
 
 #include <chrono>
 #include <iostream>
@@ -148,22 +147,3 @@ using Time = mp_units::quantity<mp_units::non_si::day>;
 
 //     JulianDateClock::duration time;
 // };
-
-// #else
-
-// class Time {
-//     friend Date;
-
-// public:
-
-//     Time() = default;
-//     Time(const double& time) : time(time) {}
-//     ~Time() {};
-
-// private:
-//     double time;
-// };
-
-// %template(TimeVector) std::vector<Time>;
-
-// #endif

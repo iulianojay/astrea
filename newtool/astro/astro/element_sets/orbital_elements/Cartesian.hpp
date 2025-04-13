@@ -17,11 +17,10 @@
 #include <mp-units/systems/si.h>
 
 // astro
+#include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
-
-#include <astro/astro.fwd.hpp>
 
 class Cartesian {
 
@@ -101,6 +100,8 @@ class Cartesian {
     const Velocity& get_vy() const { return _velocity[1]; }
     const Velocity& get_vz() const { return _velocity[2]; }
 
+    size_t size() const { return 6; }
+
     std::vector<double> to_vector() const;
     void update_from_vector(const std::vector<double>& vec);
 
@@ -109,7 +110,7 @@ class Cartesian {
         interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
   private:
-    constexpr static EnumType _setId = ElementSet::CARTESIAN;
+    constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN);
 
     RadiusVector _radius;
     VelocityVector _velocity;

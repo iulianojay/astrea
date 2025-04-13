@@ -9,7 +9,7 @@ void AstrodynamicsSystem::create_all_bodies()
 };
 
 
-void AstrodynamicsSystem::propagate_bodies(double propTime)
+void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
 {
 
     // Ask factory to propagate

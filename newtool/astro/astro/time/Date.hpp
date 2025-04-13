@@ -69,7 +69,7 @@ class Date {
     ~Date() {}
 
     // Utilities
-    const auto julian_day() const { return julianDate.time_since_epoch().count(); }
+    const auto julian_day() const { return julianDate; }
     const auto utc() const { return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate)); }
 
   private:
@@ -109,6 +109,6 @@ struct mp_units::quantity_point_like_traits<Date> {
     static constexpr bool explicit_import = false;
     static constexpr bool explicit_export = true;
     using rep                             = double;
-    static constexpr rep to_numerical_value(Date date) { return date.julian_day(); }
+    static constexpr rep to_numerical_value(Date date) { return date.julian_day().time_since_epoch().count(); }
     static constexpr Date from_numerical_value(rep v) { return Date(v); }
 };

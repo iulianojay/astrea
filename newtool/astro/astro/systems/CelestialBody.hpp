@@ -40,8 +40,8 @@ class CelestialBody {
     bool operator!=(const CelestialBody& other) const { return !(*this == other); }
 
     // Property assignment
-    void propagate(const Date& epoch, const Time& propTime, const double parentMu);
-    void propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
+    void propagate(const Date& epoch, const Time& propTime, const GravParam& parentMu);
+    void propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 
     // Property getters
     const std::string& get_name() const { return _name; };

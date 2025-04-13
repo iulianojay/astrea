@@ -17,11 +17,6 @@ class State {
         elements(elements)
     {
     }
-    State(Time time, ElementArray elements, ElementSet set) :
-        time(time),
-        elements(elements, set)
-    {
-    }
 
     void convert(const ElementSet& set, const AstrodynamicsSystem& sys) { elements.convert(set, sys); }
     State convert(const ElementSet& set, const AstrodynamicsSystem& sys) const

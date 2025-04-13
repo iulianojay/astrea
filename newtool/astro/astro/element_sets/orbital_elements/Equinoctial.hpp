@@ -18,10 +18,10 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/time/Time.hpp>
-
-#include <astro/astro.fwd.hpp>
+#include <astro/types/typedefs.hpp>
 
 class Equinoctial {
 
@@ -91,6 +91,8 @@ class Equinoctial {
     const Unitless& get_k() const { return _k; }
     const Angle& get_true_longitude() const { return _trueLongitude; }
 
+    size_t size() const { return 6; }
+
     constexpr EnumType get_set_id() const { return _setId; }
     OrbitalElements
         interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
@@ -99,7 +101,7 @@ class Equinoctial {
     void update_from_vector(const std::vector<double>& vec);
 
   private:
-    constexpr static EnumType _setId = ElementSet::EQUINOCTIAL;
+    constexpr static EnumType _setId = std::to_underlying(ElementSet::EQUINOCTIAL);
 
     Distance _semilatus;
     Unitless _f;

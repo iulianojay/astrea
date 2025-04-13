@@ -8,7 +8,7 @@
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/si/math.h>
 
-#include <extern/nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <math/utils.hpp>
@@ -71,18 +71,18 @@ CelestialBody::CelestialBody(const std::string& file)
 }
 
 
-void CelestialBody::propagate(const Date& epoch, const Time& propTime, const double parentMu)
+void CelestialBody::propagate(const Date& epoch, const Time& propTime, const GravParam& parentMu)
 {
     Date endEpoch = epoch + propTime;
     _propagate(epoch, endEpoch, parentMu);
 }
-void CelestialBody::propagate(const Date& epoch, const Date& endEpoch, const double parentMu)
+void CelestialBody::propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu)
 {
     _propagate(epoch, endEpoch, parentMu);
 }
 
 // Find position of body relative to parent and relative to the sun
-void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const double parentMu)
+void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu)
 {
 
     // Get reference date

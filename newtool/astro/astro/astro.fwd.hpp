@@ -4,6 +4,9 @@ class State;
 
 // ELement sets
 class OrbitalElements;
+class Cartesian;
+class Keplerian;
+class Equinoctial;
 
 template <class T>
 class Frame;
@@ -46,4 +49,3 @@ class RiseSetArray;
 class Date;
 class Interval;
 struct JulianDateClock;
-class Time;

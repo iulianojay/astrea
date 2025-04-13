@@ -4,7 +4,9 @@
 #include <string>
 #include <unordered_map>
 
-enum class ElementSet : uint32_t { KEPLERIAN, CARTESIAN, EQUINOCTIAL };
+#include <astro/types/typedefs.hpp>
+
+enum class ElementSet : EnumType { KEPLERIAN, CARTESIAN, EQUINOCTIAL };
 
 template <>
 struct std::hash<std::pair<ElementSet, ElementSet>> {

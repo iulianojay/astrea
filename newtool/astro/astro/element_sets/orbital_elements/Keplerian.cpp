@@ -237,17 +237,17 @@ OrbitalElements
     Keplerian elements = other.to_keplerian(sys);
 
     const Distance interpSemimajor =
-        ::interpolate<Time, Distance>({ thisTime, otherTime }, { _semimajor, elements.get_semimajor() }, targetTime);
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semimajor, elements.get_semimajor() }, targetTime);
     const Unitless interpEcc =
-        ::interpolate<Time, Unitless>({ thisTime, otherTime }, { _eccentricity, elements.get_eccentricity() }, targetTime);
+        math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _eccentricity, elements.get_eccentricity() }, targetTime);
     const Angle interpInc =
-        ::interpolate<Time, Angle>({ thisTime, otherTime }, { _inclination, elements.get_inclination() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _inclination, elements.get_inclination() }, targetTime);
     const Angle interpRaan =
-        ::interpolate<Time, Angle>({ thisTime, otherTime }, { _rightAscension, elements.get_right_ascension() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _rightAscension, elements.get_right_ascension() }, targetTime);
     const Angle interpArgPer =
-        ::interpolate<Time, Angle>({ thisTime, otherTime }, { _argPerigee, elements.get_argument_of_perigee() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _argPerigee, elements.get_argument_of_perigee() }, targetTime);
     const Angle interpTheta =
-        ::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueAnomaly, elements.get_true_anomaly() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueAnomaly, elements.get_true_anomaly() }, targetTime);
 
     Keplerian iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 

@@ -126,9 +126,9 @@ class Integrator {
     std::array<double, maxStages> c                        = {};
 
     // ith order steps
-    std::array<std::array<double, maxStates>, maxStages> kMatrix = {};
-    std::array<double, maxStates> statePlusKi                    = {};
-    std::array<double, maxStates> YFinalPrevious                 = {};
+    std::array<OrbitalElements, maxStages> kMatrix = {};
+    OrbitalElements statePlusKi                    = {};
+    OrbitalElements YFinalPrevious                 = {};
 
     // Clock variables
     clock_t startClock{};
@@ -168,15 +168,14 @@ class Integrator {
     //------------------------------------------------ Methods ------------------------------------------------//
 
     // Equations of motion
-    std::vector<double>
-        find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Stepping methods
     void setup_stepper();
     void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Error Methods
-    void check_error(const double& maxError, const std::vector<double>& stateNew, const std::vector<double> stateError, Time& time, Time& timeStep, OrbitalElements& state);
+    void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
 
     // Print details
     void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);

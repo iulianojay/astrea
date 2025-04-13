@@ -33,8 +33,8 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
 
     // Prevents singularities from occuring in the propagation. Will cause
     // inaccuracies.
-    const quantity<one>& ecc = (elements.get_eccentricity() < checkTol * one) ? checkTol * one : elements.get_eccentricity();
-    const quantity<rad>& inc = (elements.get_inclination() < checkTol * rad) ? checkTol * rad : elements.get_inclination();
+    const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
+    const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // h
     const quantity h = sqrt(mu * a * (1 - ecc * ecc));
@@ -71,8 +71,8 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
         accelOblateness[0] * Nhatx + accelOblateness[1] * Nhaty + accelOblateness[2] * Nhatz;
 
     // Calculate the derivatives of the KEPLERIANs - only raan and w considered
-    const quantity<km / s> dadt      = 0.0;
-    const quantity<one / s> deccdt   = 0.0;
+    const quantity<km / s> dadt      = 0.0 * km / s;
+    const quantity<one / s> deccdt   = 0.0 * one / s;
     const quantity<rad / s> _dincdt  = R / h * cos(w + theta) * normalPert;
     const quantity<rad / s> dthetadt = h / (R * R);
     const quantity<rad / s> draandt  = R * sin(w + theta) / (h * sin(inc)) * normalPert;
@@ -81,7 +81,7 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
     quantity<rad / s> dincdt = _dincdt;
-    if (inc == checkTol && dincdt <= checkTol) {
+    if (inc == incTol && dincdt <= incTol * one / s) {
         dincdt    = 0.0;
         checkflag = true;
     }

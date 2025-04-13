@@ -16,6 +16,7 @@ class J2MeanVop : public EquationsOfMotion {
         mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
     using Unitless = mp_units::quantity<mp_units::one>;
     using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
+    using Degree   = mp_units::quantity<mp_units::si::unit_symbols::rad>;
 
   public:
     J2MeanVop(const AstrodynamicsSystem& system) :
@@ -29,8 +30,8 @@ class J2MeanVop : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    mutable bool checkflag  = false;
-    const Unitless checkTol = 1e-10 * mp_units::one;
+    mutable bool checkflag = false;
+    const Degree incTol    = 1e-10 * mp_units::si::unit_symbols::rad;
 
     const ElementSet expectedSet = ElementSet::KEPLERIAN;
 

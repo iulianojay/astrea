@@ -16,10 +16,9 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/time/Time.hpp>
-
-#include <astro/astro.fwd.hpp>
 
 class Keplerian {
 
@@ -100,6 +99,8 @@ class Keplerian {
     const Angle& get_argument_of_perigee() const { return _argPerigee; }
     const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
+    size_t size() const { return 6; }
+
     constexpr EnumType get_set_id() const { return _setId; }
     OrbitalElements
         interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
@@ -108,7 +109,7 @@ class Keplerian {
     void update_from_vector(const std::vector<double>& vec);
 
   private:
-    constexpr static EnumType _setId = ElementSet::KEPLERIAN;
+    constexpr static EnumType _setId = std::to_underlying(ElementSet::KEPLERIAN);
 
     Distance _semimajor;
     Unitless _eccentricity;

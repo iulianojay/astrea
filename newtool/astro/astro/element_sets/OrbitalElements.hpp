@@ -126,6 +126,7 @@ struct OrbitalElementsInnerBase {
     virtual EnumType get_set_id() const                                      = 0;
     virtual std::vector<double> to_vector() const                            = 0;
     virtual void update_from_vector(const std::vector<double>& vec)          = 0;
+    virtual size_t size() const                                              = 0;
 
     // Optional methods
     virtual OrbitalElements
@@ -162,11 +163,14 @@ struct OrbitalElementsInner final : public OrbitalElementsInnerBase {
     {
     }
 
+    // Size
+    size_t size() const final { return _value.size(); };
+
     // Get set
     EnumType get_set_id() const final { return _value.get_set_id(); }
 
+    // Vector conversions
     std::vector<double> to_vector() const final { return _value.to_vector(); }
-
     void update_from_vector(const std::vector<double>& vec) final { _value.update_from_vector(vec); }
 
     // Interpolate
@@ -299,6 +303,8 @@ class OrbitalElements {
     Cartesian to_cartesian(const AstrodynamicsSystem& system) const;
     Keplerian to_keplerian(const AstrodynamicsSystem& system) const;
     Equinoctial to_equinoctial(const AstrodynamicsSystem& system) const;
+
+    size_t size() const { return ptr()->size(); }
 
     EnumType get_set_id() const;
     const bool same_set(const OrbitalElements& other) const;

@@ -20,7 +20,6 @@ Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) :
     update_state(State(0.0 * day, state0));
     generate_id_hash();
 }
-Spacecraft::~Spacecraft() {}
 
 
 void Spacecraft::update_state(const State& state)
