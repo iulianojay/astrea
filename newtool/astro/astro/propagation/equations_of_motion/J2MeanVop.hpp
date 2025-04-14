@@ -31,6 +31,7 @@ class J2MeanVop : public EquationsOfMotion {
 
   private:
     mutable bool checkflag = false;
+    const Unitless ecccTol = 1e-10 * mp_units::one;
     const Degree incTol    = 1e-10 * mp_units::si::unit_symbols::rad;
 
     const ElementSet expectedSet = ElementSet::KEPLERIAN;

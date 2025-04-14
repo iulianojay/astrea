@@ -1,15 +1,14 @@
 #include <astro/propagation/Integrator.hpp>
 
 
-OrbitalElements
+OrbitalElementPartials
     Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Count fevals
     ++functionEvaluations;
 
     // Ask eom object to evaluate
-    const OrbitalElements dState = eom(time, state, vehicle);
-    return dState;
+    return eom(time, state, vehicle);
 }
 
 
@@ -222,25 +221,26 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
     for (size_t ii = 0; ii < nStages; ++ii) {
         // Find derivative
+        OrbitalElementPartials partial;
         if (ii == 0) {
             if (stepMethod == RK45 || stepMethod == RKF45 || stepMethod == RKF78) {
-                kMatrix[0] = find_state_derivative(time, state, eom, vehicle);
+                partial = find_state_derivative(time, state, eom, vehicle);
             }
             else if (stepMethod == DOP45 || stepMethod == DOP78) {
-                if (iteration == 0) { kMatrix[0] = find_state_derivative(time, state, eom, vehicle); }
+                if (iteration == 0) { partial = find_state_derivative(time, state, eom, vehicle); }
                 else {
-                    kMatrix[0] = YFinalPrevious;
+                    partial = YFinalPrevious;
                 }
             }
         }
         else {
             OrbitalElements sPlusKi = statePlusKi;
-            kMatrix[ii]             = find_state_derivative(time + c[ii] * timeStep, sPlusKi, eom, vehicle);
+            partial                 = find_state_derivative(time + c[ii] * timeStep, sPlusKi, eom, vehicle);
         }
         statePlusKi = state;
 
         // Correct k value
-        kMatrix[ii] *= timeStep;
+        kMatrix[ii] = partial * timeStep;
 
         // Get k next step
         for (size_t kk = 0; kk < ii + 1; ++kk) {

@@ -1,25 +1,20 @@
 #pragma once
 
-#pragma once
-
-#ifndef SWIG
 #include <array>
+#include <iomanip>
 #include <iostream>
-#endif
+#include <variant>
 
 // mp-units
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
-
-#include <iomanip>
-#include <iostream>
-
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -50,6 +45,7 @@ class Equinoctial {
         _trueLongitude{ trueLongitude }
     {
     }
+    Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
     Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
@@ -109,4 +105,21 @@ class Equinoctial {
     Unitless _h;
     Unitless _k;
     Angle _trueLongitude;
+};
+
+class EquinoctialPartial {
+    using DistancePerTime = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::non_si::day>;
+    using UnitlessPerTime = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
+    using AnglePerTime    = mp_units::quantity<mp_units::si::unit_symbols::rad / mp_units::non_si::day>;
+
+  public:
+    Equinoctial operator*(const Time& time);
+
+  private:
+    DistancePerTime _semilatusPerTime;
+    UnitlessPerTime _fPerTime;
+    UnitlessPerTime _gPerTime;
+    UnitlessPerTime _hPerTime;
+    UnitlessPerTime _kPerTime;
+    AnglePerTime _trueLongitudePerTime;
 };

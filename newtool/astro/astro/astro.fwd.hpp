@@ -3,10 +3,12 @@
 class State;
 
 // ELement sets
-class OrbitalElements;
 class Cartesian;
 class Keplerian;
 class Equinoctial;
+class CartesianPartial;
+class KeplerianPartial;
+class EquinoctialPartial;
 
 template <class T>
 class Frame;

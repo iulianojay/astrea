@@ -17,8 +17,8 @@ using namespace mp_units::si::unit_symbols;
 OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Keplerian elements  = state.to_keplerian(system);
-    const Cartesian cartesian = state.to_cartesian(system);
+    const Keplerian elements  = Keplerian(state, system);
+    const Cartesian cartesian = Cartesian(state, system);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();

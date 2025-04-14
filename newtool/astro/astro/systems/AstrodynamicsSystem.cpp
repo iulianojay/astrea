@@ -28,7 +28,12 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
-                centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
+
+                centerToRoot[ii].elements = std::visit(
+                    [&](const auto& x, const auto& y) { return x + y; },
+                    centerToRoot[ii].elements,
+                    parentToGrandParent[ii].elements
+                );
             }
             parent = parentBody->get_parent();
         }

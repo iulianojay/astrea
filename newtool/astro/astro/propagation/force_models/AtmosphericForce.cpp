@@ -33,8 +33,8 @@ AccelerationVector
     static const auto& bodyRotationRate = center->get_rotation_rate();
 
     // Find velocity relative to atmosphere
-    const quantity<km / s> relVx = vx - y * bodyRotationRate.in(rad / s);
-    const quantity<km / s> relVy = vy + x * bodyRotationRate.in(rad / s);
+    const quantity<km / s> relVx = vx - (y * bodyRotationRate.in(rad / s));
+    const quantity<km / s> relVy = vy + (x * bodyRotationRate.in(rad / s));
     const quantity<km / s> relVz = vz;
 
     // Exponential Drag Model

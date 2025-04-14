@@ -11,7 +11,6 @@
 #include <astro/constants/astronomical_constants.h>
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
-#include <astro/utilities/conversions.hpp>
 #include <math/utils.hpp>
 
 
@@ -22,8 +21,8 @@ using namespace mp_units::si::unit_symbols;
 OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Keplerian elements  = state.to_keplerian(system);
-    const Cartesian cartesian = state.to_cartesian(system);
+    const Keplerian elements  = Keplerian(state, system);
+    const Cartesian cartesian = Cartesian(state, system);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();

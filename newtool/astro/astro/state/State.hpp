@@ -3,6 +3,9 @@
 #include <iostream>
 
 #include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -12,16 +15,22 @@ class State {
 
   public:
     State() = default;
-    State(Time time, OrbitalElements elements) :
+
+    State(const Time& time, const OrbitalElements& elements) :
         time(time),
         elements(elements)
     {
     }
 
-    void convert(const ElementSet& set, const AstrodynamicsSystem& sys) { elements.convert(set, sys); }
-    State convert(const ElementSet& set, const AstrodynamicsSystem& sys) const
+    template <IsOrbitalElements T>
+    void convert(const AstrodynamicsSystem& sys)
     {
-        return { time, elements.convert(set, sys) };
+        elements = T(elements, sys);
+    }
+    template <IsOrbitalElements T>
+    State convert(const AstrodynamicsSystem& sys) const
+    {
+        return { time, T(elements, sys) };
     }
 
     Time time;

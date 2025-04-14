@@ -47,7 +47,7 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/time/Time.cpp
 
-    ${ASTRO_BASE}/utilities/conversions.cpp
+    # ${ASTRO_BASE}/utilities/conversions.cpp
 )
 
 # Headers
@@ -108,7 +108,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
-    ${ASTRO_BASE}/utilities/conversions.hpp
+    # ${ASTRO_BASE}/utilities/conversions.hpp
 
     # Extern
     ${EXTERN_BASE}/nlohmann/json.hpp

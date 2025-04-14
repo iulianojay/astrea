@@ -2,8 +2,6 @@
 
 #include <filesystem>
 
-#include <astro/state/State.hpp>
-
 // TODO: Fix this trash
 static const std::filesystem::path ROOT = "/home/jay/projects/newtoollib";
 

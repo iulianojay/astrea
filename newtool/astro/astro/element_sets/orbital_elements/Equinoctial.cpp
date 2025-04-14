@@ -38,6 +38,13 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
     // True longitude
     _trueLongitude = raan + argPer + theta;
 }
+Equinoctial::Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+{
+    if (std::holds_alternative<Equinoctial>(elements)) { Equinoctial(std::get<Equinoctial>(elements), sys); }
+    else if (std::holds_alternative<Keplerian>(elements)) {
+        Equinoctial(std::get<Keplerian>(elements), sys);
+    }
+}
 
 // Copy constructor
 Equinoctial::Equinoctial(const Equinoctial& other) :
@@ -93,7 +100,7 @@ bool Equinoctial::operator!=(const Equinoctial& other) const { return !(*this ==
 OrbitalElements
     Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
-    Equinoctial elements = other.to_equinoctial(sys);
+    Equinoctial elements(other, sys);
 
     const Distance interpSemimajor =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, elements.get_semilatus() }, targetTime);
@@ -104,9 +111,7 @@ OrbitalElements
     const Angle interpTheta =
         math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, elements.get_true_longitude() }, targetTime);
 
-    Equinoctial iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
-
-    return OrbitalElements(iterpKepl);
+    return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
 std::vector<double> Equinoctial::to_vector() const
@@ -127,6 +132,11 @@ void Equinoctial::update_from_vector(const std::vector<double>& vec)
     _h             = vec[3] * one;
     _k             = vec[4] * one;
     _trueLongitude = vec[5] * rad;
+}
+
+Equinoctial EquinoctialPartial::operator*(const Time& time)
+{
+    return Equinoctial(_semilatusPerTime * time, _fPerTime * time, _gPerTime * time, _hPerTime * time, _kPerTime * time, _trueLongitudePerTime * time);
 }
 
 std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)

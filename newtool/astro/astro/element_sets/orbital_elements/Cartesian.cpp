@@ -119,6 +119,16 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     _velocity[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
+Cartesian::Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+{
+    if (std::holds_alternative<Cartesian>(elements)) { Cartesian(std::get<Cartesian>(elements), sys); }
+    else if (std::holds_alternative<Keplerian>(elements)) {
+        Cartesian(std::get<Keplerian>(elements), sys);
+    }
+    else if (std::holds_alternative<Equinoctial>(elements)) {
+        Cartesian(std::get<Equinoctial>(elements), sys);
+    }
+}
 
 // Copy constructor
 Cartesian::Cartesian(const Cartesian& other) :
@@ -275,7 +285,7 @@ OrbitalElements
     Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
 
-    Cartesian elements = other.to_cartesian(sys);
+    Cartesian elements(other, sys);
 
     const Distance interpx =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _radius[0], elements.get_x() }, targetTime);
@@ -290,9 +300,7 @@ OrbitalElements
     const Velocity interpvz =
         math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _velocity[2], elements.get_vz() }, targetTime);
 
-    Cartesian iterpCart({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
-
-    return OrbitalElements(iterpCart);
+    return Cartesian({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
 }
 
 std::vector<double> Cartesian::to_vector() const
@@ -308,6 +316,11 @@ void Cartesian::update_from_vector(const std::vector<double>& vec)
 {
     _radius   = { vec[0] * km, vec[1] * km, vec[2] * km };
     _velocity = { vec[0] * km / s, vec[1] * km / s, vec[2] * km / s };
+}
+
+Cartesian CartesianPartial::operator*(const Time& time)
+{
+    return Cartesian(_xPerTime * time, _yPerTime * time, _zPerTime * time, _vxPerTime * time, _vyPerTime * time, _vzPerTime * time);
 }
 
 

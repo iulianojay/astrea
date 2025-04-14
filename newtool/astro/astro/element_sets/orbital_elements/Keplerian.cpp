@@ -179,6 +179,16 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Anomaly
     _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
 }
+Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+{
+    if (std::holds_alternative<Keplerian>(elements)) { Keplerian(std::get<Keplerian>(elements), sys); }
+    else if (std::holds_alternative<Cartesian>(elements)) {
+        Keplerian(std::get<Cartesian>(elements), sys);
+    }
+    else if (std::holds_alternative<Equinoctial>(elements)) {
+        Keplerian(std::get<Equinoctial>(elements), sys);
+    }
+}
 
 // Copy constructor
 Keplerian::Keplerian(const Keplerian& other) :
@@ -234,7 +244,7 @@ bool Keplerian::operator!=(const Keplerian& other) const { return !(*this == oth
 OrbitalElements
     Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
-    Keplerian elements = other.to_keplerian(sys);
+    Keplerian elements(other, sys);
 
     const Distance interpSemimajor =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semimajor, elements.get_semimajor() }, targetTime);
@@ -249,9 +259,7 @@ OrbitalElements
     const Angle interpTheta =
         math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueAnomaly, elements.get_true_anomaly() }, targetTime);
 
-    Keplerian iterpKepl(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
-
-    return OrbitalElements(iterpKepl);
+    return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
 std::vector<double> Keplerian::to_vector() const
@@ -272,6 +280,19 @@ void Keplerian::update_from_vector(const std::vector<double>& vec)
     _rightAscension = vec[3] * rad;
     _argPerigee     = vec[4] * rad;
     _trueAnomaly    = vec[5] * rad;
+}
+
+
+Keplerian KeplerianPartial::operator*(const Time& time)
+{
+    return Keplerian(
+        _semimajorPartial * time,
+        _eccentricityPartial * time,
+        _inclinationPartial * time,
+        _rightAscensionPartial * time,
+        _argPerigeePartial * time,
+        _trueAnomalyPartial * time
+    );
 }
 
 std::ostream& operator<<(std::ostream& os, Keplerian const& elements)

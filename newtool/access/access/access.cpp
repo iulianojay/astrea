@@ -53,16 +53,16 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
     const Time& startTime = states[0].time;
     const Time& endTime   = states[nSates - 1].time;
 
-    // Reserve
-    const size_t nTimes = (ceil((endTime - startTime) / resolution)).numerical_value_ref_in(one) + 1;
-    std::vector<Time> times(nTimes);
-
     // Fill
-    for (size_t ii = 0; ii < nTimes; ++ii) {
-        if (ii < nTimes - 1) { times[ii] = startTime + ii * resolution; }
+    std::vector<Time> times;
+
+    Time time = startTime;
+    for (while time < endTime) {
+        if (time + resolution > endTime) { times.emplace_back(endTime); }
         else {
-            times[ii] = endTime;
+            times.emplace_back(time);
         }
+        time += ii * resolution;
     }
 
     return times;

@@ -19,8 +19,8 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
 {
 
     // Get need representations
-    const Equinoctial equinoctial = state.to_equinoctial(system);
-    const Cartesian cartesian     = state.to_cartesian(system);
+    const Equinoctial equinoctial = Equinoctial(state, system);
+    const Cartesian cartesian     = Cartesian(state, system);
 
     // Extract
     const quantity<km>& p  = equinoctial.get_semilatus();
@@ -50,6 +50,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<one> Rhaty = y / R;
     const quantity<one> Rhatz = z / R;
 
+    const quantity<one> ecc                      = sqrt(f * f + g * g);
     const quantity<pow<2>(km) / s> relSpecAngMom = sqrt(mu * a * (1 - ecc * ecc));
     const quantity<one> Nhatx                    = (y * vz - z * vy) / relSpecAngMom;
     const quantity<one> Nhaty                    = (z * vx - x * vz) / relSpecAngMom;
@@ -66,7 +67,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const JulianDate julianDate   = vehicle.get_epoch() + time;
+    const JulianDate julianDate   = vehicle.get_epoch().julian_day() + time;
     AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Calculate R, N, and T

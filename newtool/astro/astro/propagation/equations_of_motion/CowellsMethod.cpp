@@ -17,7 +17,7 @@ OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElement
 {
 
     // Extract
-    const Cartesian cartesian = state.to_cartesian(system);
+    const Cartesian cartesian = Cartesian(state, system);
     const quantity<km>& x     = cartesian.get_x();
     const quantity<km>& y     = cartesian.get_y();
     const quantity<km>& z     = cartesian.get_z();

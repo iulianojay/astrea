@@ -1,23 +1,20 @@
 #pragma once
 
-#ifndef SWIG
 #include <array>
+#include <iomanip>
 #include <iostream>
-#endif
+#include <variant>
 
 // mp-units
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
-
-#include <iomanip>
-#include <iostream>
-
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 
 class Keplerian {
@@ -56,6 +53,7 @@ class Keplerian {
         _trueAnomaly{ trueAnomaly }
     {
     }
+    Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
     Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
     Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
@@ -117,4 +115,22 @@ class Keplerian {
     Angle _rightAscension;
     Angle _argPerigee;
     Angle _trueAnomaly;
+};
+
+class KeplerianPartial {
+
+    using DistancePerTime = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::non_si::day>;
+    using UnitlessPerTime = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
+    using AnglePerTime    = mp_units::quantity<mp_units::si::unit_symbols::rad / mp_units::non_si::day>;
+
+  public:
+    Keplerian operator*(const Time& time);
+
+  private:
+    DistancePerTime _semimajorPartial;
+    UnitlessPerTime _eccentricityPartial;
+    AnglePerTime _inclinationPartial;
+    AnglePerTime _rightAscensionPartial;
+    AnglePerTime _argPerigeePartial;
+    AnglePerTime _trueAnomalyPartial;
 };

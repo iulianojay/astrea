@@ -15,7 +15,7 @@ using namespace mp_units::si::unit_symbols;
 OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Cartesian cartesian = state.to_cartesian(system);
+    const Cartesian cartesian = Cartesian(state, system);
 
     // Extract
     const quantity<km>& x = cartesian.get_x();

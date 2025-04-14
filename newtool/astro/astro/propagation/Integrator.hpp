@@ -8,7 +8,7 @@
 #include <vector>
 
 #include <astro/constants/rk_constants.h> // RK Butcher Tableau
-
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/time/Interval.hpp>
@@ -20,7 +20,6 @@ class Integrator {
         RK45,  // Traditional Runge-Kutta 4(5)th order 6 stage method
         RKF45, // Runge-Kutta-Fehlberg 4(5)th order 6 stage method
         RKF78, // Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-
         DOP45, // Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
         DOP78, // Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
@@ -168,7 +167,8 @@ class Integrator {
     //------------------------------------------------ Methods ------------------------------------------------//
 
     // Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    OrbitalElementPartials
+        find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Stepping methods
     void setup_stepper();

@@ -3,7 +3,6 @@
 #include <algorithm>
 
 #include <astro/time/Time.hpp>
-#include <astro/utilities/conversions.hpp>
 #include <math/interpolation.hpp>
 
 
@@ -79,7 +78,8 @@ State Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys)
     const Time& postTime                = postState.time;
     const OrbitalElements& postElements = postState.elements;
 
-    OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, sys, time);
+    OrbitalElements interpolatedElements =
+        std::visit([&](const auto& x) { return x.interpolate(preTime, postTime, postElements, sys, time); }, preElements);
 
     return State({ time, interpolatedElements });
 }
@@ -96,7 +96,7 @@ quantity<m * m> Spacecraft::get_lift_area() const { return _liftArea; }
 
 void Spacecraft::generate_id_hash()
 {
-    const auto elements0 = _states[0].elements.to_vector();
+    // const auto elements0 = _states[0].elements.to_vector();
     // _id  = std::hash<double>()(elements0[0]) ^ std::hash<double>()(elements0[1]) ^ std::hash<double>()(elements0[2]) ^
     //        std::hash<double>()(elements0[3]) ^ std::hash<double>()(elements0[4]) ^ std::hash<double>()(elements0[5]); // TODO: Fix this
     _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));

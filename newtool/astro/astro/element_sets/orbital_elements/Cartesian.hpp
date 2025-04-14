@@ -1,17 +1,13 @@
 #pragma once
 
-#ifndef SWIG
 #include <array>
-#include <cmath>
 #include <iomanip>
 #include <iostream>
-#include <vector>
-#endif
+#include <variant>
 
 // mp-units
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
-
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
@@ -19,6 +15,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -54,6 +51,7 @@ class Cartesian {
         _velocity({ vx, vy, vz })
     {
     }
+    Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
     Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
@@ -114,4 +112,21 @@ class Cartesian {
 
     RadiusVector _radius;
     VelocityVector _velocity;
+};
+
+class CartesianPartial {
+    using DistancePerTime = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::non_si::day>;
+    using VelocityPerTime =
+        mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s / mp_units::non_si::day>;
+
+  public:
+    Cartesian operator*(const Time& time);
+
+  private:
+    DistancePerTime _xPerTime;
+    DistancePerTime _yPerTime;
+    DistancePerTime _zPerTime;
+    VelocityPerTime _vxPerTime;
+    VelocityPerTime _vyPerTime;
+    VelocityPerTime _vzPerTime;
 };
