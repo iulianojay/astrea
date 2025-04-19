@@ -108,6 +108,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
+    ${ASTRO_BASE}/units/units.hpp
+
     # ${ASTRO_BASE}/utilities/conversions.hpp
 
     # Extern

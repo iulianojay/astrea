@@ -2,6 +2,7 @@
 
 // mp-units
 #include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
@@ -10,8 +11,10 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::si::unit_symbols;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
 AccelerationVector
     AtmosphericForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
@@ -64,7 +67,7 @@ AccelerationVector
 }
 
 
-const AtmosphericForce::DensityQuantity
+const AtmosphericForce::Density
     AtmosphericForce::find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
 
@@ -95,14 +98,14 @@ const AtmosphericForce::DensityQuantity
     // the atmosphere of the gas giants is defined by their radii, e.g.
     // outside of their equitorial radius, they have no noticible atmosphere
     // and inside that radius, the object will crash.
-    DensityQuantity atmosphericDensity;
+    Density atmosphericDensity;
     if (centerName == "Venus") {
         const auto iter    = venutianAtmosphere.upper_bound(altitude);
         atmosphericDensity = (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
     }
     else if (centerName == "Earth") {
         quantity<km> referenceAltitude;
-        DensityQuantity referenceDensity;
+        Density referenceDensity;
         quantity<km> scaleHeight;
 
         const auto iter = earthAtmosphere.upper_bound(altitude);

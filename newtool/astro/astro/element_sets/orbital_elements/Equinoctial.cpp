@@ -11,8 +11,11 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::si::unit_symbols;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
@@ -97,6 +100,82 @@ bool Equinoctial::operator==(const Equinoctial& other) const
 bool Equinoctial::operator!=(const Equinoctial& other) const { return !(*this == other); }
 
 
+// Mathmatical operators
+Equinoctial Equinoctial::operator+(const Equinoctial& other) const
+{
+    return Equinoctial(
+        _semilatus + other._semilatus,
+        _f + other._f,
+        _g + other._g,
+        _h + other._h,
+        _k + other._k,
+        _trueLongitude + other._trueLongitude
+    );
+}
+Equinoctial& Equinoctial::operator+=(const Equinoctial& other)
+{
+    _semilatus += other._semilatus;
+    _f += other._f;
+    _g += other._g;
+    _h += other._h;
+    _k += other._k;
+    _trueLongitude += other._trueLongitude;
+    return *this;
+}
+
+Equinoctial Equinoctial::operator-(const Equinoctial& other) const
+{
+    return Equinoctial(
+        _semilatus - other._semilatus,
+        _f - other._f,
+        _g - other._g,
+        _h - other._h,
+        _k - other._k,
+        _trueLongitude - other._trueLongitude
+    );
+}
+Equinoctial& Equinoctial::operator-=(const Equinoctial& other)
+{
+    _semilatus -= other._semilatus;
+    _f -= other._f;
+    _g -= other._g;
+    _h -= other._h;
+    _k -= other._k;
+    _trueLongitude -= other._trueLongitude;
+    return *this;
+}
+
+Equinoctial Equinoctial::operator*(const Unitless& multiplier) const
+{
+    return Equinoctial(_semilatus * multiplier, _f * multiplier, _g * multiplier, _h * multiplier, _k * multiplier, _trueLongitude * multiplier);
+}
+Equinoctial& Equinoctial::operator*=(const Unitless& multiplier)
+{
+    _semilatus *= multiplier;
+    _f *= multiplier;
+    _g *= multiplier;
+    _h *= multiplier;
+    _k *= multiplier;
+    _trueLongitude *= multiplier;
+    return *this;
+}
+
+Equinoctial Equinoctial::operator/(const Unitless& divisor) const
+{
+    return Equinoctial(_semilatus / divisor, _f / divisor, _g / divisor, _h / divisor, _k / divisor, _trueLongitude / divisor);
+}
+Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
+{
+    _semilatus /= divisor;
+    _f /= divisor;
+    _g /= divisor;
+    _h /= divisor;
+    _k /= divisor;
+    _trueLongitude /= divisor;
+    return *this;
+}
+
+
 OrbitalElements
     Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
@@ -124,19 +203,10 @@ std::vector<double> Equinoctial::to_vector() const
              _trueLongitude.numerical_value_ref_in(_trueLongitude.unit) };
 }
 
-void Equinoctial::update_from_vector(const std::vector<double>& vec)
-{
-    _semilatus     = vec[0] * km;
-    _f             = vec[1] * one;
-    _g             = vec[2] * one;
-    _h             = vec[3] * one;
-    _k             = vec[4] * one;
-    _trueLongitude = vec[5] * rad;
-}
 
-Equinoctial EquinoctialPartial::operator*(const Time& time)
+Equinoctial EquinoctialPartial::operator*(const Time& time) const
 {
-    return Equinoctial(_semilatusPerTime * time, _fPerTime * time, _gPerTime * time, _hPerTime * time, _kPerTime * time, _trueLongitudePerTime * time);
+    return Equinoctial(_semilatusPartial * time, _fPartial * time, _gPartial * time, _hPartial * time, _kPartial * time, _trueLongitudePartial * time);
 }
 
 std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)

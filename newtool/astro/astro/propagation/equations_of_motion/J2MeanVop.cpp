@@ -15,10 +15,14 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::si::unit_symbols;
+using namespace mp_units::non_si;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
-OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     const Keplerian elements  = Keplerian(state, system);
@@ -81,11 +85,11 @@ OrbitalElements J2MeanVop::operator()(const Time& time, const OrbitalElements& s
     // Will cause an error
     quantity<rad / s> dincdt = _dincdt;
     if (inc == incTol && dincdt <= incTol * one / s) {
-        dincdt    = 0.0;
+        dincdt    = 0.0 * rad / s;
         checkflag = true;
     }
 
-    const Keplerian dsdt(dadt * s, deccdt * s, dincdt * s, draandt * s, dwdt * s, dthetadt * s);
+    const KeplerianPartial dsdt(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 
-    return OrbitalElements(dsdt);
+    return dsdt;
 }

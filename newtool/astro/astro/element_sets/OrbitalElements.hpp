@@ -76,12 +76,6 @@ concept HasToVector = requires(const T elements)
 };
 
 template <typename T>
-concept HasUpdateFromVector = requires(T elements, const std::vector<double> vec)
-{
-    { elements.update_from_vector(vec) };
-};
-
-template <typename T>
 concept HasVectorConstructor = requires(const std::vector<double>& elements, const EnumType& setId)
 {
     { T(elements, setId) };
@@ -140,7 +134,6 @@ concept IsOrbitalElements = requires(T)
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
     requires HasGetSetId<T>;
     requires HasToVector<T>;
-    requires HasUpdateFromVector<T>;
     requires HasSize<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;

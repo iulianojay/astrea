@@ -16,15 +16,18 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
+using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
+
+inline constexpr struct JulianCentury final : named_unit<"JulianCentury", mag<36525> * day> {
+} JulianCentury;
 
 
 CelestialBody::CelestialBody(const std::string& file)
 {
 
-    using json          = nlohmann::json;
-    using JulianCentury = 36525 * day;
+    using json = nlohmann::json;
 
     // Read file into JSON
     // TODO: Add checks to make sure its a valid JSON
@@ -98,11 +101,11 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const Gr
     */
 
     // Loop over each day in the epoch range
-    const int nDays                      = (endEpoch - epoch).count<days>();
-    const double daysSinceReferenceEpoch = epoch.julian_day() - _referenceDate.julian_day();
+    const int nDays                             = (endEpoch - epoch).count<days>();
+    const quantity<day> daysSinceReferenceEpoch = epoch.julian_day() - _referenceDate.julian_day();
     for (int iDay = 0; iDay < nDays; ++iDay) {
         // Time since reference date
-        const double julianCenturies = (static_cast<double>(iDay) + daysSinceReferenceEpoch) / 36525.0; // time in Julian Centuries
+        const quantity<JulianCentury> julianCenturies = (iDay * day + daysSinceReferenceEpoch); // time in Julian Centuries
 
         // KEPLERIANs
         const quantity at    = _semimajorAxis + _semimajorAxisRate * julianCenturies;
@@ -126,59 +129,17 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const Gr
         const quantity ecct_5 = ecct_4 * ecct;
 
         const quantity thetat =
-            (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * math_c::sin(Met) +
-             (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * math_c::sin(2.0 * Met) +
-             (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * math_c::sin(3.0 * Met) +
-             103.0 / 96.0 * ecct_4 * math_c::sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * math_c::sin(5 * Met));
+            (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) +
+             (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) +
+             (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) + 103.0 / 96.0 * ecct_4 * sin(4 * Met) +
+             1097.0 / 960.0 * ecct_5 * sin(5 * Met));
 
         // Store mean and true anomaly
         _meanAnomaly = Met;
         _trueAnomaly = thetat;
 
-        // Calculate once for speed
-        const quantity ct = cos(thetat);
-        const quantity st = sin(thetat);
-        const quantity cw = cos(wt);
-        const quantity sw = sin(wt);
-        const quantity cr = cos(raant);
-        const quantity sr = sin(raant);
-        const quantity ci = cos(inct);
-        const quantity si = sin(inct);
-
-        const quantity coes2perir = ht * ht / parentMu / (1 + ecct * ct);
-        const quantity coes2periv = parentMu / ht;
-
-        // Perifocal frame
-        // z_peri is 0 by definition
-        const quantity xPerifocal = coes2perir * ct;
-        const quantity yPerifocal = coes2perir * st;
-
-        const quantity vxPerifocal = -coes2periv * st;
-        const quantity vyPerifocal = coes2periv * (ecct + ct);
-
-        // Translate to inertial frame
-        /*
-                     | cw sw 0| |1   0  0| | cr sr 0|
-          peri2ECI = |-sw cw 0|*|0  ci si|*|-sr cr 0|
-                     |  0  0 1| |0 -si ci| |  0  0 1|
-        */
-        const quantity DCM_xx = cw * cr - ci * sw * sr;
-        const quantity DCM_xy = -sw * cr - ci * cw * sr;
-        const quantity DCM_yx = cw * sr + ci * sw * cr;
-        const quantity DCM_yy = -sw * sr + ci * cw * cr;
-        const quantity DCM_zx = si * sw;
-        const quantity DCM_zy = si * cw;
-
-        // Find radius and velocity vector
-        const Cartesian bciState{ { DCM_xx * xPerifocal + DCM_xy * yPerifocal,
-                                    DCM_yx * xPerifocal + DCM_yy * yPerifocal,
-                                    DCM_zx * xPerifocal + DCM_zy * yPerifocal },
-                                  { DCM_xx * vxPerifocal + DCM_xy * vyPerifocal,
-                                    DCM_yx * vxPerifocal + DCM_yy * vyPerifocal,
-                                    DCM_zx * vxPerifocal + DCM_zy * vyPerifocal } };
-
         // Store
-        State state(days(iDay), bciState, ElementSet::CARTESIAN);
+        State state(days(iDay), Keplerian(at, ecct, inct, raant, wt, thetat));
         _states.push_back(state);
     }
 }

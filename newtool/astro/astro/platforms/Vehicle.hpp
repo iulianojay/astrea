@@ -18,6 +18,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typeid_name_extract.hpp>
+#include <astro/units/units.hpp>
 
 
 template <typename T>
@@ -172,11 +173,6 @@ namespace detail {
 
 struct VehicleInnerBase {
 
-    // Unit shortcuts
-    using Mass     = mp_units::quantity<mp_units::si::unit_symbols::kg>;
-    using Area     = mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>;
-    using Unitless = mp_units::quantity<mp_units::one>;
-
     // Virtual destructor
     virtual ~VehicleInnerBase() {}
 
@@ -187,9 +183,9 @@ struct VehicleInnerBase {
     virtual Mass get_mass() const                 = 0;
 
     // Optional methods
-    virtual Area get_ram_area() const   = 0;
-    virtual Area get_lift_area() const  = 0;
-    virtual Area get_solar_area() const = 0;
+    virtual SurfaceArea get_ram_area() const   = 0;
+    virtual SurfaceArea get_lift_area() const  = 0;
+    virtual SurfaceArea get_solar_area() const = 0;
 
     virtual Unitless get_coefficient_of_drag() const         = 0;
     virtual Unitless get_coefficient_of_lift() const         = 0;
@@ -239,58 +235,58 @@ struct VehicleInner final : public VehicleInnerBase {
     const { return value.get_mass() * mp_units::si::unit_symbols::kg; }
 
     // Invoke implicit implementations for optional methods
-    Area get_ram_area() const final { return get_ram_area_impl(_value); }
-    Area get_lift_area() const final { return get_lift_area_impl(_value); }
-    Area get_solar_area() const final { return get_solar_area_impl(_value); }
+    SurfaceArea get_ram_area() const final { return get_ram_area_impl(_value); }
+    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
+    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
     Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
     Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
     Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
 
     // Use templates to switch between defined or default implementations
     template <typename U>
-    requires(!HasGetRamArea<U>) static Area get_ram_area_impl(const U&)
+    requires(!HasGetRamArea<U>) static SurfaceArea get_ram_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
-    requires(HasGetRamArea<U>&& HasGetRamAreaUnits<U>) static Area get_ram_area_impl(const U& value)
+    requires(HasGetRamArea<U>&& HasGetRamAreaUnits<U>) static SurfaceArea get_ram_area_impl(const U& value)
     {
         return value.get_ram_area();
     }
     template <typename U>
-    requires(HasGetRamArea<U> && !HasGetRamAreaUnits<U>) static Area get_ram_area_impl(const U& value)
+    requires(HasGetRamArea<U> && !HasGetRamAreaUnits<U>) static SurfaceArea get_ram_area_impl(const U& value)
     {
         return value.get_ram_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
 
     template <typename U>
-    requires(!HasGetLiftArea<U>) static Area get_lift_area_impl(const U&)
+    requires(!HasGetLiftArea<U>) static SurfaceArea get_lift_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
-    requires(HasGetLiftArea<U>&& HasGetLiftAreaUnits<U>) static Area get_lift_area_impl(const U& value)
+    requires(HasGetLiftArea<U>&& HasGetLiftAreaUnits<U>) static SurfaceArea get_lift_area_impl(const U& value)
     {
         return value.get_lift_area();
     }
     template <typename U>
-    requires(HasGetLiftArea<U> && !HasGetLiftAreaUnits<U>) static Area get_lift_area_impl(const U& value)
+    requires(HasGetLiftArea<U> && !HasGetLiftAreaUnits<U>) static SurfaceArea get_lift_area_impl(const U& value)
     {
         return value.get_lift_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
 
     template <typename U>
-    requires(!HasGetSolarArea<U>) static Area get_solar_area_impl(const U&)
+    requires(!HasGetSolarArea<U>) static SurfaceArea get_solar_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
     template <typename U>
-    requires(HasGetSolarArea<U>&& HasGetSolarAreaUnits<U>) static Area get_solar_area_impl(const U& value)
+    requires(HasGetSolarArea<U>&& HasGetSolarAreaUnits<U>) static SurfaceArea get_solar_area_impl(const U& value)
     {
         return value.get_solar_area();
     }
     template <typename U>
-    requires(HasGetSolarArea<U> && !HasGetSolarAreaUnits<U>) static Area get_solar_area_impl(const U& value)
+    requires(HasGetSolarArea<U> && !HasGetSolarAreaUnits<U>) static SurfaceArea get_solar_area_impl(const U& value)
     {
         return value.get_solar_area() * mp_units::pow<2>(mp_units::si::unit_symbols::m);
     }
@@ -374,11 +370,6 @@ concept IsGenericallyConstructableVehicle = requires(T)
 
 class Vehicle {
 
-    // Unit shortcuts
-    using Mass     = mp_units::quantity<mp_units::si::unit_symbols::kg>;
-    using Area     = mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>;
-    using Unitless = mp_units::quantity<mp_units::one>;
-
   public:
     // Default constructor
     Vehicle();
@@ -433,13 +424,13 @@ class Vehicle {
     Mass get_mass() const { return _ptr->get_mass(); }
 
     // Ram area
-    Area get_ram_area() const { return _ptr->get_ram_area(); }
+    SurfaceArea get_ram_area() const { return _ptr->get_ram_area(); }
 
     // Lift area
-    Area get_lift_area() const { return _ptr->get_lift_area(); }
+    SurfaceArea get_lift_area() const { return _ptr->get_lift_area(); }
 
     // Solar area
-    Area get_solar_area() const { return _ptr->get_solar_area(); }
+    SurfaceArea get_solar_area() const { return _ptr->get_solar_area(); }
 
     // Coefficient of drag
     Unitless get_coefficient_of_drag() const { return _ptr->get_coefficient_of_drag(); }
@@ -462,9 +453,9 @@ class Vehicle {
     State _state;
     Date _epoch;
     Mass _mass;
-    Area _ramArea;
-    Area _liftArea;
-    Area _solarArea;
+    SurfaceArea _ramArea;
+    SurfaceArea _liftArea;
+    SurfaceArea _solarArea;
     Unitless _coefficientOfDrag;
     Unitless _coefficientOfLift;
     Unitless _coefficientOfReflectivity;

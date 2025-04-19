@@ -52,7 +52,11 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < centerToSun.size(); ii++) {
-                centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
+                centerToSun[ii].elements = std::visit(
+                    [](const auto& x, const auto& y) { return x + y; },
+                    centerToSun[ii].elements,
+                    parentToGrandParent[ii].elements
+                );
             }
             parent = parentBody->get_parent();
         }
@@ -77,14 +81,17 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
             for (size_t ii = 0; ii < states.size(); ii++) {
-                states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
+                states[ii].elements = std::visit(
+                    [](const auto& x, const auto& y) { return x + y; }, states[ii].elements, parentToGrandParent[ii].elements
+                );
             }
             parent = parentBody->get_parent();
         }
 
         // Convert to state relative to central body
         for (size_t ii = 0; ii < states.size(); ii++) {
-            states[ii].elements = states[ii].elements - centerToRoot[ii].elements;
+            states[ii].elements =
+                std::visit([](const auto& x, const auto& y) { return x - y; }, states[ii].elements, centerToRoot[ii].elements);
         }
     }
 }

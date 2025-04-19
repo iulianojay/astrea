@@ -44,7 +44,8 @@ AccelerationVector
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const State& stateSunToNBody        = (center->get_closest_state(julianDate)).convert<Cartesian>(sys);
+        const State& stateSunToNBody =
+            (center->get_closest_state(julianDate - vehicle.get_epoch().julian_day())).convert<Cartesian>(sys);
         const RadiusVector radiusSunToNbody = stateSunToCenter.elements.to_cartesian(sys).get_radius();
 
         // Find radius from central body and spacecraft to nth body

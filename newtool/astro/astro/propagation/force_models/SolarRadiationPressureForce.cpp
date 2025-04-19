@@ -32,7 +32,7 @@ AccelerationVector
     static const bool isSun                = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = (center->get_closest_state(julianDate));
+    const State& stateSunToCenter        = (center->get_closest_state(julianDate) - vehicle.epoch().julian_day());
     const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_cartesian(sys).get_radius();
 
     // Radius from central body to sun

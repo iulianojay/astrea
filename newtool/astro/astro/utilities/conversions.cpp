@@ -273,7 +273,7 @@ std::vector<double> conversions::bci_to_keplerian(const std::vector<double>& rad
 
     if (normN == 0.0 || std::isnan(w) || fabs(w - 2.0 * M_PI) < tol) { w = 0.0; }
 
-    // Period(s)
+    // Time(s)
     // T = 2.0*M_PI*std::sqrt(a*a*a/mu);
 
     // Mean Motion(rad/s)

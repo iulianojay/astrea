@@ -17,7 +17,7 @@ class TwoBody : public EquationsOfMotion {
         mu(system.get_center()->get_mu()){};
     ~TwoBody() = default;
 
-    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:

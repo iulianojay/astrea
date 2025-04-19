@@ -10,11 +10,14 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
 using namespace mp_units::non_si;
-using namespace mp_units::si::unit_symbols;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
-OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     const Keplerian elements  = Keplerian(state, system);
@@ -71,7 +74,7 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const JulianDate julianDate   = vehicle.get_epoch().julian_day() + time;
+    const JulianDate julianDate   = (vehicle.get_epoch() + time).julian_day();
     AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Calculate R, N, and T
@@ -103,9 +106,9 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
     // const quantity<km/s> dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
     const quantity<km / s> dadt = 2 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
     // km^3/s^2 / km^6/s^3 * km^2/s^2 -> km^-1 * s^-1 + km^3/s^2 / km^4/s^2 * 1/s -> km^-1 / s^-1
-    const Keplerian dsdt(dadt * s, deccdt * s, dincdt * s, draandt * s, dwdt * s, dthetadt * s);
+    const KeplerianPartial dsdt(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 
-    return OrbitalElements(dsdt);
+    return dsdt;
 }
 
 void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad>& inc) const

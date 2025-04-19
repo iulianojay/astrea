@@ -13,8 +13,11 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::si::unit_symbols;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
 
 Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
@@ -28,9 +31,10 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 
         No idea how much of this is just wrong.
     */
-    static const quantity<one> tol = 1.0e-10 * one;
-    static const quantity piRad    = 1.0 * (mag<pi> * rad);
-    static const quantity twoPiRad = 2.0 * (mag<pi> * rad);
+    static const quantity<one> tol        = 1.0e-10 * one;
+    static const quantity<rad> angularTol = 1.0e-10 * rad;
+    static const quantity piRad           = 1.0 * (mag<pi> * rad);
+    static const quantity twoPiRad        = 2.0 * (mag<pi> * rad);
 
     // Get mu
     const quantity mu = sys.get_center()->get_mu();
@@ -83,7 +87,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 
     // Inclination (rad)
     _inclination = acos(hz / normH);
-    if (abs(_inclination - piRad) < tol) { _inclination = 0.0 * rad; }
+    if (abs(_inclination - piRad) < angularTol) { _inclination = 0.0 * rad; }
 
     // Right Ascension of Ascending Node (rad)
     if (_inclination == 0.0 * rad) { // No nodal line
@@ -95,7 +99,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
             _rightAscension = twoPiRad - acos(Nx / normN);
         }
 
-        if (abs(_rightAscension - twoPiRad) < tol) { _rightAscension = 0.0 * rad; }
+        if (abs(_rightAscension - twoPiRad) < angularTol) { _rightAscension = 0.0 * rad; }
     }
 
     // True Anomaly (rad)
@@ -141,12 +145,12 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
     }
 
     // Catch garbage
-    if (normN == 0.0 * (km * km / s) || abs(_argPerigee - twoPiRad) < tol) {
+    if (normN == 0.0 * (km * km / s) || abs(_argPerigee - twoPiRad) < angularTol) {
         _trueAnomaly += _argPerigee;
         _argPerigee = 0.0 * rad;
     }
 
-    if (abs(_trueAnomaly - twoPiRad) < tol) { _trueAnomaly = 0.0 * rad; }
+    if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
 }
 
 Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys)
@@ -241,6 +245,83 @@ bool Keplerian::operator==(const Keplerian& other) const
 bool Keplerian::operator!=(const Keplerian& other) const { return !(*this == other); }
 
 
+// Mathmatical operators
+Keplerian Keplerian::operator+(const Keplerian& other) const
+{
+    return Keplerian(
+        _semimajor + other._semimajor,
+        _eccentricity + other._eccentricity,
+        _inclination + other._inclination,
+        _rightAscension + other._rightAscension,
+        _argPerigee + other._argPerigee,
+        _trueAnomaly + other._trueAnomaly
+    );
+}
+Keplerian& Keplerian::operator+=(const Keplerian& other)
+{
+    _semimajor += other._semimajor;
+    _eccentricity += other._eccentricity;
+    _inclination += other._inclination;
+    _rightAscension += other._rightAscension;
+    _argPerigee += other._argPerigee;
+    _trueAnomaly += other._trueAnomaly;
+    return *this;
+}
+
+Keplerian Keplerian::operator-(const Keplerian& other) const
+{
+    return Keplerian(
+        _semimajor - other._semimajor,
+        _eccentricity - other._eccentricity,
+        _inclination - other._inclination,
+        _rightAscension - other._rightAscension,
+        _argPerigee - other._argPerigee,
+        _trueAnomaly - other._trueAnomaly
+    );
+}
+Keplerian& Keplerian::operator-=(const Keplerian& other)
+{
+    _semimajor -= other._semimajor;
+    _eccentricity -= other._eccentricity;
+    _inclination -= other._inclination;
+    _rightAscension -= other._rightAscension;
+    _argPerigee -= other._argPerigee;
+    _trueAnomaly -= other._trueAnomaly;
+    return *this;
+}
+
+Keplerian Keplerian::operator*(const Unitless& multiplier) const
+{
+    return Keplerian(
+        _semimajor * multiplier, _eccentricity * multiplier, _inclination * multiplier, _rightAscension * multiplier, _argPerigee * multiplier, _trueAnomaly * multiplier
+    );
+}
+Keplerian& Keplerian::operator*=(const Unitless& multiplier)
+{
+    _semimajor *= multiplier;
+    _eccentricity *= multiplier;
+    _inclination *= multiplier;
+    _rightAscension *= multiplier;
+    _argPerigee *= multiplier;
+    _trueAnomaly *= multiplier;
+    return *this;
+}
+
+Keplerian Keplerian::operator/(const Unitless& divisor) const
+{
+    return Keplerian(_semimajor / divisor, _eccentricity / divisor, _inclination / divisor, _rightAscension / divisor, _argPerigee / divisor, _trueAnomaly / divisor);
+}
+Keplerian& Keplerian::operator/=(const Unitless& divisor)
+{
+    _semimajor /= divisor;
+    _eccentricity /= divisor;
+    _inclination /= divisor;
+    _rightAscension /= divisor;
+    _argPerigee /= divisor;
+    _trueAnomaly /= divisor;
+    return *this;
+}
+
 OrbitalElements
     Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
@@ -272,18 +353,8 @@ std::vector<double> Keplerian::to_vector() const
              _trueAnomaly.numerical_value_ref_in(_trueAnomaly.unit) };
 }
 
-void Keplerian::update_from_vector(const std::vector<double>& vec)
-{
-    _semimajor      = vec[0] * km;
-    _eccentricity   = vec[1] * one;
-    _inclination    = vec[2] * rad;
-    _rightAscension = vec[3] * rad;
-    _argPerigee     = vec[4] * rad;
-    _trueAnomaly    = vec[5] * rad;
-}
 
-
-Keplerian KeplerianPartial::operator*(const Time& time)
+Keplerian KeplerianPartial::operator*(const Time& time) const
 {
     return Keplerian(
         _semimajorPartial * time,

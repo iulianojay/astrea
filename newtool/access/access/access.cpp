@@ -56,6 +56,7 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
     // Fill
     std::vector<Time> times;
 
+    int ii    = 0;
     Time time = startTime;
     for (while time < endTime) {
         if (time + resolution > endTime) { times.emplace_back(endTime); }
@@ -63,6 +64,7 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
             times.emplace_back(time);
         }
         time += ii * resolution;
+        ++ii;
     }
 
     return times;

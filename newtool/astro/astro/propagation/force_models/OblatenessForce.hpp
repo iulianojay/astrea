@@ -7,6 +7,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class OblatenessForce : public Force {
   public:
@@ -18,9 +19,6 @@ class OblatenessForce : public Force {
     void set_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
 
   private:
-    using Altitude = mp_units::quantity<mp_units::si::unit_symbols::km>;
-    using Unitless = mp_units::quantity<mp_units::one>;
-
     mutable std::vector<std::vector<Unitless>> P{};
     mutable std::vector<std::vector<Unitless>> C{};
     mutable std::vector<std::vector<Unitless>> S{};

@@ -7,33 +7,27 @@
 #include <unordered_map>
 #include <vector>
 
+// mp-units
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
+
 // Astro
 #include <astro/constants/astronomical_constants.h>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class CelestialBody {
 
-    // Unit shortcuts
-    using GravParam =
-        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
-    using Mass         = mp_units::quantity<mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg>;
-    using Distance     = mp_units::quantity<mp_units::si::unit_symbols::km>;
-    using Speed        = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s>;
-    using Unitless     = mp_units::quantity<mp_units::one>;
-    using EccRate      = mp_units::quantity<mp_units::one / mp_units::si::unit_symbols::s>;
-    using Angle        = mp_units::quantity<mp_units::si::unit_symbols::rad>;
-    using AnglularRate = mp_units::quantity<mp_units::si::unit_symbols::rad / mp_units::si::unit_symbols::s>;
-    using Period       = mp_units::quantity<mp_units::si::unit_symbols::s>;
-
   public:
     // Constructor/destructor
-    CelestialBody()                           = default;
-    CelestialBody(const CelestialBody& other) = default;
-    CelestialBody(const std::string& file);
+    CelestialBody()  = default;
     ~CelestialBody() = default;
+
+    CelestialBody(const std::string& file);
+    CelestialBody(const CelestialBody& other) = default;
 
     // Operators
     bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
@@ -59,8 +53,8 @@ class CelestialBody {
     const Unitless& get_j3() const { return _j3; };
 
     const Angle& get_axial_tilt() const { return _axialTilt; };
-    const AnglularRate& get_rotation_rate() const { return _rotationRate; };
-    const Period& get_siderial_period() const { return _siderialPeroid; };
+    const AngularRate& get_rotation_rate() const { return _rotationRate; };
+    const Time& get_siderial_period() const { return _siderialPeroid; };
 
     const Distance& get_semimajor() const { return _semimajorAxis; };
     const Unitless& get_eccentricity() const { return _eccentricity; };
@@ -71,12 +65,12 @@ class CelestialBody {
     const Angle& get_true_anomaly() const { return _trueAnomaly; };
     const Angle& get_mean_anomaly() const { return _meanAnomaly; };
 
-    const Speed& get_semimajor_rate() const { return _semimajorAxisRate; };
-    const EccRate& get_eccentricity_rate() const { return _eccentricityRate; };
-    const AnglularRate& get_inclination_rate() const { return _inclinationRate; };
-    const AnglularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
-    const AnglularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
-    const AnglularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
+    const Velocity& get_semimajor_rate() const { return _semimajorAxisRate; };
+    const UnitlessPerTime& get_eccentricity_rate() const { return _eccentricityRate; };
+    const AngularRate& get_inclination_rate() const { return _inclinationRate; };
+    const AngularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
+    const AngularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
+    const AngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
 
     std::vector<State>& get_states() { return _states; };
     const State& get_closest_state(const Time& time) const;
@@ -96,8 +90,8 @@ class CelestialBody {
     Unitless _j2;
     Unitless _j3;
     Angle _axialTilt;
-    AnglularRate _rotationRate;
-    Period _siderialPeroid;
+    AngularRate _rotationRate;
+    Time _siderialPeroid;
 
     Distance _semimajorAxis;
     Unitless _eccentricity;
@@ -108,12 +102,12 @@ class CelestialBody {
     Angle _trueAnomaly;
     Angle _meanAnomaly;
 
-    Speed _semimajorAxisRate;
-    EccRate _eccentricityRate;
-    AnglularRate _inclinationRate;
-    AnglularRate _rightAscensionRate;
-    AnglularRate _argumentOfPerigeeRate;
-    AnglularRate _trueLatitudeRate;
+    Velocity _semimajorAxisRate;
+    UnitlessPerTime _eccentricityRate;
+    AngularRate _inclinationRate;
+    AngularRate _rightAscensionRate;
+    AngularRate _argumentOfPerigeeRate;
+    AngularRate _trueLatitudeRate;
 
     std::vector<State> _states;
 

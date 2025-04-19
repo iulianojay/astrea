@@ -9,10 +9,11 @@
 
 using namespace mp_units;
 using namespace mp_units::si;
-using namespace mp_units::si::unit_symbols;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 
-OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     const Cartesian cartesian = Cartesian(state, system);
@@ -31,7 +32,7 @@ OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& sta
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    const Cartesian dsdt(vx * s, vy * s, vz * s, (-muOverRadiusCubed * x) * s, (-muOverRadiusCubed * y) * s, (-muOverRadiusCubed * z) * s);
+    const CartesianPartial dsdt(vx, vy, vz, (-muOverRadiusCubed * x), (-muOverRadiusCubed * y), (-muOverRadiusCubed * z));
 
-    return OrbitalElements(dsdt);
+    return dsdt;
 }

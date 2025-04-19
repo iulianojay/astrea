@@ -18,37 +18,39 @@
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class Cartesian {
 
     friend std::ostream& operator<<(std::ostream&, Cartesian const&);
-
-    using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
-    using Velocity = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s>;
+    friend CartesianPartial;
 
   public:
     Cartesian() :
-        _radius{ 0.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km },
-        _velocity{ 0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-                   0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-                   0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s }
-    {
-    }
-    Cartesian(const std::vector<double>& r, const std::vector<double>& v) :
-        _radius({ r[0] * mp_units::si::unit_symbols::km, r[1] * mp_units::si::unit_symbols::km, r[2] * mp_units::si::unit_symbols::km }),
-        _velocity({ v[0] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-                    v[1] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s,
-                    v[2] * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s })
+        _x(0.0 * mp_units::si::unit_symbols::km),
+        _y(0.0 * mp_units::si::unit_symbols::km),
+        _z(0.0 * mp_units::si::unit_symbols::km),
+        _vx(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s),
+        _vy(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s),
+        _vz(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s)
     {
     }
     Cartesian(const RadiusVector& r, const VelocityVector& v) :
-        _radius(r),
-        _velocity(v)
+        _x(r[0]),
+        _y(r[1]),
+        _z(r[2]),
+        _vx(v[0]),
+        _vy(v[1]),
+        _vz(v[2])
     {
     }
     Cartesian(const Distance& x, const Distance& y, const Distance& z, const Velocity& vx, const Velocity& vy, const Velocity& vz) :
-        _radius({ x, y, z }),
-        _velocity({ vx, vy, vz })
+        _x(x),
+        _y(y),
+        _z(z),
+        _vx(vx),
+        _vy(vy),
+        _vz(vz)
     {
     }
     Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
@@ -80,28 +82,27 @@ class Cartesian {
     Cartesian operator-(const Cartesian& other) const;
     Cartesian& operator-=(const Cartesian& other);
 
-    Cartesian operator*(const double& multiplier) const;
-    Cartesian& operator*=(const double& multiplier);
+    Cartesian operator*(const Unitless& multiplier) const;
+    Cartesian& operator*=(const Unitless& multiplier);
 
-    Cartesian operator/(const double& divisor) const;
-    Cartesian& operator/=(const double& divisor);
+    Cartesian operator/(const Unitless& divisor) const;
+    Cartesian& operator/=(const Unitless& divisor);
 
     // Element access
-    const RadiusVector& get_radius() const { return _radius; }
-    const VelocityVector& get_velocity() const { return _velocity; }
+    RadiusVector get_radius() const { return { _x, _y, _z }; }
+    VelocityVector get_velocity() const { return { _vx, _vy, _vz }; }
 
-    const Distance& get_x() const { return _radius[0]; }
-    const Distance& get_y() const { return _radius[1]; }
-    const Distance& get_z() const { return _radius[2]; }
+    const Distance& get_x() const { return _x; }
+    const Distance& get_y() const { return _y; }
+    const Distance& get_z() const { return _z; }
 
-    const Velocity& get_vx() const { return _velocity[0]; }
-    const Velocity& get_vy() const { return _velocity[1]; }
-    const Velocity& get_vz() const { return _velocity[2]; }
+    const Velocity& get_vx() const { return _vx; }
+    const Velocity& get_vy() const { return _vy; }
+    const Velocity& get_vz() const { return _vz; }
 
     size_t size() const { return 6; }
 
     std::vector<double> to_vector() const;
-    void update_from_vector(const std::vector<double>& vec);
 
     constexpr EnumType get_set_id() const { return _setId; }
     OrbitalElements
@@ -110,23 +111,38 @@ class Cartesian {
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN);
 
-    RadiusVector _radius;
-    VelocityVector _velocity;
+    Distance _x;
+    Distance _y;
+    Distance _z;
+    Velocity _vx;
+    Velocity _vy;
+    Velocity _vz;
 };
 
 class CartesianPartial {
-    using DistancePerTime = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::non_si::day>;
-    using VelocityPerTime =
-        mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s / mp_units::non_si::day>;
+
+    using Acceleration =
+        mp_units::quantity<mp_units::si::unit_symbols::km / (mp_units::si::unit_symbols::s * mp_units::si::unit_symbols::s)>;
 
   public:
-    Cartesian operator*(const Time& time);
+    CartesianPartial() = default;
+    CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :
+        _vx(vx),
+        _vy(vy),
+        _vz(vz),
+        _ax(ax),
+        _ay(ay),
+        _az(az)
+    {
+    }
+
+    Cartesian operator*(const Time& time) const;
 
   private:
-    DistancePerTime _xPerTime;
-    DistancePerTime _yPerTime;
-    DistancePerTime _zPerTime;
-    VelocityPerTime _vxPerTime;
-    VelocityPerTime _vyPerTime;
-    VelocityPerTime _vzPerTime;
+    Velocity _vx;
+    Velocity _vy;
+    Velocity _vz;
+    Acceleration _ax;
+    Acceleration _ay;
+    Acceleration _az;
 };

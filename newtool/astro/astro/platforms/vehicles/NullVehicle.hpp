@@ -11,10 +11,9 @@
 // astro
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/units/units.hpp>
 
 class NullVehicle {
-
-    using Mass = mp_units::quantity<mp_units::si::unit_symbols::kg>;
 
   public:
     NullVehicle(const State& state = State(), const Date& epoch = J2000, const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg) :

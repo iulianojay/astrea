@@ -11,11 +11,15 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
 using namespace mp_units::non_si;
-using namespace mp_units::si::unit_symbols;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
 
-OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+
+OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     // Get need representations
@@ -51,7 +55,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<one> Rhatz = z / R;
 
     const quantity<one> ecc                      = sqrt(f * f + g * g);
-    const quantity<pow<2>(km) / s> relSpecAngMom = sqrt(mu * a * (1 - ecc * ecc));
+    const quantity<pow<2>(km) / s> relSpecAngMom = sqrt(mu * p);
     const quantity<one> Nhatx                    = (y * vz - z * vy) / relSpecAngMom;
     const quantity<one> Nhaty                    = (z * vx - x * vz) / relSpecAngMom;
     const quantity<one> Nhatz                    = (x * vy - y * vx) / relSpecAngMom;
@@ -67,7 +71,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const JulianDate julianDate   = vehicle.get_epoch().julian_day() + time;
+    const JulianDate julianDate   = (vehicle.get_epoch() + time).julian_day();
     AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
 
     // Calculate R, N, and T
@@ -96,7 +100,7 @@ OrbitalElements EquinoctialVop::operator()(const Time& time, const OrbitalElemen
     const quantity<one / s> dkdt = tempD * sinL * normalPert;
     const quantity<rad / s> dLdt = sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert;
 
-    const Equinoctial dsdt(dpdt * s, dfdt * s, dgdt * s, dhdt * s, dkdt * s, dLdt * s);
+    const EquinoctialPartial dsdt(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 
-    return OrbitalElements(dsdt);
+    return dsdt;
 }

@@ -10,47 +10,36 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
+#include <astro/units/units.hpp>
 
 class Keplerian {
 
     friend std::ostream& operator<<(std::ostream&, Keplerian const&);
 
-    using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
-    using Unitless = mp_units::quantity<mp_units::one>;
-    using Angle    = mp_units::quantity<mp_units::si::unit_symbols::rad>;
-
   public:
     Keplerian() :
-        _semimajor{ 0.0 * mp_units::si::unit_symbols::km },
-        _eccentricity{ 0.0 * mp_units::one },
-        _inclination{ 0.0 * mp_units::si::unit_symbols::rad },
-        _rightAscension{ 0.0 * mp_units::si::unit_symbols::rad },
-        _argPerigee{ 0.0 * mp_units::si::unit_symbols::rad },
-        _trueAnomaly{ 0.0 * mp_units::si::unit_symbols::rad }
-    {
-    }
-    Keplerian(const std::vector<double>& elements) :
-        _semimajor{ elements[0] * mp_units::si::unit_symbols::km },
-        _eccentricity{ elements[1] * mp_units::one },
-        _inclination{ elements[2] * mp_units::si::unit_symbols::rad },
-        _rightAscension{ elements[3] * mp_units::si::unit_symbols::rad },
-        _argPerigee{ elements[4] * mp_units::si::unit_symbols::rad },
-        _trueAnomaly{ elements[5] * mp_units::si::unit_symbols::rad }
+        _semimajor(0.0 * mp_units::si::unit_symbols::km),
+        _eccentricity(0.0 * mp_units::one),
+        _inclination(0.0 * mp_units::angular::unit_symbols::rad),
+        _rightAscension(0.0 * mp_units::angular::unit_symbols::rad),
+        _argPerigee(0.0 * mp_units::angular::unit_symbols::rad),
+        _trueAnomaly(0.0 * mp_units::angular::unit_symbols::rad)
     {
     }
     Keplerian(const Distance& semimajor, const Unitless& eccentricity, const Angle& inclination, const Angle& rightAscension, const Angle& argPerigee, const Angle& trueAnomaly) :
-        _semimajor{ semimajor },
-        _eccentricity{ eccentricity },
-        _inclination{ inclination },
-        _rightAscension{ rightAscension },
-        _argPerigee{ argPerigee },
-        _trueAnomaly{ trueAnomaly }
+        _semimajor(semimajor),
+        _eccentricity(eccentricity),
+        _inclination(inclination),
+        _rightAscension(rightAscension),
+        _argPerigee(argPerigee),
+        _trueAnomaly(trueAnomaly)
     {
     }
     Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
@@ -83,11 +72,11 @@ class Keplerian {
     Keplerian operator-(const Keplerian& other) const;
     Keplerian& operator-=(const Keplerian& other);
 
-    Keplerian operator*(const double& multiplier) const;
-    Keplerian& operator*=(const double& multiplier);
+    Keplerian operator*(const Unitless& multiplier) const;
+    Keplerian& operator*=(const Unitless& multiplier);
 
-    Keplerian operator/(const double& divisor) const;
-    Keplerian& operator/=(const double& divisor);
+    Keplerian operator/(const Unitless& divisor) const;
+    Keplerian& operator/=(const Unitless& divisor);
 
     // Element access
     const Distance& get_semimajor() const { return _semimajor; }
@@ -104,7 +93,6 @@ class Keplerian {
         interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
     std::vector<double> to_vector() const;
-    void update_from_vector(const std::vector<double>& vec);
 
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::KEPLERIAN);
@@ -119,18 +107,31 @@ class Keplerian {
 
 class KeplerianPartial {
 
-    using DistancePerTime = mp_units::quantity<mp_units::si::unit_symbols::km / mp_units::non_si::day>;
-    using UnitlessPerTime = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
-    using AnglePerTime    = mp_units::quantity<mp_units::si::unit_symbols::rad / mp_units::non_si::day>;
-
   public:
-    Keplerian operator*(const Time& time);
+    KeplerianPartial() = default;
+    KeplerianPartial(
+        const Velocity& semimajorPartial,
+        const UnitlessPerTime& eccentricityPartial,
+        const AngularRate& inclinationPartial,
+        const AngularRate& rightAscensionPartial,
+        const AngularRate& argPerigeePartial,
+        const AngularRate& trueAnomalyPartial
+    ) :
+        _semimajorPartial(semimajorPartial),
+        _eccentricityPartial(eccentricityPartial),
+        _inclinationPartial(inclinationPartial),
+        _rightAscensionPartial(rightAscensionPartial),
+        _argPerigeePartial(argPerigeePartial),
+        _trueAnomalyPartial(trueAnomalyPartial)
+    {
+    }
+    Keplerian operator*(const Time& time) const;
 
   private:
-    DistancePerTime _semimajorPartial;
+    Velocity _semimajorPartial;
     UnitlessPerTime _eccentricityPartial;
-    AnglePerTime _inclinationPartial;
-    AnglePerTime _rightAscensionPartial;
-    AnglePerTime _argPerigeePartial;
-    AnglePerTime _trueAnomalyPartial;
+    AngularRate _inclinationPartial;
+    AngularRate _rightAscensionPartial;
+    AngularRate _argPerigeePartial;
+    AngularRate _trueAnomalyPartial;
 };

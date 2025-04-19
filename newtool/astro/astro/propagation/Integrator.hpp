@@ -2,18 +2,27 @@
 #pragma once
 
 #include <ctime>
-#include <fstream> // reading/writing to files
+#include <fstream>
 #include <iostream>
 #include <math.h>
 #include <vector>
+
+// mp-units
+#include <mp-units/compat_macros.h>
+#include <mp-units/ext/format.h>
+#include <mp-units/format.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
 
 #include <astro/constants/rk_constants.h> // RK Butcher Tableau
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/time/Interval.hpp>
+#include <astro/units/units.hpp>
 
 class Integrator {
+
   public:
     // Stepper
     enum odeStepper {
@@ -40,11 +49,11 @@ class Integrator {
 
     // Function: Set absolute tolerance of Integrator
     // Inputs: absolute tolerance
-    void set_abs_tol(double absTol);
+    void set_abs_tol(Unitless absTol);
 
     // Function: Set relative tolerance of Integrator
     // Inputs: relative tolerance
-    void set_rel_tol(double relTol);
+    void set_rel_tol(Unitless relTol);
 
     // Function: Set max number of steps Integrator is allowed to take before exiting
     // Inputs: maximum number of steps
@@ -87,13 +96,13 @@ class Integrator {
 
   private:
     // Integrator constants
-    const double epsilon = 0.8; // relative local step error tolerance usually 0.8 or 0.9.
+    const Unitless epsilon = 0.8; // relative local step error tolerance usually 0.8 or 0.9.
 
-    const double minErrorCatch      = 2.0e-4; // if maximum error is less than this,
-    const double minErrorStepFactor = 5.0;    // increase step by this factor
+    const Unitless minErrorCatch      = 2.0e-4; // if maximum error is less than this,
+    const Unitless minErrorStepFactor = 5.0;    // increase step by this factor
 
-    const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative
-                                            // step size to this value
+    const Unitless minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the
+                                              // relative step size to this value
 
     // Iteration variables
     unsigned long iteration                       = 0;
@@ -113,21 +122,21 @@ class Integrator {
     // Error variables
     bool stepSuccess  = false;
     bool eventTrigger = false;
-    double maxErrorPrevious;
+    Unitless maxErrorPrevious;
 
     // Butcher Tablaeu
     size_t nStages{};
-    static const size_t maxStages                          = 13;
-    std::array<std::array<double, maxStages>, maxStages> a = {};
-    std::array<double, maxStages> b                        = {};
-    std::array<double, maxStages> bhat                     = {};
-    std::array<double, maxStages> db                       = {};
-    std::array<double, maxStages> c                        = {};
+    static const size_t maxStages                            = 13;
+    std::array<std::array<Unitless, maxStages>, maxStages> a = {};
+    std::array<Unitless, maxStages> b                        = {};
+    std::array<Unitless, maxStages> bhat                     = {};
+    std::array<Unitless, maxStages> db                       = {};
+    std::array<Unitless, maxStages> c                        = {};
 
     // ith order steps
     std::array<OrbitalElements, maxStages> kMatrix = {};
-    OrbitalElements statePlusKi                    = {};
-    OrbitalElements YFinalPrevious                 = {};
+    OrbitalElements statePlusKi;
+    OrbitalElementPartials YFinalPrevious;
 
     // Clock variables
     clock_t startClock{};
@@ -145,8 +154,8 @@ class Integrator {
     int checkDay = 0;
 
     // Tolerances
-    double absoluteTolerance = 1.0e-13;
-    double relativeTolerance = 1.0e-13;
+    Unitless absoluteTolerance = 1.0e-13;
+    Unitless relativeTolerance = 1.0e-13;
 
     // Initial step size
     Time timeStepInitial = seconds(100.0);
@@ -175,7 +184,7 @@ class Integrator {
     void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Error Methods
-    void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+    void check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
 
     // Print details
     void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);

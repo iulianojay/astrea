@@ -20,7 +20,7 @@ class KeplerianVop : public EquationsOfMotion {
         doWarn(doWarn){};
     ~KeplerianVop() = default;
 
-    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
@@ -31,5 +31,5 @@ class KeplerianVop : public EquationsOfMotion {
     const GravParam mu;
     const bool doWarn;
 
-    void check_degenerate(const mp_units::quantity<mp_units::one>& ecc, const mp_units::quantity<mp_units::si::unit_symbols::rad>& inc) const;
+    void check_degenerate(const mp_units::quantity<mp_units::one>& ecc, const mp_units::quantity<mp_units::angular::unit_symbols::rad>& inc) const;
 };

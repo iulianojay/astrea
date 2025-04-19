@@ -3,17 +3,16 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
 {
 
-    // Grab first element set as plane set
-    elements = satellites[0].get_initial_state().elements;
-
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
-    elements.to_keplerian(sys);
+
+    // Grab first element set as plane set
+    elements = Keplerian(satellites[0].get_initial_state().elements, sys);
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        OrbitalElements satElements{ sat.get_initial_state().elements.to_keplerian(sys) };
+        Keplerian satElements(sat.get_initial_state().elements, sys);
         if (!elements.nearly_equal(satElements, true)) {
             strict = false;
             break;

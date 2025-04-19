@@ -18,14 +18,11 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class AtmosphericForce : public Force {
 
-    using HeightQuantity = mp_units::quantity<mp_units::si::unit_symbols::km>;
-    using DensityQuantity =
-        mp_units::quantity<mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m))>;
-    using TitanDensityQuantity =
-        mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
+    using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
 
   public:
     AtmosphericForce()  = default;
@@ -35,11 +32,10 @@ class AtmosphericForce : public Force {
         compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
-    const DensityQuantity
-        find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
+    const Density find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
 
-    static const std::map<HeightQuantity, DensityQuantity> venutianAtmosphere;
-    static const std::map<HeightQuantity, std::tuple<HeightQuantity, DensityQuantity, HeightQuantity>> earthAtmosphere;
-    static const std::map<HeightQuantity, DensityQuantity> martianAtmosphere;
-    static const std::map<HeightQuantity, TitanDensityQuantity> titanicAtmosphere;
+    static const std::map<Height, Density> venutianAtmosphere;
+    static const std::map<Height, std::tuple<Height, Density, Height>> earthAtmosphere;
+    static const std::map<Height, Density> martianAtmosphere;
+    static const std::map<Height, TitanDensity> titanicAtmosphere;
 };

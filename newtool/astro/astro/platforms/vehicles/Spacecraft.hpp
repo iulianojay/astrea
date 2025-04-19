@@ -19,12 +19,9 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class Spacecraft {
-
-    using Mass     = mp_units::quantity<mp_units::si::unit_symbols::kg>;
-    using Area     = mp_units::quantity<mp_units::pow<2>(mp_units::si::unit_symbols::m)>;
-    using Unitless = mp_units::quantity<mp_units::one>;
 
   public:
     // Constructor
@@ -51,9 +48,9 @@ class Spacecraft {
     Unitless get_coefficient_of_lift() const;
     Unitless get_coefficient_of_reflectivity() const;
 
-    Area get_ram_area() const;
-    Area get_solar_area() const;
-    Area get_lift_area() const;
+    SurfaceArea get_ram_area() const;
+    SurfaceArea get_solar_area() const;
+    SurfaceArea get_lift_area() const;
 
     size_t get_id() const { return _id; }
 
@@ -66,9 +63,9 @@ class Spacecraft {
     Unitless _coefficientOfDrag         = 2.2 * mp_units::one;
     Unitless _coefficientOfLift         = 0.9 * mp_units::one;
     Unitless _coefficientOfReflectivity = 1.1 * mp_units::one;
-    Area _ramArea                       = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
-    Area _sunArea                       = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
-    Area _liftArea                      = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
+    SurfaceArea _ramArea                = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
+    SurfaceArea _sunArea                = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
+    SurfaceArea _liftArea               = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m);
 
     // Orbital elements
     State _state;

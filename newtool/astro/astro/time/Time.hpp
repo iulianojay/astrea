@@ -15,8 +15,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/time_units.hpp>
-
-using Time = mp_units::quantity<mp_units::non_si::day>;
+#include <astro/units/units.hpp>
 
 // class Time {
 
