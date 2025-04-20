@@ -14,7 +14,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
@@ -42,7 +41,10 @@ class Equinoctial {
         _trueLongitude(trueLongitude)
     {
     }
-    Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Equinoctial(const Equinoctial& elements, const AstrodynamicsSystem& sys) :
+        Equinoctial(elements)
+    {
+    }
     Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
@@ -87,8 +89,8 @@ class Equinoctial {
     size_t size() const { return 6; }
 
     constexpr EnumType get_set_id() const { return _setId; }
-    OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Equinoctial
+        interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
     std::vector<double> to_vector() const;
 

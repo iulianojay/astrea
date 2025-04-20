@@ -9,6 +9,7 @@ class Equinoctial;
 class CartesianPartial;
 class KeplerianPartial;
 class EquinoctialPartial;
+class OrbitalElements;
 
 template <class T>
 class Frame;

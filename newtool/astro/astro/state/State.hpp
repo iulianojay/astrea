@@ -3,9 +3,6 @@
 #include <iostream>
 
 #include <astro/element_sets/OrbitalElements.hpp>
-#include <astro/element_sets/orbital_elements/Cartesian.hpp>
-#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 

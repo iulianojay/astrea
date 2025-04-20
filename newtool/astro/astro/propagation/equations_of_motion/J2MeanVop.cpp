@@ -76,9 +76,9 @@ OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElem
     // Calculate the derivatives of the KEPLERIANs - only raan and w considered
     const quantity<km / s> dadt      = 0.0 * km / s;
     const quantity<one / s> deccdt   = 0.0 * one / s;
-    const quantity<rad / s> _dincdt  = R / h * cos(w + theta) * normalPert;
-    const quantity<rad / s> dthetadt = h / (R * R);
-    const quantity<rad / s> draandt  = R * sin(w + theta) / (h * sin(inc)) * normalPert;
+    const quantity<rad / s> _dincdt  = R / h * cos(w + theta) * normalPert * rad;
+    const quantity<rad / s> dthetadt = h / (R * R) * rad;
+    const quantity<rad / s> draandt  = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
     const quantity<rad / s> dwdt     = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.

@@ -4,7 +4,6 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/element_sets/orbital_elements/Equinoctial.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -123,17 +122,6 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     _vz = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
-Cartesian::Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
-{
-    if (std::holds_alternative<Cartesian>(elements)) { Cartesian(std::get<Cartesian>(elements), sys); }
-    else if (std::holds_alternative<Keplerian>(elements)) {
-        Cartesian(std::get<Keplerian>(elements), sys);
-    }
-    else if (std::holds_alternative<Equinoctial>(elements)) {
-        Cartesian(std::get<Equinoctial>(elements), sys);
-    }
-}
-
 // Copy constructor
 Cartesian::Cartesian(const Cartesian& other) :
     _x(other._x),
@@ -243,18 +231,16 @@ Cartesian& Cartesian::operator/=(const Unitless& divisor)
     return *this;
 }
 
-OrbitalElements
-    Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+Cartesian
+    Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
 
-    Cartesian elements(other, sys);
-
-    const Distance interpx = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _x, elements.get_x() }, targetTime);
-    const Distance interpy = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _y, elements.get_y() }, targetTime);
-    const Distance interpz = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _z, elements.get_z() }, targetTime);
-    const Velocity interpvx = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vx, elements.get_vx() }, targetTime);
-    const Velocity interpvy = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vy, elements.get_vy() }, targetTime);
-    const Velocity interpvz = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vz, elements.get_vz() }, targetTime);
+    const Distance interpx = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _x, other.get_x() }, targetTime);
+    const Distance interpy = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _y, other.get_y() }, targetTime);
+    const Distance interpz = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _z, other.get_z() }, targetTime);
+    const Velocity interpvx = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vx, other.get_vx() }, targetTime);
+    const Velocity interpvy = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vy, other.get_vy() }, targetTime);
+    const Velocity interpvz = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vz, other.get_vz() }, targetTime);
 
     return Cartesian({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
 }

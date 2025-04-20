@@ -78,8 +78,7 @@ State Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys)
     const Time& postTime                = postState.time;
     const OrbitalElements& postElements = postState.elements;
 
-    OrbitalElements interpolatedElements =
-        std::visit([&](const auto& x) { return x.interpolate(preTime, postTime, postElements, sys, time); }, preElements);
+    OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, sys, time);
 
     return State({ time, interpolatedElements });
 }

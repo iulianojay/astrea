@@ -15,7 +15,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/units/units.hpp>
 
@@ -42,7 +41,10 @@ class Keplerian {
         _trueAnomaly(trueAnomaly)
     {
     }
-    Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Keplerian(const Keplerian& elements, const AstrodynamicsSystem& sys) :
+        Keplerian(elements)
+    {
+    }
     Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
     Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
@@ -89,8 +91,7 @@ class Keplerian {
     size_t size() const { return 6; }
 
     constexpr EnumType get_set_id() const { return _setId; }
-    OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
     std::vector<double> to_vector() const;
 

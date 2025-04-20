@@ -4,7 +4,6 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Equinoctial.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -18,7 +17,6 @@ using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
-
 
 Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 {
@@ -183,16 +181,6 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Anomaly
     _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
 }
-Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
-{
-    if (std::holds_alternative<Keplerian>(elements)) { Keplerian(std::get<Keplerian>(elements), sys); }
-    else if (std::holds_alternative<Cartesian>(elements)) {
-        Keplerian(std::get<Cartesian>(elements), sys);
-    }
-    else if (std::holds_alternative<Equinoctial>(elements)) {
-        Keplerian(std::get<Equinoctial>(elements), sys);
-    }
-}
 
 // Copy constructor
 Keplerian::Keplerian(const Keplerian& other) :
@@ -322,23 +310,21 @@ Keplerian& Keplerian::operator/=(const Unitless& divisor)
     return *this;
 }
 
-OrbitalElements
-    Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+Keplerian
+    Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
-    Keplerian elements(other, sys);
-
     const Distance interpSemimajor =
-        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semimajor, elements.get_semimajor() }, targetTime);
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semimajor, other.get_semimajor() }, targetTime);
     const Unitless interpEcc =
-        math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _eccentricity, elements.get_eccentricity() }, targetTime);
+        math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _eccentricity, other.get_eccentricity() }, targetTime);
     const Angle interpInc =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _inclination, elements.get_inclination() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _inclination, other.get_inclination() }, targetTime);
     const Angle interpRaan =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _rightAscension, elements.get_right_ascension() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _rightAscension, other.get_right_ascension() }, targetTime);
     const Angle interpArgPer =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _argPerigee, elements.get_argument_of_perigee() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _argPerigee, other.get_argument_of_perigee() }, targetTime);
     const Angle interpTheta =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueAnomaly, elements.get_true_anomaly() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueAnomaly, other.get_true_anomaly() }, targetTime);
 
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }

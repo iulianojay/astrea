@@ -13,7 +13,11 @@
 using namespace mp_units;
 using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
+using si::unit_symbols::cm;
+using si::unit_symbols::g;
+using si::unit_symbols::kg;
 using si::unit_symbols::km;
+using si::unit_symbols::m;
 using si::unit_symbols::s;
 
 AccelerationVector
@@ -36,8 +40,8 @@ AccelerationVector
     static const auto& bodyRotationRate = center->get_rotation_rate();
 
     // Find velocity relative to atmosphere
-    const quantity<km / s> relVx = vx - (y * bodyRotationRate.in(rad / s));
-    const quantity<km / s> relVy = vy + (x * bodyRotationRate.in(rad / s));
+    const quantity<km / s> relVx = vx - (y * bodyRotationRate.in(one / s));
+    const quantity<km / s> relVy = vy + (x * bodyRotationRate.in(one / s));
     const quantity<km / s> relVz = vz;
 
     // Exponential Drag Model

@@ -4,7 +4,6 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Time.hpp>
 #include <math/interpolation.hpp>
@@ -40,13 +39,6 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
 
     // True longitude
     _trueLongitude = raan + argPer + theta;
-}
-Equinoctial::Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
-{
-    if (std::holds_alternative<Equinoctial>(elements)) { Equinoctial(std::get<Equinoctial>(elements), sys); }
-    else if (std::holds_alternative<Keplerian>(elements)) {
-        Equinoctial(std::get<Keplerian>(elements), sys);
-    }
 }
 
 // Copy constructor
@@ -176,19 +168,17 @@ Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
 }
 
 
-OrbitalElements
-    Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+Equinoctial
+    Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
-    Equinoctial elements(other, sys);
-
     const Distance interpSemimajor =
-        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, elements.get_semilatus() }, targetTime);
-    const Unitless interpEcc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _f, elements.get_f() }, targetTime);
-    const Unitless interpInc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _g, elements.get_g() }, targetTime);
-    const Unitless interpRaan = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _h, elements.get_h() }, targetTime);
-    const Unitless interpArgPer = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _k, elements.get_k() }, targetTime);
+        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, other.get_semilatus() }, targetTime);
+    const Unitless interpEcc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _f, other.get_f() }, targetTime);
+    const Unitless interpInc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _g, other.get_g() }, targetTime);
+    const Unitless interpRaan = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _h, other.get_h() }, targetTime);
+    const Unitless interpArgPer = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _k, other.get_k() }, targetTime);
     const Angle interpTheta =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, elements.get_true_longitude() }, targetTime);
+        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, other.get_true_longitude() }, targetTime);
 
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }

@@ -86,10 +86,11 @@ OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalE
     const quantity<rad> u = w + theta;
 
     // Precalculate
-    const quantity<one> cosTA                       = cos(theta);
-    const quantity<one> sinTA                       = sin(theta);
-    const quantity<one> cosU                        = cos(u);
-    const quantity<one> sinU                        = sin(u);
+    const quantity cosTA = cos(theta);
+    const quantity sinTA = sin(theta);
+    const quantity cosU  = cos(u);
+    const quantity sinU  = sin(u);
+
     const quantity<pow<4>(km) / pow<2>(s)> hSquared = h * h;
     const quantity<one / s> hOverRSquared           = h / (R * R);
 

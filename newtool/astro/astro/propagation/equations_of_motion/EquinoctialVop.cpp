@@ -23,8 +23,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const Orbita
 {
 
     // Get need representations
-    const Equinoctial equinoctial = Equinoctial(state, system);
-    const Cartesian cartesian     = Cartesian(state, system);
+    const Equinoctial equinoctial = state.in<Equinoctial>(system);
+    const Cartesian cartesian     = state.in<Cartesian>(system);
 
     // Extract
     const quantity<km>& p  = equinoctial.get_semilatus();

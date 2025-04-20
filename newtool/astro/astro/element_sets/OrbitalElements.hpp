@@ -9,13 +9,14 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/Frame.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/types/detail.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/types/typeid_name_extract.hpp>
+#include <astro/units/units.hpp>
 
 
 // class OrbitalElements;
@@ -90,7 +91,7 @@ concept HasSize = requires(const T elements)
 };
 
 template <typename T>
-concept HasMathOperators = requires(const T elements, const T other, const double scalar)
+concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar)
 {
     {
         elements + other
@@ -107,20 +108,12 @@ concept HasMathOperators = requires(const T elements, const T other, const doubl
 };
 
 template <typename T>
-concept HasInPlaceMathOperators = requires(T elements, const T other, const double scalar)
+concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar)
 {
-    {
-        elements += other
-        } -> std::same_as<T>;
-    {
-        elements -= other
-        } -> std::same_as<T>;
-    {
-        elements *= scalar
-        } -> std::same_as<T>;
-    {
-        elements /= scalar
-        } -> std::same_as<T>;
+    { elements += other };
+    { elements -= other };
+    { elements *= scalar };
+    { elements /= scalar };
 };
 
 template <typename T>
@@ -139,7 +132,144 @@ concept IsOrbitalElements = requires(T)
     requires HasInPlaceMathOperators<T>;
 };
 
-using OrbitalElements        = std::variant<Cartesian, Keplerian, Equinoctial>;
+class OrbitalElements {
+
+    using ElementVariant = std::variant<Cartesian, Keplerian, Equinoctial>;
+
+  public:
+    OrbitalElements() :
+        _elements(Cartesian())
+    {
+    }
+    OrbitalElements(Cartesian elements) :
+        _elements(elements)
+    {
+    }
+    OrbitalElements(Keplerian elements) :
+        _elements(elements)
+    {
+    }
+    OrbitalElements(Equinoctial elements) :
+        _elements(elements)
+    {
+    }
+
+    template <IsOrbitalElements T>
+    void convert(const AstrodynamicsSystem& sys)
+    {
+        _elements = in<T>(sys);
+    }
+    template <IsOrbitalElements T>
+    OrbitalElements convert(const AstrodynamicsSystem& sys) const
+    {
+        return in<T>(sys);
+    }
+
+    template <IsOrbitalElements T>
+    T in(const AstrodynamicsSystem& sys) const
+    {
+        return std::visit([&]<typename U>(const auto& x) -> T { return U(x, sys); }, _elements);
+    }
+
+    OrbitalElements operator+(const OrbitalElements& other) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+                return x + y;
+            },
+            _elements
+        );
+    }
+    OrbitalElements& operator+=(const OrbitalElements& other)
+    {
+        std::visit(
+            [&](auto& x) {
+                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+                x += y;
+            },
+            _elements
+        );
+        return *this;
+    }
+
+    OrbitalElements operator-(const OrbitalElements& other) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+                return x - y;
+            },
+            _elements
+        );
+    }
+    OrbitalElements& operator-=(const OrbitalElements& other)
+    {
+        std::visit(
+            [&](auto& x) {
+                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+                x -= y;
+            },
+            _elements
+        );
+        return *this;
+    }
+
+    OrbitalElements operator*(const Unitless& multiplier) const
+    {
+        return std::visit([&](const auto& x) -> OrbitalElements { return x * multiplier; }, _elements);
+    }
+    OrbitalElements& operator*=(const Unitless& multiplier)
+    {
+        std::visit([&](auto& x) { x *= multiplier; }, _elements);
+        return *this;
+    }
+
+    OrbitalElements operator/(const Unitless& divisor) const
+    {
+        return std::visit([&](const auto& x) -> OrbitalElements { return x / divisor; }, _elements);
+    }
+    OrbitalElements& operator/=(const Unitless& divisor)
+    {
+        std::visit([&](auto& x) { x /= divisor; }, _elements);
+        return *this;
+    }
+
+    OrbitalElements
+        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+                return x.interpolate(thisTime, otherTime, y, sys, targetTime);
+            },
+            _elements
+        );
+    }
+
+    const ElementVariant& extract() const { return _elements; }
+    ElementVariant& extract() { return _elements; }
+
+  private:
+    ElementVariant _elements;
+
+    void same_underlying_type(const OrbitalElements& other) const
+    {
+        if (_elements.index() != other.extract().index()) [[unlikely]] { throw_mismatched_types(); }
+    }
+
+    void throw_mismatched_types() const
+    {
+        throw std::runtime_error("Cannot perform operations on orbital elements from different "
+                                 "element sets.");
+    }
+};
+
 using OrbitalElementPartials = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
 
 // namespace detail {

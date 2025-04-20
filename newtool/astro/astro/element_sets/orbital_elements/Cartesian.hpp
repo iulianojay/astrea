@@ -15,7 +15,6 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
@@ -53,7 +52,10 @@ class Cartesian {
         _vz(vz)
     {
     }
-    Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Cartesian& elements, const AstrodynamicsSystem& sys) :
+        Cartesian(elements)
+    {
+    }
     Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
@@ -105,8 +107,7 @@ class Cartesian {
     std::vector<double> to_vector() const;
 
     constexpr EnumType get_set_id() const { return _setId; }
-    OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN);
