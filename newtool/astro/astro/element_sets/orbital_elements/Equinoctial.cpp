@@ -152,10 +152,16 @@ Equinoctial& Equinoctial::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+EquinoctialPartial Equinoctial::operator/(const Time& time) const
+{
+    return EquinoctialPartial(_semilatus / time, _f / time, _g / time, _h / time, _k / time, _trueLongitude / time);
+}
+
 Equinoctial Equinoctial::operator/(const Unitless& divisor) const
 {
     return Equinoctial(_semilatus / divisor, _f / divisor, _g / divisor, _h / divisor, _k / divisor, _trueLongitude / divisor);
 }
+
 Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
 {
     _semilatus /= divisor;

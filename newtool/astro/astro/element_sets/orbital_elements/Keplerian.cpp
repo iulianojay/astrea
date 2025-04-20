@@ -295,6 +295,11 @@ Keplerian& Keplerian::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+KeplerianPartial Keplerian::operator/(const Time& time) const
+{
+    return KeplerianPartial(_semimajor / time, _eccentricity / time, _inclination / time, _rightAscension / time, _argPerigee / time, _trueAnomaly / time);
+}
+
 Keplerian Keplerian::operator/(const Unitless& divisor) const
 {
     return Keplerian(_semimajor / divisor, _eccentricity / divisor, _inclination / divisor, _rightAscension / divisor, _argPerigee / divisor, _trueAnomaly / divisor);

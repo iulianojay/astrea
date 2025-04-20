@@ -216,6 +216,11 @@ Cartesian& Cartesian::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+CartesianPartial Cartesian::operator/(const Time& time) const
+{
+    return CartesianPartial(_x / time, _y / time, _z / time, _vx / time, _vy / time, _vz / time);
+}
+
 Cartesian Cartesian::operator/(const Unitless& divisor) const
 {
     return Cartesian(_x / divisor, _y / divisor, _z / divisor, _vx / divisor, _vy / divisor, _vz / divisor);

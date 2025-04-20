@@ -77,6 +77,7 @@ class Keplerian {
     Keplerian operator*(const Unitless& multiplier) const;
     Keplerian& operator*=(const Unitless& multiplier);
 
+    KeplerianPartial operator/(const Time& time) const;
     Keplerian operator/(const Unitless& divisor) const;
     Keplerian& operator/=(const Unitless& divisor);
 

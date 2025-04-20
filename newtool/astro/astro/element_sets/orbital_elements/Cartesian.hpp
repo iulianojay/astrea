@@ -87,6 +87,7 @@ class Cartesian {
     Cartesian operator*(const Unitless& multiplier) const;
     Cartesian& operator*=(const Unitless& multiplier);
 
+    CartesianPartial operator/(const Time& time) const;
     Cartesian operator/(const Unitless& divisor) const;
     Cartesian& operator/=(const Unitless& divisor);
 

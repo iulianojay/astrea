@@ -6,6 +6,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class SolarRadiationPressureForce : public Force {
   public:

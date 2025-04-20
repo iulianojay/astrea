@@ -1,4 +1,10 @@
-// #include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/element_sets/OrbitalElements.hpp>
+
+std::ostream& operator<<(std::ostream& os, const OrbitalElements& elements)
+{
+    std::visit([&os](const auto& x) { os << x; }, elements._elements);
+    return os;
+}
 
 // namespace detail {
 

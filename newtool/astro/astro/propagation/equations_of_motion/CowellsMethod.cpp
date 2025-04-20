@@ -6,6 +6,7 @@
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 
 using namespace mp_units;

@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include <astro/propagation/force_models/Force.hpp>
+#include <astro/units/units.hpp>
 
 class ForceModel {
   private:

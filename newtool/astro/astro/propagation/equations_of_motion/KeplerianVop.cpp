@@ -6,6 +6,7 @@
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/units/units.hpp>
 #include <math/utils.hpp>
 
 
@@ -20,8 +21,8 @@ using si::unit_symbols::s;
 OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Keplerian elements  = Keplerian(state, system);
-    const Cartesian cartesian = Cartesian(state, system);
+    const Keplerian elements  = state.in<Keplerian>(system);
+    const Cartesian cartesian = state.in<Cartesian>(system);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();

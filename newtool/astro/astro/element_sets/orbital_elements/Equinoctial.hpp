@@ -75,6 +75,7 @@ class Equinoctial {
     Equinoctial operator*(const Unitless& multiplier) const;
     Equinoctial& operator*=(const Unitless& multiplier);
 
+    EquinoctialPartial operator/(const Time& time) const;
     Equinoctial operator/(const Unitless& divisor) const;
     Equinoctial& operator/=(const Unitless& divisor);
 

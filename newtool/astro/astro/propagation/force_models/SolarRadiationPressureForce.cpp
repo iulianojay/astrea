@@ -22,17 +22,17 @@ AccelerationVector
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
-    const quantity<km>& x = state.get_x();
-    const quantity<km>& y = state.get_y();
-    const quantity<km>& z = state.get_z();
-    const quantity<km> R  = sqrt(x * x + y * y + z * z);
+    const Distance& x = state.get_x();
+    const Distance& y = state.get_y();
+    const Distance& z = state.get_z();
+    const Distance R  = sqrt(x * x + y * y + z * z);
 
     // Central body properties
-    static const quantity<km>& equitorialR = center->get_equitorial_radius();
-    static const bool isSun                = (center->get_name() != "Sun");
+    static const Distance& equitorialR = center->get_equitorial_radius();
+    static const bool isSun            = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = (center->get_closest_state(julianDate) - vehicle.epoch().julian_day());
+    const State& stateSunToCenter        = center->get_closest_state(julianDate - vehicle.epoch().julian_day());
     const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_cartesian(sys).get_radius();
 
     // Radius from central body to sun
@@ -41,41 +41,42 @@ AccelerationVector
                                           -radiusSunToCenter[1],
                                           -radiusSunToCenter[2]
     };
-    const quantity<km> radialMagnitudeCenterToSun = sqrt(
+    const Distance radialMagnitudeCenterToSun = sqrt(
         radiusCenterToSun[0] * radiusCenterToSun[0] + radiusCenterToSun[1] * radiusCenterToSun[1] +
         radiusCenterToSun[2] * radiusCenterToSun[2]
     );
 
     const RadiusVector radiusVehicleToSun{ radiusCenterToSun[0] - x, radiusCenterToSun[1] - y, radiusCenterToSun[2] - z };
-    const quantity<km> radialMagnitudeVehicleToSun = sqrt(
+    const Distance radialMagnitudeVehicleToSun = sqrt(
         radiusVehicleToSun[0] * radiusVehicleToSun[0] + radiusVehicleToSun[1] * radiusVehicleToSun[1] +
         radiusVehicleToSun[2] * radiusVehicleToSun[2]
     );
 
     // Solar radiation pressure
-    const quantity<kN / pow<2>(km)> solarRadiationPressure =
+    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-3;
+    const quantity solarRadiationPressure =
         SRP_1AU * (au * au) / (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
-    quantity<one> fractionOfRecievedSunlight = 1.0 * one;
+    Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (isSun) {
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
-        const quantity<rad> refAngle =
+        const Angle refAngle =
             acos((radiusCenterToSun[0] * x + radiusCenterToSun[1] * y + radiusCenterToSun[2] * z) / (radialMagnitudeCenterToSun * R));
-        const quantity<rad> refAngle1 = acos(equitorialR / R);
-        const quantity<rad> refAngle2 = acos(equitorialR / radialMagnitudeCenterToSun);
+        const Angle refAngle1 = acos(equitorialR / R);
+        const Angle refAngle2 = acos(equitorialR / radialMagnitudeCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
-            static const quantity<km> diamSun = 696000.0 * km;
-            const quantity<km> Xu             = equitorialR * radialMagnitudeCenterToSun / (diamSun - equitorialR);
+            static const Distance diamSun = 696000.0 * km;
+            const Distance Xu             = equitorialR * radialMagnitudeCenterToSun / (diamSun - equitorialR);
 
             const RadiusVector rP{ -Xu * radiusCenterToSun[0] / radialMagnitudeCenterToSun,
                                    -Xu * radiusCenterToSun[1] / radialMagnitudeCenterToSun,
                                    -Xu * radiusCenterToSun[2] / radialMagnitudeCenterToSun };
-            const quantity<km> normRP = sqrt(rP[0] * rP[0] + rP[1] * rP[1] + rP[2] * rP[2]);
+            const Distance normRP = sqrt(rP[0] * rP[0] + rP[1] * rP[1] + rP[2] * rP[2]);
 
             const RadiusVector rPs{ x - rP[0], y - rP[1], z - rP[2] };
-            const quantity<km> normRPs = sqrt(rPs[0] * rPs[0] + rPs[1] * rPs[1] + rPs[2] * rPs[2]);
-            const quantity<rad> alphaps = abs(asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
+            const Distance normRPs = sqrt(rPs[0] * rPs[0] + rPs[1] * rPs[1] + rPs[2] * rPs[2]);
+            const Angle alphaps = abs(asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
 
             if (alphaps < asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
@@ -87,10 +88,11 @@ AccelerationVector
     }
 
     // accel due to srp
-    const quantity<one> coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
-    const quantity<pow<2>(m)> areaSun             = vehicle.get_solar_area();
-    const quantity<kg> mass                       = vehicle.get_mass();
-    const auto tempA                              = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass / rMagVehicleToSun * fractionOfRecievedSunlight;
+    const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
+    const SurfaceArea areaSun                = vehicle.get_solar_area();
+    const Mass mass                          = vehicle.get_mass();
+    const quantity tempA = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass / rMagVehicleToSun *
+                           fractionOfRecievedSunlight;
 
     const AccelerationVector accelSRP{ tempA * radiusVehicleToSun[0], tempA * radiusVehicleToSun[1], tempA * radiusVehicleToSun[2] };
 

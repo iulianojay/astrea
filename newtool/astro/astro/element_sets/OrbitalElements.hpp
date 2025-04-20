@@ -132,9 +132,14 @@ concept IsOrbitalElements = requires(T)
     requires HasInPlaceMathOperators<T>;
 };
 
+
+using OrbitalElementPartials = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
+
 class OrbitalElements {
 
     using ElementVariant = std::variant<Cartesian, Keplerian, Equinoctial>;
+
+    friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
 
   public:
     OrbitalElements() :
@@ -168,14 +173,16 @@ class OrbitalElements {
     template <IsOrbitalElements T>
     T in(const AstrodynamicsSystem& sys) const
     {
-        return std::visit([&]<typename U>(const auto& x) -> T { return U(x, sys); }, _elements);
+        return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
     }
 
     OrbitalElements operator+(const OrbitalElements& other) const
     {
         return std::visit(
             [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                    throw_mismatched_types();
+                }
                 const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
                 return x + y;
             },
@@ -186,7 +193,9 @@ class OrbitalElements {
     {
         std::visit(
             [&](auto& x) {
-                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                    throw_mismatched_types();
+                }
                 const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
                 x += y;
             },
@@ -199,7 +208,9 @@ class OrbitalElements {
     {
         return std::visit(
             [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                    throw_mismatched_types();
+                }
                 const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
                 return x - y;
             },
@@ -210,7 +221,9 @@ class OrbitalElements {
     {
         std::visit(
             [&](auto& x) {
-                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                    throw_mismatched_types();
+                }
                 const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
                 x -= y;
             },
@@ -229,6 +242,10 @@ class OrbitalElements {
         return *this;
     }
 
+    OrbitalElementPartials operator/(const Time& divisor) const
+    {
+        return std::visit([&](const auto& x) -> OrbitalElementPartials { return x / divisor; }, _elements);
+    }
     OrbitalElements operator/(const Unitless& divisor) const
     {
         return std::visit([&](const auto& x) -> OrbitalElements { return x / divisor; }, _elements);
@@ -244,7 +261,9 @@ class OrbitalElements {
     {
         return std::visit(
             [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<decltype(x)>(other._elements)) { throw_mismatched_types(); }
+                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                    throw_mismatched_types();
+                }
                 const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
                 return x.interpolate(thisTime, otherTime, y, sys, targetTime);
             },
@@ -269,8 +288,6 @@ class OrbitalElements {
                                  "element sets.");
     }
 };
-
-using OrbitalElementPartials = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
 
 // namespace detail {
 

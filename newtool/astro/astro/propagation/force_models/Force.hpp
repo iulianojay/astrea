@@ -5,6 +5,7 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
 class Force {
   public:

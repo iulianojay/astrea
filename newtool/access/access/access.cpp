@@ -58,7 +58,7 @@ std::vector<Time> create_time_vector(const std::vector<State>& states, const Tim
 
     int ii    = 0;
     Time time = startTime;
-    for (while time < endTime) {
+    while (time < endTime) {
         if (time + resolution > endTime) { times.emplace_back(endTime); }
         else {
             times.emplace_back(time);
@@ -90,8 +90,8 @@ std::vector<std::vector<State>>
             const Spacecraft& sat = allSats[iSat];
             const State state     = sat.get_state_at(time, sys);
 
-            const auto elements       = state.elements.to_cartesian(sys);
-            interpStates[iTime][iSat] = State{ time, elements };
+            const auto elements       = state.elements.in<Cartesian>(sys);
+            interpStates[iTime][iSat] = State(time, elements);
         }
     }
 
@@ -152,9 +152,7 @@ RiseSetArray find_sensor_to_sensor_accesses(
         const State& state1 = states[iTime][iSat];
         const State& state2 = states[iTime][jSat];
 
-        const BasisArray& state1to2 = { state2.elements[0] - state1.elements[0],
-                                        state2.elements[1] - state1.elements[1],
-                                        state2.elements[2] - state1.elements[2] };
+        const Cartesian& state1to2 = state2.elements.in<Cartesian>() - state1.elements.in<Cartesian>();
 
         // Manage bookends
         if (iTime == 0) {

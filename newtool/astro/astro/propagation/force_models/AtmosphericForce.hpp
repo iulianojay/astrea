@@ -34,8 +34,8 @@ class AtmosphericForce : public Force {
   private:
     const Density find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
 
-    static const std::map<Height, Density> venutianAtmosphere;
-    static const std::map<Height, std::tuple<Height, Density, Height>> earthAtmosphere;
-    static const std::map<Height, Density> martianAtmosphere;
-    static const std::map<Height, TitanDensity> titanicAtmosphere;
+    static const std::map<Altitude, Density> venutianAtmosphere;
+    static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere;
+    static const std::map<Altitude, Density> martianAtmosphere;
+    static const std::map<Altitude, TitanDensity> titanicAtmosphere;
 };

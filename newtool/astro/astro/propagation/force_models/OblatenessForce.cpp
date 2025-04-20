@@ -155,16 +155,16 @@ AccelerationVector
 {
 
     // Extract
-    const auto& x           = state.get_x();
-    const auto& y           = state.get_y();
-    const auto& z           = state.get_z();
-    const quantity R        = sqrt(x * x + y * y + z * z);
+    const Distance& x       = state.get_x();
+    const Distance& y       = state.get_y();
+    const Distance& z       = state.get_z();
+    const Distance R        = sqrt(x * x + y * y + z * z);
     const quantity oneOverR = 1.0 / R;
 
     // Central body properties
-    static const auto& mu               = center->get_mu();
-    static const auto& equitorialR      = center->get_equitorial_radius();
-    static const auto& bodyRotationRate = center->get_rotation_rate();
+    static const GravParam& mu                 = center->get_mu();
+    static const Distance& equitorialR         = center->get_equitorial_radius();
+    static const AngularRate& bodyRotationRate = center->get_rotation_rate();
 
     // Find lat and long
     RadiusVector radius = { x, y, z };
@@ -237,7 +237,7 @@ AccelerationVector
 
     const quantity oneOverBcbfR = 1 / sqrt(xBCBF * xBCBF + yBCBF * yBCBF);
     const quantity zOverR2      = z / (R * R);
-    const double dlatdrBCBF[3] = { -oneOverBcbfR * xBCBF * zOverR2, -oneOverBcbfR * yBCBF * zOverR2, oneOverBcbfR * (1 - z * zOverR2) };
+    const quantity dlatdrBCBF[3] = { -oneOverBcbfR * xBCBF * zOverR2, -oneOverBcbfR * yBCBF * zOverR2, oneOverBcbfR * (1 - z * zOverR2) };
 
     const quantity muOverR2       = muOverR * muOverR;
     const quantity dlongdrBCBF[3] = { -muOverR2 * yBCBF, muOverR2 * xBCBF, 0.0 };
@@ -248,7 +248,7 @@ AccelerationVector
                                                dVdr * drdrBCBF[2] + dVdlat * dlatdrBCBF[2] };
 
     // Rotate back into inertial coordinates
-    AccelerationVector accelOblateness{ 0.0, 0.0, 0.0 };
+    AccelerationVector accelOblateness;
     conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
 
     return accelOblateness;
