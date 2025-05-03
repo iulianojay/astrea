@@ -12,6 +12,7 @@ using namespace mp_units::si;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
+namespace astro {
 
 OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
@@ -36,3 +37,5 @@ OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElemen
 
     return dsdt;
 }
+
+} // namespace astro

@@ -1,5 +1,6 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
+namespace astro {
 
 void AstrodynamicsSystem::create_all_bodies()
 {
@@ -84,3 +85,5 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
         }
     }
 }
+
+} // namespace astro

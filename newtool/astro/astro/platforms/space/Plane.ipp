@@ -1,3 +1,7 @@
+#include <astro/utilities/conversions.hpp>
+
+namespace astro {
+
 template <class Spacecraft_T>
 Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
@@ -7,13 +11,13 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     AstrodynamicsSystem sys;
 
     // Grab first element set as plane set
-    elements = Keplerian(satellites[0].get_initial_state().elements, sys);
+    elements = satellites[0].get_initial_state().elements.template in<Keplerian>(sys);
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        Keplerian satElements(sat.get_initial_state().elements, sys);
-        if (!elements.nearly_equal(satElements, true)) {
+        OrbitalElements satElements = sat.get_initial_state().elements.template in<Keplerian>(sys);
+        if (!nearly_equal(elements, satElements, true)) {
             strict = false;
             break;
         }
@@ -73,3 +77,5 @@ void Plane<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrat
         sat = *vehicle.extract<Spacecraft_T>();
     }
 }
+
+} // namespace astro

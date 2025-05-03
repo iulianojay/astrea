@@ -9,6 +9,10 @@
 #include <access/time/RiseSetArray.hpp>
 #include <astro/time/Time.hpp>
 
+using astro::Time;
+
+namespace accesslib {
+
 RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
 {
 
@@ -130,3 +134,5 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
 
     return RiseSetArray(c);
 }
+
+} // namespace accesslib

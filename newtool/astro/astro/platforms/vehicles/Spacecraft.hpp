@@ -21,6 +21,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Spacecraft {
 
   public:
@@ -76,3 +78,5 @@ class Spacecraft {
 
     void generate_id_hash();
 };
+
+} // namespace astro

@@ -2,13 +2,19 @@
 
 #include <vector>
 
-#include <access/platforms/Sensor.hpp>
 #include <astro/types/typedefs.hpp>
+
+#include <access/platforms/Sensor.hpp>
+
+
+namespace accesslib {
 
 class GroundStation {
   public:
-    GroundStation(const BasisArray& lla, const std::vector<Sensor>& sensors) :
-        lla(lla),
+    GroundStation(const astro::Angle& latitutde, const astro::Angle& longitude, const astro::Distance& altitude, const std::vector<Sensor>& sensors) :
+        latitutde(latitutde),
+        longitude(longitude),
+        altitude(altitude),
         sensors(sensors)
     {
         generate_id_hash();
@@ -23,9 +29,13 @@ class GroundStation {
 
   private:
     size_t id;
-    BasisArray lla;
+    astro::Angle latitutde;
+    astro::Angle longitude;
+    astro::Distance altitude;
 
     std::vector<Sensor> sensors;
 
     void generate_id_hash();
 };
+
+} // namespace accesslib

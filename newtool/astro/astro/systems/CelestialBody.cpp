@@ -20,6 +20,8 @@ using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
+namespace astro {
+
 inline constexpr struct JulianCentury final : named_unit<"JulianCentury", mag<36525> * day> {
 } JulianCentury;
 
@@ -166,3 +168,5 @@ const State& CelestialBody::get_closest_state(const Time& time) const
         return _states[id + 1];
     }
 }
+
+} // namespace astro

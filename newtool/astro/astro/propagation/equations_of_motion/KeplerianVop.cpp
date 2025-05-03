@@ -2,6 +2,7 @@
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
@@ -17,6 +18,8 @@ using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
+
+namespace astro {
 
 OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
@@ -99,11 +102,12 @@ OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalE
     const quantity<pow<2>(km / s)> dhdt = R * tangentialPert;
     const quantity<one / s> deccdt =
         h / mu * sinTA * radialPert + 1 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
-    const quantity<rad / s> dincdt = R / h * cosU * normalPert;
+    const quantity<rad / s> dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
     const quantity<rad / s> dthetadt =
-        hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert);
-    const quantity<rad / s> draandt = R * sinU / (h * sin(inc)) * normalPert;
-    const quantity<rad / s> dwdt    = -dthetadt + (hOverRSquared - draandt * cos(inc));
+        (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
+        (isq_angle::cotes_angle);
+    const quantity<rad / s> draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const quantity<rad / s> dwdt    = (-dthetadt + (hOverRSquared - draandt * cos(inc))) * (isq_angle::cotes_angle);
 
     // const quantity<km/s> dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
     const quantity<km / s> dadt = 2 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
@@ -129,3 +133,5 @@ void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad
                   << std::endl;
     }
 }
+
+} // namespace astro

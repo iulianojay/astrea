@@ -4,6 +4,8 @@
 
 #include <access/time/RiseSetArray.hpp>
 
+namespace accesslib {
+
 struct IdPair {
     size_t sender;
     size_t receiver;
@@ -24,13 +26,17 @@ struct IdPair {
     bool operator==(const IdPair& other) const { return (sender == other.sender && receiver == other.receiver); }
 };
 
+} // namespace accesslib
+
 template <>
-struct std::hash<IdPair> {
-    std::size_t operator()(const IdPair& k) const
+struct std::hash<accesslib::IdPair> {
+    std::size_t operator()(const accesslib::IdPair& k) const
     {
         return (std::hash<std::size_t>()(k.sender)) ^ (std::hash<std::size_t>()(k.receiver));
     }
 };
+
+namespace accesslib {
 
 class AccessArray {
   public:
@@ -50,3 +56,5 @@ class AccessArray {
   private:
     std::unordered_map<IdPair, RiseSetArray> accesses;
 };
+
+} // namespace accesslib

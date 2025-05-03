@@ -8,6 +8,8 @@
 
 #include <astro/astro.fwd.hpp>
 
+namespace astro {
+
 template <class Spacecraft_T = Spacecraft>
 class Shell {
 
@@ -140,5 +142,7 @@ class Shell {
 
     void generate_id_hash();
 };
+
+} // namespace astro
 
 #include <astro/platforms/space/Shell.ipp>

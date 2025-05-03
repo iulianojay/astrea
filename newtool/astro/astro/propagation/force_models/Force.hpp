@@ -7,6 +7,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Force {
   public:
     Force()          = default;
@@ -15,3 +17,5 @@ class Force {
     virtual AccelerationVector
         compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };
+
+} // namespace astro

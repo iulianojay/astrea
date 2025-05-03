@@ -18,6 +18,8 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
+
 Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 {
 
@@ -334,14 +336,11 @@ Keplerian
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-std::vector<double> Keplerian::to_vector() const
+std::vector<Unitless> Keplerian::to_vector() const
 {
-    return { _semimajor.numerical_value_ref_in(_semimajor.unit),
-             _eccentricity.numerical_value_ref_in(_eccentricity.unit),
-             _inclination.numerical_value_ref_in(_inclination.unit),
-             _rightAscension.numerical_value_ref_in(_rightAscension.unit),
-             _argPerigee.numerical_value_ref_in(_argPerigee.unit),
-             _trueAnomaly.numerical_value_ref_in(_trueAnomaly.unit) };
+    return { _semimajor / detail::distance_unit, _eccentricity,
+             _inclination / detail::angle_unit,  _rightAscension / detail::angle_unit,
+             _argPerigee / detail::angle_unit,   _trueAnomaly / detail::angle_unit };
 }
 
 
@@ -369,3 +368,5 @@ std::ostream& operator<<(std::ostream& os, Keplerian const& elements)
     os << "] (Keplerian)";
     return os;
 }
+
+} // namespace astro

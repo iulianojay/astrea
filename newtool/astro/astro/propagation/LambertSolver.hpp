@@ -7,6 +7,8 @@
 
 #include <astro/constants/astronomical_constants.h>
 
+namespace astro {
+
 class LambertSolver {
   private:
     // Private members
@@ -61,3 +63,5 @@ class LambertSolver {
 
     void solve_rr(double* r0, double* rf, double dt, double mu, int I, double* v0, double* vf); // Starts with r and r and ouputs v and v for the given dt
 };
+
+} // namespace astro

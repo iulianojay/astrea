@@ -1,7 +1,10 @@
 #include <astro/utilities/conversions.hpp>
 
+// mp-units
 #include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/constants/astronomical_constants.h>
@@ -12,6 +15,8 @@
 using namespace mp_units;
 using angular::unit_symbols::deg;
 using non_si::unit_symbols::day;
+
+namespace astro {
 
 //----------------------------------------------------------------------------------------------------------//
 //------------------------------------------- Frame Conversions --------------------------------------------//
@@ -64,7 +69,7 @@ void conversions::bcbf_to_bci(const RadiusVector& rBCBF, JulianDate julianDate, 
 void conversions::bcbf_to_lla(const RadiusVector& rBCBF, const Distance& equitorialRadius, const Distance& polarRadius, Angle& lat, Angle& lon, Distance& alt)
 {
     static const unsigned maxIter    = 1e3;
-    static const Unitless errorBound = 1.0e-9 * one;
+    static const Distance errorBound = 1.0e-9 * km;
 
     const Distance& xBCBF = rBCBF[0];
     const Distance& yBCBF = rBCBF[1];
@@ -74,12 +79,11 @@ void conversions::bcbf_to_lla(const RadiusVector& rBCBF, const Distance& equitor
     const Unitless e_2 = (2.0 - f) * f;
 
     quantity dz  = e_2 * zBCBF;
-    Unitless err = 1;
-
-    unsigned ii = 0;
+    Distance err = 1 * km;
+    unsigned ii  = 0;
     while (err > errorBound && ii < maxIter) {
-        const quantity s = (zBCBF + dz) / sqrt(xBCBF * xBCBF + yBCBF * yBCBF + (zBCBF + dz) * (zBCBF + dz));
-        const quantity N = equitorialRadius / sqrt(1 - e_2 * s * s);
+        const Unitless s = (zBCBF + dz) / sqrt(xBCBF * xBCBF + yBCBF * yBCBF + (zBCBF + dz) * (zBCBF + dz));
+        const Distance N = equitorialRadius / sqrt(1 - e_2 * s * s);
         err              = abs(dz - N * e_2 * s);
         dz               = N * e_2 * s;
         ++ii;
@@ -165,3 +169,5 @@ Angle conversions::julian_date_to_siderial_time(JulianDate julianDate, AngularRa
 
     return greenwichSiderealTime;
 }
+
+} // namespace astro

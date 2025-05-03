@@ -24,6 +24,8 @@
 
 #include <astro/astro.hpp>
 
+using namespace astro;
+
 int main()
 {
 

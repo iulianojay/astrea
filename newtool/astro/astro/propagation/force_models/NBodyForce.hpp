@@ -8,6 +8,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class NBodyForce : public Force {
   public:
     NBodyForce()  = default;
@@ -18,3 +20,5 @@ class NBodyForce : public Force {
 
   private:
 };
+
+} // namespace astro

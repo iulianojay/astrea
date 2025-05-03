@@ -20,6 +20,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class AtmosphericForce : public Force {
 
     using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
@@ -39,3 +41,5 @@ class AtmosphericForce : public Force {
     static const std::map<Altitude, Density> martianAtmosphere;
     static const std::map<Altitude, TitanDensity> titanicAtmosphere;
 };
+
+} // namespace astro

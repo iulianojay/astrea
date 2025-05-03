@@ -21,6 +21,8 @@
 #include <astro/time/Interval.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Integrator {
 
   public:
@@ -96,13 +98,11 @@ class Integrator {
 
   private:
     // Integrator constants
-    const Unitless epsilon = 0.8; // relative local step error tolerance usually 0.8 or 0.9.
-
-    const Unitless minErrorCatch      = 2.0e-4; // if maximum error is less than this,
-    const Unitless minErrorStepFactor = 5.0;    // increase step by this factor
-
-    const Unitless minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the
-                                              // relative step size to this value
+    const Unitless epsilon             = 0.8;    // relative local step error tolerance usually 0.8 or 0.9.
+    const Unitless minErrorCatch       = 2.0e-4; // if maximum error is less than this,
+    const Unitless minErrorStepFactor  = 5.0;    // increase step by this factor
+    const Unitless minRelativeStepSize = 0.2;    // if the step size decreases by more than this factor, reduce the
+                                                 // relative step size to this value
 
     // Iteration variables
     unsigned long iteration                       = 0;
@@ -203,3 +203,5 @@ class Integrator {
     // Event Function
     void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 };
+
+} // namespace astro

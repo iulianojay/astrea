@@ -5,6 +5,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace astro {
 
 template <class T>
 class Frame {
@@ -23,7 +24,7 @@ class Frame {
     std::string name;
 
   private:
-    BasisArray x, y, z;
+    RadiusVector x, y, z;
     T origin;
 };
 
@@ -66,3 +67,5 @@ class FixedOffsetFrame : public Frame<T> {
 template <class T>
 class DynamicFrame : public Frame<T> {
 };
+
+} // namespace astro

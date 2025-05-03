@@ -1,7 +1,12 @@
 #include <access/platforms/ground/GroundStation.hpp>
 
+namespace accesslib {
 
 void GroundStation::generate_id_hash()
 {
-    id = std::hash<double>()(lla[0]) ^ std::hash<double>()(lla[1]) ^ std::hash<double>()(lla[2]);
+    // TODO: Fix
+    // id = std::hash<astro::Angle>()(latitude) ^ std::hash<astro::Angle>()(longitude) ^ std::hash<astro::Distance>()(altitude);
+    id = 0;
 }
+
+} // namespace accesslib

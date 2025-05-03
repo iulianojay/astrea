@@ -3,36 +3,51 @@
 #include <cmath>
 #include <stdexcept>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
 #include <math/utils.hpp>
 
+using astro::Distance;
+using astro::RadiusVector;
 
-bool CircularFieldOfView::contains(const BasisArray& boresight, const BasisArray& target) const
+namespace accesslib {
+
+Distance norm(const RadiusVector& r);
+
+Distance norm(const RadiusVector& r) { return sqrt(r[0] * r[0] + r[1] * r[1] + r[2] * r[2]); } // TODO: Move this
+
+bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVector& target) const
 {
-    const double B     = math::normalize(boresight, 2);
-    const double T     = math::normalize(target, 2);
-    const double bDotT = boresight[0] * target[0] + boresight[1] * target[1] + boresight[2] * target[2];
-    return (acos(bDotT / (B * T)) <= halfConeAngle);
+    const Distance B = norm(boresight);
+    const Distance T = norm(target);
+    const auto bDotT = boresight[0] * target[0] + boresight[1] * target[1] + boresight[2] * target[2];
+    return (acos(bDotT / (B * T)) * (isq_angle::cotes_angle) <= halfConeAngle);
 }
 
 
-PolygonalFieldOfView::PolygonalFieldOfView(const double& halfConeAngle, const int& nPoints)
+PolygonalFieldOfView::PolygonalFieldOfView(const astro::Angle& halfConeAngle, const int& nPoints)
 {
-    for (double theta = 0.0; theta < std::numbers::pi * 2.0; theta += (std::numbers::pi * 2.0 / nPoints)) {
+    for (astro::Angle theta = 0.0; theta < astro::TWO_PI; theta += (astro::TWO_PI / nPoints)) {
         points[theta] = halfConeAngle;
     }
 }
 
-PolygonalFieldOfView::PolygonalFieldOfView(const double& halfConeWidth, const double& halfConeHeight, const int& nPoints)
+PolygonalFieldOfView::PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints)
 {
 
     throw std::logic_error("This function has not been properly updated and is not currently functional.");
 
     /*
-    const double sinw = std::sin(halfConeWidth);
-    const double sinh = std::sin(halfConeHeight);
+    const astro::Angle sinw = sin(halfConeWidth);
+    const astro::Angle sinh = sin(halfConeHeight);
 
-    for (double theta = 0.0; theta < std::numbers::pi*2.0; theta += (std::numbers::pi*2.0/nPoints)) {
+    for (astro::Angle theta = 0.0; theta < astro::TWO_PI; theta += (astro::TWO_PI/nPoints)) {
         points[theta] = 0.0;
     }
     */
 }
+
+} // namespace accesslib

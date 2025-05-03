@@ -15,6 +15,9 @@
 #include <access/access.hpp>
 #include <astro/astro.hpp>
 
+using namespace astro;
+using namespace accesslib;
+
 int main()
 {
 

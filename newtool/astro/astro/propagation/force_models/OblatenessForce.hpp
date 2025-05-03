@@ -9,6 +9,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class OblatenessForce : public Force {
   public:
     OblatenessForce(const AstrodynamicsSystem& sys, const size_t& N = 2, const size_t& M = 0);
@@ -36,3 +38,5 @@ class OblatenessForce : public Force {
     void size_vectors(const size_t& N, const size_t& M);
     void ingest_legendre_coefficient_file(const size_t& N, const size_t& M);
 };
+
+} // namespace astro

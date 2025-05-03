@@ -7,6 +7,8 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace astro {
+
 template <typename T, typename... Args>
 const std::unique_ptr<Force>& ForceModel::add(Args&&... args)
 {
@@ -36,3 +38,5 @@ const std::unique_ptr<Force>& ForceModel::get() const
     std::string name = typeid(T).name();
     return forces.at(name);
 }
+
+} // namespace astro

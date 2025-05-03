@@ -2,6 +2,8 @@
 
 #include <filesystem>
 
+namespace astro {
+
 // TODO: Fix this trash
 static const std::filesystem::path ROOT = "/home/jay/projects/newtoollib";
 
@@ -80,3 +82,5 @@ void CelestialBodyFactory::find_root()
         root = "Sun";
     }
 }
+
+} // namespace astro

@@ -15,12 +15,14 @@
 
 #include <access/platforms/Sensor.hpp>
 
-class Viewer : public Spacecraft {
+namespace accesslib {
+
+class Viewer : public astro::Spacecraft {
 
   public:
     // Constructor
     Viewer() = default;
-    Viewer(OrbitalElements state0, Date epoch = J2000) :
+    Viewer(astro::OrbitalElements state0, astro::Date epoch = astro::J2000) :
         Spacecraft(state0, epoch){};
 
     // Destructor
@@ -41,3 +43,5 @@ class Viewer : public Spacecraft {
     AccessArray _accesses;
     std::vector<Sensor> _sensors;
 };
+
+} // namespace accesslib

@@ -18,6 +18,7 @@
 #include <astro/types/typeid_name_extract.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
 
 // class OrbitalElements;
 
@@ -73,13 +74,7 @@ concept HasToVector = requires(const T elements)
 {
     {
         elements.to_vector()
-        } -> std::same_as<std::vector<double>>;
-};
-
-template <typename T>
-concept HasVectorConstructor = requires(const std::vector<double>& elements, const EnumType& setId)
-{
-    { T(elements, setId) };
+        } -> std::same_as<std::vector<Unitless>>;
 };
 
 template <typename T>
@@ -246,6 +241,10 @@ class OrbitalElements {
     {
         return std::visit([&](const auto& x) -> OrbitalElementPartials { return x / divisor; }, _elements);
     }
+    std::vector<Unitless> to_vector() const
+    {
+        return std::visit([&](const auto& x) { return x.to_vector(); }, _elements);
+    }
     OrbitalElements operator/(const Unitless& divisor) const
     {
         return std::visit([&](const auto& x) -> OrbitalElements { return x / divisor; }, _elements);
@@ -274,6 +273,8 @@ class OrbitalElements {
     const ElementVariant& extract() const { return _elements; }
     ElementVariant& extract() { return _elements; }
 
+    constexpr size_t index() const { return _elements.index(); }
+
   private:
     ElementVariant _elements;
 
@@ -288,6 +289,9 @@ class OrbitalElements {
                                  "element sets.");
     }
 };
+
+
+bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * mp_units::one);
 
 // namespace detail {
 
@@ -606,3 +610,5 @@ class OrbitalElements {
 //         if (!same_set(other)) { throw std::runtime_error("Cannot add 2 orbital elements of different element sets."); }
 //     }
 // };
+
+} // namespace astro

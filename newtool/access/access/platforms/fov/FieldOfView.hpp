@@ -6,6 +6,9 @@
 #include <math/utils.hpp>
 
 #include <astro/types/typedefs.hpp>
+#include <astro/units/constants.hpp>
+
+namespace accesslib {
 
 class FieldOfView {
   protected:
@@ -13,37 +16,42 @@ class FieldOfView {
     ~FieldOfView() = default;
 
   public:
-    virtual bool contains(const BasisArray& boresight, const BasisArray& target) const { return false; };
+    virtual bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const
+    {
+        return false;
+    };
 };
 
 
 class CircularFieldOfView : public FieldOfView {
   public:
-    CircularFieldOfView(const double& halfConeAngle = std::numbers::pi / 4.0) :
+    CircularFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0) :
         halfConeAngle(halfConeAngle)
     {
     }
     ~CircularFieldOfView() = default;
 
-    bool contains(const BasisArray& boresight, const BasisArray& target) const;
+    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const;
 
   private:
-    double halfConeAngle;
+    astro::Angle halfConeAngle;
 };
 
 
 class PolygonalFieldOfView : public FieldOfView {
   public:
-    PolygonalFieldOfView(const double& halfConeAngle = std::numbers::pi / 4.0, const int& nPoints = 72);
-    PolygonalFieldOfView(const double& halfConeWidth, const double& halfConeHeight, const int& nPoints = 72);
-    PolygonalFieldOfView(const std::unordered_map<double, double>& points) :
+    PolygonalFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0, const int& nPoints = 72);
+    PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints = 72);
+    PolygonalFieldOfView(const std::unordered_map<astro::Angle, astro::Angle>& points) :
         points(points)
     {
     }
     ~PolygonalFieldOfView() = default;
 
-    bool contains(const BasisArray& boresight, const BasisArray& target) const { return false; };
+    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const { return false; };
 
   private:
-    std::unordered_map<double, double> points;
+    std::unordered_map<astro::Angle, astro::Angle> points;
 };
+
+} // namespace accesslib

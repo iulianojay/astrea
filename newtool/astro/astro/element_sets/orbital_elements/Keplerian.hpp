@@ -18,18 +18,20 @@
 #include <astro/time/Time.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Keplerian {
 
     friend std::ostream& operator<<(std::ostream&, Keplerian const&);
 
   public:
-    Keplerian() :
-        _semimajor(0.0 * mp_units::si::unit_symbols::km),
-        _eccentricity(0.0 * mp_units::one),
-        _inclination(0.0 * mp_units::angular::unit_symbols::rad),
-        _rightAscension(0.0 * mp_units::angular::unit_symbols::rad),
-        _argPerigee(0.0 * mp_units::angular::unit_symbols::rad),
-        _trueAnomaly(0.0 * mp_units::angular::unit_symbols::rad)
+    Keplerian(Unitless scale = 0.0 * detail::unitless) :
+        _semimajor(scale * detail::distance_unit),
+        _eccentricity(scale * detail::unitless),
+        _inclination(scale * detail::angle_unit),
+        _rightAscension(scale * detail::angle_unit),
+        _argPerigee(scale * detail::angle_unit),
+        _trueAnomaly(scale * detail::angle_unit)
     {
     }
     Keplerian(const Distance& semimajor, const Unitless& eccentricity, const Angle& inclination, const Angle& rightAscension, const Angle& argPerigee, const Angle& trueAnomaly) :
@@ -94,7 +96,7 @@ class Keplerian {
     constexpr EnumType get_set_id() const { return _setId; }
     Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
-    std::vector<double> to_vector() const;
+    std::vector<Unitless> to_vector() const;
 
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::KEPLERIAN);
@@ -137,3 +139,5 @@ class KeplerianPartial {
     AngularRate _argPerigeePartial;
     AngularRate _trueAnomalyPartial;
 };
+
+} // namespace astro

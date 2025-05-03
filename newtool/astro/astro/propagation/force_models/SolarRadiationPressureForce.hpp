@@ -8,6 +8,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class SolarRadiationPressureForce : public Force {
   public:
     SolarRadiationPressureForce()  = default;
@@ -18,3 +20,5 @@ class SolarRadiationPressureForce : public Force {
 
   private:
 };
+
+} // namespace astro

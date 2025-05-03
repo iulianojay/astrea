@@ -1,5 +1,7 @@
 #include <stdexcept>
 
+namespace astro {
+
 template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
     planes(_planes)
@@ -153,3 +155,5 @@ void Shell<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrat
         plane.propagate(eom, integrator, interval);
     }
 }
+
+} // namespace astro

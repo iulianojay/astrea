@@ -4,9 +4,11 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 // astro
+#include <astro/utilities/conversions.hpp>
 #include <math/utils.hpp>
 
 
@@ -19,6 +21,8 @@ using si::unit_symbols::kg;
 using si::unit_symbols::km;
 using si::unit_symbols::m;
 using si::unit_symbols::s;
+
+namespace astro {
 
 AccelerationVector
     AtmosphericForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
@@ -40,8 +44,8 @@ AccelerationVector
     static const AngularRate& bodyRotationRate = center->get_rotation_rate();
 
     // Find velocity relative to atmosphere
-    const Velocity relVx = vx - (y * bodyRotationRate.in(rad / s));
-    const Velocity relVy = vy + (x * bodyRotationRate.in(rad / s));
+    const Velocity relVx = vx - (y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle));
+    const Velocity relVy = vy + (x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle));
     const Velocity relVz = vz;
 
     // Exponential Drag Model
@@ -73,12 +77,6 @@ AccelerationVector
 
 const Density AtmosphericForce::find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
-
-    // Extract
-    const Distance& x = state.get_x();
-    const Distance& y = state.get_y();
-    const Distance& z = state.get_z();
-
     // Central body properties
     static const Distance equitorialR         = center->get_equitorial_radius();
     static const Distance polarR              = center->get_polar_radius();
@@ -86,16 +84,14 @@ const Density AtmosphericForce::find_atmospheric_density(const JulianDate& julia
     static const std::string& centerName      = center->get_name();
 
     // Find altitude
-    const auto radius = state.get_radius();
-    BasisArray rBCI{ radius[0].numerical_value_in(radius[0].unit),
-                     radius[1].numerical_value_in(radius[1].unit),
-                     radius[2].numerical_value_in(radius[2].unit) };
-    BasisArray rBCBF{};
-    BasisArray lla{};
+    const RadiusVector rBCI = state.get_radius();
+    RadiusVector rBCBF{};
+    Angle lat, lon;
+    Distance altitude;
     conversions::bci_to_bcbf(rBCI, julianDate, bodyRotationRate, rBCBF);
-    conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
+    conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lat, lon, altitude);
 
-    const Distance altitude(lla[2] * km);
+    Unitless altitudeValue = altitude / km;
 
     // Assume that bodies not listed have no significant atmosphere.Assume that
     // the atmosphere of the gas giants is defined by their radii, e.g.
@@ -135,13 +131,15 @@ const Density AtmosphericForce::find_atmospheric_density(const JulianDate& julia
             atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
         }
         else if (altitude < 200.0 * km) {
-            atmosphericDensity = exp(-2.55314e-10 * pow<5>(altitude) + 2.31927e-7 * pow<4>(altitude) -
-                                     8.33206e-5 * pow<3>(altitude) + 0.0151947 * pow<2>(altitude) - 1.52799 * altitude + 48.69659) *
+            atmosphericDensity = exp(-2.55314e-10 * pow<5>(altitudeValue) + 2.31927e-7 * pow<4>(altitudeValue) -
+                                     8.33206e-5 * pow<3>(altitudeValue) + 0.0151947 * pow<2>(altitudeValue) -
+                                     1.52799 * altitudeValue + 48.69659) *
                                  kg / (m * m * m);
         }
         else if (altitude < 300.0 * km) {
-            atmosphericDensity = exp(2.65472e-11 * pow<5>(altitude) - 2.45558e-8 * pow<4>(altitude) + 6.31410e-6 * pow<3>(altitude) +
-                                     4.73359e-4 * pow<2>(altitude) - 0.443712 * altitude + 23.79408) *
+            atmosphericDensity = exp(2.65472e-11 * pow<5>(altitudeValue) - 2.45558e-8 * pow<4>(altitudeValue) +
+                                     6.31410e-6 * pow<3>(altitudeValue) + 4.73359e-4 * pow<2>(altitudeValue) -
+                                     0.443712 * altitudeValue + 23.79408) *
                                  kg / (m * m * m);
         }
         else {
@@ -185,7 +183,7 @@ const std::map<Altitude, Density> AtmosphericForce::venutianAtmosphere = { // km
     { 290.0 * km, 6.5e-12 * kg / (pow<3>(m)) }, { 300.0 * km, 3.5e-12 * kg / (pow<3>(m)) }
 };
 
-const std::map < Altitude, Density >> AtmosphericForce::martianAtmosphere = { // km, kg/m^3
+const std::map<Altitude, Density> AtmosphericForce::martianAtmosphere = { // km, kg/m^3
     { 2.0 * km, 1.19e-1 * kg / (pow<3>(m)) },  { 4.0 * km, 1.10e-1 * kg / (pow<3>(m)) },
     { 6.0 * km, 1.02e-1 * kg / (pow<3>(m)) },  { 8.0 * km, 9.39e-2 * kg / (pow<3>(m)) },
     { 10.0 * km, 8.64e-2 * kg / (pow<3>(m)) }, { 12.0 * km, 7.93e-2 * kg / (pow<3>(m)) },
@@ -240,7 +238,7 @@ const std::map<
         { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
     };
 
-const std::map < Altitude, AtmosphericForce::TitanDensity >> AtmosphericForce::titanicAtmosphere = { // km, g/cm^3
+const std::map<Altitude, AtmosphericForce::TitanDensity> AtmosphericForce::titanicAtmosphere = { // km, g/cm^3
     { 780.0 * km, 1.00e-12 * g / (pow<3>(cm)) },  { 790.0 * km, 8.45e-12 * g / (pow<3>(cm)) },
     { 800.0 * km, 7.16e-12 * g / (pow<3>(cm)) },  { 810.0 * km, 6.08e-12 * g / (pow<3>(cm)) },
     { 820.0 * km, 5.17e-12 * g / (pow<3>(cm)) },  { 830.0 * km, 4.41e-12 * g / (pow<3>(cm)) },
@@ -269,3 +267,5 @@ const std::map < Altitude, AtmosphericForce::TitanDensity >> AtmosphericForce::t
     { 1280.0 * km, 1.26e-14 * g / (pow<3>(cm)) }, { 1290.0 * km, 1.12e-14 * g / (pow<3>(cm)) },
     { 1300.0 * km, 1.00e-14 * g / (pow<3>(cm)) }
 };
+
+} // namespace astro

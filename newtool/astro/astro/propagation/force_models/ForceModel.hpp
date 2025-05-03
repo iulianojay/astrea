@@ -7,6 +7,8 @@
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class ForceModel {
   private:
   public:
@@ -27,3 +29,5 @@ class ForceModel {
   private:
     std::unordered_map<std::string, std::unique_ptr<Force>> forces;
 };
+
+} // namespace astro

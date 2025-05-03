@@ -12,6 +12,7 @@
 #include <astro/types/typeid_name_extract.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
 
 template <typename T>
 concept HasUpdateState = requires(T vehicle, const State& state)
@@ -357,3 +358,5 @@ class Vehicle {
         return _ptr.get();
     }
 };
+
+} // namespace astro

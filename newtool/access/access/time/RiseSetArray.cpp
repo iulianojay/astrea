@@ -2,6 +2,10 @@
 
 #include <stdexcept>
 
+using astro::Time;
+
+namespace accesslib {
+
 RiseSetArray::RiseSetArray(const std::vector<Time>& _risesets)
 {
     validate_risesets(_risesets);
@@ -63,3 +67,5 @@ void RiseSetArray::insert(const Time& rise, const Time& set)
 
     *this = (*this) | RiseSetArray({ rise, set });
 }
+
+} // namespace accesslib

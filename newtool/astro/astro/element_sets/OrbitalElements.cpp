@@ -1,9 +1,30 @@
 #include <astro/element_sets/OrbitalElements.hpp>
 
+#include <stdexcept>
+
+#include <mp-units/math.h>
+
+using namespace mp_units;
+
+namespace astro {
+
 std::ostream& operator<<(std::ostream& os, const OrbitalElements& elements)
 {
     std::visit([&os](const auto& x) { os << x; }, elements._elements);
     return os;
+}
+
+bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable, Unitless relTol)
+{
+    if (first.index() != second.index()) {
+        throw std::runtime_error("Cannot compare elements sets of different types.");
+    }
+    const auto firstScaled  = first.to_vector();
+    const auto secondScaled = second.to_vector();
+    for (int ii = 0; ii < 6; ii++) {
+        if (abs((firstScaled[ii] - secondScaled[ii]) / firstScaled[ii]) > relTol) { return false; }
+    }
+    return true;
 }
 
 // namespace detail {
@@ -153,3 +174,5 @@ std::ostream& operator<<(std::ostream& os, const OrbitalElements& elements)
 //     os << (*elements.ptr());
 //     return os;
 // }
+
+} // namespace astro

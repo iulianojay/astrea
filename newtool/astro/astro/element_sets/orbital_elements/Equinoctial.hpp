@@ -18,18 +18,20 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Equinoctial {
 
     friend std::ostream& operator<<(std::ostream&, Equinoctial const&);
 
   public:
-    Equinoctial() :
-        _semilatus(0.0 * mp_units::si::unit_symbols::km),
-        _f(0.0 * mp_units::one),
-        _g(0.0 * mp_units::one),
-        _h(0.0 * mp_units::one),
-        _k(0.0 * mp_units::one),
-        _trueLongitude(0.0 * mp_units::angular::unit_symbols::rad)
+    Equinoctial(Unitless scale = 0.0 * detail::unitless) :
+        _semilatus(scale * detail::distance_unit),
+        _f(scale * detail::unitless),
+        _g(scale * detail::unitless),
+        _h(scale * detail::unitless),
+        _k(scale * detail::unitless),
+        _trueLongitude(scale * detail::angle_unit)
     {
     }
     Equinoctial(const Distance& semilatus, const Unitless& f, const Unitless& g, const Unitless& h, const Unitless& k, const Angle& trueLongitude) :
@@ -46,6 +48,7 @@ class Equinoctial {
     {
     }
     Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys);
+    Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys);
 
     // Copy constructor
     Equinoctial(const Equinoctial&);
@@ -93,7 +96,7 @@ class Equinoctial {
     Equinoctial
         interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
-    std::vector<double> to_vector() const;
+    std::vector<Unitless> to_vector() const;
 
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::EQUINOCTIAL);
@@ -136,3 +139,5 @@ class EquinoctialPartial {
     UnitlessPerTime _kPartial;
     AngularRate _trueLongitudePartial;
 };
+
+} // namespace astro

@@ -11,6 +11,8 @@
 #include <astro/time/Time.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class J2MeanVop : public EquationsOfMotion {
 
   public:
@@ -35,3 +37,5 @@ class J2MeanVop : public EquationsOfMotion {
     const Unitless J2;
     const Distance equitorialR;
 };
+
+} // namespace astro

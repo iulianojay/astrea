@@ -16,6 +16,8 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/time/Time.hpp>
 
+namespace astro {
+
 class CowellsMethod : public EquationsOfMotion {
 
     using GravParam =
@@ -37,3 +39,5 @@ class CowellsMethod : public EquationsOfMotion {
 
     const GravParam mu;
 };
+
+} // namespace astro

@@ -7,6 +7,8 @@
 
 #include <astro/types/typedefs.hpp>
 
+namespace accesslib {
+
 class Sensor {
 
   public:
@@ -18,7 +20,7 @@ class Sensor {
 
     const size_t& get_id() { return id; }
 
-    virtual const bool contains(const BasisArray& sensor2target) const
+    virtual const bool contains(const astro::RadiusVector& sensor2target) const
     {
         return fov->contains(boresight, sensor2target);
     }
@@ -28,10 +30,12 @@ class Sensor {
   private:
     size_t id;
     int parentId;
-    BasisArray attachmentPoint;
-    BasisArray boresight;
+    astro::RadiusVector attachmentPoint;
+    astro::RadiusVector boresight;
     FieldOfView* fov;
     AccessArray accesses;
 
     void generate_id_hash();
 };
+
+} // namespace accesslib

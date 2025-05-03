@@ -8,13 +8,13 @@
 
 #include <math/utils.hpp>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
-class AstrodynamicsSystem;
-
+namespace astro {
 namespace conversions {
 
 //------------------------------------------- Frame Conversions --------------------------------------------//
@@ -29,3 +29,4 @@ double epoch_to_julian_date(std::string epochString);
 Angle julian_date_to_siderial_time(JulianDate julianDate, AngularRate rotRate);
 
 } // namespace conversions
+} // namespace astro

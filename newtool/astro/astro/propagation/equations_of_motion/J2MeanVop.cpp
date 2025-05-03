@@ -23,6 +23,8 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
+
 OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
@@ -94,3 +96,5 @@ OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElem
 
     return dsdt;
 }
+
+} // namespace astro

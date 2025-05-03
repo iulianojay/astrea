@@ -19,19 +19,21 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class Cartesian {
 
     friend std::ostream& operator<<(std::ostream&, Cartesian const&);
     friend CartesianPartial;
 
   public:
-    Cartesian() :
-        _x(0.0 * mp_units::si::unit_symbols::km),
-        _y(0.0 * mp_units::si::unit_symbols::km),
-        _z(0.0 * mp_units::si::unit_symbols::km),
-        _vx(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s),
-        _vy(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s),
-        _vz(0.0 * mp_units::si::unit_symbols::km / mp_units::si::unit_symbols::s)
+    Cartesian(Unitless scale = 0.0 * detail::unitless) :
+        _x(scale * detail::distance_unit),
+        _y(scale * detail::distance_unit),
+        _z(scale * detail::distance_unit),
+        _vx(scale * detail::distance_unit / detail::time_unit),
+        _vy(scale * detail::distance_unit / detail::time_unit),
+        _vz(scale * detail::distance_unit / detail::time_unit)
     {
     }
     Cartesian(const RadiusVector& r, const VelocityVector& v) :
@@ -88,6 +90,7 @@ class Cartesian {
     Cartesian& operator*=(const Unitless& multiplier);
 
     CartesianPartial operator/(const Time& time) const;
+    std::vector<Unitless> operator/(const Cartesian& other) const;
     Cartesian operator/(const Unitless& divisor) const;
     Cartesian& operator/=(const Unitless& divisor);
 
@@ -105,7 +108,7 @@ class Cartesian {
 
     size_t size() const { return 6; }
 
-    std::vector<double> to_vector() const;
+    std::vector<Unitless> to_vector() const;
 
     constexpr EnumType get_set_id() const { return _setId; }
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
@@ -148,3 +151,5 @@ class CartesianPartial {
     Acceleration _ay;
     Acceleration _az;
 };
+
+} // namespace astro

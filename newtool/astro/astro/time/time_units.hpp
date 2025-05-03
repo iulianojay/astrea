@@ -2,6 +2,8 @@
 
 #include <chrono>
 
+namespace astro {
+
 /// nanoseconds
 using nanoseconds = std::chrono::duration<double, std::nano>;
 
@@ -33,3 +35,5 @@ using years = std::chrono::duration<double, std::ratio<31556952>>;
 /// months
 using months = std::chrono::duration<double, std::ratio<2629746>>;
 #endif // C++20
+
+} // namespace astro

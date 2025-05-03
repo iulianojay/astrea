@@ -11,6 +11,7 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace astro {
 
 // Constructor/Destructor
 Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) :
@@ -106,3 +107,5 @@ void Spacecraft::generate_id_hash()
     _id ^= std::hash<double>()(_sunArea.numerical_value_ref_in(_sunArea.unit));
     _id ^= std::hash<double>()(_liftArea.numerical_value_ref_in(_liftArea.unit));
 }
+
+} // namespace astro

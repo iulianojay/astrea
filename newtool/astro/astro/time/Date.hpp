@@ -8,6 +8,8 @@
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/Time.hpp>
 
+namespace astro {
+
 class Date {
 
   public:
@@ -102,13 +104,16 @@ class Date {
     }
 };
 
+} // namespace astro
+
+
 template <>
-struct mp_units::quantity_point_like_traits<Date> {
+struct mp_units::quantity_point_like_traits<astro::Date> {
     static constexpr auto reference       = non_si::day;
-    static constexpr auto point_origin    = J2K;
+    static constexpr auto point_origin    = astro::J2K;
     static constexpr bool explicit_import = false;
     static constexpr bool explicit_export = true;
     using rep                             = double;
-    static constexpr rep to_numerical_value(Date date) { return date.julian_day().time_since_epoch().count(); }
-    static constexpr Date from_numerical_value(rep v) { return Date(v); }
+    static constexpr rep to_numerical_value(astro::Date date) { return date.julian_day().time_since_epoch().count(); }
+    static constexpr astro::Date from_numerical_value(rep v) { return astro::Date(v); }
 };

@@ -6,6 +6,8 @@
 #include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace astro {
+
 class State {
 
     friend std::ostream& operator<<(std::ostream& os, const State& state);
@@ -35,3 +37,5 @@ class State {
 };
 
 bool state_time_comparitor(State s, Time time);
+
+} // namespace astro

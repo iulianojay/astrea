@@ -19,13 +19,10 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
 
 Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
-
-    // Constants
-    static const quantity piRad    = 1.0 * (mag<pi> * rad);
-    static const quantity twoPiRad = 2.0 * (mag<pi> * rad);
 
     // Get mu
     const quantity mu = sys.get_center()->get_mu();
@@ -250,11 +247,14 @@ Cartesian
     return Cartesian({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
 }
 
-std::vector<double> Cartesian::to_vector() const
+std::vector<Unitless> Cartesian::to_vector() const
 {
-    return { _x.numerical_value_ref_in(_x.unit),   _y.numerical_value_ref_in(_y.unit),
-             _z.numerical_value_ref_in(_z.unit),   _vx.numerical_value_ref_in(_vx.unit),
-             _vy.numerical_value_ref_in(_vy.unit), _vz.numerical_value_ref_in(_vz.unit) };
+    return { _x / detail::distance_unit,
+             _y / detail::distance_unit,
+             _z / detail::distance_unit,
+             _vx / (detail::distance_unit / detail::time_unit),
+             _vy / (detail::distance_unit / detail::time_unit),
+             _vz / (detail::distance_unit / detail::time_unit) };
 }
 
 Cartesian CartesianPartial::operator*(const Time& time) const
@@ -275,3 +275,5 @@ std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
     os << "] (Cartesian)";
     return os;
 }
+
+} // namespace astro

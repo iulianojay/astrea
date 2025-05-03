@@ -10,6 +10,15 @@
 using namespace mp_units;
 using namespace mp_units::si;
 
+using astro::AstrodynamicsSystem;
+using astro::Cartesian;
+using astro::Constellation;
+using astro::RadiusVector;
+using astro::State;
+using astro::Time;
+
+namespace accesslib {
+
 void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
 
@@ -35,7 +44,7 @@ void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const
             const size_t id2 = sat2.get_id();
 
             // Satellite-level access for sat1 -> sat2
-            RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates);
+            RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates, sys);
 
             // Store
             if (satAccess.size() > 0) {
@@ -87,8 +96,8 @@ std::vector<std::vector<State>>
 
         for (size_t iSat = 0; iSat < nSats; ++iSat) {
 
-            const Spacecraft& sat = allSats[iSat];
-            const State state     = sat.get_state_at(time, sys);
+            const Viewer& sat = allSats[iSat];
+            const State state = sat.get_state_at(time, sys);
 
             const auto elements       = state.elements.in<Cartesian>(sys);
             interpStates[iTime][iSat] = State(time, elements);
@@ -104,7 +113,8 @@ RiseSetArray find_sat_to_sat_accesses(
     Viewer& sat1,
     Viewer& sat2,
     const std::vector<Time>& times,
-    const std::vector<std::vector<State>>& states
+    const std::vector<std::vector<State>>& states,
+    const AstrodynamicsSystem& sys
 )
 {
 
@@ -118,7 +128,7 @@ RiseSetArray find_sat_to_sat_accesses(
         for (auto& sensor2 : sat2.get_sensors()) {
             const size_t id2 = sensor1.get_id();
 
-            RiseSetArray access = find_sensor_to_sensor_accesses(iSat, jSat, sensor1, sensor2, times, states);
+            RiseSetArray access = find_sensor_to_sensor_accesses(iSat, jSat, sensor1, sensor2, times, states, sys);
 
             // Store
             satAccess = (satAccess | access);
@@ -139,7 +149,8 @@ RiseSetArray find_sensor_to_sensor_accesses(
     const Sensor& sensor1,
     const Sensor& sensor2,
     const std::vector<Time>& times,
-    const std::vector<std::vector<State>>& states
+    const std::vector<std::vector<State>>& states,
+    const AstrodynamicsSystem& sys
 )
 {
 
@@ -152,27 +163,28 @@ RiseSetArray find_sensor_to_sensor_accesses(
         const State& state1 = states[iTime][iSat];
         const State& state2 = states[iTime][jSat];
 
-        const Cartesian& state1to2 = state2.elements.in<Cartesian>() - state1.elements.in<Cartesian>();
+        const Cartesian& state1to2    = state2.elements.in<Cartesian>(sys) - state1.elements.in<Cartesian>(sys);
+        const RadiusVector radius1to2 = state1to2.get_radius();
 
         // Manage bookends
         if (iTime == 0) {
-            hasAccess = sensor1.contains(state1to2);
+            hasAccess = sensor1.contains(radius1to2);
             if (hasAccess) { rise = times[0]; }
             continue;
         }
         else if (iTime == states.size() - 1) {
-            if ((hasAccess && sensor1.contains(state1to2))) { access.append(rise, times[iTime]); }
+            if ((hasAccess && sensor1.contains(radius1to2))) { access.append(rise, times[iTime]); }
 
             // NOTE: this ignores cases where the last time is a rise time -> access analyzed for [0, T)
         }
 
         // Check for rise/set times
-        if (hasAccess && !sensor1.contains(state1to2)) {
+        if (hasAccess && !sensor1.contains(radius1to2)) {
             hasAccess = false;
 
             access.append(rise, times[iTime]);
         }
-        else if (!hasAccess && sensor1.contains(state1to2)) {
+        else if (!hasAccess && sensor1.contains(radius1to2)) {
             hasAccess = true;
             rise      = times[iTime];
         }
@@ -180,3 +192,5 @@ RiseSetArray find_sensor_to_sensor_accesses(
 
     return access;
 }
+
+} // namespace accesslib

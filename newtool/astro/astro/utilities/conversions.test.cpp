@@ -5,6 +5,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace astro;
 
 class ConversionTest : public testing::Test {
   protected:

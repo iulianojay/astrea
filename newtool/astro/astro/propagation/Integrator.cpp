@@ -1,5 +1,11 @@
 #include <astro/propagation/Integrator.hpp>
 
+#include <mp-units/math.h>
+
+using namespace mp_units;
+
+namespace astro {
+
 
 OrbitalElementPartials
     Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
@@ -243,30 +249,35 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 
         // Get k next step
         for (size_t jStage = 0; jStage < iStage + 1; ++jStage) {
-            statePlusKi += kMatrix[jStage] * a[iStage + 1][kk];
+            statePlusKi += kMatrix[jStage] * a[iStage + 1][jStage];
         }
     }
 
-    // Find max error from step
-    Unitless maxError        = 0.0;
+    // Get new state and state error
     OrbitalElements stateNew = state;
     OrbitalElements stateError;
-    for (size_t ii = 0; ii < stateNew.size(); ++ii) {
+    for (size_t iStage = 0; iStage < nStages; ++iStage) {
+        stateNew += kMatrix[iStage] * b[iStage];
+        stateError += kMatrix[iStage] * db[iStage];
+    }
 
-        stateError[ii] = 0.0;
-        for (size_t jj = 0; jj < nStages; ++jj) {
-            stateNew[ii] += kMatrix[jj][ii] * b[jj];
-            stateError[ii] += kMatrix[jj][ii] * db[jj];
-        }
-
-        if (!useFixedStep) {
+    // Find max error from step
+    Unitless maxError = 0.0;
+    Unitless inf      = std::numeric_limits<double>::infinity() * one;
+    Unitless nan      = std::numeric_limits<double>::quiet_NaN() * one;
+    if (!useFixedStep) {
+        const auto stateErrorScaled = stateError.to_vector();
+        const auto stateNewScaled   = stateNew.to_vector();
+        for (size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
             // Error
-            maxError = std::max(maxError, abs(stateError[ii]) / (absoluteTolerance + abs(stateNew[ii]) * relativeTolerance));
+            const auto err = abs(stateErrorScaled[ii]) / (absoluteTolerance + abs(stateNewScaled[ii]) * relativeTolerance);
+            if (err > maxError) { maxError = err; }
 
             // Catch huge steps
             /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
-            if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
+            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * detail::unitless ||
+                abs(stateNewScaled[ii]) == inf || stateNewScaled[ii] == nan) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
                    it to lower the step slightly and try again without killing the run */
@@ -274,10 +285,23 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
     }
+    // for (size_t ii = 0; ii < stateNew.size(); ++ii) {
 
-    /*
-    stateNew = state + dot(kMatrix[:], a)
-    */
+    //     if (!useFixedStep) {
+    //         // Error
+    //         maxError = std::max(maxError, abs(stateError[ii]) / (absoluteTolerance + abs(stateNew[ii]) * relativeTolerance));
+
+    //         // Catch huge steps
+    //         /* There has to be a better way to do this. It's still possible for the integration to
+    //            pass through a singularity without a huge step */
+    //         if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
+    //             /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
+    //                If the step is legitimate, but just very large, this will just force
+    //                it to lower the step slightly and try again without killing the run */
+    //             maxError = 2.0; // Force step failure
+    //         }
+    //     }
+    // }
 
     // Check error of step
     if (!useFixedStep) { check_error(maxError, stateNew, stateError, time, timeStep, state); }
@@ -317,13 +341,13 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
                 timeStep *= minErrorStepFactor;
             }
             else {
-                timeStep *= std::pow(epsilon / maxError, 0.2);
+                timeStep *= pow(epsilon / maxError, 0.2 * one);
             }
         }
         else {
             // Predicted relative step size
-            const quantity<one> relativeTimeStep = abs(timeStep / timeStepPrevious) * std::pow(epsilon / maxError, 0.08) *
-                                                   std::pow(maxError / maxErrorPrevious, 0.06);
+            const Unitless relativeTimeStep = abs(timeStep / timeStepPrevious) * pow(epsilon / maxError, 0.08 * one) *
+                                              pow(maxError / maxErrorPrevious, 0.06 * one);
 
             // Store step and error after computing relative time step
             timeStepPrevious = timeStep;
@@ -338,7 +362,7 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
     }
     else { // Error is too large . truncate stepsize
         // Predicted relative step size
-        const Unitless relativeTimeStep = std::pow(epsilon / maxError, 0.2);
+        const Unitless relativeTimeStep = pow(epsilon / maxError, 0.2 * one);
 
         // Keep step from getting too small too fast
         if (relativeTimeStep < minRelativeStepSize) { // step size is too small
@@ -459,3 +483,5 @@ void Integrator::set_step_method(std::string stepMethod)
     }
     stepMethod = stepper;
 }
+
+} // namespace astro

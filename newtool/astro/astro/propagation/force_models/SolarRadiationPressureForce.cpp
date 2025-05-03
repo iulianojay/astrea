@@ -3,7 +3,6 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/si/math.h>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <math/utils.hpp>
@@ -14,6 +13,7 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace astro {
 
 AccelerationVector
     SolarRadiationPressureForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
@@ -32,8 +32,8 @@ AccelerationVector
     static const bool isSun            = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = center->get_closest_state(julianDate - vehicle.epoch().julian_day());
-    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.to_cartesian(sys).get_radius();
+    const State& stateSunToCenter        = center->get_closest_state(julianDate - vehicle.get_epoch().julian_day());
+    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
     const RadiusVector radiusCenterToSun{ // flip vector direction
@@ -53,17 +53,18 @@ AccelerationVector
     );
 
     // Solar radiation pressure
-    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-3;
+    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-3 * N / pow<2>(m);
     const quantity solarRadiationPressure =
         SRP_1AU * (au * au) / (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (isSun) {
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
-        const Angle refAngle =
-            acos((radiusCenterToSun[0] * x + radiusCenterToSun[1] * y + radiusCenterToSun[2] * z) / (radialMagnitudeCenterToSun * R));
-        const Angle refAngle1 = acos(equitorialR / R);
-        const Angle refAngle2 = acos(equitorialR / radialMagnitudeCenterToSun);
+        const Angle refAngle = angular::acos(
+            (radiusCenterToSun[0] * x + radiusCenterToSun[1] * y + radiusCenterToSun[2] * z) / (radialMagnitudeCenterToSun * R)
+        );
+        const Angle refAngle1 = angular::acos(equitorialR / R);
+        const Angle refAngle2 = angular::acos(equitorialR / radialMagnitudeCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
             static const Distance diamSun = 696000.0 * km;
@@ -76,9 +77,9 @@ AccelerationVector
 
             const RadiusVector rPs{ x - rP[0], y - rP[1], z - rP[2] };
             const Distance normRPs = sqrt(rPs[0] * rPs[0] + rPs[1] * rPs[1] + rPs[2] * rPs[2]);
-            const Angle alphaps = abs(asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
+            const Angle alphaps = abs(angular::asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
 
-            if (alphaps < asin(equitorialR / Xu)) { // Umbra
+            if (alphaps < angular::asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
             }
             else { // Penumbra
@@ -91,10 +92,12 @@ AccelerationVector
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity tempA = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass / rMagVehicleToSun *
-                           fractionOfRecievedSunlight;
+    const quantity tempA                     = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
+                           radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
 
     const AccelerationVector accelSRP{ tempA * radiusVehicleToSun[0], tempA * radiusVehicleToSun[1], tempA * radiusVehicleToSun[2] };
 
     return accelSRP;
 }
+
+} // namespace astro

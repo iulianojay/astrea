@@ -2,6 +2,8 @@
 
 #include <astro/time/Time.hpp>
 
+namespace astro {
+
 class Interval {
   public:
     Interval(const Time& start, const Time& end) :
@@ -12,3 +14,5 @@ class Interval {
     Time start;
     Time end;
 };
+
+} // namespace astro

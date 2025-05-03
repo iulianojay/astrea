@@ -13,6 +13,8 @@
 #include <astro/time/Date.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class NullVehicle {
 
   public:
@@ -33,3 +35,5 @@ class NullVehicle {
     Date _epoch;
     Mass _mass;
 };
+
+} // namespace astro

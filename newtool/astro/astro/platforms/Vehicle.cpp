@@ -11,6 +11,8 @@ using namespace mp_units;
 using namespace mp_units::si;
 using namespace mp_units::si::unit_symbols;
 
+namespace astro {
+
 // Default constructor
 Vehicle::Vehicle() :
     Vehicle(NullVehicle{})
@@ -99,3 +101,5 @@ Vehicle& Vehicle::operator=(const Vehicle& other) { return *this = Vehicle(other
 // Pointer to user-defined vehicle
 const void* Vehicle::get_ptr() const { return ptr()->get_ptr(); }
 void* Vehicle::get_ptr() { return ptr()->get_ptr(); }
+
+} // namespace astro

@@ -6,6 +6,8 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/time/Time.hpp>
 
+namespace astro {
+
 class TwoBody : public EquationsOfMotion {
 
     using GravParam =
@@ -24,3 +26,5 @@ class TwoBody : public EquationsOfMotion {
     const ElementSet expectedSet = ElementSet::CARTESIAN;
     const GravParam mu;
 };
+
+} // namespace astro

@@ -1,5 +1,7 @@
 #pragma once
 
+namespace astro {
+
 class State;
 
 // ELement sets
@@ -52,3 +54,5 @@ class RiseSetArray;
 class Date;
 class Interval;
 struct JulianDateClock;
+
+} // namespace astro

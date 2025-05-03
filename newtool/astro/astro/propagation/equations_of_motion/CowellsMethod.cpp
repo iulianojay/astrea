@@ -14,6 +14,8 @@ using namespace mp_units::non_si;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
+
 OrbitalElementPartials CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
@@ -42,3 +44,5 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
 
     return dsdt;
 }
+
+} // namespace astro

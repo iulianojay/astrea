@@ -6,6 +6,8 @@
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/Integrator.hpp>
 
+namespace astro {
+
 template <class Spacecraft_T = Spacecraft>
 class Constellation {
 
@@ -144,5 +146,7 @@ class Constellation {
 
     void generate_id_hash();
 };
+
+} // namespace astro
 
 #include <astro/platforms/space/Constellation.ipp>

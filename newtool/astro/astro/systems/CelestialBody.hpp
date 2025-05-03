@@ -19,6 +19,8 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
+namespace astro {
+
 class CelestialBody {
 
   public:
@@ -114,9 +116,11 @@ class CelestialBody {
     void _propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
 };
 
+} // namespace astro
+
 template <>
-struct std::hash<CelestialBody> {
-    std::size_t operator()(CelestialBody const& body) const noexcept
+struct std::hash<astro::CelestialBody> {
+    std::size_t operator()(astro::CelestialBody const& body) const noexcept
     {
 
         size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(

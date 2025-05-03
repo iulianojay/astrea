@@ -7,6 +7,8 @@
 #include <type_traits>
 #include <utility>
 
+namespace astro {
+
 namespace detail {
 
 // http://en.cppreference.com/w/cpp/experimental/is_detected
@@ -37,3 +39,5 @@ using remove_cv_ref = std::remove_cv_t<std::remove_reference_t<T>>;
 
 template <template <class...> class Op, class... Args>
 using detected_t = typename detail::detector<detail::nonesuch, void, Op, Args...>::type;
+
+} // namespace astro

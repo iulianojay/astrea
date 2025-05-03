@@ -16,6 +16,8 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
+
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
@@ -39,6 +41,11 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
 
     // True longitude
     _trueLongitude = raan + argPer + theta;
+}
+
+Equinoctial::Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys) :
+    Equinoctial(Keplerian(elements, sys), sys)
+{
 }
 
 // Copy constructor
@@ -189,14 +196,9 @@ Equinoctial
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-std::vector<double> Equinoctial::to_vector() const
+std::vector<Unitless> Equinoctial::to_vector() const
 {
-    return { _semilatus.numerical_value_ref_in(_semilatus.unit),
-             _f.numerical_value_ref_in(_f.unit),
-             _g.numerical_value_ref_in(_g.unit),
-             _h.numerical_value_ref_in(_h.unit),
-             _k.numerical_value_ref_in(_k.unit),
-             _trueLongitude.numerical_value_ref_in(_trueLongitude.unit) };
+    return { _semilatus / detail::distance_unit, _f, _g, _h, _k, _trueLongitude / detail::angle_unit };
 }
 
 
@@ -217,3 +219,5 @@ std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)
     os << "] (Equinoctial)";
     return os;
 }
+
+} // namespace astro

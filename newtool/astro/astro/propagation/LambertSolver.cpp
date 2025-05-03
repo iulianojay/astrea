@@ -2,6 +2,8 @@
 
 #include <math/utils.hpp>
 
+namespace astro {
+
 // Constructor and destructor
 LambertSolver::LambertSolver() {}
 LambertSolver::~LambertSolver() {}
@@ -241,3 +243,5 @@ void LambertSolver::evaluate_stumpff()
 }
 
 double LambertSolver::normalize(double* vec) { return std::sqrt(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]); }
+
+} // namespace astro

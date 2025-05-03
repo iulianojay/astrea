@@ -9,10 +9,11 @@
 #include <vector>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+
+namespace astro {
 
 class EquationsOfMotion {
   public:
@@ -29,3 +30,5 @@ class EquationsOfMotion {
   protected:
     const AstrodynamicsSystem& system;
 };
+
+} // namespace astro

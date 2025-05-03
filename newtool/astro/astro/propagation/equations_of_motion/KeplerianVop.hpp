@@ -7,6 +7,8 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/time/Time.hpp>
 
+namespace astro {
+
 class KeplerianVop : public EquationsOfMotion {
 
     using GravParam =
@@ -33,3 +35,5 @@ class KeplerianVop : public EquationsOfMotion {
 
     void check_degenerate(const mp_units::quantity<mp_units::one>& ecc, const mp_units::quantity<mp_units::angular::unit_symbols::rad>& inc) const;
 };
+
+} // namespace astro

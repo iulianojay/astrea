@@ -19,6 +19,8 @@ using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
+namespace astro {
+
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) :
     N(_N),
     M(_M),
@@ -300,3 +302,5 @@ void OblatenessForce::assign_legendre(const quantity<km>& latitude) const
         }
     }
 }
+
+} // namespace astro

@@ -9,6 +9,8 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
+namespace astro {
+
 namespace detail {
 
 inline constexpr auto time_unit           = mp_units::si::unit_symbols::s;
@@ -38,6 +40,4 @@ using GravParam   = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) /
 using Density  = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::minor_distance_unit))>;
 using Altitude = mp_units::quantity<detail::distance_unit>;
 
-using RadiusVector       = std::array<Distance, 3>;
-using VelocityVector     = std::array<Velocity, 3>;
-using AccelerationVector = std::array<Acceleration, 3>;
+} // namespace astro

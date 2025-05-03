@@ -7,6 +7,8 @@
 
 #include <astro/astro.fwd.hpp>
 
+namespace astro {
+
 template <class Spacecraft_T = Spacecraft>
 class Plane {
 
@@ -46,5 +48,6 @@ class Plane {
     void generate_id_hash();
 };
 
+} // namespace astro
 
 #include <astro/platforms/space/Plane.ipp>

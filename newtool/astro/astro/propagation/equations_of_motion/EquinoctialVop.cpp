@@ -2,6 +2,7 @@
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
@@ -19,6 +20,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace astro {
 
 OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
@@ -99,9 +101,11 @@ OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const Orbita
         tempA * (-radialPert * cosL + ((tempB + 1) * sinL + g) / tempB * tangentialPert + f * tempC * normalPert);
     const quantity<one / s> dhdt = tempD * cosL * normalPert;
     const quantity<one / s> dkdt = tempD * sinL * normalPert;
-    const quantity<rad / s> dLdt = sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert;
+    const quantity<rad / s> dLdt = sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert * (isq_angle::cotes_angle);
 
     const EquinoctialPartial dsdt(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 
     return dsdt;
 }
+
+} // namespace astro
