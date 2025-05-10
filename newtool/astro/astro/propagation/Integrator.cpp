@@ -245,7 +245,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         statePlusKi = state;
 
         // Correct k value
-        kMatrix[iStage] = std::visit([&](const auto& x) { return x * timeStep; }, partial);
+        kMatrix[iStage] = partial * timeStep;
 
         // Get k next step
         for (size_t jStage = 0; jStage < iStage + 1; ++jStage) {
@@ -263,8 +263,6 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 
     // Find max error from step
     Unitless maxError = 0.0;
-    Unitless inf      = std::numeric_limits<double>::infinity() * one;
-    Unitless nan      = std::numeric_limits<double>::quiet_NaN() * one;
     if (!useFixedStep) {
         const auto stateErrorScaled = stateError.to_vector();
         const auto stateNewScaled   = stateNew.to_vector();
@@ -277,7 +275,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
             if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * detail::unitless ||
-                abs(stateNewScaled[ii]) == inf || stateNewScaled[ii] == nan) {
+                isinf(stateNewScaled[ii]) || isnan(stateNewScaled[ii])) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
                    it to lower the step slightly and try again without killing the run */
@@ -341,13 +339,13 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
                 timeStep *= minErrorStepFactor;
             }
             else {
-                timeStep *= pow(epsilon / maxError, 0.2 * one);
+                timeStep *= pow<1, 5>(epsilon / maxError);
             }
         }
         else {
             // Predicted relative step size
-            const Unitless relativeTimeStep = abs(timeStep / timeStepPrevious) * pow(epsilon / maxError, 0.08 * one) *
-                                              pow(maxError / maxErrorPrevious, 0.06 * one);
+            const Unitless relativeTimeStep =
+                abs(timeStep / timeStepPrevious) * pow<2, 25>(epsilon / maxError) * pow<3, 50>(maxError / maxErrorPrevious);
 
             // Store step and error after computing relative time step
             timeStepPrevious = timeStep;
@@ -362,7 +360,7 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
     }
     else { // Error is too large . truncate stepsize
         // Predicted relative step size
-        const Unitless relativeTimeStep = pow(epsilon / maxError, 0.2 * one);
+        const Unitless relativeTimeStep = pow<1, 5>(epsilon / maxError);
 
         // Keep step from getting too small too fast
         if (relativeTimeStep < minRelativeStepSize) { // step size is too small
@@ -379,7 +377,6 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        int day = days(time).count();
         // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
         if (iteration == 0) {
             std::cout << "Run Conditions:" << std::endl << std::endl;
@@ -390,8 +387,6 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
             std::cout << "Run:" << std::endl << std::endl;
         }
         else {
-            checkDay = day;
-
             std::cout << "Iteration: " << iteration + 1 << std::endl;
             std::cout << "time = " << time << std::endl;
             std::cout << "state = " << state << std::endl << std::endl;
@@ -436,10 +431,10 @@ void Integrator::check_event(const Time& time, const OrbitalElements& state, con
     eventTrigger = eom.check_crash(time, state, vehicle);
 
     // Break if hit nans or infs
-    if (std::isinf(abs(time)) || std::isnan(abs(time))) { eventTrigger = true; }
+    if (isinf(abs(time)) || isnan(abs(time))) { eventTrigger = true; }
     else {
-        for (const auto& x : state) {
-            if (std::isinf(abs(x)) || std::isnan(abs(x))) { eventTrigger = true; }
+        for (const auto& x : state.to_vector()) {
+            if (isinf(abs(x)) || isnan(abs(x))) { eventTrigger = true; }
         }
     }
 }
@@ -453,14 +448,14 @@ void Integrator::set_max_iter(int itMax) { iterMax = itMax; }
 void Integrator::switch_print(bool onOff) { printOn = onOff; }
 void Integrator::switch_timer(bool onOff) { timerOn = onOff; }
 
-void Integrator::set_initial_timestep(double dt0) { timeStepInitial = dt0; }
+void Integrator::set_initial_timestep(Time dt0) { timeStepInitial = dt0; }
 void Integrator::switch_fixed_timestep(bool onOff) { useFixedStep = onOff; }
-void Integrator::switch_fixed_timestep(bool onOff, double fixedTimeStep)
+void Integrator::switch_fixed_timestep(bool onOff, Time fixedTimeStep)
 {
     useFixedStep  = onOff;
     fixedTimeStep = fixedTimeStep;
 }
-void Integrator::set_timestep(double fixedTimeStep) { fixedTimeStep = fixedTimeStep; }
+void Integrator::set_timestep(Time fixedTimeStep) { fixedTimeStep = fixedTimeStep; }
 
 void Integrator::set_step_method(std::string stepMethod)
 {

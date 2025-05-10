@@ -78,8 +78,8 @@ OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalE
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const JulianDate julianDate   = (vehicle.get_epoch() + time).julian_day();
-    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
+    const Date date               = vehicle.get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
 
     // Calculate R, N, and T
     const quantity<km / pow<2>(s)> radialPert = accelPerts[0] * Rhatx + accelPerts[1] * Rhaty + accelPerts[2] * Rhatz;
@@ -107,7 +107,7 @@ OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalE
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
         (isq_angle::cotes_angle);
     const quantity<rad / s> draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
-    const quantity<rad / s> dwdt    = (-dthetadt + (hOverRSquared - draandt * cos(inc))) * (isq_angle::cotes_angle);
+    const quantity<rad / s> dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
     // const quantity<km/s> dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
     const quantity<km / s> dadt = 2 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);

@@ -18,6 +18,7 @@
 
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
 #include <mp-units/systems/isq.h>
 #include <mp-units/systems/si.h>
@@ -33,33 +34,32 @@ int main()
     AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
 
     using namespace mp_units;
-    using namespace mp_units::si::unit_symbols;
-    using namespace mp_units::international::unit_symbols;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
-    const double R                    = 10000;
-    const double V                    = sqrt(398600.0 / 10000.0);
-    std::array<quantity<km>, 3> r     = { R * km, 0.0 * km, 0.0 * km };
-    std::array<quantity<km / s>, 3> v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
+    const double R   = 10000;
+    const double V   = sqrt(398600.0 / 10000.0);
+    RadiusVector r   = { R * km, 0.0 * km, 0.0 * km };
+    VelocityVector v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
 
     Cartesian cart(r, v);
     Keplerian kepl(cart, sys);
     Cartesian cart2(kepl, sys);
 
-    OrbitalElements comp({ R, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
-    comp.convert(ElementSet::KEPLERIAN, sys);
-
-    NewOrbitalElements newCart(cart);
+    OrbitalElements comp(cart);
+    comp.convert<Keplerian>(sys);
 
     return 0;
 
-    const OrbitalElements state({ 10000.0, 0.0, 45.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
+    const OrbitalElements state(Keplerian{ 10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg });
     // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
 
     // Build constellation
     const int T    = 1;
     const int P    = 1;
     const double F = 1.0;
-    Constellation walkerBall(10000.0, 45.0, T, P, F);
+    Constellation walkerBall(10000.0 * km, 45.0 * deg, T, P, F);
 
     // int count = 0; //TODO: Fix this. Comparitor doesn't work and iterates past end, for some reason
     // for (auto satIter = walkerBall.sat_begin(); satIter < walkerBall.sat_end(); ++satIter) {
@@ -94,7 +94,7 @@ int main()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), years(1) };
+    Interval propInterval{ std::chrono::seconds(0), std::chrono::years(1) };
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
@@ -135,12 +135,9 @@ int main()
     outfile << "time (min),sma (km),ecc,inc (rad),raan (rad),w (rad),theta (rad)\n";
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& state : vehicle.get_states()) {
-        outfile << state.time.count<minutes>() << ",";
-        state.elements.convert(ElementSet::KEPLERIAN, sys);
-        for (const auto& x : state.elements) {
-            outfile << x << ",";
-        }
-        outfile << "\n";
+        outfile << state.time << ",";
+        state.elements.convert<Keplerian>(sys);
+        outfile << state.elements << "\n";
     }
     outfile.close();
 

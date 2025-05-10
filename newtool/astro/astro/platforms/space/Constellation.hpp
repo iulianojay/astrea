@@ -5,6 +5,7 @@
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/Integrator.hpp>
+#include <astro/units/units.hpp>
 
 namespace astro {
 
@@ -19,13 +20,13 @@ class Constellation {
     Constellation(std::vector<Plane<Spacecraft_T>> planes);
     Constellation(std::vector<Spacecraft_T> satellites);
     Constellation(
-        const double& semimajor,
-        const double& inclination,
+        const Distance& semimajor,
+        const Angle& inclination,
         const size_t& T,
         const size_t& P,
         const double& F,
-        const double& anchorRAAN    = 0.0,
-        const double& anchorAnomaly = 0.0
+        const Angle& anchorRAAN    = 0.0 * mp_units::angular::unit_symbols::rad,
+        const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
     );
 
     ~Constellation() = default;

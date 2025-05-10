@@ -29,6 +29,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/LambertSolver.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
     ${ASTRO_BASE}/propagation/force_models/NBodyForce.cpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.cpp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressureForce.cpp
@@ -45,6 +46,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
 
+    ${ASTRO_BASE}/time/Date.cpp
     ${ASTRO_BASE}/time/Time.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
@@ -114,6 +116,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/utilities/conversions.hpp
 
     # Extern
+    ${EXTERN_BASE}/date/date.h
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
 

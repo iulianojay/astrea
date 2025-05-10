@@ -127,8 +127,7 @@ concept IsOrbitalElements = requires(T)
     requires HasInPlaceMathOperators<T>;
 };
 
-
-using OrbitalElementPartials = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
+class OrbitalElementPartials;
 
 class OrbitalElements {
 
@@ -171,123 +170,69 @@ class OrbitalElements {
         return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
     }
 
-    OrbitalElements operator+(const OrbitalElements& other) const
-    {
-        return std::visit(
-            [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                    throw_mismatched_types();
-                }
-                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-                return x + y;
-            },
-            _elements
-        );
-    }
-    OrbitalElements& operator+=(const OrbitalElements& other)
-    {
-        std::visit(
-            [&](auto& x) {
-                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                    throw_mismatched_types();
-                }
-                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-                x += y;
-            },
-            _elements
-        );
-        return *this;
-    }
+    OrbitalElements operator+(const OrbitalElements& other) const;
+    OrbitalElements& operator+=(const OrbitalElements& other);
 
-    OrbitalElements operator-(const OrbitalElements& other) const
-    {
-        return std::visit(
-            [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                    throw_mismatched_types();
-                }
-                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-                return x - y;
-            },
-            _elements
-        );
-    }
-    OrbitalElements& operator-=(const OrbitalElements& other)
-    {
-        std::visit(
-            [&](auto& x) {
-                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                    throw_mismatched_types();
-                }
-                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-                x -= y;
-            },
-            _elements
-        );
-        return *this;
-    }
+    OrbitalElements operator-(const OrbitalElements& other) const;
+    OrbitalElements& operator-=(const OrbitalElements& other);
 
-    OrbitalElements operator*(const Unitless& multiplier) const
-    {
-        return std::visit([&](const auto& x) -> OrbitalElements { return x * multiplier; }, _elements);
-    }
-    OrbitalElements& operator*=(const Unitless& multiplier)
-    {
-        std::visit([&](auto& x) { x *= multiplier; }, _elements);
-        return *this;
-    }
+    OrbitalElements operator*(const Unitless& multiplier) const;
+    OrbitalElements& operator*=(const Unitless& multiplier);
 
-    OrbitalElementPartials operator/(const Time& divisor) const
-    {
-        return std::visit([&](const auto& x) -> OrbitalElementPartials { return x / divisor; }, _elements);
-    }
-    std::vector<Unitless> to_vector() const
-    {
-        return std::visit([&](const auto& x) { return x.to_vector(); }, _elements);
-    }
-    OrbitalElements operator/(const Unitless& divisor) const
-    {
-        return std::visit([&](const auto& x) -> OrbitalElements { return x / divisor; }, _elements);
-    }
-    OrbitalElements& operator/=(const Unitless& divisor)
-    {
-        std::visit([&](auto& x) { x /= divisor; }, _elements);
-        return *this;
-    }
+    OrbitalElementPartials operator/(const Time& divisor) const;
+    std::vector<Unitless> to_vector() const;
+    OrbitalElements operator/(const Unitless& divisor) const;
+    OrbitalElements& operator/=(const Unitless& divisor);
 
     OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
-    {
-        return std::visit(
-            [&](const auto& x) -> OrbitalElements {
-                if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                    throw_mismatched_types();
-                }
-                const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-                return x.interpolate(thisTime, otherTime, y, sys, targetTime);
-            },
-            _elements
-        );
-    }
+        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
-    const ElementVariant& extract() const { return _elements; }
-    ElementVariant& extract() { return _elements; }
+    const ElementVariant& extract() const;
+    ElementVariant& extract();
 
-    constexpr size_t index() const { return _elements.index(); }
+    constexpr size_t index() const;
 
   private:
     ElementVariant _elements;
 
-    void same_underlying_type(const OrbitalElements& other) const
+    void same_underlying_type(const OrbitalElements& other) const;
+    void throw_mismatched_types() const;
+};
+
+class OrbitalElementPartials {
+
+    using PartialVariant = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
+
+  public:
+    OrbitalElementPartials() :
+        _elements(CartesianPartial())
     {
-        if (_elements.index() != other.extract().index()) [[unlikely]] { throw_mismatched_types(); }
+    }
+    OrbitalElementPartials(CartesianPartial elements) :
+        _elements(elements)
+    {
+    }
+    OrbitalElementPartials(KeplerianPartial elements) :
+        _elements(elements)
+    {
+    }
+    OrbitalElementPartials(EquinoctialPartial elements) :
+        _elements(elements)
+    {
     }
 
-    void throw_mismatched_types() const
-    {
-        throw std::runtime_error("Cannot perform operations on orbital elements from different "
-                                 "element sets.");
-    }
+    OrbitalElements operator*(const Time& time) const;
+
+    const PartialVariant& extract() const;
+    PartialVariant& extract();
+
+    constexpr size_t index() const;
+
+  private:
+    PartialVariant _elements;
+
+    void same_underlying_type(const OrbitalElementPartials& other) const;
+    void throw_mismatched_types() const;
 };
 
 

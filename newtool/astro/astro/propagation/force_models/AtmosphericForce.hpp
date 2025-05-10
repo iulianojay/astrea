@@ -16,6 +16,7 @@
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
@@ -31,10 +32,10 @@ class AtmosphericForce : public Force {
     ~AtmosphericForce() = default;
 
     AccelerationVector
-        compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
-    const Density find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
+    const Density find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
 
     static const std::map<Altitude, Density> venutianAtmosphere;
     static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere;

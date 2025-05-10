@@ -35,7 +35,7 @@ class Integrator {
         DOP78, // Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval = Interval(days(0), days(1));
+    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day };
 
     //------------------------------------------------ Methods ------------------------------------------------//
 
@@ -79,7 +79,7 @@ class Integrator {
 
     // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
     // Inputs: initial timestep (s)
-    void set_initial_timestep(double dt0);
+    void set_initial_timestep(Time dt0);
 
     // Function: Switch whether or not to use a fixed timestep
     // Inputs: true -> on, false -> off
@@ -88,11 +88,11 @@ class Integrator {
     // Function: Switch whether or not to use a fixed timestep and declare that timestep
     // Inputs: true -> on, false -> off
     //         timestep (s)
-    void switch_fixed_timestep(bool onOff, double fixedTimeStep);
+    void switch_fixed_timestep(bool onOff, Time fixedTimeStep);
 
     // Function: Set fixed timestep. Does not affect variable timestep
     // Inputs: timestep (s)
-    void set_timestep(double fixedTimeStep);
+    void set_timestep(Time fixedTimeStep);
 
     int n_func_evals() { return functionEvaluations; }
 
@@ -158,7 +158,7 @@ class Integrator {
     Unitless relativeTolerance = 1.0e-13;
 
     // Initial step size
-    Time timeStepInitial = seconds(100.0);
+    Time timeStepInitial = 100.0 * mp_units::si::unit_symbols::s;
 
     // Iteration variables
     unsigned long iterMax = 1e8; // absurdly high so it doesn't interfere with integration
@@ -171,7 +171,7 @@ class Integrator {
 
     // Fake fixed step
     bool useFixedStep  = false;
-    Time fixedTimeStep = seconds(1.0);
+    Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s;
 
     //------------------------------------------------ Methods ------------------------------------------------//
 

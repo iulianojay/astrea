@@ -25,7 +25,7 @@ using si::unit_symbols::s;
 namespace astro {
 
 AccelerationVector
-    AtmosphericForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
@@ -49,7 +49,7 @@ AccelerationVector
     const Velocity relVz = vz;
 
     // Exponential Drag Model
-    const Density atmosphericDensity = find_atmospheric_density(julianDate, state, center);
+    const Density atmosphericDensity = find_atmospheric_density(date, state, center);
 
     // Accel due to drag
     const Velocity relativeVelocityMagnitude = sqrt(relVx * relVx + relVy * relVy + relVz * relVz);
@@ -75,21 +75,19 @@ AccelerationVector
 }
 
 
-const Density AtmosphericForce::find_atmospheric_density(const JulianDate& julianDate, const Cartesian& state, const CelestialBodyUniquePtr& center) const
+const Density AtmosphericForce::find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
     // Central body properties
-    static const Distance equitorialR         = center->get_equitorial_radius();
-    static const Distance polarR              = center->get_polar_radius();
-    static const AngularRate bodyRotationRate = center->get_rotation_rate();
-    static const std::string& centerName      = center->get_name();
+    static const Distance equitorialR    = center->get_equitorial_radius();
+    static const Distance polarR         = center->get_polar_radius();
+    static const std::string& centerName = center->get_name();
 
     // Find altitude
-    const RadiusVector rBCI = state.get_radius();
-    RadiusVector rBCBF{};
+    RadiusVector rEcef = conversions::eci_to_ecef(state.get_radius(), date);
+
     Angle lat, lon;
     Distance altitude;
-    conversions::bci_to_bcbf(rBCI, julianDate, bodyRotationRate, rBCBF);
-    conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lat, lon, altitude);
+    conversions::ecef_to_lla(rEcef, equitorialR, polarR, lat, lon, altitude);
 
     Unitless altitudeValue = altitude / km;
 

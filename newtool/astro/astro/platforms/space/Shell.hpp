@@ -7,6 +7,8 @@
 #include <astro/propagation/Integrator.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/units/units.hpp>
 
 namespace astro {
 
@@ -22,13 +24,13 @@ class Shell {
     Shell(std::vector<Plane<Spacecraft_T>> planes);
     Shell(std::vector<Spacecraft_T> satellites);
     Shell(
-        const double& semimajor,
-        const double& inclination,
+        const Distance& semimajor,
+        const Angle& inclination,
         const size_t& T,
         const size_t& P,
         const double& F,
-        const double& anchorRAAN    = 0.0,
-        const double& anchorAnomaly = 0.0
+        const Angle& anchorRAAN    = 0.0 * mp_units::angular::unit_symbols::rad,
+        const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
     );
     ~Shell() = default;
 

@@ -41,6 +41,9 @@
 #include <astro/time/Time.hpp>
 #include <astro/time/time_units.hpp>
 
+#include <astro/units/units.hpp>
+#include <astro/units/constants.hpp>
+
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
 

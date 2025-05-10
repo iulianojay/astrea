@@ -8,6 +8,15 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/constants.hpp>
 
+
+template <>
+struct std::hash<astro::Angle> {
+    std::size_t operator()(const astro::Angle& a) const
+    {
+        return (std::hash<double>()(a.numerical_value_ref_in(a.unit)));
+    }
+};
+
 namespace accesslib {
 
 class FieldOfView {

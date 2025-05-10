@@ -34,8 +34,8 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const JulianDate julianDate   = (vehicle.get_epoch() + time).julian_day();
-    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
+    const Date date               = vehicle.get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
 
     // Derivative
     const CartesianPartial dsdt(

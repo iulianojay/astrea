@@ -17,7 +17,7 @@ class OblatenessForce : public Force {
     ~OblatenessForce() = default;
 
     AccelerationVector
-        compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
     void set_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
 
   private:
@@ -34,7 +34,7 @@ class OblatenessForce : public Force {
     const size_t M;
     const CelestialBodyUniquePtr& center;
 
-    void assign_legendre(const Altitude& latitude) const;
+    void assign_legendre(const Angle& latitude) const;
     void size_vectors(const size_t& N, const size_t& M);
     void ingest_legendre_coefficient_file(const size_t& N, const size_t& M);
 };

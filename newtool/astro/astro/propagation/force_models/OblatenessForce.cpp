@@ -8,14 +8,16 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/si/math.h>
+#include <mp-units/systems/isq_angle.h>
 
 #include <math/utils.hpp>
 
+#include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
 using namespace mp_units::si;
 using namespace mp_units::non_si;
+using namespace mp_units::angular;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
@@ -131,15 +133,15 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
         // Normalize coefficients if needed
         if (centerName == "Mars") {
             for (size_t m = 0; m < N + 1; ++m) {
-                quantity nPlusMFactorial  = 1.0 * one;
-                quantity nMinusMFactorial = 1.0 * one;
+                Unitless nPlusMFactorial  = 1.0 * one;
+                Unitless nMinusMFactorial = 1.0 * one;
                 for (size_t ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
                     if (ii <= n - m) { nMinusMFactorial *= double(ii) * one; }
                 }
 
-                quantity Nnm = (m == 0 * one) ? sqrt(nMinusMFactorial * (2 * n + 1) / nPlusMFactorial) :
-                                                sqrt(nMinusMFactorial * (2 * n + 1) * 2 / nPlusMFactorial);
+                Unitless Nnm = (m == 0) ? sqrt(nMinusMFactorial * (2 * n + 1) / nPlusMFactorial) :
+                                          sqrt(nMinusMFactorial * (2 * n + 1) * 2 / nPlusMFactorial);
 
                 C[n][m] /= Nnm;
                 S[n][m] /= Nnm;
@@ -153,58 +155,56 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
 
 
 AccelerationVector
-    OblatenessForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     // Extract
-    const Distance& x       = state.get_x();
-    const Distance& y       = state.get_y();
-    const Distance& z       = state.get_z();
-    const Distance R        = sqrt(x * x + y * y + z * z);
-    const quantity oneOverR = 1.0 / R;
+    const Distance& x = state.get_x();
+    const Distance& y = state.get_y();
+    const Distance& z = state.get_z();
+    const Distance R  = sqrt(x * x + y * y + z * z);
+
+    const quantity<one / detail::distance_unit> oneOverR = 1.0 / R;
 
     // Central body properties
-    static const GravParam& mu                 = center->get_mu();
-    static const Distance& equitorialR         = center->get_equitorial_radius();
-    static const AngularRate& bodyRotationRate = center->get_rotation_rate();
+    static const GravParam& mu         = center->get_mu();
+    static const Distance& equitorialR = center->get_equitorial_radius();
 
     // Find lat and long
-    RadiusVector radius = { x, y, z };
-    RadiusVector rBCBF;
-    conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
+    RadiusVector rEcef = conversions::eci_to_ecef(state.get_radius(), date);
 
-    const quantity& xBCBF = rBCBF[0];
-    const quantity& yBCBF = rBCBF[1];
+    const Distance& xEcef = rEcef[0];
+    const Distance& yEcef = rEcef[1];
 
-    const quantity longitude = atan2(yBCBF, xBCBF);
-    const quantity latitude  = asin(z * oneOverR);
+    const Angle longitude = angular::atan2(yEcef, xEcef);
+    const Angle latitude  = angular::asin(z * oneOverR);
 
-    const quantity cosLat = cos(latitude);
-    const quantity sinLat = sin(latitude);
-    const quantity tanLat = sinLat / cosLat;
+    const Unitless cosLat = cos(latitude);
+    const Unitless sinLat = sin(latitude);
+    const Unitless tanLat = sinLat / cosLat;
 
     // Populate Legendre polynomial array
     assign_legendre(latitude);
 
     // Calculate serivative of gravitational potential field with respect to
-    quantity dVdr    = 0.0 * one; // radius
-    quantity dVdlat  = 0.0 * one; // geocentric latitude
-    quantity dVdlong = 0.0 * one; // longitude
+    Unitless dVdr_    = 0.0 * one; // radius
+    Unitless dVdlat_  = 0.0 * one; // geocentric latitude
+    Unitless dVdlong_ = 0.0 * one; // longitude
     for (size_t n = 2; n < N + 1; ++n) {
-        const quantity nn = (double)n * one;
+        const Unitless nn = (double)n * one;
 
         // Reset inner sums
-        quantity dVdrInnerSum    = 0.0 * one;
-        quantity dVdlatInnerSum  = 0.0 * one;
-        quantity dVdlongInnerSum = 0.0 * one;
+        Unitless dVdrInnerSum    = 0.0 * one;
+        Unitless dVdlatInnerSum  = 0.0 * one;
+        Unitless dVdlongInnerSum = 0.0 * one;
 
         for (size_t m = 0; m < std::min(n, M) + 1; ++m) {
-            const quantity mm = (double)m * one;
+            const Unitless mm = (double)m * one;
 
             // Precalculate common terms
-            const quantity cosLongM = cos(mm * longitude);
-            const quantity sinLongM = sin(mm * longitude);
-            const quantity temp     = (C[n][m] * cosLongM + S[n][m] * sinLongM);
+            const Unitless cosLongM = cos(mm * longitude);
+            const Unitless sinLongM = sin(mm * longitude);
+            const Unitless temp     = (C[n][m] * cosLongM + S[n][m] * sinLongM);
 
             // dVdr
             dVdrInnerSum += temp * P[n][m];
@@ -216,47 +216,56 @@ AccelerationVector
             dVdlongInnerSum += mm * (S[n][m] * cosLongM - C[n][m] * sinLongM) * P[n][m];
         }
         // Precalculate common terms
-        const quantity rRatio = pow(equitorialR * oneOverR, n);
+        Unitless rRatio = 1.0 * one;
+        for (size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
+            rRatio *= equitorialR * oneOverR;
+        }
 
         // dVdr
-        dVdr += rRatio * (nn + 1.0) * dVdrInnerSum;
+        dVdr_ += rRatio * (nn + 1.0) * dVdrInnerSum;
 
         // dVdlat
-        dVdlat += rRatio * dVdlatInnerSum;
+        dVdlat_ += rRatio * dVdlatInnerSum;
 
         // dVdlong
-        dVdlong += rRatio * dVdlongInnerSum;
+        dVdlong_ += rRatio * dVdlongInnerSum;
     }
 
     // Correct
-    const quantity muOverR = mu * oneOverR;
-    dVdr *= muOverR * oneOverR;
-    dVdlat *= muOverR;
-    dVdlong *= muOverR * oneOverR;
+    const quantity muOverR = mu * oneOverR; // km^2/s^2
 
-    // Calculate partials of radius, geocentric latitude, and longitude with respect to BCBF frame
-    const quantity drdrBCBF[3] = { xBCBF * oneOverR, yBCBF * oneOverR, z * oneOverR };
+    const quantity dVdr    = dVdr_ * (muOverR * oneOverR); // km/s^2
+    const quantity dVdlat  = dVdlat_ * muOverR;            // km^2/s^2
+    const quantity dVdlong = dVdlong_ * muOverR; // TODO: Investiage: My notes say this: dVdlong_ * (muOverR * oneOverR)
+                                                 // but units imply what's uncommented -> km^2/s^2
 
-    const quantity oneOverBcbfR = 1 / sqrt(xBCBF * xBCBF + yBCBF * yBCBF);
-    const quantity zOverR2      = z / (R * R);
-    const quantity dlatdrBCBF[3] = { -oneOverBcbfR * xBCBF * zOverR2, -oneOverBcbfR * yBCBF * zOverR2, oneOverBcbfR * (1 - z * zOverR2) };
+    // Calculate partials of radius, geocentric latitude, and longitude with respect to radius in Ecef frame
+    const quantity oneOverEcefR   = 1.0 / sqrt(xEcef * xEcef + yEcef * yEcef); // 1/km
+    const quantity zOverRSquared  = z / pow<2>(R);                             // 1/km
+    const quantity muOverRSquared = pow<2>(muOverR);                           // km^4/s^4
 
-    const quantity muOverR2       = muOverR * muOverR;
-    const quantity dlongdrBCBF[3] = { -muOverR2 * yBCBF, muOverR2 * xBCBF, 0.0 };
+    const std::array<Unitless, 3> drdrEcef = { xEcef * oneOverR, yEcef * oneOverR, z * oneOverR }; // dr/dr -> km/km -> one
+    const std::array<quantity<one / detail::distance_unit>, 3> dlatdrEcef = {
+        -oneOverEcefR * xEcef * zOverRSquared, -oneOverEcefR * yEcef * zOverRSquared, oneOverEcefR * (1.0 * one - z * zOverRSquared)
+    }; // dang/dr -> rad/km
+    const std::array<quantity<one / detail::distance_unit>, 3> dlongdrEcef = {
+        (-muOverRSquared * yEcef) * (pow<4>(detail::time_unit) / pow<6>(detail::distance_unit)), // TODO: Investigate these units.
+        (muOverRSquared * xEcef) * (pow<4>(detail::time_unit) / pow<6>(detail::distance_unit)), // I don't think the weird unit multipy should be required
+        0.0 * one / km
+    }; // dang/dr -> rad/km
 
-    // Calculate accel in BCBF (not with respect to BCBF)
-    AccelerationVector accelOblatenessBCBF = { dVdr * drdrBCBF[0] + dVdlat * dlatdrBCBF[0] + dVdlong * dlongdrBCBF[0],
-                                               dVdr * drdrBCBF[1] + dVdlat * dlatdrBCBF[1] + dVdlong * dlongdrBCBF[1],
-                                               dVdr * drdrBCBF[2] + dVdlat * dlatdrBCBF[2] };
+    // Calculate accel in Ecef (not with respect to Ecef)
+    AccelerationVector accelOblatenessEcef = { dVdr * drdrEcef[0] + dVdlat * dlatdrEcef[0] + dVdlong * dlongdrEcef[0],
+                                               dVdr * drdrEcef[1] + dVdlat * dlatdrEcef[1] + dVdlong * dlongdrEcef[1],
+                                               dVdr * drdrEcef[2] + dVdlat * dlatdrEcef[2] };
 
     // Rotate back into inertial coordinates
-    AccelerationVector accelOblateness;
-    conversions::bcbf_to_bci(accelOblatenessBCBF, julianDate, bodyRotationRate, accelOblateness);
+    AccelerationVector accelOblateness = conversions::ecef_to_eci(accelOblatenessEcef, date);
 
     return accelOblateness;
 }
 
-void OblatenessForce::assign_legendre(const quantity<km>& latitude) const
+void OblatenessForce::assign_legendre(const Angle& latitude) const
 {
     // Populate Legendre polynomial array
     /*
@@ -279,15 +288,18 @@ void OblatenessForce::assign_legendre(const quantity<km>& latitude) const
 
         Developers Note: Fuck this function
     */
-    const quantity cosLat = cos(latitude);
-    const quantity sinLat = sin(latitude);
+    const Unitless cosLat = cos(latitude);
+    const Unitless sinLat = sin(latitude);
     for (size_t n = 0; n < N + 1; ++n) {
-        const quantity costLatPowN = pow(cosLat, n);
+        Unitless cosLatPowN = 1.0 * one;
+        for (size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
+            cosLatPowN *= cosLat;
+        }
         for (size_t m = 0; m < M + 1; ++m) {
             if (n == m) {
                 if (n == 0) { P[n][m] = 1; }
                 else {
-                    P[n][m] = Pbase[n][m] * costLatPowN;
+                    P[n][m] = Pbase[n][m] * cosLatPowN;
                 }
             }
             else if (n == m + 1) {
@@ -297,7 +309,7 @@ void OblatenessForce::assign_legendre(const quantity<km>& latitude) const
                 P[n][m] = alpha[n][m] * sinLat * P[n - 1][m] + beta[n][m] * P[n - 2][m];
             }
             else {
-                P[n][m] = 0.0;
+                P[n][m] = 0.0 * one;
             }
         }
     }

@@ -16,7 +16,7 @@ using namespace mp_units::si::unit_symbols;
 namespace astro {
 
 AccelerationVector
-    SolarRadiationPressureForce::compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    SolarRadiationPressureForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
@@ -32,7 +32,7 @@ AccelerationVector
     static const bool isSun            = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = center->get_closest_state(julianDate - vehicle.get_epoch().julian_day());
+    const State& stateSunToCenter        = center->get_closest_state(date - vehicle.get_epoch());
     const RadiusVector radiusSunToCenter = stateSunToCenter.elements.in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun

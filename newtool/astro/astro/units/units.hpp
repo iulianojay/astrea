@@ -7,6 +7,8 @@
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>
+#include <mp-units/systems/iau.h>
+#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 namespace astro {
@@ -39,5 +41,8 @@ using GravParam   = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) /
 
 using Density  = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::minor_distance_unit))>;
 using Altitude = mp_units::quantity<detail::distance_unit>;
+
+inline constexpr struct JulianCentury final : mp_units::named_unit<"JulianCentury", mp_units::mag<36525> * mp_units::non_si::day> {
+} JulianCentury;
 
 } // namespace astro

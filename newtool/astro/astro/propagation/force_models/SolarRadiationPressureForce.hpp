@@ -16,7 +16,7 @@ class SolarRadiationPressureForce : public Force {
     ~SolarRadiationPressureForce() = default;
 
     AccelerationVector
-        compute_force(const JulianDate& julianDate, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
 };

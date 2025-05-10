@@ -74,8 +74,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const Orbita
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const JulianDate julianDate   = (vehicle.get_epoch() + time).julian_day();
-    AccelerationVector accelPerts = forces.compute_forces(julianDate, cartesian, vehicle, system);
+    const Date date               = vehicle.get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
 
     // Calculate R, N, and T
     const quantity<km / pow<2>(s)> radialPert = accelPerts[0] * Rhatx + accelPerts[1] * Rhaty + accelPerts[2] * Rhatz;
@@ -101,7 +101,7 @@ OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const Orbita
         tempA * (-radialPert * cosL + ((tempB + 1) * sinL + g) / tempB * tangentialPert + f * tempC * normalPert);
     const quantity<one / s> dhdt = tempD * cosL * normalPert;
     const quantity<one / s> dkdt = tempD * sinL * normalPert;
-    const quantity<rad / s> dLdt = sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert * (isq_angle::cotes_angle);
+    const quantity<rad / s> dLdt = (sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert) * (isq_angle::cotes_angle);
 
     const EquinoctialPartial dsdt(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 

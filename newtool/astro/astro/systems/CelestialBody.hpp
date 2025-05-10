@@ -113,7 +113,7 @@ class CelestialBody {
 
     std::vector<State> _states;
 
-    void _propagate(const Date& epoch, const Date& endEpoch, const double parentMu);
+    void _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 };
 
 } // namespace astro

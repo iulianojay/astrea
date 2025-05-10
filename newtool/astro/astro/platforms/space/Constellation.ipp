@@ -38,13 +38,13 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
-    const double& semimajor,
-    const double& inclination,
+    const Distance& semimajor,
+    const Angle& inclination,
     const size_t& T,
     const size_t& P,
     const double& F,
-    const double& anchorRAAN,
-    const double& anchorAnomaly
+    const Angle& anchorRAAN,
+    const Angle& anchorAnomaly
 )
 {
 
