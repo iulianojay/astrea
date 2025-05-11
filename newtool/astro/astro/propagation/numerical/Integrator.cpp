@@ -254,9 +254,9 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
     }
 
     // Get new state and state error
-    OrbitalElements stateNew = state;
-    OrbitalElements stateError;
-    for (std::size_t iStage = 0; iStage < nStages; ++iStage) {
+    OrbitalElements stateNew   = state + kMatrix[0] * b[0];
+    OrbitalElements stateError = kMatrix[0] * db[0];
+    for (std::size_t iStage = 1; iStage < nStages; ++iStage) {
         stateNew += kMatrix[iStage] * b[iStage];
         stateError += kMatrix[iStage] * db[iStage];
     }

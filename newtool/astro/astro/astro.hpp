@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <astro/propagation/numerical/rk_constants.h>
+#include <astro/constants/constants.hpp>
 
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/element_sets/Frame.hpp>
@@ -14,7 +14,6 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 
 #include <astro/propagation/analytic/LambertSolver.hpp>
-#include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/propagation/force_models/AtmosphericForce.hpp>
 #include <astro/propagation/force_models/Force.hpp>
@@ -30,6 +29,9 @@
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
+#include <astro/propagation/numerical/Integrator.hpp>
+#include <astro/propagation/numerical/rk_constants.h>
+
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
@@ -38,9 +40,8 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/time/JulianDateClock.hpp>
-#include <astro/time/time_units.hpp>
 
-#include <astro/constants/constants.hpp>
+#include <astro/units/time.hpp>
 #include <astro/units/units.hpp>
 
 #include <astro/types/tuple_hash.hpp>
