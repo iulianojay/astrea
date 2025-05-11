@@ -1,4 +1,4 @@
 add_subdirectory(access)
 add_subdirectory(astro)
 add_subdirectory(math)
-add_subdirectory(vehicles)
+add_subdirectory(snapshot)
