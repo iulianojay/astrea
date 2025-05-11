@@ -2,30 +2,40 @@
 #pragma once
 
 #include <ctime>
-#include <fstream> // reading/writing to files
+#include <fstream>
 #include <iostream>
 #include <math.h>
 #include <vector>
 
-#include <astro/constants/rk_constants.h> // RK Butcher Tableau
+// mp-units
+#include <mp-units/compat_macros.h>
+#include <mp-units/ext/format.h>
+#include <mp-units/format.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
 
+#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
 #include <astro/time/Interval.hpp>
+#include <astro/units/units.hpp>
+
+namespace astro {
 
 class Integrator {
+
   public:
     // Stepper
     enum odeStepper {
         RK45,  // Traditional Runge-Kutta 4(5)th order 6 stage method
         RKF45, // Runge-Kutta-Fehlberg 4(5)th order 6 stage method
         RKF78, // Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-
         DOP45, // Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
         DOP78, // Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval = Interval(days(0), days(1));
+    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day };
 
     //------------------------------------------------ Methods ------------------------------------------------//
 
@@ -41,11 +51,11 @@ class Integrator {
 
     // Function: Set absolute tolerance of Integrator
     // Inputs: absolute tolerance
-    void set_abs_tol(double absTol);
+    void set_abs_tol(Unitless absTol);
 
     // Function: Set relative tolerance of Integrator
     // Inputs: relative tolerance
-    void set_rel_tol(double relTol);
+    void set_rel_tol(Unitless relTol);
 
     // Function: Set max number of steps Integrator is allowed to take before exiting
     // Inputs: maximum number of steps
@@ -69,7 +79,7 @@ class Integrator {
 
     // Function: Set initial timestep taken by the integrator. Only works with variable timesteps
     // Inputs: initial timestep (s)
-    void set_initial_timestep(double dt0);
+    void set_initial_timestep(Time dt0);
 
     // Function: Switch whether or not to use a fixed timestep
     // Inputs: true -> on, false -> off
@@ -78,23 +88,21 @@ class Integrator {
     // Function: Switch whether or not to use a fixed timestep and declare that timestep
     // Inputs: true -> on, false -> off
     //         timestep (s)
-    void switch_fixed_timestep(bool onOff, double fixedTimeStep);
+    void switch_fixed_timestep(bool onOff, Time fixedTimeStep);
 
     // Function: Set fixed timestep. Does not affect variable timestep
     // Inputs: timestep (s)
-    void set_timestep(double fixedTimeStep);
+    void set_timestep(Time fixedTimeStep);
 
     int n_func_evals() { return functionEvaluations; }
 
   private:
     // Integrator constants
-    const double epsilon = 0.8; // relative local step error tolerance usually 0.8 or 0.9.
-
-    const double minErrorCatch      = 2.0e-4; // if maximum error is less than this,
-    const double minErrorStepFactor = 5.0;    // increase step by this factor
-
-    const double minRelativeStepSize = 0.2; // if the step size decreases by more than this factor, reduce the relative
-                                            // step size to this value
+    const Unitless epsilon             = 0.8;    // relative local step error tolerance usually 0.8 or 0.9.
+    const Unitless minErrorCatch       = 2.0e-4; // if maximum error is less than this,
+    const Unitless minErrorStepFactor  = 5.0;    // increase step by this factor
+    const Unitless minRelativeStepSize = 0.2;    // if the step size decreases by more than this factor, reduce the
+                                                 // relative step size to this value
 
     // Iteration variables
     unsigned long iteration                       = 0;
@@ -105,7 +113,7 @@ class Integrator {
     int functionEvaluations = 0;
 
     // Number of states
-    static const size_t maxStates = 10;
+    static const std::size_t maxStates = 10;
 
     // Time variables
     bool forwardTime = true;
@@ -114,21 +122,21 @@ class Integrator {
     // Error variables
     bool stepSuccess  = false;
     bool eventTrigger = false;
-    double maxErrorPrevious;
+    Unitless maxErrorPrevious;
 
     // Butcher Tablaeu
-    size_t nStages{};
-    static const size_t maxStages                          = 13;
-    std::array<std::array<double, maxStages>, maxStages> a = {};
-    std::array<double, maxStages> b                        = {};
-    std::array<double, maxStages> bhat                     = {};
-    std::array<double, maxStages> db                       = {};
-    std::array<double, maxStages> c                        = {};
+    std::size_t nStages{};
+    static const std::size_t maxStages                       = 13;
+    std::array<std::array<Unitless, maxStages>, maxStages> a = {};
+    std::array<Unitless, maxStages> b                        = {};
+    std::array<Unitless, maxStages> bhat                     = {};
+    std::array<Unitless, maxStages> db                       = {};
+    std::array<Unitless, maxStages> c                        = {};
 
     // ith order steps
-    std::array<std::array<double, maxStates>, maxStages> kMatrix = {};
-    std::array<double, maxStates> statePlusKi                    = {};
-    std::array<double, maxStates> YFinalPrevious                 = {};
+    std::array<OrbitalElements, maxStages> kMatrix = {};
+    OrbitalElements statePlusKi;
+    OrbitalElementPartials YFinalPrevious;
 
     // Clock variables
     clock_t startClock{};
@@ -146,11 +154,11 @@ class Integrator {
     int checkDay = 0;
 
     // Tolerances
-    double absoluteTolerance = 1.0e-13;
-    double relativeTolerance = 1.0e-13;
+    Unitless absoluteTolerance = 1.0e-13;
+    Unitless relativeTolerance = 1.0e-13;
 
     // Initial step size
-    Time timeStepInitial = seconds(100.0);
+    Time timeStepInitial = 100.0 * mp_units::si::unit_symbols::s;
 
     // Iteration variables
     unsigned long iterMax = 1e8; // absurdly high so it doesn't interfere with integration
@@ -163,19 +171,20 @@ class Integrator {
 
     // Fake fixed step
     bool useFixedStep  = false;
-    Time fixedTimeStep = seconds(1.0);
+    Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s;
 
     //------------------------------------------------ Methods ------------------------------------------------//
 
     // Equations of motion
-    OrbitalElements find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    OrbitalElementPartials
+        find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Stepping methods
     void setup_stepper();
     void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     // Error Methods
-    void check_error(const double& maxError, const OrbitalElements& stateNew, const OrbitalElements stateError, Time& time, Time& timeStep, OrbitalElements& state);
+    void check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
 
     // Print details
     void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);
@@ -194,3 +203,5 @@ class Integrator {
     // Event Function
     void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 };
+
+} // namespace astro

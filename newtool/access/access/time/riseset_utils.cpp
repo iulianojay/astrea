@@ -3,8 +3,16 @@
 #include <limits>
 #include <vector>
 
+#include <mp-units/systems/si.h>
+#include <mp-units/systems/si/chrono.h>
+
+#include <astro/types/typedefs.hpp>
+
 #include <access/time/RiseSetArray.hpp>
-#include <astro/time/Time.hpp>
+
+using astro::Time;
+
+namespace accesslib {
 
 RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
 {
@@ -16,32 +24,32 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
     }
 
     // Setup
-    size_t aIdx = 0;
-    size_t bIdx = 0;
-    size_t cIdx = 0;
+    std::size_t aIdx = 0;
+    std::size_t bIdx = 0;
+    std::size_t cIdx = 0;
 
-    const size_t lenA = a.size();
-    const size_t lenB = b.size();
+    const std::size_t lenA = a.size();
+    const std::size_t lenB = b.size();
 
-    // Max size and fill with trash values
+    // Max size
     std::vector<Time> c;
-    c.resize(lenA + lenB, std::numeric_limits<int>::max());
+    c.resize(lenA + lenB);
 
     // Loop and insert
     while (aIdx < lenA || bIdx < lenB) {
 
         // Compare values
-        double diff;
-        if (aIdx >= lenA) { diff = 1; }
+        Time diff;
+        if (aIdx >= lenA) { diff = 1 * mp_units::non_si::day; }
         else if (bIdx >= lenB) {
-            diff = -1;
+            diff = -1 * mp_units::non_si::day;
         }
         else {
             diff = a[aIdx] - b[bIdx];
         }
 
         // a > b
-        if (diff < 0) {
+        if (diff < 0 * mp_units::non_si::day) {
             if (!(bIdx & 1)) {
                 c[cIdx] = a[aIdx];
                 ++cIdx;
@@ -49,7 +57,7 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
             ++aIdx;
         }
         // b > a
-        else if (diff > 0) {
+        else if (diff > 0 * mp_units::non_si::day) {
             if (!(aIdx & 1)) {
                 c[cIdx] = b[bIdx];
                 ++cIdx;
@@ -68,12 +76,12 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
     }
 
     // Get length
-    const size_t lenC = (a[0] == b[0]) ? cIdx + 1 : cIdx;
+    const std::size_t lenC = (a[0] == b[0]) ? cIdx + 1 : cIdx;
 
     // Remove duplicates
     auto temp_c = c;
     cIdx        = 0;
-    for (size_t ii = 0; ii < lenC - 1; ii += 2) {
+    for (std::size_t ii = 0; ii < lenC - 1; ii += 2) {
         if (temp_c[ii] == temp_c[ii + 1]) {
             c[cIdx]     = temp_c[ii];
             c[cIdx + 1] = temp_c[ii + 1];
@@ -92,12 +100,12 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
     if (a.size() == 0 || b.size() == 0) { return RiseSetArray(); }
 
     // Setup
-    size_t aIdx = 0;
-    size_t bIdx = 0;
-    size_t cIdx = 0;
+    std::size_t aIdx = 0;
+    std::size_t bIdx = 0;
+    std::size_t cIdx = 0;
 
-    const size_t lenA = a.size();
-    const size_t lenB = b.size();
+    const std::size_t lenA = a.size();
+    const std::size_t lenB = b.size();
 
     // Max size
     std::vector<Time> c;
@@ -107,8 +115,8 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
     while (aIdx < lenA && bIdx < lenB) {
 
         // Left and right interval bounds
-        const double left  = (a[aIdx] < b[bIdx]) ? b[bIdx] : a[aIdx];
-        const double right = (a[aIdx + 1] > b[bIdx + 1]) ? b[bIdx + 1] : a[aIdx + 1];
+        const Time left  = (a[aIdx] < b[bIdx]) ? b[bIdx] : a[aIdx];
+        const Time right = (a[aIdx + 1] > b[bIdx + 1]) ? b[bIdx + 1] : a[aIdx + 1];
 
         // Only store if it's valid
         if (left < right) {
@@ -127,3 +135,5 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
 
     return RiseSetArray(c);
 }
+
+} // namespace accesslib

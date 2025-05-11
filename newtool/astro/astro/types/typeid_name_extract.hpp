@@ -6,6 +6,8 @@
 
 #include <astro/types/type_traits.hpp>
 
+namespace astro {
+
 /* This file is duplicated from the pagmo repo */
 
 namespace detail {
@@ -39,3 +41,5 @@ inline typename std::conditional<std::is_const<C>::value, const T*, T*>::type ty
 }
 
 } // namespace detail
+
+} // namespace astro

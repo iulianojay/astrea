@@ -1,67 +1,83 @@
 #include <astro/propagation/force_models/NBodyForce.hpp>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/iau.h>
+#include <mp-units/systems/si/math.h>
+
 #include <math/utils.hpp>
 
-BasisArray NBodyForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+
+using namespace mp_units;
+using namespace mp_units::si;
+using namespace mp_units::non_si;
+using namespace mp_units::si::unit_symbols;
+using namespace mp_units::iau::unit_symbols;
+
+namespace astro {
+
+AccelerationVector
+    NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     // Extract
-    const double& x = state[0];
-    const double& y = state[1];
-    const double& z = state[2];
+    const Distance& x = state.get_x();
+    const Distance& y = state.get_y();
+    const Distance& z = state.get_z();
 
-    // Central body properties
+    // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Find day nearest to current time
-    const State& stateSunToCentralBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
+    const State& stateSunToCenter        = (center->get_closest_state(date - vehicle.get_epoch()));
+    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
-    const BasisArray radiusCentralBodyToSun{ // flip vector direction
-                                             -stateSunToCentralBody.elements[0],
-                                             -stateSunToCentralBody.elements[1],
-                                             -stateSunToCentralBody.elements[2]
+    const RadiusVector radiusCenterToSun{ // flip vector direction
+                                          -radiusSunToCenter[0],
+                                          -radiusSunToCenter[1],
+                                          -radiusSunToCenter[2]
     };
 
     // Reset perturbation
-    BasisArray accelNBody{ 0.0 };
+    AccelerationVector accelNBody{ 0.0 * km / (s * s) };
     for (auto&& [name, body] : sys) {
 
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const State& stateSunToNBody = (center->get_closest_state(julianDate)).convert(ElementSet::CARTESIAN, sys);
-
-        // Radius from central body to sun
-        const BasisArray radiusSunToNbody{ // flip vector direction
-                                           -stateSunToNBody.elements[0],
-                                           -stateSunToNBody.elements[1],
-                                           -stateSunToNBody.elements[2]
-        };
+        const State& stateSunToNBody        = center->get_closest_state(date - vehicle.get_epoch());
+        const RadiusVector radiusSunToNbody = stateSunToNBody.elements.in<Cartesian>(sys).get_radius();
 
         // Find radius from central body and spacecraft to nth body
-        const BasisArray radiusCentralBodyToNbody{ radiusSunToNbody[0] + radiusCentralBodyToSun[0],
-                                                   radiusSunToNbody[1] + radiusCentralBodyToSun[1],
-                                                   radiusSunToNbody[2] + radiusCentralBodyToSun[2] };
+        const RadiusVector radiusCenterToNbody{ radiusSunToNbody[0] + radiusCenterToSun[0],
+                                                radiusSunToNbody[1] + radiusCenterToSun[1],
+                                                radiusSunToNbody[2] + radiusCenterToSun[2] };
 
-        const BasisArray radiusVehicleToNbody{ radiusCentralBodyToNbody[0] - x,
-                                               radiusCentralBodyToNbody[1] - y,
-                                               radiusCentralBodyToNbody[2] - z };
+        const RadiusVector radiusVehicleToNbody{ radiusCenterToNbody[0] - x, radiusCenterToNbody[1] - y, radiusCenterToNbody[2] - z };
 
         // Normalize
-        const double radiusVehicleToNbodyMagnitude = math::normalize(radiusVehicleToNbody, 2);
-        const double radiusCentralToNbodyMagnitude = math::normalize(radiusCentralBodyToNbody, 2);
+        const quantity radiusVehicleToNbodyMagnitude = sqrt(
+            radiusVehicleToNbody[0] * radiusVehicleToNbody[0] + radiusVehicleToNbody[1] * radiusVehicleToNbody[1] +
+            radiusVehicleToNbody[2] * radiusVehicleToNbody[2]
+        );
+        const quantity radiusCenterToNbodyMagnitude = sqrt(
+            radiusCenterToNbody[0] * radiusCenterToNbody[0] + radiusCenterToNbody[1] * radiusCenterToNbody[1] +
+            radiusCenterToNbody[2] * radiusCenterToNbody[2]
+        );
 
         // Perturbational force from nth body
-        const double tempA =
+        const quantity tempA =
             body->get_mu() / (radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude);
-        const double tempB =
-            body->get_mu() / (radiusCentralToNbodyMagnitude * radiusCentralToNbodyMagnitude * radiusCentralToNbodyMagnitude);
+        const quantity tempB =
+            body->get_mu() / (radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude);
 
-        accelNBody[0] += tempA * radiusVehicleToNbody[0] - tempB * radiusCentralBodyToNbody[0];
-        accelNBody[1] += tempA * radiusVehicleToNbody[1] - tempB * radiusCentralBodyToNbody[1];
-        accelNBody[2] += tempA * radiusVehicleToNbody[2] - tempB * radiusCentralBodyToNbody[2];
+        accelNBody[0] += tempA * radiusVehicleToNbody[0] - tempB * radiusCenterToNbody[0];
+        accelNBody[1] += tempA * radiusVehicleToNbody[1] - tempB * radiusCenterToNbody[1];
+        accelNBody[2] += tempA * radiusVehicleToNbody[2] - tempB * radiusCenterToNbody[2];
     }
 
     return accelNBody;
 }
+
+} // namespace astro

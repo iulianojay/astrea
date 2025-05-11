@@ -2,6 +2,10 @@
 
 #include <stdexcept>
 
+using astro::Time;
+
+namespace accesslib {
+
 RiseSetArray::RiseSetArray(const std::vector<Time>& _risesets)
 {
     validate_risesets(_risesets);
@@ -20,7 +24,7 @@ void RiseSetArray::validate_risesets(const std::vector<Time>& _risesets) const
         throw std::runtime_error("RiseSetArrays must be constructed from an even-sized list of values.");
     }
 
-    for (size_t ii = 1; ii < _risesets.size(); ++ii) {
+    for (std::size_t ii = 1; ii < _risesets.size(); ++ii) {
         validate_riseset(_risesets[ii - 1], _risesets[ii]);
     }
 }
@@ -63,3 +67,5 @@ void RiseSetArray::insert(const Time& rise, const Time& set)
 
     *this = (*this) | RiseSetArray({ rise, set });
 }
+
+} // namespace accesslib

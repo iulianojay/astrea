@@ -4,9 +4,13 @@
 #include <vector>
 
 #include <astro/platforms/space/Plane.hpp>
-#include <astro/propagation/Integrator.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/units/units.hpp>
+
+namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
 class Shell {
@@ -20,28 +24,28 @@ class Shell {
     Shell(std::vector<Plane<Spacecraft_T>> planes);
     Shell(std::vector<Spacecraft_T> satellites);
     Shell(
-        const double& semimajor,
-        const double& inclination,
-        const size_t& T,
-        const size_t& P,
+        const Distance& semimajor,
+        const Angle& inclination,
+        const std::size_t& T,
+        const std::size_t& P,
         const double& F,
-        const double& anchorRAAN    = 0.0,
-        const double& anchorAnomaly = 0.0
+        const Angle& anchorRAAN    = 0.0 * mp_units::angular::unit_symbols::rad,
+        const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
     );
     ~Shell() = default;
 
-    const size_t size() const;
-    const size_t n_planes() const;
+    const std::size_t size() const;
+    const std::size_t n_planes() const;
 
     void add_plane(const Plane<Spacecraft_T>& plane);
-    void add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId);
+    void add_spacecraft(const Spacecraft_T& spacecraft, const std::size_t& planeId);
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
     const std::vector<Plane<Spacecraft_T>>& get_all_planes() const;
     const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
-    const Plane<Spacecraft_T>& get_plane(const size_t& planeId) const;
-    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
+    const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
+    const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
@@ -131,14 +135,16 @@ class Shell {
         using iterator_category = std::forward_iterator_tag;
     };
 
-    const size_t get_id() const { return id; }
+    const std::size_t get_id() const { return id; }
 
   private:
-    size_t id;
+    std::size_t id;
     std::string name;
     std::vector<Plane<Spacecraft_T>> planes;
 
     void generate_id_hash();
 };
+
+} // namespace astro
 
 #include <astro/platforms/space/Shell.ipp>

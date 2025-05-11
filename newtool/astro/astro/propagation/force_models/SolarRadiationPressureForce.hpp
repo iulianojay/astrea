@@ -6,13 +6,19 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
+
+namespace astro {
 
 class SolarRadiationPressureForce : public Force {
   public:
     SolarRadiationPressureForce()  = default;
     ~SolarRadiationPressureForce() = default;
 
-    BasisArray compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
 };
+
+} // namespace astro

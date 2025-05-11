@@ -6,66 +6,92 @@
 #include <iostream>
 #include <unordered_map>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
 #include <math/utils.hpp>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/time/Date.hpp>
+#include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
 
-class AstrodynamicsSystem;
-
-static const double RAD_TO_DEG = 180.0 / M_PI;
-static const double DEG_TO_RAD = M_PI / 180.0;
-
-static const double DAY_TO_SEC = 86400.0;
-static const double SEC_TO_DAY = 1.0 / 86400.0;
-
-static const double YEAR_TO_DAY = 365.25;
-static const double DAY_TO_YEAR = 1.0 / 365.25;
-
-static const double YEAR_TO_SEC = 31556926.0;
-static const double SEC_TO_YEAR = 1.0 / 31556926.0;
-
-static const double KM_TO_M = 1000.0;
-static const double M_TO_KM = 0.001;
-
-static const double KM_TO_AU = 1.0 / 1.49597871e8;
-static const double AU_TO_KM = 1.49597871e8;
-
+namespace astro {
 namespace conversions {
 
-//------------------------------------------- Frame Conversions --------------------------------------------//
-void bci_to_bcbf(const BasisArray& rBCI, double julianDate, double rotRate, BasisArray& rBCBF);
-void bcbf_to_bci(const BasisArray& rBCBF, double julianDate, double rotRate, BasisArray& rBCI);
 
-void bcbf_to_lla(const BasisArray& rBCBF, const double& equitorialRadius, const double& polarRadius, BasisArray& lla);
-void lla_to_bcbf(const BasisArray& lla, const double& equitorialRadius, const double& polarRadius, BasisArray& rBCBF);
+/*
+NOTE: This templating is to allow conversions for radius, velocity, and acceleration vectors.
+    This is wrong and needs to be resolved.
+*/
+template <typename Vec_T>
+Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
+{
+    using namespace mp_units;
+    using namespace mp_units::angular;
 
-//---------------------------------------- Element Set Conversions -----------------------------------------//
-std::vector<double> keplerian_to_bci(double h, double ecc, double inc, double raan, double w, double theta, double mu);
-std::vector<double> bci_to_keplerian(const std::vector<double>& radius, const std::vector<double>& velocity, double mu);
+    const auto& x = vecEci[0];
+    const auto& y = vecEci[1];
+    const auto& z = vecEci[2];
 
-ElementArray keplerian_to_cartesian(const ElementArray& coes, const AstrodynamicsSystem& centralBody);
-ElementArray cartesian_to_keplerian(const ElementArray& cartesian, const AstrodynamicsSystem& centralBody);
+    // Calculate Greenwich Sidereal Time
+    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.mjd());
 
-ElementArray keplerian_to_equinoctial(const ElementArray& mees, const AstrodynamicsSystem& centralBody);
-ElementArray equinoctial_to_keplerian(const ElementArray& coes, const AstrodynamicsSystem& centralBody);
+    // Calculate Eci-to-Ecef transformation matrix
+    /* NOTE: This transformation only accounts for Earth rotation, not nutation or procession, so it
+            is wrong by the order of several km. TODO: Make this accurate.
+            https://space.stackexchange.com/questions/38807/transform-eci-to-ecef
 
-void _equinoctial_to_keplerian(double p, double f, double g, double h, double k, double L, double* coes);
+        C_eci2ecef = [c_gst s_gst 0;
+                     -s_gst c_gst 0;
+                        0      0  1];
+    */
 
-//------------------------------------------- Time Conversions ---------------------------------------------//
-double epoch_to_julian_date(std::string epochString);
-double julian_date_to_siderial_time(double julianDate, double rotRate);
+    // Calculate Ecef radius vector
+    const Unitless cosGST = cos(greenwichSiderealTime);
+    const Unitless sinGST = sin(greenwichSiderealTime);
 
-// For the love of god, don't touch this
-using set_conversion_function = std::function<ElementArray(const ElementArray&, const AstrodynamicsSystem&)>;
-using element_set_pair        = std::pair<ElementSet, ElementSet>;
+    return { cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z };
+}
 
-const std::unordered_map<element_set_pair, set_conversion_function> elementSetConversions = {
-    { element_set_pair(ElementSet::KEPLERIAN, ElementSet::CARTESIAN), keplerian_to_cartesian },
-    { element_set_pair(ElementSet::CARTESIAN, ElementSet::KEPLERIAN), cartesian_to_keplerian },
-    { element_set_pair(ElementSet::KEPLERIAN, ElementSet::EQUINOCTIAL), keplerian_to_equinoctial },
-    { element_set_pair(ElementSet::EQUINOCTIAL, ElementSet::KEPLERIAN), equinoctial_to_keplerian }
-};
+/*
+NOTE: This templating is to allow conversions for radius, velocity, and acceleration vectors.
+    This is wrong and needs to be resolved.
+*/
+template <typename Vec_T>
+Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
+{
+    using namespace mp_units;
+    using namespace mp_units::angular;
 
-ElementArray convert(const ElementArray& elements, const ElementSet& fromSet, const ElementSet& toSet, const AstrodynamicsSystem& system);
+    // Calculate Greenwich Sidereal Time
+    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.mjd());
+
+    // Calculate ECEC-to-Eci transformation matrix
+    /* NOTE: This transformation only accounts for Earth rotation, not nutation or procession, so it
+            is wrong by the order of several km. TODO: Make this accurate.
+            https://space.stackexchange.com/questions/38807/transform-eci-to-ecef
+        C_ecef2eci = [cos(-gst) sin(-gst) 0;
+                      -sin(-gst) cos(-gst) 0;
+                           0         0     1];
+    */
+
+    // Calculate Ecef radius vector
+    const quantity cosGST = cos(-greenwichSiderealTime);
+    const quantity sinGST = sin(-greenwichSiderealTime);
+
+    Vec_T vecEci{ cosGST * vecEcef[0] + sinGST * vecEcef[1], -sinGST * vecEcef[0] + cosGST * vecEcef[1], vecEcef[2] };
+
+    return vecEci;
+}
+
+void ecef_to_lla(const RadiusVector& rEcef, const Distance& equitorialRadius, const Distance& polarRadius, Angle& lat, Angle& lon, Distance& alt);
+void lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& equitorialRadius, const Distance& polarRadius, RadiusVector& rEcef);
+
 } // namespace conversions
+} // namespace astro

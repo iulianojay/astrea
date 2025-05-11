@@ -1,5 +1,6 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
+namespace astro {
 
 void AstrodynamicsSystem::create_all_bodies()
 {
@@ -9,7 +10,7 @@ void AstrodynamicsSystem::create_all_bodies()
 };
 
 
-void AstrodynamicsSystem::propagate_bodies(double propTime)
+void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
 {
 
     // Ask factory to propagate
@@ -27,16 +28,16 @@ void AstrodynamicsSystem::propagate_bodies(double propTime)
         while (parent != root) {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
-            for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
+            for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
+
                 centerToRoot[ii].elements = centerToRoot[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody->get_parent();
         }
     }
     else {
-        const ElementArray noDiff = { 0.0 };
-        for (size_t ii = 0; ii < centerToRoot.size(); ii++) {
-            centerToRoot[ii].elements = OrbitalElements(noDiff, ElementSet::CARTESIAN);
+        for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
+            centerToRoot[ii].elements = OrbitalElements();
         }
     }
 
@@ -47,15 +48,15 @@ void AstrodynamicsSystem::propagate_bodies(double propTime)
         while (parent != "None") {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
-            for (size_t ii = 0; ii < centerToSun.size(); ii++) {
+            for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
                 centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody->get_parent();
         }
     }
     else {
-        for (size_t ii = 0; ii < centerToSun.size(); ii++) {
-            centerToSun[ii].elements = OrbitalElements({ 0.0 }, ElementSet::CARTESIAN);
+        for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
+            centerToSun[ii].elements = OrbitalElements();
         }
     }
 
@@ -72,15 +73,17 @@ void AstrodynamicsSystem::propagate_bodies(double propTime)
         while (parent != root) {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
-            for (size_t ii = 0; ii < states.size(); ii++) {
+            for (std::size_t ii = 0; ii < states.size(); ii++) {
                 states[ii].elements = states[ii].elements + parentToGrandParent[ii].elements;
             }
             parent = parentBody->get_parent();
         }
 
         // Convert to state relative to central body
-        for (size_t ii = 0; ii < states.size(); ii++) {
+        for (std::size_t ii = 0; ii < states.size(); ii++) {
             states[ii].elements = states[ii].elements - centerToRoot[ii].elements;
         }
     }
 }
+
+} // namespace astro

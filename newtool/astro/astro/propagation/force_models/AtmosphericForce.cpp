@@ -1,105 +1,109 @@
 #include <astro/propagation/force_models/AtmosphericForce.hpp>
+
+// mp-units
+#include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
+// astro
+#include <astro/utilities/conversions.hpp>
 #include <math/utils.hpp>
 
-BasisArray AtmosphericForce::compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+
+using namespace mp_units;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::cm;
+using si::unit_symbols::g;
+using si::unit_symbols::kg;
+using si::unit_symbols::km;
+using si::unit_symbols::m;
+using si::unit_symbols::s;
+
+namespace astro {
+
+AccelerationVector
+    AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
+
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
-    const double& x = state[0];
-    const double& y = state[1];
-    const double& z = state[2];
-    const double& R = std::sqrt(x * x + y * y + z * z);
+    const Distance& x = state.get_x();
+    const Distance& y = state.get_y();
+    const Distance& z = state.get_z();
+    const Distance& R = sqrt(x * x + y * y + z * z);
 
-    const double& vx = state[3];
-    const double& vy = state[4];
-    const double& vz = state[5];
+    const Velocity& vx = state.get_vx();
+    const Velocity& vy = state.get_vy();
+    const Velocity& vz = state.get_vz();
 
     // Central body properties
-    static const double& bodyRotationRate = center->get_rotation_rate();
+    static const AngularRate& bodyRotationRate = center->get_rotation_rate();
 
     // Find velocity relative to atmosphere
-    const std::vector<double> relativeVelocity = {
-        vx - y * bodyRotationRate * SEC_TO_DAY * DEG_TO_RAD,
-        vy + x * bodyRotationRate * SEC_TO_DAY * DEG_TO_RAD,
-        vz,
-    };
+    const Velocity relVx = vx - (y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle));
+    const Velocity relVy = vy + (x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle));
+    const Velocity relVz = vz;
 
     // Exponential Drag Model
-    const double atmosphericDensity = find_atmospheric_density(julianDate, state, center);
+    const Density atmosphericDensity = find_atmospheric_density(date, state, center);
 
-    // accel due to drag
-    const double relativeVelocityMagnitude = math::normalize(relativeVelocity);
+    // Accel due to drag
+    const Velocity relativeVelocityMagnitude = sqrt(relVx * relVx + relVy * relVy + relVz * relVz);
+    const Unitless coefficientOfDrag         = vehicle.get_coefficient_of_drag();
+    const SurfaceArea areaRam                = vehicle.get_ram_area();
+    const Mass mass                          = vehicle.get_mass();
+    const quantity dragMagnitude = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
 
-    const double coefficientOfDrag = vehicle.get_coefficient_of_drag();
-    const double areaRam           = vehicle.get_ram_area();
-    const double mass              = vehicle.get_mass();
-    const double dragMagnitude = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
-
-    const BasisArray accelDrag{
-        dragMagnitude * relativeVelocity[0],
-        dragMagnitude * relativeVelocity[1],
-        dragMagnitude * relativeVelocity[2],
-    };
+    const AccelerationVector accelDrag{ dragMagnitude * relVx, dragMagnitude * relVy, dragMagnitude * relVz };
 
     // Velocity in the radial direction
-    const double radialVelcityMagnitude = (vx * x + vy * y + vz * z) / R;
+    const Velocity radialVelcityMagnitude = (vx * x + vy * y + vz * z) / R;
 
     // accel due to lift
-    const double coefficientOfLift = vehicle.get_coefficient_of_lift();
-    const double areaLift          = vehicle.get_lift_area();
-    const double tempA =
+    const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
+    const SurfaceArea areaLift       = vehicle.get_lift_area();
+    const quantity tempA =
         0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * radialVelcityMagnitude * radialVelcityMagnitude / R;
 
-    const BasisArray accelLift{
-        tempA * x,
-        tempA * y,
-        tempA * z,
-    };
+    const AccelerationVector accelLift{ tempA * x, tempA * y, tempA * z };
 
-    return {
-        accelDrag[0] + accelLift[0],
-        accelDrag[1] + accelLift[1],
-        accelDrag[2] + accelLift[2],
-    };
+    return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
 }
 
 
-const double AtmosphericForce::find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const CelestialBodyUniquePtr& center) const
+const Density AtmosphericForce::find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
-    // Extract
-    const double& x = state[0];
-    const double& y = state[1];
-    const double& z = state[2];
-
     // Central body properties
-    static const double& equitorialR      = center->get_equitorial_radius();
-    static const double& polarR           = center->get_polar_radius();
-    static const double& bodyRotationRate = center->get_rotation_rate();
-    static const std::string& centerName  = center->get_name();
+    static const Distance equitorialR    = center->get_equitorial_radius();
+    static const Distance polarR         = center->get_polar_radius();
+    static const std::string& centerName = center->get_name();
 
     // Find altitude
-    BasisArray radius = { x, y, z };
-    BasisArray rBCBF{};
-    BasisArray lla{};
-    conversions::bci_to_bcbf(radius, julianDate, bodyRotationRate, rBCBF);
-    conversions::bcbf_to_lla(rBCBF, equitorialR, polarR, lla);
-    const double altitude = lla[2];
+    RadiusVector rEcef = conversions::eci_to_ecef(state.get_radius(), date);
+
+    Angle lat, lon;
+    Distance altitude;
+    conversions::ecef_to_lla(rEcef, equitorialR, polarR, lat, lon, altitude);
+
+    Unitless altitudeValue = altitude / km;
 
     // Assume that bodies not listed have no significant atmosphere.Assume that
     // the atmosphere of the gas giants is defined by their radii, e.g.
     // outside of their equitorial radius, they have no noticible atmosphere
     // and inside that radius, the object will crash.
-    double atmosphericDensity = 0.0;
+    Density atmosphericDensity;
     if (centerName == "Venus") {
         const auto iter    = venutianAtmosphere.upper_bound(altitude);
-        atmosphericDensity = (iter != venutianAtmosphere.end()) ? iter->second : 0.0;
-        atmosphericDensity *= 1.0e9; // kg/m^3 -> kg/km^3
+        atmosphericDensity = (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
     }
     else if (centerName == "Earth") {
-        double referenceAltitude{};
-        double referenceDensity{};
-        double scaleHeight{};
+        Distance referenceAltitude;
+        Density referenceDensity;
+        Distance scaleHeight;
 
         const auto iter = earthAtmosphere.upper_bound(altitude);
         if (iter != earthAtmosphere.end()) {
@@ -109,43 +113,40 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
             scaleHeight       = std::get<2>(atmo);
         }
         else {
-            referenceAltitude = 1100.0;
-            referenceDensity  = 0.0;
-            scaleHeight       = 1.0;
+            referenceAltitude = 1100.0 * km;
+            referenceDensity  = 0.0 * kg / (m * m * m);
+            scaleHeight       = 1.0 * km;
         }
 
-        atmosphericDensity = referenceDensity * std::exp((referenceAltitude - altitude) / scaleHeight) * 1.0e9; // kg/m^3 -> kg/km^3
+        atmosphericDensity = referenceDensity * exp((referenceAltitude - altitude) / scaleHeight);
     }
     else if (centerName == "Mars") {
         // The values up to 80 km are almost definitely wrong.I can't find any
         // sources that contradict them though.Please fix them(and the
         // associated crash radius of Mars) if you can find better numbers.
-        if (altitude <= 80.0) {
+        if (altitude <= 80.0 * km) {
             const auto iter    = martianAtmosphere.upper_bound(altitude);
-            atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0;
+            atmosphericDensity = (iter != martianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
         }
-        else if (altitude < 200.0) {
-            atmosphericDensity = std::exp(
-                -2.55314e-10 * std::pow(altitude, 5) + 2.31927e-7 * std::pow(altitude, 4) -
-                8.33206e-5 * std::pow(altitude, 3) + 0.0151947 * std::pow(altitude, 2) - 1.52799 * altitude + 48.69659
-            );
+        else if (altitude < 200.0 * km) {
+            atmosphericDensity = exp(-2.55314e-10 * pow<5>(altitudeValue) + 2.31927e-7 * pow<4>(altitudeValue) -
+                                     8.33206e-5 * pow<3>(altitudeValue) + 0.0151947 * pow<2>(altitudeValue) -
+                                     1.52799 * altitudeValue + 48.69659) *
+                                 kg / (m * m * m);
         }
-        else if (altitude < 300.0) {
-            atmosphericDensity = std::exp(
-                2.65472e-11 * std::pow(altitude, 5) - 2.45558e-8 * std::pow(altitude, 4) +
-                6.31410e-6 * std::pow(altitude, 3) + 4.73359e-4 * std::pow(altitude, 2) - 0.443712 * altitude + 23.79408
-            );
+        else if (altitude < 300.0 * km) {
+            atmosphericDensity = exp(2.65472e-11 * pow<5>(altitudeValue) - 2.45558e-8 * pow<4>(altitudeValue) +
+                                     6.31410e-6 * pow<3>(altitudeValue) + 4.73359e-4 * pow<2>(altitudeValue) -
+                                     0.443712 * altitudeValue + 23.79408) *
+                                 kg / (m * m * m);
         }
         else {
-            atmosphericDensity = 0.0;
+            atmosphericDensity = 0.0 * kg / (m * m * m);
         }
-        atmosphericDensity *= 1.0e9; // kg/m^3->kg/km^3
     }
     else if (centerName == "Titan") {
         const auto iter    = titanicAtmosphere.upper_bound(altitude);
-        atmosphericDensity = (iter != titanicAtmosphere.end()) ? iter->second : 0.0;
-
-        atmosphericDensity *= 1.0e12; // g/cm^3->kg/km^3
+        atmosphericDensity = (iter != titanicAtmosphere.end()) ? iter->second : 0.0 * g / (cm * cm * cm);
     }
 
     return atmosphericDensity;
@@ -155,58 +156,114 @@ const double AtmosphericForce::find_atmospheric_density(const double& julianDate
 //---------------------- ATMOSPHERIC DENSITY TABLES ----------------------//
 //------------------------------------------------------------------------//
 
-const std::map<double, double> AtmosphericForce::venutianAtmosphere = {
-    // km, kg/m^3
-    { 3.0, 5.53e1 },    { 6.0, 4.75e1 },    { 9.0, 4.02e1 },    { 12.0, 3.44e1 },   { 15.0, 2.91e1 },
-    { 18.0, 2.46e1 },   { 21.0, 2.06e1 },   { 24.0, 1.70e1 },   { 27.0, 1.405e1 },  { 30.0, 1.115e1 },
-    { 33.0, 9.0 },      { 36.0, 7.15 },     { 39.0, 5.15 },     { 42.0, 4.34 },     { 45.0, 3.30 },
-    { 48.0, 2.39 },     { 51.0, 1.88 },     { 54.0, 1.38 },     { 57.0, 9.6e-1 },   { 60.0, 6.2e-1 },
-    { 70.0, 1.2e-1 },   { 80.0, 1.8e-2 },   { 90.0, 2.3e-3 },   { 100.0, 3.1e-4 },  { 110.0, 4.4e-5 },
-    { 120.0, 7.2e-6 },  { 130.0, 1.4e-6 },  { 140.0, 3.0e-7 },  { 150.0, 8.0e-8 },  { 160.0, 2.6e-8 },
-    { 170.0, 9.5e-9 },  { 180.0, 4.0e-9 },  { 190.0, 1.9e-9 },  { 200.0, 9.4e-10 }, { 210.0, 4.9e-10 },
-    { 220.0, 2.6e-10 }, { 230.0, 1.4e-10 }, { 240.0, 7.5e-11 }, { 250.0, 5.5e-11 }, { 260.0, 4.1e-11 },
-    { 270.0, 2.2e-11 }, { 280.0, 1.2e-11 }, { 290.0, 6.5e-12 }, { 300.0, 3.5e-12 },
+const std::map<Altitude, Density> AtmosphericForce::venutianAtmosphere = { // km, kg/m^3
+    { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
+    { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
+    { 15.0 * km, 2.91e1 * kg / (pow<3>(m)) },   { 18.0 * km, 2.46e1 * kg / (pow<3>(m)) },
+    { 21.0 * km, 2.06e1 * kg / (pow<3>(m)) },   { 24.0 * km, 1.70e1 * kg / (pow<3>(m)) },
+    { 27.0 * km, 1.405e1 * kg / (pow<3>(m)) },  { 30.0 * km, 1.115e1 * kg / (pow<3>(m)) },
+    { 33.0 * km, 9.0 * kg / (pow<3>(m)) },      { 36.0 * km, 7.15 * kg / (pow<3>(m)) },
+    { 39.0 * km, 5.15 * kg / (pow<3>(m)) },     { 42.0 * km, 4.34 * kg / (pow<3>(m)) },
+    { 45.0 * km, 3.30 * kg / (pow<3>(m)) },     { 48.0 * km, 2.39 * kg / (pow<3>(m)) },
+    { 51.0 * km, 1.88 * kg / (pow<3>(m)) },     { 54.0 * km, 1.38 * kg / (pow<3>(m)) },
+    { 57.0 * km, 9.6e-1 * kg / (pow<3>(m)) },   { 60.0 * km, 6.2e-1 * kg / (pow<3>(m)) },
+    { 70.0 * km, 1.2e-1 * kg / (pow<3>(m)) },   { 80.0 * km, 1.8e-2 * kg / (pow<3>(m)) },
+    { 90.0 * km, 2.3e-3 * kg / (pow<3>(m)) },   { 100.0 * km, 3.1e-4 * kg / (pow<3>(m)) },
+    { 110.0 * km, 4.4e-5 * kg / (pow<3>(m)) },  { 120.0 * km, 7.2e-6 * kg / (pow<3>(m)) },
+    { 130.0 * km, 1.4e-6 * kg / (pow<3>(m)) },  { 140.0 * km, 3.0e-7 * kg / (pow<3>(m)) },
+    { 150.0 * km, 8.0e-8 * kg / (pow<3>(m)) },  { 160.0 * km, 2.6e-8 * kg / (pow<3>(m)) },
+    { 170.0 * km, 9.5e-9 * kg / (pow<3>(m)) },  { 180.0 * km, 4.0e-9 * kg / (pow<3>(m)) },
+    { 190.0 * km, 1.9e-9 * kg / (pow<3>(m)) },  { 200.0 * km, 9.4e-10 * kg / (pow<3>(m)) },
+    { 210.0 * km, 4.9e-10 * kg / (pow<3>(m)) }, { 220.0 * km, 2.6e-10 * kg / (pow<3>(m)) },
+    { 230.0 * km, 1.4e-10 * kg / (pow<3>(m)) }, { 240.0 * km, 7.5e-11 * kg / (pow<3>(m)) },
+    { 250.0 * km, 5.5e-11 * kg / (pow<3>(m)) }, { 260.0 * km, 4.1e-11 * kg / (pow<3>(m)) },
+    { 270.0 * km, 2.2e-11 * kg / (pow<3>(m)) }, { 280.0 * km, 1.2e-11 * kg / (pow<3>(m)) },
+    { 290.0 * km, 6.5e-12 * kg / (pow<3>(m)) }, { 300.0 * km, 3.5e-12 * kg / (pow<3>(m)) }
 };
 
-const std::map<double, double> AtmosphericForce::martianAtmosphere = {
-    // km, kg/m^3
-    { 2.0, 1.19e-1 },  { 4.0, 1.10e-1 },  { 6.0, 1.02e-1 },  { 8.0, 9.39e-2 },  { 10.0, 8.64e-2 }, { 12.0, 7.93e-2 },
-    { 14.0, 7.25e-2 }, { 16.0, 6.61e-2 }, { 18.0, 6.00e-2 }, { 20.0, 5.43e-2 }, { 22.0, 4.89e-2 }, { 24.0, 3.91e-2 },
-    { 26.0, 3.32e-2 }, { 28.0, 2.82e-2 }, { 30.0, 2.40e-2 }, { 32.0, 2.04e-2 }, { 34.0, 1.73e-2 }, { 36.0, 1.47e-2 },
-    { 38.0, 1.25e-2 }, { 40.0, 1.06e-2 }, { 45.0, 7.03e-3 }, { 50.0, 4.67e-3 }, { 55.0, 3.10e-3 }, { 60.0, 2.06e-3 },
-    { 65.0, 1.36e-3 }, { 70.0, 9.11e-4 }, { 75.0, 6.05e-4 }, { 80.0, 4.02e-4 },
+const std::map<Altitude, Density> AtmosphericForce::martianAtmosphere = { // km, kg/m^3
+    { 2.0 * km, 1.19e-1 * kg / (pow<3>(m)) },  { 4.0 * km, 1.10e-1 * kg / (pow<3>(m)) },
+    { 6.0 * km, 1.02e-1 * kg / (pow<3>(m)) },  { 8.0 * km, 9.39e-2 * kg / (pow<3>(m)) },
+    { 10.0 * km, 8.64e-2 * kg / (pow<3>(m)) }, { 12.0 * km, 7.93e-2 * kg / (pow<3>(m)) },
+    { 14.0 * km, 7.25e-2 * kg / (pow<3>(m)) }, { 16.0 * km, 6.61e-2 * kg / (pow<3>(m)) },
+    { 18.0 * km, 6.00e-2 * kg / (pow<3>(m)) }, { 20.0 * km, 5.43e-2 * kg / (pow<3>(m)) },
+    { 22.0 * km, 4.89e-2 * kg / (pow<3>(m)) }, { 24.0 * km, 3.91e-2 * kg / (pow<3>(m)) },
+    { 26.0 * km, 3.32e-2 * kg / (pow<3>(m)) }, { 28.0 * km, 2.82e-2 * kg / (pow<3>(m)) },
+    { 30.0 * km, 2.40e-2 * kg / (pow<3>(m)) }, { 32.0 * km, 2.04e-2 * kg / (pow<3>(m)) },
+    { 34.0 * km, 1.73e-2 * kg / (pow<3>(m)) }, { 36.0 * km, 1.47e-2 * kg / (pow<3>(m)) },
+    { 38.0 * km, 1.25e-2 * kg / (pow<3>(m)) }, { 40.0 * km, 1.06e-2 * kg / (pow<3>(m)) },
+    { 45.0 * km, 7.03e-3 * kg / (pow<3>(m)) }, { 50.0 * km, 4.67e-3 * kg / (pow<3>(m)) },
+    { 55.0 * km, 3.10e-3 * kg / (pow<3>(m)) }, { 60.0 * km, 2.06e-3 * kg / (pow<3>(m)) },
+    { 65.0 * km, 1.36e-3 * kg / (pow<3>(m)) }, { 70.0 * km, 9.11e-4 * kg / (pow<3>(m)) },
+    { 75.0 * km, 6.05e-4 * kg / (pow<3>(m)) }, { 80.0 * km, 4.02e-4 * kg / (pow<3>(m)) }
 };
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-const std::map<double, std::tuple<double, double, double>> AtmosphericForce::earthAtmosphere = {
-    // km, (km, kg/m^3, km)
-    { 25.0, { 0.0, 1.225, 7.249 } },          { 30.0, { 25.0, 3.899e-2, 6.349 } },
-    { 40.0, { 30.0, 1.774e-2, 6.682 } },      { 50.0, { 40.0, 3.972e-3, 7.554 } },
-    { 60.0, { 50.0, 1.057e-3, 8.382 } },      { 70.0, { 60.0, 3.206e-4, 7.714 } },
-    { 80.0, { 70.0, 8.770e-5, 6.549 } },      { 90.0, { 80.0, 1.905e-5, 5.799 } },
-    { 100.0, { 90.0, 3.396e-6, 5.382 } },     { 110.0, { 100.0, 5.297e-7, 5.877 } },
-    { 120.0, { 110.0, 9.661e-8, 7.263 } },    { 130.0, { 120.0, 2.438e-8, 9.473 } },
-    { 140.0, { 130.0, 8.484e-9, 12.636 } },   { 150.0, { 140.0, 3.845e-9, 16.149 } },
-    { 180.0, { 150.0, 2.070e-9, 22.523 } },   { 200.0, { 180.0, 5.464e-10, 29.740 } },
-    { 250.0, { 200.0, 2.789e-10, 37.105 } },  { 300.0, { 250.0, 7.248e-11, 45.546 } },
-    { 350.0, { 300.0, 2.418e-11, 53.628 } },  { 400.0, { 350.0, 9.158e-12, 53.298 } },
-    { 450.0, { 400.0, 3.725e-12, 58.515 } },  { 500.0, { 450.0, 1.585e-12, 60.828 } },
-    { 600.0, { 500.0, 6.967e-13, 63.822 } },  { 700.0, { 600.0, 1.454e-13, 71.835 } },
-    { 800.0, { 700.0, 3.614e-14, 88.667 } },  { 900.0, { 800.0, 1.170e-14, 124.64 } },
-    { 1000.0, { 900.0, 5.245e-15, 181.05 } }, { 1100.0, { 1000.0, 2.019e-15, 268.00 } },
+const std::map<
+    Altitude,
+    std::tuple<
+        Altitude,
+        Density,
+        Altitude>>
+    AtmosphericForce::earthAtmosphere = { // km, (km, kg/m^3, km)
+        { 25.0 * km, { 0.0 * km, 1.225 * kg / (pow<3>(m)), 7.249 * km } },
+        { 30.0 * km, { 25.0 * km, 3.899e-2 * kg / (pow<3>(m)), 6.349 * km } },
+        { 40.0 * km, { 30.0 * km, 1.774e-2 * kg / (pow<3>(m)), 6.682 * km } },
+        { 50.0 * km, { 40.0 * km, 3.972e-3 * kg / (pow<3>(m)), 7.554 * km } },
+        { 60.0 * km, { 50.0 * km, 1.057e-3 * kg / (pow<3>(m)), 8.382 * km } },
+        { 70.0 * km, { 60.0 * km, 3.206e-4 * kg / (pow<3>(m)), 7.714 * km } },
+        { 80.0 * km, { 70.0 * km, 8.770e-5 * kg / (pow<3>(m)), 6.549 * km } },
+        { 90.0 * km, { 80.0 * km, 1.905e-5 * kg / (pow<3>(m)), 5.799 * km } },
+        { 100.0 * km, { 90.0 * km, 3.396e-6 * kg / (pow<3>(m)), 5.382 * km } },
+        { 110.0 * km, { 100.0 * km, 5.297e-7 * kg / (pow<3>(m)), 5.877 * km } },
+        { 120.0 * km, { 110.0 * km, 9.661e-8 * kg / (pow<3>(m)), 7.263 * km } },
+        { 130.0 * km, { 120.0 * km, 2.438e-8 * kg / (pow<3>(m)), 9.473 * km } },
+        { 140.0 * km, { 130.0 * km, 8.484e-9 * kg / (pow<3>(m)), 12.636 * km } },
+        { 150.0 * km, { 140.0 * km, 3.845e-9 * kg / (pow<3>(m)), 16.149 * km } },
+        { 180.0 * km, { 150.0 * km, 2.070e-9 * kg / (pow<3>(m)), 22.523 * km } },
+        { 200.0 * km, { 180.0 * km, 5.464e-10 * kg / (pow<3>(m)), 29.740 * km } },
+        { 250.0 * km, { 200.0 * km, 2.789e-10 * kg / (pow<3>(m)), 37.105 * km } },
+        { 300.0 * km, { 250.0 * km, 7.248e-11 * kg / (pow<3>(m)), 45.546 * km } },
+        { 350.0 * km, { 300.0 * km, 2.418e-11 * kg / (pow<3>(m)), 53.628 * km } },
+        { 400.0 * km, { 350.0 * km, 9.158e-12 * kg / (pow<3>(m)), 53.298 * km } },
+        { 450.0 * km, { 400.0 * km, 3.725e-12 * kg / (pow<3>(m)), 58.515 * km } },
+        { 500.0 * km, { 450.0 * km, 1.585e-12 * kg / (pow<3>(m)), 60.828 * km } },
+        { 600.0 * km, { 500.0 * km, 6.967e-13 * kg / (pow<3>(m)), 63.822 * km } },
+        { 700.0 * km, { 600.0 * km, 1.454e-13 * kg / (pow<3>(m)), 71.835 * km } },
+        { 800.0 * km, { 700.0 * km, 3.614e-14 * kg / (pow<3>(m)), 88.667 * km } },
+        { 900.0 * km, { 800.0 * km, 1.170e-14 * kg / (pow<3>(m)), 124.64 * km } },
+        { 1000.0 * km, { 900.0 * km, 5.245e-15 * kg / (pow<3>(m)), 181.05 * km } },
+        { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
+    };
+
+const std::map<Altitude, AtmosphericForce::TitanDensity> AtmosphericForce::titanicAtmosphere = { // km, g/cm^3
+    { 780.0 * km, 1.00e-12 * g / (pow<3>(cm)) },  { 790.0 * km, 8.45e-12 * g / (pow<3>(cm)) },
+    { 800.0 * km, 7.16e-12 * g / (pow<3>(cm)) },  { 810.0 * km, 6.08e-12 * g / (pow<3>(cm)) },
+    { 820.0 * km, 5.17e-12 * g / (pow<3>(cm)) },  { 830.0 * km, 4.41e-12 * g / (pow<3>(cm)) },
+    { 840.0 * km, 3.77e-12 * g / (pow<3>(cm)) },  { 850.0 * km, 3.23e-12 * g / (pow<3>(cm)) },
+    { 860.0 * km, 2.78e-12 * g / (pow<3>(cm)) },  { 870.0 * km, 2.39e-12 * g / (pow<3>(cm)) },
+    { 880.0 * km, 2.06e-12 * g / (pow<3>(cm)) },  { 890.0 * km, 1.78e-12 * g / (pow<3>(cm)) },
+    { 900.0 * km, 1.54e-12 * g / (pow<3>(cm)) },  { 910.0 * km, 1.34e-12 * g / (pow<3>(cm)) },
+    { 920.0 * km, 1.16e-12 * g / (pow<3>(cm)) },  { 930.0 * km, 1.01e-12 * g / (pow<3>(cm)) },
+    { 940.0 * km, 8.80e-13 * g / (pow<3>(cm)) },  { 950.0 * km, 7.67e-13 * g / (pow<3>(cm)) },
+    { 960.0 * km, 6.69e-13 * g / (pow<3>(cm)) },  { 970.0 * km, 5.84e-13 * g / (pow<3>(cm)) },
+    { 980.0 * km, 5.10e-13 * g / (pow<3>(cm)) },  { 990.0 * km, 4.46e-13 * g / (pow<3>(cm)) },
+    { 1000.0 * km, 3.90e-13 * g / (pow<3>(cm)) }, { 1010.0 * km, 1.81e-13 * g / (pow<3>(cm)) },
+    { 1020.0 * km, 2.99e-13 * g / (pow<3>(cm)) }, { 1030.0 * km, 2.62e-13 * g / (pow<3>(cm)) },
+    { 1040.0 * km, 2.30e-13 * g / (pow<3>(cm)) }, { 1050.0 * km, 2.02e-13 * g / (pow<3>(cm)) },
+    { 1060.0 * km, 1.78e-13 * g / (pow<3>(cm)) }, { 1070.0 * km, 1.56e-13 * g / (pow<3>(cm)) },
+    { 1080.0 * km, 1.38e-13 * g / (pow<3>(cm)) }, { 1090.0 * km, 1.21e-13 * g / (pow<3>(cm)) },
+    { 1100.0 * km, 1.07e-13 * g / (pow<3>(cm)) }, { 1110.0 * km, 9.43e-14 * g / (pow<3>(cm)) },
+    { 1120.0 * km, 8.33e-14 * g / (pow<3>(cm)) }, { 1130.0 * km, 7.36e-14 * g / (pow<3>(cm)) },
+    { 1140.0 * km, 6.51e-14 * g / (pow<3>(cm)) }, { 1150.0 * km, 5.76e-14 * g / (pow<3>(cm)) },
+    { 1160.0 * km, 5.10e-14 * g / (pow<3>(cm)) }, { 1170.0 * km, 4.52e-14 * g / (pow<3>(cm)) },
+    { 1180.0 * km, 4.01e-14 * g / (pow<3>(cm)) }, { 1190.0 * km, 3.56e-14 * g / (pow<3>(cm)) },
+    { 1200.0 * km, 3.16e-14 * g / (pow<3>(cm)) }, { 1210.0 * km, 2.81e-14 * g / (pow<3>(cm)) },
+    { 1220.0 * km, 2.50e-14 * g / (pow<3>(cm)) }, { 1230.0 * km, 2.22e-14 * g / (pow<3>(cm)) },
+    { 1240.0 * km, 1.98e-14 * g / (pow<3>(cm)) }, { 1250.0 * km, 1.77e-14 * g / (pow<3>(cm)) },
+    { 1260.0 * km, 1.58e-14 * g / (pow<3>(cm)) }, { 1270.0 * km, 1.41e-14 * g / (pow<3>(cm)) },
+    { 1280.0 * km, 1.26e-14 * g / (pow<3>(cm)) }, { 1290.0 * km, 1.12e-14 * g / (pow<3>(cm)) },
+    { 1300.0 * km, 1.00e-14 * g / (pow<3>(cm)) }
 };
 
-const std::map<double, double> AtmosphericForce::titanicAtmosphere = {
-    // km, g/cm^3
-    { 780.0, 1.00e-12 },  { 790.0, 8.45e-12 },  { 800.0, 7.16e-12 },  { 810.0, 6.08e-12 },  { 820.0, 5.17e-12 },
-    { 830.0, 4.41e-12 },  { 840.0, 3.77e-12 },  { 850.0, 3.23e-12 },  { 860.0, 2.78e-12 },  { 870.0, 2.39e-12 },
-    { 880.0, 2.06e-12 },  { 890.0, 1.78e-12 },  { 900.0, 1.54e-12 },  { 910.0, 1.34e-12 },  { 920.0, 1.16e-12 },
-    { 930.0, 1.01e-12 },  { 940.0, 8.80e-13 },  { 950.0, 7.67e-13 },  { 960.0, 6.69e-13 },  { 970.0, 5.84e-13 },
-    { 980.0, 5.10e-13 },  { 990.0, 4.46e-13 },  { 1000.0, 3.90e-13 }, { 1010.0, 1.81e-13 }, { 1020.0, 2.99e-13 },
-    { 1030.0, 2.62e-13 }, { 1040.0, 2.30e-13 }, { 1050.0, 2.02e-13 }, { 1060.0, 1.78e-13 }, { 1070.0, 1.56e-13 },
-    { 1080.0, 1.38e-13 }, { 1090.0, 1.21e-13 }, { 1100.0, 1.07e-13 }, { 1110.0, 9.43e-14 }, { 1120.0, 8.33e-14 },
-    { 1130.0, 7.36e-14 }, { 1140.0, 6.51e-14 }, { 1150.0, 5.76e-14 }, { 1160.0, 5.10e-14 }, { 1170.0, 4.52e-14 },
-    { 1180.0, 4.01e-14 }, { 1190.0, 3.56e-14 }, { 1200.0, 3.16e-14 }, { 1210.0, 2.81e-14 }, { 1220.0, 2.50e-14 },
-    { 1230.0, 2.22e-14 }, { 1240.0, 1.98e-14 }, { 1250.0, 1.77e-14 }, { 1260.0, 1.58e-14 }, { 1270.0, 1.41e-14 },
-    { 1280.0, 1.26e-14 }, { 1290.0, 1.12e-14 }, { 1300.0, 1.00e-14 },
-};
+} // namespace astro

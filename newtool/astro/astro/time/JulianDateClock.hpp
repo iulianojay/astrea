@@ -2,6 +2,10 @@
 
 #include <chrono>
 
+#include <mp-units/systems/si/chrono.h>
+
+namespace astro {
+
 // Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14
 struct JulianDateClock;
 
@@ -49,4 +53,7 @@ struct JulianDateClock {
 
 using JulianDate = JulianDateClock::time_point;
 
-static const JulianDate J2000(JulianDateClock::duration{ 2451545.0 });
+static constexpr JulianDate J2000(JulianDateClock::duration{ 2451545.0 });
+static constexpr mp_units::quantity_point J2K = J2000;
+
+} // namespace astro

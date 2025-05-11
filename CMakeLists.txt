@@ -28,4 +28,6 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
 endif()
 
+find_package(mp-units REQUIRED)
+
 add_subdirectory(newtool)

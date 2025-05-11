@@ -1,43 +1,57 @@
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/units/units.hpp>
 #include <math/utils.hpp>
 
-OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+
+using namespace mp_units;
+using namespace mp_units::non_si;
+using namespace mp_units::angular;
+using angular::unit_symbols::deg;
+using angular::unit_symbols::rad;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
+
+namespace astro {
+
+OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    if (state.get_set() != ElementSet::KEPLERIAN) {
-        throw std::runtime_error("The KEPLERIANs VoP dynamics evaluator requires that the incoming Orbital Element set "
-                                 "is in KEPLERIAN coordinates.");
-    }
+    const Keplerian elements  = state.in<Keplerian>(system);
+    const Cartesian cartesian = state.in<Cartesian>(system);
 
     // Extract
-    const double& a = state[0];
-    // const double& raan = state[3];
-    const double& w     = state[4];
-    const double& theta = state[5];
+    const quantity<km>& a = elements.get_semimajor();
+    // const double<rad>& raan = elements.get_right_ascension();
+    const quantity<rad>& w     = elements.get_argument_of_perigee();
+    const quantity<rad>& theta = elements.get_true_anomaly();
 
     // Prevents singularities from occuring in the propagation. Will cause
     // inaccuracies.
-    const double& ecc = (state[1] < checkTol) ? checkTol : state[1];
-    const double& inc = (state[2] < checkTol) ? checkTol : state[2];
+    const quantity<one>& ecc = (elements.get_eccentricity() < checkTol * one) ? checkTol * one : elements.get_eccentricity();
+    const quantity<rad>& inc = (elements.get_inclination() < checkTol * rad) ? checkTol * rad : elements.get_inclination();
 
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // h
-    const double h = std::sqrt(mu * a * (1 - ecc * ecc));
+    const quantity<pow<2>(km) / s> h = sqrt(mu * a * (1 - ecc * ecc));
 
     // conversions KEPLERIANs to r and v
-    const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, system);
+    const quantity<km>& x = cartesian.get_x();
+    const quantity<km>& y = cartesian.get_y();
+    const quantity<km>& z = cartesian.get_z();
+    const quantity<km> R  = sqrt(x * x + y * y + z * z);
 
-    const double& x = cartesianState[0];
-    const double& y = cartesianState[1];
-    const double& z = cartesianState[2];
-    const double R  = std::sqrt(x * x + y * y + z * z);
-
-    const double& vx = cartesianState[3];
-
-    const double& vy = cartesianState[4];
-    const double& vz = cartesianState[5];
+    const quantity<km / s>& vx = cartesian.get_vx();
+    const quantity<km / s>& vy = cartesian.get_vy();
+    const quantity<km / s>& vz = cartesian.get_vz();
 
     // Define perturbation vectors relative to the satellites RNT body frame
     /*
@@ -45,59 +59,70 @@ OrbitalElements KeplerianVop::operator()(const Time& time, const OrbitalElements
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    const double Rhat[3] = { x / R, y / R, z / R };
+    const quantity<one> Rhatx = x / R;
+    const quantity<one> Rhaty = y / R;
+    const quantity<one> Rhatz = z / R;
 
-    const double Nhat[3] = { (y * vz - z * vy) / h, (z * vx - x * vz) / h, (x * vy - y * vx) / h };
+    const quantity<one> Nhatx = (y * vz - z * vy) / h;
+    const quantity<one> Nhaty = (z * vx - x * vz) / h;
+    const quantity<one> Nhatz = (x * vy - y * vx) / h;
 
-    const double Tv[3]  = { Nhat[1] * Rhat[2] - Nhat[2] * Rhat[1],
-                            Nhat[2] * Rhat[0] - Nhat[0] * Rhat[2],
-                            Nhat[0] * Rhat[1] - Nhat[1] * Rhat[0] };
-    const double normTv = std::sqrt(Tv[0] * Tv[0] + Tv[1] * Tv[1] + Tv[2] * Tv[2]);
+    const quantity<one> Tvx = Nhaty * Rhatz - Nhatz * Rhaty;
+    const quantity<one> Tvy = Nhatz * Rhatx - Nhatx * Rhatz;
+    const quantity<one> Tvz = Nhatx * Rhaty - Nhaty * Rhatx;
 
-    const double That[3] = { Tv[0] / normTv, Tv[1] / normTv, Tv[2] / normTv };
+    const quantity<one> normTv = sqrt(Tvx * Tvx + Tvy * Tvy + Tvz * Tvz);
+
+    const quantity<one> Thatx = Tvx / normTv;
+    const quantity<one> Thaty = Tvy / normTv;
+    const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    auto julianDate       = vehicle.get_epoch().julian_day() + time.count<days>();
-    BasisArray accelPerts = forces.compute_forces(julianDate, cartesianState, vehicle, system);
+    const Date date               = vehicle.get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
 
     // Calculate R, N, and T
-    const double radialPert     = accelPerts[0] * Rhat[0] + accelPerts[1] * Rhat[1] + accelPerts[2] * Rhat[2];
-    const double normalPert     = accelPerts[0] * Nhat[0] + accelPerts[1] * Nhat[1] + accelPerts[2] * Nhat[2];
-    const double tangentialPert = accelPerts[0] * That[0] + accelPerts[1] * That[1] + accelPerts[2] * That[2];
+    const quantity<km / pow<2>(s)> radialPert = accelPerts[0] * Rhatx + accelPerts[1] * Rhaty + accelPerts[2] * Rhatz;
+    const quantity<km / pow<2>(s)> normalPert = accelPerts[0] * Nhatx + accelPerts[1] * Nhaty + accelPerts[2] * Nhatz;
+    const quantity<km / pow<2>(s)> tangentialPert = accelPerts[0] * Thatx + accelPerts[1] * Thaty + accelPerts[2] * Thatz;
 
     // Argument of latitude
-    const double u = w + theta;
+    const quantity<rad> u = w + theta;
 
     // Precalculate
-    const double cosTA         = std::cos(theta);
-    const double sinTA         = std::sin(theta);
-    const double cosU          = std::cos(u);
-    const double sinU          = std::sin(u);
-    const double hSquared      = h * h;
-    const double hOverRSquared = h / (R * R);
+    const quantity cosTA = cos(theta);
+    const quantity sinTA = sin(theta);
+    const quantity cosU  = cos(u);
+    const quantity sinU  = sin(u);
 
-    // Calculate the derivatives of the KEPLERIANs - from the notes
-    const double dhdt = R * tangentialPert;
-    const double deccdt = h / mu * sinTA * radialPert + 1 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
-    const double dincdt = R / h * cosU * normalPert;
-    const double dthetadt =
-        hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert);
-    const double draandt = R * sinU / (h * std::sin(inc)) * normalPert;
-    const double dwdt    = -dthetadt + (hOverRSquared - draandt * std::cos(inc));
+    const quantity<pow<4>(km) / pow<2>(s)> hSquared = h * h;
+    const quantity<one / s> hOverRSquared           = h / (R * R);
 
-    const double dadt = (-2 * mu / (h * h * h) * dhdt) * (1 - ecc * ecc) + (mu / (h * h)) * (-2 * ecc * deccdt); // TODO: Fix this
+    // Calculate the derivatives of the Keplerian elements
+    const quantity<pow<2>(km / s)> dhdt = R * tangentialPert;
+    const quantity<one / s> deccdt =
+        h / mu * sinTA * radialPert + 1 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
+    const quantity<rad / s> dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const quantity<rad / s> dthetadt =
+        (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
+        (isq_angle::cotes_angle);
+    const quantity<rad / s> draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const quantity<rad / s> dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
-    const OrbitalElements dsdt({ dadt, deccdt, dincdt, draandt, dwdt, dthetadt }, ElementSet::KEPLERIAN);
+    // const quantity<km/s> dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
+    const quantity<km / s> dadt = 2 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
+    // km^3/s^2 / km^6/s^3 * km^2/s^2 -> km^-1 * s^-1 + km^3/s^2 / km^4/s^2 * 1/s -> km^-1 / s^-1
+    const KeplerianPartial dsdt(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 
     return dsdt;
 }
 
-void KeplerianVop::check_degenerate(const double& ecc, const double& inc) const
+void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad>& inc) const
 {
-    if (ecc <= checkTol || inc <= checkTol) {
+    if (ecc <= checkTol * one || inc <= checkTol * rad) {
         std::string title;
-        if (ecc <= checkTol && inc <= checkTol) { title = "Eccentricity and inclination"; }
-        else if (ecc <= checkTol) {
+        if (ecc <= checkTol * one && inc <= checkTol * rad) { title = "Eccentricity and inclination"; }
+        else if (ecc <= checkTol * one) {
             title = "Eccentricity";
         }
         else {
@@ -108,3 +133,5 @@ void KeplerianVop::check_degenerate(const double& ecc, const double& inc) const
                   << std::endl;
     }
 }
+
+} // namespace astro

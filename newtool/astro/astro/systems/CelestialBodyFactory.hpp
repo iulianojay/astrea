@@ -7,6 +7,8 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
 
+namespace astro {
+
 using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
 
 class CelestialBodyFactory {
@@ -18,7 +20,7 @@ class CelestialBodyFactory {
     const CelestialBodyUniquePtr& get(const std::string& name) const;
     const CelestialBodyUniquePtr& get_or_create(const std::string& name);
 
-    const size_t number_of_bodies() const { return bodies.size(); }
+    const std::size_t number_of_bodies() const { return bodies.size(); }
     void propagate_bodies(const Date& epoch, const Time& endTime);
 
     const std::string& get_root() const { return root; }
@@ -57,3 +59,5 @@ class CelestialBodyFactory {
                                                                       { "Neptune", "./data/planetary/Neptune/Neptune.json" },
                                                                       { "Triton", "./data/planetary/Neptune/Triton.json" } };
 };
+
+} // namespace astro

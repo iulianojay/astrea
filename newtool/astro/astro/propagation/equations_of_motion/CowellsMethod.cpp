@@ -1,36 +1,48 @@
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 
-OrbitalElements CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
+
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
+
+
+using namespace mp_units;
+using namespace mp_units::non_si;
+using si::unit_symbols::km;
+using si::unit_symbols::s;
+
+namespace astro {
+
+OrbitalElementPartials CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    if (state.get_set() != ElementSet::CARTESIAN) {
-        throw std::runtime_error("The Cowell's Method dynamics evaluator requires that the incoming Orbital Element "
-                                 "set is in Cartesian coordinates.");
-    }
-
     // Extract
-    const double& x  = state[0];
-    const double& y  = state[1];
-    const double& z  = state[2];
-    const double& vx = state[3];
-    const double& vy = state[4];
-    const double& vz = state[5];
+    const Cartesian cartesian = state.in<Cartesian>(system);
+    const quantity<km>& x     = cartesian.get_x();
+    const quantity<km>& y     = cartesian.get_y();
+    const quantity<km>& z     = cartesian.get_z();
+    const quantity R          = sqrt(x * x + y * y + z * z);
 
-    // Calculate required values for force model
-    const double R = std::sqrt(x * x + y * y + z * z); // radius magnitude
+    const quantity<km / s>& vx = cartesian.get_vx();
+    const quantity<km / s>& vy = cartesian.get_vy();
+    const quantity<km / s>& vz = cartesian.get_vz();
 
     // mu/R^3
-    const double muOverRadiusCubed = mu / (R * R * R);
+    const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    auto julianDate       = vehicle.get_epoch().julian_day() + time.count<days>();
-    BasisArray accelPerts = forces.compute_forces(julianDate, state, vehicle, system);
+    const Date date               = vehicle.get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
 
     // Derivative
-    const OrbitalElements dsdt(
-        { vx, vy, vz, -muOverRadiusCubed * x + accelPerts[0], -muOverRadiusCubed * y + accelPerts[1], -muOverRadiusCubed * z + accelPerts[2] },
-        ElementSet::CARTESIAN
+    const CartesianPartial dsdt(
+        vx, vy, vz, -muOverRadiusCubed * x + accelPerts[0], -muOverRadiusCubed * y + accelPerts[1], -muOverRadiusCubed * z + accelPerts[2]
     );
 
     return dsdt;
 }
+
+} // namespace astro

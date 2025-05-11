@@ -3,94 +3,89 @@
 #include <sstream>
 #include <string>
 
+#include <mp-units/systems/si/chrono.h>
+
 #include <astro/time/JulianDateClock.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
+
+namespace astro {
+
+// General conversions
+JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format = "%Y-%m-%d %H:%M:%S%z %Z");
+Angle julian_date_to_siderial_time(const JulianDate& date);
 
 class Date {
+
+    // Stream
+    friend std::ostream& operator<<(std::ostream& os, const Date& obj);
 
   public:
     // Build from string
     Date() = default;
-    Date(const std::string calendarDate) { set_julian_date_from_string(calendarDate, defaultDateFormat); }
-    Date(const std::string calendarDate, const char* dateFormat)
+    Date(const std::string& epoch, const std::string& format = "%Y-%m-%d %H:%M:%S%z %Z") :
+        julianDate(epoch_to_julian_date(epoch, format))
     {
-        set_julian_date_from_string(calendarDate, dateFormat);
     }
 
     // Build from JulianDate
-    Date(const JulianDate jdate)
+    Date(const JulianDate& jdate) :
+        julianDate(jdate)
     {
-        julianDate = jdate;
-        set_string_from_julian_date();
-    }
-
-    // Copy assignment operator
-    Date& operator=(const Date& other)
-    {
-        // Guard self assignment
-        if (this == &other) { return *this; }
-
-        calendarDate      = other.calendarDate;
-        julianDate        = other.julianDate;
-        defaultDateFormat = other.defaultDateFormat;
-
-        return *this;
-    }
-
-    // Addition operator
-    Date operator+(const Time& time) const
-    {
-        const auto newTime = julianDate.time_since_epoch() + time.time;
-        return Date(JulianDate(newTime));
-    }
-
-    // Subtraction operator
-    Time operator-(const Date& other) const
-    {
-        const auto diff = other.julianDate - julianDate;
-        return Time(diff);
-    }
-
-    // Stream
-    friend std::ostream& operator<<(std::ostream& os, const Date& obj)
-    {
-        os << obj.calendarDate;
-        return os;
     }
 
     // Destructor
-    ~Date() {}
+    ~Date() = default;
 
-    // Utilities
-    const auto julian_day() const { return julianDate.time_since_epoch().count(); }
-    const auto utc() const { return round<std::chrono::seconds>(clock_cast<std::chrono::system_clock>(julianDate)); }
+    // Helper operators
+    Date operator+(const Time& time) const;
+    Date& operator+=(const Time& time);
+    Date operator-(const Time& time) const;
+    Date& operator-=(const Time& time);
+    Time operator-(const Date& other) const;
 
-  private:
-    std::string calendarDate;
-    JulianDate julianDate;
+    // Clock conversions
+    auto mjd() const { return julianDate; }
+    std::chrono::time_point<std::chrono::utc_clock> utc() const { return in_clock<std::chrono::utc_clock>(); }
+    std::chrono::time_point<std::chrono::gps_clock> gps() const { return in_clock<std::chrono::gps_clock>(); }
+    std::chrono::time_point<std::chrono::tai_clock> tai() const { return in_clock<std::chrono::tai_clock>(); }
+    // std::chrono::time_point<std::chrono::tai_clock> tt() const
+    // {
+    //     // TODO: Make tt clock. Find better conversion numbers
+    //     using namespace std::chrono;
+    //     return in_clock<tai_clock>().time_since_epoch() + milliseconds{ 32184.0 };
+    // }
+    std::chrono::time_point<std::chrono::system_clock> sys() const { return in_clock<std::chrono::system_clock>(); }
+    std::string epoch() const;
 
-    const char* defaultDateFormat = "%Y-%m-%d %H:%M:%S%z %Z";
-
-    void set_julian_date_from_string(const std::string dateString, const char* dateFormat)
+    template <typename Clock_T>
+    std::chrono::time_point<Clock_T> in_clock() const
     {
-        // Get system time
-        std::tm timeDate = {};
-        std::istringstream ss(dateString);
-        ss >> std::get_time(&timeDate, dateFormat);
-        const auto sysTime = std::chrono::system_clock::from_time_t(mktime(&timeDate));
-
-        // Convert to Julian date
-        julianDate = JulianDateClock::from_sys(sysTime);
-
-        // Set calendar date
-        set_string_from_julian_date();
+        using namespace std::chrono;
+        return round<milliseconds>(clock_cast<Clock_T>(julianDate));
     }
 
-    void set_string_from_julian_date()
+    // Sidereal time
+    Angle gmst() const;
+
+  private:
+    JulianDate julianDate;
+};
+
+} // namespace astro
+
+
+template <>
+struct mp_units::quantity_point_like_traits<astro::Date> {
+    static constexpr auto reference       = non_si::day;
+    static constexpr auto point_origin    = astro::J2K;
+    static constexpr bool explicit_import = false;
+    static constexpr bool explicit_export = true;
+    using rep                             = long double;
+    static constexpr rep to_numerical_value(astro::Date date) { return date.mjd().time_since_epoch().count(); }
+    static constexpr astro::Date from_numerical_value(rep v)
     {
-        const auto sysTime = round<std::chrono::milliseconds>(clock_cast<std::chrono::system_clock>(julianDate));
-        std::stringstream ss;
-        ss << sysTime;
-        calendarDate = ss.str();
+        using namespace astro;
+        return Date(JulianDate(JulianDateClock::duration{ v }));
     }
 };

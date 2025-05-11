@@ -17,15 +17,19 @@ endif()
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
+    ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.cpp
+    ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.cpp
+    ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.cpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.cpp
 
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
 
-    ${ASTRO_BASE}/propagation/Integrator.cpp
-    ${ASTRO_BASE}/propagation/LambertSolver.cpp
+    ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
+    ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
     ${ASTRO_BASE}/propagation/force_models/NBodyForce.cpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.cpp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressureForce.cpp
@@ -42,7 +46,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
 
-    ${ASTRO_BASE}/time/Time.cpp
+    ${ASTRO_BASE}/time/Date.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
 )
@@ -53,9 +57,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/constants/astronomical_constants.h
-    ${ASTRO_BASE}/constants/rk_constants.h
-
+    ${ASTRO_BASE}/constants/constants.hpp
+    
+    ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
+    ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
+    ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.hpp
     ${ASTRO_BASE}/element_sets/ElementSet.hpp
     ${ASTRO_BASE}/element_sets/Frame.hpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
@@ -69,8 +75,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.hpp
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
-    ${ASTRO_BASE}/propagation/Integrator.hpp
-    ${ASTRO_BASE}/propagation/LambertSolver.hpp
+    ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
+    ${ASTRO_BASE}/propagation/numerical/rk_constants.h
+    ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp
@@ -96,15 +103,17 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/time/Date.hpp
     ${ASTRO_BASE}/time/Interval.hpp
     ${ASTRO_BASE}/time/JulianDateClock.hpp
-    ${ASTRO_BASE}/time/time_units.hpp
-    ${ASTRO_BASE}/time/Time.hpp
 
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
+    ${ASTRO_BASE}/units/time.hpp
+    ${ASTRO_BASE}/units/units.hpp
+
     ${ASTRO_BASE}/utilities/conversions.hpp
 
     # Extern
+    ${EXTERN_BASE}/date/date.h
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
 
@@ -117,21 +126,25 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(ASTRO_DIRS
-    ${CMAKE_CURRENT_LIST_DIR}
     ${EXTERN_BASE}
-    ${CMAKE_INSTALL_PREFIX}/../math/include
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../math
+    $ENV{HOME}/open-source/mp-units/src/core/include
+    $ENV{HOME}/open-source/mp-units/src/systems/include
 )
 include_directories(${ASTRO_DIRS})
 
 # Shared library
-add_library           (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
-set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared)
+add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units)
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
 
 # Static library
-add_library           (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
-set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static)
+add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units)
+target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
 
 # Executable
 add_executable             (${PROJECT_NAME}_exe ${ASTRO_BASE}/drivers/main.cpp)

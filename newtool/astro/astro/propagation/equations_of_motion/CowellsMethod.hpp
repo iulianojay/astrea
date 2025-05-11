@@ -1,13 +1,28 @@
 #pragma once
 
+// mp-units
+#include <mp-units/compat_macros.h>
+#include <mp-units/ext/format.h>
+
+#include <mp-units/format.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
+
+// astro
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
+
+namespace astro {
 
 class CowellsMethod : public EquationsOfMotion {
+
+    using GravParam =
+        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
+
   public:
     CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
@@ -15,12 +30,14 @@ class CowellsMethod : public EquationsOfMotion {
         mu(system.get_center()->get_mu()){};
     ~CowellsMethod() = default;
 
-    OrbitalElements operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
     const ElementSet expectedSet = ElementSet::CARTESIAN;
     const ForceModel& forces;
 
-    const double mu;
+    const GravParam mu;
 };
+
+} // namespace astro

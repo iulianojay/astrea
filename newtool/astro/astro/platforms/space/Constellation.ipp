@@ -1,3 +1,5 @@
+namespace astro {
+
 static const size_t DEFAULT_SHELL_ID = SIZE_MAX;
 
 template <class Spacecraft_T>
@@ -36,13 +38,13 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
-    const double& semimajor,
-    const double& inclination,
+    const Distance& semimajor,
+    const Angle& inclination,
     const size_t& T,
     const size_t& P,
     const double& F,
-    const double& anchorRAAN,
-    const double& anchorAnomaly
+    const Angle& anchorRAAN,
+    const Angle& anchorAnomaly
 )
 {
 
@@ -238,3 +240,5 @@ void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& 
         shell.propagate(eom, integrator, interval);
     }
 }
+
+} // namespace astro

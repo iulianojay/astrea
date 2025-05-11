@@ -4,12 +4,14 @@
 
 #include <access/time/RiseSetArray.hpp>
 
+namespace accesslib {
+
 struct IdPair {
-    size_t sender;
-    size_t receiver;
+    std::size_t sender;
+    std::size_t receiver;
 
     IdPair() = default;
-    IdPair(size_t sender, size_t receiver) :
+    IdPair(std::size_t sender, std::size_t receiver) :
         sender(sender),
         receiver(receiver)
     {
@@ -24,25 +26,29 @@ struct IdPair {
     bool operator==(const IdPair& other) const { return (sender == other.sender && receiver == other.receiver); }
 };
 
+} // namespace accesslib
+
 template <>
-struct std::hash<IdPair> {
-    std::size_t operator()(const IdPair& k) const
+struct std::hash<accesslib::IdPair> {
+    std::size_t operator()(const accesslib::IdPair& k) const
     {
         return (std::hash<std::size_t>()(k.sender)) ^ (std::hash<std::size_t>()(k.receiver));
     }
 };
+
+namespace accesslib {
 
 class AccessArray {
   public:
     AccessArray()  = default;
     ~AccessArray() = default;
 
-    RiseSetArray& operator[](const size_t& senderId, const size_t& receiverId)
+    RiseSetArray& operator[](const std::size_t& senderId, const std::size_t& receiverId)
     {
         return accesses[IdPair(senderId, receiverId)];
     }
 
-    RiseSetArray& at(const size_t& senderId, const size_t& receiverId)
+    RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId)
     {
         return accesses.at(IdPair(senderId, receiverId));
     }
@@ -50,3 +56,5 @@ class AccessArray {
   private:
     std::unordered_map<IdPair, RiseSetArray> accesses;
 };
+
+} // namespace accesslib

@@ -2,6 +2,8 @@
 
 #include <iterator>
 
+namespace astro {
+
 namespace detail {
 // To allow ADL with custom begin/end
 using std::begin;
@@ -18,3 +20,5 @@ concept is_iterable_impl = requires(T& t)
 
 template <typename T>
 concept is_iterable = detail::is_iterable_impl<T>;
+
+} // namespace astro

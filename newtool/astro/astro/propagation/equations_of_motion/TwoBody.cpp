@@ -1,30 +1,41 @@
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
-OrbitalElements TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+
+
+using namespace mp_units;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+namespace astro {
+
+OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    if (state.get_set() != ElementSet::CARTESIAN) {
-        throw std::runtime_error("The two-body dynamics evaluator requires that the incoming Orbital Element set is in "
-                                 "Cartesian coordinates.");
-    }
+    const Cartesian cartesian = state.in<Cartesian>(system);
 
     // Extract
-    const double& x  = state[0];
-    const double& y  = state[1];
-    const double& z  = state[2];
-    const double& vx = state[3];
-    const double& vy = state[4];
-    const double& vz = state[5];
+    const quantity<km>& x = cartesian.get_x();
+    const quantity<km>& y = cartesian.get_y();
+    const quantity<km>& z = cartesian.get_z();
+    const quantity R      = sqrt(x * x + y * y + z * z);
 
-    // Calculate required values for force model
-    const double R = std::sqrt(x * x + y * y + z * z);
+    const quantity<km / s>& vx = cartesian.get_vx();
+    const quantity<km / s>& vy = cartesian.get_vy();
+    const quantity<km / s>& vz = cartesian.get_vz();
 
     // mu/R^3
-    const double muOverRadiusCubed = mu / (R * R * R);
+    const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    const OrbitalElements dsdt({ vx, vy, vz, (-muOverRadiusCubed * x), (-muOverRadiusCubed * y), (-muOverRadiusCubed * z) }, ElementSet::CARTESIAN);
+    const CartesianPartial dsdt(vx, vy, vz, (-muOverRadiusCubed * x), (-muOverRadiusCubed * y), (-muOverRadiusCubed * z));
 
     return dsdt;
 }
+
+} // namespace astro

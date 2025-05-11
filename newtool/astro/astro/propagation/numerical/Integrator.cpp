@@ -1,7 +1,14 @@
-#include <astro/propagation/Integrator.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
 
-OrbitalElements
-Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+#include <mp-units/math.h>
+
+using namespace mp_units;
+
+namespace astro {
+
+
+OrbitalElementPartials
+    Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Count fevals
     ++functionEvaluations;
@@ -13,26 +20,11 @@ Integrator::find_state_derivative(const Time& time, const OrbitalElements& state
 
 void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-
-    // TODO: Fix this nonsense
-    auto& state0 = vehicle.get_state();
-
-    const ElementSet& expectedSet = eom.get_expected_set();
-
-    if (state0.elements.get_set() != expectedSet) {
-        std::cout
-            << "Initial element set conversion was required to propagate chosen EoMs. This may cause inaccuracies."
-            << std::endl;
-    }
-    state0.convert(expectedSet, eom.get_system());
-
-    // Integrate
     integrate(interval.start, interval.end, eom, vehicle);
 }
 
 void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-
     // Time
     Time time     = timeInitial;
     Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
@@ -141,8 +133,8 @@ void Integrator::setup_stepper()
             nStages = 6;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rk45[ii][jj];
                 }
                 b[ii]    = b_rk45[ii];
@@ -158,8 +150,8 @@ void Integrator::setup_stepper()
             nStages = 6;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf45[ii][jj];
                 }
                 b[ii]    = b_rkf45[ii];
@@ -175,8 +167,8 @@ void Integrator::setup_stepper()
             nStages = 13;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf78[ii][jj];
                 }
                 b[ii]    = b_rkf78[ii];
@@ -193,8 +185,8 @@ void Integrator::setup_stepper()
             nStages = 7;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop45[ii][jj];
                 }
                 b[ii]    = b_dop45[ii];
@@ -210,8 +202,8 @@ void Integrator::setup_stepper()
             nStages = 13;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop78[ii][jj];
                 }
                 b[ii]    = b_dop78[ii];
@@ -222,8 +214,8 @@ void Integrator::setup_stepper()
             break;
 
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, RKF78, DOP45, DOP78}.");
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 
@@ -232,69 +224,58 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 {
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
-    auto statePlusKi = state;
-    for (size_t ii = 0; ii < nStages; ++ii) {
+    for (std::size_t iStage = 0; iStage < nStages; ++iStage) {
         // Find derivative
-        if (ii == 0) {
+        OrbitalElementPartials partial;
+        if (iStage == 0) {
             if (stepMethod == RK45 || stepMethod == RKF45 || stepMethod == RKF78) {
-                const auto dstate = find_state_derivative(time, state, eom, vehicle);
-                for (size_t iState = 0; iState < state.size(); ++iState) {
-                    kMatrix[0][iState] = dstate[iState];
-                }
+                partial = find_state_derivative(time, state, eom, vehicle);
             }
             else if (stepMethod == DOP45 || stepMethod == DOP78) {
-                if (iteration == 0) {
-                    const auto dstate = find_state_derivative(time, state, eom, vehicle);
-                    for (size_t iState = 0; iState < state.size(); ++iState) {
-                        kMatrix[0][iState] = dstate[iState];
-                    }
-                }
+                if (iteration == 0) { partial = find_state_derivative(time, state, eom, vehicle); }
                 else {
-                    for (size_t jj = 0; jj < nStages; ++jj) {
-                        kMatrix[0][jj] = YFinalPrevious[jj];
-                    }
+                    partial = YFinalPrevious;
                 }
             }
         }
         else {
-            const auto dstate = find_state_derivative(time + c[ii] * timeStep, statePlusKi, eom, vehicle);
-            for (size_t iState = 0; iState < state.size(); ++iState) {
-                kMatrix[ii][iState] = dstate[iState];
-            }
+            OrbitalElements sPlusKi = statePlusKi;
+            partial                 = find_state_derivative(time + c[iStage] * timeStep, sPlusKi, eom, vehicle);
         }
+        statePlusKi = state;
 
-        for (size_t jj = 0; jj < state.size(); ++jj) {
-            // Correct k value
-            kMatrix[ii][jj] *= timeStep;
+        // Correct k value
+        kMatrix[iStage] = partial * timeStep;
 
-            // Get k next step
-            statePlusKi[jj] = state[jj];
-            for (size_t kk = 0; kk < ii + 1; ++kk) {
-                statePlusKi[jj] += kMatrix[kk][jj] * a[ii + 1][kk];
-            }
+        // Get k next step
+        for (std::size_t jStage = 0; jStage < iStage + 1; ++jStage) {
+            statePlusKi += kMatrix[jStage] * a[iStage + 1][jStage];
         }
     }
 
+    // Get new state and state error
+    OrbitalElements stateNew   = state + kMatrix[0] * b[0];
+    OrbitalElements stateError = kMatrix[0] * db[0];
+    for (std::size_t iStage = 1; iStage < nStages; ++iStage) {
+        stateNew += kMatrix[iStage] * b[iStage];
+        stateError += kMatrix[iStage] * db[iStage];
+    }
+
     // Find max error from step
-    double maxError          = 0.0;
-    OrbitalElements stateNew = state;
-    OrbitalElements stateError(state.get_set());
-    for (size_t ii = 0; ii < state.size(); ++ii) {
-
-        stateError[ii] = 0.0;
-        for (size_t jj = 0; jj < nStages; ++jj) {
-            stateNew[ii] += kMatrix[jj][ii] * b[jj];
-            stateError[ii] += kMatrix[jj][ii] * db[jj];
-        }
-
-        if (!useFixedStep) {
+    Unitless maxError = 0.0;
+    if (!useFixedStep) {
+        const auto stateErrorScaled = stateError.to_vector();
+        const auto stateNewScaled   = stateNew.to_vector();
+        for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
             // Error
-            maxError = std::max(maxError, abs(stateError[ii]) / (absoluteTolerance + abs(stateNew[ii]) * relativeTolerance));
+            const auto err = abs(stateErrorScaled[ii]) / (absoluteTolerance + abs(stateNewScaled[ii]) * relativeTolerance);
+            if (err > maxError) { maxError = err; }
 
             // Catch huge steps
             /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
-            if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
+            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * detail::unitless ||
+                isinf(stateNewScaled[ii]) || isnan(stateNewScaled[ii])) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
                    it to lower the step slightly and try again without killing the run */
@@ -302,47 +283,51 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
     }
+    // for (std::size_t ii = 0; ii < stateNew.size(); ++ii) {
+
+    //     if (!useFixedStep) {
+    //         // Error
+    //         maxError = std::max(maxError, abs(stateError[ii]) / (absoluteTolerance + abs(stateNew[ii]) * relativeTolerance));
+
+    //         // Catch huge steps
+    //         /* There has to be a better way to do this. It's still possible for the integration to
+    //            pass through a singularity without a huge step */
+    //         if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
+    //             /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
+    //                If the step is legitimate, but just very large, this will just force
+    //                it to lower the step slightly and try again without killing the run */
+    //             maxError = 2.0; // Force step failure
+    //         }
+    //     }
+    // }
 
     // Check error of step
     if (!useFixedStep) { check_error(maxError, stateNew, stateError, time, timeStep, state); }
     else {
         // Step time
         time += timeStep;
-        for (size_t ii = 0; ii < state.size(); ++ii) {
-
-            // Store final function eval for Dormand-Prince methods
-            if (stepMethod == DOP45 || stepMethod == DOP78) {
-                YFinalPrevious[ii] = kMatrix[nStages - 1][ii] / timeStep;
-            }
-        }
 
         // Adding the state error improves the next guess
-        state = stateNew + stateError;
+        stateNew += stateError;
+
+        // Store final function eval for Dormand-Prince methods
+        if (stepMethod == DOP45 || stepMethod == DOP78) { YFinalPrevious = kMatrix[nStages - 1] / timeStep; }
+
+        state = stateNew;
     }
 }
 
 
-void Integrator::check_error(const double& maxError,
-    const OrbitalElements& stateNew,
-    const OrbitalElements stateError,
-    Time& time,
-    Time& timeStep,
-    OrbitalElements& state)
+void Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
 {
 
     if (maxError <= 1.0) { // Step succeeded
-        // Step time
-        time += timeStep;
 
-        // Step state
-        state = stateNew + stateError; // Adding the state error improves the next guess
+        time += timeStep;
+        state = stateNew;
 
         // Store final function eval for Dormand-Prince methods
-        if (stepMethod == DOP45 || stepMethod == DOP78) {
-            for (size_t ii = 0; ii < state.size(); ++ii) {
-                YFinalPrevious[ii] = kMatrix[nStages - 1][ii] / timeStep;
-            }
-        }
+        if (stepMethod == DOP45 || stepMethod == DOP78) { YFinalPrevious = kMatrix[nStages - 1] / timeStep; }
 
         // Get new step after stepping time
         if (iteration == 0) {
@@ -354,13 +339,13 @@ void Integrator::check_error(const double& maxError,
                 timeStep *= minErrorStepFactor;
             }
             else {
-                timeStep *= std::pow(epsilon / maxError, 0.2);
+                timeStep *= pow<1, 5>(epsilon / maxError);
             }
         }
         else {
             // Predicted relative step size
-            const double relativeTimeStep = abs(timeStep / timeStepPrevious) * std::pow(epsilon / maxError, 0.08) *
-                                            std::pow(maxError / maxErrorPrevious, 0.06);
+            const Unitless relativeTimeStep =
+                abs(timeStep / timeStepPrevious) * pow<2, 25>(epsilon / maxError) * pow<3, 50>(maxError / maxErrorPrevious);
 
             // Store step and error after computing relative time step
             timeStepPrevious = timeStep;
@@ -375,7 +360,7 @@ void Integrator::check_error(const double& maxError,
     }
     else { // Error is too large . truncate stepsize
         // Predicted relative step size
-        const double relativeTimeStep = std::pow(epsilon / maxError, 0.2);
+        const Unitless relativeTimeStep = pow<1, 5>(epsilon / maxError);
 
         // Keep step from getting too small too fast
         if (relativeTimeStep < minRelativeStepSize) { // step size is too small
@@ -392,7 +377,6 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        int day = days(time).count();
         // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
         if (iteration == 0) {
             std::cout << "Run Conditions:" << std::endl << std::endl;
@@ -403,8 +387,6 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
             std::cout << "Run:" << std::endl << std::endl;
         }
         else {
-            checkDay = day;
-
             std::cout << "Iteration: " << iteration + 1 << std::endl;
             std::cout << "time = " << time << std::endl;
             std::cout << "state = " << state << std::endl << std::endl;
@@ -449,31 +431,31 @@ void Integrator::check_event(const Time& time, const OrbitalElements& state, con
     eventTrigger = eom.check_crash(time, state, vehicle);
 
     // Break if hit nans or infs
-    if (std::isinf(abs(time)) || std::isnan(abs(time))) { eventTrigger = true; }
+    if (isinf(abs(time)) || isnan(abs(time))) { eventTrigger = true; }
     else {
-        for (const auto& x : state) {
-            if (std::isinf(abs(x)) || std::isnan(abs(x))) { eventTrigger = true; }
+        for (const auto& x : state.to_vector()) {
+            if (isinf(abs(x)) || isnan(abs(x))) { eventTrigger = true; }
         }
     }
 }
 
 
 // Integrator Properties
-void Integrator::set_abs_tol(double absTol) { absoluteTolerance = absTol; }
-void Integrator::set_rel_tol(double relTol) { relativeTolerance = relTol; }
+void Integrator::set_abs_tol(Unitless absTol) { absoluteTolerance = absTol; }
+void Integrator::set_rel_tol(Unitless relTol) { relativeTolerance = relTol; }
 void Integrator::set_max_iter(int itMax) { iterMax = itMax; }
 
 void Integrator::switch_print(bool onOff) { printOn = onOff; }
 void Integrator::switch_timer(bool onOff) { timerOn = onOff; }
 
-void Integrator::set_initial_timestep(double dt0) { timeStepInitial = dt0; }
+void Integrator::set_initial_timestep(Time dt0) { timeStepInitial = dt0; }
 void Integrator::switch_fixed_timestep(bool onOff) { useFixedStep = onOff; }
-void Integrator::switch_fixed_timestep(bool onOff, double fixedTimeStep)
+void Integrator::switch_fixed_timestep(bool onOff, Time fixedTimeStep)
 {
     useFixedStep  = onOff;
     fixedTimeStep = fixedTimeStep;
 }
-void Integrator::set_timestep(double fixedTimeStep) { fixedTimeStep = fixedTimeStep; }
+void Integrator::set_timestep(Time fixedTimeStep) { fixedTimeStep = fixedTimeStep; }
 
 void Integrator::set_step_method(std::string stepMethod)
 {
@@ -496,3 +478,5 @@ void Integrator::set_step_method(std::string stepMethod)
     }
     stepMethod = stepper;
 }
+
+} // namespace astro

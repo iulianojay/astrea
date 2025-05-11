@@ -5,6 +5,7 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace astro {
 
 class Barycenter : public CelestialBody {
   public:
@@ -14,7 +15,9 @@ class Barycenter : public CelestialBody {
     ~Barycenter(){};
 
   private:
-    BasisArray center;
+    RadiusVector center;
     CelestialBody referenceBody;
     std::unordered_set<CelestialBody> bodies;
 };
+
+} // namespace astro

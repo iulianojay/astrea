@@ -5,7 +5,9 @@
 #include <unordered_map>
 
 #include <astro/propagation/force_models/Force.hpp>
+#include <astro/units/units.hpp>
 
+namespace astro {
 
 class ForceModel {
   private:
@@ -21,19 +23,10 @@ class ForceModel {
         return forces.at(name);
     }
 
-    BasisArray compute_forces(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
-    {
-        BasisArray sum = { 0.0, 0.0, 0.0 };
-        for (const auto& [name, force] : forces) {
-            const auto result = force->compute_force(julianDate, state, vehicle, sys);
-            for (size_t ii = 0; ii < 3; ++ii) {
-                sum[ii] += result[ii];
-            }
-        }
-        return sum;
-    }
+    AccelerationVector
+        compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
-    const std::unique_ptr<Force>& at(const std::string& name) const { return forces.at(name); }
+    const std::unique_ptr<Force>& at(const std::string& name) const;
 
     template <typename T>
     const std::unique_ptr<Force>& get() const
@@ -45,3 +38,5 @@ class ForceModel {
   private:
     std::unordered_map<std::string, std::unique_ptr<Force>> forces;
 };
+
+} // namespace astro

@@ -1,8 +1,16 @@
 #pragma once
 
+namespace astro {
+
 class State;
 
 // ELement sets
+class Cartesian;
+class Keplerian;
+class Equinoctial;
+class CartesianPartial;
+class KeplerianPartial;
+class EquinoctialPartial;
 class OrbitalElements;
 
 template <class T>
@@ -46,4 +54,5 @@ class RiseSetArray;
 class Date;
 class Interval;
 struct JulianDateClock;
-class Time;
+
+} // namespace astro

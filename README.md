@@ -43,3 +43,44 @@ Use these steps to clone from SourceTree, our client for using the repository co
 4. Open the directory you just created to see your repository’s files.
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+
+
+---
+
+## Installing mp-units
+
+1. Install conan
+> pip install conan
+
+2. Build a profile in ~/.conan2/profiles/<profile_name>
+```
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=23
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+[conf]
+tools.build:compiler_executables={"c": "gcc-13", "cpp": "g++-13"}
+```
+
+3. Add the following line to ~/.conan2/global.config
+```
+tools.cmake.cmake_layout:build_folder_vars=["settings.compiler", "settings.compiler.version", "settings.compiler.cppstd"]
+```
+
+4. Clone mp-units
+> git clone https://github.com/mpusz/mp-units.git
+
+5. Conan file already exists in repo
+
+6. Run these steps to install Conan dependenceis and build
+> conan install . -pr <path_to_your_conan_profile> -s compiler.cppstd=23 -b=missing
+> cmake --preset conan-default
+> cmake --build --preset conan-release
+
+NOTE: If the 3rd or 4th steps fail, they should give you a list of options to use instead of "conan-default" and "conan-release"
+> i.e. cmake --build --preset conan-gcc-13-23-release

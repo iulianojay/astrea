@@ -3,8 +3,9 @@
 #include <iostream>
 
 #include <astro/element_sets/OrbitalElements.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
+
+namespace astro {
 
 class State {
 
@@ -12,21 +13,22 @@ class State {
 
   public:
     State() = default;
-    State(Time time, OrbitalElements elements) :
+
+    State(const Time& time, const OrbitalElements& elements) :
         time(time),
         elements(elements)
     {
     }
-    State(Time time, ElementArray elements, ElementSet set) :
-        time(time),
-        elements(elements, set)
-    {
-    }
 
-    void convert(const ElementSet& set, const AstrodynamicsSystem& sys) { elements.convert(set, sys); }
-    State convert(const ElementSet& set, const AstrodynamicsSystem& sys) const
+    template <IsOrbitalElements T>
+    void convert(const AstrodynamicsSystem& sys)
     {
-        return { time, elements.convert(set, sys) };
+        elements = T(elements, sys);
+    }
+    template <IsOrbitalElements T>
+    State convert(const AstrodynamicsSystem& sys) const
+    {
+        return { time, T(elements, sys) };
     }
 
     Time time;
@@ -34,3 +36,5 @@ class State {
 };
 
 bool state_time_comparitor(State s, Time time);
+
+} // namespace astro

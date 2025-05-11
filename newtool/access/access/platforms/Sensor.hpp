@@ -5,8 +5,9 @@
 #include <access/platforms/fov/FieldOfView.hpp>
 #include <access/time/AccessArray.hpp>
 
-#include <astro/state/State.hpp>
 #include <astro/types/typedefs.hpp>
+
+namespace accesslib {
 
 class Sensor {
 
@@ -17,22 +18,24 @@ class Sensor {
     }
     ~Sensor() = default;
 
-    const size_t& get_id() { return id; }
+    const std::size_t& get_id() { return id; }
 
-    virtual const bool contains(const BasisArray& sensor2target) const
+    virtual const bool contains(const astro::RadiusVector& sensor2target) const
     {
         return fov->contains(boresight, sensor2target);
     }
 
-    void add_access(const size_t& receiverId, const RiseSetArray& access) { accesses[id, receiverId] = access; }
+    void add_access(const std::size_t& receiverId, const RiseSetArray& access) { accesses[id, receiverId] = access; }
 
   private:
-    size_t id;
+    std::size_t id;
     int parentId;
-    BasisArray attachmentPoint;
-    BasisArray boresight;
+    astro::RadiusVector attachmentPoint;
+    astro::RadiusVector boresight;
     FieldOfView* fov;
     AccessArray accesses;
 
     void generate_id_hash();
 };
+
+} // namespace accesslib

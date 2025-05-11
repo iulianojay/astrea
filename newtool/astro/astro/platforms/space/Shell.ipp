@@ -1,5 +1,7 @@
 #include <stdexcept>
 
+namespace astro {
+
 template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
     planes(_planes)
@@ -19,7 +21,7 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 }
 
 template <class Spacecraft_T>
-Shell<Spacecraft_T>::Shell(const double& semimajor, const double& inclination, const size_t& T, const size_t& P, const double& F, const double& anchorRAAN, const double& anchorAnomaly)
+Shell<Spacecraft_T>::Shell(const Distance& semimajor, const Angle& inclination, const size_t& T, const size_t& P, const double& F, const Angle& anchorRAAN, const Angle& anchorAnomaly)
 {
 
     if (T % P) {
@@ -28,22 +30,22 @@ Shell<Spacecraft_T>::Shell(const double& semimajor, const double& inclination, c
     }
 
     const size_t satsPerPlane = T / P;
-    const double deltaRAAN    = 360.0 / double(P);
-    const double deltaAnomaly = F * 360.0 / double(T);
-
-    const double deg2rad = M_PI / 180.0;
+    const Angle deltaRAAN     = 360.0 / (static_cast<double>(P)) * mp_units::angular::unit_symbols::deg;
+    const Angle deltaAnomaly  = F * 360.0 / (static_cast<double>(T)) * mp_units::angular::unit_symbols::deg;
 
     planes.resize(P);
-    size_t iAnom  = 0;
-    size_t iPlane = 0;
+    Unitless iAnom  = 0;
+    Unitless iPlane = 0;
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
         for (auto& sat : plane.satellites) {
             sat = Spacecraft_T(
-                OrbitalElements(
-                    { semimajor, 0.0, inclination * deg2rad, (anchorRAAN + deltaRAAN * iPlane) * deg2rad, 0.0, (anchorAnomaly + deltaAnomaly * iAnom) * deg2rad },
-                    ElementSet::KEPLERIAN
-                ),
+                OrbitalElements(Keplerian{ semimajor,
+                                           0.0 * mp_units::one,
+                                           inclination,
+                                           (anchorRAAN + deltaRAAN * iPlane),
+                                           0.0 * mp_units::angular::unit_symbols::rad,
+                                           (anchorAnomaly + deltaAnomaly * iAnom) }),
                 Date("Jan-01-2030 00:00:00.0")
             );
             ++iAnom;
@@ -153,3 +155,5 @@ void Shell<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrat
         plane.propagate(eom, integrator, interval);
     }
 }
+
+} // namespace astro

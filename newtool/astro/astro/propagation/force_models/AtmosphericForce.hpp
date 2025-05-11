@@ -3,27 +3,44 @@
 #include <map>
 #include <tuple>
 
+// mp-units
+#include <mp-units/compat_macros.h>
+#include <mp-units/ext/format.h>
+
+#include <mp-units/format.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
+
+// astro
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/units.hpp>
+
+namespace astro {
 
 class AtmosphericForce : public Force {
+
+    using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
+
   public:
     AtmosphericForce()  = default;
     ~AtmosphericForce() = default;
 
-    BasisArray compute_force(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    AccelerationVector
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
-    const OrbitalElements
-        find_accel_drag_and_lift(const double& julianDate, const OrbitalElements& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
-    const double find_atmospheric_density(const double& julianDate, const OrbitalElements& state, const CelestialBodyUniquePtr& center) const;
+    const Density find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
 
-    static const std::map<double, double> venutianAtmosphere;
-    static const std::map<double, std::tuple<double, double, double>> earthAtmosphere;
-    static const std::map<double, double> martianAtmosphere;
-    static const std::map<double, double> titanicAtmosphere;
+    static const std::map<Altitude, Density> venutianAtmosphere;
+    static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere;
+    static const std::map<Altitude, Density> martianAtmosphere;
+    static const std::map<Altitude, TitanDensity> titanicAtmosphere;
 };
+
+} // namespace astro

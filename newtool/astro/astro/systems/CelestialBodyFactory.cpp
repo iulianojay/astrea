@@ -2,7 +2,7 @@
 
 #include <filesystem>
 
-#include <astro/state/State.hpp>
+namespace astro {
 
 // TODO: Fix this trash
 static const std::filesystem::path ROOT = "/home/jay/projects/newtoollib";
@@ -39,7 +39,7 @@ void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTi
         if (name != "Sun") {
             // Get parent mu
             const std::string parent = body->get_parent();
-            const double parentMu    = get(parent)->get_mu();
+            const auto parentMu      = get(parent)->get_mu();
 
             // Propagate
             body->propagate(epoch, endTime, parentMu);
@@ -82,3 +82,5 @@ void CelestialBodyFactory::find_root()
         root = "Sun";
     }
 }
+
+} // namespace astro

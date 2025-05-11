@@ -89,3 +89,42 @@ CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-op
 check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
+
+# Conan commands - for now
+.PHONY: conan-setup-debug
+conan-setup-debug: 
+	conan install . -pr ~/.conan2/profiles/gcc13-debug -b=missing 
+
+.PHONY: conan-build-debug
+conan-build-debug: conan-setup-debug
+	cmake -S . --preset conan-gcc-13-23-debug
+
+.PHONY: conan-debug
+conan-debug: conan-build-debug
+	cmake --build --preset conan-gcc-13-23-debug --target install
+	
+	
+.PHONY: conan-setup-release
+conan-setup-release: 
+	conan install . -pr ~/.conan2/profiles/gcc13-release -b=missing 
+
+.PHONY: conan-build-release
+conan-build-release: conan-setup-release
+	cmake -S . --preset conan-gcc-13-23-release
+
+.PHONY: conan-release
+conan-release: conan-build-release
+	cmake --build --preset conan-gcc-13-23-release --target install
+	
+	
+.PHONY: conan-setup-relwithdebinfo
+conan-setup-relwithdebinfo: 
+	conan install . -pr ~/.conan2/profiles/gcc13-relwithdebinfo -b=missing 
+
+.PHONY: conan-build-relwithdebinfo
+conan-build-relwithdebinfo: conan-setup-relwithdebinfo
+	cmake -S . --preset conan-gcc-13-23-relwithdebinfo
+
+.PHONY: conan-relwithdebinfo
+conan-relwithdebinfo: conan-build-relwithdebinfo
+	cmake --build --preset conan-gcc-13-23-relwithdebinfo --target install

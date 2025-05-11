@@ -4,7 +4,7 @@
 %{                      // This adds the include to the generated wrapper.
 #include <string.h>
 
-#include "astro.hpp"
+#include <astro.hpp>
 %}
 
 %include std_array.i
