@@ -14,7 +14,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
@@ -90,7 +89,7 @@ class Equinoctial {
     const Unitless& get_k() const { return _k; }
     const Angle& get_true_longitude() const { return _trueLongitude; }
 
-    size_t size() const { return 6; }
+    std::size_t size() const { return 6; }
 
     constexpr EnumType get_set_id() const { return _setId; }
     Equinoctial

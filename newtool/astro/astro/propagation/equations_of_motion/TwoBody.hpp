@@ -4,7 +4,7 @@
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astro {
 

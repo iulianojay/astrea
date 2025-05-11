@@ -8,7 +8,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/constants/astronomical_constants.h>
+
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/units/units.hpp>

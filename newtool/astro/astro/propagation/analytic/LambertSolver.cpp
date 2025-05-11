@@ -1,4 +1,4 @@
-#include <astro/propagation/LambertSolver.hpp>
+#include <astro/propagation/analytic/LambertSolver.hpp>
 
 #include <math/utils.hpp>
 

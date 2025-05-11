@@ -23,8 +23,8 @@ void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const
 {
 
     // Get all sats
-    auto allSats       = constel.get_all_spacecraft();
-    const size_t nSats = allSats.size();
+    auto allSats            = constel.get_all_spacecraft();
+    const std::size_t nSats = allSats.size();
 
     // Create time array
     std::vector<Time> times =
@@ -34,14 +34,14 @@ void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const
     std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);
 
     // For each sat
-    for (size_t iSat = 0; iSat < nSats; ++iSat) {
-        Viewer& sat1     = allSats[iSat];
-        const size_t id1 = sat1.get_id();
+    for (std::size_t iSat = 0; iSat < nSats; ++iSat) {
+        Viewer& sat1          = allSats[iSat];
+        const std::size_t id1 = sat1.get_id();
 
         // For every other sat
-        for (size_t jSat = iSat + 1; jSat < nSats; ++jSat) {
-            Viewer& sat2     = allSats[jSat];
-            const size_t id2 = sat2.get_id();
+        for (std::size_t jSat = iSat + 1; jSat < nSats; ++jSat) {
+            Viewer& sat2          = allSats[jSat];
+            const std::size_t id2 = sat2.get_id();
 
             // Satellite-level access for sat1 -> sat2
             RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates, sys);
@@ -58,9 +58,9 @@ void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const
 std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem& sys)
 {
     // Setup
-    const size_t nSates   = states.size();
-    const Time& startTime = states[0].time;
-    const Time& endTime   = states[nSates - 1].time;
+    const std::size_t nSates = states.size();
+    const Time& startTime    = states[0].time;
+    const Time& endTime      = states[nSates - 1].time;
 
     // Fill
     std::vector<Time> times;
@@ -83,18 +83,18 @@ std::vector<std::vector<State>>
     interpolate_states(const std::vector<Viewer>& allSats, const std::vector<Time>& times, const AstrodynamicsSystem& sys)
 {
 
-    const size_t nTimes = times.size();
-    const size_t nSats  = allSats.size();
+    const std::size_t nTimes = times.size();
+    const std::size_t nSats  = allSats.size();
 
     std::vector<std::vector<State>> interpStates;
     interpStates.resize(nTimes);
 
-    for (size_t iTime = 0; iTime < nTimes; ++iTime) {
+    for (std::size_t iTime = 0; iTime < nTimes; ++iTime) {
 
         const Time& time = times[iTime];
         interpStates[iTime].resize(nSats);
 
-        for (size_t iSat = 0; iSat < nSats; ++iSat) {
+        for (std::size_t iSat = 0; iSat < nSats; ++iSat) {
 
             const Viewer& sat = allSats[iSat];
             const State state = sat.get_state_at(time, sys);
@@ -108,8 +108,8 @@ std::vector<std::vector<State>>
 }
 
 RiseSetArray find_sat_to_sat_accesses(
-    const size_t& iSat,
-    const size_t& jSat,
+    const std::size_t& iSat,
+    const std::size_t& jSat,
     Viewer& sat1,
     Viewer& sat2,
     const std::vector<Time>& times,
@@ -123,10 +123,10 @@ RiseSetArray find_sat_to_sat_accesses(
 
     // First determine access sensor by sensor
     for (auto& sensor1 : sat1.get_sensors()) {
-        const size_t id1 = sensor1.get_id();
+        const std::size_t id1 = sensor1.get_id();
 
         for (auto& sensor2 : sat2.get_sensors()) {
-            const size_t id2 = sensor1.get_id();
+            const std::size_t id2 = sensor1.get_id();
 
             RiseSetArray access = find_sensor_to_sensor_accesses(iSat, jSat, sensor1, sensor2, times, states, sys);
 
@@ -144,8 +144,8 @@ RiseSetArray find_sat_to_sat_accesses(
 
 
 RiseSetArray find_sensor_to_sensor_accesses(
-    const size_t& iSat,
-    const size_t& jSat,
+    const std::size_t& iSat,
+    const std::size_t& jSat,
     const Sensor& sensor1,
     const Sensor& sensor2,
     const std::vector<Time>& times,
@@ -157,7 +157,7 @@ RiseSetArray find_sensor_to_sensor_accesses(
     RiseSetArray access;
     Time rise;
     bool hasAccess;
-    for (size_t iTime = 0; iTime < states.size(); ++iTime) {
+    for (std::size_t iTime = 0; iTime < states.size(); ++iTime) {
 
         // Get states
         const State& state1 = states[iTime][iSat];

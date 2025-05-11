@@ -25,8 +25,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
 
-    ${ASTRO_BASE}/propagation/Integrator.cpp
-    ${ASTRO_BASE}/propagation/LambertSolver.cpp
+    ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
+    ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
@@ -47,7 +47,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
-    ${ASTRO_BASE}/time/Time.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
 )
@@ -58,8 +57,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/constants/astronomical_constants.h
-    ${ASTRO_BASE}/constants/rk_constants.h
+    ${ASTRO_BASE}/constants/constants.hpp
     
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
@@ -77,8 +75,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.hpp
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
-    ${ASTRO_BASE}/propagation/Integrator.hpp
-    ${ASTRO_BASE}/propagation/LambertSolver.hpp
+    ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
+    ${ASTRO_BASE}/propagation/numerical/rk_constants.h
+    ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp
@@ -105,13 +104,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/time/Interval.hpp
     ${ASTRO_BASE}/time/JulianDateClock.hpp
     ${ASTRO_BASE}/time/time_units.hpp
-    ${ASTRO_BASE}/time/Time.hpp
 
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
     ${ASTRO_BASE}/units/units.hpp
-    ${ASTRO_BASE}/units/constants.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
 
@@ -121,11 +118,11 @@ set(ASTRO_HEADERS
 )
 
 # Set outputs
-# set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-# set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
+set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
+set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(ASTRO_DIRS
@@ -156,14 +153,14 @@ target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ASTRO_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
 
 # Install headers
-# file(COPY
-#     DIRECTORY ${ASTRO_BASE}
-#     DESTINATION ${CMAKE_INSTALL_PREFIX}/include
-#     FILES_MATCHING
-#     PATTERN *.hpp
-#     PATTERN *.ipp
-#     PATTERN *.h
-# )
+file(COPY
+    DIRECTORY ${ASTRO_BASE}
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    FILES_MATCHING
+    PATTERN *.hpp
+    PATTERN *.ipp
+    PATTERN *.h
+)
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
 add_subdirectory(tests EXCLUDE_FROM_ALL)

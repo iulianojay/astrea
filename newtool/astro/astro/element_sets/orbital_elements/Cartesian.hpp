@@ -15,7 +15,6 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
@@ -106,7 +105,7 @@ class Cartesian {
     const Velocity& get_vy() const { return _vy; }
     const Velocity& get_vz() const { return _vz; }
 
-    size_t size() const { return 6; }
+    std::size_t size() const { return 6; }
 
     std::vector<Unitless> to_vector() const;
 

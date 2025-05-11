@@ -28,7 +28,7 @@ class GroundStation {
     }
 
   private:
-    size_t id;
+    std::size_t id;
     astro::Angle latitutde;
     astro::Angle longitude;
     astro::Distance altitude;

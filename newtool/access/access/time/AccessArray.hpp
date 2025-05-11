@@ -7,11 +7,11 @@
 namespace accesslib {
 
 struct IdPair {
-    size_t sender;
-    size_t receiver;
+    std::size_t sender;
+    std::size_t receiver;
 
     IdPair() = default;
-    IdPair(size_t sender, size_t receiver) :
+    IdPair(std::size_t sender, std::size_t receiver) :
         sender(sender),
         receiver(receiver)
     {
@@ -43,12 +43,12 @@ class AccessArray {
     AccessArray()  = default;
     ~AccessArray() = default;
 
-    RiseSetArray& operator[](const size_t& senderId, const size_t& receiverId)
+    RiseSetArray& operator[](const std::size_t& senderId, const std::size_t& receiverId)
     {
         return accesses[IdPair(senderId, receiverId)];
     }
 
-    RiseSetArray& at(const size_t& senderId, const size_t& receiverId)
+    RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId)
     {
         return accesses.at(IdPair(senderId, receiverId));
     }

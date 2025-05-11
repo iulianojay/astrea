@@ -1,4 +1,4 @@
-#include <astro/propagation/Integrator.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
 
 #include <mp-units/math.h>
 
@@ -133,8 +133,8 @@ void Integrator::setup_stepper()
             nStages = 6;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rk45[ii][jj];
                 }
                 b[ii]    = b_rk45[ii];
@@ -150,8 +150,8 @@ void Integrator::setup_stepper()
             nStages = 6;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf45[ii][jj];
                 }
                 b[ii]    = b_rkf45[ii];
@@ -167,8 +167,8 @@ void Integrator::setup_stepper()
             nStages = 13;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_rkf78[ii][jj];
                 }
                 b[ii]    = b_rkf78[ii];
@@ -185,8 +185,8 @@ void Integrator::setup_stepper()
             nStages = 7;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop45[ii][jj];
                 }
                 b[ii]    = b_dop45[ii];
@@ -202,8 +202,8 @@ void Integrator::setup_stepper()
             nStages = 13;
 
             // Get Butcher Tableau
-            for (size_t ii = 0; ii < nStages; ++ii) {
-                for (size_t jj = 0; jj < nStages; ++jj) {
+            for (std::size_t ii = 0; ii < nStages; ++ii) {
+                for (std::size_t jj = 0; jj < nStages; ++jj) {
                     a[ii][jj] = a_dop78[ii][jj];
                 }
                 b[ii]    = b_dop78[ii];
@@ -224,7 +224,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 {
 
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
-    for (size_t iStage = 0; iStage < nStages; ++iStage) {
+    for (std::size_t iStage = 0; iStage < nStages; ++iStage) {
         // Find derivative
         OrbitalElementPartials partial;
         if (iStage == 0) {
@@ -248,7 +248,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         kMatrix[iStage] = partial * timeStep;
 
         // Get k next step
-        for (size_t jStage = 0; jStage < iStage + 1; ++jStage) {
+        for (std::size_t jStage = 0; jStage < iStage + 1; ++jStage) {
             statePlusKi += kMatrix[jStage] * a[iStage + 1][jStage];
         }
     }
@@ -256,7 +256,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
     // Get new state and state error
     OrbitalElements stateNew = state;
     OrbitalElements stateError;
-    for (size_t iStage = 0; iStage < nStages; ++iStage) {
+    for (std::size_t iStage = 0; iStage < nStages; ++iStage) {
         stateNew += kMatrix[iStage] * b[iStage];
         stateError += kMatrix[iStage] * db[iStage];
     }
@@ -266,7 +266,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
     if (!useFixedStep) {
         const auto stateErrorScaled = stateError.to_vector();
         const auto stateNewScaled   = stateNew.to_vector();
-        for (size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
+        for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
             // Error
             const auto err = abs(stateErrorScaled[ii]) / (absoluteTolerance + abs(stateNewScaled[ii]) * relativeTolerance);
             if (err > maxError) { maxError = err; }
@@ -283,7 +283,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
     }
-    // for (size_t ii = 0; ii < stateNew.size(); ++ii) {
+    // for (std::size_t ii = 0; ii < stateNew.size(); ++ii) {
 
     //     if (!useFixedStep) {
     //         // Error

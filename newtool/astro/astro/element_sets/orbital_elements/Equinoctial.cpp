@@ -5,7 +5,7 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 
 

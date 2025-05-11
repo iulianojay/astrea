@@ -82,7 +82,7 @@ concept HasSize = requires(const T elements)
 {
     {
         elements.size()
-        } -> std::same_as<size_t>;
+        } -> std::same_as<std::size_t>;
 };
 
 template <typename T>
@@ -190,7 +190,7 @@ class OrbitalElements {
     const ElementVariant& extract() const;
     ElementVariant& extract();
 
-    constexpr size_t index() const;
+    constexpr std::size_t index() const;
 
   private:
     ElementVariant _elements;
@@ -226,7 +226,7 @@ class OrbitalElementPartials {
     const PartialVariant& extract() const;
     PartialVariant& extract();
 
-    constexpr size_t index() const;
+    constexpr std::size_t index() const;
 
   private:
     PartialVariant _elements;
@@ -258,7 +258,7 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
 //     virtual EnumType get_set_id() const                                      = 0;
 //     virtual std::vector<double> to_vector() const                            = 0;
 //     virtual void update_from_vector(const std::vector<double>& vec)          = 0;
-//     virtual size_t size() const                                              = 0;
+//     virtual std::size_t size() const                                              = 0;
 
 //     // Optional methods
 //     virtual OrbitalElements
@@ -307,7 +307,7 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
 //     }
 
 //     // Size
-//     size_t size() const final { return _value.size(); };
+//     std::size_t size() const final { return _value.size(); };
 
 //     // Get set
 //     EnumType get_set_id() const final { return _value.get_set_id(); }
@@ -494,7 +494,7 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
 //     Keplerian to_keplerian(const AstrodynamicsSystem& system) const;
 //     Equinoctial to_equinoctial(const AstrodynamicsSystem& system) const;
 
-//     size_t size() const { return ptr()->size(); }
+//     std::size_t size() const { return ptr()->size(); }
 
 //     EnumType get_set_id() const;
 //     const bool same_set(const OrbitalElements& other) const;

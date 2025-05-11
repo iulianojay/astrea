@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <astro/platforms/space/Shell.hpp>
-#include <astro/propagation/Integrator.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/units/units.hpp>
 
 namespace astro {
@@ -22,8 +22,8 @@ class Constellation {
     Constellation(
         const Distance& semimajor,
         const Angle& inclination,
-        const size_t& T,
-        const size_t& P,
+        const std::size_t& T,
+        const std::size_t& P,
         const double& F,
         const Angle& anchorRAAN    = 0.0 * mp_units::angular::unit_symbols::rad,
         const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
@@ -31,24 +31,24 @@ class Constellation {
 
     ~Constellation() = default;
 
-    const size_t size() const;
-    const size_t n_shells() const;
-    const size_t n_planes() const;
+    const std::size_t size() const;
+    const std::size_t n_shells() const;
+    const std::size_t n_planes() const;
 
     // TODO: Add + overloads that accomplish similar things to these methods
     void add_shell(const Shell<Spacecraft_T>& shell);
-    void add_plane(const Plane<Spacecraft_T>& plane, const size_t& shellId);
+    void add_plane(const Plane<Spacecraft_T>& plane, const std::size_t& shellId);
     void add_plane(const Plane<Spacecraft_T>& plane);
-    void add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId);
+    void add_spacecraft(const Spacecraft_T& spacecraft, const std::size_t& planeId);
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
     const std::vector<Shell<Spacecraft_T>>& get_all_shells() const;
     const std::vector<Plane<Spacecraft_T>> get_all_planes() const;
     const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
-    const Shell<Spacecraft_T>& get_shell(const size_t& shellId) const;
-    const Plane<Spacecraft_T>& get_plane(const size_t& planeId) const;
-    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
+    const Shell<Spacecraft_T>& get_shell(const std::size_t& shellId) const;
+    const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
+    const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     void propagate(EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
@@ -141,7 +141,7 @@ class Constellation {
     };
 
   private:
-    size_t id;
+    std::size_t id;
     std::string name;
     std::vector<Shell<Spacecraft_T>> shells;
 

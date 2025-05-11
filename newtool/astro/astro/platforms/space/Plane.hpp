@@ -3,7 +3,7 @@
 #include <vector>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/Integrator.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.fwd.hpp>
 
@@ -26,9 +26,9 @@ class Plane {
 
     const std::vector<Spacecraft_T>& get_all_spacecraft() const;
 
-    const Spacecraft_T& get_spacecraft(const size_t& spacecraftId) const;
+    const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    const size_t size() const;
+    const std::size_t size() const;
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
@@ -36,10 +36,10 @@ class Plane {
     iterator begin() { return satellites.begin(); }
     iterator end() { return satellites.end(); }
 
-    const size_t get_id() const { return id; }
+    const std::size_t get_id() const { return id; }
 
   private:
-    size_t id;
+    std::size_t id;
     OrbitalElements elements;
     std::vector<Spacecraft_T> satellites;
 

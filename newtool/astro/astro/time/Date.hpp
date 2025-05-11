@@ -6,7 +6,7 @@
 #include <mp-units/systems/si/chrono.h>
 
 #include <astro/time/JulianDateClock.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
 namespace astro {

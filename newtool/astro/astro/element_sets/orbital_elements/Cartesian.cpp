@@ -7,7 +7,7 @@
 #include <astro/element_sets/orbital_elements/Equinoctial.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 
 

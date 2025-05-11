@@ -12,10 +12,8 @@
 #include <mp-units/systems/si.h>
 
 // Astro
-#include <astro/constants/astronomical_constants.h>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
@@ -77,7 +75,6 @@ class CelestialBody {
     std::vector<State>& get_states() { return _states; };
     const State& get_closest_state(const Time& time) const;
 
-
   private:
     // Properties
     std::string _name, _parent, _type;
@@ -123,7 +120,7 @@ struct std::hash<astro::CelestialBody> {
     std::size_t operator()(astro::CelestialBody const& body) const noexcept
     {
 
-        size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(
+        std::size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(
             mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)
         ));
         h ^= (std::hash<double>{}(body.get_mass().numerical_value_in(mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)) << 1);

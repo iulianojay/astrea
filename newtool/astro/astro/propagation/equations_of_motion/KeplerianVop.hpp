@@ -5,7 +5,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astro {
 

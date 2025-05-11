@@ -4,7 +4,7 @@
 
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 
 #include <access/platforms/vehicles/Viewer.hpp>
 #include <access/time/RiseSetArray.hpp>
@@ -20,8 +20,8 @@ std::vector<std::vector<astro::State>>
     interpolate_states(const std::vector<Viewer>& allSats, const std::vector<astro::Time>& times, const astro::AstrodynamicsSystem& sys);
 
 RiseSetArray find_sat_to_sat_accesses(
-    const size_t& iSat,
-    const size_t& jSat,
+    const std::size_t& iSat,
+    const std::size_t& jSat,
     Viewer& sat1,
     Viewer& sat2,
     const std::vector<astro::Time>& times,
@@ -29,8 +29,8 @@ RiseSetArray find_sat_to_sat_accesses(
     const astro::AstrodynamicsSystem& sys
 );
 RiseSetArray find_sensor_to_sensor_accesses(
-    const size_t& iSat,
-    const size_t& jSat,
+    const std::size_t& iSat,
+    const std::size_t& jSat,
     const Sensor& sensor1,
     const Sensor& sensor2,
     const std::vector<astro::Time>& times,

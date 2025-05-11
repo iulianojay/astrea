@@ -13,11 +13,9 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/constants/astronomical_constants.h>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
@@ -44,7 +42,7 @@ class Spacecraft {
     State get_state_at(const Time& time, const AstrodynamicsSystem& sys) const;
     std::vector<State>& get_states() { return _states; }
     const std::vector<State>& get_states() const { return _states; }
-    size_t n_states() const { return _states.size(); }
+    std::size_t n_states() const { return _states.size(); }
 
     Unitless get_coefficient_of_drag() const;
     Unitless get_coefficient_of_lift() const;
@@ -54,10 +52,10 @@ class Spacecraft {
     SurfaceArea get_solar_area() const;
     SurfaceArea get_lift_area() const;
 
-    size_t get_id() const { return _id; }
+    std::size_t get_id() const { return _id; }
 
   protected:
-    size_t _id;
+    std::size_t _id;
     std::string _name;
 
     // Spacecraft properties

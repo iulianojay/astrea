@@ -15,7 +15,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
 namespace astro {
@@ -91,7 +91,7 @@ class Keplerian {
     const Angle& get_argument_of_perigee() const { return _argPerigee; }
     const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
-    size_t size() const { return 6; }
+    std::size_t size() const { return 6; }
 
     constexpr EnumType get_set_id() const { return _setId; }
     Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;

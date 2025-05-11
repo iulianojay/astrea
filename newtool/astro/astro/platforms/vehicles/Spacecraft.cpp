@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 
 

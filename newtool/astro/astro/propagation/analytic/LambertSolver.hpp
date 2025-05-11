@@ -5,7 +5,6 @@
 #include <iostream>
 #include <math.h>
 
-#include <astro/constants/astronomical_constants.h>
 
 namespace astro {
 

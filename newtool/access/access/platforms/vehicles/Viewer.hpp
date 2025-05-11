@@ -3,12 +3,11 @@
 #include <string>
 #include <unordered_map>
 
-#include <astro/constants/astronomical_constants.h>
+
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/time/Time.hpp>
 #include <astro/types/typedefs.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -37,7 +36,7 @@ class Viewer : public astro::Spacecraft {
     std::vector<Sensor>& get_sensors() { return _sensors; }
     const std::vector<Sensor>& get_sensors() const { return _sensors; }
 
-    void add_access(const size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
+    void add_access(const std::size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
 
   private:
     AccessArray _accesses;

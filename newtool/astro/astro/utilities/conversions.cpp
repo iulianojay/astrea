@@ -1,7 +1,7 @@
 #include <astro/utilities/conversions.hpp>
 
 // mp-units
-#include <astro/constants/astronomical_constants.h>
+
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <math/utils.hpp>
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-#include <date/date.h>
+#include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <mp-units/math.h>
 
 using namespace mp_units;
@@ -67,9 +67,9 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
     using namespace std::chrono;
 
     // Stream date string into time point
-    std::istringstream inStream{ epoch };
+    std::istringstream epochStream{ epoch };
     sys_time<milliseconds> systemTime;
-    inStream >> date::parse(format, systemTime);
+    epochStream >> date::parse(format, systemTime);
 
     // Convert with clock cast
     return round<milliseconds>(clock_cast<JulianDateClock>(systemTime));

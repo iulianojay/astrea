@@ -14,10 +14,10 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
-#include <astro/constants/rk_constants.h> // RK Butcher Tableau
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
 #include <astro/time/Interval.hpp>
 #include <astro/units/units.hpp>
 
@@ -113,7 +113,7 @@ class Integrator {
     int functionEvaluations = 0;
 
     // Number of states
-    static const size_t maxStates = 10;
+    static const std::size_t maxStates = 10;
 
     // Time variables
     bool forwardTime = true;
@@ -125,8 +125,8 @@ class Integrator {
     Unitless maxErrorPrevious;
 
     // Butcher Tablaeu
-    size_t nStages{};
-    static const size_t maxStages                            = 13;
+    std::size_t nStages{};
+    static const std::size_t maxStages                       = 13;
     std::array<std::array<Unitless, maxStages>, maxStages> a = {};
     std::array<Unitless, maxStages> b                        = {};
     std::array<Unitless, maxStages> bhat                     = {};

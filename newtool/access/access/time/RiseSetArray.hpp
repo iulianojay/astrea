@@ -3,7 +3,7 @@
 #include <vector>
 
 #include <access/time/riseset_utils.hpp>
-#include <astro/time/Time.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace accesslib {
 
@@ -19,10 +19,10 @@ class RiseSetArray {
     void prepend(const astro::Time& rise, const astro::Time& set);
     void insert(const astro::Time& rise, const astro::Time& set);
 
-    const size_t size() const { return risesets.size(); }
+    const std::size_t size() const { return risesets.size(); }
 
     // Element access
-    const astro::Time& operator[](const size_t& ind) const { return risesets[ind]; }
+    const astro::Time& operator[](const std::size_t& ind) const { return risesets[ind]; }
 
     // Union
     RiseSetArray operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }

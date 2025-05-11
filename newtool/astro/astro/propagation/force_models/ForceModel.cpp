@@ -15,7 +15,7 @@ AccelerationVector
     AccelerationVector sum{ 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
     for (const auto& [name, force] : forces) {
         const auto result = force->compute_force(date, state, vehicle, sys);
-        for (size_t ii = 0; ii < 3; ++ii) {
+        for (std::size_t ii = 0; ii < 3; ++ii) {
             sum[ii] += result[ii];
         }
     }

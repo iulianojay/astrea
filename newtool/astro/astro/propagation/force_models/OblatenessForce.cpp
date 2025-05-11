@@ -23,7 +23,7 @@ using namespace mp_units::iau::unit_symbols;
 
 namespace astro {
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _N, const size_t& _M) :
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& _N, const std::size_t& _M) :
     N(_N),
     M(_M),
     center(sys.get_center())
@@ -37,10 +37,10 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _
 
     // Precompute as much as possible
     const quantity sqrtOneHalf = sqrt(0.5) * one;
-    for (size_t n = 0; n < N + 1; ++n) {
+    for (std::size_t n = 0; n < N + 1; ++n) {
         const quantity nn = (double)n * one;
 
-        for (size_t m = 0; m < M + 1; ++m) {
+        for (std::size_t m = 0; m < M + 1; ++m) {
             const quantity mm = (double)m * one;
 
             if (n == m) {
@@ -67,7 +67,7 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const size_t& _
     }
 }
 
-void OblatenessForce::size_vectors(const size_t& N, const size_t& M)
+void OblatenessForce::size_vectors(const std::size_t& N, const std::size_t& M)
 {
     C.resize(N + 1);
     S.resize(N + 1);
@@ -76,7 +76,7 @@ void OblatenessForce::size_vectors(const size_t& N, const size_t& M)
     beta.resize(N + 1);
     gamma.resize(N + 1);
     Pbase.resize(N + 1);
-    for (size_t n = 0; n < N + 1; ++n) {
+    for (std::size_t n = 0; n < N + 1; ++n) {
         C[n].resize(M + 1);
         S[n].resize(M + 1);
         P[n].resize(M + 1);
@@ -88,7 +88,7 @@ void OblatenessForce::size_vectors(const size_t& N, const size_t& M)
 }
 
 
-void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const size_t& M)
+void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, const std::size_t& M)
 {
 
     // Open coefficients file
@@ -114,7 +114,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
     std::string line;
     std::string cell;
 
-    size_t n = 0, m = 0;
+    std::size_t n = 0, m = 0;
     while (file) {
         // Read line from stream
         std::getline(file, line);
@@ -124,18 +124,18 @@ void OblatenessForce::ingest_legendre_coefficient_file(const size_t& N, const si
             lineData.push_back(std::atof(cell.c_str()));
         }
 
-        n = (size_t)lineData[0];
-        m = (size_t)lineData[1];
+        n = (std::size_t)lineData[0];
+        m = (std::size_t)lineData[1];
 
         C[n][m] = lineData[2];
         S[n][m] = lineData[3];
 
         // Normalize coefficients if needed
         if (centerName == "Mars") {
-            for (size_t m = 0; m < N + 1; ++m) {
+            for (std::size_t m = 0; m < N + 1; ++m) {
                 Unitless nPlusMFactorial  = 1.0 * one;
                 Unitless nMinusMFactorial = 1.0 * one;
-                for (size_t ii = n + m; ii > 0; --ii) {
+                for (std::size_t ii = n + m; ii > 0; --ii) {
                     nPlusMFactorial *= ii;
                     if (ii <= n - m) { nMinusMFactorial *= double(ii) * one; }
                 }
@@ -190,7 +190,7 @@ AccelerationVector
     Unitless dVdr_    = 0.0 * one; // radius
     Unitless dVdlat_  = 0.0 * one; // geocentric latitude
     Unitless dVdlong_ = 0.0 * one; // longitude
-    for (size_t n = 2; n < N + 1; ++n) {
+    for (std::size_t n = 2; n < N + 1; ++n) {
         const Unitless nn = (double)n * one;
 
         // Reset inner sums
@@ -198,7 +198,7 @@ AccelerationVector
         Unitless dVdlatInnerSum  = 0.0 * one;
         Unitless dVdlongInnerSum = 0.0 * one;
 
-        for (size_t m = 0; m < std::min(n, M) + 1; ++m) {
+        for (std::size_t m = 0; m < std::min(n, M) + 1; ++m) {
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
@@ -217,7 +217,7 @@ AccelerationVector
         }
         // Precalculate common terms
         Unitless rRatio = 1.0 * one;
-        for (size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
+        for (std::size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
             rRatio *= equitorialR * oneOverR;
         }
 
@@ -290,12 +290,12 @@ void OblatenessForce::assign_legendre(const Angle& latitude) const
     */
     const Unitless cosLat = cos(latitude);
     const Unitless sinLat = sin(latitude);
-    for (size_t n = 0; n < N + 1; ++n) {
+    for (std::size_t n = 0; n < N + 1; ++n) {
         Unitless cosLatPowN = 1.0 * one;
-        for (size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
+        for (std::size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
             cosLatPowN *= cosLat;
         }
-        for (size_t m = 0; m < M + 1; ++m) {
+        for (std::size_t m = 0; m < M + 1; ++m) {
             if (n == m) {
                 if (n == 0) { P[n][m] = 1; }
                 else {

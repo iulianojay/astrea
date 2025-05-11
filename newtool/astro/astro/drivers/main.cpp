@@ -30,30 +30,29 @@ using namespace astro;
 int main()
 {
 
-    // Setup system
-    AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
-
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
 
-    const double R   = 10000;
-    const double V   = sqrt(398600.0 / 10000.0);
-    RadiusVector r   = { R * km, 0.0 * km, 0.0 * km };
-    VelocityVector v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
+    // Setup system
+    AstrodynamicsSystem sys; // Defaults to Earth-Moon
+    // AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
 
-    Cartesian cart(r, v);
-    Keplerian kepl(cart, sys);
-    Cartesian cart2(kepl, sys);
+    // const double R   = 10000;
+    // const double V   = sqrt(398600.0 / 10000.0);
+    // RadiusVector r   = { R * km, 0.0 * km, 0.0 * km };
+    // VelocityVector v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
 
-    OrbitalElements comp(cart);
-    comp.convert<Keplerian>(sys);
+    // Cartesian cart(r, v);
+    // Keplerian kepl(cart, sys);
+    // Cartesian cart2(kepl, sys);
 
-    return 0;
+    // OrbitalElements comp(cart);
 
-    const OrbitalElements state(Keplerian{ 10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg });
-    // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
+    // comp.convert<Keplerian>(sys);
+
+    const Keplerian state(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
 
     // Build constellation
     const int T    = 1;
@@ -74,7 +73,6 @@ int main()
     ForceModel forces;
     forces.add<AtmosphericForce>();
     forces.add<OblatenessForce>(sys, 10, 10);
-    forces.add<NBodyForce>();
 
     // Build EoMs
     // std::string propagator = "two_body";
@@ -180,7 +178,7 @@ int main()
 //         return someArray;
 //     }
 
-//     void set_coefficients(size_t n) {
+//     void set_coefficients(std::size_t n) {
 //         std::cout << "Size Before: " << _data.size() << std::endl;
 //         _data.resize(n);
 //         std::cout << "Size After: " << _data.size() << std::endl;
@@ -215,7 +213,7 @@ int main()
 //         return forces[force];
 //     }
 
-//     void set_b_coefficients(size_t n) {
+//     void set_b_coefficients(std::size_t n) {
 //         auto& baseRef = forces.at("DerivedForceB");
 //         auto* basePtr = baseRef.get();
 //         auto* derived = dynamic_cast< DerivedForceB* >(basePtr);

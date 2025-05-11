@@ -6,8 +6,9 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/chrono.h>
 
+#include <astro/types/typedefs.hpp>
+
 #include <access/time/RiseSetArray.hpp>
-#include <astro/time/Time.hpp>
 
 using astro::Time;
 
@@ -23,12 +24,12 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
     }
 
     // Setup
-    size_t aIdx = 0;
-    size_t bIdx = 0;
-    size_t cIdx = 0;
+    std::size_t aIdx = 0;
+    std::size_t bIdx = 0;
+    std::size_t cIdx = 0;
 
-    const size_t lenA = a.size();
-    const size_t lenB = b.size();
+    const std::size_t lenA = a.size();
+    const std::size_t lenB = b.size();
 
     // Max size
     std::vector<Time> c;
@@ -75,12 +76,12 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
     }
 
     // Get length
-    const size_t lenC = (a[0] == b[0]) ? cIdx + 1 : cIdx;
+    const std::size_t lenC = (a[0] == b[0]) ? cIdx + 1 : cIdx;
 
     // Remove duplicates
     auto temp_c = c;
     cIdx        = 0;
-    for (size_t ii = 0; ii < lenC - 1; ii += 2) {
+    for (std::size_t ii = 0; ii < lenC - 1; ii += 2) {
         if (temp_c[ii] == temp_c[ii + 1]) {
             c[cIdx]     = temp_c[ii];
             c[cIdx + 1] = temp_c[ii + 1];
@@ -99,12 +100,12 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
     if (a.size() == 0 || b.size() == 0) { return RiseSetArray(); }
 
     // Setup
-    size_t aIdx = 0;
-    size_t bIdx = 0;
-    size_t cIdx = 0;
+    std::size_t aIdx = 0;
+    std::size_t bIdx = 0;
+    std::size_t cIdx = 0;
 
-    const size_t lenA = a.size();
-    const size_t lenB = b.size();
+    const std::size_t lenA = a.size();
+    const std::size_t lenB = b.size();
 
     // Max size
     std::vector<Time> c;

@@ -117,7 +117,7 @@ OrbitalElements
 const OrbitalElements::ElementVariant& OrbitalElements::extract() const { return _elements; }
 OrbitalElements::ElementVariant& OrbitalElements::extract() { return _elements; }
 
-constexpr size_t OrbitalElements::index() const { return _elements.index(); }
+constexpr std::size_t OrbitalElements::index() const { return _elements.index(); }
 
 
 void OrbitalElements::same_underlying_type(const OrbitalElements& other) const
@@ -140,7 +140,7 @@ OrbitalElements OrbitalElementPartials::operator*(const Time& time) const
 const OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() const { return _elements; }
 OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { return _elements; }
 
-constexpr size_t OrbitalElementPartials::index() const { return _elements.index(); }
+constexpr std::size_t OrbitalElementPartials::index() const { return _elements.index(); }
 
 
 void OrbitalElementPartials::same_underlying_type(const OrbitalElementPartials& other) const

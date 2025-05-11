@@ -13,12 +13,12 @@ namespace astro {
 
 class OblatenessForce : public Force {
   public:
-    OblatenessForce(const AstrodynamicsSystem& sys, const size_t& N = 2, const size_t& M = 0);
+    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
     ~OblatenessForce() = default;
 
     AccelerationVector
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
-    void set_oblateness_coefficients(const size_t& N, const size_t& M, const AstrodynamicsSystem& sys);
+    void set_oblateness_coefficients(const std::size_t& N, const std::size_t& M, const AstrodynamicsSystem& sys);
 
   private:
     mutable std::vector<std::vector<Unitless>> P{};
@@ -30,13 +30,13 @@ class OblatenessForce : public Force {
     std::vector<std::vector<Unitless>> gamma;
     std::vector<std::vector<Unitless>> Pbase;
 
-    const size_t N;
-    const size_t M;
+    const std::size_t N;
+    const std::size_t M;
     const CelestialBodyUniquePtr& center;
 
     void assign_legendre(const Angle& latitude) const;
-    void size_vectors(const size_t& N, const size_t& M);
-    void ingest_legendre_coefficient_file(const size_t& N, const size_t& M);
+    void size_vectors(const std::size_t& N, const std::size_t& M);
+    void ingest_legendre_coefficient_file(const std::size_t& N, const std::size_t& M);
 };
 
 } // namespace astro
