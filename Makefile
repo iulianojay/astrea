@@ -1,7 +1,7 @@
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
-config_path := .
+config_path := $(abspath $(shell pwd))
 source_path := newtool
 examples_path := examples
 arch := x86_64
@@ -35,12 +35,12 @@ build: configure
 .PHONY: configure
 configure: $(build_path)/Makefile
 
-$(build_path)/Makefile: CMakeLists.txt $(OPTIONS_INPUT)
-	CXX=$(cxx) cmake -S $(config_path) -B $(build_path) \
+$(build_path)/Makefile: CMakeLists.txt
+	cmake -S $(config_path) -B $(build_path) \
 		-DCMAKE_BUILD_TYPE=$(build_type) \
 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON  
 
 .PHONY: examples
 examples: install
@@ -48,7 +48,13 @@ examples: install
 	
 .PHONY: tests
 tests: install
-	$(MAKE) -C $(build_path)/$(tests_path) install
+	$(MAKE) -C $(build_path)/newtool/math/$(tests_path) install 
+	$(MAKE) -C $(build_path)/newtool/astro/$(tests_path) install 
+	
+.PHONY: run_tests
+run_tests: tests
+	cd $(build_path)/newtool/math/tests && ctest
+	cd $(build_path)/newtool/astro/tests && ctest
 
 .PHONY: debug
 debug: 
@@ -83,3 +89,42 @@ CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-op
 check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
+
+# Conan commands - for now
+.PHONY: conan-setup-debug
+conan-setup-debug: 
+	conan install . -pr ~/.conan2/profiles/gcc13-debug -b=missing 
+
+.PHONY: conan-build-debug
+conan-build-debug: conan-setup-debug
+	cmake -S . --preset conan-gcc-13-23-debug
+
+.PHONY: conan-debug
+conan-debug: conan-build-debug
+	cmake --build --preset conan-gcc-13-23-debug --target install
+	
+	
+.PHONY: conan-setup-release
+conan-setup-release: 
+	conan install . -pr ~/.conan2/profiles/gcc13-release -b=missing 
+
+.PHONY: conan-build-release
+conan-build-release: conan-setup-release
+	cmake -S . --preset conan-gcc-13-23-release
+
+.PHONY: conan-release
+conan-release: conan-build-release
+	cmake --build --preset conan-gcc-13-23-release --target install
+	
+	
+.PHONY: conan-setup-relwithdebinfo
+conan-setup-relwithdebinfo: 
+	conan install . -pr ~/.conan2/profiles/gcc13-relwithdebinfo -b=missing 
+
+.PHONY: conan-build-relwithdebinfo
+conan-build-relwithdebinfo: conan-setup-relwithdebinfo
+	cmake -S . --preset conan-gcc-13-23-relwithdebinfo
+
+.PHONY: conan-relwithdebinfo
+conan-relwithdebinfo: conan-build-relwithdebinfo
+	cmake --build --preset conan-gcc-13-23-relwithdebinfo --target install

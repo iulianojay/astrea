@@ -21,6 +21,7 @@ build.txt
 package.json
 get-pip.py
 pyastro/astro.py
+build.txt
 
 # Must include
 !CMakeLists.txt
