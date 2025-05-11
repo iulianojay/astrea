@@ -5,7 +5,7 @@
 namespace astro {
 
 // TODO: Fix this trash
-static const std::filesystem::path ROOT = "/home/jay/projects/newtoollib";
+static const std::filesystem::path ROOT = "/home/jay/projects/waveguide";
 
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name)
