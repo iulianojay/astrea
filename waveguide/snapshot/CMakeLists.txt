@@ -10,6 +10,10 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
+if (PROJECT_IS_TOP_LEVEL) 
+    add_subdirectory(../astro ../astro)
+endif()
+
 # Objects
 set(SNAPSHOT_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(SNAPSHOT_SOURCES
@@ -18,7 +22,7 @@ set(SNAPSHOT_SOURCES
 )
 
 # Find library
-find_library(AVRO avrocpp PATHS /usr/local/lib)
+find_library(AVRO avrocpp)
 
 # Headers
 set(SNAPSHOT_HEADERS
@@ -29,7 +33,6 @@ set(SNAPSHOT_HEADERS
 # Includes
 set(SNAPSHOT_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
-    /usr/local/include
 )
 include_directories(${SNAPSHOT_DIRS})
 
@@ -52,7 +55,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${AVRO})
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${AVRO} astro_shared mp-units::mp-units)
 
 # Install headers
 file(COPY

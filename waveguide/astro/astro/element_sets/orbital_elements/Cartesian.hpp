@@ -12,6 +12,11 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+// avro
+#include <avro/Decoder.hh>
+#include <avro/Encoder.hh>
+#include <avro/Specific.hh>
+
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
@@ -152,3 +157,35 @@ class CartesianPartial {
 };
 
 } // namespace astro
+
+
+namespace avro {
+
+template <>
+struct codec_traits<astro::Cartesian> {
+    static void encode(Encoder& encoder, const astro::Cartesian& cartesian)
+    {
+        avro::encode(encoder, cartesian.get_x());
+        avro::encode(encoder, cartesian.get_y());
+        avro::encode(encoder, cartesian.get_z());
+        avro::encode(encoder, cartesian.get_vx());
+        avro::encode(encoder, cartesian.get_vy());
+        avro::encode(encoder, cartesian.get_vz());
+    }
+    static void decode(Decoder& decoder, astro::Cartesian& cartesian)
+    {
+        astro::Distance x, y, z;
+        astro::Velocity vx, vy, vz;
+
+        avro::decode(decoder, x);
+        avro::decode(decoder, y);
+        avro::decode(decoder, z);
+        avro::decode(decoder, vx);
+        avro::decode(decoder, vy);
+        avro::decode(decoder, vz);
+
+        cartesian = astro::Cartesian(x, y, z, vx, vy, vz);
+    }
+};
+
+} // namespace avro

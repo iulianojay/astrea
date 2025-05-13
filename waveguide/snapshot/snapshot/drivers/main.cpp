@@ -8,6 +8,8 @@
 // #include <avro/Compiler.hh>
 // #include <avro/ValidSchema.hh>
 
+#include <astro/astro.hpp>
+
 namespace c {
 
 struct cpx {
@@ -34,23 +36,35 @@ struct codec_traits<c::cpx> {
 
 } // namespace avro
 
+using namespace astro;
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
 int main()
 {
-    std::unique_ptr<avro::OutputStream> out = avro::memoryOutputStream();
-    avro::EncoderPtr e                      = avro::binaryEncoder();
-    e->init(*out);
-    c::cpx c1;
-    c1.re = 1.0;
-    c1.im = 2.13;
-    avro::encode(*e, c1);
+    // Build an output stream and an encoder
+    avro::OutputStreamPtr outStream = avro::memoryOutputStream();
+    avro::EncoderPtr encoder        = avro::binaryEncoder();
+    encoder->init(*outStream);
 
-    std::unique_ptr<avro::InputStream> in = avro::memoryInputStream(*out);
-    avro::DecoderPtr d                    = avro::binaryDecoder();
-    d->init(*in);
+    // Build out structure
+    Cartesian c1(10000 * km, 0.0 * km, 0.0 * km, 10.0 * km / s, 0.0 * km / s, 0.0 * km / s);
 
-    c::cpx c2;
-    avro::decode(*d, c2);
-    std::cout << '(' << c2.re << ", " << c2.im << ')' << std::endl;
+    // Encode
+    avro::encode(*encoder, c1);
+
+    // Build an input stream and a decoder
+    avro::InputStreamPtr in  = avro::memoryInputStream(*outStream);
+    avro::DecoderPtr decoder = avro::binaryDecoder();
+    decoder->init(*in);
+
+    // Decode into new structure
+    Cartesian c2;
+    avro::decode(*decoder, c2);
+
+    // Print
+    std::cout << c2 << std::endl;
 
     return 0;
 }
