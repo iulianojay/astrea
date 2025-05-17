@@ -22,7 +22,11 @@ set(SNAPSHOT_SOURCES
 )
 
 # Find library
-find_library(AVRO avrocpp)
+# find_library(AVRO avrocpp)
+include(FetchContent)
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
+FetchContent_MakeAvailable(cpr)
 
 # Headers
 set(SNAPSHOT_HEADERS
@@ -52,10 +56,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 # set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
 
 # Executable
+add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)
+set_target_properties      (avro_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_include_directories (avro_test PUBLIC ${SNAPSHOT_DIRS})
+target_link_libraries      (avro_test PUBLIC astro_shared mp-units::mp-units)
+
 add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${AVRO} astro_shared mp-units::mp-units)
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC astro_shared mp-units::mp-units cpr::cpr)
 
 # Install headers
 file(COPY
