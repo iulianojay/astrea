@@ -42,7 +42,7 @@ struct codec_traits<mp_units::quantity<R, Rep>> {
     }
     static void decode(Decoder& decoder, mp_units::quantity<R, Rep>& quantity)
     {
-        Rep value;
+        Rep value{};
         avro::decode(decoder, value);
         quantity = mp_units::quantity<R, Rep>({ static_cast<Rep>(value), R });
     }

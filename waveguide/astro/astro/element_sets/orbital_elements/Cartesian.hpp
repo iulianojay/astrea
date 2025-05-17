@@ -174,8 +174,8 @@ struct codec_traits<astro::Cartesian> {
     }
     static void decode(Decoder& decoder, astro::Cartesian& cartesian)
     {
-        astro::Distance x, y, z;
-        astro::Velocity vx, vy, vz;
+        astro::Distance x{}, y{}, z{};
+        astro::Velocity vx{}, vy{}, vz{};
 
         avro::decode(decoder, x);
         avro::decode(decoder, y);
