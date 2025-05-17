@@ -17,8 +17,8 @@ endif()
 # Objects
 set(SNAPSHOT_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(SNAPSHOT_SOURCES
-    ${SNAPSHOT_BASE}/interpolation.cpp
-    ${SNAPSHOT_BASE}/utils.cpp
+    ${SNAPSHOT_BASE}/http-queries/EthzQuerier.cpp
+    ${SNAPSHOT_BASE}/utilities/string_util.cpp
 )
 
 # Find library
@@ -29,13 +29,17 @@ FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
 FetchContent_MakeAvailable(cpr)
 
 # Headers
+set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(SNAPSHOT_HEADERS
-    ${SNAPSHOT_BASE}/utils.hpp
-    ${SNAPSHOT_BASE}/interpolation.hpp
+    ${SNAPSHOT_BASE}/http-queries/EthzQuerier.hpp
+    ${SNAPSHOT_BASE}/utilities/string_util.hpp
+
+    ${EXTERN_BASE}/nlohmann/json.hpp
 )
 
 # Includes
 set(SNAPSHOT_DIRS
+    ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
 )
 include_directories(${SNAPSHOT_DIRS})
@@ -47,24 +51,26 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
-# # Shared library
-# add_library           (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
-# set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+# Shared library
+add_library           (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
+set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared mp-units::mp-units cpr::cpr)
 
-# # Static library
-# add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
-# set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+# Static library
+add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
+set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared mp-units::mp-units cpr::cpr)
 
 # Executable
-add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)
-set_target_properties      (avro_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (avro_test PUBLIC ${SNAPSHOT_DIRS})
-target_link_libraries      (avro_test PUBLIC astro_shared mp-units::mp-units)
+# add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)
+# set_target_properties      (avro_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+# target_include_directories (avro_test PUBLIC ${SNAPSHOT_DIRS})
+# target_link_libraries      (avro_test PUBLIC astro_shared mp-units::mp-units)
 
-add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp)
+add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp ${EXTERN_BASE}/nlohmann/json.hpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC astro_shared mp-units::mp-units cpr::cpr)
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
 
 # Install headers
 file(COPY
@@ -74,6 +80,7 @@ file(COPY
     PATTERN *.hpp
     PATTERN *.h
 )
+set(CMAKE_INSTALL_MESSAGE LAZY)
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
 # add_subdirectory(tests EXCLUDE_FROM_ALL)
