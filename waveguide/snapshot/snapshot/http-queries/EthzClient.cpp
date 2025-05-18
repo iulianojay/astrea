@@ -1,4 +1,4 @@
-#include <snapshot/http-queries/EthzQuerier.hpp>
+#include <snapshot/http-queries/EthzClient.hpp>
 
 #include <iostream>
 #include <stdexcept>
@@ -7,17 +7,17 @@
 
 namespace snapshot {
 
-nlohmann::json EthzQuerier::query(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const bool& includeFrequencyData)
+nlohmann::json EthzClient::query(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const bool& includeFrequencyData)
 {
     return query_impl(startDate, endDate, name, 0, includeFrequencyData);
 }
-nlohmann::json EthzQuerier::query(const astro::Date& startDate, const astro::Date& endDate, const unsigned& noradId, const bool& includeFrequencyData)
+nlohmann::json EthzClient::query(const astro::Date& startDate, const astro::Date& endDate, const unsigned& noradId, const bool& includeFrequencyData)
 {
     return query_impl(startDate, endDate, "", noradId, includeFrequencyData);
 }
 
 nlohmann::json
-    EthzQuerier::query_impl(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const unsigned& noradId, const bool& includeFrequencyData)
+    EthzClient::query_impl(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const unsigned& noradId, const bool& includeFrequencyData)
 {
     /*
         https://satdb.ethz.ch/api-documentation/:
@@ -89,7 +89,7 @@ nlohmann::json
 }
 
 
-void EthzQuerier::clean_result(nlohmann::json& result)
+void EthzClient::clean_result(nlohmann::json& result)
 {
     std::string misformattedEntry = result["norad_str"];
 

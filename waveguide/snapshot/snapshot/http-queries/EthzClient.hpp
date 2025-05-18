@@ -7,11 +7,11 @@
 
 namespace snapshot {
 
-class EthzQuerier {
+class EthzClient {
   public:
-    EthzQuerier() :
+    EthzClient() :
         _minStartDate("2023-03-10 00:00:00.0"){};
-    ~EthzQuerier() = default;
+    ~EthzClient() = default;
 
     nlohmann::json query(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const bool& includeFrequencyData = false);
     nlohmann::json query(const astro::Date& startDate, const astro::Date& endDate, const unsigned& noradId, const bool& includeFrequencyData = false);
