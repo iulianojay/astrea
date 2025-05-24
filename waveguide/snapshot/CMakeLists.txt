@@ -24,10 +24,16 @@ set(SNAPSHOT_SOURCES
 
 # Find library
 # find_library(AVRO avrocpp)
+
 include(FetchContent)
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
                          GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
 FetchContent_MakeAvailable(cpr)
+
+find_package(SQLite3 REQUIRED)
+
+FetchContent_Declare(sqlite_orm GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git)
+FetchContent_MakeAvailable(sqlite_orm)
 
 # Headers
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
@@ -57,18 +63,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared mp-units::mp-units cpr::cpr)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared mp-units::mp-units cpr::cpr)
+target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 
 # Executable
 # add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)
 # set_target_properties      (avro_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 # target_include_directories (avro_test PUBLIC ${SNAPSHOT_DIRS})
 # target_link_libraries      (avro_test PUBLIC astro_shared mp-units::mp-units)
+
+# add_executable             (query_test ${SNAPSHOT_BASE}/drivers/query_test.cpp ${EXTERN_BASE}/nlohmann/json.hpp)
+# set_target_properties      (query_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+# target_include_directories (query_test PUBLIC ${SNAPSHOT_DIRS})
+# target_link_libraries      (query_test PUBLIC ${PROJECT_NAME}_shared)
 
 add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp ${EXTERN_BASE}/nlohmann/json.hpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
