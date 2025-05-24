@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <set>
 #include <stdexcept>
 
 #include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
@@ -18,9 +19,131 @@ void SpaceTrackClient::login(const std::string& username, const std::string& pas
     _loginCookies               = loginResponse.cookies;
 }
 
-nlohmann::json SpaceTrackClient::query(const std::string& username, const std::string& password)
+nlohmann::json SpaceTrackClient::query(
+    const std::string& username,
+    const std::string& password,
+    const Controller& controller,
+    const Action& action,
+    const SpaceTrackClient::RequestClass& requestClass,
+    const std::vector<std::pair<std::string, std::string>> predicates
+)
 {
-    return query_impl(username, password);
+    cpr::Url queryUrl = build_query_url(controller, action, requestClass, predicates);
+    return query_impl(username, password, queryUrl);
+}
+
+nlohmann::json SpaceTrackClient::retrieve_all(const std::string& username, const std::string& password)
+{
+    cpr::Url queryUrl =
+        "https://www.space-track.org/"
+        "basicspacedata/query/class/gp/decay_date/null-val/epoch/%3Enow-30/orderby/norad_cat_id/format/json";
+    return query_impl(username, password, queryUrl);
+}
+
+std::string SpaceTrackClient::controller_to_string(const Controller& controller) const
+{
+    switch (controller) {
+        case (Controller::BASIC_SPACE_DATA): {
+            return "basicspacedata";
+        }
+        case (Controller::PUBLIC_FILES): {
+            return "publicfiles";
+        }
+    }
+    throw std::runtime_error("Unregonized contoller requested.");
+}
+
+std::string SpaceTrackClient::action_to_string(const Action& action) const
+{
+    switch (action) {
+        case (Action::QUERY): {
+            return "query";
+        }
+        case (Action::MODEL_DEF): {
+            return "modeldef";
+        }
+    }
+    throw std::runtime_error("Unregonized action requested.");
+}
+
+std::string SpaceTrackClient::class_to_string(const RequestClass& requestClass) const
+{
+    return std::visit([&](const auto& x) -> std::string { return class_to_string(x); }, requestClass);
+}
+
+std::string SpaceTrackClient::class_to_string(const SpaceDataClass& requestClass) const
+{
+    switch (requestClass) {
+        case (SpaceDataClass::ANNOUNCEMENT): {
+            return "announcement";
+        }
+        case (SpaceDataClass::BOX_SCORE): {
+            return "boxscore";
+            break;
+        }
+        case (SpaceDataClass::CDM_PUBLIC): {
+            return "cdm_public";
+        }
+        case (SpaceDataClass::DECAY): {
+            return "decay";
+        }
+        case (SpaceDataClass::GP): {
+            return "gp";
+        }
+        case (SpaceDataClass::GP_HISTORY): {
+            return "gp_history";
+        }
+        case (SpaceDataClass::LAUNCH_SITE): {
+            return "launch_site";
+        }
+        case (SpaceDataClass::SATCAT): {
+            return "satcat";
+        }
+        case (SpaceDataClass::SATCAT_CHANGE): {
+            return "satcat_change";
+        }
+        case (SpaceDataClass::SATCAT_DEBUT): {
+            return "satcat_debut";
+        }
+        case (SpaceDataClass::TIP): {
+            return "tip";
+        }
+    }
+    throw std::runtime_error("Unexpected request class for Space Data controller.");
+}
+
+std::string SpaceTrackClient::class_to_string(const PublicFilesClass& requestClass) const
+{
+    switch (requestClass) {
+        case (PublicFilesClass::DIRS): {
+            return "dirs";
+        }
+        case (PublicFilesClass::DOWNLOAD): {
+            return "download";
+        }
+        case (PublicFilesClass::FILES): {
+            return "files";
+        }
+        case (PublicFilesClass::LOAD_PUBLIC_DATA): {
+            return "loadpublicdata";
+        }
+    }
+    throw std::runtime_error("Unexpected request class for Public Files controller.");
+}
+
+cpr::Url SpaceTrackClient::build_query_url(
+    const Controller& controller,
+    const Action& action,
+    const SpaceTrackClient::RequestClass& requestClass,
+    const std::vector<std::pair<std::string, std::string>> predicates
+) const
+{
+    cpr::Url url = _base + "/" + controller_to_string(controller) + "/" + action_to_string(action) + "/class/" +
+                   class_to_string(requestClass);
+    for (const auto& [predicate, value] : predicates) {
+        url += "/" + predicate + "/" + value;
+    }
+    return url;
 }
 
 void SpaceTrackClient::check_query_history(const std::string& username) const
@@ -44,7 +167,6 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
     const Time now = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
 
     // Check query frequency
-    std::vector<std::size_t> oldQueries;
     if (queryHistory.contains(username)) {
         const Time oneMinuteAgo = now - std::chrono::minutes(1);
         const Time oneHourAgo   = now - std::chrono::hours(1);
@@ -52,15 +174,18 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
         std::size_t idx         = 0;
         std::size_t nLastHour   = 0;
         std::size_t nLastMinute = 0;
+        std::set<std::size_t> oldQueries;
         for (const auto& timestamp : queryHistory[username]) {
             // Stream date string into time point
             std::istringstream timestampStream{ timestamp.template get<std::string>() };
             Time queryTime;
             timestampStream >> date::parse(TIMESTAMP_FORMAT, queryTime);
 
-            if (queryTime < oneHourAgo) { oldQueries.push_back(idx); }
-            if (queryTime >= oneHourAgo) { ++nLastHour; }
-            if (queryTime >= oneMinuteAgo) { ++nLastMinute; }
+            if (queryTime < oneHourAgo) { oldQueries.insert(idx); }
+            else {
+                ++nLastHour;
+                if (queryTime >= oneMinuteAgo) { ++nLastMinute; }
+            }
             ++idx;
         }
 
@@ -100,7 +225,7 @@ bool SpaceTrackClient::valid_cookies() const
     return true;
 }
 
-nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const std::string& password)
+nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const std::string& password, cpr::Url queryUrl)
 {
     // Login
     if (!valid_cookies()) { login(username, password); }
@@ -109,10 +234,7 @@ nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const s
     check_query_history(username);
 
     // Query
-    const cpr::Url url = std::string("https://www.space-track.org/basicspacedata/query/class/decay/DECAY_EPOCH/"
-                                     "2012-07-02--2012-07-09/orderby/NORAD_CAT_ID,PRECEDENCE/format/json");
-
-    cpr::Response r = cpr::Get(url, _loginCookies);
+    cpr::Response r = cpr::Get(queryUrl, _loginCookies);
 
     // Extract response into json
     nlohmann::json response = nlohmann::json::parse(r.text);
@@ -132,33 +254,7 @@ nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const s
         std::cout << errorStream.str();
     }
 
-    std::cout << std::setw(4) << response << std::endl;
-
-    // // Clean up weird TLE formatting
-    // for (auto& result : response["results"]) {
-    //     clean_result(result);
-    // }
-
     return response;
-}
-
-
-void SpaceTrackClient::clean_result(nlohmann::json& result)
-{
-    std::string misformattedEntry = result["norad_str"];
-
-    std::stringstream ss(misformattedEntry);
-    std::string line;
-    if (!misformattedEntry.empty()) {
-        size_t iLine = 0;
-        while (std::getline(ss, line, '\n')) {
-            if (iLine == 0) { result["norad_str"] = trim(line); }
-            else {
-                result["tle"][iLine - 1] = trim(line);
-            }
-            ++iLine;
-        }
-    }
 }
 
 } // namespace snapshot
