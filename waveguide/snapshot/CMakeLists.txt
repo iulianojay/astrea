@@ -32,7 +32,7 @@ FetchContent_MakeAvailable(cpr)
 
 find_package(SQLite3 REQUIRED)
 
-FetchContent_Declare(sqlite_orm GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git)
+FetchContent_Declare(sqlite_orm GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git GIT_TAG v1.9.1)
 FetchContent_MakeAvailable(sqlite_orm)
 
 # Headers
