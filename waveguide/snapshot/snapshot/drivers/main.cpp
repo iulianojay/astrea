@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <optional>
@@ -5,9 +7,53 @@
 #include <stdexcept>
 #include <string>
 
+#include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
 #include <astro/time/Date.hpp>
+
+
+template <typename T>
+T extract_from_json(const nlohmann::json& json, const std::string& key);
+
+template <typename T>
+std::optional<T> extract_optional_from_json(const nlohmann::json& json, const std::string& key);
+
+std::string clean_entry(const nlohmann::json& entry)
+{
+    std::string entryStr = entry.template get<std::string>();
+    entryStr.erase(std::remove(entryStr.begin(), entryStr.end(), '"'), entryStr.end());
+    return entryStr;
+}
+
+template <typename T>
+T extract_from_json(const nlohmann::json& json, const std::string& key)
+{
+    if (json.contains(key)) {
+        if (json[key].empty() || json[key].is_null()) { throw std::runtime_error("Null value not allowed."); }
+        else {
+            T retval;
+            std::stringstream(clean_entry(json[key])) >> retval;
+            return retval;
+        }
+    }
+    throw std::runtime_error("Key not found.");
+}
+
+template <typename T>
+std::optional<T> extract_optional_from_json(const nlohmann::json& json, const std::string& key)
+{
+    if (json.contains(key)) {
+        if (json[key].empty() || json[key].is_null()) { return std::nullopt; }
+        else {
+            T retval;
+            std::stringstream(clean_entry(json[key])) >> retval;
+            return retval;
+        }
+    }
+    throw std::runtime_error("Key not found.");
+}
+
 
 // https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html
 struct SpaceTrackGP {
@@ -54,10 +100,13 @@ struct SpaceTrackGP {
     std::optional<std::string> TLE_LINE2;
 };
 
+SpaceTrackGP build_gp_from_json(const nlohmann::json& data);
+
 int main()
 {
     // Build connection and connect
     using namespace sqlite_orm;
+    using json = nlohmann::json;
 
     auto storage = make_storage(
         "./waveguide/snapshot/snapshot/data/snapshot.db",
@@ -109,90 +158,100 @@ int main()
     storage.sync_schema();
     // storage.remove_all<SpaceTrackGP>();
 
-    SpaceTrackGP data{ -1,
-                       3821.689,                            //     APOAPSIS - double
-                       179.7370,                            //     ARG_OF_PERICENTER - long double
-                       0.00006359500000,                    //     BSTAR - long double
-                       "3.0",                               //     CCSDS_OMM_VERS - std::string
-                       "EARTH",                             //     CENTER_NAME - std::string
-                       'U',                                 //     CLASSIFICATION_TYPE - char
-                       "GENERATED VIA SPACE-TRACK.ORG API", //     COMMENT - std::string
-                       "US",                                //     COUNTRY_CODE - std::string
-                       "2025-05-23T17:34:23",               //     CREATION_DATE - std::string
-                       std::nullopt,                        //     DECAY_DATE - std::string
-                       0.18410540,                          //     ECCENTRICITY - long double
-                       999,                                 //     ELEMENT_SET_NO - short
-                       0,                                   //     EPHEMERIS_TYPE - short unsigned
-                       "2025-05-23T02:32:01.903776",        //     EPOCH - std::string
-                       4737198,                             //     FILE - long unsigned
-                       288180510,                           //     GP_ID - unsigned
-                       34.2476,                             //     INCLINATION - long double
-                       "1958-03-17",                        //     LAUNCH_DATE - std::string
-                       180.4527,                            //     MEAN_ANOMALY - double
-                       "SGP4",                              //     MEAN_ELEMENT_THEORY - std::string
-                       10.85923616,                         //     MEAN_MOTION - long double
-                       0.0000000000000,                     //     MEAN_MOTION_DDOT - long double
-                       0.00000058,                          //     MEAN_MOTION_DOT - long double
-                       5,                                   //     NORAD_CAT_ID - unsigned
-                       "1958-002B",                         //     OBJECT_ID - std::string
-                       "VANGUARD 1",                        //     OBJECT_NAME - std::string
-                       "PAYLOAD",                           //     OBJECT_TYPE - std::string
-                       "18 SPCS",                           //     ORIGINATOR - std::string
-                       649.940,                             //     PERIAPSIS - double
-                       132.606,                             //     PERIOD - double
-                       78.2911,                             //     RA_OF_ASC_NODE - long double
-                       "SMALL",                             //     RCS_SIZE - std::string
-                       "TEME",                              //     REF_FRAME - std::string
-                       40087,                               //     REV_AT_EPOCH - unsigned
-                       8613.950,                            //     SEMIMAJOR_AXIS - double
-                       "AFETR",                             //     SITE - std::string
-                       "UTC",                               //     TIME_SYSTEM - std::string
-                       "0 VANGUARD 1",                      //     TLE_LINE0 - std::string
-                       "1 00005U 58002B   25143.10557759  .00000058  00000-0  63595-4 0  9999", //     TLE_LINE1 - std::string
-                       "2 00005  34.2476  78.2911 1841054 179.7370 180.4527 10.85923616400875" }; //     TLE_LINE2 - std::string
+    std::ifstream inFileStream("./waveguide/snapshot/snapshot/data/spacetrack_data.json");
+    json spaceTrackData = json::parse(inFileStream);
 
-    std::cout << "NORAD_CAT_ID = " << data.NORAD_CAT_ID << std::endl;
-    std::cout << "GP_ID = " << data.GP_ID << std::endl;
-    auto insertedId = storage.insert(data);
-    std::cout << "insertedId = " << insertedId << std::endl;
 
-    try {
-        auto gp = storage.get<SpaceTrackGP>(insertedId);
-        std::cout << "NORAD_CAT_ID = " << gp.NORAD_CAT_ID << std::endl;
-        std::cout << "GP_ID = " << gp.GP_ID << std::endl;
+    std::size_t barWidth = 50;
+    std::size_t iRecord  = 0;
+    std::size_t nRecords = spaceTrackData.size();
+    for (const auto& data : spaceTrackData) {
+
+        if (iRecord % 10 == 0) {
+            std::cout << "Progress: [";
+            double progress = static_cast<double>(iRecord) / static_cast<double>(nRecords);
+            std::size_t pos = barWidth * progress;
+            for (std::size_t ii = 0; ii < barWidth; ++ii) {
+                if (ii < pos)
+                    std::cout << "=";
+                else if (ii == pos)
+                    std::cout << ">";
+                else
+                    std::cout << " ";
+            }
+            std::cout << "] " << int(progress * 100.0) << " %\r";
+            std::cout.flush();
+        }
+
+        SpaceTrackGP gp = build_gp_from_json(data);
+
+        // Insert or update
+        auto all = storage.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
+        if (all.size() == 0) { storage.insert(gp); }
+        else {
+            storage.update(gp);
+        }
+
+        ++iRecord;
+
+        // try {
+        //     auto gp = storage.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
+        //     std::cout << "NORAD_CAT_ID = " << gp[0].NORAD_CAT_ID << std::endl;
+        //     std::cout << "GP_ID = " << gp[0].GP_ID << std::endl;
+        // }
+        // catch (const std::system_error& e) {
+        //     std::cout << e.what() << std::endl;
+        // }
+        // catch (...) {
+        //     std::cout << "unknown exeption" << std::endl;
+        // }
     }
-    catch (std::system_error e) {
-        std::cout << e.what() << std::endl;
-    }
-    catch (...) {
-        std::cout << "unknown exeption" << std::endl;
-    }
-
-    // user.firstName = "Nicholas";
-    // user.imageUrl =
-    //     std::make_unique<std::string>("https://cdn1.iconfinder.com/data/icons/man-icon-set/100/man_icon-21-512.png");
-    // storage.update(user);
-
-    // storage.update_all(set(c(&User::lastName) = "Hardey", c(&User::typeId) = 2), where(c(&User::firstName) == "Tom"));
-
-    // storage.remove<User>(insertedId);
-
-    // auto allUsers = storage.get_all<User>();
-
-    // std::cout << "allUsers (" << allUsers.size() << "):" << std::endl;
-    // for (auto& user : allUsers) {
-    //     std::cout
-    //         << storage.dump(user)
-    //         << std::endl; //  dump returns std::string with json-like style object info. For example: { id : '1', first_name
-    //                       //  : 'Jonh', last_name : 'Doe', birth_date : '664416000', image_url :
-    //                       //  'https://cdn1.iconfinder.com/data/icons/man-icon-set/100/man_icon-21-512.png', type_id : '3' }
-    // }
-
-    // auto allUsersList = storage.get_all<User, std::list<User>>();
-
-    // for (auto& user : storage.iterate<User>()) {
-    //     std::cout << storage.dump(user) << std::endl;
-    // }
 
     return 0;
+}
+
+
+SpaceTrackGP build_gp_from_json(const nlohmann::json& data)
+{
+    return { -1,
+             extract_optional_from_json<double>(data, "APOAPSIS"),
+             extract_optional_from_json<long double>(data, "ARG_OF_PERICENTER"),
+             extract_optional_from_json<long double>(data, "BSTAR"),
+             extract_from_json<std::string>(data, "CCSDS_OMM_VERS"),
+             extract_from_json<std::string>(data, "CENTER_NAME"),
+             extract_optional_from_json<char>(data, "CLASSIFICATION_TYPE"),
+             extract_from_json<std::string>(data, "COMMENT"),
+             extract_optional_from_json<std::string>(data, "COUNTRY_CODE"),
+             extract_optional_from_json<std::string>(data, "CREATION_DATE"),
+             extract_optional_from_json<std::string>(data, "DECAY_DATE"),
+             extract_optional_from_json<long double>(data, "ECCENTRICITY"),
+             extract_optional_from_json<short>(data, "ELEMENT_SET_NO"),
+             extract_optional_from_json<short unsigned>(data, "EPHEMERIS_TYPE"),
+             extract_optional_from_json<std::string>(data, "EPOCH"),
+             extract_optional_from_json<long unsigned>(data, "FILE"),
+             extract_from_json<unsigned>(data, "GP_ID"),
+             extract_optional_from_json<long double>(data, "INCLINATION"),
+             extract_optional_from_json<std::string>(data, "LAUNCH_DATE"),
+             extract_optional_from_json<double>(data, "MEAN_ANOMALY"),
+             extract_from_json<std::string>(data, "MEAN_ELEMENT_THEORY"),
+             extract_optional_from_json<long double>(data, "MEAN_MOTION"),
+             extract_optional_from_json<long double>(data, "MEAN_MOTION_DDOT"),
+             extract_optional_from_json<long double>(data, "MEAN_MOTION_DOT"),
+             extract_from_json<unsigned>(data, "NORAD_CAT_ID"),
+             extract_optional_from_json<std::string>(data, "OBJECT_ID"),
+             extract_optional_from_json<std::string>(data, "OBJECT_NAME"),
+             extract_optional_from_json<std::string>(data, "OBJECT_TYPE"),
+             extract_from_json<std::string>(data, "ORIGINATOR"),
+             extract_optional_from_json<double>(data, "PERIAPSIS"),
+             extract_optional_from_json<double>(data, "PERIOD"),
+             extract_optional_from_json<long double>(data, "RA_OF_ASC_NODE"),
+             extract_optional_from_json<std::string>(data, "RCS_SIZE"),
+             extract_from_json<std::string>(data, "REF_FRAME"),
+             extract_optional_from_json<unsigned>(data, "REV_AT_EPOCH"),
+             extract_optional_from_json<double>(data, "SEMIMAJOR_AXIS"),
+             extract_optional_from_json<std::string>(data, "SITE"),
+             extract_from_json<std::string>(data, "TIME_SYSTEM"),
+             extract_optional_from_json<std::string>(data, "TLE_LINE0"),
+             extract_optional_from_json<std::string>(data, "TLE_LINE1"),
+             extract_optional_from_json<std::string>(data, "TLE_LINE2") };
 }
