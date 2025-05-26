@@ -12,6 +12,8 @@
 
 #include <astro/time/Date.hpp>
 
+#include <snapshot/http-queries/SpaceTrackClient.hpp>
+
 
 template <typename T>
 T extract_from_json(const nlohmann::json& json, const std::string& key);
@@ -102,9 +104,10 @@ struct SpaceTrackGP {
 
 SpaceTrackGP build_gp_from_json(const nlohmann::json& data);
 
-int main()
+int main(int argc, char** argv)
 {
     // Build connection and connect
+    using namespace snapshot;
     using namespace sqlite_orm;
     using json = nlohmann::json;
 
@@ -158,8 +161,11 @@ int main()
     storage.sync_schema();
     // storage.remove_all<SpaceTrackGP>();
 
-    std::ifstream inFileStream("./waveguide/snapshot/snapshot/data/spacetrack_data.json");
-    json spaceTrackData = json::parse(inFileStream);
+    SpaceTrackClient spaceTrack;
+    nlohmann::json spaceTrackData = spaceTrack.retrieve_all(argv[1], argv[2]);
+
+    // std::ifstream inFileStream("./waveguide/snapshot/snapshot/data/spacetrack_data.json");
+    // json spaceTrackData = json::parse(inFileStream);
 
 
     std::size_t barWidth = 50;
@@ -168,7 +174,7 @@ int main()
     for (const auto& data : spaceTrackData) {
 
         if (iRecord % 10 == 0) {
-            std::cout << "Progress: [";
+            std::cout << "\tProgress: [";
             double progress = static_cast<double>(iRecord) / static_cast<double>(nRecords);
             std::size_t pos = barWidth * progress;
             for (std::size_t ii = 0; ii < barWidth; ++ii) {
