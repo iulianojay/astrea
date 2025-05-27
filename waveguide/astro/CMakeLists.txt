@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.31.6)
+cmake_minimum_required(VERSION 3.28.3)
 
 project(
     astro 
@@ -134,16 +134,19 @@ set(ASTRO_DIRS
 )
 include_directories(${ASTRO_DIRS})
 
+# Find library
+find_library(AVRO avrocpp)
+
 # Shared library
 add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units ${AVRO})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
 
 # Static library
 add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units ${AVRO})
 target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
 
 # Executable

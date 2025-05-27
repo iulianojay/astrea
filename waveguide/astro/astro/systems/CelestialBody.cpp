@@ -108,7 +108,7 @@ void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const Gr
 
     // Loop over each day in the epoch range
     const quantity<day> nDays                   = endEpoch - epoch;
-    const quantity<day> daysSinceReferenceEpoch = epoch.mjd() - _referenceDate.mjd();
+    const quantity<day> daysSinceReferenceEpoch = epoch.jd() - _referenceDate.jd();
     for (quantity<day> iDay = 0 * day; iDay < nDays; iDay += 1 * day) {
         // Time since reference date
         const quantity<JulianCentury> julianCenturies = (iDay + daysSinceReferenceEpoch); // time in Julian Centuries

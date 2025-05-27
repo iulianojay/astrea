@@ -1,6 +1,8 @@
 #include <astro/time/Date.hpp>
 
 #include <chrono>
+#include <format>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 
@@ -21,45 +23,50 @@ std::ostream& operator<<(std::ostream& os, const Date& obj)
 // Utility operators
 Date Date::operator+(const Time& time) const
 {
-    const auto newTime = julianDate.time_since_epoch() + JulianDateClock::duration(time);
+    const auto newTime = _julianDate.time_since_epoch() + JulianDateClock::duration(time);
     return Date(JulianDate(newTime));
 }
 Date& Date::operator+=(const Time& time)
 {
-    const auto newTime = julianDate.time_since_epoch() + JulianDateClock::duration(time);
-    julianDate         = JulianDate(newTime);
+    const auto newTime = _julianDate.time_since_epoch() + JulianDateClock::duration(time);
+    _julianDate        = JulianDate(newTime);
     return *this;
 }
 Date Date::operator-(const Time& time) const
 {
-    const auto newTime = julianDate.time_since_epoch() - JulianDateClock::duration(time);
+    const auto newTime = _julianDate.time_since_epoch() - JulianDateClock::duration(time);
     return Date(JulianDate(newTime));
 }
 Date& Date::operator-=(const Time& time)
 {
-    const auto newTime = julianDate.time_since_epoch() - JulianDateClock::duration(time);
-    julianDate         = JulianDate(newTime);
+    const auto newTime = _julianDate.time_since_epoch() - JulianDateClock::duration(time);
+    _julianDate        = JulianDate(newTime);
     return *this;
 }
 
 Time Date::operator-(const Date& other) const
 {
-    const auto diff = other.julianDate - julianDate;
+    const auto diff = other._julianDate - _julianDate;
     return Time(diff);
 }
+
+// Comparitors
+bool Date::operator<(const Date& other) const { return _julianDate < other._julianDate; }
+bool Date::operator>(const Date& other) const { return _julianDate > other._julianDate; }
+bool Date::operator==(const Date& other) const { return _julianDate == other._julianDate; }
 
 // Conversions
 std::string Date::epoch() const
 {
     using namespace std::chrono;
 
-    const auto sysTime = round<milliseconds>(clock_cast<system_clock>(julianDate));
+    const auto sysTime = round<milliseconds>(clock_cast<system_clock>(_julianDate));
     std::stringstream ss;
     ss << sysTime;
     return ss.str();
 }
 
-Angle Date::gmst() const { return julian_date_to_siderial_time(julianDate); }
+Angle Date::gmst() const { return julian_date_to_siderial_time(_julianDate); }
 
 // General conversions
 JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format)
@@ -75,12 +82,16 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
     return round<milliseconds>(clock_cast<JulianDateClock>(systemTime));
 }
 
-Angle julian_date_to_siderial_time(const JulianDate& julianDate)
+
+const Date Date::now() noexcept { return JulianDateClock::now(); }
+
+
+Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
 
-    Time julianDay = julianDate.time_since_epoch().count() * day;
+    Time julianDay = _julianDate.time_since_epoch().count() * day;
 
     // UT = (fraction of current Julian Day since 00:00:00 in days) / (body rotation rate in deg/day ratioed to Earth's)
     const Time halfDay = 0.5 * day;

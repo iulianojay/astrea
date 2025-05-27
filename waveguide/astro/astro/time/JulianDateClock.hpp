@@ -56,4 +56,7 @@ using JulianDate = JulianDateClock::time_point;
 static constexpr JulianDate J2000(JulianDateClock::duration{ 2451545.0 });
 static constexpr mp_units::quantity_point J2K = J2000;
 
+static constexpr JulianDate MJD0(JulianDateClock::duration{ 2400000.5 });
+static constexpr mp_units::quantity_point MJDStart = MJD0;
+
 } // namespace astro

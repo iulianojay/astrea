@@ -40,7 +40,7 @@ Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
     const auto& z = vecEci[2];
 
     // Calculate Greenwich Sidereal Time
-    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.mjd());
+    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.jd());
 
     // Calculate Eci-to-Ecef transformation matrix
     /* NOTE: This transformation only accounts for Earth rotation, not nutation or procession, so it
@@ -70,7 +70,7 @@ Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
     using namespace mp_units::angular;
 
     // Calculate Greenwich Sidereal Time
-    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.mjd());
+    const Angle greenwichSiderealTime = julian_date_to_siderial_time(date.jd());
 
     // Calculate ECEC-to-Eci transformation matrix
     /* NOTE: This transformation only accounts for Earth rotation, not nutation or procession, so it

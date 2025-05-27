@@ -12,7 +12,7 @@
 namespace astro {
 
 // General conversions
-JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format = "%Y-%m-%d %H:%M:%S%z %Z");
+JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format = "%Y-%m-%d %H:%M:%S");
 Angle julian_date_to_siderial_time(const JulianDate& date);
 
 class Date {
@@ -23,19 +23,22 @@ class Date {
   public:
     // Build from string
     Date() = default;
-    Date(const std::string& epoch, const std::string& format = "%Y-%m-%d %H:%M:%S%z %Z") :
-        julianDate(epoch_to_julian_date(epoch, format))
+    Date(const std::string& epoch, const std::string& format = "%Y-%m-%d %H:%M:%S") :
+        _julianDate(epoch_to_julian_date(epoch, format))
     {
     }
 
     // Build from JulianDate
     Date(const JulianDate& jdate) :
-        julianDate(jdate)
+        _julianDate(jdate)
     {
     }
 
     // Destructor
     ~Date() = default;
+
+    // Static dispatch
+    static const Date now() noexcept;
 
     // Helper operators
     Date operator+(const Time& time) const;
@@ -44,8 +47,15 @@ class Date {
     Date& operator-=(const Time& time);
     Time operator-(const Date& other) const;
 
+    // Comparitors
+    bool operator<(const Date& other) const;
+    bool operator>(const Date& other) const;
+    bool operator==(const Date& other) const;
+
     // Clock conversions
-    auto mjd() const { return julianDate; }
+    auto jd() const { return _julianDate; }
+    auto jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
+    auto mjd() const { return _julianDate - MJD0; }
     std::chrono::time_point<std::chrono::utc_clock> utc() const { return in_clock<std::chrono::utc_clock>(); }
     std::chrono::time_point<std::chrono::gps_clock> gps() const { return in_clock<std::chrono::gps_clock>(); }
     std::chrono::time_point<std::chrono::tai_clock> tai() const { return in_clock<std::chrono::tai_clock>(); }
@@ -62,14 +72,14 @@ class Date {
     std::chrono::time_point<Clock_T> in_clock() const
     {
         using namespace std::chrono;
-        return round<milliseconds>(clock_cast<Clock_T>(julianDate));
+        return round<milliseconds>(clock_cast<Clock_T>(_julianDate));
     }
 
     // Sidereal time
     Angle gmst() const;
 
   private:
-    JulianDate julianDate;
+    JulianDate _julianDate;
 };
 
 } // namespace astro
@@ -82,7 +92,7 @@ struct mp_units::quantity_point_like_traits<astro::Date> {
     static constexpr bool explicit_import = false;
     static constexpr bool explicit_export = true;
     using rep                             = long double;
-    static constexpr rep to_numerical_value(astro::Date date) { return date.mjd().time_since_epoch().count(); }
+    static constexpr rep to_numerical_value(astro::Date date) { return date.jd().time_since_epoch().count(); }
     static constexpr astro::Date from_numerical_value(rep v)
     {
         using namespace astro;

@@ -101,7 +101,7 @@ conan-build-debug: conan-setup-debug
 
 .PHONY: conan-debug
 conan-debug: conan-build-debug
-	cmake --build --preset conan-gcc-13-23-debug --target install
+	sudo cmake --build --preset conan-gcc-13-23-debug --target install
 	
 	
 .PHONY: conan-setup-release
@@ -114,7 +114,7 @@ conan-build-release: conan-setup-release
 
 .PHONY: conan-release
 conan-release: conan-build-release
-	cmake --build --preset conan-gcc-13-23-release --target install
+	sudo cmake --build --preset conan-gcc-13-23-release --target install
 	
 	
 .PHONY: conan-setup-relwithdebinfo
@@ -127,4 +127,4 @@ conan-build-relwithdebinfo: conan-setup-relwithdebinfo
 
 .PHONY: conan-relwithdebinfo
 conan-relwithdebinfo: conan-build-relwithdebinfo
-	cmake --build --preset conan-gcc-13-23-relwithdebinfo --target install
+	sudo cmake --build --preset conan-gcc-13-23-relwithdebinfo --target install
