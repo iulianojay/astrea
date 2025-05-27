@@ -6,8 +6,8 @@
 
 #include <astro/time/Date.hpp>
 
-#include <snapshot/http-queries/EthzClient.hpp>
-#include <snapshot/http-queries/SpaceTrackClient.hpp>
+#include <snapshot/http-queries/ethz/EthzClient.hpp>
+#include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
 
 using namespace snapshot;
 

@@ -17,8 +17,9 @@ endif()
 # Objects
 set(SNAPSHOT_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(SNAPSHOT_SOURCES
-    ${SNAPSHOT_BASE}/http-queries/EthzClient.cpp
-    ${SNAPSHOT_BASE}/http-queries/SpaceTrackClient.cpp
+    ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.cpp
+    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.cpp
+    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.cpp
     ${SNAPSHOT_BASE}/utilities/string_util.cpp
 )
 
@@ -38,8 +39,10 @@ FetchContent_MakeAvailable(sqlite_orm)
 # Headers
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(SNAPSHOT_HEADERS
-    ${SNAPSHOT_BASE}/http-queries/EthzClient.hpp
-    ${SNAPSHOT_BASE}/http-queries/SpaceTrackClient.hpp
+    ${SNAPSHOT_BASE}/data/database.hpp
+    ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.hpp
+    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
+    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.hpp
     ${SNAPSHOT_BASE}/utilities/string_util.hpp
 
     ${EXTERN_BASE}/nlohmann/json.hpp

@@ -1,4 +1,4 @@
-#include <snapshot/http-queries/EthzClient.hpp>
+#include <snapshot/http-queries/ethz/EthzClient.hpp>
 
 #include <iostream>
 #include <stdexcept>

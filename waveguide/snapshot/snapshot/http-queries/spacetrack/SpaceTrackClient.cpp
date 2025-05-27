@@ -1,4 +1,4 @@
-#include <snapshot/http-queries/SpaceTrackClient.hpp>
+#include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
 
 #include <chrono>
 #include <iostream>
