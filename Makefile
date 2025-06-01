@@ -2,7 +2,7 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := $(abspath $(shell pwd))
-source_path := newtool
+source_path := waveguide
 examples_path := examples
 arch := x86_64
 os := Linux
@@ -14,7 +14,8 @@ cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
 
-build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
+# build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
+build_path := $(abspath $(shell pwd)/build/gcc-13-23/$(build_type))
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
@@ -48,13 +49,13 @@ examples: install
 	
 .PHONY: tests
 tests: install
-	$(MAKE) -C $(build_path)/newtool/math/$(tests_path) install 
-	$(MAKE) -C $(build_path)/newtool/astro/$(tests_path) install 
+	$(MAKE) -C $(build_path)/waveguide/math/$(tests_path) install 
+	$(MAKE) -C $(build_path)/waveguide/astro/$(tests_path) install 
 	
 .PHONY: run_tests
-run_tests: tests
-	cd $(build_path)/newtool/math/tests && ctest
-	cd $(build_path)/newtool/astro/tests && ctest
+run_tests: conan-debug
+	cd $(build_path)/waveguide/math/tests && ctest
+	cd $(build_path)/waveguide/astro/tests && ctest
 
 .PHONY: debug
 debug: 

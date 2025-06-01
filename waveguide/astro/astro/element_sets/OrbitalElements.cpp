@@ -117,8 +117,6 @@ OrbitalElements
 const OrbitalElements::ElementVariant& OrbitalElements::extract() const { return _elements; }
 OrbitalElements::ElementVariant& OrbitalElements::extract() { return _elements; }
 
-constexpr std::size_t OrbitalElements::index() const { return _elements.index(); }
-
 
 void OrbitalElements::same_underlying_type(const OrbitalElements& other) const
 {

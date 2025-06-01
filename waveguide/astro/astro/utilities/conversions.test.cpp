@@ -3,51 +3,82 @@
 #include <random>
 #include <vector>
 
+#include <mp-units/math.h>
+#include <mp-units/random.h>
+
 #include <astro/astro.hpp>
 
 using namespace astro;
 
 class ConversionTest : public testing::Test {
-  protected:
+  public:
     // Test Options
-    const int nConversion = 1e3;
-    const int nElements   = 1e2;
-    const double REL_TOL  = 1e-6;
+    const int nConversion  = 1e3;
+    const int nElements    = 1e2;
+    const Unitless REL_TOL = 1e-6 * mp_units::one;
 
     ConversionTest() :
         rng(rd()),
-        semimajorDist(6380.0, 40000.0),
-        eccDist(0.0, 0.99),
-        incDist(0.0, M_PI),
-        raanDist(0.0, 2 * M_PI),
-        wDist(0.0, 2 * M_PI),
-        thetaDist(0.0, 2 * M_PI)
+        semimajorDist(6380.0 * detail::distance_unit, 40000.0 * detail::distance_unit),
+        eccDist(0.0 * detail::unitless, 0.99 * detail::unitless),
+        incDist(0.0 * detail::angle_unit, PI),
+        raanDist(0.0 * detail::angle_unit, TWO_PI),
+        wDist(0.0 * detail::angle_unit, TWO_PI),
+        thetaDist(0.0 * detail::angle_unit, TWO_PI)
     {
     }
+
+    void SetUp() override
+    {
+        const Distance semimajor = 10000.0 * detail::distance_unit;
+        const Unitless zero      = 0.0 * detail::unitless;
+        const Angle zeroAng      = 0.0 * detail::angle_unit;
+
+        const GravParam mu = sys.get_center()->get_mu();
+        const Velocity V   = sqrt(mu / semimajor);
+
+        _keplExp =
+            Keplerian(semimajor, 0.0 * detail::unitless, 0.0 * detail::angle_unit, 0.0 * detail::angle_unit, 0.0 * detail::angle_unit, 0.0 * detail::angle_unit);
+        _cartExp = Cartesian(
+            semimajor,
+            0.0 * detail::distance_unit,
+            0.0 * detail::distance_unit,
+            V,
+            0.0 * detail::distance_unit / detail::time_unit,
+            0.0 * detail::distance_unit / detail::time_unit
+        );
+    }
+
+    // Expected values
+    OrbitalElements _cartExp;
+    OrbitalElements _keplExp;
 
     // Setup
     AstrodynamicsSystem sys;
 
     std::random_device rd;
     std::default_random_engine rng;
-    std::uniform_real_distribution<double> semimajorDist;
-    std::uniform_real_distribution<double> eccDist;
-    std::uniform_real_distribution<double> incDist;
-    std::uniform_real_distribution<double> raanDist;
-    std::uniform_real_distribution<double> wDist;
-    std::uniform_real_distribution<double> thetaDist;
+    mp_units::uniform_real_distribution<Distance> semimajorDist;
+    mp_units::uniform_real_distribution<Unitless> eccDist;
+    mp_units::uniform_real_distribution<Angle> incDist;
+    mp_units::uniform_real_distribution<Angle> raanDist;
+    mp_units::uniform_real_distribution<Angle> wDist;
+    mp_units::uniform_real_distribution<Angle> thetaDist;
 
     OrbitalElements random_elements()
     {
-        ElementArray elements{ semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng) };
-        return OrbitalElements(elements, ElementSet::KEPLERIAN);
+        Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
+        return OrbitalElements(elements);
     }
 
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second)
     {
-        if (first.get_set() != second.get_set()) { return false; }
+        if (first.index() != second.index()) { return false; }
+
+        auto firstUnitless  = first.to_vector();
+        auto secondUnitless = second.to_vector();
         for (int ii = 0; ii < 6; ii++) {
-            if (fabs((first[ii] - second[ii]) / first[ii]) > REL_TOL) { return false; }
+            if (abs((firstUnitless[ii] - secondUnitless[ii]) / firstUnitless[ii]) > REL_TOL) { return false; }
         }
         return true;
     }
@@ -82,10 +113,10 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert(ElementSet::CARTESIAN, sys);
+            elements.convert<Cartesian>(sys);
 
             // Convert back
-            elements.convert(ElementSet::KEPLERIAN, sys);
+            elements.convert<Keplerian>(sys);
 
             // Compare
             assert_nearly_equal(elements, originalElements);
@@ -97,30 +128,15 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
-
-    const double semimajor = 10000.0;
-    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
-    elements.convert(ElementSet::CARTESIAN, sys);
-
-    const double mu = sys.get_center()->get_mu();
-    const double V  = std::sqrt(mu / elements[0]);
-    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
-
-    assert_nearly_equal(elements, expectedElements);
+    OrbitalElements elements = _keplExp;
+    elements.convert<Cartesian>(sys);
+    assert_nearly_equal(elements, _cartExp);
 }
 
 
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
-
-    const double semimajor = 10000.0;
-    const double mu        = sys.get_center()->get_mu();
-    const double V         = std::sqrt(mu / semimajor);
-
-    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
-    elements.convert(ElementSet::KEPLERIAN, sys);
-
-    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
-
-    assert_nearly_equal(elements, expectedElements);
+    OrbitalElements elements = _cartExp;
+    elements.convert<Keplerian>(sys);
+    assert_nearly_equal(elements, _keplExp);
 }

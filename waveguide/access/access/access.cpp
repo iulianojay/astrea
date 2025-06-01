@@ -23,8 +23,8 @@ void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const
 {
 
     // Get all sats
-    auto allSats            = constel.get_all_spacecraft();
-    const std::size_t nSats = allSats.size();
+    std::vector<Viewer> allSats = constel.get_all_spacecraft();
+    const std::size_t nSats     = allSats.size();
 
     // Create time array
     std::vector<Time> times =
