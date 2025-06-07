@@ -43,8 +43,8 @@ class ConversionTest : public testing::Test {
             semimajor,
             0.0 * detail::distance_unit,
             0.0 * detail::distance_unit,
-            V,
             0.0 * detail::distance_unit / detail::time_unit,
+            V,
             0.0 * detail::distance_unit / detail::time_unit
         );
     }
@@ -78,7 +78,15 @@ class ConversionTest : public testing::Test {
         auto firstUnitless  = first.to_vector();
         auto secondUnitless = second.to_vector();
         for (int ii = 0; ii < 6; ii++) {
-            if (abs((firstUnitless[ii] - secondUnitless[ii]) / firstUnitless[ii]) > REL_TOL) { return false; }
+            const auto a = firstUnitless[ii];
+            const auto b = secondUnitless[ii];
+            if (a != 0.0 * detail::unitless && abs((a - b) / a) > REL_TOL) { return false; }
+            else if (b != 0.0 * detail::unitless && abs((a - b) / b) > REL_TOL) {
+                return false;
+            }
+            else if (abs((a - b)) > REL_TOL) {
+                return false;
+            }
         }
         return true;
     }

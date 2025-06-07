@@ -20,6 +20,12 @@ using si::unit_symbols::s;
 
 namespace astro {
 
+Keplerian Keplerian::LEO() { return Keplerian(800.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+Keplerian Keplerian::LMEO() { return Keplerian(10000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+Keplerian Keplerian::GPS() { return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+Keplerian Keplerian::HMEO() { return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+Keplerian Keplerian::GEO() { return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+
 Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 {
 

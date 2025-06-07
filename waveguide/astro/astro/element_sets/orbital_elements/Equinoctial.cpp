@@ -4,6 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
@@ -18,6 +19,11 @@ using si::unit_symbols::s;
 
 namespace astro {
 
+Equinoctial Equinoctial::LEO() { return Equinoctial(Keplerian::LEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::LMEO() { return Equinoctial(Keplerian::LMEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::GPS() { return Equinoctial(Keplerian::GPS(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::HMEO() { return Equinoctial(Keplerian::HMEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::GEO() { return Equinoctial(Keplerian::GEO(), AstrodynamicsSystem()); }
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {

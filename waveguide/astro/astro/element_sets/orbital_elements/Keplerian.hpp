@@ -50,6 +50,13 @@ class Keplerian {
     Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
     Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
+    // Defaults
+    static Keplerian LEO();
+    static Keplerian LMEO();
+    static Keplerian GPS();
+    static Keplerian HMEO();
+    static Keplerian GEO();
+
     // Copy constructor
     Keplerian(const Keplerian&);
 

@@ -12,9 +12,9 @@ class OrbitalElementsTest : public testing::Test {
 
     void SetUp() override
     {
-        _cartElements = Cartesian();
-        _keplElements = Keplerian();
-        _equiElements = Equinoctial();
+        _cartElements = Cartesian::LEO();
+        _keplElements = Keplerian::LEO();
+        _equiElements = Equinoctial::LEO();
     }
 
     AstrodynamicsSystem _sys;

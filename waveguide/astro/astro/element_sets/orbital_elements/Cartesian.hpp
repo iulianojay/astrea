@@ -65,6 +65,13 @@ class Cartesian {
     Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
+    // Defaults
+    static Cartesian LEO();
+    static Cartesian LMEO();
+    static Cartesian GPS();
+    static Cartesian HMEO();
+    static Cartesian GEO();
+
     // Copy constructor
     Cartesian(const Cartesian&);
 
@@ -129,9 +136,6 @@ class Cartesian {
 };
 
 class CartesianPartial {
-
-    using Acceleration =
-        mp_units::quantity<mp_units::si::unit_symbols::km / (mp_units::si::unit_symbols::s * mp_units::si::unit_symbols::s)>;
 
   public:
     CartesianPartial() = default;
