@@ -93,5 +93,7 @@ Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
 void ecef_to_lla(const RadiusVector& rEcef, const Distance& equitorialRadius, const Distance& polarRadius, Angle& lat, Angle& lon, Distance& alt);
 void lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& equitorialRadius, const Distance& polarRadius, RadiusVector& rEcef);
 
+Angle sanitize_angle(const Angle& ang);
+
 } // namespace conversions
 } // namespace astro

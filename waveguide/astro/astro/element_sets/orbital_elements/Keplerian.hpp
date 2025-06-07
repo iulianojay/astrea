@@ -114,6 +114,8 @@ class Keplerian {
     Angle _rightAscension;
     Angle _argPerigee;
     Angle _trueAnomaly;
+
+    void sanitize_angles();
 };
 
 class KeplerianPartial {

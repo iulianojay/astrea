@@ -117,7 +117,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Radius
     _x = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
     _y = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
-    _z = 2.0 * rOverSSq * (h * sinL * -k * cosL);
+    _z = 2.0 * rOverSSq * (h * sinL - k * cosL);
 
     // Velocity
     _vx = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));

@@ -8,6 +8,7 @@
 #include <astro/element_sets/orbital_elements/Equinoctial.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/utilities/conversions.hpp>
 #include <math/interpolation.hpp>
 
 
@@ -157,6 +158,8 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
     }
 
     if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
+
+    sanitize_angles();
 }
 
 Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys)
@@ -188,6 +191,8 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
 
     // Anomaly
     _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
+
+    sanitize_angles();
 }
 
 // Copy constructor
@@ -347,6 +352,14 @@ std::vector<Unitless> Keplerian::to_vector() const
     return { _semimajor / detail::distance_unit, _eccentricity,
              _inclination / detail::angle_unit,  _rightAscension / detail::angle_unit,
              _argPerigee / detail::angle_unit,   _trueAnomaly / detail::angle_unit };
+}
+
+void Keplerian::sanitize_angles()
+{
+    _inclination    = conversions::sanitize_angle(_inclination);
+    _rightAscension = conversions::sanitize_angle(_rightAscension);
+    _argPerigee     = conversions::sanitize_angle(_argPerigee);
+    _trueAnomaly    = conversions::sanitize_angle(_trueAnomaly);
 }
 
 
