@@ -14,9 +14,11 @@ TEST(InterpolationTests, Interpolation)
 {
     std::vector<double> x = { 1.0, 2.0 };
     std::vector<double> y = { 1.0, 2.0 };
-    double sx             = 1.5;
-    double sy             = math::interpolate(x, y, sx);
-    ASSERT_EQ(sy, 1.5);
+    ASSERT_EQ(math::interpolate(x, y, 1.0), 1.0);
+    ASSERT_EQ(math::interpolate(x, y, 1.5), 1.5);
+    ASSERT_EQ(math::interpolate(x, y, 2.0), 2.0);
+    ASSERT_ANY_THROW(math::interpolate(x, y, 0.0));
+    ASSERT_ANY_THROW(math::interpolate(x, y, 3.0));
 }
 
 // TEST(InterpolationTests, Spline)

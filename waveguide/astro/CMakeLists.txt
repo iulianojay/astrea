@@ -57,7 +57,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/constants/constants.hpp
+    ${ASTRO_BASE}/units/constants.hpp
     
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
@@ -166,4 +166,4 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests EXCLUDE_FROM_ALL)
+add_subdirectory(tests)

@@ -21,6 +21,12 @@ using si::unit_symbols::s;
 
 namespace astro {
 
+Cartesian Cartesian::LEO() { return Cartesian(Keplerian::LEO(), AstrodynamicsSystem()); }
+Cartesian Cartesian::LMEO() { return Cartesian(Keplerian::LMEO(), AstrodynamicsSystem()); }
+Cartesian Cartesian::GPS() { return Cartesian(Keplerian::GPS(), AstrodynamicsSystem()); }
+Cartesian Cartesian::HMEO() { return Cartesian(Keplerian::HMEO(), AstrodynamicsSystem()); }
+Cartesian Cartesian::GEO() { return Cartesian(Keplerian::GEO(), AstrodynamicsSystem()); }
+
 Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
 
@@ -111,7 +117,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Radius
     _x = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
     _y = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
-    _z = 2.0 * rOverSSq * (h * sinL * -k * cosL);
+    _z = 2.0 * rOverSSq * (h * sinL - k * cosL);
 
     // Velocity
     _vx = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));

@@ -172,8 +172,8 @@ const std::vector<Spacecraft_T> Constellation<Spacecraft_T>::get_all_spacecraft(
 {
     std::vector<Spacecraft_T> allSpacecraft;
     for (auto& shell : shells) {
-        const auto shellSpacecraft_T = shell.get_all_spacecraft();
-        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft_T.begin(), shellSpacecraft_T.end());
+        const auto shellSpacecraft = shell.get_all_spacecraft();
+        allSpacecraft.insert(allSpacecraft.end(), shellSpacecraft.begin(), shellSpacecraft.end());
     }
     return allSpacecraft;
 }

@@ -119,6 +119,7 @@ concept IsOrbitalElements = requires(T)
     std::is_copy_constructible<T>::value;
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
+    requires !std::is_same<T, OrbitalElements>::value;
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
     requires HasGetSetId<T>;
     requires HasToVector<T>;
@@ -154,9 +155,10 @@ class OrbitalElements {
     }
 
     template <IsOrbitalElements T>
-    void convert(const AstrodynamicsSystem& sys)
+    OrbitalElements& convert(const AstrodynamicsSystem& sys)
     {
         _elements = in<T>(sys);
+        return *this;
     }
     template <IsOrbitalElements T>
     OrbitalElements convert(const AstrodynamicsSystem& sys) const
@@ -190,7 +192,7 @@ class OrbitalElements {
     const ElementVariant& extract() const;
     ElementVariant& extract();
 
-    constexpr std::size_t index() const;
+    constexpr std::size_t index() const { return _elements.index(); }
 
   private:
     ElementVariant _elements;

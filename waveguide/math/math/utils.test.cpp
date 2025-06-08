@@ -102,7 +102,3 @@ TEST(Math, InvTan3Quadrant)
     ASSERT_NEAR(math::atan3(0.0, -1.0), M_PI, 1e-6);
     ASSERT_NEAR(math::atan3(-1.0, 0.0), 3 * M_PI_2, 1e-6);
 }
-
-
-// template <typename T>
-// T atan3(T a, T b)

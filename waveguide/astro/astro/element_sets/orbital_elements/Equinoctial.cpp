@@ -4,9 +4,12 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <math/interpolation.hpp>
+
+#include <astro/element_sets/orbital_elements/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
-#include <math/interpolation.hpp>
+#include <astro/utilities/conversions.hpp>
 
 
 using namespace mp_units;
@@ -18,6 +21,11 @@ using si::unit_symbols::s;
 
 namespace astro {
 
+Equinoctial Equinoctial::LEO() { return Equinoctial(Keplerian::LEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::LMEO() { return Equinoctial(Keplerian::LMEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::GPS() { return Equinoctial(Keplerian::GPS(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::HMEO() { return Equinoctial(Keplerian::HMEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::GEO() { return Equinoctial(Keplerian::GEO(), AstrodynamicsSystem()); }
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
@@ -40,7 +48,7 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
     _k = tan(inc / 2.0) * sin(raan);
 
     // True longitude
-    _trueLongitude = raan + argPer + theta;
+    _trueLongitude = conversions::sanitize_angle(raan + argPer + theta);
 }
 
 Equinoctial::Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys) :

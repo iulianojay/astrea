@@ -1,10 +1,9 @@
 #include <astro/utilities/conversions.hpp>
 
-// mp-units
-
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <math/utils.hpp>
 
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/units/constants.hpp>
 
 using namespace mp_units;
 using namespace mp_units::angular;
@@ -76,6 +75,16 @@ void conversions::lla_to_ecef(
     rEcef[0] = (N + altitude) * cosLat * cos(longitude);
     rEcef[1] = (N + altitude) * cosLat * sin(longitude);
     rEcef[2] = ((1 - f) * (1 - f) * N + altitude) * sinLat;
+}
+
+Angle conversions::sanitize_angle(const Angle& angle)
+{
+    Angle ang = angle;
+    while (ang < 0.0 * detail::angle_unit) {
+        ang += TWO_PI;
+    }
+    ang = fmod(ang, TWO_PI);
+    return ang;
 }
 
 } // namespace astro
