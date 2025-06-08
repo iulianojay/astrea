@@ -5,8 +5,8 @@
 
 #include <math/utils.hpp>
 
-#include <astro/constants/constants.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/units/constants.hpp>
 
 
 template <>
