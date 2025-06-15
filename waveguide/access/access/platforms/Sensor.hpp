@@ -12,28 +12,29 @@ namespace accesslib {
 class Sensor {
 
   public:
+    Sensor() = default;
     Sensor(FieldOfView* fov) :
-        fov(fov)
+        _fov(fov)
     {
     }
     ~Sensor() = default;
 
-    const std::size_t& get_id() { return id; }
+    const std::size_t& get_id() { return _id; }
 
     virtual const bool contains(const astro::RadiusVector& sensor2target) const
     {
-        return fov->contains(boresight, sensor2target);
+        return _fov->contains(_boresight, sensor2target);
     }
 
-    void add_access(const std::size_t& receiverId, const RiseSetArray& access) { accesses[id, receiverId] = access; }
+    void add_access(const std::size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
 
   private:
-    std::size_t id;
-    int parentId;
-    astro::RadiusVector attachmentPoint;
-    astro::RadiusVector boresight;
-    FieldOfView* fov;
-    AccessArray accesses;
+    std::size_t _id;
+    int _parentId;
+    astro::RadiusVector _attachmentPoint;
+    astro::RadiusVector _boresight;
+    FieldOfView* _fov;
+    AccessArray _accesses;
 
     void generate_id_hash();
 };

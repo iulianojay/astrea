@@ -25,10 +25,27 @@ using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::W;
+
 using namespace astro;
 using namespace accesslib;
 
+void access_test();
+void link_budget_test();
+
 int main()
+{
+    // access_test();
+    link_budget_test();
+
+    return 1;
+}
+
+void link_budget_test() {}
+
+
+void access_test()
 {
 
     // Setup system
@@ -79,6 +96,4 @@ int main()
     diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
     std::cout << "Access Analysis Time: " << diff.count() / 1e9 << " (s)" << std::endl;
-
-    return 1;
 }
