@@ -16,8 +16,6 @@
 #include <iomanip>
 #include <iostream>
 
-#include <mp-units/format.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
 #include <mp-units/systems/isq.h>

@@ -10,8 +10,6 @@
 // #include <parquet/arrow/reader.h>
 // #include <parquet/arrow/writer.h>
 
-#include <mp-units/format.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
 #include <mp-units/systems/isq.h>
