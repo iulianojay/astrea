@@ -4,13 +4,14 @@ cmake_minimum_required(VERSION 3.28.3)
 project(
     waveguide 
     VERSION 0.0.1 
-    DESCRIPTION "New Tool Back-End Simulation Library" 
+    DESCRIPTION "Waveguide: Nebula Back-End Simulation Library" 
     LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_INSTALL_MESSAGE LAZY)
 
 # add_library(waveguide_warnings INTERFACE)
 # add_library(waveguide_options INTERFACE)
