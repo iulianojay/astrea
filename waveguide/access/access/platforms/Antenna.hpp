@@ -47,55 +47,18 @@ class Antenna : public Sensor {
     {
     }
 
-    Power recieved_power(const Antenna& reciever, const astro::Distance& range, const astro::Angle& offsetAngle) const
-    {
-        return _eirp * reciever.gain() * free_space_loss(range) * system_loss(reciever, offsetAngle);
-    }
+    Power recieved_power(const Antenna& reciever, const astro::Distance& range, const astro::Angle& offsetAngle) const;
+    Gain free_space_loss(const astro::Distance& range) const;
+    Gain system_loss(const Antenna& reciever, const astro::Angle& offsetAngle) const;
+    Gain mispointing_loss(const Antenna& reciever, const astro::Angle& offsetAngle) const;
+    Gain polarization_loss(const Antenna& reciever) const;
+    Gain atmospheric_loss() const;
 
-    Gain free_space_loss(const astro::Distance& range) const
-    {
-        static const auto fixedLoss = mp_units::pow<2>(1.0 / (4.0 * std::numbers::pi) * mp_units::one);
-        return fixedLoss * mp_units::pow<2>(_wavelength / range);
-    }
+    Gain gain() const;
+    Gain receiver_loss() const;
+    Gain transmit_loss() const;
 
-    Gain system_loss(const Antenna& reciever, const astro::Angle& offsetAngle) const
-    {
-        return transmit_loss() * mispointing_loss(reciever, offsetAngle) * atmospheric_loss() * reciever.receiver_loss();
-    }
-
-    virtual Gain mispointing_loss(const Antenna& reciever, const astro::Angle& offsetAngle) const
-    {
-        // Including polarization losses here
-        Gain mispointingLoss;
-        switch (_pattern) {
-            case (PatternApproximation::BESSEL): {
-                mispointingLoss = bessel_loss_approximation(offsetAngle);
-                break;
-            }
-            case (PatternApproximation::SINC_SQUARED): {
-                mispointingLoss = sinc_loss_approximation(offsetAngle);
-                break;
-            }
-            default: throw std::runtime_error("Unrecognized pattern approximation for mispointing losses.");
-        }
-        return mispointingLoss * polarization_loss(reciever);
-    }
-
-    virtual Gain polarization_loss(const Antenna& reciever) const
-    {
-        return 1.0; // Ideal, but generally considered true as they are typically small or zero (exactly zero for circular polarization)
-    }
-
-    virtual Gain atmospheric_loss() const
-    {
-        return 1.0; // Ideal, definitely not true
-    }
-
-    Gain gain() const { return _gain; }
-    Gain receiver_loss() const { return _receiverLoss; }
-    virtual Gain transmit_loss() const { return _transmitLoss; }
-
-    void set_pattern_approximation(const PatternApproximation& pattern) { _pattern = pattern; }
+    void set_pattern_approximation(const PatternApproximation& pattern);
 
   private:
     astro::Length _diameter;     // reflector diameter
@@ -110,24 +73,9 @@ class Antenna : public Sensor {
     Gain _receiverLoss;
     PatternApproximation _pattern;
 
-    Gain bessel_loss_approximation(const astro::Angle& offsetAngle) const
-    {
-        const auto u = mispointing_loss_approximation_argument(offsetAngle);
-        return 64.0 * mp_units::pow<2>(math::cyl_bessel_j(2.0, u) / mp_units::pow<2>(u));
-    }
-
-    Gain sinc_loss_approximation(const astro::Angle& offsetAngle) const
-    {
-        const auto u     = mispointing_loss_approximation_argument(offsetAngle);
-        const auto sincU = math::sinc(0.690 * u * mp_units::isq_angle::cotes_angle);
-        return sincU * sincU;
-    }
-
-    Gain mispointing_loss_approximation_argument(const astro::Angle& offsetAngle) const
-    {
-        static const auto ratio = std::numbers::pi * _diameter / _wavelength;
-        return ratio * mp_units::angular::sin(offsetAngle);
-    }
+    Gain bessel_loss_approximation(const astro::Angle& offsetAngle) const;
+    Gain sinc_loss_approximation(const astro::Angle& offsetAngle) const;
+    Gain mispointing_loss_approximation_argument(const astro::Angle& offsetAngle) const;
 };
 
 } // namespace accesslib
