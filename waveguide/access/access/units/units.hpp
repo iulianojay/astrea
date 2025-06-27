@@ -10,8 +10,9 @@ namespace accesslib {
 
 namespace detail {
 
-inline constexpr auto power_unit     = mp_units::si::unit_symbols::W;
-inline constexpr auto frequency_unit = mp_units::si::unit_symbols::Hz;
+inline constexpr auto power_unit       = mp_units::si::unit_symbols::W;
+inline constexpr auto frequency_unit   = mp_units::si::unit_symbols::Hz;
+inline constexpr auto temperature_unit = mp_units::si::unit_symbols::K;
 
 } // namespace detail
 

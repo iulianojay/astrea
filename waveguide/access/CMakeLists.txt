@@ -18,7 +18,7 @@ endif()
 # Objects
 set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ACCESS_SOURCES
-    ${ACCESS_BASE}/access.cpp
+    ${ACCESS_BASE}/analysis/access_analysis.cpp
 
     ${ACCESS_BASE}/platforms/Antenna.cpp
     ${ACCESS_BASE}/platforms/Sensor.cpp
@@ -32,6 +32,8 @@ set(ACCESS_SOURCES
 # Headers
 set(ACCESS_HEADERS
     ${ACCESS_BASE}/access.hpp
+
+    ${ACCESS_BASE}/analysis/access_analysis.hpp
 
     ${ACCESS_BASE}/platforms/Antenna.hpp
     ${ACCESS_BASE}/platforms/Sensor.hpp

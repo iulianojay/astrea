@@ -11,5 +11,6 @@
 namespace accesslib {
 
 constexpr astro::Velocity speed_of_light_in_vacuum = 1.0 * mp_units::si::si2019::speed_of_light_in_vacuum;
+constexpr auto boltzmann_constant                  = 1.0 * mp_units::si::si2019::boltzmann_constant;
 
 } // namespace accesslib
