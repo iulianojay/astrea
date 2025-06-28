@@ -44,16 +44,7 @@ Date& Date::operator-=(const Time& time)
     return *this;
 }
 
-Time Date::operator-(const Date& other) const
-{
-    const auto diff = other._julianDate - _julianDate;
-    return Time(diff);
-}
-
-// Comparitors
-bool Date::operator<(const Date& other) const { return _julianDate < other._julianDate; }
-bool Date::operator>(const Date& other) const { return _julianDate > other._julianDate; }
-bool Date::operator==(const Date& other) const { return _julianDate == other._julianDate; }
+Time Date::operator-(const Date& other) const { return _julianDate - other._julianDate; }
 
 // Conversions
 std::string Date::epoch() const
