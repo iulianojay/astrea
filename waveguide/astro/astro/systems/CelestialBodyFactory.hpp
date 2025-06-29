@@ -20,7 +20,8 @@ class CelestialBodyFactory {
     const CelestialBodyUniquePtr& get(const std::string& name) const;
     const CelestialBodyUniquePtr& get_or_create(const std::string& name);
 
-    const std::size_t number_of_bodies() const { return _bodies.size(); }
+    const std::size_t size() const { return _bodies.size(); }
+    void clear() { return _bodies.clear(); }
     void propagate_bodies(const Date& epoch, const Time& endTime);
 
     const std::string& get_root() const { return _root; }

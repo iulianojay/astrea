@@ -12,6 +12,7 @@ const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& na
 {
     const auto file = std::filesystem::absolute(ROOT / _buildFiles.at(name)).lexically_normal();
     if (_bodies.count(name) == 0) { _bodies[name] = std::make_unique<CelestialBody>(file); }
+    find_root();
     return get(name);
 }
 
@@ -30,10 +31,6 @@ const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const std::str
 
 void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTime)
 {
-
-    // Find root object for reference
-    find_root();
-
     // Propagate everything except the Sun
     for (auto& [name, body] : _bodies) {
         if (name != "Sun") {
