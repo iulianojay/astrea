@@ -57,6 +57,17 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
     const quantity R = sqrt(x * x + y * y + z * z);
     const quantity V = sqrt(vx * vx + vy * vy + vz * vz);
 
+    // Catch default/nonsense case
+    if (R == 0.0 * km) {
+        _semimajor      = 0.0 * km;
+        _eccentricity   = 0.0 * one;
+        _inclination    = 0.0 * rad;
+        _rightAscension = 0.0 * rad;
+        _argPerigee     = 0.0 * rad;
+        _trueAnomaly    = 0.0 * rad;
+        return;
+    }
+
     // Specific Relative Angular Momentum
     const quantity hx = y * vz - z * vy; // h = cross(r, v)
     const quantity hy = z * vx - x * vz;
