@@ -33,7 +33,6 @@ class AstrodynamicsSystem {
     void propagate_bodies(const Time& propTime);
     // RadiusVector get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
-
     using iterator       = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
     using const_iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::const_iterator;
     auto begin() const { return bodyFactory.begin(); }

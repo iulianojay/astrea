@@ -37,7 +37,7 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
     }
     else {
         for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-            centerToRoot[ii].elements = OrbitalElements();
+            centerToRoot[ii].elements = OrbitalElements(Keplerian());
         }
     }
 
@@ -46,17 +46,24 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
         std::vector<State> centerToSun = centerToParent;
         auto parent                    = center->get_parent();
         while (parent != "None") {
-            const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
-            auto parentToGrandParent                 = parentBody->get_states();
-            for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-                centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
+            const CelestialBodyUniquePtr& parentBody = bodyFactory.get_or_create(parent);
+            if (parent == "Sun") {
+                for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
+                    centerToSun[ii].elements = centerToSun[ii].elements;
+                }
+            }
+            else {
+                auto parentToGrandParent = parentBody->get_states();
+                for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
+                    centerToSun[ii].elements = centerToSun[ii].elements + parentToGrandParent[ii].elements;
+                }
             }
             parent = parentBody->get_parent();
         }
     }
     else {
-        for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-            centerToSun[ii].elements = OrbitalElements();
+        for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
+            centerToSun[ii].elements = OrbitalElements(Keplerian());
         }
     }
 
@@ -70,7 +77,7 @@ void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
         // If parent is not root, back track to root
         auto parent  = ithBody->get_parent();
         auto& states = statesToCenter.back();
-        while (parent != root) {
+        while (parent != root && parent != "None") {
             const CelestialBodyUniquePtr& parentBody = bodyFactory.get(parent);
             auto parentToGrandParent                 = parentBody->get_states();
             for (std::size_t ii = 0; ii < states.size(); ii++) {

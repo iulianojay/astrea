@@ -10,21 +10,21 @@ static const std::filesystem::path ROOT = "/home/jay/projects/waveguide";
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name)
 {
-    const auto file = std::filesystem::absolute(ROOT / buildFiles.at(name)).lexically_normal();
-    if (bodies.count(name) == 0) { bodies[name] = std::make_unique<CelestialBody>(file); }
+    const auto file = std::filesystem::absolute(ROOT / _buildFiles.at(name)).lexically_normal();
+    if (_bodies.count(name) == 0) { _bodies[name] = std::make_unique<CelestialBody>(file); }
     return get(name);
 }
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::get(const std::string& name) const
 {
-    if (bodies.count(name) > 0) { return bodies.at(name); }
-    throw std::out_of_range("Input gravitational body," + name + ", not found.");
+    if (_bodies.count(name) > 0) { return _bodies.at(name); }
+    throw std::out_of_range("Input gravitational body, " + name + ", not found.");
 }
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const std::string& name)
 {
-    if (bodies.count(name) == 0) { create(name); }
-    return bodies.at(name);
+    if (_bodies.count(name) == 0) { create(name); }
+    return _bodies.at(name);
 }
 
 
@@ -35,11 +35,11 @@ void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTi
     find_root();
 
     // Propagate everything except the Sun
-    for (auto& [name, body] : bodies) {
+    for (auto& [name, body] : _bodies) {
         if (name != "Sun") {
             // Get parent mu
             const std::string parent = body->get_parent();
-            const auto parentMu      = get(parent)->get_mu();
+            const auto parentMu      = get_or_create(parent)->get_mu();
 
             // Propagate
             body->propagate(epoch, endTime, parentMu);
@@ -50,36 +50,35 @@ void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTi
 
 void CelestialBodyFactory::find_root()
 {
-
     // Count total planets
-    int planetCount = 0;
-    for (const auto& [object, body] : bodies) {
+    std::size_t planetCount = 0;
+    for (const auto& [name, body] : _bodies) {
         if (body->get_type() == "Planet") {
             planetCount++;
-            root = object;
+            _root = name;
         }
     }
 
     // Check if other bodies are children of only planet -
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
-        for (const auto& [object, _] : bodies) {
-            std::string parent = object;
-            while (parent != "Sun" && parent != root) {
-                parent = get(parent)->get_name();
+        for (const auto& [name, body] : _bodies) {
+            std::string parent = name;
+            while (parent != "Sun" && parent != _root) {
+                parent = get(parent)->get_parent();
             }
 
             // If any object not in same planetary system, the common root
             // must be the Sun
             if (parent == "Sun") {
-                root = "Sun";
+                _root = "Sun";
                 break;
             }
         }
     }
     else {
         // The only common root for multiple planets is the Sun
-        root = "Sun";
+        _root = "Sun";
     }
 }
 
