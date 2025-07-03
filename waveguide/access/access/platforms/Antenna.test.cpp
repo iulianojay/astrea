@@ -68,8 +68,8 @@ TEST(SatCommTest, MispointingLossGroundToGEO)
 // "Satellite Communications" by Dennis Roddy, 5th edition, Example 12.5
 TEST(SatCommTest, MispointingLossGroundToSat)
 {
-    Antenna groundAntenna(10.0 * m, 0.70 * one, 6.0 * GHz, 0.0 * GHz, 1.0 * W);
-    Antenna satAntenna(1.0 * m, 1.0 * one, 6.0 * GHz, 0.0 * GHz, 1.0 * W);
+    Antenna groundAntenna(10.0 * m, 0.70 * one, 6.0 * GHz, 1.0 * W);
+    Antenna satAntenna(1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
 
     // Bessel approximation
     compare_unit_values(to_db(groundAntenna.gain()), 54.42 * dB); // text says 54.41, but is rounds heavily

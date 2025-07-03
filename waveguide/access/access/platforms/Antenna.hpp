@@ -22,11 +22,11 @@ class Antenna : public Sensor {
         const astro::Length& diameter,
         const astro::Unitless& efficiency,
         const Frequency frequency,
-        const Frequency noiseBandwidth,
         const Power& power,
-        const Temperature& sysNoiseTemp,
-        const Gain& transmitLoss           = 1.0 * mp_units::one, // Ideal
-        const Gain& receiverLoss           = 1.0 * mp_units::one, // Ideal
+        // const Temperature& sysNoiseTemp    = 0.0 * mp_units::si::unit_symbols::K,   // Nonsense
+        const Frequency noiseBandwidth     = 0.0 * mp_units::si::unit_symbols::GHz, // Ideal
+        const Gain& transmitLoss           = 1.0 * mp_units::one,                   // Ideal
+        const Gain& receiverLoss           = 1.0 * mp_units::one,                   // Ideal
         const PatternApproximation pattern = PatternApproximation::BESSEL
     );
 
