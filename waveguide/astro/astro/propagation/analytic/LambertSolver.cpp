@@ -4,10 +4,6 @@
 
 namespace astro {
 
-// Constructor and destructor
-LambertSolver::LambertSolver() {}
-LambertSolver::~LambertSolver() {}
-
 // r and v Lambert solver
 void LambertSolver::solve_rv(double* state0, double dt, double mu, double* statef)
 {
