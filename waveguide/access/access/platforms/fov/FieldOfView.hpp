@@ -35,7 +35,7 @@ class FieldOfView {
 class CircularFieldOfView : public FieldOfView {
   public:
     CircularFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0) :
-        halfConeAngle(halfConeAngle)
+        _halfConeAngle(halfConeAngle)
     {
     }
     ~CircularFieldOfView() = default;
@@ -43,7 +43,7 @@ class CircularFieldOfView : public FieldOfView {
     bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const;
 
   private:
-    astro::Angle halfConeAngle;
+    astro::Angle _halfConeAngle;
 };
 
 
@@ -52,7 +52,7 @@ class PolygonalFieldOfView : public FieldOfView {
     PolygonalFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0, const int& nPoints = 72);
     PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints = 72);
     PolygonalFieldOfView(const std::unordered_map<astro::Angle, astro::Angle>& points) :
-        points(points)
+        _points(points)
     {
     }
     ~PolygonalFieldOfView() = default;
@@ -60,7 +60,7 @@ class PolygonalFieldOfView : public FieldOfView {
     bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const { return false; };
 
   private:
-    std::unordered_map<astro::Angle, astro::Angle> points;
+    std::unordered_map<astro::Angle, astro::Angle> _points;
 };
 
 } // namespace accesslib

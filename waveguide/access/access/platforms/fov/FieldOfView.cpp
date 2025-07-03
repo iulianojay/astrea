@@ -27,14 +27,14 @@ bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVe
     const Distance B = norm(boresight);
     const Distance T = norm(target);
     const auto bDotT = boresight[0] * target[0] + boresight[1] * target[1] + boresight[2] * target[2];
-    return (acos(bDotT / (B * T)) <= halfConeAngle);
+    return (acos(bDotT / (B * T)) <= _halfConeAngle);
 }
 
 
 PolygonalFieldOfView::PolygonalFieldOfView(const astro::Angle& halfConeAngle, const int& nPoints)
 {
     for (astro::Angle theta = 0.0 * astro::detail::angle_unit; theta < astro::TWO_PI; theta += (astro::TWO_PI / nPoints)) {
-        points[theta] = halfConeAngle;
+        _points[theta] = halfConeAngle;
     }
 }
 
