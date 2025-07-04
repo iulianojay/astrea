@@ -34,17 +34,14 @@ void link_budget_test();
 
 int main()
 {
-    // access_test();
-    link_budget_test();
-
+    access_test();
     return 1;
 }
-
-void link_budget_test() {}
 
 
 void access_test()
 {
+    using namespace astro;
 
     // Setup system
     AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
@@ -76,22 +73,23 @@ void access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), years(1) };
+    Interval propInterval{ seconds(0), weeks(1) };
     walkerBall.propagate(eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
-    auto diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
     std::cout << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
 
     start = std::chrono::steady_clock::now();
 
-    Time accessResolution = std::chrono::minutes(5);
+    // Find access
+    Time accessResolution = minutes(5);
     find_accesses(walkerBall, accessResolution, sys);
 
     end  = std::chrono::steady_clock::now();
-    diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
     std::cout << "Access Analysis Time: " << diff.count() / 1e9 << " (s)" << std::endl;
 }

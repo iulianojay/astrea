@@ -36,7 +36,7 @@ class Spacecraft {
     const State& get_initial_state() const;
     const State& get_final_state() const;
     const State& get_closest_state(const Time& time) const;
-    State get_state_at(const Time& time, const AstrodynamicsSystem& sys) const;
+    const State& get_state_at(const Time& time, const AstrodynamicsSystem& sys);
     std::vector<State>& get_states() { return _states; }
     const std::vector<State>& get_states() const { return _states; }
     std::size_t n_states() const { return _states.size(); }

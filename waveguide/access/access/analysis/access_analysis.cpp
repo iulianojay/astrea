@@ -12,129 +12,96 @@ using namespace mp_units::si;
 
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
-using astro::Constellation;
 using astro::RadiusVector;
 using astro::State;
 using astro::Time;
 
 namespace accesslib {
 
-void find_accesses(Constellation<Viewer>& constel, const Time& resolution, const AstrodynamicsSystem& sys)
+void find_accesses(ViewerConstellation& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
-
     // Get all sats
-    std::vector<Viewer> allSats = constel.get_all_spacecraft();
-    const std::size_t nSats     = allSats.size();
+    std::vector<Viewer> viewers = constel.get_all_spacecraft();
+    const std::size_t nSats     = viewers.size();
 
     // Create time array
-    std::vector<Time> times =
-        create_time_vector(allSats[0].get_states(), resolution, sys); // TODO: Check all state histories for common time frame
+    const auto states = viewers.front().get_states();
+    TimeVector times  = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
 
-    // Get and store interpolated states in cartesian to reduce overhead
-    std::vector<std::vector<State>> interpStates = interpolate_states(allSats, times, sys);
+    // Interpolate viewer state histories to specified times
+    // These are stored internally in each viewer
+    interpolate_states(viewers, times, sys);
 
     // For each sat
-    for (std::size_t iSat = 0; iSat < nSats; ++iSat) {
-        Viewer& sat1          = allSats[iSat];
-        const std::size_t id1 = sat1.get_id();
+    for (std::size_t iViewer = 0; iViewer < nSats; ++iViewer) {
+        Viewer& viewer1       = viewers[iViewer];
+        const std::size_t id1 = viewer1.get_id();
 
         // For every other sat
-        for (std::size_t jSat = iSat + 1; jSat < nSats; ++jSat) {
-            Viewer& sat2          = allSats[jSat];
-            const std::size_t id2 = sat2.get_id();
+        for (std::size_t jViewer = iViewer + 1; jViewer < nSats; ++jViewer) {
+            Viewer& viewer2       = viewers[jViewer];
+            const std::size_t id2 = viewer2.get_id();
 
-            // Satellite-level access for sat1 -> sat2
-            RiseSetArray satAccess = find_sat_to_sat_accesses(iSat, jSat, sat1, sat2, times, interpStates, sys);
+            // Satellite-level access for viewer1 -> viewer2
+            RiseSetArray satAccess = find_sat_to_sat_accesses(viewer1, viewer2, times, sys);
 
             // Store
             if (satAccess.size() > 0) {
-                sat1.add_access(id2, satAccess);
-                sat2.add_access(id1, satAccess);
+                viewer1.add_access(id2, satAccess);
+                viewer2.add_access(id1, satAccess);
             }
         }
     }
 }
 
-std::vector<Time> create_time_vector(const std::vector<State>& states, const Time& resolution, const AstrodynamicsSystem& sys)
+TimeVector create_time_vector(const StateVector& states, const Time& resolution)
 {
     // Setup
-    const std::size_t nSates = states.size();
-    const Time& startTime    = states[0].time;
-    const Time& endTime      = states[nSates - 1].time;
+    const Time& startTime = states.front().time;
+    const Time& endTime   = states.back().time;
 
     // Fill
-    std::vector<Time> times;
-
-    int ii    = 0;
     Time time = startTime;
+    TimeVector times;
+    times.emplace_back(time);
     while (time < endTime) {
-        if (time + resolution > endTime) { times.emplace_back(endTime); }
+        if (time + resolution >= endTime) { time = endTime; }
         else {
-            times.emplace_back(time);
+            time += resolution;
         }
-        time += ii * resolution;
-        ++ii;
+        times.emplace_back(time);
     }
 
     return times;
 }
 
-std::vector<std::vector<State>>
-    interpolate_states(const std::vector<Viewer>& allSats, const std::vector<Time>& times, const AstrodynamicsSystem& sys)
+void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times, const AstrodynamicsSystem& sys)
 {
-
-    const std::size_t nTimes = times.size();
-    const std::size_t nSats  = allSats.size();
-
-    std::vector<std::vector<State>> interpStates;
-    interpStates.resize(nTimes);
-
-    for (std::size_t iTime = 0; iTime < nTimes; ++iTime) {
-
-        const Time& time = times[iTime];
-        interpStates[iTime].resize(nSats);
-
-        for (std::size_t iSat = 0; iSat < nSats; ++iSat) {
-
-            const Viewer& sat = allSats[iSat];
-            const State state = sat.get_state_at(time, sys);
-
-            const auto elements       = state.elements.in<Cartesian>(sys);
-            interpStates[iTime][iSat] = State(time, elements);
+    for (const auto& time : times) {
+        for (auto& viewer : viewers) {
+            viewer.get_state_at(time, sys);
         }
     }
-
-    return interpStates;
 }
 
-RiseSetArray find_sat_to_sat_accesses(
-    const std::size_t& iSat,
-    const std::size_t& jSat,
-    Viewer& sat1,
-    Viewer& sat2,
-    const std::vector<Time>& times,
-    const std::vector<std::vector<State>>& states,
-    const AstrodynamicsSystem& sys
-)
+RiseSetArray
+    find_sat_to_sat_accesses(Viewer& viewer1, Viewer& viewer2, const TimeVector& times, const AstrodynamicsSystem& sys, const bool& twoWay)
 {
-
     // Total sat to sat access
     RiseSetArray satAccess;
 
-    // First determine access sensor by sensor
-    for (auto& sensor1 : sat1.get_sensors()) {
-        const std::size_t id1 = sensor1.get_id();
+    // Determine access sensor by sensor
+    for (auto& sensor1 : viewer1.get_sensors()) {
+        for (auto& sensor2 : viewer2.get_sensors()) {
 
-        for (auto& sensor2 : sat2.get_sensors()) {
-            const std::size_t id2 = sensor1.get_id();
-
-            RiseSetArray access = find_sensor_to_sensor_accesses(iSat, jSat, sensor1, sensor2, times, states, sys);
+            // Calculate sensor1 -> sensor2 accesses
+            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(viewer1, sensor1, viewer2, sensor2, times, sys, twoWay);
 
             // Store
-            satAccess = (satAccess | access);
-            if (access.size() > 0) { // TODO: Check 2-way access
-                sensor1.add_access(id2, access);
-                sensor2.add_access(id1, access);
+            if (sensorAccess.size() > 0) {
+                satAccess = (satAccess | sensorAccess);
+                sensor1.add_access(sensor2.get_id(), sensorAccess);
+                sensor2.add_access(sensor1.get_id(), sensorAccess);
             }
         }
     }
@@ -142,55 +109,70 @@ RiseSetArray find_sat_to_sat_accesses(
     return satAccess;
 }
 
-
 RiseSetArray find_sensor_to_sensor_accesses(
-    const std::size_t& iSat,
-    const std::size_t& jSat,
+    const Viewer& viewer1,
     const Sensor& sensor1,
+    const Viewer& viewer2,
     const Sensor& sensor2,
-    const std::vector<Time>& times,
-    const std::vector<std::vector<State>>& states,
-    const AstrodynamicsSystem& sys
+    const TimeVector& times,
+    const astro::AstrodynamicsSystem& sys,
+    const bool& twoWay
 )
 {
-
+    Time rise, set;
+    bool insideAccessInterval;
     RiseSetArray access;
-    Time rise;
-    bool hasAccess;
-    for (std::size_t iTime = 0; iTime < states.size(); ++iTime) {
+    for (const auto& time : times) {
+        // Get sat1 -> sat2 vector at current time
+        const State& state1 = viewer1.get_closest_state(time); // closest state should be exact
+        const State& state2 = viewer2.get_closest_state(time);
 
-        // Get states
-        const State& state1 = states[iTime][iSat];
-        const State& state2 = states[iTime][jSat];
+        // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
+        const Cartesian& state1to2 = state2.elements.in<Cartesian>(sys) - state1.elements.in<Cartesian>(sys);
+        const Cartesian& state2to1 = state1.elements.in<Cartesian>(sys) - state2.elements.in<Cartesian>(sys);
 
-        const Cartesian& state1to2    = state2.elements.in<Cartesian>(sys) - state1.elements.in<Cartesian>(sys);
         const RadiusVector radius1to2 = state1to2.get_radius();
+        const RadiusVector radius2to1 = state1to2.get_radius();
+
+        // Check if they can see each other
+        bool sensorsInView = false;
+        if (twoWay) { sensorsInView = sensor1.contains(radius1to2) && sensor2.contains(radius2to1); }
+        else {
+            sensorsInView = sensor1.contains(radius1to2) || sensor2.contains(radius2to1);
+        }
 
         // Manage bookends
-        if (iTime == 0) {
-            hasAccess = sensor1.contains(radius1to2);
-            if (hasAccess) { rise = times[0]; }
+        if (time == times.front()) {
+            insideAccessInterval = sensorsInView;
+            if (insideAccessInterval) // Consider the start time the initial rise
+            {
+                rise = times.front();
+            }
             continue;
         }
-        else if (iTime == states.size() - 1) {
-            if ((hasAccess && sensor1.contains(radius1to2))) { access.append(rise, times[iTime]); }
-
+        else if (time == times.back()) {
+            if ((insideAccessInterval && sensorsInView)) { // Consider the final time the last set
+                access.append(rise, times.back());
+                continue;
+            }
             // NOTE: this ignores cases where the last time is a rise time -> access analyzed for [0, T)
         }
 
         // Check for rise/set times
-        if (hasAccess && !sensor1.contains(radius1to2)) {
-            hasAccess = false;
-
-            access.append(rise, times[iTime]);
+        if (insideAccessInterval && !sensorsInView) { // previous time had access, this time does not -> last time was a set
+            insideAccessInterval = false;
+            access.append(rise, set);
         }
-        else if (!hasAccess && sensor1.contains(radius1to2)) {
-            hasAccess = true;
-            rise      = times[iTime];
+        else if (insideAccessInterval && sensorsInView) { // previous time had access, and so does this one -> store set time and continue
+            set = time;
+        }
+        else if (!insideAccessInterval && sensorsInView) { // previous time didn't have access, this time does -> this time is a rise
+            insideAccessInterval = true;
+            rise                 = time;
         }
     }
-
     return access;
 }
+
 
 } // namespace accesslib

@@ -34,7 +34,7 @@ class FieldOfView {
 
 class CircularFieldOfView : public FieldOfView {
   public:
-    CircularFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0) :
+    CircularFieldOfView(const astro::Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
         _halfConeAngle(halfConeAngle)
     {
     }
@@ -49,7 +49,7 @@ class CircularFieldOfView : public FieldOfView {
 
 class PolygonalFieldOfView : public FieldOfView {
   public:
-    PolygonalFieldOfView(const astro::Angle& halfConeAngle = astro::PI / 4.0, const int& nPoints = 72);
+    PolygonalFieldOfView(const astro::Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad, const int& nPoints = 72);
     PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints = 72);
     PolygonalFieldOfView(const std::unordered_map<astro::Angle, astro::Angle>& points) :
         _points(points)

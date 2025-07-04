@@ -62,7 +62,7 @@ void CelestialBodyFactory::find_root()
         for (const auto& [name, body] : _bodies) {
             std::string parent = name;
             while (parent != "Sun" && parent != _root) {
-                parent = get(parent)->get_parent();
+                parent = get_or_create(parent)->get_parent();
             }
 
             // If any object not in same planetary system, the common root

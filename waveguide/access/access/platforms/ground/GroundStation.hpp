@@ -11,29 +11,37 @@ namespace accesslib {
 
 class GroundStation {
   public:
-    GroundStation(const astro::Angle& latitutde, const astro::Angle& longitude, const astro::Distance& altitude, const std::vector<Sensor>& sensors) :
-        latitutde(latitutde),
-        longitude(longitude),
-        altitude(altitude),
-        sensors(sensors)
+    GroundStation(
+        const astro::Angle& latitutde,
+        const astro::Angle& longitude,
+        const astro::Distance& altitude,
+        const std::vector<Sensor>& sensors,
+        const std::string name = "Unnammed"
+    ) :
+        _latitutde(latitutde),
+        _longitude(longitude),
+        _altitude(altitude),
+        _sensors(sensors),
+        _name(name)
     {
         generate_id_hash();
     };
     ~GroundStation(){};
 
-    void attach(Sensor& sensor) { sensors.push_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors)
+    void attach(Sensor& sensor) { _sensors.push_back(sensor); }
+    void attach(std::vector<Sensor>& sensors)
     {
-        sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors));
+        _sensors.insert(std::end(_sensors), std::begin(sensors), std::end(sensors));
     }
 
   private:
-    std::size_t id;
-    astro::Angle latitutde;
-    astro::Angle longitude;
-    astro::Distance altitude;
+    std::size_t _id;
+    astro::Angle _latitutde;
+    astro::Angle _longitude;
+    astro::Distance _altitude;
+    std::string _name;
 
-    std::vector<Sensor> sensors;
+    std::vector<Sensor> _sensors;
 
     void generate_id_hash();
 };

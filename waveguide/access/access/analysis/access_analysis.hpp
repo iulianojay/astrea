@@ -12,30 +12,26 @@
 
 namespace accesslib {
 
-void find_accesses(astro::Constellation<Viewer>& constel, const astro::Time& resolution, const astro::AstrodynamicsSystem& sys);
+using TimeVector          = std::vector<astro::Time>;
+using StateVector         = std::vector<astro::State>;
+using ViewerConstellation = astro::Constellation<Viewer>;
 
-std::vector<astro::Time>
-    create_time_vector(const std::vector<astro::State>& states, const astro::Time& resolution, const astro::AstrodynamicsSystem& sys);
-std::vector<std::vector<astro::State>>
-    interpolate_states(const std::vector<Viewer>& allSats, const std::vector<astro::Time>& times, const astro::AstrodynamicsSystem& sys);
+void find_accesses(ViewerConstellation& constel, const astro::Time& resolution, const astro::AstrodynamicsSystem& sys);
 
-RiseSetArray find_sat_to_sat_accesses(
-    const std::size_t& iSat,
-    const std::size_t& jSat,
-    Viewer& sat1,
-    Viewer& sat2,
-    const std::vector<astro::Time>& times,
-    const std::vector<std::vector<astro::State>>& states,
-    const astro::AstrodynamicsSystem& sys
-);
+TimeVector create_time_vector(const StateVector& states, const astro::Time& resolution);
+
+void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times, const astro::AstrodynamicsSystem& sys);
+
+RiseSetArray
+    find_sat_to_sat_accesses(Viewer& viewer1, Viewer& viewer2, const TimeVector& times, const astro::AstrodynamicsSystem& sys, const bool& twoWay = false);
 RiseSetArray find_sensor_to_sensor_accesses(
-    const std::size_t& iSat,
-    const std::size_t& jSat,
+    const Viewer& viewer1,
     const Sensor& sensor1,
+    const Viewer& viewer2,
     const Sensor& sensor2,
-    const std::vector<astro::Time>& times,
-    const std::vector<std::vector<astro::State>>& states,
-    const astro::AstrodynamicsSystem& sys
+    const TimeVector& times,
+    const astro::AstrodynamicsSystem& sys,
+    const bool& twoWay = false
 );
 
 } // namespace accesslib

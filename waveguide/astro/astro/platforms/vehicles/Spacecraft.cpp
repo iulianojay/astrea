@@ -33,7 +33,6 @@ const State& Spacecraft::get_final_state() const { return _states[_states.size()
 
 const State& Spacecraft::get_closest_state(const Time& time) const
 {
-
     // Check if input time is out of bounds
     if (time <= _states[0].time) { return _states[0]; }
     else if (time >= _states[_states.size() - 1].time) {
@@ -54,14 +53,18 @@ const State& Spacecraft::get_closest_state(const Time& time) const
     }
 }
 
-State Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys) const
+const State& Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys)
 {
 
     // Check if input time is out of bounds
-    if (time < _states[0].time || time > _states[_states.size() - 1].time) {
-        throw std::runtime_error("Cannot extrapolate to state outside of existing propagation bounds. Try "
+    if (time < _states.front().time) {
+        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try "
                                  "repropagating to include all desired times.");
-    };
+    }
+    else if (time > _states.back().time) {
+        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try "
+                                 "repropagating to include all desired times.");
+    }
 
     // Get index of lower bound closest to input time
     const auto lower = std::lower_bound(_states.begin(), _states.end(), time, state_time_comparitor);
@@ -80,8 +83,12 @@ State Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys)
     const OrbitalElements& postElements = postState.elements;
 
     OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, sys, time);
+    State interpolatedState({ time, interpolatedElements });
 
-    return State({ time, interpolatedElements });
+    // Insert
+    _states.insert(_states.begin() + idx, interpolatedState);
+
+    return _states[idx];
 }
 
 // Spacecraft Property Getters
