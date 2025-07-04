@@ -1,6 +1,6 @@
 #pragma once
 
-#include <unordered_map>
+#include <map>
 
 #include <access/time/RiseSetArray.hpp>
 
@@ -36,8 +36,18 @@ struct std::hash<accesslib::IdPair> {
     }
 };
 
-namespace accesslib {
+template <>
+struct std::less<accesslib::IdPair> {
+    bool operator()(const accesslib::IdPair& lhs, const accesslib::IdPair& rhs) const
+    {
+        if (lhs.sender == rhs.sender) { return lhs.receiver < rhs.receiver; }
+        else {
+            return lhs.sender < rhs.sender;
+        }
+    };
+};
 
+namespace accesslib {
 class AccessArray {
   public:
     AccessArray()  = default;
@@ -55,8 +65,18 @@ class AccessArray {
 
     std::size_t size() const { return _accesses.size(); }
 
+    using iterator       = std::map<IdPair, RiseSetArray>::iterator;
+    using const_iterator = std::map<IdPair, RiseSetArray>::const_iterator;
+
+    iterator begin() { return _accesses.begin(); }
+    iterator end() { return _accesses.end(); }
+    const_iterator begin() const { return _accesses.begin(); }
+    const_iterator end() const { return _accesses.end(); }
+    const_iterator cbegin() const { return _accesses.cbegin(); }
+    const_iterator cend() const { return _accesses.cend(); }
+
   private:
-    std::unordered_map<IdPair, RiseSetArray> _accesses;
+    std::map<IdPair, RiseSetArray> _accesses;
 };
 
 } // namespace accesslib

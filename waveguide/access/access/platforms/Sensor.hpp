@@ -13,8 +13,9 @@ class Sensor {
 
   public:
     Sensor() = default;
-    Sensor(FieldOfView* fov) :
-        _fov(fov)
+    template <typename FieldOfView_T>
+    Sensor(const FieldOfView_T& fov) :
+        _fov(std::make_shared<FieldOfView_T>(fov))
     {
     }
     ~Sensor() = default;
@@ -26,6 +27,11 @@ class Sensor {
         return _fov->contains(_boresight, sensor2target);
     }
 
+    virtual const bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& sensor2target) const
+    {
+        return _fov->contains(boresight, sensor2target);
+    }
+
     void add_access(const std::size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
 
   private:
@@ -33,7 +39,7 @@ class Sensor {
     int _parentId;
     astro::RadiusVector _attachmentPoint;
     astro::RadiusVector _boresight;
-    FieldOfView* _fov;
+    std::shared_ptr<FieldOfView> _fov;
     AccessArray _accesses;
 
     void generate_id_hash();

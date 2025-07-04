@@ -16,6 +16,7 @@ if (PROJECT_IS_TOP_LEVEL)
 endif()
 
 # Objects
+set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ACCESS_SOURCES
     ${ACCESS_BASE}/analysis/access_analysis.cpp
@@ -44,6 +45,9 @@ set(ACCESS_HEADERS
     ${ACCESS_BASE}/time/AccessArray.hpp
     ${ACCESS_BASE}/time/RiseSetArray.hpp
     ${ACCESS_BASE}/time/riseset_utils.hpp
+    
+    ${EXTERN_BASE}/nlohmann/json.hpp
+    ${EXTERN_BASE}/csv-parser/csv.hpp
 )
 
 # Set outputs

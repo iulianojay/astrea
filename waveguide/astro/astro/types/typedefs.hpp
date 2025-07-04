@@ -43,3 +43,11 @@ using VelocityVector     = std::array<Velocity, 3>;
 using AccelerationVector = std::array<Acceleration, 3>;
 
 } // namespace astro
+
+template <>
+struct std::hash<astro::Unitless> {
+    std::size_t operator()(const astro::Unitless& k) const
+    {
+        return std::hash<double>()(k.force_numerical_value_in(k.unit));
+    }
+};

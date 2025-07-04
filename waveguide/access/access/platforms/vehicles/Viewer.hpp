@@ -27,14 +27,16 @@ class Viewer : public astro::Spacecraft {
     // Destructor
     ~Viewer() = default;
 
-    void attach(Sensor& sensor) { _sensors.emplace_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors)
+    void attach_sensor(Sensor& sensor) { _sensors.emplace_back(sensor); }
+    void attach_sensors(std::vector<Sensor>& _sensors)
     {
         _sensors.insert(std::end(_sensors), std::begin(_sensors), std::end(_sensors));
     }
 
     std::vector<Sensor>& get_sensors() { return _sensors; }
     const std::vector<Sensor>& get_sensors() const { return _sensors; }
+
+    const AccessArray& get_accesses() const { return _accesses; }
 
     void add_access(const std::size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
 

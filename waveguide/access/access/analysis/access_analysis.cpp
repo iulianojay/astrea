@@ -18,7 +18,7 @@ using astro::Time;
 
 namespace accesslib {
 
-void find_accesses(ViewerConstellation& constel, const Time& resolution, const AstrodynamicsSystem& sys)
+std::vector<Viewer> find_accesses(ViewerConstellation& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
     // Get all sats
     std::vector<Viewer> viewers = constel.get_all_spacecraft();
@@ -52,6 +52,8 @@ void find_accesses(ViewerConstellation& constel, const Time& resolution, const A
             }
         }
     }
+
+    return viewers; // TODO: this is dumb, please get sats by ref from constellation
 }
 
 TimeVector create_time_vector(const StateVector& states, const Time& resolution)
@@ -127,18 +129,32 @@ RiseSetArray find_sensor_to_sensor_accesses(
         const State& state1 = viewer1.get_closest_state(time); // closest state should be exact
         const State& state2 = viewer2.get_closest_state(time);
 
+        const Cartesian state1Cart = state1.elements.in<Cartesian>(sys);
+        const Cartesian state2Cart = state2.elements.in<Cartesian>(sys);
+
+        // TODO: Make this pointing generic, certainly not done at this level
+        RadiusVector boresight1 = state1Cart.get_radius(); // nadir
+        RadiusVector boresight2 = state2Cart.get_radius(); // nadir
+
+        for (std::size_t ii = 0; ii < 3; ++ii) {
+            boresight1[ii] = -boresight1[ii];
+            boresight2[ii] = -boresight2[ii];
+        }
+
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-        const Cartesian& state1to2 = state2.elements.in<Cartesian>(sys) - state1.elements.in<Cartesian>(sys);
-        const Cartesian& state2to1 = state1.elements.in<Cartesian>(sys) - state2.elements.in<Cartesian>(sys);
+        const Cartesian& state1to2 = state2Cart - state1Cart;
+        const Cartesian& state2to1 = state1Cart - state2Cart;
 
         const RadiusVector radius1to2 = state1to2.get_radius();
         const RadiusVector radius2to1 = state1to2.get_radius();
 
         // Check if they can see each other
         bool sensorsInView = false;
-        if (twoWay) { sensorsInView = sensor1.contains(radius1to2) && sensor2.contains(radius2to1); }
+        if (twoWay) {
+            sensorsInView = sensor1.contains(boresight1, radius1to2) && sensor2.contains(boresight2, radius2to1);
+        }
         else {
-            sensorsInView = sensor1.contains(radius1to2) || sensor2.contains(radius2to1);
+            sensorsInView = sensor1.contains(boresight1, radius1to2) || sensor2.contains(boresight2, radius2to1);
         }
 
         // Manage bookends
@@ -146,7 +162,7 @@ RiseSetArray find_sensor_to_sensor_accesses(
             insideAccessInterval = sensorsInView;
             if (insideAccessInterval) // Consider the start time the initial rise
             {
-                rise = times.front();
+                rise = time;
             }
             continue;
         }
@@ -161,6 +177,11 @@ RiseSetArray find_sensor_to_sensor_accesses(
         // Check for rise/set times
         if (insideAccessInterval && !sensorsInView) { // previous time had access, this time does not -> last time was a set
             insideAccessInterval = false;
+            if (rise == set) {
+                // Ignore for now - TODO: Make this an input option
+                continue;
+                // throw std::runtime_error("Rise and set found at the same time. This is likely due to a large time resolution. Please rerun analysis with a finer resolution.")
+            }
             access.append(rise, set);
         }
         else if (insideAccessInterval && sensorsInView) { // previous time had access, and so does this one -> store set time and continue
@@ -169,6 +190,7 @@ RiseSetArray find_sensor_to_sensor_accesses(
         else if (!insideAccessInterval && sensorsInView) { // previous time didn't have access, this time does -> this time is a rise
             insideAccessInterval = true;
             rise                 = time;
+            set                  = time; // to catch cases where (set - rise) < resolution
         }
     }
     return access;

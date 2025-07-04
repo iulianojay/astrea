@@ -52,7 +52,7 @@ void RiseSetArray::validate_riseset(const Time& rise, const Time& set) const
 
 void RiseSetArray::append(const Time& rise, const Time& set)
 {
-    if (rise < _risesets[size() - 1]) {
+    if (size() > 0 && rise < _risesets.back()) {
         insert(rise, set);
         return;
     }
@@ -79,6 +79,17 @@ void RiseSetArray::insert(const Time& rise, const Time& set)
     validate_riseset(rise, set);
 
     *this = (*this) | RiseSetArray({ rise, set });
+}
+
+std::ostream& operator<<(std::ostream& os, const RiseSetArray& risesets)
+{
+    const auto& values = risesets._risesets;
+    os << "[" << values[0];
+    for (std::size_t ii = 1; ii < values.size(); ++ii) {
+        os << ", " << values[ii];
+    }
+    os << "]";
+    return os;
 }
 
 } // namespace accesslib

@@ -103,9 +103,9 @@ SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 void Spacecraft::generate_id_hash()
 {
-    // const auto elements0 = _states[0].elements.to_vector();
-    // _id  = std::hash<double>()(elements0[0]) ^ std::hash<double>()(elements0[1]) ^ std::hash<double>()(elements0[2]) ^
-    //        std::hash<double>()(elements0[3]) ^ std::hash<double>()(elements0[4]) ^ std::hash<double>()(elements0[5]); // TODO: Fix this
+    const auto elements0 = _states[0].elements.to_vector();
+    _id = std::hash<Unitless>()(elements0[0]) ^ std::hash<Unitless>()(elements0[1]) ^ std::hash<Unitless>()(elements0[2]) ^
+          std::hash<Unitless>()(elements0[3]) ^ std::hash<Unitless>()(elements0[4]) ^ std::hash<Unitless>()(elements0[5]);
     _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));
     _id ^= std::hash<double>()(_coefficientOfDrag.numerical_value_ref_in(_coefficientOfDrag.unit));
     _id ^= std::hash<double>()(_coefficientOfLift.numerical_value_ref_in(_coefficientOfLift.unit));

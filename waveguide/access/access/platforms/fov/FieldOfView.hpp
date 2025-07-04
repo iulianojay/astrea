@@ -20,15 +20,11 @@ struct std::hash<astro::Angle> {
 namespace accesslib {
 
 class FieldOfView {
-  protected:
+  public:
     FieldOfView()  = default;
     ~FieldOfView() = default;
 
-  public:
-    virtual bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const
-    {
-        return false;
-    };
+    virtual bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const = 0;
 };
 
 

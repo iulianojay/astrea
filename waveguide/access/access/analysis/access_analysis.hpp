@@ -16,7 +16,7 @@ using TimeVector          = std::vector<astro::Time>;
 using StateVector         = std::vector<astro::State>;
 using ViewerConstellation = astro::Constellation<Viewer>;
 
-void find_accesses(ViewerConstellation& constel, const astro::Time& resolution, const astro::AstrodynamicsSystem& sys);
+std::vector<Viewer> find_accesses(ViewerConstellation& constel, const astro::Time& resolution, const astro::AstrodynamicsSystem& sys);
 
 TimeVector create_time_vector(const StateVector& states, const astro::Time& resolution);
 
