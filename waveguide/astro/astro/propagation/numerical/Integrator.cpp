@@ -49,9 +49,6 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
     startTimer();
     while (iteration < iterMax) {
 
-        // Break if final time is reached
-        if ((forwardTime && time > timeFinal) || (!forwardTime && time < timeFinal)) { break; }
-
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {
@@ -102,6 +99,10 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         if ((forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
             (!forwardTime && time + timeStep < timeFinal && time > timeFinal)) {
             timeStep = timeFinal - time;
+        }
+        // Break if final time is reached
+        else if (time == timeFinal) {
+            break;
         }
 
         // Print time and state
