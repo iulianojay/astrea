@@ -3,10 +3,9 @@
 #include <array>
 #include <stdint.h>
 
+#include <astro/units/units.hpp>
 #include <mp-units/compat_macros.h>
-
-#include <mp-units/format.h>
-#include <mp-units/ostream.h>
+#include <mp-units/ext/format.h>
 
 #include <astro/units/units.hpp>
 
@@ -24,6 +23,7 @@ using Angle    = mp_units::quantity<detail::angle_unit>;
 using Unitless = mp_units::quantity<detail::unitless>;
 using Mass     = mp_units::quantity<detail::mass_unit>;
 using Time     = mp_units::quantity<detail::time_unit>;
+using Length   = mp_units::quantity<detail::minor_distance_unit>;
 
 using Velocity        = mp_units::quantity<detail::distance_unit / detail::time_unit>;
 using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>;

@@ -18,8 +18,9 @@ endif()
 # Objects
 set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ACCESS_SOURCES
-    ${ACCESS_BASE}/access.cpp
+    ${ACCESS_BASE}/analysis/access_analysis.cpp
 
+    ${ACCESS_BASE}/platforms/Antenna.cpp
     ${ACCESS_BASE}/platforms/Sensor.cpp
     ${ACCESS_BASE}/platforms/ground/GroundStation.cpp
     ${ACCESS_BASE}/platforms/fov/FieldOfView.cpp
@@ -31,6 +32,8 @@ set(ACCESS_SOURCES
 # Headers
 set(ACCESS_HEADERS
     ${ACCESS_BASE}/access.hpp
+
+    ${ACCESS_BASE}/analysis/access_analysis.hpp
 
     ${ACCESS_BASE}/platforms/Antenna.hpp
     ${ACCESS_BASE}/platforms/Sensor.hpp
@@ -87,4 +90,4 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests EXCLUDE_FROM_ALL)
+add_subdirectory(tests)

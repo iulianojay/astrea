@@ -45,16 +45,18 @@ class AccessArray {
 
     RiseSetArray& operator[](const std::size_t& senderId, const std::size_t& receiverId)
     {
-        return accesses[IdPair(senderId, receiverId)];
+        return _accesses[IdPair(senderId, receiverId)];
     }
 
     RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId)
     {
-        return accesses.at(IdPair(senderId, receiverId));
+        return _accesses.at(IdPair(senderId, receiverId));
     }
 
+    std::size_t size() const { return _accesses.size(); }
+
   private:
-    std::unordered_map<IdPair, RiseSetArray> accesses;
+    std::unordered_map<IdPair, RiseSetArray> _accesses;
 };
 
 } // namespace accesslib

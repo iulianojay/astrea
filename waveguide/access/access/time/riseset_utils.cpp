@@ -16,7 +16,6 @@ namespace accesslib {
 
 RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
 {
-
     // If one is empty, union is the other
     if (a.size() == 0) { return b; }
     else if (b.size() == 0) {
@@ -95,7 +94,6 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
 
 RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
 {
-
     // If one is empty, intersection is empty
     if (a.size() == 0 || b.size() == 0) { return RiseSetArray(); }
 
