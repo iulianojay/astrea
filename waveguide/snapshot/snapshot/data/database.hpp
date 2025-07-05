@@ -7,7 +7,7 @@
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
 static auto SNAPSHOT_DB = sqlite_orm::make_storage(
-    "./waveguide/snapshot/snapshot/data/snapshot.db",
+    "/home/jay/projects/waveguide/waveguide/snapshot/snapshot/data/snapshot.db", // TODO: Fix the pathing
     sqlite_orm::make_table(
         "SpaceTrackGP",
         sqlite_orm::make_column("DB_ID", &snapshot::SpaceTrackGP::DB_ID, sqlite_orm::primary_key().autoincrement()),

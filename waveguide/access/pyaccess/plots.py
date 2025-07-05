@@ -4,105 +4,76 @@ import numpy as np
 from typing import List, Tuple
 
 
-def plot_keplerian(title: str, infile: str, outfile: str) -> None:
+def plot_access_results(title: str, results: str, outfile: str) -> None:
+    # Loop the data lines
+    with open(results, 'r') as temp_f:
+        # get n of columns in each line
+        col_count = [ len(l.split(",")) for l in temp_f.readlines() ]
+    
+    # Generate column names  (names will be 0, 1, 2, ..., maximum columns - 1)
+    column_names = [i for i in range(0, max(col_count))]
 
-    columns = [
-        'sma (km)',
-        'ecc',
-        'inc (rad)',
-        'raan (rad)',
-        'w (rad)',
-        'theta (rad)'
-    ]
+    # Read results
+    df = pd.read_csv(results, index_col=False, header=None, names=column_names, low_memory=False)
+    
+    # Setup plot
+    fig, ax = plt.subplots()
+    fig.set_figheight(15)
+    fig.set_figwidth(20)
 
-    titles = [
-        "Semimajor Axis\n(km)",
-        "Eccentricity",
-        "Inclination\n(rad)",
-        "Right Ascension\n(rad)",
-        "Arg. Perigee\n(rad)",
-        "True Anomaly\n(rad)"
-    ]
+    # Loop over rows
+    labels = []
+    usedPairs = []
+    iPlot = 0
+    for index, row in df.iterrows():
+        if index == 0: 
+            continue
 
-    limits = [
-        None,
-        [0, 1],
-        [0, np.pi],
-        [0, 2*np.pi],
-        [0, 2*np.pi],
-        [0, 2*np.pi]
-    ]
+        senderId = row[0]
+        receiverId = row[1]
 
-    plot_element_set(title, infile, outfile, columns, titles, limits)
+        if (senderId != "DIRECTV_32729" and receiverId != "DIRECTV_32729"):
+            continue
 
+        # Avoid plotting same pairs twice - TODO: Update this for one-way analysis
+        if (senderId, receiverId) in usedPairs or (receiverId, senderId) in usedPairs:
+            continue
+        else:
+            usedPairs.append((senderId, receiverId))
 
-def plot_cartesian(title: str, infile: str, outfile: str) -> None:
+        # Store labels
+        labels.append(f'{senderId} \u21D4 {receiverId}') # TODO: use unicode single-direction arrow for one-way analysis
 
-    columns = [
-        'x (km)',
-        'y (km)',
-        'z (km)',
-        'vx (km/s)',
-        'vy (km/s)',
-        'vz (km/s)'
-    ]
+        # Loop over riseset times
+        risesets = []
+        for ii in range(2, row.values.size, 2):
+            # Correct typing and convert from seconds
+            rise = float(row.values[ii])
+            set = float(row.values[ii+1])
+            if not np.isnan(rise) and not np.isnan(set):
+                risesets.append((rise / 3600, set/ 3600))
+            else: 
+                break
 
-    titles = [
-        "X Position\n(km)",
-        "Y Position\n(km)",
-        "Z Position\n(km)",
-        "X Veclocity\n(km/s)",
-        "Y Veclocity\n(km/s)",
-        "Z Veclocity\n(km/s)"
-    ]
+        # Plot
+        ax.broken_barh(risesets, (-0.2 + iPlot*1.0, 0.4))
+        iPlot += 1
 
-    limits = [None]*6
+    # Cleanup
+    ax.set_xlim(0, 24)
+    ax.set_xticks(range(0, 26, 2))
+    ax.invert_yaxis()
+    ax.set_yticks(range(len(labels)), labels=labels)
+    ax.set_xlabel("Rise - Set Times (hrs)")
+    ax.set_title(title)
+    ax.grid()
 
-    plot_element_set(title, infile, outfile, columns, titles, limits)
-
-
-def plot_element_set(title: str, infile: str, outfile: str, columns: List[str], titles: List[str], limits: List[Tuple[float, float]]) -> None:
-
-    df = pd.read_csv(infile,index_col=False)
-
-    t = df['time (min)'].to_numpy()
-    data = [df[col].to_numpy() for col in columns]
-    data[-1] = [x % (2*np.pi) for x in data[-1]]
-
-    fig, axes = plt.subplots(nrows=6, ncols=1, figsize=(10, 8), sharex=True)
-    fig.suptitle(title)
-
-    for ax, vals, axTitle, axLimits in zip(axes, data, titles, limits):
-        ax.plot(t, vals)
-        ax.grid(True)
-        if axTitle is not None:
-            ax.set_ylabel(axTitle)
-        if axLimits is not None:
-            ax.set_ylim(axLimits)
-
-    plt.xlim(t[0], t[-1])
-    plt.xlabel("Time (minutes)")
-    fig.tight_layout()
-
-    fig.savefig(outfile)
+    # Save
+    fig.savefig(outfile, bbox_inches='tight')
 
 
 if __name__=='__main__':
 
-    test = 'two_body'
-    title = 'Two-Body Test'
-    # test = 'j2mean'
-    # title = 'J2 Mean VoP Test'
-    # test = 'cowells'
-    # title = 'Cowells Method Test'
-    # test = 'coes'
-    # title = 'Keplerian VoP Test'
-    # test = 'mees'
-    # title = 'Equinoctial VoP Test'
-    infile = './bin/results/' + test + '/main.csv'
-    outfile = './bin/results/' + test + '/main.png'
-
-    try:
-        plot_keplerian(title, infile, outfile)
-    except:
-        plot_cartesian(title, infile, outfile)
+    results = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv' 
+    outfile = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.png' 
+    plot_access_results("Test Access Analysis", results, outfile)

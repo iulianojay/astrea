@@ -11,8 +11,11 @@
 // #include <parquet/arrow/reader.h>
 // #include <parquet/arrow/writer.h>
 
+#include <sqlite3.h>
+
 #include <csv-parser/csv.hpp>
 #include <nlohmann/json.hpp>
+#include <sqlite_orm/sqlite_orm.h>
 
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
@@ -21,6 +24,7 @@
 
 #include <access/access.hpp>
 #include <astro/astro.hpp>
+#include <snapshot/snapshot.hpp>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -30,8 +34,6 @@ using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
-using namespace astro;
-using namespace accesslib;
 
 void access_test();
 void link_budget_test();
@@ -46,32 +48,39 @@ int main()
 void access_test()
 {
     using namespace astro;
+    using namespace accesslib;
+    using namespace snapshot;
+    using namespace sqlite_orm;
 
     // Setup system
-    AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
+    AstrodynamicsSystem sys;
 
-    const OrbitalElements state(Keplerian{ 10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg });
-    // const OrbitalElements cartesianState = conversions::convert(state, ElementSet::KEPLERIAN, ElementSet::CARTESIAN, sys);
+    // Query database
+    auto directvGp  = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 32729));
+    auto navStarGps = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "NAVSTAR%")));
 
     // Build constellation
-    const int T    = 100;
-    const int P    = 10;
-    const double F = 1.0;
-    Constellation<Viewer> walkerBall(10000.0 * km, 45.0 * deg, T, P, F);
+    Viewer directv(directvGp[0]);
+    Constellation<Viewer> navStarAndDirectv(navStarGps);
 
     // Add sensors
-    CircularFieldOfView fov;
-    Sensor simpleCone(fov);
-    // for (auto& viewer : walkerBall | std::views::join) { // TODO: Figure out how this works
+    CircularFieldOfView fov1deg(1.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov30deg(30.0 * mp_units::angular::unit_symbols::deg);
+    Sensor geoCone(fov1deg);
+    Sensor navstarCone(fov30deg);
+    // for (auto& viewer : navStarAndDirectv | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach_sensor(simpleCone);
     // }
-    for (auto& shell : walkerBall) {
+
+    directv.attach_sensor(geoCone);
+    for (auto& shell : navStarAndDirectv) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
-                sat.attach_sensor(simpleCone);
+                sat.attach_sensor(navstarCone);
             }
         }
     }
+    navStarAndDirectv.add_spacecraft(directv);
 
     // Build Force Model
     ForceModel forces;
@@ -92,7 +101,7 @@ void access_test()
     auto start = std::chrono::steady_clock::now();
 
     Interval propInterval{ seconds(0), days(1) };
-    walkerBall.propagate(eom, integrator, propInterval);
+    navStarAndDirectv.propagate(eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -103,7 +112,7 @@ void access_test()
 
     // Find access
     Time accessResolution              = minutes(1);
-    std::vector<Viewer> updatedViewers = find_accesses(walkerBall, accessResolution, sys);
+    std::vector<Viewer> updatedViewers = find_accesses(navStarAndDirectv, accessResolution, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -116,11 +125,17 @@ void access_test()
     std::ofstream ss(outfile); // Can also use ofstream, etc.
     auto writer = csv::make_csv_writer(ss);
 
-    writer << std::vector<std::string>({ "Sender ID", "Receiver ID", "Rise - Set Times (s)" });
+    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
     for (const auto& viewer : updatedViewers) {
+        const auto sender = viewer.get_name() + "_" + std::to_string(viewer.get_id());
         for (const auto& [idPair, risesets] : viewer.get_accesses()) {
             if (risesets.size() > 0) {
-                std::vector<std::string> row{ std::to_string(idPair.sender), std::to_string(idPair.receiver) };
+                std::string receiver;
+                for (const auto& v : updatedViewers) {
+                    if (v.get_id() == idPair.receiver) { receiver = v.get_name() + "_" + std::to_string(v.get_id()); }
+                }
+
+                std::vector<std::string> row{ sender, receiver };
                 for (const auto& str : risesets.to_string_vector()) {
                     row.push_back(str);
                 }

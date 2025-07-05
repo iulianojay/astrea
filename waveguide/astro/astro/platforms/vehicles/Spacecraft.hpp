@@ -8,6 +8,8 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
+#include <snapshot/snapshot.hpp>
+
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
@@ -24,6 +26,7 @@ class Spacecraft {
     // Constructor
     Spacecraft() = default;
     Spacecraft(OrbitalElements state0, Date epoch = J2000);
+    Spacecraft(const snapshot::SpaceTrackGP& gp);
 
     // Destructor
     virtual ~Spacecraft() = default;
@@ -50,6 +53,7 @@ class Spacecraft {
     SurfaceArea get_lift_area() const;
 
     std::size_t get_id() const { return _id; }
+    std::string get_name() const { return _name; }
 
   protected:
     std::size_t _id;

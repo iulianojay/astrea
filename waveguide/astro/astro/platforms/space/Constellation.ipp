@@ -35,6 +35,16 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
     generate_id_hash();
 }
 
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(std::vector<snapshot::SpaceTrackGP> gps)
+{
+    std::vector<Spacecraft_T> satellites;
+    for (const auto gp : gps) {
+        satellites.push_back(Spacecraft_T(gp));
+    }
+    *this = Constellation(satellites);
+}
+
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(

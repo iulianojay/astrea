@@ -19,6 +19,7 @@ class Constellation {
     Constellation(std::vector<Shell<Spacecraft_T>> shells);
     Constellation(std::vector<Plane<Spacecraft_T>> planes);
     Constellation(std::vector<Spacecraft_T> satellites);
+    Constellation(std::vector<snapshot::SpaceTrackGP> gp);
     Constellation(
         const Distance& semimajor,
         const Angle& inclination,

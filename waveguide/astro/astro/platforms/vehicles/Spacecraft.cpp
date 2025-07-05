@@ -7,9 +7,11 @@
 
 
 using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::non_si;
-using namespace mp_units::si::unit_symbols;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::s;
 
 namespace astro {
 
@@ -17,10 +19,38 @@ namespace astro {
 Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) :
     _epoch(epoch)
 {
-    update_state(State(0.0 * day, state0));
+    update_state(State(0.0 * s, state0));
     generate_id_hash();
 }
 
+Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp)
+{
+    // TODO: Add catch/warning for missing values
+    _id    = gp.NORAD_CAT_ID;
+    _name  = gp.OBJECT_NAME.has_value() ? gp.OBJECT_NAME.value() : "UNNAMED";
+    _epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
+    if (!gp.SEMIMAJOR_AXIS.has_value() || !gp.ECCENTRICITY.has_value() || !gp.INCLINATION.has_value() ||
+        !gp.RA_OF_ASC_NODE.has_value() || !gp.ARG_OF_PERICENTER.has_value() || !gp.MEAN_ANOMALY.has_value()) {
+        std::cerr << "Missing GP info. Sad." << std::endl;
+    }
+    Keplerian coes(
+        gp.SEMIMAJOR_AXIS.value() * km,
+        gp.ECCENTRICITY.value() * one,
+        gp.INCLINATION.value() * deg,
+        gp.RA_OF_ASC_NODE.value() * deg,
+        gp.ARG_OF_PERICENTER.value() * deg,
+        gp.MEAN_ANOMALY.value() * deg
+    );
+
+    update_state(State(0.0 * s, coes));
+
+    // All of these are just default values - TODO: Look into different or better values for approximating these
+    // effects, or find how to approximate these
+    // _mass
+    // _coefficientOfLift
+    // _sunArea
+    // _liftArea
+}
 
 void Spacecraft::update_state(const State& state)
 {

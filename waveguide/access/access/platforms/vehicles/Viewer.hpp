@@ -11,6 +11,7 @@
 #include <astro/types/typedefs.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <snapshot/snapshot.hpp>
 
 #include <access/platforms/Sensor.hpp>
 
@@ -21,6 +22,10 @@ class Viewer : public astro::Spacecraft {
   public:
     // Constructor
     Viewer() = default;
+    Viewer(const snapshot::SpaceTrackGP& gp) :
+        Spacecraft(gp)
+    {
+    }
     Viewer(astro::OrbitalElements state0, astro::Date epoch = astro::J2000) :
         Spacecraft(state0, epoch){};
 
