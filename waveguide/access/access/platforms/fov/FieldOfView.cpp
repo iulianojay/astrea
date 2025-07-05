@@ -13,21 +13,33 @@
 using namespace mp_units;
 using namespace mp_units::angular;
 
+using astro::Angle;
 using astro::Distance;
 using astro::RadiusVector;
 
 namespace accesslib {
 
-Distance norm(const RadiusVector& r);
+Distance norm(const RadiusVector& r) { return sqrt(r[0] * r[0] + r[1] * r[1] + r[2] * r[2]); }
 
-Distance norm(const RadiusVector& r) { return sqrt(r[0] * r[0] + r[1] * r[1] + r[2] * r[2]); } // TODO: Move this
+// TODO: Generalize, move
+auto dot_product(const RadiusVector& r1, const RadiusVector& r2);
+
+auto dot_product(const RadiusVector& r1, const RadiusVector& r2)
+{
+    return r1[0] * r2[0] + r1[1] * r2[1] + r1[2] * r2[2];
+}
+
+Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusVector& vector2)
+{
+    const Distance v1Mag = norm(vector1);
+    const Distance v2Mag = norm(vector2);
+    const auto v1DotV2   = dot_product(vector1, vector2);
+    return acos(v1DotV2 / (v1Mag * v2Mag));
+}
 
 bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVector& target) const
 {
-    const Distance B = norm(boresight);
-    const Distance T = norm(target);
-    const auto bDotT = boresight[0] * target[0] + boresight[1] * target[1] + boresight[2] * target[2];
-    return (acos(bDotT / (B * T)) <= _halfConeAngle);
+    return (calculate_angle_between_vectors(boresight, target) <= _halfConeAngle);
 }
 
 

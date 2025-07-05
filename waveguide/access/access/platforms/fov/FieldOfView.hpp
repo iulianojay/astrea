@@ -19,6 +19,10 @@ struct std::hash<astro::Angle> {
 
 namespace accesslib {
 
+// TODO: Move this
+astro::Distance norm(const astro::RadiusVector& r);
+astro::Angle calculate_angle_between_vectors(const astro::RadiusVector& vector1, const astro::RadiusVector& vector2);
+
 class FieldOfView {
   public:
     FieldOfView()  = default;

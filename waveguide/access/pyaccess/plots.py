@@ -29,20 +29,24 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
         if index == 0: 
             continue
 
-        senderId = row[0]
-        receiverId = row[1]
+        sender = row[0]
+        receiver = row[1]
 
-        if (senderId != "DIRECTV_32729" and receiverId != "DIRECTV_32729"):
+        if sender != "DIRECTV_32729" and receiver != "DIRECTV_32729":
             continue
+        if sender == "DIRECTV_32729":
+            sender = "DIRECTV"
+        if receiver == "DIRECTV_32729":
+            receiver = "DIRECTV"
 
         # Avoid plotting same pairs twice - TODO: Update this for one-way analysis
-        if (senderId, receiverId) in usedPairs or (receiverId, senderId) in usedPairs:
+        if (sender, receiver) in usedPairs or (receiver, sender) in usedPairs:
             continue
         else:
-            usedPairs.append((senderId, receiverId))
+            usedPairs.append((sender, receiver))
 
         # Store labels
-        labels.append(f'{senderId} \u21D4 {receiverId}') # TODO: use unicode single-direction arrow for one-way analysis
+        labels.append(f'{sender} \u21D4 {receiver}') # TODO: use unicode single-direction arrow for one-way analysis
 
         # Loop over riseset times
         risesets = []
