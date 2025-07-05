@@ -8,9 +8,26 @@
 
 namespace astro {
 
+
+// TODO: Translate this to use mp-units
 class LambertSolver {
+  public:
+    LambertSolver()  = default;
+    ~LambertSolver() = default;
+
+    // Starts with r and v and outputs r and v after dt
+    void solve_rv(double* state0, double dt, double mu, double* statef);
+
+    // Starts with r and v and outputs r and v after dt modified to assume mu = 1
+    void solve_rv(double* state0, double dt, double* statef);
+
+    // Starts with r and r and ouputs v and v for the given dt
+    void solve_rr(double* r0, double* rf, double dt, double mu, int I, double* v0, double* vf);
+
   private:
-    // Private members
+    int itMax  = 1000;
+    double tol = 1.0e-12;
+
     double r0[3] = {};
     double v0[3] = {};
     double R0{};
@@ -47,20 +64,6 @@ class LambertSolver {
     // Private methods
     void evaluate_stumpff();
     double normalize(double* vec);
-
-  public:
-    LambertSolver();
-    ~LambertSolver();
-
-    // Members
-    int itMax  = 1000;
-    double tol = 1.0e-12;
-
-    // Methods
-    void solve_rv(double* state0, double dt, double mu, double* statef); // Starts with r and v and outputs r and v after dt
-    void solve_rv(double* state0, double dt, double* statef); // Starts with r and v and outputs r and v after dt modified to assume mu = 1
-
-    void solve_rr(double* r0, double* rf, double dt, double mu, int I, double* v0, double* vf); // Starts with r and r and ouputs v and v for the given dt
 };
 
 } // namespace astro

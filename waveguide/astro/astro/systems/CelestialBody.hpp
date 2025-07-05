@@ -31,7 +31,6 @@ class CelestialBody {
 
     // Operators
     bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
-    bool operator!=(const CelestialBody& other) const { return !(*this == other); }
 
     // Property assignment
     void propagate(const Date& epoch, const Time& propTime, const GravParam& parentMu);

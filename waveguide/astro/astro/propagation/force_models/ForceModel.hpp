@@ -18,7 +18,7 @@ class ForceModel {
     template <typename T, typename... Args>
     const std::unique_ptr<Force>& add(Args&&... args)
     {
-        std::string name = typeid(T).name();
+        static const std::string name = typeid(T).name();
         if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
         return forces.at(name);
     }
@@ -31,7 +31,7 @@ class ForceModel {
     template <typename T>
     const std::unique_ptr<Force>& get() const
     {
-        std::string name = typeid(T).name();
+        static const std::string name = typeid(T).name();
         return forces.at(name);
     }
 

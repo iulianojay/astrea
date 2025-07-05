@@ -23,12 +23,12 @@ class State {
     template <IsOrbitalElements T>
     void convert(const AstrodynamicsSystem& sys)
     {
-        elements = T(elements, sys);
+        elements.convert<T>(sys);
     }
     template <IsOrbitalElements T>
     State convert(const AstrodynamicsSystem& sys) const
     {
-        return { time, T(elements, sys) };
+        return { time, elements.in<T>(sys) };
     }
 
     Time time;

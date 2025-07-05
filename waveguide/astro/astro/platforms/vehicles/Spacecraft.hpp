@@ -5,7 +5,7 @@
 
 // mp-units
 #include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
+
 
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>

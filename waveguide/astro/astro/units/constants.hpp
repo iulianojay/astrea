@@ -1,7 +1,7 @@
 #pragma once
 
 #include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
+
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>

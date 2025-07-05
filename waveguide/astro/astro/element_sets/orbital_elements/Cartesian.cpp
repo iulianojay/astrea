@@ -100,6 +100,17 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     const auto& k             = elements.get_k();
     const auto& trueLongitude = elements.get_true_longitude();
 
+    // Catch default/nonsense case
+    if (semilatus == 0.0 * km) {
+        _x  = 0.0 * km;
+        _y  = 0.0 * km;
+        _z  = 0.0 * km;
+        _vx = 0.0 * km / s;
+        _vy = 0.0 * km / s;
+        _vz = 0.0 * km / s;
+        return;
+    }
+
     // Precalculate
     const auto cosL = cos(trueLongitude);
     const auto sinL = sin(trueLongitude);

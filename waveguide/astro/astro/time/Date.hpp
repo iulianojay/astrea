@@ -48,9 +48,8 @@ class Date {
     Time operator-(const Date& other) const;
 
     // Comparitors
-    bool operator<(const Date& other) const;
-    bool operator>(const Date& other) const;
-    bool operator==(const Date& other) const;
+    auto operator<=>(const Date& other) const { return _julianDate <=> other._julianDate; }
+    bool operator==(const Date& other) const { return _julianDate == other._julianDate; }
 
     // Clock conversions
     auto jd() const { return _julianDate; }

@@ -24,7 +24,7 @@ class EquationsOfMotion {
     virtual OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
     virtual bool check_crash(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
     {
-        return false; // TODO: Implemet these
+        return false; // TODO: Implement these
     }
 
     virtual const ElementSet& get_expected_set() const = 0;
