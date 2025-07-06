@@ -16,7 +16,6 @@ namespace astro {
 
 OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
     const Cartesian cartesian = state.in<Cartesian>(system);
 
     // Extract

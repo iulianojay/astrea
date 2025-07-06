@@ -38,6 +38,8 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
     const OrbitalElements stateInitial = vehicle.get_state().elements;
     OrbitalElements state              = stateInitial;
 
+    // TODO: Need to check input elements match expected for EOMS
+
     // Ensure count restarts
     functionEvaluations = 0;
 

@@ -34,7 +34,11 @@ Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusV
     const Distance v1Mag = norm(vector1);
     const Distance v2Mag = norm(vector2);
     const auto v1DotV2   = dot_product(vector1, vector2);
-    return acos(v1DotV2 / (v1Mag * v2Mag));
+    const auto ratio     = v1DotV2 / (v1Mag * v2Mag);
+    if (ratio > 1.0 * one) {
+        return 0.0 * astro::detail::angle_unit;
+    } // catch rounding errors - TODO: Make this more intelligent
+    return acos(ratio);
 }
 
 bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVector& target) const

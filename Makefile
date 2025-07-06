@@ -20,37 +20,40 @@ build_path := $(abspath $(shell pwd)/build/gcc-13-23/$(build_type))
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
 
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := conan-debug
 
-.PHONY: all
-all: install
+# THESE DON"T WORK AND WILL BREAK THINGS IF YOU USE THEM
+# .DEFAULT_GOAL := all
 
-.PHONY: install
-install: build
-	cmake --install $(build_path)
+# .PHONY: all
+# all: install
 
-.PHONY: build
-build: configure
-	$(MAKE) -C $(build_path) -j 20
+# .PHONY: install
+# install: build
+# 	cmake --install $(build_path)
 
-.PHONY: configure
-configure: $(build_path)/Makefile
+# .PHONY: build
+# build: configure
+# 	$(MAKE) -C $(build_path) -j 20
 
-$(build_path)/Makefile: CMakeLists.txt
-	cmake -S $(config_path) -B $(build_path) \
-		-DCMAKE_BUILD_TYPE=$(build_type) \
-		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
-		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON  
+# .PHONY: configure
+# configure: $(build_path)/Makefile
 
-.PHONY: examples
-examples: install
-	$(MAKE) -C $(build_path)/$(examples_path) install
+# $(build_path)/Makefile: CMakeLists.txt
+# 	cmake -S $(config_path) -B $(build_path) \
+# 		-DCMAKE_BUILD_TYPE=$(build_type) \
+# 		-DCMAKE_VERBOSE_MAKEFILE:BOOL=$(verbose_makefile) \
+# 		-DWARNINGS_AS_ERRORS:BOOL=$(warnings_as_errors) \
+# 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON  
+
+# .PHONY: examples
+# examples: install
+# 	$(MAKE) -C $(build_path)/$(examples_path) install
 	
-.PHONY: tests
-tests: install
-	$(MAKE) -C $(build_path)/waveguide/math/$(tests_path) install 
-	$(MAKE) -C $(build_path)/waveguide/astro/$(tests_path) install 
+# .PHONY: tests
+# tests: install
+# 	$(MAKE) -C $(build_path)/waveguide/math/$(tests_path) install 
+# 	$(MAKE) -C $(build_path)/waveguide/astro/$(tests_path) install 
 	
 .PHONY: run_tests
 run_tests: conan-debug

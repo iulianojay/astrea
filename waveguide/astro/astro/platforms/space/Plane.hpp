@@ -32,9 +32,15 @@ class Plane {
 
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
-    using iterator = std::vector<Spacecraft_T>::iterator;
+    using iterator       = std::vector<Spacecraft_T>::iterator;
+    using const_iterator = std::vector<Spacecraft_T>::const_iterator;
+
     iterator begin() { return satellites.begin(); }
     iterator end() { return satellites.end(); }
+    const_iterator begin() const { return satellites.begin(); }
+    const_iterator end() const { return satellites.end(); }
+    const_iterator cbegin() const { return satellites.cbegin(); }
+    const_iterator cend() const { return satellites.cend(); }
 
     const std::size_t get_id() const { return id; }
 

@@ -89,7 +89,6 @@ void access_test()
     forces.add<NBodyForce>();
 
     // Build EoMs
-    std::string propagator = "j2mean";
     J2MeanVop eom(sys);
 
     // Setup integrator
@@ -111,8 +110,8 @@ void access_test()
     start = std::chrono::steady_clock::now();
 
     // Find access
-    Time accessResolution              = minutes(1);
-    std::vector<Viewer> updatedViewers = find_accesses(navStarAndDirectv, accessResolution, sys);
+    Time accessResolution = minutes(1);
+    const auto accesses   = find_accesses(navStarAndDirectv, accessResolution, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -126,21 +125,29 @@ void access_test()
     auto writer = csv::make_csv_writer(ss);
 
     writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
-    for (const auto& viewer : updatedViewers) {
-        const auto sender = viewer.get_name() + "_" + std::to_string(viewer.get_id());
-        for (const auto& [idPair, risesets] : viewer.get_accesses()) {
-            if (risesets.size() > 0) {
-                std::string receiver;
-                for (const auto& v : updatedViewers) {
-                    if (v.get_id() == idPair.receiver) { receiver = v.get_name() + "_" + std::to_string(v.get_id()); }
-                }
+    for (const auto& [idPair, risesets] : accesses) {
+        if (risesets.size() > 0) {
 
-                std::vector<std::string> row{ sender, receiver };
-                for (const auto& str : risesets.to_string_vector()) {
-                    row.push_back(str);
+            // Gross
+            std::string sender, receiver;
+            for (const auto& shell : navStarAndDirectv) {
+                for (const auto& plane : shell) {
+                    for (const auto& viewer : plane) {
+                        if (viewer.get_id() == idPair.sender) {
+                            sender = viewer.get_name() + "_" + std::to_string(viewer.get_id());
+                        }
+                        if (viewer.get_id() == idPair.receiver) {
+                            receiver = viewer.get_name() + "_" + std::to_string(viewer.get_id());
+                        }
+                    }
                 }
-                writer << row;
             }
+
+            std::vector<std::string> row{ sender, receiver };
+            for (const auto& str : risesets.to_string_vector()) {
+                row.push_back(str);
+            }
+            writer << row;
         }
     }
 }

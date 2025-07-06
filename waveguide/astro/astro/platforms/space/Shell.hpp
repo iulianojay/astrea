@@ -50,10 +50,15 @@ class Shell {
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Plane<Spacecraft_T>>::iterator;
+    using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;
+    using const_iterator = std::vector<Plane<Spacecraft_T>>::const_iterator;
 
     iterator begin() { return planes.begin(); }
     iterator end() { return planes.end(); }
+    const_iterator begin() const { return planes.begin(); }
+    const_iterator end() const { return planes.end(); }
+    const_iterator cbegin() const { return planes.cbegin(); }
+    const_iterator cend() const { return planes.cend(); }
 
     class sat_iterator;
 

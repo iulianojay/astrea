@@ -55,10 +55,15 @@ class Constellation {
     void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Shell<Spacecraft_T>>::iterator;
+    using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
+    using const_iterator = std::vector<Shell<Spacecraft_T>>::const_iterator;
 
     iterator begin() { return shells.begin(); }
     iterator end() { return shells.end(); }
+    const_iterator begin() const { return shells.begin(); }
+    const_iterator end() const { return shells.end(); }
+    const_iterator cbegin() const { return shells.cbegin(); }
+    const_iterator cend() const { return shells.cend(); }
 
     class sat_iterator;
 
