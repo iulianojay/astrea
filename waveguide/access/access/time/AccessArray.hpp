@@ -58,7 +58,7 @@ class AccessArray {
         return _accesses[IdPair(senderId, receiverId)];
     }
 
-    RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId)
+    const RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId) const
     {
         return _accesses.at(IdPair(senderId, receiverId));
     }

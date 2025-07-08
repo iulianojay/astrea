@@ -81,6 +81,85 @@ void RiseSetArray::insert(const Time& rise, const Time& set)
     *this = (*this) | RiseSetArray({ rise, set });
 }
 
+std::vector<std::string> RiseSetArray::to_string_vector() const
+{
+    std::vector<std::string> retval;
+    retval.reserve(_risesets.size());
+    for (const auto t : _risesets) {
+        retval.push_back(to_formatted_string(t));
+    }
+    return retval;
+}
+
+
+Time RiseSetArray::gap(const Stat& stat) const
+{
+    Time retval = 0.0 * mp_units::si::unit_symbols::s;
+
+    // No gaps
+    if (_risesets.size() <= 2) { return retval; }
+
+    for (std::size_t ii = 1; ii < _risesets.size() - 1; ii += 2) {
+        const Time gap = _risesets[ii + 1] - _risesets[ii];
+
+        switch (stat) {
+            case (Stat::MIN): {
+                if (gap < retval) { retval = gap; }
+                break;
+            }
+            case (Stat::MAX): {
+                if (gap > retval) { retval = gap; }
+                break;
+            }
+            case (Stat::MEAN): {
+                retval += gap;
+                break;
+            }
+            default: throw std::runtime_error("Unknown gap statistic requested.");
+        }
+    }
+    if (stat == Stat::MEAN) {
+        const std::size_t nGaps = _risesets.size() / 2 - 1;
+        retval /= nGaps;
+    }
+    return retval;
+}
+
+
+Time RiseSetArray::access_time(const Stat& stat) const
+{
+    Time retval = 0.0 * mp_units::si::unit_symbols::s;
+
+    // Empty
+    if (_risesets.size() < 2) { return retval; }
+
+    for (std::size_t ii = 0; ii < _risesets.size(); ii += 2) {
+        const Time accessTime = _risesets[ii + 1] - _risesets[ii];
+
+        switch (stat) {
+            case (Stat::MIN): {
+                if (accessTime < retval) { retval = accessTime; }
+                break;
+            }
+            case (Stat::MAX): {
+                if (accessTime > retval) { retval = accessTime; }
+                break;
+            }
+            case (Stat::MEAN): {
+                retval += accessTime;
+                break;
+            }
+            default: throw std::runtime_error("Unknown access time statistic requested.");
+        }
+    }
+    if (stat == Stat::MEAN) {
+        const std::size_t nAccess = _risesets.size() / 2;
+        retval /= nAccess;
+    }
+    return retval;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const RiseSetArray& risesets)
 {
     const auto& values = risesets._risesets;

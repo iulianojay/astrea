@@ -11,6 +11,8 @@
 
 namespace accesslib {
 
+enum class Stat { MIN, MEAN, MAX };
+
 class RiseSetArray {
 
     friend std::ostream& operator<<(std::ostream& os, const RiseSetArray& risesets);
@@ -49,6 +51,11 @@ class RiseSetArray {
     // Intersection
     RiseSetArray operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
 
+    // Calcs
+    astro::Time gap(const Stat& stat = Stat::MEAN) const;
+    astro::Time access_time(const Stat& stat = Stat::MEAN) const;
+
+    // Iterators
     using const_iterator = std::vector<astro::Time>::const_iterator;
 
     const_iterator begin() const { return _risesets.begin(); }
@@ -56,15 +63,7 @@ class RiseSetArray {
     const_iterator cbegin() const { return _risesets.cbegin(); }
     const_iterator cend() const { return _risesets.cend(); }
 
-    std::vector<std::string> to_string_vector() const
-    {
-        std::vector<std::string> retval;
-        retval.reserve(_risesets.size());
-        for (const auto t : _risesets) {
-            retval.push_back(to_formatted_string(t));
-        }
-        return retval;
-    }
+    std::vector<std::string> to_string_vector() const;
 
   private:
     std::vector<astro::Time> _risesets;

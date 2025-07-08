@@ -147,3 +147,67 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
 }
+
+
+TEST_F(SimpleGeoAccessTest, FourBallGeo)
+{
+    // Build constellation
+    Viewer geo1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys));
+    Viewer geo2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys));
+    Viewer geo3(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys));
+    Viewer geo4(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), sys));
+
+    Constellation<Viewer> fourBallGeo;
+    fourBallGeo.add_spacecraft(geo1);
+    fourBallGeo.add_spacecraft(geo2);
+    fourBallGeo.add_spacecraft(geo3);
+    fourBallGeo.add_spacecraft(geo4);
+
+    // Add sensors
+    CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    Sensor geoCone(fov180deg);
+
+    for (auto& shell : fourBallGeo) {
+        for (auto& plane : shell) {
+            for (auto& sat : plane) {
+                sat.attach_sensor(geoCone);
+            }
+        }
+    }
+
+    // Propagate
+    fourBallGeo.propagate(eom, integrator, accessInterval);
+
+    // Find access
+    auto accesses = find_accesses(fourBallGeo, resolution, sys);
+
+    // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
+    ASSERT_TRUE(accesses.size() > 0);
+
+    // Access size
+    const auto access12 = accesses[geo1.get_id(), geo2.get_id()];
+    const auto access13 = accesses[geo1.get_id(), geo3.get_id()];
+    const auto access14 = accesses[geo1.get_id(), geo4.get_id()];
+
+    const auto access23 = accesses[geo2.get_id(), geo3.get_id()];
+    const auto access24 = accesses[geo2.get_id(), geo4.get_id()];
+
+    const auto access34 = accesses[geo3.get_id(), geo4.get_id()];
+
+    ASSERT_EQ(access12.size(), 2);
+    ASSERT_EQ(access13.size(), 0);
+    ASSERT_EQ(access14.size(), 2);
+    ASSERT_EQ(access23.size(), 2);
+    ASSERT_EQ(access24.size(), 0);
+    ASSERT_EQ(access34.size(), 2);
+
+    // Access time
+    const Time zero    = start;
+    const Time simTime = end - start;
+    ASSERT_EQ(access12.access_time(Stat::MEAN), simTime);
+    ASSERT_EQ(access13.access_time(Stat::MEAN), zero);
+    ASSERT_EQ(access14.access_time(Stat::MEAN), simTime);
+    ASSERT_EQ(access23.access_time(Stat::MEAN), simTime);
+    ASSERT_EQ(access24.access_time(Stat::MEAN), zero);
+    ASSERT_EQ(access34.access_time(Stat::MEAN), simTime);
+}

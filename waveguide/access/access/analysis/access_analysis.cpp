@@ -53,7 +53,7 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
             if (satAccess.size() > 0) {
                 viewer1.add_access(id2, satAccess);
                 viewer2.add_access(id1, satAccess);
-                allAccesses[id1, id2] = satAccess;
+                allAccesses[id1, id2] = satAccess; // TODO: Consider id2->id1 as well
             }
         }
     }
