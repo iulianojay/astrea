@@ -54,6 +54,7 @@ class Spacecraft {
 
     std::size_t get_id() const { return _id; }
     std::string get_name() const { return _name; }
+    void clear() { _states.clear(); }
 
   protected:
     std::size_t _id;

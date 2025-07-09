@@ -93,6 +93,12 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle)
 };
 
 template <typename T>
+concept HasClear = requires(T vehicle)
+{
+    { vehicle.clear() };
+};
+
+template <typename T>
 concept IsUserDefinedVehicle = requires(T)
 {
     std::is_same<T, remove_cv_ref<T>>::value;
@@ -127,6 +133,8 @@ struct VehicleInnerBase {
     virtual Unitless get_coefficient_of_drag() const         = 0;
     virtual Unitless get_coefficient_of_lift() const         = 0;
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
+
+    virtual void clear() = 0;
 
     // Implementation utilities
     virtual std::unique_ptr<VehicleInnerBase> clone() const = 0;
@@ -169,6 +177,7 @@ struct VehicleInner final : public VehicleInnerBase {
     Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
     Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
     Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
+    void clear() final { return clear_impl(_value); };
 
     // Use templates to switch between defined or default implementations
     template <typename U>
@@ -230,6 +239,11 @@ struct VehicleInner final : public VehicleInnerBase {
     {
         return value.get_coefficient_of_reflectivity();
     }
+
+    template <typename U>
+    requires(!HasClear<U>) void clear_impl(U&) {}
+    template <typename U>
+    requires(HasClear<U>) void clear_impl(U& value) { value.clear(); }
 
     // The clone method, used in the copy constructor of Vehicle.
     std::unique_ptr<VehicleInnerBase> clone() const final { return std::make_unique<VehicleInner>(_value); }
@@ -326,6 +340,8 @@ class Vehicle {
 
     // Coefficient of reflectivity
     Unitless get_coefficient_of_reflectivity() const { return _ptr->get_coefficient_of_reflectivity(); }
+
+    void clear() { _ptr->clear(); }
 
     // Pointer to user-defined vehicle
     const void* get_ptr() const;

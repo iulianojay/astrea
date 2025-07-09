@@ -23,22 +23,42 @@ void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eo
     integrate(interval.start, interval.end, eom, vehicle);
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
+void Integrator::integrate(const Time& time0, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Time
-    Time time     = timeInitial;
+    Time time     = time0;
     Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
 
-    if (timeFinal < timeInitial) {
+    if (timeFinal < time0) {
         forwardTime = false;
         timeStep    = -timeStep;
     }
 
     // States
-    const OrbitalElements stateInitial = vehicle.get_state().elements;
-    OrbitalElements state              = stateInitial;
+    OrbitalElements& state0 = vehicle.get_state().elements;
 
-    // TODO: Need to check input elements match expected for EOMS
+    // Need to check input elements match expected for EOMS
+    const ElementSet& expectedSet = eom.get_expected_set();
+    if (state0.index() != std::to_underlying(expectedSet)) { // ooh boy we're fragile
+        switch (expectedSet) {
+            case (ElementSet::CARTESIAN): {
+                state0.convert<Cartesian>(eom.get_system());
+                break;
+            }
+            case (ElementSet::KEPLERIAN): {
+                state0.convert<Keplerian>(eom.get_system());
+                break;
+            }
+            case (ElementSet::EQUINOCTIAL): {
+                state0.convert<Equinoctial>(eom.get_system());
+                break;
+            }
+            default: throw std::runtime_error("Unrecognized element set requested.");
+        }
+        vehicle.clear();
+        vehicle.update_state({ time0, state0 });
+    }
+    OrbitalElements state = state0;
 
     // Ensure count restarts
     functionEvaluations = 0;
@@ -54,7 +74,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {
-            print_iteration(time, state, timeFinal, stateInitial);
+            print_iteration(time, state, timeFinal, state0);
 
             std::cout << crashMessage;
             return;
@@ -108,7 +128,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
         }
 
         // Print time and state
-        print_iteration(time, state, timeFinal, stateInitial);
+        print_iteration(time, state, timeFinal, state0);
 
         // Step iteration
         ++iteration;
@@ -376,7 +396,7 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 }
 
 
-void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial)
+void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& state0)
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
@@ -385,7 +405,7 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
             std::cout << "Run Conditions:" << std::endl << std::endl;
             std::cout << "Initial Time = " << 0.0 << std::endl;
             std::cout << "Final Time =  " << timeFinal << std::endl;
-            std::cout << "Initial State = " << stateInitial << std::endl;
+            std::cout << "Initial State = " << state0 << std::endl;
             std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl;
             std::cout << "Run:" << std::endl << std::endl;
         }

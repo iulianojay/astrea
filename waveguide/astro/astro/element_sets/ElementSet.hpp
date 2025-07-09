@@ -8,7 +8,7 @@
 
 namespace astro {
 
-enum class ElementSet : EnumType { KEPLERIAN, CARTESIAN, EQUINOCTIAL };
+enum class ElementSet : EnumType { CARTESIAN = 0, KEPLERIAN = 1, EQUINOCTIAL = 2 };
 
 
 const std::unordered_map<ElementSet, std::string> ElementSetToString = { { ElementSet::KEPLERIAN, "KEPLERIAN" },

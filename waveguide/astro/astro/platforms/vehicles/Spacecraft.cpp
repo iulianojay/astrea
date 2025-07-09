@@ -54,7 +54,7 @@ Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp)
 
 void Spacecraft::update_state(const State& state)
 {
-    _state = state; // TODO: Convert to element set?
+    _state = state;
     _states.emplace_back(state);
 }
 
