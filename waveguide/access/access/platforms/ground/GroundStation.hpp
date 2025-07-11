@@ -4,12 +4,12 @@
 
 #include <astro/types/typedefs.hpp>
 
-#include <access/platforms/Sensor.hpp>
+#include <access/platforms/sensors/Sensor.hpp>
 
 
 namespace accesslib {
 
-class GroundStation {
+class GroundStation : public AccessObject {
   public:
     GroundStation(
         const astro::Angle& latitutde,
@@ -18,6 +18,7 @@ class GroundStation {
         const std::vector<Sensor>& sensors,
         const std::string name = "Unnammed"
     ) :
+        AccessObject(),
         _latitutde(latitutde),
         _longitude(longitude),
         _altitude(altitude),
@@ -28,8 +29,8 @@ class GroundStation {
     };
     ~GroundStation(){};
 
-    void attach(Sensor& sensor) { _sensors.push_back(sensor); }
-    void attach(std::vector<Sensor>& sensors)
+    void attach(const Sensor& sensor) { _sensors.emplace_back(sensor); }
+    void attach(const std::vector<Sensor>& sensors)
     {
         _sensors.insert(std::end(_sensors), std::begin(sensors), std::end(sensors));
     }

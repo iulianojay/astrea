@@ -64,7 +64,7 @@ void access_test()
     Constellation<Viewer> navStarAndDirectv(navStarGps);
 
     // Add sensors
-    CircularFieldOfView fov1deg(1.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov1deg(180.0 * mp_units::angular::unit_symbols::deg);
     CircularFieldOfView fov30deg(30.0 * mp_units::angular::unit_symbols::deg);
     Sensor geoCone(fov1deg);
     Sensor navstarCone(fov30deg);
@@ -76,20 +76,15 @@ void access_test()
     for (auto& shell : navStarAndDirectv) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
+                std::cout << sat.get_state().elements << std::endl;
                 sat.attach_sensor(navstarCone);
             }
         }
     }
     navStarAndDirectv.add_spacecraft(directv);
 
-    // Build Force Model
-    ForceModel forces;
-    forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 10, 10);
-    forces.add<NBodyForce>();
-
     // Build EoMs
-    J2MeanVop eom(sys);
+    TwoBody eom(sys);
 
     // Setup integrator
     Integrator integrator;
@@ -99,7 +94,7 @@ void access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), days(1) };
+    Interval propInterval{ seconds(0), days(2) };
     navStarAndDirectv.propagate(eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();

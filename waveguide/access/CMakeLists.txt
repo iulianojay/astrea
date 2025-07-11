@@ -22,10 +22,10 @@ set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ACCESS_SOURCES
     ${ACCESS_BASE}/analysis/access_analysis.cpp
 
-    ${ACCESS_BASE}/platforms/Antenna.cpp
-    ${ACCESS_BASE}/platforms/Sensor.cpp
+    ${ACCESS_BASE}/platforms/sensors/Antenna.cpp
+    ${ACCESS_BASE}/platforms/sensors/Sensor.cpp
     ${ACCESS_BASE}/platforms/ground/GroundStation.cpp
-    ${ACCESS_BASE}/platforms/fov/FieldOfView.cpp
+    ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.cpp
 
     ${ACCESS_BASE}/time/RiseSetArray.cpp
     ${ACCESS_BASE}/time/riseset_utils.cpp
@@ -37,10 +37,10 @@ set(ACCESS_HEADERS
 
     ${ACCESS_BASE}/analysis/access_analysis.hpp
 
-    ${ACCESS_BASE}/platforms/Antenna.hpp
-    ${ACCESS_BASE}/platforms/Sensor.hpp
+    ${ACCESS_BASE}/platforms/sensors/Antenna.hpp
+    ${ACCESS_BASE}/platforms/sensors/Sensor.hpp
     ${ACCESS_BASE}/platforms/ground/GroundStation.hpp
-    ${ACCESS_BASE}/platforms/fov/FieldOfView.hpp
+    ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.hpp
     ${ACCESS_BASE}/platforms/vehicles/Viewer.hpp
 
     ${ACCESS_BASE}/time/AccessArray.hpp

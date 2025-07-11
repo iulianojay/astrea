@@ -65,7 +65,7 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
 
     # Cleanup
     ax.set_xlim(0, 24)
-    ax.set_xticks(range(0, 26, 2))
+    ax.set_xticks(range(0, 50, 2))
     ax.invert_yaxis()
     ax.set_yticks(range(len(labels)), labels=labels)
     ax.set_xlabel("Rise - Set Times (hrs)")

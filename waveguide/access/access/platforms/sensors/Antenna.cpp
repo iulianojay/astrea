@@ -1,4 +1,4 @@
-#include <access/platforms/Antenna.hpp>
+#include <access/platforms/sensors/Antenna.hpp>
 
 #include <stdexcept>
 

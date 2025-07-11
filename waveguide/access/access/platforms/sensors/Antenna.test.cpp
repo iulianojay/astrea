@@ -4,7 +4,7 @@
 
 #include <astro/astro.hpp>
 
-#include <access/platforms/Antenna.hpp>
+#include <access/platforms/sensors/Antenna.hpp>
 
 using namespace astro;
 using namespace accesslib;

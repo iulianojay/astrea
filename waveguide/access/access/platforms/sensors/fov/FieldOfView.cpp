@@ -1,4 +1,4 @@
-#include <access/platforms/fov/FieldOfView.hpp>
+#include <access/platforms/sensors/fov/FieldOfView.hpp>
 
 #include <cmath>
 #include <stdexcept>

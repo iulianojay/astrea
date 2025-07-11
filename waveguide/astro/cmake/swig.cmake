@@ -65,7 +65,7 @@ include_directories(
     ${INC}/astro/element_sets
     ${INC}/astro/platforms
     ${INC}/astro/platforms/access
-    ${INC}/astro/platforms/access/fov
+    ${INC}/astro/platforms/access/sensors/fov
     ${INC}/astro/platforms/ground
     ${INC}/astro/platforms/space
     ${INC}/astro/propagation

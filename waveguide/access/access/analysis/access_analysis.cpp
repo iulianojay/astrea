@@ -3,7 +3,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
-#include <access/platforms/Sensor.hpp>
+#include <access/platforms/sensors/Sensor.hpp>
 
 
 using namespace mp_units;

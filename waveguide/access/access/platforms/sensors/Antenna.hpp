@@ -7,7 +7,7 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/units/units.hpp>
 
-#include <access/platforms/Sensor.hpp>
+#include <access/platforms/sensors/Sensor.hpp>
 #include <access/types/typedefs.hpp>
 #include <access/units/constants.hpp>
 #include <access/units/units.hpp>

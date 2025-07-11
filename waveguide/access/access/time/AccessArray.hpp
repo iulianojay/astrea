@@ -63,6 +63,11 @@ class AccessArray {
         return _accesses.at(IdPair(senderId, receiverId));
     }
 
+    void erase(const std::size_t& senderId, const std::size_t& receiverId)
+    {
+        _accesses.erase(IdPair(senderId, receiverId));
+    }
+
     std::size_t size() const { return _accesses.size(); }
 
     using iterator       = std::map<IdPair, RiseSetArray>::iterator;
