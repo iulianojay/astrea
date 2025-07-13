@@ -4,7 +4,6 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
-#include <unordered_map>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
@@ -27,7 +26,7 @@ namespace conversions {
 
 /*
 NOTE: This templating is to allow conversions for radius, velocity, and acceleration vectors.
-    This is wrong and needs to be resolved.
+    TODO: This is wrong for non-radial vectors and needs to be resolved.
 */
 template <typename Vec_T>
 Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
@@ -91,7 +90,7 @@ Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
 }
 
 void ecef_to_lla(const RadiusVector& rEcef, const Distance& equitorialRadius, const Distance& polarRadius, Angle& lat, Angle& lon, Distance& alt);
-void lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& equitorialRadius, const Distance& polarRadius, RadiusVector& rEcef);
+RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& equitorialRadius, const Distance& polarRadius);
 
 Angle sanitize_angle(const Angle& ang);
 

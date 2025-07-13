@@ -3,6 +3,7 @@
 namespace astro {
 
 class State;
+class StateHistory;
 
 // ELement sets
 class Cartesian;

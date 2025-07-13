@@ -1,12 +1,12 @@
 #include <access/platforms/ground/GroundStation.hpp>
 
+#include <mp-units/systems/angular.h>
+
 namespace accesslib {
 
 void GroundStation::generate_id_hash()
 {
-    // TODO: Fix
-    // id = std::hash<astro::Angle>()(latitude) ^ std::hash<astro::Angle>()(longitude) ^ std::hash<astro::Distance>()(altitude);
-    _id = 0;
+    _id = std::hash<astro::Angle>()(_latitude) ^ std::hash<astro::Angle>()(_longitude) ^ std::hash<astro::Distance>()(_altitude);
 }
 
 } // namespace accesslib

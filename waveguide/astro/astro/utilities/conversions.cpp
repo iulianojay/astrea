@@ -55,14 +55,8 @@ void conversions::ecef_to_lla(const RadiusVector& rEcef, const Distance& equitor
     if (alt < 0.0 * km) { alt = 0.0 * km; }
 }
 
-void conversions::lla_to_ecef(
-    const Angle& latitude,
-    const Angle& longitude,
-    const Distance& altitude,
-    const Distance& equitorialRadius,
-    const Distance& polarRadius,
-    RadiusVector& rEcef
-)
+RadiusVector
+    conversions::lla_to_ecef(const Angle& latitude, const Angle& longitude, const Distance& altitude, const Distance& equitorialRadius, const Distance& polarRadius)
 {
 
     const quantity sinLat = sin(latitude);
@@ -72,9 +66,9 @@ void conversions::lla_to_ecef(
     const quantity N = equitorialRadius / sqrt(1 - f * (2 - f) * sinLat * sinLat);
 
     // Ecef coordinates
-    rEcef[0] = (N + altitude) * cosLat * cos(longitude);
-    rEcef[1] = (N + altitude) * cosLat * sin(longitude);
-    rEcef[2] = ((1 - f) * (1 - f) * N + altitude) * sinLat;
+    return { (N + altitude) * cosLat * cos(longitude),
+             (N + altitude) * cosLat * sin(longitude),
+             ((1 - f) * (1 - f) * N + altitude) * sinLat };
 }
 
 Angle conversions::sanitize_angle(const Angle& angle)

@@ -30,7 +30,8 @@ class TwoBodyPropagationTest : public testing::Test {
         start(seconds(0)),
         end(weeks(1)),
         eom(sys),
-        propInterval({ start, end })
+        propInterval({ start, end }),
+        epoch(J2000)
     {
     }
 
@@ -56,6 +57,7 @@ class TwoBodyPropagationTest : public testing::Test {
     Time start;
     Time end;
     Interval propInterval;
+    Date epoch;
 };
 
 
@@ -70,16 +72,16 @@ TEST_F(TwoBodyPropagationTest, GEO)
 {
     // Build constellation
     Keplerian state0(42164.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    Spacecraft geo(Cartesian(state0, sys));
+    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
-    integrator.propagate(propInterval, eom, vehicle);
+    integrator.propagate(epoch, propInterval, eom, vehicle);
     geo = *vehicle.extract<Spacecraft>();
 
     // Validate
-    for (const auto& state : geo.get_states()) {
-        Keplerian kep = state.elements.in<Keplerian>(sys);
+    for (const auto& [time, state] : geo.get_state_history()) {
+        Keplerian kep = state.get_elements().in<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -93,16 +95,16 @@ TEST_F(TwoBodyPropagationTest, MEO)
 {
     // Build constellation
     Keplerian state0(24000 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    Spacecraft meo(Cartesian(state0, sys));
+    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
-    integrator.propagate(propInterval, eom, vehicle);
+    integrator.propagate(epoch, propInterval, eom, vehicle);
     meo = *vehicle.extract<Spacecraft>();
 
     // Validate
-    for (const auto& state : meo.get_states()) {
-        Keplerian kep = state.elements.in<Keplerian>(sys);
+    for (const auto& [time, state] : meo.get_state_history()) {
+        Keplerian kep = state.get_elements().in<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -116,16 +118,16 @@ TEST_F(TwoBodyPropagationTest, LEO)
 {
     // Build constellation
     Keplerian state0(7000.0 * km, 0.0 * one, 90.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    Spacecraft leo(Cartesian(state0, sys));
+    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate
-    integrator.propagate(propInterval, eom, vehicle);
+    integrator.propagate(epoch, propInterval, eom, vehicle);
     leo = *vehicle.extract<Spacecraft>();
 
     // Validate
-    for (const auto& state : leo.get_states()) {
-        Keplerian kep = state.elements.in<Keplerian>(sys);
+    for (const auto& [time, state] : leo.get_state_history()) {
+        Keplerian kep = state.get_elements().in<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());

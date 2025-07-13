@@ -64,11 +64,11 @@ class Cartesian {
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
     // Defaults
-    static Cartesian LEO();
-    static Cartesian LMEO();
-    static Cartesian GPS();
-    static Cartesian HMEO();
-    static Cartesian GEO();
+    static Cartesian LEO(const AstrodynamicsSystem& system);
+    static Cartesian LMEO(const AstrodynamicsSystem& system);
+    static Cartesian GPS(const AstrodynamicsSystem& system);
+    static Cartesian HMEO(const AstrodynamicsSystem& system);
+    static Cartesian GEO(const AstrodynamicsSystem& system);
 
     // Copy constructor
     Cartesian(const Cartesian&);

@@ -3,6 +3,8 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <astro/utilities/conversions.hpp>
+
 #include <access/platforms/sensors/Sensor.hpp>
 
 
@@ -10,13 +12,16 @@ using namespace mp_units;
 using namespace mp_units::angular;
 
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 using astro::Angle;
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
+using astro::Date;
 using astro::Distance;
 using astro::RadiusVector;
 using astro::State;
+using astro::StateHistory;
 using astro::Time;
 
 namespace accesslib {
@@ -28,12 +33,12 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
     const std::size_t nSats = viewers.size();
 
     // Create time array
-    const auto states = viewers.front().get_states();
+    const auto states = viewers.front().get_state_history();
     TimeVector times  = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
 
     // Interpolate viewer state histories to specified times
     // These are stored internally in each viewer
-    interpolate_states(viewers, times, sys);
+    interpolate_states(viewers, times);
 
     // For each sat
     AccessArray allAccesses;
@@ -61,18 +66,60 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
     return allAccesses;
 }
 
-TimeVector create_time_vector(const StateVector& states, const Time& resolution)
+AccessArray
+    find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const astro::Date epoch, const AstrodynamicsSystem& sys)
+{
+    // TODO: Rework all this into a class
+
+    // Get all sats
+    std::vector<Viewer> viewers = constel.get_all_spacecraft(); // TODO: this is dumb, please get sats by ref from constellation
+    const std::size_t nSats = viewers.size();
+
+    // Create time array
+    const auto states = viewers.front().get_state_history();
+    TimeVector times  = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
+
+    // Interpolate viewer state histories to specified times
+    // These are stored internally in each viewer
+    interpolate_states(viewers, times);
+
+    // For each sat
+    // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
+    AccessArray allAccesses;
+    for (auto& viewer : viewers) {
+        const std::size_t viewerId = viewer.get_id();
+
+        // For every other sat
+        for (auto& ground : grounds) {
+            const std::size_t groundId = ground.get_id();
+
+            // Satellite-level access for viewer1 -> viewer2
+            RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
+
+            // Store
+            if (satAccess.size() > 0) {
+                viewer.add_access(groundId, satAccess);
+                ground.add_access(viewerId, satAccess);
+                allAccesses[viewerId, groundId] = satAccess; // TODO: Consider id2->id1 as well
+            }
+        }
+    }
+
+    return allAccesses;
+}
+
+TimeVector create_time_vector(const StateHistory& states, const Time& resolution)
 {
     // Setup
-    const Time& startTime = states.front().time;
-    const Time& endTime   = states.back().time;
+    const Date& startDate = states.first().get_epoch();
+    const Date& endDate   = states.last().get_epoch();
 
     // Fill
-    Time time = startTime;
+    Time time = 0.0 * s;
     TimeVector times;
     times.emplace_back(time);
-    while (time < endTime) {
-        if (time + resolution >= endTime) { time = endTime; }
+    while (startDate + time < endDate) {
+        if (startDate + time + resolution >= endDate) { time = endDate - startDate; }
         else {
             time += resolution;
         }
@@ -82,11 +129,11 @@ TimeVector create_time_vector(const StateVector& states, const Time& resolution)
     return times;
 }
 
-void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times, const AstrodynamicsSystem& sys)
+void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times)
 {
     for (const auto& time : times) {
         for (auto& viewer : viewers) {
-            viewer.get_state_at(time, sys);
+            viewer.get_state_history().get_state_at(time);
         }
     }
 }
@@ -99,11 +146,11 @@ RiseSetArray
     std::size_t ii = 0;
     for (const auto& time : times) {
         // Get sat1 -> sat2 vector at current time
-        accessInfo[ii].time       = time;
-        accessInfo[ii].id1        = viewer1.get_id();
-        accessInfo[ii].id2        = viewer2.get_id();
-        accessInfo[ii].state1     = viewer1.get_closest_state(time).elements.in<Cartesian>(sys);
-        accessInfo[ii].state2     = viewer2.get_closest_state(time).elements.in<Cartesian>(sys);
+        accessInfo[ii].time   = time;
+        accessInfo[ii].id1    = viewer1.get_id();
+        accessInfo[ii].id2    = viewer2.get_id();
+        accessInfo[ii].state1 = viewer1.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
+        accessInfo[ii].state2 = viewer2.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
         accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
         ++ii;
     }
@@ -120,6 +167,52 @@ RiseSetArray
                 satAccess = (satAccess | sensorAccess);
                 sensor1.add_access(sensor2.get_id(), sensorAccess);
                 sensor2.add_access(sensor1.get_id(), sensorAccess);
+            }
+        }
+    }
+
+    return satAccess;
+}
+
+RiseSetArray
+    find_sat_to_ground_accesses(Viewer& viewer, GroundStation& ground, const TimeVector& times, const AstrodynamicsSystem& sys, const Date epoch, const bool& twoWay)
+{
+    // Get all access info once to avoid unnecessary calcs
+    std::vector<AccessInfo> accessInfo(times.size());
+    std::size_t ii     = 0;
+    const auto& center = sys.get_center();
+    for (const auto& time : times) {
+        // Get ECI state of ground station... TODO: fix
+        RadiusVector groundEcef = astro::conversions::lla_to_ecef(
+            ground.get_latitude(),
+            ground.get_longitude(),
+            ground.get_altitude(),
+            center->get_equitorial_radius(),
+            center->get_polar_radius()
+        );
+
+        // Get sat1 -> sat2 vector at current time
+        accessInfo[ii].time   = time;
+        accessInfo[ii].id1    = viewer.get_id();
+        accessInfo[ii].id2    = ground.get_id();
+        accessInfo[ii].state1 = viewer.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
+        accessInfo[ii].state2 = Cartesian(groundEcef, astro::VelocityVector{});
+        accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
+        ++ii;
+    }
+
+    // Determine access sensor by sensor
+    RiseSetArray satAccess;
+    for (auto& sensor : viewer.get_sensors()) {
+        for (auto& groundSensor : ground.get_sensors()) {
+            // Calculate sensor1 <-> sensor2 accesses
+            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor, groundSensor, twoWay);
+
+            // Store
+            if (sensorAccess.size() > 0) {
+                satAccess = (satAccess | sensorAccess);
+                sensor.add_access(groundSensor.get_id(), sensorAccess);
+                groundSensor.add_access(sensor.get_id(), sensorAccess);
             }
         }
     }

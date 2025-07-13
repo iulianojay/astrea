@@ -15,20 +15,11 @@ using mp_units::si::unit_symbols::s;
 
 namespace astro {
 
-// Constructor/Destructor
-Spacecraft::Spacecraft(OrbitalElements state0, Date epoch) :
-    _epoch(epoch)
-{
-    update_state(State(0.0 * s, state0));
-    generate_id_hash();
-}
-
-Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp)
+Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp, const AstrodynamicsSystem& sys)
 {
     // TODO: Add catch/warning for missing values
-    _id    = gp.NORAD_CAT_ID;
-    _name  = gp.OBJECT_NAME.has_value() ? gp.OBJECT_NAME.value() : "UNNAMED";
-    _epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
+    _id   = gp.NORAD_CAT_ID;
+    _name = gp.OBJECT_NAME.has_value() ? gp.OBJECT_NAME.value() : "UNNAMED";
     if (!gp.SEMIMAJOR_AXIS.has_value() || !gp.ECCENTRICITY.has_value() || !gp.INCLINATION.has_value() ||
         !gp.RA_OF_ASC_NODE.has_value() || !gp.ARG_OF_PERICENTER.has_value() || !gp.MEAN_ANOMALY.has_value()) {
         std::cerr << "Missing GP info. Sad." << std::endl;
@@ -41,8 +32,9 @@ Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp)
         gp.ARG_OF_PERICENTER.value() * deg,
         gp.MEAN_ANOMALY.value() * deg
     );
+    Date epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
 
-    update_state(State(0.0 * s, coes));
+    update_state(State(coes, epoch, sys));
 
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these
@@ -52,74 +44,12 @@ Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp)
     // _liftArea
 }
 
-void Spacecraft::update_state(const State& state)
-{
-    _state = state;
-    _states.emplace_back(state);
-}
-
-const State& Spacecraft::get_initial_state() const { return _states[0]; }
-const State& Spacecraft::get_final_state() const { return _states[_states.size() - 1]; }
-
-const State& Spacecraft::get_closest_state(const Time& time) const
-{
-    // Check if input time is out of bounds
-    if (time <= _states[0].time) { return _states[0]; }
-    else if (time >= _states[_states.size() - 1].time) {
-        return _states[_states.size() - 1];
-    }
-
-    // Get index of lower bound closest to input time
-    const auto id = std::distance(_states.begin(), std::lower_bound(_states.begin(), _states.end(), time, state_time_comparitor));
-
-    // Compare time before and after index
-    const Time lowerDiff = (_states[id].time - time);
-    const Time upperDiff = (_states[id + 1].time - time);
-
-    // Return closest
-    if (lowerDiff < upperDiff) { return _states[id]; }
-    else {
-        return _states[id + 1];
-    }
-}
-
-const State& Spacecraft::get_state_at(const Time& time, const AstrodynamicsSystem& sys)
-{
-
-    // Check if input time is out of bounds
-    if (time < _states.front().time) {
-        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try "
-                                 "repropagating to include all desired times.");
-    }
-    else if (time > _states.back().time) {
-        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try "
-                                 "repropagating to include all desired times.");
-    }
-
-    // Get index of lower bound closest to input time
-    const auto lower = std::lower_bound(_states.begin(), _states.end(), time, state_time_comparitor);
-    const auto idx   = std::distance(_states.begin(), lower);
-
-    // If exact, return
-    if (_states[idx].time == time) { return _states[idx]; }
-
-    // Interpolate
-    const State& preState              = _states[idx - 1];
-    const Time& preTime                = preState.time;
-    const OrbitalElements& preElements = preState.elements;
-
-    const State& postState              = _states[idx];
-    const Time& postTime                = postState.time;
-    const OrbitalElements& postElements = postState.elements;
-
-    OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, sys, time);
-    State interpolatedState({ time, interpolatedElements });
-
-    // Insert
-    _states.insert(_states.begin() + idx, interpolatedState);
-
-    return _states[idx];
-}
+State& Spacecraft::get_state() { return _state; };
+const State& Spacecraft::get_initial_state() const { return _state0; }
+void Spacecraft::update_state(const State& state) { _state = state; }
+void Spacecraft::store_state_history(const StateHistory& history) { _stateHistory = history; }
+StateHistory& Spacecraft::get_state_history() { return _stateHistory; }
+const StateHistory& Spacecraft::get_state_history() const { return _stateHistory; }
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
@@ -133,7 +63,7 @@ SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 void Spacecraft::generate_id_hash()
 {
-    const auto elements0 = _states[0].elements.to_vector();
+    const auto elements0 = _state0.get_elements().to_vector();
     _id = std::hash<Unitless>()(elements0[0]) ^ std::hash<Unitless>()(elements0[1]) ^ std::hash<Unitless>()(elements0[2]) ^
           std::hash<Unitless>()(elements0[3]) ^ std::hash<Unitless>()(elements0[4]) ^ std::hash<Unitless>()(elements0[5]);
     _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));

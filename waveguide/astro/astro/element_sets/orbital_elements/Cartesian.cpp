@@ -21,11 +21,11 @@ using si::unit_symbols::s;
 
 namespace astro {
 
-Cartesian Cartesian::LEO() { return Cartesian(Keplerian::LEO(), AstrodynamicsSystem()); }
-Cartesian Cartesian::LMEO() { return Cartesian(Keplerian::LMEO(), AstrodynamicsSystem()); }
-Cartesian Cartesian::GPS() { return Cartesian(Keplerian::GPS(), AstrodynamicsSystem()); }
-Cartesian Cartesian::HMEO() { return Cartesian(Keplerian::HMEO(), AstrodynamicsSystem()); }
-Cartesian Cartesian::GEO() { return Cartesian(Keplerian::GEO(), AstrodynamicsSystem()); }
+Cartesian Cartesian::LEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::LEO(), system); }
+Cartesian Cartesian::LMEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::LMEO(), system); }
+Cartesian Cartesian::GPS(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::GPS(), system); }
+Cartesian Cartesian::HMEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::HMEO(), system); }
+Cartesian Cartesian::GEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::GEO(), system); }
 
 Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {

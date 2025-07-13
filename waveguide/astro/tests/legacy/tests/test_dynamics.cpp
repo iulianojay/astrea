@@ -95,8 +95,8 @@ TEST_F(DynamicsTest, TwoBody)
     integrator.propagate(oneMonth, vehicle, eom);
 
     // Compare
-    for (const auto& state : vehicle.get_states()) {
-        assert_nearly_equal(state.elements, elements0, true);
+    for (const auto& state : vehicle.get_state_history()) {
+        assert_nearly_equal(state.get_elements(), elements0, true);
     }
 }
 
@@ -113,7 +113,7 @@ TEST_F(DynamicsTest, CowellsNoPert)
     integrator.propagate(oneMonth, vehicle, eom);
 
     // Compare
-    for (const auto& state : vehicle.get_states()) {
-        assert_nearly_equal(state.elements, elements0, true);
+    for (const auto& state : vehicle.get_state_history()) {
+        assert_nearly_equal(state.get_elements(), elements0, true);
     }
 }

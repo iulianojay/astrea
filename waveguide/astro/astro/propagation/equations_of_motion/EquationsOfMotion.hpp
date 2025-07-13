@@ -18,7 +18,7 @@ namespace astro {
 class EquationsOfMotion {
   public:
     EquationsOfMotion(const AstrodynamicsSystem& system) :
-        system(system){};
+        system(&system){};
     virtual ~EquationsOfMotion() = default;
 
     virtual OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
@@ -28,10 +28,10 @@ class EquationsOfMotion {
     }
 
     virtual const ElementSet& get_expected_set() const = 0;
-    const AstrodynamicsSystem& get_system() const { return system; }
+    const AstrodynamicsSystem& get_system() const { return *system; }
 
   protected:
-    const AstrodynamicsSystem& system;
+    const AstrodynamicsSystem* system;
 };
 
 } // namespace astro

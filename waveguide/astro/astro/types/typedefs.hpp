@@ -3,10 +3,10 @@
 #include <array>
 #include <stdint.h>
 
-#include <astro/units/units.hpp>
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/units/units.hpp>
 
 namespace astro {
@@ -47,6 +47,14 @@ using AccelerationVector = std::array<Acceleration, 3>;
 template <>
 struct std::hash<astro::Unitless> {
     std::size_t operator()(const astro::Unitless& k) const
+    {
+        return std::hash<double>()(k.force_numerical_value_in(k.unit));
+    }
+};
+
+template <>
+struct std::hash<astro::Distance> {
+    std::size_t operator()(const astro::Distance& k) const
     {
         return std::hash<double>()(k.force_numerical_value_in(k.unit));
     }

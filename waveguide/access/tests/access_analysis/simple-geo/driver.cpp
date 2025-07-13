@@ -49,7 +49,8 @@ class SimpleGeoAccessTest : public testing::Test {
         end(weeks(1)),
         eom(sys),
         accessInterval({ start, end }),
-        resolution(minutes(1))
+        resolution(minutes(1)),
+        epoch(J2000)
     {
         // Setup integrator
         integrator.set_abs_tol(1.0e-10);
@@ -70,6 +71,7 @@ class SimpleGeoAccessTest : public testing::Test {
     Time end;
     Interval accessInterval;
     Time resolution;
+    Date epoch;
 };
 
 
@@ -83,8 +85,8 @@ int main(int argc, char** argv)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 {
     // Build constellation
-    Viewer geo1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys));
-    Viewer geo2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys));
+    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
+    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys), epoch, sys });
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);
@@ -102,7 +104,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(eom, integrator, accessInterval);
+    twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
     const auto accesses = find_accesses(twoBallGeo, resolution, sys);
@@ -120,8 +122,8 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    Viewer geo1(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg));
-    Viewer geo2(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg));
+    Viewer geo1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
+    Viewer geo2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);
@@ -139,7 +141,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(eom, integrator, accessInterval);
+    twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
     const auto accesses = find_accesses(twoBallGeo, resolution, sys);
@@ -152,10 +154,10 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 TEST_F(SimpleGeoAccessTest, FourBallGeo)
 {
     // Build constellation
-    Viewer geo1(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg));
-    Viewer geo2(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg));
-    Viewer geo3(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg));
-    Viewer geo4(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg));
+    Viewer geo1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
+    Viewer geo2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch, sys });
+    Viewer geo3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
+    Viewer geo4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch, sys });
 
     Constellation<Viewer> fourBallGeo;
     fourBallGeo.add_spacecraft(geo1);
@@ -176,7 +178,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(eom, integrator, accessInterval);
+    fourBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
     auto accesses = find_accesses(fourBallGeo, resolution, sys);

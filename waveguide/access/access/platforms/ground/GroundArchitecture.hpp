@@ -4,6 +4,8 @@
 
 #include <access/platforms/ground/GroundStation.hpp>
 
+namespace accesslib {
+
 class GroundArchitecture {
   public:
     GroundArchitecture(const std::vector<GroundStation>& groundStations) :
@@ -24,4 +26,6 @@ class GroundArchitecture {
 
   private:
     std::vector<GroundStation> _groundStations;
-}
+};
+
+} // namespace accesslib

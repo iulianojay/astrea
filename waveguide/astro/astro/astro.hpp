@@ -48,3 +48,4 @@
 #include <astro/types/typedefs.hpp>
 
 #include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>

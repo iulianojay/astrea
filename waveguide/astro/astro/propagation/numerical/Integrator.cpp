@@ -3,6 +3,7 @@
 #include <mp-units/math.h>
 
 using namespace mp_units;
+using mp_units::si::unit_symbols::s;
 
 namespace astro {
 
@@ -18,13 +19,18 @@ OrbitalElementPartials
 }
 
 
-void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-    integrate(interval.start, interval.end, eom, vehicle);
+    return propagate(epoch, interval.start, interval.end, eom, vehicle);
 }
 
-void Integrator::integrate(const Time& time0, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory Integrator::propagate(const Date& epoch, const Time& time0, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
+    // Propagate vehicle to initial epoch
+    if (epoch != vehicle.get_state().get_epoch()) {
+        propagate(vehicle.get_state().get_epoch(), 0.0 * s, epoch - vehicle.get_state().get_epoch(), eom, vehicle);
+    }
+
     // Time
     Time time     = time0;
     Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
@@ -35,28 +41,28 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
     }
 
     // States
-    OrbitalElements& state0 = vehicle.get_state().elements;
+    OrbitalElements state0 = vehicle.get_state().get_elements();
 
     // Need to check input elements match expected for EOMS
+    const auto& sys               = eom.get_system();
     const ElementSet& expectedSet = eom.get_expected_set();
     if (state0.index() != std::to_underlying(expectedSet)) { // ooh boy we're fragile
         switch (expectedSet) {
             case (ElementSet::CARTESIAN): {
-                state0.convert<Cartesian>(eom.get_system());
+                state0.convert<Cartesian>(sys);
                 break;
             }
             case (ElementSet::KEPLERIAN): {
-                state0.convert<Keplerian>(eom.get_system());
+                state0.convert<Keplerian>(sys);
                 break;
             }
             case (ElementSet::EQUINOCTIAL): {
-                state0.convert<Equinoctial>(eom.get_system());
+                state0.convert<Equinoctial>(sys);
                 break;
             }
             default: throw std::runtime_error("Unrecognized element set requested.");
         }
-        vehicle.clear();
-        vehicle.update_state({ time0, state0 });
+        vehicle.update_state({ state0, epoch, sys });
     }
     OrbitalElements state = state0;
 
@@ -69,6 +75,8 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
     // Fruit Loop
     iteration = 0;
     startTimer();
+    StateHistory stateHistory;
+    stateHistory[time] = State({ state, epoch, sys });
     while (iteration < iterMax) {
 
         // Check for event
@@ -77,7 +85,7 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
             print_iteration(time, state, timeFinal, state0);
 
             std::cout << crashMessage;
-            return;
+            return stateHistory;
         }
 
         if (useFixedStep) {
@@ -98,7 +106,7 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
                 // Catch underflow
                 if (time + timeStep == time) {
                     std::cout << underflowErrorMessage;
-                    return;
+                    return stateHistory;
                 }
 
                 // Break if step succeeded
@@ -111,11 +119,12 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
             // Exceeded max inner loop iterations
             if (variableStepIteration >= maxVariableStepIterations) {
                 std::cout << innerLoopStepOverflowErrorMessage;
-                return;
+                return stateHistory;
             }
         }
 
-        vehicle.update_state({ time, state });
+        vehicle.update_state({ state, epoch + time, sys });
+        stateHistory[time] = State({ state, epoch + time, sys });
 
         // Ensure last step goes to exact final time
         if ((forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
@@ -140,6 +149,8 @@ void Integrator::integrate(const Time& time0, const Time& timeFinal, const Equat
 
     // Performance
     print_performance();
+
+    return stateHistory;
 }
 
 //----------------------------------------------------------------------------------------------------------//

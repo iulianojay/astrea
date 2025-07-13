@@ -42,6 +42,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
     ${ASTRO_BASE}/state/State.cpp
+    ${ASTRO_BASE}/state/StateHistory.cpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
@@ -95,6 +96,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
     ${ASTRO_BASE}/state/State.hpp
+    ${ASTRO_BASE}/state/StateHistory.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/Barycenter.hpp

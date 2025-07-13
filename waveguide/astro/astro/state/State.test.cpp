@@ -12,12 +12,12 @@ class StateTest : public testing::Test {
   public:
     StateTest() {}
 
-    void SetUp() override { state = State(time, elements); }
+    void SetUp() override { state = State(elements, epoch, sys); }
 
     State state;
-    Time time;
-    OrbitalElements elements;
+    Date epoch;
     AstrodynamicsSystem sys;
+    OrbitalElements elements;
 };
 
 
@@ -30,21 +30,21 @@ int main(int argc, char** argv)
 
 TEST_F(StateTest, DefaultConstructor) { ASSERT_NO_THROW(State()); }
 
-TEST_F(StateTest, Constructor) { ASSERT_NO_THROW(State(time, elements)); }
+TEST_F(StateTest, Constructor) { ASSERT_NO_THROW(State(elements)); }
 
 TEST_F(StateTest, ConvertInPlace)
 {
-    state.convert<Keplerian>(sys);
-    state.convert<Equinoctial>(sys);
-    state.convert<Cartesian>(sys);
+    state.convert<Keplerian>();
+    state.convert<Equinoctial>();
+    state.convert<Cartesian>();
 }
 
 TEST_F(StateTest, Convert)
 {
     const State constState = state;
-    const State state1     = constState.convert<Keplerian>(sys);
-    const State state2     = constState.convert<Equinoctial>(sys);
-    const State state3     = constState.convert<Cartesian>(sys);
+    const State state1     = constState.convert<Keplerian>();
+    const State state2     = constState.convert<Equinoctial>();
+    const State state3     = constState.convert<Cartesian>();
 }
 
 TEST_F(StateTest, Stream) { ASSERT_NO_THROW(std::cout << state); }

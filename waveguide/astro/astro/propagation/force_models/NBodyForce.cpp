@@ -29,8 +29,9 @@ AccelerationVector
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = (center->get_closest_state(date - vehicle.get_epoch()));
-    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.in<Cartesian>(sys).get_radius();
+    const Date epoch                     = vehicle.get_state().get_epoch();
+    const State& stateSunToCenter        = center->get_state_at(date);
+    const RadiusVector radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
     const RadiusVector radiusCenterToSun{ // flip vector direction
@@ -41,13 +42,13 @@ AccelerationVector
 
     // Reset perturbation
     AccelerationVector accelNBody{ 0.0 * km / (s * s) };
-    for (auto&& [name, body] : sys) {
+    for (const auto& [name, body] : sys.get_all_bodies()) {
 
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const State& stateSunToNBody        = center->get_closest_state(date - vehicle.get_epoch());
-        const RadiusVector radiusSunToNbody = stateSunToNBody.elements.in<Cartesian>(sys).get_radius();
+        const State& stateSunToNBody        = center->get_state_at(date);
+        const RadiusVector radiusSunToNbody = stateSunToNBody.get_elements().in<Cartesian>(sys).get_radius();
 
         // Find radius from central body and spacecraft to nth body
         const RadiusVector radiusCenterToNbody{ radiusSunToNbody[0] + radiusCenterToSun[0],

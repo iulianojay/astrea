@@ -20,7 +20,7 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
 {
 
     // Extract
-    const Cartesian cartesian = state.in<Cartesian>(system);
+    const Cartesian cartesian = state.in<Cartesian>(get_system());
     const quantity<km>& x     = cartesian.get_x();
     const quantity<km>& y     = cartesian.get_y();
     const quantity<km>& z     = cartesian.get_z();
@@ -34,8 +34,8 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const Date date               = vehicle.get_epoch() + time;
-    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
+    const Date date               = vehicle.get_state().get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative
     const CartesianPartial dsdt(

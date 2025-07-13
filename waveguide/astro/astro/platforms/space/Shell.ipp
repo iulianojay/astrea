@@ -21,7 +21,17 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 }
 
 template <class Spacecraft_T>
-Shell<Spacecraft_T>::Shell(const Distance& semimajor, const Angle& inclination, const size_t& T, const size_t& P, const double& F, const Angle& anchorRAAN, const Angle& anchorAnomaly)
+Shell<Spacecraft_T>::Shell(
+    const AstrodynamicsSystem& sys,
+    const Date& epoch,
+    const Distance& semimajor,
+    const Angle& inclination,
+    const size_t& T,
+    const size_t& P,
+    const double& F,
+    const Angle& anchorRAAN,
+    const Angle& anchorAnomaly
+)
 {
 
     if (T % P) {
@@ -39,15 +49,14 @@ Shell<Spacecraft_T>::Shell(const Distance& semimajor, const Angle& inclination, 
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
         for (auto& sat : plane.satellites) {
-            sat = Spacecraft_T(
-                OrbitalElements(Keplerian{ semimajor,
-                                           0.0 * mp_units::one,
-                                           inclination,
-                                           (anchorRAAN + deltaRAAN * iPlane),
-                                           0.0 * mp_units::angular::unit_symbols::rad,
-                                           (anchorAnomaly + deltaAnomaly * iAnom) }),
-                Date("Jan-01-2030 00:00:00.0")
-            );
+            sat = Spacecraft_T({ OrbitalElements(Keplerian{ semimajor,
+                                                            0.0 * mp_units::one,
+                                                            inclination,
+                                                            (anchorRAAN + deltaRAAN * iPlane),
+                                                            0.0 * mp_units::angular::unit_symbols::rad,
+                                                            (anchorAnomaly + deltaAnomaly * iAnom) }),
+                                 epoch,
+                                 sys });
             ++iAnom;
         }
         plane.generate_id_hash();
@@ -149,10 +158,10 @@ void Shell<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Shell<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& plane : planes) {
-        plane.propagate(eom, integrator, interval);
+        plane.propagate(epoch, eom, integrator, interval);
     }
 }
 

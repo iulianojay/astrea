@@ -19,8 +19,10 @@ class Constellation {
     Constellation(std::vector<Shell<Spacecraft_T>> shells);
     Constellation(std::vector<Plane<Spacecraft_T>> planes);
     Constellation(std::vector<Spacecraft_T> satellites);
-    Constellation(std::vector<snapshot::SpaceTrackGP> gp);
+    Constellation(const std::vector<snapshot::SpaceTrackGP>& gp, const AstrodynamicsSystem& system);
     Constellation(
+        const AstrodynamicsSystem& sys,
+        const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
         const std::size_t& T,
@@ -51,8 +53,8 @@ class Constellation {
     const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
     using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;

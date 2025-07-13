@@ -26,7 +26,7 @@ using mp_units::si::unit_symbols::s;
 class CelestialBodyTest : public testing::Test {
   public:
     CelestialBodyTest() :
-        earth(ROOT / "./data/planetary/Earth/Earth.json")
+        earth(ROOT / "./data/planetary/Earth/Earth.json", sys)
     {
     }
 
@@ -46,6 +46,7 @@ class CelestialBodyTest : public testing::Test {
     }
 
     CelestialBody earth;
+    AstrodynamicsSystem sys;
 };
 
 
@@ -60,34 +61,34 @@ TEST_F(CelestialBodyTest, DefaultConstructor) { ASSERT_NO_THROW(CelestialBody())
 
 TEST_F(CelestialBodyTest, FileConstructors)
 {
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Sun/Sun.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mercury/Mercury.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Venus/Venus.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Earth/Earth.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Earth/Moon.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Mars.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Phobos.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Deimos.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Jupiter.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Ganymede.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Callisto.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Io.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Europa.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Saturn.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Titan.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Rhea.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Iapetus.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Uranus.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Titania.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Oberon.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Neptune/Neptune.json"));
-    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Neptune/Triton.json"));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Sun/Sun.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mercury/Mercury.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Venus/Venus.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Earth/Earth.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Earth/Moon.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Mars.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Phobos.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Mars/Deimos.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Jupiter.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Ganymede.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Callisto.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Io.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Jupiter/Europa.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Saturn.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Titan.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Rhea.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Saturn/Iapetus.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Uranus.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Titania.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Uranus/Oberon.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Neptune/Neptune.json", sys));
+    ASSERT_NO_THROW(CelestialBody(ROOT / "./data/planetary/Neptune/Triton.json", sys));
 }
 
 TEST_F(CelestialBodyTest, Equality)
 {
     const CelestialBody earth2 = earth;
-    const CelestialBody moon   = CelestialBody(ROOT / "./data/planetary/Earth/Moon.json");
+    const CelestialBody moon   = CelestialBody(ROOT / "./data/planetary/Earth/Moon.json", sys);
     ASSERT_EQ(earth, earth2);
     ASSERT_NE(earth, moon);
 }

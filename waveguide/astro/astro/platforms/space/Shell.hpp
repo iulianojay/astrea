@@ -24,6 +24,8 @@ class Shell {
     Shell(std::vector<Plane<Spacecraft_T>> planes);
     Shell(std::vector<Spacecraft_T> satellites);
     Shell(
+        const AstrodynamicsSystem& sys,
+        const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
         const std::size_t& T,
@@ -47,7 +49,7 @@ class Shell {
     const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
     using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;

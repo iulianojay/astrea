@@ -14,12 +14,12 @@ class GroundStation : public AccessObject {
     GroundStation(
         const astro::Angle& latitutde,
         const astro::Angle& longitude,
-        const astro::Distance& altitude,
-        const std::vector<Sensor>& sensors,
-        const std::string name = "Unnammed"
+        const astro::Distance& altitude    = 0.0 * mp_units::si::unit_symbols::km,
+        const std::vector<Sensor>& sensors = {},
+        const std::string name             = "Unnammed"
     ) :
         AccessObject(),
-        _latitutde(latitutde),
+        _latitude(latitutde),
         _longitude(longitude),
         _altitude(altitude),
         _sensors(sensors),
@@ -35,9 +35,19 @@ class GroundStation : public AccessObject {
         _sensors.insert(std::end(_sensors), std::begin(sensors), std::end(sensors));
     }
 
+    std::size_t get_id() const { return _id; }
+    std::string get_name() const { return _name; }
+
+    std::vector<Sensor>& get_sensors() { return _sensors; }
+    const std::vector<Sensor>& get_sensors() const { return _sensors; }
+
+    astro::Angle get_latitude() const { return _latitude; }
+    astro::Angle get_longitude() const { return _longitude; }
+    astro::Distance get_altitude() const { return _altitude; }
+
   private:
     std::size_t _id;
-    astro::Angle _latitutde;
+    astro::Angle _latitude;
     astro::Angle _longitude;
     astro::Distance _altitude;
     std::string _name;

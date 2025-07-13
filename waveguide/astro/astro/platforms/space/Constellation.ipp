@@ -36,11 +36,11 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 }
 
 template <class Spacecraft_T>
-Constellation<Spacecraft_T>::Constellation(std::vector<snapshot::SpaceTrackGP> gps)
+Constellation<Spacecraft_T>::Constellation(const std::vector<snapshot::SpaceTrackGP>& gps, const AstrodynamicsSystem& system)
 {
     std::vector<Spacecraft_T> satellites;
     for (const auto gp : gps) {
-        satellites.push_back(Spacecraft_T(gp));
+        satellites.push_back(Spacecraft_T(gp, system));
     }
     *this = Constellation(satellites);
 }
@@ -48,6 +48,8 @@ Constellation<Spacecraft_T>::Constellation(std::vector<snapshot::SpaceTrackGP> g
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
+    const AstrodynamicsSystem& sys,
+    const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
     const size_t& T,
@@ -58,7 +60,7 @@ Constellation<Spacecraft_T>::Constellation(
 )
 {
 
-    shells.emplace_back(Shell<Spacecraft_T>(semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+    shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
     generate_id_hash();
 }
@@ -236,18 +238,18 @@ void Constellation<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, const Interval& interval)
+void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval)
 {
     Integrator integrator;
-    propagate(eom, integrator, interval);
+    propagate(epoch, eom, integrator, interval);
 }
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& shell : shells) {
-        shell.propagate(eom, integrator, interval);
+        shell.propagate(epoch, eom, integrator, interval);
     }
 }
 

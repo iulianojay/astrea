@@ -54,18 +54,19 @@ void access_test()
 
     // Setup system
     AstrodynamicsSystem sys;
+    Date epoch = J2000;
 
     // Query database
     auto directvGp  = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 32729));
     auto navStarGps = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "NAVSTAR%")));
 
     // Build constellation
-    Viewer directv(directvGp[0]);
-    Constellation<Viewer> navStarAndDirectv(navStarGps);
+    Viewer directv(directvGp[0], sys);
+    Constellation<Viewer> navStarAndDirectv(navStarGps, sys);
 
     // Add sensors
-    CircularFieldOfView fov1deg(180.0 * mp_units::angular::unit_symbols::deg);
-    CircularFieldOfView fov30deg(30.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov1deg(180.0 * deg);
+    CircularFieldOfView fov30deg(30.0 * deg);
     Sensor geoCone(fov1deg);
     Sensor navstarCone(fov30deg);
     // for (auto& viewer : navStarAndDirectv | std::views::join) { // TODO: Figure out how this works
@@ -76,12 +77,15 @@ void access_test()
     for (auto& shell : navStarAndDirectv) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
-                std::cout << sat.get_state().elements << std::endl;
                 sat.attach_sensor(navstarCone);
             }
         }
     }
     navStarAndDirectv.add_spacecraft(directv);
+
+    // Build out grounds
+    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { navstarCone }, "Washington DC");
+    GroundArchitecture grounds({ dc });
 
     // Build EoMs
     TwoBody eom(sys);
@@ -95,7 +99,7 @@ void access_test()
     auto start = std::chrono::steady_clock::now();
 
     Interval propInterval{ seconds(0), days(2) };
-    navStarAndDirectv.propagate(eom, integrator, propInterval);
+    navStarAndDirectv.propagate(epoch, eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -106,12 +110,12 @@ void access_test()
 
     // Find access
     Time accessResolution = minutes(1);
-    const auto accesses   = find_accesses(navStarAndDirectv, accessResolution, sys);
+    const auto accesses   = find_accesses(navStarAndDirectv, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << "Access Analysis Time: " << diff.count() / 1e9 / 60.0 << " (min)" << std::endl;
+    std::cout << "Access Analysis Time: " << diff.count() / 1.0e9 / 60.0 << " (min)" << std::endl;
 
     // Save
     std::filesystem::path outfile = "/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv";
@@ -136,6 +140,10 @@ void access_test()
                         }
                     }
                 }
+            }
+            for (const auto& ground : grounds) {
+                if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
+                if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
             }
 
             std::vector<std::string> row{ sender, receiver };

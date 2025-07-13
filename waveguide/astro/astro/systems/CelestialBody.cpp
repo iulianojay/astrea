@@ -11,8 +11,12 @@
 
 #include <nlohmann/json.hpp>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <math/utils.hpp>
+
+#include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 
 
 using namespace mp_units;
@@ -29,7 +33,8 @@ using mp_units::si::unit_symbols::s;
 namespace astro {
 
 
-CelestialBody::CelestialBody(const std::string& file)
+CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem& system) :
+    _systemPtr(&system)
 {
 
     using json = nlohmann::json;
@@ -78,100 +83,42 @@ CelestialBody::CelestialBody(const std::string& file)
     // TODO: Add checks to validate this object
 }
 
-
-void CelestialBody::propagate(const Date& epoch, const Time& propTime, const GravParam& parentMu)
+State CelestialBody::get_state_at(const Date& date) const
 {
-    Date endEpoch = epoch + propTime;
-    _propagate(epoch, endEpoch, parentMu);
-}
-
-void CelestialBody::propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu)
-{
-    _propagate(epoch, endEpoch, parentMu);
-}
-
-// Find position of body relative to parent and relative to the sun
-void CelestialBody::_propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu)
-{
-
-    // Get reference date
-    /*
-    phobos/deimos   Epoch: 1950, Jan. 1.00 , TT -> julianDate = 2433282.5
-    jupiter         Epoch: 1997, Jan. 16.00, TT -> julianDate = 2450465
-    uranus          Epoch: 1980, Jan. 1.0  , TT -> julianDate = 2444240
-    moon            Epoch: 2000, Jan. 1.50 , TT -> julianDate = 2451545.5
-    saturn          Epoch: 2000, Jan. 1.50 , TT -> julianDate = 2451545.5
-    neptune         Epoch: 2000, Jan. 1.50 , TT -> julianDate = 2451545.5
-
-    UTC = TT - 64 seconds
-    */
-
     // Loop over each day in the epoch range
-    const quantity<day> nDays                   = endEpoch - epoch;
-    const quantity<day> daysSinceReferenceEpoch = epoch.jd() - _referenceDate.jd();
-    for (quantity<day> iDay = 0 * day; iDay < nDays; iDay += 1 * day) {
-        // Time since reference date
-        const quantity<JulianCentury> julianCenturies = (iDay + daysSinceReferenceEpoch); // time in Julian Centuries
+    const quantity<JulianCentury> timeSinceReferenceEpoch = date.jd() - _referenceDate.jd();
 
-        // KEPLERIANs
-        const Distance at   = _semimajorAxis + _semimajorAxisRate * julianCenturies;
-        const Unitless ecct = _eccentricity + _eccentricityRate * julianCenturies;
-        const Angle inct    = _inclination + _inclinationRate * julianCenturies;
-        const Angle raant   = _rightAscension + _rightAscensionRate * julianCenturies;
-        const Angle wt      = _argumentOfPerigee + _argumentOfPerigeeRate * julianCenturies - raant;
-        const Angle Lt      = _trueLatitude + _trueLatitudeRate * julianCenturies;
+    // KEPLERIANs
+    const Distance at   = _semimajorAxis + _semimajorAxisRate * timeSinceReferenceEpoch;
+    const Unitless ecct = _eccentricity + _eccentricityRate * timeSinceReferenceEpoch;
+    const Angle inct    = _inclination + _inclinationRate * timeSinceReferenceEpoch;
+    const Angle raant   = _rightAscension + _rightAscensionRate * timeSinceReferenceEpoch;
+    const Angle wt      = _argumentOfPerigee + _argumentOfPerigeeRate * timeSinceReferenceEpoch - raant;
+    const Angle Lt      = _trueLatitude + _trueLatitudeRate * timeSinceReferenceEpoch;
 
-        // Calculations
-        const quantity ht = sqrt(parentMu * at * (1 - ecct * ecct));
-        const Angle Met   = (Lt - wt);
+    // Calculations
+    static const GravParam parentMu = _systemPtr->get(_parent)->get_mu();
+    const quantity ht               = sqrt(parentMu * at * (1 - ecct * ecct));
+    const Angle Met                 = (Lt - wt);
 
-        // This approximation has error on the order of ecc^6. It is
-        // assumed to be good for this calc since all these bodies are
-        // nearly circular. Solving Kepler"s equations takes a very long
-        // time
-        const Unitless ecct_2 = ecct * ecct;
-        const Unitless ecct_3 = ecct_2 * ecct;
-        const Unitless ecct_4 = ecct_3 * ecct;
-        const Unitless ecct_5 = ecct_4 * ecct;
+    // This approximation has error on the order of ecc^6. It is
+    // assumed to be good for this calc since all these bodies are
+    // nearly circular. Solving Kepler"s equations takes a very long
+    // time
+    const Unitless ecct_2 = ecct * ecct;
+    const Unitless ecct_3 = ecct_2 * ecct;
+    const Unitless ecct_4 = ecct_3 * ecct;
+    const Unitless ecct_5 = ecct_4 * ecct;
 
-        const Angle thetat =
-            (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) * isq_angle::cotes_angle +
-             (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) * isq_angle::cotes_angle +
-             (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) * isq_angle::cotes_angle +
-             103.0 / 96.0 * ecct_4 * sin(4 * Met) * isq_angle::cotes_angle +
-             1097.0 / 960.0 * ecct_5 * sin(5 * Met) * isq_angle::cotes_angle);
+    const Angle thetat =
+        (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) * isq_angle::cotes_angle +
+         (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) * isq_angle::cotes_angle +
+         (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) * isq_angle::cotes_angle +
+         103.0 / 96.0 * ecct_4 * sin(4 * Met) * isq_angle::cotes_angle +
+         1097.0 / 960.0 * ecct_5 * sin(5 * Met) * isq_angle::cotes_angle);
 
-        // Store mean and true anomaly
-        _meanAnomaly = Met;
-        _trueAnomaly = thetat;
-
-        // Store
-        State state(iDay, Keplerian(at, ecct, inct, raant, wt, thetat));
-        _states.push_back(state);
-    }
-}
-
-const State& CelestialBody::get_closest_state(const Time& time) const
-{
-
-    // Check if input time is out of bounds
-    if (time <= _states[0].time) { return _states[0]; }
-    else if (time >= _states[_states.size() - 1].time) {
-        return _states[_states.size() - 1];
-    }
-
-    // Get index of lower bound closest to input time
-    const auto id = std::distance(_states.begin(), std::lower_bound(_states.begin(), _states.end(), time, state_time_comparitor));
-
-    // Compare time before and after index
-    const Time lowerDiff = (_states[id].time - time);
-    const Time upperDiff = (_states[id + 1].time - time);
-
-    // Return closest
-    if (lowerDiff < upperDiff) { return _states[id]; }
-    else {
-        return _states[id + 1];
-    }
+    // Store
+    return State(OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat)), date, *_systemPtr);
 }
 
 } // namespace astro

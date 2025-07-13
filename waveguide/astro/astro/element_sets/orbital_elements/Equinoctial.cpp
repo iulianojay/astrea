@@ -21,11 +21,11 @@ using si::unit_symbols::s;
 
 namespace astro {
 
-Equinoctial Equinoctial::LEO() { return Equinoctial(Keplerian::LEO(), AstrodynamicsSystem()); }
-Equinoctial Equinoctial::LMEO() { return Equinoctial(Keplerian::LMEO(), AstrodynamicsSystem()); }
-Equinoctial Equinoctial::GPS() { return Equinoctial(Keplerian::GPS(), AstrodynamicsSystem()); }
-Equinoctial Equinoctial::HMEO() { return Equinoctial(Keplerian::HMEO(), AstrodynamicsSystem()); }
-Equinoctial Equinoctial::GEO() { return Equinoctial(Keplerian::GEO(), AstrodynamicsSystem()); }
+Equinoctial Equinoctial::LEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::LEO(), system); }
+Equinoctial Equinoctial::LMEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::LMEO(), system); }
+Equinoctial Equinoctial::GPS(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::GPS(), system); }
+Equinoctial Equinoctial::HMEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::HMEO(), system); }
+Equinoctial Equinoctial::GEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::GEO(), system); }
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {

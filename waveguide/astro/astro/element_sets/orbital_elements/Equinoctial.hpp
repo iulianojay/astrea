@@ -49,11 +49,11 @@ class Equinoctial {
     Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys);
 
     // Defaults
-    static Equinoctial LEO();
-    static Equinoctial LMEO();
-    static Equinoctial GPS();
-    static Equinoctial HMEO();
-    static Equinoctial GEO();
+    static Equinoctial LEO(const AstrodynamicsSystem& system);
+    static Equinoctial LMEO(const AstrodynamicsSystem& system);
+    static Equinoctial GPS(const AstrodynamicsSystem& system);
+    static Equinoctial HMEO(const AstrodynamicsSystem& system);
+    static Equinoctial GEO(const AstrodynamicsSystem& system);
 
     // Copy constructor
     Equinoctial(const Equinoctial&);

@@ -30,7 +30,7 @@ class Plane {
 
     const std::size_t size() const;
 
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
     using iterator       = std::vector<Spacecraft_T>::iterator;
     using const_iterator = std::vector<Spacecraft_T>::const_iterator;

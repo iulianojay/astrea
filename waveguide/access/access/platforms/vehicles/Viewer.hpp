@@ -1,11 +1,9 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
 
 
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
@@ -23,13 +21,13 @@ class Viewer : public astro::Spacecraft, public AccessObject {
   public:
     // Constructor
     Viewer() = default;
-    Viewer(const snapshot::SpaceTrackGP& gp) :
-        Spacecraft(gp),
+    Viewer(const snapshot::SpaceTrackGP& gp, const astro::AstrodynamicsSystem& system) :
+        Spacecraft(gp, system),
         AccessObject()
     {
     }
-    Viewer(astro::OrbitalElements state0, astro::Date epoch = astro::J2000) :
-        Spacecraft(state0, epoch),
+    Viewer(const astro::State& state0) :
+        Spacecraft(state0),
         AccessObject()
     {
     }
