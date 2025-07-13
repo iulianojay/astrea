@@ -54,7 +54,7 @@ void access_test()
 
     // Setup system
     AstrodynamicsSystem sys;
-    Date epoch = J2000;
+    Date epoch = Date::now();
 
     // Query database
     auto directvGp  = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 32729));
@@ -77,6 +77,8 @@ void access_test()
     for (auto& shell : navStarAndDirectv) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
+                const State& state = sat.get_state();
+                sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
                 sat.attach_sensor(navstarCone);
             }
         }

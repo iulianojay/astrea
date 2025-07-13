@@ -43,8 +43,9 @@ class Integrator {
     ~Integrator() = default;
 
     // Integrate
-    StateHistory propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
-    StateHistory propagate(const Date& epoch, const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle);
+    StateHistory propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
+    StateHistory
+        propagate(const Date& epoch, const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     //---------------------------------------Integrator property setters---------------------------------------//
 

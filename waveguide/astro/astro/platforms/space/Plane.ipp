@@ -73,7 +73,7 @@ void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, I
 {
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
-        const auto stateHistory = integrator.propagate(epoch, interval, eom, vehicle);
+        const auto stateHistory = integrator.propagate(epoch, interval, eom, vehicle, true);
 
         // Extract and store
         sat = *vehicle.extract<Spacecraft_T>(); // TODO: Is this needed? Can we just modify sat? Is the current state expected here? Investigate

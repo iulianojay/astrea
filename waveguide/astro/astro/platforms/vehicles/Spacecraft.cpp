@@ -34,7 +34,8 @@ Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp, const AstrodynamicsSyst
     );
     Date epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
 
-    update_state(State(coes, epoch, sys));
+    _state0 = State(coes, epoch, sys);
+    update_state(_state0);
 
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these

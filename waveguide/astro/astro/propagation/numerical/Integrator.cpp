@@ -19,23 +19,26 @@ OrbitalElementPartials
 }
 
 
-StateHistory Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
 {
-    return propagate(epoch, interval.start, interval.end, eom, vehicle);
+    return propagate(epoch, interval.start, interval.end, eom, vehicle, store);
 }
 
-StateHistory Integrator::propagate(const Date& epoch, const Time& time0, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory
+    Integrator::propagate(const Date& epoch, const Time& startTime, const Time& endTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
 {
-    // Propagate vehicle to initial epoch
-    if (epoch != vehicle.get_state().get_epoch()) {
-        propagate(vehicle.get_state().get_epoch(), 0.0 * s, epoch - vehicle.get_state().get_epoch(), eom, vehicle);
+    // Propagate vehicle to initial time without storing
+    const Date vehicleEpoch = vehicle.get_state().get_epoch();
+    if (epoch != vehicleEpoch) {
+        const Time propTime = epoch - vehicleEpoch;
+        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
     }
 
     // Time
-    Time time     = time0;
+    Time time     = startTime;
     Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
 
-    if (timeFinal < time0) {
+    if (endTime < startTime) {
         forwardTime = false;
         timeStep    = -timeStep;
     }
@@ -76,13 +79,13 @@ StateHistory Integrator::propagate(const Date& epoch, const Time& time0, const T
     iteration = 0;
     startTimer();
     StateHistory stateHistory;
-    stateHistory[time] = State({ state, epoch, sys });
+    if (store) { stateHistory[time] = State({ state, epoch, sys }); }
     while (iteration < iterMax) {
 
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {
-            print_iteration(time, state, timeFinal, state0);
+            print_iteration(time, state, endTime, state0);
 
             std::cout << crashMessage;
             return stateHistory;
@@ -124,20 +127,20 @@ StateHistory Integrator::propagate(const Date& epoch, const Time& time0, const T
         }
 
         vehicle.update_state({ state, epoch + time, sys });
-        stateHistory[time] = State({ state, epoch + time, sys });
+        if (store) { stateHistory[time] = vehicle.get_state(); }
 
         // Ensure last step goes to exact final time
-        if ((forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
-            (!forwardTime && time + timeStep < timeFinal && time > timeFinal)) {
-            timeStep = timeFinal - time;
+        if ((forwardTime && time + timeStep > endTime && time < endTime) ||
+            (!forwardTime && time + timeStep < endTime && time > endTime)) {
+            timeStep = endTime - time;
         }
         // Break if final time is reached
-        else if (time == timeFinal) {
+        else if (time == endTime) {
             break;
         }
 
         // Print time and state
-        print_iteration(time, state, timeFinal, state0);
+        print_iteration(time, state, endTime, state0);
 
         // Step iteration
         ++iteration;
@@ -407,15 +410,15 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 }
 
 
-void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& state0)
+void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& endTime, const OrbitalElements& state0)
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
+        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == endTime || eventTrigger) {
         if (iteration == 0) {
             std::cout << "Run Conditions:" << std::endl << std::endl;
             std::cout << "Initial Time = " << 0.0 << std::endl;
-            std::cout << "Final Time =  " << timeFinal << std::endl;
+            std::cout << "Final Time =  " << endTime << std::endl;
             std::cout << "Initial State = " << state0 << std::endl;
             std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl;
             std::cout << "Run:" << std::endl << std::endl;
@@ -426,7 +429,7 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
             std::cout << "state = " << state << std::endl << std::endl;
         }
         // }
-        if (time == timeFinal) { std::cout << "Run Completed." << std::endl << std::endl; }
+        if (time == endTime) { std::cout << "Run Completed." << std::endl << std::endl; }
     }
 }
 

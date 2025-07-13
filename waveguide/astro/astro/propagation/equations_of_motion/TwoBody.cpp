@@ -19,14 +19,14 @@ OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElemen
     const Cartesian cartesian = state.in<Cartesian>(get_system());
 
     // Extract
-    const quantity<km>& x = cartesian.get_x();
-    const quantity<km>& y = cartesian.get_y();
-    const quantity<km>& z = cartesian.get_z();
-    const quantity R      = sqrt(x * x + y * y + z * z);
+    const Distance& x = cartesian.get_x();
+    const Distance& y = cartesian.get_y();
+    const Distance& z = cartesian.get_z();
+    const Distance R  = sqrt(x * x + y * y + z * z);
 
-    const quantity<km / s>& vx = cartesian.get_vx();
-    const quantity<km / s>& vy = cartesian.get_vy();
-    const quantity<km / s>& vz = cartesian.get_vz();
+    const Velocity& vx = cartesian.get_vx();
+    const Velocity& vy = cartesian.get_vy();
+    const Velocity& vz = cartesian.get_vz();
 
     // mu/R^3
     const quantity muOverRadiusCubed = mu / (R * R * R);
