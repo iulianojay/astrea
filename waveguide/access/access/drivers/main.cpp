@@ -117,7 +117,7 @@ void access_test()
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << "Access Analysis Time: " << diff.count() / 1.0e9 / 60.0 << " (min)" << std::endl;
+    std::cout << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
     std::filesystem::path outfile = "/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv";

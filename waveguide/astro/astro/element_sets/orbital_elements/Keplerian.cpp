@@ -367,10 +367,10 @@ std::vector<Unitless> Keplerian::to_vector() const
 
 void Keplerian::sanitize_angles()
 {
-    _inclination    = conversions::sanitize_angle(_inclination);
-    _rightAscension = conversions::sanitize_angle(_rightAscension);
-    _argPerigee     = conversions::sanitize_angle(_argPerigee);
-    _trueAnomaly    = conversions::sanitize_angle(_trueAnomaly);
+    _inclination    = sanitize_angle(_inclination);
+    _rightAscension = sanitize_angle(_rightAscension);
+    _argPerigee     = sanitize_angle(_argPerigee);
+    _trueAnomaly    = sanitize_angle(_trueAnomaly);
 }
 
 

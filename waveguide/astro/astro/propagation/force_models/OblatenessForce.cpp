@@ -171,7 +171,7 @@ AccelerationVector
     static const Distance& equitorialR = center->get_equitorial_radius();
 
     // Find lat and long
-    RadiusVector rEcef = conversions::eci_to_ecef(state.get_radius(), date);
+    RadiusVector rEcef = eci_to_ecef(state.get_radius(), date);
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
@@ -260,7 +260,7 @@ AccelerationVector
                                                dVdr * drdrEcef[2] + dVdlat * dlatdrEcef[2] };
 
     // Rotate back into inertial coordinates
-    AccelerationVector accelOblateness = conversions::ecef_to_eci(accelOblatenessEcef, date);
+    AccelerationVector accelOblateness = ecef_to_eci(accelOblatenessEcef, date);
 
     return accelOblateness;
 }

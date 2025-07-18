@@ -146,11 +146,11 @@ RiseSetArray
     std::size_t ii = 0;
     for (const auto& time : times) {
         // Get sat1 -> sat2 vector at current time
-        accessInfo[ii].time   = time;
-        accessInfo[ii].id1    = viewer1.get_id();
-        accessInfo[ii].id2    = viewer2.get_id();
-        accessInfo[ii].state1 = viewer1.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2 = viewer2.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
+        accessInfo[ii].time       = time;
+        accessInfo[ii].id1        = viewer1.get_id();
+        accessInfo[ii].id2        = viewer2.get_id();
+        accessInfo[ii].state1     = viewer1.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
+        accessInfo[ii].state2     = viewer2.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
         accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
         ++ii;
     }
@@ -183,20 +183,22 @@ RiseSetArray
     const auto& center = sys.get_center();
     for (const auto& time : times) {
         // Get ECI state of ground station... TODO: fix
-        RadiusVector groundEcef = astro::conversions::lla_to_ecef(
+        const RadiusVector groundEcef = astro::lla_to_ecef(
             ground.get_latitude(),
             ground.get_longitude(),
             ground.get_altitude(),
             center->get_equitorial_radius(),
             center->get_polar_radius()
         );
+        Date date                    = epoch + time;
+        const RadiusVector groundEci = astro::ecef_to_eci(groundEcef, date);
 
         // Get sat1 -> sat2 vector at current time
-        accessInfo[ii].time   = time;
-        accessInfo[ii].id1    = viewer.get_id();
-        accessInfo[ii].id2    = ground.get_id();
-        accessInfo[ii].state1 = viewer.get_state_history().get_closest_state(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2 = Cartesian(groundEcef, astro::VelocityVector{});
+        accessInfo[ii].time       = time;
+        accessInfo[ii].id1        = viewer.get_id();
+        accessInfo[ii].id2        = ground.get_id();
+        accessInfo[ii].state1     = viewer.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
+        accessInfo[ii].state2     = Cartesian(groundEci, astro::VelocityVector{});
         accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
         ++ii;
     }

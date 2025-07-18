@@ -32,12 +32,16 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
         sender = row[0]
         receiver = row[1]
 
-        if sender != "DIRECTV_32729" and receiver != "DIRECTV_32729":
+        target = "Washington DC"
+        if sender != target and receiver != target:
             continue
+        color = 'r'
         if sender == "DIRECTV_32729":
             sender = "DIRECTV"
+            color = 'b'
         if receiver == "DIRECTV_32729":
             receiver = "DIRECTV"
+            color = 'b'
 
         # Avoid plotting same pairs twice - TODO: Update this for one-way analysis
         if (sender, receiver) in usedPairs or (receiver, sender) in usedPairs:
@@ -60,12 +64,12 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
                 break
 
         # Plot
-        ax.broken_barh(risesets, (-0.2 + iPlot*1.0, 0.4))
+        ax.broken_barh(risesets, (-0.2 + iPlot*1.0, 0.4), color=color)
         iPlot += 1
 
     # Cleanup
     ax.set_xlim(0, 24)
-    ax.set_xticks(range(0, 50, 2))
+    ax.set_xticks(range(0, 25, 2))
     ax.invert_yaxis()
     ax.set_yticks(range(len(labels)), labels=labels)
     ax.set_xlabel("Rise - Set Times (hrs)")
