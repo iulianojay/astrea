@@ -57,24 +57,25 @@ void access_test()
     Date epoch = Date::now();
 
     // Query database
-    auto directvGp  = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 32729));
-    auto navStarGps = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "NAVSTAR%")));
+    auto snapshot   = get_snapshot();
+    auto geoGp      = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
+    auto navStarGps = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "NAVSTAR%")));
 
     // Build constellation
-    Viewer directv(directvGp[0], sys);
-    Constellation<Viewer> navStarAndDirectv(navStarGps, sys);
+    Viewer geo(geoGp[0], sys);
+    Constellation<Viewer> allSats(navStarGps, sys);
 
     // Add sensors
     CircularFieldOfView fov1deg(180.0 * deg);
     CircularFieldOfView fov30deg(30.0 * deg);
     Sensor geoCone(fov1deg);
     Sensor navstarCone(fov30deg);
-    // for (auto& viewer : navStarAndDirectv | std::views::join) { // TODO: Figure out how this works
+    // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach_sensor(simpleCone);
     // }
 
-    directv.attach_sensor(geoCone);
-    for (auto& shell : navStarAndDirectv) {
+    geo.attach_sensor(geoCone);
+    for (auto& shell : allSats) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
                 const State& state = sat.get_state();
@@ -83,7 +84,7 @@ void access_test()
             }
         }
     }
-    navStarAndDirectv.add_spacecraft(directv);
+    allSats.add_spacecraft(geo);
 
     // Build out grounds
     GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { navstarCone }, "Washington DC");
@@ -101,7 +102,7 @@ void access_test()
     auto start = std::chrono::steady_clock::now();
 
     Interval propInterval{ seconds(0), days(2) };
-    navStarAndDirectv.propagate(epoch, eom, integrator, propInterval);
+    allSats.propagate(epoch, eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -112,7 +113,8 @@ void access_test()
 
     // Find access
     Time accessResolution = minutes(1);
-    const auto accesses   = find_accesses(navStarAndDirectv, grounds, accessResolution, epoch, sys);
+    const auto accesses   = find_accesses(allSats, accessResolution, sys);
+    // const auto accesses   = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -131,7 +133,7 @@ void access_test()
 
             // Gross
             std::string sender, receiver;
-            for (const auto& shell : navStarAndDirectv) {
+            for (const auto& shell : allSats) {
                 for (const auto& plane : shell) {
                     for (const auto& viewer : plane) {
                         if (viewer.get_id() == idPair.sender) {

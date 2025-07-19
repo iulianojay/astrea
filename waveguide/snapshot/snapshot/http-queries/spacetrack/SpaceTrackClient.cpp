@@ -34,9 +34,9 @@ nlohmann::json SpaceTrackClient::query(
 
 nlohmann::json SpaceTrackClient::retrieve_all(const std::string& username, const std::string& password)
 {
-    cpr::Url queryUrl =
-        "https://www.space-track.org/"
-        "basicspacedata/query/class/gp/decay_date/null-val/epoch/%3Enow-30/orderby/norad_cat_id/format/json";
+    cpr::Url queryUrl = "https://www.space-track.org/"
+                        "basicspacedata/query/class/gp/object_type/payload/decay_date/null-val/epoch/%3Enow-30/orderby/"
+                        "norad_cat_id/format/json";
     return query_impl(username, password, queryUrl);
 }
 
@@ -79,7 +79,6 @@ std::string SpaceTrackClient::class_to_string(const SpaceDataClass& requestClass
         }
         case (SpaceDataClass::BOX_SCORE): {
             return "boxscore";
-            break;
         }
         case (SpaceDataClass::CDM_PUBLIC): {
             return "cdm_public";
