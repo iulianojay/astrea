@@ -1,14 +1,56 @@
 #pragma once
 
 #include <sqlite3.h>
+#include <vector>
 
 #include <sqlite_orm/sqlite_orm.h>
 
+// mp-units
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/iau.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
+
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
-inline auto get_snapshot() {
+namespace snapshot {
+
+using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
+
+template <class T>
+class DatabaseUtilityWrapper {
+  public:
+    DatabaseUtilityWrapper(T&& db) :
+        _database(db)
+    {
+    }
+    ~DatabaseUtilityWrapper() = default;
+
+    const T& get_database() const;
+
+    template <typename... Args>
+    std::vector<SpaceTrackGP> get_all(Args&&... args) const;
+
+    SpaceTrackGP get_sat_from_norad_id(const unsigned& id) const;
+
+    std::vector<SpaceTrackGP> get_sats_by_name(const std::string& name) const;
+
+    std::vector<SpaceTrackGP> get_sats_in_range(const Distance& minPeriapsis, const Distance& maxApoapsis) const;
+
+  private:
+    T _database;
+};
+
+template <typename T>
+DatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& database)
+{
+    return DatabaseUtilityWrapper<typename std::decay<T>::type>{ std::forward<T>(database) };
+}
+
+inline auto get_snapshot()
+{
     return sqlite_orm::make_storage(
-        "/home/jay/projects/waveguide/waveguide/snapshot/snapshot/data/snapshot.db", // TODO: Fix the pathing
+        "/home/jay/projects/waveguide/waveguide/snapshot/snapshot/database/snapshot.db", // TODO: Fix the pathing
         sqlite_orm::make_table(
             "SpaceTrackGP",
             sqlite_orm::make_column("DB_ID", &snapshot::SpaceTrackGP::DB_ID, sqlite_orm::primary_key().autoincrement()),
@@ -55,3 +97,9 @@ inline auto get_snapshot() {
         )
     );
 }
+
+inline auto make_snapshot_wrapper() { return make_database(get_snapshot()); }
+
+} // namespace snapshot
+
+#include <snapshot/database/Database.ipp>

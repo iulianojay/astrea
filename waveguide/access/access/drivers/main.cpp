@@ -57,13 +57,14 @@ void access_test()
     Date epoch = Date::now();
 
     // Query database
-    auto snapshot   = get_snapshot();
-    auto geoGp      = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
-    auto navStarGps = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "NAVSTAR%")));
+    auto snapshot = get_snapshot();
+    auto geoGp    = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
+    auto everythingElseGps =
+        snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
 
     // Build constellation
     Viewer geo(geoGp[0], sys);
-    Constellation<Viewer> allSats(navStarGps, sys);
+    Constellation<Viewer> allSats(everythingElseGps, sys);
 
     // Add sensors
     CircularFieldOfView fov1deg(180.0 * deg);
@@ -113,8 +114,8 @@ void access_test()
 
     // Find access
     Time accessResolution = minutes(1);
-    // const auto accesses   = find_accesses(allSats, accessResolution, sys);
-    const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
+    const auto accesses   = find_accesses(allSats, accessResolution, sys);
+    // const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);

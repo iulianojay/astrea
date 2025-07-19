@@ -4,7 +4,7 @@ import numpy as np
 from typing import List, Tuple
 
 
-def plot_access_results(title: str, results: str, outfile: str) -> None:
+def plot_access_results(title: str, results: str, outfile: str, target: str, colors: dict) -> None:
     # Loop the data lines
     with open(results, 'r') as temp_f:
         # get n of columns in each line
@@ -32,14 +32,13 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
         sender = row[0]
         receiver = row[1]
 
-        target = "Washington DC"
         if sender != target and receiver != target:
             continue
         color = 'r'
-        if sender == "NUVIEW ALPHA":
-            color = 'b'
-        if receiver == "NUVIEW ALPHA":
-            color = 'b'
+        if sender in colors.keys():
+            color = colors[sender]
+        if receiver in colors.keys():
+            color = colors[sender]
 
         # Avoid plotting same pairs twice - TODO: Update this for one-way analysis
         if (sender, receiver) in usedPairs or (receiver, sender) in usedPairs:
@@ -82,4 +81,7 @@ if __name__=='__main__':
 
     results = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv' 
     outfile = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.png' 
-    plot_access_results("Test Access Analysis", results, outfile)
+    # target = "Washington DC"
+    target = "NUVIEW ALPHA"
+    colors = {}
+    plot_access_results("Test Access Analysis", results, outfile, target, colors)

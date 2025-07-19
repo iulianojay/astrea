@@ -59,7 +59,7 @@ void ex1()
 
 void ex2()
 {
-    std::ifstream infileStream("/home/jay/projects/waveguide/waveguide/snapshot/data/cartesian.json");
+    std::ifstream infileStream("/home/jay/projects/waveguide/waveguide/snapshot/database/cartesian.json");
 
     avro::ValidSchema cartesianSchema;
     avro::compileJsonSchema(infileStream, cartesianSchema);
@@ -101,8 +101,8 @@ avro::ValidSchema loadSchema(const std::string& filename)
 void ex3()
 {
     // Load schema
-    std::string schemaFile = "./waveguide/snapshot/data/cartesian.json";
-    std::string outFile    = "./waveguide/snapshot/data/cartesian.avro";
+    std::string schemaFile = "./waveguide/snapshot/database/cartesian.json";
+    std::string outFile    = "./waveguide/snapshot/database/cartesian.avro";
 
     avro::ValidSchema cartesianSchema = loadSchema(schemaFile);
 

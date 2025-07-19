@@ -39,6 +39,6 @@ void query_spacetrack(int argc, char** argv)
 {
     SpaceTrackClient spaceTrack;
     nlohmann::json allSpaceTrackData = spaceTrack.retrieve_all(argv[1], argv[2]);
-    std::ofstream outFileStream("./waveguide/snapshot/snapshot/data/spacetrack_data.json");
+    std::ofstream outFileStream("./waveguide/snapshot/snapshot/database/spacetrack_data.json");
     outFileStream << std::setw(4) << allSpaceTrackData;
 }

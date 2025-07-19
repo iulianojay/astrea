@@ -9,7 +9,7 @@
 namespace snapshot {
 
 // https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html
-struct SpaceTrackGP {
+struct SpaceTrackGP { // TODO: Right now, units are implied, but they should be used if possible. At least look into
 
     SpaceTrackGP() = default;
     SpaceTrackGP(const nlohmann::json& data);

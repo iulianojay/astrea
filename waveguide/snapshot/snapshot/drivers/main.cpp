@@ -10,7 +10,7 @@
 
 #include <astro/time/Date.hpp>
 
-#include <snapshot/data/database.hpp>
+#include <snapshot/database/Database.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
