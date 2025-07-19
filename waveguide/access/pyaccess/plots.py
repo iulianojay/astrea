@@ -36,9 +36,9 @@ def plot_access_results(title: str, results: str, outfile: str) -> None:
         if sender != target and receiver != target:
             continue
         color = 'r'
-        if sender == "NUVIEW_62455":
+        if sender == "NUVIEW ALPHA":
             color = 'b'
-        if receiver == "NUVIEW_62455":
+        if receiver == "NUVIEW ALPHA":
             color = 'b'
 
         # Avoid plotting same pairs twice - TODO: Update this for one-way analysis

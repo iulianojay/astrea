@@ -54,10 +54,6 @@ int main(int argc, char** argv)
 
         // Build object
         const SpaceTrackGP gp(data);
-        if (gp.NORAD_CAT_ID == 62455) {
-            std::cout << std::endl << std::setw(4) << data << std::endl;
-            std::cout << gp << std::endl;
-        }
 
         // Insert or update
         auto all = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));

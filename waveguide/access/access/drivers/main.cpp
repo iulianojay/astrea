@@ -113,8 +113,8 @@ void access_test()
 
     // Find access
     Time accessResolution = minutes(1);
-    const auto accesses   = find_accesses(allSats, accessResolution, sys);
-    // const auto accesses   = find_accesses(allSats, grounds, accessResolution, epoch, sys);
+    // const auto accesses   = find_accesses(allSats, accessResolution, sys);
+    const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -136,12 +136,8 @@ void access_test()
             for (const auto& shell : allSats) {
                 for (const auto& plane : shell) {
                     for (const auto& viewer : plane) {
-                        if (viewer.get_id() == idPair.sender) {
-                            sender = viewer.get_name() + "_" + std::to_string(viewer.get_id());
-                        }
-                        if (viewer.get_id() == idPair.receiver) {
-                            receiver = viewer.get_name() + "_" + std::to_string(viewer.get_id());
-                        }
+                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
+                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
                     }
                 }
             }
