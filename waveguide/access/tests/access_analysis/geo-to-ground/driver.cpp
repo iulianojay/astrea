@@ -95,7 +95,7 @@
 //     for (auto& shell : twoBallGeo) {
 //         for (auto& plane : shell) {
 //             for (auto& sat : plane) {
-//                 sat.attach_sensor(geoCone);
+//                 sat.attach(geoCone);
 //             }
 //         }
 //     }
@@ -127,7 +127,7 @@
 //     for (auto& shell : twoBallGeo) {
 //         for (auto& plane : shell) {
 //             for (auto& sat : plane) {
-//                 sat.attach_sensor(geoCone);
+//                 sat.attach(geoCone);
 //             }
 //         }
 //     }
@@ -164,7 +164,7 @@
 //     for (auto& shell : fourBallGeo) {
 //         for (auto& plane : shell) {
 //             for (auto& sat : plane) {
-//                 sat.attach_sensor(geoCone);
+//                 sat.attach(geoCone);
 //             }
 //         }
 //     }

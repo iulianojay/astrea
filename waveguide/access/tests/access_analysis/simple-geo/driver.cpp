@@ -98,7 +98,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     for (auto& shell : twoBallGeo) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
-                sat.attach_sensor(geoCone);
+                sat.attach(geoCone);
             }
         }
     }
@@ -135,7 +135,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     for (auto& shell : twoBallGeo) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
-                sat.attach_sensor(geoCone);
+                sat.attach(geoCone);
             }
         }
     }
@@ -172,7 +172,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     for (auto& shell : fourBallGeo) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
-                sat.attach_sensor(geoCone);
+                sat.attach(geoCone);
             }
         }
     }

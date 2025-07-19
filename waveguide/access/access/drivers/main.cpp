@@ -72,16 +72,16 @@ void access_test()
     Sensor geoCone(fov1deg);
     Sensor navstarCone(fov30deg);
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
-    //     viewer.attach_sensor(simpleCone);
+    //     viewer.attach(simpleCone);
     // }
 
-    geo.attach_sensor(geoCone);
+    geo.attach(geoCone);
     for (auto& shell : allSats) {
         for (auto& plane : shell) {
             for (auto& sat : plane) {
                 const State& state = sat.get_state();
                 sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
-                sat.attach_sensor(navstarCone);
+                sat.attach(navstarCone);
             }
         }
     }
@@ -90,6 +90,11 @@ void access_test()
     // Build out grounds
     GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { navstarCone }, "Washington DC");
     GroundArchitecture grounds({ dc });
+
+    LatLon corner1{ -50.0 * deg, -180.0 * deg };
+    LatLon corner4{ 50.0 * deg, 180.0 * deg };
+    Angle spacing = 10.0 * deg;
+    Grid grid(corner1, corner4, GridType::UNIFORM, spacing);
 
     // Build EoMs
     TwoBody eom(sys);

@@ -24,7 +24,10 @@ set(ACCESS_SOURCES
 
     ${ACCESS_BASE}/platforms/sensors/Antenna.cpp
     ${ACCESS_BASE}/platforms/sensors/Sensor.cpp
+
+    ${ACCESS_BASE}/platforms/ground/Grid.cpp
     ${ACCESS_BASE}/platforms/ground/GroundStation.cpp
+
     ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.cpp
 
     ${ACCESS_BASE}/time/RiseSetArray.cpp
@@ -39,8 +42,14 @@ set(ACCESS_HEADERS
 
     ${ACCESS_BASE}/platforms/sensors/Antenna.hpp
     ${ACCESS_BASE}/platforms/sensors/Sensor.hpp
-    ${ACCESS_BASE}/platforms/ground/GroundStation.hpp
+    ${ACCESS_BASE}/platforms/sensors/SensorPlatform.hpp
     ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.hpp
+
+    ${ACCESS_BASE}/platforms/ground/Grid.hpp
+    ${ACCESS_BASE}/platforms/ground/GroundArchitecture.hpp
+    ${ACCESS_BASE}/platforms/ground/GroundPoint.hpp
+    ${ACCESS_BASE}/platforms/ground/GroundStation.hpp
+    
     ${ACCESS_BASE}/platforms/vehicles/Viewer.hpp
 
     ${ACCESS_BASE}/time/AccessArray.hpp

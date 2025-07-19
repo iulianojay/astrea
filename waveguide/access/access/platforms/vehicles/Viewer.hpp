@@ -16,7 +16,7 @@
 
 namespace accesslib {
 
-class Viewer : public astro::Spacecraft, public AccessObject {
+class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatform {
 
   public:
     // Constructor
@@ -35,16 +35,7 @@ class Viewer : public astro::Spacecraft, public AccessObject {
     // Destructor
     ~Viewer() = default;
 
-    void attach_sensor(Sensor& sensor) { _sensors.emplace_back(sensor); }
-    void attach_sensors(std::vector<Sensor>& _sensors)
-    {
-        _sensors.insert(std::end(_sensors), std::begin(_sensors), std::end(_sensors));
-    }
-
     std::size_t get_id() const { return Spacecraft::get_id(); }
-
-    std::vector<Sensor>& get_sensors() { return _sensors; }
-    const std::vector<Sensor>& get_sensors() const { return _sensors; }
 
   private:
     std::vector<Sensor> _sensors;

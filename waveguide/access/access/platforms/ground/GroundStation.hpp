@@ -4,55 +4,36 @@
 
 #include <astro/types/typedefs.hpp>
 
-#include <access/platforms/sensors/Sensor.hpp>
+#include <access/platforms/ground/GroundPoint.hpp>
+#include <access/platforms/sensors/SensorPlatform.hpp>
 
 
 namespace accesslib {
 
-class GroundStation : public AccessObject {
+class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
   public:
     GroundStation(
-        const astro::Angle& latitutde,
+        const astro::Angle& latitude,
         const astro::Angle& longitude,
         const astro::Distance& altitude    = 0.0 * mp_units::si::unit_symbols::km,
         const std::vector<Sensor>& sensors = {},
         const std::string name             = "Unnammed"
     ) :
+        GroundPoint(latitude, longitude, altitude),
         AccessObject(),
-        _latitude(latitutde),
-        _longitude(longitude),
-        _altitude(altitude),
-        _sensors(sensors),
+        SensorPlatform(sensors),
         _name(name)
     {
         generate_id_hash();
     };
-    ~GroundStation(){};
-
-    void attach(const Sensor& sensor) { _sensors.emplace_back(sensor); }
-    void attach(const std::vector<Sensor>& sensors)
-    {
-        _sensors.insert(std::end(_sensors), std::begin(sensors), std::end(sensors));
-    }
+    ~GroundStation() = default;
 
     std::size_t get_id() const { return _id; }
     std::string get_name() const { return _name; }
 
-    std::vector<Sensor>& get_sensors() { return _sensors; }
-    const std::vector<Sensor>& get_sensors() const { return _sensors; }
-
-    astro::Angle get_latitude() const { return _latitude; }
-    astro::Angle get_longitude() const { return _longitude; }
-    astro::Distance get_altitude() const { return _altitude; }
-
   private:
     std::size_t _id;
-    astro::Angle _latitude;
-    astro::Angle _longitude;
-    astro::Distance _altitude;
     std::string _name;
-
-    std::vector<Sensor> _sensors;
 
     void generate_id_hash();
 };
