@@ -2,6 +2,7 @@
 
 #include <filesystem>
 
+namespace waveguide {
 namespace astro {
 
 // TODO: Fix this trash
@@ -82,3 +83,4 @@ void CelestialBodyFactory::find_root()
 }
 
 } // namespace astro
+} // namespace waveguide

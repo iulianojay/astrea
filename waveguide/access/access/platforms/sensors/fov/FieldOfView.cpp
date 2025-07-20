@@ -13,10 +13,7 @@
 using namespace mp_units;
 using namespace mp_units::angular;
 
-using astro::Angle;
-using astro::Distance;
-using astro::RadiusVector;
-
+namespace waveguide {
 namespace accesslib {
 
 Distance norm(const RadiusVector& r) { return sqrt(r[0] * r[0] + r[1] * r[1] + r[2] * r[2]); }
@@ -36,7 +33,7 @@ Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusV
     const auto v1DotV2   = dot_product(vector1, vector2);
     const auto ratio     = v1DotV2 / (v1Mag * v2Mag);
     if (ratio > 1.0 * one) {
-        return 0.0 * astro::detail::angle_unit;
+        return 0.0 * waveguide::detail::angle_unit;
     } // catch rounding errors - TODO: Make this more intelligent
     return acos(ratio);
 }
@@ -47,26 +44,27 @@ bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVe
 }
 
 
-PolygonalFieldOfView::PolygonalFieldOfView(const astro::Angle& halfConeAngle, const int& nPoints)
+PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeAngle, const int& nPoints)
 {
-    for (astro::Angle theta = 0.0 * astro::detail::angle_unit; theta < astro::TWO_PI; theta += (astro::TWO_PI / nPoints)) {
+    for (Angle theta = 0.0 * waveguide::detail::angle_unit; theta < TWO_PI; theta += (TWO_PI / nPoints)) {
         _points[theta] = halfConeAngle;
     }
 }
 
-PolygonalFieldOfView::PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints)
+PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeWidth, const Angle& halfConeHeight, const int& nPoints)
 {
 
     throw std::logic_error("This function has not been properly updated and is not currently functional.");
 
     /*
-    const astro::Angle sinw = sin(halfConeWidth);
-    const astro::Angle sinh = sin(halfConeHeight);
+    const Angle sinw = sin(halfConeWidth);
+    const Angle sinh = sin(halfConeHeight);
 
-    for (astro::Angle theta = 0.0; theta < astro::TWO_PI; theta += (astro::TWO_PI/nPoints)) {
+    for (Angle theta = 0.0; theta < TWO_PI; theta += (TWO_PI/nPoints)) {
         points[theta] = 0.0;
     }
     */
 }
 
 } // namespace accesslib
+} // namespace waveguide

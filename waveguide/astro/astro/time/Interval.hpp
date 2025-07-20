@@ -2,6 +2,7 @@
 
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Interval {
@@ -16,3 +17,4 @@ class Interval {
 };
 
 } // namespace astro
+} // namespace waveguide

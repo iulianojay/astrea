@@ -5,6 +5,7 @@
 #include <astro/state/State.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class StateHistory {
@@ -48,3 +49,4 @@ class StateHistory {
 };
 
 } // namespace astro
+} // namespace waveguide

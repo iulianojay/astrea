@@ -23,6 +23,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 int main()

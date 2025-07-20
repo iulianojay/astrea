@@ -6,6 +6,7 @@
 
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 class AccessObject {
@@ -33,3 +34,4 @@ class AccessObject {
 };
 
 } // namespace accesslib
+} // namespace waveguide

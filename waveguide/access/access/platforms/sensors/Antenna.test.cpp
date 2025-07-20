@@ -6,7 +6,9 @@
 
 #include <access/platforms/sensors/Antenna.hpp>
 
+using namespace waveguide;
 using namespace astro;
+using namespace waveguide;
 using namespace accesslib;
 
 using namespace mp_units;

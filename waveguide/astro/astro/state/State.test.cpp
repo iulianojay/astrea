@@ -6,6 +6,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 class StateTest : public testing::Test {

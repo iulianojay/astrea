@@ -5,13 +5,14 @@
 #include <memory>
 #include <type_traits>
 
-// astro
+#include <units/units.hpp>
+
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typeid_name_extract.hpp>
-#include <astro/units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <typename T>
@@ -183,7 +184,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetRamArea<U>) static SurfaceArea get_ram_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
     template <typename U>
     requires(HasGetRamArea<U>) static SurfaceArea get_ram_area_impl(const U& value) { return value.get_ram_area(); }
@@ -191,7 +192,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetLiftArea<U>) static SurfaceArea get_lift_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
     template <typename U>
     requires(HasGetLiftArea<U>) static SurfaceArea get_lift_area_impl(const U& value) { return value.get_lift_area(); }
@@ -199,7 +200,7 @@ struct VehicleInner final : public VehicleInnerBase {
     template <typename U>
     requires(!HasGetSolarArea<U>) static SurfaceArea get_solar_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
     template <typename U>
     requires(HasGetSolarArea<U>) static SurfaceArea get_solar_area_impl(const U& value)
@@ -376,3 +377,4 @@ class Vehicle {
 };
 
 } // namespace astro
+} // namespace waveguide

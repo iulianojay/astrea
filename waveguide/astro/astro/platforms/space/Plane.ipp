@@ -1,5 +1,6 @@
 #include <astro/utilities/conversions.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T>
@@ -82,3 +83,4 @@ void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, I
 }
 
 } // namespace astro
+} // namespace waveguide

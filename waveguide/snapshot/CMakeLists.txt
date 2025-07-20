@@ -43,6 +43,7 @@ set(SNAPSHOT_HEADERS
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.hpp
+    ${SNAPSHOT_BASE}/types/typedefs.hpp
     ${SNAPSHOT_BASE}/utilities/string_util.hpp
 
     ${EXTERN_BASE}/nlohmann/json.hpp

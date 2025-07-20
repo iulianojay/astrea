@@ -5,10 +5,11 @@
 #include <mp-units/format.h>
 #include <mp-units/ostream.h>
 
-#include <astro/types/typedefs.hpp>
+#include <units/units.hpp>
 
 #include <access/time/riseset_utils.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 enum class Stat { MIN, MEAN, MAX };
@@ -21,7 +22,7 @@ class RiseSetArray {
     RiseSetArray()  = default;
     ~RiseSetArray() = default;
 
-    RiseSetArray(const std::vector<astro::Time>& risesets);
+    RiseSetArray(const std::vector<Time>& risesets);
 
     // Copy constructor
     RiseSetArray(const RiseSetArray&);
@@ -36,14 +37,14 @@ class RiseSetArray {
     RiseSetArray& operator=(const RiseSetArray&);
 
     // Utilities
-    void append(const astro::Time& rise, const astro::Time& set);
-    void prepend(const astro::Time& rise, const astro::Time& set);
-    void insert(const astro::Time& rise, const astro::Time& set);
+    void append(const Time& rise, const Time& set);
+    void prepend(const Time& rise, const Time& set);
+    void insert(const Time& rise, const Time& set);
 
     std::size_t size() const { return _risesets.size(); }
 
     // Element access
-    const astro::Time& operator[](const std::size_t& ind) const { return _risesets[ind]; }
+    const Time& operator[](const std::size_t& ind) const { return _risesets[ind]; }
 
     // Union
     RiseSetArray operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
@@ -52,11 +53,11 @@ class RiseSetArray {
     RiseSetArray operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
 
     // Calcs
-    astro::Time gap(const Stat& stat = Stat::MEAN) const;
-    astro::Time access_time(const Stat& stat = Stat::MEAN) const;
+    Time gap(const Stat& stat = Stat::MEAN) const;
+    Time access_time(const Stat& stat = Stat::MEAN) const;
 
     // Iterators
-    using const_iterator = std::vector<astro::Time>::const_iterator;
+    using const_iterator = std::vector<Time>::const_iterator;
 
     const_iterator begin() const { return _risesets.begin(); }
     const_iterator end() const { return _risesets.end(); }
@@ -66,15 +67,16 @@ class RiseSetArray {
     std::vector<std::string> to_string_vector() const;
 
   private:
-    std::vector<astro::Time> _risesets;
+    std::vector<Time> _risesets;
 
-    void validate_riseset(const astro::Time& rise, const astro::Time& set) const;
-    void validate_risesets(const std::vector<astro::Time>& risesets) const;
+    void validate_riseset(const Time& rise, const Time& set) const;
+    void validate_risesets(const std::vector<Time>& risesets) const;
 
-    std::string to_formatted_string(astro::Time t) const
+    std::string to_formatted_string(Time t) const
     {
         return std::to_string(t.force_numerical_value_in(mp_units::si::unit_symbols::s));
     }
 };
 
 } // namespace accesslib
+} // namespace waveguide

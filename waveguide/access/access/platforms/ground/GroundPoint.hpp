@@ -2,19 +2,19 @@
 
 #include <vector>
 
-#include <astro/types/typedefs.hpp>
-
 #include <access/platforms/sensors/SensorPlatform.hpp>
+#include <access/types/typedefs.hpp>
 
 
+namespace waveguide {
 namespace accesslib {
 
 class GroundPoint {
   public:
     GroundPoint(
-        const astro::Angle& latitutde   = 0.0 * mp_units::angular::unit_symbols::deg,
-        const astro::Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
-        const astro::Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
+        const Angle& latitutde   = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
     ) :
         _latitude(latitutde),
         _longitude(longitude),
@@ -23,14 +23,15 @@ class GroundPoint {
     }
     virtual ~GroundPoint() = default;
 
-    astro::Angle get_latitude() const { return _latitude; }
-    astro::Angle get_longitude() const { return _longitude; }
-    astro::Distance get_altitude() const { return _altitude; }
+    Angle get_latitude() const { return _latitude; }
+    Angle get_longitude() const { return _longitude; }
+    Distance get_altitude() const { return _altitude; }
 
   protected:
-    astro::Angle _latitude;
-    astro::Angle _longitude;
-    astro::Distance _altitude;
+    Angle _latitude;
+    Angle _longitude;
+    Distance _altitude;
 };
 
 } // namespace accesslib
+} // namespace waveguide

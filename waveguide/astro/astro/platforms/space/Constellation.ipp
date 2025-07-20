@@ -1,3 +1,4 @@
+namespace waveguide {
 namespace astro {
 
 static const size_t DEFAULT_SHELL_ID = SIZE_MAX;
@@ -254,3 +255,4 @@ void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion
 }
 
 } // namespace astro
+} // namespace waveguide

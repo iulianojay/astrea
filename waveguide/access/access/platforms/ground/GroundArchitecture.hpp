@@ -4,6 +4,7 @@
 
 #include <access/platforms/ground/GroundStation.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 class GroundArchitecture {
@@ -29,3 +30,4 @@ class GroundArchitecture {
 };
 
 } // namespace accesslib
+} // namespace waveguide

@@ -27,6 +27,7 @@
 // #include <astro/astro.hpp>
 // #include <snapshot/snapshot.hpp>
 
+// using namespace waveguide;
 // using namespace astro;
 // using namespace accesslib;
 // using namespace snapshot;
@@ -70,6 +71,7 @@
 //     Time end;
 //     Interval accessInterval;
 //     Time resolution;
+//     Date epoch;
 // };
 
 
@@ -83,7 +85,7 @@
 // TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 // {
 //     // Build constellation
-//     Viewer geo(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys));
+//     Viewer geo({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
 
 //     Constellation<Viewer> twoBallGeo;
 //     twoBallGeo.add_spacecraft(geo);
@@ -101,7 +103,7 @@
 //     }
 
 //     // Propagate
-//     twoBallGeo.propagate(eom, integrator, accessInterval);
+//     twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
 //     // Find access
 //     const auto accesses = find_accesses(twoBallGeo, resolution, sys);
@@ -114,10 +116,9 @@
 // TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 // {
 //     // Build constellation
-//     Viewer geo1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys));
-//     Viewer geo2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys));
-//     Constellation<Viewer> twoBallGeo;
-//     twoBallGeo.add_spacecraft(geo1);
+//     Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys),
+//     epoch, sys }); Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0
+//     * deg), sys), epoch, sys }); Constellation<Viewer> twoBallGeo; twoBallGeo.add_spacecraft(geo1);
 //     twoBallGeo.add_spacecraft(geo2);
 
 //     // Add sensors
@@ -133,7 +134,7 @@
 //     }
 
 //     // Propagate
-//     twoBallGeo.propagate(eom, integrator, accessInterval);
+//     twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
 //     // Find access
 //     const auto accesses = find_accesses(twoBallGeo, resolution, sys);
@@ -146,10 +147,10 @@
 // TEST_F(GeoToGroundAccessTest, FourBallGeo)
 // {
 //     // Build constellation
-//     Viewer geo1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys));
-//     Viewer geo2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys));
-//     Viewer geo3(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys));
-//     Viewer geo4(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), sys));
+//     Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
+//     Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys), epoch, sys });
+//     Viewer geo3({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys), epoch, sys });
+//     Viewer geo4({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), sys), epoch, sys });
 
 //     Constellation<Viewer> fourBallGeo;
 //     fourBallGeo.add_spacecraft(geo1);
@@ -170,7 +171,7 @@
 //     }
 
 //     // Propagate
-//     fourBallGeo.propagate(eom, integrator, accessInterval);
+//     fourBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
 //     // Find access
 //     auto accesses = find_accesses(fourBallGeo, resolution, sys);

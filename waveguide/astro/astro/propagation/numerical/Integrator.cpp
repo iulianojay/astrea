@@ -5,6 +5,7 @@
 using namespace mp_units;
 using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 
@@ -311,7 +312,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             // Catch huge steps
             /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
-            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * detail::unitless ||
+            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * waveguide::detail::unitless ||
                 isinf(stateNewScaled[ii]) || isnan(stateNewScaled[ii])) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
@@ -517,3 +518,4 @@ void Integrator::set_step_method(std::string stepMethod)
 }
 
 } // namespace astro
+} // namespace waveguide

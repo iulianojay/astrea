@@ -7,6 +7,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class KeplerianVop : public EquationsOfMotion {
@@ -37,3 +38,4 @@ class KeplerianVop : public EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

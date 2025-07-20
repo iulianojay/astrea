@@ -22,6 +22,7 @@ using si::unit_symbols::km;
 using si::unit_symbols::m;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 AccelerationVector
@@ -267,3 +268,4 @@ const std::map<Altitude, AtmosphericForce::TitanDensity> AtmosphericForce::titan
 };
 
 } // namespace astro
+} // namespace waveguide

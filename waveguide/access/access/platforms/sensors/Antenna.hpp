@@ -2,16 +2,14 @@
 
 #include <vector>
 
-#include <math/trig.hpp>
-
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <math/trig.hpp>
+#include <units/units.hpp>
 
 #include <access/platforms/sensors/Sensor.hpp>
 #include <access/types/typedefs.hpp>
-#include <access/units/constants.hpp>
-#include <access/units/units.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 class Antenna : public Sensor {
@@ -19,8 +17,8 @@ class Antenna : public Sensor {
     enum class PatternApproximation { BESSEL, SINC_SQUARED };
 
     Antenna(
-        const astro::Length& diameter,
-        const astro::Unitless& efficiency,
+        const Length& diameter,
+        const Unitless& efficiency,
         const Frequency frequency,
         const Power& power,
         // const Temperature& sysNoiseTemp    = 0.0 * mp_units::si::unit_symbols::K,   // Nonsense
@@ -31,14 +29,14 @@ class Antenna : public Sensor {
     );
 
     // Signal strength
-    CNR carrier_to_noise_ratio(const Antenna& receiver, const astro::Distance& range, const astro::Angle& offsetAngle) const;
-    CNR carrier_to_noise_density(const Antenna& receiver, const astro::Distance& range, const astro::Angle& offsetAngle) const;
+    CNR carrier_to_noise_ratio(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const;
+    CNR carrier_to_noise_density(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const;
 
     // Losses
-    Power recieved_power(const Antenna& receiver, const astro::Distance& range, const astro::Angle& offsetAngle) const;
-    Gain free_space_loss(const astro::Distance& range) const;
-    Gain system_loss(const Antenna& receiver, const astro::Angle& offsetAngle) const;
-    Gain mispointing_loss(const Antenna& receiver, const astro::Angle& offsetAngle) const;
+    Power recieved_power(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const;
+    Gain free_space_loss(const Distance& range) const;
+    Gain system_loss(const Antenna& receiver, const Angle& offsetAngle) const;
+    Gain mispointing_loss(const Antenna& receiver, const Angle& offsetAngle) const;
     Gain polarization_loss(const Antenna& receiver) const;
     Gain atmospheric_loss() const;
 
@@ -52,22 +50,23 @@ class Antenna : public Sensor {
     void set_pattern_approximation(const PatternApproximation& pattern);
 
   private:
-    astro::Length _diameter;     // reflector diameter
-    astro::Unitless _efficiency; // apature illumination efficiency
-    Frequency _frequency;        // carrier frequency
-    Frequency _noiseBandwidth;   // equivalent noise bandwidth
-    astro::Length _wavelength;   // speed of light / frequency
-    Power _power;                // transmit power
-    Gain _gain;                  // peak isotropic power gain
-    Power _eirp;                 // equivalent isotropic radiator power
+    Length _diameter;          // reflector diameter
+    Unitless _efficiency;      // apature illumination efficiency
+    Frequency _frequency;      // carrier frequency
+    Frequency _noiseBandwidth; // equivalent noise bandwidth
+    Length _wavelength;        // speed of light / frequency
+    Power _power;              // transmit power
+    Gain _gain;                // peak isotropic power gain
+    Power _eirp;               // equivalent isotropic radiator power
     Gain _transmitLoss;
     Gain _receiverLoss;
     PatternApproximation _pattern;
     Temperature _sysNoiseTemp;
 
-    Gain bessel_loss_approximation(const astro::Angle& offsetAngle) const;
-    Gain sinc_loss_approximation(const astro::Angle& offsetAngle) const;
-    Gain mispointing_loss_approximation_argument(const astro::Angle& offsetAngle) const;
+    Gain bessel_loss_approximation(const Angle& offsetAngle) const;
+    Gain sinc_loss_approximation(const Angle& offsetAngle) const;
+    Gain mispointing_loss_approximation_argument(const Angle& offsetAngle) const;
 };
 
 } // namespace accesslib
+} // namespace waveguide

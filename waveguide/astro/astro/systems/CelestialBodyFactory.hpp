@@ -7,6 +7,7 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
 
+namespace waveguide {
 namespace astro {
 
 using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
@@ -71,3 +72,4 @@ class CelestialBodyFactory {
 };
 
 } // namespace astro
+} // namespace waveguide

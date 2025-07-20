@@ -18,6 +18,7 @@
 int main(int argc, char** argv)
 {
     // Build connection and connect
+    using namespace waveguide;
     using namespace snapshot;
     using namespace sqlite_orm;
 

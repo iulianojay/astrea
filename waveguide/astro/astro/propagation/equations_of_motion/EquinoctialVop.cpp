@@ -8,8 +8,8 @@
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Equinoctial.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
 #include <math/utils.hpp>
+#include <units/units.hpp>
 
 
 using namespace mp_units;
@@ -20,6 +20,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
@@ -109,3 +110,4 @@ OrbitalElementPartials EquinoctialVop::operator()(const Time& time, const Orbita
 }
 
 } // namespace astro
+} // namespace waveguide

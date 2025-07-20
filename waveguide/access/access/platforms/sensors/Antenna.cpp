@@ -7,19 +7,17 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
-using astro::Angle;
-using astro::Distance;
-
 using mp_units::one;
 using mp_units::pow;
 using mp_units::angular::sin;
 using mp_units::isq_angle::cotes_angle;
 
+namespace waveguide {
 namespace accesslib {
 
 Antenna::Antenna(
-    const astro::Length& diameter,
-    const astro::Unitless& efficiency,
+    const Length& diameter,
+    const Unitless& efficiency,
     const Frequency frequency,
     const Power& power,
     // const Temperature& sysNoiseTemp,
@@ -126,3 +124,4 @@ Gain Antenna::mispointing_loss_approximation_argument(const Angle& offsetAngle) 
 }
 
 } // namespace accesslib
+} // namespace waveguide

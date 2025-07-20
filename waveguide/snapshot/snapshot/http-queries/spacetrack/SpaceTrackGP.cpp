@@ -1,5 +1,6 @@
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 
@@ -131,3 +132,4 @@ std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp)
 
 
 } // namespace snapshot
+} // namespace waveguide

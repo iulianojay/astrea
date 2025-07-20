@@ -6,7 +6,7 @@
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
 
 using namespace mp_units;
@@ -14,6 +14,7 @@ using namespace mp_units::non_si;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 OrbitalElementPartials CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
@@ -46,3 +47,4 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -4,6 +4,7 @@
 
 using namespace mp_units;
 
+namespace waveguide {
 namespace astro {
 
 
@@ -76,3 +77,4 @@ const State& StateHistory::get_state_at(const Time& time)
 }
 
 } // namespace astro
+} // namespace waveguide

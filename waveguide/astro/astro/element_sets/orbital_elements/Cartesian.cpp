@@ -19,6 +19,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 Cartesian Cartesian::LEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::LEO(), system); }
@@ -266,12 +267,12 @@ Cartesian
 
 std::vector<Unitless> Cartesian::to_vector() const
 {
-    return { _x / detail::distance_unit,
-             _y / detail::distance_unit,
-             _z / detail::distance_unit,
-             _vx / (detail::distance_unit / detail::time_unit),
-             _vy / (detail::distance_unit / detail::time_unit),
-             _vz / (detail::distance_unit / detail::time_unit) };
+    return { _x / waveguide::detail::distance_unit,
+             _y / waveguide::detail::distance_unit,
+             _z / waveguide::detail::distance_unit,
+             _vx / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _vy / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _vz / (waveguide::detail::distance_unit / waveguide::detail::time_unit) };
 }
 
 Cartesian CartesianPartial::operator*(const Time& time) const
@@ -294,3 +295,4 @@ std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
 }
 
 } // namespace astro
+} // namespace waveguide

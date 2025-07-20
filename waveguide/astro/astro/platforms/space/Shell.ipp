@@ -1,5 +1,6 @@
 #include <stdexcept>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T>
@@ -166,3 +167,4 @@ void Shell<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, I
 }
 
 } // namespace astro
+} // namespace waveguide

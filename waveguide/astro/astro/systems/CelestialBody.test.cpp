@@ -13,6 +13,7 @@
 // TODO: Fix this trash
 static const std::filesystem::path ROOT = "/home/jay/projects/waveguide";
 
+using namespace waveguide;
 using namespace astro;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;

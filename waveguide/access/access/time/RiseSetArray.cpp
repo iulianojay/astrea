@@ -2,8 +2,7 @@
 
 #include <stdexcept>
 
-using astro::Time;
-
+namespace waveguide {
 namespace accesslib {
 
 RiseSetArray::RiseSetArray(const std::vector<Time>& risesets)
@@ -172,3 +171,4 @@ std::ostream& operator<<(std::ostream& os, const RiseSetArray& risesets)
 }
 
 } // namespace accesslib
+} // namespace waveguide

@@ -3,7 +3,7 @@
 #include <math/utils.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/units/constants.hpp>
+#include <units/units.hpp>
 
 using namespace mp_units;
 using namespace mp_units::angular;
@@ -14,6 +14,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::min;
 using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 //----------------------------------------------------------------------------------------------------------//
@@ -72,7 +73,7 @@ RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt
 Angle sanitize_angle(const Angle& angle)
 {
     Angle ang = angle;
-    while (ang < 0.0 * detail::angle_unit) {
+    while (ang < 0.0 * waveguide::detail::angle_unit) {
         ang += TWO_PI;
     }
     ang = fmod(ang, TWO_PI);
@@ -80,3 +81,4 @@ Angle sanitize_angle(const Angle& angle)
 }
 
 } // namespace astro
+} // namespace waveguide

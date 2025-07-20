@@ -4,10 +4,8 @@
 
 #include <mp-units/math.h>
 
+namespace waveguide {
 namespace accesslib {
-
-using astro::Angle;
-using astro::Unitless;
 
 std::vector<GroundPoint>
     Grid::build_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& spacing, const Unitless& weight) const
@@ -57,7 +55,7 @@ std::vector<GroundPoint>
     throw std::runtime_error("Weighted grids have not been implemented yet.");
 }
 
-std::vector<astro::Angle> Grid::create_uniformly_spaced_vector(const Angle& first, const Angle& second, const Angle& spacing) const
+std::vector<Angle> Grid::create_uniformly_spaced_vector(const Angle& first, const Angle& second, const Angle& spacing) const
 {
     const std::size_t nAngles = std::ceil((abs(second - first) / spacing).numerical_value_in(mp_units::one)) + 1;
     std::vector<Angle> angles(nAngles);
@@ -68,3 +66,4 @@ std::vector<astro::Angle> Grid::create_uniformly_spaced_vector(const Angle& firs
 }
 
 } // namespace accesslib
+} // namespace waveguide

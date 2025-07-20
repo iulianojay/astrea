@@ -18,8 +18,9 @@
 #include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
 #include <astro/state/StateHistory.hpp>
 #include <astro/time/Interval.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Integrator {
@@ -205,3 +206,4 @@ class Integrator {
 };
 
 } // namespace astro
+} // namespace waveguide

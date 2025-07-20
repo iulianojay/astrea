@@ -1,5 +1,6 @@
 #include <astro/state/State.hpp>
 
+namespace waveguide {
 namespace astro {
 
 std::ostream& operator<<(std::ostream& os, const State& state)
@@ -9,3 +10,4 @@ std::ostream& operator<<(std::ostream& os, const State& state)
 }
 
 } // namespace astro
+} // namespace waveguide

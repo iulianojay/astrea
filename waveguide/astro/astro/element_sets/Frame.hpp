@@ -5,6 +5,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class T>
@@ -69,3 +70,4 @@ class DynamicFrame : public Frame<T> {
 };
 
 } // namespace astro
+} // namespace waveguide

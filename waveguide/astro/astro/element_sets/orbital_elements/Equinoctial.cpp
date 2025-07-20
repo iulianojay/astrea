@@ -19,6 +19,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 Equinoctial Equinoctial::LEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::LEO(), system); }
@@ -206,7 +207,8 @@ Equinoctial
 
 std::vector<Unitless> Equinoctial::to_vector() const
 {
-    return { _semilatus / detail::distance_unit, _f, _g, _h, _k, _trueLongitude / detail::angle_unit };
+    return { _semilatus / waveguide::detail::distance_unit, _f, _g, _h, _k,
+             _trueLongitude / waveguide::detail::angle_unit };
 }
 
 
@@ -229,3 +231,4 @@ std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -11,6 +11,7 @@ using namespace mp_units;
 using namespace mp_units::si;
 using namespace mp_units::si::unit_symbols;
 
+namespace waveguide {
 namespace astro {
 
 // Default constructor
@@ -103,3 +104,4 @@ const void* Vehicle::get_ptr() const { return ptr()->get_ptr(); }
 void* Vehicle::get_ptr() { return ptr()->get_ptr(); }
 
 } // namespace astro
+} // namespace waveguide

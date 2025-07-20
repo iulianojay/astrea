@@ -6,6 +6,7 @@
 #include <astro/utilities/conversions.hpp>
 
 #include <access/platforms/sensors/Sensor.hpp>
+#include <access/types/typedefs.hpp>
 
 
 using namespace mp_units;
@@ -14,15 +15,13 @@ using namespace mp_units::angular;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-using astro::Angle;
+namespace waveguide {
+
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
 using astro::Date;
-using astro::Distance;
-using astro::RadiusVector;
 using astro::State;
 using astro::StateHistory;
-using astro::Time;
 
 namespace accesslib {
 
@@ -198,7 +197,7 @@ RiseSetArray
         accessInfo[ii].id1        = viewer.get_id();
         accessInfo[ii].id2        = ground.get_id();
         accessInfo[ii].state1     = viewer.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2     = Cartesian(groundEci, astro::VelocityVector{});
+        accessInfo[ii].state2     = Cartesian(groundEci, VelocityVector{});
         accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
         ++ii;
     }
@@ -346,3 +345,4 @@ RiseSetArray
 
 
 } // namespace accesslib
+} // namespace waveguide

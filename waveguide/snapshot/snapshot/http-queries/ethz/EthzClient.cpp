@@ -5,6 +5,7 @@
 
 #include <snapshot/utilities/string_util.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 nlohmann::json EthzClient::query(const astro::Date& startDate, const astro::Date& endDate, const std::string& name, const bool& includeFrequencyData)
@@ -108,3 +109,4 @@ void EthzClient::clean_result(nlohmann::json& result)
 }
 
 } // namespace snapshot
+} // namespace waveguide

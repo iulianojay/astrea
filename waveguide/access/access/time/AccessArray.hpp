@@ -4,6 +4,7 @@
 
 #include <access/time/RiseSetArray.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 struct IdPair {
@@ -27,18 +28,19 @@ struct IdPair {
 };
 
 } // namespace accesslib
+} // namespace waveguide
 
 template <>
-struct std::hash<accesslib::IdPair> {
-    std::size_t operator()(const accesslib::IdPair& k) const
+struct std::hash<waveguide::accesslib::IdPair> {
+    std::size_t operator()(const waveguide::accesslib::IdPair& k) const
     {
         return (std::hash<std::size_t>()(k.sender)) ^ (std::hash<std::size_t>()(k.receiver));
     }
 };
 
 template <>
-struct std::less<accesslib::IdPair> {
-    bool operator()(const accesslib::IdPair& lhs, const accesslib::IdPair& rhs) const
+struct std::less<waveguide::accesslib::IdPair> {
+    bool operator()(const waveguide::accesslib::IdPair& lhs, const waveguide::accesslib::IdPair& rhs) const
     {
         if (lhs.sender == rhs.sender) { return lhs.receiver < rhs.receiver; }
         else {
@@ -47,6 +49,7 @@ struct std::less<accesslib::IdPair> {
     };
 };
 
+namespace waveguide {
 namespace accesslib {
 class AccessArray {
   public:
@@ -85,3 +88,4 @@ class AccessArray {
 };
 
 } // namespace accesslib
+} // namespace waveguide

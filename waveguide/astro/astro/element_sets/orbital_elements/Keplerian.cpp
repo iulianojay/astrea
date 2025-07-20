@@ -19,6 +19,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 Keplerian Keplerian::LEO() { return Keplerian(800.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
@@ -360,9 +361,9 @@ Keplerian
 
 std::vector<Unitless> Keplerian::to_vector() const
 {
-    return { _semimajor / detail::distance_unit, _eccentricity,
-             _inclination / detail::angle_unit,  _rightAscension / detail::angle_unit,
-             _argPerigee / detail::angle_unit,   _trueAnomaly / detail::angle_unit };
+    return { _semimajor / waveguide::detail::distance_unit, _eccentricity,
+             _inclination / waveguide::detail::angle_unit,  _rightAscension / waveguide::detail::angle_unit,
+             _argPerigee / waveguide::detail::angle_unit,   _trueAnomaly / waveguide::detail::angle_unit };
 }
 
 void Keplerian::sanitize_angles()
@@ -400,3 +401,4 @@ std::ostream& operator<<(std::ostream& os, Keplerian const& elements)
 }
 
 } // namespace astro
+} // namespace waveguide

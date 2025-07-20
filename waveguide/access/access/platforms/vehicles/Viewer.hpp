@@ -14,6 +14,7 @@
 #include <access/platforms/AccessObject.hpp>
 #include <access/platforms/sensors/Sensor.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
 class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatform {
@@ -42,3 +43,4 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
 };
 
 } // namespace accesslib
+} // namespace waveguide

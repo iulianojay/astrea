@@ -27,7 +27,9 @@
 #include <astro/astro.hpp>
 #include <snapshot/snapshot.hpp>
 
+using namespace waveguide;
 using namespace astro;
+using namespace waveguide;
 using namespace accesslib;
 using namespace snapshot;
 using namespace sqlite_orm;

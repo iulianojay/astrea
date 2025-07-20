@@ -8,8 +8,9 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -153,5 +154,6 @@ class Shell {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Shell.ipp>

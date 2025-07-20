@@ -4,6 +4,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 class OrbitalElementsTest : public testing::Test {
@@ -21,7 +22,7 @@ class OrbitalElementsTest : public testing::Test {
     OrbitalElements _cartElements;
     OrbitalElements _keplElements;
     OrbitalElements _equiElements;
-    Unitless _scalar = 2 * detail::unitless;
+    Unitless _scalar = 2.0 * waveguide::detail::unitless;
     Time _time       = seconds(1);
 };
 

@@ -2,6 +2,8 @@
 
 #include <math/utils.hpp>
 
+using namespace waveguide;
+
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

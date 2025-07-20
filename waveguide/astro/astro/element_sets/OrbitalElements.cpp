@@ -6,6 +6,7 @@
 
 using namespace mp_units;
 
+namespace waveguide {
 namespace astro {
 
 std::ostream& operator<<(std::ostream& os, const OrbitalElements& elements)
@@ -161,3 +162,4 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
 }
 
 } // namespace astro
+} // namespace waveguide

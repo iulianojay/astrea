@@ -18,8 +18,9 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 /*
@@ -97,3 +98,4 @@ RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt
 Angle sanitize_angle(const Angle& ang);
 
 } // namespace astro
+} // namespace waveguide

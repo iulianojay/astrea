@@ -8,14 +8,15 @@
 #include <access/platforms/sensors/SensorPlatform.hpp>
 
 
+namespace waveguide {
 namespace accesslib {
 
 class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
   public:
     GroundStation(
-        const astro::Angle& latitude,
-        const astro::Angle& longitude,
-        const astro::Distance& altitude    = 0.0 * mp_units::si::unit_symbols::km,
+        const Angle& latitude,
+        const Angle& longitude,
+        const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km,
         const std::vector<Sensor>& sensors = {},
         const std::string name             = "Unnammed"
     ) :
@@ -39,3 +40,4 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
 };
 
 } // namespace accesslib
+} // namespace waveguide

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+namespace waveguide {
 namespace snapshot {
 
 std::string trim(const std::string& str, const std::string& whitespace)
@@ -32,3 +33,4 @@ std::string replace_all(std::string const& original, std::string const& before, 
 }
 
 } // namespace snapshot
+} // namespace waveguide

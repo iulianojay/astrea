@@ -47,7 +47,9 @@ int main()
 
 void access_test()
 {
+    using namespace waveguide;
     using namespace astro;
+    using namespace waveguide;
     using namespace accesslib;
     using namespace snapshot;
     using namespace sqlite_orm;

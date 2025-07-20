@@ -4,6 +4,7 @@
 #include <cmath>
 #include <vector>
 
+namespace waveguide {
 namespace math {
 
 template <typename T, size_t Size>
@@ -85,3 +86,4 @@ inline T sin(T x) noexcept
 // TODO: Add similar fast approximations for sqrt, asin, acos, and other commonly used functions
 
 } // namespace math
+} // namespace waveguide

@@ -8,6 +8,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;

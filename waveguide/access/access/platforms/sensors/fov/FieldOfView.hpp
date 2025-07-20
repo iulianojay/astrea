@@ -4,63 +4,55 @@
 #include <unordered_map>
 
 #include <math/utils.hpp>
-
-#include <astro/types/typedefs.hpp>
-#include <astro/units/constants.hpp>
+#include <units/units.hpp>
 
 
-template <>
-struct std::hash<astro::Angle> {
-    std::size_t operator()(const astro::Angle& a) const
-    {
-        return (std::hash<double>()(a.numerical_value_ref_in(a.unit)));
-    }
-};
-
+namespace waveguide {
 namespace accesslib {
 
 // TODO: Move this
-astro::Distance norm(const astro::RadiusVector& r);
-astro::Angle calculate_angle_between_vectors(const astro::RadiusVector& vector1, const astro::RadiusVector& vector2);
+Distance norm(const RadiusVector& r);
+Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusVector& vector2);
 
 class FieldOfView {
   public:
     FieldOfView()  = default;
     ~FieldOfView() = default;
 
-    virtual bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const = 0;
+    virtual bool contains(const RadiusVector& boresight, const RadiusVector& target) const = 0;
 };
 
 
 class CircularFieldOfView : public FieldOfView {
   public:
-    CircularFieldOfView(const astro::Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
+    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
         _halfConeAngle(halfConeAngle)
     {
     }
     ~CircularFieldOfView() = default;
 
-    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const;
+    bool contains(const RadiusVector& boresight, const RadiusVector& target) const;
 
   private:
-    astro::Angle _halfConeAngle;
+    Angle _halfConeAngle;
 };
 
 
 class PolygonalFieldOfView : public FieldOfView {
   public:
-    PolygonalFieldOfView(const astro::Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad, const int& nPoints = 72);
-    PolygonalFieldOfView(const astro::Angle& halfConeWidth, const astro::Angle& halfConeHeight, const int& nPoints = 72);
-    PolygonalFieldOfView(const std::unordered_map<astro::Angle, astro::Angle>& points) :
+    PolygonalFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad, const int& nPoints = 72);
+    PolygonalFieldOfView(const Angle& halfConeWidth, const Angle& halfConeHeight, const int& nPoints = 72);
+    PolygonalFieldOfView(const std::unordered_map<Angle, Angle>& points) :
         _points(points)
     {
     }
     ~PolygonalFieldOfView() = default;
 
-    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const { return false; };
+    bool contains(const RadiusVector& boresight, const RadiusVector& target) const { return false; };
 
   private:
-    std::unordered_map<astro::Angle, astro::Angle> _points;
+    std::unordered_map<Angle, Angle> _points;
 };
 
 } // namespace accesslib
+} // namespace waveguide

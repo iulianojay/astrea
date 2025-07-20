@@ -5,6 +5,7 @@
 
 #include <astro/time/Date.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 class EthzClient {
@@ -37,3 +38,4 @@ class EthzClient {
 };
 
 } // namespace snapshot
+} // namespace waveguide

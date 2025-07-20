@@ -6,8 +6,9 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class NBodyForce : public Force {
@@ -22,3 +23,4 @@ class NBodyForce : public Force {
 };
 
 } // namespace astro
+} // namespace waveguide

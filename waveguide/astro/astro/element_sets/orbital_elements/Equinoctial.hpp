@@ -14,8 +14,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Equinoctial {
@@ -146,3 +147,4 @@ class EquinoctialPartial {
 };
 
 } // namespace astro
+} // namespace waveguide

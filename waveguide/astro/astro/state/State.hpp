@@ -7,6 +7,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class State {
@@ -45,3 +46,4 @@ class State {
 };
 
 } // namespace astro
+} // namespace waveguide

@@ -6,6 +6,7 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
+namespace waveguide {
 namespace math {
 
 template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
@@ -40,3 +41,4 @@ requires requires(Rep v) { std::cyl_bessel_j(static_cast<Rep>(0.0), v); }
 }
 
 } // namespace math
+} // namespace waveguide

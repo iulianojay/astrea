@@ -7,6 +7,7 @@
 
 #include <astro/astro.fwd.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -55,5 +56,6 @@ class Plane {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Plane.ipp>

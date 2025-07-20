@@ -11,6 +11,7 @@
 
 using namespace mp_units;
 
+namespace waveguide {
 namespace astro {
 
 // Stream
@@ -51,7 +52,7 @@ std::string Date::epoch() const
 {
     using namespace std::chrono;
 
-    const auto sysTime = round<milliseconds>(clock_cast<system_clock>(_julianDate));
+    const auto sysTime = round<std::chrono::milliseconds>(clock_cast<system_clock>(_julianDate));
     std::stringstream ss;
     ss << sysTime;
     return ss.str();
@@ -66,11 +67,11 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 
     // Stream date string into time point
     std::istringstream epochStream{ epoch };
-    sys_time<milliseconds> systemTime;
+    sys_time<std::chrono::milliseconds> systemTime;
     epochStream >> date::parse(format, systemTime);
 
     // Convert with clock cast
-    return round<milliseconds>(clock_cast<JulianDateClock>(systemTime));
+    return round<std::chrono::milliseconds>(clock_cast<JulianDateClock>(systemTime));
 }
 
 
@@ -106,3 +107,4 @@ Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
 }
 
 } // namespace astro
+} // namespace waveguide

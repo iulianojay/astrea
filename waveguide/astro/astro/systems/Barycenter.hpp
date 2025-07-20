@@ -5,6 +5,7 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Barycenter : public CelestialBody {
@@ -21,3 +22,4 @@ class Barycenter : public CelestialBody {
 };
 
 } // namespace astro
+} // namespace waveguide

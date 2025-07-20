@@ -5,8 +5,9 @@
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -157,5 +158,6 @@ class Constellation {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Constellation.ipp>

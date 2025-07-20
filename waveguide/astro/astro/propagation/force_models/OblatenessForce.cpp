@@ -21,6 +21,7 @@ using namespace mp_units::angular;
 using namespace mp_units::si::unit_symbols;
 using namespace mp_units::iau::unit_symbols;
 
+namespace waveguide {
 namespace astro {
 
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& _N, const std::size_t& _M) :
@@ -164,7 +165,7 @@ AccelerationVector
     const Distance& z = state.get_z();
     const Distance R  = sqrt(x * x + y * y + z * z);
 
-    const quantity<one / detail::distance_unit> oneOverR = 1.0 / R;
+    const quantity<one / waveguide::detail::distance_unit> oneOverR = 1.0 / R;
 
     // Central body properties
     static const GravParam& mu         = center->get_mu();
@@ -245,12 +246,12 @@ AccelerationVector
     const quantity muOverRSquared = pow<2>(muOverR);                           // km^4/s^4
 
     const std::array<Unitless, 3> drdrEcef = { xEcef * oneOverR, yEcef * oneOverR, z * oneOverR }; // dr/dr -> km/km -> one
-    const std::array<quantity<one / detail::distance_unit>, 3> dlatdrEcef = {
+    const std::array<quantity<one / waveguide::detail::distance_unit>, 3> dlatdrEcef = {
         -oneOverEcefR * xEcef * zOverRSquared, -oneOverEcefR * yEcef * zOverRSquared, oneOverEcefR * (1.0 * one - z * zOverRSquared)
     }; // dang/dr -> rad/km
-    const std::array<quantity<one / detail::distance_unit>, 3> dlongdrEcef = {
-        (-muOverRSquared * yEcef) * (pow<4>(detail::time_unit) / pow<6>(detail::distance_unit)), // TODO: Investigate these units.
-        (muOverRSquared * xEcef) * (pow<4>(detail::time_unit) / pow<6>(detail::distance_unit)), // I don't think the weird unit multipy should be required
+    const std::array<quantity<one / waveguide::detail::distance_unit>, 3> dlongdrEcef = {
+        (-muOverRSquared * yEcef) * (pow<4>(waveguide::detail::time_unit) / pow<6>(waveguide::detail::distance_unit)), // TODO: Investigate these units.
+        (muOverRSquared * xEcef) * (pow<4>(waveguide::detail::time_unit) / pow<6>(waveguide::detail::distance_unit)), // I don't think the weird unit multipy should be required
         0.0 * one / km
     }; // dang/dr -> rad/km
 
@@ -316,3 +317,4 @@ void OblatenessForce::assign_legendre(const Angle& latitude) const
 }
 
 } // namespace astro
+} // namespace waveguide

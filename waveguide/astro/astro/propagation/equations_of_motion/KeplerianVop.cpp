@@ -9,7 +9,7 @@
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
 
 using namespace mp_units;
@@ -20,6 +20,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
@@ -136,3 +137,4 @@ void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad
 }
 
 } // namespace astro
+} // namespace waveguide

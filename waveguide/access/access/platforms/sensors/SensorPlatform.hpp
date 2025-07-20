@@ -7,6 +7,7 @@
 #include <access/platforms/sensors/Sensor.hpp>
 
 
+namespace waveguide {
 namespace accesslib {
 
 class SensorPlatform {
@@ -30,3 +31,4 @@ class SensorPlatform {
 };
 
 } // namespace accesslib
+} // namespace waveguide

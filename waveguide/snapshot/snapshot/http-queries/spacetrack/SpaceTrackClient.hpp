@@ -7,15 +7,17 @@
 #include <nlohmann/json.hpp>
 
 #include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
 
+#include <snapshot/types/typedefs.hpp>
+
+namespace waveguide {
 namespace snapshot {
 
 // WARNING: Do NOT use this for automated scripts. I have NOT setup a check to make sure we're
 // within the automated script limits and you could get your SpaceTrack account banned.
 class SpaceTrackClient {
   public:
-    enum class Controller : astro::EnumType {
+    enum class Controller : EnumType {
         BASIC_SPACE_DATA, // Public
         // EXPANDED_SPACE_DATA, // USSPACECOM SSA Sharing Agreements
         // FILE_SHARE,          // Permission Controlled
@@ -23,12 +25,12 @@ class SpaceTrackClient {
         PUBLIC_FILES // Public
     };
 
-    enum class Action : astro::EnumType {
+    enum class Action : EnumType {
         QUERY,
         MODEL_DEF,
     };
 
-    enum class SpaceDataClass : astro::EnumType {
+    enum class SpaceDataClass : EnumType {
         ANNOUNCEMENT,
         BOX_SCORE,
         CDM_PUBLIC,
@@ -42,7 +44,7 @@ class SpaceTrackClient {
         TIP
     };
 
-    enum class PublicFilesClass : astro::EnumType { DIRS, DOWNLOAD, FILES, LOAD_PUBLIC_DATA };
+    enum class PublicFilesClass : EnumType { DIRS, DOWNLOAD, FILES, LOAD_PUBLIC_DATA };
 
     using RequestClass = std::variant<SpaceDataClass, PublicFilesClass>;
 
@@ -89,3 +91,4 @@ class SpaceTrackClient {
 };
 
 } // namespace snapshot
+} // namespace waveguide

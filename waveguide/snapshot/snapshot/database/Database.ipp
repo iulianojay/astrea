@@ -1,5 +1,6 @@
 #include <snapshot/database/Database.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 template <class T>
@@ -47,3 +48,4 @@ std::vector<SpaceTrackGP> DatabaseUtilityWrapper<T>::get_sats_in_range(const Dis
 }
 
 } // namespace snapshot
+} // namespace waveguide

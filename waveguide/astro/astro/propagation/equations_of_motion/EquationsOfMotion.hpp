@@ -13,6 +13,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class EquationsOfMotion {
@@ -35,3 +36,4 @@ class EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

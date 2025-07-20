@@ -13,6 +13,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp, const AstrodynamicsSystem& sys)
@@ -77,3 +78,4 @@ void Spacecraft::generate_id_hash()
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -5,10 +5,12 @@
 
 #include <mp-units/systems/si/chrono.h>
 
+#include <units/units.hpp>
+
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 // General conversions
@@ -62,7 +64,7 @@ class Date {
     // {
     //     // TODO: Make tt clock. Find better conversion numbers
     //     using namespace std::chrono;
-    //     return in_clock<tai_clock>().time_since_epoch() + milliseconds{ 32184.0 };
+    //     return in_clock<tai_clock>().time_since_epoch() + std::chrono::milliseconds{ 32184.0 };
     // }
     std::chrono::time_point<std::chrono::system_clock> sys() const { return in_clock<std::chrono::system_clock>(); }
     std::string epoch() const;
@@ -71,7 +73,7 @@ class Date {
     std::chrono::time_point<Clock_T> in_clock() const
     {
         using namespace std::chrono;
-        return round<milliseconds>(clock_cast<Clock_T>(_julianDate));
+        return round<std::chrono::milliseconds>(clock_cast<Clock_T>(_julianDate));
     }
 
     // Sidereal time
@@ -82,18 +84,23 @@ class Date {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 
 template <>
-struct mp_units::quantity_point_like_traits<astro::Date> {
+struct mp_units::quantity_point_like_traits<waveguide::astro::Date> {
     static constexpr auto reference       = non_si::day;
-    static constexpr auto point_origin    = astro::J2K;
+    static constexpr auto point_origin    = waveguide::astro::J2K;
     static constexpr bool explicit_import = false;
     static constexpr bool explicit_export = true;
     using rep                             = long double;
-    static constexpr rep to_numerical_value(astro::Date date) { return date.jd().time_since_epoch().count(); }
-    static constexpr astro::Date from_numerical_value(rep v)
+    static constexpr rep to_numerical_value(waveguide::astro::Date date)
     {
+        return date.jd().time_since_epoch().count();
+    }
+    static constexpr waveguide::astro::Date from_numerical_value(rep v)
+    {
+        using namespace waveguide;
         using namespace astro;
         return Date(JulianDate(JulianDateClock::duration{ v }));
     }

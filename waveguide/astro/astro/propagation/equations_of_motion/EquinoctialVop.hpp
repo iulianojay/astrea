@@ -7,6 +7,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class EquinoctialVop : public EquationsOfMotion {
@@ -35,3 +36,4 @@ class EquinoctialVop : public EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

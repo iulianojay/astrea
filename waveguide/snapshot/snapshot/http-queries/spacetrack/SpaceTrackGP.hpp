@@ -6,6 +6,7 @@
 
 #include <nlohmann/json.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 // https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html
@@ -101,3 +102,4 @@ std::ostream& operator<<(std::ostream& os, std::optional<T> const& opt)
 std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp);
 
 } // namespace snapshot
+} // namespace waveguide

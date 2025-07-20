@@ -11,6 +11,7 @@
 #include <astro/types/typedefs.hpp>
 
 
+namespace waveguide {
 namespace astro {
 
 class AstrodynamicsSystem {
@@ -59,3 +60,4 @@ class AstrodynamicsSystem {
 };
 
 } // namespace astro
+} // namespace waveguide

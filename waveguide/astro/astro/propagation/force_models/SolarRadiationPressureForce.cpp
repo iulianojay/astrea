@@ -13,6 +13,7 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace waveguide {
 namespace astro {
 
 AccelerationVector
@@ -101,3 +102,4 @@ AccelerationVector
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 if (PROJECT_IS_TOP_LEVEL) 
     add_subdirectory(../math ../math)
+    add_subdirectory(../units ../units)
 endif()
 
 # Objects
@@ -57,8 +58,6 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-
-    ${ASTRO_BASE}/units/constants.hpp
     
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
@@ -109,9 +108,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
 
-    ${ASTRO_BASE}/units/time.hpp
-    ${ASTRO_BASE}/units/units.hpp
-
     ${ASTRO_BASE}/utilities/conversions.hpp
 
     # Extern
@@ -132,6 +128,7 @@ set(ASTRO_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../math
     ${CMAKE_CURRENT_LIST_DIR}/../snapshot
+    ${CMAKE_CURRENT_LIST_DIR}/../units
     $ENV{HOME}/open-source/mp-units/src/core/include
     $ENV{HOME}/open-source/mp-units/src/systems/include
 )

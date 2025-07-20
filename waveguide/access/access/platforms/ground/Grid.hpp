@@ -2,15 +2,15 @@
 
 #include <vector>
 
-#include <astro/types/typedefs.hpp>
-
 #include <access/platforms/ground/GroundPoint.hpp>
+#include <access/types/typedefs.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
-enum class GridType : astro::EnumType { UNIFORM, EQUAL_AREA, WEIGHTED_NS, WEIGHTED_EW, MANUAL };
+enum class GridType : EnumType { UNIFORM, EQUAL_AREA, WEIGHTED_NS, WEIGHTED_EW, MANUAL };
 
-using LatLon = std::pair<astro::Angle, astro::Angle>;
+using LatLon = std::pair<Angle, Angle>;
 
 class Grid {
   public:
@@ -23,8 +23,8 @@ class Grid {
         const LatLon& corner1,
         const LatLon& corner4,
         const GridType& gridType,
-        const astro::Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
-        const astro::Unitless& weight = 0.0 * mp_units::one
+        const Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
+        const Unitless& weight = 0.0 * mp_units::one
     ) :
         _groundStations(build_grid(corner1, corner4, gridType, spacing, weight)),
         _gridType(gridType)
@@ -47,19 +47,14 @@ class Grid {
     GridType _gridType;
 
     std::vector<GroundPoint>
-        build_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const astro::Angle& spacing, const astro::Unitless& weight) const;
-    std::vector<GroundPoint> build_uniform_grid(const LatLon& corner1, const LatLon& corner4, const astro::Angle& spacing) const;
-    std::vector<GroundPoint> build_equal_area_grid(const LatLon& corner1, const LatLon& corner4, const astro::Angle& spacing) const;
-    std::vector<GroundPoint> build_weighted_grid(
-        const LatLon& corner1,
-        const LatLon& corner4,
-        const GridType& gridType,
-        const astro::Angle& initialSpacing,
-        const astro::Unitless& weight
-    ) const;
+        build_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& spacing, const Unitless& weight) const;
+    std::vector<GroundPoint> build_uniform_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const;
+    std::vector<GroundPoint> build_equal_area_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const;
+    std::vector<GroundPoint>
+        build_weighted_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& initialSpacing, const Unitless& weight) const;
 
-    std::vector<astro::Angle>
-        create_uniformly_spaced_vector(const astro::Angle& first, const astro::Angle& second, const astro::Angle& spacing) const;
+    std::vector<Angle> create_uniformly_spaced_vector(const Angle& first, const Angle& second, const Angle& spacing) const;
 };
 
 } // namespace accesslib
+} // namespace waveguide

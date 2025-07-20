@@ -19,8 +19,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Cartesian {
@@ -159,13 +160,14 @@ class CartesianPartial {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 
 namespace avro {
 
 template <>
-struct codec_traits<astro::Cartesian> {
-    static void encode(Encoder& encoder, const astro::Cartesian& cartesian)
+struct codec_traits<waveguide::astro::Cartesian> {
+    static void encode(Encoder& encoder, const waveguide::astro::Cartesian& cartesian)
     {
         avro::encode(encoder, cartesian.get_x());
         avro::encode(encoder, cartesian.get_y());
@@ -174,10 +176,10 @@ struct codec_traits<astro::Cartesian> {
         avro::encode(encoder, cartesian.get_vy());
         avro::encode(encoder, cartesian.get_vz());
     }
-    static void decode(Decoder& decoder, astro::Cartesian& cartesian)
+    static void decode(Decoder& decoder, waveguide::astro::Cartesian& cartesian)
     {
-        astro::Distance x{}, y{}, z{};
-        astro::Velocity vx{}, vy{}, vz{};
+        waveguide::Distance x{}, y{}, z{};
+        waveguide::Velocity vx{}, vy{}, vz{};
 
         avro::decode(decoder, x);
         avro::decode(decoder, y);
@@ -186,7 +188,7 @@ struct codec_traits<astro::Cartesian> {
         avro::decode(decoder, vy);
         avro::decode(decoder, vz);
 
-        cartesian = astro::Cartesian(x, y, z, vx, vy, vz);
+        cartesian = waveguide::astro::Cartesian(x, y, z, vx, vy, vz);
     }
 };
 

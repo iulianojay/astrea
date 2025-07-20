@@ -10,6 +10,7 @@
 
 #include <snapshot/utilities/string_util.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 void SpaceTrackClient::login(const std::string& username, const std::string& password)
@@ -257,3 +258,4 @@ nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const s
 }
 
 } // namespace snapshot
+} // namespace waveguide

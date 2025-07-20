@@ -12,6 +12,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 using namespace mp_units;
 using mp_units::si::unit_symbols::km;

@@ -2,6 +2,7 @@
 
 #include <astro/state/StateHistory.hpp>
 
+namespace waveguide {
 namespace astro {
 
 void AstrodynamicsSystem::create_all_bodies()
@@ -101,3 +102,4 @@ void AstrodynamicsSystem::create_all_bodies()
 // }
 
 } // namespace astro
+} // namespace waveguide

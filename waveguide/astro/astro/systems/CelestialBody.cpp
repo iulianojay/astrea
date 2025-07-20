@@ -30,6 +30,7 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 
@@ -122,3 +123,4 @@ State CelestialBody::get_state_at(const Date& date) const
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -1,5 +1,6 @@
 #pragma once
 
+namespace waveguide {
 namespace astro {
 
 class State;
@@ -57,3 +58,4 @@ class Interval;
 struct JulianDateClock;
 
 } // namespace astro
+} // namespace waveguide

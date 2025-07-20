@@ -6,12 +6,11 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/chrono.h>
 
-#include <astro/types/typedefs.hpp>
+#include <units/units.hpp>
 
 #include <access/time/RiseSetArray.hpp>
 
-using astro::Time;
-
+namespace waveguide {
 namespace accesslib {
 
 RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
@@ -135,3 +134,4 @@ RiseSetArray riseset_intersection(const RiseSetArray& a, const RiseSetArray& b)
 }
 
 } // namespace accesslib
+} // namespace waveguide

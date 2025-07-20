@@ -8,8 +8,9 @@
 // astro
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class NullVehicle {
@@ -34,3 +35,4 @@ class NullVehicle {
 };
 
 } // namespace astro
+} // namespace waveguide

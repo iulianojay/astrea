@@ -13,6 +13,7 @@
 
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
@@ -101,5 +102,6 @@ inline auto get_snapshot()
 inline auto make_snapshot_wrapper() { return make_database(get_snapshot()); }
 
 } // namespace snapshot
+} // namespace waveguide
 
 #include <snapshot/database/Database.ipp>

@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-namespace astro {
+namespace waveguide {
 
 // nanoseconds
 using nanoseconds = std::chrono::duration<double, std::nano>;
@@ -34,4 +34,4 @@ using months = std::chrono::duration<double, std::ratio<2629746>>;
 // years
 using years = std::chrono::duration<double, std::ratio<31556952>>;
 
-} // namespace astro
+} // namespace waveguide

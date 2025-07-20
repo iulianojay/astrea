@@ -14,8 +14,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class CelestialBody {
@@ -27,8 +28,8 @@ class CelestialBody {
 
     CelestialBody(const std::string& file, const AstrodynamicsSystem& system);
     CelestialBody(const CelestialBody& other) = default;
-    
-    void assign_system(const AstrodynamicsSystem& systemPtr) { _systemPtr = &systemPtr;}
+
+    void assign_system(const AstrodynamicsSystem& systemPtr) { _systemPtr = &systemPtr; }
 
     // Operators
     bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
@@ -112,10 +113,11 @@ class CelestialBody {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 template <>
-struct std::hash<astro::CelestialBody> {
-    std::size_t operator()(astro::CelestialBody const& body) const noexcept
+struct std::hash<waveguide::astro::CelestialBody> {
+    std::size_t operator()(waveguide::astro::CelestialBody const& body) const noexcept
     {
 
         std::size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(
