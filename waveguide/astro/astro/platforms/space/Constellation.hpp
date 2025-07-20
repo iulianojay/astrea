@@ -46,8 +46,9 @@ class Constellation {
     void add_spacecraft(const Spacecraft_T& spacecraft, const std::size_t& planeId);
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Shell<Spacecraft_T>>& get_all_shells() const;
-    const std::vector<Plane<Spacecraft_T>> get_all_planes() const;
+    std::vector<Shell<Spacecraft_T>>& get_shells();
+    const std::vector<Shell<Spacecraft_T>>& get_shells() const;
+    const std::vector<Plane<Spacecraft_T>> get_planes() const;
     const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
     const Shell<Spacecraft_T>& get_shell(const std::size_t& shellId) const;
@@ -58,28 +59,38 @@ class Constellation {
     void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
-    using const_iterator = std::vector<Shell<Spacecraft_T>>::const_iterator;
+    // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
+    // using const_iterator = std::vector<Shell<Spacecraft_T>>::const_iterator;
 
-    iterator begin() { return shells.begin(); }
-    iterator end() { return shells.end(); }
-    const_iterator begin() const { return shells.begin(); }
-    const_iterator end() const { return shells.end(); }
-    const_iterator cbegin() const { return shells.cbegin(); }
-    const_iterator cend() const { return shells.cend(); }
+    // iterator begin() { return shells.begin(); }
+    // iterator end() { return shells.end(); }
+    // const_iterator begin() const { return shells.begin(); }
+    // const_iterator end() const { return shells.end(); }
+    // const_iterator cbegin() const { return shells.cbegin(); }
+    // const_iterator cend() const { return shells.cend(); }
+
+    Spacecraft_T& operator[](const std::size_t idx);
+    const Spacecraft_T& operator[](const std::size_t idx) const;
 
     class sat_iterator;
 
-    sat_iterator sat_begin() { return sat_iterator(shells.begin(), shells.begin()->sat_begin()); }
-    sat_iterator sat_end() { return sat_iterator(shells.end(), shells.end()->sat_end()); }
+    using iterator       = sat_iterator;
+    using const_iterator = const sat_iterator;
+
+    iterator begin() { return sat_iterator(shells.begin(), shells.begin()->begin()); }
+    iterator end() { return sat_iterator(shells.end(), shells.end()->end()); }
+    const_iterator begin() const { return sat_iterator(shells.begin(), shells.begin()->begin()); }
+    const_iterator end() const { return sat_iterator(shells.end(), shells.end()->end()); }
+    const_iterator cbegin() const { return sat_iterator(shells.cbegin(), shells.cbegin()->cbegin()); }
+    const_iterator cend() const { return sat_iterator(shells.cend(), shells.cend()->cend()); }
 
     class sat_iterator {
       private:
-        iterator iterShell;
+        std::vector<Shell<Spacecraft_T>>::iterator iterShell;
         Shell<Spacecraft_T>::sat_iterator iterSat;
 
       public:
-        sat_iterator(iterator _iterShell, Shell<Spacecraft_T>::sat_iterator _iterSat) :
+        sat_iterator(std::vector<Shell<Spacecraft_T>>::iterator _iterShell, Shell<Spacecraft_T>::sat_iterator _iterSat) :
             iterShell(_iterShell),
             iterSat(_iterSat)
         {
@@ -88,9 +99,9 @@ class Constellation {
         sat_iterator& operator++()
         {
             ++iterSat;
-            if (iterSat == iterShell->sat_end()) {
+            if (iterSat == iterShell->end()) {
                 ++iterShell;
-                iterSat = iterShell->sat_begin();
+                iterSat = iterShell->begin();
             }
             return *this;
         }
@@ -104,9 +115,9 @@ class Constellation {
         sat_iterator& operator--()
         {
             --iterSat;
-            if (iterSat < iterShell->sat_begin()) {
+            if (iterSat < iterShell->begin()) {
                 --iterShell;
-                iterSat = iterShell->sat_end();
+                iterSat = iterShell->end();
             }
             return *this;
         }

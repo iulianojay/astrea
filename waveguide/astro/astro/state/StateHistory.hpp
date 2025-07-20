@@ -31,7 +31,7 @@ class StateHistory {
     std::size_t get_object_id() const { return _objectId; }
 
     const State& get_closest_state(const Time& time) const;
-    const State& get_state_at(const Time& time);
+    State get_state_at(const Time& time) const;
 
     using iterator       = std::map<Time, State>::iterator;
     using const_iterator = std::map<Time, State>::const_iterator;

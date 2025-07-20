@@ -28,26 +28,25 @@ namespace accesslib {
 AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, const AstrodynamicsSystem& sys)
 {
     // Get all sats
-    std::vector<Viewer> viewers = constel.get_all_spacecraft(); // TODO: this is dumb, please get sats by ref from constellation
-    const std::size_t nSats = viewers.size();
+    const std::size_t nSats = constel.size();
 
     // Create time array
-    const auto states = viewers.front().get_state_history();
-    TimeVector times  = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
+    const auto& states = constel[0].get_state_history();
+    TimeVector times = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
 
     // Interpolate viewer state histories to specified times
     // These are stored internally in each viewer
-    interpolate_states(viewers, times);
+    // interpolate_states(viewers, times);
 
     // For each sat
     AccessArray allAccesses;
     for (std::size_t iViewer = 0; iViewer < nSats; ++iViewer) {
-        Viewer& viewer1       = viewers[iViewer];
+        Viewer& viewer1       = constel[iViewer];
         const std::size_t id1 = viewer1.get_id();
 
         // For every other sat
         for (std::size_t jViewer = iViewer + 1; jViewer < nSats; ++jViewer) {
-            Viewer& viewer2       = viewers[jViewer];
+            Viewer& viewer2       = constel[jViewer];
             const std::size_t id2 = viewer2.get_id();
 
             // Satellite-level access for viewer1 -> viewer2
@@ -71,35 +70,61 @@ AccessArray
     // TODO: Rework all this into a class
 
     // Get all sats
-    std::vector<Viewer> viewers = constel.get_all_spacecraft(); // TODO: this is dumb, please get sats by ref from constellation
-    const std::size_t nSats = viewers.size();
+    const std::size_t nSats = constel.size();
 
     // Create time array
-    const auto states = viewers.front().get_state_history();
-    TimeVector times  = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
+    const auto& states = constel[0].get_state_history();
+    TimeVector times = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
 
     // Interpolate viewer state histories to specified times
     // These are stored internally in each viewer
-    interpolate_states(viewers, times);
+    // interpolate_states(viewers, times);
 
     // For each sat
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
     AccessArray allAccesses;
-    for (auto& viewer : viewers) {
-        const std::size_t viewerId = viewer.get_id();
+    std::size_t barWidth = 50;
+    std::size_t iRecord  = 0;
+    std::size_t nRecords = constel.size();
+    std::cout << std::endl;
+    for (auto& shell : constel.get_shells()) {
+        for (auto& plane : shell.get_planes()) {
+            for (Viewer& viewer : plane.get_all_spacecraft()) {
 
-        // For every other sat
-        for (auto& ground : grounds) {
-            const std::size_t groundId = ground.get_id();
+                const std::size_t viewerId = viewer.get_id();
 
-            // Satellite-level access for viewer1 -> viewer2
-            RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
+                // Progress bar
+                if (iRecord % 10 == 0) {
+                    std::cout << "\tProgress: [";
+                    double progress = static_cast<double>(iRecord) / static_cast<double>(nRecords);
+                    std::size_t pos = barWidth * progress;
+                    for (std::size_t ii = 0; ii < barWidth; ++ii) {
+                        if (ii < pos)
+                            std::cout << "=";
+                        else if (ii == pos)
+                            std::cout << ">";
+                        else
+                            std::cout << " ";
+                    }
+                    std::cout << "] " << int(progress * 100.0) << " %\r";
+                    std::cout.flush();
+                }
+                ++iRecord;
 
-            // Store
-            if (satAccess.size() > 0) {
-                viewer.add_access(groundId, satAccess);
-                ground.add_access(viewerId, satAccess);
-                allAccesses[viewerId, groundId] = satAccess; // TODO: Consider id2->id1 as well
+                // For every other sat
+                for (auto& ground : grounds) {
+                    const std::size_t groundId = ground.get_id();
+
+                    // Satellite-level access for viewer1 -> viewer2
+                    RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
+
+                    // Store
+                    if (satAccess.size() > 0) {
+                        viewer.add_access(groundId, satAccess);
+                        ground.add_access(viewerId, satAccess);
+                        allAccesses[viewerId, groundId] = satAccess; // TODO: Consider id2->id1 as well
+                    }
+                }
             }
         }
     }

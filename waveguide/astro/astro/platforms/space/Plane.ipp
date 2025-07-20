@@ -48,6 +48,12 @@ const std::vector<Spacecraft_T>& Plane<Spacecraft_T>::get_all_spacecraft() const
     return satellites;
 }
 
+template <class Spacecraft_T>
+std::vector<Spacecraft_T>& Plane<Spacecraft_T>::get_all_spacecraft()
+{
+    return satellites;
+}
+
 
 template <class Spacecraft_T>
 const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraftId) const

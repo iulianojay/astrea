@@ -66,6 +66,35 @@ Constellation<Spacecraft_T>::Constellation(
     generate_id_hash();
 }
 
+template <class Spacecraft_T>
+Spacecraft_T& Constellation<Spacecraft_T>::operator[](const std::size_t idx)
+{
+    std::size_t ii = 0;
+    for (auto& shell : shells) {
+        for (auto& plane : shell.planes) {
+            for (auto& sat : plane.satellites) {
+                if (ii == idx) { return sat; }
+                ++ii;
+            }
+        }
+    }
+    throw std::runtime_error("Satellite requested outside of constellation bounds.");
+}
+
+template <class Spacecraft_T>
+const Spacecraft_T& Constellation<Spacecraft_T>::operator[](const std::size_t idx) const
+{
+    std::size_t ii = 0;
+    for (auto& shell : shells) {
+        for (auto& plane : shell.planes) {
+            for (auto& sat : plane.satellites) {
+                if (ii == idx) { return sat; }
+                ++ii;
+            }
+        }
+    }
+    throw std::runtime_error("Satellite requested outside of constellation bounds.");
+}
 
 template <class Spacecraft_T>
 const size_t Constellation<Spacecraft_T>::size() const
@@ -162,18 +191,24 @@ void Constellation<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
 
 
 template <class Spacecraft_T>
-const std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_all_shells() const
+std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_shells()
+{
+    return shells;
+}
+
+template <class Spacecraft_T>
+const std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_shells() const
 {
     return shells;
 }
 
 
 template <class Spacecraft_T>
-const std::vector<Plane<Spacecraft_T>> Constellation<Spacecraft_T>::get_all_planes() const
+const std::vector<Plane<Spacecraft_T>> Constellation<Spacecraft_T>::get_planes() const
 {
     std::vector<Plane<Spacecraft_T>> allPlanes;
     for (auto& shell : shells) {
-        const auto& shellPlanes = shell.get_all_planes();
+        const auto& shellPlanes = shell.get_planes();
         allPlanes.insert(allPlanes.end(), shellPlanes.begin(), shellPlanes.end());
     }
     return allPlanes;

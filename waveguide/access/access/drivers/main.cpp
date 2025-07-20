@@ -61,8 +61,9 @@ void access_test()
     // Query database
     auto snapshot = get_snapshot();
     auto geoGp    = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
-    auto everythingElseGps =
-        snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
+    // auto everythingElseGps =
+    //     snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
+    auto everythingElseGps = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "%%STARLINK%")));
 
     // Build constellation
     Viewer geo(geoGp[0], sys);
@@ -78,9 +79,9 @@ void access_test()
     // }
 
     geo.attach(geoCone);
-    for (auto& shell : allSats) {
-        for (auto& plane : shell) {
-            for (auto& sat : plane) {
+    for (auto& shell : allSats.get_shells()) {
+        for (auto& plane : shell.get_planes()) {
+            for (auto& sat : plane.get_all_spacecraft()) {
                 const State& state = sat.get_state();
                 sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
                 sat.attach(navstarCone);
@@ -109,7 +110,7 @@ void access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), days(2) };
+    Interval propInterval{ seconds(0), hours(12) };
     allSats.propagate(epoch, eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
@@ -117,12 +118,14 @@ void access_test()
 
     std::cout << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
 
+    return;
+
     start = std::chrono::steady_clock::now();
 
     // Find access
     Time accessResolution = minutes(1);
-    const auto accesses   = find_accesses(allSats, accessResolution, sys);
-    // const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
+    // const auto accesses   = find_accesses(allSats, accessResolution, sys);
+    const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -141,9 +144,9 @@ void access_test()
 
             // Gross
             std::string sender, receiver;
-            for (const auto& shell : allSats) {
-                for (const auto& plane : shell) {
-                    for (const auto& viewer : plane) {
+            for (const auto& shell : allSats.get_shells()) {
+                for (const auto& plane : shell.get_planes()) {
+                    for (const auto& viewer : plane.get_all_spacecraft()) {
                         if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
                         if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
                     }

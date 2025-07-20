@@ -25,6 +25,7 @@ class Plane {
 
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
+    std::vector<Spacecraft_T>& get_all_spacecraft();
     const std::vector<Spacecraft_T>& get_all_spacecraft() const;
 
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;

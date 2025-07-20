@@ -102,11 +102,15 @@
 //         }
 //     }
 
+//     // Build out grounds
+//     GroundStation ground(38.895 * deg, -77.0366 * deg, 0.0 * km, { fov180deg }, "Test site");
+//     GroundArchitecture grounds({ ground });
+
 //     // Propagate
 //     twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
 //     // Find access
-//     const auto accesses = find_accesses(twoBallGeo, resolution, sys);
+//     const auto accesses = find_accesses(allSats, grounds, resolution, epoch, sys);
 
 //     // Assert that there is access
 //     ASSERT_TRUE(accesses.size() > 0);

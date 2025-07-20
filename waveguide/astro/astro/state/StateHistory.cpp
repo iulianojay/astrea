@@ -42,7 +42,7 @@ const State& StateHistory::get_closest_state(const Time& time) const
     }
 }
 
-const State& StateHistory::get_state_at(const Time& time)
+State StateHistory::get_state_at(const Time& time) const
 {
     // If exact, return
     if (_states.contains(time)) { return _states.at(time); }
@@ -68,12 +68,12 @@ const State& StateHistory::get_state_at(const Time& time)
     const OrbitalElements& preElements = preState.get_elements();
 
     OrbitalElements interpolatedElements = preElements.interpolate(preTime, postTime, postElements, preState.get_system(), time);
-    State interpolatedState({ interpolatedElements, preState.get_epoch() + (time - preTime), preState.get_system() });
+    return State({ interpolatedElements, preState.get_epoch() + (time - preTime), preState.get_system() });
 
-    // Insert
-    _states[time] = interpolatedState;
+    // // Insert
+    // _states[time] = interpolatedState;
 
-    return _states.at(time);
+    // return _states.at(time);
 }
 
 } // namespace astro

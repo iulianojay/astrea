@@ -109,7 +109,13 @@ void Shell<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
 
 
 template <class Spacecraft_T>
-const std::vector<Plane<Spacecraft_T>>& Shell<Spacecraft_T>::get_all_planes() const
+const std::vector<Plane<Spacecraft_T>>& Shell<Spacecraft_T>::get_planes() const
+{
+    return planes;
+}
+
+template <class Spacecraft_T>
+std::vector<Plane<Spacecraft_T>>& Shell<Spacecraft_T>::get_planes()
 {
     return planes;
 }
