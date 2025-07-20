@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <parallel_hashmap/btree.h>
 
 #include <astro/state/State.hpp>
 #include <astro/types/typedefs.hpp>
@@ -33,8 +33,8 @@ class StateHistory {
     const State& get_closest_state(const Time& time) const;
     State get_state_at(const Time& time) const;
 
-    using iterator       = std::map<Time, State>::iterator;
-    using const_iterator = std::map<Time, State>::const_iterator;
+    using iterator       = phmap::btree_map<Time, State>::iterator;
+    using const_iterator = phmap::btree_map<Time, State>::const_iterator;
 
     iterator begin() { return _states.begin(); }
     iterator end() { return _states.end(); }
@@ -44,7 +44,7 @@ class StateHistory {
     const_iterator cend() const { return _states.cend(); }
 
   private:
-    std::map<Time, State> _states;
+    phmap::btree_map<Time, State> _states;
     std::size_t _objectId;
 };
 
