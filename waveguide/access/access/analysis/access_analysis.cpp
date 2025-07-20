@@ -206,7 +206,7 @@ RiseSetArray
     std::size_t ii     = 0;
     const auto& center = sys.get_center();
     for (const auto& time : times) {
-        // Get ECI state of ground station... TODO: fix
+        // Get ECI state of ground station
         const RadiusVector groundEcef = astro::lla_to_ecef(
             ground.get_latitude(),
             ground.get_longitude(),
@@ -217,7 +217,7 @@ RiseSetArray
         Date date                    = epoch + time;
         const RadiusVector groundEci = astro::ecef_to_eci(groundEcef, date);
 
-        // Get sat1 -> sat2 vector at current time
+        // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
         accessInfo[ii].id1        = viewer.get_id();
         accessInfo[ii].id2        = ground.get_id();
@@ -232,7 +232,7 @@ RiseSetArray
     for (auto& sensor : viewer.get_sensors()) {
         for (auto& groundSensor : ground.get_sensors()) {
             // Calculate sensor1 <-> sensor2 accesses
-            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor, groundSensor, twoWay);
+            RiseSetArray sensorAccess = find_sensor_to_ground_sensor_accesses(accessInfo, sensor, groundSensor, twoWay);
 
             // Store
             if (sensorAccess.size() > 0) {
@@ -317,7 +317,7 @@ RiseSetArray
         const Cartesian& state2to1 = state1 - state2;
 
         const RadiusVector radius1to2 = state1to2.get_radius();
-        const RadiusVector radius2to1 = state1to2.get_radius();
+        const RadiusVector radius2to1 = state2to1.get_radius();
 
         // Check if they can see each other
         bool sensorsInView;
@@ -327,6 +327,90 @@ RiseSetArray
         }
         else {
             sensorsInView = sensor1.contains(boresight1, radius1to2) || sensor2.contains(boresight2, radius2to1);
+        }
+
+        // Manage bookends
+        if (time == start) {
+            insideAccessInterval = sensorsInView;
+            if (insideAccessInterval) // Consider the start time the initial rise
+            {
+                rise = start;
+            }
+            continue;
+        }
+        else if (time == end) {
+            if (insideAccessInterval && sensorsInView) { // Consider the final time the last set
+                access.append(rise, end);
+                continue;
+            }
+            // NOTE: this ignores cases where the last time is a rise time -> access analyzed for [0, T)
+        }
+
+        // Check for rise/set times
+        if (insideAccessInterval && !sensorsInView) { // previous time had access, this time does not -> last time was a set
+            insideAccessInterval = false;
+            if (rise == set) {
+                // Ignore for now - TODO: Make this an input option
+                continue;
+                // throw std::runtime_error("Rise and set found at the same time. This is likely due to a large time resolution. Please rerun analysis with a finer resolution.")
+            }
+            access.append(rise, set);
+        }
+        else if (insideAccessInterval && sensorsInView) { // previous time had access, and so does this one -> store set time and continue
+            set = time;
+        }
+        else if (!insideAccessInterval && sensorsInView) { // previous time didn't have access, this time does -> this time is a rise
+            insideAccessInterval = true;
+            rise                 = time;
+            set                  = time; // to catch cases where (set - rise) < resolution
+        }
+    }
+    return access;
+}
+
+RiseSetArray
+    find_sensor_to_ground_sensor_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor, const Sensor& groundSensor, const bool& twoWay)
+{
+    Time rise, set;
+    RiseSetArray access;
+    bool insideAccessInterval = false;
+    const Time start          = accessInfo.front().time;
+    const Time end            = accessInfo.back().time;
+    for (const auto& specificAccessInfo : accessInfo) {
+        // Extract
+        const Time& time        = specificAccessInfo.time;
+        const Cartesian& state1 = specificAccessInfo.state1;
+        const Cartesian& state2 = specificAccessInfo.state2;
+        const bool& isOcculted  = specificAccessInfo.isOcculted;
+
+        // TODO: Make this pointing generic, certainly not done at this level
+        RadiusVector nadir     = state1.get_radius();
+        RadiusVector antinadir = state2.get_radius();
+
+        // TODO: Make subtraction operator for RadiusVector
+        // Also make RadiusVector a class with utilities like magnitude, etc.
+        for (std::size_t ii = 0; ii < 3; ++ii) {
+            nadir[ii] = -nadir[ii];
+        }
+
+        const RadiusVector boresight1 = nadir;
+        const RadiusVector boresight2 = antinadir;
+
+        // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
+        const Cartesian& state1to2 = state2 - state1;
+        const Cartesian& state2to1 = state1 - state2;
+
+        const RadiusVector radius1to2 = state1to2.get_radius();
+        const RadiusVector radius2to1 = state2to1.get_radius();
+
+        // Check if they can see each other
+        bool sensorsInView;
+        if (isOcculted) { sensorsInView = false; }
+        else if (twoWay) {
+            sensorsInView = sensor.contains(boresight1, radius1to2) && groundSensor.contains(boresight2, radius2to1);
+        }
+        else {
+            sensorsInView = sensor.contains(boresight1, radius1to2) || groundSensor.contains(boresight2, radius2to1);
         }
 
         // Manage bookends

@@ -1,15 +1,10 @@
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <ranges>
+#include <set>
 #include <stdio.h>
-
-// #include <arrow/api.h>
-// #include <arrow/csv/api.h>
-// #include <arrow/io/api.h>
-// #include <arrow/ipc/api.h>
-// #include <parquet/arrow/reader.h>
-// #include <parquet/arrow/writer.h>
 
 #include <sqlite3.h>
 
@@ -68,12 +63,13 @@ void access_test()
     // Build constellation
     Viewer geo(geoGp[0], sys);
     Constellation<Viewer> allSats(everythingElseGps, sys);
+    // Constellation<Viewer> allSats({ everythingElseGps[0] }, sys);
 
     // Add sensors
     CircularFieldOfView fov1deg(180.0 * deg);
-    CircularFieldOfView fov30deg(30.0 * deg);
+    CircularFieldOfView fov90deg(180.0 * deg);
     Sensor geoCone(fov1deg);
-    Sensor navstarCone(fov30deg);
+    Sensor leoCone(fov90deg);
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach(simpleCone);
     // }
@@ -82,16 +78,16 @@ void access_test()
     for (auto& shell : allSats.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                const State& state = sat.get_state();
-                sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
-                sat.attach(navstarCone);
+                // const State& state = sat.get_state();
+                // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
+                sat.attach(leoCone);
             }
         }
     }
     allSats.add_spacecraft(geo);
 
     // Build out grounds
-    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { navstarCone }, "Washington DC");
+    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { leoCone }, "Washington DC");
     GroundArchitecture grounds({ dc });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
@@ -110,15 +106,30 @@ void access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), hours(12) };
+    Interval propInterval{ seconds(0), hours(24) };
     allSats.propagate(epoch, eom, integrator, propInterval);
+
+    // const Distance rEq  = sys.get("Earth")->get_equitorial_radius();
+    // const Distance rPol = sys.get("Earth")->get_polar_radius();
+    // for (const auto& shell : allSats.get_shells()) {
+    //     for (const auto& plane : shell.get_planes()) {
+    //         for (const auto& viewer : plane.get_all_spacecraft()) {
+    //             for (const auto& [time, state] : viewer.get_state_history()) {
+    //                 const auto eci  = state.get_elements().in<Cartesian>(sys).get_radius();
+    //                 const auto ecef = eci_to_ecef(eci, state.get_epoch());
+    //                 Angle lat, lon;
+    //                 Distance alt;
+    //                 ecef_to_lla(ecef, rEq, rPol, lat, lon, alt);
+    //                 std::cout << time << " : [" << lat.in(deg) << ", " << lon.in(deg) << ", " << alt << "]" << std::endl;
+    //             }
+    //         }
+    //     }
+    // }
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
     std::cout << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
-
-    return;
 
     start = std::chrono::steady_clock::now();
 
@@ -130,12 +141,12 @@ void access_test()
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+    std::cout << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
     std::filesystem::path outfile = "/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile); // Can also use ofstream, etc.
+    std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
 
     writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
@@ -164,4 +175,8 @@ void access_test()
             writer << row;
         }
     }
+
+    // Call plotter
+    const std::string cmd = "python3 /home/jay/projects/waveguide/waveguide/access/pyaccess/plots.py";
+    int result            = std::system(cmd.c_str());
 }

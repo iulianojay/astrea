@@ -18,13 +18,14 @@ class AccessObject {
   public:
     void add_access(const std::size_t& receiverId, const RiseSetArray& access)
     {
-        _accesses[get_id(), receiverId] = access;
+        _accesses[get_id(), receiverId] = (_accesses[get_id(), receiverId] | access);
     }
     void drop_access(const std::size_t& receiverId, const RiseSetArray& access)
     {
         _accesses.erase(get_id(), receiverId);
     }
 
+    AccessArray& get_accesses() { return _accesses; }
     const AccessArray& get_accesses() const { return _accesses; }
 
     virtual std::size_t get_id() const = 0;
