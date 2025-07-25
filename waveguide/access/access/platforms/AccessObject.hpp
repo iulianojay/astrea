@@ -18,7 +18,12 @@ class AccessObject {
   public:
     void add_access(const std::size_t& receiverId, const RiseSetArray& access)
     {
-        _accesses[get_id(), receiverId] = (_accesses[get_id(), receiverId] | access);
+        if (_accesses.contains({ get_id(), receiverId })) {
+            _accesses[get_id(), receiverId] = (_accesses[get_id(), receiverId] | access);
+        }
+        else {
+            _accesses[get_id(), receiverId] = access;
+        }
     }
     void drop_access(const std::size_t& receiverId, const RiseSetArray& access)
     {

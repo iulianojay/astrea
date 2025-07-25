@@ -1,5 +1,7 @@
 #include <astro/utilities/conversions.hpp>
 
+#include <utilities/ProgressBar.hpp>
+
 namespace waveguide {
 namespace astro {
 
@@ -78,6 +80,7 @@ void Plane<Spacecraft_T>::generate_id_hash()
 template <class Spacecraft_T>
 void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
+    utilities::ProgressBar progressBar(satellites.size(), "\tPropagation");
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const auto stateHistory = integrator.propagate(epoch, interval, eom, vehicle, true);
@@ -85,6 +88,8 @@ void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, I
         // Extract and store
         sat = *vehicle.extract<Spacecraft_T>(); // TODO: Is this needed? Can we just modify sat? Is the current state expected here? Investigate
         sat.store_state_history(stateHistory);
+
+        progressBar();
     }
 }
 

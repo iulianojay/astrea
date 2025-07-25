@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <parallel_hashmap/btree.h>
 
 #include <access/time/RiseSetArray.hpp>
 
@@ -66,6 +66,8 @@ class AccessArray {
         return _accesses.at(IdPair(senderId, receiverId));
     }
 
+    bool contains(const IdPair& idPair) const { return _accesses.contains(idPair); }
+
     void erase(const std::size_t& senderId, const std::size_t& receiverId)
     {
         _accesses.erase(IdPair(senderId, receiverId));
@@ -73,8 +75,26 @@ class AccessArray {
 
     std::size_t size() const { return _accesses.size(); }
 
-    using iterator       = std::map<IdPair, RiseSetArray>::iterator;
-    using const_iterator = std::map<IdPair, RiseSetArray>::const_iterator;
+    // Union
+    void operator|(const AccessArray& other)
+    {
+        for (const auto& [ids, risesets] : other) {
+            if (contains(ids)) {
+                _accesses[ids] = (risesets | _accesses[ids]);
+            } // TODO: Should this modify in place? Copy?
+        }
+    }
+
+    // Intersection
+    void operator&(const AccessArray& other)
+    {
+        for (const auto& [ids, risesets] : other) {
+            if (contains(ids)) { _accesses[ids] = (risesets & _accesses[ids]); }
+        }
+    }
+
+    using iterator       = phmap::btree_map<IdPair, RiseSetArray>::iterator;
+    using const_iterator = phmap::btree_map<IdPair, RiseSetArray>::const_iterator;
 
     iterator begin() { return _accesses.begin(); }
     iterator end() { return _accesses.end(); }
@@ -84,7 +104,7 @@ class AccessArray {
     const_iterator cend() const { return _accesses.cend(); }
 
   private:
-    std::map<IdPair, RiseSetArray> _accesses;
+    phmap::btree_map<IdPair, RiseSetArray> _accesses;
 };
 
 } // namespace accesslib

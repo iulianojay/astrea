@@ -74,7 +74,10 @@ class RiseSetArray {
 
     std::string to_formatted_string(Time t) const
     {
-        return std::to_string(t.force_numerical_value_in(mp_units::si::unit_symbols::s));
+        std::ostringstream out;
+        out.precision(1);
+        out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
+        return std::move(out).str();
     }
 };
 

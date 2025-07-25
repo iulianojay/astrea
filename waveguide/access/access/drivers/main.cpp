@@ -29,7 +29,6 @@ using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
-
 void access_test();
 void link_budget_test();
 
@@ -39,12 +38,10 @@ int main()
     return 1;
 }
 
-
 void access_test()
 {
     using namespace waveguide;
     using namespace astro;
-    using namespace waveguide;
     using namespace accesslib;
     using namespace snapshot;
     using namespace sqlite_orm;
@@ -55,21 +52,22 @@ void access_test()
 
     // Query database
     auto snapshot = get_snapshot();
-    auto geoGp    = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
+    // auto geoGp    = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
+    auto geoGp = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "%%ARCTURUS%")));
     // auto everythingElseGps =
     //     snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
     auto everythingElseGps = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "%%STARLINK%")));
 
     // Build constellation
     Viewer geo(geoGp[0], sys);
-    Constellation<Viewer> allSats(everythingElseGps, sys);
-    // Constellation<Viewer> allSats({ everythingElseGps[0] }, sys);
+    // Constellation<Viewer> allSats(everythingElseGps, sys);
+    Constellation<Viewer> allSats({ everythingElseGps[0] }, sys);
 
     // Add sensors
-    CircularFieldOfView fov1deg(180.0 * deg);
-    CircularFieldOfView fov90deg(180.0 * deg);
-    Sensor geoCone(fov1deg);
-    Sensor leoCone(fov90deg);
+    CircularFieldOfView fovGeo(15.0 * deg);
+    CircularFieldOfView fovLeo(90.0 * deg);
+    Sensor geoCone(fovGeo);
+    Sensor leoCone(fovLeo);
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach(simpleCone);
     // }
@@ -129,22 +127,23 @@ void access_test()
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
+    std::cout << std::endl << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
 
     start = std::chrono::steady_clock::now();
 
     // Find access
-    Time accessResolution = minutes(1);
+    Time accessResolution = minutes(1.0);
     // const auto accesses   = find_accesses(allSats, accessResolution, sys);
     const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+    std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
-    std::filesystem::path outfile = "/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv";
+    std::filesystem::path base    = "/home/jay/projects/waveguide/waveguide/access/";
+    std::filesystem::path outfile = base / "access/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
@@ -177,6 +176,7 @@ void access_test()
     }
 
     // Call plotter
-    const std::string cmd = "python3 /home/jay/projects/waveguide/waveguide/access/pyaccess/plots.py";
-    int result            = std::system(cmd.c_str());
+    std::filesystem::path plotFile = base / "pyaccess/plots.py";
+    const std::string cmd          = "python3 " + plotFile.string();
+    int result                     = std::system(cmd.c_str());
 }

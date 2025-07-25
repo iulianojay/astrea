@@ -15,6 +15,7 @@ if (PROJECT_IS_TOP_LEVEL)
     add_subdirectory(../astro ../astro)
     add_subdirectory(../snapshot ../snapshot)
     add_subdirectory(../units ../units)
+    add_subdirectory(../utilities ../utilities)
 endif()
 
 # Objects
@@ -78,6 +79,7 @@ set(ACCESS_DIRS
     ${CMAKE_CURRENT_LIST_DIR}/../astro
     ${CMAKE_CURRENT_LIST_DIR}/../snapshot
     ${CMAKE_CURRENT_LIST_DIR}/../units
+    ${CMAKE_CURRENT_LIST_DIR}/../utilities
     $ENV{HOME}/open-source/mp-units/src/core/include
     $ENV{HOME}/open-source/mp-units/src/systems/include
 )

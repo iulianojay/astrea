@@ -1,10 +1,10 @@
+import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from typing import List, Tuple
 
 
-def plot_access_bars(title: str, results: str, outfile: str, target: str = None, colors: dict = None) -> None:
+def plot_access_bars(results: str, outfile: str, target: str = None, colors: dict = None) -> None:
     # Loop the data lines
     with open(results, 'r') as temp_f:
         # get n of columns in each line
@@ -18,8 +18,6 @@ def plot_access_bars(title: str, results: str, outfile: str, target: str = None,
     
     # Setup plot
     fig, ax = plt.subplots()
-    fig.set_figheight(15)
-    fig.set_figwidth(20)
 
     # Loop over rows
     labels = []
@@ -51,18 +49,18 @@ def plot_access_bars(title: str, results: str, outfile: str, target: str = None,
         labels.append(f'{sender} \u21D4 {receiver}') # TODO: use unicode single-direction arrow for one-way analysis
 
         # Loop over riseset times
-        risesets = []
+        risesetBars = []
         for ii in range(2, row.values.size, 2):
             # Correct typing and convert from seconds
             rise = float(row.values[ii])
             set = float(row.values[ii+1])
             if not np.isnan(rise) and not np.isnan(set):
-                risesets.append((rise / 3600, set/ 3600))
+                risesetBars.append((rise / 3600, (set - rise)/ 3600))
             else: 
                 break
 
         # Plot
-        ax.broken_barh(risesets, (-0.2 + iPlot*1.0, 0.4), color=color)
+        ax.broken_barh(risesetBars, (-0.2 + iPlot*1.0, 0.4), color=color)
         iPlot += 1
 
     # Cleanup
@@ -71,14 +69,14 @@ def plot_access_bars(title: str, results: str, outfile: str, target: str = None,
     ax.invert_yaxis()
     ax.set_yticks(range(len(labels)), labels=labels)
     ax.set_xlabel("Rise - Set Times (hrs)")
-    ax.set_title(title)
+    ax.set_title(f"Access Time to {target}")
     ax.grid()
 
     # Save
     fig.savefig(outfile, bbox_inches='tight')
 
 
-def plot_number_of_accesses(title: str, results: str, outfile: str, target: str = None) -> None:
+def plot_number_of_accesses(results: str, outfile: str, target: str = None, plotInterference:bool = False) -> None:
     # Loop the data lines
     with open(results, 'r') as temp_f:
         # get n of columns in each line
@@ -109,17 +107,17 @@ def plot_number_of_accesses(title: str, results: str, outfile: str, target: str 
         # Loop over riseset times
         risesets = []
         for ii in range(2, row.values.size, 2):
-            # Correct typing and convert from seconds
+            # Correct typing and convert from seconds to hours
             rise = float(row.values[ii])
             set = float(row.values[ii+1])
             if not np.isnan(rise) and not np.isnan(set):
-                risesets.append((rise / 3600, set/ 3600))
+                risesets.append((rise / 3600.0, set / 3600.0)) # hours
             else: 
                 break
         accesses[(sender, receiver)] = risesets
 
     # Loop over rows
-    times = [x/60.0 for x in range(0, 1440)]
+    times = [x/60.0 for x in range(0, 1440)] # hours
     nAccesses = []
     for t in times:
         count = 0
@@ -128,17 +126,28 @@ def plot_number_of_accesses(title: str, results: str, outfile: str, target: str 
             for rise, set in risesets:
                 if rise <= t and set >= t:
                     count += 1
+        if plotInterference and count > 0:
+            count -= 1
         nAccesses.append(count)
 
     # Plot
     fig, ax = plt.subplots()
-    ax.plot(times, nAccesses)
+
+    ax.bar(times, nAccesses)
+
+    limit = int(np.ceil(np.max(nAccesses)*1.1))
 
     ax.set_xlim(0, 24)
-    ax.set_ylim(0, 500)
     ax.set_xticks(range(0, 25, 2))
+    ax.set_ylim(0, limit)
+    ax.set_yticks(range(0, limit))
     ax.set_xlabel("Time (hrs)")
-    ax.set_title(title)
+    if plotInterference:
+        ax.set_ylabel(f"Number of Interference Sources")
+        ax.set_title(f"Number of Possible Interference Events Accessing {target}")
+    else:
+        ax.set_ylabel(f"Number Accesses")
+        ax.set_title(f"Number of Simultaneous Accesses to {target}")
     ax.grid()
 
     # Save
@@ -147,11 +156,14 @@ def plot_number_of_accesses(title: str, results: str, outfile: str, target: str 
 
 if __name__=='__main__':
 
-    results = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.csv' 
-    # outfile = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/revisit.png' 
-    outfile = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/access_count.png' 
+    base = '/home/jay/projects/waveguide/waveguide/access/access/drivers/results/'
+
+    results = os.path.join(base, 'revisit.csv') 
+    accessOutfile = os.path.join(base, 'revisit.png')
+    countOutfile = os.path.join(base, 'access_count.png')
+    interfereOutfile = os.path.join(base, 'interference_count.png')
     target = "Washington DC"
-    # target = "NUVIEW ALPHA"
-    colors = None
-    # plot_access_bars("Test Access Analysis", results, outfile, target, colors)
-    plot_number_of_accesses("Test Access Analysis", results, outfile, target)
+    colors = {"ARCTURUS": "b"}
+    plot_access_bars(results, accessOutfile, target, colors)
+    plot_number_of_accesses(results, countOutfile, target)
+    plot_number_of_accesses(results, interfereOutfile, target, True)

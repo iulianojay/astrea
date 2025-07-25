@@ -4,6 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 
 #include <astro/utilities/conversions.hpp>
+#include <utilities/ProgressBar.hpp>
 
 #include <access/platforms/sensors/Sensor.hpp>
 #include <access/types/typedefs.hpp>
@@ -83,33 +84,12 @@ AccessArray
     // For each sat
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
     AccessArray allAccesses;
-    std::size_t barWidth = 50;
-    std::size_t iRecord  = 0;
-    std::size_t nRecords = constel.size();
+    utilities::ProgressBar progressBar(constel.size(), "\tAccess");
     std::cout << std::endl;
     for (auto& shell : constel.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (Viewer& viewer : plane.get_all_spacecraft()) {
-
                 const std::size_t viewerId = viewer.get_id();
-
-                // Progress bar
-                if (iRecord % 10 == 0) {
-                    std::cout << "\tProgress: [";
-                    double progress = static_cast<double>(iRecord) / static_cast<double>(nRecords);
-                    std::size_t pos = barWidth * progress;
-                    for (std::size_t ii = 0; ii < barWidth; ++ii) {
-                        if (ii < pos)
-                            std::cout << "=";
-                        else if (ii == pos)
-                            std::cout << ">";
-                        else
-                            std::cout << " ";
-                    }
-                    std::cout << "] " << int(progress * 100.0) << " %\r";
-                    std::cout.flush();
-                }
-                ++iRecord;
 
                 // For every other sat
                 for (auto& ground : grounds) {
@@ -119,12 +99,14 @@ AccessArray
                     RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
 
                     // Store
+                    std::cout << satAccess << std::endl;
                     if (satAccess.size() > 0) {
                         viewer.add_access(groundId, satAccess);
                         ground.add_access(viewerId, satAccess);
                         allAccesses[viewerId, groundId] = satAccess; // TODO: Consider id2->id1 as well
                     }
                 }
+                progressBar();
             }
         }
     }
@@ -235,6 +217,7 @@ RiseSetArray
             RiseSetArray sensorAccess = find_sensor_to_ground_sensor_accesses(accessInfo, sensor, groundSensor, twoWay);
 
             // Store
+            std::cout << sensorAccess << std::endl;
             if (sensorAccess.size() > 0) {
                 satAccess = (satAccess | sensorAccess);
                 sensor.add_access(groundSensor.get_id(), sensorAccess);
@@ -374,7 +357,6 @@ RiseSetArray
     Time rise, set;
     RiseSetArray access;
     bool insideAccessInterval = false;
-    const Time start          = accessInfo.front().time;
     const Time end            = accessInfo.back().time;
     for (const auto& specificAccessInfo : accessInfo) {
         // Extract
@@ -414,18 +396,10 @@ RiseSetArray
         }
 
         // Manage bookends
-        if (time == start) {
-            insideAccessInterval = sensorsInView;
-            if (insideAccessInterval) // Consider the start time the initial rise
-            {
-                rise = start;
-            }
-            continue;
-        }
-        else if (time == end) {
+        if (time == end) {
             if (insideAccessInterval && sensorsInView) { // Consider the final time the last set
                 access.append(rise, end);
-                continue;
+                break;
             }
             // NOTE: this ignores cases where the last time is a rise time -> access analyzed for [0, T)
         }
