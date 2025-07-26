@@ -41,11 +41,11 @@ class RiseSetArray {
     void prepend(const Time& rise, const Time& set);
     void insert(const Time& rise, const Time& set);
 
-    std::size_t size() const { return _risesets.size(); }
+    std::size_t size() const;
 
     // Element access
-    Time& operator[](const std::size_t& ind) { return _risesets[ind]; }
-    const Time& operator[](const std::size_t& ind) const { return _risesets[ind]; }
+    Time& operator[](const std::size_t& ind); // TODO: Should this be allowed? Makes it possible to generate bad rise/set pairs
+    const Time& operator[](const std::size_t& ind) const;
 
     // Equality
     bool operator==(const RiseSetArray& other) const;
@@ -65,12 +65,15 @@ class RiseSetArray {
     Time access_time(const Stat& stat = Stat::MEAN) const;
 
     // Iterators
+    using iterator       = std::vector<Time>::iterator;
     using const_iterator = std::vector<Time>::const_iterator;
 
-    const_iterator begin() const { return _risesets.begin(); }
-    const_iterator end() const { return _risesets.end(); }
-    const_iterator cbegin() const { return _risesets.cbegin(); }
-    const_iterator cend() const { return _risesets.cend(); }
+    iterator begin();
+    iterator end();
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 
     std::vector<std::string> to_string_vector() const;
 
@@ -80,13 +83,7 @@ class RiseSetArray {
     void validate_riseset(const Time& rise, const Time& set) const;
     void validate_risesets(const std::vector<Time>& risesets) const;
 
-    std::string to_formatted_string(Time t) const
-    {
-        std::ostringstream out;
-        out.precision(1);
-        out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
-        return std::move(out).str();
-    }
+    std::string to_formatted_string(Time t) const;
 };
 
 } // namespace accesslib

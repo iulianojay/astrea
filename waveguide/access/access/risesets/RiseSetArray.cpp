@@ -34,6 +34,18 @@ bool RiseSetArray::operator==(const RiseSetArray& other) const
     return _risesets == other._risesets;
 }
 
+RiseSetArray::iterator RiseSetArray::begin() { return _risesets.begin(); }
+
+RiseSetArray::iterator RiseSetArray::end() { return _risesets.end(); }
+
+RiseSetArray::const_iterator RiseSetArray::begin() const { return _risesets.begin(); }
+
+RiseSetArray::const_iterator RiseSetArray::end() const { return _risesets.end(); }
+
+RiseSetArray::const_iterator RiseSetArray::cbegin() const { return _risesets.cbegin(); }
+
+RiseSetArray::const_iterator RiseSetArray::cend() const { return _risesets.cend(); }
+
 RiseSetArray& RiseSetArray::operator=(const RiseSetArray& other) { return *this = RiseSetArray(other); }
 
 RiseSetArray RiseSetArray::operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
@@ -47,6 +59,11 @@ RiseSetArray& RiseSetArray::operator-=(const RiseSetArray& other)
     *this = riseset_difference(*this, other);
     return *this;
 }
+
+Time& RiseSetArray::operator[](const std::size_t& ind) { return _risesets[ind]; }
+const Time& RiseSetArray::operator[](const std::size_t& ind) const { return _risesets[ind]; }
+
+std::size_t RiseSetArray::size() const { return _risesets.size(); }
 
 void RiseSetArray::validate_risesets(const std::vector<Time>& risesets) const
 {
@@ -174,6 +191,15 @@ Time RiseSetArray::access_time(const Stat& stat) const
         retval /= nAccess;
     }
     return retval;
+}
+
+
+std::string RiseSetArray::to_formatted_string(Time t) const
+{
+    std::ostringstream out;
+    out.precision(1);
+    out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
+    return std::move(out).str();
 }
 
 
