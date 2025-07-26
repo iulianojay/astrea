@@ -6,6 +6,7 @@
 #include <math.h>
 
 
+namespace waveguide {
 namespace astro {
 
 
@@ -67,3 +68,4 @@ class LambertSolver {
 };
 
 } // namespace astro
+} // namespace waveguide

@@ -1,14 +1,16 @@
 #pragma once
 
+#include <iostream>
 #include <optional>
 #include <string>
 
 #include <nlohmann/json.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 // https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html
-struct SpaceTrackGP {
+struct SpaceTrackGP { // TODO: Right now, units are implied, but they should be used if possible. At least look into
 
     SpaceTrackGP() = default;
     SpaceTrackGP(const nlohmann::json& data);
@@ -80,11 +82,24 @@ std::optional<T> extract_optional_from_json(const nlohmann::json& json, const st
         if (json[key].empty() || json[key].is_null()) { return std::nullopt; }
         else {
             T retval;
-            std::stringstream(clean_entry(json[key])) >> retval;
+            const std::string output = clean_entry(json[key]);
+            std::stringstream(output) >> retval;
             return retval;
         }
     }
     throw std::runtime_error("Key not found.");
 }
 
+std::string extract_string_from_json(const nlohmann::json& json, const std::string& key);
+std::optional<std::string> extract_optional_string_from_json(const nlohmann::json& json, const std::string& key);
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, std::optional<T> const& opt)
+{
+    return opt ? os << opt.value() : os << "Unassigned";
+}
+
+std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp);
+
 } // namespace snapshot
+} // namespace waveguide

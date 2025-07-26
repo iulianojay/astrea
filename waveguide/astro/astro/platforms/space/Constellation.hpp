@@ -5,8 +5,9 @@
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -19,7 +20,10 @@ class Constellation {
     Constellation(std::vector<Shell<Spacecraft_T>> shells);
     Constellation(std::vector<Plane<Spacecraft_T>> planes);
     Constellation(std::vector<Spacecraft_T> satellites);
+    Constellation(const std::vector<snapshot::SpaceTrackGP>& gp, const AstrodynamicsSystem& system);
     Constellation(
+        const AstrodynamicsSystem& sys,
+        const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
         const std::size_t& T,
@@ -42,35 +46,51 @@ class Constellation {
     void add_spacecraft(const Spacecraft_T& spacecraft, const std::size_t& planeId);
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Shell<Spacecraft_T>>& get_all_shells() const;
-    const std::vector<Plane<Spacecraft_T>> get_all_planes() const;
+    std::vector<Shell<Spacecraft_T>>& get_shells();
+    const std::vector<Shell<Spacecraft_T>>& get_shells() const;
+    const std::vector<Plane<Spacecraft_T>> get_planes() const;
     const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
     const Shell<Spacecraft_T>& get_shell(const std::size_t& shellId) const;
     const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Shell<Spacecraft_T>>::iterator;
+    // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
+    // using const_iterator = std::vector<Shell<Spacecraft_T>>::const_iterator;
 
-    iterator begin() { return shells.begin(); }
-    iterator end() { return shells.end(); }
+    // iterator begin() { return shells.begin(); }
+    // iterator end() { return shells.end(); }
+    // const_iterator begin() const { return shells.begin(); }
+    // const_iterator end() const { return shells.end(); }
+    // const_iterator cbegin() const { return shells.cbegin(); }
+    // const_iterator cend() const { return shells.cend(); }
+
+    Spacecraft_T& operator[](const std::size_t idx);
+    const Spacecraft_T& operator[](const std::size_t idx) const;
 
     class sat_iterator;
 
-    sat_iterator sat_begin() { return sat_iterator(shells.begin(), shells.begin()->sat_begin()); }
-    sat_iterator sat_end() { return sat_iterator(shells.end(), shells.end()->sat_end()); }
+    using iterator       = sat_iterator;
+    using const_iterator = const sat_iterator;
+
+    iterator begin() { return sat_iterator(shells.begin(), shells.begin()->begin()); }
+    iterator end() { return sat_iterator(shells.end(), shells.end()->end()); }
+    const_iterator begin() const { return sat_iterator(shells.begin(), shells.begin()->begin()); }
+    const_iterator end() const { return sat_iterator(shells.end(), shells.end()->end()); }
+    const_iterator cbegin() const { return sat_iterator(shells.cbegin(), shells.cbegin()->cbegin()); }
+    const_iterator cend() const { return sat_iterator(shells.cend(), shells.cend()->cend()); }
 
     class sat_iterator {
       private:
-        iterator iterShell;
+        std::vector<Shell<Spacecraft_T>>::iterator iterShell;
         Shell<Spacecraft_T>::sat_iterator iterSat;
 
       public:
-        sat_iterator(iterator _iterShell, Shell<Spacecraft_T>::sat_iterator _iterSat) :
+        sat_iterator(std::vector<Shell<Spacecraft_T>>::iterator _iterShell, Shell<Spacecraft_T>::sat_iterator _iterSat) :
             iterShell(_iterShell),
             iterSat(_iterSat)
         {
@@ -79,9 +99,9 @@ class Constellation {
         sat_iterator& operator++()
         {
             ++iterSat;
-            if (iterSat == iterShell->sat_end()) {
+            if (iterSat == iterShell->end()) {
                 ++iterShell;
-                iterSat = iterShell->sat_begin();
+                iterSat = iterShell->begin();
             }
             return *this;
         }
@@ -95,9 +115,9 @@ class Constellation {
         sat_iterator& operator--()
         {
             --iterSat;
-            if (iterSat < iterShell->sat_begin()) {
+            if (iterSat < iterShell->begin()) {
                 --iterShell;
-                iterSat = iterShell->sat_end();
+                iterSat = iterShell->end();
             }
             return *this;
         }
@@ -149,5 +169,6 @@ class Constellation {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Constellation.ipp>

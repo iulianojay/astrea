@@ -3,7 +3,9 @@
 
 #include <iostream>
 
+namespace waveguide {
 namespace math {
 
 
 } // namespace math
+} // namespace waveguide

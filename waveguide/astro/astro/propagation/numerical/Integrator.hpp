@@ -16,9 +16,11 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
+#include <astro/state/StateHistory.hpp>
 #include <astro/time/Interval.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Integrator {
@@ -42,8 +44,9 @@ class Integrator {
     ~Integrator() = default;
 
     // Integrate
-    void propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle);
-    void integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle);
+    StateHistory propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
+    StateHistory
+        propagate(const Date& epoch, const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     //---------------------------------------Integrator property setters---------------------------------------//
 
@@ -203,3 +206,4 @@ class Integrator {
 };
 
 } // namespace astro
+} // namespace waveguide

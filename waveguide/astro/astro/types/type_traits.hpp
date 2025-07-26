@@ -7,6 +7,7 @@
 #include <type_traits>
 #include <utility>
 
+namespace waveguide {
 namespace astro {
 
 namespace detail {
@@ -41,3 +42,4 @@ template <template <class...> class Op, class... Args>
 using detected_t = typename detail::detector<detail::nonesuch, void, Op, Args...>::type;
 
 } // namespace astro
+} // namespace waveguide

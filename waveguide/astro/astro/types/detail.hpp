@@ -2,6 +2,7 @@
 
 #include <iterator>
 
+namespace waveguide {
 namespace astro {
 
 namespace detail {
@@ -22,3 +23,4 @@ template <typename T>
 concept is_iterable = detail::is_iterable_impl<T>;
 
 } // namespace astro
+} // namespace waveguide

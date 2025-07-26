@@ -13,6 +13,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class CowellsMethod : public EquationsOfMotion {
@@ -38,3 +39,4 @@ class CowellsMethod : public EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

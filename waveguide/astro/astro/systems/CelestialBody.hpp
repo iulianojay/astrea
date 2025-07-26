@@ -4,7 +4,6 @@
 #include <cmath>
 #include <iostream>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 // mp-units
@@ -12,11 +11,12 @@
 #include <mp-units/systems/si.h>
 
 // Astro
-#include <astro/state/State.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class CelestialBody {
@@ -26,15 +26,13 @@ class CelestialBody {
     CelestialBody()  = default;
     ~CelestialBody() = default;
 
-    CelestialBody(const std::string& file);
+    CelestialBody(const std::string& file, const AstrodynamicsSystem& system);
     CelestialBody(const CelestialBody& other) = default;
+
+    void assign_system(const AstrodynamicsSystem& systemPtr) { _systemPtr = &systemPtr; }
 
     // Operators
     bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
-
-    // Property assignment
-    void propagate(const Date& epoch, const Time& propTime, const GravParam& parentMu);
-    void propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 
     // Property getters
     const std::string& get_name() const { return _name; };
@@ -71,14 +69,14 @@ class CelestialBody {
     const AngularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
     const AngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
 
-    std::vector<State>& get_states() { return _states; };
-    const State& get_closest_state(const Time& time) const;
+    State get_state_at(const Date& date) const;
 
   private:
     // Properties
     std::string _name, _parent, _type;
     Date _referenceDate;
     GravParam _mu;
+    GravParam _parentMu;
     Mass _mass;
     Distance _equitorialRadius;
     Distance _polarRadius;
@@ -107,16 +105,19 @@ class CelestialBody {
     AngularRate _argumentOfPerigeeRate;
     AngularRate _trueLatitudeRate;
 
-    std::vector<State> _states;
+    StateHistory _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 
-    void _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
+    const AstrodynamicsSystem* _systemPtr;
+
+    // Probably need a system here too
 };
 
 } // namespace astro
+} // namespace waveguide
 
 template <>
-struct std::hash<astro::CelestialBody> {
-    std::size_t operator()(astro::CelestialBody const& body) const noexcept
+struct std::hash<waveguide::astro::CelestialBody> {
+    std::size_t operator()(waveguide::astro::CelestialBody const& body) const noexcept
     {
 
         std::size_t h = std::hash<double>{}(body.get_mu().numerical_value_in(

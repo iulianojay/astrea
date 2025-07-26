@@ -23,6 +23,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 int main()
@@ -48,15 +49,16 @@ int main()
 
     // OrbitalElements comp(cart);
 
-    // comp.convert<Keplerian>(sys);
+    // comp.convert<Keplerian>();
 
+    const Date epoch = J2000;
     const Keplerian state(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
 
     // Build constellation
     const int T    = 100;
     const int P    = 10;
     const double F = 1.0;
-    Constellation walkerBall(10000.0 * km, 45.0 * deg, T, P, F);
+    Constellation walkerBall(sys, epoch, 10000.0 * km, 45.0 * deg, T, P, F);
 
     // int count = 0; //TODO: Fix this. Comparitor doesn't work and iterates past end, for some reason
     // for (auto satIter = walkerBall.sat_begin(); satIter < walkerBall.sat_end(); ++satIter) {
@@ -91,7 +93,7 @@ int main()
     auto start = std::chrono::steady_clock::now();
 
     Interval propInterval{ seconds(0), months(1) };
-    walkerBall.propagate(eom, integrator, propInterval);
+    walkerBall.propagate(epoch, eom, integrator, propInterval);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
@@ -119,10 +121,10 @@ int main()
     outfile.open("./bin/results/" + propagator + "/main.csv");
     outfile << "time (min),sma (km),ecc,inc (rad),raan (rad),w (rad),theta (rad)\n";
     auto vehicle = walkerBall.get_all_spacecraft()[0];
-    for (auto& state : vehicle.get_states()) {
-        outfile << state.time << ",";
-        state.elements.convert<Keplerian>(sys);
-        outfile << state.elements << "\n";
+    for (auto& [time, state] : vehicle.get_state_history()) {
+        outfile << state.get_epoch() << ",";
+        state.convert<Keplerian>();
+        outfile << state.get_elements() << "\n";
     }
     outfile.close();
 

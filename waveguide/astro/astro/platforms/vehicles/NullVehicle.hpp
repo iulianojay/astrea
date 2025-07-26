@@ -8,29 +8,31 @@
 // astro
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class NullVehicle {
 
   public:
-    NullVehicle(const State& state = State(), const Date& epoch = J2000, const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg) :
-        _state(state),
-        _epoch(epoch),
+    NullVehicle(const State& state0 = State(), const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg) :
+        _state0(state0),
+        _state(state0),
         _mass(mass)
     {
     }
 
     void update_state(const State& state) { _state = state; }
     State& get_state() { return _state; }
-    Date get_epoch() const { return _epoch; }
+    const State& get_initial_state() const { return _state0; }
     Mass get_mass() const { return _mass; }
 
   private:
+    State _state0;
     State _state;
-    Date _epoch;
     Mass _mass;
 };
 
 } // namespace astro
+} // namespace waveguide

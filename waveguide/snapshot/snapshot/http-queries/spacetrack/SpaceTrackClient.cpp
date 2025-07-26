@@ -10,6 +10,7 @@
 
 #include <snapshot/utilities/string_util.hpp>
 
+namespace waveguide {
 namespace snapshot {
 
 void SpaceTrackClient::login(const std::string& username, const std::string& password)
@@ -34,9 +35,9 @@ nlohmann::json SpaceTrackClient::query(
 
 nlohmann::json SpaceTrackClient::retrieve_all(const std::string& username, const std::string& password)
 {
-    cpr::Url queryUrl =
-        "https://www.space-track.org/"
-        "basicspacedata/query/class/gp/decay_date/null-val/epoch/%3Enow-30/orderby/norad_cat_id/format/json";
+    cpr::Url queryUrl = "https://www.space-track.org/"
+                        "basicspacedata/query/class/gp/object_type/payload/decay_date/null-val/epoch/%3Enow-30/orderby/"
+                        "norad_cat_id/format/json";
     return query_impl(username, password, queryUrl);
 }
 
@@ -79,7 +80,6 @@ std::string SpaceTrackClient::class_to_string(const SpaceDataClass& requestClass
         }
         case (SpaceDataClass::BOX_SCORE): {
             return "boxscore";
-            break;
         }
         case (SpaceDataClass::CDM_PUBLIC): {
             return "cdm_public";
@@ -152,7 +152,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
     static const std::size_t MAX_QUERIES_PER_MINUTE = 30;
     static const std::size_t MAX_QUERIES_PER_HOUR   = 300;
     static const std::filesystem::path QUERY_HISTORY_FILE =
-        "./waveguide/snapshot/snapshot/data/spacetrack.query-history.json";
+        "./waveguide/snapshot/snapshot/database/spacetrack.query-history.json";
     static const std::string TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
 
     // Ingest query history
@@ -258,3 +258,4 @@ nlohmann::json SpaceTrackClient::query_impl(const std::string& username, const s
 }
 
 } // namespace snapshot
+} // namespace waveguide

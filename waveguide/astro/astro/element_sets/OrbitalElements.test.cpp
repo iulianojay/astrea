@@ -4,6 +4,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 class OrbitalElementsTest : public testing::Test {
@@ -12,16 +13,16 @@ class OrbitalElementsTest : public testing::Test {
 
     void SetUp() override
     {
-        _cartElements = Cartesian::LEO();
+        _cartElements = Cartesian::LEO(_sys);
         _keplElements = Keplerian::LEO();
-        _equiElements = Equinoctial::LEO();
+        _equiElements = Equinoctial::LEO(_sys);
     }
 
     AstrodynamicsSystem _sys;
     OrbitalElements _cartElements;
     OrbitalElements _keplElements;
     OrbitalElements _equiElements;
-    Unitless _scalar = 2 * detail::unitless;
+    Unitless _scalar = 2.0 * waveguide::detail::unitless;
     Time _time       = seconds(1);
 };
 

@@ -13,6 +13,7 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace waveguide {
 namespace astro {
 
 AccelerationVector
@@ -32,8 +33,8 @@ AccelerationVector
     static const bool isSun            = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = center->get_closest_state(date - vehicle.get_epoch());
-    const RadiusVector radiusSunToCenter = stateSunToCenter.elements.in<Cartesian>(sys).get_radius();
+    const State& stateSunToCenter        = center->get_state_at(date);
+    const RadiusVector radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
     const RadiusVector radiusCenterToSun{ // flip vector direction
@@ -101,3 +102,4 @@ AccelerationVector
 }
 
 } // namespace astro
+} // namespace waveguide

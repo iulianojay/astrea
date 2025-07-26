@@ -3,8 +3,11 @@
 #include <iostream>
 
 #include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class State {
@@ -13,28 +16,34 @@ class State {
 
   public:
     State() = default;
-
-    State(const Time& time, const OrbitalElements& elements) :
-        time(time),
-        elements(elements)
+    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys) :
+        _elements(elements),
+        _epoch(epoch),
+        _system(&sys)
     {
     }
+
+    const OrbitalElements& get_elements() const { return _elements; }
+    const Date& get_epoch() const { return _epoch; }
+    const AstrodynamicsSystem& get_system() const { return *_system; }
 
     template <IsOrbitalElements T>
-    void convert(const AstrodynamicsSystem& sys)
+    void convert()
     {
-        elements.convert<T>(sys);
+        _elements.convert<T>(get_system());
     }
     template <IsOrbitalElements T>
-    State convert(const AstrodynamicsSystem& sys) const
+    State convert() const
     {
-        return { time, elements.in<T>(sys) };
+        return { _elements.in<T>(get_system()), _epoch, get_system() };
     }
 
-    Time time;
-    OrbitalElements elements;
+  private:
+    Date _epoch;
+    OrbitalElements _elements;
+    const AstrodynamicsSystem* _system;
+    // Frame frame; // TODO: Frames
 };
 
-bool state_time_comparitor(State s, Time time);
-
 } // namespace astro
+} // namespace waveguide

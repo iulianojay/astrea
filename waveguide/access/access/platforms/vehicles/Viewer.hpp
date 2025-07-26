@@ -1,46 +1,46 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
 
 
-#include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
-#include <astro/astro.fwd.hpp>
+#include <snapshot/snapshot.hpp>
 
-#include <access/platforms/Sensor.hpp>
+#include <access/platforms/AccessObject.hpp>
+#include <access/platforms/sensors/Sensor.hpp>
 
+namespace waveguide {
 namespace accesslib {
 
-class Viewer : public astro::Spacecraft {
+class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatform {
 
   public:
     // Constructor
     Viewer() = default;
-    Viewer(astro::OrbitalElements state0, astro::Date epoch = astro::J2000) :
-        Spacecraft(state0, epoch){};
+    Viewer(const snapshot::SpaceTrackGP& gp, const astro::AstrodynamicsSystem& system) :
+        Spacecraft(gp, system),
+        AccessObject()
+    {
+    }
+    Viewer(const astro::State& state0) :
+        Spacecraft(state0),
+        AccessObject()
+    {
+    }
 
     // Destructor
     ~Viewer() = default;
 
-    void attach(Sensor& sensor) { _sensors.emplace_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors)
-    {
-        _sensors.insert(std::end(_sensors), std::begin(_sensors), std::end(_sensors));
-    }
-
-    std::vector<Sensor>& get_sensors() { return _sensors; }
-    const std::vector<Sensor>& get_sensors() const { return _sensors; }
-
-    void add_access(const std::size_t& receiverId, const RiseSetArray& access) { _accesses[_id, receiverId] = access; }
+    std::size_t get_id() const { return Spacecraft::get_id(); }
 
   private:
-    AccessArray _accesses;
     std::vector<Sensor> _sensors;
 };
 
 } // namespace accesslib
+} // namespace waveguide

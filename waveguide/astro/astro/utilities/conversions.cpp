@@ -3,7 +3,7 @@
 #include <math/utils.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/units/constants.hpp>
+#include <units/units.hpp>
 
 using namespace mp_units;
 using namespace mp_units::angular;
@@ -14,6 +14,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::min;
 using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 //----------------------------------------------------------------------------------------------------------//
@@ -21,66 +22,58 @@ namespace astro {
 //----------------------------------------------------------------------------------------------------------//
 
 
-void conversions::ecef_to_lla(const RadiusVector& rEcef, const Distance& equitorialRadius, const Distance& polarRadius, Angle& lat, Angle& lon, Distance& alt)
+void ecef_to_lla(const RadiusVector& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt)
 {
-    static const unsigned maxIter    = 1e3;
-    static const Distance errorBound = 1.0e-9 * km;
+    static const unsigned MAX_ITER  = 1e3;
+    static const Distance MAX_ERROR = 1.0e-9 * km;
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
     const Distance& zEcef = rEcef[2];
 
-    const Unitless f   = (equitorialRadius - polarRadius) / equitorialRadius;
-    const Unitless e_2 = (2.0 - f) * f;
+    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
+    const Unitless eSq = (2.0 - f) * f;
 
-    quantity dz  = e_2 * zEcef;
-    Distance err = 1 * km;
-    Distance N   = 0 * km;
+    const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
+
+    Distance dz  = eSq * zEcef;
+    Distance err = 1.0 * km;
+    Distance N   = 0.0 * km;
     unsigned ii  = 0;
-    while (err > errorBound && ii < maxIter) {
-        const Unitless s = (zEcef + dz) / sqrt(xEcef * xEcef + yEcef * yEcef + (zEcef + dz) * (zEcef + dz));
-        N                = equitorialRadius / sqrt(1 - e_2 * s * s);
-        err              = abs(dz - N * e_2 * s);
-        dz               = N * e_2 * s;
+    while (err > MAX_ERROR && ii < MAX_ITER) {
+        const Unitless s = (zEcef + dz) / sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz));
+        N                = rEquitorial / sqrt(1 - eSq * s * s);
+        err              = abs(dz - N * eSq * s);
+        dz               = N * eSq * s;
         ++ii;
     }
 
-    if (ii >= maxIter - 1) { throw std::runtime_error("Conversion from Ecef to LLA failed to converge."); }
+    if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
 
-    // Lat, long, alt (respectively)
-    lat = atan2(yEcef, xEcef);
-    lon = atan2(yEcef + dz, sqrt(xEcef * xEcef + yEcef * yEcef)); // geodetic
-    // alt = asin(zecef/sqrt(xEcef*xEcef + yEcef*yEcef + zEcef*zEcef))*rad2deg; // geocentric
-    alt = sqrt(xEcef * xEcef + yEcef * yEcef + (zEcef + dz) * (zEcef + dz)) - N;
+    lon = atan2(yEcef, xEcef);
+    lat = atan2(zEcef + dz, sqrt(xSqYSq)); // geodetic
+    // lat = atan((1.0 - f) * (1.0 - f) * tan(lat)); // geocentric
+    alt = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
     if (alt < 0.0 * km) { alt = 0.0 * km; }
 }
 
-void conversions::lla_to_ecef(
-    const Angle& latitude,
-    const Angle& longitude,
-    const Distance& altitude,
-    const Distance& equitorialRadius,
-    const Distance& polarRadius,
-    RadiusVector& rEcef
-)
+RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
+    const quantity sinLat = sin(lat);
+    const quantity cosLat = cos(lat);
 
-    const quantity sinLat = sin(latitude);
-    const quantity cosLat = cos(latitude);
-
-    const quantity f = (equitorialRadius - polarRadius) / equitorialRadius;
-    const quantity N = equitorialRadius / sqrt(1 - f * (2 - f) * sinLat * sinLat);
+    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
+    const Unitless eSq = (2.0 - f) * f;
+    const Distance N   = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
 
     // Ecef coordinates
-    rEcef[0] = (N + altitude) * cosLat * cos(longitude);
-    rEcef[1] = (N + altitude) * cosLat * sin(longitude);
-    rEcef[2] = ((1 - f) * (1 - f) * N + altitude) * sinLat;
+    return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };
 }
 
-Angle conversions::sanitize_angle(const Angle& angle)
+Angle sanitize_angle(const Angle& angle)
 {
     Angle ang = angle;
-    while (ang < 0.0 * detail::angle_unit) {
+    while (ang < 0.0 * waveguide::detail::angle_unit) {
         ang += TWO_PI;
     }
     ang = fmod(ang, TWO_PI);
@@ -88,3 +81,4 @@ Angle conversions::sanitize_angle(const Angle& angle)
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -9,8 +9,9 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class J2MeanVop : public EquationsOfMotion {
@@ -39,3 +40,4 @@ class J2MeanVop : public EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

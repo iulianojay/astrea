@@ -3,7 +3,9 @@
 #include <mp-units/math.h>
 
 using namespace mp_units;
+using mp_units::si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 
@@ -18,25 +20,55 @@ OrbitalElementPartials
 }
 
 
-void Integrator::propagate(const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
 {
-    integrate(interval.start, interval.end, eom, vehicle);
+    return propagate(epoch, interval.start, interval.end, eom, vehicle, store);
 }
 
-void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle)
+StateHistory
+    Integrator::propagate(const Date& epoch, const Time& startTime, const Time& endTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
 {
+    // Propagate vehicle to initial time without storing
+    const Date vehicleEpoch = vehicle.get_state().get_epoch();
+    if (epoch != vehicleEpoch) {
+        const Time propTime = epoch - vehicleEpoch;
+        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
+    }
+
     // Time
-    Time time     = timeInitial;
+    Time time     = startTime;
     Time timeStep = (useFixedStep) ? fixedTimeStep : timeStepInitial;
 
-    if (timeFinal < timeInitial) {
+    if (endTime < startTime) {
         forwardTime = false;
         timeStep    = -timeStep;
     }
 
     // States
-    const OrbitalElements stateInitial = vehicle.get_state().elements;
-    OrbitalElements state              = stateInitial;
+    OrbitalElements state0 = vehicle.get_state().get_elements();
+
+    // Need to check input elements match expected for EOMS
+    const auto& sys               = eom.get_system();
+    const ElementSet& expectedSet = eom.get_expected_set();
+    if (state0.index() != std::to_underlying(expectedSet)) { // ooh boy we're fragile
+        switch (expectedSet) {
+            case (ElementSet::CARTESIAN): {
+                state0.convert<Cartesian>(sys);
+                break;
+            }
+            case (ElementSet::KEPLERIAN): {
+                state0.convert<Keplerian>(sys);
+                break;
+            }
+            case (ElementSet::EQUINOCTIAL): {
+                state0.convert<Equinoctial>(sys);
+                break;
+            }
+            default: throw std::runtime_error("Unrecognized element set requested.");
+        }
+        vehicle.update_state({ state0, epoch, sys });
+    }
+    OrbitalElements state = state0;
 
     // Ensure count restarts
     functionEvaluations = 0;
@@ -47,18 +79,17 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
     // Fruit Loop
     iteration = 0;
     startTimer();
+    StateHistory stateHistory;
+    if (store) { stateHistory[time] = State({ state, epoch, sys }); }
     while (iteration < iterMax) {
-
-        // Break if final time is reached
-        if ((forwardTime && time > timeFinal) || (!forwardTime && time < timeFinal)) { break; }
 
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {
-            print_iteration(time, state, timeFinal, stateInitial);
+            print_iteration(time, state, endTime, state0);
 
             std::cout << crashMessage;
-            return;
+            return stateHistory;
         }
 
         if (useFixedStep) {
@@ -79,7 +110,7 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
                 // Catch underflow
                 if (time + timeStep == time) {
                     std::cout << underflowErrorMessage;
-                    return;
+                    return stateHistory;
                 }
 
                 // Break if step succeeded
@@ -92,20 +123,25 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
             // Exceeded max inner loop iterations
             if (variableStepIteration >= maxVariableStepIterations) {
                 std::cout << innerLoopStepOverflowErrorMessage;
-                return;
+                return stateHistory;
             }
         }
 
-        vehicle.update_state({ time, state });
+        vehicle.update_state({ state, epoch + time, sys });
+        if (store) { stateHistory[time] = vehicle.get_state(); }
 
         // Ensure last step goes to exact final time
-        if ((forwardTime && time + timeStep > timeFinal && time < timeFinal) ||
-            (!forwardTime && time + timeStep < timeFinal && time > timeFinal)) {
-            timeStep = timeFinal - time;
+        if ((forwardTime && time + timeStep > endTime && time < endTime) ||
+            (!forwardTime && time + timeStep < endTime && time > endTime)) {
+            timeStep = endTime - time;
+        }
+        // Break if final time is reached
+        else if (time == endTime) {
+            break;
         }
 
         // Print time and state
-        print_iteration(time, state, timeFinal, stateInitial);
+        print_iteration(time, state, endTime, state0);
 
         // Step iteration
         ++iteration;
@@ -117,6 +153,8 @@ void Integrator::integrate(const Time& timeInitial, const Time& timeFinal, const
 
     // Performance
     print_performance();
+
+    return stateHistory;
 }
 
 //----------------------------------------------------------------------------------------------------------//
@@ -274,7 +312,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             // Catch huge steps
             /* There has to be a better way to do this. It's still possible for the integration to
                pass through a singularity without a huge step */
-            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * detail::unitless ||
+            if (abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * waveguide::detail::unitless ||
                 isinf(stateNewScaled[ii]) || isnan(stateNewScaled[ii])) {
                 /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                    If the step is legitimate, but just very large, this will just force
@@ -373,16 +411,16 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 }
 
 
-void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial)
+void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& endTime, const OrbitalElements& state0)
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == timeFinal || eventTrigger) {
+        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == endTime || eventTrigger) {
         if (iteration == 0) {
             std::cout << "Run Conditions:" << std::endl << std::endl;
             std::cout << "Initial Time = " << 0.0 << std::endl;
-            std::cout << "Final Time =  " << timeFinal << std::endl;
-            std::cout << "Initial State = " << stateInitial << std::endl;
+            std::cout << "Final Time =  " << endTime << std::endl;
+            std::cout << "Initial State = " << state0 << std::endl;
             std::cout << "Integration Tolerance: " << relativeTolerance << std::endl << std::endl;
             std::cout << "Run:" << std::endl << std::endl;
         }
@@ -392,7 +430,7 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
             std::cout << "state = " << state << std::endl << std::endl;
         }
         // }
-        if (time == timeFinal) { std::cout << "Run Completed." << std::endl << std::endl; }
+        if (time == endTime) { std::cout << "Run Completed." << std::endl << std::endl; }
     }
 }
 
@@ -480,3 +518,4 @@ void Integrator::set_step_method(std::string stepMethod)
 }
 
 } // namespace astro
+} // namespace waveguide

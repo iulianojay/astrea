@@ -19,6 +19,7 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 Tle::Tle(const Keplerian& elements, const AstrodynamicsSystem& sys)
@@ -248,12 +249,12 @@ Tle Tle::interpolate(const Time& thisTime, const Time& otherTime, const Tle& oth
 
 std::vector<Unitless> Tle::to_vector() const
 {
-    return { _x / detail::distance_unit,
-             _y / detail::distance_unit,
-             _z / detail::distance_unit,
-             _vx / (detail::distance_unit / detail::time_unit),
-             _vy / (detail::distance_unit / detail::time_unit),
-             _vz / (detail::distance_unit / detail::time_unit) };
+    return { _x / waveguide::detail::distance_unit,
+             _y / waveguide::detail::distance_unit,
+             _z / waveguide::detail::distance_unit,
+             _vx / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _vy / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _vz / (waveguide::detail::distance_unit / waveguide::detail::time_unit) };
 }
 
 Tle TlePartial::operator*(const Time& time) const
@@ -276,3 +277,4 @@ std::ostream& operator<<(std::ostream& os, Tle const& elements)
 }
 
 } // namespace astro
+} // namespace waveguide

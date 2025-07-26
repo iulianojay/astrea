@@ -39,10 +39,11 @@ FetchContent_MakeAvailable(sqlite_orm)
 # Headers
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(SNAPSHOT_HEADERS
-    ${SNAPSHOT_BASE}/data/database.hpp
+    ${SNAPSHOT_BASE}/database/Database.hpp
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.hpp
+    ${SNAPSHOT_BASE}/types/typedefs.hpp
     ${SNAPSHOT_BASE}/utilities/string_util.hpp
 
     ${EXTERN_BASE}/nlohmann/json.hpp
@@ -53,6 +54,8 @@ set(SNAPSHOT_HEADERS
 set(SNAPSHOT_DIRS
     ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
+    $ENV{HOME}/open-source/mp-units/src/core/include
+    $ENV{HOME}/open-source/mp-units/src/systems/include
 )
 include_directories(${SNAPSHOT_DIRS})
 

@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <vector>
 
+namespace waveguide {
 namespace math {
 
 template <typename X, typename Y>
@@ -31,3 +32,4 @@ Y interpolate(const std::vector<X>& x, const std::vector<Y>& y, const X& sx)
 std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& sx);
 
 } // namespace math
+} // namespace waveguide

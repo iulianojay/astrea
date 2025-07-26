@@ -7,6 +7,7 @@ using namespace mp_units::si;
 using namespace mp_units::non_si;
 using namespace mp_units::si::unit_symbols;
 
+namespace waveguide {
 namespace astro {
 
 AccelerationVector
@@ -26,3 +27,4 @@ const std::unique_ptr<Force>& ForceModel::at(const std::string& name) const { re
 
 
 } // namespace astro
+} // namespace waveguide

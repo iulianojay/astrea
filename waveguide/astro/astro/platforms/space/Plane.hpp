@@ -7,6 +7,7 @@
 
 #include <astro/astro.fwd.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -24,17 +25,24 @@ class Plane {
 
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
+    std::vector<Spacecraft_T>& get_all_spacecraft();
     const std::vector<Spacecraft_T>& get_all_spacecraft() const;
 
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     const std::size_t size() const;
 
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
-    using iterator = std::vector<Spacecraft_T>::iterator;
+    using iterator       = std::vector<Spacecraft_T>::iterator;
+    using const_iterator = std::vector<Spacecraft_T>::const_iterator;
+
     iterator begin() { return satellites.begin(); }
     iterator end() { return satellites.end(); }
+    const_iterator begin() const { return satellites.begin(); }
+    const_iterator end() const { return satellites.end(); }
+    const_iterator cbegin() const { return satellites.cbegin(); }
+    const_iterator cend() const { return satellites.cend(); }
 
     const std::size_t get_id() const { return id; }
 
@@ -49,5 +57,6 @@ class Plane {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Plane.ipp>

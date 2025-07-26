@@ -3,6 +3,7 @@
 #include <cmath>
 #include <stdexcept>
 
+namespace waveguide {
 namespace math {
 
 
@@ -81,3 +82,4 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
 }
 
 } // namespace math
+} // namespace waveguide

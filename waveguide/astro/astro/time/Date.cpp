@@ -11,6 +11,7 @@
 
 using namespace mp_units;
 
+namespace waveguide {
 namespace astro {
 
 // Stream
@@ -51,7 +52,7 @@ std::string Date::epoch() const
 {
     using namespace std::chrono;
 
-    const auto sysTime = round<milliseconds>(clock_cast<system_clock>(_julianDate));
+    const auto sysTime = round<std::chrono::milliseconds>(clock_cast<system_clock>(_julianDate));
     std::stringstream ss;
     ss << sysTime;
     return ss.str();
@@ -66,11 +67,11 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 
     // Stream date string into time point
     std::istringstream epochStream{ epoch };
-    sys_time<milliseconds> systemTime;
+    sys_time<std::chrono::milliseconds> systemTime;
     epochStream >> date::parse(format, systemTime);
 
     // Convert with clock cast
-    return round<milliseconds>(clock_cast<JulianDateClock>(systemTime));
+    return round<std::chrono::milliseconds>(clock_cast<JulianDateClock>(systemTime));
 }
 
 
@@ -89,13 +90,14 @@ Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
     Time universalTime = (julianDay - (floor<day>(julianDay + halfDay) - halfDay));
 
     // Greenwich Universal Time
-    Time julianDay0            = julianDay - universalTime; // julian day number on this julian date
-    quantity<JulianCentury> T0 = julianDay0 - J2000.time_since_epoch().count() *
-                                                  day; // TODO: This difference can be done, somehow, with mp_units mechanisms
+    Time julianDay0 = julianDay - universalTime; // julian day number on this julian date
+
+    // TODO: This difference can be done, somehow, with mp_units mechanisms
+    quantity<JulianCentury> T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
+    quantity<one> T0                          = T0JulianCenturies / JulianCentury;
+
     const Angle greenwichUniversalTime =
-        (100.4606184 * one + 36000.77004 * T0 * pow<1>(one / JulianCentury) +
-         0.000387933 * T0 * T0 * pow<2>(one / JulianCentury) - 2.583e-8 * T0 * T0 * T0 * pow<3>(one / JulianCentury)) *
-        deg;
+        (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
     const AngularRate earthRotRate    = 3.609851887442813e+02 * deg / day;
@@ -105,3 +107,4 @@ Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -4,6 +4,7 @@
 
 #include <mp-units/systems/si/chrono.h>
 
+namespace waveguide {
 namespace astro {
 
 // Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14
@@ -60,3 +61,4 @@ static constexpr JulianDate MJD0(JulianDateClock::duration{ 2400000.5 });
 static constexpr mp_units::quantity_point MJDStart = MJD0;
 
 } // namespace astro
+} // namespace waveguide

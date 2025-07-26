@@ -10,7 +10,7 @@
 
 #include <astro/time/Date.hpp>
 
-#include <snapshot/data/database.hpp>
+#include <snapshot/database/Database.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
@@ -18,11 +18,13 @@
 int main(int argc, char** argv)
 {
     // Build connection and connect
+    using namespace waveguide;
     using namespace snapshot;
     using namespace sqlite_orm;
 
     // Build database
-    SNAPSHOT_DB.sync_schema();
+    auto snapshot = get_snapshot();
+    snapshot.sync_schema();
 
     // Query SpaceTrack
     SpaceTrackClient spaceTrack;
@@ -52,13 +54,13 @@ int main(int argc, char** argv)
         }
 
         // Build object
-        SpaceTrackGP gp(data);
+        const SpaceTrackGP gp(data);
 
         // Insert or update
-        auto all = SNAPSHOT_DB.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
-        if (all.size() == 0) { SNAPSHOT_DB.insert(gp); }
+        auto all = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
+        if (all.size() == 0) { snapshot.insert(gp); }
         else {
-            SNAPSHOT_DB.update(gp);
+            snapshot.update(gp);
         }
 
         ++iRecord;

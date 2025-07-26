@@ -1,3 +1,4 @@
+namespace waveguide {
 namespace astro {
 
 static const size_t DEFAULT_SHELL_ID = SIZE_MAX;
@@ -35,9 +36,21 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
     generate_id_hash();
 }
 
+template <class Spacecraft_T>
+Constellation<Spacecraft_T>::Constellation(const std::vector<snapshot::SpaceTrackGP>& gps, const AstrodynamicsSystem& system)
+{
+    std::vector<Spacecraft_T> satellites;
+    for (const auto gp : gps) {
+        satellites.push_back(Spacecraft_T(gp, system));
+    }
+    *this = Constellation(satellites);
+}
+
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
+    const AstrodynamicsSystem& sys,
+    const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
     const size_t& T,
@@ -48,11 +61,40 @@ Constellation<Spacecraft_T>::Constellation(
 )
 {
 
-    shells.emplace_back(Shell<Spacecraft_T>(semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+    shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
     generate_id_hash();
 }
 
+template <class Spacecraft_T>
+Spacecraft_T& Constellation<Spacecraft_T>::operator[](const std::size_t idx)
+{
+    std::size_t ii = 0;
+    for (auto& shell : shells) {
+        for (auto& plane : shell.planes) {
+            for (auto& sat : plane.satellites) {
+                if (ii == idx) { return sat; }
+                ++ii;
+            }
+        }
+    }
+    throw std::runtime_error("Satellite requested outside of constellation bounds.");
+}
+
+template <class Spacecraft_T>
+const Spacecraft_T& Constellation<Spacecraft_T>::operator[](const std::size_t idx) const
+{
+    std::size_t ii = 0;
+    for (auto& shell : shells) {
+        for (auto& plane : shell.planes) {
+            for (auto& sat : plane.satellites) {
+                if (ii == idx) { return sat; }
+                ++ii;
+            }
+        }
+    }
+    throw std::runtime_error("Satellite requested outside of constellation bounds.");
+}
 
 template <class Spacecraft_T>
 const size_t Constellation<Spacecraft_T>::size() const
@@ -149,18 +191,24 @@ void Constellation<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft)
 
 
 template <class Spacecraft_T>
-const std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_all_shells() const
+std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_shells()
+{
+    return shells;
+}
+
+template <class Spacecraft_T>
+const std::vector<Shell<Spacecraft_T>>& Constellation<Spacecraft_T>::get_shells() const
 {
     return shells;
 }
 
 
 template <class Spacecraft_T>
-const std::vector<Plane<Spacecraft_T>> Constellation<Spacecraft_T>::get_all_planes() const
+const std::vector<Plane<Spacecraft_T>> Constellation<Spacecraft_T>::get_planes() const
 {
     std::vector<Plane<Spacecraft_T>> allPlanes;
     for (auto& shell : shells) {
-        const auto& shellPlanes = shell.get_all_planes();
+        const auto& shellPlanes = shell.get_planes();
         allPlanes.insert(allPlanes.end(), shellPlanes.begin(), shellPlanes.end());
     }
     return allPlanes;
@@ -226,19 +274,20 @@ void Constellation<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, const Interval& interval)
+void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval)
 {
     Integrator integrator;
-    propagate(eom, integrator, interval);
+    propagate(epoch, eom, integrator, interval);
 }
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
     for (auto& shell : shells) {
-        shell.propagate(eom, integrator, interval);
+        shell.propagate(epoch, eom, integrator, interval);
     }
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -6,6 +6,7 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/types/typedefs.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class TwoBody : public EquationsOfMotion {
@@ -28,3 +29,4 @@ class TwoBody : public EquationsOfMotion {
 };
 
 } // namespace astro
+} // namespace waveguide

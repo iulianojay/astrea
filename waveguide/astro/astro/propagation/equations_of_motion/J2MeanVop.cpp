@@ -8,11 +8,11 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <math/utils.hpp>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
-#include <astro/units/units.hpp>
-#include <math/utils.hpp>
+#include <units/units.hpp>
 
 
 using namespace mp_units;
@@ -23,13 +23,14 @@ using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Keplerian elements  = state.in<Keplerian>(system);
-    const Cartesian cartesian = state.in<Cartesian>(system);
+    const Keplerian elements  = state.in<Keplerian>(get_system());
+    const Cartesian cartesian = state.in<Cartesian>(get_system());
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();
@@ -98,3 +99,4 @@ OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElem
 }
 
 } // namespace astro
+} // namespace waveguide

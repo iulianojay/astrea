@@ -1,9 +1,9 @@
 #pragma once
 
+#include <memory>
 #include <unordered_set>
 #include <vector>
 
-#include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyFactory.hpp>
@@ -11,6 +11,7 @@
 #include <astro/types/typedefs.hpp>
 
 
+namespace waveguide {
 namespace astro {
 
 class AstrodynamicsSystem {
@@ -24,13 +25,23 @@ class AstrodynamicsSystem {
     };
     ~AstrodynamicsSystem() {}
 
+    // Remove copy asignment/construction
+    AstrodynamicsSystem(const AstrodynamicsSystem&)           = delete;
+    AstrodynamicsSystem operator=(const AstrodynamicsSystem&) = delete;
+
+    static AstrodynamicsSystem DEFAULT() { return AstrodynamicsSystem(); }
+
     const std::string& center() const { return centralBody; }
     const CelestialBodyUniquePtr& get_center() const { return bodyFactory.get(centralBody); }
     const CelestialBodyUniquePtr& get(const std::string& name) const { return bodyFactory.get(name); }
+    const CelestialBodyUniquePtr& get_or_create(const std::string& name)
+    {
+        return bodyFactory.get_or_create(name, *this);
+    }
 
     const std::unordered_set<std::string>& all_bodies() const { return allBodies; }
+    const auto& get_all_bodies() const { return bodyFactory.get_all_bodies(); }
 
-    void propagate_bodies(const Time& propTime);
     // RadiusVector get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
     using iterator       = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
@@ -45,10 +56,8 @@ class AstrodynamicsSystem {
     Date epoch;
     CelestialBodyFactory bodyFactory;
 
-    std::vector<std::vector<State>> statesToCenter;
-    std::vector<State> centerToSun;
-
     void create_all_bodies();
 };
 
 } // namespace astro
+} // namespace waveguide

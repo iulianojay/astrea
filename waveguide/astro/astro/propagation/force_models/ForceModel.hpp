@@ -5,8 +5,9 @@
 #include <unordered_map>
 
 #include <astro/propagation/force_models/Force.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class ForceModel {
@@ -40,3 +41,4 @@ class ForceModel {
 };
 
 } // namespace astro
+} // namespace waveguide

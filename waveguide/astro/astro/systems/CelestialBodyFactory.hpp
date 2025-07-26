@@ -7,22 +7,30 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
 
+namespace waveguide {
 namespace astro {
 
 using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
 
 class CelestialBodyFactory {
   public:
-    CelestialBodyFactory()  = default;
+    CelestialBodyFactory() = default; // TODO: Hide this. Since CelestialBody now requires the AstrodynamicsSystem
+                                      // it's built in as a reference, this factory shouldn't be able to exist outside
+                                      // of a system. This likely has unintended consequences. Investigate
     ~CelestialBodyFactory() = default;
 
-    const CelestialBodyUniquePtr& create(const std::string& name);
+    // Remove copy asignment/construction
+    CelestialBodyFactory(const CelestialBodyFactory&)           = delete;
+    CelestialBodyFactory operator=(const CelestialBodyFactory&) = delete;
+
+    const CelestialBodyUniquePtr& create(const std::string& name, const AstrodynamicsSystem& system);
     const CelestialBodyUniquePtr& get(const std::string& name) const;
-    const CelestialBodyUniquePtr& get_or_create(const std::string& name);
+    const CelestialBodyUniquePtr& get_or_create(const std::string& name, const AstrodynamicsSystem& system);
+    const auto& get_all_bodies() const { return _bodies; }
 
     const std::size_t size() const { return _bodies.size(); }
     void clear() { return _bodies.clear(); }
-    void propagate_bodies(const Date& epoch, const Time& endTime);
+    // void propagate_bodies(const Date& epoch, const Time& endTime);
 
     const std::string& get_root() const { return _root; }
 
@@ -64,3 +72,4 @@ class CelestialBodyFactory {
 };
 
 } // namespace astro
+} // namespace waveguide

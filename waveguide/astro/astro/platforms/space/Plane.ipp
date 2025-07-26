@@ -1,5 +1,8 @@
 #include <astro/utilities/conversions.hpp>
 
+#include <utilities/ProgressBar.hpp>
+
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T>
@@ -11,12 +14,12 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     AstrodynamicsSystem sys;
 
     // Grab first element set as plane set
-    elements = satellites[0].get_initial_state().elements.template in<Keplerian>(sys);
+    elements = satellites[0].get_initial_state().get_elements().template in<Keplerian>(sys);
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        OrbitalElements satElements = sat.get_initial_state().elements.template in<Keplerian>(sys);
+        OrbitalElements satElements = sat.get_initial_state().get_elements().template in<Keplerian>(sys);
         if (!nearly_equal(elements, satElements, true)) {
             strict = false;
             break;
@@ -47,6 +50,12 @@ const std::vector<Spacecraft_T>& Plane<Spacecraft_T>::get_all_spacecraft() const
     return satellites;
 }
 
+template <class Spacecraft_T>
+std::vector<Spacecraft_T>& Plane<Spacecraft_T>::get_all_spacecraft()
+{
+    return satellites;
+}
+
 
 template <class Spacecraft_T>
 const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraftId) const
@@ -69,13 +78,20 @@ void Plane<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Plane<Spacecraft_T>::propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
+    utilities::ProgressBar progressBar(satellites.size(), "\tPropagation");
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
-        integrator.propagate(interval, eom, vehicle);
-        sat = *vehicle.extract<Spacecraft_T>();
+        const auto stateHistory = integrator.propagate(epoch, interval, eom, vehicle, true);
+
+        // Extract and store
+        sat = *vehicle.extract<Spacecraft_T>(); // TODO: Is this needed? Can we just modify sat? Is the current state expected here? Investigate
+        sat.store_state_history(stateHistory);
+
+        progressBar();
     }
 }
 
 } // namespace astro
+} // namespace waveguide

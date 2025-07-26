@@ -5,8 +5,9 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Force {
@@ -19,3 +20,4 @@ class Force {
 };
 
 } // namespace astro
+} // namespace waveguide

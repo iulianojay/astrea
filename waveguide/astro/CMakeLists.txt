@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD 23)
 
 if (PROJECT_IS_TOP_LEVEL) 
     add_subdirectory(../math ../math)
+    add_subdirectory(../units ../units)
+    add_subdirectory(../utilities ../utilities)
 endif()
 
 # Objects
@@ -41,6 +43,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
     ${ASTRO_BASE}/state/State.cpp
+    ${ASTRO_BASE}/state/StateHistory.cpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
@@ -56,8 +59,6 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-
-    ${ASTRO_BASE}/units/constants.hpp
     
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
@@ -94,6 +95,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
     ${ASTRO_BASE}/state/State.hpp
+    ${ASTRO_BASE}/state/StateHistory.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/Barycenter.hpp
@@ -106,9 +108,6 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
-
-    ${ASTRO_BASE}/units/time.hpp
-    ${ASTRO_BASE}/units/units.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
 
@@ -129,6 +128,9 @@ set(ASTRO_DIRS
     ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../math
+    ${CMAKE_CURRENT_LIST_DIR}/../snapshot
+    ${CMAKE_CURRENT_LIST_DIR}/../units
+    ${CMAKE_CURRENT_LIST_DIR}/../utilities
     $ENV{HOME}/open-source/mp-units/src/core/include
     $ENV{HOME}/open-source/mp-units/src/systems/include
 )

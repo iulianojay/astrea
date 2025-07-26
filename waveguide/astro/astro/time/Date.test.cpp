@@ -6,6 +6,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 class DateTest : public testing::Test {
@@ -42,7 +43,9 @@ TEST_F(DateTest, EpochToJulianDate) { ASSERT_EQ(epoch_to_julian_date("2000-01-01
 
 TEST_F(DateTest, JulianDateToSiderealTime)
 {
-    nearly_equal(julian_date_to_siderial_time(J2000), Angle(4.89496 * mp_units::angular::unit_symbols::rad)); // Is this right? Who knows
+    // Vallado, Ex. 3-5
+    Date date("1992-08-20 12:13:00.0");
+    nearly_equal(julian_date_to_siderial_time(date.jd()), Angle(152.58 * mp_units::angular::unit_symbols::deg));
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }

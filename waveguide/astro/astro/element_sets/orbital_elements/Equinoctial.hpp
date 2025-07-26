@@ -8,13 +8,15 @@
 // mp-units
 #include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
+#include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Equinoctial {
@@ -48,11 +50,11 @@ class Equinoctial {
     Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys);
 
     // Defaults
-    static Equinoctial LEO();
-    static Equinoctial LMEO();
-    static Equinoctial GPS();
-    static Equinoctial HMEO();
-    static Equinoctial GEO();
+    static Equinoctial LEO(const AstrodynamicsSystem& system);
+    static Equinoctial LMEO(const AstrodynamicsSystem& system);
+    static Equinoctial GPS(const AstrodynamicsSystem& system);
+    static Equinoctial HMEO(const AstrodynamicsSystem& system);
+    static Equinoctial GEO(const AstrodynamicsSystem& system);
 
     // Copy constructor
     Equinoctial(const Equinoctial&);
@@ -145,3 +147,4 @@ class EquinoctialPartial {
 };
 
 } // namespace astro
+} // namespace waveguide

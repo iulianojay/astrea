@@ -6,7 +6,7 @@
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
 
 using namespace mp_units;
@@ -14,13 +14,14 @@ using namespace mp_units::non_si;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 OrbitalElementPartials CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     // Extract
-    const Cartesian cartesian = state.in<Cartesian>(system);
+    const Cartesian cartesian = state.in<Cartesian>(get_system());
     const quantity<km>& x     = cartesian.get_x();
     const quantity<km>& y     = cartesian.get_y();
     const quantity<km>& z     = cartesian.get_z();
@@ -34,8 +35,8 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const Date date               = vehicle.get_epoch() + time;
-    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, system);
+    const Date date               = vehicle.get_state().get_epoch() + time;
+    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative
     const CartesianPartial dsdt(
@@ -46,3 +47,4 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
 }
 
 } // namespace astro
+} // namespace waveguide

@@ -4,38 +4,40 @@
 
 #include <astro/types/typedefs.hpp>
 
-#include <access/platforms/Sensor.hpp>
+#include <access/platforms/ground/GroundPoint.hpp>
+#include <access/platforms/sensors/SensorPlatform.hpp>
 
 
+namespace waveguide {
 namespace accesslib {
 
-class GroundStation {
+class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
   public:
-    GroundStation(const astro::Angle& latitutde, const astro::Angle& longitude, const astro::Distance& altitude, const std::vector<Sensor>& sensors) :
-        latitutde(latitutde),
-        longitude(longitude),
-        altitude(altitude),
-        sensors(sensors)
+    GroundStation(
+        const Angle& latitude,
+        const Angle& longitude,
+        const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km,
+        const std::vector<Sensor>& sensors = {},
+        const std::string name             = "Unnammed"
+    ) :
+        GroundPoint(latitude, longitude, altitude),
+        AccessObject(),
+        SensorPlatform(sensors),
+        _name(name)
     {
         generate_id_hash();
     };
-    ~GroundStation(){};
+    ~GroundStation() = default;
 
-    void attach(Sensor& sensor) { sensors.push_back(sensor); }
-    void attach(std::vector<Sensor>& _sensors)
-    {
-        sensors.insert(std::end(sensors), std::begin(_sensors), std::end(_sensors));
-    }
+    std::size_t get_id() const { return _id; }
+    std::string get_name() const { return _name; }
 
   private:
-    std::size_t id;
-    astro::Angle latitutde;
-    astro::Angle longitude;
-    astro::Distance altitude;
-
-    std::vector<Sensor> sensors;
+    std::size_t _id;
+    std::string _name;
 
     void generate_id_hash();
 };
 
 } // namespace accesslib
+} // namespace waveguide

@@ -16,8 +16,9 @@
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/types/typeid_name_extract.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 // class OrbitalElements;
@@ -239,3 +240,4 @@ void throw_mismatched_types();
 bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * mp_units::one);
 
 } // namespace astro
+} // namespace waveguide

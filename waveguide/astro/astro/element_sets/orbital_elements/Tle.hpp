@@ -13,8 +13,9 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class Tle {
@@ -23,13 +24,13 @@ class Tle {
     friend TlePartial;
 
   public:
-    Tle(Unitless scale = 0.0 * detail::unitless) :
-        _x(scale * detail::distance_unit),
-        _y(scale * detail::distance_unit),
-        _z(scale * detail::distance_unit),
-        _vx(scale * detail::distance_unit / detail::time_unit),
-        _vy(scale * detail::distance_unit / detail::time_unit),
-        _vz(scale * detail::distance_unit / detail::time_unit)
+    Tle(Unitless scale = 0.0 * waveguide::detail::unitless) :
+        _x(scale * waveguide::detail::distance_unit),
+        _y(scale * waveguide::detail::distance_unit),
+        _z(scale * waveguide::detail::distance_unit),
+        _vx(scale * waveguide::detail::distance_unit / waveguide::detail::time_unit),
+        _vy(scale * waveguide::detail::distance_unit / waveguide::detail::time_unit),
+        _vz(scale * waveguide::detail::distance_unit / waveguide::detail::time_unit)
     {
     }
     Tle(const RadiusVector& r, const VelocityVector& v) :
@@ -179,6 +180,7 @@ class TlePartial {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 
 namespace avro {
@@ -196,8 +198,8 @@ struct codec_traits<astro::Tle> {
     }
     static void decode(Decoder& decoder, astro::Tle& cartesian)
     {
-        astro::Distance x{}, y{}, z{};
-        astro::Velocity vx{}, vy{}, vz{};
+        Distance x{}, y{}, z{};
+        Velocity vx{}, vy{}, vz{};
 
         avro::decode(decoder, x);
         avro::decode(decoder, y);

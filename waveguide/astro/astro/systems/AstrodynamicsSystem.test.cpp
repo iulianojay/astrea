@@ -6,6 +6,7 @@
 
 #include <astro/astro.hpp>
 
+using namespace waveguide;
 using namespace astro;
 
 class AstrodynamicsSystemTest : public testing::Test {
@@ -57,11 +58,6 @@ TEST_F(AstrodynamicsSystemTest, AllBodies)
 {
     const auto bodies = sys.all_bodies();
     ASSERT_EQ(bodies.size(), 2);
-}
-
-TEST_F(AstrodynamicsSystemTest, PropagateBodies)
-{
-    ASSERT_NO_THROW(sys.propagate_bodies(1.0 * mp_units::si::unit_symbols::s));
 }
 
 TEST_F(AstrodynamicsSystemTest, Iterator) { ASSERT_NO_THROW(for (auto& body : sys){}); }

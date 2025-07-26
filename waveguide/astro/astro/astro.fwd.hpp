@@ -1,8 +1,10 @@
 #pragma once
 
+namespace waveguide {
 namespace astro {
 
 class State;
+class StateHistory;
 
 // ELement sets
 class Cartesian;
@@ -56,3 +58,4 @@ class Interval;
 struct JulianDateClock;
 
 } // namespace astro
+} // namespace waveguide

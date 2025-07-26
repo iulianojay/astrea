@@ -8,8 +8,9 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/orbital_elements/Keplerian.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 template <class Spacecraft_T = Spacecraft>
@@ -24,6 +25,8 @@ class Shell {
     Shell(std::vector<Plane<Spacecraft_T>> planes);
     Shell(std::vector<Spacecraft_T> satellites);
     Shell(
+        const AstrodynamicsSystem& sys,
+        const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
         const std::size_t& T,
@@ -41,32 +44,45 @@ class Shell {
     void add_spacecraft(const Spacecraft_T& spacecraft, const std::size_t& planeId);
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
-    const std::vector<Plane<Spacecraft_T>>& get_all_planes() const;
+    std::vector<Plane<Spacecraft_T>>& get_planes();
+    const std::vector<Plane<Spacecraft_T>>& get_planes() const;
     const std::vector<Spacecraft_T> get_all_spacecraft() const;
 
     const Plane<Spacecraft_T>& get_plane(const std::size_t& planeId) const;
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
 
 
-    using iterator = std::vector<Plane<Spacecraft_T>>::iterator;
+    // using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;
+    // using const_iterator = std::vector<Plane<Spacecraft_T>>::const_iterator;
 
-    iterator begin() { return planes.begin(); }
-    iterator end() { return planes.end(); }
+    // iterator begin() { return planes.begin(); }
+    // iterator end() { return planes.end(); }
+    // const_iterator begin() const { return planes.begin(); }
+    // const_iterator end() const { return planes.end(); }
+    // const_iterator cbegin() const { return planes.cbegin(); }
+    // const_iterator cend() const { return planes.cend(); }
 
     class sat_iterator;
 
-    sat_iterator sat_begin() { return sat_iterator(planes.begin(), planes.begin()->begin()); }
-    sat_iterator sat_end() { return sat_iterator(planes.end(), planes.end()->end()); }
+    using iterator       = sat_iterator;
+    using const_iterator = const sat_iterator;
+
+    iterator begin() { return sat_iterator(planes.begin(), planes.begin()->begin()); }
+    iterator end() { return sat_iterator(planes.end(), planes.end()->end()); }
+    const_iterator begin() const { return sat_iterator(planes.begin(), planes.begin()->begin()); }
+    const_iterator end() const { return sat_iterator(planes.end(), planes.end()->end()); }
+    const_iterator cbegin() const { return sat_iterator(planes.cbegin(), planes.cbegin()->cbegin()); }
+    const_iterator cend() const { return sat_iterator(planes.cend(), planes.cend()->cend()); }
 
     class sat_iterator {
       private:
-        iterator iterPlane;
+        std::vector<Plane<Spacecraft_T>>::iterator iterPlane;
         Plane<Spacecraft_T>::iterator iterSat;
 
       public:
-        sat_iterator(iterator _iterPlane, Plane<Spacecraft_T>::iterator _iterSat) :
+        sat_iterator(std::vector<Plane<Spacecraft_T>>::iterator _iterPlane, Plane<Spacecraft_T>::iterator _iterSat) :
             iterPlane(_iterPlane),
             iterSat(_iterSat)
         {
@@ -146,5 +162,6 @@ class Shell {
 };
 
 } // namespace astro
+} // namespace waveguide
 
 #include <astro/platforms/space/Shell.ipp>

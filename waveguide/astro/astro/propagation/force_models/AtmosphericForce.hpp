@@ -16,8 +16,9 @@
 #include <astro/time/Date.hpp>
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
-#include <astro/units/units.hpp>
+#include <units/units.hpp>
 
+namespace waveguide {
 namespace astro {
 
 class AtmosphericForce : public Force {
@@ -41,3 +42,4 @@ class AtmosphericForce : public Force {
 };
 
 } // namespace astro
+} // namespace waveguide

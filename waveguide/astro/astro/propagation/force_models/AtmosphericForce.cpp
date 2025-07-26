@@ -22,6 +22,7 @@ using si::unit_symbols::km;
 using si::unit_symbols::m;
 using si::unit_symbols::s;
 
+namespace waveguide {
 namespace astro {
 
 AccelerationVector
@@ -83,11 +84,11 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     static const std::string& centerName = center->get_name();
 
     // Find altitude
-    RadiusVector rEcef = conversions::eci_to_ecef(state.get_radius(), date);
+    RadiusVector rEcef = eci_to_ecef(state.get_radius(), date);
 
     Angle lat, lon;
     Distance altitude;
-    conversions::ecef_to_lla(rEcef, equitorialR, polarR, lat, lon, altitude);
+    ecef_to_lla(rEcef, equitorialR, polarR, lat, lon, altitude);
 
     Unitless altitudeValue = altitude / km;
 
@@ -267,3 +268,4 @@ const std::map<Altitude, AtmosphericForce::TitanDensity> AtmosphericForce::titan
 };
 
 } // namespace astro
+} // namespace waveguide
