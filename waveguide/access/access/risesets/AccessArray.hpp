@@ -2,7 +2,7 @@
 
 #include <parallel_hashmap/btree.h>
 
-#include <access/time/RiseSetArray.hpp>
+#include <access/risesets/RiseSetArray.hpp>
 
 namespace waveguide {
 namespace accesslib {

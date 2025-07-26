@@ -14,8 +14,8 @@
 
 #include <access/platforms/vehicles/Viewer.hpp>
 
-#include <access/time/AccessArray.hpp>
-#include <access/time/RiseSetArray.hpp>
-#include <access/time/riseset_utils.hpp>
+#include <access/risesets/AccessArray.hpp>
+#include <access/risesets/RiseSetArray.hpp>
+#include <access/risesets/riseset_utils.hpp>
 
 #include <access/types/typedefs.hpp>

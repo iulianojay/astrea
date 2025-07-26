@@ -13,7 +13,7 @@
 #include <access/platforms/ground/GroundArchitecture.hpp>
 #include <access/platforms/ground/GroundStation.hpp>
 #include <access/platforms/vehicles/Viewer.hpp>
-#include <access/time/RiseSetArray.hpp>
+#include <access/risesets/RiseSetArray.hpp>
 #include <access/types/typedefs.hpp>
 
 

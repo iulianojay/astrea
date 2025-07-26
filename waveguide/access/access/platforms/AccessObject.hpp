@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include <access/time/AccessArray.hpp>
+#include <access/risesets/AccessArray.hpp>
 
 #include <astro/types/typedefs.hpp>
 

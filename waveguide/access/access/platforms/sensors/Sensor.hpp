@@ -4,7 +4,7 @@
 
 #include <access/platforms/AccessObject.hpp>
 #include <access/platforms/sensors/fov/FieldOfView.hpp>
-#include <access/time/AccessArray.hpp>
+#include <access/risesets/AccessArray.hpp>
 
 #include <astro/types/typedefs.hpp>
 

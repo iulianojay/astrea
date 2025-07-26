@@ -7,7 +7,7 @@
 
 #include <units/units.hpp>
 
-#include <access/time/riseset_utils.hpp>
+#include <access/risesets/riseset_utils.hpp>
 
 namespace waveguide {
 namespace accesslib {
@@ -44,13 +44,21 @@ class RiseSetArray {
     std::size_t size() const { return _risesets.size(); }
 
     // Element access
+    Time& operator[](const std::size_t& ind) { return _risesets[ind]; }
     const Time& operator[](const std::size_t& ind) const { return _risesets[ind]; }
 
+    // Equality
+    bool operator==(const RiseSetArray& other) const;
+
+    // Difference
+    RiseSetArray operator-(const RiseSetArray& other) const;
+    RiseSetArray& operator-=(const RiseSetArray& other);
+
     // Union
-    RiseSetArray operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
+    RiseSetArray operator|(const RiseSetArray& other) const;
 
     // Intersection
-    RiseSetArray operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
+    RiseSetArray operator&(const RiseSetArray& other) const;
 
     // Calcs
     Time gap(const Stat& stat = Stat::MEAN) const;

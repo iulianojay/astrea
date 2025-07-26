@@ -32,8 +32,8 @@ set(ACCESS_SOURCES
 
     ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.cpp
 
-    ${ACCESS_BASE}/time/RiseSetArray.cpp
-    ${ACCESS_BASE}/time/riseset_utils.cpp
+    ${ACCESS_BASE}/risesets/RiseSetArray.cpp
+    ${ACCESS_BASE}/risesets/riseset_utils.cpp
 )
 
 # Headers
@@ -54,9 +54,9 @@ set(ACCESS_HEADERS
     
     ${ACCESS_BASE}/platforms/vehicles/Viewer.hpp
 
-    ${ACCESS_BASE}/time/AccessArray.hpp
-    ${ACCESS_BASE}/time/RiseSetArray.hpp
-    ${ACCESS_BASE}/time/riseset_utils.hpp
+    ${ACCESS_BASE}/risesets/AccessArray.hpp
+    ${ACCESS_BASE}/risesets/RiseSetArray.hpp
+    ${ACCESS_BASE}/risesets/riseset_utils.hpp
     
     ${ACCESS_BASE}/types/typedefs.hpp
     

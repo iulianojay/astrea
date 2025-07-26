@@ -1,4 +1,4 @@
-#include <access/time/RiseSetArray.hpp>
+#include <access/risesets/RiseSetArray.hpp>
 
 #include <stdexcept>
 
@@ -28,7 +28,25 @@ RiseSetArray& RiseSetArray::operator=(RiseSetArray&& other) noexcept
     return *this;
 }
 
+bool RiseSetArray::operator==(const RiseSetArray& other) const
+{
+    if (this == &other) { return true; }
+    return _risesets == other._risesets;
+}
+
 RiseSetArray& RiseSetArray::operator=(const RiseSetArray& other) { return *this = RiseSetArray(other); }
+
+RiseSetArray RiseSetArray::operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
+
+RiseSetArray RiseSetArray::operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
+
+RiseSetArray RiseSetArray::operator-(const RiseSetArray& other) const { return riseset_difference(*this, other); }
+
+RiseSetArray& RiseSetArray::operator-=(const RiseSetArray& other)
+{
+    *this = riseset_difference(*this, other);
+    return *this;
+}
 
 void RiseSetArray::validate_risesets(const std::vector<Time>& risesets) const
 {
