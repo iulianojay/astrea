@@ -1,0 +1,16 @@
+# Template C++ Application
+
+# This template allows you to validate your C++ application.
+# The workflow allows running tests and code linting on the default branch.
+
+
+image: atlassian/default-image:5
+
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Test
+            script:
+              - make run_tests
