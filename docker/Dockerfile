@@ -22,6 +22,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install \
     gcc \
+    gdb \ 
     mono-mcs \
     make \
     cmake \
@@ -67,5 +68,6 @@ RUN groupadd -r usergroup
 RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
 RUN chown -R appuser:usergroup /home/appuser
 USER appuser
+ENV WAVEGUIDE_ROOT=/home/appuser/waveguide
 WORKDIR /home/appuser/waveguide
 

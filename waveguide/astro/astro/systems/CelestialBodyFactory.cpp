@@ -5,13 +5,12 @@
 namespace waveguide {
 namespace astro {
 
-// TODO: Fix this trash
-static const std::filesystem::path ROOT = "/home/jay/projects/waveguide";
+static const std::string ROOT = std::getenv("WAVEGUIDE_ROOT");
 
 
 const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name, const AstrodynamicsSystem& system)
 {
-    const auto file = std::filesystem::absolute(ROOT / _buildFiles.at(name)).lexically_normal();
+    const auto file = std::filesystem::absolute(ROOT + _buildFiles.at(name)).lexically_normal();
     if (_bodies.count(name) == 0) { _bodies.emplace(name, std::make_unique<CelestialBody>(file, system)); }
     find_root();
     return get(name);

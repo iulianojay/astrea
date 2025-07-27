@@ -60,7 +60,8 @@ int main()
 
 // void ex2()
 // {
-//     std::ifstream infileStream("/home/jay/projects/waveguide/waveguide/snapshot/database/cartesian.json");
+//     static const std::string root = std::getenv("WAVEGUIDE_ROOT");
+//     std::ifstream infileStream(root + "/waveguide/snapshot/database/cartesian.json");
 
 //     avro::ValidSchema cartesianSchema;
 //     avro::compileJsonSchema(infileStream, cartesianSchema);

@@ -17,7 +17,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         add_executable(${TEST_EXE} ${TEST_FILE})    
 
         # Set properties
-        set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE}.exe)
+        set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
 
@@ -35,7 +35,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         endif()
 
         # Send to gtest
-        gtest_discover_tests(${TEST_EXE})
+        gtest_discover_tests(${TEST_EXE} DISCOVERY_MODE PRE_TEST)
 
         add_dependencies(${CURRENT_PROJECT}_tests ${TEST_EXE})
 

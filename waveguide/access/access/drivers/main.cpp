@@ -144,7 +144,8 @@ void access_test()
     std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
-    std::filesystem::path base    = "/home/jay/projects/waveguide/waveguide/access/";
+    const std::string root        = std::getenv("WAVEGUIDE_ROOT");
+    std::filesystem::path base    = root + "/waveguide/access/";
     std::filesystem::path outfile = base / "access/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);

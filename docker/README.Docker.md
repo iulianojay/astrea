@@ -40,4 +40,4 @@ image with waveguide and open-source files mounted:
         -v ~/projects/waveguide/Makefile:/home/appuser/waveguide/Makefile \
         -v ~/open-source:/home/appuser/open-source \
         -v ~/.conan2:/home/appuser/.conan2 \
-        waveguide-image bash
+        waveguide:latest bash

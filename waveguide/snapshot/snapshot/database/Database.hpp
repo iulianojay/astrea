@@ -50,8 +50,9 @@ DatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& database)
 
 inline auto get_snapshot()
 {
+    static const std::string root = std::getenv("WAVEGUIDE_ROOT");
     return sqlite_orm::make_storage(
-        "/home/jay/projects/waveguide/waveguide/snapshot/snapshot/database/snapshot.db", // TODO: Fix the pathing
+        root + "/waveguide/snapshot/snapshot/database/snapshot.db",
         sqlite_orm::make_table(
             "SpaceTrackGP",
             sqlite_orm::make_column("DB_ID", &snapshot::SpaceTrackGP::DB_ID, sqlite_orm::primary_key().autoincrement()),
