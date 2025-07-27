@@ -29,6 +29,39 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
 endif()
 
-find_package(mp-units REQUIRED)
 
+include(cmake/functions.cmake)
+
+# Include dependencies
+find_package(mp-units REQUIRED)
+find_package(SQLite3 REQUIRED)
+
+include(FetchContent)
+FetchContent_Declare(
+    cpr 
+    GIT_REPOSITORY https://github.com/libcpr/cpr.git
+    GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06
+) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
+FetchContent_MakeAvailable(cpr)
+
+FetchContent_Declare(
+    sqlite_orm 
+    GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git 
+    GIT_TAG v1.9.1
+)
+FetchContent_MakeAvailable(sqlite_orm)
+
+# Add google test
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+include(GoogleTest)
+
+# Get code
 add_subdirectory(waveguide)

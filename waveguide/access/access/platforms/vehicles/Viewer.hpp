@@ -9,7 +9,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
-#include <snapshot/snapshot.hpp>
+#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
 #include <access/platforms/AccessObject.hpp>
 #include <access/platforms/sensors/Sensor.hpp>

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31.6)
+cmake_minimum_required(VERSION 3.28.3)
 
 # Test build function
 function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)

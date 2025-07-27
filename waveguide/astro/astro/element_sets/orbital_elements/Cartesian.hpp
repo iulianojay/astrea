@@ -10,10 +10,10 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
-// avro
-#include <avro/Decoder.hh>
-#include <avro/Encoder.hh>
-#include <avro/Specific.hh>
+// // avro
+// #include <avro/Decoder.hh>
+// #include <avro/Encoder.hh>
+// #include <avro/Specific.hh>
 
 // astro
 #include <astro/astro.fwd.hpp>
@@ -163,33 +163,33 @@ class CartesianPartial {
 } // namespace waveguide
 
 
-namespace avro {
+// namespace avro {
 
-template <>
-struct codec_traits<waveguide::astro::Cartesian> {
-    static void encode(Encoder& encoder, const waveguide::astro::Cartesian& cartesian)
-    {
-        avro::encode(encoder, cartesian.get_x());
-        avro::encode(encoder, cartesian.get_y());
-        avro::encode(encoder, cartesian.get_z());
-        avro::encode(encoder, cartesian.get_vx());
-        avro::encode(encoder, cartesian.get_vy());
-        avro::encode(encoder, cartesian.get_vz());
-    }
-    static void decode(Decoder& decoder, waveguide::astro::Cartesian& cartesian)
-    {
-        waveguide::Distance x{}, y{}, z{};
-        waveguide::Velocity vx{}, vy{}, vz{};
+// template <>
+// struct codec_traits<waveguide::astro::Cartesian> {
+//     static void encode(Encoder& encoder, const waveguide::astro::Cartesian& cartesian)
+//     {
+//         avro::encode(encoder, cartesian.get_x());
+//         avro::encode(encoder, cartesian.get_y());
+//         avro::encode(encoder, cartesian.get_z());
+//         avro::encode(encoder, cartesian.get_vx());
+//         avro::encode(encoder, cartesian.get_vy());
+//         avro::encode(encoder, cartesian.get_vz());
+//     }
+//     static void decode(Decoder& decoder, waveguide::astro::Cartesian& cartesian)
+//     {
+//         waveguide::Distance x{}, y{}, z{};
+//         waveguide::Velocity vx{}, vy{}, vz{};
 
-        avro::decode(decoder, x);
-        avro::decode(decoder, y);
-        avro::decode(decoder, z);
-        avro::decode(decoder, vx);
-        avro::decode(decoder, vy);
-        avro::decode(decoder, vz);
+//         avro::decode(decoder, x);
+//         avro::decode(decoder, y);
+//         avro::decode(decoder, z);
+//         avro::decode(decoder, vx);
+//         avro::decode(decoder, vy);
+//         avro::decode(decoder, vz);
 
-        cartesian = waveguide::astro::Cartesian(x, y, z, vx, vy, vz);
-    }
-};
+//         cartesian = waveguide::astro::Cartesian(x, y, z, vx, vy, vz);
+//     }
+// };
 
-} // namespace avro
+// } // namespace avro

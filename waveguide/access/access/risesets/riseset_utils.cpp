@@ -74,11 +74,12 @@ RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
     }
 
     // Get length
-    const std::size_t lenC = (a[0] == b[0]) ? cIdx + 1 : cIdx;
+    const std::size_t lenC = (cIdx % 2) ? cIdx + 1 : cIdx;
     c.resize(lenC);
 
     // Remove duplicates
-    for (std::size_t ii = lenC - 1; ii > 0; --ii) {
+    const auto cc = c;
+    for (std::size_t ii = c.size() - 1; ii > 0; --ii) {
         if (c[ii] == c[ii - 1]) { c.erase(c.begin() + ii); }
     }
 

@@ -61,7 +61,9 @@ void access_test()
     // Build constellation
     Viewer geo(geoGp[0], sys);
     // Constellation<Viewer> allSats(everythingElseGps, sys);
-    Constellation<Viewer> allSats({ everythingElseGps[0] }, sys);
+    Constellation<Viewer> allSats(
+        { everythingElseGps[0], everythingElseGps[1], everythingElseGps[2], everythingElseGps[3], everythingElseGps[4] }, sys
+    );
 
     // Add sensors
     CircularFieldOfView fovGeo(15.0 * deg);

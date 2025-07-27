@@ -183,33 +183,33 @@ class TlePartial {
 } // namespace waveguide
 
 
-namespace avro {
+// namespace avro {
 
-template <>
-struct codec_traits<astro::Tle> {
-    static void encode(Encoder& encoder, const astro::Tle& cartesian)
-    {
-        avro::encode(encoder, cartesian.get_x());
-        avro::encode(encoder, cartesian.get_y());
-        avro::encode(encoder, cartesian.get_z());
-        avro::encode(encoder, cartesian.get_vx());
-        avro::encode(encoder, cartesian.get_vy());
-        avro::encode(encoder, cartesian.get_vz());
-    }
-    static void decode(Decoder& decoder, astro::Tle& cartesian)
-    {
-        Distance x{}, y{}, z{};
-        Velocity vx{}, vy{}, vz{};
+// template <>
+// struct codec_traits<astro::Tle> {
+//     static void encode(Encoder& encoder, const astro::Tle& cartesian)
+//     {
+//         avro::encode(encoder, cartesian.get_x());
+//         avro::encode(encoder, cartesian.get_y());
+//         avro::encode(encoder, cartesian.get_z());
+//         avro::encode(encoder, cartesian.get_vx());
+//         avro::encode(encoder, cartesian.get_vy());
+//         avro::encode(encoder, cartesian.get_vz());
+//     }
+//     static void decode(Decoder& decoder, astro::Tle& cartesian)
+//     {
+//         Distance x{}, y{}, z{};
+//         Velocity vx{}, vy{}, vz{};
 
-        avro::decode(decoder, x);
-        avro::decode(decoder, y);
-        avro::decode(decoder, z);
-        avro::decode(decoder, vx);
-        avro::decode(decoder, vy);
-        avro::decode(decoder, vz);
+//         avro::decode(decoder, x);
+//         avro::decode(decoder, y);
+//         avro::decode(decoder, z);
+//         avro::decode(decoder, vx);
+//         avro::decode(decoder, vy);
+//         avro::decode(decoder, vz);
 
-        cartesian = astro::Tle(x, y, z, vx, vy, vz);
-    }
-};
+//         cartesian = astro::Tle(x, y, z, vx, vy, vz);
+//     }
+// };
 
-} // namespace avro
+// } // namespace avro

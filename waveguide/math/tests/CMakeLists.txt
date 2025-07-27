@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31.6)
+cmake_minimum_required(VERSION 3.28.3)
 
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
@@ -16,20 +16,6 @@ add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
 # Add subdirectories for regressions
 #add_subdirectory(some-regression-test)
-        
-# Add google test
-include(FetchContent)
-FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/releases/download/v1.16.0/googletest-1.16.0.tar.gz
-)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
-enable_testing()
-include(GoogleTest)
-
-include(../../../cmake/functions.cmake)
 
 build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}")
 # build_tests("REGRESSION" "${REGRESSION_TEST_SOURCES}")
