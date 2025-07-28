@@ -57,8 +57,8 @@ OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
 	
 .PHONY: run_tests
 run_tests: conan-debug
-# 	cd $(build_path)/waveguide/math/tests && ctest
-# 	cd $(build_path)/waveguide/astro/tests && ctest
+	cd $(build_path)/waveguide/math/tests && ctest
+	cd $(build_path)/waveguide/astro/tests && ctest
 	cd $(build_path)/waveguide/access/tests && ctest
 
 .PHONY: debug
