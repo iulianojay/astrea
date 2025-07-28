@@ -3,11 +3,7 @@
 # This template allows you to validate your C++ application.
 # The workflow allows running tests and code linting on the default branch.
 
-image:
-  name: jayiuliano/waveguide:latest
-  username: $DOCKER_REGISTRY_USERNAME
-  password: $DOCKER_REGISTRY_PASSWORD
-  email: $DOCKER_HUB_EMAIL
+image: jayiuliano/waveguide:latest
 
 pipelines:
   default:
