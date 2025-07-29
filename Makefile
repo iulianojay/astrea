@@ -56,7 +56,7 @@ OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
 # 	$(MAKE) -C $(build_path)/waveguide/astro/$(tests_path) install 
 	
 .PHONY: run_tests
-run_tests: conan-debug
+run_tests:
 	cd $(build_path)/waveguide/math/tests && ctest
 	cd $(build_path)/waveguide/astro/tests && ctest
 	cd $(build_path)/waveguide/access/tests && ctest
