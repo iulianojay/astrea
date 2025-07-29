@@ -41,3 +41,7 @@ image with waveguide and open-source files mounted:
         -v ~/open-source:/home/appuser/open-source \
         -v ~/.conan2:/home/appuser/.conan2 \
         waveguide:latest bash
+
+new: 
+    > docker build -t jayiuliano/waveguide:latest -f ./docker/Dockerfile ~
+    >  ~/projects/waveguide >> docker build -t jayiuliano/waveguide:latest -f ./docker/Dockerfile ~

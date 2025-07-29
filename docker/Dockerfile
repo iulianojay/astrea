@@ -18,7 +18,13 @@
 # (e.g., alpine:3.17.2) or SHA (e.g., alpine@sha256:c41ab5c992deb4fe7e5da09f67a8804a46bd0592bfdf0b1847dde0e0889d2bff).
 FROM ubuntu:latest AS base
 
-WORKDIR /home/appuser/waveguide
+RUN apt-get update && \
+    apt-get -y install \
+    make \
+    cmake 
+
+ENV WAVEGUIDE_ROOT=/home/appuser/waveguide
+WORKDIR $WAVEGUIDE_ROOT
 
 ################################################################################
 # Create a stage for building/compiling the application.
@@ -36,8 +42,6 @@ RUN apt-get update && \
     gcc \
     gdb \ 
     mono-mcs \
-    make \
-    cmake \
     curl \
     libsqlite3-dev \
     libssl-dev \
@@ -49,14 +53,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY projects/waveguide/cmake /home/appuser/waveguide/cmake 
-COPY projects/waveguide/data /home/appuser/waveguide/data 
-COPY projects/waveguide/extern /home/appuser/waveguide/extern 
-COPY projects/waveguide/scripts /home/appuser/waveguide/scripts 
-COPY projects/waveguide/waveguide /home/appuser/waveguide/waveguide 
-COPY projects/waveguide/CMakeLists.txt /home/appuser/waveguide/CMakeLists.txt 
-COPY projects/waveguide/conanfile.txt /home/appuser/waveguide/conanfile.txt 
-COPY projects/waveguide/Makefile /home/appuser/waveguide/Makefile 
+COPY projects/waveguide/cmake $WAVEGUIDE_ROOT/cmake 
+COPY projects/waveguide/extern $WAVEGUIDE_ROOT/extern 
+COPY projects/waveguide/scripts $WAVEGUIDE_ROOT/scripts 
+COPY projects/waveguide/waveguide $WAVEGUIDE_ROOT/waveguide 
+COPY projects/waveguide/CMakeLists.txt $WAVEGUIDE_ROOT/CMakeLists.txt 
+COPY projects/waveguide/conanfile.txt $WAVEGUIDE_ROOT/conanfile.txt 
+COPY projects/waveguide/Makefile $WAVEGUIDE_ROOT/Makefile 
 COPY .conan2/ /home/appuser/.conan2
 COPY open-source/ /home/appuser/open-source
 
@@ -65,8 +68,7 @@ RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openss
 RUN chown -R appuser:usergroup /home/appuser
 USER appuser
 
-ENV WAVEGUIDE_ROOT=/home/appuser/waveguide
-RUN ls -l && make conan-release
+RUN make conan-release
 
 ################################################################################
 # Create a final stage for running your application.
@@ -79,8 +81,11 @@ RUN ls -l && make conan-release
 # purposes the "base" image is used here.
 FROM base AS final
 
-COPY --from=build /home/appuser/waveguide/build /home/appuser/waveguide/build
-COPY --from=build /home/appuser/waveguide/install /home/appuser/waveguide/install
+COPY --from=build $WAVEGUIDE_ROOT/build $WAVEGUIDE_ROOT/build
+COPY --from=build $WAVEGUIDE_ROOT/install $WAVEGUIDE_ROOT/install
+COPY --from=build $WAVEGUIDE_ROOT/Makefile $WAVEGUIDE_ROOT/Makefile 
+COPY --from=build $WAVEGUIDE_ROOT/extern $WAVEGUIDE_ROOT/extern 
+COPY projects/waveguide/data $WAVEGUIDE_ROOT/data 
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -88,5 +93,4 @@ RUN groupadd -r usergroup
 RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
 RUN chown -R appuser:usergroup /home/appuser
 USER appuser
-ENV WAVEGUIDE_ROOT=/home/appuser/waveguide
 

@@ -9,7 +9,7 @@ os := Linux
 comp := GNU-13.1.0
 tests_path := tests
 
-build_type = Debug
+build_type = Release
 cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
