@@ -57,9 +57,9 @@ tests:
 	
 .PHONY: run_tests
 run_tests:
-	cd $(build_path)/waveguide/math/tests && ctest
-	cd $(build_path)/waveguide/astro/tests && ctest
-	cd $(build_path)/waveguide/access/tests && ctest
+	cd $(build_path)/waveguide/math/tests && ctest --rerun-failed --output-on-failure
+	cd $(build_path)/waveguide/astro/tests && ctest --rerun-failed --output-on-failure
+	cd $(build_path)/waveguide/access/tests && ctest --rerun-failed --output-on-failure
 
 .PHONY: verbose
 verbose:
