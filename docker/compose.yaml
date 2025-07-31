@@ -1,0 +1,68 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "app".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  waveguide:
+    image: jayiuliano/waveguide:latest
+    build:
+      context: .
+      tags: 
+        - waveguide:latest
+      target: final
+
+    volumes:
+      - ~/projects/waveguide/cmake:/home/appuser/waveguide/cmake \
+      - ~/projects/waveguide/data:/home/appuser/waveguide/data \
+      - ~/projects/waveguide/extern:/home/appuser/waveguide/extern \
+      - ~/projects/waveguide/scripts:/home/appuser/waveguide/scripts \
+      - ~/projects/waveguide/waveguide:/home/appuser/waveguide/waveguide \
+      - ~/projects/waveguide/CMakeLists.txt:/home/appuser/waveguide/CMakeLists.txt \
+      - ~/projects/waveguide/conanfile.txt:/home/appuser/waveguide/conanfile.txt \
+      - ~/projects/waveguide/Makefile:/home/appuser/waveguide/Makefile \
+      - ~/open-source:/home/appuser/open-source \
+      - ~/.conan2:/home/appuser/.conan2 \
+      
+    # If your application exposes a port, uncomment the following lines and change
+    # the port numbers as needed. The first number is the host port and the second
+    # is the port inside the container.
+    # ports:
+    #   - 8080:8080
+
+    # The commented out section below is an example of how to define a PostgreSQL
+    # database that your application can use. `depends_on` tells Docker Compose to
+    # start the database before your application. The `db-data` volume persists the
+    # database data between container restarts. The `db-password` secret is used
+    # to set the database password. You must create `db/password.txt` and add
+    # a password of your choosing to it before running `docker compose up`.
+    #     depends_on:
+    #       db:
+    #         condition: service_healthy
+    #   db:
+    #     image: postgres
+    #     restart: always
+    #     user: postgres
+    #     secrets:
+    #       - db-password
+    #     volumes:
+    #       - db-data:/var/lib/postgresql/data
+    #     environment:
+    #       - POSTGRES_DB=example
+    #       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    #     expose:
+    #       - 5432
+    #     healthcheck:
+    #       test: [ "CMD", "pg_isready" ]
+    #       interval: 10s
+    #       timeout: 5s
+    #       retries: 5
+    # volumes:
+    #   db-data:
+    # secrets:
+    #   db-password:
+    #     file: db/password.txt

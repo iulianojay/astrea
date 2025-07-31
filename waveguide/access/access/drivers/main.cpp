@@ -61,7 +61,9 @@ void access_test()
     // Build constellation
     Viewer geo(geoGp[0], sys);
     // Constellation<Viewer> allSats(everythingElseGps, sys);
-    Constellation<Viewer> allSats({ everythingElseGps[0] }, sys);
+    Constellation<Viewer> allSats(
+        { everythingElseGps[0], everythingElseGps[1], everythingElseGps[2], everythingElseGps[3], everythingElseGps[4] }, sys
+    );
 
     // Add sensors
     CircularFieldOfView fovGeo(15.0 * deg);
@@ -142,7 +144,8 @@ void access_test()
     std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
-    std::filesystem::path base    = "/home/jay/projects/waveguide/waveguide/access/";
+    const std::string root        = std::getenv("WAVEGUIDE_ROOT");
+    std::filesystem::path base    = root + "/waveguide/access/";
     std::filesystem::path outfile = base / "access/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);

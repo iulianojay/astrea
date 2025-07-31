@@ -26,16 +26,6 @@ set(SNAPSHOT_SOURCES
 # Find library
 # find_library(AVRO avrocpp)
 
-include(FetchContent)
-FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
-                         GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
-FetchContent_MakeAvailable(cpr)
-
-find_package(SQLite3 REQUIRED)
-
-FetchContent_Declare(sqlite_orm GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git GIT_TAG v1.9.1)
-FetchContent_MakeAvailable(sqlite_orm)
-
 # Headers
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(SNAPSHOT_HEADERS

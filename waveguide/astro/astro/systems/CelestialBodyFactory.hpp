@@ -45,30 +45,28 @@ class CelestialBodyFactory {
 
     void find_root();
 
-    const std::unordered_map<std::string, std::string> _buildFiles = {
-        { "Sun", "./data/planetary/Sun/Sun.json" },
-        { "Mercury", "./data/planetary/Mercury/Mercury.json" },
-        { "Venus", "./data/planetary/Venus/Venus.json" },
-        { "Earth", "./data/planetary/Earth/Earth.json" },
-        { "Moon", "./data/planetary/Earth/Moon.json" },
-        { "Mars", "./data/planetary/Mars/Mars.json" },
-        { "Phobos", "./data/planetary/Mars/Phobos.json" },
-        { "Deimos", "./data/planetary/Mars/Deimos.json" },
-        { "Jupiter", "./data/planetary/Jupiter/Jupiter.json" },
-        { "Ganymede", "./data/planetary/Jupiter/Ganymede.json" },
-        { "Callisto", "./data/planetary/Jupiter/Callisto.json" },
-        { "Io", "./data/planetary/Jupiter/Io.json" },
-        { "Europa", "./data/planetary/Jupiter/Europa.json" },
-        { "Saturn", "./data/planetary/Saturn/Saturn.json" },
-        { "Titan", "./data/planetary/Saturn/Titan.json" },
-        { "Rhea", "./data/planetary/Saturn/Rhea.json" },
-        { "Iapetus", "./data/planetary/Saturn/Iapetus.json" },
-        { "Uranus", "./data/planetary/Uranus/Uranus.json" },
-        { "Titania", "./data/planetary/Uranus/Titania.json" },
-        { "Oberon", "./data/planetary/Uranus/Oberon.json" },
-        { "Neptune", "./data/planetary/Neptune/Neptune.json" },
-        { "Triton", "./data/planetary/Neptune/Triton.json" }
-    };
+    const std::unordered_map<std::string, std::string> _buildFiles = { { "Sun", "/data/planetary/Sun/Sun.json" },
+                                                                       { "Mercury", "/data/planetary/Mercury/Mercury.json" },
+                                                                       { "Venus", "/data/planetary/Venus/Venus.json" },
+                                                                       { "Earth", "/data/planetary/Earth/Earth.json" },
+                                                                       { "Moon", "/data/planetary/Earth/Moon.json" },
+                                                                       { "Mars", "/data/planetary/Mars/Mars.json" },
+                                                                       { "Phobos", "/data/planetary/Mars/Phobos.json" },
+                                                                       { "Deimos", "/data/planetary/Mars/Deimos.json" },
+                                                                       { "Jupiter", "/data/planetary/Jupiter/Jupiter.json" },
+                                                                       { "Ganymede", "/data/planetary/Jupiter/Ganymede.json" },
+                                                                       { "Callisto", "/data/planetary/Jupiter/Callisto.json" },
+                                                                       { "Io", "/data/planetary/Jupiter/Io.json" },
+                                                                       { "Europa", "/data/planetary/Jupiter/Europa.json" },
+                                                                       { "Saturn", "/data/planetary/Saturn/Saturn.json" },
+                                                                       { "Titan", "/data/planetary/Saturn/Titan.json" },
+                                                                       { "Rhea", "/data/planetary/Saturn/Rhea.json" },
+                                                                       { "Iapetus", "/data/planetary/Saturn/Iapetus.json" },
+                                                                       { "Uranus", "/data/planetary/Uranus/Uranus.json" },
+                                                                       { "Titania", "/data/planetary/Uranus/Titania.json" },
+                                                                       { "Oberon", "/data/planetary/Uranus/Oberon.json" },
+                                                                       { "Neptune", "/data/planetary/Neptune/Neptune.json" },
+                                                                       { "Triton", "/data/planetary/Neptune/Triton.json" } };
 };
 
 } // namespace astro

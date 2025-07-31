@@ -7,7 +7,8 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
-#include <snapshot/snapshot.hpp>
+#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
+#include <units/units.hpp>
 
 // astro
 #include <astro/astro.fwd.hpp>
@@ -16,7 +17,6 @@
 #include <astro/state/StateHistory.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace waveguide {
 namespace astro {

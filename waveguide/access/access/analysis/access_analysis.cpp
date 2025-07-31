@@ -85,7 +85,6 @@ AccessArray
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
     AccessArray allAccesses;
     utilities::ProgressBar progressBar(constel.size(), "\tAccess");
-    std::cout << std::endl;
     for (auto& shell : constel.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (Viewer& viewer : plane.get_all_spacecraft()) {
@@ -99,7 +98,6 @@ AccessArray
                     RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
 
                     // Store
-                    std::cout << satAccess << std::endl;
                     if (satAccess.size() > 0) {
                         viewer.add_access(groundId, satAccess);
                         ground.add_access(viewerId, satAccess);
@@ -217,7 +215,6 @@ RiseSetArray
             RiseSetArray sensorAccess = find_sensor_to_ground_sensor_accesses(accessInfo, sensor, groundSensor, twoWay);
 
             // Store
-            std::cout << sensorAccess << std::endl;
             if (sensorAccess.size() > 0) {
                 satAccess = (satAccess | sensorAccess);
                 sensor.add_access(groundSensor.get_id(), sensorAccess);

@@ -10,12 +10,6 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
-if (PROJECT_IS_TOP_LEVEL) 
-    add_subdirectory(../math ../math)
-    add_subdirectory(../units ../units)
-    add_subdirectory(../utilities ../utilities)
-endif()
-
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
@@ -136,19 +130,19 @@ set(ASTRO_DIRS
 )
 include_directories(${ASTRO_DIRS})
 
-# Find library
-find_library(AVRO avrocpp)
+# # Find library
+# find_library(AVRO avrocpp)
 
 # Shared library
 add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units ${AVRO})
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units)
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
 
 # Static library
 add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units ${AVRO})
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units)
 target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
 
 # Executable
@@ -168,4 +162,6 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests)
+if(${BUILD_TESTS})
+    add_subdirectory(tests)
+endif()

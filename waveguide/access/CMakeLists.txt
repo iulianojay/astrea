@@ -10,14 +10,6 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
-if (PROJECT_IS_TOP_LEVEL) 
-    add_subdirectory(../math ../math)
-    add_subdirectory(../astro ../astro)
-    add_subdirectory(../snapshot ../snapshot)
-    add_subdirectory(../units ../units)
-    add_subdirectory(../utilities ../utilities)
-endif()
-
 # Objects
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -85,27 +77,22 @@ set(ACCESS_DIRS
 )
 include_directories(${ACCESS_DIRS})
 
-find_package(SQLite3 REQUIRED)
-
-include(FetchContent)
-FetchContent_Declare(sqlite_orm GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git GIT_TAG v1.9.1)
-FetchContent_MakeAvailable(sqlite_orm)
-
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${ACCESS_SOURCES} ${ACCESS_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared snapshot_shared mp-units::mp-units sqlite_orm::sqlite_orm)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared snapshot_shared mp-units::mp-units)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${ACCESS_SOURCES} ${ACCESS_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static snapshot_static mp-units::mp-units sqlite_orm::sqlite_orm)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static snapshot_static mp-units::mp-units)
 
 # Executable
 add_executable             (${PROJECT_NAME}_exe ${ACCESS_BASE}/drivers/main.cpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ACCESS_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers
 file(COPY
@@ -117,4 +104,6 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests)
+if(${BUILD_TESTS})
+    add_subdirectory(tests)
+endif()
