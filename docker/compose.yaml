@@ -9,7 +9,7 @@
 # https://github.com/docker/awesome-compose
 services:
   waveguide:
-    image: waveguide:latest
+    image: jayiuliano/waveguide:latest
     build:
       context: .
       tags: 

@@ -57,4 +57,6 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests)
+if(${BUILD_TESTS})
+    add_subdirectory(tests)
+endif()

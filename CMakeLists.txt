@@ -52,7 +52,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(sqlite_orm)
 
 # Add google test
-include(FetchContent)
+set(INSTALL_GTEST OFF)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz

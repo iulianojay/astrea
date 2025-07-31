@@ -68,7 +68,7 @@ RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openss
 RUN chown -R appuser:usergroup /home/appuser
 USER appuser
 
-RUN make conan-release
+RUN make release all
 
 ################################################################################
 # Create a final stage for running your application.

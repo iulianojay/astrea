@@ -10,14 +10,6 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
-if (PROJECT_IS_TOP_LEVEL) 
-    add_subdirectory(../math ../math)
-    add_subdirectory(../astro ../astro)
-    add_subdirectory(../snapshot ../snapshot)
-    add_subdirectory(../units ../units)
-    add_subdirectory(../utilities ../utilities)
-endif()
-
 # Objects
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ACCESS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -112,4 +104,6 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-add_subdirectory(tests)
+if(${BUILD_TESTS})
+    add_subdirectory(tests)
+endif()
