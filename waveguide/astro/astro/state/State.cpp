@@ -9,5 +9,10 @@ std::ostream& operator<<(std::ostream& os, const State& state)
     return os;
 }
 
+bool State::operator==(const State& other) const
+{
+    return _epoch == other._epoch && _elements == other._elements && _system == other._system;
+}
+
 } // namespace astro
 } // namespace waveguide

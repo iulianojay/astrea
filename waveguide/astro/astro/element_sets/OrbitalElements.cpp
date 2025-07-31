@@ -15,6 +15,21 @@ std::ostream& operator<<(std::ostream& os, const OrbitalElements& elements)
     return os;
 }
 
+bool OrbitalElements::operator==(const OrbitalElements& other) const
+{
+    if (_elements.index() != other.extract().index()) [[unlikely]] { return false; }
+    return std::visit(
+        [&](const auto& x) -> bool {
+            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
+                throw_mismatched_types();
+            }
+            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            return x == y;
+        },
+        _elements
+    );
+}
+
 OrbitalElements OrbitalElements::operator+(const OrbitalElements& other) const
 {
     return std::visit(

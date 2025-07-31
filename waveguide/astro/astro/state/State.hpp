@@ -23,6 +23,8 @@ class State {
     {
     }
 
+    bool operator==(const State& other) const;
+
     const OrbitalElements& get_elements() const { return _elements; }
     const Date& get_epoch() const { return _epoch; }
     const AstrodynamicsSystem& get_system() const { return *_system; }

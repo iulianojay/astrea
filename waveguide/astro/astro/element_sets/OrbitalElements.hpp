@@ -173,6 +173,8 @@ class OrbitalElements {
         return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
     }
 
+    bool operator==(const OrbitalElements& other) const;
+
     OrbitalElements operator+(const OrbitalElements& other) const;
     OrbitalElements& operator+=(const OrbitalElements& other);
 

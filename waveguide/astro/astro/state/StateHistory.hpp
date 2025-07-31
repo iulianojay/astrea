@@ -45,7 +45,7 @@ class StateHistory {
 
   private:
     phmap::btree_map<Time, State> _states;
-    std::size_t _objectId;
+    std::size_t _objectId = 0;
 };
 
 } // namespace astro
