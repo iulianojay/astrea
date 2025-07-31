@@ -44,4 +44,4 @@ image with waveguide and open-source files mounted:
 
 new: 
     > docker build -t jayiuliano/waveguide:latest -f ./docker/Dockerfile ~
-    >  ~/projects/waveguide >> docker build -t jayiuliano/waveguide:latest -f ./docker/Dockerfile ~
+    > docker image push jayiuliano/waveguide:latest

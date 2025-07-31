@@ -1,7 +1,7 @@
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
-config_path := $(abspath $(shell pwd))
+config_path := $(abspath $(WAVEGUIDE_ROOT))
 source_path := waveguide
 examples_path := examples
 arch := x86_64
@@ -14,8 +14,7 @@ cxx = g++-13
 verbose_makefile = OFF
 warnings_as_errors = OFF
 
-# build_path := $(abspath $(shell pwd)/build/$(arch)-$(os)/$(comp)/$(build_type))
-build_path := $(abspath $(shell pwd)/build/gcc-13-23/$(build_type))
+build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type))
 
 OPTIONS = debug release relwdebug verbose
 OPTIONS_INPUT = $(filter $(OPTIONS), $(MAKECMDGOALS))
