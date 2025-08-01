@@ -16,7 +16,7 @@ using namespace astro;
 class EquinoctialTest : public testing::Test {
   public:
     EquinoctialTest() :
-        eom(sys)
+        eom(sys, forces)
     {
     }
 
@@ -43,6 +43,7 @@ class EquinoctialTest : public testing::Test {
     AstrodynamicsSystem sys;
     Date epoch;
     EquinoctialVop eom;
+    ForceModel forces;
 };
 
 

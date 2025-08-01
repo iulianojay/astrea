@@ -21,7 +21,7 @@ namespace astro {
 class CowellsMethod : public EquationsOfMotion {
 
   public:
-    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces = ForceModel()) :
+    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
         forces(forces),
         mu(system.get_center()->get_mu()){};

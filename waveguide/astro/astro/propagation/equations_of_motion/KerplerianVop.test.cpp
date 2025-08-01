@@ -16,7 +16,7 @@ using namespace astro;
 class KeplerianVopTest : public testing::Test {
   public:
     KeplerianVopTest() :
-        eom(sys)
+        eom(sys, forces)
     {
     }
 
@@ -43,6 +43,7 @@ class KeplerianVopTest : public testing::Test {
     AstrodynamicsSystem sys;
     Date epoch;
     KeplerianVop eom;
+    ForceModel forces;
 };
 
 

@@ -83,6 +83,8 @@ StateHistory
     if (store) { stateHistory[time] = State({ state, epoch, sys }); }
     while (iteration < iterMax) {
 
+        timeStep = timeStep > (1000.0 * s) ? (1000.0 * s) : timeStep;
+
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {
@@ -321,23 +323,6 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
     }
-    // for (std::size_t ii = 0; ii < stateNew.size(); ++ii) {
-
-    //     if (!useFixedStep) {
-    //         // Error
-    //         maxError = std::max(maxError, abs(stateError[ii]) / (absoluteTolerance + abs(stateNew[ii]) * relativeTolerance));
-
-    //         // Catch huge steps
-    //         /* There has to be a better way to do this. It's still possible for the integration to
-    //            pass through a singularity without a huge step */
-    //         if (abs(stateNew[ii] - state[ii]) > 1.0e6 || std::isnan(stateNew[ii]) || std::isinf(stateNew[ii])) {
-    //             /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
-    //                If the step is legitimate, but just very large, this will just force
-    //                it to lower the step slightly and try again without killing the run */
-    //             maxError = 2.0; // Force step failure
-    //         }
-    //     }
-    // }
 
     // Check error of step
     if (!useFixedStep) { check_error(maxError, stateNew, stateError, time, timeStep, state); }
@@ -382,9 +367,11 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
         }
         else {
             // Predicted relative step size
-            const Unitless relativeTimeStep =
-                abs(timeStep / timeStepPrevious) * pow<2, 25>(epsilon / maxError) * pow<3, 50>(maxError / maxErrorPrevious);
-
+            Unitless relativeTimeStep = 1.0 * waveguide::detail::unitless;
+            if (maxError != 0.0 * waveguide::detail::unitless && maxErrorPrevious != 0.0 * waveguide::detail::unitless) { // TODO: Check more closely why we're getting 0 error
+                relativeTimeStep = abs(timeStep / timeStepPrevious) * pow<2, 25>(epsilon / maxError) *
+                                   pow<3, 50>(maxError / maxErrorPrevious);
+            }
             // Store step and error after computing relative time step
             timeStepPrevious = timeStep;
             maxErrorPrevious = maxError;

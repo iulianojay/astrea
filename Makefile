@@ -9,13 +9,13 @@ os := Linux
 comp := GNU-13.1.0
 tests_path := tests
 
-build_type = Release
-build_type_lower = $(shell echo $(build_type) | tr A-Z a-z)
+build_type := Release
+build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type))
-build_tests = OFF
-cxx = g++-13
-verbose_makefile = OFF
-warnings_as_errors = OFF
+build_tests := OFF
+cxx := g++-13
+verbose_makefile := OFF
+warnings_as_errors := OFF
 
 .DEFAULT_GOAL := all
 
@@ -38,14 +38,20 @@ setup:
 .PHONY: debug
 debug: 
 	$(eval build_type = Debug)
+	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
+	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
 	
 .PHONY: release
 release: 
 	$(eval build_type = Release)
+	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
+	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
 	
 .PHONY: relwithdebinfo
 relwithdebinfo: 
 	$(eval build_type = RelWithDebInfo)
+	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
+	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
 
 # .PHONY: examples
 # examples: install

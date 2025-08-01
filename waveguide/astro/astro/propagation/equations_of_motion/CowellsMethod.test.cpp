@@ -15,7 +15,7 @@ using namespace astro;
 class CowellsMethodTest : public testing::Test {
   public:
     CowellsMethodTest() :
-        eom(sys)
+        eom(sys, forces)
     {
     }
 
@@ -42,6 +42,7 @@ class CowellsMethodTest : public testing::Test {
     AstrodynamicsSystem sys;
     Date epoch;
     CowellsMethod eom;
+    ForceModel forces;
 };
 
 

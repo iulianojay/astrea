@@ -25,12 +25,12 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
 
-class TwoBodyPropagationTest : public testing::Test {
+class KeplerianVopPropagationTest : public testing::Test {
   public:
-    TwoBodyPropagationTest() :
+    KeplerianVopPropagationTest() :
         start(seconds(0)),
         end(weeks(1)),
-        eom(sys),
+        eom(sys, forces),
         propInterval({ start, end }),
         epoch(J2000)
     {
@@ -52,7 +52,7 @@ class TwoBodyPropagationTest : public testing::Test {
     }
 
     AstrodynamicsSystem sys;
-    TwoBody eom;
+    KeplerianVop eom;
     ForceModel forces;
     Integrator integrator;
     Time start;
@@ -69,11 +69,11 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GEO)
+TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft geo({ state0, epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -91,11 +91,11 @@ TEST_F(TwoBodyPropagationTest, GEO)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GPS)
+TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft meo({ state0, epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -113,11 +113,11 @@ TEST_F(TwoBodyPropagationTest, GPS)
 }
 
 
-TEST_F(TwoBodyPropagationTest, LEO)
+TEST_F(KeplerianVopPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ state0, epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

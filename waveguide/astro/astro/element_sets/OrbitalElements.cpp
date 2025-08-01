@@ -4,6 +4,8 @@
 
 #include <mp-units/math.h>
 
+#include <units/util.hpp>
+
 using namespace mp_units;
 
 namespace waveguide {
@@ -172,28 +174,26 @@ void throw_mismatched_types()
 
 bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable, Unitless relTol)
 {
-    if (first.index() != second.index()) {
-        throw std::runtime_error("Cannot compare elements sets of different types.");
-    }
-    const auto firstScaled  = first.to_vector();
-    const auto secondScaled = second.to_vector();
+    if (first.index() != second.index()) { throw_mismatched_types(); }
+
+    const std::vector<Unitless> firstScaled  = first.to_vector();
+    const std::vector<Unitless> secondScaled = second.to_vector();
     for (int ii = 0; ii < 6; ii++) {
-        if (abs((firstScaled[ii] - secondScaled[ii]) / firstScaled[ii]) > relTol) { return false; }
+        if (!waveguide::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
     }
     return true;
 }
 
 bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, bool ignoreFastVariable, Unitless relTol)
 {
-    if (first.index() != second.index()) {
-        throw std::runtime_error("Cannot compare elements sets of different types.");
-    }
+    if (first.index() != second.index()) { throw_mismatched_types(); }
+
     // arbitrary normalization. shouldn't affect relative size
-    const Time scale        = 1.0 * mp_units::si::unit_symbols::s;
-    const auto firstScaled  = (first * scale).to_vector();
-    const auto secondScaled = (second * scale).to_vector();
+    const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
+    const std::vector<Unitless> firstScaled  = (first * scale).to_vector();
+    const std::vector<Unitless> secondScaled = (second * scale).to_vector();
     for (int ii = 0; ii < 6; ii++) {
-        if (abs((firstScaled[ii] - secondScaled[ii]) / firstScaled[ii]) > relTol) { return false; }
+        if (!waveguide::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
     }
     return true;
 }

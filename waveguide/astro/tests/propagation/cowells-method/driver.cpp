@@ -25,12 +25,12 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
 
-class TwoBodyPropagationTest : public testing::Test {
+class CowellsMethodPropagationTest : public testing::Test {
   public:
-    TwoBodyPropagationTest() :
+    CowellsMethodPropagationTest() :
         start(seconds(0)),
         end(weeks(1)),
-        eom(sys),
+        eom(sys, forces),
         propInterval({ start, end }),
         epoch(J2000)
     {
@@ -52,7 +52,7 @@ class TwoBodyPropagationTest : public testing::Test {
     }
 
     AstrodynamicsSystem sys;
-    TwoBody eom;
+    CowellsMethod eom;
     ForceModel forces;
     Integrator integrator;
     Time start;
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GEO)
+TEST_F(CowellsMethodPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
@@ -91,7 +91,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GPS)
+TEST_F(CowellsMethodPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
@@ -113,7 +113,7 @@ TEST_F(TwoBodyPropagationTest, GPS)
 }
 
 
-TEST_F(TwoBodyPropagationTest, LEO)
+TEST_F(CowellsMethodPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();

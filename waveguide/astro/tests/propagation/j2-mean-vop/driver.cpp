@@ -25,9 +25,9 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
 
-class TwoBodyPropagationTest : public testing::Test {
+class J2MeanVopPropagationTest : public testing::Test {
   public:
-    TwoBodyPropagationTest() :
+    J2MeanVopPropagationTest() :
         start(seconds(0)),
         end(weeks(1)),
         eom(sys),
@@ -52,7 +52,7 @@ class TwoBodyPropagationTest : public testing::Test {
     }
 
     AstrodynamicsSystem sys;
-    TwoBody eom;
+    J2MeanVop eom;
     ForceModel forces;
     Integrator integrator;
     Time start;
@@ -69,11 +69,11 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GEO)
+TEST_F(J2MeanVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft geo({ state0, epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -82,6 +82,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
     // Validate
     for (const auto& [time, state] : stateHistory) {
         Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        std::cout << time << " : " << kep << std::endl;
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -91,11 +92,11 @@ TEST_F(TwoBodyPropagationTest, GEO)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GPS)
+TEST_F(J2MeanVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft meo({ state0, epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -113,11 +114,11 @@ TEST_F(TwoBodyPropagationTest, GPS)
 }
 
 
-TEST_F(TwoBodyPropagationTest, LEO)
+TEST_F(J2MeanVopPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ state0, epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

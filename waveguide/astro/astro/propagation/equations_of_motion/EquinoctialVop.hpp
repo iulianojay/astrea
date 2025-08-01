@@ -15,7 +15,7 @@ namespace astro {
 class EquinoctialVop : public EquationsOfMotion {
 
   public:
-    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces = ForceModel()) :
+    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
         forces(forces),
         mu(system.get_center()->get_mu()){};

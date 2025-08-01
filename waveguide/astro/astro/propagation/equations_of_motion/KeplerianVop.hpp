@@ -15,7 +15,7 @@ namespace astro {
 class KeplerianVop : public EquationsOfMotion {
 
   public:
-    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces = ForceModel(), const bool doWarn = true) :
+    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true) :
         EquationsOfMotion(system),
         forces(forces),
         mu(system.get_center()->get_mu()),
