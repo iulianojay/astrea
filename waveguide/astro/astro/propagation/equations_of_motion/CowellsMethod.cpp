@@ -17,7 +17,7 @@ using si::unit_symbols::s;
 namespace waveguide {
 namespace astro {
 
-OrbitalElementPartials CowellsMethod::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     // Extract
@@ -35,7 +35,7 @@ OrbitalElementPartials CowellsMethod::operator()(const Time& time, const Orbital
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const Date date               = vehicle.get_state().get_epoch() + time;
+    const Date date               = vehicle.get_state().get_epoch();
     AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative

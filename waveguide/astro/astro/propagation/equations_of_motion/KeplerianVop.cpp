@@ -23,7 +23,7 @@ using si::unit_symbols::s;
 namespace waveguide {
 namespace astro {
 
-OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     const Keplerian elements  = state.in<Keplerian>(get_system());
@@ -80,7 +80,7 @@ OrbitalElementPartials KeplerianVop::operator()(const Time& time, const OrbitalE
     const quantity<one> Thatz = Tvz / normTv;
 
     // Function for finding accel caused by perturbations
-    const Date date               = vehicle.get_state().get_epoch() + time;
+    const Date date               = vehicle.get_state().get_epoch();
     AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T

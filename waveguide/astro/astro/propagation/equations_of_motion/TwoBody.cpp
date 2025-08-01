@@ -15,7 +15,7 @@ using mp_units::si::unit_symbols::s;
 namespace waveguide {
 namespace astro {
 
-OrbitalElementPartials TwoBody::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
     const Cartesian cartesian = state.in<Cartesian>(get_system());
 

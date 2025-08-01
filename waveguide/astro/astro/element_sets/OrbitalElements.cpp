@@ -145,7 +145,14 @@ OrbitalElements OrbitalElementPartials::operator*(const Time& time) const
     return std::visit([&](const auto& x) -> OrbitalElements { return x * time; }, _elements);
 }
 
+std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& elements)
+{
+    std::visit([&os](const auto& x) { os << x; }, elements._elements);
+    return os;
+}
+
 const OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() const { return _elements; }
+
 OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { return _elements; }
 
 constexpr std::size_t OrbitalElementPartials::index() const { return _elements.index(); }
@@ -170,6 +177,21 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
     }
     const auto firstScaled  = first.to_vector();
     const auto secondScaled = second.to_vector();
+    for (int ii = 0; ii < 6; ii++) {
+        if (abs((firstScaled[ii] - secondScaled[ii]) / firstScaled[ii]) > relTol) { return false; }
+    }
+    return true;
+}
+
+bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, bool ignoreFastVariable, Unitless relTol)
+{
+    if (first.index() != second.index()) {
+        throw std::runtime_error("Cannot compare elements sets of different types.");
+    }
+    // arbitrary normalization. shouldn't affect relative size
+    const Time scale        = 1.0 * mp_units::si::unit_symbols::s;
+    const auto firstScaled  = (first * scale).to_vector();
+    const auto secondScaled = (second * scale).to_vector();
     for (int ii = 0; ii < 6; ii++) {
         if (abs((firstScaled[ii] - secondScaled[ii]) / firstScaled[ii]) > relTol) { return false; }
     }

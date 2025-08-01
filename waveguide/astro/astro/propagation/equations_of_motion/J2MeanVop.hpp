@@ -24,7 +24,7 @@ class J2MeanVop : public EquationsOfMotion {
         equitorialR(system.get_center()->get_equitorial_radius()){};
     ~J2MeanVop() = default;
 
-    OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:

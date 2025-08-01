@@ -117,6 +117,8 @@ class Equinoctial {
 
 class EquinoctialPartial {
 
+    friend std::ostream& operator<<(std::ostream&, EquinoctialPartial const&);
+
   public:
     EquinoctialPartial() = default;
     EquinoctialPartial(

@@ -119,6 +119,8 @@ class Keplerian {
 
 class KeplerianPartial {
 
+    friend std::ostream& operator<<(std::ostream&, KeplerianPartial const&);
+
   public:
     KeplerianPartial() = default;
     KeplerianPartial(

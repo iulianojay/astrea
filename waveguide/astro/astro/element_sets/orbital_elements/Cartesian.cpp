@@ -280,7 +280,6 @@ Cartesian CartesianPartial::operator*(const Time& time) const
     return Cartesian(_vx * time, _vy * time, _vz * time, _ax * time, _ay * time, _az * time);
 }
 
-
 std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
 {
     os << "[";
@@ -291,6 +290,19 @@ std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
     os << elements.get_vy() << ", ";
     os << elements.get_vz();
     os << "] (Cartesian)";
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, CartesianPartial const& elements)
+{
+    os << "[";
+    os << elements._vx << ", ";
+    os << elements._vy << ", ";
+    os << elements._vz << ", ";
+    os << elements._ax << ", ";
+    os << elements._ay << ", ";
+    os << elements._az;
+    os << "] (CartesianPartial)";
     return os;
 }
 

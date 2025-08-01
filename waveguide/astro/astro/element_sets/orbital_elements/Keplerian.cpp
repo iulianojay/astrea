@@ -400,5 +400,18 @@ std::ostream& operator<<(std::ostream& os, Keplerian const& elements)
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, KeplerianPartial const& elements)
+{
+    os << "[";
+    os << elements._semimajorPartial << ", ";
+    os << elements._eccentricityPartial << ", ";
+    os << elements._inclinationPartial << ", ";
+    os << elements._rightAscensionPartial << ", ";
+    os << elements._argPerigeePartial << ", ";
+    os << elements._trueAnomalyPartial;
+    os << "] (KeplerianPartial)";
+    return os;
+}
+
 } // namespace astro
 } // namespace waveguide

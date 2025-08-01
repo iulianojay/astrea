@@ -16,7 +16,7 @@ OrbitalElementPartials
     ++functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(time, state, vehicle);
+    return eom(state, vehicle);
 }
 
 
@@ -466,7 +466,7 @@ void Integrator::check_event(const Time& time, const OrbitalElements& state, con
 {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    eventTrigger = eom.check_crash(time, state, vehicle);
+    eventTrigger = eom.check_crash(state, vehicle);
 
     // Break if hit nans or infs
     if (isinf(abs(time)) || isnan(abs(time))) { eventTrigger = true; }

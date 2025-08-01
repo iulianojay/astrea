@@ -1,5 +1,7 @@
 #pragma once
 
+#include <units/typedefs.hpp>
+
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
@@ -12,18 +14,15 @@ namespace astro {
 
 class KeplerianVop : public EquationsOfMotion {
 
-    using GravParam =
-        mp_units::quantity<mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)>;
-
   public:
-    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true) :
+    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces = ForceModel(), const bool doWarn = true) :
         EquationsOfMotion(system),
         forces(forces),
         mu(system.get_center()->get_mu()),
         doWarn(doWarn){};
     ~KeplerianVop() = default;
 
-    OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:

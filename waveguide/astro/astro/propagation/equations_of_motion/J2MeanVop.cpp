@@ -26,7 +26,7 @@ using si::unit_symbols::s;
 namespace waveguide {
 namespace astro {
 
-OrbitalElementPartials J2MeanVop::operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
     const Keplerian elements  = state.in<Keplerian>(get_system());

@@ -136,6 +136,8 @@ class Cartesian {
 
 class CartesianPartial {
 
+    friend std::ostream& operator<<(std::ostream&, CartesianPartial const&);
+
   public:
     CartesianPartial() = default;
     CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :

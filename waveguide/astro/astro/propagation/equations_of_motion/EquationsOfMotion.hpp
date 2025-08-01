@@ -22,8 +22,8 @@ class EquationsOfMotion {
         system(&system){};
     virtual ~EquationsOfMotion() = default;
 
-    virtual OrbitalElementPartials operator()(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
-    virtual bool check_crash(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+    virtual OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+    virtual bool check_crash(const OrbitalElements& state, const Vehicle& vehicle) const
     {
         return false; // TODO: Implement these
     }

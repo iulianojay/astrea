@@ -207,6 +207,8 @@ class OrbitalElementPartials {
 
     using PartialVariant = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
 
+    friend std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& state);
+
   public:
     OrbitalElementPartials() :
         _elements(CartesianPartial())
@@ -240,6 +242,12 @@ class OrbitalElementPartials {
 
 void throw_mismatched_types();
 bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * mp_units::one);
+bool nearly_equal(
+    const OrbitalElementPartials& first,
+    const OrbitalElementPartials& second,
+    bool ignoreFastVariable = false,
+    Unitless relTol         = 1.0e-5 * mp_units::one
+);
 
 } // namespace astro
 } // namespace waveguide

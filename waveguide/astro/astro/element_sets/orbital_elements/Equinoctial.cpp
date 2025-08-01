@@ -230,5 +230,18 @@ std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, EquinoctialPartial const& elements)
+{
+    os << "[";
+    os << elements._semilatusPartial << ", ";
+    os << elements._fPartial << ", ";
+    os << elements._gPartial << ", ";
+    os << elements._hPartial << ", ";
+    os << elements._kPartial << ", ";
+    os << elements._trueLongitudePartial;
+    os << "] (EquinoctialPartial)";
+    return os;
+}
+
 } // namespace astro
 } // namespace waveguide
