@@ -7,6 +7,7 @@
 #include <mp-units/ext/format.h>
 
 #include <units/detail.hpp>
+#include <units/custom.hpp>
 
 namespace waveguide {
 
@@ -20,6 +21,10 @@ using Length   = mp_units::quantity<detail::minor_distance_unit>;
 using Velocity        = mp_units::quantity<detail::distance_unit / detail::time_unit>;
 using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>;
 using AngularRate     = mp_units::quantity<detail::angle_unit / detail::time_unit>;
+
+using BodyVelocity        = mp_units::quantity<detail::distance_unit / JulianCentury>;
+using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / JulianCentury>;
+using BodyAngularRate     = mp_units::quantity<detail::angle_unit / JulianCentury>;
 
 using Acceleration = mp_units::quantity<detail::distance_unit / mp_units::pow<2>(detail::time_unit)>;
 

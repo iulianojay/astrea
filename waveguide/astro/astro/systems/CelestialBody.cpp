@@ -111,12 +111,11 @@ State CelestialBody::get_state_at(const Date& date) const
     const Unitless ecct_4 = ecct_3 * ecct;
     const Unitless ecct_5 = ecct_4 * ecct;
 
-    const Angle thetat =
-        (Met + (2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) * isq_angle::cotes_angle +
-         (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) * isq_angle::cotes_angle +
-         (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) * isq_angle::cotes_angle +
-         103.0 / 96.0 * ecct_4 * sin(4 * Met) * isq_angle::cotes_angle +
-         1097.0 / 960.0 * ecct_5 * sin(5 * Met) * isq_angle::cotes_angle);
+    const Angle thetat = Met + ((2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) +
+                                (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) +
+                                (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) +
+                                103.0 / 96.0 * ecct_4 * sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * sin(5 * Met)) *
+                                   isq_angle::cotes_angle;
 
     // Store
     return State(OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat)), date, *_systemPtr);

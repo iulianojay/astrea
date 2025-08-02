@@ -58,6 +58,18 @@ class Spacecraft {
     std::size_t get_id() const { return _id; }
     std::string get_name() const { return _name; }
 
+    void set_mass(const Mass& mass);
+
+    void set_coefficient_of_drag(const Unitless& cd);
+    void set_coefficient_of_lift(const Unitless& cl);
+    void set_coefficient_of_reflectivity(const Unitless& cr);
+
+    void set_ram_area(const SurfaceArea& ramArea);
+    void set_solar_area(const SurfaceArea& solarArea);
+    void set_lift_area(const SurfaceArea& liftArea);
+
+    void set_name(const std::string& name);
+
   protected:
     std::size_t _id;
     std::string _name;

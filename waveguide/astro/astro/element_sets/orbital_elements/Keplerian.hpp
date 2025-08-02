@@ -32,6 +32,7 @@ class Keplerian {
         _argPerigee(scale * detail::angle_unit),
         _trueAnomaly(scale * detail::angle_unit)
     {
+        sanitize_angles();
     }
     Keplerian(const Distance& semimajor, const Unitless& eccentricity, const Angle& inclination, const Angle& rightAscension, const Angle& argPerigee, const Angle& trueAnomaly) :
         _semimajor(semimajor),
@@ -41,6 +42,7 @@ class Keplerian {
         _argPerigee(argPerigee),
         _trueAnomaly(trueAnomaly)
     {
+        sanitize_angles();
     }
     Keplerian(const Keplerian& elements, const AstrodynamicsSystem& sys) :
         Keplerian(elements)

@@ -40,5 +40,14 @@ requires requires(Rep v) { std::cyl_bessel_j(static_cast<Rep>(0.0), v); }
     return { static_cast<Rep>(cyl_bessel_j(nu, q.numerical_value_ref_in(q.unit))), mp_units::one };
 }
 
+template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
+requires requires(Rep v) { std::assoc_legendre(0, 0, v); }
+[[nodiscard]] constexpr mp_units::quantity<mp_units::one, Rep>
+    assoc_legendre(const unsigned int& n, const unsigned int& m, const mp_units::quantity<R, Rep>& q) noexcept
+{
+    using std::assoc_legendre;
+    return { static_cast<Rep>(assoc_legendre(n, m, q.numerical_value_ref_in(q.unit))), mp_units::one };
+}
+
 } // namespace math
 } // namespace waveguide

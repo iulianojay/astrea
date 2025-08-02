@@ -83,8 +83,6 @@ StateHistory
     if (store) { stateHistory[time] = State({ state, epoch, sys }); }
     while (iteration < iterMax) {
 
-        timeStep = timeStep > (1000.0 * s) ? (1000.0 * s) : timeStep;
-
         // Check for event
         check_event(time, state, eom, vehicle);
         if (eventTrigger) {

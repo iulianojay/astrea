@@ -14,8 +14,8 @@ template <auto R, typename Rep>
 {
     const auto a = x.in(x.unit);
     const auto b = y.in(x.unit);
-    if (a != 0.0 * mp_units::one && abs((a - b) / a) > relTol) { return false; }
-    else if (b != 0.0 * mp_units::one && abs((a - b) / b) > relTol) {
+    if (a != 0.0 * R && abs((a - b) / a) > relTol) { return false; }
+    else if (b != 0.0 * R && abs((a - b) / b) > relTol) {
         return false;
     }
     return true;

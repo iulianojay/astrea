@@ -76,8 +76,7 @@ Angle sanitize_angle(const Angle& angle)
     while (ang < 0.0 * waveguide::detail::angle_unit) {
         ang += TWO_PI;
     }
-    ang = fmod(ang, TWO_PI);
-    return ang;
+    return fmod(ang, TWO_PI);
 }
 
 } // namespace astro

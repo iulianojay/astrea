@@ -62,6 +62,19 @@ SurfaceArea Spacecraft::get_ram_area() const { return _ramArea; }
 SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
+// Setters
+void Spacecraft::set_mass(const Mass& mass) { _mass = mass; }
+
+void Spacecraft::set_coefficient_of_drag(const Unitless& cd) { _coefficientOfDrag = cd; }
+void Spacecraft::set_coefficient_of_lift(const Unitless& cl) { _coefficientOfLift = cl; }
+void Spacecraft::set_coefficient_of_reflectivity(const Unitless& cr) { _coefficientOfReflectivity = cr; }
+
+void Spacecraft::set_ram_area(const SurfaceArea& ramArea) { _ramArea = ramArea; }
+void Spacecraft::set_solar_area(const SurfaceArea& solarArea) { _sunArea = solarArea; }
+void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftArea; }
+
+void Spacecraft::set_name(const std::string& name) { _name = name; }
+
 
 void Spacecraft::generate_id_hash()
 {

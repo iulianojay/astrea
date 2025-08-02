@@ -156,30 +156,30 @@ TEST_F(CelestialBodyTest, GetMeanAnomaly) { nearly_equal(earth.get_mean_anomaly(
 
 TEST_F(CelestialBodyTest, GetSemimajorRate)
 {
-    nearly_equal(earth.get_semimajor_rate(), Velocity(-7.4798935500 * km / JulianCentury));
+    nearly_equal(earth.get_semimajor_rate(), BodyVelocity(-7.4798935500 * km / JulianCentury));
 }
 
 TEST_F(CelestialBodyTest, GetEccentricityRate)
 {
-    nearly_equal(earth.get_eccentricity_rate(), UnitlessPerTime(-0.00003804 * one / JulianCentury));
+    nearly_equal(earth.get_eccentricity_rate(), BodyUnitlessPerTime(-0.00003804 * one / JulianCentury));
 }
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    nearly_equal(earth.get_inclination_rate(), AngularRate(-0.013038888888888888 * deg / JulianCentury));
+    nearly_equal(earth.get_inclination_rate(), BodyAngularRate(-0.013038888888888888 * deg / JulianCentury));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    nearly_equal(earth.get_right_ascension_rate(), AngularRate(-18228.25 * deg / JulianCentury));
+    nearly_equal(earth.get_right_ascension_rate(), BodyAngularRate(-18228.25 * deg / JulianCentury));
 }
 
 TEST_F(CelestialBodyTest, GetArgumentOfPerigeeRate)
 {
-    nearly_equal(earth.get_argument_of_perigee_rate(), AngularRate(1198.28 * deg / JulianCentury));
+    nearly_equal(earth.get_argument_of_perigee_rate(), BodyAngularRate(1198.28 * deg / JulianCentury));
 }
 
 TEST_F(CelestialBodyTest, GetTrueLatitudeRate)
 {
-    nearly_equal(earth.get_true_latitude_rate(), AngularRate(129597740.63 * deg / JulianCentury));
+    nearly_equal(earth.get_true_latitude_rate(), BodyAngularRate(129597740.63 * deg / JulianCentury));
 }

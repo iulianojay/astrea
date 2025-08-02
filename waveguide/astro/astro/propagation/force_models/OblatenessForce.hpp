@@ -23,19 +23,15 @@ class OblatenessForce : public Force {
 
   private:
     mutable std::vector<std::vector<Unitless>> P{};
+    mutable std::vector<std::vector<Unitless>> normalizingCoefficients{};
     mutable std::vector<std::vector<Unitless>> C{};
     mutable std::vector<std::vector<Unitless>> S{};
-
-    std::vector<std::vector<Unitless>> alpha;
-    std::vector<std::vector<Unitless>> beta;
-    std::vector<std::vector<Unitless>> gamma;
-    std::vector<std::vector<Unitless>> Pbase;
 
     const std::size_t N;
     const std::size_t M;
     const CelestialBodyUniquePtr& center;
 
-    void assign_legendre(const Angle& latitude) const;
+    void assign_legendre(const Unitless& x) const;
     void size_vectors(const std::size_t& N, const std::size_t& M);
     void ingest_legendre_coefficient_file(const std::size_t& N, const std::size_t& M);
 };

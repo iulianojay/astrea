@@ -1,4 +1,4 @@
-#include <astro/propagation/force_models/SolarRadiationPressureForce.hpp>
+#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -17,7 +17,7 @@ namespace waveguide {
 namespace astro {
 
 AccelerationVector
-    SolarRadiationPressureForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     static const CelestialBodyUniquePtr& center = sys.get_center();
@@ -33,7 +33,7 @@ AccelerationVector
     static const bool isSun            = (center->get_name() != "Sun");
 
     // Find day nearest to current time
-    const State& stateSunToCenter        = center->get_state_at(date);
+    const State& stateSunToCenter        = center->get_state_at(date); // assumes center is a planet
     const RadiusVector radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
@@ -53,12 +53,16 @@ AccelerationVector
         radiusVehicleToSun[2] * radiusVehicleToSun[2]
     );
 
-    // Solar radiation pressure
-    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-3 * N / pow<2>(m);
-    const quantity solarRadiationPressure =
+    // Average solar radiation pressure at 1 AU
+    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-6 * N / pow<2>(m);
+
+    // Scaled to average distance from Sun
+    const quantity<kg / (m * pow<2>(s))> solarRadiationPressure =
         SRP_1AU * (au * au) / (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
+
+    // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
-    if (isSun) {
+    if (!isSun) {
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
         const Angle refAngle = angular::acos(
@@ -93,10 +97,12 @@ AccelerationVector
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity tempA                     = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
-                           radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
+    const quantity accelRelativeMagnitude    = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
+                                            radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
 
-    const AccelerationVector accelSRP{ tempA * radiusVehicleToSun[0], tempA * radiusVehicleToSun[1], tempA * radiusVehicleToSun[2] };
+    const AccelerationVector accelSRP{ accelRelativeMagnitude * radiusVehicleToSun[0],
+                                       accelRelativeMagnitude * radiusVehicleToSun[1],
+                                       accelRelativeMagnitude * radiusVehicleToSun[2] };
 
     return accelSRP;
 }

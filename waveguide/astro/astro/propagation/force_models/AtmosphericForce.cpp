@@ -157,6 +157,8 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
 //---------------------- ATMOSPHERIC DENSITY TABLES ----------------------//
 //------------------------------------------------------------------------//
 
+// TODO: There should probably just be some kind of atmopshere attached the CelestialBody itself
+
 const std::map<Altitude, Density> AtmosphericForce::venutianAtmosphere = { // km, kg/m^3
     { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
     { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },

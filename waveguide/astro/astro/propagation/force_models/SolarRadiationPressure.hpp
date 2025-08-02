@@ -11,10 +11,10 @@
 namespace waveguide {
 namespace astro {
 
-class SolarRadiationPressureForce : public Force {
+class SolarRadiationPressure : public Force {
   public:
-    SolarRadiationPressureForce()  = default;
-    ~SolarRadiationPressureForce() = default;
+    SolarRadiationPressure()  = default;
+    ~SolarRadiationPressure() = default;
 
     AccelerationVector
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;

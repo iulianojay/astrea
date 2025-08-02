@@ -62,12 +62,12 @@ class CelestialBody {
     const Angle& get_true_anomaly() const { return _trueAnomaly; };
     const Angle& get_mean_anomaly() const { return _meanAnomaly; };
 
-    const Velocity& get_semimajor_rate() const { return _semimajorAxisRate; };
-    const UnitlessPerTime& get_eccentricity_rate() const { return _eccentricityRate; };
-    const AngularRate& get_inclination_rate() const { return _inclinationRate; };
-    const AngularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
-    const AngularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
-    const AngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
+    const BodyVelocity& get_semimajor_rate() const { return _semimajorAxisRate; };
+    const BodyUnitlessPerTime& get_eccentricity_rate() const { return _eccentricityRate; };
+    const BodyAngularRate& get_inclination_rate() const { return _inclinationRate; };
+    const BodyAngularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
+    const BodyAngularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
+    const BodyAngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
 
     State get_state_at(const Date& date) const;
 
@@ -97,13 +97,14 @@ class CelestialBody {
     Angle _trueLatitude;
     Angle _trueAnomaly;
     Angle _meanAnomaly;
-
-    Velocity _semimajorAxisRate;
-    UnitlessPerTime _eccentricityRate;
-    AngularRate _inclinationRate;
-    AngularRate _rightAscensionRate;
-    AngularRate _argumentOfPerigeeRate;
-    AngularRate _trueLatitudeRate;
+    
+    // These rates need to stay in rate/JC to avoid numerical issues
+    BodyVelocity _semimajorAxisRate;
+    BodyUnitlessPerTime _eccentricityRate;
+    BodyAngularRate _inclinationRate;
+    BodyAngularRate _rightAscensionRate;
+    BodyAngularRate _argumentOfPerigeeRate;
+    BodyAngularRate _trueLatitudeRate;
 
     StateHistory _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 

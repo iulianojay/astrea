@@ -63,3 +63,16 @@ TEST_F(TwoBodyTest, Derivative)
     OrbitalElementPartials dstate = eom(state0, sat);
     assert_nearly_equal(expected, dstate);
 }
+
+// Vallado, Ex. 8.5
+TEST_F(TwoBodyTest, DerivativeValladoEx85)
+{
+    Cartesian state0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    CartesianPartial expected = CartesianPartial(
+        state0.get_vx(), state0.get_vy(), state0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
+    );
+
+    OrbitalElementPartials dstate = eom(state0, sat);
+    assert_nearly_equal(expected, dstate);
+}
