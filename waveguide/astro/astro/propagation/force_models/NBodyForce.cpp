@@ -48,14 +48,11 @@ AccelerationVector
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const State& stateSunToNBody        = center->get_state_at(date);
-        const RadiusVector radiusSunToNbody = stateSunToNBody.get_elements().in<Cartesian>(sys).get_radius();
+        const State stateCenterToNBody         = center->get_state_at(date);
+        const RadiusVector radiusCenterToNbody = stateCenterToNBody.get_elements().in<Cartesian>(sys).get_radius();
+        // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
 
         // Find radius from central body and spacecraft to nth body
-        const RadiusVector radiusCenterToNbody{ radiusSunToNbody[0] + radiusCenterToSun[0],
-                                                radiusSunToNbody[1] + radiusCenterToSun[1],
-                                                radiusSunToNbody[2] + radiusCenterToSun[2] };
-
         const RadiusVector radiusVehicleToNbody{ radiusCenterToNbody[0] - x, radiusCenterToNbody[1] - y, radiusCenterToNbody[2] - z };
 
         // Normalize
@@ -69,14 +66,14 @@ AccelerationVector
         );
 
         // Perturbational force from nth body
-        const quantity tempA =
+        const quantity directCoefficient =
             body->get_mu() / (radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude);
-        const quantity tempB =
+        const quantity indirectCoefficient =
             body->get_mu() / (radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude);
 
-        accelNBody[0] += tempA * radiusVehicleToNbody[0] - tempB * radiusCenterToNbody[0];
-        accelNBody[1] += tempA * radiusVehicleToNbody[1] - tempB * radiusCenterToNbody[1];
-        accelNBody[2] += tempA * radiusVehicleToNbody[2] - tempB * radiusCenterToNbody[2];
+        accelNBody[0] += directCoefficient * radiusVehicleToNbody[0] - indirectCoefficient * radiusCenterToNbody[0];
+        accelNBody[1] += directCoefficient * radiusVehicleToNbody[1] - indirectCoefficient * radiusCenterToNbody[1];
+        accelNBody[2] += directCoefficient * radiusVehicleToNbody[2] - indirectCoefficient * radiusCenterToNbody[2];
     }
 
     return accelNBody;

@@ -15,12 +15,12 @@ using mp_units::si::unit_symbols::s;
 using namespace waveguide;
 using namespace astro;
 
-class OblatenessForceTest : public testing::Test {
+class NBodyForceTest : public testing::Test {
   public:
-    OblatenessForceTest() :
+    NBodyForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
         sys("Earth", { "Earth", "Moon", "Sun" }, epoch),
-        force(sys, 2, 2)
+        force()
     {
     }
 
@@ -41,7 +41,7 @@ class OblatenessForceTest : public testing::Test {
     Spacecraft sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    OblatenessForce force;
+    NBodyForce force;
 };
 
 
@@ -52,24 +52,23 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(sys, 2, 0)); }
+TEST_F(NBodyForceTest, DefaultConstructor) { ASSERT_NO_THROW(NBodyForce()); }
 
 // // Vallado, Ex. 8.5
-// TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
+// TEST_F(NBodyForceTest, ComputeForceValladoEx85)
 // {
 //     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
 //                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
 //     const AccelerationVector accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-//     const AccelerationVector expectedEcef{ -1.151903e-6 * km / (s * s), -2.938330e-6 * km / (s * s), -1.023539e-5 *
-//     km / (s * s) };
-//     const AccelerationVector expected = ecef_to_eci(expectedEcef, epoch);
+//     const AccelerationVector expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
+//                                        (1.5243e-10 + -4.3052e-10) * km / (s * s),
+//                                        (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
 
 //     const Acceleration expectedNorm = sqrt(expected[0] * expected[0] + expected[1] * expected[1] + expected[2] * expected[2]);
 //     const Acceleration accelNorm = sqrt(accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]);
 
-//     // It's hard to say if these can match. They're in the same direction, but small differences in values
-//     // change these equally small outputs. Itermediary values are similar, but not identical
+//     // Celestial body positions are wrong so it isn't working. OOM is correct
 //     for (std::size_t ii = 0; ii < 3; ++ii) {
 //         ASSERT_TRUE(waveguide::nearly_equal(accel[ii], expected[ii], REL_TOL))
 //             << "Failed to match acceleration vectors: \nExpected: [" << expected[0] << ", " << expected[1] << ", "
