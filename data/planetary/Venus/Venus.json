@@ -16,7 +16,7 @@
     "Sidereal Peroid" :         { "magnitude": 224.701, "units": "days" },
 
     "State" : {
-        "Epoch" : "Jan 1, 2000 00:00:00",
+        "Epoch" : "2000-01-01 00:00:00",
         "Semimajor Axis" : {
             "value" : { "magnitude": 0.108208925730193e9, "units": "km" },
             "rate" :  { "magnitude": 137.6300413200, "units": "km/JC" }
