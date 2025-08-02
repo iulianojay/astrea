@@ -1,4 +1,13 @@
-
+/**
+ * @file conversions.hpp
+ * @author your name (you@domain.com)
+ * @brief This file contains functions for converting between different coordinate systems and formats in astrodynamics.
+ * @version 0.1
+ * @date 2025-08-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <cmath>
@@ -23,10 +32,16 @@
 namespace waveguide {
 namespace astro {
 
-/*
-NOTE: This templating is to allow conversions for radius, velocity, and acceleration vectors.
-    TODO: This is wrong for non-radial vectors and needs to be resolved.
-*/
+/**
+ * @brief Convert a vector from ECI (Earth-Centered Inertial) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ * * @note: This templating is to allow conversions for radius, velocity, and acceleration vectors.
+ *
+ * @tparam Vec_T The type of the vector to be converted, which should be a 3-element vector.
+ * @param vecEci The vector in ECI coordinates.
+ * @param date The date for which the conversion is performed, used to calculate the Greenwich Sidereal Time.
+ * @return The vector in ECEF coordinates.
+ */
+// TODO: This is wrong for non-radial vectors and needs to be resolved.
 template <typename Vec_T>
 Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
 {
@@ -57,10 +72,16 @@ Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
     return { cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z };
 }
 
-/*
-NOTE: This templating is to allow conversions for radius, velocity, and acceleration vectors.
-    This is wrong and needs to be resolved.
-*/
+
+/**
+ * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to ECI (Earth-Centered Inertial) coordinates.
+ * * @note: This templating is to allow conversions for radius, velocity, and acceleration vectors.
+ *
+ * @tparam Vec_T The type of the vector to be converted, which should be a 3-element vector.
+ * @param vecEcef The vector in ECEF coordinates.
+ * @param date The date for which the conversion is performed, used to calculate the Greenwich Sidereal Time.
+ * @return The vector in ECI coordinates.
+ */
 template <typename Vec_T>
 Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
 {
@@ -92,9 +113,36 @@ Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
     return vecEci;
 }
 
+/**
+ * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ *
+ * @param rEcef The radius vector in ECEF coordinates.
+ * @param rEquitorial The equatorial radius of the Earth.
+ * @param rPolar The polar radius of the Earth.
+ * @param lat The latitude in radians (output).
+ * @param lon The longitude in radians (output).
+ * @param alt The altitude in meters (output).
+ */
 void ecef_to_lla(const RadiusVector& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt);
+
+/**
+ * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ *
+ * @param lat The latitude in radians.
+ * @param lon The longitude in radians.
+ * @param alt The altitude in meters.
+ * @param rEquitorial The equatorial radius of the Earth.
+ * @param rPolar The polar radius of the Earth.
+ * @return The radius vector in ECEF coordinates.
+ */
 RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
 
+/**
+ * @brief Sanitize an angle to ensure it is within the range [0, 2π).
+ *
+ * @param ang The angle to sanitize.
+ * @return The sanitized angle.
+ */
 Angle sanitize_angle(const Angle& ang);
 
 } // namespace astro

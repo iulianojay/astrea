@@ -1,4 +1,13 @@
-
+/**
+ * @file rk_constants.h
+ * @author your name (you@domain.com)
+ * @brief Constants for Runge-Kutta methods used in numerical integration
+ * @version 0.1
+ * @date 2025-08-02
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #ifndef RK_CONST_H
 #define RK_CONST_H 
 

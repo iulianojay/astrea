@@ -1,3 +1,13 @@
+/**
+ * @file tuple_hash.hpp
+ * @author your name (you@domain.com)
+ * @brief This file provides a hash function for tuples.
+ * @version 0.1
+ * @date 2025-08-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <tuple>
@@ -6,6 +16,7 @@
 // so that it is picked up by argument-dependent name lookup (ADL).
 namespace std {
 namespace {
+
 // Code from boost
 // Reciprocal of the golden ratio helps spread entropy
 //     and handles duplicates.
