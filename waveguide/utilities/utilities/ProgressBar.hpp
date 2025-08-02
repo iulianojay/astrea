@@ -1,3 +1,13 @@
+/**
+ * @file ProgressBar.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief A simple progress bar utility for console applications.
+ * @version 0.1
+ * @date 2025-08-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <iostream>
@@ -6,8 +16,19 @@
 namespace waveguide {
 namespace utilities {
 
+/**
+ * @brief A simple console progress bar utility.
+ */
 class ProgressBar {
   public:
+    /**
+     * @brief Constructs a ProgressBar instance.
+     *
+     * @param maxRecords The maximum number of records to process.
+     * @param title The title of the progress bar.
+     * @param frequency The frequency of updates (in terms of records processed).
+     * @param barWidth The width of the progress bar in characters.
+     */
     ProgressBar(const std::size_t maxRecords, const std::string& title = "Progress", const std::size_t& frequency = 10, const std::size_t& barWidth = 50) :
         _iRecord(0),
         _maxRecords(maxRecords),
@@ -16,10 +37,22 @@ class ProgressBar {
         _barWidth(barWidth)
     {
     }
+
+    /**
+     * @brief Default destructor for ProgressBar.
+     */
     ~ProgressBar() = default;
 
+    /**
+     * @brief Resets the progress bar to the initial state.
+     */
     inline void reset() { _iRecord = 0; }
 
+    /**
+     * @brief Updates the progress bar and prints it to the console.
+     *
+     * This method should be called periodically to update the progress bar.
+     */
     inline void operator()()
     {
         // Progress bar
@@ -42,11 +75,11 @@ class ProgressBar {
     }
 
   private:
-    std::string _title;
-    std::size_t _iRecord;
-    std::size_t _barWidth;
-    std::size_t _maxRecords;
-    std::size_t _frequency;
+    std::string _title;      //<! Title of the progress bar
+    std::size_t _iRecord;    //<! Current record index
+    std::size_t _barWidth;   //<! Width of the progress bar in characters
+    std::size_t _maxRecords; //<! Maximum number of records to process
+    std::size_t _frequency;  //<! Frequency of updates (in terms of records processed)
 };
 
 } // namespace utilities

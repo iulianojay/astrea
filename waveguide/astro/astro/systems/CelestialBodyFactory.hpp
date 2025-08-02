@@ -1,6 +1,6 @@
 /**
  * @file CelestialBodyFactory.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Factory class for creating and managing celestial bodies in an astrodynamics system.
  * @version 0.1
  * @date 2025-08-02

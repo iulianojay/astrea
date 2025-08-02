@@ -1,6 +1,6 @@
 /**
  * @file EquationsOfMotion.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the base class of equations of motion.
  * @version 0.1
  * @date 2025-08-02

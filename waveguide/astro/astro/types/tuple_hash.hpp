@@ -1,6 +1,6 @@
 /**
  * @file tuple_hash.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file provides a hash function for tuples.
  * @version 0.1
  * @date 2025-08-02

@@ -1,6 +1,6 @@
 /**
  * @file AstrodynamicsSystem.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the AstrodynamicsSystem class, which manages celestial bodies and their interactions.
  * @version 0.1
  * @date 2025-08-02

@@ -1,6 +1,6 @@
 /**
  * @file CelestialBody.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the CelestialBody class, which represents a celestial body in an astrodynamics system.
  * @version 0.1
  * @date 2025-08-02

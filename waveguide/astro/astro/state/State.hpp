@@ -1,6 +1,6 @@
 /**
  * @file State.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Class representing the state of an astronomical object
  * @version 0.1
  * @date 2025-08-02

@@ -1,6 +1,6 @@
 /**
  * @file NullVehicle.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief A class representing a null vehicle in the waveguide astro platform.
  * @version 0.1
  * @date 2025-08-02

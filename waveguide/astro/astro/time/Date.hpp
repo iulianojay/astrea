@@ -1,6 +1,6 @@
 /**
  * @file Date.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Date class for handling time in the waveguide astro library.
  * @details This class provides functionality for handling dates, including conversions to and from Julian dates,
  *          sidereal time calculations, and various clock conversions.

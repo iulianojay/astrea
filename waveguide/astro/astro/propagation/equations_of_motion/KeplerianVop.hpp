@@ -1,6 +1,6 @@
 /**
  * @file KeplerianVop.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the Keplerian VOP equations of motion class.
  * @version 0.1
  * @date 2025-08-02

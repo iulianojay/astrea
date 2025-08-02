@@ -1,3 +1,13 @@
+/**
+ * @file constants.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Contains definitions for constant values used in waveguide.
+ * @version 0.1
+ * @date 2025-08-02
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #pragma once
 
 #include <mp-units/compat_macros.h>

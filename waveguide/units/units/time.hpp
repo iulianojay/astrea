@@ -1,3 +1,13 @@
+/**
+ * @file time.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief This file defines various time units using the C++ chrono library.
+ * @version 0.1
+ * @date 2025-08-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <chrono>

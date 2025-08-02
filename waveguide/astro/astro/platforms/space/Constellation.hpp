@@ -1,6 +1,6 @@
 /**
  * @file Constellation.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief
  * @version 0.1
  * @date 2025-08-02

@@ -1,6 +1,6 @@
 /**
  * @file Equinoctial.hpp
- * @author your name (you@domain.com)
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the Equinoctial class and its associated methods.
  * @version 0.1
  * @date 2025-08-02
