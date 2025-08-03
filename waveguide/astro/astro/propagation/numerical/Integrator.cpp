@@ -370,6 +370,10 @@ void Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
                 relativeTimeStep = abs(timeStep / timeStepPrevious) * pow<2, 25>(epsilon / maxError) *
                                    pow<3, 50>(maxError / maxErrorPrevious);
             }
+            else {
+                std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
+            }
+
             // Store step and error after computing relative time step
             timeStepPrevious = timeStep;
             maxErrorPrevious = maxError;

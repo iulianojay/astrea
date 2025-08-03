@@ -282,8 +282,8 @@ class CelestialBody {
   private:
     // Properties
     std::string _name;          //<! Name of the celestial body
-    std::string _parent         //<! Name of the parent celestial body, if any
-        std::string _type;      //<! Type of the celestial body (e.g., planet, moon)
+    std::string _parent;        //<! Name of the parent celestial body, if any
+    std::string _type;          //<! Type of the celestial body (e.g., planet, moon)
     Date _referenceDate;        //<! Reference date for the celestial body data
     GravParam _mu;              //<! Gravitational parameter (mu) of the celestial body
     GravParam _parentMu;        //<! Gravitational parameter of the parent celestial body, if any

@@ -159,16 +159,16 @@ class Date {
     /**
      * @brief Get the Julian date in days since the epoch.
      *
-     * @return long double The Julian date in days since the epoch.
+     * @return double The Julian date in days since the epoch.
      */
-    long double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
+    double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
     /**
      * @brief Get the Modified Julian Date (MJD) representation of this Date object.
      *
-     * @return long double The Modified Julian Date representation of this Date object.
+     * @return std::chrono::duration<double, std::ratio<86400>> The Modified Julian Date representation of this Date object.
      */
-    long double mjd() const { return _julianDate - MJD0; }
+    std::chrono::duration<double, std::ratio<86400>> mjd() const { return _julianDate - MJD0; }
 
     /**
      * @brief Get the Date in UTC clock format.
