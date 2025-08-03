@@ -1,3 +1,13 @@
+/**
+ * @file access.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the access module
+ * @version 0.1
+ * @date 2025-08-03
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <access/analysis/access_analysis.hpp>

@@ -1,3 +1,13 @@
+/**
+ * @file Database.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Database utility wrapper for the snapshot module
+ * @version 0.1
+ * @date 2025-08-03
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <sqlite3.h>
@@ -11,43 +21,110 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
+#include <units/typedefs.hpp>
+
 #include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
 namespace waveguide {
 namespace snapshot {
 
-using Distance = mp_units::quantity<mp_units::si::unit_symbols::km>;
-
+/**
+ * @brief Database utility wrapper for the snapshot module.
+ *
+ * This class provides a wrapper around the SQLite database used in the snapshot module,
+ * allowing for easy access to SpaceTrackGP data and other database operations.
+ *
+ * @tparam T The type of the database (e.g., sqlite_orm::Storage<SpaceTrackGP>).
+ */
 template <class T>
 class DatabaseUtilityWrapper {
   public:
+    /**
+     * @brief Default constructor for DatabaseUtilityWrapper.
+     *
+     * Initializes the DatabaseUtilityWrapper with the provided database instance.
+     *
+     * @param db The database instance to wrap.
+     */
     DatabaseUtilityWrapper(T&& db) :
         _database(db)
     {
     }
+
+    /**
+     * @brief Default destructor for DatabaseUtilityWrapper.
+     */
     ~DatabaseUtilityWrapper() = default;
 
+    /**
+     * @brief Gets the underlying database instance.
+     *
+     * @return A reference to the wrapped database instance.
+     */
     const T& get_database() const;
 
+    /**
+     * @brief Gets all SpaceTrackGP records from the database.
+     *
+     * @tparam Args Types of the optional arguments.
+     * @param args Optional arguments to pass to the database query.
+     * @return A vector containing all SpaceTrackGP records.
+     */
     template <typename... Args>
     std::vector<SpaceTrackGP> get_all(Args&&... args) const;
 
+    /**
+     * @brief Gets a SpaceTrackGP record by its NORAD ID.
+     *
+     * @param id The NORAD ID of the SpaceTrackGP record to retrieve.
+     * @return A SpaceTrackGP object corresponding to the given NORAD ID.
+     */
     SpaceTrackGP get_sat_from_norad_id(const unsigned& id) const;
 
+    /**
+     * @brief Gets a SpaceTrackGP record by its name
+     *
+     * @param name The name of the SpaceTrackGP record to retrieve.
+     * @return A SpaceTrackGP object corresponding to the given name.
+     */
     std::vector<SpaceTrackGP> get_sats_by_name(const std::string& name) const;
 
+    /**
+     * @brief Gets SpaceTrackGP records within a specified range of periapsis and apoapsis.
+     *
+     * @param minPeriapsis The minimum periapsis distance.
+     * @param maxApoapsis The maximum apoapsis distance.
+     * @return A vector containing SpaceTrackGP records that fall within the specified range.
+     */
     std::vector<SpaceTrackGP> get_sats_in_range(const Distance& minPeriapsis, const Distance& maxApoapsis) const;
 
   private:
-    T _database;
+    T _database; //!< The wrapped database instance.
 };
 
+/**
+ * @brief Creates a DatabaseUtilityWrapper instance for the given database.
+ *
+ * This function is a convenience wrapper to create a DatabaseUtilityWrapper
+ * for the provided database instance.
+ *
+ * @tparam T The type of the database (e.g., sqlite_orm::Storage<SpaceTrackGP>).
+ * @param database The database instance to wrap.
+ * @return A DatabaseUtilityWrapper instance wrapping the provided database.
+ */
 template <typename T>
 DatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& database)
 {
     return DatabaseUtilityWrapper<typename std::decay<T>::type>{ std::forward<T>(database) };
 }
 
+/**
+ * @brief Gets the snapshot database instance.
+ *
+ * This function creates and returns a SQLite storage instance for the snapshot database.
+ *
+ * @return A sqlite_orm::Storage instance configured for the snapshot database.
+ */
 inline auto get_snapshot()
 {
     static const std::string root = std::getenv("WAVEGUIDE_ROOT");
@@ -100,6 +177,14 @@ inline auto get_snapshot()
     );
 }
 
+/**
+ * @brief Creates a DatabaseUtilityWrapper for the snapshot database.
+ *
+ * This function creates a DatabaseUtilityWrapper instance for the snapshot database,
+ * allowing easy access to SpaceTrackGP data and other database operations.
+ *
+ * @return A DatabaseUtilityWrapper instance wrapping the snapshot database.
+ */
 inline auto make_snapshot_wrapper() { return make_database(get_snapshot()); }
 
 } // namespace snapshot

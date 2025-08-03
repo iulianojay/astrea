@@ -50,7 +50,11 @@ RiseSetArray& RiseSetArray::operator=(const RiseSetArray& other) { return *this 
 
 RiseSetArray RiseSetArray::operator|(const RiseSetArray& other) const { return riseset_union(*this, other); }
 
+RiseSetArray& RiseSetArray::operator|=(const RiseSetArray& other) { return *this = riseset_union(*this, other); }
+
 RiseSetArray RiseSetArray::operator&(const RiseSetArray& other) const { return riseset_intersection(*this, other); }
+
+RiseSetArray& RiseSetArray::operator&=(const RiseSetArray& other) { return *this = riseset_intersection(*this, other); }
 
 RiseSetArray RiseSetArray::operator-(const RiseSetArray& other) const { return riseset_difference(*this, other); }
 

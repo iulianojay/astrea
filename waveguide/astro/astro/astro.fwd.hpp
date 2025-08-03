@@ -1,3 +1,13 @@
+/**
+ * @file astro.fwd.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Forward declarations for the astro module
+ * @version 0.1
+ * @date 2025-08-03
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 namespace waveguide {
