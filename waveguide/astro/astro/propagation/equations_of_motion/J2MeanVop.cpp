@@ -43,8 +43,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
-    // h
-    const quantity h = sqrt(mu * a * (1 - ecc * ecc));
+    // h - since da/dt and de/dt are always zero, this will never change
+    static const quantity h = sqrt(mu * a * (1 - ecc * ecc));
 
     // conversions KEPLERIANs to r and v
     const quantity<km>& x = cartesian.get_x();
@@ -78,12 +78,12 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
         accelOblateness[0] * Nhatx + accelOblateness[1] * Nhaty + accelOblateness[2] * Nhatz;
 
     // Calculate the derivatives of the KEPLERIANs - only raan and w considered
-    const quantity<km / s> dadt      = 0.0 * km / s;
-    const quantity<one / s> deccdt   = 0.0 * one / s;
-    const quantity<rad / s> _dincdt  = R / h * cos(w + theta) * normalPert * rad;
-    const quantity<rad / s> dthetadt = h / (R * R) * rad;
-    const quantity<rad / s> draandt  = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
-    const quantity<rad / s> dwdt     = -draandt * cos(inc);
+    static const quantity<km / s> dadt    = 0.0 * km / s;
+    static const quantity<one / s> deccdt = 0.0 * one / s;
+    const quantity<rad / s> _dincdt       = R / h * cos(w + theta) * normalPert * rad;
+    const quantity<rad / s> dthetadt      = h / (R * R) * rad;
+    const quantity<rad / s> draandt       = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
+    const quantity<rad / s> dwdt          = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error

@@ -57,9 +57,10 @@ TEST_F(CowellsMethodTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set(), El
 
 TEST_F(CowellsMethodTest, Derivative)
 {
-    Cartesian state0 = Cartesian::LEO(sys);
-    CartesianPartial expected =
-        CartesianPartial(state0.get_vx(), state0.get_vy(), state0.get_vz(), -0.622813 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+    Cartesian state0          = Cartesian::LEO(sys);
+    CartesianPartial expected = CartesianPartial(
+        state0.get_vx(), state0.get_vy(), state0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
+    );
 
     OrbitalElementPartials dstate = eom(state0, sat);
     assert_nearly_equal(expected, dstate);

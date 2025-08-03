@@ -229,7 +229,7 @@ class Integrator {
     Unitless relativeTolerance = 1.0e-13; //<! Relative tolerance for the integrator
 
     // Initial step size
-    Time timeStepInitial = 100.0 * mp_units::si::unit_symbols::s; //<! Initial time step for the integrator
+    Time timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //<! Initial time step for the integrator
 
     // Iteration variables - absurdly high so it doesn't interfere with integration
     unsigned long iterMax = 1e8; //<! Maximum number of iterations for the integrator

@@ -54,7 +54,6 @@ class Keplerian {
         _argPerigee(scale * detail::angle_unit),
         _trueAnomaly(scale * detail::angle_unit)
     {
-        sanitize_angles();
     }
 
     /**
@@ -75,7 +74,6 @@ class Keplerian {
         _argPerigee(argPerigee),
         _trueAnomaly(trueAnomaly)
     {
-        sanitize_angles();
     }
 
     /**

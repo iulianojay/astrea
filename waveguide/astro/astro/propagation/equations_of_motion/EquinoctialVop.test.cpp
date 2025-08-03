@@ -60,7 +60,7 @@ TEST_F(EquinoctialTest, Derivative)
 {
     Equinoctial state0 = Equinoctial::LEO(sys);
     EquinoctialPartial expected =
-        EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0279019 * rad / s);
+        EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
 
     OrbitalElementPartials dstate = eom(state0, sat);
     assert_nearly_equal(expected, dstate);

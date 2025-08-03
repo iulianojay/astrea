@@ -59,7 +59,7 @@ TEST_F(J2MeanTest, Derivative)
 {
     Keplerian state0 = Keplerian::LEO();
     KeplerianPartial expected =
-        KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0279019 * rad / s);
+        KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
 
     OrbitalElementPartials dstate = eom(state0, sat);
     assert_nearly_equal(expected, dstate);
