@@ -43,59 +43,53 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
-    // h - since da/dt and de/dt are always zero, this will never change
-    static const quantity h = sqrt(mu * a * (1 - ecc * ecc));
-
     // conversions KEPLERIANs to r and v
-    const quantity<km>& x = cartesian.get_x();
-    const quantity<km>& y = cartesian.get_y();
-    const quantity<km>& z = cartesian.get_z();
-    const quantity<km> R  = sqrt(x * x + y * y + z * z);
+    const VelocityVector v = cartesian.get_velocity();
+    const RadiusVector r   = cartesian.get_radius();
 
-    const quantity<km / s>& vx = cartesian.get_vx();
-    const quantity<km / s>& vy = cartesian.get_vy();
-    const quantity<km / s>& vz = cartesian.get_vz();
+    const Distance x = cartesian.get_x();
+    const Distance y = cartesian.get_y();
+    const Distance z = cartesian.get_z();
+    const Distance R = r.norm();
 
     // Define perturbation vectors relative to the satellites RNT body frame
     /*
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
     */
-    const quantity<one> Nhatx = (y * vz - z * vy) / h;
-    const quantity<one> Nhaty = (z * vx - x * vz) / h;
-    const quantity<one> Nhatz = (x * vy - y * vx) / h;
+    const UnitVector Nhat = r.cross(v).unit();
 
     // Variables to reduce calculations
-    const quantity tempA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
-    const quantity tempB = z * z / (R * R);
+    const quantity termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
+    const quantity termB = z * z / (R * R);
 
     // accel due to oblateness
-    AccelerationVector accelOblateness = { tempA * (1.0 - 5.0 * tempB) * x,
-                                           tempA * (1.0 - 5.0 * tempB) * y,
-                                           tempA * (1.0 - 3.0 * tempB) * z };
+    AccelerationVector accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                           termA * (1.0 - 5.0 * termB) * y,
+                                           termA * (1.0 - 3.0 * termB) * z };
 
     // Calculate R, N, and T
-    const quantity<km / pow<2>(s)> normalPert =
-        accelOblateness[0] * Nhatx + accelOblateness[1] * Nhaty + accelOblateness[2] * Nhatz;
+    const Acceleration normalPert = accelOblateness.dot(Nhat);
+
+    // h
+    const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
     // Calculate the derivatives of the KEPLERIANs - only raan and w considered
-    static const quantity<km / s> dadt    = 0.0 * km / s;
-    static const quantity<one / s> deccdt = 0.0 * one / s;
-    const quantity<rad / s> _dincdt       = R / h * cos(w + theta) * normalPert * rad;
-    const quantity<rad / s> dthetadt      = h / (R * R) * rad;
-    const quantity<rad / s> draandt       = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
-    const quantity<rad / s> dwdt          = -draandt * cos(inc);
+    static const Velocity dadt          = 0.0 * km / s;
+    static const UnitlessPerTime deccdt = 0.0 * one / s;
+    const AngularRate _dincdt           = R / h * cos(w + theta) * normalPert * rad;
+    const AngularRate dthetadt          = h / (R * R) * rad;
+    const AngularRate draandt           = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
+    const AngularRate dwdt              = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
-    quantity<rad / s> dincdt = _dincdt;
+    AngularRate dincdt = _dincdt;
     if (inc == incTol && dincdt <= incTol * one / s) {
         dincdt    = 0.0 * rad / s;
         checkflag = true;
     }
 
-    const KeplerianPartial dsdt(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
-
-    return dsdt;
+    return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 } // namespace astro

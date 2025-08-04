@@ -57,6 +57,11 @@ using Length = mp_units::quantity<detail::minor_distance_unit>;
 using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
 
 /**
+ * @brief Definition for a specific angular momentum quantity.
+ */
+using SpecificAngularMomentum = mp_units::quantity<detail::distance_unit * detail::distance_unit / detail::time_unit>;
+
+/**
  * @brief Definition for a unitless per time quantity.
  */
 using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>;
@@ -140,23 +145,5 @@ using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2
  * @brief Definition for a temperature quantity.
  */
 using Temperature = mp_units::quantity<detail::temperature_unit>;
-
-/**
- * @brief Definition for a radius vector quantity.
- *
- */
-using RadiusVector = std::array<Distance, 3>;
-
-/**
- * @brief Definition for a velocity vector quantity.
- *
- */
-using VelocityVector = std::array<Velocity, 3>;
-
-/**
- * @brief Definition for an acceleration vector quantity.
- *
- */
-using AccelerationVector = std::array<Acceleration, 3>;
 
 } // namespace waveguide

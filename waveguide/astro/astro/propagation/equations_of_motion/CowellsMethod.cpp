@@ -19,19 +19,14 @@ namespace astro {
 
 OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
     // Extract
     const Cartesian cartesian = state.in<Cartesian>(get_system());
-    const quantity<km>& x     = cartesian.get_x();
-    const quantity<km>& y     = cartesian.get_y();
-    const quantity<km>& z     = cartesian.get_z();
-    const quantity R          = sqrt(x * x + y * y + z * z);
 
-    const quantity<km / s>& vx = cartesian.get_vx();
-    const quantity<km / s>& vy = cartesian.get_vy();
-    const quantity<km / s>& vz = cartesian.get_vz();
+    const RadiusVector r   = cartesian.get_radius();
+    const VelocityVector v = cartesian.get_velocity();
 
     // mu/R^3
+    const Distance R                 = r.norm();
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
@@ -39,11 +34,7 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
     AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative
-    const CartesianPartial dsdt(
-        vx, vy, vz, -muOverRadiusCubed * x + accelPerts[0], -muOverRadiusCubed * y + accelPerts[1], -muOverRadiusCubed * z + accelPerts[2]
-    );
-
-    return dsdt;
+    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
 }
 
 } // namespace astro

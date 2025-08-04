@@ -25,11 +25,12 @@
 // #include <avro/Encoder.hh>
 // #include <avro/Specific.hh>
 
+#include <units/units.hpp>
+
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace waveguide {
 namespace astro {
@@ -438,6 +439,22 @@ class CartesianPartial {
         _ax(ax),
         _ay(ay),
         _az(az)
+    {
+    }
+
+    /**
+     * @brief Constructor for CartesianPartial with velocity and acceleration vectors.
+     *
+     * @param v Velocity vector
+     * @param a Acceleration vector
+     */
+    CartesianPartial(const VelocityVector& v, const AccelerationVector& a) :
+        _vx(v[0]),
+        _vy(v[1]),
+        _vz(v[2]),
+        _ax(a[0]),
+        _ay(a[1]),
+        _az(a[2])
     {
     }
 

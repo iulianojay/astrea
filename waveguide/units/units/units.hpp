@@ -11,6 +11,7 @@
 #pragma once
 
 // #include <units/avro.hpp>
+#include <units/CartesianVector.hpp>
 #include <units/constants.hpp>
 #include <units/custom.hpp>
 #include <units/detail.hpp>

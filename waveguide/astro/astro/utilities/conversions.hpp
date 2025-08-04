@@ -22,6 +22,9 @@
 
 #include <math/utils.hpp>
 
+#include <units/CartesianVector.hpp>
+#include <units/typedefs.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/time/Date.hpp>
@@ -41,9 +44,9 @@ namespace astro {
  * @param date The date for which the conversion is performed, used to calculate the Greenwich Sidereal Time.
  * @return The vector in ECEF coordinates.
  */
-// TODO: This is wrong for non-radial vectors and needs to be resolved.
-template <typename Vec_T>
-Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
+// TODO: This is wrong for non-radial vectors (defined w.r.t the frame) and needs to be resolved.
+template <typename T>
+CartesianVector<T> eci_to_ecef(const CartesianVector<T>& vecEci, const Date& date)
 {
     using namespace mp_units;
     using namespace mp_units::angular;
@@ -69,7 +72,7 @@ Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
     const Unitless cosGST = cos(greenwichSiderealTime);
     const Unitless sinGST = sin(greenwichSiderealTime);
 
-    return { cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z };
+    return CartesianVector(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z);
 }
 
 
@@ -82,8 +85,8 @@ Vec_T eci_to_ecef(const Vec_T& vecEci, const Date& date)
  * @param date The date for which the conversion is performed, used to calculate the Greenwich Sidereal Time.
  * @return The vector in ECI coordinates.
  */
-template <typename Vec_T>
-Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
+template <typename T>
+CartesianVector<T> ecef_to_eci(const CartesianVector<T>& vecEcef, const Date& date)
 {
     using namespace mp_units;
     using namespace mp_units::angular;
@@ -108,9 +111,7 @@ Vec_T ecef_to_eci(const Vec_T& vecEcef, const Date& date)
     const quantity cosGST = cos(-greenwichSiderealTime);
     const quantity sinGST = sin(-greenwichSiderealTime);
 
-    Vec_T vecEci{ cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z };
-
-    return vecEci;
+    return CartesianVector<T>(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z);
 }
 
 /**

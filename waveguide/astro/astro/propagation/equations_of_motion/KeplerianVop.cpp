@@ -43,17 +43,16 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // h
-    const quantity<pow<2>(km) / s> h = sqrt(mu * a * (1 - ecc * ecc));
+    const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
     // conversions KEPLERIANs to r and v
-    const quantity<km>& x = cartesian.get_x();
-    const quantity<km>& y = cartesian.get_y();
-    const quantity<km>& z = cartesian.get_z();
-    const quantity<km> R  = sqrt(x * x + y * y + z * z);
+    const VelocityVector v = cartesian.get_velocity();
+    const RadiusVector r   = cartesian.get_radius();
 
-    const quantity<km / s>& vx = cartesian.get_vx();
-    const quantity<km / s>& vy = cartesian.get_vy();
-    const quantity<km / s>& vz = cartesian.get_vz();
+    const Distance x = cartesian.get_x();
+    const Distance y = cartesian.get_y();
+    const Distance z = cartesian.get_z();
+    const Distance R = r.norm();
 
     // Define perturbation vectors relative to the satellites RNT body frame
     /*
@@ -61,62 +60,45 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    const quantity<one> Rhatx = x / R;
-    const quantity<one> Rhaty = y / R;
-    const quantity<one> Rhatz = z / R;
-
-    const quantity<one> Nhatx = (y * vz - z * vy) / h;
-    const quantity<one> Nhaty = (z * vx - x * vz) / h;
-    const quantity<one> Nhatz = (x * vy - y * vx) / h;
-
-    const quantity<one> Tvx = Nhaty * Rhatz - Nhatz * Rhaty;
-    const quantity<one> Tvy = Nhatz * Rhatx - Nhatx * Rhatz;
-    const quantity<one> Tvz = Nhatx * Rhaty - Nhaty * Rhatx;
-
-    const quantity<one> normTv = sqrt(Tvx * Tvx + Tvy * Tvy + Tvz * Tvz);
-
-    const quantity<one> Thatx = Tvx / normTv;
-    const quantity<one> Thaty = Tvy / normTv;
-    const quantity<one> Thatz = Tvz / normTv;
+    const UnitVector Rhat = r.unit();
+    const UnitVector Nhat = r.cross(v).unit();
+    const UnitVector That = Nhat.cross(Rhat).unit();
 
     // Function for finding accel caused by perturbations
     const Date date               = vehicle.get_state().get_epoch();
     AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const quantity<km / pow<2>(s)> radialPert = accelPerts[0] * Rhatx + accelPerts[1] * Rhaty + accelPerts[2] * Rhatz;
-    const quantity<km / pow<2>(s)> normalPert = accelPerts[0] * Nhatx + accelPerts[1] * Nhaty + accelPerts[2] * Nhatz;
-    const quantity<km / pow<2>(s)> tangentialPert = accelPerts[0] * Thatx + accelPerts[1] * Thaty + accelPerts[2] * Thatz;
+    const Acceleration radialPert     = accelPerts.dot(Rhat);
+    const Acceleration normalPert     = accelPerts.dot(Nhat);
+    const Acceleration tangentialPert = accelPerts.dot(That);
 
     // Argument of latitude
-    const quantity<rad> u = w + theta;
+    const Angle u = w + theta;
 
     // Precalculate
-    const quantity cosTA = cos(theta);
-    const quantity sinTA = sin(theta);
-    const quantity cosU  = cos(u);
-    const quantity sinU  = sin(u);
+    const Unitless cosTA = cos(theta);
+    const Unitless sinTA = sin(theta);
+    const Unitless cosU  = cos(u);
+    const Unitless sinU  = sin(u);
 
-    const quantity<pow<4>(km) / pow<2>(s)> hSquared = h * h;
-    const quantity<one / s> hOverRSquared           = h / (R * R);
+    const quantity hSquared             = h * h;
+    const UnitlessPerTime hOverRSquared = h / (R * R);
 
     // Calculate the derivatives of the Keplerian elements
-    const quantity<pow<2>(km / s)> dhdt = R * tangentialPert;
-    const quantity<one / s> deccdt =
-        h / mu * sinTA * radialPert + 1 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
-    const quantity<rad / s> dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
-    const quantity<rad / s> dthetadt =
+    const quantity dhdt = R * tangentialPert;
+    const UnitlessPerTime deccdt =
+        h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
+    const Velocity dadt      = 2.0 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
+    const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const AngularRate dthetadt =
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
         (isq_angle::cotes_angle);
-    const quantity<rad / s> draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
-    const quantity<rad / s> dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
+    const AngularRate draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
-    // const quantity<km/s> dadt = (-2*mu/(h*h*h)*dhdt)*(1 - ecc*ecc) + (mu/(h*h))*(-2*ecc*deccdt); // TODO: Fix this
-    const quantity<km / s> dadt = 2 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
-    // km^3/s^2 / km^6/s^3 * km^2/s^2 -> km^-1 * s^-1 + km^3/s^2 / km^4/s^2 * 1/s -> km^-1 / s^-1
-    const KeplerianPartial dsdt(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 
-    return dsdt;
+    return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad>& inc) const

@@ -17,25 +17,18 @@ namespace astro {
 
 OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
+    // Extract
     const Cartesian cartesian = state.in<Cartesian>(get_system());
 
-    // Extract
-    const Distance& x = cartesian.get_x();
-    const Distance& y = cartesian.get_y();
-    const Distance& z = cartesian.get_z();
-    const Distance R  = sqrt(x * x + y * y + z * z);
-
-    const Velocity& vx = cartesian.get_vx();
-    const Velocity& vy = cartesian.get_vy();
-    const Velocity& vz = cartesian.get_vz();
+    const RadiusVector r   = cartesian.get_radius();
+    const VelocityVector v = cartesian.get_velocity();
 
     // mu/R^3
+    const Distance R                 = r.norm();
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    const CartesianPartial dsdt(vx, vy, vz, (-muOverRadiusCubed * x), (-muOverRadiusCubed * y), (-muOverRadiusCubed * z));
-
-    return dsdt;
+    return CartesianPartial(v, -muOverRadiusCubed * r);
 }
 
 } // namespace astro

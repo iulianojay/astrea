@@ -16,7 +16,6 @@ class Barycenter : public CelestialBody {
     ~Barycenter(){};
 
   private:
-    RadiusVector center;
     CelestialBody referenceBody;
     std::unordered_set<CelestialBody> bodies;
 };

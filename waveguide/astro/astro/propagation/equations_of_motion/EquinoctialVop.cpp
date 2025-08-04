@@ -31,22 +31,17 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Cartesian cartesian     = state.in<Cartesian>(get_system());
 
     // Extract
-    const quantity<km>& p  = equinoctial.get_semilatus();
-    const quantity<one>& f = equinoctial.get_f();
-    const quantity<one>& g = equinoctial.get_g();
-    const quantity<one>& h = equinoctial.get_h();
-    const quantity<one>& k = equinoctial.get_k();
-    const quantity<rad>& L = equinoctial.get_true_longitude();
+    const Distance& p = equinoctial.get_semilatus();
+    const Unitless& f = equinoctial.get_f();
+    const Unitless& g = equinoctial.get_g();
+    const Unitless& h = equinoctial.get_h();
+    const Unitless& k = equinoctial.get_k();
+    const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const quantity<km>& x = cartesian.get_x();
-    const quantity<km>& y = cartesian.get_y();
-    const quantity<km>& z = cartesian.get_z();
-    const quantity<km> R  = sqrt(x * x + y * y + z * z);
-
-    const quantity<km / s>& vx = cartesian.get_vx();
-    const quantity<km / s>& vy = cartesian.get_vy();
-    const quantity<km / s>& vz = cartesian.get_vz();
+    const VelocityVector v = cartesian.get_velocity();
+    const RadiusVector r   = cartesian.get_radius();
+    const Distance R       = r.norm();
 
     // Define perturbation vectors relative to the satellites SNC body frame
     /*
@@ -54,59 +49,41 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
        N -> perturbing accel normal to orbital plane in direction of angular momentum vector
        T -> perturbing accel perpendicular to radius in direction of motion
     */
-    const quantity<one> Rhatx = x / R;
-    const quantity<one> Rhaty = y / R;
-    const quantity<one> Rhatz = z / R;
-
-    const quantity<one> ecc                      = sqrt(f * f + g * g);
-    const quantity<pow<2>(km) / s> relSpecAngMom = sqrt(mu * p);
-    const quantity<one> Nhatx                    = (y * vz - z * vy) / relSpecAngMom;
-    const quantity<one> Nhaty                    = (z * vx - x * vz) / relSpecAngMom;
-    const quantity<one> Nhatz                    = (x * vy - y * vx) / relSpecAngMom;
-
-    const quantity<one> Tvx = Nhaty * Rhatz - Nhatz * Rhaty;
-    const quantity<one> Tvy = Nhatz * Rhatx - Nhatx * Rhatz;
-    const quantity<one> Tvz = Nhatx * Rhaty - Nhaty * Rhatx;
-
-    const quantity<one> normTv = sqrt(Tvx * Tvx + Tvy * Tvy + Tvz * Tvz);
-
-    const quantity<one> Thatx = Tvx / normTv;
-    const quantity<one> Thaty = Tvy / normTv;
-    const quantity<one> Thatz = Tvz / normTv;
+    const UnitVector Rhat = r.unit();
+    const UnitVector Nhat = r.cross(v).unit();
+    const UnitVector That = Nhat.cross(Rhat).unit();
 
     // Function for finding accel caused by perturbations
     const Date date               = vehicle.get_state().get_epoch();
     AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const quantity<km / pow<2>(s)> radialPert = accelPerts[0] * Rhatx + accelPerts[1] * Rhaty + accelPerts[2] * Rhatz;
-    const quantity<km / pow<2>(s)> normalPert = accelPerts[0] * Nhatx + accelPerts[1] * Nhaty + accelPerts[2] * Nhatz;
-    const quantity<km / pow<2>(s)> tangentialPert = accelPerts[0] * Thatx + accelPerts[1] * Thaty + accelPerts[2] * Thatz;
+    const Acceleration radialPert     = accelPerts.dot(Rhat);
+    const Acceleration normalPert     = accelPerts.dot(Nhat);
+    const Acceleration tangentialPert = accelPerts.dot(That);
 
     // Variables precalculated for speed
-    const quantity<one> cosL = cos(L);
-    const quantity<one> sinL = sin(L);
+    const Unitless cosL = cos(L);
+    const Unitless sinL = sin(L);
 
     const quantity tempA = sqrt(p / mu);
-    const quantity tempB = 1.0 + f * cos(L) + g * sin(L);
+    const quantity tempB = 1.0 + f * cosL + g * sinL;
     const quantity sSq   = 1.0 + h * h + k * k;
 
     const quantity tempC = (h * sinL - k * cosL) / tempB;
     const quantity tempD = tempA * sSq / (2 * tempB);
 
     // Derivative functions
-    const quantity<km / s> dpdt = 2 * p / tempB * tempA * tangentialPert;
-    const quantity<one / s> dfdt =
+    const Velocity dpdt = 2 * p / tempB * tempA * tangentialPert;
+    const UnitlessPerTime dfdt =
         tempA * (radialPert * sinL + ((tempB + 1) * cosL + f) / tempB * tangentialPert - g * tempC * normalPert);
-    const quantity<one / s> dgdt =
+    const UnitlessPerTime dgdt =
         tempA * (-radialPert * cosL + ((tempB + 1) * sinL + g) / tempB * tangentialPert + f * tempC * normalPert);
-    const quantity<one / s> dhdt = tempD * cosL * normalPert;
-    const quantity<one / s> dkdt = tempD * sinL * normalPert;
-    const quantity<rad / s> dLdt = (sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert) * (isq_angle::cotes_angle);
+    const UnitlessPerTime dhdt = tempD * cosL * normalPert;
+    const UnitlessPerTime dkdt = tempD * sinL * normalPert;
+    const AngularRate dLdt = (sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert) * (isq_angle::cotes_angle);
 
-    const EquinoctialPartial dsdt(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
-
-    return dsdt;
+    return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }
 
 } // namespace astro
