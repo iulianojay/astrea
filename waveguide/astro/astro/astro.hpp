@@ -14,8 +14,8 @@
 
 #include <astro/element_sets/CartesianVector.hpp>
 #include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/Frame.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/frames/Frame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>

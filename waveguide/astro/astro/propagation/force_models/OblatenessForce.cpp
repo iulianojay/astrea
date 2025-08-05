@@ -14,6 +14,7 @@
 #include <math/trig.hpp>
 #include <math/utils.hpp>
 
+#include <astro/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -133,7 +134,7 @@ AccelerationVector
     static const Distance& polarR      = center->get_polar_radius();
 
     // Find lat and long
-    const RadiusVector rEcef = state.get_radius().in<FRAME::ECEF>(date);
+    const CartesianVector<Distance, ECEF> rEcef = state.get_radius().in<ECEF>(date);
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
@@ -212,7 +213,7 @@ AccelerationVector
                                                oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    return accelOblatenessEcef.in<FRAME::ECI>(date);
+    return accelOblatenessEcef.in<ECI>(date);
 }
 
 void OblatenessForce::assign_legendre(const Unitless& x) const

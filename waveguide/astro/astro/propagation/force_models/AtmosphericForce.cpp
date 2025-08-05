@@ -8,6 +8,7 @@
 #include <mp-units/systems/si/math.h>
 
 // astro
+#include <astro/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <math/utils.hpp>
 
@@ -84,7 +85,7 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     static const std::string& centerName = center->get_name();
 
     // Find altitude
-    const RadiusVector rEcef = state.get_radius().in<FRAME::ECEF>(date);
+    const CartesianVector<Distance, ECEF> rEcef = state.get_radius().in<ECEF>(date);
 
     Angle lat, lon;
     Distance altitude;

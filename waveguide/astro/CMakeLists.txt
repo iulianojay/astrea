@@ -17,7 +17,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.cpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.cpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.cpp
-    ${ASTRO_BASE}/element_sets/Frame.cpp
+
+    ${ASTRO_BASE}/frames/FrameReference.cpp
 
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
@@ -54,16 +55,20 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-    
-    ${ASTRO_BASE}/element_sets/frames/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/element_sets/frames/InertialFrame.hpp
-    ${ASTRO_BASE}/element_sets/frames/RotatingFrame.hpp
+
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.hpp
     ${ASTRO_BASE}/element_sets/ElementSet.hpp
-    ${ASTRO_BASE}/element_sets/Frame.hpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
+    
+    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/frames/types/RotatingFrame.hpp
+    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/frames/instances/EarthCenteredInertial.hpp
+    ${ASTRO_BASE}/frames/Frame.hpp
+    ${ASTRO_BASE}/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp

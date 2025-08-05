@@ -25,21 +25,20 @@ class KeplerianPartial;
 class EquinoctialPartial;
 class OrbitalElements;
 
-template <class T>
+template <class Value_T, class Frame_T>
 class CartesianVector;
 
-template <class T>
 class Frame;
-template <class T>
 class InertialFrame;
-template <class T>
 class RotatingFrame;
 template <class T>
 class BodyFixedFrame;
-template <class T>
 class FixedOffsetFrame;
 template <class T>
 class DynamicFrame;
+
+class EarthCenteredInertial;
+class EarthCenteredEarthFixed;
 
 // Platforms
 template <class Spacecraft_T>

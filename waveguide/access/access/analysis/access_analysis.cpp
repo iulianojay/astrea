@@ -3,6 +3,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <astro/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <utilities/ProgressBar.hpp>
 
@@ -21,11 +22,12 @@ namespace waveguide {
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
 using astro::Date;
+using astro::ECEF;
+using astro::ECI;
 using astro::RadiusVector;
 using astro::State;
 using astro::StateHistory;
 using astro::VelocityVector;
-using astro::FRAME;
 
 namespace accesslib {
 
@@ -190,7 +192,7 @@ RiseSetArray
     const auto& center = sys.get_center();
     for (const auto& time : times) {
         // Get ECI state of ground station
-        const RadiusVector groundEcef = astro::lla_to_ecef(
+        const astro::CartesianVector<Distance, ECEF> groundEcef = astro::lla_to_ecef(
             ground.get_latitude(),
             ground.get_longitude(),
             ground.get_altitude(),
@@ -198,7 +200,7 @@ RiseSetArray
             center->get_polar_radius()
         );
         Date date                    = epoch + time;
-        const RadiusVector groundEci = groundEcef.in<FRAME::ECI>(date);
+        const RadiusVector groundEci = groundEcef.in<ECI>(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
