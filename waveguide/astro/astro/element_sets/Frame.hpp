@@ -2,31 +2,36 @@
 
 #include <string>
 
+#include <units/typedefs.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace waveguide {
 namespace astro {
 
+enum class FRAME : EnumType {
+    ECI, // Earth-Centered Inertial
+    ECEF // Earth-Centered Earth-Fixed
+};
+
+struct FramePairHash {
+    std::size_t operator()(const std::pair<FRAME, FRAME>& pair) const
+    {
+        return static_cast<std::size_t>(pair.first) * static_cast<std::size_t>(FRAME::ECEF) + static_cast<std::size_t>(pair.second);
+    }
+};
 
 class FrameReference {
   protected:
     FrameReference()          = default;
     virtual ~FrameReference() = default;
 
-    virtual RadiusVector get_position(const Date& date) const = 0;
-    virtual VelocityVector get_velocity(const Date& date) const
-    {
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-        return VelocityVector{ 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
-    };
-    virtual AccelerationVector get_acceleration(const Date& date) const
-    {
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-        return AccelerationVector{ 0.0 * km / s / s, 0.0 * km / s / s, 0.0 * km / s / s };
-    };
+    virtual CartesianVector<Distance> get_position(const Date& date) const = 0;
+
+    virtual CartesianVector<Velocity> get_velocity(const Date& date) const;
+
+    virtual CartesianVector<Acceleration> get_acceleration(const Date& date) const;
 };
 
 template <class FrameReference_T>
@@ -48,74 +53,6 @@ class Frame {
     FrameReference_T* origin;
 };
 
-
-class DirectionCosineMatrix {
-  public:
-    DirectionCosineMatrix()          = default;
-    virtual ~DirectionCosineMatrix() = default;
-
-    virtual RadiusVector operator*(const RadiusVector& vec) const             = 0;
-    virtual VelocityVector operator*(const VelocityVector& vec) const         = 0;
-    virtual AccelerationVector operator*(const AccelerationVector& vec) const = 0;
-};
-using DCM = DirectionCosineMatrix;
-
-
-template <class T>
-class InertialFrame : public Frame<T> {
-
-    static_assert(
-        std::is_same<T, CelestialBody>::value || std::is_base_of<T, CelestialBody>::value || std::is_same<T, InertialFrame>::value,
-        "Inertial frames must be defined in reference to one of the following types: [CelestialBody, Barycenter, "
-        "InertialFrame]."
-    );
-
-  public:
-    InertialFrame(const T& origin) :
-        Frame<T>(origin)
-    {
-    }
-};
-
-// using EarthCenteredInertial = InertialFrame<CelestialBody("Earth")>; // I guess we just make this the default?
-
-template <class T>
-class RotatingFrame : public Frame<T> {
-
-  public:
-    RotatingFrame(const InertialFrame<T>& parent) :
-        parentFrame(parent),
-        rotationMatrix() // Initialize with an identity matrix or a specific rotation matrix
-    {
-    }
-
-  private:
-    InertialFrame<T> parentFrame;
-    DCM rotationMatrix; // rotation matrix from parent frame to this frame
-};
-
-// class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredInertial> {
-
-//   public:
-//     EarthCenteredEarthFixed() :
-//         RotatingFrame(EarthCenteredInertial())
-//     {
-//     }
-// };
-
-
-template <class T>
-class FixedOffsetFrame : public Frame<T> {
-
-  private:
-    Frame<T> parentFrame;
-    RadiusVector offset; // offset in parent frame coordinates
-};
-
-
-template <class T>
-class DynamicFrame : public Frame<T> {
-};
 
 } // namespace astro
 } // namespace waveguide

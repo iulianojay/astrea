@@ -17,6 +17,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.cpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.cpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.cpp
+    ${ASTRO_BASE}/element_sets/Frame.cpp
 
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
@@ -54,6 +55,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
     
+    ${ASTRO_BASE}/element_sets/frames/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/element_sets/frames/InertialFrame.hpp
+    ${ASTRO_BASE}/element_sets/frames/RotatingFrame.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
     ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.hpp

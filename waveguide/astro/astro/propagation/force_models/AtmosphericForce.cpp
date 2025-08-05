@@ -84,7 +84,7 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     static const std::string& centerName = center->get_name();
 
     // Find altitude
-    RadiusVector rEcef = eci_to_ecef(state.get_radius(), date);
+    const RadiusVector rEcef = state.get_radius().in<FRAME::ECEF>(date);
 
     Angle lat, lon;
     Distance altitude;

@@ -29,6 +29,7 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
+#include <astro/element_sets/CartesianVector.hpp>
 #include <astro/element_sets/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -52,12 +53,10 @@ class Cartesian {
      * Initializes the Cartesian state vector with zero values.
      */
     Cartesian(Unitless scale = 0.0 * detail::unitless) :
-        _x(scale * detail::distance_unit),
-        _y(scale * detail::distance_unit),
-        _z(scale * detail::distance_unit),
-        _vx(scale * detail::distance_unit / detail::time_unit),
-        _vy(scale * detail::distance_unit / detail::time_unit),
-        _vz(scale * detail::distance_unit / detail::time_unit)
+        _r(scale * detail::distance_unit, scale * detail::distance_unit, scale * detail::distance_unit),
+        _v(scale * detail::distance_unit / detail::time_unit,
+           scale * detail::distance_unit / detail::time_unit,
+           scale * detail::distance_unit / detail::time_unit)
     {
     }
 
@@ -68,12 +67,8 @@ class Cartesian {
      * @param v Velocity vector
      */
     Cartesian(const RadiusVector& r, const VelocityVector& v) :
-        _x(r[0]),
-        _y(r[1]),
-        _z(r[2]),
-        _vx(v[0]),
-        _vy(v[1]),
-        _vz(v[2])
+        _r(r),
+        _v(v)
     {
     }
 
@@ -88,12 +83,8 @@ class Cartesian {
      * @param vz Z component of velocity
      */
     Cartesian(const Distance& x, const Distance& y, const Distance& z, const Velocity& vx, const Velocity& vy, const Velocity& vz) :
-        _x(x),
-        _y(y),
-        _z(z),
-        _vx(vx),
-        _vy(vy),
-        _vz(vz)
+        _r(x, y, z),
+        _v(vx, vy, vz)
     {
     }
 
@@ -312,56 +303,56 @@ class Cartesian {
      *
      * @return RadiusVector The position vector in Cartesian coordinates.
      */
-    RadiusVector get_radius() const { return { _x, _y, _z }; }
+    const RadiusVector& get_radius() const { return _r; }
 
     /**
      * @brief Converts the Cartesian state vector to a VelocityVector.
      *
      * @return VelocityVector The velocity vector in Cartesian coordinates.
      */
-    VelocityVector get_velocity() const { return { _vx, _vy, _vz }; }
+    const VelocityVector& get_velocity() const { return _v; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the x component of the Cartesian state vector.
      */
-    const Distance& get_x() const { return _x; }
+    const Distance& get_x() const { return _r.get_x(); }
 
     /**
      * @brief Get the y value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the y component of the Cartesian state vector.
      */
-    const Distance& get_y() const { return _y; }
+    const Distance& get_y() const { return _r.get_y(); }
 
     /**
      * @brief Get the z value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the z component of the Cartesian state vector.
      */
-    const Distance& get_z() const { return _z; }
+    const Distance& get_z() const { return _r.get_z(); }
 
     /**
      * @brief Get the vx value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vx component of the Cartesian state vector.
      */
-    const Velocity& get_vx() const { return _vx; }
+    const Velocity& get_vx() const { return _v.get_x(); }
 
     /**
      * @brief Get the vy value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vy component of the Cartesian state vector.
      */
-    const Velocity& get_vy() const { return _vy; }
+    const Velocity& get_vy() const { return _v.get_y(); }
 
     /**
      * @brief Get the vz value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vz component of the Cartesian state vector.
      */
-    const Velocity& get_vz() const { return _vz; }
+    const Velocity& get_vz() const { return _v.get_z(); }
 
     /**
      * @brief Returns the size of the Cartesian state vector.
@@ -399,12 +390,8 @@ class Cartesian {
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN); // !< Set ID for the Cartesian element set
 
-    Distance _x;  //!< X component of the position vector
-    Distance _y;  //!< Y component of the position vector
-    Distance _z;  //!< Z component of the position vector
-    Velocity _vx; //!< X component of the velocity vector
-    Velocity _vy; //!< Y component of the velocity vector
-    Velocity _vz; //!< Z component of the velocity vector
+    RadiusVector _r;   //!< Position vector
+    VelocityVector _v; //!< Velocity vector
 };
 
 /**
@@ -433,12 +420,8 @@ class CartesianPartial {
      * @param az Z component of acceleration
      */
     CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :
-        _vx(vx),
-        _vy(vy),
-        _vz(vz),
-        _ax(ax),
-        _ay(ay),
-        _az(az)
+        _v(vx, vy, vz),
+        _a(ax, ay, az)
     {
     }
 
@@ -449,12 +432,8 @@ class CartesianPartial {
      * @param a Acceleration vector
      */
     CartesianPartial(const VelocityVector& v, const AccelerationVector& a) :
-        _vx(v[0]),
-        _vy(v[1]),
-        _vz(v[2]),
-        _ax(a[0]),
-        _ay(a[1]),
-        _az(a[2])
+        _v(v),
+        _a(a)
     {
     }
 
@@ -467,12 +446,8 @@ class CartesianPartial {
     Cartesian operator*(const Time& time) const;
 
   private:
-    Velocity _vx;     //!< X component of velocity
-    Velocity _vy;     //!< Y component of velocity
-    Velocity _vz;     //!< Z component of velocity
-    Acceleration _ax; //!< X component of acceleration
-    Acceleration _ay; //!< Y component of acceleration
-    Acceleration _az; //!< Z component of acceleration
+    VelocityVector _v;     //!< Velocity vector
+    AccelerationVector _a; //!< Acceleration vector
 };
 
 } // namespace astro

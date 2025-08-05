@@ -12,6 +12,7 @@
 
 #include <vector>
 
+#include <astro/element_sets/CartesianVector.hpp>
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>
@@ -44,13 +45,13 @@ using ViewerConstellation = astro::Constellation<Viewer>;
  * @brief Struct to hold access information between two objects.
  */
 struct AccessInfo {
-    Time time;               // Time of access
-    astro::Cartesian state1; // State of the first object at the time of access
-    astro::Cartesian state2; // State of the second object at the time of access
-    std::size_t id1;         // ID of the first object
-    std::size_t id2;         // ID of the second object
-    bool isOcculted;         // Flag indicating if the access is occulted
-    RadiusVector ecefState;  // ECEF state at the time of access
+    Time time;                     // Time of access
+    astro::Cartesian state1;       // State of the first object at the time of access
+    astro::Cartesian state2;       // State of the second object at the time of access
+    std::size_t id1;               // ID of the first object
+    std::size_t id2;               // ID of the second object
+    bool isOcculted;               // Flag indicating if the access is occulted
+    astro::RadiusVector ecefState; // ECEF state at the time of access
 };
 
 /**

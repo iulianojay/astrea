@@ -16,21 +16,13 @@ using namespace mp_units::angular;
 namespace waveguide {
 namespace accesslib {
 
-Distance norm(const RadiusVector& r) { return sqrt(r[0] * r[0] + r[1] * r[1] + r[2] * r[2]); }
-
-// TODO: Generalize, move
-auto dot_product(const RadiusVector& r1, const RadiusVector& r2);
-
-auto dot_product(const RadiusVector& r1, const RadiusVector& r2)
-{
-    return r1[0] * r2[0] + r1[1] * r2[1] + r1[2] * r2[2];
-}
+using astro::RadiusVector;
 
 Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusVector& vector2)
 {
-    const Distance v1Mag = norm(vector1);
-    const Distance v2Mag = norm(vector2);
-    const auto v1DotV2   = dot_product(vector1, vector2);
+    const Distance v1Mag = vector1.norm();
+    const Distance v2Mag = vector2.norm();
+    const auto v1DotV2   = vector1.dot(vector2);
     const auto ratio     = v1DotV2 / (v1Mag * v2Mag);
     if (ratio > 1.0 * one) {
         return 0.0 * waveguide::detail::angle_unit;

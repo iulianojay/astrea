@@ -26,6 +26,9 @@ class EquinoctialPartial;
 class OrbitalElements;
 
 template <class T>
+class CartesianVector;
+
+template <class T>
 class Frame;
 template <class T>
 class InertialFrame;

@@ -77,13 +77,13 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
     const quantity DcmPeri2Eci32 = sinInc * cosW;
 
     // Inertial position and _velocity
-    _x = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
-    _y = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
-    _z = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
+    _r[0] = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
+    _r[1] = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
+    _r[2] = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
 
-    _vx = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
-    _vy = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
-    _vz = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
+    _v[0] = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
+    _v[1] = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
+    _v[2] = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
 }
 
 
@@ -103,12 +103,12 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
 
     // Catch default/nonsense case
     if (semilatus == 0.0 * km) {
-        _x  = 0.0 * km;
-        _y  = 0.0 * km;
-        _z  = 0.0 * km;
-        _vx = 0.0 * km / s;
-        _vy = 0.0 * km / s;
-        _vz = 0.0 * km / s;
+        _r[0] = 0.0 * km;
+        _r[1] = 0.0 * km;
+        _r[2] = 0.0 * km;
+        _v[0] = 0.0 * km / s;
+        _v[1] = 0.0 * km / s;
+        _v[2] = 0.0 * km / s;
         return;
     }
 
@@ -127,35 +127,27 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     const auto gamma = 1.0 / sSq * sqrt(mu / semilatus);
 
     // Radius
-    _x = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
-    _y = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
-    _z = 2.0 * rOverSSq * (h * sinL - k * cosL);
+    _r[0] = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
+    _r[1] = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
+    _r[2] = 2.0 * rOverSSq * (h * sinL - k * cosL);
 
     // Velocity
-    _vx = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));
-    _vy = -gamma * (cosL * (-1.0 + alphaSq) + twoHK * (sinL + g) + f * (-1.0 + alphaSq));
-    _vz = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
+    _v[0] = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));
+    _v[1] = -gamma * (cosL * (-1.0 + alphaSq) + twoHK * (sinL + g) + f * (-1.0 + alphaSq));
+    _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
 // Copy constructor
 Cartesian::Cartesian(const Cartesian& other) :
-    _x(other._x),
-    _y(other._y),
-    _z(other._z),
-    _vx(other._vx),
-    _vy(other._vy),
-    _vz(other._vz)
+    _r(other._r),
+    _v(other._v)
 {
 }
 
 // Move constructor
 Cartesian::Cartesian(Cartesian&& other) noexcept :
-    _x(std::move(other._x)),
-    _y(std::move(other._y)),
-    _z(std::move(other._z)),
-    _vx(std::move(other._vx)),
-    _vy(std::move(other._vy)),
-    _vz(std::move(other._vz))
+    _r(std::move(other._r)),
+    _v(std::move(other._v))
 {
 }
 
@@ -163,12 +155,8 @@ Cartesian::Cartesian(Cartesian&& other) noexcept :
 Cartesian& Cartesian::operator=(Cartesian&& other) noexcept
 {
     if (this != &other) {
-        _x  = std::move(other._x);
-        _y  = std::move(other._y);
-        _z  = std::move(other._z);
-        _vx = std::move(other._vx);
-        _vy = std::move(other._vy);
-        _vz = std::move(other._vz);
+        _r = std::move(other._r);
+        _v = std::move(other._v);
     }
     return *this;
 }
@@ -177,77 +165,43 @@ Cartesian& Cartesian::operator=(Cartesian&& other) noexcept
 Cartesian& Cartesian::operator=(const Cartesian& other) { return *this = Cartesian(other); }
 
 // Comparitors operators
-bool Cartesian::operator==(const Cartesian& other) const
-{
-    return (_x == other._x && _y == other._y && _z == other._z && _vx == other._vx && _vy == other._vy && _vz == other._vz);
-}
+bool Cartesian::operator==(const Cartesian& other) const { return (_r == other._r && _v == other._v); }
 
 bool Cartesian::operator!=(const Cartesian& other) const { return !(*this == other); }
 
 
 // Mathmatical operators
-Cartesian Cartesian::operator+(const Cartesian& other) const
-{
-    return Cartesian(_x + other._x, _y + other._y, _z + other._z, _vx + other._vx, _vy + other._vy, _vz + other._vz);
-}
+Cartesian Cartesian::operator+(const Cartesian& other) const { return Cartesian(_r + other._r, _v + other._v); }
 Cartesian& Cartesian::operator+=(const Cartesian& other)
 {
-    _x += other._x;
-    _y += other._y;
-    _z += other._z;
-    _vx += other._vx;
-    _vy += other._vy;
-    _vz += other._vz;
+    _r += other._r;
+    _v += other._v;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const Cartesian& other) const
-{
-    return Cartesian(_x - other._x, _y - other._y, _z - other._z, _vx - other._vx, _vy - other._vy, _vz - other._vz);
-}
+Cartesian Cartesian::operator-(const Cartesian& other) const { return Cartesian(_r - other._r, _v - other._v); }
 Cartesian& Cartesian::operator-=(const Cartesian& other)
 {
-    _x -= other._x;
-    _y -= other._y;
-    _z -= other._z;
-    _vx -= other._vx;
-    _vy -= other._vy;
-    _vz -= other._vz;
+    _r -= other._r;
+    _v -= other._v;
     return *this;
 }
 
-Cartesian Cartesian::operator*(const Unitless& multiplier) const
-{
-    return Cartesian(_x * multiplier, _y * multiplier, _z * multiplier, _vx * multiplier, _vy * multiplier, _vz * multiplier);
-}
+Cartesian Cartesian::operator*(const Unitless& multiplier) const { return Cartesian(_r * multiplier, _v * multiplier); }
 Cartesian& Cartesian::operator*=(const Unitless& multiplier)
 {
-    _x *= multiplier;
-    _y *= multiplier;
-    _z *= multiplier;
-    _vx *= multiplier;
-    _vy *= multiplier;
-    _vz *= multiplier;
+    _r *= multiplier;
+    _v *= multiplier;
     return *this;
 }
 
-CartesianPartial Cartesian::operator/(const Time& time) const
-{
-    return CartesianPartial(_x / time, _y / time, _z / time, _vx / time, _vy / time, _vz / time);
-}
+CartesianPartial Cartesian::operator/(const Time& time) const { return CartesianPartial(_r / time, _v / time); }
 
-Cartesian Cartesian::operator/(const Unitless& divisor) const
-{
-    return Cartesian(_x / divisor, _y / divisor, _z / divisor, _vx / divisor, _vy / divisor, _vz / divisor);
-}
+Cartesian Cartesian::operator/(const Unitless& divisor) const { return Cartesian(_r / divisor, _v / divisor); }
 Cartesian& Cartesian::operator/=(const Unitless& divisor)
 {
-    _x /= divisor;
-    _y /= divisor;
-    _z /= divisor;
-    _vx /= divisor;
-    _vy /= divisor;
-    _vz /= divisor;
+    _r /= divisor;
+    _v /= divisor;
     return *this;
 }
 
@@ -255,30 +209,27 @@ Cartesian
     Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
 
-    const Distance interpx = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _x, other.get_x() }, targetTime);
-    const Distance interpy = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _y, other.get_y() }, targetTime);
-    const Distance interpz = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _z, other.get_z() }, targetTime);
-    const Velocity interpvx = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vx, other.get_vx() }, targetTime);
-    const Velocity interpvy = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vy, other.get_vy() }, targetTime);
-    const Velocity interpvz = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _vz, other.get_vz() }, targetTime);
+    const Distance interpx = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[0], other.get_x() }, targetTime);
+    const Distance interpy = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[1], other.get_y() }, targetTime);
+    const Distance interpz = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[2], other.get_z() }, targetTime);
+    const Velocity interpvx = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[0], other.get_vx() }, targetTime);
+    const Velocity interpvy = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[1], other.get_vy() }, targetTime);
+    const Velocity interpvz = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[2], other.get_vz() }, targetTime);
 
     return Cartesian({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
 }
 
 std::vector<Unitless> Cartesian::to_vector() const
 {
-    return { _x / waveguide::detail::distance_unit,
-             _y / waveguide::detail::distance_unit,
-             _z / waveguide::detail::distance_unit,
-             _vx / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
-             _vy / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
-             _vz / (waveguide::detail::distance_unit / waveguide::detail::time_unit) };
+    return { _r[0] / waveguide::detail::distance_unit,
+             _r[1] / waveguide::detail::distance_unit,
+             _r[2] / waveguide::detail::distance_unit,
+             _v[0] / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _v[1] / (waveguide::detail::distance_unit / waveguide::detail::time_unit),
+             _v[2] / (waveguide::detail::distance_unit / waveguide::detail::time_unit) };
 }
 
-Cartesian CartesianPartial::operator*(const Time& time) const
-{
-    return Cartesian(_vx * time, _vy * time, _vz * time, _ax * time, _ay * time, _az * time);
-}
+Cartesian CartesianPartial::operator*(const Time& time) const { return Cartesian(_v * time, _a * time); }
 
 std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
 {
@@ -296,12 +247,12 @@ std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
 std::ostream& operator<<(std::ostream& os, CartesianPartial const& elements)
 {
     os << "[";
-    os << elements._vx << ", ";
-    os << elements._vy << ", ";
-    os << elements._vz << ", ";
-    os << elements._ax << ", ";
-    os << elements._ay << ", ";
-    os << elements._az;
+    os << elements._v[0] << ", ";
+    os << elements._v[1] << ", ";
+    os << elements._v[2] << ", ";
+    os << elements._a[0] << ", ";
+    os << elements._a[1] << ", ";
+    os << elements._a[2];
     os << "] (CartesianPartial)";
     return os;
 }

@@ -16,6 +16,7 @@
 #include <access/platforms/sensors/fov/FieldOfView.hpp>
 #include <access/risesets/AccessArray.hpp>
 
+#include <astro/element_sets/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace waveguide {
@@ -67,7 +68,7 @@ class Sensor : public AccessObject {
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    virtual const bool contains(const RadiusVector& sensor2target) const
+    virtual const bool contains(const astro::RadiusVector& sensor2target) const
     {
         return _fov->contains(_boresight, sensor2target);
     }
@@ -80,17 +81,17 @@ class Sensor : public AccessObject {
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    virtual const bool contains(const RadiusVector& boresight, const RadiusVector& sensor2target) const
+    virtual const bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& sensor2target) const
     {
         return _fov->contains(boresight, sensor2target);
     }
 
   private:
-    std::size_t _id;                   // Unique identifier for the sensor
-    int _parentId;                     // ID of the parent platform
-    RadiusVector _attachmentPoint;     // Attachment point of the sensor on the platform
-    RadiusVector _boresight;           // Boresight vector of the sensor, indicating the direction it is pointing
-    std::shared_ptr<FieldOfView> _fov; // Field of view of the sensor, defining its coverage area
+    std::size_t _id;                      // Unique identifier for the sensor
+    int _parentId;                        // ID of the parent platform
+    astro::RadiusVector _attachmentPoint; // Attachment point of the sensor on the platform
+    astro::RadiusVector _boresight;       // Boresight vector of the sensor, indicating the direction it is pointing
+    std::shared_ptr<FieldOfView> _fov;    // Field of view of the sensor, defining its coverage area
 
     void generate_id_hash();
 };

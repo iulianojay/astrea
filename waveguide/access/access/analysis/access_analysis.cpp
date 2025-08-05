@@ -21,8 +21,11 @@ namespace waveguide {
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
 using astro::Date;
+using astro::RadiusVector;
 using astro::State;
 using astro::StateHistory;
+using astro::VelocityVector;
+using astro::FRAME;
 
 namespace accesslib {
 
@@ -195,7 +198,7 @@ RiseSetArray
             center->get_polar_radius()
         );
         Date date                    = epoch + time;
-        const RadiusVector groundEci = astro::ecef_to_eci(groundEcef, date);
+        const RadiusVector groundEci = groundEcef.in<FRAME::ECI>(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
@@ -232,13 +235,9 @@ bool is_earth_occulting(const Cartesian& state1, const Cartesian& state2, const 
     // NOTE: Assumes Earth-centered
     // NOTE: Assumes spherical Earth
 
-    // TODO: Make subtraction operator for RadiusVector
     // Also make RadiusVector a class with utilities like magnitude, etc.
-    RadiusVector nadir1 = state1.get_radius();
-    for (std::size_t ii = 0; ii < 3; ++ii) {
-        nadir1[ii] = -nadir1[ii];
-    }
-    const Distance nadir1Mag = norm(nadir1);
+    RadiusVector nadir1      = -state1.get_radius();
+    const Distance nadir1Mag = nadir1.norm();
 
     // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
     const Cartesian& state1to2    = state2 - state1;
@@ -254,7 +253,7 @@ bool is_earth_occulting(const Cartesian& state1, const Cartesian& state2, const 
     // If nadir->satellite angle greater than Earth limb, Earth cannot block
     if (satelliteNadirAngle <= earthLimbAngle) {
         // Satellite is within Earth limb, check which is closer
-        const Distance radius1to2Mag  = norm(radius1to2);
+        const Distance radius1to2Mag  = radius1to2.norm();
         const Distance earthLimbRange = nadir1Mag * cos(earthLimbAngle);
 
         // If outside farthest Earth limb distance - Earth must be blocking
@@ -279,18 +278,8 @@ RiseSetArray
         const bool& isOcculted  = specificAccessInfo.isOcculted;
 
         // TODO: Make this pointing generic, certainly not done at this level
-        RadiusVector nadir1 = state1.get_radius();
-        RadiusVector nadir2 = state2.get_radius();
-
-        // TODO: Make subtraction operator for RadiusVector
-        // Also make RadiusVector a class with utilities like magnitude, etc.
-        for (std::size_t ii = 0; ii < 3; ++ii) {
-            nadir1[ii] = -nadir1[ii];
-            nadir2[ii] = -nadir2[ii];
-        }
-
-        const RadiusVector boresight1 = nadir1;
-        const RadiusVector boresight2 = nadir2;
+        const RadiusVector boresight1 = -state1.get_radius();
+        const RadiusVector boresight2 = -state2.get_radius();
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
         const Cartesian& state1to2 = state2 - state1;

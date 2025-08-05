@@ -22,15 +22,15 @@
 
 #include <math/utils.hpp>
 
-#include <units/CartesianVector.hpp>
 #include <units/typedefs.hpp>
+#include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/element_sets/Frame.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace waveguide {
 namespace astro {
@@ -72,7 +72,7 @@ CartesianVector<T> eci_to_ecef(const CartesianVector<T>& vecEci, const Date& dat
     const Unitless cosGST = cos(greenwichSiderealTime);
     const Unitless sinGST = sin(greenwichSiderealTime);
 
-    return CartesianVector(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z);
+    return CartesianVector(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z, FRAME::ECEF);
 }
 
 
@@ -111,7 +111,7 @@ CartesianVector<T> ecef_to_eci(const CartesianVector<T>& vecEcef, const Date& da
     const quantity cosGST = cos(-greenwichSiderealTime);
     const quantity sinGST = sin(-greenwichSiderealTime);
 
-    return CartesianVector<T>(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z);
+    return CartesianVector<T>(cosGST * x + sinGST * y, -sinGST * x + cosGST * y, z, FRAME::ECI);
 }
 
 /**
@@ -124,7 +124,7 @@ CartesianVector<T> ecef_to_eci(const CartesianVector<T>& vecEcef, const Date& da
  * @param lon The longitude in radians (output).
  * @param alt The altitude in meters (output).
  */
-void ecef_to_lla(const RadiusVector& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt);
+void ecef_to_lla(const CartesianVector<Distance>& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt);
 
 /**
  * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
@@ -136,7 +136,8 @@ void ecef_to_lla(const RadiusVector& rEcef, const Distance& rEquitorial, const D
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-RadiusVector lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
+CartesianVector<Distance>
+    lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
 
 /**
  * @brief Sanitize an angle to ensure it is within the range [0, 2π).
