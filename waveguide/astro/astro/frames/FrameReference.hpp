@@ -10,13 +10,49 @@
 namespace waveguide {
 namespace astro {
 
+/**
+ * @brief Base class for all frame references.
+ *
+ * This class provides a common interface for all frame references used in the
+ * astrodynamics library. It allows for easy conversion between different
+ * coordinate frames.
+ */
 class FrameReference {
   protected:
-    FrameReference()          = default;
+    /**
+     * @brief Default constructor for FrameReference.
+     *
+     * Initializes the frame reference with default values.
+     */
+    FrameReference() = default;
+
+    /**
+     * @brief Default destructor for FrameReference.
+     */
     virtual ~FrameReference() = default;
 
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, EarthCenteredInertial>
+     */
     virtual CartesianVector<Distance, EarthCenteredInertial> get_position(const Date& date) const = 0;
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return CartesianVector<Velocity, EarthCenteredInertial>
+     */
     virtual CartesianVector<Velocity, EarthCenteredInertial> get_velocity(const Date& date) const;
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return CartesianVector<Acceleration, EarthCenteredInertial>
+     */
     virtual CartesianVector<Acceleration, EarthCenteredInertial> get_acceleration(const Date& date) const;
 };
 
