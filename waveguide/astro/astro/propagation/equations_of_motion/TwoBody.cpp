@@ -20,8 +20,8 @@ OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const V
     // Extract
     const Cartesian cartesian = state.in<Cartesian>(get_system());
 
-    const RadiusVector r   = cartesian.get_radius();
-    const VelocityVector v = cartesian.get_velocity();
+    const RadiusVector<ECI> r   = cartesian.get_radius();
+    const VelocityVector<ECI> v = cartesian.get_velocity();
 
     // mu/R^3
     const Distance R                 = r.norm();

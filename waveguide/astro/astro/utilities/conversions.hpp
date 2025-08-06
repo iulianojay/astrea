@@ -121,7 +121,7 @@ namespace astro {
  * @param alt The altitude in meters (output).
  */
 void ecef_to_lla(
-    const CartesianVector<Distance, EarthCenteredEarthFixed>& rEcef,
+    const RadiusVector<EarthCenteredEarthFixed>& rEcef,
     const Distance& rEquitorial,
     const Distance& rPolar,
     Angle& lat,
@@ -139,7 +139,7 @@ void ecef_to_lla(
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-CartesianVector<Distance, EarthCenteredEarthFixed>
+RadiusVector<EarthCenteredEarthFixed>
     lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
 
 /**

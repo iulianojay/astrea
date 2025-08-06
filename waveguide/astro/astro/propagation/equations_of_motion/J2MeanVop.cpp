@@ -44,8 +44,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector v = cartesian.get_velocity();
-    const RadiusVector r   = cartesian.get_radius();
+    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<ECI> r   = cartesian.get_radius();
 
     const Distance x = cartesian.get_x();
     const Distance y = cartesian.get_y();
@@ -63,9 +63,9 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity termB = z * z / (R * R);
 
     // accel due to oblateness
-    AccelerationVector accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
-                                           termA * (1.0 - 5.0 * termB) * y,
-                                           termA * (1.0 - 3.0 * termB) * z };
+    AccelerationVector<ECI> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                                termA * (1.0 - 5.0 * termB) * y,
+                                                termA * (1.0 - 3.0 * termB) * z };
 
     // Calculate R, N, and T
     const Acceleration normalPert = accelOblateness.dot(Nhat);

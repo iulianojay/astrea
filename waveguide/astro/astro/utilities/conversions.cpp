@@ -23,14 +23,7 @@ namespace astro {
 //----------------------------------------------------------------------------------------------------------//
 
 
-void ecef_to_lla(
-    const CartesianVector<Distance, EarthCenteredEarthFixed>& rEcef,
-    const Distance& rEquitorial,
-    const Distance& rPolar,
-    Angle& lat,
-    Angle& lon,
-    Distance& alt
-)
+void ecef_to_lla(const RadiusVector<EarthCenteredEarthFixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt)
 {
     static const unsigned MAX_ITER  = 1e3;
     static const Distance MAX_ERROR = 1.0e-9 * km;
@@ -65,7 +58,7 @@ void ecef_to_lla(
     if (alt < 0.0 * km) { alt = 0.0 * km; }
 }
 
-CartesianVector<Distance, EarthCenteredEarthFixed>
+RadiusVector<EarthCenteredEarthFixed>
     lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
     const quantity sinLat = sin(lat);

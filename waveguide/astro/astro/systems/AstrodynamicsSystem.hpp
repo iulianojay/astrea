@@ -116,7 +116,7 @@ class AstrodynamicsSystem {
      */
     const auto& get_all_bodies() const { return bodyFactory.get_all_bodies(); }
 
-    // RadiusVector get_radius_to_center(CelestialBody target, double date); //TODO: Implement
+    // RadiusVector<ECI> get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
     /**
      * @brief Iterator for iterating over celestial bodies in the system.

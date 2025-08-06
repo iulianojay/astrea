@@ -17,7 +17,7 @@ using namespace mp_units::iau::unit_symbols;
 namespace waveguide {
 namespace astro {
 
-AccelerationVector
+AccelerationVector<ECI>
     NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
@@ -30,30 +30,32 @@ AccelerationVector
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Find day nearest to current time
-    const Date epoch                     = vehicle.get_state().get_epoch();
-    const State& stateSunToCenter        = center->get_state_at(date);
-    const RadiusVector radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
+    const Date epoch                          = vehicle.get_state().get_epoch();
+    const State& stateSunToCenter             = center->get_state_at(date);
+    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
 
     // Radius from central body to sun
-    const RadiusVector radiusCenterToSun{ // flip vector direction
-                                          -radiusSunToCenter[0],
-                                          -radiusSunToCenter[1],
-                                          -radiusSunToCenter[2]
+    const RadiusVector<ECI> radiusCenterToSun{ // flip vector direction
+                                               -radiusSunToCenter[0],
+                                               -radiusSunToCenter[1],
+                                               -radiusSunToCenter[2]
     };
 
     // Reset perturbation
-    AccelerationVector accelNBody{ 0.0 * km / (s * s) };
+    AccelerationVector<ECI> accelNBody{ 0.0 * km / (s * s) };
     for (const auto& [name, body] : sys.get_all_bodies()) {
 
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const State stateCenterToNBody         = center->get_state_at(date);
-        const RadiusVector radiusCenterToNbody = stateCenterToNBody.get_elements().in<Cartesian>(sys).get_radius();
+        const State stateCenterToNBody              = center->get_state_at(date);
+        const RadiusVector<ECI> radiusCenterToNbody = stateCenterToNBody.get_elements().in<Cartesian>(sys).get_radius();
         // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
 
         // Find radius from central body and spacecraft to nth body
-        const RadiusVector radiusVehicleToNbody{ radiusCenterToNbody[0] - x, radiusCenterToNbody[1] - y, radiusCenterToNbody[2] - z };
+        const RadiusVector<ECI> radiusVehicleToNbody{ radiusCenterToNbody[0] - x,
+                                                      radiusCenterToNbody[1] - y,
+                                                      radiusCenterToNbody[2] - z };
 
         // Normalize
         const quantity radiusVehicleToNbodyMagnitude = sqrt(

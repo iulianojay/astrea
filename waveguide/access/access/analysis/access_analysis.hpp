@@ -26,6 +26,7 @@
 #include <access/platforms/vehicles/Viewer.hpp>
 #include <access/risesets/RiseSetArray.hpp>
 #include <access/types/typedefs.hpp>
+#include <astro/frames/frames.hpp>
 
 
 namespace waveguide {
@@ -45,13 +46,13 @@ using ViewerConstellation = astro::Constellation<Viewer>;
  * @brief Struct to hold access information between two objects.
  */
 struct AccessInfo {
-    Time time;                     // Time of access
-    astro::Cartesian state1;       // State of the first object at the time of access
-    astro::Cartesian state2;       // State of the second object at the time of access
-    std::size_t id1;               // ID of the first object
-    std::size_t id2;               // ID of the second object
-    bool isOcculted;               // Flag indicating if the access is occulted
-    astro::RadiusVector ecefState; // ECEF state at the time of access
+    Time time;                                 // Time of access
+    astro::Cartesian state1;                   // State of the first object at the time of access
+    astro::Cartesian state2;                   // State of the second object at the time of access
+    std::size_t id1;                           // ID of the first object
+    std::size_t id2;                           // ID of the second object
+    bool isOcculted;                           // Flag indicating if the access is occulted
+    astro::RadiusVector<astro::ECI> ecefState; // ECEF state at the time of access
 };
 
 /**

@@ -40,8 +40,8 @@ int main()
 
     // const double R   = 10000;
     // const double V   = sqrt(398600.0 / 10000.0);
-    // RadiusVector r   = { R * km, 0.0 * km, 0.0 * km };
-    // VelocityVector v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
+    // RadiusVector<ECI> r   = { R * km, 0.0 * km, 0.0 * km };
+    // VelocityVector<ECI> v = { 0.0 * km / s, V * km / s, 0.0 * km / s };
 
     // Cartesian cart(r, v);
     // Keplerian kepl(cart, sys);

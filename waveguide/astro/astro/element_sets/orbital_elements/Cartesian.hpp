@@ -31,6 +31,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/element_sets/CartesianVector.hpp>
 #include <astro/element_sets/ElementSet.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace waveguide {
@@ -66,7 +67,7 @@ class Cartesian {
      * @param r Radius vector (position)
      * @param v Velocity vector
      */
-    Cartesian(const RadiusVector& r, const VelocityVector& v) :
+    Cartesian(const RadiusVector<ECI>& r, const VelocityVector<ECI>& v) :
         _r(r),
         _v(v)
     {
@@ -299,18 +300,18 @@ class Cartesian {
     Cartesian& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Cartesian state vector to a RadiusVector.
+     * @brief Converts the Cartesian state vector to a RadiusVector<ECI>.
      *
-     * @return RadiusVector The position vector in Cartesian coordinates.
+     * @return RadiusVector<ECI> The position vector in Cartesian coordinates.
      */
-    const RadiusVector& get_radius() const { return _r; }
+    const RadiusVector<ECI>& get_radius() const { return _r; }
 
     /**
-     * @brief Converts the Cartesian state vector to a VelocityVector.
+     * @brief Converts the Cartesian state vector to a VelocityVector<ECI>.
      *
-     * @return VelocityVector The velocity vector in Cartesian coordinates.
+     * @return VelocityVector<ECI> The velocity vector in Cartesian coordinates.
      */
-    const VelocityVector& get_velocity() const { return _v; }
+    const VelocityVector<ECI>& get_velocity() const { return _v; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -390,8 +391,8 @@ class Cartesian {
   private:
     constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN); // !< Set ID for the Cartesian element set
 
-    RadiusVector _r;   //!< Position vector
-    VelocityVector _v; //!< Velocity vector
+    RadiusVector<ECI> _r;   //!< Position vector
+    VelocityVector<ECI> _v; //!< Velocity vector
 };
 
 /**
@@ -431,7 +432,7 @@ class CartesianPartial {
      * @param v Velocity vector
      * @param a Acceleration vector
      */
-    CartesianPartial(const VelocityVector& v, const AccelerationVector& a) :
+    CartesianPartial(const VelocityVector<ECI>& v, const AccelerationVector<ECI>& a) :
         _v(v),
         _a(a)
     {
@@ -446,8 +447,8 @@ class CartesianPartial {
     Cartesian operator*(const Time& time) const;
 
   private:
-    VelocityVector _v;     //!< Velocity vector
-    AccelerationVector _a; //!< Acceleration vector
+    VelocityVector<ECI> _v;     //!< Velocity vector
+    AccelerationVector<ECI> _a; //!< Acceleration vector
 };
 
 } // namespace astro

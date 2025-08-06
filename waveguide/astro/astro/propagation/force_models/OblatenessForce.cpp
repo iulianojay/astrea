@@ -117,7 +117,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, con
 }
 
 
-AccelerationVector
+AccelerationVector<ECI>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
@@ -134,7 +134,7 @@ AccelerationVector
     static const Distance& polarR      = center->get_polar_radius();
 
     // Find lat and long
-    const CartesianVector<Distance, ECEF> rEcef = state.get_radius().in<ECEF>(date);
+    const RadiusVector<ECEF> rEcef = state.get_radius().in<ECEF>(date);
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
@@ -208,9 +208,9 @@ AccelerationVector
     const quantity term2 = dVdlon / (planarR * planarR);
 
     // Calculate accel in Ecef (not with respect to Ecef)
-    AccelerationVector accelOblatenessEcef = { term1 * xEcef - term2 * yEcef,
-                                               term1 * yEcef + term2 * xEcef,
-                                               oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
+    AccelerationVector<ECI> accelOblatenessEcef = { term1 * xEcef - term2 * yEcef,
+                                                    term1 * yEcef + term2 * xEcef,
+                                                    oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
 
     // Rotate back into inertial coordinates (no accel conversions required)
     return accelOblatenessEcef.in<ECI>(date);

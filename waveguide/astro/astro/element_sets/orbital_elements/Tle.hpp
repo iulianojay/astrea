@@ -33,7 +33,7 @@ class Tle {
         _vz(scale * waveguide::detail::distance_unit / waveguide::detail::time_unit)
     {
     }
-    Tle(const RadiusVector& r, const VelocityVector& v) :
+    Tle(const RadiusVector<ECI>& r, const VelocityVector<ECI>& v) :
         _x(r[0]),
         _y(r[1]),
         _z(r[2]),
@@ -92,8 +92,8 @@ class Tle {
     Tle& operator/=(const Unitless& divisor);
 
     // Element access
-    RadiusVector get_radius() const { return { _x, _y, _z }; }
-    VelocityVector get_velocity() const { return { _vx, _vy, _vz }; }
+    RadiusVector<ECI> get_radius() const { return { _x, _y, _z }; }
+    VelocityVector<ECI> get_velocity() const { return { _vx, _vy, _vz }; }
 
     const Distance& get_x() const { return _x; }
     const Distance& get_y() const { return _y; }

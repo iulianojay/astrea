@@ -61,9 +61,9 @@ class ForceModel {
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @param sys Astrodynamics system containing celestial body data
-     * @return AccelerationVector The total computed acceleration vector from all force models.
+     * @return AccelerationVector<ECI> The total computed acceleration vector from all force models.
      */
-    AccelerationVector
+    AccelerationVector<ECI>
         compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
     /**

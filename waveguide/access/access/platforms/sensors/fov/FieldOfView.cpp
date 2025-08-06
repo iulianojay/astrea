@@ -16,9 +16,10 @@ using namespace mp_units::angular;
 namespace waveguide {
 namespace accesslib {
 
+using astro::ECI;
 using astro::RadiusVector;
 
-Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusVector& vector2)
+Angle calculate_angle_between_vectors(const RadiusVector<ECI>& vector1, const RadiusVector<ECI>& vector2)
 {
     const Distance v1Mag = vector1.norm();
     const Distance v2Mag = vector2.norm();
@@ -30,7 +31,7 @@ Angle calculate_angle_between_vectors(const RadiusVector& vector1, const RadiusV
     return acos(ratio);
 }
 
-bool CircularFieldOfView::contains(const RadiusVector& boresight, const RadiusVector& target) const
+bool CircularFieldOfView::contains(const RadiusVector<ECI>& boresight, const RadiusVector<ECI>& target) const
 {
     return (calculate_angle_between_vectors(boresight, target) <= _halfConeAngle);
 }

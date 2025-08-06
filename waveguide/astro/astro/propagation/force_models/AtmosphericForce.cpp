@@ -26,7 +26,7 @@ using si::unit_symbols::s;
 namespace waveguide {
 namespace astro {
 
-AccelerationVector
+AccelerationVector<ECI>
     AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
@@ -60,7 +60,7 @@ AccelerationVector
     const Mass mass                          = vehicle.get_mass();
     const quantity dragMagnitude = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
 
-    const AccelerationVector accelDrag{ dragMagnitude * relVx, dragMagnitude * relVy, dragMagnitude * relVz };
+    const AccelerationVector<ECI> accelDrag{ dragMagnitude * relVx, dragMagnitude * relVy, dragMagnitude * relVz };
 
     // Velocity in the radial direction
     const Velocity radialVelcityMagnitude = (vx * x + vy * y + vz * z) / R;
@@ -71,7 +71,7 @@ AccelerationVector
     const quantity tempA =
         0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * radialVelcityMagnitude * radialVelcityMagnitude / R;
 
-    const AccelerationVector accelLift{ tempA * x, tempA * y, tempA * z };
+    const AccelerationVector<ECI> accelLift{ tempA * x, tempA * y, tempA * z };
 
     return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
 }
@@ -85,7 +85,7 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     static const std::string& centerName = center->get_name();
 
     // Find altitude
-    const CartesianVector<Distance, ECEF> rEcef = state.get_radius().in<ECEF>(date);
+    const RadiusVector<ECEF> rEcef = state.get_radius().in<ECEF>(date);
 
     Angle lat, lon;
     Distance altitude;

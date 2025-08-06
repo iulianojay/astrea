@@ -17,6 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/element_sets/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 
 
 namespace waveguide {
@@ -29,7 +30,7 @@ namespace accesslib {
  * @param vector2 The second radius vector.
  * @return Angle The angle between the two vectors.
  */
-Angle calculate_angle_between_vectors(const astro::RadiusVector& vector1, const astro::RadiusVector& vector2);
+Angle calculate_angle_between_vectors(const astro::RadiusVector<astro::ECI>& vector1, const astro::RadiusVector<astro::ECI>& vector2);
 
 /**
  * @brief Base class for Field of View (FoV) representations.
@@ -58,7 +59,7 @@ class FieldOfView {
      * @return true If the target is within the field of view.
      * @return false If the target is outside the field of view.
      */
-    virtual bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const = 0;
+    virtual bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const = 0;
 };
 
 /**
@@ -91,7 +92,7 @@ class CircularFieldOfView : public FieldOfView {
      * @return true If the target is within the circular field of view.
      * @return false If the target is outside the circular field of view.
      */
-    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const;
+    bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const;
 
   private:
     Angle _halfConeAngle; // Half-cone angle defining the circular field of view
@@ -144,7 +145,10 @@ class PolygonalFieldOfView : public FieldOfView {
      * @return true If the target is within the polygonal field of view.
      * @return false If the target is outside the polygonal field of view.
      */
-    bool contains(const astro::RadiusVector& boresight, const astro::RadiusVector& target) const { return false; };
+    bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const
+    {
+        return false;
+    };
 
   private:
     std::unordered_map<Angle, Angle> _points; // Map of angles defining the polygonal field of view

@@ -10,10 +10,10 @@ using namespace mp_units::si::unit_symbols;
 namespace waveguide {
 namespace astro {
 
-AccelerationVector
+AccelerationVector<ECI>
     ForceModel::compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-    AccelerationVector sum{ 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+    AccelerationVector<ECI> sum{ 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
     for (const auto& [name, force] : forces) {
         const auto result = force->compute_force(date, state, vehicle, sys);
         for (std::size_t ii = 0; ii < 3; ++ii) {

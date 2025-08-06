@@ -39,9 +39,9 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const VelocityVector v = cartesian.get_velocity();
-    const RadiusVector r   = cartesian.get_radius();
-    const Distance R       = r.norm();
+    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<ECI> r   = cartesian.get_radius();
+    const Distance R            = r.norm();
 
     // Define perturbation vectors relative to the satellites SNC body frame
     /*
@@ -54,8 +54,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const UnitVector That = Nhat.cross(Rhat).unit();
 
     // Function for finding accel caused by perturbations
-    const Date date               = vehicle.get_state().get_epoch();
-    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
+    const Date date                    = vehicle.get_state().get_epoch();
+    AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
     const Acceleration radialPert     = accelPerts.dot(Rhat);

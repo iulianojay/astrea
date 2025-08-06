@@ -192,22 +192,22 @@ RiseSetArray
     const auto& center = sys.get_center();
     for (const auto& time : times) {
         // Get ECI state of ground station
-        const astro::CartesianVector<Distance, ECEF> groundEcef = astro::lla_to_ecef(
+        const RadiusVector<ECEF> groundEcef = astro::lla_to_ecef(
             ground.get_latitude(),
             ground.get_longitude(),
             ground.get_altitude(),
             center->get_equitorial_radius(),
             center->get_polar_radius()
         );
-        Date date                    = epoch + time;
-        const RadiusVector groundEci = groundEcef.in<ECI>(date);
+        Date date                         = epoch + time;
+        const RadiusVector<ECI> groundEci = groundEcef.in<ECI>(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
         accessInfo[ii].id1        = viewer.get_id();
         accessInfo[ii].id2        = ground.get_id();
         accessInfo[ii].state1     = viewer.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2     = Cartesian(groundEci, VelocityVector{});
+        accessInfo[ii].state2     = Cartesian(groundEci, VelocityVector<ECI>{});
         accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
         ++ii;
     }
@@ -237,13 +237,13 @@ bool is_earth_occulting(const Cartesian& state1, const Cartesian& state2, const 
     // NOTE: Assumes Earth-centered
     // NOTE: Assumes spherical Earth
 
-    // Also make RadiusVector a class with utilities like magnitude, etc.
-    RadiusVector nadir1      = -state1.get_radius();
+    // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
+    RadiusVector<ECI> nadir1 = -state1.get_radius();
     const Distance nadir1Mag = nadir1.norm();
 
     // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-    const Cartesian& state1to2    = state2 - state1;
-    const RadiusVector radius1to2 = state1to2.get_radius();
+    const Cartesian& state1to2         = state2 - state1;
+    const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
 
     // Get edge angle of Earth
     static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100 * km; // TODO: Generalize for any body?
@@ -280,15 +280,15 @@ RiseSetArray
         const bool& isOcculted  = specificAccessInfo.isOcculted;
 
         // TODO: Make this pointing generic, certainly not done at this level
-        const RadiusVector boresight1 = -state1.get_radius();
-        const RadiusVector boresight2 = -state2.get_radius();
+        const RadiusVector<ECI> boresight1 = -state1.get_radius();
+        const RadiusVector<ECI> boresight2 = -state2.get_radius();
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
         const Cartesian& state1to2 = state2 - state1;
         const Cartesian& state2to1 = state1 - state2;
 
-        const RadiusVector radius1to2 = state1to2.get_radius();
-        const RadiusVector radius2to1 = state2to1.get_radius();
+        const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
+        const RadiusVector<ECI> radius2to1 = state2to1.get_radius();
 
         // Check if they can see each other
         bool sensorsInView;
@@ -354,24 +354,24 @@ RiseSetArray
         const bool& isOcculted  = specificAccessInfo.isOcculted;
 
         // TODO: Make this pointing generic, certainly not done at this level
-        RadiusVector nadir     = state1.get_radius();
-        RadiusVector antinadir = state2.get_radius();
+        RadiusVector<ECI> nadir     = state1.get_radius();
+        RadiusVector<ECI> antinadir = state2.get_radius();
 
-        // TODO: Make subtraction operator for RadiusVector
-        // Also make RadiusVector a class with utilities like magnitude, etc.
+        // TODO: Make subtraction operator for RadiusVector<ECI>
+        // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
         for (std::size_t ii = 0; ii < 3; ++ii) {
             nadir[ii] = -nadir[ii];
         }
 
-        const RadiusVector boresight1 = nadir;
-        const RadiusVector boresight2 = antinadir;
+        const RadiusVector<ECI> boresight1 = nadir;
+        const RadiusVector<ECI> boresight2 = antinadir;
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
         const Cartesian& state1to2 = state2 - state1;
         const Cartesian& state2to1 = state1 - state2;
 
-        const RadiusVector radius1to2 = state1to2.get_radius();
-        const RadiusVector radius2to1 = state2to1.get_radius();
+        const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
+        const RadiusVector<ECI> radius2to1 = state2to1.get_radius();
 
         // Check if they can see each other
         bool sensorsInView;

@@ -46,8 +46,8 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector v = cartesian.get_velocity();
-    const RadiusVector r   = cartesian.get_radius();
+    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<ECI> r   = cartesian.get_radius();
 
     const Distance x = cartesian.get_x();
     const Distance y = cartesian.get_y();
@@ -65,8 +65,8 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const UnitVector That = Nhat.cross(Rhat).unit();
 
     // Function for finding accel caused by perturbations
-    const Date date               = vehicle.get_state().get_epoch();
-    AccelerationVector accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
+    const Date date                    = vehicle.get_state().get_epoch();
+    AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
     const Acceleration radialPert     = accelPerts.dot(Rhat);

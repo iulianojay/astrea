@@ -11,18 +11,18 @@ namespace waveguide {
 namespace astro {
 
 
-VelocityVector FrameReference::get_velocity(const Date& date) const
+VelocityVector<EarthCenteredInertial> FrameReference::get_velocity(const Date& date) const
 {
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
-    return VelocityVector{ 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+    return VelocityVector<EarthCenteredInertial>{ 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
 };
 
-AccelerationVector FrameReference::get_acceleration(const Date& date) const
+AccelerationVector<EarthCenteredInertial> FrameReference::get_acceleration(const Date& date) const
 {
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
-    return AccelerationVector{ 0.0 * km / s / s, 0.0 * km / s / s, 0.0 * km / s / s };
+    return AccelerationVector<EarthCenteredInertial>{ 0.0 * km / s / s, 0.0 * km / s / s, 0.0 * km / s / s };
 };
 
 
