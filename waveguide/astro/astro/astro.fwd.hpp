@@ -37,6 +37,9 @@ class FixedOffsetFrame;
 template <class T>
 class DynamicFrame;
 
+template <class Frame_T>
+class DirectionCosineMatrix;
+
 class EarthCenteredInertial;
 class EarthCenteredEarthFixed;
 

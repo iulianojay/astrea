@@ -80,10 +80,45 @@ class CartesianVector {
     {
     }
 
+    /**
+     * @brief Explicitly deleted copy constructor to prevent implicit frame switches.
+     *
+     * @tparam Frame_U The frame type of the other CartesianVector.
+     * @param other The other CartesianVector to copy from.
+     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
+     */
     template <typename Frame_U>
-    CartesianVector(const CartesianVector<Value_T, Frame_U>& other) :
-        _vector{ other.get_x(), other.get_y(), other.get_z() }
+    CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
+    /**
+     * @brief Explicitly deleted copy assignment constructor to prevent implicit frame switches.
+     *
+     * @tparam Frame_U The frame type of the other CartesianVector.
+     * @param other The other CartesianVector to copy from.
+     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
+     */
+    template <typename Frame_U>
+    CartesianVector<Value_T, Frame_U> operator=(const CartesianVector<Value_T, Frame_T>& other) = delete;
+
+    /**
+     * @brief Explicitly deleted copy assignment constructor to prevent implicit frame switches.
+     *
+     * @tparam Frame_U The frame type of the other CartesianVector.
+     * @param other The other CartesianVector to copy from.
+     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
+     */
+    template <typename Frame_U>
+    CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
+    /**
+     * @brief Copy constructor for CartesianVector that implicitly converts the frame.
+     *
+     * @param other The other CartesianVector to copy from.
+     */
+    template <typename Frame_U>
+    CartesianVector<Value_T, Frame_U> force_frame_conversion() const
     {
+        return CartesianVector<Value_T, Frame_U>(_vector[0], _vector[1], _vector[2]);
     }
 
     /**

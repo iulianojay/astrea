@@ -139,7 +139,7 @@ void ecef_to_lla(
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-CartesianVector<Distance, EarthCenteredInertial>
+CartesianVector<Distance, EarthCenteredEarthFixed>
     lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
 
 /**

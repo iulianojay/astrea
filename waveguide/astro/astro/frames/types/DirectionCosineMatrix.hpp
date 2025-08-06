@@ -139,9 +139,9 @@ class DirectionCosineMatrix {
     CartesianVector<Value_T, Out_Frame_T> operator*(const CartesianVector<Value_T, Frame_T>& vec) const
     {
         return CartesianVector<Value_T, Out_Frame_T>(
-            static_cast<CartesianVector<Unitless, Frame_T>>(_matrix[0]).dot(vec), // Force into the same frame since a DCM is "frameless"
-            static_cast<CartesianVector<Unitless, Frame_T>>(_matrix[1]).dot(vec),
-            static_cast<CartesianVector<Unitless, Frame_T>>(_matrix[2]).dot(vec)
+            (_matrix[0].template force_frame_conversion<Frame_T>()).dot(vec), // Force into the same frame since a DCM is "frameless"
+            (_matrix[1].template force_frame_conversion<Frame_T>()).dot(vec),
+            (_matrix[2].template force_frame_conversion<Frame_T>()).dot(vec)
         );
     }
 

@@ -234,7 +234,7 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
 TEST_F(ConversionTest, EcefToLla) // TODO: Make an LLA element set of some kind
 {
     // Vallado ex. 3-3
-    const RadiusVector rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
+    const CartesianVector<Distance, ECEF> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
     Angle lat, lon;
     Distance alt;
@@ -251,7 +251,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const RadiusVector rEcef = lla_to_ecef(lat, lon, alt, rEquitorial, rPolar);
+    const CartesianVector<Distance, ECEF> rEcef = lla_to_ecef(lat, lon, alt, rEquitorial, rPolar);
 
     // I have no idea why these are not the same
     assert_nearly_equal(rEcef[0], Distance(6524.834 * km));

@@ -13,6 +13,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/frames/types/InertialFrame.hpp>
+#include <astro/time/Date.hpp>
 
 namespace waveguide {
 namespace astro {
