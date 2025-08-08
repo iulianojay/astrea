@@ -23,6 +23,7 @@
 
 #include <access/platforms/AccessObject.hpp>
 #include <access/platforms/sensors/Sensor.hpp>
+#include <access/platforms/sensors/SensorPlatform.hpp>
 
 namespace waveguide {
 namespace accesslib {

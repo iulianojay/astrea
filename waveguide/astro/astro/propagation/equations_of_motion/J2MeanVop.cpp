@@ -45,7 +45,7 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
 
     // conversions KEPLERIANs to r and v
     const VelocityVector<ECI> v = cartesian.get_velocity();
-    const RadiusVector<ECI> r   = cartesian.get_radius();
+    const RadiusVector<ECI> r   = cartesian.get_position();
 
     const Distance x = cartesian.get_x();
     const Distance y = cartesian.get_y();

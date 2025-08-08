@@ -16,6 +16,7 @@
 #include <mp-units/systems/si.h>
 
 // astro
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
@@ -27,7 +28,7 @@ namespace astro {
  * @brief A class representing a null vehicle in the waveguide astro platform.
  * This class is used as a placeholder for vehicles that do not have a defined state or mass.
  */
-class NullVehicle {
+class NullVehicle : public FrameReference {
 
   public:
     /**
@@ -42,6 +43,8 @@ class NullVehicle {
         _mass(mass)
     {
     }
+
+    virtual NullVehicle* clone() const { return new NullVehicle(*this); }
 
     /**
      * @brief Updates the state of the vehicle.
@@ -70,6 +73,51 @@ class NullVehicle {
      * @return Mass The mass of the vehicle.
      */
     Mass get_mass() const { return _mass; }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    std::string get_name() const { return "NullVehicle"; }
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, EarthCenteredInertial>
+     */
+    CartesianVector<Distance, EarthCenteredInertial> get_inertial_position(const Date& date) const final
+    {
+        using mp_units::si::unit_symbols::km;
+        return { 0.0 * km, 0.0 * km, 0.0 * km };
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return CartesianVector<Velocity, EarthCenteredInertial>
+     */
+    CartesianVector<Velocity, EarthCenteredInertial> get_inertial_velocity(const Date& date) const final
+    {
+        using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::s;
+        return { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return CartesianVector<Acceleration, EarthCenteredInertial>
+     */
+    CartesianVector<Acceleration, EarthCenteredInertial> get_inertial_acceleration(const Date& date) const final
+    {
+        using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::s;
+        return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+    }
 
   private:
     State _state0; // Initial state of the vehicle

@@ -38,7 +38,7 @@ class RotatingFrame : public Frame {
     {
     }
 
-  private:
+  protected:
     InertialFrame parentFrame; //<! The parent inertial frame that this rotating frame is based on.
 };
 

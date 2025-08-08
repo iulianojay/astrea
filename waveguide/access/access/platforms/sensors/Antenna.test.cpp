@@ -5,6 +5,7 @@
 #include <astro/astro.hpp>
 
 #include <access/platforms/sensors/Antenna.hpp>
+#include <access/platforms/vehicles/Viewer.hpp>
 
 using namespace waveguide;
 using namespace astro;
@@ -40,14 +41,18 @@ int main(int argc, char** argv)
 // "Satellite Communications" by Dennis Roddy, 5th edition, Example 12.2
 TEST(SatCommTest, AntennaGain)
 {
-    Antenna antenna(3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
+    Viewer sc;
+    CircularFieldOfView fov;
+    Antenna antenna(sc, fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
     compare_unit_values(to_db(antenna.gain()), 48.93 * dB);
 }
 
 // "Satellite Communications" by Dennis Roddy, 5th edition, Example 12.3
 TEST(SatCommTest, FreeSpaceLoss)
 {
-    Antenna antenna(1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+    Viewer sc;
+    CircularFieldOfView fov;
+    Antenna antenna(sc, fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
     compare_unit_values(to_db(antenna.free_space_loss(40400 * km)), -200.14 * dB);
     compare_unit_values(to_db(antenna.free_space_loss(37500 * km)), -199.49 * dB);
 }
@@ -55,8 +60,10 @@ TEST(SatCommTest, FreeSpaceLoss)
 // "Satellite Communications" by Dennis Roddy, 5th edition, Example 12.4
 TEST(SatCommTest, MispointingLossGroundToGEO)
 {
-    Antenna groundAntenna(3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
-    Antenna geoSatAntenna(1.0 * m, 1.0 * one, 12.0 * GHz, 1.0 * W);
+    Viewer sc;
+    CircularFieldOfView fov;
+    Antenna groundAntenna(sc, fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
+    Antenna geoSatAntenna(sc, fov, 1.0 * m, 1.0 * one, 12.0 * GHz, 1.0 * W);
 
     // Bessel approximation
     compare_unit_values(to_db(groundAntenna.gain()), 48.93 * dB);
@@ -70,8 +77,10 @@ TEST(SatCommTest, MispointingLossGroundToGEO)
 // "Satellite Communications" by Dennis Roddy, 5th edition, Example 12.5
 TEST(SatCommTest, MispointingLossGroundToSat)
 {
-    Antenna groundAntenna(10.0 * m, 0.70 * one, 6.0 * GHz, 1.0 * W);
-    Antenna satAntenna(1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+    Viewer sc;
+    CircularFieldOfView fov;
+    Antenna groundAntenna(sc, fov, 10.0 * m, 0.70 * one, 6.0 * GHz, 1.0 * W);
+    Antenna satAntenna(sc, fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
 
     // Bessel approximation
     compare_unit_values(to_db(groundAntenna.gain()), 54.42 * dB); // text says 54.41, but is rounds heavily

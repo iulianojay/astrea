@@ -32,7 +32,7 @@ AccelerationVector<ECI>
     // Find day nearest to current time
     const Date epoch                          = vehicle.get_state().get_epoch();
     const State& stateSunToCenter             = center->get_state_at(date);
-    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_radius();
+    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_position();
 
     // Radius from central body to sun
     const RadiusVector<ECI> radiusCenterToSun{ // flip vector direction
@@ -49,7 +49,7 @@ AccelerationVector<ECI>
 
         // Find day nearest to current time
         const State stateCenterToNBody              = center->get_state_at(date);
-        const RadiusVector<ECI> radiusCenterToNbody = stateCenterToNBody.get_elements().in<Cartesian>(sys).get_radius();
+        const RadiusVector<ECI> radiusCenterToNbody = stateCenterToNBody.get_elements().in<Cartesian>(sys).get_position();
         // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
 
         // Find radius from central body and spacecraft to nth body

@@ -23,6 +23,11 @@ namespace astro {
 
 /**
  * @brief Class representing the Earth-Centered Earth Fixed (ECEF) frame.
+ *
+ * @note This frame contiains the following conversions:
+ * - ECEF to ECEF
+ * - ECI to ECEF
+ * - ECEF to ECI
  */
 class EarthCenteredEarthFixed : public RotatingFrame {
 
@@ -50,7 +55,7 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        convert_to(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
+        convert_to_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
     {
         return ecefVec;
     }
@@ -62,15 +67,57 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      * @param eciVec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
      * @return CartesianVector<Value_T, EarthCenteredEarthFixed> The converted CartesianVector in ECEF coordinates.
+     *
+     * @note: This transformation only accounts for Earth rotation, not nutation or procession, so it
+     *      is wrong by the order of several km. TODO: Make this accurate.
+     *      https://space.stackexchange.com/questions/38807/transform-eci-to-ecef
+     *
+     *  C_eci2ecef = [c_gst s_gst 0;
+     *               -s_gst c_gst 0;
+     *                  0      0  1];
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        convert_to(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
+        convert_to_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
+    {
+        return get_dcm(date) * eciVec;
+    }
+
+    /**
+     * @brief Converts a CartesianVector from Earth-Centered Earth-Fixed (ECEF) to Earth-Centered Inertial (ECI) coordinates.
+     *
+     * @tparam Value_T The type of the vector components.
+     * @param ecefVec The CartesianVector in Earth-Centered Earth-Fixed coordinates.
+     * @param date The date for which the conversion is performed.
+     * @return CartesianVector<Value_T, EarthCenteredInertial> The converted CartesianVector in ECI coordinates.
+     *
+     *  @note: This transformation only accounts for Earth rotation, not nutation or procession, so it
+     *      is wrong by the order of several km. TODO: Make this accurate.
+     *      https://space.stackexchange.com/questions/38807/transform-eci-to-ecef
+     *  C_ecef2eci = [ cos(-gst) sin(-gst) 0;
+     *                -sin(-gst) cos(-gst) 0;
+     *                     0         0     1];
+     */
+    template <typename Value_T>
+    static CartesianVector<Value_T, EarthCenteredInertial>
+        convert_from_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
+    {
+        return get_dcm(date).transpose() * ecefVec;
+    }
+
+    /**
+     * @brief Get the Direction Cosine Matrix (DCM) for the ECEF frame at a given date.
+     *
+     * @param date The date for which to get the DCM.
+     * @return DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed> The DCM from ECI to ECEF.
+     */
+    static DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed> get_dcm(const Date& date)
     {
         const Angle gst = julian_date_to_siderial_time(date.jd());
-        const auto dcm  = DirectionCosineMatrix<EarthCenteredEarthFixed>::Z(gst);
-        return dcm * eciVec;
+        return DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed>::Z(gst);
     }
+
+  private:
 };
 
 /**

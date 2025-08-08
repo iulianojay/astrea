@@ -92,7 +92,7 @@ class Tle {
     Tle& operator/=(const Unitless& divisor);
 
     // Element access
-    RadiusVector<ECI> get_radius() const { return { _x, _y, _z }; }
+    RadiusVector<ECI> get_position() const { return { _x, _y, _z }; }
     VelocityVector<ECI> get_velocity() const { return { _vx, _vy, _vz }; }
 
     const Distance& get_x() const { return _x; }

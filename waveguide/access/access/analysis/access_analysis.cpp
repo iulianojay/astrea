@@ -200,7 +200,7 @@ RiseSetArray
             center->get_polar_radius()
         );
         Date date                         = epoch + time;
-        const RadiusVector<ECI> groundEci = groundEcef.in<ECI>(date);
+        const RadiusVector<ECI> groundEci = groundEcef.in_frame<ECI>(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
@@ -238,12 +238,12 @@ bool is_earth_occulting(const Cartesian& state1, const Cartesian& state2, const 
     // NOTE: Assumes spherical Earth
 
     // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
-    RadiusVector<ECI> nadir1 = -state1.get_radius();
+    RadiusVector<ECI> nadir1 = -state1.get_position();
     const Distance nadir1Mag = nadir1.norm();
 
     // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
     const Cartesian& state1to2         = state2 - state1;
-    const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
+    const RadiusVector<ECI> radius1to2 = state1to2.get_position();
 
     // Get edge angle of Earth
     static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100 * km; // TODO: Generalize for any body?
@@ -280,15 +280,15 @@ RiseSetArray
         const bool& isOcculted  = specificAccessInfo.isOcculted;
 
         // TODO: Make this pointing generic, certainly not done at this level
-        const RadiusVector<ECI> boresight1 = -state1.get_radius();
-        const RadiusVector<ECI> boresight2 = -state2.get_radius();
+        const RadiusVector<ECI> boresight1 = -state1.get_position();
+        const RadiusVector<ECI> boresight2 = -state2.get_position();
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
         const Cartesian& state1to2 = state2 - state1;
         const Cartesian& state2to1 = state1 - state2;
 
-        const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
-        const RadiusVector<ECI> radius2to1 = state2to1.get_radius();
+        const RadiusVector<ECI> radius1to2 = state1to2.get_position();
+        const RadiusVector<ECI> radius2to1 = state2to1.get_position();
 
         // Check if they can see each other
         bool sensorsInView;
@@ -354,8 +354,8 @@ RiseSetArray
         const bool& isOcculted  = specificAccessInfo.isOcculted;
 
         // TODO: Make this pointing generic, certainly not done at this level
-        RadiusVector<ECI> nadir     = state1.get_radius();
-        RadiusVector<ECI> antinadir = state2.get_radius();
+        RadiusVector<ECI> nadir     = state1.get_position();
+        RadiusVector<ECI> antinadir = state2.get_position();
 
         // TODO: Make subtraction operator for RadiusVector<ECI>
         // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
@@ -370,8 +370,8 @@ RiseSetArray
         const Cartesian& state1to2 = state2 - state1;
         const Cartesian& state2to1 = state1 - state2;
 
-        const RadiusVector<ECI> radius1to2 = state1to2.get_radius();
-        const RadiusVector<ECI> radius2to1 = state2to1.get_radius();
+        const RadiusVector<ECI> radius1to2 = state1to2.get_position();
+        const RadiusVector<ECI> radius2to1 = state2to1.get_position();
 
         // Check if they can see each other
         bool sensorsInView;

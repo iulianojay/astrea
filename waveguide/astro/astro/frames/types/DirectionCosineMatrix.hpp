@@ -20,6 +20,8 @@
 namespace waveguide {
 namespace astro {
 
+// TODO: Probably should use eigen instead of arrays, might not matter for these small matrices used in
+//  rotation but worth looking into
 /**
  * @brief Class representing a direction cosine matrix (DCM) for transforming vectors between frames.
  *
@@ -27,7 +29,7 @@ namespace astro {
  *
  * @tparam Out_Frame_T The frame type to which the DCM applies.
  */
-template <typename Out_Frame_T>
+template <typename In_Frame_T, typename Out_Frame_T>
 class DirectionCosineMatrix {
   public:
     /**
@@ -42,7 +44,7 @@ class DirectionCosineMatrix {
      *
      * @param matrix An array containing the three rows of the DCM, each represented as a CartesianVector.
      */
-    DirectionCosineMatrix(const std::array<CartesianVector<Unitless, Out_Frame_T>, 3>& matrix) :
+    DirectionCosineMatrix(const std::array<CartesianVector<Unitless, In_Frame_T>, 3>& matrix) :
         _matrix(matrix)
     {
     }
@@ -53,14 +55,16 @@ class DirectionCosineMatrix {
      * @param theta The angle of rotation around the X-axis.
      * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
      */
-    static DirectionCosineMatrix<Out_Frame_T> X(const Angle& theta)
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> X(const Angle& theta)
     {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<Out_Frame_T>{ { CartesianVector<Unitless, Out_Frame_T>(1.0 * one, 0.0 * one, 0.0 * one),
-                                                     CartesianVector<Unitless, Out_Frame_T>(0.0 * one, cos(theta), -sin(theta)),
-                                                     CartesianVector<Unitless, Out_Frame_T>(0.0 * one, sin(theta), cos(theta)) } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { CartesianVector<Unitless, In_Frame_T>(1.0 * one, 0.0 * one, 0.0 * one),
+              CartesianVector<Unitless, In_Frame_T>(0.0 * one, cos(theta), -sin(theta)),
+              CartesianVector<Unitless, In_Frame_T>(0.0 * one, sin(theta), cos(theta)) }
+        };
     }
 
     /**
@@ -69,14 +73,16 @@ class DirectionCosineMatrix {
      * @param theta The angle of rotation around the Y-axis.
      * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
      */
-    static DirectionCosineMatrix<Out_Frame_T> Y(const Angle& theta)
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Y(const Angle& theta)
     {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<Out_Frame_T>{ { CartesianVector<Unitless, Out_Frame_T>(cos(theta), 0.0 * one, sin(theta)),
-                                                     CartesianVector<Unitless, Out_Frame_T>(0.0 * one, 1.0 * one, 0.0 * one),
-                                                     CartesianVector<Unitless, Out_Frame_T>(-sin(theta), 0.0 * one, cos(theta)) } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { CartesianVector<Unitless, In_Frame_T>(cos(theta), 0.0 * one, sin(theta)),
+              CartesianVector<Unitless, In_Frame_T>(0.0 * one, 1.0 * one, 0.0 * one),
+              CartesianVector<Unitless, In_Frame_T>(-sin(theta), 0.0 * one, cos(theta)) }
+        };
     }
 
     /**
@@ -85,14 +91,16 @@ class DirectionCosineMatrix {
      * @param theta The angle of rotation around the Z-axis.
      * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
      */
-    static DirectionCosineMatrix<Out_Frame_T> Z(const Angle& theta)
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Z(const Angle& theta)
     {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<Out_Frame_T>{ { CartesianVector<Unitless, Out_Frame_T>(cos(theta), -sin(theta), 0.0 * one),
-                                                     CartesianVector<Unitless, Out_Frame_T>(sin(theta), cos(theta), 0.0 * one),
-                                                     CartesianVector<Unitless, Out_Frame_T>(0.0 * one, 0.0 * one, 1.0 * one) } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { CartesianVector<Unitless, In_Frame_T>(cos(theta), -sin(theta), 0.0 * one),
+              CartesianVector<Unitless, In_Frame_T>(sin(theta), cos(theta), 0.0 * one),
+              CartesianVector<Unitless, In_Frame_T>(0.0 * one, 0.0 * one, 1.0 * one) }
+        };
     }
 
     /**
@@ -103,18 +111,18 @@ class DirectionCosineMatrix {
      * @param gamma The angle of rotation around the Z-axis.
      * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
      */
-    static DirectionCosineMatrix<Out_Frame_T> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<Out_Frame_T>{
-            { CartesianVector<Unitless, Out_Frame_T>(cos(beta), -cos(gamma) * sin(beta), sin(beta) * sin(gamma)),
-              CartesianVector<Unitless, Out_Frame_T>(
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { CartesianVector<Unitless, In_Frame_T>(cos(beta), -cos(gamma) * sin(beta), sin(beta) * sin(gamma)),
+              CartesianVector<Unitless, In_Frame_T>(
                   cos(alpha) * sin(beta),
                   cos(alpha) * cos(beta) * cos(gamma) - sin(alpha) * sin(gamma),
                   -cos(gamma) * sin(alpha) - cos(alpha) * cos(beta) * sin(gamma)
               ),
-              CartesianVector<Unitless, Out_Frame_T>(
+              CartesianVector<Unitless, In_Frame_T>(
                   sin(alpha) * sin(beta),
                   cos(alpha) * sin(beta) + cos(beta) * cos(gamma) * sin(alpha),
                   cos(alpha) * cos(gamma) - cos(beta) * sin(gamma) * sin(alpha)
@@ -123,9 +131,37 @@ class DirectionCosineMatrix {
     }
 
     /**
+     * @brief Creates a direction cosine matrix from three orthonormal vectors.
+     *
+     * @param x The unit vector in the X direction.
+     * @param y The unit vector in the Y direction.
+     * @param z The unit vector in the Z direction.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> from_vectors(
+        const CartesianVector<Unitless, In_Frame_T>& x,
+        const CartesianVector<Unitless, In_Frame_T>& y,
+        const CartesianVector<Unitless, In_Frame_T>& z
+    )
+    {
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { CartesianVector<Unitless, In_Frame_T>(x[0], y[0], z[0]),
+                                                                 CartesianVector<Unitless, In_Frame_T>(x[1], y[1], z[1]),
+                                                                 CartesianVector<Unitless, In_Frame_T>(x[2], y[2], z[2]) } };
+    }
+
+    /**
      * @brief Default destructor for DirectionCosineMatrix.
      */
     ~DirectionCosineMatrix() = default;
+
+    DirectionCosineMatrix<Out_Frame_T, In_Frame_T> transpose() const
+    {
+        return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{
+            { CartesianVector<Unitless, Out_Frame_T>(_matrix[0].get_x(), _matrix[1].get_x(), _matrix[2].get_x()),
+              CartesianVector<Unitless, Out_Frame_T>(_matrix[0].get_y(), _matrix[1].get_y(), _matrix[2].get_y()),
+              CartesianVector<Unitless, Out_Frame_T>(_matrix[0].get_z(), _matrix[1].get_z(), _matrix[2].get_z()) }
+        };
+    }
 
     /**
      * @brief Apply the direction cosine matrix to a CartesianVector.
@@ -135,18 +171,14 @@ class DirectionCosineMatrix {
      * @param vec The CartesianVector to which the DCM will be applied.
      * @return CartesianVector<Value_T, Out_Frame_T> The transformed CartesianVector in the output frame.
      */
-    template <typename Value_T, typename Frame_T>
-    CartesianVector<Value_T, Out_Frame_T> operator*(const CartesianVector<Value_T, Frame_T>& vec) const
+    template <typename Value_T>
+    CartesianVector<Value_T, Out_Frame_T> operator*(const CartesianVector<Value_T, In_Frame_T>& vec) const
     {
-        return CartesianVector<Value_T, Out_Frame_T>(
-            (_matrix[0].template force_frame_conversion<Frame_T>()).dot(vec), // Force into the same frame since a DCM is "frameless"
-            (_matrix[1].template force_frame_conversion<Frame_T>()).dot(vec),
-            (_matrix[2].template force_frame_conversion<Frame_T>()).dot(vec)
-        );
+        return CartesianVector<Value_T, Out_Frame_T>(_matrix[0].dot(vec), _matrix[1].dot(vec), _matrix[2].dot(vec));
     }
 
   private:
-    std::array<CartesianVector<Unitless, Out_Frame_T>, 3> _matrix; //<! 3x3 matrix to hold the direction cosines.
+    std::array<CartesianVector<Unitless, In_Frame_T>, 3> _matrix; //<! 3x3 matrix to hold the direction cosines.
 };
 
 /**
@@ -156,8 +188,8 @@ class DirectionCosineMatrix {
  *
  * @tparam Out_Frame_T The frame type to which the DCM applies.
  */
-template <typename Out_Frame_T>
-using DCM = DirectionCosineMatrix<Out_Frame_T>;
+template <typename In_Frame_T, typename Out_Frame_T>
+using DCM = DirectionCosineMatrix<In_Frame_T, Out_Frame_T>;
 
 
 } // namespace astro

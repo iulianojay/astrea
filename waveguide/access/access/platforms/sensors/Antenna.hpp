@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>
@@ -23,6 +25,193 @@ namespace waveguide {
 namespace accesslib {
 
 /**
+ * @brief Enum class for different antenna pattern approximations.
+ */
+enum class PatternApproximation {
+    BESSEL,      //<! Bessel function approximation
+    SINC_SQUARED //<! Sinc-squared approximation
+};
+
+/**
+ * @brief Class for storing and managing antenna parameters.
+ */
+class AntennaParameters : public SensorParameters {
+  public:
+    /**
+     * @brief Construct a new Antenna Parameters object
+     *
+     * @param fov Field of View for the antenna.
+     * @param diameter Reflector diameter.
+     * @param efficiency Aperture illumination efficiency.
+     * @param frequency Carrier frequency.
+     * @param power Transmit power.
+     * @param boresight Boresight direction in RIC coordinates (default is Nadir).
+     * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
+     * @param noiseBandwidth Equivalent noise bandwidth (default is 0.0, ideal).
+     * @param transmitLoss Transmit loss (default is 1.0, ideal).
+     * @param receiverLoss Receiver loss (default is 1.0, ideal).
+     * @param pattern Pattern approximation method (default is Bessel).
+     */
+    AntennaParameters(
+        const FieldOfView* fov,
+        const Length& diameter,
+        const Unitless& efficiency,
+        const Frequency& frequency,
+        const Power& power,
+        const astro::RadiusVector<astro::RIC>& boresight       = { -1.0 * waveguide::detail::distance_unit, // Nadir
+                                                                   0.0 * waveguide::detail::distance_unit,
+                                                                   0.0 * waveguide::detail::distance_unit },
+        const astro::RadiusVector<astro::RIC>& attachmentPoint = { 0.0 * waveguide::detail::distance_unit, // Center
+                                                                   0.0 * waveguide::detail::distance_unit,
+                                                                   0.0 * waveguide::detail::distance_unit },
+        const Frequency& noiseBandwidth                        = 0.0 * mp_units::si::unit_symbols::GHz,
+        const Gain& transmitLoss                               = 1.0 * mp_units::one,
+        const Gain& receiverLoss                               = 1.0 * mp_units::one,
+        const PatternApproximation& pattern                    = PatternApproximation::BESSEL
+    ) :
+        _fov(fov),
+        _boresight(boresight),
+        _attachmentPoint(attachmentPoint),
+        _diameter(diameter),
+        _efficiency(efficiency),
+        _frequency(frequency),
+        _power(power),
+        _noiseBandwidth(noiseBandwidth),
+        _transmitLoss(transmitLoss),
+        _receiverLoss(receiverLoss),
+        _pattern(pattern)
+    {
+    }
+
+    /**
+     * @brief Default constructor for AntennaParameters.
+     */
+    ~AntennaParemeters() = default;
+
+    /**
+     * @brief Get the diameter of the antenna.
+     *
+     * @return Length Diameter of the antenna.
+     */
+    Length get_diameter() const { return _diameter; }
+
+    /**
+     * @brief Get the efficiency of the antenna.
+     *
+     * @return Unitless Efficiency of the antenna.
+     */
+    Unitless get_efficiency() const { return _efficiency; }
+
+    /**
+     * @brief Get the frequency of the antenna.
+     *
+     * @return Frequency Frequency of the antenna.
+     */
+    Frequency get_frequency() const { return _frequency; }
+
+    /**
+     * @brief Get the power of the antenna.
+     *
+     * @return Power Power of the antenna.
+     */
+    Power get_power() const { return _power; }
+
+    /**
+     * @brief Get the noise bandwidth of the antenna.
+     *
+     * @return Frequency Noise bandwidth of the antenna.
+     */
+    Frequency get_noise_bandwidth() const { return _noiseBandwidth; }
+
+    /**
+     * @brief Get the transmit loss of the antenna.
+     *
+     * @return Gain Transmit loss of the antenna.
+     */
+    Gain get_transmit_loss() const { return _transmitLoss; }
+
+    /**
+     * @brief Get the receiver loss of the antenna.
+     *
+     * @return Gain Receiver loss of the antenna.
+     */
+    Gain get_receiver_loss() const { return _receiverLoss; }
+
+    /**
+     * @brief Get the pattern approximation method of the antenna.
+     *
+     * @return PatternApproximation Pattern approximation method of the antenna.
+     */
+    PatternApproximation get_pattern() const { return _pattern; }
+
+    /**
+     * @brief Set the diameter of the antenna.
+     *
+     * @param diameter Length Diameter of the antenna.
+     */
+    void set_diameter(const Length& diameter) { _diameter = diameter; }
+
+    /**
+     * @brief Set the efficiency of the antenna.
+     *
+     * @param efficiency Unitless Efficiency of the antenna.
+     */
+    void set_efficiency(const Unitless& efficiency) { _efficiency = efficiency; }
+
+    /**
+     * @brief Set the frequency of the antenna.
+     *
+     * @param frequency Frequency Frequency of the antenna.
+     */
+    void set_frequency(const Frequency& frequency) { _frequency = frequency; }
+
+    /**
+     * @brief Set the power of the antenna.
+     *
+     * @param power Power Power of the antenna.
+     */
+    void set_power(const Power& power) { _power = power; }
+
+    /**
+     * @brief Set the noise bandwidth of the antenna.
+     *
+     * @param noiseBandwidth Frequency Noise bandwidth of the antenna.
+     */
+    void set_noise_bandwidth(const Frequency& noiseBandwidth) { _noiseBandwidth = noiseBandwidth; }
+
+    /**
+     * @brief Set the transmit loss of the antenna.
+     *
+     * @param transmitLoss Gain Transmit loss of the antenna.
+     */
+    void set_transmit_loss(const Gain& transmitLoss) { _transmitLoss = transmitLoss; }
+
+    /**
+     * @brief Set the receiver loss of the antenna.
+     *
+     * @param receiverLoss Gain Receiver loss of the antenna.
+     */
+    void set_receiver_loss(const Gain& receiverLoss) { _receiverLoss = receiverLoss; }
+
+    /**
+     * @brief Set the pattern approximation method of the antenna.
+     *
+     * @param pattern PatternApproximation Pattern approximation method of the antenna.
+     */
+    void set_pattern(const PatternApproximation& pattern) { _pattern = pattern; }
+
+  private:
+    Length _diameter;              //<! Reflector diameter
+    Unitless _efficiency;          //<! Aperture illumination efficiency
+    Frequency _frequency;          //<! Carrier frequency
+    Power _power;                  //<! Transmit power
+    Frequency _noiseBandwidth;     //<! Equivalent noise bandwidth
+    Gain _transmitLoss;            //<! Transmit loss
+    Gain _receiverLoss;            //<! Receiver loss
+    PatternApproximation _pattern; //<! Pattern approximation method
+};
+
+/**
  * @class Antenna
  * @brief Represents an antenna with properties such as diameter, efficiency, frequency, and power.
  *
@@ -31,36 +220,14 @@ namespace accesslib {
 class Antenna : public Sensor {
   public:
     /**
-     * @brief Enum class for different antenna pattern approximations.
-     */
-    enum class PatternApproximation {
-        BESSEL,      //<! Bessel function approximation
-        SINC_SQUARED //<! Sinc-squared approximation
-    };
-
-    /**
      * @brief Construct a new Antenna object.
      *
-     * @param diameter Reflector diameter.
-     * @param efficiency Aperture illumination efficiency.
-     * @param frequency Carrier frequency.
-     * @param power Transmit power.
-     * @param noiseBandwidth Equivalent noise bandwidth (default is 0.0, ideal).
-     * @param transmitLoss Transmit loss (default is 1.0, ideal).
-     * @param receiverLoss Receiver loss (default is 1.0, ideal).
-     * @param pattern Pattern approximation method (default is Bessel).
      */
-    Antenna(
-        const Length& diameter,
-        const Unitless& efficiency,
-        const Frequency frequency,
-        const Power& power,
-        // const Temperature& sysNoiseTemp    = 0.0 * mp_units::si::unit_symbols::K,   // Nonsense
-        const Frequency noiseBandwidth     = 0.0 * mp_units::si::unit_symbols::GHz, // Ideal
-        const Gain& transmitLoss           = 1.0 * mp_units::one,                   // Ideal
-        const Gain& receiverLoss           = 1.0 * mp_units::one,                   // Ideal
-        const PatternApproximation pattern = PatternApproximation::BESSEL
-    );
+    Antenna(const SensorPlatform* parent, const AntennaParameters& antennaParameters) :
+        Sensor::Sensor(parent, antennaParameters),
+        _parameters(antennaParameters)
+    {
+    }
 
     /**
      * @brief Calculate the carrier-to-noise ratio (CNR) for the antenna.
@@ -169,18 +336,7 @@ class Antenna : public Sensor {
     void set_pattern_approximation(const PatternApproximation& pattern);
 
   private:
-    Length _diameter;              //<! Reflector diameter
-    Unitless _efficiency;          //<! Apature illumination efficiency
-    Frequency _frequency;          //<! Carrier frequency
-    Frequency _noiseBandwidth;     //<! Equivalent noise bandwidth
-    Length _wavelength;            //<! Speed of light / frequency
-    Power _power;                  //<! Transmit power
-    Gain _gain;                    //<! Peak isotropic power gain
-    Power _eirp;                   //<! Equivalent isotropic radiator power
-    Gain _transmitLoss;            //<! Transmit loss
-    Gain _receiverLoss;            //<! Receiver loss
-    PatternApproximation _pattern; //<! Pattern approximation method
-    Temperature _sysNoiseTemp;     //<! System noise temperature
+    AntennaParameters& _parameters;
 
     /**
      * @brief Calculate the Bessel loss approximation for the antenna.

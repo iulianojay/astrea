@@ -17,6 +17,9 @@
 
 #include <units/units.hpp>
 
+#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
@@ -270,6 +273,37 @@ struct VehicleInnerBase {
     virtual void clear() = 0;
 
     /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return RadiusVector<EarthCenteredInertial>
+     */
+    virtual RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const = 0;
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<EarthCenteredInertial>
+     */
+    virtual VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const = 0;
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<EarthCenteredInertial>
+     */
+    virtual AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const = 0;
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    virtual std::string get_name() const = 0;
+
+    /**
      * @brief Clones the vehicle inner implementation.
      *
      * @return std::unique_ptr<VehicleInnerBase> A unique pointer to the cloned vehicle inner implementation.
@@ -418,6 +452,46 @@ struct VehicleInner final : public VehicleInnerBase {
      * @brief Clears the state of the vehicle.
      */
     void clear() final { clear_impl(_value); };
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return RadiusVector<EarthCenteredInertial>
+     */
+    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override final
+    {
+        return _value.get_inertial_position(date);
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<EarthCenteredInertial>
+     */
+    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override final
+    {
+        return _value.get_inertial_velocity(date);
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<EarthCenteredInertial>
+     */
+    AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const override final
+    {
+        return _value.get_inertial_acceleration(date);
+    }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    std::string get_name() const override final { return _value.get_name(); }
 
     /**
      * @brief Gets the default ram area of the vehicle.
@@ -631,7 +705,7 @@ concept IsGenericallyConstructableVehicle = requires(T)
  * @brief A class representing a vehicle in the waveguide astro platform.
  * This class serves as a base for user-defined vehicles and provides a common interface.
  */
-class Vehicle {
+class Vehicle : public FrameReference {
 
   public:
     /**
@@ -795,6 +869,46 @@ class Vehicle {
      * @brief Clears the state of the vehicle.
      */
     void clear() { _ptr->clear(); }
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return RadiusVector<EarthCenteredInertial>
+     */
+    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override
+    {
+        return ptr()->get_inertial_position(date);
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<EarthCenteredInertial>
+     */
+    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override
+    {
+        return ptr()->get_inertial_velocity(date);
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<EarthCenteredInertial>
+     */
+    AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const override
+    {
+        return ptr()->get_inertial_acceleration(date);
+    }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    std::string get_name() const override { return ptr()->get_name(); }
 
     /**
      * @brief Gets a pointer to the internal vehicle instance.

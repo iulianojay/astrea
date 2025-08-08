@@ -22,7 +22,10 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
+#include <astro/element_sets/CartesianVector.hpp>
 #include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/time/Date.hpp>
@@ -36,7 +39,7 @@ namespace astro {
  * This class encapsulates the properties and behaviors of a spacecraft, including its state,
  * mass, dynamic coefficients, and surface areas.
  */
-class Spacecraft {
+class Spacecraft : public FrameReference {
 
   public:
     /**
@@ -68,6 +71,22 @@ class Spacecraft {
      * @brief Virtual destructor for Spacecraft.
      */
     virtual ~Spacecraft() = default;
+
+    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override
+    {
+        if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
+        const State state        = _stateHistory.get_state_at(date - _state0.get_epoch());
+        const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
+        return elements.get_position();
+    }
+
+    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override
+    {
+        if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
+        const State state        = _stateHistory.get_state_at(date - _state0.get_epoch());
+        const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
+        return elements.get_velocity();
+    }
 
     /**
      * @brief Updates the state of the spacecraft.

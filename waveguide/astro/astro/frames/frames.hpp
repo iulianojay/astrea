@@ -10,5 +10,12 @@
  */
 #pragma once
 
+// static frames
 #include <astro/frames/instances/EarthCenteredEarthFixed.hpp>
 #include <astro/frames/instances/EarthCenteredInertial.hpp>
+
+// dynamic frames
+#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/instances/RadialTangentialNormal.hpp>
+#include <astro/frames/instances/VelocityNormalBinormal.hpp>

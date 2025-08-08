@@ -22,6 +22,22 @@
 namespace waveguide {
 namespace astro {
 
+template <typename Value_T, typename Frame_T, typename Frame_U>
+concept HasStaticConvertTo = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+{
+    {
+        Frame_U::convert_to_this_frame(vec, date)
+        } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
+};
+
+template <typename Value_T, typename Frame_T, typename Frame_U>
+concept HasStaticConvertFrom = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+{
+    {
+        Frame_T::convert_from_this_frame(vec, date)
+        } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
+};
+
 /**
  * @brief Class representing a 3D vector in Cartesian coordinates.
  *
@@ -47,36 +63,12 @@ class CartesianVector {
     }
 
     /**
-     * @brief Constructor for CartesianVector with rvalue references.
-     *
-     * Initializes the vector components with rvalue references for efficiency.
-     * @param x The x component of the vector.
-     * @param y The y component of the vector.
-     * @param z The z component of the vector.
-     * @param frame The frame of reference for the vector.
-     */
-    CartesianVector(Value_T&& x, Value_T&& y, Value_T&& z) :
-        _vector{ std::forward<Value_T>(x), std::forward<Value_T>(y), std::forward<Value_T>(z) }
-    {
-    }
-
-    /**
      * @brief Constructor for CartesianVector from an array.
      *
      * @param vec An array containing the x, y, and z components of the vector.
      */
     CartesianVector(const std::array<Value_T, 3>& vec) :
         _vector(vec)
-    {
-    }
-
-    /**
-     * @brief Constructor for CartesianVector from an rvalue array.
-     *
-     * @param vec An rvalue array containing the x, y, and z components of the vector.
-     */
-    CartesianVector(std::array<Value_T, 3>&& vec) :
-        _vector(std::move(vec))
     {
     }
 
@@ -361,16 +353,71 @@ class CartesianVector {
     }
 
     /**
-     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference.
+     * @brief Calculate the angle between this vector and another CartesianVector.
      *
-     * @param frame The frame of reference to convert to.
+     * @param other The other CartesianVector to calculate the angle with.
+     * @return Angle The angle between the two vectors.
+     * @throws std::runtime_error If either vector has zero magnitude.
+     */
+    Angle offset_angle(const CartesianVector<Value_T, Frame_T>& other)
+    {
+        const Value_T v1Mag = norm();
+        const Value_T v2Mag = other.norm();
+
+        if (v1Mag.numerical_value_in(v1Mag.unit) == 0 || v2Mag.numerical_value_in(v2Mag.unit) == 0) {
+            throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
+        }
+
+        const auto v1DotV2 = dot(other);
+        const auto ratio   = v1DotV2 / (v1Mag * v2Mag);
+        if (ratio > 1.0 * mp_units::one) {
+            return 0.0 * waveguide::detail::angle_unit;
+        } // catch rounding errors - TODO: Make this more intelligent
+        return acos(ratio);
+    }
+
+    /**
+     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference using the target frame.
+     *
+     * @tparam Frame_U The frame type to convert to.
+     * @param date The date for which the conversion is performed.
      * @return CartesianVector<T> A new CartesianVector in the specified frame.
      */
     template <typename Frame_U>
-    CartesianVector<Value_T, Frame_U> in(const Date& date) const
-    {
-        return Frame_U::convert_to(*this, date);
-    }
+    requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U> && !HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
+        CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
+    const { return Frame_U::convert_to_this_frame(*this, date); }
+
+
+    /**
+     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference using the current frame.
+     *
+     * @tparam Frame_U The frame type to convert to.
+     * @param date The date for which the conversion is performed.
+     * @return CartesianVector<T> A new CartesianVector in the specified frame.
+     */
+    template <typename Frame_U>
+    requires(!HasStaticConvertTo<Value_T, Frame_T, Frame_U> && HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
+        CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
+    const { return Frame_T::convert_from_this_frame(*this, date); }
+
+    /**
+     * @brief Overload to handle casses where two frames define the same conversion.
+     */
+    template <typename Frame_U>
+    requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U>&& HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
+        CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
+    const { static_assert(false, "Parity Error: Two frames cannot have an equivalent conversion. Please remove one."); }
+
+    /**
+     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference.
+     *
+     * @tparam Frame_U The frame type to convert to.
+     * @return CartesianVector<T, Frame_U> A new CartesianVector in the specified frame.
+     */
+    template <typename Frame_U>
+    requires(std::is_base_of_v<DynamicFrame, Frame_U>) CartesianVector<Value_T, Frame_U> in_dynamic_frame(const Frame_U& frame, const Date& date)
+    const { return frame.convert_from_this_frame(*this, date); }
 
   private:
     std::array<Value_T, 3> _vector; //<! Array to hold the x, y, and z components of the vector.

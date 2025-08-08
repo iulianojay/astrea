@@ -304,7 +304,7 @@ class Cartesian {
      *
      * @return RadiusVector<ECI> The position vector in Cartesian coordinates.
      */
-    const RadiusVector<ECI>& get_radius() const { return _r; }
+    const RadiusVector<ECI>& get_position() const { return _r; }
 
     /**
      * @brief Converts the Cartesian state vector to a VelocityVector<ECI>.

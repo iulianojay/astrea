@@ -62,11 +62,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/element_sets/ElementSet.hpp
     ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
     
+    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/frames/instances/EarthCenteredInertial.hpp
+    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/frames/types/InertialFrame.hpp
     ${ASTRO_BASE}/frames/types/RotatingFrame.hpp
-    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/frames/instances/EarthCenteredInertial.hpp
     ${ASTRO_BASE}/frames/Frame.hpp
     ${ASTRO_BASE}/frames/FrameReference.hpp
 

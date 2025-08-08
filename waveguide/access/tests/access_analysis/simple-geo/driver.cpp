@@ -95,11 +95,11 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
-    Sensor geoCone(fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
+                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }
@@ -132,11 +132,11 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
-    Sensor geoCone(fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
+                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }
@@ -169,11 +169,11 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
-    Sensor geoCone(fov180deg);
 
     for (auto& shell : fourBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
+                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }

@@ -134,7 +134,7 @@ AccelerationVector<ECI>
     static const Distance& polarR      = center->get_polar_radius();
 
     // Find lat and long
-    const RadiusVector<ECEF> rEcef = state.get_radius().in<ECEF>(date);
+    const RadiusVector<ECEF> rEcef = state.get_position().in_frame<ECEF>(date);
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
@@ -213,7 +213,7 @@ AccelerationVector<ECI>
                                                     oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    return accelOblatenessEcef.in<ECI>(date);
+    return accelOblatenessEcef.in_frame<ECI>(date);
 }
 
 void OblatenessForce::assign_legendre(const Unitless& x) const

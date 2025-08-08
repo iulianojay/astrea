@@ -31,13 +31,11 @@ class CartesianVector;
 class Frame;
 class InertialFrame;
 class RotatingFrame;
-template <class T>
 class BodyFixedFrame;
 class FixedOffsetFrame;
-template <class T>
 class DynamicFrame;
 
-template <class Frame_T>
+template <typename In_Frame_T, typename Out_Frame_T>
 class DirectionCosineMatrix;
 
 class EarthCenteredInertial;

@@ -28,7 +28,7 @@ namespace astro {
  * coordinate frames.
  */
 class FrameReference {
-  protected:
+  public:
     /**
      * @brief Default constructor for FrameReference.
      *
@@ -42,12 +42,19 @@ class FrameReference {
     virtual ~FrameReference() = default;
 
     /**
+     * @brief Get the name of the frame reference.
+     *
+     * @return std::string The name of the frame reference.
+     */
+    virtual std::string get_name() const = 0; //<! Get the name of the frame reference.
+
+    /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
      * @return CartesianVector<Distance, EarthCenteredInertial>
      */
-    virtual CartesianVector<Distance, EarthCenteredInertial> get_position(const Date& date) const = 0;
+    virtual CartesianVector<Distance, EarthCenteredInertial> get_inertial_position(const Date& date) const = 0;
 
     /**
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
@@ -55,7 +62,7 @@ class FrameReference {
      * @param date The date for which to get the velocity.
      * @return CartesianVector<Velocity, EarthCenteredInertial>
      */
-    virtual CartesianVector<Velocity, EarthCenteredInertial> get_velocity(const Date& date) const;
+    virtual CartesianVector<Velocity, EarthCenteredInertial> get_inertial_velocity(const Date& date) const = 0;
 
     /**
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
@@ -63,7 +70,7 @@ class FrameReference {
      * @param date The date for which to get the acceleration.
      * @return CartesianVector<Acceleration, EarthCenteredInertial>
      */
-    virtual CartesianVector<Acceleration, EarthCenteredInertial> get_acceleration(const Date& date) const;
+    virtual CartesianVector<Acceleration, EarthCenteredInertial> get_inertial_acceleration(const Date& date) const;
 };
 
 } // namespace astro

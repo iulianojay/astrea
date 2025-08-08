@@ -68,18 +68,18 @@ void access_test()
     // Add sensors
     CircularFieldOfView fovGeo(15.0 * deg);
     CircularFieldOfView fovLeo(90.0 * deg);
-    Sensor geoCone(fovGeo);
-    Sensor leoCone(fovLeo);
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach(simpleCone);
     // }
 
+    Sensor geoCone(geo, fovGeo);
     geo.attach(geoCone);
     for (auto& shell : allSats.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const State& state = sat.get_state();
                 // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
+                Sensor leoCone(sat, fovLeo);
                 sat.attach(leoCone);
             }
         }
@@ -87,7 +87,9 @@ void access_test()
     allSats.add_spacecraft(geo);
 
     // Build out grounds
-    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { leoCone }, "Washington DC");
+    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
+    Sensor groundCone(dc, fovLeo);
+    dc.attach(groundCone);
     GroundArchitecture grounds({ dc });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
@@ -115,7 +117,7 @@ void access_test()
     //     for (const auto& plane : shell.get_planes()) {
     //         for (const auto& viewer : plane.get_all_spacecraft()) {
     //             for (const auto& [time, state] : viewer.get_state_history()) {
-    //                 const auto eci  = state.get_elements().in<Cartesian>(sys).get_radius();
+    //                 const auto eci  = state.get_elements().in<Cartesian>(sys).get_position();
     //                 const auto ecef = eci_to_ecef(eci, state.get_epoch());
     //                 Angle lat, lon;
     //                 Distance alt;

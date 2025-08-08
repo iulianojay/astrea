@@ -28,7 +28,7 @@ namespace accesslib {
  * and a collection of sensors. It also provides methods to manage access and
  * sensor functionalities.
  */
-class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
+class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform, public FrameReference {
   public:
     /**
      * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
@@ -43,8 +43,8 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
         const Angle& latitude,
         const Angle& longitude,
         const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km,
-        const std::vector<Sensor>& sensors = {},
-        const std::string name             = "Unnammed"
+        const std::string name             = "Unnammed",
+        const std::vector<Sensor>& sensors = {}
     ) :
         GroundPoint(latitude, longitude, altitude),
         AccessObject(),

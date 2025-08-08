@@ -5,11 +5,13 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/element_sets/orbital_elements/Cartesian.hpp>
-#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
-#include <astro/types/typedefs.hpp>
 #include <math/utils.hpp>
 #include <units/units.hpp>
+
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/types/typedefs.hpp>
 
 
 using namespace mp_units;
@@ -40,8 +42,7 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
 
     // R and V
     const VelocityVector<ECI> v = cartesian.get_velocity();
-    const RadiusVector<ECI> r   = cartesian.get_radius();
-    const Distance R            = r.norm();
+    const RadiusVector<ECI> r   = cartesian.get_position();
 
     // Define perturbation vectors relative to the satellites SNC body frame
     /*
@@ -58,6 +59,9 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
+    const RTN rtnFrame(vehicle);
+    const AccelerationVector<RTN> accelRtn = rtnFrame.rotate_into_this_frame(accelPerts, date);
+
     const Acceleration radialPert     = accelPerts.dot(Rhat);
     const Acceleration normalPert     = accelPerts.dot(Nhat);
     const Acceleration tangentialPert = accelPerts.dot(That);
@@ -66,22 +70,22 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Unitless cosL = cos(L);
     const Unitless sinL = sin(L);
 
-    const quantity tempA = sqrt(p / mu);
-    const quantity tempB = 1.0 + f * cosL + g * sinL;
+    const quantity termA = sqrt(p / mu);
+    const quantity termB = 1.0 + f * cosL + g * sinL;
     const quantity sSq   = 1.0 + h * h + k * k;
 
-    const quantity tempC = (h * sinL - k * cosL) / tempB;
-    const quantity tempD = tempA * sSq / (2 * tempB);
+    const quantity termC = (h * sinL - k * cosL) / termB;
+    const quantity termD = termA * sSq / (2.0 * termB);
 
     // Derivative functions
-    const Velocity dpdt = 2 * p / tempB * tempA * tangentialPert;
+    const Velocity dpdt = 2.0 * p / termB * termA * tangentialPert;
     const UnitlessPerTime dfdt =
-        tempA * (radialPert * sinL + ((tempB + 1) * cosL + f) / tempB * tangentialPert - g * tempC * normalPert);
+        termA * (radialPert * sinL + ((termB + 1) * cosL + f) / termB * tangentialPert - g * termC * normalPert);
     const UnitlessPerTime dgdt =
-        tempA * (-radialPert * cosL + ((tempB + 1) * sinL + g) / tempB * tangentialPert + f * tempC * normalPert);
-    const UnitlessPerTime dhdt = tempD * cosL * normalPert;
-    const UnitlessPerTime dkdt = tempD * sinL * normalPert;
-    const AngularRate dLdt = (sqrt(mu * p) * tempB * tempB / (p * p) + tempA * tempC * normalPert) * (isq_angle::cotes_angle);
+        termA * (-radialPert * cosL + ((termB + 1) * sinL + g) / termB * tangentialPert + f * termC * normalPert);
+    const UnitlessPerTime dhdt = termD * cosL * normalPert;
+    const UnitlessPerTime dkdt = termD * sinL * normalPert;
+    const AngularRate dLdt = (sqrt(mu * p) * termB * termB / (p * p) + termA * termC * normalPert) * (isq_angle::cotes_angle);
 
     return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

@@ -12,6 +12,7 @@
 
 #include <vector>
 
+#include <astro/frames/FrameReference.hpp>
 #include <astro/types/typedefs.hpp>
 
 #include <access/platforms/sensors/Sensor.hpp>
@@ -78,6 +79,7 @@ class SensorPlatform {
   protected:
     std::vector<Sensor> _sensors; // List of sensors attached to the platform
 };
+
 
 } // namespace accesslib
 } // namespace waveguide
