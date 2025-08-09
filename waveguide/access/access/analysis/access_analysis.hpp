@@ -63,7 +63,7 @@ struct AccessInfo {
  * @param sys The astrodynamics system used for calculations.
  * @return AccessArray A collection of accesses between viewers.
  */
-AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, const astro::AstrodynamicsSystem& sys);
+AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
 
 /**
  * @brief Find accesses between a constellation of viewers and a ground architecture.
@@ -76,8 +76,7 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
  * @return AccessArray A collection of accesses between viewers and ground stations.
  */
 AccessArray
-    find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const astro::Date epoch, const astro::AstrodynamicsSystem& sys);
-
+    find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
 /**
  * @brief Create a time vector from a state history.
  *
@@ -116,8 +115,14 @@ bool is_earth_occulting(const astro::Cartesian& state1, const astro::Cartesian& 
  * @param twoWay Flag indicating if the access should be two-way (default is false).
  * @return RiseSetArray A collection of rise/set pairs representing the accesses.
  */
-RiseSetArray
-    find_sat_to_sat_accesses(Viewer& viewer1, Viewer& viewer2, const TimeVector& times, const astro::AstrodynamicsSystem& sys, const bool& twoWay = false);
+RiseSetArray find_sat_to_sat_accesses(
+    Viewer& viewer1,
+    Viewer& viewer2,
+    const TimeVector& times,
+    const astro::AstrodynamicsSystem& sys,
+    const astro::Date& epoch,
+    const bool& twoWay = false
+);
 
 /**
  * @brief Find accesses between a viewer and a ground station.
@@ -135,7 +140,7 @@ RiseSetArray find_sat_to_ground_accesses(
     GroundStation& ground,
     const TimeVector& times,
     const astro::AstrodynamicsSystem& sys,
-    const astro::Date epoch,
+    const astro::Date& epoch,
     const bool& twoWay = false
 );
 
@@ -148,8 +153,13 @@ RiseSetArray find_sat_to_ground_accesses(
  * @param twoWay Flag indicating if the access should be two-way (default is false).
  * @return RiseSetArray A collection of rise/set pairs representing the accesses.
  */
-RiseSetArray
-    find_sensor_to_sensor_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor1, const Sensor& sensor2, const bool& twoWay);
+RiseSetArray find_sensor_to_sensor_accesses(
+    const std::vector<AccessInfo>& accessInfo,
+    const Sensor& sensor1,
+    const Sensor& sensor2,
+    const bool& twoWay,
+    const astro::Date& epoch
+);
 
 /**
  * @brief Find accesses between a sensor and a ground sensor.
@@ -160,8 +170,13 @@ RiseSetArray
  * @param twoWay Flag indicating if the access should be two-way (default is false).
  * @return RiseSetArray A collection of rise/set pairs representing the accesses.
  */
-RiseSetArray
-    find_sensor_to_ground_sensor_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor, const Sensor& groundSensor, const bool& twoWay);
+RiseSetArray find_sensor_to_ground_sensor_accesses(
+    const std::vector<AccessInfo>& accessInfo,
+    const Sensor& sensor,
+    const Sensor& groundSensor,
+    const bool& twoWay,
+    const astro::Date& epoch
+);
 
 } // namespace accesslib
 } // namespace waveguide

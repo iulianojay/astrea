@@ -136,15 +136,15 @@ class CelestialBodyFactory {
     auto end() const { return _bodies.end(); }
 
   private:
-    std::unordered_map<std::string, CelestialBodyUniquePtr> _bodies; //<! Map of celestial bodies by name.
-    std::string _root;                                               //<! The name of the root celestial body.
+    std::unordered_map<std::string, CelestialBodyUniquePtr> _bodies; //!< Map of celestial bodies by name.
+    std::string _root;                                               //!< The name of the root celestial body.
 
     /**
      * @brief Finds the root celestial body in the hierarchy.
      */
     void find_root();
 
-    //<! Map of celestial body names to their corresponding JSON file paths.
+    //!< Map of celestial body names to their corresponding JSON file paths.
     const std::unordered_map<std::string, std::string> _buildFiles = { { "Sun", "/data/planetary/Sun/Sun.json" },
                                                                        { "Mercury", "/data/planetary/Mercury/Mercury.json" },
                                                                        { "Venus", "/data/planetary/Venus/Venus.json" },

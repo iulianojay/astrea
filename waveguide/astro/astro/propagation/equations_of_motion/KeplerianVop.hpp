@@ -37,7 +37,7 @@ class KeplerianVop : public EquationsOfMotion {
      */
     KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true) :
         EquationsOfMotion(system),
-        forces(forces),
+        forces(&forces),
         mu(system.get_center()->get_mu()),
         doWarn(doWarn){};
 
@@ -63,12 +63,12 @@ class KeplerianVop : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    const mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //<! Tolerance for checking conditions.
+    mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 
-    const ElementSet expectedSet = ElementSet::KEPLERIAN; //<! Expected set of orbital elements for this method.
-    const ForceModel& forces;                             //!< The force model used in the equations of motion.
-    const GravParam mu;                                   //!< Gravitational parameter of the central body.
-    const bool doWarn;                                    //!< Flag to indicate whether to warn about degenerate cases.
+    ElementSet expectedSet = ElementSet::KEPLERIAN; //!< Expected set of orbital elements for this method.
+    const ForceModel* forces;                       //!< The force model used in the equations of motion.
+    GravParam mu;                                   //!< Gravitational parameter of the central body.
+    bool doWarn;                                    //!< Flag to indicate whether to warn about degenerate cases.
 
     /**
      * @brief Checks for degenerate conditions in the orbital elements.

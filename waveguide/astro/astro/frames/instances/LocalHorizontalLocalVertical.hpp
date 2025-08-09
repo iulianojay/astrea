@@ -33,7 +33,24 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
      * Initializes the ECEF frame with a name and origin.
      */
     LocalHorizontalLocalVertical(const FrameReference* parent) :
-        DynamicFrame("Local Horizontal, Local Vertical", parent){};
+        DynamicFrame("Local Horizontal, Local Vertical", parent)
+    {
+    }
+
+  private:
+    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Local Horizontal, Local Vertical", nullptr),
+        _position(position),
+        _velocity(velocity)
+    {
+    }
+
+  public:
+    static LocalHorizontalLocalVertical
+        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
+    {
+        return LocalHorizontalLocalVertical(position, velocity);
+    }
 
     /**
      * @brief Default destructor for LocalHorizontalLocalVertical.
@@ -55,15 +72,15 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
     }
 
     template <typename Value_T>
-    CartesianVector<Value_T, RadialInTrackCrossTrack>
-        rotate_into_this_frame(const CartesianVector<Value_T, LocalHorizontalLocalVertical>& eciVec, const Date& date) const
+    CartesianVector<Value_T, LocalHorizontalLocalVertical>
+        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date) const
     {
         return get_dcm(date) * eciVec;
     }
 
     template <typename Value_T>
-    CartesianVector<Value_T, LocalHorizontalLocalVertical>
-        rotate_out_of_this_frame(const CartesianVector<Value_T, RadialInTrackCrossTrack>& lvlhVec, const Date& date) const
+    CartesianVector<Value_T, EarthCenteredInertial>
+        rotate_out_of_this_frame(const CartesianVector<Value_T, LocalHorizontalLocalVertical>& lvlhVec, const Date& date) const
     {
         return get_dcm(date).transpose() * lvlhVec;
     }
@@ -104,11 +121,21 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
      */
     DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
+        if (!_parent) { // Assume instantaneous instance
+            const auto r = _position.unit();
+            const auto v = _velocity.unit();
+            const auto h = r.cross(v).unit();
+            return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
+        }
         const auto r = _parent->get_inertial_position(date).unit();
         const auto v = _parent->get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
     }
+
+  private:
+    RadiusVector<EarthCenteredInertial> _position;
+    VelocityVector<EarthCenteredInertial> _velocity;
 };
 
 /**

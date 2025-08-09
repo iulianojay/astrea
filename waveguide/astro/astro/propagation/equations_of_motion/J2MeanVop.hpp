@@ -63,15 +63,15 @@ class J2MeanVop : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    mutable bool checkflag = false;                                        //<! Flag to check for degenerate conditions.
-    const Unitless eccTol  = 1e-10 * mp_units::one;                        //<! Tolerance for checking eccentricity.
-    const Angle incTol     = 1e-10 * mp_units::angular::unit_symbols::rad; //<! Tolerance for checking inclination.
+    mutable bool checkflag = false;                                        //!< Flag to check for degenerate conditions.
+    Unitless eccTol        = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
+    Angle incTol           = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.
 
-    const ElementSet expectedSet = ElementSet::KEPLERIAN; //<! Expected set of orbital elements for this method.
+    ElementSet expectedSet = ElementSet::KEPLERIAN; //!< Expected set of orbital elements for this method.
 
-    const GravParam mu;         //!< Gravitational parameter of the central body.
-    const Unitless J2;          //!< J2 coefficient of the central body.
-    const Distance equitorialR; //!< Equatorial radius of the central body.
+    GravParam mu;         //!< Gravitational parameter of the central body.
+    Unitless J2;          //!< J2 coefficient of the central body.
+    Distance equitorialR; //!< Equatorial radius of the central body.
 };
 
 } // namespace astro

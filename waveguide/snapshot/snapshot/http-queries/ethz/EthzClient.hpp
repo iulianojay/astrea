@@ -69,14 +69,14 @@ class EthzClient {
     nlohmann::json query(const astro::Date& startDate, const astro::Date& endDate, const unsigned& noradId, const bool& includeFrequencyData = false);
 
   private:
-    const cpr::Url _base               = "https://satdb.ethz.ch/api"; //<! Base URL for the ETHZ satellite database API
-    const cpr::Url _satDataUrl         = _base + "/satellitedata";    //<! URL for satellite data endpoint
-    const cpr::Url _satUrl             = _base + "/satellite";        //<! URL for satellite endpoint
-    const cpr::Url _frequencySourceUrl = _base + "/frequencysource";  //<! URL for frequency source endpoint
-    const cpr::Url _frequencyUrl       = _base + "/frequency";        //<! URL for frequency endpoint
-    const cpr::Authentication _auth    = { "user", "pass", cpr::AuthMode::BASIC }; //<! Authentication for the ETHZ API
+    const cpr::Url _base               = "https://satdb.ethz.ch/api"; //!< Base URL for the ETHZ satellite database API
+    const cpr::Url _satDataUrl         = _base + "/satellitedata";    //!< URL for satellite data endpoint
+    const cpr::Url _satUrl             = _base + "/satellite";        //!< URL for satellite endpoint
+    const cpr::Url _frequencySourceUrl = _base + "/frequencysource";  //!< URL for frequency source endpoint
+    const cpr::Url _frequencyUrl       = _base + "/frequency";        //!< URL for frequency endpoint
+    const cpr::Authentication _auth    = { "user", "pass", cpr::AuthMode::BASIC }; //!< Authentication for the ETHZ API
 
-    const astro::Date _minStartDate; //<! Minimum start date for queries (2023-03-10 00:00:00.0)
+    const astro::Date _minStartDate; //!< Minimum start date for queries (2023-03-10 00:00:00.0)
 
     /**
      * @brief Performs the actual query to the ETHZ satellite database API.

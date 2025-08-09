@@ -42,7 +42,7 @@ class CowellsMethod : public EquationsOfMotion {
      */
     CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
-        forces(forces),
+        forces(&forces),
         mu(system.get_center()->get_mu()){};
 
     /**
@@ -67,10 +67,10 @@ class CowellsMethod : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    const ElementSet expectedSet = ElementSet::CARTESIAN; //!< Expected set of orbital elements for Cowell's method.
-    const ForceModel& forces;                             //!< The force model used in the equations of motion.
+    ElementSet expectedSet = ElementSet::CARTESIAN; //!< Expected set of orbital elements for Cowell's method.
+    const ForceModel* forces;                       //!< The force model used in the equations of motion.
 
-    const GravParam mu; //!< Gravitational parameter of the central body.
+    GravParam mu; //!< Gravitational parameter of the central body.
 };
 
 } // namespace astro

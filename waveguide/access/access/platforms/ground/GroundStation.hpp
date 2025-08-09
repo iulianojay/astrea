@@ -12,7 +12,13 @@
 
 #include <vector>
 
+#include <mp-units/systems/isq_angle.h>
+
+#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/systems/CelestialBody.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/utilities/conversions.hpp>
 
 #include <access/platforms/ground/GroundPoint.hpp>
 #include <access/platforms/sensors/SensorPlatform.hpp>
@@ -28,7 +34,7 @@ namespace accesslib {
  * and a collection of sensors. It also provides methods to manage access and
  * sensor functionalities.
  */
-class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform, public FrameReference {
+class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
   public:
     /**
      * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
@@ -40,17 +46,22 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
      * @param name The name of the ground station.
      */
     GroundStation(
+        const astro::CelestialBody* parent,
         const Angle& latitude,
         const Angle& longitude,
-        const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km,
-        const std::string name             = "Unnammed",
-        const std::vector<Sensor>& sensors = {}
+        const Distance& altitude                     = 0.0 * mp_units::si::unit_symbols::km,
+        const std::string name                       = "Unnammed",
+        const std::vector<SensorParameters>& sensors = {}
     ) :
-        GroundPoint(latitude, longitude, altitude),
+        _parent(parent),
+        GroundPoint(parent, latitude, longitude, altitude),
         AccessObject(),
-        SensorPlatform(sensors),
+        SensorPlatform(),
         _name(name)
     {
+        for (const auto& sensor : sensors) {
+            attach(sensor);
+        }
         generate_id_hash();
     };
 
@@ -73,9 +84,48 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
      */
     std::string get_name() const { return _name; }
 
+    /**
+     * @brief Get the inertial position of the ground station in the ECI frame.
+     *
+     * @param date The date for which to compute the position.
+     * @return RadiusVector<ECI> The inertial position of the ground station.
+     */
+    astro::RadiusVector<astro::ECI> get_inertial_position(const astro::Date& date) const
+    {
+        using namespace astro;
+        const RadiusVector<ECEF> rEcef =
+            lla_to_ecef(_latitude, _longitude, _altitude, _parent->get_equitorial_radius(), _parent->get_polar_radius());
+        return rEcef.in_frame<ECI>(date);
+    }
+
+    /**
+     * @brief Get the inertial velocity of the ground station in the ECI frame.
+     *
+     * @param date The date for which to compute the velocity.
+     * @return VelocityVector<ECI> The inertial velocity of the ground station.
+     */
+    astro::VelocityVector<astro::ECI> get_inertial_velocity(const astro::Date& date) const
+    {
+        using namespace astro;
+        using mp_units::isq_angle::cotes_angle;
+        using mp_units::si::unit_symbols::km;
+
+        const RadiusVector<ECEF> rEcef =
+            lla_to_ecef(_latitude, _longitude, _altitude, _parent->get_equitorial_radius(), _parent->get_polar_radius());
+
+        const RadiusVector<ECEF> rEcefPlanar = { rEcef.get_x(), rEcef.get_y(), 0.0 * km };
+        const Distance rEcefPlanarNorm       = rEcefPlanar.norm();
+        const Velocity vEcefMag              = rEcefPlanarNorm * _parent->get_rotation_rate() / cotes_angle;
+        const RadiusVector<ECEF> z           = { 0.0 * km, 0.0 * km, 1.0 * km };
+        const VelocityVector<ECEF> vEcef =
+            (z.cross(rEcefPlanar).unit()) * vEcefMag; // z cross (x,y,0) give perpendicular direction vector
+        return vEcef.in_frame<ECI>(date);
+    }
+
   private:
-    std::size_t _id;   //<! Unique identifier for the ground station, generated from its properties.
-    std::string _name; //<! Name of the ground station.
+    const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
+    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
+    std::string _name;                   //!< Name of the ground station.
 
     /**
      * @brief Generates a unique identifier for the ground station based on its properties.

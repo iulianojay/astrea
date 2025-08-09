@@ -68,18 +68,19 @@ void access_test()
     // Add sensors
     CircularFieldOfView fovGeo(15.0 * deg);
     CircularFieldOfView fovLeo(90.0 * deg);
+    SensorParameters geoCone(&fovGeo);
+    SensorParameters leoCone(&fovLeo);
+
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
     //     viewer.attach(simpleCone);
     // }
 
-    Sensor geoCone(geo, fovGeo);
     geo.attach(geoCone);
     for (auto& shell : allSats.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const State& state = sat.get_state();
                 // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
-                Sensor leoCone(sat, fovLeo);
                 sat.attach(leoCone);
             }
         }
@@ -87,15 +88,15 @@ void access_test()
     allSats.add_spacecraft(geo);
 
     // Build out grounds
-    GroundStation dc(38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
-    Sensor groundCone(dc, fovLeo);
+    GroundStation dc(sys.get_center().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
+    SensorParameters groundCone(&fovLeo);
     dc.attach(groundCone);
     GroundArchitecture grounds({ dc });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
     LatLon corner4{ 50.0 * deg, 180.0 * deg };
     Angle spacing = 10.0 * deg;
-    Grid grid(corner1, corner4, GridType::UNIFORM, spacing);
+    Grid grid(sys.get_center().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Build EoMs
     TwoBody eom(sys);
@@ -137,7 +138,7 @@ void access_test()
 
     // Find access
     Time accessResolution = minutes(1.0);
-    // const auto accesses   = find_accesses(allSats, accessResolution, sys);
+    // const auto accesses   = find_accesses(allSats, accessResolution, epoch, sys);
     const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
 
     end  = std::chrono::steady_clock::now();

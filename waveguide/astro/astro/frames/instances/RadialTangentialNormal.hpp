@@ -27,7 +27,7 @@ namespace astro {
 class RadialTangentialNormal : public DynamicFrame {
 
   public:
-    RadialTangentialNormal() = delete; //<! Default constructor is deleted to prevent instantiation without a parent frame
+    RadialTangentialNormal() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
 
     /**
      * @brief Default constructor for RadialTangentialNormal.
@@ -35,7 +35,24 @@ class RadialTangentialNormal : public DynamicFrame {
      * Initializes the ECEF frame with a name and origin.
      */
     RadialTangentialNormal(const FrameReference* parent) :
-        DynamicFrame("Radial, Tagential, Normal", parent){};
+        DynamicFrame("Radial, Tagential, Normal", parent)
+    {
+    }
+
+  private:
+    RadialTangentialNormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Radial, Tangential, Normal", nullptr),
+        _position(position),
+        _velocity(velocity)
+    {
+    }
+
+  public:
+    static RadialTangentialNormal
+        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
+    {
+        return RadialTangentialNormal(position, velocity);
+    }
 
     /**
      * @brief Default destructor for RadialTangentialNormal.
@@ -106,11 +123,21 @@ class RadialTangentialNormal : public DynamicFrame {
      */
     DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal> get_dcm(const Date& date) const
     {
+        if (!_parent) { // Assume instantaneous instance
+            const auto r = _position.unit();
+            const auto v = _velocity.unit();
+            const auto h = r.cross(v).unit();
+            return DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal>::from_vectors(r, -r.cross(h), h);
+        }
         const auto r = _parent->get_inertial_position(date).unit();
         const auto v = _parent->get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal>::from_vectors(r, -r.cross(h), h);
     }
+
+  private:
+    RadiusVector<EarthCenteredInertial> _position;
+    VelocityVector<EarthCenteredInertial> _velocity;
 };
 
 /**

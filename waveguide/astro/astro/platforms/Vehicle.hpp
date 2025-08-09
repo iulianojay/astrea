@@ -190,7 +190,7 @@ namespace detail {
 /**
  * @brief Pure virtual base class for vehicle inner implementations.
  */
-struct VehicleInnerBase {
+struct VehicleInnerBase : public virtual FrameReference {
 
     /**
      * @brief Destructor for VehicleInnerBase.
@@ -271,37 +271,6 @@ struct VehicleInnerBase {
      * @brief Clears the state of the vehicle.
      */
     virtual void clear() = 0;
-
-    /**
-     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the position.
-     * @return RadiusVector<EarthCenteredInertial>
-     */
-    virtual RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const = 0;
-
-    /**
-     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the velocity.
-     * @return VelocityVector<EarthCenteredInertial>
-     */
-    virtual VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const = 0;
-
-    /**
-     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the acceleration.
-     * @return AccelerationVector<EarthCenteredInertial>
-     */
-    virtual AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const = 0;
-
-    /**
-     * @brief Gets the name of the vehicle.
-     *
-     * @return std::string The name of the vehicle.
-     */
-    virtual std::string get_name() const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -681,7 +650,7 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     void* get_ptr() final { return &_value; }
 
-    T _value; //<! The value of the vehicle inner implementation, which is the user-defined vehicle type.
+    T _value; //!< The value of the vehicle inner implementation, which is the user-defined vehicle type.
 };
 
 } // namespace detail
@@ -925,7 +894,7 @@ class Vehicle : public FrameReference {
     void* get_ptr();
 
   private:
-    std::unique_ptr<detail::VehicleInnerBase> _ptr; //<! Pointer to the internal vehicle implementation, which can be a user-defined type
+    std::unique_ptr<detail::VehicleInnerBase> _ptr; //!< Pointer to the internal vehicle implementation, which can be a user-defined type
 
     State _state;                        //!< Current state of the vehicle
     Mass _mass;                          //!< Mass of the vehicle

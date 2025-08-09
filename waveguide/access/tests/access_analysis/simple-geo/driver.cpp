@@ -95,11 +95,11 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }
@@ -109,7 +109,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
-    const auto accesses = find_accesses(twoBallGeo, resolution, sys);
+    const auto accesses = find_accesses(twoBallGeo, resolution, epoch, sys);
 
     // Assert that there is 100% access
     ASSERT_TRUE(accesses.size() > 0);
@@ -132,11 +132,11 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }
@@ -146,7 +146,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
-    const auto accesses = find_accesses(twoBallGeo, resolution, sys);
+    const auto accesses = find_accesses(twoBallGeo, resolution, epoch, sys);
 
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
@@ -169,11 +169,11 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : fourBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                Sensor geoCone(sat, fov180deg);
                 sat.attach(geoCone);
             }
         }
@@ -183,7 +183,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     fourBallGeo.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
-    auto accesses = find_accesses(fourBallGeo, resolution, sys);
+    auto accesses = find_accesses(fourBallGeo, resolution, epoch, sys);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
     ASSERT_TRUE(accesses.size() > 0);

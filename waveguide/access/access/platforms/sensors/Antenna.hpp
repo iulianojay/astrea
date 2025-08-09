@@ -28,8 +28,8 @@ namespace accesslib {
  * @brief Enum class for different antenna pattern approximations.
  */
 enum class PatternApproximation {
-    BESSEL,      //<! Bessel function approximation
-    SINC_SQUARED //<! Sinc-squared approximation
+    BESSEL,      //!< Bessel function approximation
+    SINC_SQUARED //!< Sinc-squared approximation
 };
 
 /**
@@ -69,9 +69,7 @@ class AntennaParameters : public SensorParameters {
         const Gain& receiverLoss                               = 1.0 * mp_units::one,
         const PatternApproximation& pattern                    = PatternApproximation::BESSEL
     ) :
-        _fov(fov),
-        _boresight(boresight),
-        _attachmentPoint(attachmentPoint),
+        SensorParameters::SensorParameters(fov, boresight, attachmentPoint),
         _diameter(diameter),
         _efficiency(efficiency),
         _frequency(frequency),
@@ -79,14 +77,18 @@ class AntennaParameters : public SensorParameters {
         _noiseBandwidth(noiseBandwidth),
         _transmitLoss(transmitLoss),
         _receiverLoss(receiverLoss),
-        _pattern(pattern)
+        _pattern(pattern),
+        _wavelength(speed_of_light_in_vacuum / _frequency),
+        _gain(efficiency * mp_units::pow<2>(std::numbers::pi * (_diameter / _wavelength))),
+        _eirp(_gain * _power)
+
     {
     }
 
     /**
      * @brief Default constructor for AntennaParameters.
      */
-    ~AntennaParemeters() = default;
+    ~AntennaParameters() = default;
 
     /**
      * @brief Get the diameter of the antenna.
@@ -145,6 +147,34 @@ class AntennaParameters : public SensorParameters {
     PatternApproximation get_pattern() const { return _pattern; }
 
     /**
+     * @brief Get the gain of the antenna.
+     *
+     * @return Gain Gain of the antenna.
+     */
+    Gain get_gain() const { return _gain; }
+
+    /**
+     * @brief Get the equivalent isotropic radiated power (EIRP) of the antenna.
+     *
+     * @return Power EIRP of the antenna.
+     */
+    Power get_eirp() const { return _eirp; }
+
+    /**
+     * @brief Get the system noise temperature of the antenna.
+     *
+     * @return Temperature System noise temperature of the antenna.
+     */
+    Temperature get_system_noise_temperature() const { return _sysNoiseTemp; }
+
+    /**
+     * @brief Get the wavelength of the antenna.
+     *
+     * @return Length Wavelength of the antenna.
+     */
+    Length get_wavelength() const { return _wavelength; }
+
+    /**
      * @brief Set the diameter of the antenna.
      *
      * @param diameter Length Diameter of the antenna.
@@ -201,14 +231,18 @@ class AntennaParameters : public SensorParameters {
     void set_pattern(const PatternApproximation& pattern) { _pattern = pattern; }
 
   private:
-    Length _diameter;              //<! Reflector diameter
-    Unitless _efficiency;          //<! Aperture illumination efficiency
-    Frequency _frequency;          //<! Carrier frequency
-    Power _power;                  //<! Transmit power
-    Frequency _noiseBandwidth;     //<! Equivalent noise bandwidth
-    Gain _transmitLoss;            //<! Transmit loss
-    Gain _receiverLoss;            //<! Receiver loss
-    PatternApproximation _pattern; //<! Pattern approximation method
+    Length _diameter;              //!< Reflector diameter
+    Unitless _efficiency;          //!< Aperture illumination efficiency
+    Frequency _frequency;          //!< Carrier frequency
+    Power _power;                  //!< Transmit power
+    Frequency _noiseBandwidth;     //!< Equivalent noise bandwidth
+    Gain _transmitLoss;            //!< Transmit loss
+    Gain _receiverLoss;            //!< Receiver loss
+    PatternApproximation _pattern; //!< Pattern approximation method
+    Length _wavelength;            //!< Speed of light / frequency
+    Gain _gain;                    //!< Peak isotropic power gain
+    Power _eirp;                   //!< Equivalent isotropic radiator power
+    Temperature _sysNoiseTemp;     //!< System noise temperature
 };
 
 /**
@@ -223,7 +257,8 @@ class Antenna : public Sensor {
      * @brief Construct a new Antenna object.
      *
      */
-    Antenna(const SensorPlatform* parent, const AntennaParameters& antennaParameters) :
+    template <typename T>
+    Antenna(const T& parent, const AntennaParameters& antennaParameters) :
         Sensor::Sensor(parent, antennaParameters),
         _parameters(antennaParameters)
     {
@@ -336,7 +371,7 @@ class Antenna : public Sensor {
     void set_pattern_approximation(const PatternApproximation& pattern);
 
   private:
-    AntennaParameters& _parameters;
+    AntennaParameters _parameters;
 
     /**
      * @brief Calculate the Bessel loss approximation for the antenna.

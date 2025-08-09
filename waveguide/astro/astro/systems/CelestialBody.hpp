@@ -281,40 +281,40 @@ class CelestialBody {
 
   private:
     // Properties
-    std::string _name;          //<! Name of the celestial body
-    std::string _parent;        //<! Name of the parent celestial body, if any
-    std::string _type;          //<! Type of the celestial body (e.g., planet, moon)
-    Date _referenceDate;        //<! Reference date for the celestial body data
-    GravParam _mu;              //<! Gravitational parameter (mu) of the celestial body
-    GravParam _parentMu;        //<! Gravitational parameter of the parent celestial body, if any
-    Mass _mass;                 //<! Mass of the celestial body
-    Distance _equitorialRadius; //<! Equatorial radius of the celestial body
-    Distance _polarRadius;      //<! Polar radius of the celestial body
-    Distance _crashRadius;      //<! Crash radius of the celestial body, used for collision detection
-    Distance _sphereOfInfluence; //<! Sphere of influence of the celestial body, used for gravitational influence calculations
+    std::string _name;          //!< Name of the celestial body
+    std::string _parent;        //!< Name of the parent celestial body, if any
+    std::string _type;          //!< Type of the celestial body (e.g., planet, moon)
+    Date _referenceDate;        //!< Reference date for the celestial body data
+    GravParam _mu;              //!< Gravitational parameter (mu) of the celestial body
+    GravParam _parentMu;        //!< Gravitational parameter of the parent celestial body, if any
+    Mass _mass;                 //!< Mass of the celestial body
+    Distance _equitorialRadius; //!< Equatorial radius of the celestial body
+    Distance _polarRadius;      //!< Polar radius of the celestial body
+    Distance _crashRadius;      //!< Crash radius of the celestial body, used for collision detection
+    Distance _sphereOfInfluence; //!< Sphere of influence of the celestial body, used for gravitational influence calculations
 
-    Unitless _j2;              //<! J2 gravitational coefficient of the celestial body
-    Unitless _j3;              //<! J3 gravitational coefficient of the celestial body
-    Angle _axialTilt;          //<! Axial tilt of the celestial body, used for rotation calculations
-    AngularRate _rotationRate; //<! Rotation rate of the celestial body, used for calculating rotation effects
-    Time _siderialPeroid;      //<! Sidereal period of the celestial body, used for calculating rotation effects
+    Unitless _j2;              //!< J2 gravitational coefficient of the celestial body
+    Unitless _j3;              //!< J3 gravitational coefficient of the celestial body
+    Angle _axialTilt;          //!< Axial tilt of the celestial body, used for rotation calculations
+    AngularRate _rotationRate; //!< Rotation rate of the celestial body, used for calculating rotation effects
+    Time _siderialPeroid;      //!< Sidereal period of the celestial body, used for calculating rotation effects
 
-    Distance _semimajorAxis; //<! Semimajor axis of the celestial body's orbit
-    Unitless _eccentricity;  //<! Eccentricity of the celestial body's orbit, used for calculating orbital shape
-    Angle _inclination;      //<! Inclination of the celestial body's orbit, used for calculating orbital tilt
-    Angle _rightAscension;   //<! Right ascension of the celestial body's orbit, used for calculating orbital position
-    Angle _argumentOfPerigee; //<! Argument of perigee of the celestial body's orbit, used for calculating orbital position
-    Angle _trueLatitude;      //<! True latitude of the celestial body's orbit, used for calculating orbital position
-    Angle _trueAnomaly;       //<! True anomaly of the celestial body's orbit, used for calculating orbital position
-    Angle _meanAnomaly;       //<! Mean anomaly of the celestial body's orbit, used for calculating orbital position
+    Distance _semimajorAxis; //!< Semimajor axis of the celestial body's orbit
+    Unitless _eccentricity;  //!< Eccentricity of the celestial body's orbit, used for calculating orbital shape
+    Angle _inclination;      //!< Inclination of the celestial body's orbit, used for calculating orbital tilt
+    Angle _rightAscension;   //!< Right ascension of the celestial body's orbit, used for calculating orbital position
+    Angle _argumentOfPerigee; //!< Argument of perigee of the celestial body's orbit, used for calculating orbital position
+    Angle _trueLatitude;      //!< True latitude of the celestial body's orbit, used for calculating orbital position
+    Angle _trueAnomaly;       //!< True anomaly of the celestial body's orbit, used for calculating orbital position
+    Angle _meanAnomaly;       //!< Mean anomaly of the celestial body's orbit, used for calculating orbital position
 
     // These rates need to stay in rate/JC to avoid numerical issues
-    BodyVelocity _semimajorAxisRate; //<! Rate of change of the semimajor axis, used for calculating orbital evolution
-    BodyUnitlessPerTime _eccentricityRate; //<! Rate of change of the eccentricity, used for calculating orbital evolution
-    BodyAngularRate _inclinationRate;    //<! Rate of change of the inclination, used for calculating orbital evolution
-    BodyAngularRate _rightAscensionRate; //<! Rate of change of the right ascension, used for calculating orbital evolution
-    BodyAngularRate _argumentOfPerigeeRate; //<! Rate of change of the argument of perigee, used for calculating orbital evolution
-    BodyAngularRate _trueLatitudeRate; //<! Rate of change of the true latitude, used for calculating orbital evolution
+    BodyVelocity _semimajorAxisRate; //!< Rate of change of the semimajor axis, used for calculating orbital evolution
+    BodyUnitlessPerTime _eccentricityRate; //!< Rate of change of the eccentricity, used for calculating orbital evolution
+    BodyAngularRate _inclinationRate;    //!< Rate of change of the inclination, used for calculating orbital evolution
+    BodyAngularRate _rightAscensionRate; //!< Rate of change of the right ascension, used for calculating orbital evolution
+    BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee, used for calculating orbital evolution
+    BodyAngularRate _trueLatitudeRate; //!< Rate of change of the true latitude, used for calculating orbital evolution
 
     /**
      * @brief Propagates the state of the celestial body from a given epoch to an end epoch.
@@ -326,7 +326,7 @@ class CelestialBody {
      */
     StateHistory _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 
-    const AstrodynamicsSystem* _systemPtr; //<! Pointer to the AstrodynamicsSystem this celestial body belongs to
+    const AstrodynamicsSystem* _systemPtr; //!< Pointer to the AstrodynamicsSystem this celestial body belongs to
 };
 
 } // namespace astro

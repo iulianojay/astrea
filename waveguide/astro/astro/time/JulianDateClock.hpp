@@ -34,10 +34,10 @@ using JulianDateTime = std::chrono::time_point<JulianDateClock, Duration>;
  * It provides conversions to and from system clocks and supports arithmetic operations on Julian Dates.
  */
 struct JulianDateClock {
-    using rep    = double; //<! The representation type for the Julian Date, typically a double for fractional days.
-    using period = std::chrono::days::period;            //<! The period type for the Julian Date, typically days.
-    using duration = std::chrono::duration<rep, period>; //<! The duration type for the Julian Date, representing the time in days.
-    using time_point = std::chrono::time_point<JulianDateClock>; //<! The time point type for the Julian Date, using the JulianDateClock.
+    using rep    = double; //!< The representation type for the Julian Date, typically a double for fractional days.
+    using period = std::chrono::days::period;            //!< The period type for the Julian Date, typically days.
+    using duration = std::chrono::duration<rep, period>; //!< The duration type for the Julian Date, representing the time in days.
+    using time_point = std::chrono::time_point<JulianDateClock>; //!< The time point type for the Julian Date, using the JulianDateClock.
 
     static constexpr bool is_steady =
         false; //!< Indicates that the clock is not steady, meaning it can be adjusted or may have leap seconds.

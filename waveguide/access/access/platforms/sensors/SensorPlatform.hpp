@@ -25,20 +25,12 @@ namespace accesslib {
  * @brief The SensorPlatform class represents a platform that can have sensors attached to it.
  * It provides methods to attach sensors and retrieve the list of attached sensors.
  */
-class SensorPlatform {
+class SensorPlatform : virtual public astro::FrameReference {
   public:
     /**
      * @brief Default constructor for SensorPlatform
      */
     SensorPlatform() = default;
-
-    /**
-     * @brief Constructs a SensorPlatform with a list of sensors.
-     *
-     * @param sensors Vector of sensors to attach to the platform.
-     */
-    SensorPlatform(const std::vector<Sensor>& sensors) :
-        _sensors(sensors){};
 
     /**
      * @brief Default destructor for SensorPlatform
@@ -48,18 +40,20 @@ class SensorPlatform {
     /**
      * @brief Attaches a single sensor to the platform.
      *
-     * @param sensor The sensor to attach.
+     * @param parameters The sensor parameters to attach.
      */
-    void attach(const Sensor& sensor) { _sensors.emplace_back(sensor); }
+    void attach(const SensorParameters& parameters) { _sensors.emplace_back(Sensor(*this, parameters)); }
 
     /**
      * @brief Attaches multiple sensors to the platform.
      *
-     * @param sensors Vector of sensors to attach.
+     * @param parameterPack Vector of sensor parameters to attach.
      */
-    void attach(const std::vector<Sensor>& sensors)
+    void attach(const std::vector<SensorParameters>& parameterPack)
     {
-        _sensors.insert(std::end(_sensors), std::begin(sensors), std::end(sensors));
+        for (const auto& parameters : parameterPack) {
+            _sensors.emplace_back(Sensor(*this, parameters));
+        }
     }
 
     /**

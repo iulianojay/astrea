@@ -420,7 +420,7 @@ class CartesianVector {
     const { return frame.convert_from_this_frame(*this, date); }
 
   private:
-    std::array<Value_T, 3> _vector; //<! Array to hold the x, y, and z components of the vector.
+    std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
 
 /**

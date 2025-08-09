@@ -45,14 +45,14 @@ class Integrator {
      * @brief Enumeration for different Runge-Kutta stepper methods.
      */
     enum odeStepper {
-        RK45,  //<! Traditional Runge-Kutta 4(5)th order 6 stage method
-        RKF45, //<! Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        RKF78, //<! Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-        DOP45, //<! Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        DOP78, //<! Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+        RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
+        RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+        RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+        DOP45, //!< Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+        DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day }; //<! Default time interval for propagation
+    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day }; //!< Default time interval for propagation
 
     /**
      * @brief Default constructor for the Integrator class.
@@ -169,80 +169,80 @@ class Integrator {
 
   private:
     // Integrator constants
-    const Unitless epsilon             = 0.8;    //<! Relative local step error tolerance usually 0.8 or 0.9.
-    const Unitless minErrorCatch       = 2.0e-4; //<! If maximum error is less than this,
-    const Unitless minErrorStepFactor  = 5.0;    //<! Increase step by this factor
-    const Unitless minRelativeStepSize = 0.2;    //<! If the step size decreases by more than this factor, reduce the
-                                                 //<! Relative step size to this value
+    const Unitless epsilon             = 0.8;    //!< Relative local step error tolerance usually 0.8 or 0.9.
+    const Unitless minErrorCatch       = 2.0e-4; //!< If maximum error is less than this,
+    const Unitless minErrorStepFactor  = 5.0;    //!< Increase step by this factor
+    const Unitless minRelativeStepSize = 0.2;    //!< If the step size decreases by more than this factor, reduce the
+                                                 //!< Relative step size to this value
 
     // Iteration variables
-    unsigned long iteration                       = 0; //<! Outer loop iteration count
-    unsigned long variableStepIteration           = 0; //<! Inner loop iteration count
-    const unsigned long maxVariableStepIterations = 1000; //<! Max iterations for step sizing loop -> jj shouldn't get above ~10
+    unsigned long iteration                       = 0; //!< Outer loop iteration count
+    unsigned long variableStepIteration           = 0; //!< Inner loop iteration count
+    const unsigned long maxVariableStepIterations = 1000; //!< Max iterations for step sizing loop -> jj shouldn't get above ~10
 
     // Function evals
-    int functionEvaluations = 0; //<! Number of function evaluations during integration
+    int functionEvaluations = 0; //!< Number of function evaluations during integration
 
     // Number of states
-    static const std::size_t maxStates = 10; //<! Maximum number of states in the orbital elements
+    static const std::size_t maxStates = 10; //!< Maximum number of states in the orbital elements
 
     // Time variables
-    bool forwardTime = true; //<! Direction of time propagation
-    Time timeStepPrevious;   //<! Previous time step used in the integration
+    bool forwardTime = true; //!< Direction of time propagation
+    Time timeStepPrevious;   //!< Previous time step used in the integration
 
     // Error variables
-    bool stepSuccess  = false; //<! Flag indicating if the last step was successful
-    bool eventTrigger = false; //<! Flag indicating if an event was triggered during the integration
-    Unitless maxErrorPrevious; //<! Maximum error from the previous step
+    bool stepSuccess  = false; //!< Flag indicating if the last step was successful
+    bool eventTrigger = false; //!< Flag indicating if an event was triggered during the integration
+    Unitless maxErrorPrevious; //!< Maximum error from the previous step
 
     // Butcher Tablaeu
-    std::size_t nStages{}; //<! Number of stages in the Butcher tableau for the current step method
-    static const std::size_t maxStages                       = 13; //<! Maximum number of stages in the Butcher tableau
-    std::array<std::array<Unitless, maxStages>, maxStages> a = {}; //<! Coefficients for the Butcher tableau
-    std::array<Unitless, maxStages> b                        = {}; //<! Weights for the Butcher tableau
-    std::array<Unitless, maxStages> bhat                     = {}; //<! Modified weights for the Butcher tableau
-    std::array<Unitless, maxStages> db = {}; //<! Derivative of the weights for the Butcher tableau
-    std::array<Unitless, maxStages> c  = {}; //<! Nodes for the Butcher tableau
+    std::size_t nStages{}; //!< Number of stages in the Butcher tableau for the current step method
+    static const std::size_t maxStages                       = 13; //!< Maximum number of stages in the Butcher tableau
+    std::array<std::array<Unitless, maxStages>, maxStages> a = {}; //!< Coefficients for the Butcher tableau
+    std::array<Unitless, maxStages> b                        = {}; //!< Weights for the Butcher tableau
+    std::array<Unitless, maxStages> bhat                     = {}; //!< Modified weights for the Butcher tableau
+    std::array<Unitless, maxStages> db = {}; //!< Derivative of the weights for the Butcher tableau
+    std::array<Unitless, maxStages> c  = {}; //!< Nodes for the Butcher tableau
 
     // ith order steps
-    std::array<OrbitalElements, maxStages> kMatrix = {}; //<! Matrix of intermediate steps for the Runge-Kutta method
-    OrbitalElements statePlusKi;                         //<! State vector plus the ith order step
-    OrbitalElementPartials YFinalPrevious;               //<! Previous final state vector for the Runge-Kutta method
+    std::array<OrbitalElements, maxStages> kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
+    OrbitalElements statePlusKi;                         //!< State vector plus the ith order step
+    OrbitalElementPartials YFinalPrevious;               //!< Previous final state vector for the Runge-Kutta method
 
     // Clock variables
-    clock_t startClock{}; //<! Start time for the timer
-    clock_t endClock{};   //<! End time for the timer
+    clock_t startClock{}; //!< Start time for the timer
+    clock_t endClock{};   //!< End time for the timer
 
     // Error Messages
-    const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n"; //<! Error message for stepsize underflow
+    const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n"; //!< Error message for stepsize underflow
     const std::string innerLoopStepOverflowErrorMessage =
-        "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n"; //<! Error message for inner loop step overflow
+        "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n"; //!< Error message for inner loop step overflow
     const std::string outerLoopStepOverflowErrorMessage =
-        "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n"; //<! Error message for outer loop step overflow
-    const std::string crashMessage = "Note: Object crashed into central body. \n\n"; //<! Error message for crash into central body
+        "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n"; //!< Error message for outer loop step overflow
+    const std::string crashMessage = "Note: Object crashed into central body. \n\n"; //!< Error message for crash into central body
 
     // Print variables
-    int checkDay = 0; //<! Day counter for printing state information
+    int checkDay = 0; //!< Day counter for printing state information
 
     // Tolerances
-    Unitless absoluteTolerance = 1.0e-13; //<! Absolute tolerance for the integrator
-    Unitless relativeTolerance = 1.0e-13; //<! Relative tolerance for the integrator
+    Unitless absoluteTolerance = 1.0e-13; //!< Absolute tolerance for the integrator
+    Unitless relativeTolerance = 1.0e-13; //!< Relative tolerance for the integrator
 
     // Initial step size
-    Time timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //<! Initial time step for the integrator
+    Time timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
 
     // Iteration variables - absurdly high so it doesn't interfere with integration
-    unsigned long iterMax = 1e8; //<! Maximum number of iterations for the integrator
+    unsigned long iterMax = 1e8; //!< Maximum number of iterations for the integrator
 
     // Run options
-    bool printOn = false; //<! Flag to control printing of integration details
-    bool timerOn = false; //<! Flag to control timing of integration performance
+    bool printOn = false; //!< Flag to control printing of integration details
+    bool timerOn = false; //!< Flag to control timing of integration performance
 
-    odeStepper stepMethod = DOP45; //<! Step method to use for the integration (default is Dormand-Prince RK4(5))
+    odeStepper stepMethod = DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
 
     // Fake fixed step
-    bool useFixedStep  = false;                               //<! Flag to indicate if a fixed step size should be used
-    Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //<! Fixed time step size to use if fixed step is enabled
+    bool useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
+    Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
 
     /**
      * @brief Find the state derivative at a given time using the equations of motion.

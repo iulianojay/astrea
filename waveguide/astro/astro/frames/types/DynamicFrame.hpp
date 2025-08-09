@@ -33,13 +33,13 @@ class DynamicFrame : public Frame {
      * @param parent The parent inertial frame that this dynamic frame is based on.
      */
     DynamicFrame(const std::string& name, const FrameReference* parent) :
-        Frame(name, parent->get_name()),
+        Frame(name, parent ? parent->get_name() : "Instantaneous Dynamic Frame Instance"),
         _parent(parent)
     {
     }
 
   protected:
-    const FrameReference* _parent; //<! The parent object this frame is attached to.
+    const FrameReference* _parent; //!< The parent object this frame is attached to.
 };
 
 } // namespace astro

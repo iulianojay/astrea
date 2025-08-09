@@ -55,14 +55,14 @@ class SensorParameters {
     /**
      * @brief Default destructor for SensorParameters
      */
-    ~SensorParameters() = default;
+    virtual ~SensorParameters() = default;
 
     /**
      * @brief Get the field of view of the sensor.
      *
      * @return FieldOfView* Pointer to the field of view object.
      */
-    FieldOfView* get_fov() const { return _fov; }
+    const FieldOfView* get_fov() const { return _fov; }
 
     /**
      * @brief Get the boresight direction of the sensor.
@@ -102,11 +102,11 @@ class SensorParameters {
         _attachmentPoint = attachmentPoint;
     }
 
-  private:
-    FieldOfView* _fov;                          //<! Field of view of the sensor, defining its coverage area
-    astro::RadiusVector<astro::RIC> _boresight; //<! Boresight vector of the sensor, indicating the direction it is pointing
-    astro::RadiusVector<astro::RIC> _attachmentPoint; //<! Attachment point of the sensor on the platform
-}
+  protected:
+    const FieldOfView* _fov;                    //!< Field of view of the sensor, defining its coverage area
+    astro::RadiusVector<astro::RIC> _boresight; //!< Boresight vector of the sensor, indicating the direction it is pointing
+    astro::RadiusVector<astro::RIC> _attachmentPoint; //!< Attachment point of the sensor on the platform
+};
 
 /**
  * @brief Sensor class representing a sensor on a platform
@@ -125,10 +125,11 @@ class Sensor : public AccessObject {
      * @param boresight The boresight vector of the sensor.
      * @param attachmentPoint The point on the platform where the sensor is attached.
      */
-    Sensor(const SensorPlatform* parent, const SensorParameters& parameters) :
+    template <typename T>
+    Sensor(const T& parent, const SensorParameters& parameters) :
         AccessObject(),
-        _parent(parent),
-        _frame(parent),
+        _parent(&parent),
+        _frame(&parent),
         _parameters(parameters)
     {
     }
@@ -160,10 +161,10 @@ class Sensor : public AccessObject {
     }
 
   private:
-    std::size_t _id;               //<! Unique identifier for the sensor
-    const SensorPlatform* _parent; //<! Parent platform
-    const astro::RIC _frame;       //<! Frame of reference for the sensor
-    SensorParameters _parameters;  //<! Sensor parameters
+    std::size_t _id;               //!< Unique identifier for the sensor
+    const SensorPlatform* _parent; //!< Parent platform
+    astro::RIC _frame;             //!< Frame of reference for the sensor
+    SensorParameters _parameters;  //!< Sensor parameters
 
     // TODO: Make a fixed-offset frame for attachment point
 

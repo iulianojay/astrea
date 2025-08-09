@@ -36,7 +36,7 @@ class EquinoctialVop : public EquationsOfMotion {
      */
     EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
         EquationsOfMotion(system),
-        forces(forces),
+        forces(&forces),
         mu(system.get_center()->get_mu()){};
 
     /**
@@ -61,13 +61,13 @@ class EquinoctialVop : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    mutable bool checkflag                           = false; //<! Flag to check for degenerate conditions.
-    const mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //<! Tolerance for checking conditions.
+    mutable bool checkflag                     = false;                 //!< Flag to check for degenerate conditions.
+    mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 
-    const ElementSet expectedSet = ElementSet::EQUINOCTIAL; //<! Expected set of orbital elements for this method.
-    const ForceModel& forces;                               //!< The force model used in the equations of motion.
+    ElementSet expectedSet = ElementSet::EQUINOCTIAL; //!< Expected set of orbital elements for this method.
+    const ForceModel* forces;                         //!< The force model used in the equations of motion.
 
-    const GravParam mu; //!< Gravitational parameter of the central body.
+    GravParam mu; //!< Gravitational parameter of the central body.
 };
 
 } // namespace astro

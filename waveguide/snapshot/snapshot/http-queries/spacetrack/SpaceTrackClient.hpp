@@ -40,11 +40,11 @@ class SpaceTrackClient {
      * from the SpaceTrack API.
      */
     enum class Controller : EnumType {
-        BASIC_SPACE_DATA, //<! Basic Space Data
-        // EXPANDED_SPACE_DATA, //<! USSPACECOM SSA Sharing Agreements
-        // FILE_SHARE,          //<! Permission Controlled
-        // COMBINED_OPS_DATA,   //<! Permission Controlled
-        PUBLIC_FILES //<! Public Files
+        BASIC_SPACE_DATA, //!< Basic Space Data
+        // EXPANDED_SPACE_DATA, //!< USSPACECOM SSA Sharing Agreements
+        // FILE_SHARE,          //!< Permission Controlled
+        // COMBINED_OPS_DATA,   //!< Permission Controlled
+        PUBLIC_FILES //!< Public Files
     };
 
     /**
@@ -53,8 +53,8 @@ class SpaceTrackClient {
      * This enumeration defines the various actions that can be performed when querying data from the SpaceTrack API.
      */
     enum class Action : EnumType {
-        QUERY,     //<! Query action
-        MODEL_DEF, //<! Model definition action
+        QUERY,     //!< Query action
+        MODEL_DEF, //!< Model definition action
     };
 
     /**
@@ -63,17 +63,17 @@ class SpaceTrackClient {
      * This enumeration defines the various classes of space data that can be queried from the SpaceTrack API.
      */
     enum class SpaceDataClass : EnumType {
-        ANNOUNCEMENT,  //<! Announcement data
-        BOX_SCORE,     //<! Box score data
-        CDM_PUBLIC,    //<! Conjunction Data Message (CDM) public data
-        DECAY,         //<! Decay data
-        GP,            //<! General Perturbation (GP) data
-        GP_HISTORY,    //<! General Perturbation (GP) history data
-        LAUNCH_SITE,   //<! Launch site data
-        SATCAT,        //<! Satellite Catalog (SATCAT) data
-        SATCAT_CHANGE, //<! Satellite Catalog change data
-        SATCAT_DEBUT,  //<! Satellite Catalog debut data
-        TIP            //<! Tracking and Information Processing (TIP) data
+        ANNOUNCEMENT,  //!< Announcement data
+        BOX_SCORE,     //!< Box score data
+        CDM_PUBLIC,    //!< Conjunction Data Message (CDM) public data
+        DECAY,         //!< Decay data
+        GP,            //!< General Perturbation (GP) data
+        GP_HISTORY,    //!< General Perturbation (GP) history data
+        LAUNCH_SITE,   //!< Launch site data
+        SATCAT,        //!< Satellite Catalog (SATCAT) data
+        SATCAT_CHANGE, //!< Satellite Catalog change data
+        SATCAT_DEBUT,  //!< Satellite Catalog debut data
+        TIP            //!< Tracking and Information Processing (TIP) data
     };
 
     /**
@@ -82,10 +82,10 @@ class SpaceTrackClient {
      * This enumeration defines the various classes of public files that can be accessed from the SpaceTrack API.
      */
     enum class PublicFilesClass : EnumType {
-        DIRS,            //<! Directories of public files
-        DOWNLOAD,        //<! Download public files
-        FILES,           //<! List of public files
-        LOAD_PUBLIC_DATA //<! Load public data files
+        DIRS,            //!< Directories of public files
+        DOWNLOAD,        //!< Download public files
+        FILES,           //!< List of public files
+        LOAD_PUBLIC_DATA //!< Load public data files
     };
 
     /**
@@ -155,11 +155,11 @@ class SpaceTrackClient {
     nlohmann::json retrieve_all(const std::string& username, const std::string& password);
 
   private:
-    const cpr::Url _base = "https://www.space-track.org"; //<! Base URL for the SpaceTrack API
+    const cpr::Url _base = "https://www.space-track.org"; //!< Base URL for the SpaceTrack API
 
     // Login
-    const cpr::Url _loginUrl = _base + "/ajaxauth/login"; //<! URL for the login endpoint
-    cpr::Cookies _loginCookies;                           //<! Cookies for the login session
+    const cpr::Url _loginUrl = _base + "/ajaxauth/login"; //!< URL for the login endpoint
+    cpr::Cookies _loginCookies;                           //!< Cookies for the login session
 
     /**
      * @brief Checks if the login cookies are valid and have not expired.

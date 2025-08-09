@@ -58,8 +58,8 @@ class TwoBody : public EquationsOfMotion {
     const ElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    const ElementSet expectedSet = ElementSet::CARTESIAN; //<! Expected set of orbital elements for Two Body equations of motion.
-    const GravParam mu;                                   //<! Gravitational parameter of the central body.
+    ElementSet expectedSet = ElementSet::CARTESIAN; //!< Expected set of orbital elements for Two Body equations of motion.
+    GravParam mu;                                   //!< Gravitational parameter of the central body.
 };
 
 } // namespace astro

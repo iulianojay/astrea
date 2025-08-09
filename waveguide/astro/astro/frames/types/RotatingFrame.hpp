@@ -39,7 +39,7 @@ class RotatingFrame : public Frame {
     }
 
   protected:
-    InertialFrame parentFrame; //<! The parent inertial frame that this rotating frame is based on.
+    InertialFrame parentFrame; //!< The parent inertial frame that this rotating frame is based on.
 };
 
 } // namespace astro

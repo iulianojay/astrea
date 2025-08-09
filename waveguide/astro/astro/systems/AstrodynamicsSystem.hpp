@@ -143,8 +143,8 @@ class AstrodynamicsSystem {
     auto end() const { return bodyFactory.end(); }
 
   private:
-    const std::string centralBody; //<! The name of the central celestial body, default is "Earth".
-    const std::unordered_set<std::string> allBodies; //<! A set of names of all celestial bodies in the system, default includes "Earth" and "Moon".
+    const std::string centralBody; //!< The name of the central celestial body, default is "Earth".
+    const std::unordered_set<std::string> allBodies; //!< A set of names of all celestial bodies in the system, default includes "Earth" and "Moon".
 
     Date epoch;                       //!< The epoch date for the system, default is J2000.
     CelestialBodyFactory bodyFactory; //!< Factory for creating and managing celestial bodies in the system.

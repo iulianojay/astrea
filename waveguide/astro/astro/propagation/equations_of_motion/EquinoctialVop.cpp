@@ -41,30 +41,20 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const VelocityVector<ECI> v = cartesian.get_velocity();
     const RadiusVector<ECI> r   = cartesian.get_position();
-
-    // Define perturbation vectors relative to the satellites SNC body frame
-    /*
-       R -> perturbing accel along radius vector outward
-       N -> perturbing accel normal to orbital plane in direction of angular momentum vector
-       T -> perturbing accel perpendicular to radius in direction of motion
-    */
-    const UnitVector Rhat = r.unit();
-    const UnitVector Nhat = r.cross(v).unit();
-    const UnitVector That = Nhat.cross(Rhat).unit();
+    const VelocityVector<ECI> v = cartesian.get_velocity();
 
     // Function for finding accel caused by perturbations
     const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
+    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const RTN rtnFrame(vehicle);
+    const RTN rtnFrame                     = RTN::instantaneous(r, v);
     const AccelerationVector<RTN> accelRtn = rtnFrame.rotate_into_this_frame(accelPerts, date);
 
-    const Acceleration radialPert     = accelPerts.dot(Rhat);
-    const Acceleration normalPert     = accelPerts.dot(Nhat);
-    const Acceleration tangentialPert = accelPerts.dot(That);
+    const Acceleration& radialPert     = accelRtn.get_x();
+    const Acceleration& normalPert     = accelRtn.get_y();
+    const Acceleration& tangentialPert = accelRtn.get_z();
 
     // Variables precalculated for speed
     const Unitless cosL = cos(L);

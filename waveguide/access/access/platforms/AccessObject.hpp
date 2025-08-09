@@ -85,7 +85,7 @@ class AccessObject {
     virtual std::size_t get_id() const = 0;
 
   private:
-    AccessArray _accesses; //<! Access times for this object, indexed by sender and receiver IDs.
+    AccessArray _accesses; //!< Access times for this object, indexed by sender and receiver IDs.
 };
 
 } // namespace accesslib

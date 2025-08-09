@@ -30,12 +30,12 @@ namespace astro {
  */
 enum class ElementSet : EnumType { CARTESIAN = 0, KEPLERIAN = 1, EQUINOCTIAL = 2 };
 
-//<! @brief Map for ElementSet enum class to string.
+//!< @brief Map for ElementSet enum class to string.
 const std::unordered_map<ElementSet, std::string> ElementSetToString = { { ElementSet::KEPLERIAN, "KEPLERIAN" },
                                                                          { ElementSet::CARTESIAN, "CARTESIAN" },
                                                                          { ElementSet::EQUINOCTIAL, "EQUINOCTIAL" } };
 
-//<! @brief Map for string to ElementSet enum class.
+//!< @brief Map for string to ElementSet enum class.
 const std::unordered_map<std::string, ElementSet> StringToElementSet = { { "KEPLERIAN", ElementSet::KEPLERIAN },
                                                                          { "CARTESIAN", ElementSet::CARTESIAN },
                                                                          { "EQUINOCTIAL", ElementSet::EQUINOCTIAL } };

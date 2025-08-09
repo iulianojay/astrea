@@ -49,29 +49,17 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const VelocityVector<ECI> v = cartesian.get_velocity();
     const RadiusVector<ECI> r   = cartesian.get_position();
 
-    const Distance x = cartesian.get_x();
-    const Distance y = cartesian.get_y();
-    const Distance z = cartesian.get_z();
-    const Distance R = r.norm();
-
-    // Define perturbation vectors relative to the satellites RNT body frame
-    /*
-       R -> perturbing accel along radius vector outward
-       N -> perturbing accel normal to orbital plane in direction of angular momentum vector
-       T -> perturbing accel perpendicular to radius in direction of motion
-    */
-    const UnitVector Rhat = r.unit();
-    const UnitVector Nhat = r.cross(v).unit();
-    const UnitVector That = Nhat.cross(Rhat).unit();
-
     // Function for finding accel caused by perturbations
     const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
+    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const Acceleration radialPert     = accelPerts.dot(Rhat);
-    const Acceleration normalPert     = accelPerts.dot(Nhat);
-    const Acceleration tangentialPert = accelPerts.dot(That);
+    const RTN rtnFrame                     = RTN::instantaneous(r, v);
+    const AccelerationVector<RTN> accelRtn = rtnFrame.rotate_into_this_frame(accelPerts, date);
+
+    const Acceleration& radialPert     = accelRtn.get_x();
+    const Acceleration& normalPert     = accelRtn.get_y();
+    const Acceleration& tangentialPert = accelRtn.get_z();
 
     // Argument of latitude
     const Angle u = w + theta;
@@ -82,6 +70,7 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const Unitless cosU  = cos(u);
     const Unitless sinU  = sin(u);
 
+    const Distance R                    = r.norm();
     const quantity hSquared             = h * h;
     const UnitlessPerTime hOverRSquared = h / (R * R);
 

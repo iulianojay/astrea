@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include <astro/systems/CelestialBody.hpp>
+
 #include <access/platforms/sensors/SensorPlatform.hpp>
 #include <access/types/typedefs.hpp>
 
@@ -36,10 +38,12 @@ class GroundPoint {
      * @param altitude The altitude of the ground point above sea level (default is 0 kilometers).
      */
     GroundPoint(
-        const Angle& latitutde   = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
+        const astro::CelestialBody* parent = nullptr,
+        const Angle& latitutde             = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& longitude             = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km
     ) :
+        _parent(parent),
         _latitude(latitutde),
         _longitude(longitude),
         _altitude(altitude)
@@ -73,9 +77,10 @@ class GroundPoint {
     Distance get_altitude() const { return _altitude; }
 
   protected:
-    Angle _latitude;    // Latitude of the ground point
-    Angle _longitude;   // Longitude of the ground point
-    Distance _altitude; // Altitude of the ground point above sea level
+    const astro::CelestialBody* _parent; // Pointer to the parent celestial body
+    Angle _latitude;                     // Latitude of the ground point
+    Angle _longitude;                    // Longitude of the ground point
+    Distance _altitude;                  // Altitude of the ground point above sea level
 };
 
 } // namespace accesslib

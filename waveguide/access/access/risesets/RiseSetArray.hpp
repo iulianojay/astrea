@@ -26,9 +26,9 @@ namespace accesslib {
  * @brief Enumeration of statistical measures for RiseSetArray.
  */
 enum class Stat {
-    MIN,  //<! Minimum value
-    MEAN, //<! Mean value
-    MAX   //<! Maximum value
+    MIN,  //!< Minimum value
+    MEAN, //!< Mean value
+    MAX   //!< Maximum value
 };
 
 /**

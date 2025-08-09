@@ -43,7 +43,10 @@ TEST(SatCommTest, AntennaGain)
 {
     Viewer sc;
     CircularFieldOfView fov;
-    Antenna antenna(sc, fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
+    AntennaParameters parameters(&fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
+
+    Antenna antenna(sc, parameters);
+
     compare_unit_values(to_db(antenna.gain()), 48.93 * dB);
 }
 
@@ -52,7 +55,10 @@ TEST(SatCommTest, FreeSpaceLoss)
 {
     Viewer sc;
     CircularFieldOfView fov;
-    Antenna antenna(sc, fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+    AntennaParameters parameters(&fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+
+    Antenna antenna(sc, parameters);
+
     compare_unit_values(to_db(antenna.free_space_loss(40400 * km)), -200.14 * dB);
     compare_unit_values(to_db(antenna.free_space_loss(37500 * km)), -199.49 * dB);
 }
@@ -62,15 +68,18 @@ TEST(SatCommTest, MispointingLossGroundToGEO)
 {
     Viewer sc;
     CircularFieldOfView fov;
-    Antenna groundAntenna(sc, fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
-    Antenna geoSatAntenna(sc, fov, 1.0 * m, 1.0 * one, 12.0 * GHz, 1.0 * W);
+    AntennaParameters groundParameters(&fov, 3.0 * m, 0.55 * one, 12.0 * GHz, 1.0 * W);
+    AntennaParameters geoParameters(&fov, 1.0 * m, 1.0 * one, 12.0 * GHz, 1.0 * W);
+
+    Antenna groundAntenna(sc, groundParameters);
+    Antenna geoSatAntenna(sc, geoParameters);
 
     // Bessel approximation
     compare_unit_values(to_db(groundAntenna.gain()), 48.93 * dB);
     compare_unit_values(to_db(groundAntenna.mispointing_loss(geoSatAntenna, 0.0707 * deg)), -0.16 * dB);
 
     // Sinc^2 approximation
-    groundAntenna.set_pattern_approximation(Antenna::PatternApproximation::SINC_SQUARED);
+    groundAntenna.set_pattern_approximation(PatternApproximation::SINC_SQUARED);
     compare_unit_values(to_db(groundAntenna.mispointing_loss(geoSatAntenna, 0.0707 * deg)), -0.15 * dB);
 }
 
@@ -79,14 +88,17 @@ TEST(SatCommTest, MispointingLossGroundToSat)
 {
     Viewer sc;
     CircularFieldOfView fov;
-    Antenna groundAntenna(sc, fov, 10.0 * m, 0.70 * one, 6.0 * GHz, 1.0 * W);
-    Antenna satAntenna(sc, fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+    AntennaParameters groundParameters(&fov, 10.0 * m, 0.70 * one, 6.0 * GHz, 1.0 * W);
+    AntennaParameters satParameters(&fov, 1.0 * m, 1.0 * one, 6.0 * GHz, 1.0 * W);
+
+    Antenna groundAntenna(sc, groundParameters);
+    Antenna satAntenna(sc, satParameters);
 
     // Bessel approximation
     compare_unit_values(to_db(groundAntenna.gain()), 54.42 * dB); // text says 54.41, but is rounds heavily
     compare_unit_values(to_db(groundAntenna.mispointing_loss(satAntenna, 0.1414 * deg)), -1.79 * dB);
 
     // Sinc^2 approximation
-    groundAntenna.set_pattern_approximation(Antenna::PatternApproximation::SINC_SQUARED);
+    groundAntenna.set_pattern_approximation(PatternApproximation::SINC_SQUARED);
     compare_unit_values(to_db(groundAntenna.mispointing_loss(satAntenna, 0.1414 * deg)), -1.73 * dB);
 }

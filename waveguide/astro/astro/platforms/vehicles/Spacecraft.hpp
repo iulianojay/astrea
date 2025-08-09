@@ -39,7 +39,7 @@ namespace astro {
  * This class encapsulates the properties and behaviors of a spacecraft, including its state,
  * mass, dynamic coefficients, and surface areas.
  */
-class Spacecraft : public FrameReference {
+class Spacecraft : virtual public FrameReference {
 
   public:
     /**

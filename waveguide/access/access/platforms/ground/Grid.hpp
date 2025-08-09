@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include <astro/systems/CelestialBody.hpp>
+
 #include <access/platforms/ground/GroundPoint.hpp>
 #include <access/types/typedefs.hpp>
 
@@ -22,11 +24,11 @@ namespace accesslib {
  * @brief Enumeration for different grid types.
  */
 enum class GridType : EnumType {
-    UNIFORM,     //<! Uniform grid with equal spacing
-    EQUAL_AREA,  //<! Equal area grid with varying spacing
-    WEIGHTED_NS, //<! Weighted grid with North-South emphasis
-    WEIGHTED_EW, //<! Weighted grid with East-West emphasis
-    MANUAL       //<! Manual grid with user-defined points
+    UNIFORM,     //!< Uniform grid with equal spacing
+    EQUAL_AREA,  //!< Equal area grid with varying spacing
+    WEIGHTED_NS, //!< Weighted grid with North-South emphasis
+    WEIGHTED_EW, //!< Weighted grid with East-West emphasis
+    MANUAL       //!< Manual grid with user-defined points
 };
 
 /**
@@ -66,12 +68,14 @@ class Grid {
      * @param weight Weighting factor for the grid (default is 0).
      */
     Grid(
+        const astro::CelestialBody* parent,
         const LatLon& corner1,
         const LatLon& corner4,
         const GridType& gridType,
         const Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
         const Unitless& weight = 0.0 * mp_units::one
     ) :
+        _parent(parent),
         _groundStations(build_grid(corner1, corner4, gridType, spacing, weight)),
         _gridType(gridType)
     {
@@ -135,6 +139,7 @@ class Grid {
     const_iterator cend() const { return _groundStations.end(); }
 
   private:
+    const astro::CelestialBody* _parent;      //!< Pointer to the parent celestial body
     std::vector<GroundPoint> _groundStations; //!< Vector of ground points in the grid
     GridType _gridType;                       //!< Type of grid (uniform, equal area, etc.)
 

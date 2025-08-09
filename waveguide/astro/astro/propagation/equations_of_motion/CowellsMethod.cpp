@@ -31,7 +31,7 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
 
     // Run find functions for force model
     const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces.compute_forces(date, cartesian, vehicle, get_system());
+    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);

@@ -46,8 +46,8 @@ class Frame {
     virtual ~Frame() = default;
 
   protected:
-    std::string name;   //<! Name of the frame.
-    std::string origin; //<! Origin of the frame, typically a celestial body or reference point.
+    std::string name;   //!< Name of the frame.
+    std::string origin; //!< Origin of the frame, typically a celestial body or reference point.
 };
 
 

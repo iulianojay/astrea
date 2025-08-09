@@ -186,7 +186,7 @@ class StateHistory {
     const_iterator cend() const { return _states.cend(); }
 
   private:
-    phmap::btree_map<Time, State> _states; //<! Map to store states indexed by time
+    phmap::btree_map<Time, State> _states; //!< Map to store states indexed by time
     std::size_t _objectId = 0;             //!< ID of the object for which this state history is maintained
 };
 

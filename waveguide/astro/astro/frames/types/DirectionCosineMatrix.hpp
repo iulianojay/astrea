@@ -178,7 +178,7 @@ class DirectionCosineMatrix {
     }
 
   private:
-    std::array<CartesianVector<Unitless, In_Frame_T>, 3> _matrix; //<! 3x3 matrix to hold the direction cosines.
+    std::array<CartesianVector<Unitless, In_Frame_T>, 3> _matrix; //!< 3x3 matrix to hold the direction cosines.
 };
 
 /**

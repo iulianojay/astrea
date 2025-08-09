@@ -39,7 +39,7 @@ std::vector<GroundPoint> Grid::build_uniform_grid(const LatLon& corner1, const L
     // Iterate and store
     std::vector<GroundPoint> grounds;
     for (const auto& [lat, lon] : std::views::cartesian_product(lats, lons)) {
-        grounds.emplace_back(GroundPoint(lat, lon));
+        grounds.emplace_back(GroundPoint(_parent, lat, lon));
     }
     return grounds;
 }

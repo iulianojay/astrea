@@ -74,8 +74,34 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      */
     std::size_t get_id() const { return Spacecraft::get_id(); }
 
-  private:
-    std::vector<Sensor> _sensors; // List of sensors on the spacecraft
+    /**
+     * @brief Get the name of the viewer.
+     *
+     * @return std::string The name of the viewer.
+     */
+    std::string get_name() const { return Spacecraft::get_name(); }
+
+    /**
+     * @brief Get the inertial position of the viewer.
+     *
+     * @param date The date for which to get the position.
+     * @return astro::RadiusVector<astro::ECI> The inertial position of the viewer.
+     */
+    astro::RadiusVector<astro::ECI> get_inertial_position(const astro::Date& date) const
+    {
+        return Spacecraft::get_inertial_position(date);
+    }
+
+    /**
+     * @brief Get the inertial velocity of the viewer.
+     *
+     * @param date The date for which to get the velocity.
+     * @return astro::RadiusVector<astro::ECI> The inertial velocity of the viewer.
+     */
+    astro::VelocityVector<astro::ECI> get_inertial_velocity(const astro::Date& date) const
+    {
+        return Spacecraft::get_inertial_velocity(date);
+    }
 };
 
 } // namespace accesslib

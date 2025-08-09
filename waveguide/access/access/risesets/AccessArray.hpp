@@ -22,8 +22,8 @@ namespace accesslib {
  * @brief Represents a pair of IDs for sender and receiver.
  */
 struct IdPair {
-    std::size_t sender;   //<!< The ID of the sender.
-    std::size_t receiver; //<! The ID of the receiver.
+    std::size_t sender;   //!<< The ID of the sender.
+    std::size_t receiver; //!< The ID of the receiver.
 
     /**
      * @brief Default constructor for IdPair.
@@ -252,7 +252,7 @@ class AccessArray {
     const_iterator cend() const { return _accesses.cend(); }
 
   private:
-    phmap::btree_map<IdPair, RiseSetArray> _accesses; //<! A map that associates IdPairs with their corresponding RiseSetArrays.
+    phmap::btree_map<IdPair, RiseSetArray> _accesses; //!< A map that associates IdPairs with their corresponding RiseSetArrays.
 };
 
 } // namespace accesslib

@@ -27,25 +27,25 @@ namespace accesslib {
 
 Power Antenna::recieved_power(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
 {
-    return parameters.get_eirp() * receiver.gain() * free_space_loss(range) * system_loss(receiver, offsetAngle);
+    return _parameters.get_eirp() * receiver.gain() * free_space_loss(range) * system_loss(receiver, offsetAngle);
 }
 
 Gain Antenna::free_space_loss(const Distance& range) const
 {
     static const auto fixedLoss = pow<2>(1.0 / (4.0 * std::numbers::pi) * one);
-    return fixedLoss * pow<2>(parameters.get_wavelength() / range);
+    return fixedLoss * pow<2>(_parameters.get_wavelength() / range);
 }
 
 Gain Antenna::system_loss(const Antenna& receiver, const Angle& offsetAngle) const
 {
-    return parameters.get_transmit_loss() * mispointing_loss(receiver, offsetAngle) * atmospheric_loss() * receiver.receiver_loss();
+    return _parameters.get_transmit_loss() * mispointing_loss(receiver, offsetAngle) * atmospheric_loss() * receiver.receiver_loss();
 }
 
 Gain Antenna::mispointing_loss(const Antenna& receiver, const Angle& offsetAngle) const
 {
     // Including polarization losses here
     Gain mispointingLoss;
-    switch (parameters.get_pattern()) {
+    switch (_parameters.get_pattern()) {
         case (PatternApproximation::BESSEL): {
             mispointingLoss = bessel_loss_approximation(offsetAngle);
             break;
@@ -69,12 +69,12 @@ Gain Antenna::atmospheric_loss() const
     return 1.0; // Ideal, definitely not true
 }
 
-Gain Antenna::gain() const { return parameters.get_gain(); }
-Temperature Antenna::system_noise_temperature() const { return parameters.get_system_noise_temperature(); }
-Gain Antenna::receiver_loss() const { return parameters.get_receiver_loss(); }
-Gain Antenna::transmit_loss() const { return parameters.get_transmit_loss(); }
+Gain Antenna::gain() const { return _parameters.get_gain(); }
+Temperature Antenna::system_noise_temperature() const { return _parameters.get_system_noise_temperature(); }
+Gain Antenna::receiver_loss() const { return _parameters.get_receiver_loss(); }
+Gain Antenna::transmit_loss() const { return _parameters.get_transmit_loss(); }
 
-void Antenna::set_pattern_approximation(const PatternApproximation& pattern) { parameters.set_pattern(pattern); }
+void Antenna::set_pattern_approximation(const PatternApproximation& pattern) { _parameters.set_pattern(pattern); }
 
 
 Gain Antenna::bessel_loss_approximation(const Angle& offsetAngle) const
@@ -92,7 +92,7 @@ Gain Antenna::sinc_loss_approximation(const Angle& offsetAngle) const
 
 Gain Antenna::mispointing_loss_approximation_argument(const Angle& offsetAngle) const
 {
-    static const auto ratio = std::numbers::pi * parameters.get_diameter() / parameters.get_wavelength();
+    static const auto ratio = std::numbers::pi * _parameters.get_diameter() / _parameters.get_wavelength();
     return ratio * sin(offsetAngle);
 }
 

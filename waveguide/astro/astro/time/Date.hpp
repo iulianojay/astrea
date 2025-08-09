@@ -238,7 +238,7 @@ class Date {
     Angle gmst() const;
 
   private:
-    JulianDate _julianDate; //<! Julian date representation of the Date object
+    JulianDate _julianDate; //!< Julian date representation of the Date object
 };
 
 } // namespace astro

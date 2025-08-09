@@ -75,11 +75,11 @@ class ProgressBar {
     }
 
   private:
-    std::string _title;      //<! Title of the progress bar
-    std::size_t _iRecord;    //<! Current record index
-    std::size_t _barWidth;   //<! Width of the progress bar in characters
-    std::size_t _maxRecords; //<! Maximum number of records to process
-    std::size_t _frequency;  //<! Frequency of updates (in terms of records processed)
+    std::string _title;      //!< Title of the progress bar
+    std::size_t _iRecord;    //!< Current record index
+    std::size_t _barWidth;   //!< Width of the progress bar in characters
+    std::size_t _maxRecords; //!< Maximum number of records to process
+    std::size_t _frequency;  //!< Frequency of updates (in terms of records processed)
 };
 
 } // namespace utilities

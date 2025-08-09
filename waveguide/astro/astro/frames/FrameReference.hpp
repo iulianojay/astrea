@@ -46,7 +46,7 @@ class FrameReference {
      *
      * @return std::string The name of the frame reference.
      */
-    virtual std::string get_name() const = 0; //<! Get the name of the frame reference.
+    virtual std::string get_name() const = 0; //!< Get the name of the frame reference.
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.

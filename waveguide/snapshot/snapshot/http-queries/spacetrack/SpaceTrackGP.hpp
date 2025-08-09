@@ -46,47 +46,47 @@ struct SpaceTrackGP { // TODO: Right now, units are implied, but they should be 
      */
     ~SpaceTrackGP() = default;
 
-    int DB_ID;                                    //<! Database ID for the GP object
-    std::optional<double> APOAPSIS;               //<! Apoapsis altitude in kilometers
-    std::optional<long double> ARG_OF_PERICENTER; //<! Argument of pericenter in degrees
-    std::optional<long double> BSTAR;             //<! B* drag term (BSTAR) in inverse Earth radii
-    std::string CCSDS_OMM_VERS;                   //<! CCSDS OMM version
-    std::string CENTER_NAME;                      //<! Name of the center
-    std::optional<char> CLASSIFICATION_TYPE;      //<! Classification type
-    std::string COMMENT;                          //<! Comment
-    std::optional<std::string> COUNTRY_CODE;      //<! Country code
-    std::optional<std::string> CREATION_DATE;     //<! Creation date
-    std::optional<std::string> DECAY_DATE;        //<! Decay date
-    std::optional<long double> ECCENTRICITY;      //<! Eccentricity
-    std::optional<short> ELEMENT_SET_NO;          //<! Element set number
-    std::optional<short unsigned> EPHEMERIS_TYPE; //<! Ephemeris type
-    std::optional<std::string> EPOCH;             //<! Epoch
-    std::optional<long unsigned> FILE;            //<! File number
-    unsigned GP_ID;                               //<! General Perturbations ID
-    std::optional<long double> INCLINATION;       //<! Inclination in degrees
-    std::optional<std::string> LAUNCH_DATE;       //<! Launch date
-    std::optional<double> MEAN_ANOMALY;           //<! Mean anomaly in degrees
-    std::string MEAN_ELEMENT_THEORY;              //<! Mean element theory
-    std::optional<long double> MEAN_MOTION;       //<! Mean motion in revolutions per day
-    std::optional<long double> MEAN_MOTION_DDOT;  //<! Mean motion derivative in revolutions per day squared
-    std::optional<long double> MEAN_MOTION_DOT;   //<! Mean motion second derivative in revolutions per day cubed
-    unsigned NORAD_CAT_ID;                        //<! NORAD catalog ID
-    std::optional<std::string> OBJECT_ID;         //<! Object ID
-    std::optional<std::string> OBJECT_NAME;       //<! Object name
-    std::optional<std::string> OBJECT_TYPE;       //<! Object type
-    std::string ORIGINATOR;                       //<! Originator of the data
-    std::optional<double> PERIAPSIS;              //<! Periapsis altitude in kilometers
-    std::optional<double> PERIOD;                 //<! Orbital period in minutes
-    std::optional<long double> RA_OF_ASC_NODE;    //<! Right ascension of ascending node in degrees
-    std::optional<std::string> RCS_SIZE;          //<! Radar cross-section size
-    std::string REF_FRAME;                        //<! Reference frame
-    std::optional<unsigned> REV_AT_EPOCH;         //<! Revolution number at epoch
-    std::optional<double> SEMIMAJOR_AXIS;         //<! Semimajor axis in kilometers
-    std::optional<std::string> SITE;              //<! Site of the GP object
-    std::string TIME_SYSTEM;                      //<! Time system used for the GP object
-    std::optional<std::string> TLE_LINE0;         //<! TLE line 0 (usually the satellite name)
-    std::optional<std::string> TLE_LINE1;         //<! TLE line 1 (first line of TLE data)
-    std::optional<std::string> TLE_LINE2;         //<! TLE line 2 (second line of TLE data)
+    int DB_ID;                                    //!< Database ID for the GP object
+    std::optional<double> APOAPSIS;               //!< Apoapsis altitude in kilometers
+    std::optional<long double> ARG_OF_PERICENTER; //!< Argument of pericenter in degrees
+    std::optional<long double> BSTAR;             //!< B* drag term (BSTAR) in inverse Earth radii
+    std::string CCSDS_OMM_VERS;                   //!< CCSDS OMM version
+    std::string CENTER_NAME;                      //!< Name of the center
+    std::optional<char> CLASSIFICATION_TYPE;      //!< Classification type
+    std::string COMMENT;                          //!< Comment
+    std::optional<std::string> COUNTRY_CODE;      //!< Country code
+    std::optional<std::string> CREATION_DATE;     //!< Creation date
+    std::optional<std::string> DECAY_DATE;        //!< Decay date
+    std::optional<long double> ECCENTRICITY;      //!< Eccentricity
+    std::optional<short> ELEMENT_SET_NO;          //!< Element set number
+    std::optional<short unsigned> EPHEMERIS_TYPE; //!< Ephemeris type
+    std::optional<std::string> EPOCH;             //!< Epoch
+    std::optional<long unsigned> FILE;            //!< File number
+    unsigned GP_ID;                               //!< General Perturbations ID
+    std::optional<long double> INCLINATION;       //!< Inclination in degrees
+    std::optional<std::string> LAUNCH_DATE;       //!< Launch date
+    std::optional<double> MEAN_ANOMALY;           //!< Mean anomaly in degrees
+    std::string MEAN_ELEMENT_THEORY;              //!< Mean element theory
+    std::optional<long double> MEAN_MOTION;       //!< Mean motion in revolutions per day
+    std::optional<long double> MEAN_MOTION_DDOT;  //!< Mean motion derivative in revolutions per day squared
+    std::optional<long double> MEAN_MOTION_DOT;   //!< Mean motion second derivative in revolutions per day cubed
+    unsigned NORAD_CAT_ID;                        //!< NORAD catalog ID
+    std::optional<std::string> OBJECT_ID;         //!< Object ID
+    std::optional<std::string> OBJECT_NAME;       //!< Object name
+    std::optional<std::string> OBJECT_TYPE;       //!< Object type
+    std::string ORIGINATOR;                       //!< Originator of the data
+    std::optional<double> PERIAPSIS;              //!< Periapsis altitude in kilometers
+    std::optional<double> PERIOD;                 //!< Orbital period in minutes
+    std::optional<long double> RA_OF_ASC_NODE;    //!< Right ascension of ascending node in degrees
+    std::optional<std::string> RCS_SIZE;          //!< Radar cross-section size
+    std::string REF_FRAME;                        //!< Reference frame
+    std::optional<unsigned> REV_AT_EPOCH;         //!< Revolution number at epoch
+    std::optional<double> SEMIMAJOR_AXIS;         //!< Semimajor axis in kilometers
+    std::optional<std::string> SITE;              //!< Site of the GP object
+    std::string TIME_SYSTEM;                      //!< Time system used for the GP object
+    std::optional<std::string> TLE_LINE0;         //!< TLE line 0 (usually the satellite name)
+    std::optional<std::string> TLE_LINE1;         //!< TLE line 1 (first line of TLE data)
+    std::optional<std::string> TLE_LINE2;         //!< TLE line 2 (second line of TLE data)
 };
 
 /**

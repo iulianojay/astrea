@@ -33,7 +33,24 @@ class VelocityNormalBinormal : public DynamicFrame {
      * Initializes the ECEF frame with a name and origin.
      */
     VelocityNormalBinormal(const FrameReference* parent) :
-        DynamicFrame("Velocity, Normal, Binormal", parent){};
+        DynamicFrame("Velocity, Normal, Binormal", parent)
+    {
+    }
+
+  private:
+    VelocityNormalBinormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Velocity, Normal, Binormal", nullptr),
+        _position(position),
+        _velocity(velocity)
+    {
+    }
+
+  public:
+    static VelocityNormalBinormal
+        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
+    {
+        return VelocityNormalBinormal(position, velocity);
+    }
 
     /**
      * @brief Default destructor for VelocityNormalBinormal.
@@ -104,11 +121,21 @@ class VelocityNormalBinormal : public DynamicFrame {
      */
     DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
+        if (!_parent) { // Assume instantaneous instance
+            const auto r = _position.unit();
+            const auto v = _velocity.unit();
+            const auto h = r.cross(v).unit();
+            return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
+        }
         const auto r = _parent->get_inertial_position(date).unit();
         const auto v = _parent->get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
     }
+
+  private:
+    RadiusVector<EarthCenteredInertial> _position;
+    VelocityVector<EarthCenteredInertial> _velocity;
 };
 
 /**
