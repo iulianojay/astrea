@@ -24,7 +24,7 @@ namespace astro {
 /**
  * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
  */
-class RadialInTrackCrossTrack : public DynamicFrame {
+class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
 
   public:
     RadialInTrackCrossTrack() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
@@ -39,81 +39,23 @@ class RadialInTrackCrossTrack : public DynamicFrame {
     {
     }
 
-  private:
-    RadialInTrackCrossTrack(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Radial, In-Track, Cross-Track", nullptr),
-        _position(position),
-        _velocity(velocity)
-    {
-    }
-
-  public:
     static RadialInTrackCrossTrack
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return RadialInTrackCrossTrack(position, velocity);
     }
 
+  private:
+    RadialInTrackCrossTrack(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Radial, In-Track, Cross-Track", position, velocity)
+    {
+    }
+
+  public:
     /**
      * @brief Default destructor for RadialInTrackCrossTrack.
      */
     ~RadialInTrackCrossTrack() = default;
-
-    /**
-     * @brief Converts a CartesianVector from RIC coordinates to RIC coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param ricVec The CartesianVector in RIC coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, RadialInTrackCrossTrack> The converted CartesianVector in RIC coordinates.
-     */
-    template <typename Value_T>
-    CartesianVector<Value_T, RadialInTrackCrossTrack>
-        convert_to_this_frame(const CartesianVector<Value_T, RadialInTrackCrossTrack>& ricVec, const Date& date) const
-    {
-        return ricVec;
-    }
-
-    template <typename Value_T>
-    CartesianVector<Value_T, RadialInTrackCrossTrack>
-        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date) const
-    {
-        return get_dcm(date) * eciVec;
-    }
-
-    template <typename Value_T>
-    CartesianVector<Value_T, EarthCenteredInertial>
-        rotate_out_of_this_frame(const CartesianVector<Value_T, RadialInTrackCrossTrack>& ricVec, const Date& date) const
-    {
-        return get_dcm(date).transpose() * ricVec;
-    }
-
-    /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to RIC coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param eciVec The CartesianVector in ECI coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return RadiusVector<RadialInTrackCrossTrack> The converted CartesianVector in RIC coordinates.
-     */
-    RadiusVector<RadialInTrackCrossTrack> convert_to_this_frame(const RadiusVector<EarthCenteredInertial>& eciVec, const Date& date) const
-    {
-        return get_dcm(date) * (eciVec - _parent->get_inertial_position(date));
-    }
-
-    /**
-     * @brief Converts a CartesianVector from RIC coordinates to Earth-Centered Inertial (ECI) coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param ricVec The CartesianVector in RIC coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return RadiusVector<EarthCenteredInertial> The converted CartesianVector in ECI coordinates.
-     */
-    RadiusVector<EarthCenteredInertial>
-        convert_from_this_frame(const RadiusVector<RadialInTrackCrossTrack>& ricVec, const Date& date) const
-    {
-        return get_dcm(date).transpose() * ricVec + _parent->get_inertial_position(date);
-    }
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.

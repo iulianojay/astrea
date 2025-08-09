@@ -33,6 +33,8 @@ class InertialFrame;
 class RotatingFrame;
 class BodyFixedFrame;
 class FixedOffsetFrame;
+
+template <class Frame_T>
 class DynamicFrame;
 
 template <typename In_Frame_T, typename Out_Frame_T>

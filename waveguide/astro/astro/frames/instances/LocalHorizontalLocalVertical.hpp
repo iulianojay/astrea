@@ -24,7 +24,7 @@ namespace astro {
 /**
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
  */
-class LocalHorizontalLocalVertical : public DynamicFrame {
+class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical> {
 
   public:
     /**
@@ -37,81 +37,24 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
     {
     }
 
-  private:
-    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Local Horizontal, Local Vertical", nullptr),
-        _position(position),
-        _velocity(velocity)
-    {
-    }
-
-  public:
+    // static method forces a more explicit construction from the user for instantaneous frames
     static LocalHorizontalLocalVertical
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return LocalHorizontalLocalVertical(position, velocity);
     }
 
+  private:
+    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Local Horizontal, Local Vertical", position, velocity)
+    {
+    }
+
+  public:
     /**
      * @brief Default destructor for LocalHorizontalLocalVertical.
      */
     ~LocalHorizontalLocalVertical() = default;
-
-    /**
-     * @brief Converts a CartesianVector from LVLH coordinates to LVLH coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param lvlhVec The CartesianVector in LVLH coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Distance, LocalHorizontalLocalVertical> The converted CartesianVector in LVLH coordinates.
-     */
-    RadiusVector<LocalHorizontalLocalVertical>
-        convert_to_this_frame(const RadiusVector<LocalHorizontalLocalVertical>& lvlhVec, const Date& date) const
-    {
-        return lvlhVec;
-    }
-
-    template <typename Value_T>
-    CartesianVector<Value_T, LocalHorizontalLocalVertical>
-        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date) const
-    {
-        return get_dcm(date) * eciVec;
-    }
-
-    template <typename Value_T>
-    CartesianVector<Value_T, EarthCenteredInertial>
-        rotate_out_of_this_frame(const CartesianVector<Value_T, LocalHorizontalLocalVertical>& lvlhVec, const Date& date) const
-    {
-        return get_dcm(date).transpose() * lvlhVec;
-    }
-
-    /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to LVLH coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param eciVec The CartesianVector in ECI coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return RadiusVector<LocalHorizontalLocalVertical> The converted CartesianVector in LVLH coordinates.
-     */
-    RadiusVector<LocalHorizontalLocalVertical>
-        convert_to_this_frame(const RadiusVector<EarthCenteredInertial>& eciVec, const Date& date) const
-    {
-        return get_dcm(date) * (eciVec - _parent->get_inertial_position(date));
-    }
-
-    /**
-     * @brief Converts a CartesianVector from LVLH coordinates to Earth-Centered Inertial (ECI) coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param lvlhVec The CartesianVector in LVLH coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return RadiusVector<EarthCenteredInertial> The converted CartesianVector in ECI coordinates.
-     */
-    RadiusVector<EarthCenteredInertial>
-        convert_from_this_frame(const RadiusVector<LocalHorizontalLocalVertical>& lvlhVec, const Date& date) const
-    {
-        return get_dcm(date).transpose() * lvlhVec + _parent->get_inertial_position(date);
-    }
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
@@ -121,7 +64,7 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
      */
     DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
-        if (!_parent) { // Assume instantaneous instance
+        if (_isInstantaneous) { // Assume instantaneous instance
             const auto r = _position.unit();
             const auto v = _velocity.unit();
             const auto h = r.cross(v).unit();
@@ -132,10 +75,6 @@ class LocalHorizontalLocalVertical : public DynamicFrame {
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
     }
-
-  private:
-    RadiusVector<EarthCenteredInertial> _position;
-    VelocityVector<EarthCenteredInertial> _velocity;
 };
 
 /**
