@@ -47,7 +47,7 @@ class EarthCenteredInertial : public InertialFrame {
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredInertial>
-        convert_to_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
+        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
     {
         return eciVec;
     }

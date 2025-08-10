@@ -26,7 +26,7 @@ template <typename Value_T, typename Frame_T, typename Frame_U>
 concept HasStaticConvertTo = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
     {
-        Frame_U::convert_to_this_frame(vec, date)
+        Frame_U::rotate_into_this_frame(vec, date)
         } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
 };
 
@@ -34,7 +34,7 @@ template <typename Value_T, typename Frame_T, typename Frame_U>
 concept HasStaticConvertFrom = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
     {
-        Frame_T::convert_from_this_frame(vec, date)
+        Frame_T::rotate_out_of_this_frame(vec, date)
         } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
 };
 
@@ -386,7 +386,7 @@ class CartesianVector {
     template <typename Frame_U>
     requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U> && !HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
         CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
-    const { return Frame_U::convert_to_this_frame(*this, date); }
+    const { return Frame_U::rotate_into_this_frame(*this, date); }
 
 
     /**
@@ -399,7 +399,7 @@ class CartesianVector {
     template <typename Frame_U>
     requires(!HasStaticConvertTo<Value_T, Frame_T, Frame_U> && HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
         CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
-    const { return Frame_T::convert_from_this_frame(*this, date); }
+    const { return Frame_T::rotate_out_of_this_frame(*this, date); }
 
     /**
      * @brief Overload to handle casses where two frames define the same conversion.
@@ -408,16 +408,6 @@ class CartesianVector {
     requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U>&& HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
         CartesianVector<Value_T, Frame_U> in_frame(const Date& date)
     const { static_assert(false, "Parity Error: Two frames cannot have an equivalent conversion. Please remove one."); }
-
-    /**
-     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference.
-     *
-     * @tparam Frame_U The frame type to convert to.
-     * @return CartesianVector<T, Frame_U> A new CartesianVector in the specified frame.
-     */
-    template <typename Frame_U>
-    requires(std::is_base_of_v<DynamicFrame, Frame_U>) CartesianVector<Value_T, Frame_U> in_dynamic_frame(const Frame_U& frame, const Date& date)
-    const { return frame.convert_from_this_frame(*this, date); }
 
   private:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.

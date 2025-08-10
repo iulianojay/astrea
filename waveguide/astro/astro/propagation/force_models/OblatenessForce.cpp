@@ -208,9 +208,9 @@ AccelerationVector<ECI>
     const quantity term2 = dVdlon / (planarR * planarR);
 
     // Calculate accel in Ecef (not with respect to Ecef)
-    AccelerationVector<ECI> accelOblatenessEcef = { term1 * xEcef - term2 * yEcef,
-                                                    term1 * yEcef + term2 * xEcef,
-                                                    oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
+    AccelerationVector<ECEF> accelOblatenessEcef = { term1 * xEcef - term2 * yEcef,
+                                                     term1 * yEcef + term2 * xEcef,
+                                                     oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
 
     // Rotate back into inertial coordinates (no accel conversions required)
     return accelOblatenessEcef.in_frame<ECI>(date);

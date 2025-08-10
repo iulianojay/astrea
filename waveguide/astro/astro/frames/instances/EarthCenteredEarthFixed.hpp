@@ -55,7 +55,7 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        convert_to_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
+        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
     {
         return ecefVec;
     }
@@ -78,7 +78,7 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        convert_to_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
+        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
     {
         return get_dcm(date) * eciVec;
     }
@@ -100,7 +100,7 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredInertial>
-        convert_from_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
+        rotate_out_of_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
     {
         return get_dcm(date).transpose() * ecefVec;
     }
