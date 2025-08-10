@@ -26,6 +26,8 @@ namespace astro {
  */
 class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
 
+    friend DynamicFrame<RadialTangentialNormal>;
+
   public:
     RadialTangentialNormal() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
 
@@ -45,19 +47,6 @@ class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
     ~RadialTangentialNormal() = default;
 
     /**
-     * @brief Creates an instantaneous RadialTangentialNormal frame.
-     *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
-     * @return RadialTangentialNormal The instantaneous frame.
-     */
-    static RadialTangentialNormal
-        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
-    {
-        return RadialTangentialNormal(position, velocity);
-    }
-
-    /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the RTN frame at a given date.
      *
      * @param date The date for which the DCM is requested.
@@ -65,14 +54,8 @@ class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
      */
     DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal> get_dcm(const Date& date) const
     {
-        if (!_parent) { // Assume instantaneous instance
-            const auto r = _position.unit();
-            const auto v = _velocity.unit();
-            const auto h = r.cross(v).unit();
-            return DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal>::from_vectors(r, -r.cross(h), h);
-        }
-        const auto r = _parent->get_inertial_position(date).unit();
-        const auto v = _parent->get_inertial_velocity(date).unit();
+        const auto r = get_inertial_position(date).unit();
+        const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, RadialTangentialNormal>::from_vectors(r, -r.cross(h), h);
     }

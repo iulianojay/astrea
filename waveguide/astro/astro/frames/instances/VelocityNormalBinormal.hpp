@@ -26,6 +26,8 @@ namespace astro {
  */
 class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
 
+    friend DynamicFrame<VelocityNormalBinormal>;
+
   public:
     /**
      * @brief Default constructor for VelocityNormalBinormal.
@@ -43,19 +45,6 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
     ~VelocityNormalBinormal() = default;
 
     /**
-     * @brief Creates an instantaneous VelocityNormalBinormal frame.
-     *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
-     * @return VelocityNormalBinormal The instantaneous frame.
-     */
-    static VelocityNormalBinormal
-        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
-    {
-        return VelocityNormalBinormal(position, velocity);
-    }
-
-    /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
      *
      * @param date The date for which the DCM is requested.
@@ -63,14 +52,8 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
      */
     DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
-        if (!_parent) { // Assume instantaneous instance
-            const auto r = _position.unit();
-            const auto v = _velocity.unit();
-            const auto h = r.cross(v).unit();
-            return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
-        }
-        const auto r = _parent->get_inertial_position(date).unit();
-        const auto v = _parent->get_inertial_velocity(date).unit();
+        const auto r = get_inertial_position(date).unit();
+        const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
     }

@@ -60,6 +60,18 @@ class DynamicFrame : public Frame {
 
   public:
     /**
+     * @brief Creates an instantaneous Frame_T frame.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     * @return Frame_T The instantaneous frame.
+     */
+    static Frame_T instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
+    {
+        return Frame_T(position, velocity);
+    }
+
+    /**
      * @brief Converts a CartesianVector from Frame_T coordinates to itself - null conversion.
      *
      * @tparam Value_T The type of the vector components.
@@ -146,6 +158,28 @@ class DynamicFrame : public Frame {
     bool _isInstantaneous;                           //!< Flag indicating if the frame is instantaneous.
     RadiusVector<EarthCenteredInertial> _position;   //!< The position vector in the ECI frame.
     VelocityVector<EarthCenteredInertial> _velocity; //!< The velocity vector in the ECI frame.
+
+    /**
+     * @brief Gets the inertial position vector at a given date.
+     *
+     * @param date The date for which the position is requested.
+     * @return RadiusVector<EarthCenteredInertial> The inertial position vector.
+     */
+    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const
+    {
+        return _isInstantaneous ? _position : _parent->get_inertial_position(date); // TODO: maybe store date for instantaneous and throw here if it doesn't match
+    }
+
+    /**
+     * @brief Gets the inertial velocity vector at a given date.
+     *
+     * @param date The date for which the velocity is requested.
+     * @return VelocityVector<EarthCenteredInertial> The inertial velocity vector.
+     */
+    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const
+    {
+        return _isInstantaneous ? _velocity : _parent->get_inertial_velocity(date);
+    }
 };
 
 } // namespace astro

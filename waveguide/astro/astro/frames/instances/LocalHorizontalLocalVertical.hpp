@@ -26,6 +26,8 @@ namespace astro {
  */
 class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical> {
 
+    friend DynamicFrame<LocalHorizontalLocalVertical>;
+
   public:
     LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
 
@@ -45,19 +47,6 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
     ~LocalHorizontalLocalVertical() = default;
 
     /**
-     * @brief Creates an instantaneous LocalHorizontalLocalVertical frame.
-     *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
-     * @return LocalHorizontalLocalVertical The instantaneous frame.
-     */
-    static LocalHorizontalLocalVertical
-        instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
-    {
-        return LocalHorizontalLocalVertical(position, velocity);
-    }
-
-    /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
      *
      * @param date The date for which the DCM is computed.
@@ -65,14 +54,8 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      */
     DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
-        if (_isInstantaneous) { // Assume instantaneous instance
-            const auto r = _position.unit();
-            const auto v = _velocity.unit();
-            const auto h = r.cross(v).unit();
-            return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
-        }
-        const auto r = _parent->get_inertial_position(date).unit();
-        const auto v = _parent->get_inertial_velocity(date).unit();
+        const auto r = get_inertial_position(date).unit();
+        const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
     }
