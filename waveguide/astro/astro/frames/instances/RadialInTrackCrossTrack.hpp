@@ -39,23 +39,23 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
     {
     }
 
+    /**
+     * @brief Default destructor for RadialInTrackCrossTrack.
+     */
+    ~RadialInTrackCrossTrack() = default;
+
+    /**
+     * @brief Creates an instantaneous RadialInTrackCrossTrack frame.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     * @return RadialInTrackCrossTrack The instantaneous frame.
+     */
     static RadialInTrackCrossTrack
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return RadialInTrackCrossTrack(position, velocity);
     }
-
-  private:
-    RadialInTrackCrossTrack(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Radial, In-Track, Cross-Track", position, velocity)
-    {
-    }
-
-  public:
-    /**
-     * @brief Default destructor for RadialInTrackCrossTrack.
-     */
-    ~RadialInTrackCrossTrack() = default;
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
@@ -78,8 +78,16 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
     }
 
   private:
-    RadiusVector<EarthCenteredInertial> _position;
-    VelocityVector<EarthCenteredInertial> _velocity;
+    /**
+     * @brief Constructor for instantaneous dynamic frames.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     */
+    RadialInTrackCrossTrack(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Radial, In-Track, Cross-Track", position, velocity)
+    {
+    }
 };
 
 /**

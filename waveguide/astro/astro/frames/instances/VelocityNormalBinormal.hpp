@@ -37,23 +37,23 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
     {
     }
 
+    /**
+     * @brief Default destructor for VelocityNormalBinormal.
+     */
+    ~VelocityNormalBinormal() = default;
+
+    /**
+     * @brief Creates an instantaneous VelocityNormalBinormal frame.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     * @return VelocityNormalBinormal The instantaneous frame.
+     */
     static VelocityNormalBinormal
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return VelocityNormalBinormal(position, velocity);
     }
-
-  private:
-    VelocityNormalBinormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Velocity, Normal, Binormal", position, velocity)
-    {
-    }
-
-  public:
-    /**
-     * @brief Default destructor for VelocityNormalBinormal.
-     */
-    ~VelocityNormalBinormal() = default;
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
@@ -76,8 +76,16 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
     }
 
   private:
-    RadiusVector<EarthCenteredInertial> _position;
-    VelocityVector<EarthCenteredInertial> _velocity;
+    /**
+     * @brief Constructor for instantaneous dynamic frames.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     */
+    VelocityNormalBinormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Velocity, Normal, Binormal", position, velocity)
+    {
+    }
 };
 
 /**

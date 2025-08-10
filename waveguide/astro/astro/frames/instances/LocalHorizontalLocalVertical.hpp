@@ -27,6 +27,8 @@ namespace astro {
 class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical> {
 
   public:
+    LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
+
     /**
      * @brief Default constructor for LocalHorizontalLocalVertical.
      *
@@ -37,24 +39,23 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
     {
     }
 
-    // static method forces a more explicit construction from the user for instantaneous frames
+    /**
+     * @brief Default destructor for LocalHorizontalLocalVertical.
+     */
+    ~LocalHorizontalLocalVertical() = default;
+
+    /**
+     * @brief Creates an instantaneous LocalHorizontalLocalVertical frame.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     * @return LocalHorizontalLocalVertical The instantaneous frame.
+     */
     static LocalHorizontalLocalVertical
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return LocalHorizontalLocalVertical(position, velocity);
     }
-
-  private:
-    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Local Horizontal, Local Vertical", position, velocity)
-    {
-    }
-
-  public:
-    /**
-     * @brief Default destructor for LocalHorizontalLocalVertical.
-     */
-    ~LocalHorizontalLocalVertical() = default;
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
@@ -74,6 +75,18 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
         const auto v = _parent->get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
         return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
+    }
+
+  private:
+    /**
+     * @brief Constructor for instantaneous dynamic frames.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     */
+    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Local Horizontal, Local Vertical", position, velocity)
+    {
     }
 };
 

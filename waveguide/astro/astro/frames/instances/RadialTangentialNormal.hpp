@@ -39,23 +39,23 @@ class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
     {
     }
 
+    /**
+     * @brief Default destructor for RadialTangentialNormal.
+     */
+    ~RadialTangentialNormal() = default;
+
+    /**
+     * @brief Creates an instantaneous RadialTangentialNormal frame.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     * @return RadialTangentialNormal The instantaneous frame.
+     */
     static RadialTangentialNormal
         instantaneous(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity)
     {
         return RadialTangentialNormal(position, velocity);
     }
-
-  private:
-    RadialTangentialNormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Radial, Tangential, Normal", position, velocity)
-    {
-    }
-
-  public:
-    /**
-     * @brief Default destructor for RadialTangentialNormal.
-     */
-    ~RadialTangentialNormal() = default;
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the RTN frame at a given date.
@@ -78,8 +78,16 @@ class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
     }
 
   private:
-    RadiusVector<EarthCenteredInertial> _position;
-    VelocityVector<EarthCenteredInertial> _velocity;
+    /**
+     * @brief Constructor for instantaneous dynamic frames.
+     *
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     */
+    RadialTangentialNormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
+        DynamicFrame("Radial, Tangential, Normal", position, velocity)
+    {
+    }
 };
 
 /**

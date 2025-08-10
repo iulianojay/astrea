@@ -43,6 +43,13 @@ class DynamicFrame : public Frame {
         }
     }
 
+    /**
+     * @brief Constructor for instantaneous dynamic frames.
+     *
+     * @param name The name of the dynamic frame.
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
+     */
     DynamicFrame(const std::string& name, const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
         Frame(name, "Instantaneous Dynamic Frame Instance"),
         _position(position),
@@ -52,12 +59,28 @@ class DynamicFrame : public Frame {
     }
 
   public:
+    /**
+     * @brief Converts a CartesianVector from Frame_T coordinates to itself - null conversion.
+     *
+     * @tparam Value_T The type of the vector components.
+     * @param vec The CartesianVector in Frame_T coordinates.
+     * @param date The date for which the conversion is performed.
+     * @return CartesianVector<Value_T, Frame_T> The converted CartesianVector in Frame_T coordinates.
+     */
     template <typename Value_T>
     CartesianVector<Value_T, Frame_T> convert_to_this_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date) const
     {
         return vec;
     }
 
+    /**
+     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to Frame_T coordinates.
+     *
+     * @tparam Value_T The type of the vector components.
+     * @param vec The CartesianVector in ECI coordinates.
+     * @param date The date for which the conversion is performed.
+     * @return CartesianVector<Value_T, Frame_T> The rotated CartesianVector in Frame_T coordinates.
+     */
     template <typename Value_T>
     CartesianVector<Value_T, Frame_T>
         rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& vec, const Date& date) const
@@ -65,6 +88,14 @@ class DynamicFrame : public Frame {
         return get_dcm_impl(date) * vec;
     }
 
+    /**
+     * @brief Rotates a CartesianVector from Frame_T coordinates to Earth-Centered Inertial (ECI) coordinates.
+     *
+     * @tparam Value_T The type of the vector components.
+     * @param vec The CartesianVector in Frame_T coordinates.
+     * @param date The date for which the conversion is performed.
+     * @return CartesianVector<Value_T, EarthCenteredInertial> The rotated CartesianVector in ECI coordinates.
+     */
     template <typename Value_T>
     CartesianVector<Value_T, EarthCenteredInertial>
         rotate_out_of_this_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date) const
@@ -73,12 +104,12 @@ class DynamicFrame : public Frame {
     }
 
     /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to LVLH coordinates.
+     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to Frame_T coordinates.
      *
      * @tparam Value_T The type of the vector components.
      * @param vec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<Frame_T> The converted CartesianVector in LVLH coordinates.
+     * @return RadiusVector<Frame_T> The converted CartesianVector in Frame_T coordinates.
      */
     RadiusVector<Frame_T> convert_to_this_frame(const RadiusVector<EarthCenteredInertial>& vec, const Date& date) const
     {
@@ -99,6 +130,12 @@ class DynamicFrame : public Frame {
     }
 
   private:
+    /**
+     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to Frame_T coordinates.
+     *
+     * @param date The date for which the DCM is requested.
+     * @return DCM<EarthCenteredInertial, Frame_T> The DCM from ECI to Frame_T coordinates.
+     */
     DCM<EarthCenteredInertial, Frame_T> get_dcm_impl(const Date& date) const
     {
         return static_cast<const Frame_T*>(this)->get_dcm(date);
