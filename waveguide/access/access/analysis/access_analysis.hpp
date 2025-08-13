@@ -47,12 +47,11 @@ using ViewerConstellation = astro::Constellation<Viewer>;
  */
 struct AccessInfo {
     Time time;                                 // Time of access
-    astro::Cartesian state1;                   // State of the first object at the time of access
-    astro::Cartesian state2;                   // State of the second object at the time of access
+    astro::RadiusVector<astro::ECI> position1; // Position of the first object at the time of access
+    astro::RadiusVector<astro::ECI> position2; // Position of the second object at the time of access
     std::size_t id1;                           // ID of the first object
     std::size_t id2;                           // ID of the second object
     bool isOcculted;                           // Flag indicating if the access is occulted
-    astro::RadiusVector<astro::ECI> ecefState; // ECEF state at the time of access
 };
 
 /**
@@ -103,41 +102,12 @@ void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times);
  * @return true If the two states are occulting each other.
  * @return false If the two states are not occulting each other.
  */
-bool is_earth_occulting(const astro::Cartesian& state1, const astro::Cartesian& state2, const astro::AstrodynamicsSystem& sys);
+bool is_earth_occulting(const astro::RadiusVector<astro::ECI>& position1, const astro::RadiusVector<astro::ECI>& position2, const astro::AstrodynamicsSystem& sys);
 
-/**
- * @brief Find accesses between two viewers.
- *
- * @param viewer1 The first viewer.
- * @param viewer2 The second viewer.
- * @param times The times at which to check for accesses.
- * @param sys The astrodynamics system used for calculations.
- * @param twoWay Flag indicating if the access should be two-way (default is false).
- * @return RiseSetArray A collection of rise/set pairs representing the accesses.
- */
-RiseSetArray find_sat_to_sat_accesses(
-    Viewer& viewer1,
-    Viewer& viewer2,
-    const TimeVector& times,
-    const astro::AstrodynamicsSystem& sys,
-    const astro::Date& epoch,
-    const bool& twoWay = false
-);
 
-/**
- * @brief Find accesses between a viewer and a ground station.
- *
- * @param viewer The viewer for which to find accesses.
- * @param ground The ground station to check for accesses.
- * @param times The times at which to check for accesses.
- * @param sys The astrodynamics system used for calculations.
- * @param epoch The epoch date for the analysis.
- * @param twoWay Flag indicating if the access should be two-way (default is false).
- * @return RiseSetArray A collection of rise/set pairs representing the accesses.
- */
-RiseSetArray find_sat_to_ground_accesses(
-    Viewer& viewer,
-    GroundStation& ground,
+RiseSetArray find_platform_to_platform_accesses(
+    SensorPlatform* platform1,
+    SensorPlatform* platform2,
     const TimeVector& times,
     const astro::AstrodynamicsSystem& sys,
     const astro::Date& epoch,
@@ -157,23 +127,6 @@ RiseSetArray find_sensor_to_sensor_accesses(
     const std::vector<AccessInfo>& accessInfo,
     const Sensor& sensor1,
     const Sensor& sensor2,
-    const bool& twoWay,
-    const astro::Date& epoch
-);
-
-/**
- * @brief Find accesses between a sensor and a ground sensor.
- *
- * @param accessInfo A vector of AccessInfo objects containing access information.
- * @param sensor The sensor for which to find accesses.
- * @param groundSensor The ground sensor to check for accesses.
- * @param twoWay Flag indicating if the access should be two-way (default is false).
- * @return RiseSetArray A collection of rise/set pairs representing the accesses.
- */
-RiseSetArray find_sensor_to_ground_sensor_accesses(
-    const std::vector<AccessInfo>& accessInfo,
-    const Sensor& sensor,
-    const Sensor& groundSensor,
     const bool& twoWay,
     const astro::Date& epoch
 );

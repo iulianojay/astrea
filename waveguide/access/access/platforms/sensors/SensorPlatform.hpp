@@ -25,7 +25,7 @@ namespace accesslib {
  * @brief The SensorPlatform class represents a platform that can have sensors attached to it.
  * It provides methods to attach sensors and retrieve the list of attached sensors.
  */
-class SensorPlatform : virtual public astro::FrameReference {
+class SensorPlatform : virtual public astro::FrameReference, virtual public AccessObject {
   public:
     /**
      * @brief Default constructor for SensorPlatform

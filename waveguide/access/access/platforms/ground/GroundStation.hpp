@@ -34,7 +34,7 @@ namespace accesslib {
  * and a collection of sensors. It also provides methods to manage access and
  * sensor functionalities.
  */
-class GroundStation : public GroundPoint, public AccessObject, public SensorPlatform {
+class GroundStation : public GroundPoint, public SensorPlatform {
   public:
     /**
      * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
@@ -53,10 +53,9 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
         const std::string name                       = "Unnammed",
         const std::vector<SensorParameters>& sensors = {}
     ) :
-        _parent(parent),
         GroundPoint(parent, latitude, longitude, altitude),
-        AccessObject(),
         SensorPlatform(),
+        _parent(parent),
         _name(name)
     {
         for (const auto& sensor : sensors) {
@@ -69,13 +68,6 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
      * @brief Default destructor for the GroundStation class.
      */
     ~GroundStation() = default;
-
-    /**
-     * @brief Get the unique identifier for the ground station.
-     *
-     * @return std::size_t The unique identifier for the ground station.
-     */
-    std::size_t get_id() const { return _id; }
 
     /**
      * @brief Get the name of the ground station.
@@ -124,14 +116,7 @@ class GroundStation : public GroundPoint, public AccessObject, public SensorPlat
 
   private:
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
-    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
     std::string _name;                   //!< Name of the ground station.
-
-    /**
-     * @brief Generates a unique identifier for the ground station based on its properties.
-     * This method is called in the constructor to ensure that each ground station has a unique ID.
-     */
-    void generate_id_hash();
 };
 
 } // namespace accesslib

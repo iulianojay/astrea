@@ -33,13 +33,13 @@ class DynamicFrame : public Frame {
      * @param parent The parent inertial frame that this dynamic frame is based on.
      */
     DynamicFrame(const std::string& name, const FrameReference* parent) :
-        Frame(name, parent->get_name()),
+        Frame(name, parent->get_name() + " Fixed Dynamic Frame"),
         _parent(parent),
         _isInstantaneous(false)
     {
         if (parent == nullptr) {
             throw std::invalid_argument("Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
-                                        "for instantaneous frames.");
+                                        "for instantaneous dynamic frames.");
         }
     }
 

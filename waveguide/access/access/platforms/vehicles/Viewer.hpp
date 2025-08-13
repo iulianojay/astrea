@@ -33,7 +33,7 @@ namespace accesslib {
  * This class inherits from Spacecraft, AccessObject, and SensorPlatform.
  * It provides functionality to manage sensors and access rights for the spacecraft.
  */
-class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatform {
+class Viewer : public astro::Spacecraft, public SensorPlatform {
 
   public:
     /**

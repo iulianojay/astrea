@@ -28,7 +28,7 @@ namespace accesslib {
  * and altitude above sea level. It can be extended to include additional properties
  * or methods as needed for specific applications.
  */
-class GroundPoint {
+class GroundPoint : virtual public AccessObject {
   public:
     /**
      * @brief Constructs a GroundPoint with specified latitude, longitude, and altitude.
@@ -43,11 +43,13 @@ class GroundPoint {
         const Angle& longitude             = 0.0 * mp_units::angular::unit_symbols::deg,
         const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km
     ) :
+        AccessObject(),
         _parent(parent),
         _latitude(latitutde),
         _longitude(longitude),
         _altitude(altitude)
     {
+        generate_id_hash();
     }
 
     /**
@@ -76,11 +78,28 @@ class GroundPoint {
      */
     Distance get_altitude() const { return _altitude; }
 
+    /**
+     * @brief Get the unique identifier for the ground station.
+     *
+     * @return std::size_t The unique identifier for the ground station.
+     */
+    std::size_t get_id() const { return _id; }
+
   protected:
-    const astro::CelestialBody* _parent; // Pointer to the parent celestial body
-    Angle _latitude;                     // Latitude of the ground point
-    Angle _longitude;                    // Longitude of the ground point
-    Distance _altitude;                  // Altitude of the ground point above sea level
+    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
+    const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
+    Angle _latitude;                     //!< Latitude of the ground point
+    Angle _longitude;                    //!< Longitude of the ground point
+    Distance _altitude;                  //!< Altitude of the ground point above sea level
+
+    /**
+     * @brief Generates a unique identifier for the ground station based on its properties.
+     * This method is called in the constructor to ensure that each ground station has a unique ID.
+     */
+    void generate_id_hash()
+    {
+        _id = std::hash<Angle>()(_latitude) ^ std::hash<Angle>()(_longitude) ^ std::hash<Distance>()(_altitude);
+    }
 };
 
 } // namespace accesslib

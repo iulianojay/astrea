@@ -56,7 +56,7 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
             const std::size_t id2 = viewer2.get_id();
 
             // Satellite-level access for viewer1 -> viewer2
-            RiseSetArray satAccess = find_sat_to_sat_accesses(viewer1, viewer2, times, sys, epoch);
+            RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer1, &viewer2, times, sys, epoch);
 
             // Store
             if (satAccess.size() > 0) {
@@ -99,7 +99,7 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
                     const std::size_t groundId = ground.get_id();
 
                     // Satellite-level access for viewer1 -> viewer2
-                    RiseSetArray satAccess = find_sat_to_ground_accesses(viewer, ground, times, sys, epoch);
+                    RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer, &ground, times, sys, epoch);
 
                     // Store
                     if (satAccess.size() > 0) {
@@ -146,44 +146,14 @@ void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times)
     }
 }
 
-RiseSetArray
-    find_sat_to_sat_accesses(Viewer& viewer1, Viewer& viewer2, const TimeVector& times, const AstrodynamicsSystem& sys, const Date& epoch, const bool& twoWay)
-{
-    // Get all access info once to avoid unnecessary calcs
-    std::vector<AccessInfo> accessInfo(times.size());
-    std::size_t ii = 0;
-    for (const auto& time : times) {
-        // Get sat1 -> sat2 vector at current time
-        accessInfo[ii].time       = time;
-        accessInfo[ii].id1        = viewer1.get_id();
-        accessInfo[ii].id2        = viewer2.get_id();
-        accessInfo[ii].state1     = viewer1.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2     = viewer2.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
-        ++ii;
-    }
-
-    // Determine access sensor by sensor
-    RiseSetArray satAccess;
-    for (auto& sensor1 : viewer1.get_sensors()) {
-        for (auto& sensor2 : viewer2.get_sensors()) {
-            // Calculate sensor1 <-> sensor2 accesses
-            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay, epoch);
-
-            // Store
-            if (sensorAccess.size() > 0) {
-                satAccess = (satAccess | sensorAccess);
-                sensor1.add_access(sensor2.get_id(), sensorAccess);
-                sensor2.add_access(sensor1.get_id(), sensorAccess);
-            }
-        }
-    }
-
-    return satAccess;
-}
-
-RiseSetArray
-    find_sat_to_ground_accesses(Viewer& viewer, GroundStation& ground, const TimeVector& times, const AstrodynamicsSystem& sys, const Date& epoch, const bool& twoWay)
+RiseSetArray find_platform_to_platform_accesses(
+    SensorPlatform* platform1,
+    SensorPlatform* platform2,
+    const TimeVector& times,
+    const AstrodynamicsSystem& sys,
+    const Date& epoch,
+    const bool& twoWay
+)
 {
     // Get all access info once to avoid unnecessary calcs
     std::vector<AccessInfo> accessInfo(times.size());
@@ -191,61 +161,54 @@ RiseSetArray
     const auto& center = sys.get_center();
     for (const auto& time : times) {
         // Get ECI state of ground station
-        const RadiusVector<ECEF> groundEcef = astro::lla_to_ecef(
-            ground.get_latitude(),
-            ground.get_longitude(),
-            ground.get_altitude(),
-            center->get_equitorial_radius(),
-            center->get_polar_radius()
-        );
-        Date date                         = epoch + time;
-        const RadiusVector<ECI> groundEci = groundEcef.in_frame<ECI>(date);
+        const Date date                   = epoch + time;
+        const RadiusVector<ECI> position1 = platform1->get_inertial_position(date);
+        const RadiusVector<ECI> position2 = platform2->get_inertial_position(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
-        accessInfo[ii].id1        = viewer.get_id();
-        accessInfo[ii].id2        = ground.get_id();
-        accessInfo[ii].state1     = viewer.get_state_history().get_state_at(time).get_elements().in<Cartesian>(sys);
-        accessInfo[ii].state2     = Cartesian(groundEci, VelocityVector<ECI>{});
-        accessInfo[ii].isOcculted = is_earth_occulting(accessInfo[ii].state1, accessInfo[ii].state2, sys);
+        accessInfo[ii].id1        = platform1->get_id();
+        accessInfo[ii].id2        = platform2->get_id();
+        accessInfo[ii].position1  = position1;
+        accessInfo[ii].position2  = position2;
+        accessInfo[ii].isOcculted = is_earth_occulting(position1, position2, sys);
         ++ii;
     }
 
     // Determine access sensor by sensor
-    RiseSetArray satAccess;
-    for (auto& sensor : viewer.get_sensors()) {
-        for (auto& groundSensor : ground.get_sensors()) {
+    RiseSetArray access;
+    for (auto& sensor1 : platform1->get_sensors()) {
+        for (auto& sensor2 : platform2->get_sensors()) {
             // Calculate sensor1 <-> sensor2 accesses
-            RiseSetArray sensorAccess = find_sensor_to_ground_sensor_accesses(accessInfo, sensor, groundSensor, twoWay, epoch);
+            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay, epoch);
 
             // Store
             if (sensorAccess.size() > 0) {
-                satAccess = (satAccess | sensorAccess);
-                sensor.add_access(groundSensor.get_id(), sensorAccess);
-                groundSensor.add_access(sensor.get_id(), sensorAccess);
+                access = (access | sensorAccess);
+                sensor1.add_access(sensor2.get_id(), sensorAccess);
+                sensor2.add_access(sensor1.get_id(), sensorAccess);
             }
         }
     }
 
-    return satAccess;
+    return access;
 }
 
-bool is_earth_occulting(const Cartesian& state1, const Cartesian& state2, const AstrodynamicsSystem& sys)
+bool is_earth_occulting(const RadiusVector<ECI>& position1, const RadiusVector<ECI>& position2, const AstrodynamicsSystem& sys)
 {
     // NOTE: Only checking one direction. Blocking 1->2 automatically means blocking 2->1
     // NOTE: Assumes Earth-centered
     // NOTE: Assumes spherical Earth
 
     // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
-    RadiusVector<ECI> nadir1 = -state1.get_position();
-    const Distance nadir1Mag = nadir1.norm();
+    const RadiusVector<ECI> nadir1 = -position1;
+    const Distance nadir1Mag       = nadir1.norm();
 
     // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-    const Cartesian& state1to2         = state2 - state1;
-    const RadiusVector<ECI> radius1to2 = state1to2.get_position();
+    const RadiusVector<ECI> radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100 * km; // TODO: Generalize for any body?
+    static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir
@@ -273,17 +236,14 @@ RiseSetArray
     const Time end   = accessInfo.back().time;
     for (const auto& specificAccessInfo : accessInfo) {
         // Extract
-        const Time& time        = specificAccessInfo.time;
-        const Cartesian& state1 = specificAccessInfo.state1;
-        const Cartesian& state2 = specificAccessInfo.state2;
-        const bool& isOcculted  = specificAccessInfo.isOcculted;
+        const Time& time                   = specificAccessInfo.time;
+        const RadiusVector<ECI>& position1 = specificAccessInfo.position1;
+        const RadiusVector<ECI>& position2 = specificAccessInfo.position2;
+        const bool& isOcculted             = specificAccessInfo.isOcculted;
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-        const Cartesian& state1to2 = state2 - state1;
-        const Cartesian& state2to1 = state1 - state2;
-
-        const RadiusVector<ECI> radius1to2 = state1to2.get_position();
-        const RadiusVector<ECI> radius2to1 = state2to1.get_position();
+        const RadiusVector<ECI>& radius1to2 = position2 - position1;
+        const RadiusVector<ECI>& radius2to1 = position1 - position2;
 
         // Check if they can see each other
         const Date date = epoch + time;
@@ -334,75 +294,6 @@ RiseSetArray
     }
     return access;
 }
-
-RiseSetArray find_sensor_to_ground_sensor_accesses(
-    const std::vector<AccessInfo>& accessInfo,
-    const Sensor& sensor,
-    const Sensor& groundSensor,
-    const bool& twoWay,
-    const Date& epoch
-)
-{
-    Time rise, set;
-    RiseSetArray access;
-    bool insideAccessInterval = false;
-    const Time end            = accessInfo.back().time;
-    for (const auto& specificAccessInfo : accessInfo) {
-        // Extract
-        const Time& time        = specificAccessInfo.time;
-        const Cartesian& state1 = specificAccessInfo.state1;
-        const Cartesian& state2 = specificAccessInfo.state2;
-        const bool& isOcculted  = specificAccessInfo.isOcculted;
-
-        // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-        const Cartesian& state1to2 = state2 - state1;
-        const Cartesian& state2to1 = state1 - state2;
-
-        const RadiusVector<ECI> radius1to2 = state1to2.get_position();
-        const RadiusVector<ECI> radius2to1 = state2to1.get_position();
-
-        // Check if they can see each other
-        bool sensorsInView;
-        const Date date = epoch + time;
-        if (isOcculted) { sensorsInView = false; }
-        else if (twoWay) {
-            sensorsInView = sensor.contains(radius1to2, date) && groundSensor.contains(radius2to1, date);
-        }
-        else {
-            sensorsInView = sensor.contains(radius1to2, date) || groundSensor.contains(radius2to1, date);
-        }
-
-        // Manage bookends
-        if (time == end) {
-            if (insideAccessInterval && sensorsInView) { // Consider the final time the last set
-                access.append(rise, end);
-                break;
-            }
-            // NOTE: this ignores cases where the last time is a rise time -> access analyzed for [0, T)
-        }
-
-        // Check for rise/set times
-        if (insideAccessInterval && !sensorsInView) { // previous time had access, this time does not -> last time was a set
-            insideAccessInterval = false;
-            if (rise == set) {
-                // Ignore for now - TODO: Make this an input option
-                continue;
-                // throw std::runtime_error("Rise and set found at the same time. This is likely due to a large time resolution. Please rerun analysis with a finer resolution.")
-            }
-            access.append(rise, set);
-        }
-        else if (insideAccessInterval && sensorsInView) { // previous time had access, and so does this one -> store set time and continue
-            set = time;
-        }
-        else if (!insideAccessInterval && sensorsInView) { // previous time didn't have access, this time does -> this time is a rise
-            insideAccessInterval = true;
-            rise                 = time;
-            set                  = time; // to catch cases where (set - rise) < resolution
-        }
-    }
-    return access;
-}
-
 
 } // namespace accesslib
 } // namespace waveguide
