@@ -80,7 +80,8 @@ void Plane<Spacecraft_T>::generate_id_hash()
 template <class Spacecraft_T>
 void Plane<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
 {
-    utilities::ProgressBar progressBar(satellites.size(), "\tPropagation");
+    std::cout << std::endl;
+    utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const auto stateHistory = integrator.propagate(epoch, interval, eom, vehicle, true);

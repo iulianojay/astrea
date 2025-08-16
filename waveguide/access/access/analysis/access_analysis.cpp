@@ -88,6 +88,7 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
     // For each sat
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
     AccessArray allAccesses;
+    std::cout << std::endl;
     utilities::ProgressBar progressBar(constel.size(), "\tAccess");
     for (auto& shell : constel.get_shells()) {
         for (auto& plane : shell.get_planes()) {
