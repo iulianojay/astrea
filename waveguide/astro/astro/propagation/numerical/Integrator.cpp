@@ -80,7 +80,7 @@ StateHistory
     iteration = 0;
     startTimer();
     StateHistory stateHistory;
-    if (store) { stateHistory[time] = State({ state, epoch, sys }); }
+    if (store) { stateHistory[epoch + time] = State({ state, epoch, sys }); }
     while (iteration < iterMax) {
 
         // Check for event
@@ -128,7 +128,7 @@ StateHistory
         }
 
         vehicle.update_state({ state, epoch + time, sys });
-        if (store) { stateHistory[time] = vehicle.get_state(); }
+        if (store) { stateHistory[epoch + time] = vehicle.get_state(); }
 
         // Ensure last step goes to exact final time
         if ((forwardTime && time + timeStep > endTime && time < endTime) ||

@@ -114,7 +114,7 @@ OrbitalElements& OrbitalElements::operator/=(const Unitless& divisor)
 
 std::vector<Unitless> OrbitalElements::to_vector() const
 {
-    return std::visit([&](const auto& x) { return x.to_vector(); }, _elements);
+    return std::visit([&](const auto& x) -> std::vector<Unitless> { return x.to_vector(); }, _elements);
 }
 
 OrbitalElements

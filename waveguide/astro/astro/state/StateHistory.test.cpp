@@ -26,8 +26,8 @@ class StateHistoryTest : public testing::Test {
         state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
         state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
 
-        history.insert(time0, state0);
-        history.insert(time1, state1);
+        history.insert(epoch + time0, state0);
+        history.insert(epoch + time1, state1);
     }
 
     StateHistory history;
@@ -51,30 +51,30 @@ TEST_F(StateHistoryTest, IdConstructor) { ASSERT_NO_THROW(StateHistory(0)); }
 
 TEST_F(StateHistoryTest, SubscriptOperator)
 {
-    ASSERT_EQ(history[time0], state0);
-    ASSERT_EQ(history[time1], state1);
+    ASSERT_EQ(history[epoch + time0], state0);
+    ASSERT_EQ(history[epoch + time1], state1);
 
     ASSERT_EQ(history.size(), 2);
-    history[time2] = state2;
+    history[epoch + time2] = state2;
     ASSERT_EQ(history.size(), 3);
 
-    ASSERT_EQ(history[time2], state2);
+    ASSERT_EQ(history[epoch + time2], state2);
 }
 
 TEST_F(StateHistoryTest, At)
 {
-    ASSERT_EQ(history.at(time0), state0);
-    ASSERT_EQ(history.at(time1), state1);
-    ASSERT_ANY_THROW(history.at(time2));
+    ASSERT_EQ(history.at(epoch + time0), state0);
+    ASSERT_EQ(history.at(epoch + time1), state1);
+    ASSERT_ANY_THROW(history.at(epoch + time2));
 }
 
 TEST_F(StateHistoryTest, Insert)
 {
     ASSERT_EQ(history.size(), 2);
-    history.insert(time2, state2);
+    history.insert(epoch + time2, state2);
     ASSERT_EQ(history.size(), 3);
 
-    ASSERT_EQ(history.at(time2), state2);
+    ASSERT_EQ(history.at(epoch + time2), state2);
 }
 
 TEST_F(StateHistoryTest, Size)
@@ -106,17 +106,17 @@ TEST_F(StateHistoryTest, GetObjectId) { ASSERT_EQ(history.get_object_id(), 0); }
 
 TEST_F(StateHistoryTest, GetClosestState)
 {
-    ASSERT_EQ(history.get_closest_state(0.25 * s), state0);
-    ASSERT_EQ(history.get_closest_state(0.75 * s), state1);
+    ASSERT_EQ(history.get_closest_state(epoch + 0.25 * s), state0);
+    ASSERT_EQ(history.get_closest_state(epoch + 0.75 * s), state1);
 }
 
 TEST_F(StateHistoryTest, GetStateAt)
 {
 
     StateHistory newHistory;
-    newHistory.insert(time0, state0);
-    newHistory.insert(time2, state2);
-    ASSERT_EQ(history.get_state_at(time1), state1);
+    newHistory.insert(epoch + time0, state0);
+    newHistory.insert(epoch + time2, state2);
+    ASSERT_EQ(history.get_state_at(epoch + time1), state1);
 }
 
 TEST_F(StateHistoryTest, Iterator) { ASSERT_NO_THROW(for (auto& [t, s] : history)); }

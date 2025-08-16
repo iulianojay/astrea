@@ -31,14 +31,14 @@ using astro::VelocityVector;
 
 namespace accesslib {
 
-AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, const Date& epoch, const AstrodynamicsSystem& sys)
+AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const Date& epoch, const AstrodynamicsSystem& sys)
 {
-    // Get all sats
-    const std::size_t nSats = constel.size();
-
     // Create time array
-    const auto& states = constel[0].get_state_history();
-    TimeVector times = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
+    const auto& states    = constel[0].get_state_history();
+    const Date& startDate = states.first().get_epoch();
+    const Date& endDate   = states.last().get_epoch();
+
+    TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
 
     // Interpolate viewer state histories to specified times
     // These are stored internally in each viewer
@@ -46,12 +46,12 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
 
     // For each sat
     AccessArray allAccesses;
-    for (std::size_t iViewer = 0; iViewer < nSats; ++iViewer) {
+    for (std::size_t iViewer = 0; iViewer < constel.size(); ++iViewer) {
         Viewer& viewer1       = constel[iViewer];
         const std::size_t id1 = viewer1.get_id();
 
         // For every other sat
-        for (std::size_t jViewer = iViewer + 1; jViewer < nSats; ++jViewer) {
+        for (std::size_t jViewer = iViewer + 1; jViewer < constel.size(); ++jViewer) {
             Viewer& viewer2       = constel[jViewer];
             const std::size_t id2 = viewer2.get_id();
 
@@ -74,12 +74,12 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
 {
     // TODO: Rework all this into a class
 
-    // Get all sats
-    const std::size_t nSats = constel.size();
-
     // Create time array
-    const auto& states = constel[0].get_state_history();
-    TimeVector times = create_time_vector(states, resolution); // TODO: Check all state histories for common time frame
+    const auto& states    = constel[0].get_state_history();
+    const Date& startDate = states.first().get_epoch();
+    const Date& endDate   = states.last().get_epoch();
+
+    TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
 
     // Interpolate viewer state histories to specified times
     // These are stored internally in each viewer
@@ -116,18 +116,14 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
     return allAccesses;
 }
 
-TimeVector create_time_vector(const StateHistory& states, const Time& resolution)
+TimeVector create_time_vector(const Time& start, const Time& end, const Time& resolution)
 {
-    // Setup
-    const Date& startDate = states.first().get_epoch();
-    const Date& endDate   = states.last().get_epoch();
-
     // Fill
-    Time time = 0.0 * s;
+    Time time = start;
     TimeVector times;
     times.emplace_back(time);
-    while (startDate + time < endDate) {
-        if (startDate + time + resolution >= endDate) { time = endDate - startDate; }
+    while (start + time < end) {
+        if (start + time + resolution >= end) { time = end; }
         else {
             time += resolution;
         }
@@ -135,15 +131,6 @@ TimeVector create_time_vector(const StateHistory& states, const Time& resolution
     }
 
     return times;
-}
-
-void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times)
-{
-    for (const auto& time : times) {
-        for (auto& viewer : viewers) {
-            viewer.get_state_history().get_state_at(time);
-        }
-    }
 }
 
 RiseSetArray find_platform_to_platform_accesses(
@@ -179,7 +166,6 @@ RiseSetArray find_platform_to_platform_accesses(
     RiseSetArray access;
     for (auto& sensor1 : platform1->get_sensors()) {
         for (auto& sensor2 : platform2->get_sensors()) {
-            // Calculate sensor1 <-> sensor2 accesses
             RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay, epoch);
 
             // Store
@@ -237,7 +223,7 @@ RiseSetArray
     for (const auto& specificAccessInfo : accessInfo) {
         // Extract
         const Time& time                   = specificAccessInfo.time;
-        const RadiusVector<ECI>& position1 = specificAccessInfo.position1;
+        const RadiusVector<ECI>& position1 = specificAccessInfo.position1; // TODO: + attachment point?
         const RadiusVector<ECI>& position2 = specificAccessInfo.position2;
         const bool& isOcculted             = specificAccessInfo.isOcculted;
 

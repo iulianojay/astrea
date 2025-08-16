@@ -17,6 +17,7 @@ set(ACCESS_SOURCES
     ${ACCESS_BASE}/analysis/access_analysis.cpp
 
     ${ACCESS_BASE}/platforms/sensors/Antenna.cpp
+    ${ACCESS_BASE}/platforms/sensors/Sensor.cpp
 
     ${ACCESS_BASE}/platforms/ground/Grid.cpp
     ${ACCESS_BASE}/platforms/ground/GroundStation.cpp

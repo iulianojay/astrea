@@ -19,11 +19,11 @@ namespace waveguide {
 namespace astro {
 
 /**
- * @brief Class to manage the history of states for an object over time.
+ * @brief Class to manage the history of states for an object over date.
  *
  * This class allows storing, retrieving, and managing the states of an object
- * at different times, providing functionality to access the closest state
- * to a given time and to convert between different orbital elements.
+ * at different dates, providing functionality to access the closest state
+ * to a given date and to convert between different orbital elements.
  */
 class StateHistory {
   public:
@@ -48,28 +48,28 @@ class StateHistory {
     ~StateHistory() = default;
 
     /**
-     * @brief Accesses the state at a specific time.
+     * @brief Accesses the state at a specific date.
      *
-     * @param time The time at which the state is requested.
-     * @return State& Reference to the state at the specified time.
+     * @param date The date at which the state is requested.
+     * @return State& Reference to the state at the specified date.
      */
-    State& operator[](const Time& time);
+    State& operator[](const Date& date);
 
     /**
-     * @brief Retrieves the state at a specific time.
+     * @brief Retrieves the state at a specific date.
      *
-     * @param time The time at which the state is requested.
-     * @return const State& Reference to the state at the specified time.
+     * @param date The date at which the state is requested.
+     * @return const State& Reference to the state at the specified date.
      */
-    const State& at(const Time& time) const;
+    const State& at(const Date& date) const;
 
     /**
-     * @brief Inserts a state at a specific time into the history.
+     * @brief Inserts a state at a specific date into the history.
      *
-     * @param time The time at which the state is recorded.
+     * @param date The date at which the state is recorded.
      * @param state The state to be inserted.
      */
-    void insert(const Time& time, const State& state);
+    void insert(const Date& date, const State& state);
 
     /**
      * @brief Get the number of states in the history.
@@ -112,36 +112,36 @@ class StateHistory {
     std::size_t get_object_id() const { return _objectId; }
 
     /**
-     * @brief Retrieves the closest state to a given time.
+     * @brief Retrieves the closest state to a given date.
      *
-     * This function finds the state that is closest to the specified time,
+     * This function finds the state that is closest to the specified date,
      * either before or after it, and returns it.
      *
-     * @param time The time for which the closest state is requested.
+     * @param date The date for which the closest state is requested.
      * @return const State& Reference to the closest state.
      */
-    const State& get_closest_state(const Time& time) const;
+    const State& get_closest_state(const Date& date) const;
 
     /**
-     * @brief Retrieves the state at a specific time.
+     * @brief Retrieves the state at a specific date.
      *
-     * This function returns the state at the specified time, or the closest
+     * This function returns the state at the specified date, or the closest
      * state if no exact match is found.
      *
-     * @param time The time for which the state is requested.
-     * @return State The state at the specified time.
+     * @param date The date for which the state is requested.
+     * @return State The state at the specified date.
      */
-    State get_state_at(const Time& time) const;
+    State get_state_at(const Date& date) const;
 
     /**
      * @brief Iterator types for iterating over the states in the history.
      */
-    using iterator = phmap::btree_map<Time, State>::iterator;
+    using iterator = phmap::btree_map<Date, State>::iterator;
 
     /**
      * @brief Constant iterator types for iterating over the states in the history.
      */
-    using const_iterator = phmap::btree_map<Time, State>::const_iterator;
+    using const_iterator = phmap::btree_map<Date, State>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the state history.
@@ -186,7 +186,7 @@ class StateHistory {
     const_iterator cend() const { return _states.cend(); }
 
   private:
-    phmap::btree_map<Time, State> _states; //!< Map to store states indexed by time
+    phmap::btree_map<Date, State> _states; //!< Map to store states indexed by date
     std::size_t _objectId = 0;             //!< ID of the object for which this state history is maintained
 };
 

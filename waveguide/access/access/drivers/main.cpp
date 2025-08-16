@@ -112,23 +112,6 @@ void access_test()
     Interval propInterval{ seconds(0), hours(24) };
     allSats.propagate(epoch, eom, integrator, propInterval);
 
-    // const Distance rEq  = sys.get("Earth")->get_equitorial_radius();
-    // const Distance rPol = sys.get("Earth")->get_polar_radius();
-    // for (const auto& shell : allSats.get_shells()) {
-    //     for (const auto& plane : shell.get_planes()) {
-    //         for (const auto& viewer : plane.get_all_spacecraft()) {
-    //             for (const auto& [time, state] : viewer.get_state_history()) {
-    //                 const auto eci  = state.get_elements().in<Cartesian>(sys).get_position();
-    //                 const auto ecef = eci_to_ecef(eci, state.get_epoch());
-    //                 Angle lat, lon;
-    //                 Distance alt;
-    //                 ecef_to_lla(ecef, rEq, rPol, lat, lon, alt);
-    //                 std::cout << time << " : [" << lat.in(deg) << ", " << lon.in(deg) << ", " << alt << "]" << std::endl;
-    //             }
-    //         }
-    //     }
-    // }
-
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 

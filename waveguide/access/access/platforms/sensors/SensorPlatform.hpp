@@ -38,6 +38,58 @@ class SensorPlatform : virtual public astro::FrameReference, virtual public Acce
     virtual ~SensorPlatform() = default;
 
     /**
+     * @brief Copy constructor for SensorPlatform
+     *
+     * @param other The other SensorPlatform to copy from.
+     */
+    SensorPlatform(const SensorPlatform& other)
+    {
+        _sensors = other._sensors;
+        reset_sensor_parentage();
+    }
+
+    /**
+     * @brief Move constructor for SensorPlatform
+     *
+     * @param other The other SensorPlatform to move from.
+     */
+    SensorPlatform(SensorPlatform&& other) noexcept
+    {
+        _sensors = std::move(other._sensors);
+        reset_sensor_parentage();
+    }
+
+    /**
+     * @brief Copy assignment operator for SensorPlatform
+     *
+     * @param other The other SensorPlatform to copy from.
+     * @return SensorPlatform& Reference to this SensorPlatform.
+     */
+    SensorPlatform& operator=(const SensorPlatform& other)
+    {
+        if (this != &other) {
+            _sensors = other._sensors;
+            reset_sensor_parentage();
+        }
+        return *this;
+    }
+
+    /**
+     * @brief Move assignment operator for SensorPlatform
+     *
+     * @param other The other SensorPlatform to move from.
+     * @return SensorPlatform& Reference to this SensorPlatform.
+     */
+    SensorPlatform& operator=(SensorPlatform&& other) noexcept
+    {
+        if (this != &other) {
+            _sensors = std::move(other._sensors);
+            reset_sensor_parentage();
+        }
+        return *this;
+    }
+
+    /**
      * @brief Attaches a single sensor to the platform.
      *
      * @param parameters The sensor parameters to attach.
@@ -72,6 +124,16 @@ class SensorPlatform : virtual public astro::FrameReference, virtual public Acce
 
   protected:
     std::vector<Sensor> _sensors; // List of sensors attached to the platform
+
+    /**
+     * @brief Resets the parentage of all sensors attached to the platform to this.
+     */
+    void reset_sensor_parentage()
+    {
+        for (auto& sensor : _sensors) {
+            sensor.set_parent(*this);
+        }
+    }
 };
 
 

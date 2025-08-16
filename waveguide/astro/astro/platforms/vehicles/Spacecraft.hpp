@@ -75,7 +75,7 @@ class Spacecraft : virtual public FrameReference {
     RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override
     {
         if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
-        const State state        = _stateHistory.get_state_at(date - _state0.get_epoch());
+        const State state        = _stateHistory.get_state_at(date);
         const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
         return elements.get_position();
     }
@@ -83,7 +83,7 @@ class Spacecraft : virtual public FrameReference {
     VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override
     {
         if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
-        const State state        = _stateHistory.get_state_at(date - _state0.get_epoch());
+        const State state        = _stateHistory.get_state_at(date);
         const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
         return elements.get_velocity();
     }

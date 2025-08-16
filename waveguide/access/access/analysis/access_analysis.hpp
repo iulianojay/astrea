@@ -62,7 +62,7 @@ struct AccessInfo {
  * @param sys The astrodynamics system used for calculations.
  * @return AccessArray A collection of accesses between viewers.
  */
-AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
+AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
 
 /**
  * @brief Find accesses between a constellation of viewers and a ground architecture.
@@ -76,6 +76,8 @@ AccessArray find_accesses(ViewerConstellation& constel, const Time& resolution, 
  */
 AccessArray
     find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
+
+
 /**
  * @brief Create a time vector from a state history.
  *
@@ -83,15 +85,76 @@ AccessArray
  * @param resolution The time resolution for the vector.
  * @return TimeVector A vector of times corresponding to the state history.
  */
-TimeVector create_time_vector(const astro::StateHistory& states, const Time& resolution);
+TimeVector create_time_vector(const Time& start, const Time& end, const Time& resolution);
 
-/**
- * @brief Interpolate states for a vector of viewers at specified times.
- *
- * @param viewers The vector of viewers whose states are to be interpolated.
- * @param times The times at which to interpolate the states.
- */
-void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times);
+template <typename T>
+concept HasSize = requires(T t)
+{
+    {
+        t.size()
+        } -> std::convertible_to<std::size_t>;
+};
+
+template <typename T>
+concept HasSubscriptOperator = requires(T t)
+{
+    {
+        &t[0]
+        } -> std::convertible_to<SensorPlatform*>;
+};
+
+
+template <typename T>
+concept IsPlatformContainer = HasSize<T> && HasSubscriptOperator<T>;
+
+template <typename T, typename U>
+requires IsPlatformContainer<T> && IsPlatformContainer<U> //
+    AccessArray find_accesses(
+        T& platformContainer1,
+        U& platformContainer2,
+        const Time& start,
+        const Time& end,
+        const Time& resolution,
+        const astro::Date& epoch,
+        const astro::AstrodynamicsSystem& sys
+    )
+{
+    // Create time array
+    TimeVector times = create_time_vector(start, end, resolution); // TODO: Check all state histories for common time frame
+
+    // For each sat
+    // AccessArray allAccesses = find_accesses(platformContainer1, resolution, sys); // Do sat-sat first?
+
+    // Loop over each container
+    AccessArray allAccesses;
+    utilities::ProgressBar progressBar(platformContainer1.size(), "\tAccess");
+    for (std::size_t iPlatform1 = 0; iPlatform1 < platformContainer1.size(); ++iPlatform1) {
+        // Extract first platform
+        auto& platform1       = platformContainer1[iPlatform1];
+        const std::size_t id1 = platform1.get_id();
+
+        for (std::size_t iPlatform2 = 0; iPlatform2 < platformContainer2.size(); ++iPlatform2) {
+
+            // Extract second platform
+            auto& platform2       = platformContainer2[iPlatform2];
+            const std::size_t id2 = platform2.get_id();
+
+            // Satellite-level access for platform1 -> platform2
+            RiseSetArray access = find_platform_to_platform_accesses(&platform1, &platform2, times, sys, epoch);
+
+            // Store
+            if (access.size() > 0) {
+                platform1.add_access(id2, access);
+                platform2.add_access(id1, access);
+                allAccesses[id1, id2] = access; // TODO: Consider id2->id1 as well?
+            }
+
+            progressBar();
+        }
+    }
+
+    return allAccesses;
+}
 
 /**
  * @brief Check if two states are occulting each other.
@@ -104,7 +167,17 @@ void interpolate_states(std::vector<Viewer>& viewers, const TimeVector& times);
  */
 bool is_earth_occulting(const astro::RadiusVector<astro::ECI>& position1, const astro::RadiusVector<astro::ECI>& position2, const astro::AstrodynamicsSystem& sys);
 
-
+/**
+ * @brief Find accesses between two sensor platforms.
+ *
+ * @param platform1 The first sensor platform.
+ * @param platform2 The second sensor platform.
+ * @param times The times at which to check for accesses.
+ * @param sys The astrodynamics system used for calculations.
+ * @param epoch The epoch date for the analysis.
+ * @param twoWay Flag indicating if the access should be two-way (default is false).
+ * @return RiseSetArray A collection of rise/set pairs representing the accesses.
+ */
 RiseSetArray find_platform_to_platform_accesses(
     SensorPlatform* platform1,
     SensorPlatform* platform2,

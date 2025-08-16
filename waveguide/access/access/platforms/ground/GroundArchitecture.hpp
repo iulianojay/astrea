@@ -40,6 +40,29 @@ class GroundArchitecture {
     ~GroundArchitecture() = default;
 
     /**
+     * @brief Access operator for GroundStation.
+     *
+     * @param idx The index of the ground station to access.
+     * @return GroundStation& Ground station at the specified index.
+     */
+    GroundStation& operator[](const std::size_t& idx) { return _groundStations[idx]; }
+
+    /**
+     * @brief Access operator for GroundStation (const).
+     *
+     * @param idx The index of the ground station to access.
+     * @return const GroundStation& Ground station at the specified index.
+     */
+    const GroundStation& operator[](const std::size_t& idx) const { return _groundStations[idx]; }
+
+    /**
+     * @brief Returns the number of ground stations in the architecture.
+     *
+     * @return std::size_t The number of ground stations.
+     */
+    std::size_t size() const { return _groundStations.size(); }
+
+    /**
      * @brief Iterator type for the GroundArchitecture class.
      */
     using iterator = std::vector<GroundStation>::iterator;

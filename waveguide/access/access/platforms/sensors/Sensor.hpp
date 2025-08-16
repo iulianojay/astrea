@@ -116,6 +116,8 @@ class SensorParameters {
  */
 class Sensor : public AccessObject {
 
+    friend class SensorPlatform;
+
   public:
     /**
      * @brief Constructs a Sensor from a FieldOfView object.
@@ -129,7 +131,6 @@ class Sensor : public AccessObject {
     Sensor(const T& parent, const SensorParameters& parameters) :
         AccessObject(),
         _parent(&parent),
-        _frame(&parent),
         _parameters(parameters)
     {
     }
@@ -147,6 +148,20 @@ class Sensor : public AccessObject {
     std::size_t get_id() const { return _id; }
 
     /**
+     * @brief Get the parent platform of the sensor.
+     *
+     * @return const SensorPlatform* Pointer to the parent platform.
+     */
+    const SensorPlatform* get_parent() const { return _parent; }
+
+    /**
+     * @brief Get the sensor parameters of the sensor.
+     *
+     * @return SensorParameters Sensor parameters of the sensor.
+     */
+    SensorParameters get_sensor_parameters() const { return _parameters; }
+
+    /**
      * @brief Check if the sensor can see a target given the boresight vector.
      *
      * @param sensor2target Vector from the sensor to the target.
@@ -154,16 +169,11 @@ class Sensor : public AccessObject {
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const
-    {
-        const astro::RadiusVector<astro::ECI> boresightEci = _frame.convert_from_this_frame(_parameters.get_boresight(), date);
-        return _parameters.get_fov()->contains(boresightEci, sensor2target);
-    }
+    bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const;
 
   private:
     std::size_t _id;               //!< Unique identifier for the sensor
     const SensorPlatform* _parent; //!< Parent platform
-    astro::RIC _frame;             //!< Frame of reference for the sensor
     SensorParameters _parameters;  //!< Sensor parameters
 
     // TODO: Make a fixed-offset frame for attachment point
@@ -172,6 +182,18 @@ class Sensor : public AccessObject {
      * @brief Generate a hash for the sensor ID.
      */
     void generate_id_hash();
+
+    /**
+     * @brief Set the parent platform of the sensor.
+     *
+     * @tparam T Type of the parent platform.
+     * @param parent The parent platform to set.
+     */
+    template <typename T>
+    void set_parent(const T& parent)
+    {
+        _parent = &parent;
+    }
 };
 
 } // namespace accesslib
