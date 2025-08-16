@@ -56,9 +56,14 @@ class Date {
 
   public:
     /**
-     * @brief Default constructor for Date.
+     * @brief Construct a Date object from a JulianDate.
+     *
+     * @param jdate The JulianDate to initialize the Date object.
      */
-    Date() = default;
+    Date(const JulianDate& jdate = J2000) :
+        _julianDate(jdate)
+    {
+    }
 
     /**
      * @brief Construct a Date object from a JulianDate.
@@ -68,16 +73,6 @@ class Date {
      */
     Date(const std::string& epoch, const std::string& format = "%Y-%m-%d %H:%M:%S") :
         _julianDate(epoch_to_julian_date(epoch, format))
-    {
-    }
-
-    /**
-     * @brief Construct a Date object from a JulianDate.
-     *
-     * @param jdate The JulianDate to initialize the Date object.
-     */
-    Date(const JulianDate& jdate) :
-        _julianDate(jdate)
     {
     }
 

@@ -24,6 +24,7 @@ set(ACCESS_SOURCES
 
     ${ACCESS_BASE}/platforms/sensors/fov/FieldOfView.cpp
 
+    ${ACCESS_BASE}/risesets/AccessArray.cpp
     ${ACCESS_BASE}/risesets/RiseSetArray.cpp
     ${ACCESS_BASE}/risesets/riseset_utils.cpp
 )

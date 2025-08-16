@@ -367,7 +367,22 @@ class Keplerian {
     Angle _argPerigee;      //!< Argument of perigee of the orbit
     Angle _trueAnomaly;     //!< True anomaly of the orbit
 
+    /**
+     * @brief Sanitize the angles of the Keplerian state vector.
+     *
+     * This method ensures that all angles are within their valid ranges.
+     */
     void sanitize_angles();
+
+    /**
+     * @brief Interpolates an angle between two time points.
+     *
+     * @param times The vector of time points.
+     * @param ang The angle at the first time point.
+     * @param other The angle at the second time point.
+     * @return Angle The interpolated angle at the target time.
+     */
+    Angle interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const;
 };
 
 /**

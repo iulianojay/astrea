@@ -14,6 +14,7 @@
 #include <typeinfo>
 
 #include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
 
 #include <units/typedefs.hpp>
 
@@ -359,7 +360,7 @@ class CartesianVector {
      * @return Angle The angle between the two vectors.
      * @throws std::runtime_error If either vector has zero magnitude.
      */
-    Angle offset_angle(const CartesianVector<Value_T, Frame_T>& other)
+    Angle offset_angle(const CartesianVector<Value_T, Frame_T>& other) const
     {
         const Value_T v1Mag = norm();
         const Value_T v2Mag = other.norm();
@@ -370,10 +371,10 @@ class CartesianVector {
 
         const auto v1DotV2 = dot(other);
         const auto ratio   = v1DotV2 / (v1Mag * v2Mag);
-        if (ratio > 1.0 * mp_units::one) {
+        if (mp_units::abs(ratio) > 1.0 * mp_units::one) {
             return 0.0 * waveguide::detail::angle_unit;
         } // catch rounding errors - TODO: Make this more intelligent
-        return acos(ratio);
+        return mp_units::angular::acos(ratio);
     }
 
     /**

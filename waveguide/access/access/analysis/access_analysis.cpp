@@ -198,7 +198,7 @@ bool is_earth_occulting(const RadiusVector<ECI>& position1, const RadiusVector<E
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir
-    const Angle satelliteNadirAngle = calculate_angle_between_vectors(nadir1, radius1to2);
+    const Angle satelliteNadirAngle = nadir1.offset_angle(radius1to2);
 
     // If nadir->satellite angle greater than Earth limb, Earth cannot block
     if (satelliteNadirAngle <= earthLimbAngle) {

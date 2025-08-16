@@ -111,6 +111,9 @@ namespace accesslib {
  * This class provides methods to manipulate and query access times for different sender-receiver pairs.
  */
 class AccessArray {
+
+    friend std::ostream& operator<<(std::ostream& os, const AccessArray& accessArray);
+
   public:
     /**
      * @brief Default constructor for AccessArray.
@@ -130,10 +133,7 @@ class AccessArray {
      * @param receiverId The ID of the receiver.
      * @return RiseSetArray& The RiseSetArray for the specified sender and receiver.
      */
-    RiseSetArray& operator[](const std::size_t& senderId, const std::size_t& receiverId)
-    {
-        return _accesses[IdPair(senderId, receiverId)];
-    }
+    RiseSetArray& operator[](const std::size_t& senderId, const std::size_t& receiverId);
 
     /**
      * @brief Accesses the RiseSetArray for a given IdPair.
@@ -142,10 +142,7 @@ class AccessArray {
      * @param receiverId The ID of the receiver.
      * @return RiseSetArray& The RiseSetArray for the specified sender and receiver.
      */
-    const RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId) const
-    {
-        return _accesses.at(IdPair(senderId, receiverId));
-    }
+    const RiseSetArray& at(const std::size_t& senderId, const std::size_t& receiverId) const;
 
     /**
      * @brief Checks if the AccessArray contains a RiseSetArray for the specified IdPair.
@@ -153,7 +150,7 @@ class AccessArray {
      * @param idPair The IdPair to check.
      * @return true if the AccessArray contains the IdPair, false otherwise.
      */
-    bool contains(const IdPair& idPair) const { return _accesses.contains(idPair); }
+    bool contains(const IdPair& idPair) const;
 
     /**
      * @brief Erases the RiseSetArray for a given sender and receiver ID.
@@ -161,43 +158,28 @@ class AccessArray {
      * @param senderId The ID of the sender.
      * @param receiverId The ID of the receiver.
      */
-    void erase(const std::size_t& senderId, const std::size_t& receiverId)
-    {
-        _accesses.erase(IdPair(senderId, receiverId));
-    }
+    void erase(const std::size_t& senderId, const std::size_t& receiverId);
 
     /**
      * @brief Returns the number of RiseSetArrays in the AccessArray.
      *
      * @return std::size_t The number of RiseSetArrays.
      */
-    std::size_t size() const { return _accesses.size(); }
+    std::size_t size() const;
 
     /**
      * @brief Union operator for AccessArray.
      *
      * @param other The AccessArray to union with.
      */
-    void operator|(const AccessArray& other)
-    {
-        for (const auto& [ids, risesets] : other) {
-            if (contains(ids)) {
-                _accesses[ids] = (risesets | _accesses[ids]);
-            } // TODO: Should this modify in place? Copy?
-        }
-    }
+    void operator|(const AccessArray& other);
 
     /**
      * @brief Intersection operator for AccessArray.
      *
      * @param other The AccessArray to intersect with.
      */
-    void operator&(const AccessArray& other)
-    {
-        for (const auto& [ids, risesets] : other) {
-            if (contains(ids)) { _accesses[ids] = (risesets & _accesses[ids]); }
-        }
-    }
+    void operator&(const AccessArray& other);
 
     /**
      * @brief Iterator type for AccessArray.

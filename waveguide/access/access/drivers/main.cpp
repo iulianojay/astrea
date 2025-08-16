@@ -89,7 +89,12 @@ void access_test()
 
     // Build out grounds
     GroundStation dc(sys.get_center().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
-    SensorParameters groundCone(&fovLeo);
+    SensorParameters groundCone(
+        &fovLeo,
+        { 1.0 * waveguide::detail::distance_unit, // Anti-Nadir
+          0.0 * waveguide::detail::distance_unit,
+          0.0 * waveguide::detail::distance_unit }
+    );
     dc.attach(groundCone);
     GroundArchitecture grounds({ dc });
 

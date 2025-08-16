@@ -208,15 +208,12 @@ Cartesian& Cartesian::operator/=(const Unitless& divisor)
 Cartesian
     Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
 {
+    const Keplerian kepl      = Keplerian(*this, sys);
+    const Keplerian otherKepl = Keplerian(other, sys);
 
-    const Distance interpx = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[0], other.get_x() }, targetTime);
-    const Distance interpy = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[1], other.get_y() }, targetTime);
-    const Distance interpz = math::interpolate<Time, Distance>({ thisTime, otherTime }, { _r[2], other.get_z() }, targetTime);
-    const Velocity interpvx = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[0], other.get_vx() }, targetTime);
-    const Velocity interpvy = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[1], other.get_vy() }, targetTime);
-    const Velocity interpvz = math::interpolate<Time, Velocity>({ thisTime, otherTime }, { _v[2], other.get_vz() }, targetTime);
+    const Keplerian output = kepl.interpolate(thisTime, otherTime, otherKepl, sys, targetTime);
 
-    return Cartesian({ interpx, interpy, interpz }, { interpvx, interpvy, interpvz });
+    return Cartesian(output, sys);
 }
 
 std::vector<Unitless> Cartesian::to_vector() const
