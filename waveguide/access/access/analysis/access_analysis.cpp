@@ -40,10 +40,6 @@ AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& res
 
     TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
 
-    // Interpolate viewer state histories to specified times
-    // These are stored internally in each viewer
-    // interpolate_states(viewers, times);
-
     // For each sat
     AccessArray allAccesses;
     for (std::size_t iViewer = 0; iViewer < constel.size(); ++iViewer) {
@@ -80,10 +76,6 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
     const Date& endDate   = states.last().get_epoch();
 
     TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
-
-    // Interpolate viewer state histories to specified times
-    // These are stored internally in each viewer
-    // interpolate_states(viewers, times);
 
     // For each sat
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?

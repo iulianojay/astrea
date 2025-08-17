@@ -88,19 +88,13 @@ AccessArray
 TimeVector create_time_vector(const Time& start, const Time& end, const Time& resolution);
 
 template <typename T>
-concept HasSize = requires(T t)
-{
-    {
-        t.size()
-        } -> std::convertible_to<std::size_t>;
+concept HasSize = requires(T t) {
+    { t.size() } -> std::convertible_to<std::size_t>;
 };
 
 template <typename T>
-concept HasSubscriptOperator = requires(T t)
-{
-    {
-        &t[0]
-        } -> std::convertible_to<SensorPlatform*>;
+concept HasSubscriptOperator = requires(T t) {
+    { &t[0] } -> std::convertible_to<SensorPlatform*>;
 };
 
 
@@ -108,16 +102,16 @@ template <typename T>
 concept IsPlatformContainer = HasSize<T> && HasSubscriptOperator<T>;
 
 template <typename T, typename U>
-requires IsPlatformContainer<T> && IsPlatformContainer<U> //
-    AccessArray find_accesses(
-        T& platformContainer1,
-        U& platformContainer2,
-        const Time& start,
-        const Time& end,
-        const Time& resolution,
-        const astro::Date& epoch,
-        const astro::AstrodynamicsSystem& sys
-    )
+    requires IsPlatformContainer<T> && IsPlatformContainer<U> //
+AccessArray find_accesses(
+    T& platformContainer1,
+    U& platformContainer2,
+    const Time& start,
+    const Time& end,
+    const Time& resolution,
+    const astro::Date& epoch,
+    const astro::AstrodynamicsSystem& sys
+)
 {
     // Create time array
     TimeVector times = create_time_vector(start, end, resolution); // TODO: Check all state histories for common time frame

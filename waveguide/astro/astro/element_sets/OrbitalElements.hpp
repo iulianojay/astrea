@@ -35,11 +35,8 @@ namespace astro {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetSetId = requires(const T elements)
-{
-    {
-        elements.get_set_id()
-        } -> std::same_as<EnumType>;
+concept HasGetSetId = requires(const T elements) {
+    { elements.get_set_id() } -> std::same_as<EnumType>;
 };
 
 /**
@@ -49,8 +46,7 @@ concept HasGetSetId = requires(const T elements)
  * @tparam U The type to construct from.
  */
 template <typename T, typename U>
-concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys)
-{
+concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys) {
     { U(elements, sys) };
 };
 
@@ -60,11 +56,8 @@ concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectCartesianConversion = requires(const T elements, const AstrodynamicsSystem& sys)
-{
-    {
-        elements.to_cartesian(sys)
-        } -> std::same_as<Cartesian>;
+concept HasDirectCartesianConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
+    { elements.to_cartesian(sys) } -> std::same_as<Cartesian>;
 };
 
 /**
@@ -73,11 +66,8 @@ concept HasDirectCartesianConversion = requires(const T elements, const Astrodyn
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectKeplerianConversion = requires(const T elements, const AstrodynamicsSystem& sys)
-{
-    {
-        elements.to_keplerian(sys)
-        } -> std::same_as<Keplerian>;
+concept HasDirectKeplerianConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
+    { elements.to_keplerian(sys) } -> std::same_as<Keplerian>;
 };
 
 /**
@@ -86,11 +76,8 @@ concept HasDirectKeplerianConversion = requires(const T elements, const Astrodyn
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectEquinoctialConversion = requires(const T elements, const AstrodynamicsSystem& sys)
-{
-    {
-        elements.to_equinoctial(sys)
-        } -> std::same_as<Equinoctial>;
+concept HasDirectEquinoctialConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
+    { elements.to_equinoctial(sys) } -> std::same_as<Equinoctial>;
 };
 
 /**
@@ -100,12 +87,9 @@ concept HasDirectEquinoctialConversion = requires(const T elements, const Astrod
  */
 template <typename T>
 concept HasIterpolate =
-    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const AstrodynamicsSystem& sys, const Time& targetTime)
-{
-    {
-        elements.interpolate(thisTime, otherTime, other, sys, targetTime)
-        } -> std::same_as<T>;
-};
+    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const AstrodynamicsSystem& sys, const Time& targetTime) {
+        { elements.interpolate(thisTime, otherTime, other, sys, targetTime) } -> std::same_as<T>;
+    };
 
 /**
  * @brief Concept to check if a type can be converted to a vector of Unitless.
@@ -113,11 +97,8 @@ concept HasIterpolate =
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasToVector = requires(const T elements)
-{
-    {
-        elements.to_vector()
-        } -> std::same_as<std::vector<Unitless>>;
+concept HasToVector = requires(const T elements) {
+    { elements.to_vector() } -> std::same_as<std::vector<Unitless>>;
 };
 
 /**
@@ -126,11 +107,8 @@ concept HasToVector = requires(const T elements)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasSize = requires(const T elements)
-{
-    {
-        elements.size()
-        } -> std::same_as<std::size_t>;
+concept HasSize = requires(const T elements) {
+    { elements.size() } -> std::same_as<std::size_t>;
 };
 
 /**
@@ -139,20 +117,11 @@ concept HasSize = requires(const T elements)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar)
-{
-    {
-        elements + other
-        } -> std::same_as<T>;
-    {
-        elements - other
-        } -> std::same_as<T>;
-    {
-        elements* scalar
-        } -> std::same_as<T>;
-    {
-        elements / scalar
-        } -> std::same_as<T>;
+concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
+    { elements + other } -> std::same_as<T>;
+    { elements - other } -> std::same_as<T>;
+    { elements * scalar } -> std::same_as<T>;
+    { elements / scalar } -> std::same_as<T>;
 };
 
 /**
@@ -161,8 +130,7 @@ concept HasMathOperators = requires(const T elements, const T other, const Unitl
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar)
-{
+concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar) {
     { elements += other };
     { elements -= other };
     { elements *= scalar };
@@ -179,8 +147,7 @@ concept HasInPlaceMathOperators = requires(T elements, const T other, const Unit
  * @tparam T The type to check.
  */
 template <typename T>
-concept IsOrbitalElements = requires(T)
-{
+concept IsOrbitalElements = requires(T) {
     std::is_same<T, remove_cv_ref<T>>::value;
     std::is_default_constructible<T>::value;
     std::is_copy_constructible<T>::value;

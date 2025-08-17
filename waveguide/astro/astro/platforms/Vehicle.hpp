@@ -33,8 +33,7 @@ namespace astro {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasUpdateState = requires(T vehicle, const State& state)
-{
+concept HasUpdateState = requires(T vehicle, const State& state) {
     { vehicle.update_state(state) };
 };
 
@@ -44,11 +43,8 @@ concept HasUpdateState = requires(T vehicle, const State& state)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetState = requires(T vehicle)
-{
-    {
-        vehicle.get_state()
-        } -> std::same_as<State&>;
+concept HasGetState = requires(T vehicle) {
+    { vehicle.get_state() } -> std::same_as<State&>;
 };
 
 /**
@@ -57,11 +53,8 @@ concept HasGetState = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetInitialState = requires(const T vehicle)
-{
-    {
-        vehicle.get_initial_state()
-        } -> std::same_as<const State&>;
+concept HasGetInitialState = requires(const T vehicle) {
+    { vehicle.get_initial_state() } -> std::same_as<const State&>;
 };
 
 /**
@@ -70,11 +63,8 @@ concept HasGetInitialState = requires(const T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetMass = requires(T vehicle)
-{
-    {
-        vehicle.get_mass()
-        } -> std::same_as<Mass>;
+concept HasGetMass = requires(T vehicle) {
+    { vehicle.get_mass() } -> std::same_as<Mass>;
 };
 
 /**
@@ -83,11 +73,8 @@ concept HasGetMass = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetRamArea = requires(T vehicle)
-{
-    {
-        vehicle.get_ram_area()
-        } -> std::same_as<SurfaceArea>;
+concept HasGetRamArea = requires(T vehicle) {
+    { vehicle.get_ram_area() } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -96,11 +83,8 @@ concept HasGetRamArea = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfDrag = requires(T vehicle)
-{
-    {
-        vehicle.get_coefficient_of_drag()
-        } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfDrag = requires(T vehicle) {
+    { vehicle.get_coefficient_of_drag() } -> std::same_as<Unitless>;
 };
 
 /**
@@ -109,11 +93,8 @@ concept HasGetCoefficientOfDrag = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetLiftArea = requires(T vehicle)
-{
-    {
-        vehicle.get_lift_area()
-        } -> std::same_as<SurfaceArea>;
+concept HasGetLiftArea = requires(T vehicle) {
+    { vehicle.get_lift_area() } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -122,11 +103,8 @@ concept HasGetLiftArea = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfLift = requires(T vehicle)
-{
-    {
-        vehicle.get_coefficient_of_lift()
-        } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfLift = requires(T vehicle) {
+    { vehicle.get_coefficient_of_lift() } -> std::same_as<Unitless>;
 };
 
 /**
@@ -135,11 +113,8 @@ concept HasGetCoefficientOfLift = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetSolarArea = requires(T vehicle)
-{
-    {
-        vehicle.get_solar_area()
-        } -> std::same_as<SurfaceArea>;
+concept HasGetSolarArea = requires(T vehicle) {
+    { vehicle.get_solar_area() } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -148,11 +123,8 @@ concept HasGetSolarArea = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfReflectivity = requires(T vehicle)
-{
-    {
-        vehicle.get_coefficient_of_reflectivity()
-        } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
+    { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<Unitless>;
 };
 
 /**
@@ -161,8 +133,7 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasClear = requires(T vehicle)
-{
+concept HasClear = requires(T vehicle) {
     { vehicle.clear() };
 };
 
@@ -172,8 +143,7 @@ concept HasClear = requires(T vehicle)
  * @tparam T The type to check.
  */
 template <typename T>
-concept IsUserDefinedVehicle = requires(T)
-{
+concept IsUserDefinedVehicle = requires(T) {
     std::is_same<T, remove_cv_ref<T>>::value;
     std::is_default_constructible<T>::value;
     std::is_copy_constructible<T>::value;
@@ -470,7 +440,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The ram area of the vehicle.
      */
     template <typename U>
-    requires(!HasGetRamArea<U>) static SurfaceArea get_ram_area_impl(const U&)
+        requires(!HasGetRamArea<U>)
+    static SurfaceArea get_ram_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
@@ -483,7 +454,11 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The ram area of the vehicle.
      */
     template <typename U>
-    requires(HasGetRamArea<U>) static SurfaceArea get_ram_area_impl(const U& value) { return value.get_ram_area(); }
+        requires(HasGetRamArea<U>)
+    static SurfaceArea get_ram_area_impl(const U& value)
+    {
+        return value.get_ram_area();
+    }
 
 
     /**
@@ -494,7 +469,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The lift area of the vehicle.
      */
     template <typename U>
-    requires(!HasGetLiftArea<U>) static SurfaceArea get_lift_area_impl(const U&)
+        requires(!HasGetLiftArea<U>)
+    static SurfaceArea get_lift_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
@@ -507,7 +483,11 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The lift area of the vehicle.
      */
     template <typename U>
-    requires(HasGetLiftArea<U>) static SurfaceArea get_lift_area_impl(const U& value) { return value.get_lift_area(); }
+        requires(HasGetLiftArea<U>)
+    static SurfaceArea get_lift_area_impl(const U& value)
+    {
+        return value.get_lift_area();
+    }
 
     /**
      * @brief Gets the default solar area of the vehicle.
@@ -517,7 +497,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The solar area of the vehicle.
      */
     template <typename U>
-    requires(!HasGetSolarArea<U>) static SurfaceArea get_solar_area_impl(const U&)
+        requires(!HasGetSolarArea<U>)
+    static SurfaceArea get_solar_area_impl(const U&)
     {
         return 0.0 * mp_units::pow<2>(waveguide::detail::minor_distance_unit);
     }
@@ -530,7 +511,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return SurfaceArea The solar area of the vehicle.
      */
     template <typename U>
-    requires(HasGetSolarArea<U>) static SurfaceArea get_solar_area_impl(const U& value)
+        requires(HasGetSolarArea<U>)
+    static SurfaceArea get_solar_area_impl(const U& value)
     {
         return value.get_solar_area();
     }
@@ -543,7 +525,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of drag of the vehicle.
      */
     template <typename U>
-    requires(!HasGetCoefficientOfDrag<U>) static Unitless get_coefficient_of_drag_impl(const U&)
+        requires(!HasGetCoefficientOfDrag<U>)
+    static Unitless get_coefficient_of_drag_impl(const U&)
     {
         return 0.0 * mp_units::one;
     }
@@ -556,7 +539,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of drag of the vehicle.
      */
     template <typename U>
-    requires(HasGetCoefficientOfDrag<U>) static Unitless get_coefficient_of_drag_impl(const U& value)
+        requires(HasGetCoefficientOfDrag<U>)
+    static Unitless get_coefficient_of_drag_impl(const U& value)
     {
         return value.get_coefficient_of_drag();
     }
@@ -569,7 +553,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of lift of the vehicle.
      */
     template <typename U>
-    requires(!HasGetCoefficientOfLift<U>) static Unitless get_coefficient_of_lift_impl(const U&)
+        requires(!HasGetCoefficientOfLift<U>)
+    static Unitless get_coefficient_of_lift_impl(const U&)
     {
         return 0.0 * mp_units::one;
     }
@@ -582,7 +567,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of lift of the vehicle.
      */
     template <typename U>
-    requires(HasGetCoefficientOfLift<U>) static Unitless get_coefficient_of_lift_impl(const U& value)
+        requires(HasGetCoefficientOfLift<U>)
+    static Unitless get_coefficient_of_lift_impl(const U& value)
     {
         return value.get_coefficient_of_lift();
     }
@@ -595,7 +581,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     template <typename U>
-    requires(!HasGetCoefficientOfReflectivity<U>) static Unitless get_coefficient_of_reflectivity_impl(const U&)
+        requires(!HasGetCoefficientOfReflectivity<U>)
+    static Unitless get_coefficient_of_reflectivity_impl(const U&)
     {
         return 0.0 * mp_units::one;
     }
@@ -608,7 +595,8 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     template <typename U>
-    requires(HasGetCoefficientOfReflectivity<U>) static Unitless get_coefficient_of_reflectivity_impl(const U& value)
+        requires(HasGetCoefficientOfReflectivity<U>)
+    static Unitless get_coefficient_of_reflectivity_impl(const U& value)
     {
         return value.get_coefficient_of_reflectivity();
     }
@@ -619,7 +607,10 @@ struct VehicleInner final : public VehicleInnerBase {
      * @param value The vehicle instance to clear.
      */
     template <typename U>
-    requires(!HasClear<U>) void clear_impl(U&) {}
+        requires(!HasClear<U>)
+    void clear_impl(U&)
+    {
+    }
 
     /**
      * @brief Clears the state of the vehicle.
@@ -627,7 +618,11 @@ struct VehicleInner final : public VehicleInnerBase {
      * @param value The vehicle instance to clear.
      */
     template <typename U>
-    requires(HasClear<U>) void clear_impl(U& value) { value.clear(); }
+        requires(HasClear<U>)
+    void clear_impl(U& value)
+    {
+        value.clear();
+    }
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -663,8 +658,7 @@ class Vehicle; // Forward declaration of the Vehicle class
  * @tparam T The type to check.
  */
 template <typename T>
-concept IsGenericallyConstructableVehicle = requires(T)
-{
+concept IsGenericallyConstructableVehicle = requires(T) {
     requires IsUserDefinedVehicle<T>;
     std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
 };
@@ -696,7 +690,8 @@ class Vehicle : public FrameReference {
      * @param x The user-defined vehicle instance to initialize the Vehicle.
      */
     template <typename T>
-    requires(IsGenericallyConstructableVehicle<T>) explicit Vehicle(T&& x) :
+        requires(IsGenericallyConstructableVehicle<T>)
+    explicit Vehicle(T&& x) :
         _ptr(std::make_unique<detail::VehicleInner<remove_cv_ref<T>>>(std::forward<T>(x)))
     {
         generic_ctor_impl();
@@ -739,7 +734,8 @@ class Vehicle : public FrameReference {
      * @return Vehicle& A reference to the current Vehicle instance.
      */
     template <typename T>
-    requires(IsGenericallyConstructableVehicle<T>) Vehicle& operator=(T&& x)
+        requires(IsGenericallyConstructableVehicle<T>)
+    Vehicle& operator=(T&& x)
     {
         return (*this) = Vehicle(std::forward<T>(x));
     }
@@ -751,7 +747,8 @@ class Vehicle : public FrameReference {
      * @return const T* A pointer to the user-defined vehicle if it matches the type, otherwise nullptr.
      */
     template <typename T>
-    requires(IsGenericallyConstructableVehicle<T>) const T* extract() const noexcept
+        requires(IsGenericallyConstructableVehicle<T>)
+    const T* extract() const noexcept
     {
         auto p = static_cast<const detail::VehicleInner<T>*>(ptr());
         return p == nullptr ? nullptr : &(p->_value);

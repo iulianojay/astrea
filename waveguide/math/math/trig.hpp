@@ -31,10 +31,7 @@ namespace math {
  * @return The value of the sinc function at the given angle.
  */
 template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
-requires requires(Rep v) { sin(v); } || requires(Rep v)
-{
-    std::sin(v);
-}
+    requires requires(Rep v) { sin(v); } || requires(Rep v) { std::sin(v); }
 [[nodiscard]] inline mp_units::QuantityOf<mp_units::dimensionless> auto sinc(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using std::sin;
@@ -65,7 +62,7 @@ requires requires(Rep v) { sin(v); } || requires(Rep v)
  * @return The value of the Bessel function of the first kind of order zero at the given input.
  */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
-requires requires(Rep v) { std::cyl_bessel_j(static_cast<Rep>(0.0), v); }
+    requires requires(Rep v) { std::cyl_bessel_j(static_cast<Rep>(0.0), v); }
 [[nodiscard]] constexpr mp_units::quantity<mp_units::one, Rep> cyl_bessel_j(const Rep& nu, const mp_units::quantity<R, Rep>& q) noexcept
 {
     using std::cyl_bessel_j;
@@ -86,7 +83,7 @@ requires requires(Rep v) { std::cyl_bessel_j(static_cast<Rep>(0.0), v); }
  * @return The value of the associated Legendre function at the given input.
  */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
-requires requires(Rep v) { std::assoc_legendre(0, 0, v); }
+    requires requires(Rep v) { std::assoc_legendre(0, 0, v); }
 [[nodiscard]] constexpr mp_units::quantity<mp_units::one, Rep>
     assoc_legendre(const unsigned int& n, const unsigned int& m, const mp_units::quantity<R, Rep>& q) noexcept
 {
