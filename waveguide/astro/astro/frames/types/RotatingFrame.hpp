@@ -22,7 +22,8 @@ namespace astro {
 /**
  * @brief Base class for all rotating frames.
  */
-class RotatingFrame : public Frame {
+template <class Frame_T, class Parent_Frame_T>
+class RotatingFrame : public Frame<Frame_T> {
 
   public:
     /**
@@ -32,14 +33,10 @@ class RotatingFrame : public Frame {
      * @param origin The origin of the rotating frame.
      * @param parent The parent inertial frame that this rotating frame is based on.
      */
-    RotatingFrame(const std::string& name, const std::string& origin, const InertialFrame& parent) :
-        Frame(name, origin),
-        parentFrame(parent)
+    RotatingFrame(const std::string& name, const std::string& origin) :
+        Frame<Frame_T>(name, origin)
     {
     }
-
-  protected:
-    InertialFrame parentFrame; //!< The parent inertial frame that this rotating frame is based on.
 };
 
 } // namespace astro

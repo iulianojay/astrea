@@ -28,12 +28,12 @@ class OrbitalElements;
 template <class Value_T, class Frame_T>
 class CartesianVector;
 
+template <class Frame_T>
 class Frame;
+template <class Frame_T>
 class InertialFrame;
+template <class Frame_T, class Parent_Frame_T>
 class RotatingFrame;
-class BodyFixedFrame;
-class FixedOffsetFrame;
-
 template <class Frame_T>
 class DynamicFrame;
 

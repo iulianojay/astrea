@@ -18,7 +18,8 @@ namespace astro {
 /**
  * @brief Base class for all inertial frames.
  */
-class InertialFrame : public Frame {
+template <class Frame_T>
+class InertialFrame : public Frame<Frame_T> {
 
   public:
     /**
@@ -28,7 +29,7 @@ class InertialFrame : public Frame {
      * @param origin The origin of the inertial frame.
      */
     InertialFrame(const std::string& name, const std::string& origin) :
-        Frame(name, origin)
+        Frame<Frame_T>(name, origin)
     {
     }
 

@@ -24,7 +24,7 @@ namespace astro {
  * @note This frame contiains the following conversions:
  * - ECI to ECI
  */
-class EarthCenteredInertial : public InertialFrame {
+class EarthCenteredInertial : public InertialFrame<EarthCenteredInertial> {
 
   public:
     /**
@@ -33,23 +33,8 @@ class EarthCenteredInertial : public InertialFrame {
      * Initializes the ECI frame with a name and origin.
      */
     EarthCenteredInertial() :
-        InertialFrame("Earth Centered Inertial", "Earth")
+        InertialFrame<EarthCenteredInertial>("Earth Centered Inertial", "Earth")
     {
-    }
-
-    /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to Earth-Centered Inertial (ECI) coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param eciVec The CartesianVector in ECI coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, EarthCenteredInertial> The converted CartesianVector in ECI coordinates.
-     */
-    template <typename Value_T>
-    static CartesianVector<Value_T, EarthCenteredInertial>
-        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
-    {
-        return eciVec;
     }
 };
 

@@ -29,7 +29,7 @@ namespace astro {
  * - ECI to ECEF
  * - ECEF to ECI
  */
-class EarthCenteredEarthFixed : public RotatingFrame {
+class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, EarthCenteredInertial> {
 
   public:
     /**
@@ -38,27 +38,12 @@ class EarthCenteredEarthFixed : public RotatingFrame {
      * Initializes the ECEF frame with a name and origin.
      */
     EarthCenteredEarthFixed() :
-        RotatingFrame("Earth Centered Earth Fixed", "Earth", EarthCenteredInertial()){};
+        RotatingFrame<EarthCenteredEarthFixed, EarthCenteredInertial>("Earth Centered Earth Fixed", "Earth") {};
 
     /**
      * @brief Default destructor for EarthCenteredEarthFixed.
      */
     ~EarthCenteredEarthFixed() = default;
-
-    /**
-     * @brief Converts a CartesianVector from Earth-Centered Earth Fixed (ECEF) to Earth-Centered Earth Fixed (ECEF) coordinates.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param ecefVec The CartesianVector in ECEF coordinates.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, EarthCenteredEarthFixed> The converted CartesianVector in ECEF coordinates.
-     */
-    template <typename Value_T>
-    static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
-    {
-        return ecefVec;
-    }
 
     /**
      * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to Earth-Centered Earth Fixed (ECEF) coordinates.

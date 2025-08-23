@@ -23,7 +23,7 @@ namespace astro {
  * @brief Base class for all dynamic frames.
  */
 template <class Frame_T>
-class DynamicFrame : public Frame {
+class DynamicFrame : public Frame<Frame_T> {
   protected:
     /**
      * @brief Constructor for DynamicFrame.
@@ -33,13 +33,15 @@ class DynamicFrame : public Frame {
      * @param parent The parent inertial frame that this dynamic frame is based on.
      */
     DynamicFrame(const std::string& name, const FrameReference* parent) :
-        Frame(name, parent->get_name() + " Fixed Dynamic Frame"),
+        Frame<Frame_T>(name, parent->get_name() + " Fixed Dynamic Frame"),
         _parent(parent),
         _isInstantaneous(false)
     {
         if (parent == nullptr) {
-            throw std::invalid_argument("Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
-                                        "for instantaneous dynamic frames.");
+            throw std::invalid_argument(
+                "Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
+                "for instantaneous dynamic frames."
+            );
         }
     }
 
@@ -51,7 +53,7 @@ class DynamicFrame : public Frame {
      * @param velocity The velocity vector in the ECI frame.
      */
     DynamicFrame(const std::string& name, const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        Frame(name, "Instantaneous Dynamic Frame Instance"),
+        Frame<Frame_T>(name, "Instantaneous Dynamic Frame Instance"),
         _position(position),
         _velocity(velocity),
         _isInstantaneous(true)
