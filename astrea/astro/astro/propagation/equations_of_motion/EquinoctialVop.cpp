@@ -5,7 +5,6 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <math/utils.hpp>
 #include <units/units.hpp>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>

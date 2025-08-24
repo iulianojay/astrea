@@ -1,7 +1,5 @@
 #include <astro/propagation/analytic/LambertSolver.hpp>
 
-#include <math/utils.hpp>
-
 namespace astrea {
 namespace astro {
 

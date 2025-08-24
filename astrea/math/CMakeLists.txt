@@ -14,14 +14,12 @@ set(CMAKE_CXX_STANDARD 23)
 set(MATH_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(MATH_SOURCES
     ${MATH_BASE}/interpolation.cpp
-    ${MATH_BASE}/utils.cpp
 )
 
 # Headers
 set(MATH_HEADERS
     ${MATH_BASE}/interpolation.hpp
     ${MATH_BASE}/trig.hpp
-    ${MATH_BASE}/utils.hpp
 )
 
 # Includes

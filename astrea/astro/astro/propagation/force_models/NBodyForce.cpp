@@ -5,8 +5,6 @@
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/si/math.h>
 
-#include <math/utils.hpp>
-
 
 using namespace mp_units;
 using namespace mp_units::si;

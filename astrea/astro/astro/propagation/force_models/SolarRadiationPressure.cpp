@@ -5,7 +5,6 @@
 #include <mp-units/systems/iau.h>
 
 #include <astro/element_sets/orbital_elements/Cartesian.hpp>
-#include <math/utils.hpp>
 
 
 using namespace mp_units;

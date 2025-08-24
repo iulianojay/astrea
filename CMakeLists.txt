@@ -16,13 +16,6 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 
-# if (PROJECT_IS_TOP_LEVEL) 
-#     include(cmake/standard_project_settings.cmake)
-#     if (WARNINGS_AS_ERRORS)
-#         include(cmake/compiler_warnings.cmake)
-#     endif()
-# endif()
-
 # target_compile_features(astrea_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
 
 if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)

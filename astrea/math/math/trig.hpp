@@ -91,5 +91,29 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     return { static_cast<Rep>(assoc_legendre(n, m, q.numerical_value_ref_in(q.unit))), mp_units::one };
 }
 
+// TODO: Make this mp-units compatible
+template <typename T>
+T atan3(T y, T x)
+{
+    T sy{}, sx{};
+    if (y >= 0) { sy = 1; }
+    else {
+        sy = -1;
+    }
+    if (x >= 0) { sx = 1; }
+    else {
+        sx = -1;
+    }
+
+    static constexpr T PI_T = static_cast<T>(M_PI);
+    if (std::abs(y) < 1e-10) { return (1 - sx) * PI_T / 2.0; }
+    else if (std::abs(x) < 1e-10) {
+        return (2.0 - sy) * PI_T / 2.0;
+    }
+    else {
+        return (2.0 - sy) * PI_T / 2 + sy * sx * (std::abs(std::atan(y / x)) - PI_T / 2.0);
+    }
+}
+
 } // namespace math
 } // namespace astrea

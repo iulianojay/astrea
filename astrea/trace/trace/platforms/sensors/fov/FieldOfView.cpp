@@ -8,8 +8,6 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <math/utils.hpp>
-
 using namespace mp_units;
 using namespace mp_units::angular;
 

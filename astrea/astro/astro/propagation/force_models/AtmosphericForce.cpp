@@ -10,7 +10,6 @@
 // astro
 #include <astro/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
-#include <math/utils.hpp>
 
 
 using namespace mp_units;

@@ -1,9 +1,9 @@
-#include <snapshot/utilities/string_util.hpp>
+#include <utilities/string_util.hpp>
 
 #include <algorithm>
 
 namespace astrea {
-namespace snapshot {
+namespace utilities {
 
 std::string trim(const std::string& str, const std::string& whitespace)
 {
@@ -32,5 +32,5 @@ std::string replace_all(std::string const& original, std::string const& before, 
     return retval;
 }
 
-} // namespace snapshot
+} // namespace utilities
 } // namespace astrea

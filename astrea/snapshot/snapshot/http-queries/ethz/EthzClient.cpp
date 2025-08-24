@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include <snapshot/utilities/string_util.hpp>
+#include <utilities/string_util.hpp>
 
 namespace astrea {
 namespace snapshot {
@@ -48,7 +48,7 @@ nlohmann::json
     const std::string endStr   = std::format("{:%Y%m%dT%H%M}", endDate.sys());
 
     // Replace whitespace in name with "+"
-    const std::string searchName = replace_all(name, " ", "+");
+    const std::string searchName = utilities::replace_all(name, " ", "+");
 
     // Query online db
     // cpr::Parameters params = {
@@ -103,9 +103,9 @@ void EthzClient::clean_result(nlohmann::json& result)
     if (!misformattedEntry.empty()) {
         size_t iLine = 0;
         while (std::getline(ss, line, '\n')) {
-            if (iLine == 0) { result["norad_str"] = trim(line); }
+            if (iLine == 0) { result["norad_str"] = utilities::trim(line); }
             else {
-                result["tle"][iLine - 1] = trim(line);
+                result["tle"][iLine - 1] = utilities::trim(line);
             }
             ++iLine;
         }

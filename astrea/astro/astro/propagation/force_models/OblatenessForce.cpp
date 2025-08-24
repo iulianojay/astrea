@@ -12,7 +12,6 @@
 #include <mp-units/systems/isq_angle.h>
 
 #include <math/trig.hpp>
-#include <math/utils.hpp>
 
 #include <astro/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>

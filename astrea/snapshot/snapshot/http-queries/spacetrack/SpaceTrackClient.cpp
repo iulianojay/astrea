@@ -8,7 +8,7 @@
 #include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <nlohmann/json.hpp>
 
-#include <snapshot/utilities/string_util.hpp>
+#include <utilities/string_util.hpp>
 
 namespace astrea {
 namespace snapshot {

@@ -10,17 +10,12 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
-if (PROJECT_IS_TOP_LEVEL) 
-    add_subdirectory(../astro ../astro)
-endif()
-
 # Objects
 set(SNAPSHOT_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(SNAPSHOT_SOURCES
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.cpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.cpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.cpp
-    ${SNAPSHOT_BASE}/utilities/string_util.cpp
 )
 
 # Find library
@@ -34,7 +29,6 @@ set(SNAPSHOT_HEADERS
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.hpp
     ${SNAPSHOT_BASE}/types/typedefs.hpp
-    ${SNAPSHOT_BASE}/utilities/string_util.hpp
 
     ${EXTERN_BASE}/nlohmann/json.hpp
     ${EXTERN_BASE}/date/date.h
@@ -59,12 +53,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
+target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 
 # Executable
 # add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)
@@ -92,4 +86,6 @@ file(COPY
 )
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
-# add_subdirectory(tests EXCLUDE_FROM_ALL)
+if(${BUILD_TESTS})
+    # add_subdirectory(tests)
+endif()

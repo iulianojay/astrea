@@ -13,7 +13,6 @@
 #include <numbers>
 #include <unordered_map>
 
-#include <math/utils.hpp>
 #include <units/units.hpp>
 
 #include <astro/element_sets/CartesianVector.hpp>

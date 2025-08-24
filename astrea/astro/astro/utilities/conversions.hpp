@@ -20,8 +20,6 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <math/utils.hpp>
-
 #include <units/typedefs.hpp>
 #include <units/units.hpp>
 

@@ -1,6 +1,5 @@
 #include <astro/utilities/conversions.hpp>
 
-#include <math/utils.hpp>
 #include <units/units.hpp>
 
 #include <astro/element_sets/CartesianVector.hpp>

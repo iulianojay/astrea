@@ -13,7 +13,7 @@
 #include <string>
 
 namespace astrea {
-namespace snapshot {
+namespace utilities {
 
 /**
  * @brief Trims whitespace from both ends of a string.
@@ -34,5 +34,5 @@ std::string trim(const std::string& str, const std::string& whitespace = " \t");
  */
 std::string replace_all(std::string const& original, std::string const& before, std::string const& after);
 
-} // namespace snapshot
+} // namespace utilities
 } // namespace astrea
