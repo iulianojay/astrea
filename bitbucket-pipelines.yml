@@ -4,7 +4,7 @@ pipelines:
     - step:
         name: Build Docker Image
         script:
-          - docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile ~ 
+          - docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile .
           - docker image push jayiuliano/astrea:latest
         services:
           - docker

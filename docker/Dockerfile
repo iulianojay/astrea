@@ -53,16 +53,25 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY projects/astrea/cmake $ASTREA_ROOT/cmake 
-COPY projects/astrea/extern $ASTREA_ROOT/extern 
-COPY projects/astrea/scripts $ASTREA_ROOT/scripts 
-COPY projects/astrea/astrea $ASTREA_ROOT/astrea 
-COPY projects/astrea/CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt 
-COPY projects/astrea/conanfile.txt $ASTREA_ROOT/conanfile.txt 
-COPY projects/astrea/Makefile $ASTREA_ROOT/Makefile 
 COPY .conan2/ /home/appuser/.conan2
-COPY open-source/ /home/appuser/open-source
+COPY astrea $ASTREA_ROOT/astrea 
+COPY cmake $ASTREA_ROOT/cmake 
+COPY extern $ASTREA_ROOT/extern 
+COPY scripts $ASTREA_ROOT/scripts 
+COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt 
+COPY conanfile.txt $ASTREA_ROOT/conanfile.txt 
+COPY Makefile $ASTREA_ROOT/Makefile 
 
+# Clone mp-units instead of copying local version
+RUN mkdir /home/appuser/open-source && \
+    cd /home/appuser/open-source && \
+    git clone https://github.com/mpusz/mp-units.git && \
+    cd mp-units && \
+    git checkout v2.4.0 && \
+    cd $ASTREA_ROOT
+
+# Create a non-privileged user that the app will run under.
+# See https://docs.docker.com/go/dockerfile-user-best-practices/
 RUN groupadd -r usergroup
 RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
 RUN chown -R appuser:usergroup /home/appuser
@@ -85,10 +94,8 @@ COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
 COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
 COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile 
 COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern 
-COPY projects/astrea/data $ASTREA_ROOT/data 
+COPY data $ASTREA_ROOT/data 
 
-# Create a non-privileged user that the app will run under.
-# See https://docs.docker.com/go/dockerfile-user-best-practices/
 RUN groupadd -r usergroup
 RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
 RUN chown -R appuser:usergroup /home/appuser

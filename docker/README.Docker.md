@@ -45,3 +45,7 @@ image with astrea and open-source files mounted:
 new: 
     > docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile ~
     > docker image push jayiuliano/astrea:latest
+
+new: 
+    > docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile .
+    > docker image push jayiuliano/astrea:latest
