@@ -1,3 +1,5 @@
+options:
+  size: 2x
 
 pipelines:
   default:
