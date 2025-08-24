@@ -3,6 +3,13 @@
 namespace astrea {
 namespace utilities {
 
+std::string clean_entry(const nlohmann::json& entry)
+{
+    std::string entryStr = entry.template get<std::string>();
+    entryStr.erase(std::remove(entryStr.begin(), entryStr.end(), '"'), entryStr.end());
+    return entryStr;
+}
+
 std::string extract_string_from_json(const nlohmann::json& json, const std::string& key)
 {
     if (json.contains(key)) {
@@ -27,13 +34,6 @@ std::optional<std::string> extract_optional_string_from_json(const nlohmann::jso
         }
     }
     throw std::runtime_error("Key not found.");
-}
-
-std::string clean_entry(const nlohmann::json& entry)
-{
-    std::string entryStr = entry.template get<std::string>();
-    entryStr.erase(std::remove(entryStr.begin(), entryStr.end(), '"'), entryStr.end());
-    return entryStr;
 }
 
 } // namespace utilities

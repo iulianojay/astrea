@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(Utilities, Trim)
+TEST(StringUtilities, Trim)
 {
     ASSERT_EQ(trim("   Hello, World!   "), "Hello, World!");
     ASSERT_EQ(trim("   Hello, World!"), "Hello, World!");
@@ -19,7 +19,7 @@ TEST(Utilities, Trim)
     ASSERT_EQ(trim("Hello, World!"), "Hello, World!");
 }
 
-TEST(Utilities, ReplaceAll)
+TEST(StringUtilities, ReplaceAll)
 {
     ASSERT_EQ(replace_all("Hello, World!", "World", "Testers"), "Hello, Testers!");
     ASSERT_EQ(replace_all("Hello, World!", "l", "1"), "He11o, Wor1d!");
