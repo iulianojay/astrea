@@ -1,5 +1,3 @@
-options:
-
 pipelines:
   default:
     # - step:

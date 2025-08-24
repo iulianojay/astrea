@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(UTILITIES_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(UTILITIES_SOURCES
+    ${UTILITIES_BASE}/json_util.cpp
     ${UTILITIES_BASE}/string_util.cpp
 )
 
@@ -22,6 +23,7 @@ set(UTILITIES_SOURCES
 # Headers
 set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(UTILITIES_HEADERS
+    ${UTILITIES_BASE}/json_util.hpp
     ${UTILITIES_BASE}/ProgressBar.hpp
     ${UTILITIES_BASE}/string_util.hpp
 )
