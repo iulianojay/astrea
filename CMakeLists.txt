@@ -2,9 +2,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    waveguide 
+    astrea 
     VERSION 0.0.1 
-    DESCRIPTION "Waveguide: Nebula Back-End Simulation Library" 
+    DESCRIPTION "Astrea: Nebula Back-End Simulation Library" 
     LANGUAGES CXX
 )
 
@@ -13,8 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
-# add_library(waveguide_warnings INTERFACE)
-# add_library(waveguide_options INTERFACE)
+# add_library(astrea_warnings INTERFACE)
+# add_library(astrea_options INTERFACE)
 
 # if (PROJECT_IS_TOP_LEVEL) 
 #     include(cmake/standard_project_settings.cmake)
@@ -23,7 +23,7 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 #     endif()
 # endif()
 
-# target_compile_features(waveguide_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
+# target_compile_features(astrea_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
 
 if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
@@ -64,4 +64,4 @@ enable_testing()
 include(GoogleTest)
 
 # Get code
-add_subdirectory(waveguide)
+add_subdirectory(astrea)

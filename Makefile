@@ -1,8 +1,8 @@
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
-config_path := $(abspath $(WAVEGUIDE_ROOT))
-source_path := waveguide
+config_path := $(abspath $(ASTREA_ROOT))
+source_path := astrea
 examples_path := examples
 arch := x86_64
 os := Linux
@@ -11,7 +11,7 @@ tests_path := tests
 
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
-build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type))
+build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type))
 build_tests := OFF
 cxx := g++-13
 verbose_makefile := OFF
@@ -39,19 +39,19 @@ setup:
 debug: 
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 	
 .PHONY: release
 release: 
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 	
 .PHONY: relwithdebinfo
 relwithdebinfo: 
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath $(WAVEGUIDE_ROOT)/build/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 
 # .PHONY: examples
 # examples: install
@@ -63,9 +63,9 @@ tests:
 	
 .PHONY: run_tests
 run_tests:
-	cd $(build_path)/waveguide/math/tests && ctest --rerun-failed --output-on-failure
-	cd $(build_path)/waveguide/astro/tests && ctest --rerun-failed --output-on-failure
-	cd $(build_path)/waveguide/access/tests && ctest --rerun-failed --output-on-failure
+	cd $(build_path)/astrea/math/tests && ctest --rerun-failed --output-on-failure
+	cd $(build_path)/astrea/astro/tests && ctest --rerun-failed --output-on-failure
+	cd $(build_path)/astrea/access/tests && ctest --rerun-failed --output-on-failure
 
 .PHONY: verbose
 verbose:

@@ -23,8 +23,8 @@ RUN apt-get update && \
     make \
     cmake 
 
-ENV WAVEGUIDE_ROOT=/home/appuser/waveguide
-WORKDIR $WAVEGUIDE_ROOT
+ENV ASTREA_ROOT=/home/appuser/astrea
+WORKDIR $ASTREA_ROOT
 
 ################################################################################
 # Create a stage for building/compiling the application.
@@ -53,13 +53,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY projects/waveguide/cmake $WAVEGUIDE_ROOT/cmake 
-COPY projects/waveguide/extern $WAVEGUIDE_ROOT/extern 
-COPY projects/waveguide/scripts $WAVEGUIDE_ROOT/scripts 
-COPY projects/waveguide/waveguide $WAVEGUIDE_ROOT/waveguide 
-COPY projects/waveguide/CMakeLists.txt $WAVEGUIDE_ROOT/CMakeLists.txt 
-COPY projects/waveguide/conanfile.txt $WAVEGUIDE_ROOT/conanfile.txt 
-COPY projects/waveguide/Makefile $WAVEGUIDE_ROOT/Makefile 
+COPY projects/astrea/cmake $ASTREA_ROOT/cmake 
+COPY projects/astrea/extern $ASTREA_ROOT/extern 
+COPY projects/astrea/scripts $ASTREA_ROOT/scripts 
+COPY projects/astrea/astrea $ASTREA_ROOT/astrea 
+COPY projects/astrea/CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt 
+COPY projects/astrea/conanfile.txt $ASTREA_ROOT/conanfile.txt 
+COPY projects/astrea/Makefile $ASTREA_ROOT/Makefile 
 COPY .conan2/ /home/appuser/.conan2
 COPY open-source/ /home/appuser/open-source
 
@@ -81,11 +81,11 @@ RUN make release all
 # purposes the "base" image is used here.
 FROM base AS final
 
-COPY --from=build $WAVEGUIDE_ROOT/build $WAVEGUIDE_ROOT/build
-COPY --from=build $WAVEGUIDE_ROOT/install $WAVEGUIDE_ROOT/install
-COPY --from=build $WAVEGUIDE_ROOT/Makefile $WAVEGUIDE_ROOT/Makefile 
-COPY --from=build $WAVEGUIDE_ROOT/extern $WAVEGUIDE_ROOT/extern 
-COPY projects/waveguide/data $WAVEGUIDE_ROOT/data 
+COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
+COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
+COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile 
+COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern 
+COPY projects/astrea/data $ASTREA_ROOT/data 
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/

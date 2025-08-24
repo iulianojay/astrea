@@ -26,22 +26,22 @@ list running containers:
 
 start docker image: 
     > docker run -it <tag or hash> bash
-start image with waveguide mounted:    
-    > docker run -it -v /home/jay/projects/waveguide:/home/appuser/waveguide waveguide-image bash
-image with waveguide and open-source files mounted:
+start image with astrea mounted:    
+    > docker run -it -v /home/jay/projects/astrea:/home/appuser/astrea astrea-image bash
+image with astrea and open-source files mounted:
     > docker run -it \
-        -v ~/projects/waveguide/cmake:/home/appuser/waveguide/cmake \
-        -v ~/projects/waveguide/data:/home/appuser/waveguide/data \
-        -v ~/projects/waveguide/extern:/home/appuser/waveguide/extern \
-        -v ~/projects/waveguide/scripts:/home/appuser/waveguide/scripts \
-        -v ~/projects/waveguide/waveguide:/home/appuser/waveguide/waveguide \
-        -v ~/projects/waveguide/CMakeLists.txt:/home/appuser/waveguide/CMakeLists.txt \
-        -v ~/projects/waveguide/conanfile.txt:/home/appuser/waveguide/conanfile.txt \
-        -v ~/projects/waveguide/Makefile:/home/appuser/waveguide/Makefile \
+        -v ~/projects/astrea/cmake:/home/appuser/astrea/cmake \
+        -v ~/projects/astrea/data:/home/appuser/astrea/data \
+        -v ~/projects/astrea/extern:/home/appuser/astrea/extern \
+        -v ~/projects/astrea/scripts:/home/appuser/astrea/scripts \
+        -v ~/projects/astrea/astrea:/home/appuser/astrea/astrea \
+        -v ~/projects/astrea/CMakeLists.txt:/home/appuser/astrea/CMakeLists.txt \
+        -v ~/projects/astrea/conanfile.txt:/home/appuser/astrea/conanfile.txt \
+        -v ~/projects/astrea/Makefile:/home/appuser/astrea/Makefile \
         -v ~/open-source:/home/appuser/open-source \
         -v ~/.conan2:/home/appuser/.conan2 \
-        waveguide:latest bash
+        astrea:latest bash
 
 new: 
-    > docker build -t jayiuliano/waveguide:latest -f ./docker/Dockerfile ~
-    > docker image push jayiuliano/waveguide:latest
+    > docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile ~
+    > docker image push jayiuliano/astrea:latest

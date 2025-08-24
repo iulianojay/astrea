@@ -1,7 +1,7 @@
 
 DEBUG=RelWithDebInfo
 PROGRAM=./install/x86_64-Linux/GNU-13.1.0/$DEBUG/access/bin/access
-OUTFILE=./waveguide/access/access/drivers/results/callgrind.out
+OUTFILE=./astrea/access/access/drivers/results/callgrind.out
 
 OPTIONS="--callgrind-out-file=$OUTFILE --dump-instr=yes --collect-jumps=yes"
 CALLGRIND_CMD="valgrind --tool=callgrind $OPTIONS $PROGRAM"
