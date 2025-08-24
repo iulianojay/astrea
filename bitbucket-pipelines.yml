@@ -2,14 +2,14 @@ options:
 
 pipelines:
   default:
-    - step:
-        name: Build Docker Image
-        size: 2x
-        script:
-          - docker build --memory=6g -t jayiuliano/astrea:latest -f ./docker/Dockerfile .
-          - docker image push jayiuliano/astrea:latest
-        services:
-          - docker
+    # - step:
+    #     name: Build Docker Image
+    #     size: 2x
+    #     script:
+    #       - docker build --memory=6g -t jayiuliano/astrea:latest -f ./docker/Dockerfile .
+    #       - docker image push jayiuliano/astrea:latest
+    #     services:
+    #       - docker
         
     - step:
         name: Run Tests
