@@ -1,7 +1,7 @@
 
 DEBUG=RelWithDebInfo
-PROGRAM=./install/x86_64-Linux/GNU-13.1.0/$DEBUG/access/bin/access
-OUTFILE=./astrea/access/access/drivers/results/massif.out
+PROGRAM=./install/x86_64-Linux/GNU-13.1.0/$DEBUG/trace/bin/trace
+OUTFILE=./astrea/trace/trace/drivers/results/massif.out
 
 OPTIONS="--massif-out-file=$OUTFILE --time-unit=B"
 MASSIF_CMD="valgrind --tool=massif $OPTIONS $PROGRAM"
