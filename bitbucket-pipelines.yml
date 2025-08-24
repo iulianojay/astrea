@@ -1,10 +1,10 @@
 options:
-  size: 2x
 
 pipelines:
   default:
     - step:
         name: Build Docker Image
+        size: 2x
         script:
           - docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile .
           - docker image push jayiuliano/astrea:latest
