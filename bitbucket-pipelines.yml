@@ -1,14 +1,16 @@
-# Template C++ Application
-
-# This template allows you to validate your C++ application.
-# The workflow allows running tests and code linting on the default branch.
-
-image: jayiuliano/astrea:latest
 
 pipelines:
   default:
-    - parallel:
-        - step:
-            name: Test
-            script:
-              - make run_tests
+    - step:
+      name: Build Docker Image
+      script:
+        - docker build -t jayiuliano/astrea:$BITBUCKET_BRANCH -f ./docker/Dockerfile ~ 
+        - docker image push jayiuliano/astrea:$BITBUCKET_BRANCH
+      services:
+        - docker
+        
+    - step:
+      name: Run Tests
+      image: jayiuliano/astrea:$BITBUCKET_BRANCH
+      script:
+        - make run_tests
