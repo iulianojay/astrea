@@ -2,15 +2,15 @@
 pipelines:
   default:
     - step:
-      name: Build Docker Image
-      script:
-        - docker build -t jayiuliano/astrea:$BITBUCKET_BRANCH -f ./docker/Dockerfile ~ 
-        - docker image push jayiuliano/astrea:$BITBUCKET_BRANCH
-      services:
-        - docker
+        name: Build Docker Image
+        script:
+          - docker build -t jayiuliano/astrea:$BITBUCKET_BRANCH -f ./docker/Dockerfile ~ 
+          - docker image push jayiuliano/astrea:$BITBUCKET_BRANCH
+        services:
+          - docker
         
     - step:
-      name: Run Tests
-      image: jayiuliano/astrea:$BITBUCKET_BRANCH
-      script:
-        - make run_tests
+        name: Run Tests
+        image: jayiuliano/astrea:$BITBUCKET_BRANCH
+        script:
+          - make run_tests
