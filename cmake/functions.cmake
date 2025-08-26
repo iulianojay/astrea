@@ -14,7 +14,8 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
             cmake_path(GET TEST_FILE PARENT_PATH full_parent_path)
             get_filename_component(TEST_EXE ${full_parent_path} NAME)
         endif()
-        add_executable(${TEST_EXE} ${TEST_FILE})    
+        set(TEST_EXE ${TEST_EXE}.test)
+        add_executable(${TEST_EXE} ${TEST_FILE})
 
         # Set properties
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})

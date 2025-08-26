@@ -43,6 +43,10 @@ concept HasStaticConvertFrom = requires(const CartesianVector<Value_T, Frame_T>&
  */
 template <class Value_T, class Frame_T>
 class CartesianVector {
+
+    template <class Value_U, class Frame_U>
+    friend std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_U, Frame_U>& state);
+
   public:
     /**
      * @brief Default constructor for CartesianVector.
@@ -131,9 +135,24 @@ class CartesianVector {
      * @return true If the two vectors are equal.
      * @return false If the two vectors are not equal.
      */
-    bool operator==(const CartesianVector<Value_T, Frame_T>& other) const
+    template <typename Value_U>
+    bool operator==(const CartesianVector<Value_U, Frame_T>& other) const
     {
         return _vector[0] == other._vector[0] && _vector[1] == other._vector[1] && _vector[2] == other._vector[2];
+    }
+
+    /**
+     * @brief Inequality operator for CartesianVector in a different frame. Always false.
+     *
+     * @param other The other CartesianVector to compare with.
+     * @return true If the two vectors are not equal.
+     * @return false If the two vectors are equal.
+     */
+    template <typename Frame_U>
+        requires(!std::is_same<Frame_T, Frame_U>::value)
+    bool operator==(const CartesianVector<Value_T, Frame_U>& other) const
+    {
+        return false;
     }
 
     /**
@@ -413,6 +432,24 @@ class CartesianVector {
   private:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
+
+/**
+ * @brief Overload the output stream operator for CartesianVector.
+ *
+ * @tparam Value_T The type of the vector components.
+ * @tparam Frame_T The type of the frame.
+ * @param os The output stream.
+ * @param state The CartesianVector to output.
+ * @return The output stream.
+ */
+template <class Value_T, class Frame_T>
+std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
+{
+    static const Frame_T frame;
+    static const std::string name = frame.get_name();
+    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "] (" << name << ")";
+    return os;
+}
 
 /**
  * @brief Scalar multiplication operator for CartesianVector.

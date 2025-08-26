@@ -75,6 +75,20 @@ class Frame {
         return vec;
     }
 
+    /**
+     * @brief Get the name of the frame.
+     *
+     * @return The name of the frame.
+     */
+    std::string get_name() const { return name; }
+
+    /**
+     * @brief Get the origin of the frame.
+     *
+     * @return The origin of the frame.
+     */
+    std::string get_origin() const { return origin; }
+
   protected:
     std::string name;   //!< Name of the frame.
     std::string origin; //!< Origin of the frame, typically a celestial body or reference point.

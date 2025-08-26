@@ -1,71 +1,97 @@
-
+/**
+ * @file LambertSolver.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief This file defines the LambertSolver class, which provides methods for solving Lambert's problem.
+ * @version 0.1
+ * @date 2025-08-03
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <cmath>
 #include <iostream>
 #include <math.h>
 
+#include <units/units.hpp>
+
+#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/element_sets/orbital_elements/Cartesian.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
-
-// TODO: Translate this to use mp-units
+/**
+ * @brief Class for solving Lambert's problem.
+ *
+ * This class provides methods for solving Lambert's problem, which involves finding
+ * the orbital trajectory between two points in space given certain initial conditions.
+ */
 class LambertSolver {
   public:
-    LambertSolver()  = default;
-    ~LambertSolver() = default;
+    /**
+     * @brief Deleted constructor for LambertSolver.
+     *
+     * This constructor is deleted to prevent instantiation of the LambertSolver class.
+     */
+    LambertSolver() = delete;
 
-    // Starts with r and v and outputs r and v after dt
-    void solve_rv(double* state0, double dt, double mu, double* statef);
+    /**
+     * @brief Deleted destructor for LambertSolver.
+     *
+     * This destructor is deleted to prevent destruction of the LambertSolver class.
+     */
+    ~LambertSolver() = delete;
 
-    // Starts with r and v and outputs r and v after dt modified to assume mu = 1
-    void solve_rv(double* state0, double dt, double* statef);
+    /**
+     * @brief Enum class for orbit direction.
+     */
+    enum class OrbitDirection : EnumType {
+        PROGRADE,  //!< Prograde orbit
+        RETROGRADE //!< Retrograde orbit
+    };
 
-    // Starts with r and r and ouputs v and v for the given dt
-    void solve_rr(double* r0, double* rf, double dt, double mu, int I, double* v0, double* vf);
+    /**
+     * @brief Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution.
+     *
+     * @param state0 The initial state (position and velocity) of the spacecraft.
+     * @param dt The time of flight.
+     * @param mu The gravitational parameter of the central body.
+     * @return The final state (position and velocity) of the spacecraft.
+     */
+    static Cartesian solve(const Cartesian& state0, const Time& dt, const GravParam& mu);
+
+    /**
+     * @brief Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution.
+     *
+     * @param r0 The initial position of the spacecraft.
+     * @param rf The final position of the spacecraft.
+     * @param dt The time of flight.
+     * @param mu The gravitational parameter of the central body.
+     * @param direction The direction of the orbit (prograde or retrograde).
+     * @return A pair of velocity vectors (initial and final) for the spacecraft.
+     */
+    static std::pair<VelocityVector<ECI>, VelocityVector<ECI>>
+        solve(const RadiusVector<ECI>& r0, const RadiusVector<ECI>& rf, const Time& dt, const GravParam& mu, const OrbitDirection& direction);
 
   private:
-    int itMax  = 1000;
-    double tol = 1.0e-12;
+    static constexpr unsigned ITER_MAX = 1e4;                     //!< Maximum number of iterations for the solver.
+    static constexpr Unitless TOL      = 1.0e-12 * mp_units::one; //!< Tolerance for convergence.
 
-    double r0[3] = {};
-    double v0[3] = {};
-    double R0{};
-    double V0{};
-    double rf[3] = {};
-    double vf[3] = {};
-    double Rf{};
-    double sqMU{};
-    double r0v0_sqMU{};
-    double dtheta{};
-    double A{};
-    double alpha{};
-    double Xn{};
-    double X{};
-    double X2{};
-    double z{};
-    double zn{};
-    double y{};
-    double Cz{};
-    double Sz{};
-    double sqz{};
-    double sqnz{};
-    double F{};
-    double dF{};
-    double f{};
-    double g{};
-    double fdot{};
-    double gdot{};
-    double err{};
-    double divG{};
-
-    int it = 0;
-
-    // Private methods
-    void evaluate_stumpff();
-    double normalize(double* vec);
+    /**
+     * @brief Evaluate the Stumpff functions for a given input.
+     *
+     * @param z The input value.
+     * @return A pair of Stumpff function values (Cz, Sz).
+     */
+    static std::pair<Unitless, Unitless> evaluate_stumpff(const Unitless& z);
 };
+
+// TODO: Implement Battin algorithm
+// TODO: give min time and min energy options
 
 } // namespace astro
 } // namespace astrea

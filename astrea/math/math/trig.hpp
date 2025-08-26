@@ -51,6 +51,54 @@ template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
 }
 
 /**
+ * @brief Computes the hyperbolic cosine of a given angle in radians.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle in radians.
+ * @return The value of the hyperbolic cosine at the given angle.
+ */
+template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+    requires requires(Rep v) { cosh(v); } || requires(Rep v) { std::cosh(v); }
+[[nodiscard]] inline mp_units::QuantityOf<mp_units::dimensionless> auto cosh(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    using std::cosh;
+    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
+        // check what is the return type when called with the integral value
+        using rep = decltype(cosh(q.force_numerical_value_in(mp_units::angular::radian)));
+        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
+        return mp_units::quantity{ cosh(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+    }
+    else {
+        return mp_units::quantity{ cosh(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+    }
+}
+
+/**
+ * @brief Computes the hyperbolic sine of a given angle in radians.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle in radians.
+ * @return The value of the hyperbolic sine at the given angle.
+ */
+template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+    requires requires(Rep v) { sinh(v); } || requires(Rep v) { std::sinh(v); }
+[[nodiscard]] inline mp_units::QuantityOf<mp_units::dimensionless> auto sinh(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    using std::sinh;
+    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
+        // check what is the return type when called with the integral value
+        using rep = decltype(sinh(q.force_numerical_value_in(mp_units::angular::radian)));
+        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
+        return mp_units::quantity{ sinh(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+    }
+    else {
+        return mp_units::quantity{ sinh(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+    }
+}
+
+/**
  * @brief Computes the Bessel function of the first kind of order zero.
  *
  * This function computes the Bessel function of the first kind of order zero for a given value.
