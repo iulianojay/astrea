@@ -11,9 +11,9 @@
 
 #include <nlohmann/json.hpp>
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 

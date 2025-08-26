@@ -13,12 +13,12 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
-    ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.cpp
-    ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.cpp
-    ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.cpp
-    ${ASTRO_BASE}/element_sets/OrbitalElements.cpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
+    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
 
-    ${ASTRO_BASE}/frames/FrameReference.cpp
+    ${ASTRO_BASE}/state/frames/FrameReference.cpp
 
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
@@ -56,20 +56,20 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/element_sets/orbital_elements/Cartesian.hpp
-    ${ASTRO_BASE}/element_sets/orbital_elements/Equinoctial.hpp
-    ${ASTRO_BASE}/element_sets/orbital_elements/Keplerian.hpp
-    ${ASTRO_BASE}/element_sets/ElementSet.hpp
-    ${ASTRO_BASE}/element_sets/OrbitalElements.hpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/ElementSet.hpp
+    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
     
-    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/frames/instances/EarthCenteredInertial.hpp
-    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/frames/types/RotatingFrame.hpp
-    ${ASTRO_BASE}/frames/Frame.hpp
-    ${ASTRO_BASE}/frames/FrameReference.hpp
+    ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
+    ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/state/frames/types/RotatingFrame.hpp
+    ${ASTRO_BASE}/state/frames/Frame.hpp
+    ${ASTRO_BASE}/state/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp

@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -106,7 +106,7 @@ class State {
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
-    // Frame frame; // TODO: Frames
+    // Frame frame; // TODO: state/frames
 };
 
 } // namespace astro

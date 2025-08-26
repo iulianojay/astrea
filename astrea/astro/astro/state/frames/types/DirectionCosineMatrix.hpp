@@ -15,7 +15,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
-#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/state/CartesianVector.hpp>
 
 namespace astrea {
 namespace astro {
@@ -23,7 +23,7 @@ namespace astro {
 // TODO: Probably should use eigen instead of arrays, might not matter for these small matrices used in
 //  rotation but worth looking into
 /**
- * @brief Class representing a direction cosine matrix (DCM) for transforming vectors between frames.
+ * @brief Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.
  *
  * This class provides methods to create DCMs for various rotations and to apply them to vectors.
  *

@@ -10,13 +10,13 @@
  */
 #pragma once
 
-#include <astro/frames/Frame.hpp>
+#include <astro/state/frames/Frame.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief Base class for all inertial frames.
+ * @brief Base class for all inertial state/frames.
  */
 template <class Frame_T>
 class InertialFrame : public Frame<Frame_T> {

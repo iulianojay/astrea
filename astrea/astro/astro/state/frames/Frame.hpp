@@ -13,10 +13,10 @@ namespace astro {
 // TODO: I think type-erase is the right move here, instead of polymorphism. That would allow each frame
 // to exist independently and it would allow more generic and useful Frame-type checking. A "RotatingFrame"
 // wouldn't be some (essentially) meaningless abstract class, but a type-erased container with more restrictions
-// than the more generic Frame class, and so on. It would also allow for Frames to drop in-place into different contexts
+// than the more generic Frame class, and so on. It would also allow for state/frames to drop in-place into different contexts
 // (i.e. "this thing here can must be a BodyFixedFrame but I don't care which one", etc.) without multiple inheritance.
 /**
- * @brief Base class for all frames.
+ * @brief Base class for all state/frames.
  */
 template <typename Frame_T>
 class Frame {

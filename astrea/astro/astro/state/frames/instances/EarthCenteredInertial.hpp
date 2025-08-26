@@ -11,8 +11,8 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/InertialFrame.hpp>
+#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/frames/types/InertialFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

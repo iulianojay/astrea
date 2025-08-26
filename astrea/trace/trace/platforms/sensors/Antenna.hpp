@@ -12,8 +12,8 @@
 
 #include <vector>
 
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>

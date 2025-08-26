@@ -420,13 +420,13 @@ class CartesianVector {
     }
 
     /**
-     * @brief Overload to handle casses where two frames define the same conversion.
+     * @brief Overload to handle casses where two state/frames define the same conversion.
      */
     template <typename Frame_U>
         requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U> && HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
     {
-        static_assert(false, "Parity Error: Two frames cannot have an equivalent conversion. Please remove one.");
+        static_assert(false, "Parity Error: Two state/frames cannot have an equivalent conversion. Please remove one.");
     }
 
   private:

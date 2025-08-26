@@ -19,9 +19,9 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/orbital_elements/Cartesian.hpp>
-#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>

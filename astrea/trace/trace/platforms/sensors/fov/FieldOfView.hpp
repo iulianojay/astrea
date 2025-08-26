@@ -15,8 +15,8 @@
 
 #include <units/units.hpp>
 
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
 
 
 namespace astrea {

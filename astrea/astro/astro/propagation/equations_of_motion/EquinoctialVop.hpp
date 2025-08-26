@@ -12,11 +12,11 @@
 
 #include <units/typedefs.hpp>
 
-#include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

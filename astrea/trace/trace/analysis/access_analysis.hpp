@@ -12,16 +12,16 @@
 
 #include <vector>
 
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/platforms/space/Constellation.hpp>
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
-#include <astro/frames/frames.hpp>
+#include <astro/state/frames/frames.hpp>
 #include <trace/platforms/ground/GroundArchitecture.hpp>
 #include <trace/platforms/ground/GroundStation.hpp>
 #include <trace/platforms/vehicles/Viewer.hpp>

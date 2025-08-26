@@ -12,15 +12,15 @@
 
 #include <memory>
 
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/FrameReference.hpp>
+#include <astro/state/frames/Frame.hpp>
+#include <astro/state/frames/FrameReference.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief Base class for all dynamic frames.
+ * @brief Base class for all dynamic state/frames.
  */
 template <class Frame_T>
 class DynamicFrame : public Frame<Frame_T> {
@@ -40,13 +40,13 @@ class DynamicFrame : public Frame<Frame_T> {
         if (parent == nullptr) {
             throw std::invalid_argument(
                 "Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
-                "for instantaneous dynamic frames."
+                "for instantaneous dynamic state/frames."
             );
         }
     }
 
     /**
-     * @brief Constructor for instantaneous dynamic frames.
+     * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param name The name of the dynamic frame.
      * @param position The position vector in the ECI frame.

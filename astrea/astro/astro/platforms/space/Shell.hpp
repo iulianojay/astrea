@@ -17,7 +17,7 @@
 #include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <units/units.hpp>
 
 namespace astrea {

@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include <astro/element_sets/OrbitalElements.hpp>
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>

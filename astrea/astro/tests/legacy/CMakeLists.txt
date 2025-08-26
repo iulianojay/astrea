@@ -29,7 +29,7 @@ set(INCLUDE_DIRS
     ${INCLUDEPATH}
     ${INCLUDEPATH}/astro
     ${INCLUDEPATH}/astro/constants
-    ${INCLUDEPATH}/astro/element_sets
+    ${INCLUDEPATH}/astro/state/orbital_elements
     ${INCLUDEPATH}/astro/propagation
     ${INCLUDEPATH}/astro/systems
     ${INCLUDEPATH}/astro/time

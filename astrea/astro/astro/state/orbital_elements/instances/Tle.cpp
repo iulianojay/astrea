@@ -1,11 +1,11 @@
-#include <astro/element_sets/orbital_elements/Tle.hpp>
+#include <astro/state/orbital_elements/instances/Tle.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>

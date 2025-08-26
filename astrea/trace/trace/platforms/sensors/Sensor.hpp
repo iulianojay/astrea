@@ -12,9 +12,9 @@
 
 #include <memory>
 
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/FrameReference.hpp>
+#include <astro/state/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 #include <trace/platforms/AccessObject.hpp>

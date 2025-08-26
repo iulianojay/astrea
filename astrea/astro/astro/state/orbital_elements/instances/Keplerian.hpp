@@ -22,7 +22,7 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/ElementSet.hpp>
+#include <astro/state/orbital_elements/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
 

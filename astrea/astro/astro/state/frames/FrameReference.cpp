@@ -1,10 +1,10 @@
-#include <astro/frames/FrameReference.hpp>
+#include <astro/state/frames/FrameReference.hpp>
 
 #include <mp-units/systems/si.h>
 
 #include <units/typedefs.hpp>
 
-#include <astro/element_sets/CartesianVector.hpp>
+#include <astro/state/CartesianVector.hpp>
 
 
 namespace astrea {

@@ -10,11 +10,11 @@
  */
 #pragma once
 
-#include <astro/element_sets/OrbitalElements.hpp>
-#include <astro/element_sets/orbital_elements/Cartesian.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>

@@ -10,9 +10,9 @@
  */
 #pragma once
 
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/InertialFrame.hpp>
+#include <astro/state/frames/Frame.hpp>
+#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/frames/types/InertialFrame.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -20,7 +20,7 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Base class for all rotating frames.
+ * @brief Base class for all rotating state/frames.
  */
 template <class Frame_T, class Parent_Frame_T>
 class RotatingFrame : public Frame<Frame_T> {

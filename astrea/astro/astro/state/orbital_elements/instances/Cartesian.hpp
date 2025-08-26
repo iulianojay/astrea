@@ -29,9 +29,9 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/element_sets/ElementSet.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/ElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

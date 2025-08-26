@@ -11,10 +11,10 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/frames/instances/EarthCenteredInertial.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -62,7 +62,7 @@ class RadialTangentialNormal : public DynamicFrame<RadialTangentialNormal> {
 
   private:
     /**
-     * @brief Constructor for instantaneous dynamic frames.
+     * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.

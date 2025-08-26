@@ -12,18 +12,18 @@
 
 #include <units/units.hpp>
 
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/element_sets/ElementSet.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 
-#include <astro/frames/instances/EarthCenteredInertial.hpp>
-#include <astro/frames/instances/EarthCenteredEarthFixed.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/InertialFrame.hpp>
-#include <astro/frames/types/RotatingFrame.hpp>
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/frames/Frame.hpp>
+#include <astro/state/frames/FrameReference.hpp>
+#include <astro/state/frames/frames.hpp>
+#include <astro/state/frames/instances/EarthCenteredEarthFixed.hpp>
+#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/frames/types/InertialFrame.hpp>
+#include <astro/state/frames/types/RotatingFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>

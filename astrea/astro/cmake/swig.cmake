@@ -17,7 +17,7 @@
 #     ${INC}
 #     ${INC}/astro
 #     ${INC}/astro/constants
-#     ${INC}/astro/element_sets
+#     ${INC}/astro/state/orbital_elements
 #     ${INC}/astro/platforms
 #     ${INC}/astro/propagation
 #     ${INC}/astro/systems
@@ -62,7 +62,7 @@ include_directories(
     ${INC}/astro
     ${INC}/astro/trace
     ${INC}/astro/constants
-    ${INC}/astro/element_sets
+    ${INC}/astro/state/orbital_elements
     ${INC}/astro/platforms
     ${INC}/astro/platforms/trace
     ${INC}/astro/platforms/trace/sensors/fov

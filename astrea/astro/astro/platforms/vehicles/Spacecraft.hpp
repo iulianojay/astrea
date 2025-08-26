@@ -22,12 +22,12 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/element_sets/CartesianVector.hpp>
-#include <astro/element_sets/OrbitalElements.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
+#include <astro/state/frames/FrameReference.hpp>
+#include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 

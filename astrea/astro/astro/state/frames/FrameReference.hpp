@@ -25,7 +25,7 @@ namespace astro {
  *
  * This class provides a common interface for all frame references used in the
  * astrodynamics library. It allows for easy conversion between different
- * coordinate frames.
+ * coordinate state/frames.
  */
 class FrameReference {
   public:

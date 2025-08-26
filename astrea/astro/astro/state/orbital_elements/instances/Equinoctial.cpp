@@ -1,4 +1,4 @@
-#include <astro/element_sets/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -6,7 +6,7 @@
 
 #include <math/interpolation.hpp>
 
-#include <astro/element_sets/orbital_elements/Keplerian.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
