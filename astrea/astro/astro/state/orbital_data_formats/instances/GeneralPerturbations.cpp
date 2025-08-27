@@ -1,16 +1,16 @@
-#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 
 #include <utilities/json_util.hpp>
 
 namespace astrea {
-namespace snapshot {
+namespace astro {
 
 using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
 using utilities::extract_string_from_json;
 
-SpaceTrackGP::SpaceTrackGP(const nlohmann::json& data) :
+GeneralPerturbations::GeneralPerturbations(const nlohmann::json& data) :
     DB_ID(-1),
     APOAPSIS(extract_optional_from_json<double>(data, "APOAPSIS")),
     ARG_OF_PERICENTER(extract_optional_from_json<long double>(data, "ARG_OF_PERICENTER")),
@@ -55,7 +55,7 @@ SpaceTrackGP::SpaceTrackGP(const nlohmann::json& data) :
 {
 }
 
-std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp)
+std::ostream& operator<<(std::ostream& os, const GeneralPerturbations& gp)
 {
     os << "DB_ID: " << gp.DB_ID << std::endl;
     os << "APOAPSIS: " << gp.APOAPSIS << std::endl;
@@ -103,5 +103,5 @@ std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp)
 }
 
 
-} // namespace snapshot
+} // namespace astro
 } // namespace astrea

@@ -20,9 +20,11 @@ class StateHistory;
 class Cartesian;
 class Keplerian;
 class Equinoctial;
+class TwoLineElements;
 class CartesianPartial;
 class KeplerianPartial;
 class EquinoctialPartial;
+class TwoLineElementsPartial;
 class OrbitalElements;
 
 template <class Value_T, class Frame_T>

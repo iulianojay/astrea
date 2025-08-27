@@ -38,7 +38,7 @@ const std::unordered_map<ElementSet, std::string> ElementSetToString = { { Eleme
 //!< @brief Map for string to ElementSet enum class.
 const std::unordered_map<std::string, ElementSet> StringToElementSet = { { "KEPLERIAN", ElementSet::KEPLERIAN },
                                                                          { "CARTESIAN", ElementSet::CARTESIAN },
-                                                                         { "EQUINOCTIAL", ElementSet::EQUINOCTIAL } };
+                                                                         { "EQUINOCTIAL", ElementSet::EQUINOCTIAL }};
 
 } // namespace astro
 } // namespace astrea

@@ -14,7 +14,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(SNAPSHOT_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(SNAPSHOT_SOURCES
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.cpp
-    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.cpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.cpp
 )
 
@@ -27,7 +26,6 @@ set(SNAPSHOT_HEADERS
     ${SNAPSHOT_BASE}/database/Database.hpp
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
-    ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackGP.hpp
     ${SNAPSHOT_BASE}/types/typedefs.hpp
 
     ${EXTERN_BASE}/nlohmann/json.hpp

@@ -16,7 +16,7 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Spacecraft::Spacecraft(const snapshot::SpaceTrackGP& gp, const AstrodynamicsSystem& sys)
+Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys)
 {
     // TODO: Add catch/warning for missing values
     _id   = gp.NORAD_CAT_ID;

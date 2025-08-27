@@ -23,7 +23,7 @@
 
 #include <units/typedefs.hpp>
 
-#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 
 namespace astrea {
 namespace snapshot {
@@ -32,9 +32,9 @@ namespace snapshot {
  * @brief Database utility wrapper for the snapshot module.
  *
  * This class provides a wrapper around the SQLite database used in the snapshot module,
- * allowing for easy access to SpaceTrackGP data and other database operations.
+ * allowing for easy access to GeneralPerturbations data and other database operations.
  *
- * @tparam T The type of the database (e.g., sqlite_orm::Storage<SpaceTrackGP>).
+ * @tparam T The type of the database (e.g., sqlite_orm::Storage<GeneralPerturbations>).
  */
 template <class T>
 class DatabaseUtilityWrapper {
@@ -64,39 +64,39 @@ class DatabaseUtilityWrapper {
     const T& get_database() const;
 
     /**
-     * @brief Gets all SpaceTrackGP records from the database.
+     * @brief Gets all GeneralPerturbations records from the database.
      *
      * @tparam Args Types of the optional arguments.
      * @param args Optional arguments to pass to the database query.
-     * @return A vector containing all SpaceTrackGP records.
+     * @return A vector containing all GeneralPerturbations records.
      */
     template <typename... Args>
-    std::vector<SpaceTrackGP> get_all(Args&&... args) const;
+    std::vector<astro::GeneralPerturbations> get_all(Args&&... args) const;
 
     /**
-     * @brief Gets a SpaceTrackGP record by its NORAD ID.
+     * @brief Gets a GeneralPerturbations record by its NORAD ID.
      *
-     * @param id The NORAD ID of the SpaceTrackGP record to retrieve.
-     * @return A SpaceTrackGP object corresponding to the given NORAD ID.
+     * @param id The NORAD ID of the GeneralPerturbations record to retrieve.
+     * @return A GeneralPerturbations object corresponding to the given NORAD ID.
      */
-    SpaceTrackGP get_sat_from_norad_id(const unsigned& id) const;
+    astro::GeneralPerturbations get_sat_from_norad_id(const unsigned& id) const;
 
     /**
-     * @brief Gets a SpaceTrackGP record by its name
+     * @brief Gets a GeneralPerturbations record by its name
      *
-     * @param name The name of the SpaceTrackGP record to retrieve.
-     * @return A SpaceTrackGP object corresponding to the given name.
+     * @param name The name of the GeneralPerturbations record to retrieve.
+     * @return A GeneralPerturbations object corresponding to the given name.
      */
-    std::vector<SpaceTrackGP> get_sats_by_name(const std::string& name) const;
+    std::vector<astro::GeneralPerturbations> get_sats_by_name(const std::string& name) const;
 
     /**
-     * @brief Gets SpaceTrackGP records within a specified range of periapsis and apoapsis.
+     * @brief Gets GeneralPerturbations records within a specified range of periapsis and apoapsis.
      *
      * @param minPeriapsis The minimum periapsis distance.
      * @param maxApoapsis The maximum apoapsis distance.
-     * @return A vector containing SpaceTrackGP records that fall within the specified range.
+     * @return A vector containing GeneralPerturbations records that fall within the specified range.
      */
-    std::vector<SpaceTrackGP> get_sats_in_range(const Distance& minPeriapsis, const Distance& maxApoapsis) const;
+    std::vector<astro::GeneralPerturbations> get_sats_in_range(const Distance& minPeriapsis, const Distance& maxApoapsis) const;
 
   private:
     T _database; //!< The wrapped database instance.
@@ -108,7 +108,7 @@ class DatabaseUtilityWrapper {
  * This function is a convenience wrapper to create a DatabaseUtilityWrapper
  * for the provided database instance.
  *
- * @tparam T The type of the database (e.g., sqlite_orm::Storage<SpaceTrackGP>).
+ * @tparam T The type of the database (e.g., sqlite_orm::Storage<GeneralPerturbations>).
  * @param database The database instance to wrap.
  * @return A DatabaseUtilityWrapper instance wrapping the provided database.
  */
@@ -131,48 +131,48 @@ inline auto get_snapshot()
     return sqlite_orm::make_storage(
         root + "/astrea/snapshot/snapshot/database/snapshot.db",
         sqlite_orm::make_table(
-            "SpaceTrackGP",
-            sqlite_orm::make_column("DB_ID", &snapshot::SpaceTrackGP::DB_ID, sqlite_orm::primary_key().autoincrement()),
-            sqlite_orm::make_column("APOAPSIS", &snapshot::SpaceTrackGP::APOAPSIS),
-            sqlite_orm::make_column("ARG_OF_PERICENTER", &snapshot::SpaceTrackGP::ARG_OF_PERICENTER),
-            sqlite_orm::make_column("BSTAR", &snapshot::SpaceTrackGP::BSTAR),
-            sqlite_orm::make_column("CCSDS_OMM_VERS", &snapshot::SpaceTrackGP::CCSDS_OMM_VERS),
-            sqlite_orm::make_column("CENTER_NAME", &snapshot::SpaceTrackGP::CENTER_NAME),
-            sqlite_orm::make_column("CLASSIFICATION_TYPE", &snapshot::SpaceTrackGP::CLASSIFICATION_TYPE),
-            sqlite_orm::make_column("COMMENT", &snapshot::SpaceTrackGP::COMMENT),
-            sqlite_orm::make_column("COUNTRY_CODE", &snapshot::SpaceTrackGP::COUNTRY_CODE),
-            sqlite_orm::make_column("CREATION_DATE", &snapshot::SpaceTrackGP::CREATION_DATE),
-            sqlite_orm::make_column("DECAY_DATE", &snapshot::SpaceTrackGP::DECAY_DATE),
-            sqlite_orm::make_column("ECCENTRICITY", &snapshot::SpaceTrackGP::ECCENTRICITY),
-            sqlite_orm::make_column("ELEMENT_SET_NO", &snapshot::SpaceTrackGP::ELEMENT_SET_NO),
-            sqlite_orm::make_column("EPHEMERIS_TYPE", &snapshot::SpaceTrackGP::EPHEMERIS_TYPE),
-            sqlite_orm::make_column("EPOCH", &snapshot::SpaceTrackGP::EPOCH),
-            sqlite_orm::make_column("FILE", &snapshot::SpaceTrackGP::FILE),
-            sqlite_orm::make_column("GP_ID", &snapshot::SpaceTrackGP::GP_ID, sqlite_orm::unique()),
-            sqlite_orm::make_column("INCLINATION", &snapshot::SpaceTrackGP::INCLINATION),
-            sqlite_orm::make_column("LAUNCH_DATE", &snapshot::SpaceTrackGP::LAUNCH_DATE),
-            sqlite_orm::make_column("MEAN_ANOMALY", &snapshot::SpaceTrackGP::MEAN_ANOMALY),
-            sqlite_orm::make_column("MEAN_ELEMENT_THEORY", &snapshot::SpaceTrackGP::MEAN_ELEMENT_THEORY),
-            sqlite_orm::make_column("MEAN_MOTION", &snapshot::SpaceTrackGP::MEAN_MOTION),
-            sqlite_orm::make_column("MEAN_MOTION_DDOT", &snapshot::SpaceTrackGP::MEAN_MOTION_DDOT),
-            sqlite_orm::make_column("MEAN_MOTION_DOT", &snapshot::SpaceTrackGP::MEAN_MOTION_DOT),
-            sqlite_orm::make_column("NORAD_CAT_ID", &snapshot::SpaceTrackGP::NORAD_CAT_ID, sqlite_orm::unique()),
-            sqlite_orm::make_column("OBJECT_ID", &snapshot::SpaceTrackGP::OBJECT_ID),
-            sqlite_orm::make_column("OBJECT_NAME", &snapshot::SpaceTrackGP::OBJECT_NAME),
-            sqlite_orm::make_column("OBJECT_TYPE", &snapshot::SpaceTrackGP::OBJECT_TYPE),
-            sqlite_orm::make_column("ORIGINATOR", &snapshot::SpaceTrackGP::ORIGINATOR),
-            sqlite_orm::make_column("PERIAPSIS", &snapshot::SpaceTrackGP::PERIAPSIS),
-            sqlite_orm::make_column("PERIOD", &snapshot::SpaceTrackGP::PERIOD),
-            sqlite_orm::make_column("RA_OF_ASC_NODE", &snapshot::SpaceTrackGP::RA_OF_ASC_NODE),
-            sqlite_orm::make_column("RCS_SIZE", &snapshot::SpaceTrackGP::RCS_SIZE),
-            sqlite_orm::make_column("REF_FRAME", &snapshot::SpaceTrackGP::REF_FRAME),
-            sqlite_orm::make_column("REV_AT_EPOCH", &snapshot::SpaceTrackGP::REV_AT_EPOCH),
-            sqlite_orm::make_column("SEMIMAJOR_AXIS", &snapshot::SpaceTrackGP::SEMIMAJOR_AXIS),
-            sqlite_orm::make_column("SITE", &snapshot::SpaceTrackGP::SITE),
-            sqlite_orm::make_column("TIME_SYSTEM", &snapshot::SpaceTrackGP::TIME_SYSTEM),
-            sqlite_orm::make_column("TLE_LINE0", &snapshot::SpaceTrackGP::TLE_LINE0),
-            sqlite_orm::make_column("TLE_LINE1", &snapshot::SpaceTrackGP::TLE_LINE1),
-            sqlite_orm::make_column("TLE_LINE2", &snapshot::SpaceTrackGP::TLE_LINE2)
+            "GeneralPerturbations",
+            sqlite_orm::make_column("DB_ID", &astro::GeneralPerturbations::DB_ID, sqlite_orm::primary_key().autoincrement()),
+            sqlite_orm::make_column("APOAPSIS", &astro::GeneralPerturbations::APOAPSIS),
+            sqlite_orm::make_column("ARG_OF_PERICENTER", &astro::GeneralPerturbations::ARG_OF_PERICENTER),
+            sqlite_orm::make_column("BSTAR", &astro::GeneralPerturbations::BSTAR),
+            sqlite_orm::make_column("CCSDS_OMM_VERS", &astro::GeneralPerturbations::CCSDS_OMM_VERS),
+            sqlite_orm::make_column("CENTER_NAME", &astro::GeneralPerturbations::CENTER_NAME),
+            sqlite_orm::make_column("CLASSIFICATION_TYPE", &astro::GeneralPerturbations::CLASSIFICATION_TYPE),
+            sqlite_orm::make_column("COMMENT", &astro::GeneralPerturbations::COMMENT),
+            sqlite_orm::make_column("COUNTRY_CODE", &astro::GeneralPerturbations::COUNTRY_CODE),
+            sqlite_orm::make_column("CREATION_DATE", &astro::GeneralPerturbations::CREATION_DATE),
+            sqlite_orm::make_column("DECAY_DATE", &astro::GeneralPerturbations::DECAY_DATE),
+            sqlite_orm::make_column("ECCENTRICITY", &astro::GeneralPerturbations::ECCENTRICITY),
+            sqlite_orm::make_column("ELEMENT_SET_NO", &astro::GeneralPerturbations::ELEMENT_SET_NO),
+            sqlite_orm::make_column("EPHEMERIS_TYPE", &astro::GeneralPerturbations::EPHEMERIS_TYPE),
+            sqlite_orm::make_column("EPOCH", &astro::GeneralPerturbations::EPOCH),
+            sqlite_orm::make_column("FILE", &astro::GeneralPerturbations::FILE),
+            sqlite_orm::make_column("GP_ID", &astro::GeneralPerturbations::GP_ID, sqlite_orm::unique()),
+            sqlite_orm::make_column("INCLINATION", &astro::GeneralPerturbations::INCLINATION),
+            sqlite_orm::make_column("LAUNCH_DATE", &astro::GeneralPerturbations::LAUNCH_DATE),
+            sqlite_orm::make_column("MEAN_ANOMALY", &astro::GeneralPerturbations::MEAN_ANOMALY),
+            sqlite_orm::make_column("MEAN_ELEMENT_THEORY", &astro::GeneralPerturbations::MEAN_ELEMENT_THEORY),
+            sqlite_orm::make_column("MEAN_MOTION", &astro::GeneralPerturbations::MEAN_MOTION),
+            sqlite_orm::make_column("MEAN_MOTION_DDOT", &astro::GeneralPerturbations::MEAN_MOTION_DDOT),
+            sqlite_orm::make_column("MEAN_MOTION_DOT", &astro::GeneralPerturbations::MEAN_MOTION_DOT),
+            sqlite_orm::make_column("NORAD_CAT_ID", &astro::GeneralPerturbations::NORAD_CAT_ID, sqlite_orm::unique()),
+            sqlite_orm::make_column("OBJECT_ID", &astro::GeneralPerturbations::OBJECT_ID),
+            sqlite_orm::make_column("OBJECT_NAME", &astro::GeneralPerturbations::OBJECT_NAME),
+            sqlite_orm::make_column("OBJECT_TYPE", &astro::GeneralPerturbations::OBJECT_TYPE),
+            sqlite_orm::make_column("ORIGINATOR", &astro::GeneralPerturbations::ORIGINATOR),
+            sqlite_orm::make_column("PERIAPSIS", &astro::GeneralPerturbations::PERIAPSIS),
+            sqlite_orm::make_column("PERIOD", &astro::GeneralPerturbations::PERIOD),
+            sqlite_orm::make_column("RA_OF_ASC_NODE", &astro::GeneralPerturbations::RA_OF_ASC_NODE),
+            sqlite_orm::make_column("RCS_SIZE", &astro::GeneralPerturbations::RCS_SIZE),
+            sqlite_orm::make_column("REF_FRAME", &astro::GeneralPerturbations::REF_FRAME),
+            sqlite_orm::make_column("REV_AT_EPOCH", &astro::GeneralPerturbations::REV_AT_EPOCH),
+            sqlite_orm::make_column("SEMIMAJOR_AXIS", &astro::GeneralPerturbations::SEMIMAJOR_AXIS),
+            sqlite_orm::make_column("SITE", &astro::GeneralPerturbations::SITE),
+            sqlite_orm::make_column("TIME_SYSTEM", &astro::GeneralPerturbations::TIME_SYSTEM),
+            sqlite_orm::make_column("TLE_LINE0", &astro::GeneralPerturbations::TLE_LINE0),
+            sqlite_orm::make_column("TLE_LINE1", &astro::GeneralPerturbations::TLE_LINE1),
+            sqlite_orm::make_column("TLE_LINE2", &astro::GeneralPerturbations::TLE_LINE2)
         )
     );
 }
@@ -181,7 +181,7 @@ inline auto get_snapshot()
  * @brief Creates a DatabaseUtilityWrapper for the snapshot database.
  *
  * This function creates a DatabaseUtilityWrapper instance for the snapshot database,
- * allowing easy access to SpaceTrackGP data and other database operations.
+ * allowing easy access to GeneralPerturbations data and other database operations.
  *
  * @return A DatabaseUtilityWrapper instance wrapping the snapshot database.
  */

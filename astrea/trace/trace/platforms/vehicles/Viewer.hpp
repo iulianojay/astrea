@@ -19,7 +19,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
-#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
@@ -42,11 +42,11 @@ class Viewer : public astro::Spacecraft, public SensorPlatform {
     Viewer() = default;
 
     /**
-     * @brief Constructor for Viewer with SpaceTrackGP and AstrodynamicsSystem.
-     * @param gp The SpaceTrackGP object containing spacecraft data.
+     * @brief Constructor for Viewer with GeneralPerturbations and AstrodynamicsSystem.
+     * @param gp The GeneralPerturbations object containing spacecraft data.
      * @param system The AstrodynamicsSystem object for astrodynamics calculations.
      */
-    Viewer(const snapshot::SpaceTrackGP& gp, const astro::AstrodynamicsSystem& system) :
+    Viewer(const astro::GeneralPerturbations& gp, const astro::AstrodynamicsSystem& system) :
         Spacecraft(gp, system),
         AccessObject()
     {

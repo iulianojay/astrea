@@ -52,11 +52,12 @@ void access_test()
 
     // Query database
     auto snapshot = get_snapshot();
-    // auto geoGp    = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == 62455));
-    auto geoGp = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "%%ARCTURUS%")));
+    // auto geoGp    = snapshot.get_all<GeneralPerturbations>(where(c(&GeneralPerturbations::NORAD_CAT_ID) == 62455));
+    auto geoGp = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ARCTURUS%")));
     // auto everythingElseGps =
-    //     snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
-    auto everythingElseGps = snapshot.get_all<SpaceTrackGP>(where(like(&SpaceTrackGP::OBJECT_NAME, "%%STARLINK%")));
+    //     snapshot.get_all<GeneralPerturbations>(where(c(&GeneralPerturbations::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
+    auto everythingElseGps =
+        snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%STARLINK%")));
 
     // Build constellation
     Viewer geo(geoGp[0], sys);

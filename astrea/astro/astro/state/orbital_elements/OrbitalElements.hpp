@@ -17,6 +17,8 @@
 #include <stdexcept>
 #include <variant>
 
+#include <units/units.hpp>
+
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
@@ -24,7 +26,6 @@
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace astrea {
 namespace astro {

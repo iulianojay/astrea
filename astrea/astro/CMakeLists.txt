@@ -17,6 +17,9 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
+    
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
     ${ASTRO_BASE}/state/frames/FrameReference.cpp
 
@@ -61,6 +64,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/ElementSet.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
+    
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
     
     ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
     ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
@@ -146,13 +152,13 @@ include_directories(${ASTRO_DIRS})
 # Shared library
 add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared mp-units::mp-units)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units)
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
 
 # Static library
 add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static mp-units::mp-units)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_static utilities_static mp-units::mp-units)
 target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
 
 # Executable

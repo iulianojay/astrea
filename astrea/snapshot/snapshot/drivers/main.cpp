@@ -8,17 +8,18 @@
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 #include <astro/time/Date.hpp>
 
 #include <snapshot/database/Database.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
-#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 
 
 int main(int argc, char** argv)
 {
     // Build connection and connect
     using namespace astrea;
+    using namespace astro;
     using namespace snapshot;
     using namespace sqlite_orm;
 
@@ -54,10 +55,10 @@ int main(int argc, char** argv)
         }
 
         // Build object
-        const SpaceTrackGP gp(data);
+        const GeneralPerturbations gp(data);
 
         // Insert or update
-        auto all = snapshot.get_all<SpaceTrackGP>(where(c(&SpaceTrackGP::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
+        auto all = snapshot.get_all<GeneralPerturbations>(where(c(&GeneralPerturbations::NORAD_CAT_ID) == gp.NORAD_CAT_ID));
         if (all.size() == 0) { snapshot.insert(gp); }
         else {
             snapshot.update(gp);

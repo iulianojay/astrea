@@ -12,9 +12,11 @@
 
 #include <units/units.hpp>
 
+#include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/orbital_elements.hpp>
+#include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
 
 #include <astro/state/frames/Frame.hpp>
 #include <astro/state/frames/FrameReference.hpp>
@@ -61,6 +63,3 @@
 
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
-
-#include <astro/state/State.hpp>
-#include <astro/state/StateHistory.hpp>

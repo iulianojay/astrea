@@ -17,7 +17,6 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
-#include <snapshot/http-queries/spacetrack/SpaceTrackGP.hpp>
 #include <units/units.hpp>
 
 // astro
@@ -27,6 +26,7 @@
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/frames/FrameReference.hpp>
 #include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -60,12 +60,12 @@ class Spacecraft : virtual public FrameReference {
     }
 
     /**
-     * @brief Constructs a Spacecraft with a SpaceTrackGP object and an AstrodynamicsSystem.
+     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
      *
-     * @param gp The SpaceTrackGP object containing initial parameters.
+     * @param gp The GeneralPerturbations object containing initial parameters.
      * @param sys The AstrodynamicsSystem to which this spacecraft belongs.
      */
-    Spacecraft(const snapshot::SpaceTrackGP& gp, const AstrodynamicsSystem& sys);
+    Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys);
 
     /**
      * @brief Virtual destructor for Spacecraft.

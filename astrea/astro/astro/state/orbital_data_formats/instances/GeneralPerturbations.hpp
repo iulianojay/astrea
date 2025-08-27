@@ -1,7 +1,7 @@
 /**
- * @file SpaceTrackGP.hpp
+ * @file GeneralPerturbations.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief SpaceTrackGP data structure for the snapshot module
+ * @brief GeneralPerturbations data structure for the astro module
  * @version 0.1
  * @date 2025-08-03
  *
@@ -17,34 +17,34 @@
 #include <nlohmann/json.hpp>
 
 namespace astrea {
-namespace snapshot {
+namespace astro {
 
 /**
- * @brief SpaceTrackGP structure representing a Ground Position (GP) object from SpaceTrack.
+ * @brief GeneralPerturbations structure representing a Ground Position (GP) object from SpaceTrack.
  *
  * This structure is used to hold data retrieved from the SpaceTrack API, specifically for GP objects.
  * It includes various attributes such as APOAPSIS, ECCENTRICITY, and others, which are relevant to
  * satellite tracking and orbital mechanics.
  * * @note: definition can be found here https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html
  */
-struct SpaceTrackGP { // TODO: Right now, units are implied, but they should be used if possible. At least look into
+struct GeneralPerturbations { // TODO: Right now, units are implied, but they should be used if possible. At least look into
 
     /**
-     * @brief Default constructor for SpaceTrackGP.
+     * @brief Default constructor for GeneralPerturbations.
      */
-    SpaceTrackGP() = default;
+    GeneralPerturbations() = default;
 
     /**
-     * @brief Constructor that initializes SpaceTrackGP from a JSON object.
+     * @brief Constructor that initializes GeneralPerturbations from a JSON object.
      *
      * @param data The JSON object containing the GP data.
      */
-    SpaceTrackGP(const nlohmann::json& data);
+    GeneralPerturbations(const nlohmann::json& data);
 
     /**
-     * @brief Default destructor for SpaceTrackGP.
+     * @brief Default destructor for GeneralPerturbations.
      */
-    ~SpaceTrackGP() = default;
+    ~GeneralPerturbations() = default;
 
     int DB_ID;                                    //!< Database ID for the GP object
     std::optional<double> APOAPSIS;               //!< Apoapsis altitude in kilometers
@@ -105,15 +105,15 @@ std::ostream& operator<<(std::ostream& os, std::optional<T> const& opt)
 }
 
 /**
- * @brief Overloaded output stream operator for SpaceTrackGP.
+ * @brief Overloaded output stream operator for GeneralPerturbations.
  *
- * This function allows printing the contents of a SpaceTrackGP object to an output stream.
+ * This function allows printing the contents of a GeneralPerturbations object to an output stream.
  *
  * @param os The output stream to write to.
- * @param gp The SpaceTrackGP object to print.
+ * @param gp The GeneralPerturbations object to print.
  * @return The output stream after writing the GP data.
  */
-std::ostream& operator<<(std::ostream& os, const SpaceTrackGP& gp);
+std::ostream& operator<<(std::ostream& os, const GeneralPerturbations& gp);
 
-} // namespace snapshot
+} // namespace astro
 } // namespace astrea
