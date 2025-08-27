@@ -102,6 +102,26 @@ using SurfaceArea = mp_units::quantity<mp_units::pow<2>(detail::minor_distance_u
 using GravParam = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) / mp_units::pow<2>(detail::time_unit)>;
 
 /**
+ * @brief Definition for a mean motion quantity.
+ */
+using MeanMotion           = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
+
+/**
+ * @brief Definition for a mean motion 1st derivative quantity.
+ */
+using MeanMotion1stDer     = mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_units::non_si::day)>;
+
+/**
+ * @brief Definition for a mean motion 2nd derivative quantity.
+ */
+using MeanMotion2ndDer     = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
+
+/**
+ * @brief Definition for a ballistic coefficient quantity.
+ */
+using BallisticCoefficient = mp_units::quantity<mp_units::one / EarthRadii>;
+
+/**
  * @brief Definition for a density quantity.
  */
 using Density = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::minor_distance_unit))>;
