@@ -50,9 +50,9 @@ class Spherical {
      * Initializes the Spherical state vector with zero values.
      */
     Spherical(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _azimuth(scale * astrea::detail::angle_unit),
+        _range(scale * astrea::detail::distance_unit),
         _inclination(scale * astrea::detail::angle_unit),
-        _range(scale * astrea::detail::distance_unit)
+        _azimuth(scale * astrea::detail::angle_unit)
     {
     }
 
@@ -63,10 +63,10 @@ class Spherical {
      * @param inclination Inclination
      * @param range Range
      */
-    Spherical(const Angle& azimuth, const Angle& inclination, const Distance& range) :
-        _azimuth(azimuth),
+    Spherical(const Distance& range, const Angle& inclination, const Angle& azimuth) :
+        _range(range),
         _inclination(inclination),
-        _range(range)
+        _azimuth(azimuth)
     {
     }
 
@@ -269,10 +269,31 @@ class Spherical {
     Spherical interpolate(const Time& thisTime, const Time& otherTime, const Spherical& other, const Time& targetTime) const;
 
   private:
-    Angle _azimuth;     //!< Azimuth
-    Angle _inclination; //!< Inclination
     Distance _range;    //!< Range
+    Angle _inclination; //!< Inclination
+    Angle _azimuth;     //!< Azimuth
 };
+
+
+/**
+ * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ *
+ * @param rEcef The radius vector in ECEF coordinates.
+ * @return The range, inclination, and azimuth as a tuple.
+ */
+std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<EarthCenteredEarthFixed>& rEcef);
+
+
+/**
+ * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ *
+ * @param azimuth The azimuth in radians.
+ * @param inclination The inclination in radians.
+ * @param range The range in meters.
+ * @return The radius vector in ECEF coordinates.
+ */
+RadiusVector<EarthCenteredEarthFixed>
+    convert_spherical_to_earth_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth);
 
 } // namespace astro
 } // namespace astrea

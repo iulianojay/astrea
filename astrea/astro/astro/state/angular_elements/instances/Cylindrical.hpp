@@ -50,9 +50,9 @@ class Cylindrical {
      * Initializes the Cylindrical state vector with zero values.
      */
     Cylindrical(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _range(scale * astrea::detail::distance_unit),
         _azimuth(scale * astrea::detail::angle_unit),
-        _elevation(scale * astrea::detail::distance_unit),
-        _range(scale * astrea::detail::distance_unit)
+        _elevation(scale * astrea::detail::distance_unit)
     {
     }
 
@@ -63,10 +63,10 @@ class Cylindrical {
      * @param elevation Elevation
      * @param range Range
      */
-    Cylindrical(const Angle& azimuth, const Distance& elevation, const Distance& range) :
+    Cylindrical(const Distance& range, const Angle& azimuth, const Distance& elevation) :
+        _range(range),
         _azimuth(azimuth),
-        _elevation(elevation),
-        _range(range)
+        _elevation(elevation)
     {
     }
 
@@ -269,10 +269,31 @@ class Cylindrical {
     Cylindrical interpolate(const Time& thisTime, const Time& otherTime, const Cylindrical& other, const Time& targetTime) const;
 
   private:
+    Distance _range;     //!< Range
     Angle _azimuth;      //!< Azimuth
     Distance _elevation; //!< Elevation
-    Distance _range;     //!< Range
 };
+
+
+/**
+ * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ *
+ * @param rEcef The radius vector in ECEF coordinates.
+ * @return The range, azimuth, and elevation as a tuple.
+ */
+std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<EarthCenteredEarthFixed>& rEcef);
+
+
+/**
+ * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ *
+ * @param range The range in meters.
+ * @param azimuth The azimuth in radians.
+ * @param elevation The elevation in meters.
+ * @return The radius vector in ECEF coordinates.
+ */
+RadiusVector<EarthCenteredEarthFixed>
+    convert_cylindrical_to_earth_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation);
 
 } // namespace astro
 } // namespace astrea

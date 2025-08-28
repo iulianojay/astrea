@@ -133,14 +133,11 @@ AccelerationVector<ECI>
     static const Distance& polarR      = center->get_polar_radius();
 
     // Find lat and long
-    const RadiusVector<ECEF> rEcef = state.get_position().in_frame<ECEF>(date);
+    const RadiusVector<ECEF> rEcef             = state.get_position().in_frame<ECEF>(date);
+    const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geodetic(rEcef, equitorialR, polarR);
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
-
-    const Geodetic lla(rEcef, sys.get_center().get());
-    const Angle& latitude  = lla.get_latitude();
-    const Angle& longitude = lla.get_longitude();
 
     const Unitless sinLat = sin(latitude);
     const Unitless tanLat = tan(latitude);

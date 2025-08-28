@@ -22,10 +22,11 @@ AccelerationVector<ECI>
     static const CelestialBodyUniquePtr& center = sys.get_center();
 
     // Extract
-    const Distance& x = state.get_x();
-    const Distance& y = state.get_y();
-    const Distance& z = state.get_z();
-    const Distance R  = sqrt(x * x + y * y + z * z);
+    const Distance& x         = state.get_x();
+    const Distance& y         = state.get_y();
+    const Distance& z         = state.get_z();
+    const RadiusVector<ECI> r = state.get_position();
+    const Distance R          = sqrt(x * x + y * y + z * z);
 
     // Central body properties
     static const Distance& equitorialR = center->get_equitorial_radius();
@@ -36,21 +37,11 @@ AccelerationVector<ECI>
     const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_elements().in<Cartesian>(sys).get_position();
 
     // Radius from central body to sun
-    const RadiusVector<ECI> radiusCenterToSun{ // flip vector direction
-                                               -radiusSunToCenter[0],
-                                               -radiusSunToCenter[1],
-                                               -radiusSunToCenter[2]
-    };
-    const Distance radialMagnitudeCenterToSun = sqrt(
-        radiusCenterToSun[0] * radiusCenterToSun[0] + radiusCenterToSun[1] * radiusCenterToSun[1] +
-        radiusCenterToSun[2] * radiusCenterToSun[2]
-    );
+    const RadiusVector<ECI> radiusCenterToSun = -radiusSunToCenter;
+    const Distance radialMagnitudeCenterToSun = radiusCenterToSun.norm();
 
-    const RadiusVector<ECI> radiusVehicleToSun{ radiusCenterToSun[0] - x, radiusCenterToSun[1] - y, radiusCenterToSun[2] - z };
-    const Distance radialMagnitudeVehicleToSun = sqrt(
-        radiusVehicleToSun[0] * radiusVehicleToSun[0] + radiusVehicleToSun[1] * radiusVehicleToSun[1] +
-        radiusVehicleToSun[2] * radiusVehicleToSun[2]
-    );
+    const RadiusVector<ECI> radiusVehicleToSun = radiusCenterToSun - r;
+    const Distance radialMagnitudeVehicleToSun = radiusVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU
     static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-6 * N / pow<2>(m);
@@ -74,13 +65,11 @@ AccelerationVector<ECI>
             static const Distance diamSun = 696000.0 * km;
             const Distance Xu             = equitorialR * radialMagnitudeCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<ECI> rP{ -Xu * radiusCenterToSun[0] / radialMagnitudeCenterToSun,
-                                        -Xu * radiusCenterToSun[1] / radialMagnitudeCenterToSun,
-                                        -Xu * radiusCenterToSun[2] / radialMagnitudeCenterToSun };
-            const Distance normRP = sqrt(rP[0] * rP[0] + rP[1] * rP[1] + rP[2] * rP[2]);
+            const RadiusVector<ECI> rP = -Xu * radiusCenterToSun / radialMagnitudeCenterToSun;
+            const Distance normRP      = rP.norm();
 
-            const RadiusVector<ECI> rPs{ x - rP[0], y - rP[1], z - rP[2] };
-            const Distance normRPs = sqrt(rPs[0] * rPs[0] + rPs[1] * rPs[1] + rPs[2] * rPs[2]);
+            const RadiusVector<ECI> rPs = r - rP;
+            const Distance normRPs      = rPs.norm();
             const Angle alphaps = abs(angular::asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
 
             if (alphaps < angular::asin(equitorialR / Xu)) { // Umbra
@@ -99,9 +88,9 @@ AccelerationVector<ECI>
     const quantity accelRelativeMagnitude    = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
                                             radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
 
-    const AccelerationVector<ECI> accelSRP{ accelRelativeMagnitude * radiusVehicleToSun[0],
-                                            accelRelativeMagnitude * radiusVehicleToSun[1],
-                                            accelRelativeMagnitude * radiusVehicleToSun[2] };
+    const AccelerationVector<ECI> accelSRP = { accelRelativeMagnitude * radiusVehicleToSun[0],
+                                               accelRelativeMagnitude * radiusVehicleToSun[1],
+                                               accelRelativeMagnitude * radiusVehicleToSun[2] };
 
     return accelSRP;
 }

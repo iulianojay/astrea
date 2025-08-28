@@ -33,31 +33,6 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
- *
- * @param rEcef The radius vector in ECEF coordinates.
- * @param rEquitorial The equatorial radius of the Earth.
- * @param rPolar The polar radius of the Earth.
- * @param lat The latitude in radians (output).
- * @param lon The longitude in radians (output).
- * @param alt The altitude in meters (output).
- */
-void ecef_to_lla(const RadiusVector<EarthCenteredEarthFixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar, Angle& lat, Angle& lon, Distance& alt);
-
-/**
- * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
- *
- * @param lat The latitude in radians.
- * @param lon The longitude in radians.
- * @param alt The altitude in meters.
- * @param rEquitorial The equatorial radius of the Earth.
- * @param rPolar The polar radius of the Earth.
- * @return The radius vector in ECEF coordinates.
- */
-RadiusVector<EarthCenteredEarthFixed>
-    lla_to_ecef(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
-
-/**
  * @brief Convert the mean anomaly to the true anomaly. Accurate to O(e^4).
  *
  * @param ma The mean anomaly.

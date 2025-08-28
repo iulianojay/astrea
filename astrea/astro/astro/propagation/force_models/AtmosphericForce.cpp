@@ -86,11 +86,8 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
 
     // Find altitude
     const RadiusVector<ECEF> rEcef = state.get_position().in_frame<ECEF>(date);
-
-    const Geodetic lla(rEcef, center.get());
-    const Angle& latitude    = lla.get_latitude();
-    const Angle& longitude   = lla.get_longitude();
-    const Distance& altitude = lla.get_altitude();
+    const auto [latitude, longitude, altitude] =
+        convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
 
     Unitless altitudeValue = altitude / km;
 

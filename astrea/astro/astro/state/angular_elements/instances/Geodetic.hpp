@@ -274,5 +274,31 @@ class Geodetic {
     Distance _altitude; //!< Altitude
 };
 
+
+/**
+ * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ *
+ * @param rEcef The radius vector in ECEF coordinates.
+ * @param rEquitorial The equatorial radius of the Earth.
+ * @param rPolar The polar radius of the Earth.
+ * @return The latitude, longitude, and altitude as a tuple.
+ */
+std::tuple<Angle, Angle, Distance>
+    convert_earth_fixed_to_geodetic(const RadiusVector<EarthCenteredEarthFixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
+
+
+/**
+ * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ *
+ * @param lat The latitude in radians.
+ * @param lon The longitude in radians.
+ * @param alt The altitude in meters.
+ * @param rEquitorial The equatorial radius of the Earth.
+ * @param rPolar The polar radius of the Earth.
+ * @return The radius vector in ECEF coordinates.
+ */
+RadiusVector<EarthCenteredEarthFixed>
+    convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
+
 } // namespace astro
 } // namespace astrea
