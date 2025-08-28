@@ -51,10 +51,10 @@ StateHistory
 
     // Need to check input elements match expected for EOMS
     //
-    const auto& sys               = eom.get_system();
-    const std::size_t expectedSet = eom.get_expected_set_id();
-    if (state0.index() != expectedSet) { // ooh boy we're fragile
-        switch (expectedSet) {
+    const auto& sys                 = eom.get_system();
+    const std::size_t expectedSetId = eom.get_expected_set_id();
+    if (state0.index() != expectedSetId) { // ooh boy we're fragile
+        switch (expectedSetId) {
             case (OrbitalElements::get_set_id<Cartesian>()): {
                 state0.convert<Cartesian>(sys);
                 break;
@@ -72,6 +72,8 @@ StateHistory
         vehicle.update_state({ state0, epoch, sys });
     }
     OrbitalElements state = state0;
+    // OrbitalElements state = state0.convert<expectedSetId>(sys); // Can't make get expected set id static :(
+    // TODO: Should this function be templated? Should EOM have a different architecture? Ugh.
 
     // Ensure count restarts
     functionEvaluations = 0;

@@ -26,7 +26,6 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/angular_elements/AngularElementSet.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -258,13 +257,6 @@ class Geodetic {
     const Distance& get_altitude() const { return _altitude; }
 
     /**
-     * @brief Returns the set ID of the Geodetic element set.
-     *
-     * @return EnumType The set ID of the Geodetic element set.
-     */
-    constexpr EnumType get_set_id() const { return _setId; }
-
-    /**
      * @brief Interpolates between two Geodetic states at a given time.
      *
      * @param thisTime Time of the current state
@@ -277,8 +269,6 @@ class Geodetic {
     Geodetic interpolate(const Time& thisTime, const Time& otherTime, const Geodetic& other, const Time& targetTime) const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(AngularElementSet::GEODETIC); // !< Set ID for the Geodetic element set
-
     Angle _latitude;    //!< Geodetic Latitude
     Angle _longitude;   //!< Longitude
     Distance _altitude; //!< Altitude

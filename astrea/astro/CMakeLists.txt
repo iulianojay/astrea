@@ -93,7 +93,6 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
-    ${ASTRO_BASE}/state/angular_elements/AngularElementSet.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
 
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp

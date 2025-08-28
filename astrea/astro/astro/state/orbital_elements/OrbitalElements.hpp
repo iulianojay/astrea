@@ -225,6 +225,33 @@ class OrbitalElements {
     }
 
     /**
+     * @brief Converts the current orbital elements to a specific type.
+     *
+     * @tparam index The index of the orbital element type to convert to.
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return OrbitalElements& Reference to the current orbital elements after conversion.
+     */
+    template <std::size_t index>
+    OrbitalElements& convert(const AstrodynamicsSystem& sys)
+    {
+        _elements = in<std::variant_alternative_t<index, ElementVariant>()>(sys);
+        return *this;
+    }
+
+    /**
+     * @brief Converts the current orbital elements to a specific type.
+     *
+     * @tparam index The index of the orbital element type to convert to.
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return OrbitalElements Orbital elements after conversion.
+     */
+    template <std::size_t index>
+    OrbitalElements convert(const AstrodynamicsSystem& sys) const
+    {
+        return in<std::variant_alternative_t<index, ElementVariant>()>(sys);
+    }
+
+    /**
      * @brief Converts the current orbital elements to a specified type.
      *
      * @param sys The astrodynamics system to use for the conversion.
