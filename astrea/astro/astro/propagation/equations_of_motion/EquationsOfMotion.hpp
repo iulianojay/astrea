@@ -68,9 +68,9 @@ class EquationsOfMotion {
     /**
      * @brief Returns the expected set of orbital elements for this method.
      *
-     * @return const ElementSet& The expected set of orbital elements.
+     * @return const OrbitalElementSet& The expected set of orbital elements.
      */
-    virtual const ElementSet& get_expected_set() const = 0;
+    virtual const OrbitalElementSet& get_expected_set() const = 0;
 
     /**
      * @brief Returns the astrodynamics system associated with this equations of motion.

@@ -25,7 +25,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/frames/types/RotatingFrame.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/types/typedefs.hpp>

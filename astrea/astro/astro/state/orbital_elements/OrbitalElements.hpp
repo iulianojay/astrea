@@ -103,16 +103,6 @@ concept HasToVector = requires(const T elements) {
 };
 
 /**
- * @brief Concept to check if a type has a size method returning std::size_t.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasSize = requires(const T elements) {
-    { elements.size() } -> std::same_as<std::size_t>;
-};
-
-/**
  * @brief Concept to check if a type has mathematical operators defined.
  *
  * @tparam T The type to check.
@@ -158,7 +148,6 @@ concept IsOrbitalElements = requires(T) {
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
     requires HasGetSetId<T>;
     requires HasToVector<T>;
-    requires HasSize<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
 };

@@ -40,7 +40,7 @@ class ConversionTest : public testing::Test {
     {
         ElementArray elements{ semimajor_dist(rng), ecc_dist(rng), inc_dist(rng),
                                raan_dist(rng),      w_dist(rng),   theta_dist(rng) };
-        return OrbitalElements(elements, ElementSet::KEPLERIAN);
+        return OrbitalElements(elements, OrbitalElementSet::KEPLERIAN);
     }
 
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second)
@@ -75,10 +75,10 @@ TEST_F(ConversionTest, CARTESIAN_KEPLERIAN_CYCLE)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert(ElementSet::CARTESIAN, &sys);
+            elements.convert(OrbitalElementSet::CARTESIAN, &sys);
 
             // Convert back
-            elements.convert(ElementSet::KEPLERIAN, &sys);
+            elements.convert(OrbitalElementSet::KEPLERIAN, &sys);
 
             // Compare
             assert_nearly_equal(elements, originalElements);
@@ -91,12 +91,12 @@ TEST_F(ConversionTest, KEPLERIAN_TO_CARTESIAN)
 {
 
     const double semimajor = 10000.0;
-    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
-    elements.convert(ElementSet::CARTESIAN, &sys);
+    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, OrbitalElementSet::KEPLERIAN);
+    elements.convert(OrbitalElementSet::CARTESIAN, &sys);
 
     const double mu = sys.get_center().mu();
     const double V  = std::sqrt(mu / elements[0]);
-    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
+    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElementSet::CARTESIAN);
 
     assert_nearly_equal(elements, expectedElements);
 }
@@ -108,10 +108,10 @@ TEST_F(ConversionTest, CARTESIAN_TO_KEPLERIAN)
     const double mu        = sys.get_center().mu();
     const double V         = std::sqrt(mu / semimajor);
 
-    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, ElementSet::CARTESIAN);
-    elements.convert(ElementSet::KEPLERIAN, &sys);
+    OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElementSet::CARTESIAN);
+    elements.convert(OrbitalElementSet::KEPLERIAN, &sys);
 
-    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, ElementSet::KEPLERIAN);
+    OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, OrbitalElementSet::KEPLERIAN);
 
     assert_nearly_equal(elements, expectedElements);
 }

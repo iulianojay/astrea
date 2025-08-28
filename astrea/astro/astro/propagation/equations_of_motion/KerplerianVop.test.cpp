@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(KeplerianVopTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set(), ElementSet::KEPLERIAN); }
+TEST_F(KeplerianVopTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set(), OrbitalElementSet::KEPLERIAN); }
 
 TEST_F(KeplerianVopTest, Derivative)
 {

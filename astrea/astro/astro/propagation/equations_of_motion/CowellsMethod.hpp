@@ -21,7 +21,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -62,13 +62,13 @@ class CowellsMethod : public EquationsOfMotion {
     /**
      * @brief Returns the expected set of orbital elements for this method.
      *
-     * @return const ElementSet& The expected set of orbital elements.
+     * @return const OrbitalElementSet& The expected set of orbital elements.
      */
-    const ElementSet& get_expected_set() const override { return expectedSet; };
+    const OrbitalElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
-    ElementSet expectedSet = ElementSet::CARTESIAN; //!< Expected set of orbital elements for Cowell's method.
-    const ForceModel* forces;                       //!< The force model used in the equations of motion.
+    OrbitalElementSet expectedSet = OrbitalElementSet::CARTESIAN; //!< Expected set of orbital elements for Cowell's method.
+    const ForceModel* forces;                                     //!< The force model used in the equations of motion.
 
     GravParam mu; //!< Gravitational parameter of the central body.
 };

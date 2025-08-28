@@ -22,7 +22,7 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
 
@@ -321,13 +321,6 @@ class Keplerian {
     const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
     /**
-     * @brief Returns the size of the Keplerian state vector.
-     *
-     * @return std::size_t The size of the Keplerian state vector, which is always 6.
-     */
-    std::size_t size() const { return 6; }
-
-    /**
      * @brief Converts the Keplerian state vector to a vector of unitless values.
      *
      * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
@@ -358,7 +351,7 @@ class Keplerian {
     std::vector<Unitless> to_vector() const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(ElementSet::KEPLERIAN); //!< Set ID for the Keplerian element set
+    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::KEPLERIAN); //!< Set ID for the Keplerian element set
 
     Distance _semimajor;    //!< Semimajor axis of the orbit
     Unitless _eccentricity; //!< Eccentricity of the orbit

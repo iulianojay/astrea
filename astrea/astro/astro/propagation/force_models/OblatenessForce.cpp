@@ -13,6 +13,7 @@
 
 #include <math/trig.hpp>
 
+#include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -119,7 +120,6 @@ void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, con
 AccelerationVector<ECI>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-
     // Extract
     const Distance& x = state.get_x();
     const Distance& y = state.get_y();
@@ -138,9 +138,9 @@ AccelerationVector<ECI>
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
 
-    Angle latitude, longitude;
-    Distance altitude;
-    ecef_to_lla(rEcef, equitorialR, polarR, latitude, longitude, altitude);
+    const Geodetic lla(rEcef, sys.get_center().get());
+    const Angle& latitude  = lla.get_latitude();
+    const Angle& longitude = lla.get_longitude();
 
     const Unitless sinLat = sin(latitude);
     const Unitless tanLat = tan(latitude);

@@ -12,6 +12,7 @@
 
 #include <vector>
 
+#include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/systems/CelestialBody.hpp>
 
 #include <trace/platforms/sensors/SensorPlatform.hpp>
@@ -45,9 +46,7 @@ class GroundPoint : virtual public AccessObject {
     ) :
         AccessObject(),
         _parent(parent),
-        _latitude(latitutde),
-        _longitude(longitude),
-        _altitude(altitude)
+        _lla(latitutde, longitude, altitude)
     {
         generate_id_hash();
     }
@@ -62,21 +61,29 @@ class GroundPoint : virtual public AccessObject {
      *
      * @return Angle The latitude of the ground point.
      */
-    Angle get_latitude() const { return _latitude; }
+    const Angle& get_latitude() const { return _lla.get_latitude(); }
 
     /**
      * @brief Gets the longitude of the ground point.
      *
      * @return Angle The longitude of the ground point.
      */
-    Angle get_longitude() const { return _longitude; }
+    const Angle& get_longitude() const { return _lla.get_longitude(); }
 
     /**
      * @brief Gets the altitude of the ground point above sea level.
      *
      * @return Distance The altitude of the ground point.
      */
-    Distance get_altitude() const { return _altitude; }
+    const Distance& get_altitude() const { return _lla.get_altitude(); }
+
+    /**
+     * @brief Gets the parent celestial body of the ground point.
+     *
+     * @return const CelestialBody* Pointer to the parent celestial body.
+     */
+
+    const astro::CelestialBody* get_parent() const { return _parent; }
 
     /**
      * @brief Get the unique identifier for the ground station.
@@ -88,9 +95,7 @@ class GroundPoint : virtual public AccessObject {
   protected:
     std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
-    Angle _latitude;                     //!< Latitude of the ground point
-    Angle _longitude;                    //!< Longitude of the ground point
-    Distance _altitude;                  //!< Altitude of the ground point above sea level
+    astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
 
     /**
      * @brief Generates a unique identifier for the ground station based on its properties.
@@ -98,7 +103,8 @@ class GroundPoint : virtual public AccessObject {
      */
     void generate_id_hash()
     {
-        _id = std::hash<Angle>()(_latitude) ^ std::hash<Angle>()(_longitude) ^ std::hash<Distance>()(_altitude);
+        _id = std::hash<Angle>()(_lla.get_latitude()) ^ std::hash<Angle>()(_lla.get_longitude()) ^
+              std::hash<Distance>()(_lla.get_altitude());
     }
 };
 

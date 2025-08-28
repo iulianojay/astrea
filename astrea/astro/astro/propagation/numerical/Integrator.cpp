@@ -48,19 +48,19 @@ StateHistory
     OrbitalElements state0 = vehicle.get_state().get_elements();
 
     // Need to check input elements match expected for EOMS
-    const auto& sys               = eom.get_system();
-    const ElementSet& expectedSet = eom.get_expected_set();
+    const auto& sys                      = eom.get_system();
+    const OrbitalElementSet& expectedSet = eom.get_expected_set();
     if (state0.index() != std::to_underlying(expectedSet)) { // ooh boy we're fragile
         switch (expectedSet) {
-            case (ElementSet::CARTESIAN): {
+            case (OrbitalElementSet::CARTESIAN): {
                 state0.convert<Cartesian>(sys);
                 break;
             }
-            case (ElementSet::KEPLERIAN): {
+            case (OrbitalElementSet::KEPLERIAN): {
                 state0.convert<Keplerian>(sys);
                 break;
             }
-            case (ElementSet::EQUINOCTIAL): {
+            case (OrbitalElementSet::EQUINOCTIAL): {
                 state0.convert<Equinoctial>(sys);
                 break;
             }

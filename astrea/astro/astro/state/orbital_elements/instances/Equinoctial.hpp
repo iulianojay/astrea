@@ -22,7 +22,7 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
 
@@ -318,13 +318,6 @@ class Equinoctial {
     const Angle& get_true_longitude() const { return _trueLongitude; }
 
     /**
-     * @brief Returns the size of the Equinoctial state vector.
-     *
-     * @return std::size_t The size of the Equinoctial state vector, which is always 6.
-     */
-    std::size_t size() const { return 6; }
-
-    /**
      * @brief Converts the Equinoctial state vector to a vector of unitless values.
      *
      * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
@@ -345,7 +338,7 @@ class Equinoctial {
     std::vector<Unitless> to_vector() const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(ElementSet::EQUINOCTIAL); //!< Set ID for the Equinoctial element set
+    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::EQUINOCTIAL); //!< Set ID for the Equinoctial element set
 
     Distance _semilatus;  //!< Semilatus rectum of the orbit
     Unitless _f;          //!< First component of the eccentricity vector

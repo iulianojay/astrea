@@ -8,6 +8,7 @@
 #include <mp-units/systems/si/math.h>
 
 // astro
+#include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -86,9 +87,10 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     // Find altitude
     const RadiusVector<ECEF> rEcef = state.get_position().in_frame<ECEF>(date);
 
-    Angle lat, lon;
-    Distance altitude;
-    ecef_to_lla(rEcef, equitorialR, polarR, lat, lon, altitude);
+    const Geodetic lla(rEcef, center.get());
+    const Angle& latitude    = lla.get_latitude();
+    const Angle& longitude   = lla.get_longitude();
+    const Distance& altitude = lla.get_altitude();
 
     Unitless altitudeValue = altitude / km;
 

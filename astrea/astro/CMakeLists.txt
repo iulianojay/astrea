@@ -13,16 +13,6 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
-    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
-    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
-    
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
-
-    ${ASTRO_BASE}/state/frames/FrameReference.cpp
-
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
 
@@ -44,6 +34,18 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
 
+    ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
+
+    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
+    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
+    
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
+
+    ${ASTRO_BASE}/state/frames/FrameReference.cpp
+
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
@@ -58,24 +60,6 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-
-    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
-    ${ASTRO_BASE}/state/orbital_elements/ElementSet.hpp
-    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
-    
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
-    
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
-    ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/state/frames/types/RotatingFrame.hpp
-    ${ASTRO_BASE}/state/frames/Frame.hpp
-    ${ASTRO_BASE}/state/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp
@@ -106,6 +90,29 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+
+    ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
+    ${ASTRO_BASE}/state/angular_elements/AngularElementSet.hpp
+    ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
+
+    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
+    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/OrbitalElementSet.hpp
+    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
+    
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
+    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
+    
+    ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
+    ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/state/frames/types/RotatingFrame.hpp
+    ${ASTRO_BASE}/state/frames/Frame.hpp
+    ${ASTRO_BASE}/state/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/Barycenter.hpp

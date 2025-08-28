@@ -31,7 +31,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/frames/frames.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -356,13 +356,6 @@ class Cartesian {
     const Velocity& get_vz() const { return _v.get_z(); }
 
     /**
-     * @brief Returns the size of the Cartesian state vector.
-     *
-     * @return std::size_t The size of the Cartesian state vector, which is always 6.
-     */
-    std::size_t size() const { return 6; }
-
-    /**
      * @brief Converts the Cartesian state vector to a vector of unitless values.
      *
      * @return std::vector<Unitless> Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
@@ -389,7 +382,7 @@ class Cartesian {
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(ElementSet::CARTESIAN); // !< Set ID for the Cartesian element set
+    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::CARTESIAN); // !< Set ID for the Cartesian element set
 
     RadiusVector<ECI> _r;   //!< Position vector
     VelocityVector<ECI> _v; //!< Velocity vector

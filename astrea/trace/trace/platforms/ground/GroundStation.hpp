@@ -55,7 +55,6 @@ class GroundStation : public GroundPoint, public SensorPlatform {
     ) :
         GroundPoint(parent, latitude, longitude, altitude),
         SensorPlatform(),
-        _parent(parent),
         _name(name)
     {
         for (const auto& sensor : sensors) {
@@ -84,10 +83,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      */
     astro::RadiusVector<astro::ECI> get_inertial_position(const astro::Date& date) const
     {
-        using namespace astro;
-        const RadiusVector<ECEF> rEcef =
-            lla_to_ecef(_latitude, _longitude, _altitude, _parent->get_equitorial_radius(), _parent->get_polar_radius());
-        return rEcef.in_frame<ECI>(date);
+        return _lla.get_position(date, _parent);
     }
 
     /**
@@ -102,8 +98,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
         using mp_units::isq_angle::cotes_angle;
         using mp_units::si::unit_symbols::km;
 
-        const RadiusVector<ECEF> rEcef =
-            lla_to_ecef(_latitude, _longitude, _altitude, _parent->get_equitorial_radius(), _parent->get_polar_radius());
+        const RadiusVector<ECEF> rEcef = _lla.get_position(_parent);
 
         const RadiusVector<ECEF> rEcefPlanar = { rEcef.get_x(), rEcef.get_y(), 0.0 * km };
         const Distance rEcefPlanarNorm       = rEcefPlanar.norm();
@@ -115,8 +110,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
     }
 
   private:
-    const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
-    std::string _name;                   //!< Name of the ground station.
+    std::string _name; //!< Name of the ground station.
 };
 
 } // namespace trace

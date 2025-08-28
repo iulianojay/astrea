@@ -16,7 +16,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/ElementSet.hpp>
+#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
@@ -58,16 +58,16 @@ class J2MeanVop : public EquationsOfMotion {
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.
      *
-     * @return const ElementSet& The expected set of orbital elements.
+     * @return const OrbitalElementSet& The expected set of orbital elements.
      */
-    const ElementSet& get_expected_set() const override { return expectedSet; };
+    const OrbitalElementSet& get_expected_set() const override { return expectedSet; };
 
   private:
     mutable bool checkflag = false;                                        //!< Flag to check for degenerate conditions.
     Unitless eccTol        = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
     Angle incTol           = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.
 
-    ElementSet expectedSet = ElementSet::KEPLERIAN; //!< Expected set of orbital elements for this method.
+    OrbitalElementSet expectedSet = OrbitalElementSet::KEPLERIAN; //!< Expected set of orbital elements for this method.
 
     GravParam mu;         //!< Gravitational parameter of the central body.
     Unitless J2;          //!< J2 coefficient of the central body.
