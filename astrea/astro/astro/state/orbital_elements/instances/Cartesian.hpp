@@ -31,7 +31,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/frames/frames.hpp>
-#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -363,13 +362,6 @@ class Cartesian {
     std::vector<Unitless> to_vector() const;
 
     /**
-     * @brief Returns the set ID of the Cartesian element set.
-     *
-     * @return EnumType The set ID of the Cartesian element set.
-     */
-    constexpr EnumType get_set_id() const { return _setId; }
-
-    /**
      * @brief Interpolates between two Cartesian states at a given time.
      *
      * @param thisTime Time of the current state
@@ -382,8 +374,6 @@ class Cartesian {
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::CARTESIAN); // !< Set ID for the Cartesian element set
-
     RadiusVector<ECI> _r;   //!< Position vector
     VelocityVector<ECI> _v; //!< Velocity vector
 };

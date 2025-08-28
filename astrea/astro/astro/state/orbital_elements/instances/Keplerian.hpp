@@ -22,7 +22,6 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
 
@@ -321,14 +320,6 @@ class Keplerian {
     const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
     /**
-     * @brief Converts the Keplerian state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
-     * argument of perigee, and true anomaly components of the Keplerian state vector.
-     */
-    constexpr EnumType get_set_id() const { return _setId; }
-
-    /**
      * @brief Interpolates between two Keplerian state vectors.
      *
      * This method performs linear interpolation between two Keplerian state vectors at a specified target time.
@@ -351,8 +342,6 @@ class Keplerian {
     std::vector<Unitless> to_vector() const;
 
   private:
-    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::KEPLERIAN); //!< Set ID for the Keplerian element set
-
     Distance _semimajor;    //!< Semimajor axis of the orbit
     Unitless _eccentricity; //!< Eccentricity of the orbit
     Angle _inclination;     //!< Inclination of the orbit

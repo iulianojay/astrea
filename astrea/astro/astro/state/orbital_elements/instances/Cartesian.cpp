@@ -4,6 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>

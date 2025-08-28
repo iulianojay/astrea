@@ -26,19 +26,10 @@
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
+#include <astro/types/variant_util.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Concept to check if a type has a method to get the set ID.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasGetSetId = requires(const T elements) {
-    { elements.get_set_id() } -> std::same_as<EnumType>;
-};
 
 /**
  * @brief Concept to check if a type can be constructed from a set of orbital elements.
@@ -146,7 +137,6 @@ concept IsOrbitalElements = requires(T) {
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
     requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
-    requires HasGetSetId<T>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
@@ -368,6 +358,18 @@ class OrbitalElements {
      * @return std::size_t The index of the current orbital elements in the variant.
      */
     constexpr std::size_t index() const { return _elements.index(); }
+
+    /**
+     * @brief Returns the set ID for a specific type of orbital elements.
+     *
+     * @tparam T The type of orbital elements.
+     * @return std::size_t The set ID for the specified type.
+     */
+    template <typename T>
+    static constexpr std::size_t get_set_id()
+    {
+        return get_variant_index<ElementVariant, T, 0>();
+    }
 
   private:
     ElementVariant _elements; //!< Variant holding the orbital elements (Cartesian, Keplerian, Equinoctial)

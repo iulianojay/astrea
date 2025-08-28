@@ -99,7 +99,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
-    ${ASTRO_BASE}/state/orbital_elements/OrbitalElementSet.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
     
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
@@ -125,6 +124,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp
+    ${ASTRO_BASE}/types/variant_util.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
 

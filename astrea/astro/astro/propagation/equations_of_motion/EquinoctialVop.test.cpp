@@ -54,7 +54,10 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(EquinoctialTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set(), OrbitalElementSet::EQUINOCTIAL); }
+TEST_F(EquinoctialTest, GetExpectedSet)
+{
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Equinoctial>());
+}
 
 TEST_F(EquinoctialTest, Derivative)
 {

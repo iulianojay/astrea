@@ -2,6 +2,8 @@
 
 #include <mp-units/math.h>
 
+#include <astro/state/orbital_elements/orbital_elements.hpp>
+
 using namespace mp_units;
 using mp_units::si::unit_symbols::s;
 
@@ -48,19 +50,20 @@ StateHistory
     OrbitalElements state0 = vehicle.get_state().get_elements();
 
     // Need to check input elements match expected for EOMS
-    const auto& sys                      = eom.get_system();
-    const OrbitalElementSet& expectedSet = eom.get_expected_set();
-    if (state0.index() != std::to_underlying(expectedSet)) { // ooh boy we're fragile
+    //
+    const auto& sys               = eom.get_system();
+    const std::size_t expectedSet = eom.get_expected_set_id();
+    if (state0.index() != expectedSet) { // ooh boy we're fragile
         switch (expectedSet) {
-            case (OrbitalElementSet::CARTESIAN): {
+            case (OrbitalElements::get_set_id<Cartesian>()): {
                 state0.convert<Cartesian>(sys);
                 break;
             }
-            case (OrbitalElementSet::KEPLERIAN): {
+            case (OrbitalElements::get_set_id<Keplerian>()): {
                 state0.convert<Keplerian>(sys);
                 break;
             }
-            case (OrbitalElementSet::EQUINOCTIAL): {
+            case (OrbitalElements::get_set_id<Equinoctial>()): {
                 state0.convert<Equinoctial>(sys);
                 break;
             }

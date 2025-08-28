@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(TwoBodyTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set(), OrbitalElementSet::CARTESIAN); }
+TEST_F(TwoBodyTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>()); }
 
 TEST_F(TwoBodyTest, Derivative)
 {

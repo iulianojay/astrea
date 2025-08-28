@@ -63,6 +63,13 @@ tests:
 	
 .PHONY: run_tests
 run_tests:
+	cd $(build_path)/astrea/math/tests && ctest --output-on-failure
+	cd $(build_path)/astrea/utilities/tests && ctest --output-on-failure
+	cd $(build_path)/astrea/astro/tests && ctest --output-on-failure
+	cd $(build_path)/astrea/trace/tests && ctest --output-on-failure
+
+.PHONY: rerun_tests
+rerun_tests:
 	cd $(build_path)/astrea/math/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/utilities/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/astro/tests && ctest --rerun-failed --output-on-failure

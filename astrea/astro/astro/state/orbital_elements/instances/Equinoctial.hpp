@@ -22,7 +22,6 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
 
@@ -322,24 +321,22 @@ class Equinoctial {
      *
      * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
      */
-    constexpr EnumType get_set_id() const { return _setId; }
+    std::vector<Unitless> to_vector() const;
 
     /**
-     * @brief Converts the Equinoctial state vector to a vector of unitless values.
+     * @brief Interpolates the Equinoctial state vector between two time instances.
      *
-     * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
+     * @param thisTime Time of the current state
+     * @param otherTime Time of the other state
+     * @param other Another Equinoctial object to interpolate with
+     * @param sys Astrodynamics system used for interpolation
+     * @param targetTime Time of the target state
+     * @return Equinoctial Interpolated Equinoctial state vector.
      */
     Equinoctial
         interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
-    /**
-     * @brief Converts the Equinoctial state vector to a vector of unitless values.
-     */
-    std::vector<Unitless> to_vector() const;
-
   private:
-    constexpr static EnumType _setId = std::to_underlying(OrbitalElementSet::EQUINOCTIAL); //!< Set ID for the Equinoctial element set
-
     Distance _semilatus;  //!< Semilatus rectum of the orbit
     Unitless _f;          //!< First component of the eccentricity vector
     Unitless _g;          //!< Second component of the eccentricity vector

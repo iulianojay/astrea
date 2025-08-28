@@ -15,7 +15,6 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElementSet.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -56,15 +55,14 @@ class EquinoctialVop : public EquationsOfMotion {
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.
      *
-     * @return const OrbitalElementSet& The expected set of orbital elements.
+     * @return std::size_t The expected set id of orbital elements.
      */
-    const OrbitalElementSet& get_expected_set() const override { return expectedSet; };
+    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial>(); };
 
   private:
     mutable bool checkflag                     = false;                 //!< Flag to check for degenerate conditions.
     mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 
-    OrbitalElementSet expectedSet = OrbitalElementSet::EQUINOCTIAL; //!< Expected set of orbital elements for this method.
     const ForceModel* forces; //!< The force model used in the equations of motion.
 
     GravParam mu; //!< Gravitational parameter of the central body.

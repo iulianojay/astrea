@@ -51,7 +51,7 @@ class DynamicsTest : public testing::Test {
     {
         ElementArray elements{ semimajor_dist(rng), ecc_dist(rng), inc_dist(rng),
                                raan_dist(rng),      w_dist(rng),   theta_dist(rng) };
-        return OrbitalElements(elements, OrbitalElementSet::KEPLERIAN);
+        return OrbitalElements(elements, OrbitalElements::get_set_id<Keplerian>());
     }
 
     const bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, const bool& ignoreAnomaly = true)

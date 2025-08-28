@@ -6,6 +6,7 @@
 
 #include <math/interpolation.hpp>
 
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
@@ -209,7 +210,6 @@ std::vector<Unitless> Equinoctial::to_vector() const
 {
     return { _semilatus / astrea::detail::distance_unit, _f, _g, _h, _k, _trueLongitude / astrea::detail::angle_unit };
 }
-
 
 Equinoctial EquinoctialPartial::operator*(const Time& time) const
 {
