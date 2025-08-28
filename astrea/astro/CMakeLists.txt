@@ -34,7 +34,9 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
 
+    ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
@@ -91,6 +93,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
 
+    ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
