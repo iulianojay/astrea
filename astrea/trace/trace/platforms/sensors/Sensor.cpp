@@ -1,7 +1,5 @@
 #include <trace/platforms/sensors/Sensor.hpp>
 
-#include <trace/platforms/sensors/SensorPlatform.hpp>
-
 namespace astrea {
 namespace trace {
 

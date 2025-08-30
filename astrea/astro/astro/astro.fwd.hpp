@@ -53,6 +53,8 @@ class Plane;
 template <class Spacecraft_T>
 class Shell;
 class Spacecraft;
+template <class Payload_T, class PayloadParameters_T>
+class PayloadPlatform;
 
 // Propagation
 class EquationsOfMotion;

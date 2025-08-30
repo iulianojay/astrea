@@ -157,8 +157,8 @@ RiseSetArray find_platform_to_platform_accesses(
 
     // Determine access sensor by sensor
     RiseSetArray access;
-    for (auto& sensor1 : platform1->get_sensors()) {
-        for (auto& sensor2 : platform2->get_sensors()) {
+    for (auto& sensor1 : platform1->get_payloads()) {
+        for (auto& sensor2 : platform2->get_payloads()) {
             RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay, epoch);
 
             // Store

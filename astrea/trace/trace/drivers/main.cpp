@@ -73,16 +73,16 @@ void access_test()
     SensorParameters leoCone(&fovLeo);
 
     // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
-    //     viewer.attach(simpleCone);
+    //     viewer.attach_payload(simpleCone);
     // }
 
-    geo.attach(geoCone);
+    geo.attach_payload(geoCone);
     for (auto& shell : allSats.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const State& state = sat.get_state();
                 // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
-                sat.attach(leoCone);
+                sat.attach_payload(leoCone);
             }
         }
     }
@@ -96,7 +96,7 @@ void access_test()
           0.0 * astrea::detail::distance_unit,
           0.0 * astrea::detail::distance_unit }
     );
-    dc.attach(groundCone);
+    dc.attach_payload(groundCone);
     GroundArchitecture grounds({ dc });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };

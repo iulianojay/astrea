@@ -12,6 +12,7 @@
 
 #include <memory>
 
+#include <astro/platforms/Payload.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/frames/FrameReference.hpp>
 #include <astro/state/frames/frames.hpp>
@@ -28,7 +29,7 @@ namespace trace {
 /**
  * @brief Class for storing and managing sensor parameters.
  */
-class SensorParameters {
+class SensorParameters : public astro::PayloadParameters {
   public:
     /**
      * @brief Constructor for SensorParameters
@@ -39,16 +40,11 @@ class SensorParameters {
      */
     SensorParameters(
         const FieldOfView* fov,
-        const astro::RadiusVector<astro::RIC>& boresight       = { -1.0 * astrea::detail::distance_unit, // Nadir
-                                                                   0.0 * astrea::detail::distance_unit,
-                                                                   0.0 * astrea::detail::distance_unit },
-        const astro::RadiusVector<astro::RIC>& attachmentPoint = { 0.0 * astrea::detail::distance_unit, // Center
-                                                                   0.0 * astrea::detail::distance_unit,
-                                                                   0.0 * astrea::detail::distance_unit }
+        const astro::RadiusVector<astro::RIC>& boresight       = astro::NADIR_RIC,
+        const astro::RadiusVector<astro::RIC>& attachmentPoint = astro::CENTER
     ) :
-        _fov(fov),
-        _boresight(boresight),
-        _attachmentPoint(attachmentPoint)
+        astro::PayloadParameters(boresight, attachmentPoint),
+        _fov(fov)
     {
     }
 
@@ -65,47 +61,14 @@ class SensorParameters {
     const FieldOfView* get_fov() const { return _fov; }
 
     /**
-     * @brief Get the boresight direction of the sensor.
-     *
-     * @return astro::RadiusVector<astro::RIC> Boresight direction of the sensor.
-     */
-    astro::RadiusVector<astro::RIC> get_boresight() const { return _boresight; }
-
-    /**
-     * @brief Get the attachment point of the sensor.
-     *
-     * @return astro::RadiusVector<astro::RIC> Attachment point of the sensor.
-     */
-    astro::RadiusVector<astro::RIC> get_attachment_point() const { return _attachmentPoint; }
-
-    /**
      * @brief Set the field of view of the sensor.
      *
      * @param fov FieldOfView* Pointer to the field of view object.
      */
     void set_fov(FieldOfView* fov) { _fov = fov; }
 
-    /**
-     * @brief Set the boresight direction of the sensor.
-     *
-     * @param boresight astro::RadiusVector<astro::RIC> Boresight direction of the sensor.
-     */
-    void set_boresight(const astro::RadiusVector<astro::RIC>& boresight) { _boresight = boresight; }
-
-    /**
-     * @brief Set the attachment point of the sensor.
-     *
-     * @param attachmentPoint astro::RadiusVector<astro::RIC> Attachment point of the sensor.
-     */
-    void set_attachment_point(const astro::RadiusVector<astro::RIC>& attachmentPoint)
-    {
-        _attachmentPoint = attachmentPoint;
-    }
-
   protected:
-    const FieldOfView* _fov;                    //!< Field of view of the sensor, defining its coverage area
-    astro::RadiusVector<astro::RIC> _boresight; //!< Boresight vector of the sensor, indicating the direction it is pointing
-    astro::RadiusVector<astro::RIC> _attachmentPoint; //!< Attachment point of the sensor on the platform
+    const FieldOfView* _fov; //!< Field of view of the sensor, defining its coverage area
 };
 
 /**
@@ -114,9 +77,7 @@ class SensorParameters {
  * This class inherits from AccessObject and provides functionality for sensors,
  * including field of view and access management.
  */
-class Sensor : public AccessObject {
-
-    friend class SensorPlatform;
+class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParameters> {
 
   public:
     /**
@@ -127,11 +88,11 @@ class Sensor : public AccessObject {
      * @param boresight The boresight vector of the sensor.
      * @param attachmentPoint The point on the platform where the sensor is attached.
      */
-    template <typename T>
-    Sensor(const T& parent, const SensorParameters& parameters) :
+    template <typename Parent_T>
+        requires(std::is_base_of_v<astro::FrameReference, Parent_T>)
+    Sensor(const Parent_T& parent, const SensorParameters& parameters) :
         AccessObject(),
-        _parent(&parent),
-        _parameters(parameters)
+        Payload<Sensor, SensorParameters>(parent, parameters)
     {
     }
 
@@ -148,20 +109,6 @@ class Sensor : public AccessObject {
     std::size_t get_id() const { return _id; }
 
     /**
-     * @brief Get the parent platform of the sensor.
-     *
-     * @return const SensorPlatform* Pointer to the parent platform.
-     */
-    const SensorPlatform* get_parent() const { return _parent; }
-
-    /**
-     * @brief Get the sensor parameters of the sensor.
-     *
-     * @return SensorParameters Sensor parameters of the sensor.
-     */
-    SensorParameters get_sensor_parameters() const { return _parameters; }
-
-    /**
      * @brief Check if the sensor can see a target given the boresight vector.
      *
      * @param sensor2target Vector from the sensor to the target.
@@ -172,28 +119,10 @@ class Sensor : public AccessObject {
     bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const;
 
   private:
-    std::size_t _id;               //!< Unique identifier for the sensor
-    const SensorPlatform* _parent; //!< Parent platform
-    SensorParameters _parameters;  //!< Sensor parameters
-
-    // TODO: Make a fixed-offset frame for attachment point
-
     /**
      * @brief Generate a hash for the sensor ID.
      */
     void generate_id_hash();
-
-    /**
-     * @brief Set the parent platform of the sensor.
-     *
-     * @tparam T Type of the parent platform.
-     * @param parent The parent platform to set.
-     */
-    template <typename T>
-    void set_parent(const T& parent)
-    {
-        _parent = &parent;
-    }
 };
 
 } // namespace trace

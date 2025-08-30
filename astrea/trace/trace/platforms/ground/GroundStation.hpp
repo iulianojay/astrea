@@ -14,6 +14,7 @@
 
 #include <mp-units/systems/isq_angle.h>
 
+#include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
@@ -21,8 +22,7 @@
 #include <astro/utilities/conversions.hpp>
 
 #include <trace/platforms/ground/GroundPoint.hpp>
-#include <trace/platforms/sensors/SensorPlatform.hpp>
-
+#include <trace/platforms/sensors/Sensor.hpp>
 
 namespace astrea {
 namespace trace {
@@ -34,7 +34,7 @@ namespace trace {
  * and a collection of sensors. It also provides methods to manage access and
  * sensor functionalities.
  */
-class GroundStation : public GroundPoint, public SensorPlatform {
+class GroundStation : public GroundPoint, public astro::PayloadPlatform<Sensor, SensorParameters> {
   public:
     /**
      * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
@@ -54,11 +54,11 @@ class GroundStation : public GroundPoint, public SensorPlatform {
         const std::vector<SensorParameters>& sensors = {}
     ) :
         GroundPoint(parent, latitude, longitude, altitude),
-        SensorPlatform(),
+        astro::PayloadPlatform<Sensor, SensorParameters>(),
         _name(name)
     {
         for (const auto& sensor : sensors) {
-            attach(sensor);
+            attach_payload(sensor);
         }
         generate_id_hash();
     };
@@ -67,6 +67,13 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      * @brief Default destructor for the GroundStation class.
      */
     ~GroundStation() = default;
+
+    /**
+     * @brief Get the ID of the payload.
+     *
+     * @return std::size_t ID of the payload.
+     */
+    std::size_t get_id() const { return _id; }
 
     /**
      * @brief Get the name of the ground station.

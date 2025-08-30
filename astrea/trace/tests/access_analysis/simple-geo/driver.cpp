@@ -100,7 +100,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                sat.attach(geoCone);
+                sat.attach_payload(geoCone);
             }
         }
     }
@@ -137,7 +137,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     for (auto& shell : twoBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                sat.attach(geoCone);
+                sat.attach_payload(geoCone);
             }
         }
     }
@@ -174,7 +174,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     for (auto& shell : fourBallGeo.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                sat.attach(geoCone);
+                sat.attach_payload(geoCone);
             }
         }
     }
