@@ -22,7 +22,7 @@
 namespace astrea {
 namespace trace {
 
-using SensorPlatform = astro::PayloadPlatform<Sensor, SensorParameters>;
+using SensorPlatform = astro::PayloadPlatform<Sensor>;
 
 // /**
 //  * @brief The SensorPlatform class represents a platform that can have sensors attached to it.

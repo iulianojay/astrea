@@ -53,7 +53,7 @@ class Plane;
 template <class Spacecraft_T>
 class Shell;
 class Spacecraft;
-template <class Payload_T, class PayloadParameters_T>
+template <class Payload_T>
 class PayloadPlatform;
 
 // Propagation

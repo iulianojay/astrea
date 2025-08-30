@@ -102,6 +102,12 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
     {
         return Spacecraft::get_inertial_velocity(date);
     }
+
+    // This is so stupid. Why C++ standards committee
+    using SensorPlatform::attach_payload;
+    using SensorPlatform::get_payloads;
+    using Spacecraft::attach_payload;
+    using Spacecraft::get_payloads;
 };
 
 } // namespace trace

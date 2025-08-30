@@ -21,6 +21,7 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
+#include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
@@ -39,7 +40,7 @@ namespace astro {
  * This class encapsulates the properties and behaviors of a spacecraft, including its state,
  * mass, dynamic coefficients, and surface areas.
  */
-class Spacecraft : virtual public FrameReference {
+class Spacecraft : public PayloadPlatform<Thruster> {
 
   public:
     /**
@@ -248,6 +249,10 @@ class Spacecraft : virtual public FrameReference {
      * @param name The name to set for the spacecraft.
      */
     void set_name(const std::string& name);
+
+    // I hate this
+    using PayloadPlatform<Thruster>::attach_payload;
+    using PayloadPlatform<Thruster>::get_payloads;
 
   protected:
     std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties

@@ -50,7 +50,7 @@ class ThrusterParameters : public PayloadParameters {
  * This class inherits from AccessObject and provides functionality for thrusters,
  * including field of view and access management.
  */
-class Thruster : public Payload<ThrusterParameters> {
+class Thruster : public Payload<Thruster, ThrusterParameters> {
 
   public:
     /**
@@ -64,7 +64,7 @@ class Thruster : public Payload<ThrusterParameters> {
     template <typename Parent_T>
         requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
-        Payload<ThrusterParameters>(&parent, parameters)
+        Payload<Thruster, ThrusterParameters>(&parent, parameters)
     {
     }
 
@@ -72,6 +72,13 @@ class Thruster : public Payload<ThrusterParameters> {
      * @brief Default destructor for Thruster
      */
     virtual ~Thruster() = default;
+
+    /**
+     * @brief Get the ID of the sensor.
+     *
+     * @return std::size_t ID of the sensor.
+     */
+    std::size_t get_id() const { return _id; }
 
   private:
     /**

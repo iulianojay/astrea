@@ -23,8 +23,11 @@ namespace astro {
  * @brief The PayloadPlatform class represents a platform that can have payloads attached to it.
  * It provides methods to attach payloads and retrieve the list of attached payloads.
  */
-template <class Payload_T, class PayloadParameters_T>
+template <class Payload_T>
 class PayloadPlatform : virtual public FrameReference {
+
+    using PayloadParameters_T = decltype(std::declval<Payload_T>().get_parameters());
+
   protected:
     /**
      * @brief Default constructor for PayloadPlatform
@@ -108,10 +111,10 @@ class PayloadPlatform : virtual public FrameReference {
      *
      * @param parameterPack Vector of payload parameters to attach.
      */
-    void attach_payload(const std::vector<PayloadParameters_T>& parameterPack)
+    void attach_payloads(const std::vector<PayloadParameters_T>& parameterPack)
     {
         for (const auto& parameters : parameterPack) {
-            _payloads.emplace_back(Payload_T(*this, parameters));
+            attach_payload(parameters);
         }
     }
 
