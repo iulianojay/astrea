@@ -16,6 +16,13 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
+Spacecraft::Spacecraft(const State& state0) :
+    _state(state0),
+    _state0(state0)
+{
+    generate_id_hash();
+}
+
 Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys)
 {
     // TODO: Add catch/warning for missing values
@@ -75,6 +82,25 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
+RadiusVector<EarthCenteredInertial> Spacecraft::get_inertial_position(const Date& date) const
+{
+    const Cartesian elements = get_cartesian_state(date);
+    return elements.get_position();
+}
+
+VelocityVector<EarthCenteredInertial> Spacecraft::get_inertial_velocity(const Date& date) const
+{
+    const Cartesian elements = get_cartesian_state(date);
+    return elements.get_velocity();
+}
+
+Cartesian Spacecraft::get_cartesian_state(const Date& date) const
+{
+    if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
+    const State state        = _stateHistory.get_state_at(date);
+    const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
+    return elements;
+}
 
 void Spacecraft::generate_id_hash()
 {

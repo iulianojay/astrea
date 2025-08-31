@@ -87,5 +87,10 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     void generate_id_hash();
 };
 
+/**
+ * @brief Thruster platform type definition.
+ */
+using ThrusterPlatform = PayloadPlatform<Thruster>;
+
 } // namespace astro
 } // namespace astrea

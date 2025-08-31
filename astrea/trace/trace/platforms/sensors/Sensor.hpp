@@ -125,5 +125,10 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
     void generate_id_hash();
 };
 
+/**
+ * @brief Type definition for sensor platforms.
+ */
+using SensorPlatform = astro::PayloadPlatform<Sensor>;
+
 } // namespace trace
 } // namespace astrea

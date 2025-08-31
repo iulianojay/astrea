@@ -34,7 +34,7 @@ namespace trace {
  * and a collection of sensors. It also provides methods to manage access and
  * sensor functionalities.
  */
-class GroundStation : public GroundPoint, public astro::PayloadPlatform<Sensor> {
+class GroundStation : public GroundPoint, public SensorPlatform {
   public:
     /**
      * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
@@ -54,7 +54,7 @@ class GroundStation : public GroundPoint, public astro::PayloadPlatform<Sensor> 
         const std::vector<SensorParameters>& sensors = {}
     ) :
         GroundPoint(parent, latitude, longitude, altitude),
-        astro::PayloadPlatform<Sensor>(),
+        SensorPlatform(),
         _name(name)
     {
         for (const auto& sensor : sensors) {

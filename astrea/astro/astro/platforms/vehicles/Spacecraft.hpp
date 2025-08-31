@@ -40,7 +40,7 @@ namespace astro {
  * This class encapsulates the properties and behaviors of a spacecraft, including its state,
  * mass, dynamic coefficients, and surface areas.
  */
-class Spacecraft : public PayloadPlatform<Thruster> {
+class Spacecraft : public ThrusterPlatform {
 
   public:
     /**
@@ -53,12 +53,7 @@ class Spacecraft : public PayloadPlatform<Thruster> {
      *
      * @param state0 The initial state of the spacecraft.
      */
-    Spacecraft(const State& state0) :
-        _state(state0),
-        _state0(state0)
-    {
-        generate_id_hash();
-    }
+    Spacecraft(const State& state0);
 
     /**
      * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
@@ -73,21 +68,29 @@ class Spacecraft : public PayloadPlatform<Thruster> {
      */
     virtual ~Spacecraft() = default;
 
-    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override
-    {
-        if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
-        const State state        = _stateHistory.get_state_at(date);
-        const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
-        return elements.get_position();
-    }
+    /**
+     * @brief Gets the inertial position of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the position.
+     * @return RadiusVector<EarthCenteredInertial> The inertial position of the spacecraft.
+     */
+    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override;
 
-    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override
-    {
-        if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
-        const State state        = _stateHistory.get_state_at(date);
-        const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
-        return elements.get_velocity();
-    }
+    /**
+     * @brief Gets the inertial velocity of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the velocity.
+     * @return VelocityVector<EarthCenteredInertial> The inertial velocity of the spacecraft.
+     */
+    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override;
+
+    /**
+     * @brief Gets the Cartesian state of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the state.
+     * @return Cartesian The Cartesian state of the spacecraft.
+     */
+    Cartesian get_cartesian_state(const Date& date) const;
 
     /**
      * @brief Updates the state of the spacecraft.

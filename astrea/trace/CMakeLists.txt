@@ -37,7 +37,6 @@ set(TRACE_HEADERS
 
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
-    ${TRACE_BASE}/platforms/sensors/SensorPlatform.hpp
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.hpp
 
     ${TRACE_BASE}/platforms/ground/Grid.hpp

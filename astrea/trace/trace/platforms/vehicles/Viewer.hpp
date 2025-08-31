@@ -12,18 +12,15 @@
 
 #include <string>
 
-
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-
 #include <trace/platforms/AccessObject.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
-#include <trace/platforms/sensors/SensorPlatform.hpp>
 
 namespace astrea {
 namespace trace {
