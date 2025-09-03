@@ -31,6 +31,7 @@
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Interval.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -47,7 +48,7 @@ class Integrator {
     /**
      * @brief Enumeration for different Runge-Kutta stepper methods.
      */
-    enum odeStepper {
+    enum class StepMethod : EnumType {
         RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
         RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
         RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
@@ -112,156 +113,140 @@ class Integrator {
      *
      * @param absTol The absolute tolerance value to set.
      */
-    void set_abs_tol(Unitless absTol);
+    void set_abs_tol(const Unitless& absTol);
 
     /**
      * @brief Set the relative tolerance for the integrator.
      *
      * @param relTol The relative tolerance value to set.
      */
-    void set_rel_tol(Unitless relTol);
+    void set_rel_tol(const Unitless& relTol);
 
     /**
      * @brief Set the maximum number of iterations for the integrator.
      *
      * @param itMax The maximum number of iterations to set.
      */
-    void set_max_iter(int itMax);
+    void set_max_iter(const int& itMax);
 
     /**
      * @brief Switch the printing of integration details on or off.
      *
      * @param onOff Boolean flag to turn printing on (true) or off (false).
      */
-    void switch_print(bool onOff);
+    void switch_print(const bool& onOff);
 
     /**
      * @brief Switch the timer for measuring integration performance on or off.
      *
      * @param onOff Boolean flag to turn the timer on (true) or off (false).
      */
-    void switch_timer(bool onOff);
+    void switch_timer(const bool& onOff);
 
     /**
      * @brief Set the step method for the integrator.
      *
      * @param stepMethod The name of the step method to use (e.g., "RK45", "RKF45", etc.).
      */
-    void set_step_method(std::string stepMethod);
+    void set_step_method(const StepMethod& stepMethod);
 
     /**
      * @brief Set the initial timestep for the integrator.
      *
      * @param dt0 The initial timestep to set.
      */
-    void set_initial_timestep(Time dt0);
+    void set_initial_timestep(const Time& dt0);
 
     /**
      * @brief Switch the fixed timestep mode on or off.
      *
      * @param onOff Boolean flag to turn fixed timestep mode on (true) or off (false).
      */
-    void switch_fixed_timestep(bool onOff);
+    void switch_fixed_timestep(const bool& onOff);
 
     /**
      * @brief Set the fixed timestep for the integrator.
      *
      * @param fixedTimeStep The fixed timestep to set.
      */
-    void switch_fixed_timestep(bool onOff, Time fixedTimeStep);
+    void switch_fixed_timestep(const bool& onOff, const Time& fixedTimeStep);
 
     /**
      * @brief Set the fixed timestep for the integrator.
      *
      * @param fixedTimeStep The fixed timestep to set.
      */
-    void set_timestep(Time fixedTimeStep);
+    void set_timestep(const Time& fixedTimeStep);
 
     /**
      * @brief Get the current timestep used by the integrator.
      *
      * @return Time The current timestep.
      */
-    int n_func_evals() { return functionEvaluations; }
+    int n_func_evals() { return _functionEvaluations; }
 
   private:
     // Integrator constants
-    const Unitless epsilon             = 0.8;    //!< Relative local step error tolerance usually 0.8 or 0.9.
-    const Unitless minErrorCatch       = 2.0e-4; //!< If maximum error is less than this,
-    const Unitless minErrorStepFactor  = 5.0;    //!< Increase step by this factor
-    const Unitless minRelativeStepSize = 0.2;    //!< If the step size decreases by more than this factor, reduce the
-                                                 //!< Relative step size to this value
+    const Unitless _EPSILON               = 0.8;    //!< Relative local step error tolerance usually 0.8 or 0.9.
+    const Unitless _MIN_ERROR_TO_CATCH    = 2.0e-4; //!< If maximum error is less than this,
+    const Unitless _MIN_ERROR_STEP_FACTOR = 5.0;    //!< Increase step by this factor
+    const Unitless _MIN_REL_STEP_SIZE     = 0.2;    //!< If the step size decreases by more than this factor, reduce the
+                                                    //!< Relative step size to this value
 
     // Iteration variables
-    unsigned long iteration             = 0;              //!< Outer loop iteration count
-    unsigned long variableStepIteration = 0;              //!< Inner loop iteration count
-    const unsigned long maxVariableStepIterations = 1000; //!< Max iterations for step sizing loop -> jj shouldn't get above ~10
+    unsigned long _iteration          = 0;   //!< Outer loop iteration count
+    unsigned _variableStepIteration   = 0;   //!< Inner loop iteration count
+    unsigned long _MAX_ITER           = 1e8; //!< Maximum number of iterations for the integrator
+    const unsigned _MAX_VAR_STEP_ITER = 1e3; //!< Max iterations for step sizing loop -> jj shouldn't get above ~10
 
     // Function evals
-    int functionEvaluations = 0; //!< Number of function evaluations during integration
-
-    // Number of states
-    static const std::size_t maxStates = 10; //!< Maximum number of states in the orbital elements
+    int _functionEvaluations = 0; //!< Number of function evaluations during integration
 
     // Time variables
-    bool forwardTime = true; //!< Direction of time propagation
-    Time timeStepPrevious;   //!< Previous time step used in the integration
+    bool _forwardTime = true; //!< Direction of time propagation
+    Time _timeStepPrevious;   //!< Previous time step used in the integration
 
     // Error variables
-    bool stepSuccess = false;  //!< Flag indicating if the last step was successful
-    Unitless maxErrorPrevious; //!< Maximum error from the previous step
+    bool _stepSuccess = false;  //!< Flag indicating if the last step was successful
+    Unitless _maxErrorPrevious; //!< Maximum error from the previous step
 
     // Butcher Tablaeu
-    std::size_t nStages{}; //!< Number of stages in the Butcher tableau for the current step method
-    static const std::size_t maxStages                       = 13; //!< Maximum number of stages in the Butcher tableau
-    std::array<std::array<Unitless, maxStages>, maxStages> a = {}; //!< Coefficients for the Butcher tableau
-    std::array<Unitless, maxStages> b                        = {}; //!< Weights for the Butcher tableau
-    std::array<Unitless, maxStages> bhat                     = {}; //!< Modified weights for the Butcher tableau
-    std::array<Unitless, maxStages> db = {}; //!< Derivative of the weights for the Butcher tableau
-    std::array<Unitless, maxStages> c  = {}; //!< Nodes for the Butcher tableau
+    std::size_t _nStages{};                    //!< Number of stages in the Butcher tableau for the current step method
+    static const std::size_t _MAX_STAGES = 13; //!< Maximum number of stages in the Butcher tableau
+    std::array<std::array<Unitless, _MAX_STAGES>, _MAX_STAGES> _a = {}; //!< Coefficients for the Butcher tableau
+    std::array<Unitless, _MAX_STAGES> _b                          = {}; //!< Weights for the Butcher tableau
+    std::array<Unitless, _MAX_STAGES> _bhat                       = {}; //!< Modified weights for the Butcher tableau
+    std::array<Unitless, _MAX_STAGES> _db = {}; //!< Derivative of the weights for the Butcher tableau
+    std::array<Unitless, _MAX_STAGES> _c  = {}; //!< Nodes for the Butcher tableau
 
     // ith order steps
-    std::array<OrbitalElements, maxStages> kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
-    OrbitalElements statePlusKi;                         //!< State vector plus the ith order step
-    OrbitalElementPartials YFinalPrevious;               //!< Previous final state vector for the Runge-Kutta method
+    std::array<OrbitalElements, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
+    OrbitalElements _statePlusKi;                           //!< State vector plus the ith order step
+    OrbitalElementPartials _YFinalPrevious;                 //!< Previous final state vector for the Runge-Kutta method
 
     // Clock variables
-    clock_t startClock{}; //!< Start time for the timer
-    clock_t endClock{};   //!< End time for the timer
-
-    // Error Messages
-    const std::string underflowErrorMessage = "Integration Error: Stepsize underflow. \n\n"; //!< Error message for stepsize underflow
-    const std::string innerLoopStepOverflowErrorMessage =
-        "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n"; //!< Error message for inner loop step overflow
-    const std::string outerLoopStepOverflowErrorMessage =
-        "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try again. \n\n"; //!< Error message for outer loop step overflow
-    const std::string crashMessage = "Note: Object crashed into central body. \n\n"; //!< Error message for crash into central body
-
-    // Print variables
-    int checkDay = 0; //!< Day counter for printing state information
+    clock_t _startClock{}; //!< Start time for the timer
+    clock_t _endClock{};   //!< End time for the timer
 
     // Tolerances
-    Unitless absoluteTolerance = 1.0e-13; //!< Absolute tolerance for the integrator
-    Unitless relativeTolerance = 1.0e-13; //!< Relative tolerance for the integrator
+    Unitless _ABS_TOL = 1.0e-13; //!< Absolute tolerance for the integrator
+    Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
 
     // Initial step size
-    Time timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
-
-    // Iteration variables - absurdly high so it doesn't interfere with integration
-    unsigned long iterMax = 1e8; //!< Maximum number of iterations for the integrator
+    Time _timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
 
     // Run options
-    bool printOn = false; //!< Flag to control printing of integration details
-    bool timerOn = false; //!< Flag to control timing of integration performance
+    bool _printOn = false; //!< Flag to control printing of integration details
+    bool _timerOn = false; //!< Flag to control timing of integration performance
 
-    odeStepper stepMethod = DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
+    StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
 
     // Fake fixed step
-    bool useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
-    Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
+    bool _useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
+    Time _fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
 
     // Events
-    EventDetector eventDetector;
+    EventDetector _eventDetector;
 
     /**
      * @brief Find the state derivative at a given time using the equations of motion.
@@ -321,18 +306,12 @@ class Integrator {
     /**
      * @brief Start the timer for measuring integration performance.
      */
-    void startTimer()
-    {
-        if (timerOn) { startClock = clock(); }
-    };
+    void startTimer();
 
     /**
      * @brief End the timer for measuring integration performance.
      */
-    void endTimer()
-    {
-        if (timerOn) { endClock = clock(); }
-    }
+    void endTimer();
 
     /**
      * @brief Check for events during the integration, such as collisions or specific conditions.
