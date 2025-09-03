@@ -12,12 +12,12 @@
 
 #include <units/units.hpp>
 
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/orbital_elements/orbital_elements.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
+#include <astro/state/orbital_elements/orbital_elements.hpp>
 
 #include <astro/state/frames/Frame.hpp>
 #include <astro/state/frames/FrameReference.hpp>
@@ -51,7 +51,7 @@
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/propagation/numerical/rk_constants.h>
+#include <astro/propagation/numerical/butcher_tableau.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/Barycenter.hpp>

@@ -2,6 +2,7 @@
 
 #include <mp-units/math.h>
 
+#include <astro/propagation/numerical/butcher_tableau.hpp> // RK Butcher Tableau
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
 using namespace mp_units;
@@ -189,12 +190,12 @@ void Integrator::setup_stepper()
             // Get Butcher Tableau
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
-                    _a[ii][jj] = a_rk45[ii][jj];
+                    _a[ii][jj] = RK45::a[ii][jj];
                 }
-                _b[ii]    = b_rk45[ii];
-                _bhat[ii] = bhat_rk45[ii];
+                _b[ii]    = RK45::b[ii];
+                _bhat[ii] = RK45::bhat[ii];
                 _db[ii]   = _b[ii] - _bhat[ii];
-                _c[ii]    = c_rk45[ii];
+                _c[ii]    = RK45::c[ii];
             }
             break;
 
@@ -206,12 +207,12 @@ void Integrator::setup_stepper()
             // Get Butcher Tableau
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
-                    _a[ii][jj] = a_rkf45[ii][jj];
+                    _a[ii][jj] = RKF45::a[ii][jj];
                 }
-                _b[ii]    = b_rkf45[ii];
-                _bhat[ii] = bhat_rkf45[ii];
+                _b[ii]    = RKF45::b[ii];
+                _bhat[ii] = RKF45::bhat[ii];
                 _db[ii]   = _b[ii] - _bhat[ii];
-                _c[ii]    = c_rkf45[ii];
+                _c[ii]    = RKF45::c[ii];
             }
             break;
 
@@ -223,12 +224,12 @@ void Integrator::setup_stepper()
             // Get Butcher Tableau
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
-                    _a[ii][jj] = a_rkf78[ii][jj];
+                    _a[ii][jj] = RKF78::a[ii][jj];
                 }
-                _b[ii]    = b_rkf78[ii];
-                _bhat[ii] = bhat_rkf78[ii];
+                _b[ii]    = RKF78::b[ii];
+                _bhat[ii] = RKF78::bhat[ii];
                 _db[ii]   = _b[ii] - _bhat[ii];
-                _c[ii]    = c_rkf78[ii];
+                _c[ii]    = RKF78::c[ii];
             }
             break;
 
@@ -241,12 +242,12 @@ void Integrator::setup_stepper()
             // Get Butcher Tableau
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
-                    _a[ii][jj] = a_dop45[ii][jj];
+                    _a[ii][jj] = DOP45::a[ii][jj];
                 }
-                _b[ii]    = b_dop45[ii];
-                _bhat[ii] = bhat_dop45[ii];
+                _b[ii]    = DOP45::b[ii];
+                _bhat[ii] = DOP45::bhat[ii];
                 _db[ii]   = _b[ii] - _bhat[ii];
-                _c[ii]    = c_dop45[ii];
+                _c[ii]    = DOP45::c[ii];
             }
             break;
 
@@ -258,12 +259,12 @@ void Integrator::setup_stepper()
             // Get Butcher Tableau
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
-                    _a[ii][jj] = a_dop78[ii][jj];
+                    _a[ii][jj] = DOP78::a[ii][jj];
                 }
-                _b[ii]    = b_dop78[ii];
-                _bhat[ii] = bhat_dop78[ii];
+                _b[ii]    = DOP78::b[ii];
+                _bhat[ii] = DOP78::bhat[ii];
                 _db[ii]   = _b[ii] - _bhat[ii];
-                _c[ii]    = c_dop78[ii];
+                _c[ii]    = DOP78::c[ii];
             }
             break;
 

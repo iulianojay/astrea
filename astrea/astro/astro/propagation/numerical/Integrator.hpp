@@ -27,7 +27,6 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
-#include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Interval.hpp>

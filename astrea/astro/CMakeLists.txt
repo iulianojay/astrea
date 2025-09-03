@@ -75,7 +75,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
-    ${ASTRO_BASE}/propagation/numerical/rk_constants.h
+    ${ASTRO_BASE}/propagation/numerical/butcher_tableau.hpp
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
     ${ASTRO_BASE}/propagation/event_detection/Event.hpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
