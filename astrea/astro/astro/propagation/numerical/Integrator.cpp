@@ -53,16 +53,13 @@ StateHistory Integrator::propagate(
     Time time     = startTime;
     Time timeStep = (_useFixedStep) ? _fixedTimeStep : _timeStepInitial;
 
-    if (endTime < startTime) {
-        _forwardTime = false;
-        timeStep     = -timeStep;
-    }
+    const bool forwardTime = (endTime > startTime);
+    if (!forwardTime) { timeStep = -timeStep; }
 
     // States
     OrbitalElements state0 = vehicle.get_state().get_elements();
 
     // Need to check input elements match expected for EOMS
-    //
     const auto& sys                 = eom.get_system();
     const std::size_t expectedSetId = eom.get_expected_set_id();
     if (state0.index() != expectedSetId) { // ooh boy we're fragile
@@ -114,15 +111,14 @@ StateHistory Integrator::propagate(
             // I think an interesting choice would allow the user to use the fixed timestep but the
             // Integrator would use variable stepper to each fixed timestep. This would give the
             // desired output with the ensured accuracy of the variable stepper
-            try_step(time, timeStep, state, eom, vehicle);
+            take_fixed_step(time, timeStep, state, eom, vehicle);
         }
         else { // Variable time step
             // Loop to find step size that meets tolerance
             _variableStepIteration = 0;
-            _stepSuccess           = false;
             while (_variableStepIteration < _MAX_VAR_STEP_ITER) {
                 // Try to step
-                try_step(time, timeStep, state, eom, vehicle);
+                const bool stepSuccess = try_step(time, timeStep, state, eom, vehicle);
 
                 // Catch underflow
                 if (time + timeStep == time) {
@@ -131,7 +127,7 @@ StateHistory Integrator::propagate(
                 }
 
                 // Break if step succeeded
-                if (_stepSuccess) { break; }
+                if (stepSuccess) { break; }
 
                 // Inner Loop Iteration
                 ++_variableStepIteration;
@@ -149,8 +145,8 @@ StateHistory Integrator::propagate(
         if (store) { stateHistory[epoch + time] = vehicle.get_state(); }
 
         // Ensure last step goes to exact final time
-        if ((_forwardTime && time + timeStep > endTime && time < endTime) ||
-            (!_forwardTime && time + timeStep < endTime && time > endTime)) {
+        if ((forwardTime && time + timeStep > endTime && time < endTime) ||
+            (!forwardTime && time + timeStep < endTime && time > endTime)) {
             timeStep = endTime - time;
         }
         // Break if final time is reached
@@ -277,9 +273,9 @@ void Integrator::setup_stepper()
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+std::pair<OrbitalElements, OrbitalElements>
+    Integrator::take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
         // Find derivative
@@ -296,8 +292,7 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
             }
         }
         else {
-            OrbitalElements sPlusKi = _statePlusKi;
-            partial                 = find_state_derivative(time + _c[iStage] * timeStep, sPlusKi, eom, vehicle);
+            partial = find_state_derivative(time + _c[iStage] * timeStep, _statePlusKi, eom, vehicle);
         }
         _statePlusKi = state;
 
@@ -318,103 +313,113 @@ void Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
         stateError += _kMatrix[iStage] * _db[iStage];
     }
 
-    // Find max error from step
-    Unitless maxError = 0.0;
-    if (!_useFixedStep) {
-        const auto stateErrorScaled = stateError.to_vector();
-        const auto stateNewScaled   = stateNew.to_vector();
-        for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
-            // Error
-            const auto err = mp_units::abs(stateErrorScaled[ii]) / (_ABS_TOL + mp_units::abs(stateNewScaled[ii]) * _REL_TOL);
-            if (err > maxError) { maxError = err; }
+    return { stateNew, stateError };
+}
 
-            // Catch huge steps
-            /* There has to be a better way to do this. It's still possible for the integration to
-               pass through a singularity without a huge step */
-            if (mp_units::abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless ||
-                mp_units::isinf(stateNewScaled[ii]) || mp_units::isnan(stateNewScaled[ii])) {
-                /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
-                   If the step is legitimate, but just very large, this will just force
-                   it to lower the step slightly and try again without killing the run */
-                maxError = 2.0; // Force step failure
-            }
+Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const OrbitalElements& stateError) const
+{
+    // Find max error from step
+    Unitless maxError           = 0.0;
+    const auto stateErrorScaled = stateError.to_vector();
+    const auto stateNewScaled   = stateNew.to_vector();
+    for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
+        // Error
+        const auto err = mp_units::abs(stateErrorScaled[ii]) / (_ABS_TOL + mp_units::abs(stateNewScaled[ii]) * _REL_TOL);
+        if (err > maxError) { maxError = err; }
+
+        // Catch huge steps
+        /* There has to be a better way to do this. It's still possible for the integration to
+           pass through a singularity without a huge step */
+        if (mp_units::abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless ||
+            mp_units::isinf(stateNewScaled[ii]) || mp_units::isnan(stateNewScaled[ii])) {
+            /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
+               If the step is legitimate, but just very large, this will just force
+               it to lower the step slightly and try again without killing the run */
+            maxError = 2.0; // Force step failure
         }
     }
+
+    return maxError;
+}
+
+// This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
+bool Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+{
+    // Take step
+    const auto [stateNew, stateError] = take_step(time, timeStep, state, eom, vehicle);
+
+    // Find max error
+    const auto maxError = find_max_error(stateNew, stateError);
 
     // Check error of step
-    if (!_useFixedStep) { check_error(maxError, stateNew, stateError, time, timeStep, state); }
-    else {
-        // Step time
-        time += timeStep;
-
-        // Adding the state error improves the next guess
-        stateNew += stateError;
-
-        // Store final function eval for Dormand-Prince methods
-        if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-            _YFinalPrevious = _kMatrix[_nStages - 1] / timeStep;
-        }
-
-        state = stateNew;
-    }
+    return check_error(maxError, stateNew, stateError, time, timeStep, state);
 }
 
 
-void Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
+void Integrator::take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
+    // Take step
+    const auto [stateNew, stateError] = take_step(time, timeStep, state, eom, vehicle);
 
+    // Step time
+    time += timeStep;
+
+    // Adding the state error improves the next guess (???)
+    state = stateNew + stateError;
+
+    // Store final function eval for Dormand-Prince methods
+    store_final_func_eval(timeStep);
+}
+
+void Integrator::store_final_func_eval(const Time& timeStep)
+{
+    // Store final function eval for Dormand-Prince methods
+    if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
+        _YFinalPrevious = _kMatrix[_nStages - 1] / timeStep;
+    }
+}
+
+bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
+{
     if (maxError <= 1.0) { // Step succeeded
-
+        // Step
         time += timeStep;
         state = stateNew;
 
-        // Store final function eval for Dormand-Prince methods
-        if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-            _YFinalPrevious = _kMatrix[_nStages - 1] / timeStep;
-        }
+        store_final_func_eval(timeStep);
+
+        // Store step and error
+        _timeStepPrevious = timeStep;
+        _maxErrorPrevious = maxError;
 
         // Get new step after stepping time
         if (_iteration == 0) {
-            // Store step and error
-            _timeStepPrevious = timeStep;
-            _maxErrorPrevious = maxError;
-
-            if (maxError < _MIN_ERROR_TO_CATCH) { // Step is too small
-                timeStep *= _MIN_ERROR_STEP_FACTOR;
-            }
-            else {
-                timeStep *= pow<1, 5>(_EPSILON / maxError);
-            }
+            timeStep *= (maxError < _MIN_ERROR_TO_CATCH) ? _MIN_ERROR_STEP_FACTOR : pow<1, 5>(_EPSILON / maxError);
         }
         else {
             // Predicted relative step size
-            Unitless relativeTimeStep = 1.0 * astrea::detail::unitless;
-            if (maxError != 0.0 * astrea::detail::unitless && _maxErrorPrevious != 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
-                relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
-                                   pow<3, 50>(maxError / _maxErrorPrevious);
-            }
-            else {
+            if (maxError == 0.0 * astrea::detail::unitless && _maxErrorPrevious == 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
                 std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
             }
-
-            // Store step and error after computing relative time step
-            _timeStepPrevious = timeStep;
-            _maxErrorPrevious = maxError;
+            const Unitless relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
+                                              pow<3, 50>(maxError / _maxErrorPrevious);
 
             // New step size
             timeStep *= relativeTimeStep;
         }
 
         // Go to next step
-        _stepSuccess = true;
+        return true;
     }
-    else { // Error is too large . truncate stepsize
-        // Predicted relative step size
-        const Unitless relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
 
-        // Keep step from getting too small too fast
-        timeStep *= (relativeTimeStep < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeTimeStep;
-    }
+    // Error is too large. Truncate stepsize
+    // Predicted relative step size
+    const Unitless relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
+
+    // Keep step from getting too small too fast
+    timeStep *= (relativeTimeStep < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeTimeStep;
+
+    return false;
 }
 
 

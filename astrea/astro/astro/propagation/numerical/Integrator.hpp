@@ -202,14 +202,12 @@ class Integrator {
     int _functionEvaluations = 0; //!< Number of function evaluations during integration
 
     // Time variables
-    bool _forwardTime = true; //!< Direction of time propagation
-    Time _timeStepPrevious;   //!< Previous time step used in the integration
+    Time _timeStepPrevious; //!< Previous time step used in the integration
 
     // Error variables
-    bool _stepSuccess = false;  //!< Flag indicating if the last step was successful
     Unitless _maxErrorPrevious; //!< Maximum error from the previous step
 
-    // Butcher Tablaeu
+    // Butcher Tableau
     std::size_t _nStages{};                    //!< Number of stages in the Butcher tableau for the current step method
     static const std::size_t _MAX_STAGES = 13; //!< Maximum number of stages in the Butcher tableau
     std::array<std::array<Unitless, _MAX_STAGES>, _MAX_STAGES> _a = {}; //!< Coefficients for the Butcher tableau
@@ -272,8 +270,42 @@ class Integrator {
      * @param state The current state of the vehicle represented as orbital elements.
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
+     * @return bool True if the step was successful, false otherwise.
      */
-    void try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+
+    /**
+     * @brief Find the maximum error between the new and error states.
+     *
+     * @param stateNew The new state after the step.
+     * @param stateError The error in the state after the step.
+     * @return Unitless The maximum error found.
+     */
+    Unitless find_max_error(const OrbitalElements& stateNew, const OrbitalElements& stateError) const;
+
+    /**
+     * @brief Take a fixed step in the integration.
+     *
+     * @param time The current time in the integration.
+     * @param timeStep The current time step to use for the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
+     * @param eom The equations of motion to use for the integration.
+     * @param vehicle The vehicle whose state is being integrated.
+     */
+    void take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+
+    /**
+     * @brief Take a step in the integration.
+     *
+     * @param time The current time in the integration.
+     * @param timeStep The current time step to use for the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
+     * @param eom The equations of motion to use for the integration.
+     * @param vehicle The vehicle whose state is being integrated.
+     * @return std::pair<OrbitalElements, OrbitalElements> The new state and the error state after the step.
+     */
+    std::pair<OrbitalElements, OrbitalElements>
+        take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Check the error of the current step and adjust the time step accordingly.
@@ -284,8 +316,16 @@ class Integrator {
      * @param time The current time in the integration.
      * @param timeStep The current time step to use for the integration.
      * @param state The current state of the vehicle represented as orbital elements.
+     * @return bool True if the step was accepted, false if it needs to be retried with a smaller step size.
      */
-    void check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+    bool check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+
+    /**
+     * @brief Store the most recent function evaluation results for Dormand-Prince methods.
+     *
+     * @param timeStep The current time step used for the integration.
+     */
+    void store_final_func_eval(const Time& timeStep);
 
     /**
      * @brief Print the current iteration details including time, state, and performance metrics.
