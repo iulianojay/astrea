@@ -18,6 +18,8 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
+    ${ASTRO_BASE}/propagation/event_detection/Event.cpp
+    ${ASTRO_BASE}/propagation/event_detection/EventDetector.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
@@ -75,6 +77,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
     ${ASTRO_BASE}/propagation/numerical/rk_constants.h
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
+    ${ASTRO_BASE}/propagation/event_detection/Event.hpp
+    ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/NullEvent.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp
