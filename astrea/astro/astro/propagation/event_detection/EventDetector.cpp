@@ -3,23 +3,26 @@
 namespace astrea {
 namespace astro {
 
-EventDetector::EventDetector(const std::vector<Event>& events) :
-    _eventTrackers(events.size())
+EventDetector::EventDetector(const std::vector<Event>& events) { set_events(events); }
+
+void EventDetector::set_events(const std::vector<Event>& events)
 {
+    _eventTrackers.clear();
+    _eventTrackers.resize(events.size());
     for (std::size_t ii = 0; ii < events.size(); ++ii) {
         _eventTrackers[ii].event            = events[ii];
         _eventTrackers[ii].firstMeasurement = true;
     }
 }
 
-bool EventDetector::detect_events(const Time& time, Vehicle& vehicle)
+bool EventDetector::detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle)
 {
-    bool terminal = false;
+    bool isTerminal = false;
     for (auto& tracker : _eventTrackers) {
         const Event& event = tracker.event;
 
         // Measure event
-        const Unitless value = event.measure_event(vehicle);
+        const Unitless value = event.measure_event(time, state, vehicle);
 
         // Test for a zero-crossing
         const bool eventDetected = detect_event(time, value, tracker);
@@ -28,13 +31,13 @@ bool EventDetector::detect_events(const Time& time, Vehicle& vehicle)
         if (eventDetected) { event.trigger_action(vehicle); }
 
         // Check for termination
-        if (eventDetected && event.is_terminal()) { terminal = true; }
+        if (eventDetected && event.is_terminal()) { isTerminal = true; }
 
         // Update the event tracker with the latest time and vehicle data
         tracker.previousTime  = time;
         tracker.previousValue = value;
     }
-    return terminal;
+    return isTerminal;
 }
 
 bool EventDetector::detect_event(const Time& time, const Unitless& value, EventTracker& tracker) const

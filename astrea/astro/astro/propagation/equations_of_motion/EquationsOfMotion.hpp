@@ -54,18 +54,6 @@ class EquationsOfMotion {
     virtual OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const = 0;
 
     /**
-     * @brief Checks if the current state of the vehicle is in a crash condition.
-     *
-     * @param state The current orbital elements of the vehicle.
-     * @param vehicle The vehicle for which the crash condition is being checked.
-     * @return true if the vehicle is in a crash condition, false otherwise.
-     */
-    virtual bool check_crash(const OrbitalElements& state, const Vehicle& vehicle) const
-    {
-        return false; // TODO: Implement these
-    }
-
-    /**
      * @brief Returns the expected set of orbital elements for this method.
      *
      * @return std::size_t The expected set id of orbital elements.

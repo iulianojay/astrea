@@ -22,14 +22,25 @@ OrbitalElementPartials
 }
 
 
-StateHistory Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
+StateHistory
+    Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
 {
-    return propagate(epoch, interval.start, interval.end, eom, vehicle, store);
+    return propagate(epoch, interval.start, interval.end, eom, vehicle, store, events);
 }
 
-StateHistory
-    Integrator::propagate(const Date& epoch, const Time& startTime, const Time& endTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store)
+StateHistory Integrator::propagate(
+    const Date& epoch,
+    const Time& startTime,
+    const Time& endTime,
+    const EquationsOfMotion& eom,
+    Vehicle& vehicle,
+    bool store,
+    std::vector<Event> events
+)
 {
+    // Set events
+    eventDetector.set_events(events);
+
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
     if (epoch != vehicleEpoch) {
@@ -89,8 +100,8 @@ StateHistory
     while (iteration < iterMax) {
 
         // Check for event
-        check_event(time, state, eom, vehicle);
-        if (eventTrigger) {
+        const bool terminalEvent = check_event(time, state, eom, vehicle);
+        if (terminalEvent) {
             print_iteration(time, state, endTime, state0);
 
             std::cout << crashMessage;
@@ -412,7 +423,7 @@ void Integrator::print_iteration(const Time& time, const OrbitalElements& state,
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (printOn) {
-        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == endTime || eventTrigger) {
+        // if (iteration == 0 || (day % 100 == 0 && day != checkDay) || time == endTime || eventDetected) {
         if (iteration == 0) {
             std::cout << "Run Conditions:" << std::endl << std::endl;
             std::cout << "Initial Time = " << 0.0 << std::endl;
@@ -459,19 +470,20 @@ void Integrator::print_performance() const
 //--------------------------------------------- Event Function ---------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
 
-void Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+bool Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Have equations of motion class check if object crashed
     // Should allow user to input pointer to custom event function
-    eventTrigger = eom.check_crash(state, vehicle);
+    bool terminalEvent = eventDetector.detect_events(time, state, vehicle);
 
     // Break if hit nans or infs
-    if (isinf(abs(time)) || isnan(abs(time))) { eventTrigger = true; }
+    if (isinf(abs(time)) || isnan(abs(time))) { terminalEvent = true; }
     else {
         for (const auto& x : state.to_vector()) {
-            if (isinf(abs(x)) || isnan(abs(x))) { eventTrigger = true; }
+            if (isinf(abs(x)) || isnan(abs(x))) { terminalEvent = true; }
         }
     }
+    return terminalEvent;
 }
 
 

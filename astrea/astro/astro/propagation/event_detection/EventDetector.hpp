@@ -55,14 +55,21 @@ class EventDetector {
     ~EventDetector() = default;
 
     /**
+     * @brief Sets the list of Events to track.
+     *
+     * @param events The list of Events to track.
+     */
+    void set_events(const std::vector<Event>& events);
+
+    /**
      * @brief Detects events for a given time and vehicle.
      *
      * @param time The current time.
      * @param vehicle The Vehicle to check for events.
-     * @return true If an event was detected.
-     * @return false If no event was detected.
+     * @return true If a terminal event was detected.
+     * @return false If no terminal event was detected.
      */
-    bool detect_events(const Time& time, Vehicle& vehicle);
+    bool detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle);
 
   private:
     std::vector<EventTracker> _eventTrackers; //!< The list of Event trackers.

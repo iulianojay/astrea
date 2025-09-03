@@ -21,13 +21,16 @@
 #include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
+#include <units/units.hpp>
+
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/numerical/rk_constants.h> // RK Butcher Tableau
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Interval.hpp>
-#include <units/units.hpp>
 
 namespace astrea {
 namespace astro {
@@ -74,7 +77,14 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
+    StateHistory propagate(
+        const Date& epoch,
+        const Interval& interval,
+        const EquationsOfMotion& eom,
+        Vehicle& vehicle,
+        bool store                = false,
+        std::vector<Event> events = {}
+    );
 
     /**
      * @brief Propagate the state of a vehicle from an initial time to a final time using the given equations of motion.
@@ -87,8 +97,15 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory
-        propagate(const Date& epoch, const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
+    StateHistory propagate(
+        const Date& epoch,
+        const Time& timeInitial,
+        const Time& timeFinal,
+        const EquationsOfMotion& eom,
+        Vehicle& vehicle,
+        bool store                = false,
+        std::vector<Event> events = {}
+    );
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -191,8 +208,7 @@ class Integrator {
     Time timeStepPrevious;   //!< Previous time step used in the integration
 
     // Error variables
-    bool stepSuccess  = false; //!< Flag indicating if the last step was successful
-    bool eventTrigger = false; //!< Flag indicating if an event was triggered during the integration
+    bool stepSuccess = false;  //!< Flag indicating if the last step was successful
     Unitless maxErrorPrevious; //!< Maximum error from the previous step
 
     // Butcher Tablaeu
@@ -243,6 +259,9 @@ class Integrator {
     // Fake fixed step
     bool useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
     Time fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
+
+    // Events
+    EventDetector eventDetector;
 
     /**
      * @brief Find the state derivative at a given time using the equations of motion.
@@ -323,7 +342,7 @@ class Integrator {
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    void check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 };
 
 } // namespace astro

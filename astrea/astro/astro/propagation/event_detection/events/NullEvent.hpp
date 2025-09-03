@@ -38,7 +38,10 @@ class NullEvent {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    Unitless measure_event(const Vehicle& vehicle) const { return 1.0 * mp_units::one; }
+    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+    {
+        return 1.0 * mp_units::one;
+    }
 
     /**
      * @brief Checks if the Event is a terminal Event.
