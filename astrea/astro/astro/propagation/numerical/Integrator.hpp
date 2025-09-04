@@ -258,9 +258,32 @@ class Integrator {
         find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
+     * @brief Set up the main integration loop
+     *
+     * @param events The events to be tracked during propagation.
+     */
+    void setup(const std::vector<Event>& events);
+
+    /**
+     * @brief Teardown after the main integration loop
+     */
+    void teardown();
+
+    /**
      * @brief Set up the stepper method based on the selected step method.
      */
-    void setup_stepper();
+    void setup_butcher_tableau();
+
+    /**
+     * @brief Get the initial state of the vehicle at the specified epoch.
+     *
+     * @param epoch The epoch at which to get the initial state.
+     * @param eom The equations of motion to use for the evaluation.
+     * @param state0 The initial state of the vehicle before propagation.
+     * @param vehicle The vehicle whose state is being evaluated.
+     * @return OrbitalElements The state of the vehicle at the specified epoch.
+     */
+    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Perform a single step of the integration using the selected Runge-Kutta method.
@@ -361,6 +384,16 @@ class Integrator {
      * @param vehicle The vehicle whose state is being integrated.
      */
     bool check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+
+    /**
+     * @brief Validate the current state and time to ensure they are not NaN or infinite.
+     *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
+     * @return true If the state and time are valid.
+     * @return false If the state or time are invalid (NaN or infinite).
+     */
+    bool validate_state_and_time(const Time& time, const OrbitalElements& state) const;
 };
 
 } // namespace astro

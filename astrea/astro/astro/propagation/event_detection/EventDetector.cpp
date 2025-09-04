@@ -27,11 +27,16 @@ bool EventDetector::detect_events(const Time& time, const OrbitalElements& state
         // Test for a zero-crossing
         const bool eventDetected = detect_event(time, value, tracker);
 
-        // Trigger action
-        if (eventDetected) { event.trigger_action(vehicle); }
+        if (eventDetected) {
+            // Store trigger time
+            tracker.detectionTimes.push_back(time);
 
-        // Check for termination
-        if (eventDetected && event.is_terminal()) { isTerminal = true; }
+            // Trigger action
+            event.trigger_action(vehicle);
+
+            // Check for termination
+            if (event.is_terminal()) { isTerminal = true; }
+        }
 
         // Update the event tracker with the latest time and vehicle data
         tracker.previousTime  = time;

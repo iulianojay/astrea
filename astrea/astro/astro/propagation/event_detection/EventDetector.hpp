@@ -30,10 +30,11 @@ class EventDetector {
      * @brief A struct for tracking events.
      */
     struct EventTracker {
-        Event event;            //!< The Event being tracked.
-        bool firstMeasurement;  //!< Whether this is the first measurement for the Event.
-        Time previousTime;      //!< The previous time the Event was measured.
-        Unitless previousValue; //!< The previous value the Event was measured at.
+        Event event;                      //!< The Event being tracked.
+        bool firstMeasurement;            //!< Whether this is the first measurement for the Event.
+        Time previousTime;                //!< The previous time the Event was measured.
+        Unitless previousValue;           //!< The previous value the Event was measured at.
+        std::vector<Time> detectionTimes; //!< The times at which the Event was detected.
     };
 
   public:

@@ -17,6 +17,8 @@ namespace astro {
 
 namespace RK45 { // Traditional Runge-Kutta 5(4) 6 stage method
 
+static const std::size_t nStages = 6;
+
 static const double c[6]    = { 0.0, 0.2, 0.3, 0.6, 1.0, 0.875 };
 static const double b[6]    = { 37.0 / 378.0, 0.0, 250.0 / 621.0, 125.0 / 594.0, 0.0, 512.0 / 1771.0 };
 static const double bhat[6] = { 2825.0 / 27648.0, 0.0, 18575.0 / 48384.0, 13525.0 / 55296.0, 277.00 / 14336.0, 0.25 };
@@ -32,6 +34,8 @@ static const double a[6][6] = { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
 
 namespace RKF45 { // Runge-Kutta-Fehlberg 5(4) 6 stage method
 
+static const std::size_t nStages = 6;
+
 static const double c[6]    = { 0.0, 0.25, 3.0 / 8.0, 12.0 / 13.0, 1.0, 0.5 };
 static const double b[6]    = { 25.0 / 216.0, 0.0, 1408.0 / 2565.0, 2197.0 / 4104.0, -0.2, 0.0 };
 static const double bhat[6] = { 16.0 / 135.0, 0.0, 6656.0 / 12825.0, 28561.0 / 56430.0, -9.0 / 50.0, 2.0 / 55.0 };
@@ -46,6 +50,8 @@ static const double a[6][6] = { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
 
 
 namespace DOP45 { // Dormand-Prince 5(4) 7 stage method
+
+static const std::size_t nStages = 7;
 
 static const double c[7]    = { 0.0, 0.2, 0.3, 0.8, 8.0 / 9.0, 1.0, 1.0 };
 static const double b[7]    = { 5179.0 / 57600.0, 0.0,       7571.0 / 16695.0, 393.0 / 640.0, -92097.0 / 339200.0,
@@ -63,6 +69,8 @@ static const double a[7][7] = { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
 
 
 namespace RKF78 { // Runge-Kutta-Fehlberg 7(8) 13 stage method (this one is so fucking fast)
+
+static const std::size_t nStages = 13;
 
 static const double c[13]     = { 0.0,       2.0 / 27.0, 1.0 / 9.0, 1.0 / 6.0, 5.0 / 12.0, 0.5, 5.0 / 6.0,
                                   1.0 / 6.0, 2.0 / 3.0,  1.0 / 3.0, 1.0,       0.0,        1.0 };
@@ -90,6 +98,8 @@ static const double a[13][13] = {
 
 
 namespace DOP78 { // Dormand-Prince 7(8) 13 stage method
+
+static const std::size_t nStages = 13;
 
 static const double c[13]     = { 0.0,
                                   1.0 / 18.0,

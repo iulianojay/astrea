@@ -39,16 +39,6 @@ StateHistory Integrator::propagate(
     std::vector<Event> events
 )
 {
-    // Set events
-    _eventDetector.set_events(events);
-
-    // Propagate vehicle to initial time without storing
-    const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    if (epoch != vehicleEpoch) {
-        const Time propTime = epoch - vehicleEpoch;
-        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
-    }
-
     // Time
     Time time     = startTime;
     Time timeStep = (_useFixedStep) ? _fixedTimeStep : _timeStepInitial;
@@ -57,42 +47,14 @@ StateHistory Integrator::propagate(
     if (!forwardTime) { timeStep = -timeStep; }
 
     // States
-    OrbitalElements state0 = vehicle.get_state().get_elements();
+    const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle);
+    OrbitalElements state        = state0;
 
-    // Need to check input elements match expected for EOMS
-    const auto& sys                 = eom.get_system();
-    const std::size_t expectedSetId = eom.get_expected_set_id();
-    if (state0.index() != expectedSetId) { // ooh boy we're fragile
-        switch (expectedSetId) {
-            case (OrbitalElements::get_set_id<Cartesian>()): {
-                state0.convert<Cartesian>(sys);
-                break;
-            }
-            case (OrbitalElements::get_set_id<Keplerian>()): {
-                state0.convert<Keplerian>(sys);
-                break;
-            }
-            case (OrbitalElements::get_set_id<Equinoctial>()): {
-                state0.convert<Equinoctial>(sys);
-                break;
-            }
-            default: throw std::runtime_error("Unrecognized element set requested.");
-        }
-        vehicle.update_state({ state0, epoch, sys });
-    }
-    OrbitalElements state = state0;
-    // OrbitalElements state = state0.convert<expectedSetId>(sys); // Can't make get expected set id static :(
-    // TODO: Should this function be templated? Should EOM have a different architecture? Ugh.
-
-    // Ensure count restarts
-    _functionEvaluations = 0;
-
-    // Setup stepper
-    setup_stepper();
+    // Setup
+    setup(events);
 
     // Fruit Loop
-    _iteration = 0;
-    startTimer();
+    const auto& sys = eom.get_system();
     StateHistory stateHistory;
     if (store) { stateHistory[epoch + time] = State({ state, epoch, sys }); }
     while (_iteration < _MAX_ITER) {
@@ -106,6 +68,13 @@ StateHistory Integrator::propagate(
             return stateHistory;
         }
 
+        // Make sure state and time are valid
+        if (!validate_state_and_time(time, state)) {
+            std::cout << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
+            return stateHistory;
+        }
+
+        // Step
         if (_useFixedStep) {
             // Step without error correction
             // I think an interesting choice would allow the user to use the fixed timestep but the
@@ -160,30 +129,90 @@ StateHistory Integrator::propagate(
         // Step iteration
         ++_iteration;
     }
+
+    teardown();
+
+    return stateHistory;
+}
+
+void Integrator::setup(const std::vector<Event>& events)
+{
+    // Set events
+    _eventDetector.set_events(events);
+
+    // Ensure counts restart
+    _functionEvaluations = 0;
+    _iteration           = 0;
+
+    // Setup stepper
+    setup_butcher_tableau();
+
+    // Start timer
+    startTimer();
+}
+
+void Integrator::teardown()
+{
+    // Stop timer
     endTimer();
+
+    // Performance
+    print_performance();
 
     // Exceeded max outer loop iterations
     if (_iteration >= _MAX_ITER) {
         std::cout << "Warning: Max iterations exceeded before final time reached. \nIncrease max iterations and try "
                      "again. \n\n";
     }
-
-    // Performance
-    print_performance();
-
-    return stateHistory;
 }
 
-void Integrator::setup_stepper()
+
+OrbitalElements Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
+    // Propagate vehicle to initial time without storing
+    const Date vehicleEpoch = vehicle.get_state().get_epoch();
+    if (epoch != vehicleEpoch) {
+        const Time propTime = epoch - vehicleEpoch;
+        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
+    }
+
+    // Need to check input elements match expected for EOMS
+    const auto& sys                 = eom.get_system();
+    const std::size_t expectedSetId = eom.get_expected_set_id();
+    OrbitalElements state0          = vehicle.get_state().get_elements();
+    if (state0.index() != expectedSetId) { // ooh boy we're fragile
+        switch (expectedSetId) {
+            case (OrbitalElements::get_set_id<Cartesian>()): {
+                state0.convert<Cartesian>(sys);
+                break;
+            }
+            case (OrbitalElements::get_set_id<Keplerian>()): {
+                state0.convert<Keplerian>(sys);
+                break;
+            }
+            case (OrbitalElements::get_set_id<Equinoctial>()): {
+                state0.convert<Equinoctial>(sys);
+                break;
+            }
+            default: throw std::runtime_error("Unrecognized element set requested.");
+        }
+        vehicle.update_state({ state0, epoch, sys });
+    }
+
+    // OrbitalElements state = state0.convert<expectedSetId>(sys); // Can't make get expected set id static :(
+    // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
+
+    return state0;
+}
+
+void Integrator::setup_butcher_tableau()
+{
+    // Get Butcher Tableau
     switch (_stepMethod) {
-        //----------------------------------- Runge-Kutta(-Fehlberg) Methods -----------------------------------//
-        case StepMethod::RK45: // Traditional RK45
 
-            // Delcare number of stages
-            _nStages = 6;
+        case (StepMethod::RK45): {
 
-            // Get Butcher Tableau
+            _nStages = RK45::nStages;
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
                     _a[ii][jj] = RK45::a[ii][jj];
@@ -194,13 +223,10 @@ void Integrator::setup_stepper()
                 _c[ii]    = RK45::c[ii];
             }
             break;
+        }
+        case (StepMethod::RKF45): {
 
-        case StepMethod::RKF45: // RKF 45 Method
-
-            // Delcare number of stages
-            _nStages = 6;
-
-            // Get Butcher Tableau
+            _nStages = RKF45::nStages;
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
                     _a[ii][jj] = RKF45::a[ii][jj];
@@ -211,13 +237,10 @@ void Integrator::setup_stepper()
                 _c[ii]    = RKF45::c[ii];
             }
             break;
+        }
+        case (StepMethod::RKF78): {
 
-        case StepMethod::RKF78: // Runge-Kutta-Felhlberg 78 Method
-
-            // Delcare number of stages
-            _nStages = 13;
-
-            // Get Butcher Tableau
+            _nStages = RKF78::nStages;
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
                     _a[ii][jj] = RKF78::a[ii][jj];
@@ -228,14 +251,10 @@ void Integrator::setup_stepper()
                 _c[ii]    = RKF78::c[ii];
             }
             break;
+        }
+        case (StepMethod::DOP45): {
 
-        //--------------------------------------- Dormand-Prince Methods ---------------------------------------//
-        case StepMethod::DOP45: // Dormand-Prince 45 Method
-
-            // Delcare number of stages
-            _nStages = 7;
-
-            // Get Butcher Tableau
+            _nStages = DOP45::nStages;
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
                     _a[ii][jj] = DOP45::a[ii][jj];
@@ -246,13 +265,10 @@ void Integrator::setup_stepper()
                 _c[ii]    = DOP45::c[ii];
             }
             break;
+        }
+        case (StepMethod::DOP78): {
 
-        case StepMethod::DOP78: // Dormand-Prince 78 Method
-
-            // Delcare number of stages
-            _nStages = 13;
-
-            // Get Butcher Tableau
+            _nStages = DOP78::nStages;
             for (std::size_t ii = 0; ii < _nStages; ++ii) {
                 for (std::size_t jj = 0; jj < _nStages; ++jj) {
                     _a[ii][jj] = DOP78::a[ii][jj];
@@ -263,7 +279,7 @@ void Integrator::setup_stepper()
                 _c[ii]    = DOP78::c[ii];
             }
             break;
-
+        }
         default:
             throw std::invalid_argument(
                 "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
@@ -470,18 +486,16 @@ void Integrator::print_performance() const
 
 bool Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-    // Have equations of motion class check if object crashed
-    // Should allow user to input pointer to custom event function
-    bool terminalEvent = _eventDetector.detect_events(time, state, vehicle);
+    return _eventDetector.detect_events(time, state, vehicle);
+}
 
-    // Break if hit nans or infs
-    if (isinf(abs(time)) || isnan(abs(time))) { terminalEvent = true; }
-    else {
-        for (const auto& x : state.to_vector()) {
-            if (isinf(abs(x)) || isnan(abs(x))) { terminalEvent = true; }
-        }
+bool Integrator::validate_state_and_time(const Time& time, const OrbitalElements& state) const
+{
+    if (isinf(abs(time)) || isnan(abs(time))) { return false; }
+    for (const auto& x : state.to_vector()) {
+        if (isinf(abs(x)) || isnan(abs(x))) { return false; }
     }
-    return terminalEvent;
+    return true;
 }
 
 void Integrator::startTimer()
