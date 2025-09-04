@@ -1,86 +1,93 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# Astrea++
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
-
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
-
----
-
-## Edit a file
-
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
-
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
-
----
-
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+Astrea++ is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
 
 
----
+## What can it do
 
-## Installing mp-units
+- Statically typed units using mp-units
+    - Allows for custom units, unit extensions, and compile-time unit conversions
+- Statically typed frames and coordinate transformations
+- Statically typed orbital element sets, and orbital data formats
+    - Simple transformations between each
+- Utility classes for automatic conversions to and from Julian Date, UTC, TT, and other common time systems.
+- Clients for pulling Spacetrack data
+- Access analysis (revisit) including link budget, and basic interference calculations 
+- Extensible definitions for:
+    - Vehicles, spacecraft, and payloads
+    - Frames, orbital elements, and orbital data formats
+    - Celestial bodies, and system definitions
+    - Custom force models, integrators, equations of motion, event detection, and analytic solvers
+- Custom mathamatics routines that work with mp-units types
 
-1. Install conan
-> pip install conan
+And it's still growing!
 
-2. Build a profile in ~/.conan2/profiles/<profile_name>
-```
-[settings]
-arch=x86_64
-build_type=Release
-compiler=gcc
-compiler.cppstd=23
-compiler.libcxx=libstdc++11
-compiler.version=13
-os=Linux
+## What's coming?
 
-[conf]
-tools.build:compiler_executables={"c": "gcc-13", "cpp": "g++-13"}
-```
+- User-friendly installation
+- High fidelity VnV
+- Speed guarantees using Google Benchmark
+- Safer, more generic frame definitions
+- More complete element set definitions and faster transformations
+- Maneuvers, and full 6-DoF simulation
+    - Statically typed attitude representations
+- Cislunar equations of motion, including CR3BP and BC4BM
+- SPG4 and SPG8 propagators
+- Atmospheric models
+- Transfer optimization utilities
+- A Qt GUI for basic analysis
 
-3. Add the following line to ~/.conan2/global.config
-```
-tools.cmake.cmake_layout:build_folder_vars=["settings.compiler", "settings.compiler.version", "settings.compiler.cppstd"]
-```
+## Requirements and dependencies
 
-4. Clone mp-units
-> git clone https://github.com/mpusz/mp-units.git
+The following are required to run all features in Astrea. The version requirements have not been thoroughly tested so many features will likely work with older versions. 
+ * make 4.3 
+ * cmake 3.31.6 
+ * g++ 13.1.0 
+ * curl 7.81.0
+ * sqlite3 3.37.2
+ * python3 3.10.12
+ * conan 2.13.0
 
-5. Conan file already exists in repo
+Astrea uses numerous open-source libraries to solve various problems. Many of the dependencies are stored locally in header-only versions for convenience and simplicity. The only dependency that currently requires manual installation on your system is [mp-units](https://github.com/mpusz/mp-units). 
 
-6. Run these steps to install Conan dependenceis and build
-> conan install . -pr <path_to_your_conan_profile> -s compiler.cppstd=23 -b=missing
-> cmake --preset conan-default
-> cmake --build --preset conan-release
+Conan is used to build mp-units and its dependencies and otherwise links into Astrea's cmake system to build everything else. 
 
-NOTE: If the 3rd or 4th steps fail, they should give you a list of options to use instead of "conan-default" and "conan-release"
-> i.e. cmake --build --preset conan-gcc-13-23-release
+
+## Build and install
+
+Since conan is used to build mp-units and it's dependencies, users must have conan profiles setup for the build process to work. To simplify this, required conan files are stored in the repo root directory in `.conan2`. Move this folder to the your home directory after installing conan, overwritting any equivalent files, and Astrea should build out of the box.
+
+To build and install conan easily, simply run
+> make
+
+The default recipe builds all targets in release. Building other build types simply requires appending the type
+> make debug
+
+> make relwithdebinfo 
+
+Similarly, tests can be built by appending the test command
+> make debug tests
+
+Or run with the run_tests command
+> make run_tests
+
+
+On build, files should be installed locally in the `install` folder. This process is fully customizable with standard cmake commands if you want a different build process, install location, etc. See the recipes in the Makefile for more details.
+
+## Contributing
+
+- We welcome contributions to whatever interests you. If you think we're missing something that isn't there, feel free to make a ticket and start working.
+- Please read CONTRIBUTING.md and follow the code of conduct.
+
+## License and acknowledgments
+
+- License: See LICENSE
+- Built using the follwing open-source libraries and tools:
+    * [mp-units](https://github.com/mpusz/mp-units)
+    * [googletest](https://github.com/google/googletest)
+    * [sqlite-orm](https://github.com/fnc12/sqlite_orm.git)
+    * [libcpr](https://github.com/libcpr/cpr.git)
+    * [csv-parser](https://github.com/vincentlaucsb/csv-parserhowar) (header only)
+    * [date](https://github.com/HowardHinnant/date) (header only)
+    * [nlohmann-json](https://github.com/nlohmann/json) (header only)
+    * [parallel_hashmap](https://github.com/greg7mdp/parallel-hashmap) (header only)

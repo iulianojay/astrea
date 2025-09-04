@@ -42,7 +42,7 @@ image with astrea and open-source files mounted:
         -v ~/.conan2:/home/appuser/.conan2 \
         astrea:latest bash
 
-new: 
+old: 
     > docker build -t jayiuliano/astrea:latest -f ./docker/Dockerfile ~
     > docker image push jayiuliano/astrea:latest
 
