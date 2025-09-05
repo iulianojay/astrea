@@ -79,6 +79,13 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
     std::string get_name() const { return Spacecraft::get_name(); }
 
     /**
+     * @brief Get the mass of the viewer.
+     *
+     * @return Mass The mass of the viewer.
+     */
+    Mass get_mass() const override { return Spacecraft::get_mass(); }
+
+    /**
      * @brief Get the inertial position of the viewer.
      *
      * @param date The date for which to get the position.

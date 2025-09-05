@@ -141,13 +141,13 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert<Cartesian>(sys);
+    elements.convert_to_set<Cartesian>(sys);
     assert_nearly_equal(elements, _cartExp);
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(sys);
     assert_nearly_equal(elements, _keplExp);
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
@@ -157,10 +157,10 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert<Cartesian>(sys);
+            elements.convert_to_set<Cartesian>(sys);
 
             // Convert back
-            elements.convert<Keplerian>(sys);
+            elements.convert_to_set<Keplerian>(sys);
 
             // Compare
             assert_nearly_equal(elements, originalElements);
@@ -172,13 +172,13 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert<Cartesian>(sys);
+    elements.convert_to_set<Cartesian>(sys);
     assert_nearly_equal(elements, _cartExp);
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert<Equinoctial>(sys);
+    elements.convert_to_set<Equinoctial>(sys);
     assert_nearly_equal(elements, _equiExp);
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
@@ -188,10 +188,10 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert<Cartesian>(sys);
+            elements.convert_to_set<Cartesian>(sys);
 
             // Convert back
-            elements.convert<Equinoctial>(sys);
+            elements.convert_to_set<Equinoctial>(sys);
 
             // Compare
             assert_nearly_equal(elements, originalElements);
@@ -203,13 +203,13 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
 TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert<Equinoctial>(sys);
+    elements.convert_to_set<Equinoctial>(sys);
     assert_nearly_equal(elements, _equiExp);
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(sys);
     assert_nearly_equal(elements, _keplExp);
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
@@ -219,10 +219,10 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Equinoctial
-            elements.convert<Equinoctial>(sys);
+            elements.convert_to_set<Equinoctial>(sys);
 
             // Convert back
-            elements.convert<Keplerian>(sys);
+            elements.convert_to_set<Keplerian>(sys);
 
             // Compare
             assert_nearly_equal(elements, originalElements);
@@ -263,10 +263,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert<Equinoctial>(sys);
+//             elements.convert_to_set<Equinoctial>(sys);
 
 //             // Convert back
-//             elements.convert<Keplerian>(sys);
+//             elements.convert_to_set<Keplerian>(sys);
 
 //             // Compare
 //             assert_nearly_equal(elements, originalElements);
@@ -278,13 +278,13 @@ TEST_F(ConversionTest, LlaToEcef)
 // TEST_F(ConversionTest, EciToEcef)
 // {
 //     OrbitalElements elements = _eciExp;
-//     elements.convert<Equinoctial>(sys);
+//     elements.convert_to_set<Equinoctial>(sys);
 //     assert_nearly_equal(elements, _ecefExp);
 // }
 // TEST_F(ConversionTest, EcefToEci)
 // {
 //     OrbitalElements elements = _ecefExp;
-//     elements.convert<Keplerian>(sys);
+//     elements.convert_to_set<Keplerian>(sys);
 //     assert_nearly_equal(elements, _eciExp);
 // }
 // TEST_F(ConversionTest, EciEcefCycle)
@@ -294,10 +294,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert<Equinoctial>(sys);
+//             elements.convert_to_set<Equinoctial>(sys);
 
 //             // Convert back
-//             elements.convert<Keplerian>(sys);
+//             elements.convert_to_set<Keplerian>(sys);
 
 //             // Compare
 //             assert_nearly_equal(elements, originalElements);

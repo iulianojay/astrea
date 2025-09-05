@@ -98,7 +98,7 @@ Cartesian Spacecraft::get_cartesian_state(const Date& date) const
 {
     if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
     const State state        = _stateHistory.get_state_at(date);
-    const Cartesian elements = state.get_elements().in<Cartesian>(state.get_system());
+    const Cartesian elements = state.in_element_set<Cartesian>();
     return elements;
 }
 

@@ -29,12 +29,16 @@ class ThrusterParameters : public PayloadParameters {
     /**
      * @brief Constructor for ThrusterParameters
      *
-     * @param fov Field of View for the thruster.
      * @param boresight Boresight direction in RIC coordinates (default is Nadir).
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
-    ThrusterParameters(const astro::RadiusVector<astro::RIC>& boresight = NADIR_RIC, const astro::RadiusVector<astro::RIC>& attachmentPoint = CENTER) :
-        PayloadParameters(boresight, attachmentPoint)
+    ThrusterParameters(
+        const Thrust& thrust,
+        const astro::RadiusVector<astro::RIC>& boresight       = NADIR_RIC,
+        const astro::RadiusVector<astro::RIC>& attachmentPoint = CENTER
+    ) :
+        PayloadParameters(boresight, attachmentPoint),
+        _thrust(thrust)
     {
     }
 
@@ -42,6 +46,16 @@ class ThrusterParameters : public PayloadParameters {
      * @brief Default destructor for ThrusterParameters
      */
     virtual ~ThrusterParameters() = default;
+
+    /**
+     * @brief Get the thrust magnitude.
+     *
+     * @return Thrust magnitude.
+     */
+    Thrust get_thrust() const { return _thrust; }
+
+  protected:
+    Thrust _thrust; //!< Thrust magnitude
 };
 
 /**
@@ -54,12 +68,10 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
 
   public:
     /**
-     * @brief Constructs a Thruster from a FieldOfView object.
+     * @brief Constructor for Thruster
      *
-     * @param parent The parent platform to which the thruster is attached.
-     * @param fov Field of view object defining the thruster's coverage area.
-     * @param boresight The boresight vector of the thruster.
-     * @param attachmentPoint The point on the platform where the thruster is attached.
+     * @param parent Parent frame reference.
+     * @param parameters Thruster parameters.
      */
     template <typename Parent_T>
         requires(std::is_base_of_v<FrameReference, Parent_T>)
@@ -79,6 +91,16 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @return std::size_t ID of the sensor.
      */
     std::size_t get_id() const { return _id; }
+
+    /**
+     * @brief Get the impulsive delta-v provided by the thruster.
+     *
+     * @return Velocity The impulsive delta-v.
+     */
+    Velocity get_impulsive_delta_v() const
+    {
+        return get_parameters().get_thrust() / get_parent()->get_mass() * 1.0 * mp_units::si::unit_symbols::s;
+    }
 
   private:
     /**

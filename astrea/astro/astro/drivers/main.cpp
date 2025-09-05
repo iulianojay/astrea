@@ -49,7 +49,7 @@ int main()
 
     // OrbitalElements comp(cart);
 
-    // comp.convert<Keplerian>();
+    // comp.convert_to_set<Keplerian>();
 
     const Date epoch = J2000;
     const Keplerian state(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
@@ -123,7 +123,7 @@ int main()
     auto vehicle = walkerBall.get_all_spacecraft()[0];
     for (auto& [time, state] : vehicle.get_state_history()) {
         outfile << state.get_epoch() << ",";
-        state.convert<Keplerian>();
+        state.convert_to_set<Keplerian>();
         outfile << state.get_elements() << "\n";
     }
     outfile.close();

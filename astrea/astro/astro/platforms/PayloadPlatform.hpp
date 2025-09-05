@@ -100,6 +100,13 @@ class PayloadPlatform : virtual public FrameReference {
     virtual std::size_t get_id() const = 0;
 
     /**
+     * @brief Get the mass of the platform.
+     *
+     * @return Mass The mass of the platform.
+     */
+    virtual Mass get_mass() const { return 0.0 * mp_units::si::unit_symbols::kg; }
+
+    /**
      * @brief Attaches a single payload to the platform.
      *
      * @param parameters The payload parameters to attach.

@@ -103,6 +103,14 @@ class Equinoctial {
     Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys);
 
     /**
+     * @brief Constructs an Equinoctial object from OrbitalElements.
+     *
+     * @param elements The OrbitalElements to convert.
+     * @param sys The astrodynamics system context for conversion.
+     */
+    Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+
+    /**
      * @brief A static method to create Equinoctial state vectors for a LEO orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.

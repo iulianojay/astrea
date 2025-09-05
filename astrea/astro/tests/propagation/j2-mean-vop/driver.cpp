@@ -81,7 +81,7 @@ TEST_F(J2MeanVopPropagationTest, GEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         std::cout << time << " : " << kep << std::endl;
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
@@ -104,7 +104,7 @@ TEST_F(J2MeanVopPropagationTest, GPSNoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -126,7 +126,7 @@ TEST_F(J2MeanVopPropagationTest, LEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());

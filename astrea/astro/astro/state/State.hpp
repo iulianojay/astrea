@@ -85,9 +85,9 @@ class State {
      * @tparam T The type to convert the orbital elements to.
      */
     template <IsOrbitalElements T>
-    void convert()
+    void convert_to_set()
     {
-        _elements.convert<T>(get_system());
+        _elements.convert_to_set<T>(get_system());
     }
 
     /**
@@ -97,9 +97,33 @@ class State {
      * @return State A new State object with the converted orbital elements.
      */
     template <IsOrbitalElements T>
-    State convert() const
+    State convert_to_set() const
     {
-        return { _elements.in<T>(get_system()), _epoch, get_system() };
+        return { in_element_set<T>(), _epoch, get_system() };
+    }
+
+    /**
+     * @brief Converts the current orbital elements to a specified type.
+     *
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return The converted orbital elements.
+     */
+    template <IsOrbitalElements T>
+    T in_element_set() const
+    {
+        return _elements.in_element_set<T>(get_system());
+    }
+
+    /**
+     * @brief Sets the orbital elements of the state.
+     *
+     * @param elements The new orbital elements to set.
+     */
+    template <IsOrbitalElements T>
+    void set_elements(const T& elements, const bool convertToOriginal = false)
+    {
+        if (convertToOriginal) { elements.convert_to_set(_elements.index(), get_system()); }
+        _elements = elements;
     }
 
   private:

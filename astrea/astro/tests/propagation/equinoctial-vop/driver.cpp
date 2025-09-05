@@ -81,7 +81,7 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -103,7 +103,7 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());
@@ -125,7 +125,7 @@ TEST_F(EquinoctialVopPropagationTest, LEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in<Keplerian>(sys);
+        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
         nearly_equal(kep.get_semimajor(), state0.get_semimajor());
         nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
         nearly_equal(kep.get_inclination(), state0.get_inclination());

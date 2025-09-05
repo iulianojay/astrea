@@ -87,6 +87,14 @@ class Keplerian {
     }
 
     /**
+     * @brief Constructs a Keplerian object from OrbitalElements.
+     *
+     * @param elements The OrbitalElements to convert.
+     * @param sys The astrodynamics system context for conversion.
+     */
+    Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+
+    /**
      * @brief Constructs a Keplerian object from Cartesian elements.
      *
      * @param elements The Cartesian elements to convert.

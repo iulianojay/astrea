@@ -208,6 +208,11 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     sanitize_angles();
 }
 
+Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+{
+    *this = elements.in_element_set<Keplerian>(sys);
+}
+
 // Copy constructor
 Keplerian::Keplerian(const Keplerian& other) :
     _semimajor(other._semimajor),

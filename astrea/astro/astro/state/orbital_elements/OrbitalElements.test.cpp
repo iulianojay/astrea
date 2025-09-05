@@ -48,24 +48,24 @@ TEST_F(OrbitalElementsTest, ConvertInPlace)
 {
     OrbitalElements elements = _cartElements;
     ASSERT_EQ(elements.index(), 0);
-    elements.convert<Keplerian>(_sys);
+    elements.convert_to_set<Keplerian>(_sys);
     ASSERT_EQ(elements.index(), 1);
-    elements.convert<Equinoctial>(_sys);
+    elements.convert_to_set<Equinoctial>(_sys);
     ASSERT_EQ(elements.index(), 2);
 }
 
 TEST_F(OrbitalElementsTest, Convert)
 {
-    OrbitalElements newElements = _cartElements.convert<Keplerian>(_sys);
+    OrbitalElements newElements = _cartElements.convert_to_set<Keplerian>(_sys);
     ASSERT_EQ(newElements.index(), 1);
-    newElements = _cartElements.convert<Equinoctial>(_sys);
+    newElements = _cartElements.convert_to_set<Equinoctial>(_sys);
     ASSERT_EQ(newElements.index(), 2);
 }
 
 TEST_F(OrbitalElementsTest, In)
 {
-    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in<Keplerian>(_sys));
-    ASSERT_NO_THROW(Equinoctial equinoctial = _cartElements.in<Equinoctial>(_sys));
+    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian>(_sys));
+    ASSERT_NO_THROW(Equinoctial equinoctial = _cartElements.in_element_set<Equinoctial>(_sys));
 }
 
 TEST_F(OrbitalElementsTest, Addition)

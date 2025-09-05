@@ -2,6 +2,7 @@
 
 Astrea++ is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
 
+This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover ever feature, but we're on our way! 
 
 ## What can it do
 
@@ -25,15 +26,18 @@ And it's still growing!
 ## What's coming?
 
 - User-friendly installation
+- SPICE integration
 - High fidelity VnV
+    - Real world comparisons using GPS data
 - Speed guarantees using Google Benchmark
 - Safer, more generic frame definitions
 - More complete element set definitions and faster transformations
 - Maneuvers, and full 6-DoF simulation
     - Statically typed attitude representations
+    - Control mechanisms such as reaction wheels
 - Cislunar equations of motion, including CR3BP and BC4BM
 - SPG4 and SPG8 propagators
-- Atmospheric models
+- High fidelity atmospheric models
 - Transfer optimization utilities
 - A Qt GUI for basic analysis
 

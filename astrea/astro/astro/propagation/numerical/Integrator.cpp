@@ -183,15 +183,15 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     if (state0.index() != expectedSetId) { // ooh boy we're fragile
         switch (expectedSetId) {
             case (OrbitalElements::get_set_id<Cartesian>()): {
-                state0.convert<Cartesian>(sys);
+                state0.convert_to_set<Cartesian>(sys);
                 break;
             }
             case (OrbitalElements::get_set_id<Keplerian>()): {
-                state0.convert<Keplerian>(sys);
+                state0.convert_to_set<Keplerian>(sys);
                 break;
             }
             case (OrbitalElements::get_set_id<Equinoctial>()): {
-                state0.convert<Equinoctial>(sys);
+                state0.convert_to_set<Equinoctial>(sys);
                 break;
             }
             default: throw std::runtime_error("Unrecognized element set requested.");
@@ -199,7 +199,7 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
         vehicle.update_state({ state0, epoch, sys });
     }
 
-    // OrbitalElements state = state0.convert<expectedSetId>(sys); // Can't make get expected set id static :(
+    // OrbitalElements state = state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
     // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
 
     return state0;

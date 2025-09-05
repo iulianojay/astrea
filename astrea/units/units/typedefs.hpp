@@ -57,6 +57,11 @@ using Length = mp_units::quantity<detail::minor_distance_unit>;
 using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
 
 /**
+ * @brief Definition for a thrust quantity.
+ */
+using Thrust = mp_units::quantity<detail::mass_unit * detail::distance_unit / mp_units::pow<2>(detail::time_unit)>;
+
+/**
  * @brief Definition for a specific angular momentum quantity.
  */
 using SpecificAngularMomentum = mp_units::quantity<detail::distance_unit * detail::distance_unit / detail::time_unit>;
@@ -104,17 +109,17 @@ using GravParam = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) / m
 /**
  * @brief Definition for a mean motion quantity.
  */
-using MeanMotion           = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
+using MeanMotion = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
 
 /**
  * @brief Definition for a mean motion 1st derivative quantity.
  */
-using MeanMotion1stDer     = mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_units::non_si::day)>;
+using MeanMotion1stDer = mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_units::non_si::day)>;
 
 /**
  * @brief Definition for a mean motion 2nd derivative quantity.
  */
-using MeanMotion2ndDer     = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
+using MeanMotion2ndDer = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
 
 /**
  * @brief Definition for a ballistic coefficient quantity.

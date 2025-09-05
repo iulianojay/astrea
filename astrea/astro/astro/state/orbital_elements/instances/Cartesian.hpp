@@ -116,6 +116,14 @@ class Cartesian {
     Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
 
     /**
+     * @brief Constructor for Cartesian from OrbitalElements.
+     *
+     * @param elements OrbitalElements object
+     * @param sys Astrodynamics system containing celestial body data
+     */
+    Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+
+    /**
      * @brief A static method to create Cartesian state vectors for a LEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
@@ -226,6 +234,9 @@ class Cartesian {
      */
     Cartesian operator+(const Cartesian& other) const;
 
+    Cartesian operator+(const RadiusVector<ECI>& r) const;
+    Cartesian operator+(const VelocityVector<ECI>& v) const;
+
     /**
      * @brief Adds another Cartesian object to the current one.
      *
@@ -233,6 +244,9 @@ class Cartesian {
      * @return Reference to the current Cartesian object after addition.
      */
     Cartesian& operator+=(const Cartesian& other);
+
+    Cartesian& operator+=(const RadiusVector<ECI>& r);
+    Cartesian& operator+=(const VelocityVector<ECI>& v);
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -242,6 +256,9 @@ class Cartesian {
      */
     Cartesian operator-(const Cartesian& other) const;
 
+    Cartesian operator-(const RadiusVector<ECI>& r) const;
+    Cartesian operator-(const VelocityVector<ECI>& v) const;
+
     /**
      * @brief Subtracts another Cartesian object from the current one.
      *
@@ -249,6 +266,9 @@ class Cartesian {
      * @return Reference to the current Cartesian object after subtraction.
      */
     Cartesian& operator-=(const Cartesian& other);
+
+    Cartesian& operator-=(const RadiusVector<ECI>& r);
+    Cartesian& operator-=(const VelocityVector<ECI>& v);
 
     /**
      * @brief Multiplies the Cartesian state vector by a scalar.

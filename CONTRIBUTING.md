@@ -1,4 +1,4 @@
-# How contribute
+# How to contribute
 
 Users are welcome to contribute either through new feature development, general updates, or bug fixes. Larger refactors should first be discussed with project leads.
 

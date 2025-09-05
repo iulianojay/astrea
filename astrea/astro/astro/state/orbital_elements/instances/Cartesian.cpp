@@ -138,6 +138,11 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
+Cartesian::Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+{
+    *this = elements.in_element_set<Cartesian>(sys);
+}
+
 // Copy constructor
 Cartesian::Cartesian(const Cartesian& other) :
     _r(other._r),
@@ -180,11 +185,39 @@ Cartesian& Cartesian::operator+=(const Cartesian& other)
     return *this;
 }
 
+Cartesian Cartesian::operator+(const RadiusVector<ECI>& r) const { return Cartesian(_r + r, _v); }
+Cartesian& Cartesian::operator+=(const RadiusVector<ECI>& r)
+{
+    _r += r;
+    return *this;
+}
+
+Cartesian Cartesian::operator+(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v + v); }
+Cartesian& Cartesian::operator+=(const VelocityVector<ECI>& v)
+{
+    _v += v;
+    return *this;
+}
+
 Cartesian Cartesian::operator-(const Cartesian& other) const { return Cartesian(_r - other._r, _v - other._v); }
 Cartesian& Cartesian::operator-=(const Cartesian& other)
 {
     _r -= other._r;
     _v -= other._v;
+    return *this;
+}
+
+Cartesian Cartesian::operator-(const RadiusVector<ECI>& r) const { return Cartesian(_r - r, _v); }
+Cartesian& Cartesian::operator-=(const RadiusVector<ECI>& r)
+{
+    _r -= r;
+    return *this;
+}
+
+Cartesian Cartesian::operator-(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v - v); }
+Cartesian& Cartesian::operator-=(const VelocityVector<ECI>& v)
+{
+    _v -= v;
     return *this;
 }
 

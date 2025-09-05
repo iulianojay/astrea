@@ -167,6 +167,7 @@ class OrbitalElements {
         _elements(Cartesian())
     {
     }
+
     /**
      * @brief Constructor initializing with Cartesian elements.
      *
@@ -205,9 +206,9 @@ class OrbitalElements {
      * @return A reference to the current orbital elements after conversion.
      */
     template <IsOrbitalElements T>
-    OrbitalElements& convert(const AstrodynamicsSystem& sys)
+    OrbitalElements& convert_to_set(const AstrodynamicsSystem& sys)
     {
-        _elements = in<T>(sys);
+        _elements = in_element_set<T>(sys);
         return *this;
     }
 
@@ -219,9 +220,9 @@ class OrbitalElements {
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    OrbitalElements convert(const AstrodynamicsSystem& sys) const
+    OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
     {
-        return in<T>(sys);
+        return in_element_set<T>(sys);
     }
 
     /**
@@ -232,9 +233,9 @@ class OrbitalElements {
      * @return OrbitalElements& Reference to the current orbital elements after conversion.
      */
     template <std::size_t index>
-    OrbitalElements& convert(const AstrodynamicsSystem& sys)
+    OrbitalElements& convert_to_set(const AstrodynamicsSystem& sys)
     {
-        _elements = in<std::variant_alternative_t<index, ElementVariant>()>(sys);
+        _elements = in_element_set<std::variant_alternative_t<index, ElementVariant>()>(sys);
         return *this;
     }
 
@@ -246,9 +247,9 @@ class OrbitalElements {
      * @return OrbitalElements Orbital elements after conversion.
      */
     template <std::size_t index>
-    OrbitalElements convert(const AstrodynamicsSystem& sys) const
+    OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
     {
-        return in<std::variant_alternative_t<index, ElementVariant>()>(sys);
+        return in_element_set<std::variant_alternative_t<index, ElementVariant>()>(sys);
     }
 
     /**
@@ -258,7 +259,7 @@ class OrbitalElements {
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in(const AstrodynamicsSystem& sys) const
+    T in_element_set(const AstrodynamicsSystem& sys) const
     {
         return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
     }
