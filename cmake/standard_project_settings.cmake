@@ -1,7 +1,7 @@
 
 
 # Compiler flags
-set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX")
+set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX --coverage -fno-inline -fno-inline-small-functions -fno-default-inline -fprofile-arcs -ftest-coverage")
 set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -mfpmath=387 -ffast-math -fpermissive -DLINUX")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
@@ -12,10 +12,6 @@ else()
     set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
     set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at")
 endif()
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-set(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
