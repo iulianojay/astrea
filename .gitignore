@@ -1,5 +1,6 @@
 # Folders
 .devcontainer
+.coverage
 .vscode
 CMake*
 bin
@@ -22,7 +23,7 @@ build.txt
 package.json
 get-pip.py
 pyastro/astro.py
-build.txt
+.coverage.info
 
 # Must include
 !CMakeLists.txt
