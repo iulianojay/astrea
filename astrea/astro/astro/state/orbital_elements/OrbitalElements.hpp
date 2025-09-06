@@ -201,6 +201,24 @@ class OrbitalElements {
     /**
      * @brief Converts the current orbital elements to a specific type.
      *
+     * @tparam index The index of the orbital element type to convert to.
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return OrbitalElements& Reference to the current orbital elements after conversion.
+     */
+    OrbitalElements& convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys);
+
+    /**
+     * @brief Converts the current orbital elements to a specific type.
+     *
+     * @tparam index The index of the orbital element type to convert to.
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return OrbitalElements Orbital elements after conversion.
+     */
+    OrbitalElements convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys) const;
+
+    /**
+     * @brief Converts the current orbital elements to a specific type.
+     *
      * @tparam T The type to convert to.
      * @param sys The astrodynamics system to use for the conversion.
      * @return A reference to the current orbital elements after conversion.
@@ -223,33 +241,6 @@ class OrbitalElements {
     OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
     {
         return in_element_set<T>(sys);
-    }
-
-    /**
-     * @brief Converts the current orbital elements to a specific type.
-     *
-     * @tparam index The index of the orbital element type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
-     * @return OrbitalElements& Reference to the current orbital elements after conversion.
-     */
-    template <std::size_t index>
-    OrbitalElements& convert_to_set(const AstrodynamicsSystem& sys)
-    {
-        _elements = in_element_set<std::variant_alternative_t<index, ElementVariant>()>(sys);
-        return *this;
-    }
-
-    /**
-     * @brief Converts the current orbital elements to a specific type.
-     *
-     * @tparam index The index of the orbital element type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
-     * @return OrbitalElements Orbital elements after conversion.
-     */
-    template <std::size_t index>
-    OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
-    {
-        return in_element_set<std::variant_alternative_t<index, ElementVariant>()>(sys);
     }
 
     /**
@@ -409,6 +400,15 @@ class OrbitalElements {
      * @throws std::runtime_error if the underlying types are not the same.
      */
     void same_underlying_type(const OrbitalElements& other) const;
+
+    /**
+     * @brief Implementation of the conversion to a specific type.
+     *
+     * @param idx The index of the orbital element type to convert to.
+     * @param sys The astrodynamics system to use for the conversion.
+     * @return The converted orbital elements.
+     */
+    OrbitalElements convert_to_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const;
 };
 
 /**

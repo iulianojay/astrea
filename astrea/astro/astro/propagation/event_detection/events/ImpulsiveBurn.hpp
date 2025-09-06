@@ -10,19 +10,25 @@
  */
 #pragma once
 
+#include <string>
+
 #include <mp-units/core.h>
 
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief A class representing a null Event in the astrea astro platform.
- * This class is used as a placeholder for Events that do not have a defined state or mass.
+ * @brief A class representing an impulsive burn Event. It triggers when the true anomaly wraps around (i.e. at
+ * perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction.
+ * TODO: Generalize to a scheduler of some sort and other burn triggers.
+ * TODO: Generalize burn direction.
+ * TODO: Generalize which thrusters burn.
  */
 class ImpulsiveBurn {
 
@@ -32,7 +38,7 @@ class ImpulsiveBurn {
      *
      * @return std::string The name of the Event.
      */
-    std::string get_name() const { return "Impulsive Burn"; }
+    std::string get_name() const;
 
     /**
      * @brief Measures the anomaly as a trigger.
@@ -41,48 +47,14 @@ class ImpulsiveBurn {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
-    {
-        const auto& sys          = vehicle.get_state().get_system(); // This way of getting the system is stupid
-        const Keplerian elements = state.in_element_set<Keplerian>(sys);
-
-        // TODO: Generalize to some scheduler
-        const Angle& trueAnomaly = elements.get_true_anomaly();
-
-        // Trigger at perigee
-        if (trueAnomaly < previousAnomaly) {
-            previousAnomaly = trueAnomaly;
-            return 0.0 * detail::unitless; // Triggered
-        }
-        else {
-            previousAnomaly = trueAnomaly;
-            return 1.0 * detail::unitless; // Not triggered
-        }
-    }
+    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const;
 
     /**
-     * @brief Triggers the impulsive burn.
+     * @brief Triggers an impulsive burn.
      *
      * @param vehicle The Vehicle to trigger the action on.
      */
-    void trigger_action(Vehicle& vehicle) const
-    {
-        State& state       = vehicle.get_state();
-        const auto& sys    = state.get_system();
-        Cartesian elements = state.in_element_set<Cartesian>(sys);
-
-        // Just sum up all thrust
-        Velocity deltaV = 0.0 * mp_units::si::unit_symbols::N;
-        for (const auto& thruster : vehicle.get_payloads<Thruster>()) {
-            deltaV += thruster->get_impulsive_delta_v();
-        }
-
-        // Apply burn- assume velocity direction
-        elements += deltaV * elements.get_velocity().unit(); // TODO: Should adding vectors like this be generalized to other element sets?
-
-        // Correct to original representation
-        state.set_elements(elements, true);
-    }
+    void trigger_action(Vehicle& vehicle) const;
 
     /**
      * @brief Checks if the Event is a terminal Event.
@@ -90,7 +62,7 @@ class ImpulsiveBurn {
      * @return true If the Event is a terminal Event.
      * @return false If the Event is not a terminal Event.
      */
-    bool is_terminal() const { return false; }
+    bool is_terminal() const;
 
   private:
     mutable Angle previousAnomaly;

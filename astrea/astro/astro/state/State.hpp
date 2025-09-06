@@ -122,8 +122,9 @@ class State {
     template <IsOrbitalElements T>
     void set_elements(const T& elements, const bool convertToOriginal = false)
     {
-        if (convertToOriginal) { elements.convert_to_set(_elements.index(), get_system()); }
-        _elements = elements;
+        std::size_t originalIndex = _elements.index();
+        _elements                 = elements;
+        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_system()); }
     }
 
   private:

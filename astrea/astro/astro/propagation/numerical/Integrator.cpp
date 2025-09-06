@@ -180,26 +180,11 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     const auto& sys                 = eom.get_system();
     const std::size_t expectedSetId = eom.get_expected_set_id();
     OrbitalElements state0          = vehicle.get_state().get_elements();
-    if (state0.index() != expectedSetId) { // ooh boy we're fragile
-        switch (expectedSetId) {
-            case (OrbitalElements::get_set_id<Cartesian>()): {
-                state0.convert_to_set<Cartesian>(sys);
-                break;
-            }
-            case (OrbitalElements::get_set_id<Keplerian>()): {
-                state0.convert_to_set<Keplerian>(sys);
-                break;
-            }
-            case (OrbitalElements::get_set_id<Equinoctial>()): {
-                state0.convert_to_set<Equinoctial>(sys);
-                break;
-            }
-            default: throw std::runtime_error("Unrecognized element set requested.");
-        }
+    if (state0.index() != expectedSetId) {
+        state0 = state0.convert_to_set(expectedSetId, sys);
+        // state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
         vehicle.update_state({ state0, epoch, sys });
     }
-
-    // OrbitalElements state = state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
     // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
 
     return state0;
@@ -414,11 +399,14 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
         }
         else {
             // Predicted relative step size
+            Unitless relativeTimeStep = 1.0 * mp_units::one;
             if (maxError == 0.0 * astrea::detail::unitless && _maxErrorPrevious == 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
                 std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
             }
-            const Unitless relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
-                                              pow<3, 50>(maxError / _maxErrorPrevious);
+            else {
+                relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
+                                   pow<3, 50>(maxError / _maxErrorPrevious);
+            }
 
             // New step size
             timeStep *= relativeTimeStep;

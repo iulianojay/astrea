@@ -135,6 +135,36 @@ OrbitalElements
 const OrbitalElements::ElementVariant& OrbitalElements::extract() const { return _elements; }
 OrbitalElements::ElementVariant& OrbitalElements::extract() { return _elements; }
 
+OrbitalElements& OrbitalElements::convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys)
+{
+    *this = convert_to_set_impl(idx, sys);
+    return *this;
+}
+
+OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys) const
+{
+    return convert_to_set_impl(idx, sys);
+}
+
+OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const
+{
+    // TODO: Surely, there's a better way to do this
+    switch (idx) {
+        case (OrbitalElements::get_set_id<Cartesian>()): { // ooh boy we're fragile
+            return in_element_set<Cartesian>(sys);
+            break;
+        }
+        case (OrbitalElements::get_set_id<Keplerian>()): {
+            return in_element_set<Keplerian>(sys);
+            break;
+        }
+        case (OrbitalElements::get_set_id<Equinoctial>()): {
+            return in_element_set<Equinoctial>(sys);
+            break;
+        }
+        default: throw std::runtime_error("Unrecognized element set requested.");
+    }
+}
 
 void OrbitalElements::same_underlying_type(const OrbitalElements& other) const
 {
