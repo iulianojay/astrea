@@ -28,9 +28,9 @@ using mp_units::si::unit_symbols::W;
 class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
+        eom(sys, forces),
         start(seconds(0)),
         end(weeks(1)),
-        eom(sys, forces),
         propInterval({ start, end }),
         epoch(J2000)
     {

@@ -13,6 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
+include(cmake/standard_project_settings.cmake)
+
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 

@@ -271,8 +271,8 @@ class Spacecraft : public ThrusterPlatform {
     SurfaceArea _liftArea               = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default lift area
 
     // Orbital elements
-    State _state0;              // Initial state of the spacecraft
     State _state;               // Current state of the spacecraft
+    State _state0;              // Initial state of the spacecraft
     StateHistory _stateHistory; // History of states for the spacecraft
 
     /**

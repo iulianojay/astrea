@@ -28,9 +28,9 @@ using mp_units::si::unit_symbols::W;
 class TwoBodyPropagationTest : public testing::Test {
   public:
     TwoBodyPropagationTest() :
+        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
-        eom(sys),
         propInterval({ start, end }),
         epoch(J2000)
     {

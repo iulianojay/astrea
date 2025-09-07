@@ -157,9 +157,9 @@ class DynamicFrame : public Frame<Frame_T> {
 
   protected:
     const FrameReference* _parent;                   //!< The parent object this frame is attached to.
-    bool _isInstantaneous;                           //!< Flag indicating if the frame is instantaneous.
     RadiusVector<EarthCenteredInertial> _position;   //!< The position vector in the ECI frame.
     VelocityVector<EarthCenteredInertial> _velocity; //!< The velocity vector in the ECI frame.
+    bool _isInstantaneous;                           //!< Flag indicating if the frame is instantaneous.
 
     /**
      * @brief Gets the inertial position vector at a given date.

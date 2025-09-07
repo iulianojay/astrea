@@ -137,8 +137,7 @@ RiseSetArray find_platform_to_platform_accesses(
 {
     // Get all access info once to avoid unnecessary calcs
     std::vector<AccessInfo> accessInfo(times.size());
-    std::size_t ii     = 0;
-    const auto& center = sys.get_center();
+    std::size_t ii = 0;
     for (const auto& time : times) {
         // Get ECI state of ground station
         const Date date                   = epoch + time;

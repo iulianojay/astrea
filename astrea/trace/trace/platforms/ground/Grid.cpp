@@ -29,9 +29,6 @@ std::vector<GroundPoint> Grid::build_uniform_grid(const LatLon& corner1, const L
     const auto& lat4 = corner4.first;
     const auto& lon4 = corner4.second;
 
-    const std::size_t nLat = std::ceil((abs(lat4 - lat1) / spacing).numerical_value_in(mp_units::one)) + 1;
-    const std::size_t nLon = std::ceil((abs(lon4 - lon1) / spacing).numerical_value_in(mp_units::one)) + 1;
-
     // Build out linear vector of lats/lons
     std::vector<Angle> lats = create_uniformly_spaced_vector(lat1, lat4, spacing);
     std::vector<Angle> lons = create_uniformly_spaced_vector(lon1, lon4, spacing);

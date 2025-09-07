@@ -1,16 +1,17 @@
 
 
 # Compiler flags
-set(DEBUG_FLAGS "-g -DWL=64 -m64 -fPIC -mfpmath=387 -fpermissive -DLINUX --coverage -fno-inline -fno-inline-small-functions -fno-default-inline -fprofile-arcs -ftest-coverage")
-set(RELEASE_FLAGS "-O3 -DWL=64 -m64 -fPIC -mfpmath=387 -ffast-math -fpermissive -DLINUX")
+set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX")
+set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage")
+set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math -fpermissive")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
 if (UNIX AND NOT APPLE)
     set(C_FLAGS "${C_FLAGS} -Wall")
-    set(CXX_FLAGS "${CXX_FLAGS} -Wall")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wall -fpermissive")
 else()
     set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
-    set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at -fpermissive")
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")

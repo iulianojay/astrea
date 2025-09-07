@@ -47,9 +47,9 @@ class GeoToGroundAccessTest : public testing::Test {
   public:
     GeoToGroundAccessTest() :
         semimajorGeo(42164.0 * km),
+        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
-        eom(sys),
         accessInterval({ start, end }),
         resolution(minutes(1))
     {

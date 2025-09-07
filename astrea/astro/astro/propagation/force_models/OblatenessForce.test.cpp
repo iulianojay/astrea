@@ -39,8 +39,8 @@ class OblatenessForceTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6 * one;
 
     Spacecraft sat;
-    AstrodynamicsSystem sys;
     Date epoch;
+    AstrodynamicsSystem sys;
     OblatenessForce force;
 };
 
