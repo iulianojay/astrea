@@ -2,7 +2,10 @@
 
 #include <gtest/gtest.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -21,28 +24,7 @@ class TwoLineElementsTest : public testing::Test {
 
     void SetUp() override {}
 
-    template <auto R, typename Rep>
-    const bool nearly_equal(const mp_units::quantity<R, Rep>& first, const mp_units::quantity<R, Rep>& second) const
-    {
-        const Rep a       = first.numerical_value_ref_in(first.unit);
-        const Rep b       = first.numerical_value_ref_in(second.unit);
-        const Rep REL_TOL = 1.0e-4;
-        if (a != 0.0 && abs((a - b) / a) > REL_TOL) { return false; }
-        else if (b != 0.0 && abs((a - b) / b) > REL_TOL) {
-            return false;
-        }
-        return true;
-    }
-
-    template <auto R, typename Rep>
-    void assert_nearly_equal(const mp_units::quantity<R, Rep>& value, const mp_units::quantity<R, Rep>& expected)
-    {
-        ASSERT_TRUE(nearly_equal(value, expected)) << "Issues greater than " << REL_TOL * 100 << "%\n"
-                                                   << "Value: " << value << "\n"
-                                                   << "Expected: " << expected << "\n\n";
-    }
-
-    const double REL_TOL = 1.0e-6;
+    const Unitless REL_TOL = 1.0e-6;
     AstrodynamicsSystem _sys;
 };
 
@@ -74,21 +56,21 @@ TEST_F(TwoLineElementsTest, StringConstructor)
     ASSERT_EQ(tle.get_launch_number(), "067");
     ASSERT_EQ(tle.get_launch_piece(), "A");
     ASSERT_EQ(tle.get_epoch(), Date("2008-09-20 12:25:40"));
-    assert_nearly_equal(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)));
-    assert_nearly_equal(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)));
-    assert_nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii));
+    ASSERT_EQ_QUANTITY(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL);
     ASSERT_EQ(tle.get_ephemeris_type(), 0);
     ASSERT_EQ(tle.get_element_set_number(), 292);
     ASSERT_EQ(tle.get_check_sum1(), 7);
 
-    assert_nearly_equal(tle.get_semimajor(), Distance(22919.1 * km));
-    assert_nearly_equal(tle.get_eccentricity(), Unitless(0.0006703));
-    assert_nearly_equal(tle.get_inclination(), Angle(51.6416 * deg));
-    assert_nearly_equal(tle.get_right_ascension(), Angle(247.4627 * deg));
-    assert_nearly_equal(tle.get_argument_of_perigee(), Angle(130.5360 * deg));
-    assert_nearly_equal(tle.get_true_anomaly(), Angle(325.0288 * deg));
+    ASSERT_EQ_QUANTITY(tle.get_semimajor(), Distance(22919.069 * km), REL_TOL); // derived
+    ASSERT_EQ_QUANTITY(tle.get_eccentricity(), Unitless(0.0006703), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_inclination(), Angle(51.6416 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_right_ascension(), Angle(247.4627 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_argument_of_perigee(), Angle(130.5360 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(tle.get_true_anomaly(), Angle(324.9847 * deg), REL_TOL); // derived
 
-    assert_nearly_equal(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day));
+    ASSERT_EQ_QUANTITY(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day), REL_TOL);
 
     ASSERT_EQ(tle.get_rev_number(), 56353);
     ASSERT_EQ(tle.get_check_sum2(), 7);

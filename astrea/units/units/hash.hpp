@@ -14,46 +14,10 @@
 
 #include <units/typedefs.hpp>
 
-/**
- * @brief Specialization of std::hash for astrea::Unitless.
- */
-template <>
-struct std::hash<astrea::Unitless> {
-    std::size_t operator()(const astrea::Unitless& k) const
+template <auto R, typename Rep>
+struct std::hash<mp_units::quantity<R, Rep>> {
+    std::size_t operator()(const mp_units::quantity<R, Rep>& q) const
     {
-        return std::hash<double>()(k.force_numerical_value_in(k.unit));
-    }
-};
-
-/**
- * @brief Specialization of std::hash for astrea::Distance.
- */
-template <>
-struct std::hash<astrea::Distance> {
-    std::size_t operator()(const astrea::Distance& k) const
-    {
-        return std::hash<double>()(k.force_numerical_value_in(k.unit));
-    }
-};
-
-/**
- * @brief Specialization of std::hash for astrea::Angle.
- */
-template <>
-struct std::hash<astrea::Angle> {
-    std::size_t operator()(const astrea::Angle& a) const
-    {
-        return (std::hash<double>()(a.numerical_value_ref_in(a.unit)));
-    }
-};
-
-/**
- * @brief Specialization of std::hash for astrea::Time.
- */
-template <>
-struct std::hash<astrea::Time> {
-    std::size_t operator()(const astrea::Time& a) const
-    {
-        return (std::hash<double>()(a.numerical_value_ref_in(a.unit)));
+        return (std::hash<Rep>()(q.numerical_value_ref_in(q.unit)));
     }
 };

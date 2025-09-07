@@ -4,7 +4,10 @@
 
 #include <gtest/gtest.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
@@ -22,22 +25,7 @@ class EquinoctialTest : public testing::Test {
 
     void SetUp() override {}
 
-    void assert_nearly_equal(const OrbitalElementPartials& elements, const OrbitalElementPartials& expectedElements)
-    {
-        ASSERT_TRUE(nearly_equal(elements, expectedElements)) << "Conversion caused issues greater than " << REL_TOL * 100 << "%\n"
-                                                              << "Converted Set: " << elements << "\n"
-                                                              << "Expected Set : " << expectedElements << "\n\n";
-    }
-
-    template <auto R, typename Rep>
-    void assert_nearly_equal(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y) noexcept
-    {
-        ASSERT_TRUE(nearly_equal(x, y)) << "Conversion caused issues greater than " << REL_TOL * 100 << "%\n"
-                                        << "First: " << x << "\n"
-                                        << "Second: " << y << "\n\n";
-    }
-
-    const double REL_TOL = 1.0e-6;
+    const Unitless REL_TOL = 1.0e-6;
 
     Vehicle sat;
     AstrodynamicsSystem sys;
@@ -66,5 +54,5 @@ TEST_F(EquinoctialTest, Derivative)
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
 
     OrbitalElementPartials dstate = eom(state0, sat);
-    assert_nearly_equal(expected, dstate);
+    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

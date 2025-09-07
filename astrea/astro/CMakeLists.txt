@@ -15,6 +15,7 @@ set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
+    ${ASTRO_BASE}/platforms/thrusters/Thruster.cpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp

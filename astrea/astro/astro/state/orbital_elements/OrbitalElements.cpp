@@ -4,7 +4,7 @@
 
 #include <mp-units/math.h>
 
-#include <units/util.hpp>
+#include <math/test_util.hpp>
 
 using namespace mp_units;
 
@@ -186,9 +186,6 @@ std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& element
 const OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() const { return _elements; }
 
 OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { return _elements; }
-
-constexpr std::size_t OrbitalElementPartials::index() const { return _elements.index(); }
-
 
 void OrbitalElementPartials::same_underlying_type(const OrbitalElementPartials& other) const
 {

@@ -9,6 +9,8 @@
 #include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <mp-units/math.h>
 
+#include <astro/utilities/conversions.hpp>
+
 using namespace mp_units;
 
 namespace astrea {
@@ -83,25 +85,25 @@ Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
 
-    Time julianDay = _julianDate.time_since_epoch().count() * day;
+    const Time julianDay = _julianDate.time_since_epoch().count() * day;
 
     // UT = (fraction of current Julian Day since 00:00:00 in days) / (body rotation rate in deg/day ratioed to Earth's)
-    const Time halfDay = 0.5 * day;
-    Time universalTime = (julianDay - (floor<day>(julianDay + halfDay) - halfDay));
+    static const Time halfDay = 0.5 * day;
+    const Time universalTime  = (julianDay - (floor<day>(julianDay + halfDay) - halfDay));
 
     // Greenwich Universal Time
-    Time julianDay0 = julianDay - universalTime; // julian day number on this julian date
+    const Time julianDay0 = julianDay - universalTime; // julian day number on this julian date
 
     // TODO: This difference can be done, somehow, with mp_units mechanisms
-    quantity<JulianCentury> T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
-    quantity<one> T0                          = T0JulianCenturies / JulianCentury;
+    const quantity<JulianCentury> T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
+    const quantity<one> T0                          = T0JulianCenturies / JulianCentury;
 
     const Angle greenwichUniversalTime =
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    const AngularRate earthRotRate    = 3.609851887442813e+02 * deg / day;
-    const Angle greenwichSiderealTime = (greenwichUniversalTime + earthRotRate * universalTime);
+    static const AngularRate earthRotRate = 1.002737909350795 * 360.0 * deg / day;
+    const Angle greenwichSiderealTime     = sanitize_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
 }

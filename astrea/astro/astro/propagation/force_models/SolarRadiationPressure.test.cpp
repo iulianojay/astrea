@@ -64,7 +64,5 @@ TEST_F(SolarRadiationPressureTest, DefaultConstructor) { ASSERT_NO_THROW(SolarRa
 
 //     // These two won't match exactly cause Vallado uses 4.56e-6 as average SRP and we use 4.556485540406757e-6 scaled to
 //     // the ratio of 1 AU and the distance from the sat to the Sun
-//     for (std::size_t ii = 0; ii < 3; ++ii) {
-//         ASSERT_TRUE(astrea::nearly_equal(accel[ii], expected[ii], REL_TOL));
-//     }
+//     ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
 // }

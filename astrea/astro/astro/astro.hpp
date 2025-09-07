@@ -33,6 +33,7 @@
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/platforms/thrusters/Thruster.hpp>
 
 #include <astro/propagation/analytic/LambertSolver.hpp>
 

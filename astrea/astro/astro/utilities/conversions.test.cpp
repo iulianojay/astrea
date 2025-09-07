@@ -7,6 +7,7 @@
 #include <mp-units/random.h>
 
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -82,52 +83,6 @@ class ConversionTest : public testing::Test {
         Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
         return OrbitalElements(T(elements, AstrodynamicsSystem()));
     }
-
-    [[nodiscard]] constexpr bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second) noexcept
-    {
-        if (first.index() != second.index()) { return false; }
-
-        auto firstUnitless  = first.to_vector();
-        auto secondUnitless = second.to_vector();
-        for (int ii = 0; ii < 6; ii++) {
-            if (!nearly_equal(firstUnitless[ii], secondUnitless[ii])) { return false; }
-        }
-        return true;
-    }
-
-    template <auto R, typename Rep>
-    [[nodiscard]] constexpr bool nearly_equal(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y) noexcept
-    {
-        const auto a = x.numerical_value_ref_in(x.unit);
-        const auto b = y.numerical_value_ref_in(x.unit);
-        if (a != 0.0 * one && abs((a - b) / a) > REL_TOL) { return false; }
-        else if (b != 0.0 * one && abs((a - b) / b) > REL_TOL) {
-            return false;
-        }
-        return true;
-    }
-
-    void assert_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements)
-    {
-        ASSERT_TRUE(nearly_equal(elements, expectedElements)) << "Conversion caused issues greater than " << REL_TOL * 100 << "%\n"
-                                                              << "Converted Set: " << elements << "\n"
-                                                              << "Expected Set : " << expectedElements << "\n\n";
-    }
-
-    template <auto R, typename Rep>
-    void assert_nearly_equal(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y) noexcept
-    {
-        ASSERT_TRUE(nearly_equal(x, y)) << "Conversion caused issues greater than " << REL_TOL * 100 << "%\n"
-                                        << "First: " << x << "\n"
-                                        << "Second: " << y << "\n\n";
-    }
-
-    void expect_nearly_equal(const OrbitalElements& elements, const OrbitalElements& expectedElements)
-    {
-        EXPECT_TRUE(nearly_equal(elements, expectedElements)) << "Conversion caused issues greater than " << REL_TOL * 100 << "%\n"
-                                                              << "Converted Set: " << elements << "\n"
-                                                              << "Expected Set : " << expectedElements << "\n\n";
-    }
 };
 
 
@@ -142,13 +97,13 @@ TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
     elements.convert_to_set<Cartesian>(sys);
-    assert_nearly_equal(elements, _cartExp);
+    ASSERT_EQ_ORB_ELEM(elements, _cartExp, REL_TOL);
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
     elements.convert_to_set<Keplerian>(sys);
-    assert_nearly_equal(elements, _keplExp);
+    ASSERT_EQ_ORB_ELEM(elements, _keplExp, REL_TOL);
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
 {
@@ -163,7 +118,7 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
             elements.convert_to_set<Keplerian>(sys);
 
             // Compare
-            assert_nearly_equal(elements, originalElements);
+            ASSERT_EQ_ORB_ELEM(elements, originalElements, REL_TOL);
         }
     }
     SUCCEED();
@@ -173,13 +128,13 @@ TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
     elements.convert_to_set<Cartesian>(sys);
-    assert_nearly_equal(elements, _cartExp);
+    ASSERT_EQ_ORB_ELEM(elements, _cartExp, REL_TOL);
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
     elements.convert_to_set<Equinoctial>(sys);
-    assert_nearly_equal(elements, _equiExp);
+    ASSERT_EQ_ORB_ELEM(elements, _equiExp, REL_TOL);
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
 {
@@ -194,7 +149,7 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
             elements.convert_to_set<Equinoctial>(sys);
 
             // Compare
-            assert_nearly_equal(elements, originalElements);
+            ASSERT_EQ_ORB_ELEM(elements, originalElements, REL_TOL);
         }
     }
     SUCCEED();
@@ -204,13 +159,13 @@ TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
     elements.convert_to_set<Equinoctial>(sys);
-    assert_nearly_equal(elements, _equiExp);
+    ASSERT_EQ_ORB_ELEM(elements, _equiExp, REL_TOL);
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
     elements.convert_to_set<Keplerian>(sys);
-    assert_nearly_equal(elements, _keplExp);
+    ASSERT_EQ_ORB_ELEM(elements, _keplExp, REL_TOL);
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
 {
@@ -225,22 +180,22 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
             elements.convert_to_set<Keplerian>(sys);
 
             // Compare
-            assert_nearly_equal(elements, originalElements);
+            ASSERT_EQ_ORB_ELEM(elements, originalElements, REL_TOL);
         }
     }
     SUCCEED();
 }
 
-TEST_F(ConversionTest, EcefToLla) // TODO: Make an LLA element set of some kind
+TEST_F(ConversionTest, EcefToLla)
 {
     // Vallado ex. 3-3
     const RadiusVector<ECEF> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
     const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
-    assert_nearly_equal(lat, Angle(34.3529 * deg));
-    assert_nearly_equal(lon, Angle(46.4464 * deg));
-    assert_nearly_equal(alt, Distance(5085.22 * km));
+    ASSERT_EQ_QUANTITY(lat, Angle(34.3529 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(lon, Angle(46.4464 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(alt, Distance(5085.22 * km), REL_TOL);
 }
 TEST_F(ConversionTest, LlaToEcef)
 {
@@ -252,9 +207,9 @@ TEST_F(ConversionTest, LlaToEcef)
     const RadiusVector<ECEF> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
 
     // I have no idea why these are not the same
-    assert_nearly_equal(rEcef[0], Distance(6524.834 * km));
-    assert_nearly_equal(rEcef[1], Distance(6862.875 * km));
-    assert_nearly_equal(rEcef[2], Distance(6448.296 * km));
+    ASSERT_EQ_QUANTITY(rEcef[0], Distance(6524.834 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(rEcef[1], Distance(6862.875 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(rEcef[2], Distance(6448.296 * km), REL_TOL);
 }
 // TEST_F(ConversionTest, EcefLlaCycle)
 // {
@@ -269,7 +224,7 @@ TEST_F(ConversionTest, LlaToEcef)
 //             elements.convert_to_set<Keplerian>(sys);
 
 //             // Compare
-//             assert_nearly_equal(elements, originalElements);
+//             ASSERT_EQ_ORB_ELEM(elements, originalElements, REL_TOL);
 //         }
 //     }
 //     SUCCEED();
@@ -279,13 +234,13 @@ TEST_F(ConversionTest, LlaToEcef)
 // {
 //     OrbitalElements elements = _eciExp;
 //     elements.convert_to_set<Equinoctial>(sys);
-//     assert_nearly_equal(elements, _ecefExp);
+//     ASSERT_EQ_ORB_ELEM(elements, _ecefExp, REL_TOL);
 // }
 // TEST_F(ConversionTest, EcefToEci)
 // {
 //     OrbitalElements elements = _ecefExp;
 //     elements.convert_to_set<Keplerian>(sys);
-//     assert_nearly_equal(elements, _eciExp);
+//     ASSERT_EQ_ORB_ELEM(elements, _eciExp, REL_TOL);
 // }
 // TEST_F(ConversionTest, EciEcefCycle)
 // {
@@ -300,7 +255,7 @@ TEST_F(ConversionTest, LlaToEcef)
 //             elements.convert_to_set<Keplerian>(sys);
 
 //             // Compare
-//             assert_nearly_equal(elements, originalElements);
+//             ASSERT_EQ_ORB_ELEM(elements, originalElements, REL_TOL);
 //         }
 //     }
 //     SUCCEED();

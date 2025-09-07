@@ -79,6 +79,9 @@ CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem&
     _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
     _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
 
+    _meanAnomaly = sanitize_angle(_trueLatitude - _argumentOfPerigee);
+    _trueAnomaly = sanitize_angle(convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity));
+
     // TODO: Add checks to validate this object
 }
 
@@ -104,16 +107,17 @@ State CelestialBody::get_state_at(const Date& date) const
     // assumed to be good for this calc since all these bodies are
     // nearly circular. Solving Kepler"s equations takes a very long
     // time
-    const Unitless ecct_2 = ecct * ecct;
-    const Unitless ecct_3 = ecct_2 * ecct;
-    const Unitless ecct_4 = ecct_3 * ecct;
-    const Unitless ecct_5 = ecct_4 * ecct;
+    // const Unitless ecct_2 = ecct * ecct;
+    // const Unitless ecct_3 = ecct_2 * ecct;
+    // const Unitless ecct_4 = ecct_3 * ecct;
+    // const Unitless ecct_5 = ecct_4 * ecct;
 
-    const Angle thetat = Met + ((2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) +
-                                (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) +
-                                (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) +
-                                103.0 / 96.0 * ecct_4 * sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * sin(5 * Met)) *
-                                   isq_angle::cotes_angle;
+    // const Angle thetat = Met + ((2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) +
+    //                             (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) +
+    //                             (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) +
+    //                             103.0 / 96.0 * ecct_4 * sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * sin(5 * Met)) *
+    //                                isq_angle::cotes_angle;
+    const Angle thetat = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
 
     // Store
     return State(OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat)), date, *_systemPtr);

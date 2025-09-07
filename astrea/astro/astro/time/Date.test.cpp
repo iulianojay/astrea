@@ -4,6 +4,8 @@
 
 #include <gtest/gtest.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
 
 using namespace astrea;
@@ -16,19 +18,7 @@ class DateTest : public testing::Test {
     void SetUp() override { now = Date::now(); }
 
     Date now;
-
-    template <auto R, typename Rep>
-    const bool nearly_equal(const mp_units::quantity<R, Rep>& first, const mp_units::quantity<R, Rep>& second) const
-    {
-        const Rep a       = first.numerical_value_ref_in(first.unit);
-        const Rep b       = first.numerical_value_ref_in(second.unit);
-        const Rep REL_TOL = 1.0e-4;
-        if (a != 0.0 && abs((a - b) / a) > REL_TOL) { return false; }
-        else if (b != 0.0 && abs((a - b) / b) > REL_TOL) {
-            return false;
-        }
-        return true;
-    }
+    const Unitless REL_TOL = 1.0e-4;
 };
 
 
@@ -44,8 +34,8 @@ TEST_F(DateTest, EpochToJulianDate) { ASSERT_EQ(epoch_to_julian_date("2000-01-01
 TEST_F(DateTest, JulianDateToSiderealTime)
 {
     // Vallado, Ex. 3-5
-    Date date("1992-08-20 12:13:00.0");
-    nearly_equal(julian_date_to_siderial_time(date.jd()), Angle(152.58 * mp_units::angular::unit_symbols::deg));
+    Date date("1992-08-20 12:14:00.0");
+    ASSERT_EQ_QUANTITY(julian_date_to_siderial_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }
@@ -78,7 +68,7 @@ TEST_F(DateTest, DateSubtraction)
 {
     const Date nowPlusTen = now + seconds(10.0);
     const Time diff       = nowPlusTen - now;
-    nearly_equal(diff, 10.0 * mp_units::si::unit_symbols::s);
+    ASSERT_EQ_QUANTITY(diff, 10.0 * mp_units::si::unit_symbols::s, REL_TOL);
 }
 
 TEST_F(DateTest, SpaceshipOperator)
@@ -122,5 +112,5 @@ TEST_F(DateTest, Epoch) { ASSERT_EQ(Date(J2000).epoch(), "2000-01-01 12:00:00.00
 
 TEST_F(DateTest, GMST)
 {
-    nearly_equal(Date(J2000).gmst(), Angle(4.89496 * mp_units::angular::unit_symbols::rad)); // Is this right? Who knows
+    ASSERT_EQ_QUANTITY(Date(J2000).gmst(), Angle(4.89496 * mp_units::angular::unit_symbols::rad), REL_TOL); // Is this right? Who knows
 }

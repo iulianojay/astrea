@@ -67,10 +67,5 @@ TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericFo
 //     const Acceleration expectedNorm = sqrt(expected[0] * expected[0] + expected[1] * expected[1] + expected[2] * expected[2]);
 //     const Acceleration accelNorm = sqrt(accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]);
 
-//     for (std::size_t ii = 0; ii < 3; ++ii) {
-//         ASSERT_TRUE(astrea::nearly_equal(accel[ii], expected[ii], REL_TOL))
-//             << "Failed to match acceleration vectors: \nExpected: [" << expected[0] << ", " << expected[1] << ", "
-//             << expected[2] << "] -> " << expectedNorm << " \nOutput:   [" << accel[0] << ", " << accel[1] << ", "
-//             << accel[2] << "] -> " << accelNorm;
-//     }
+//     ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
 // }

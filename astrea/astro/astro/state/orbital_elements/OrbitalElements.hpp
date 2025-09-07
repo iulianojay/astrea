@@ -493,7 +493,7 @@ class OrbitalElementPartials {
      *
      * @return std::size_t The index of the current orbital element partials in the variant.
      */
-    constexpr std::size_t index() const;
+    constexpr std::size_t index() const { return _elements.index(); }
 
   private:
     PartialVariant _elements; //!< Variant holding the orbital element partials (CartesianPartial, KeplerianPartial, EquinoctialPartial)
