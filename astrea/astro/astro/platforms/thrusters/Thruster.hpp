@@ -76,8 +76,9 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     template <typename Parent_T>
         requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
-        Payload<Thruster, ThrusterParameters>(&parent, parameters)
+        Payload<Thruster, ThrusterParameters>(parent, parameters)
     {
+        generate_id_hash();
     }
 
     /**
@@ -90,17 +91,14 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      *
      * @return std::size_t ID of the sensor.
      */
-    std::size_t get_id() const { return _id; }
+    std::size_t get_id() const;
 
     /**
      * @brief Get the impulsive delta-v provided by the thruster.
      *
      * @return Velocity The impulsive delta-v.
      */
-    Velocity get_impulsive_delta_v() const
-    {
-        return get_parameters().get_thrust() / get_parent()->get_mass() * 1.0 * mp_units::si::unit_symbols::s;
-    }
+    Velocity get_impulsive_delta_v() const;
 
   private:
     /**
