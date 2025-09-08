@@ -20,19 +20,16 @@ Y interpolate(const std::vector<X>& x, const std::vector<Y>& y, const X& sx)
     // Find indexes
     const size_t idx = std::distance(x.begin(), std::lower_bound(x.begin(), x.end(), sx)) - 1;
 
-    if (idx >= x.size() - 1 || idx >= y.size() - 1) {
-        throw std::runtime_error("Internal Error: Interpolation index outside of input vector sizes.");
-    }
-
+    // Get nearest points
     const X& x0 = x[idx];
     const X& x1 = x[idx + 1];
     const Y& y0 = y[idx];
     const Y& y1 = y[idx + 1];
 
     if (sx == x0) { return y0; }
-    else if (sx == x1) {
-        return y1;
-    }
+    // else if (sx == x1) { // This can't happen due to the way idx is found
+    //     return y1;
+    // }
 
     return y0 + (sx - x0) * (y1 - y0) / (x1 - x0);
 }
