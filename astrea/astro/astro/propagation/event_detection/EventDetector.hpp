@@ -63,6 +63,13 @@ class EventDetector {
     void set_events(const std::vector<Event>& events);
 
     /**
+     * @brief Get events being tracked.
+     *
+     * @return const std::vector<Event>& A const reference to the list of Events being tracked.
+     */
+    std::vector<Event> get_events() const;
+
+    /**
      * @brief Detects events for a given time and vehicle.
      *
      * @param time The current time.

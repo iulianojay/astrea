@@ -14,8 +14,6 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
 add_custom_target(${PROJECT_NAME}_tests)
 add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
-# Add subdirectories for regressions
-#add_subdirectory(some-regression-test)
-
+# Build
 build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}")
 build_tests(${PROJECT_NAME} "REGRESSION" "${REGRESSION_TEST_SOURCES}")

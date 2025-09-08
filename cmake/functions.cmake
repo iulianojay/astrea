@@ -18,6 +18,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         add_executable(${TEST_EXE} ${TEST_FILE})
 
         # Set properties
+        target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)

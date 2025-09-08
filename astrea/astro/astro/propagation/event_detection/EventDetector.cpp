@@ -15,6 +15,15 @@ void EventDetector::set_events(const std::vector<Event>& events)
     }
 }
 
+std::vector<Event> EventDetector::get_events() const
+{
+    std::vector<Event> events;
+    for (const auto& tracker : _eventTrackers) {
+        events.push_back(tracker.event);
+    }
+    return events;
+}
+
 bool EventDetector::detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle)
 {
     bool isTerminal = false;
