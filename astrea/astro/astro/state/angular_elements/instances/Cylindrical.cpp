@@ -108,6 +108,11 @@ Cylindrical& Cylindrical::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+std::vector<Unitless> Cylindrical::operator/(const Cylindrical& other) const
+{
+    return { _range / other._range, _azimuth / other._azimuth, _elevation / other._elevation };
+}
+
 Cylindrical Cylindrical::operator/(const Unitless& divisor) const
 {
     return Cylindrical(_range / divisor, _azimuth / divisor, _elevation / divisor);

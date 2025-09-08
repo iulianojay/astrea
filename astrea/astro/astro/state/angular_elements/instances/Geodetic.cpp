@@ -109,6 +109,11 @@ Geodetic& Geodetic::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+std::vector<Unitless> Geodetic::operator/(const Geodetic& other) const
+{
+    return { _latitude / other._latitude, _longitude / other._longitude, _altitude / other._altitude };
+}
+
 Geodetic Geodetic::operator/(const Unitless& divisor) const
 {
     return Geodetic(_latitude / divisor, _longitude / divisor, _altitude / divisor);

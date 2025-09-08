@@ -108,6 +108,11 @@ Spherical& Spherical::operator*=(const Unitless& multiplier)
     return *this;
 }
 
+std::vector<Unitless> Spherical::operator/(const Spherical& other) const
+{
+    return { _range / other._range, _inclination / other._inclination, _azimuth / other._azimuth };
+}
+
 Spherical Spherical::operator/(const Unitless& divisor) const
 {
     return Spherical(_range / divisor, _inclination / divisor, _azimuth / divisor);
@@ -157,8 +162,16 @@ std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const Radius
 {
     const Distance range    = rEcef.norm();
     const Angle inclination = acos(rEcef.get_z() / range);
-    Angle azimuth           = acos(rEcef.get_x() / sqrt(rEcef.get_x() * rEcef.get_x() + rEcef.get_y() * rEcef.get_y()));
-    if (rEcef.get_y() < 0 * km) { azimuth = -azimuth; }
+
+    const Distance& x = rEcef.get_x();
+    const Distance& y = rEcef.get_y();
+
+    Angle azimuth;
+    if (x == 0.0 * km && y == 0.0 * km) { azimuth = 0.0 * rad; }
+    else {
+        azimuth = acos(x / sqrt(x * x + y * y));
+        if (y < 0.0 * km) { azimuth = -azimuth; }
+    }
     return std::make_tuple(range, inclination, azimuth);
 }
 
