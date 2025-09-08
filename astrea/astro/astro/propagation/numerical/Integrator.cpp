@@ -47,7 +47,7 @@ StateHistory Integrator::propagate(
     if (!forwardTime) { timeStep = -timeStep; }
 
     // States
-    const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle);
+    const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle, events);
     OrbitalElements state        = state0;
 
     // Setup
@@ -61,6 +61,7 @@ StateHistory Integrator::propagate(
 
         // Check for event
         const bool terminalEvent = check_event(time, state, eom, vehicle);
+        state                    = vehicle.get_state().get_elements();
         if (terminalEvent) {
             print_iteration(time, state, endTime, state0);
 
@@ -167,13 +168,13 @@ void Integrator::teardown()
 }
 
 
-OrbitalElements Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle)
+OrbitalElements Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events)
 {
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
     if (epoch != vehicleEpoch) {
         const Time propTime = epoch - vehicleEpoch;
-        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
+        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
     }
 
     // Need to check input elements match expected for EOMS

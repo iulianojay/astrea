@@ -281,9 +281,10 @@ class Integrator {
      * @param eom The equations of motion to use for the evaluation.
      * @param state0 The initial state of the vehicle before propagation.
      * @param vehicle The vehicle whose state is being evaluated.
+     * @param events The events to be tracked during propagation.
      * @return OrbitalElements The state of the vehicle at the specified epoch.
      */
-    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle);
+    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events);
 
     /**
      * @brief Perform a single step of the integration using the selected Runge-Kutta method.

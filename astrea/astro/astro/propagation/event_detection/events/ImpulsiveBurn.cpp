@@ -44,7 +44,8 @@ void ImpulsiveBurn::trigger_action(Vehicle& vehicle) const
     // Apply burn, assume velocity direction
     // TODO: Should adding vectors like this be generalized to other element sets?
     //  Then we wouldn't need to convert to Cartesian first
-    elements += deltaV * elements.get_velocity().unit();
+    const auto dv = deltaV * elements.get_velocity().unit();
+    elements += dv;
 
     // Correct to original representation
     state.set_elements(elements, true);

@@ -18,8 +18,8 @@
 
 using namespace astrea;
 using namespace astro;
-
 using namespace mp_units;
+
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
@@ -28,10 +28,10 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
 
-class CowellsMethodPropagationTest : public testing::Test {
+class EventDetectionTest : public testing::Test {
   public:
-    CowellsMethodPropagationTest() :
-        eom(sys, forces),
+    EventDetectionTest() :
+        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),
@@ -45,7 +45,7 @@ class CowellsMethodPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
-    CowellsMethod eom;
+    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time start;
@@ -62,55 +62,50 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(CowellsMethodPropagationTest, GEONoForces)
-{
-    // Build constellation
-    Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
-    Vehicle vehicle{ geo };
-
-    // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
-
-    // Validate
-    for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
-    }
-}
-
-
-TEST_F(CowellsMethodPropagationTest, GPSNoForces)
-{
-    // Build constellation
-    Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
-    Vehicle vehicle{ meo };
-
-    // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
-
-    // Validate
-    for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
-    }
-}
-
-
-TEST_F(CowellsMethodPropagationTest, LEONoForces)
+TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
     Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
     Vehicle vehicle{ leo };
 
+    // Impulsive burn event
+    Event impulse = Event{ ImpulsiveBurn() };
+
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
+}
+
+
+TEST_F(EventDetectionTest, ImpulsiveBurn)
+{
+    // Build constellation
+    Keplerian state0 = Keplerian::LEO();
+    ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
+    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    leo.attach_payload(thrusterParams);
+    Vehicle vehicle{ leo };
+
+    // Impulsive burn event
+    Event impulse = Event{ ImpulsiveBurn() };
+
+    // Propagate
+    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
+
+    // Validate
+    bool elementsChanged = false;
+    for (const auto& [time, state] : stateHistory) {
+        const Keplerian kep = state.in_element_set<Keplerian>();
+        if (!nearly_equal(kep, state0, true, REL_TOL)) {
+            elementsChanged = true;
+            break;
+        }
+    }
+    ASSERT_TRUE(elementsChanged);
 }

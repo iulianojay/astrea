@@ -32,15 +32,29 @@ namespace astrea {
  * @return false if they are not nearly equal.
  */
 template <auto R, typename Rep>
-[[nodiscard]] constexpr bool
-    nearly_equal(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y, const mp_units::quantity<mp_units::one, Rep>& relTol) noexcept
+[[nodiscard]] constexpr bool nearly_equal(
+    const mp_units::quantity<R, Rep>& x,
+    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
+    const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
+) noexcept
 {
+    // Bring both to the same unit for comparison
     const auto a = x.in(x.unit);
     const auto b = y.in(x.unit);
-    if (a != 0.0 * R && abs((a - b) / a) > relTol) { return false; }
-    else if (b != 0.0 * R && abs((a - b) / b) > relTol) {
-        return false;
+
+    // Check rel tol
+    if (relTol != 0.0 * mp_units::one) {
+        if (a != 0.0 * R && b != 0.0 * R) {
+            if (abs((a - b) / a) > relTol) { return false; }
+        }
     }
+
+    // Check abs tol
+    if (absTol != 0.0 * mp_units::one) {
+        if (abs(a - b) > absTol * R) { return false; }
+    }
+
     return true;
 }
 
@@ -54,11 +68,16 @@ template <auto R, typename Rep>
  * @param REL_TOL Relative tolerance for comparison.
  */
 template <auto R, typename Rep>
-void ASSERT_EQ_QUANTITY(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y, const mp_units::quantity<mp_units::one, Rep>& relTol) noexcept
+void ASSERT_EQ_QUANTITY(
+    const mp_units::quantity<R, Rep>& x,
+    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
+    const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
+) noexcept
 {
-    ASSERT_TRUE(nearly_equal(x, y, relTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
-                                            << "First Quantity: " << x << "\n"
-                                            << "Second Quantity: " << y << "\n\n";
+    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+                                                    << "First Quantity: " << x << "\n"
+                                                    << "Second Quantity: " << y << "\n\n";
 }
 
 /**
@@ -71,11 +90,16 @@ void ASSERT_EQ_QUANTITY(const mp_units::quantity<R, Rep>& x, const mp_units::qua
  * @param REL_TOL Relative tolerance for comparison.
  */
 template <auto R, typename Rep>
-void EXPECT_EQ_QUANTITY(const mp_units::quantity<R, Rep>& x, const mp_units::quantity<R, Rep>& y, const mp_units::quantity<mp_units::one, Rep>& relTol) noexcept
+void EXPECT_EQ_QUANTITY(
+    const mp_units::quantity<R, Rep>& x,
+    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
+    const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
+) noexcept
 {
-    EXPECT_TRUE(nearly_equal(x, y, relTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
-                                            << "First Quantity: " << x << "\n"
-                                            << "Second Quantity: " << y << "\n\n";
+    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+                                                    << "First Quantity: " << x << "\n"
+                                                    << "Second Quantity: " << y << "\n\n";
 }
 
 } // namespace astrea

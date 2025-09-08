@@ -11,7 +11,10 @@
 #include <mp-units/systems/isq.h>
 #include <mp-units/systems/si.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -38,18 +41,8 @@ class TwoBodyPropagationTest : public testing::Test {
 
     void SetUp() override {}
 
-    template <auto R, typename Rep>
-    const bool nearly_equal(const mp_units::quantity<R, Rep>& first, const mp_units::quantity<R, Rep>& second) const
-    {
-        const Rep a       = first.numerical_value_ref_in(first.unit);
-        const Rep b       = first.numerical_value_ref_in(second.unit);
-        const Rep REL_TOL = 1.0e-4;
-        if (a != 0.0 && abs((a - b) / a) > REL_TOL) { return false; }
-        else if (b != 0.0 && abs((a - b) / b) > REL_TOL) {
-            return false;
-        }
-        return true;
-    }
+    const Unitless REL_TOL = 1.0e-6;
+    const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
     TwoBody eom;
@@ -81,12 +74,8 @@ TEST_F(TwoBodyPropagationTest, GEO)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
-        nearly_equal(kep.get_semimajor(), state0.get_semimajor());
-        nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
-        nearly_equal(kep.get_inclination(), state0.get_inclination());
-        nearly_equal(kep.get_right_ascension(), state0.get_right_ascension());
-        nearly_equal(kep.get_argument_of_perigee(), state0.get_argument_of_perigee());
+        const Keplerian kep = state.in_element_set<Keplerian>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
 
@@ -103,12 +92,8 @@ TEST_F(TwoBodyPropagationTest, GPS)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
-        nearly_equal(kep.get_semimajor(), state0.get_semimajor());
-        nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
-        nearly_equal(kep.get_inclination(), state0.get_inclination());
-        nearly_equal(kep.get_right_ascension(), state0.get_right_ascension());
-        nearly_equal(kep.get_argument_of_perigee(), state0.get_argument_of_perigee());
+        const Keplerian kep = state.in_element_set<Keplerian>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
 
@@ -125,11 +110,7 @@ TEST_F(TwoBodyPropagationTest, LEO)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        Keplerian kep = state.get_elements().in_element_set<Keplerian>(sys);
-        nearly_equal(kep.get_semimajor(), state0.get_semimajor());
-        nearly_equal(kep.get_eccentricity(), state0.get_eccentricity());
-        nearly_equal(kep.get_inclination(), state0.get_inclination());
-        nearly_equal(kep.get_right_ascension(), state0.get_right_ascension());
-        nearly_equal(kep.get_argument_of_perigee(), state0.get_argument_of_perigee());
+        const Keplerian kep = state.in_element_set<Keplerian>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
