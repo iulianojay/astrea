@@ -1,6 +1,8 @@
-#include <astro/astro.hpp>
 #include <gtest/gtest.h>
-#include <trace/platforms/ground/GroundStation.hpp>
+
+#include <astro/astro.hpp>
+
+#include <trace/trace.hpp>
 
 using namespace astrea;
 using namespace astro;
