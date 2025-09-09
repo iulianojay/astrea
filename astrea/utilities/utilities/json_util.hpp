@@ -37,7 +37,7 @@ T extract_from_json(const nlohmann::json& json, const std::string& key)
             return retval;
         }
     }
-    throw std::runtime_error("Key not found.");
+    throw std::runtime_error("Key " + key + " not found.");
 }
 
 /**
@@ -61,7 +61,7 @@ std::optional<T> extract_optional_from_json(const nlohmann::json& json, const st
             return retval;
         }
     }
-    throw std::runtime_error("Key not found.");
+    throw std::runtime_error("Key " + key + " not found.");
 }
 
 /**

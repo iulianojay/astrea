@@ -192,7 +192,7 @@ std::ostream& operator<<(std::ostream& os, TwoLineElements const& elements)
 {
     os << "[";
     os << elements.get_1st_line() << std::endl;
-    os << " " << elements.get_2nd_line() << std::endl;
+    os << " " << elements.get_2nd_line();
     os << "] (Tle)";
     return os;
 }

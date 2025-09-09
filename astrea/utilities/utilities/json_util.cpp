@@ -20,7 +20,7 @@ std::string extract_string_from_json(const nlohmann::json& json, const std::stri
             return retval;
         }
     }
-    throw std::runtime_error("Key not found.");
+    throw std::runtime_error("Key " + key + " not found.");
 }
 
 std::optional<std::string> extract_optional_string_from_json(const nlohmann::json& json, const std::string& key)
@@ -33,7 +33,7 @@ std::optional<std::string> extract_optional_string_from_json(const nlohmann::jso
             return retval;
         }
     }
-    throw std::runtime_error("Key not found.");
+    throw std::runtime_error("Key " + key + " not found.");
 }
 
 } // namespace utilities
