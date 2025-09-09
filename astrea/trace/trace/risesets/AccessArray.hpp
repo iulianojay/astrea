@@ -172,14 +172,30 @@ class AccessArray {
      *
      * @param other The AccessArray to union with.
      */
-    void operator|(const AccessArray& other);
+    AccessArray& operator|(const AccessArray& other);
+
+    /**
+     * @brief Const union operator for AccessArray.
+     *
+     * @param other The AccessArray to union with.
+     * @return AccessArray The resulting AccessArray after the union operation.
+     */
+    AccessArray operator|(const AccessArray& other) const;
 
     /**
      * @brief Intersection operator for AccessArray.
      *
      * @param other The AccessArray to intersect with.
      */
-    void operator&(const AccessArray& other);
+    AccessArray& operator&(const AccessArray& other);
+
+    /**
+     * @brief Const intersection operator for AccessArray.
+     *
+     * @param other The AccessArray to intersect with.
+     * @return AccessArray The resulting AccessArray after the intersection operation.
+     */
+    AccessArray operator&(const AccessArray& other) const;
 
     /**
      * @brief Iterator type for AccessArray.

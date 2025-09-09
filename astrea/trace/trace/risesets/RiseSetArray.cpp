@@ -140,6 +140,10 @@ Time RiseSetArray::gap(const Stat& stat) const
     for (std::size_t ii = 1; ii < _risesets.size() - 1; ii += 2) {
         const Time gap = _risesets[ii + 1] - _risesets[ii];
 
+        if (ii == 1) {
+            retval = gap;
+            continue;
+        }
         switch (stat) {
             case (Stat::MIN): {
                 if (gap < retval) { retval = gap; }

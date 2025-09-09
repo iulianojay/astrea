@@ -22,18 +22,34 @@ void AccessArray::erase(const std::size_t& senderId, const std::size_t& receiver
 
 std::size_t AccessArray::size() const { return _accesses.size(); }
 
-void AccessArray::operator|(const AccessArray& other)
+AccessArray& AccessArray::operator|(const AccessArray& other)
 {
     for (const auto& [ids, risesets] : other) {
         if (contains(ids)) { _accesses[ids] = (risesets | _accesses[ids]); } // TODO: Should this modify in place? Copy?
     }
+    return *this;
 }
 
-void AccessArray::operator&(const AccessArray& other)
+AccessArray AccessArray::operator|(const AccessArray& other) const
+{
+    AccessArray result = *this;
+    result | other;
+    return result;
+}
+
+AccessArray& AccessArray::operator&(const AccessArray& other)
 {
     for (const auto& [ids, risesets] : other) {
         if (contains(ids)) { _accesses[ids] = (risesets & _accesses[ids]); }
     }
+    return *this;
+}
+
+AccessArray AccessArray::operator&(const AccessArray& other) const
+{
+    AccessArray result = *this;
+    result & other;
+    return result;
 }
 
 /**
