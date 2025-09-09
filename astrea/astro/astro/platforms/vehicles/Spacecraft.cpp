@@ -53,6 +53,15 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
     // _liftArea
 }
 
+bool Spacecraft::operator==(const Spacecraft& other) const
+{
+    return (_id == other._id) && (_name == other._name) && (_mass == other._mass) &&
+           (_coefficientOfDrag == other._coefficientOfDrag) && (_coefficientOfLift == other._coefficientOfLift) &&
+           (_coefficientOfReflectivity == other._coefficientOfReflectivity) && (_ramArea == other._ramArea) &&
+           (_sunArea == other._sunArea) && (_liftArea == other._liftArea) && (_state == other._state) &&
+           (_state0 == other._state0);
+}
+
 State& Spacecraft::get_state() { return _state; };
 const State& Spacecraft::get_initial_state() const { return _state0; }
 void Spacecraft::update_state(const State& state) { _state = state; }

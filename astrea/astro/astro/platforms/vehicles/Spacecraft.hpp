@@ -69,6 +69,14 @@ class Spacecraft : public ThrusterPlatform {
     virtual ~Spacecraft() = default;
 
     /**
+     * @brief Equality operator to compare two Spacecraft objects.
+     *
+     * @param other The other Spacecraft to compare with.
+     * @return true if the Spacecraft objects are equal, false otherwise.
+     */
+    bool operator==(const Spacecraft& other) const;
+
+    /**
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
@@ -257,18 +265,26 @@ class Spacecraft : public ThrusterPlatform {
     using PayloadPlatform<Thruster>::attach_payload;
     using PayloadPlatform<Thruster>::get_payloads;
 
+    static constexpr Mass DEFAULT_MASS = 1000.0 * mp_units::si::unit_symbols::kg; // Default mass of the spacecraft
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * mp_units::one;  // Default coefficient of drag
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * mp_units::one;  // Default coefficient of lift
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY = 1.1 * mp_units::one; // Default coefficient of reflectivity
+    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default ram area
+    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default solar area
+    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default lift area
+
   protected:
     std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties
     std::string _name; // Name of the spacecraft, can be set by the user
 
     // Spacecraft properties
-    Mass _mass                          = 1000.0 * mp_units::si::unit_symbols::kg; // Default mass of the spacecraft
-    Unitless _coefficientOfDrag         = 2.2 * mp_units::one;                     // Default coefficient of drag
-    Unitless _coefficientOfLift         = 0.9 * mp_units::one;                     // Default coefficient of lift
-    Unitless _coefficientOfReflectivity = 1.1 * mp_units::one; // Default coefficient of reflectivity
-    SurfaceArea _ramArea                = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default ram area
-    SurfaceArea _sunArea                = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default solar area
-    SurfaceArea _liftArea               = 1.0 * mp_units::pow<2>(mp_units::si::unit_symbols::m); // Default lift area
+    Mass _mass                          = DEFAULT_MASS;                        //!< Mass of the spacecraft
+    Unitless _coefficientOfDrag         = DEFAULT_COEFFICIENT_OF_DRAG;         //!< Coefficient of drag
+    Unitless _coefficientOfLift         = DEFAULT_COEFFICIENT_OF_LIFT;         //!< Coefficient of lift
+    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY; //!< Coefficient of reflectivity
+    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                    //!< Ram area of the spacecraft
+    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                  //!< Solar area of the spacecraft
+    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                   //!< Lift area of the spacecraft
 
     // Orbital elements
     State _state;               // Current state of the spacecraft

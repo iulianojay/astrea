@@ -93,3 +93,7 @@ CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-op
 check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
+
+.PHONY: coverage
+coverage: debug run_tests
+	cd $(ASTREA_ROOT) && sh $(ASTREA_ROOT)/scripts/coverage.sh
