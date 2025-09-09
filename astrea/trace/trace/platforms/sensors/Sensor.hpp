@@ -39,7 +39,7 @@ class SensorParameters : public astro::PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     SensorParameters(
-        const FieldOfView* fov,
+        const FieldOfView* fov                                 = nullptr,
         const astro::RadiusVector<astro::RIC>& boresight       = astro::NADIR_RIC,
         const astro::RadiusVector<astro::RIC>& attachmentPoint = astro::CENTER
     ) :

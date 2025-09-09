@@ -52,7 +52,7 @@ class Grid {
      *
      * @param groundStations Vector of GroundPoint objects representing the grid.
      */
-    Grid(const std::vector<GroundPoint>& groundStations) :
+    Grid(const std::vector<GroundPoint>& groundStations = {}) :
         _groundStations(groundStations),
         _gridType(GridType::MANUAL)
     {
@@ -137,6 +137,22 @@ class Grid {
      * @return A constant iterator to one past the last ground point.
      */
     const_iterator cend() const { return _groundStations.end(); }
+
+    /**
+     * @brief Access ground points in the grid by index.
+     *
+     * @param index Index of the ground point to access.
+     * @return Reference to the GroundPoint at the specified index.
+     */
+    GroundPoint& operator[](const std::size_t index) { return _groundStations[index]; }
+
+    /**
+     * @brief Access ground points in the grid by index (constant version).
+     *
+     * @param index Index of the ground point to access.
+     * @return Constant reference to the GroundPoint at the specified index.
+     */
+    const GroundPoint& operator[](const std::size_t index) const { return _groundStations[index]; }
 
   private:
     const astro::CelestialBody* _parent;      //!< Pointer to the parent celestial body

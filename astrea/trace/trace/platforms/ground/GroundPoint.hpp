@@ -57,6 +57,14 @@ class GroundPoint : virtual public AccessObject {
     virtual ~GroundPoint() = default;
 
     /**
+     * @brief Equality operator for comparing two GroundPoint objects.
+     *
+     * @param other The other GroundPoint to compare with.
+     * @return true if the two GroundPoint objects are equal, false otherwise.
+     */
+    bool operator==(const GroundPoint& other) const { return _lla == other._lla; }
+
+    /**
      * @brief Gets the latitude of the ground point.
      *
      * @return Angle The latitude of the ground point.
