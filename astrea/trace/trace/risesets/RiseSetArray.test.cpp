@@ -29,7 +29,12 @@ int main(int argc, char** argv)
 
 TEST_F(RiseSetArrayTest, DefaultConstructor) { ASSERT_NO_THROW(RiseSetArray()); }
 
-TEST_F(RiseSetArrayTest, VectorConstructor) { ASSERT_NO_THROW(RiseSetArray({ t1, t2 })); }
+TEST_F(RiseSetArrayTest, VectorConstructor)
+{
+    ASSERT_NO_THROW(RiseSetArray({ t1, t2 }));
+    ASSERT_ANY_THROW(RiseSetArray({ t1, t1 }));
+    ASSERT_ANY_THROW(RiseSetArray({ t1, t2, t3 }));
+}
 
 TEST_F(RiseSetArrayTest, CopyConstructor)
 {
@@ -43,7 +48,7 @@ TEST_F(RiseSetArrayTest, MoveConstructor)
     ASSERT_EQ(arrMove.size(), 2);
 }
 
-TEST_F(RiseSetArrayTest, AssignmentOperators)
+TEST_F(RiseSetArrayTest, AssignmentOperator)
 {
     RiseSetArray arr;
     arr = arr1;
@@ -59,6 +64,17 @@ TEST_F(RiseSetArrayTest, AppendPrependInsert)
     arr.prepend(t3, t4);
     arr.insert(t1, t2);
     ASSERT_EQ(arr.size(), 4);
+
+    RiseSetArray arr2;
+    ASSERT_ANY_THROW(arr2.prepend(t1, t1));
+    arr2.prepend(t3, t4);
+    arr2.prepend(t1, t2);
+    ASSERT_EQ(arr.size(), 4);
+
+    RiseSetArray arr3;
+    arr3.append(t1, t2);
+    arr3.append(t3, t4);
+    ASSERT_EQ(arr3.size(), 4);
 }
 
 TEST_F(RiseSetArrayTest, OperatorAccess)
@@ -75,16 +91,32 @@ TEST_F(RiseSetArrayTest, EqualityOperator)
     ASSERT_TRUE(arr == arr1);
 }
 
-TEST_F(RiseSetArrayTest, DifferenceOperators) { ASSERT_NO_THROW(arr1 - arr2); }
+TEST_F(RiseSetArrayTest, DifferenceOperator) { ASSERT_NO_THROW(arr1 - arr2); }
 
-TEST_F(RiseSetArrayTest, UnionOperators) { ASSERT_NO_THROW(arr1 | arr2); }
+TEST_F(RiseSetArrayTest, InPlaceDifferenceOperator) { ASSERT_NO_THROW(arr1 -= arr2); }
 
-TEST_F(RiseSetArrayTest, IntersectionOperators) { ASSERT_NO_THROW(arr1 & arr2); }
+TEST_F(RiseSetArrayTest, UnionOperator) { ASSERT_NO_THROW(arr1 | arr2); }
 
-TEST_F(RiseSetArrayTest, GapAndAccessTime)
+TEST_F(RiseSetArrayTest, InPlaceUnionOperator) { ASSERT_NO_THROW(arr1 |= arr2); }
+
+TEST_F(RiseSetArrayTest, IntersectionOperator) { ASSERT_NO_THROW(arr1 & arr2); }
+
+TEST_F(RiseSetArrayTest, InPlaceIntersectionOperator) { ASSERT_NO_THROW(arr1 &= arr2); }
+
+TEST_F(RiseSetArrayTest, Gap)
+{
+    auto arr = arr1 | arr2;
+    arr.append(t4 + 1.0 * s, t4 + 2.0 * s);
+    ASSERT_EQ(arr.gap(Stat::MIN), t3 - t2);
+    ASSERT_EQ(arr.gap(Stat::MEAN), t3 - t2);
+    ASSERT_EQ(arr.gap(Stat::MAX), t3 - t2);
+}
+
+TEST_F(RiseSetArrayTest, Access)
 {
     const auto arr = arr1 | arr2;
-    ASSERT_EQ(arr.gap(Stat::MIN), t3 - t2);
+    ASSERT_EQ(arr.access_time(Stat::MIN), t2 - t1);
+    ASSERT_EQ(arr.access_time(Stat::MEAN), t2 - t1);
     ASSERT_EQ(arr.access_time(Stat::MAX), t2 - t1);
 }
 
@@ -95,3 +127,10 @@ TEST_F(RiseSetArrayTest, Iterators)
 }
 
 TEST_F(RiseSetArrayTest, ToStringVector) { ASSERT_NO_THROW(arr1.to_string_vector()); }
+
+TEST_F(RiseSetArrayTest, Stream)
+{
+    std::stringstream ss;
+    ASSERT_NO_THROW(ss << arr1);
+    ASSERT_FALSE(ss.str().empty());
+}

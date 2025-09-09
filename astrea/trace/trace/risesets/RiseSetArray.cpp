@@ -90,7 +90,7 @@ void RiseSetArray::validate_riseset(const Time& rise, const Time& set) const
 
 void RiseSetArray::append(const Time& rise, const Time& set)
 {
-    if (size() > 0 && rise < _risesets.back()) {
+    if (!_risesets.empty() && rise < _risesets.back()) {
         insert(rise, set);
         return;
     }
@@ -102,14 +102,14 @@ void RiseSetArray::append(const Time& rise, const Time& set)
 
 void RiseSetArray::prepend(const Time& rise, const Time& set)
 {
-    if (set > _risesets[0]) {
+    if (!_risesets.empty() && set > _risesets[0]) {
         insert(rise, set);
         return;
     }
     validate_riseset(rise, set);
 
-    _risesets.insert(_risesets.begin(), rise);
     _risesets.insert(_risesets.begin(), set);
+    _risesets.insert(_risesets.begin(), rise);
 }
 
 void RiseSetArray::insert(const Time& rise, const Time& set)
@@ -178,6 +178,10 @@ Time RiseSetArray::access_time(const Stat& stat) const
     for (std::size_t ii = 0; ii < _risesets.size(); ii += 2) {
         const Time accessTime = _risesets[ii + 1] - _risesets[ii];
 
+        if (ii == 0) {
+            retval = accessTime;
+            continue;
+        }
         switch (stat) {
             case (Stat::MIN): {
                 if (accessTime < retval) { retval = accessTime; }

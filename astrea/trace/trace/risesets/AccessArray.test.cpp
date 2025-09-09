@@ -69,16 +69,25 @@ TEST_F(AccessArrayTest, UnionOperator)
 {
     const auto res = access1 | access2;
     ASSERT_EQ(res.size(), access1.size());
+    ASSERT_NO_THROW(static_cast<const AccessArray&>(access1) | access2);
 }
 
 TEST_F(AccessArrayTest, IntersectionOperator)
 {
     const auto res = access1 & access2;
     ASSERT_EQ(res.size(), access1.size());
+    ASSERT_NO_THROW(static_cast<const AccessArray&>(access1) & access2);
 }
 
 TEST_F(AccessArrayTest, Iterators)
 {
     ASSERT_NO_THROW(for (auto& access : access1){});
     ASSERT_NO_THROW(for (const auto& access : access1){});
+}
+
+TEST_F(AccessArrayTest, Stream)
+{
+    std::stringstream ss;
+    ss << access1;
+    ASSERT_FALSE(ss.str().empty());
 }
