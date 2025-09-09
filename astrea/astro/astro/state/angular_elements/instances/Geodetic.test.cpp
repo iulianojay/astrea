@@ -67,6 +67,24 @@ TEST_F(GeodeticTest, UnitlessConstructor)
 
 TEST_F(GeodeticTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geodetic(latitude, longitude, altitude)); }
 
+TEST_F(GeodeticTest, EciVectorConstructor)
+{
+    RadiusVector<ECI> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Geodetic(rEci, epoch, sys.get_center().get()));
+}
+
+TEST_F(GeodeticTest, EcefVectorConstructor)
+{
+    RadiusVector<ECEF> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Geodetic(rEcef, sys.get_center().get()));
+}
+
+TEST_F(GeodeticTest, OrbitalElementsConstructor)
+{
+    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    ASSERT_NO_THROW(Geodetic(kep, sys, epoch));
+}
+
 TEST_F(GeodeticTest, CopyConstructor) { ASSERT_NO_THROW(Geodetic newGeo(state)); }
 
 TEST_F(GeodeticTest, MoveConstructor) { ASSERT_NO_THROW(Geodetic newGeo(std::move(state))); }

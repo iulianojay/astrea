@@ -22,9 +22,6 @@ bool OrbitalElements::operator==(const OrbitalElements& other) const
     if (_elements.index() != other.extract().index()) [[unlikely]] { return false; }
     return std::visit(
         [&](const auto& x) -> bool {
-            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                throw_mismatched_types();
-            }
             const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
             return x == y;
         },
@@ -166,11 +163,6 @@ OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, cons
     }
 }
 
-void OrbitalElements::same_underlying_type(const OrbitalElements& other) const
-{
-    if (_elements.index() != other.extract().index()) [[unlikely]] { throw_mismatched_types(); }
-}
-
 
 OrbitalElements OrbitalElementPartials::operator*(const Time& time) const
 {
@@ -186,11 +178,6 @@ std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& element
 const OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() const { return _elements; }
 
 OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { return _elements; }
-
-void OrbitalElementPartials::same_underlying_type(const OrbitalElementPartials& other) const
-{
-    if (_elements.index() != other.extract().index()) [[unlikely]] { throw_mismatched_types(); }
-}
 
 void throw_mismatched_types()
 {

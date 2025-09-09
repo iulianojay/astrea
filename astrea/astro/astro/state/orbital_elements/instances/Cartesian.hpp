@@ -276,7 +276,7 @@ class Cartesian {
      * @param multiplier Scalar value to multiply with
      * @return Resultant Cartesian after multiplication.
      */
-    Cartesian operator*(const Unitless& multiplier) const;
+    Cartesian operator*(const Unitless& multiplier) const; // TODO: Add left-hand version (i.e. scalar * state)
 
     /**
      * @brief Multiplies the Cartesian state vector by a scalar.

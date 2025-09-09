@@ -106,7 +106,7 @@ TEST_F(RiseSetArrayTest, InPlaceIntersectionOperator) { ASSERT_NO_THROW(arr1 &= 
 TEST_F(RiseSetArrayTest, Gap)
 {
     auto arr = arr1 | arr2;
-    arr.append(t4 + 1.0 * s, t4 + 2.0 * s);
+    arr.append(t4 + 1.0 * mp_units::si::unit_symbols::s, t4 + 2.0 * mp_units::si::unit_symbols::s);
     ASSERT_EQ(arr.gap(Stat::MIN), t3 - t2);
     ASSERT_EQ(arr.gap(Stat::MEAN), t3 - t2);
     ASSERT_EQ(arr.gap(Stat::MAX), t3 - t2);

@@ -394,14 +394,6 @@ class OrbitalElements {
     ElementVariant _elements; //!< Variant holding the orbital elements (Cartesian, Keplerian, Equinoctial)
 
     /**
-     * @brief Checks if the underlying types of two OrbitalElements objects are the same.
-     *
-     * @param other Another OrbitalElements object to compare with.
-     * @throws std::runtime_error if the underlying types are not the same.
-     */
-    void same_underlying_type(const OrbitalElements& other) const;
-
-    /**
      * @brief Implementation of the conversion to a specific type.
      *
      * @param idx The index of the orbital element type to convert to.

@@ -67,6 +67,24 @@ TEST_F(CylindricalTest, UnitlessConstructor)
 
 TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(range, azimuth, elevation)); }
 
+TEST_F(CylindricalTest, EciVectorConstructor)
+{
+    RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_center().get()));
+}
+
+TEST_F(CylindricalTest, EcefVectorConstructor)
+{
+    RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_center().get()));
+}
+
+TEST_F(CylindricalTest, OrbitalElementsConstructor)
+{
+    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    ASSERT_NO_THROW(Cylindrical(kep, sys, epoch));
+}
+
 TEST_F(CylindricalTest, CopyConstructor) { ASSERT_NO_THROW(Cylindrical newCyl(state)); }
 
 TEST_F(CylindricalTest, MoveConstructor) { ASSERT_NO_THROW(Cylindrical newCyl(std::move(state))); }
