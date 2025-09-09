@@ -4,7 +4,10 @@
 
 #include <gtest/gtest.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using mp_units::one;
 using mp_units::si::unit_symbols::kg;
@@ -54,21 +57,23 @@ int main(int argc, char** argv)
 
 TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(sys, 2, 0)); }
 
-// // Vallado, Ex. 8.5
-// TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
-// {
-//     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-//                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-//     const AccelerationVector accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+// Vallado, Ex. 8.5
+TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
+{
+    Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-//     const AccelerationVector expectedEcef{ -1.151903e-6 * km / (s * s), -2.938330e-6 * km / (s * s), -1.023539e-5 *
-//     km / (s * s) };
-//     const AccelerationVector expected = ecef_to_eci(expectedEcef, epoch);
+    const AccelerationVector<ECEF> expectedEcef{ -1.151903e-6 * km / (s * s),
+                                                 -2.938330e-6 * km / (s * s),
+                                                 -1.023539e-5 * km / (s * s) };
+    const AccelerationVector<ECI> expected = expectedEcef.in_frame<ECI>(epoch);
 
-//     const Acceleration expectedNorm = sqrt(expected[0] * expected[0] + expected[1] * expected[1] + expected[2] * expected[2]);
-//     const Acceleration accelNorm = sqrt(accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]);
+    const Acceleration expectedNorm = expected.norm();
+    const Acceleration accelNorm    = accel.norm();
 
-//     // It's hard to say if these can match. They're in the same direction, but small differences in values
-//     // change these equally small outputs. Itermediary values are similar, but not identical
-//     ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
-// }
+    // It's hard to say if these can match. They're in the same direction, but small differences in values
+    // change these equally small outputs. Itermediary values are similar, but not identical
+    // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
+    // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+}

@@ -4,7 +4,10 @@
 
 #include <gtest/gtest.h>
 
+#include <math/test_util.hpp>
+
 #include <astro/astro.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using mp_units::one;
 using mp_units::si::unit_symbols::kg;
@@ -54,20 +57,21 @@ int main(int argc, char** argv)
 
 TEST_F(NBodyForceTest, DefaultConstructor) { ASSERT_NO_THROW(NBodyForce()); }
 
-// // Vallado, Ex. 8.5
-// TEST_F(NBodyForceTest, ComputeForceValladoEx85)
-// {
-//     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-//                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-//     const AccelerationVector accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+// Vallado, Ex. 8.5
+TEST_F(NBodyForceTest, ComputeForceValladoEx85)
+{
+    Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-//     const AccelerationVector expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
-//                                        (1.5243e-10 + -4.3052e-10) * km / (s * s),
-//                                        (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
+    const AccelerationVector<ECI> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
+                                            (1.5243e-10 + -4.3052e-10) * km / (s * s),
+                                            (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
 
-//     const Acceleration expectedNorm = sqrt(expected[0] * expected[0] + expected[1] * expected[1] + expected[2] * expected[2]);
-//     const Acceleration accelNorm = sqrt(accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]);
+    const Acceleration expectedNorm = expected.norm();
+    const Acceleration accelNorm    = accel.norm();
 
-//     // Celestial body positions are wrong so it isn't working. OOM is correct
-//     ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
-// }
+    // Celestial body positions are wrong so it isn't working. OOM is correct
+    // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
+    // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+}

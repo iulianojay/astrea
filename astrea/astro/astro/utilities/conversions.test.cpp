@@ -1,10 +1,11 @@
-
 #include <gtest/gtest.h>
 #include <random>
 #include <vector>
 
 #include <mp-units/math.h>
 #include <mp-units/random.h>
+
+#include <math/test_util.hpp>
 
 #include <astro/astro.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -260,3 +261,53 @@ TEST_F(ConversionTest, LlaToEcef)
 //     }
 //     SUCCEED();
 // }
+
+TEST_F(ConversionTest, ConvertMeanAnomalyToTrueAnomaly)
+{
+    // Test for circular orbit (ecc = 0)
+    Angle ma     = thetaDist(rng);
+    Unitless ecc = 0.0 * one;
+    Angle ta     = convert_mean_anomaly_to_true_anomaly(ma, ecc);
+    ASSERT_EQ_QUANTITY(ta, ma, REL_TOL);
+
+    // Test for elliptical orbit (ecc > 0)
+    ma  = 0.5 * rad;
+    ecc = 0.5 * one;
+    ta  = convert_mean_anomaly_to_true_anomaly(ma, ecc);
+
+    ASSERT_EQ_QUANTITY(ta, 1.3624806 * rad, REL_TOL);
+}
+
+TEST_F(ConversionTest, ConvertTrueAnomalyToMeanAnomaly)
+{
+    // Test for circular orbit (ecc = 0)
+    Angle ta     = thetaDist(rng);
+    Unitless ecc = 0.0 * one;
+    Angle ma     = convert_true_anomaly_to_mean_anomaly(ta, ecc);
+    ASSERT_EQ_QUANTITY(ma, ta, REL_TOL);
+
+    // Test for elliptical orbit (ecc > 0)
+    ta  = 0.5 * rad;
+    ecc = 0.5 * one;
+    ma  = convert_true_anomaly_to_mean_anomaly(ta, ecc);
+
+    ASSERT_EQ_QUANTITY(ma, 0.1522418 * rad, REL_TOL);
+}
+
+TEST_F(ConversionTest, SanitizeAngle)
+{
+    // Test angle within [0, 2pi]
+    Angle ang       = 1.0 * rad;
+    Angle sanitized = sanitize_angle(ang);
+    ASSERT_EQ_QUANTITY(sanitized, ang, REL_TOL);
+
+    // Test negative angle
+    ang       = -1.0 * rad;
+    sanitized = sanitize_angle(ang);
+    ASSERT_EQ_QUANTITY(sanitized, ang + TWO_PI, REL_TOL);
+
+    // Test angle greater than 2pi
+    ang       = 3.0 * TWO_PI;
+    sanitized = sanitize_angle(ang);
+    ASSERT_EQ_QUANTITY(sanitized, ang - TWO_PI, REL_TOL);
+}

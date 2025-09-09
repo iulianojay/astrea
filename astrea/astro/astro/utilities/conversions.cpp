@@ -26,7 +26,7 @@ Angle convert_mean_anomaly_to_true_anomaly(const Angle& ma, const Unitless ecc)
 
 Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc)
 {
-    return ta - (2.0 * ecc * sin(ta) + (0.75 * pow<2>(ecc) + 0.125 * pow<4>(ecc)) * sin(2.0 * ta) -
+    return ta + (-2.0 * ecc * sin(ta) + (0.75 * pow<2>(ecc) + 0.125 * pow<4>(ecc)) * sin(2.0 * ta) -
                  1.0 / 3.0 * pow<3>(ecc) * sin(3.0 * ta) + 5.0 / 32.0 * pow<4>(ecc) * sin(4.0 * ta)) *
                     isq_angle::cotes_angle;
 }
