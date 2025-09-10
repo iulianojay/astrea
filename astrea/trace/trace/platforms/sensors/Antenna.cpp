@@ -15,15 +15,17 @@ using mp_units::isq_angle::cotes_angle;
 namespace astrea {
 namespace trace {
 
-// CNR Antenna::carrier_to_noise_ratio(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
-// {
-//     return recieved_power(receiver, range, offsetAngle) / receiver.system_noise_temperature() / boltzmann_constant * _noiseBandwidth;
-// }
+CNR Antenna::carrier_to_noise_ratio(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
+{
+    throw std::runtime_error("CNR calculation not yet implemented.");
+    // return recieved_power(receiver, range, offsetAngle) / receiver.system_noise_temperature() / boltzmann_constant * _noiseBandwidth;
+}
 
-// CNR Antenna::carrier_to_noise_density(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
-// {
-//     return recieved_power(receiver, range, offsetAngle) / receiver.system_noise_temperature() / boltzmann_constant;
-// }
+CNR Antenna::carrier_to_noise_density(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
+{
+    throw std::runtime_error("CND calculation not yet implemented.");
+    // return recieved_power(receiver, range, offsetAngle) / receiver.system_noise_temperature() / boltzmann_constant;
+}
 
 Power Antenna::recieved_power(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
 {

@@ -35,10 +35,18 @@ TEST_F(VehicleTest, DefaultConstructor) { ASSERT_NO_THROW(Vehicle()); }
 
 TEST_F(VehicleTest, CopyConstructor) { ASSERT_NO_THROW(Vehicle v(vehicle)); }
 
+TEST_F(VehicleTest, MoveConstructor) { ASSERT_NO_THROW(Vehicle v(std::move(vehicle))); }
+
 TEST_F(VehicleTest, AssignmentOperator)
 {
     Vehicle other;
     ASSERT_NO_THROW(other = vehicle);
+}
+
+TEST_F(VehicleTest, MoveAssignment)
+{
+    Vehicle other;
+    ASSERT_NO_THROW(other = std::move(vehicle));
 }
 
 TEST_F(VehicleTest, UpdateState)
@@ -139,6 +147,6 @@ TEST_F(VehicleTest, GetName)
 
 TEST_F(VehicleTest, GetPtr)
 {
-    ASSERT_NO_THROW({ const void* p = vehicle.get_ptr(); });
+    ASSERT_NO_THROW({ const void* p = static_cast<const Vehicle&>(vehicle).get_ptr(); });
     ASSERT_NO_THROW({ void* p = vehicle.get_ptr(); });
 }

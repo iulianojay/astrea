@@ -24,6 +24,7 @@ TEST(JsonUtilities, ExtractFromJson)
     nlohmann::json data = R"({"int": "1", "double": "2.0"})"_json;
     ASSERT_EQ(extract_from_json<int>(data, "int"), 1);
     ASSERT_EQ(extract_from_json<double>(data, "double"), 2.0);
+    ASSERT_ANY_THROW(extract_from_json<int>(data, "absent"));
 }
 
 TEST(JsonUtilities, ExtractOptionalFromJson)
@@ -32,6 +33,7 @@ TEST(JsonUtilities, ExtractOptionalFromJson)
     ASSERT_EQ(extract_optional_from_json<int>(data, "int"), 1);
     ASSERT_EQ(extract_optional_from_json<double>(data, "double"), 2.0);
     ASSERT_EQ(extract_optional_from_json<int>(data, "absent"), std::nullopt);
+    ASSERT_ANY_THROW(extract_optional_from_json<int>(data, "missing"));
 }
 
 TEST(JsonUtilities, ExtractStringFromJson)

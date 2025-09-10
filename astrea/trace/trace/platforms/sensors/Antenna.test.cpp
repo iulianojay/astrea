@@ -102,3 +102,67 @@ TEST(SatCommTest, MispointingLossGroundToSat)
     groundAntenna.set_pattern_approximation(PatternApproximation::SINC_SQUARED);
     compare_unit_values(to_db(groundAntenna.mispointing_loss(satAntenna, 0.1414 * deg)), -1.73 * dB);
 }
+
+// TEST(AntennaTest, ConstructorAndGetters)
+// {
+//     Viewer sc;
+//     CircularFieldOfView fov;
+//     AntennaParameters paramsIn(&fov, 2.0 * m, 0.5 * one, 10.0 * GHz, 5.0 * W);
+//     Antenna antenna(sc, paramsIn);
+//     const AntennaParameters params = antenna.get_parameters();
+
+//     ASSERT_EQ(params.get_diameter(), 2.0 * m);
+//     ASSERT_EQ(params.get_efficiency(), 0.5 * one);
+//     ASSERT_EQ(params.get_frequency(), 10.0 * GHz);
+//     ASSERT_EQ(params.get_power(), 5.0 * W);
+// }
+
+// TEST(AntennaTest, Setters) // TODO: Antenna can't directly inherit from Sensor since since inherits from Payload
+// templated on Sensor. Need SensorBase or similar for each to inherit form
+// {
+//     Viewer sc;
+//     CircularFieldOfView fov;
+//     AntennaParameters paramsIn(&fov, 2.0 * m, 0.5 * one, 10.0 * GHz, 5.0 * W);
+//     Antenna antenna(sc, paramsIn);
+//     const AntennaParameters params = antenna.get_parameters();
+
+//     params.set_diameter(3.0 * m);
+//     ASSERT_EQ(params.get_diameter(), 3.0 * m);
+
+//     params.set_efficiency(0.7 * one);
+//     ASSERT_EQ(params.get_efficiency(), 0.7 * one);
+
+//     params.set_frequency(12.0 * GHz);
+//     ASSERT_EQ(params.get_frequency(), 12.0 * GHz);
+
+//     params.set_power(7.0 * W);
+//     ASSERT_EQ(params.get_power(), 7.0 * W);
+
+//     antenna.set_pattern_approximation(PatternApproximation::SINC_SQUARED);
+//     ASSERT_EQ(params.get_power(), 7.0 * W);
+// }
+
+TEST(AntennaTest, LossAndGainMethods)
+{
+    Viewer sc;
+    CircularFieldOfView fov;
+    AntennaParameters params(&fov, 2.0 * m, 0.5 * one, 10.0 * GHz, 5.0 * W);
+    Antenna antenna(sc, params);
+    Antenna receiver(sc, params);
+    Distance range = 1000.0 * km;
+    Angle offset   = 0.1 * rad;
+
+    // whatever, just make sure they run
+    ASSERT_ANY_THROW(antenna.carrier_to_noise_ratio(receiver, range, offset));
+    ASSERT_ANY_THROW(antenna.carrier_to_noise_density(receiver, range, offset));
+    ASSERT_NO_THROW(antenna.recieved_power(receiver, range, offset));
+    ASSERT_NO_THROW(antenna.free_space_loss(range));
+    ASSERT_NO_THROW(antenna.system_loss(receiver, offset));
+    ASSERT_NO_THROW(antenna.mispointing_loss(receiver, offset));
+    ASSERT_NO_THROW(antenna.polarization_loss(receiver));
+    ASSERT_NO_THROW(antenna.atmospheric_loss());
+    ASSERT_NO_THROW(antenna.gain());
+    ASSERT_NO_THROW(antenna.system_noise_temperature());
+    ASSERT_NO_THROW(antenna.receiver_loss());
+    ASSERT_NO_THROW(antenna.transmit_loss());
+}

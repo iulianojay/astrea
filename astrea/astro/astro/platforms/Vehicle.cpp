@@ -50,34 +50,14 @@ Vehicle::Vehicle(Vehicle&& other) noexcept :
 
 void Vehicle::generic_ctor_impl()
 {
-    _state = std::move(ptr()->get_state());
-
-    _mass = ptr()->get_mass();
-    if (_mass < 0.0 * kg) { throw std::invalid_argument("Vehicle mass cannot be negative."); }
-
-    _ramArea = ptr()->get_ram_area();
-    if (_ramArea < 0.0 * m * m) { throw std::invalid_argument("Vehicle ram area cannot be negative."); }
-
-    _liftArea = ptr()->get_lift_area();
-    if (_liftArea < 0.0 * m * m) { throw std::invalid_argument("Vehicle lift area cannot be negative."); }
-
-    _solarArea = ptr()->get_solar_area();
-    if (_solarArea < 0.0 * m * m) { throw std::invalid_argument("Vehicle solar area cannot be negative."); }
-
-    _coefficientOfDrag = ptr()->get_coefficient_of_drag();
-    if (_coefficientOfDrag < 0.0 * one) {
-        throw std::invalid_argument("Vehicle coefficient of drag cannot be negative.");
-    }
-
-    _coefficientOfLift = ptr()->get_coefficient_of_lift();
-    if (_coefficientOfLift < 0.0 * one) {
-        throw std::invalid_argument("Vehicle coefficient of lift cannot be negative.");
-    }
-
+    _state                     = std::move(ptr()->get_state());
+    _mass                      = ptr()->get_mass();
+    _ramArea                   = ptr()->get_ram_area();
+    _liftArea                  = ptr()->get_lift_area();
+    _solarArea                 = ptr()->get_solar_area();
+    _coefficientOfDrag         = ptr()->get_coefficient_of_drag();
+    _coefficientOfLift         = ptr()->get_coefficient_of_lift();
     _coefficientOfReflectivity = ptr()->get_coefficient_of_reflectivity();
-    if (_coefficientOfReflectivity < 0.0 * one) {
-        throw std::invalid_argument("Vehicle coefficient of lift cannot be negative.");
-    }
 }
 
 // Move assignment operator
