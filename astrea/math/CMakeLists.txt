@@ -38,12 +38,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${MATH_SOURCES} ${MATH_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units GTest::gtest_main)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${MATH_SOURCES} ${MATH_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units)
+target_link_libraries (${PROJECT_NAME}_static PUBLIC mp-units::mp-units GTest::gtest_main)
 
 # Install headers
 file(COPY
