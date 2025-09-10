@@ -73,3 +73,24 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
     // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
     // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
 }
+
+TEST_F(AtmosphericForceTest, MartianAtmosphere)
+{
+    AstrodynamicsSystem martianSys("Mars", { "Mars", "Phobos", "Deimos", "Sun" }, epoch);
+    AtmosphericForce martianAtmosphere;
+    ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys), Vehicle(sat), martianSys));
+}
+
+TEST_F(AtmosphericForceTest, VenutianAtmosphere)
+{
+    AstrodynamicsSystem venutianSys("Venus", { "Venus", "Sun" }, epoch);
+    AtmosphericForce venutianAtmosphere;
+    ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys), Vehicle(sat), venutianSys));
+}
+
+TEST_F(AtmosphericForceTest, TitanAtmosphere)
+{
+    AstrodynamicsSystem titanSys("Titan", { "Titan", "Saturn" }, epoch);
+    AtmosphericForce titanAtmosphere;
+    ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys), Vehicle(sat), titanSys));
+}

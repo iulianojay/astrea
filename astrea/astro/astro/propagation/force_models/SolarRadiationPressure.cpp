@@ -30,7 +30,7 @@ AccelerationVector<ECI>
 
     // Central body properties
     static const Distance& equitorialR = center->get_equitorial_radius();
-    static const bool isSun            = (center->get_name() != "Sun");
+    static const bool isSun            = (center->get_name() == "Sun");
 
     // Find day nearest to current time
     const State& stateSunToCenter = center->get_state_at(date); // assumes center is a planet
