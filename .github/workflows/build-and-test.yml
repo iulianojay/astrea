@@ -7,7 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
     container:
@@ -23,8 +23,6 @@ jobs:
         chmod -R u+rwX .
 
     - uses: actions/checkout@v4
-      with:
-        path: ${{ github.sha }}
 
     - name: Build
       run: make
