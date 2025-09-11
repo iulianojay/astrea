@@ -9,11 +9,14 @@ on:
   schedule:
     - cron: '26 16 * * *'
   push:
-    branches: [ "master", "dev" ]
+    branches: [ "master"]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ "master", "dev" ]
+    branches: [ "master"]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/docker-publish-release.yml'
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -76,6 +79,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
+          file: ./docker/release/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

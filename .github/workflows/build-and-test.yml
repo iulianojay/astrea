@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev
-      options: --user root
+      options: --user appuser
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
@@ -21,8 +21,14 @@ jobs:
     - name: https://github.com/actions/checkout/issues/1720
       run: |
         chmod -R u+rwX .
+
+    - name: Setup
+      run: |
+        cd $ASTREA_ROOT
+
     - uses: actions/checkout@v4
       with:
         path: ${{ github.sha }}
-    - name: Run Tests
-      run: cd $ASTREA_ROOT && make run_tests
+
+    - name: Build and Run Tests
+      run: make all run_tests
