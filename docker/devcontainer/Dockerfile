@@ -29,8 +29,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY .conan2/ /github/home/.conan2
-
 # Clone mp-units instead of copying local version
 RUN mkdir /github/home/open-source && \
     cd /github/home/open-source && \

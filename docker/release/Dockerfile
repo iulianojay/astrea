@@ -29,7 +29,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY .conan2/ /github/home/.conan2
+COPY .conan2/ $ASTREA_ROOT/.conan2
 COPY astrea $ASTREA_ROOT/astrea 
 COPY cmake $ASTREA_ROOT/cmake 
 COPY extern $ASTREA_ROOT/extern 
