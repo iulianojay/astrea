@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev
-      options: --user appuser
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
