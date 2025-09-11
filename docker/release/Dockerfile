@@ -7,7 +7,7 @@ RUN apt-get update && \
     make \
     cmake 
 
-ENV ASTREA_ROOT=/home/github/astrea
+ENV ASTREA_ROOT=/github/home/astrea
 WORKDIR $ASTREA_ROOT
 
 FROM base AS build
@@ -29,7 +29,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install conan --break-system-packages
 
-COPY .conan2/ /home/github/.conan2
+COPY .conan2/ /github/home/.conan2
 COPY astrea $ASTREA_ROOT/astrea 
 COPY cmake $ASTREA_ROOT/cmake 
 COPY extern $ASTREA_ROOT/extern 
@@ -39,8 +39,8 @@ COPY conanfile.txt $ASTREA_ROOT/conanfile.txt
 COPY Makefile $ASTREA_ROOT/Makefile 
 
 # Clone mp-units instead of copying local version
-RUN mkdir /home/github/open-source && \
-    cd /home/github/open-source && \
+RUN mkdir /github/home/open-source && \
+    cd /github/home/open-source && \
     git clone https://github.com/mpusz/mp-units.git && \
     cd mp-units && \
     git checkout v2.4.0 && \
