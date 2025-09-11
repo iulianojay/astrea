@@ -25,6 +25,6 @@ jobs:
       with:
         path: ${{ github.sha }}
     - name: make
-      run: make
+      run: cd $ASTREA_ROOT && make
     - name: make run_tests
-      run: make run_tests
+      run: cd $ASTREA_ROOT && make run_tests
