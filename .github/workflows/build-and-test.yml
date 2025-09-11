@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/iulianojay/astrea:dev
+      image: ghcr.io/iulianojay/astrea:devcontainer
       options: --user root
       credentials:
         username: ${{ github.actor }}
