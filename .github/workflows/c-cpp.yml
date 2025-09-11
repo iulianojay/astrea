@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+        with:
+          path: ${{ github.sha }}
     - name: configure
       run: ./configure
     - name: make
