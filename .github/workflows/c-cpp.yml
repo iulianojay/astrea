@@ -17,8 +17,6 @@ jobs:
         password: ${{ secrets.github_token }}
 
     steps:
-    - run: |
-        echo "GOPROXY=off" >> $GITHUB_ENV
     - uses: actions/checkout@v4
       with:
         path: ${{ github.sha }}
