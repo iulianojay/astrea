@@ -1,0 +1,70 @@
+# syntax=docker/dockerfile:1
+
+FROM ubuntu:latest AS base
+
+RUN apt-get update && \
+    apt-get -y install \
+    make \
+    cmake 
+
+ENV ASTREA_ROOT=/home/appuser/astrea
+WORKDIR $ASTREA_ROOT
+
+FROM base AS build
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get -y install \
+    gcc \
+    gdb \ 
+    mono-mcs \
+    curl \
+    libsqlite3-dev \
+    libssl-dev \
+    python3 \
+    python3-pip \
+    python3-venv \
+    git \
+    && \
+    rm -rf /var/lib/apt/lists/*
+RUN pip install conan --break-system-packages
+
+COPY .conan2/ /home/appuser/.conan2
+COPY astrea $ASTREA_ROOT/astrea 
+COPY cmake $ASTREA_ROOT/cmake 
+COPY extern $ASTREA_ROOT/extern 
+COPY scripts $ASTREA_ROOT/scripts 
+COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt 
+COPY conanfile.txt $ASTREA_ROOT/conanfile.txt 
+COPY Makefile $ASTREA_ROOT/Makefile 
+
+# Clone mp-units instead of copying local version
+RUN mkdir /home/appuser/open-source && \
+    cd /home/appuser/open-source && \
+    git clone https://github.com/mpusz/mp-units.git && \
+    cd mp-units && \
+    git checkout v2.4.0 && \
+    cd $ASTREA_ROOT
+
+# Create a non-privileged user that the app will run under.
+# See https://docs.docker.com/go/dockerfile-user-best-practices/
+RUN groupadd -r usergroup
+RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
+RUN chown -R appuser:usergroup /home/appuser
+USER appuser
+
+RUN make release all
+
+FROM base AS final
+
+COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
+COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
+COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile 
+COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern 
+COPY data $ASTREA_ROOT/data 
+
+RUN groupadd -r usergroup
+RUN useradd -rm -d /home/appuser -s /bin/bash -g usergroup -u 10001 -p "$(openssl passwd -1 appuser)" appuser 
+RUN chown -R appuser:usergroup /home/appuser
+USER appuser
+

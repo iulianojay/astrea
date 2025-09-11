@@ -1,0 +1,34 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master", "dev" ]
+  pull_request:
+    branches: [ "master", "dev" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+    - name: https://github.com/actions/checkout/issues/1720
+      run: |
+        chmod -R u+rwX .
+
+    - name: Setup
+      run: |
+        cd $ASTREA_ROOT
+
+    - uses: actions/checkout@v4
+      with:
+        path: ${{ github.sha }}
+
+    - name: Build and Run Tests
+      run: make all run_tests
