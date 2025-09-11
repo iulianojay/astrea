@@ -10,8 +10,6 @@ on:
     - cron: '26 16 * * *'
   push:
     branches: [ "dev" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "dev" ]
     paths:
@@ -22,7 +20,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}:devcontainer
+  IMAGE_NAME: ${{ github.repository }}
 
 
 jobs:
