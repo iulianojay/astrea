@@ -2,12 +2,12 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "master", "dev" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "master", "dev" ]
+    branches: [ "dev" ]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
     container:
@@ -23,8 +23,9 @@ jobs:
         chmod -R u+rwX .
 
     - uses: actions/checkout@v4
-      with:
-        path: ${{ github.sha }}
 
-    - name: Build and Run Tests
-      run: make all run_tests
+    - name: Build
+      run: make
+
+    - name: Run Tests
+      run: make run_tests
