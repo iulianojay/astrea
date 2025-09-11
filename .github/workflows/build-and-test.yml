@@ -31,4 +31,4 @@ jobs:
         path: ${{ github.sha }}
 
     - name: Build and Run Tests
-      run: pwd && ls -l && make all run_tests
+      run: cd astrea && ls -l && make all run_tests
