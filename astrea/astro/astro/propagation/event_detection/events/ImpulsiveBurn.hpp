@@ -12,8 +12,6 @@
 
 #include <string>
 
-#include <mp-units/core.h>
-
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
