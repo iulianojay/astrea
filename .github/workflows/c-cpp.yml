@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/iulianojay/astrea:sha256-a74475e1e6f0523bf87e35c52a9fac2de580ec922a6d2e746089eb88d196dc07.sig
+      image: ghcr.io/iulianojay/astrea:dev
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
