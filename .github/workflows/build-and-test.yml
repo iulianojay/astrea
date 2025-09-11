@@ -22,13 +22,9 @@ jobs:
       run: |
         chmod -R u+rwX .
 
-    - name: Setup
-      run: |
-        cd $ASTREA_ROOT
-
     - uses: actions/checkout@v4
       with:
         path: ${{ github.sha }}
 
     - name: Build and Run Tests
-      run: cd astrea && ls -l && make all run_tests
+      run: make all run_tests
