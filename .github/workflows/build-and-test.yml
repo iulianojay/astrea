@@ -31,4 +31,4 @@ jobs:
         path: ${{ github.sha }}
 
     - name: Build and Run Tests
-      run: make all run_tests
+      run: pwd && ls -l && make all run_tests
