@@ -9,7 +9,9 @@ on:
 jobs:
   build:
 
-    runs-on: ghcr.io/iulianojay/astrea
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea
 
     steps:
     - uses: actions/checkout@v4
