@@ -17,6 +17,9 @@ jobs:
         password: ${{ secrets.github_token }}
 
     steps:
+    - name: https://github.com/actions/checkout/issues/1720
+      run: |
+        chmod -R u+rwX .
     - uses: actions/checkout@v4
       with:
         path: ${{ github.sha }}
