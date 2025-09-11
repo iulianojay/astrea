@@ -24,7 +24,10 @@ jobs:
 
     - uses: actions/checkout@v4
       with:
-        path: $ASTREA_ROOT
+        path: ${{ github.sha }}
 
-    - name: Build and Run Tests
-      run: make all run_tests
+    - name: Build
+      run: make
+
+    - name: Run Tests
+      run: make run_tests
