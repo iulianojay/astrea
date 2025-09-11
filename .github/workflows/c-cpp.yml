@@ -24,8 +24,6 @@ jobs:
     - uses: actions/checkout@v4
       with:
         path: ${{ github.sha }}
-    - name: configure
-      run: ./configure
     - name: make
       run: make
     - name: make run_tests
