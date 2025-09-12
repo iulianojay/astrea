@@ -49,4 +49,6 @@ int main()
 
     Date oneDayLater = date + 1.0 * day;
     std::cout << "Time between J2000 and 1 day after: " << (oneDayLater - date) << std::endl;
+
+    return 0;
 }

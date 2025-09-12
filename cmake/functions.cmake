@@ -44,3 +44,13 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
     endforeach(TEST_FILE ${TEST_FILES})
 
 endfunction()
+
+# Example build function
+function(build_example CURRENT_PROJECT EXAMPLE_NAME EXAMPLE_DIRECTORY)
+
+    add_executable         (${EXAMPLE_NAME} ${EXAMPLE_DIRECTORY}/main.cpp)
+    set_target_properties  (${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXAMPLE_DIRECTORY}/bin)
+    target_compile_options (${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+    target_link_libraries  (${EXAMPLE_NAME} PUBLIC ${CURRENT_PROJECT}_shared)
+
+endfunction()
