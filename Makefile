@@ -13,6 +13,7 @@ build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type))
 build_tests := OFF
+build_examples := OFF
 cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
@@ -20,7 +21,7 @@ warnings_as_errors := OFF
 .DEFAULT_GOAL := all
 
 .PHONY: all
-all: tests install
+all: examples tests install
 
 # Conan commands - for now
 .PHONY: install
@@ -29,7 +30,7 @@ install: build
 
 .PHONY: build
 build: setup
-	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) -DBUILD_TESTS=$(build_tests) 
+	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) -DBUILD_TESTS=$(build_tests) -DBUILD_EXAMPLES=$(build_examples)
 
 .PHONY: setup
 setup: 
@@ -60,6 +61,10 @@ relwithdebinfo:
 .PHONY: tests
 tests:
 	$(eval build_tests = ON)
+
+.PHONY: examples
+examples:
+	$(eval build_examples = ON)
 	
 .PHONY: run_tests
 run_tests:

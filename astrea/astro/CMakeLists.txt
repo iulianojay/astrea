@@ -194,7 +194,10 @@ file(COPY
     PATTERN *.h
 )
 
-# add_subdirectory(examples EXCLUDE_FROM_ALL)
+if(${BUILD_EXAMPLES})
+    add_subdirectory(examples)
+endif()
+
 if(${BUILD_TESTS})
     add_subdirectory(tests)
 endif()
