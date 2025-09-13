@@ -42,6 +42,7 @@ StateHistory Integrator::propagate(
     // Time
     Time time     = startTime;
     Time timeStep = (_useFixedStep) ? _fixedTimeStep : _timeStepInitial;
+    if (timeStep > endTime - startTime) { timeStep = endTime - startTime; }
 
     const bool forwardTime = (endTime > startTime);
     if (!forwardTime) { timeStep = -timeStep; }
@@ -130,6 +131,9 @@ StateHistory Integrator::propagate(
         // Step iteration
         ++_iteration;
     }
+
+    // Store last state if not already stored
+    if (!store) { stateHistory[epoch + time] = vehicle.get_state(); }
 
     teardown();
 
