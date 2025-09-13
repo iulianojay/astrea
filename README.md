@@ -44,18 +44,17 @@ And it's still growing!
 ## Requirements and dependencies
 
 The following are required to run all features in Astrea. The version requirements have not been thoroughly tested so many features will likely work with older versions. 
- * make 4.3 
  * cmake 3.31.6 
- * g++ 13.1.0 
- * curl 7.81.0
- * sqlite3 3.37.2
- * python3 3.10.12
  * conan 2.13.0
+ * g++ 13.1.0 
+ * make 4.3 - (only required to use the Makefile directly)
+ * curl 7.81.0 - (only required to use snapshot features)
+ * sqlite3 3.37.2 - (only required to use snapshot features)
+ * python3 3.10.12 - (only required to use plotting features)
 
 Astrea uses numerous open-source libraries to solve various problems. Many of the dependencies are stored locally in header-only versions for convenience and simplicity. The only dependency that currently requires manual installation on your system is [mp-units](https://github.com/mpusz/mp-units). 
 
 Conan is used to build mp-units and its dependencies and otherwise links into Astrea's cmake system to build everything else. 
-
 
 ## Build and install
 

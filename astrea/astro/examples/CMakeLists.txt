@@ -1,8 +1,6 @@
-# add_subdirectory("dynamics_systems")
-add_subdirectory("element_sets_and_conversions")
-# add_subdirectory("platforms")
-# add_subdirectory("propagation")
-add_subdirectory("state_representations")
-# add_subdirectory("strongly_typed_frames")
-# add_subdirectory("strongly_typed_units")
-add_subdirectory("time_systems")
+set(CMAKE_INSTALL_MESSAGE LAZY)
+
+# Get sources
+set(BASE ${CMAKE_CURRENT_SOURCE_DIR})
+file(GLOB_RECURSE EXAMPLE_SOURCES CONFIGURE_DEPENDS ${BASE}/**/main.cpp)
+build_examples(${PROJECT_NAME} "${EXAMPLE_SOURCES}")
