@@ -17,6 +17,7 @@
 #include <mp-units/systems/angular/math.h>
 
 #include <units/typedefs.hpp>
+#include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
 
@@ -443,10 +444,29 @@ class CartesianVector {
  * @return The output stream.
  */
 template <class Value_T, class Frame_T>
+    requires(std::is_constructible<Frame_T>::value)
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
     static const Frame_T frame;
     static const std::string name = frame.get_name();
+    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "] (" << name << ")";
+    return os;
+}
+
+/**
+ * @brief Overload the output stream operator for CartesianVector.
+ *
+ * @tparam Value_T The type of the vector components.
+ * @tparam Frame_T The type of the frame.
+ * @param os The output stream.
+ * @param state The CartesianVector to output.
+ * @return The output stream.
+ */
+template <class Value_T, class Frame_T>
+    requires(!std::is_constructible<Frame_T>::value)
+std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
+{
+    static const std::string name = utilities::get_type_name<Frame_T>();
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "] (" << name << ")";
     return os;
 }

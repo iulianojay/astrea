@@ -34,7 +34,7 @@ build: setup
 
 .PHONY: setup
 setup: 
-	conan install . --profile:build=./.conan2/profiles/gcc13-$(build_type_lower) -b=missing 
+	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing 
 
 .PHONY: debug
 debug: 
