@@ -73,6 +73,7 @@ add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cp
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs)
 
 # Install headers
 file(COPY
@@ -83,7 +84,10 @@ file(COPY
     PATTERN *.h
 )
 
-# add_subdirectory(examples EXCLUDE_FROM_ALL)
+if(${BUILD_EXAMPLES})
+#     add_subdirectory(examples)
+endif()
+
 if(${BUILD_TESTS})
     # add_subdirectory(tests)
 endif()

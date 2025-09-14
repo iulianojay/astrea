@@ -14,7 +14,14 @@
 #include <snapshot/database/Database.hpp>
 #include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
 
-
+/**
+ * @brief Main entry point for the SpaceTrack data retrieval application. This will query SpaceTrack using the provided
+ * credentials, retrieve all available General Perturbations (GP) data, and store it in a local SQLite database.
+ *
+ * @param argc Command line argument count
+ * @param argv Command line argument vector, where argv[1] is the SpaceTrack username and argv[2] is the password
+ * @return int Exit status code (0 for success)
+ */
 int main(int argc, char** argv)
 {
     // Build connection and connect
