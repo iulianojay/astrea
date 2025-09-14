@@ -127,7 +127,7 @@ class DynamicFrame : public Frame<Frame_T> {
      */
     RadiusVector<Frame_T> convert_to_this_frame(const RadiusVector<EarthCenteredInertial>& vec, const Date& date) const
     {
-        return get_dcm_impl(date) * (vec - _parent->get_inertial_position(date));
+        return get_dcm_impl(date) * (vec - get_inertial_position(date));
     }
 
     /**
@@ -140,7 +140,7 @@ class DynamicFrame : public Frame<Frame_T> {
      */
     RadiusVector<EarthCenteredInertial> convert_from_this_frame(const RadiusVector<Frame_T>& vec, const Date& date) const
     {
-        return get_dcm_impl(date).transpose() * vec + _parent->get_inertial_position(date);
+        return get_dcm_impl(date).transpose() * vec + get_inertial_position(date);
     }
 
   private:
