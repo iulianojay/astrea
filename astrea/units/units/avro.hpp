@@ -6,7 +6,6 @@
 // #include <avro/Specific.hh>
 
 // // mp-units
-// #include <mp-units/core.h>
 
 // namespace avro {
 

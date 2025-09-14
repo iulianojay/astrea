@@ -8,7 +8,7 @@ RUN apt-get update && \
     cmake 
 
 ENV ASTREA_ROOT=/github/home/astrea
-WORKDIR $ASTREA_ROOT
+WORKDIR /github/home
 
 FROM base AS final
 
@@ -34,5 +34,4 @@ RUN mkdir /github/home/open-source && \
     cd /github/home/open-source && \
     git clone https://github.com/mpusz/mp-units.git && \
     cd mp-units && \
-    git checkout v2.4.0 && \
-    cd $ASTREA_ROOT
+    git checkout v2.4.0

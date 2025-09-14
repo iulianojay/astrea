@@ -105,38 +105,38 @@ TEST_F(GeodeticTest, EqualityOperator)
 
 TEST_F(GeodeticTest, AdditionOperator)
 {
-    Geodetic other{ 1.0 * deg, 1.0 * deg, 1.0 * km };
+    Geodetic other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     Geodetic result = state + other;
     ASSERT_EQ(result.get_altitude(), altitude + 1.0 * km);
-    ASSERT_EQ(result.get_latitude(), latitude + 1.0 * deg);
-    ASSERT_EQ(result.get_longitude(), longitude + 1.0 * deg);
+    ASSERT_EQ(result.get_latitude(), latitude + 1.0 * rad);
+    ASSERT_EQ(result.get_longitude(), longitude + 1.0 * rad);
 }
 
 TEST_F(GeodeticTest, AdditionAssignmentOperator)
 {
-    Geodetic other{ 1.0 * deg, 1.0 * deg, 1.0 * km };
+    Geodetic other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     state += other;
     ASSERT_EQ(state.get_altitude(), altitude + 1.0 * km);
-    ASSERT_EQ(state.get_latitude(), latitude + 1.0 * deg);
-    ASSERT_EQ(state.get_longitude(), longitude + 1.0 * deg);
+    ASSERT_EQ(state.get_latitude(), latitude + 1.0 * rad);
+    ASSERT_EQ(state.get_longitude(), longitude + 1.0 * rad);
 }
 
 TEST_F(GeodeticTest, SubtractionOperator)
 {
-    Geodetic other{ 1.0 * deg, 1.0 * deg, 1.0 * km };
+    Geodetic other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     Geodetic result = state - other;
     ASSERT_EQ(result.get_altitude(), altitude - 1.0 * km);
-    ASSERT_EQ(result.get_latitude(), latitude - 1.0 * deg);
-    ASSERT_EQ(result.get_longitude(), longitude - 1.0 * deg);
+    ASSERT_EQ(result.get_latitude(), latitude - 1.0 * rad);
+    ASSERT_EQ(result.get_longitude(), longitude - 1.0 * rad);
 }
 
 TEST_F(GeodeticTest, SubtractionAssignmentOperator)
 {
-    Geodetic other{ 1.0 * deg, 1.0 * deg, 1.0 * km };
+    Geodetic other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     state -= other;
     ASSERT_EQ(state.get_altitude(), altitude - 1.0 * km);
-    ASSERT_EQ(state.get_latitude(), latitude - 1.0 * deg);
-    ASSERT_EQ(state.get_longitude(), longitude - 1.0 * deg);
+    ASSERT_EQ(state.get_latitude(), latitude - 1.0 * rad);
+    ASSERT_EQ(state.get_longitude(), longitude - 1.0 * rad);
 }
 
 TEST_F(GeodeticTest, MultiplicationOperator)
@@ -187,14 +187,14 @@ TEST_F(GeodeticTest, DivisionByGeodeticOperator)
 
 TEST_F(GeodeticTest, Interpolate)
 {
-    Geodetic other{ 20.0 * deg, 20.0 * deg, 20000.0 * km };
+    Geodetic other{ 1.5 * rad, 1.5 * rad, 20000.0 * km };
     Time thisTime   = seconds(0);
     Time otherTime  = seconds(10);
     Time targetTime = seconds(5);
     Geodetic result = state.interpolate(thisTime, otherTime, other, targetTime);
     ASSERT_EQ_QUANTITY(result.get_altitude(), Distance(15000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_latitude(), Angle(10.0 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_longitude(), Angle(10.0 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(result.get_latitude(), Angle(0.75 * rad), REL_TOL);
+    ASSERT_EQ_QUANTITY(result.get_longitude(), Angle(0.75 * rad), REL_TOL);
 }
 
 TEST_F(GeodeticTest, Getters)
