@@ -10,6 +10,7 @@
  */
 #pragma once
 
+#include <set>
 #include <vector>
 
 #include <parallel_hashmap/btree.h>
@@ -30,11 +31,11 @@ class EventDetector {
      * @brief A struct for tracking events.
      */
     struct EventTracker {
-        Event event;                      //!< The Event being tracked.
-        bool firstMeasurement;            //!< Whether this is the first measurement for the Event.
-        Time previousTime;                //!< The previous time the Event was measured.
-        Unitless previousValue;           //!< The previous value the Event was measured at.
-        std::vector<Time> detectionTimes; //!< The times at which the Event was detected.
+        Event event;                   //!< The Event being tracked.
+        bool firstMeasurement;         //!< Whether this is the first measurement for the Event.
+        Time previousTime;             //!< The previous time the Event was measured.
+        Unitless previousValue;        //!< The previous value the Event was measured at.
+        std::set<Time> detectionTimes; //!< The times at which the Event was detected.
     };
 
   public:
@@ -78,6 +79,14 @@ class EventDetector {
      * @return false If no terminal event was detected.
      */
     bool detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle);
+
+    /**
+     * @brief Retrieves the event times recorded during propagation.
+     *
+     * @param epoch The epoch to which the event times are relative.
+     * @return const std::vector<Date>& A vector of dates representing the event times.
+     */
+    phmap::btree_map<std::string, std::vector<Date>> get_event_times(const Date& epoch) const;
 
   private:
     std::vector<EventTracker> _eventTrackers; //!< The list of Event trackers.

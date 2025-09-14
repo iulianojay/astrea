@@ -19,7 +19,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle);
+    return eom(state, vehicle); // TODO: Enforce returned element matches the partial of the expected set
 }
 
 
@@ -27,6 +27,18 @@ StateHistory
     Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
 {
     return propagate(epoch, interval.start, interval.end, eom, vehicle, store, events);
+}
+
+StateHistory Integrator::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
+{
+    const Date startEpoch = vehicle.get_state().get_epoch();
+    const Time propTime   = endEpoch - startEpoch;
+    return propagate(startEpoch, 0.0 * s, propTime, eom, vehicle, store, events);
+}
+
+StateHistory Integrator::propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
+{
+    return propagate(vehicle.get_state().get_epoch(), 0.0 * s, propTime, eom, vehicle, store, events);
 }
 
 StateHistory Integrator::propagate(
@@ -42,6 +54,7 @@ StateHistory Integrator::propagate(
     // Time
     Time time     = startTime;
     Time timeStep = (_useFixedStep) ? _fixedTimeStep : _timeStepInitial;
+    if (timeStep > endTime - startTime) { timeStep = endTime - startTime; }
 
     const bool forwardTime = (endTime > startTime);
     if (!forwardTime) { timeStep = -timeStep; }
@@ -111,6 +124,7 @@ StateHistory Integrator::propagate(
             }
         }
 
+        // Successful event
         vehicle.update_state({ state, epoch + time, sys });
         if (store) { stateHistory[epoch + time] = vehicle.get_state(); }
 
@@ -130,6 +144,12 @@ StateHistory Integrator::propagate(
         // Step iteration
         ++_iteration;
     }
+
+    // Store last state if not already stored
+    if (!store) { stateHistory[epoch + time] = vehicle.get_state(); }
+
+    // Store event times
+    if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(epoch)); }
 
     teardown();
 
@@ -402,7 +422,7 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
             // Predicted relative step size
             Unitless relativeTimeStep = 1.0 * mp_units::one;
             if (maxError == 0.0 * astrea::detail::unitless && _maxErrorPrevious == 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
-                std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
+                // std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
             }
             else {
                 relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *

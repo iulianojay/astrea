@@ -36,8 +36,7 @@ TEST_F(AstrodynamicsSystemTest, DefaultConstructor)
 TEST_F(AstrodynamicsSystemTest, Constructor)
 {
     ASSERT_NO_THROW(AstrodynamicsSystem("Moon"));
-    ASSERT_NO_THROW(AstrodynamicsSystem("Moon", { "Earth", "Moon", "Sun" }));
-    ASSERT_NO_THROW(AstrodynamicsSystem("Moon", { "Earth", "Moon", "Sun" }, Date("2030-01-01 00:00:00.0")));
+    ASSERT_NO_THROW(AstrodynamicsSystem("Moon", { "Earth", "Sun" }));
 }
 
 TEST_F(AstrodynamicsSystemTest, Center) { ASSERT_EQ(sys.center(), "Earth"); }

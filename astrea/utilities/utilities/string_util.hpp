@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <cstdlib>
+#include <cxxabi.h>
 #include <string>
 
 namespace astrea {
@@ -33,6 +35,15 @@ std::string trim(const std::string& str, const std::string& whitespace = " \t");
  * @return A new string with all occurrences replaced.
  */
 std::string replace_all(std::string const& original, std::string const& before, std::string const& after);
+
+template <typename T>
+std::string get_type_name()
+{
+    static int status;
+    static const std::string fullName = abi::__cxa_demangle(typeid(T).name(), NULL, NULL, &status);
+    static const std::string name     = fullName.substr(fullName.find_last_of("::") + 1);
+    return name;
+}
 
 } // namespace utilities
 } // namespace astrea

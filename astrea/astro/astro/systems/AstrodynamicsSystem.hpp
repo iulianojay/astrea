@@ -33,17 +33,16 @@ namespace astro {
 class AstrodynamicsSystem {
   public:
     /**
-     * @brief Constructs an AstrodynamicsSystem with a specified central body, set of all bodies, and epoch.
+     * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
      *
      * @param centralBody The name of the central celestial body (default is "Earth").
-     * @param allBodies A set of names of all celestial bodies in the system (default includes "Earth" and "Moon").
-     * @param epoch The epoch date for the system (default is J2000).
+     * @param allBodies A set of names of all secondary celestial bodies in the system (default is the "Moon").
      */
-    AstrodynamicsSystem(std::string centralBody = "Earth", std::unordered_set<std::string> allBodies = { "Earth", "Moon" }, Date epoch = J2000) :
-        centralBody(centralBody),
-        allBodies(allBodies),
-        epoch(epoch)
+    AstrodynamicsSystem(const std::string& centralBody = "Earth", const std::unordered_set<std::string>& secondaryBodies = { "Moon" }) :
+        _centralBody(centralBody),
+        _allBodies(secondaryBodies)
     {
+        _allBodies.insert(_centralBody);
         create_all_bodies();
     };
 
@@ -74,14 +73,14 @@ class AstrodynamicsSystem {
      *
      * @return const std::string& The name of the central celestial body.
      */
-    const std::string& center() const { return centralBody; }
+    const std::string& center() const { return _centralBody; }
 
     /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.
      */
-    const CelestialBodyUniquePtr& get_center() const { return bodyFactory.get(centralBody); }
+    const CelestialBodyUniquePtr& get_center() const { return _bodyFactory.get(_centralBody); }
 
     /**
      * @brief Return a specific celestial body by name.
@@ -89,7 +88,7 @@ class AstrodynamicsSystem {
      * @param name The name of the celestial body to retrieve.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified name.
      */
-    const CelestialBodyUniquePtr& get(const std::string& name) const { return bodyFactory.get(name); }
+    const CelestialBodyUniquePtr& get(const std::string& name) const { return _bodyFactory.get(name); }
 
     /**
      * @brief Get or create a celestial body by name.
@@ -99,7 +98,7 @@ class AstrodynamicsSystem {
      */
     const CelestialBodyUniquePtr& get_or_create(const std::string& name)
     {
-        return bodyFactory.get_or_create(name, *this);
+        return _bodyFactory.get_or_create(name, *this);
     }
 
     /**
@@ -107,14 +106,14 @@ class AstrodynamicsSystem {
      *
      * @return const std::unordered_set<std::string>& A set containing the names of all celestial bodies in the system.
      */
-    const std::unordered_set<std::string>& all_bodies() const { return allBodies; }
+    const std::unordered_set<std::string>& all_bodies() const { return _allBodies; }
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
      *
      * @return const std::vector<CelestialBodyUniquePtr>& A vector containing pointers to all celestial bodies in the system.
      */
-    const auto& get_all_bodies() const { return bodyFactory.get_all_bodies(); }
+    const auto& get_all_bodies() const { return _bodyFactory.get_all_bodies(); }
 
     // RadiusVector<ECI> get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
@@ -133,21 +132,19 @@ class AstrodynamicsSystem {
      *
      * @return iterator An iterator pointing to the first celestial body.
      */
-    auto begin() const { return bodyFactory.begin(); }
+    auto begin() const { return _bodyFactory.begin(); }
 
     /**
      * @brief Returns an iterator to the end of the celestial bodies in the system.
      *
      * @return iterator An iterator pointing to one past the last celestial body.
      */
-    auto end() const { return bodyFactory.end(); }
+    auto end() const { return _bodyFactory.end(); }
 
   private:
-    const std::string centralBody; //!< The name of the central celestial body, default is "Earth".
-    const std::unordered_set<std::string> allBodies; //!< A set of names of all celestial bodies in the system, default includes "Earth" and "Moon".
-
-    Date epoch;                       //!< The epoch date for the system, default is J2000.
-    CelestialBodyFactory bodyFactory; //!< Factory for creating and managing celestial bodies in the system.
+    const std::string _centralBody; //!< The name of the central celestial body, default is "Earth".
+    std::unordered_set<std::string> _allBodies; //!< A set of names of all celestial bodies in the system, default includes "Earth" and "Moon".
+    CelestialBodyFactory _bodyFactory; //!< Factory for creating and managing celestial bodies in the system.
 
     /**
      * @brief Creates all celestial bodies in the system based on the provided names.
