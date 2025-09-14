@@ -59,10 +59,16 @@ int main()
     std::cout << "Propagating...";
     const StateHistory twoBodyHistory = integrator.propagate(epoch, propInterval, twoBodyEom, vehicle, store);
     std::cout << " Two Body Propagation Complete." << std::endl << "Propagating...";
+    vehicle = Vehicle(sat); // reset the vehicle
+
     const StateHistory j2MeanHistory = integrator.propagate(epoch, propInterval, j2MeanEom, vehicle, store);
     std::cout << " J2 Mean Propagation Complete." << std::endl << "Propagating...";
+    vehicle = Vehicle(sat);
+
     const StateHistory cowellsHistory = integrator.propagate(epoch, propInterval, cowellsEom, vehicle, store);
     std::cout << " Cowell's Method Propagation Complete." << std::endl << "Propagating...";
+    vehicle = Vehicle(sat);
+
     const StateHistory keplerianHistory = integrator.propagate(epoch, propInterval, keplerianEom, vehicle, store);
     std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
@@ -70,7 +76,7 @@ int main()
     std::cout << "Two-Body Final State: " << twoBodyHistory.last() << std::endl;
     std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
     std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
-    std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl << std::endl;
+    std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
 
     return 0;
 }

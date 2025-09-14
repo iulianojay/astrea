@@ -53,10 +53,6 @@ relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
-
-# .PHONY: examples
-# examples: install
-# 	$(MAKE) -C $(build_path)/$(examples_path) install
 	
 .PHONY: tests
 tests:
@@ -79,6 +75,10 @@ rerun_tests:
 	cd $(build_path)/astrea/utilities/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/astro/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/trace/tests && ctest --rerun-failed --output-on-failure
+
+.PHONY: run_examples
+run_examples:
+	sh $(ASTREA_ROOT)/scripts/run_examples.sh
 
 .PHONY: verbose
 verbose:
