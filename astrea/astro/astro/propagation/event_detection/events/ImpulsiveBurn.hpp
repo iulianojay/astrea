@@ -65,7 +65,7 @@ class ImpulsiveBurn {
     bool is_terminal() const;
 
   private:
-    mutable Angle previousAnomaly;
+    mutable Angle previousAnomaly = 0.0 * astrea::detail::angle_unit;
 };
 
 } // namespace astro

@@ -92,6 +92,7 @@ add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized)
 add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers
