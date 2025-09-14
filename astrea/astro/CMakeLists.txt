@@ -178,12 +178,6 @@ set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_
 target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main)
 target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
 
-# Executable
-add_executable             (${PROJECT_NAME}_exe ${ASTRO_BASE}/drivers/main.cpp)
-set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (${PROJECT_NAME}_exe PUBLIC ${ASTRO_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
-
 # Install headers
 file(COPY
     DIRECTORY ${ASTRO_BASE}
