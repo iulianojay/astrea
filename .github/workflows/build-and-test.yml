@@ -29,3 +29,6 @@ jobs:
 
     - name: Run Tests
       run: make run_tests
+
+    - name: Run Examples
+      run: make run_examples
