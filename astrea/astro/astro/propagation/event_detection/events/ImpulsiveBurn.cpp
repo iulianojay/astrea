@@ -18,13 +18,12 @@ Unitless ImpulsiveBurn::measure_event(const Time& time, const OrbitalElements& s
 
     // Trigger at perigee
     // We don't track absolute anomaly so just check if it wrapped around
-    if (trueAnomaly < previousAnomaly) {
-        previousAnomaly = trueAnomaly;
-        return 0.0 * astrea::detail::unitless; // Triggered
-    }
+    const Unitless deltaAnomaly = (trueAnomaly - previousAnomaly) / (astrea::detail::angle_unit);
+    previousAnomaly             = trueAnomaly;
+
+    if (deltaAnomaly < 0.0 * mp_units::one) { return 0.0 * mp_units::one; } // event
     else {
-        previousAnomaly = trueAnomaly;
-        return 1.0 * astrea::detail::unitless; // Not triggered
+        return 1.0 * mp_units::one; // No event
     }
 }
 
