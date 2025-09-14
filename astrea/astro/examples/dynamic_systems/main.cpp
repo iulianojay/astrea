@@ -24,7 +24,7 @@ int main()
     AstrodynamicsSystem earthSystem("Earth"); // String were initially used to avoid hard coding CelestialBody
                                               // instances, but this may change for pre-defined celestial bodies
     const auto& earth = earthSystem.get_center();
-    std::cout << std::endl << "Center Body: " << earth->get_name() << std::endl;
+    std::cout << "Center Body: " << earth->get_name() << std::endl;
 
     // Systems can also have secondary bodies
     AstrodynamicsSystem earthMoonSystem("Earth", { "Moon" });
@@ -36,7 +36,7 @@ int main()
 
     // Bodies can be accessed directly from the system
     const auto& moon = earthMoonSystem.get("Moon");
-    std::cout << "Secondary Body: " << moon->get_name() << std::endl << std::endl;
+    std::cout << "Secondary Body: " << moon->get_name() << std::endl;
 
     return 0;
 }

@@ -35,7 +35,7 @@ int main()
     auto rEciDot   = rEci.dot(rEci);
     auto rEciCross = rEci.cross(rEci);
 
-    std::cout << std::endl << "rEci: " << rEci << std::endl;
+    std::cout << "rEci: " << rEci << std::endl;
     std::cout << "rEciMag: " << rEciMag << std::endl;
     std::cout << "rEciUnit: " << rEciUnit << std::endl;
     std::cout << "rEciDot: " << rEciDot << std::endl;
@@ -68,7 +68,7 @@ int main()
     RadiusVector<ECI> convertedrRic = instantaneousRicFrame.convert_from_this_frame(rRic, date);
 
     std::cout << "Position in RIC: " << rRic << std::endl;
-    std::cout << "Position in instantaneous RIC: " << convertedrRic << std::endl << std::endl;
+    std::cout << "Position in instantaneous RIC: " << convertedrRic << std::endl;
 
     return 0;
 }

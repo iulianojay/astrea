@@ -36,7 +36,7 @@ int main()
 
     // Setup system
     AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    // AstrodynamicsSystem sys("Earth", { "Earth", "Moon", "Sun", "Jupiter" });
+    // AstrodynamicsSystem sys("Earth", { "Moon", "Sun", "Jupiter" });
 
     // const double R   = 10000;
     // const double V   = sqrt(398600.0 / 10000.0);

@@ -87,16 +87,20 @@ TEST_F(IntegratorTest, PropagateVariableStep)
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::RKF45);
+    vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::RKF78);
+    vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::DOP45);
+    vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
     integrator.switch_print(true);
     integrator.set_step_method(Integrator::StepMethod::DOP78);
+    vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 }
 

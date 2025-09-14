@@ -60,7 +60,7 @@ int main()
     const StateHistory history = integrator.propagate(epoch, propInterval, eoms, vehicle, store, { burnEvent });
 
     // Track period as a quasi-measure of the burn effect
-    std::cout << std::endl << "Initial State: " << elements << std::endl;
+    std::cout << "Initial State: " << elements << std::endl;
     std::cout
         << "Initial Period: "
         << mp_units::quantity<h>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle))
@@ -88,7 +88,6 @@ int main()
             std::cout << "\t" << orbitalPeriod << std::endl;
         }
     }
-    std::cout << std::endl;
 
     return 0;
 }

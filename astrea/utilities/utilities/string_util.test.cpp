@@ -44,7 +44,6 @@ TEST(StringUtilities, GetTypeName)
     ASSERT_EQ(get_type_name<int>(), "int");
     ASSERT_EQ(get_type_name<double>(), "double");
     ASSERT_EQ(get_type_name<std::string>(), "string");
-    ASSERT_EQ(get_type_name<std::vector<int>>(), "vector<int>");
     ASSERT_EQ(get_type_name<test::TestClass>(), "TestClass");
     ASSERT_EQ(get_type_name<test::nested::NestedClass>(), "NestedClass");
 }

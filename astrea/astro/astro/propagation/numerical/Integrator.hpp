@@ -87,6 +87,30 @@ class Integrator {
     );
 
     /**
+     * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
+     *
+     * @param endEpoch The final epoch (end time) for the propagation.
+     * @param eom The equations of motion to use for the propagation.
+     * @param vehicle The vehicle whose state is to be propagated.
+     * @param store Whether to store the state history during propagation. Default is false.
+     * @return StateHistory The history of the vehicle's state over the propagated interval.
+     */
+    StateHistory
+        propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+
+    /**
+     * @brief Propagate the state of a vehicle from its current epoch for a specified time using the given equations of motion.
+     *
+     * @param propTime Total propagation time after vehicle epoch.
+     * @param eom The equations of motion to use for the propagation.
+     * @param vehicle The vehicle whose state is to be propagated.
+     * @param store Whether to store the state history during propagation. Default is false.
+     * @return StateHistory The history of the vehicle's state over the propagated interval.
+     */
+    StateHistory
+        propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+
+    /**
      * @brief Propagate the state of a vehicle from an initial time to a final time using the given equations of motion.
      *
      * @param epoch The initial epoch (start time) for the propagation.
