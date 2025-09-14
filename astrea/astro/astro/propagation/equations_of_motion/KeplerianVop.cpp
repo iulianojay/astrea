@@ -84,7 +84,6 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const AngularRate draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
     const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
-
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 

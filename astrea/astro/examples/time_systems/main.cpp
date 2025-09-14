@@ -43,9 +43,9 @@ int main()
     // Users can also convert to other clock types manually
     auto highResClockTime = date.in_clock<std::chrono::high_resolution_clock>();
 
-    // The Date class also seemlessly integrates with mp-units time quantities.
+    // The Date class also seemlessly integrates with mp-units time quantities and std::chrono duration shortcuts.
     std::cout << "One day after J2000: " << date + 1.0 * day << std::endl;
-    std::cout << "7 seconds before J2000: " << date - 7.0 * s << std::endl;
+    std::cout << "3 minutes and 7 seconds before J2000: " << date - 7.0 * s - minutes(3.0) << std::endl;
 
     Date oneDayLater = date + 1.0 * day;
     std::cout << "Time between J2000 and 1 day after: " << (oneDayLater - date) << std::endl;

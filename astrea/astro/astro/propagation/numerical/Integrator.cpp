@@ -112,6 +112,7 @@ StateHistory Integrator::propagate(
             }
         }
 
+        // Successful event
         vehicle.update_state({ state, epoch + time, sys });
         if (store) { stateHistory[epoch + time] = vehicle.get_state(); }
 
@@ -134,6 +135,9 @@ StateHistory Integrator::propagate(
 
     // Store last state if not already stored
     if (!store) { stateHistory[epoch + time] = vehicle.get_state(); }
+
+    // Store event times
+    if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(epoch)); }
 
     teardown();
 
