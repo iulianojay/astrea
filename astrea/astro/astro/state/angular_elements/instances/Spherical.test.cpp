@@ -107,38 +107,38 @@ TEST_F(SphericalTest, EqualityOperator)
 
 TEST_F(SphericalTest, AdditionOperator)
 {
-    Spherical other{ 1.0 * km, 1.0 * deg, 1.0 * deg };
+    Spherical other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     Spherical result = state + other;
     ASSERT_EQ(result.get_range(), range + 1.0 * km);
-    ASSERT_EQ(result.get_inclination(), inclination + 1.0 * deg);
-    ASSERT_EQ(result.get_azimuth(), azimuth + 1.0 * deg);
+    ASSERT_EQ(result.get_inclination(), inclination + 1.0 * rad);
+    ASSERT_EQ(result.get_azimuth(), azimuth + 1.0 * rad);
 }
 
 TEST_F(SphericalTest, AdditionAssignmentOperator)
 {
-    Spherical other{ 1.0 * km, 1.0 * deg, 1.0 * deg };
+    Spherical other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     state += other;
     ASSERT_EQ(state.get_range(), range + 1.0 * km);
-    ASSERT_EQ(state.get_inclination(), inclination + 1.0 * deg);
-    ASSERT_EQ(state.get_azimuth(), azimuth + 1.0 * deg);
+    ASSERT_EQ(state.get_inclination(), inclination + 1.0 * rad);
+    ASSERT_EQ(state.get_azimuth(), azimuth + 1.0 * rad);
 }
 
 TEST_F(SphericalTest, SubtractionOperator)
 {
-    Spherical other{ 1.0 * km, 1.0 * deg, 1.0 * deg };
+    Spherical other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     Spherical result = state - other;
     ASSERT_EQ(result.get_range(), range - 1.0 * km);
-    ASSERT_EQ(result.get_inclination(), inclination - 1.0 * deg);
-    ASSERT_EQ(result.get_azimuth(), azimuth - 1.0 * deg);
+    ASSERT_EQ(result.get_inclination(), inclination - 1.0 * rad);
+    ASSERT_EQ(result.get_azimuth(), azimuth - 1.0 * rad);
 }
 
 TEST_F(SphericalTest, SubtractionAssignmentOperator)
 {
-    Spherical other{ 1.0 * km, 1.0 * deg, 1.0 * deg };
+    Spherical other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     state -= other;
     ASSERT_EQ(state.get_range(), range - 1.0 * km);
-    ASSERT_EQ(state.get_inclination(), inclination - 1.0 * deg);
-    ASSERT_EQ(state.get_azimuth(), azimuth - 1.0 * deg);
+    ASSERT_EQ(state.get_inclination(), inclination - 1.0 * rad);
+    ASSERT_EQ(state.get_azimuth(), azimuth - 1.0 * rad);
 }
 
 TEST_F(SphericalTest, MultiplicationOperator)
@@ -179,7 +179,7 @@ TEST_F(SphericalTest, DivisionAssignmentOperator)
 
 TEST_F(SphericalTest, DivisionBySphericalOperator)
 {
-    Spherical other{ 2.0 * km, 2.0 * deg, 2.0 * deg };
+    Spherical other{ 2.0 * km, 2.0 * rad, 2.0 * rad };
     std::vector<Unitless> result = state / other;
     ASSERT_EQ(result.size(), 3);
     ASSERT_EQ(result[0], range / other.get_range());
@@ -207,14 +207,14 @@ TEST_F(SphericalTest, GetPositionEci)
 
 TEST_F(SphericalTest, Interpolate)
 {
-    Spherical other{ 20000.0 * km, 20.0 * deg, 20.0 * deg };
+    Spherical other{ 20000.0 * km, 1.5 * rad, 1.5 * rad };
     Time thisTime    = seconds(0);
     Time otherTime   = seconds(10);
     Time targetTime  = seconds(5);
     Spherical result = state.interpolate(thisTime, otherTime, other, targetTime);
     ASSERT_EQ_QUANTITY(result.get_range(), Distance(15000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), Angle(10.0 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_azimuth(), Angle(10.0 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(result.get_inclination(), Angle(0.75 * rad), REL_TOL);
+    ASSERT_EQ_QUANTITY(result.get_azimuth(), Angle(0.75 * rad), REL_TOL);
 }
 
 TEST_F(SphericalTest, Getters)

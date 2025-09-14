@@ -61,6 +61,10 @@ tests:
 .PHONY: examples
 examples:
 	$(eval build_examples = ON)
+
+.PHONY: verbose
+verbose:
+	$(eval verbose_makefile = ON)
 	
 .PHONY: run_tests
 run_tests:
@@ -80,9 +84,9 @@ rerun_tests:
 run_examples:
 	sh $(ASTREA_ROOT)/scripts/run_examples.sh
 
-.PHONY: verbose
-verbose:
-	$(eval verbose_makefile = ON)
+.PHONY: docker
+docker:
+	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile .
 
 .PHONY: clean
 clean:
