@@ -19,7 +19,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle);
+    return eom(state, vehicle); // TODO: Enforce returned element matches the partial of the expected set
 }
 
 
