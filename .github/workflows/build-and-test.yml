@@ -27,12 +27,12 @@ jobs:
         fetch-depth: 0
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
-    - name: Try Something
+    - name: Switch ASTREA_ROOT to wherever the code is checkout out
       run: |
         echo $ASTREA_ROOT
         echo $(pwd)
-        echo $(ls -la)
-        echo $(ls -laR ./data)
+        export ASTREA_ROOT=$(pwd)
+        echo $ASTREA_ROOT
 
     - name: Build
       run: |
