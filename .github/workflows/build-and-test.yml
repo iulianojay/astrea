@@ -26,11 +26,19 @@ jobs:
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
+    - name: Print Branch
+      run: |
+        echo "$(git branch)"
+
     - name: Build
-      run: cp -r ./.conan2 ~ && make
+      run: |
+        cp -r ./.conan2 ~
+        make release all
 
     - name: Run Tests
-      run: make run_tests
+      run: |
+        make run_tests
 
     - name: Run Examples
-      run: make run_examples
+      run: |
+        make run_examples
