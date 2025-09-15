@@ -2,7 +2,7 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "dev" ]
 
@@ -23,9 +23,11 @@ jobs:
         chmod -R u+rwX .
 
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
     - name: Build
-      run: export ASTREA_ROOT=. && cp -r ./.conan2 ~ && make
+      run: cp -r ./.conan2 ~ && make
 
     - name: Run Tests
       run: make run_tests

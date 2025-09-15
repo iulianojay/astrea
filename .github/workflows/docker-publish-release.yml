@@ -12,10 +12,8 @@ on:
     branches: [ "master"]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "master"]
     paths:
-      - 'Dockerfile'
+      - 'docker/release/Dockerfile'
       - '.github/workflows/docker-publish-release.yml'
 
 env:
