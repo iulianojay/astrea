@@ -109,7 +109,8 @@ class Payload { // TODO: add -> : public FrameReference
      */
     template <typename Parent_T>
         requires(std::is_base_of_v<PayloadPlatform<Payload_T>, Parent_T>)
-    Payload(Parent_T& parent, const PayloadParameters_T& parameters) :
+    Payload(Parent_T& parent, const PayloadParameters_T& parameters, std::size_t id = 0) :
+        _id(id),
         _parent(&parent),
         _parameters(parameters)
     {

@@ -18,7 +18,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

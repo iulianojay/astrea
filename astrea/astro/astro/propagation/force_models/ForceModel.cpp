@@ -2,13 +2,15 @@
 
 #include <mp-units/systems/si.h>
 
-using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::non_si;
-using namespace mp_units::si::unit_symbols;
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 AccelerationVector<ECI>
     ForceModel::compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const

@@ -10,12 +10,11 @@
  */
 #pragma once
 
-#include <units/typedefs.hpp>
+#include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
 
 namespace astrea {
 namespace astro {
@@ -31,9 +30,7 @@ class TwoBody : public EquationsOfMotion {
      *
      * @param system The astrodynamics system containing the central body and its properties.
      */
-    TwoBody(const AstrodynamicsSystem& system) :
-        EquationsOfMotion(system),
-        mu(system.get_center()->get_mu()) {};
+    TwoBody(const AstrodynamicsSystem& system);
 
     /**
      * @brief Destructor for the Two Body equations of motion class.
@@ -54,7 +51,7 @@ class TwoBody : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); };
+    constexpr std::size_t get_expected_set_id() const override;
 
   private:
     GravParam mu; //!< Gravitational parameter of the central body.

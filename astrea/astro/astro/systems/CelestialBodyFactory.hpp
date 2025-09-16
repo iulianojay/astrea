@@ -12,7 +12,6 @@
 
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>

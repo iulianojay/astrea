@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
+    ${ASTRO_BASE}/platforms/vehicles/NullVehicle.cpp
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.cpp
     ${ASTRO_BASE}/platforms/Vehicle.cpp
     ${ASTRO_BASE}/platforms/thrusters/Thruster.cpp

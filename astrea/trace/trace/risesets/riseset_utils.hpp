@@ -10,10 +10,10 @@
  */
 #pragma once
 
+#include <trace/trace.fwd.hpp>
+
 namespace astrea {
 namespace trace {
-
-class RiseSetArray;
 
 /**
  * @brief Union of two RiseSetArray objects.

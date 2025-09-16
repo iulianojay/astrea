@@ -12,11 +12,11 @@
 
 #include <string>
 
-// Astro
+#include <units/units.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace astrea {
 namespace astro {

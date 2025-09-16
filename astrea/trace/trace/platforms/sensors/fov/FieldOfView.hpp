@@ -15,9 +15,7 @@
 
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
-
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace trace {
@@ -29,7 +27,10 @@ namespace trace {
  * @param vector2 The second radius vector.
  * @return Angle The angle between the two vectors.
  */
-Angle calculate_angle_between_vectors(const astro::RadiusVector<astro::ECI>& vector1, const astro::RadiusVector<astro::ECI>& vector2);
+Angle calculate_angle_between_vectors(
+    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& vector1,
+    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& vector2
+);
 
 /**
  * @brief Base class for Field of View (FoV) representations.
@@ -58,7 +59,10 @@ class FieldOfView {
      * @return true If the target is within the field of view.
      * @return false If the target is outside the field of view.
      */
-    virtual bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const = 0;
+    virtual bool contains(
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+    ) const = 0;
 };
 
 /**
@@ -91,7 +95,10 @@ class CircularFieldOfView : public FieldOfView {
      * @return true If the target is within the circular field of view.
      * @return false If the target is outside the circular field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const;
+    bool contains(
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+    ) const;
 
   private:
     Angle _halfConeAngle; // Half-cone angle defining the circular field of view
@@ -144,7 +151,10 @@ class PolygonalFieldOfView : public FieldOfView {
      * @return true If the target is within the polygonal field of view.
      * @return false If the target is outside the polygonal field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& boresight, const astro::RadiusVector<astro::ECI>& target) const
+    bool contains(
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
+        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+    ) const
     {
         return false;
     };

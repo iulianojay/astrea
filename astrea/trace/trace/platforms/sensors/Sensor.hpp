@@ -12,10 +12,8 @@
 
 #include <memory>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/platforms/Payload.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
@@ -39,9 +37,9 @@ class SensorParameters : public astro::PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     SensorParameters(
-        const FieldOfView* fov                                 = nullptr,
-        const astro::RadiusVector<astro::RIC>& boresight       = astro::NADIR_RIC,
-        const astro::RadiusVector<astro::RIC>& attachmentPoint = astro::CENTER
+        const FieldOfView* fov                                                                  = nullptr,
+        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER
     ) :
         astro::PayloadParameters(boresight, attachmentPoint),
         _fov(fov)
@@ -92,7 +90,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
         requires(std::is_base_of_v<astro::FrameReference, Parent_T>)
     Sensor(const Parent_T& parent, const SensorParameters& parameters) :
         AccessObject(),
-        Payload<Sensor, SensorParameters>(parent, parameters)
+        Payload<Sensor, SensorParameters>(parent, parameters, generate_id_hash())
     {
     }
 
@@ -122,7 +120,10 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
     /**
      * @brief Generate a hash for the sensor ID.
      */
-    void generate_id_hash();
+    std::size_t generate_id_hash()
+    {
+        return 0; // TODO: Fix
+    }
 };
 
 /**

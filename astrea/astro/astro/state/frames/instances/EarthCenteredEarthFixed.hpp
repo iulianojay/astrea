@@ -10,13 +10,14 @@
  */
 #pragma once
 
+#include <units/units.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/frames/instances/EarthCenteredInertial.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/frames/types/RotatingFrame.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {

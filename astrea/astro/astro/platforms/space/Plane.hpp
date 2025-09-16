@@ -12,10 +12,9 @@
 
 #include <vector>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-
-#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {

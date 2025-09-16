@@ -29,8 +29,8 @@ using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
-void access_test();
-void link_budget_test();
+int access_test();
+int link_budget_test();
 
 int main() { return access_test(); }
 
@@ -170,5 +170,5 @@ int access_test()
     std::filesystem::path plotFile = base / "pytrace/plots.py";
     const std::string cmd          = "python3 " + plotFile.string();
 
-    return = std::system(cmd.c_str());
+    return std::system(cmd.c_str());
 }

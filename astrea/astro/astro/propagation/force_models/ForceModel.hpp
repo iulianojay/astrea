@@ -12,10 +12,13 @@
 
 #include <functional>
 #include <memory>
+#include <string>
 #include <unordered_map>
 
-#include <astro/propagation/force_models/Force.hpp>
 #include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/propagation/force_models/Force.hpp>
 
 namespace astrea {
 namespace astro {
@@ -63,7 +66,7 @@ class ForceModel {
      * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<ECI> The total computed acceleration vector from all force models.
      */
-    AccelerationVector<ECI>
+    CartesianVector<Acceleration, EarthCenteredInertial>
         compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
     /**

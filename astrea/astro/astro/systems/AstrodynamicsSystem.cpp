@@ -5,12 +5,35 @@
 namespace astrea {
 namespace astro {
 
+AstrodynamicsSystem::AstrodynamicsSystem(const std::string& centralBody, const std::unordered_set<std::string>& secondaryBodies) :
+    _centralBody(centralBody),
+    _allBodies(secondaryBodies)
+{
+    _allBodies.insert(_centralBody);
+    create_all_bodies();
+};
+
 void AstrodynamicsSystem::create_all_bodies()
 {
     for (const auto& body : _allBodies) {
         _bodyFactory.create(body, *this);
     }
 };
+
+AstrodynamicsSystem AstrodynamicsSystem::DEFAULT() { return AstrodynamicsSystem(); }
+
+const std::string& AstrodynamicsSystem::center() const { return _centralBody; }
+
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_center() const { return _bodyFactory.get(_centralBody); }
+
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const std::string& name) const { return _bodyFactory.get(name); }
+
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_or_create(const std::string& name)
+{
+    return _bodyFactory.get_or_create(name, *this);
+}
+
+const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const { return _allBodies; }
 
 
 // void AstrodynamicsSystem::propagate_bodies(const Time& propTime)

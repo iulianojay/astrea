@@ -10,7 +10,9 @@
  */
 #pragma once
 
-#include <astro/platforms/Vehicle.hpp>
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {

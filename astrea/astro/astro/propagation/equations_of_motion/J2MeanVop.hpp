@@ -10,15 +10,11 @@
  */
 #pragma once
 
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/CelestialBody.hpp>
+#include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/types/typedefs.hpp>
-#include <units/units.hpp>
 
 namespace astrea {
 namespace astro {
@@ -34,11 +30,7 @@ class J2MeanVop : public EquationsOfMotion {
      *
      * @param system The astrodynamics system containing the central body and its properties.
      */
-    J2MeanVop(const AstrodynamicsSystem& system) :
-        EquationsOfMotion(system),
-        mu(system.get_center()->get_mu()),
-        J2(system.get_center()->get_j2()),
-        equitorialR(system.get_center()->get_equitorial_radius()) {};
+    J2MeanVop(const AstrodynamicsSystem& system);
 
     /**
      * @brief Destructor for the J2 Mean VOP class.
@@ -59,7 +51,7 @@ class J2MeanVop : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian>(); };
+    constexpr std::size_t get_expected_set_id() const override;
 
   private:
     mutable bool checkflag = false;                                        //!< Flag to check for degenerate conditions.

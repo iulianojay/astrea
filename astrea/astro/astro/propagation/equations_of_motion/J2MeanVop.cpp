@@ -8,21 +8,32 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <units/units.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/CelestialBody.hpp>
 
-
-using namespace mp_units;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
+    EquationsOfMotion(system),
+    mu(system.get_center()->get_mu()),
+    J2(system.get_center()->get_j2()),
+    equitorialR(system.get_center()->get_equitorial_radius())
+{
+}
 
 OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
@@ -89,6 +100,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
+
+constexpr std::size_t J2MeanVop::get_expected_set_id() const { return OrbitalElements::get_set_id<Keplerian>(); };
 
 } // namespace astro
 } // namespace astrea

@@ -10,13 +10,10 @@
  */
 #pragma once
 
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/force_models/Force.hpp>
-#include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/propagation/force_models/Force.hpp>
 
 namespace astrea {
 namespace astro {
@@ -46,7 +43,7 @@ class SolarRadiationPressure : public Force {
      * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<ECI> The computed acceleration vector due to solar radiation pressure.
      */
-    AccelerationVector<ECI>
+    CartesianVector<Acceleration, EarthCenteredInertial>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
