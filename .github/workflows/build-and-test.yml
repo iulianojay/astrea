@@ -27,18 +27,12 @@ jobs:
         fetch-depth: 0
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
-    - name: Setup
-      run: |
-        echo "Default: $ASTREA_ROOT"
-        unset ASTREA_ROOT
-        echo "Unset: $ASTREA_ROOT"
-        export ASTREA_ROOT=$(pwd)
-        echo "New: $ASTREA_ROOT"
-        cp -r ./.conan2 ~
-
     - name: Build
       run: |
         echo "ASTREA_ROOT: $ASTREA_ROOT"
+        export ASTREA_ROOT=$(pwd)
+        echo "ASTREA_ROOT: $ASTREA_ROOT"
+        cp -r ./.conan2 ~
         make release all
 
     - name: Run Tests
