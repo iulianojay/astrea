@@ -7,7 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build_and_test:
+  Build-and-Test:
 
     runs-on: ubuntu-latest
     container:
@@ -27,7 +27,7 @@ jobs:
         fetch-depth: 0
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
-    - name: Set up Conan
+    - name: Setup
       run: |
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
