@@ -10,7 +10,6 @@
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -100,8 +99,6 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
-
-constexpr std::size_t J2MeanVop::get_expected_set_id() const { return OrbitalElements::get_set_id<Keplerian>(); };
 
 } // namespace astro
 } // namespace astrea

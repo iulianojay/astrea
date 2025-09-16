@@ -1,9 +1,18 @@
 #include <gtest/gtest.h>
 
-#include <astro/astro.hpp>
+#include <math/test_util.hpp>
+#include <units/units.hpp>
+
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/platforms/vehicles/NullVehicle.hpp>
+#include <astro/state/State.hpp>
 
 using namespace astrea;
 using namespace astro;
+using namespace mp_units;
+using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 class NullVehicleTest : public testing::Test {
   public:
@@ -14,7 +23,7 @@ class NullVehicleTest : public testing::Test {
         nullVehicle = NullVehicle();
         // Custom NullVehicle
         customState       = State();
-        customMass        = 42.0 * mp_units::si::unit_symbols::kg;
+        customMass        = 42.0 * kg;
         customNullVehicle = NullVehicle(customState, customMass);
     }
     NullVehicle nullVehicle;
@@ -33,7 +42,7 @@ TEST_F(NullVehicleTest, DefaultConstructor)
 {
     ASSERT_EQ(nullVehicle.get_state(), State());
     ASSERT_EQ(nullVehicle.get_initial_state(), State());
-    ASSERT_EQ(nullVehicle.get_mass(), 0.0 * mp_units::si::unit_symbols::kg);
+    ASSERT_EQ(nullVehicle.get_mass(), 0.0 * kg);
     ASSERT_EQ(nullVehicle.get_name(), "NullVehicle");
 }
 
@@ -65,7 +74,6 @@ TEST_F(NullVehicleTest, GetInertialPosition)
 {
     Date d;
     auto pos = nullVehicle.get_inertial_position(d);
-    using mp_units::si::unit_symbols::km;
     ASSERT_EQ(pos.get_x(), 0.0 * km);
     ASSERT_EQ(pos.get_y(), 0.0 * km);
     ASSERT_EQ(pos.get_z(), 0.0 * km);
@@ -75,8 +83,6 @@ TEST_F(NullVehicleTest, GetInertialVelocity)
 {
     Date d;
     auto vel = nullVehicle.get_inertial_velocity(d);
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::s;
     ASSERT_EQ(vel.get_x(), 0.0 * km / s);
     ASSERT_EQ(vel.get_y(), 0.0 * km / s);
     ASSERT_EQ(vel.get_z(), 0.0 * km / s);
@@ -86,8 +92,6 @@ TEST_F(NullVehicleTest, GetInertialAcceleration)
 {
     Date d;
     auto acc = nullVehicle.get_inertial_acceleration(d);
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::s;
     ASSERT_EQ(acc.get_x(), 0.0 * km / (s * s));
     ASSERT_EQ(acc.get_y(), 0.0 * km / (s * s));
     ASSERT_EQ(acc.get_z(), 0.0 * km / (s * s));

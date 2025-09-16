@@ -1,16 +1,10 @@
-#include <chrono>
-#include <filesystem>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/si.h>
-
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/CelestialBody.hpp>
 
 static const std::string ROOT = std::getenv("ASTREA_ROOT");
 

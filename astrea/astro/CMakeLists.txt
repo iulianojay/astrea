@@ -60,6 +60,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/time/Date.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
+
+    ${ASTRO_BASE}/../tests/utilities/comparisons.cpp
 )
 
 # Headers
@@ -138,6 +140,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/variant_util.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
+
+    ${ASTRO_BASE}/../tests/utilities/comparisons.hpp
 
     # Extern
     ${EXTERN_BASE}/date/date.h

@@ -1,10 +1,11 @@
-#include <chrono>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
-#include <astro/astro.hpp>
+#include <math/test_util.hpp>
+#include <units/units.hpp>
+
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/CelestialBodyFactory.hpp>
 
 using namespace astrea;
 using namespace astro;

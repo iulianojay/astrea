@@ -1,6 +1,13 @@
-#include <astro/astro.hpp>
-#include <astro/propagation/event_detection/events/NullEvent.hpp>
 #include <gtest/gtest.h>
+
+#include <math/test_util.hpp>
+#include <units/units.hpp>
+
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/propagation/event_detection/events/NullEvent.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 
 using namespace astrea;
 using namespace astro;

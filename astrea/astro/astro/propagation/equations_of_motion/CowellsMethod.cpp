@@ -8,7 +8,6 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 
@@ -46,8 +45,6 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
 }
-
-constexpr std::size_t CowellsMethod::get_expected_set_id() const { return OrbitalElements::get_set_id<Cartesian>(); };
 
 } // namespace astro
 } // namespace astrea

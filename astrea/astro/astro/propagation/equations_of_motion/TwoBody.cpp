@@ -4,7 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 namespace astrea {
@@ -36,8 +36,6 @@ OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const V
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r);
 }
-
-constexpr std::size_t TwoBody::get_expected_set_id() const { return OrbitalElements::get_set_id<Cartesian>(); };
 
 } // namespace astro
 } // namespace astrea

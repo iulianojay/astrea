@@ -1,12 +1,12 @@
-#include <chrono>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::si::unit_symbols::km;

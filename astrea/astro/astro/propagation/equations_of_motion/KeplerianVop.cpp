@@ -9,7 +9,6 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 
@@ -96,8 +95,6 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
-
-constexpr std::size_t KeplerianVop::get_expected_set_id() const { return OrbitalElements::get_set_id<Keplerian>(); };
 
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const
 {

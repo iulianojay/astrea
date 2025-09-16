@@ -1,15 +1,17 @@
-#include <chrono>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 
 using namespace astrea;
 using namespace astro;
+using namespace mp_units;
 using mp_units::si::unit_symbols::s;
 
 struct TestEvent {

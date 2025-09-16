@@ -1,16 +1,18 @@
-#include <chrono>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
-#include <astro/astro.hpp>
+#include <math/test_util.hpp>
+#include <units/units.hpp>
 
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::s;
+#include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 
 using namespace astrea;
 using namespace astro;
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 class StateHistoryTest : public testing::Test {
   public:

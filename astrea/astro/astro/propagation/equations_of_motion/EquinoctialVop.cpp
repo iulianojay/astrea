@@ -9,7 +9,6 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/frames/frames.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 
@@ -84,11 +83,6 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
 
     return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }
-
-constexpr std::size_t EquinoctialVop::get_expected_set_id() const
-{
-    return OrbitalElements::get_set_id<Equinoctial>();
-};
 
 } // namespace astro
 } // namespace astrea

@@ -10,8 +10,6 @@
  */
 #pragma once
 
-#include <units/units.hpp>
-
 #include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
@@ -32,9 +30,9 @@
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/platforms/space/Shell.hpp>
+#include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/NullVehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/platforms/thrusters/Thruster.hpp>
 
 #include <astro/propagation/analytic/LambertSolver.hpp>
 
@@ -52,8 +50,8 @@
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
-#include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
+#include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 
 #include <astro/propagation/numerical/Integrator.hpp>
