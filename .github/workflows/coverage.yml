@@ -1,4 +1,7 @@
-name: C/C++ CI
+name: C/C++ Code Coverage
+
+permissions:
+  contents: read
 
 on:
   push:
@@ -7,7 +10,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Build-and-Test:
+  Coverage:
 
     runs-on: ubuntu-latest
     container:
