@@ -26,6 +26,10 @@ namespace astro {
  * to a given date and to convert between different orbital elements.
  */
 class StateHistory {
+
+    using StateMap      = phmap::btree_map<Date, State>;
+    using EventTimesMap = phmap::btree_map<std::string, std::vector<Date>>;
+
   public:
     /**
      * @brief Default constructor for StateHistory.
@@ -134,14 +138,35 @@ class StateHistory {
     State get_state_at(const Date& date) const;
 
     /**
+     * @brief Sets the event times recorded during propagation.
+     *
+     * @param eventTimes A vector of dates representing the event times.
+     */
+    void set_event_times(const EventTimesMap& eventTimes) { _eventTimes = eventTimes; }
+
+    /**
+     * @brief Retrieves the event times recorded during propagation.
+     *
+     * @return const EventTimesMap& A vector of dates representing the event times.
+     */
+    const EventTimesMap& get_event_times() const { return _eventTimes; }
+
+    /**
+     * @brief Retrieves the event times recorded during propagation.
+     *
+     * @return const EventTimesMap& A vector of dates representing the event times.
+     */
+    EventTimesMap& get_event_times() { return _eventTimes; }
+
+    /**
      * @brief Iterator types for iterating over the states in the history.
      */
-    using iterator = phmap::btree_map<Date, State>::iterator;
+    using iterator = StateMap::iterator;
 
     /**
      * @brief Constant iterator types for iterating over the states in the history.
      */
-    using const_iterator = phmap::btree_map<Date, State>::const_iterator;
+    using const_iterator = StateMap::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the state history.
@@ -186,8 +211,9 @@ class StateHistory {
     const_iterator cend() const { return _states.cend(); }
 
   private:
-    phmap::btree_map<Date, State> _states; //!< Map to store states indexed by date
-    std::size_t _objectId = 0;             //!< ID of the object for which this state history is maintained
+    StateMap _states;          //!< Map to store states indexed by date
+    EventTimesMap _eventTimes; //!< Vector to store event times during propagation
+    std::size_t _objectId = 0; //!< ID of the object for which this state history is maintained
 };
 
 } // namespace astro

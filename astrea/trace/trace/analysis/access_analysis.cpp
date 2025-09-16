@@ -208,7 +208,7 @@ RiseSetArray
     find_sensor_to_sensor_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor1, const Sensor& sensor2, const bool& twoWay, const Date& epoch)
 {
     Time rise, set;
-    bool insideAccessInterval;
+    bool insideAccessInterval = false;
     RiseSetArray access;
     const Time start = accessInfo.front().time;
     const Time end   = accessInfo.back().time;

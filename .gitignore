@@ -24,6 +24,9 @@ package.json
 get-pip.py
 pyastro/astro.py
 .coverage.info
+snapshot.db
+snapshot.db-journal
+spacetrack.query-history.json
 
 # Must include
 !CMakeLists.txt

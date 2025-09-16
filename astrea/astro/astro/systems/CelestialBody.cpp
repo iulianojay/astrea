@@ -42,6 +42,8 @@ CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem&
     // TODO: Add checks to make sure its a valid JSON
     std::ifstream fileStream(file);
 
+    if (!fileStream.good()) { throw std::runtime_error("Error: Could not open file " + file); }
+
     // Parse
     const json planetaryData = json::parse(fileStream);
     const json state         = planetaryData["State"];

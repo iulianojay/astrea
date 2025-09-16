@@ -27,3 +27,23 @@ TEST(StringUtilities, ReplaceAll)
     ASSERT_EQ(replace_all("Hello, World!", "w", "W"), "Hello, World!");
     ASSERT_EQ(replace_all("Hello, World!", "W", "w"), "Hello, world!");
 }
+
+namespace test {
+
+class TestClass {};
+
+namespace nested {
+
+class NestedClass {};
+
+} // namespace nested
+} // namespace test
+
+TEST(StringUtilities, GetTypeName)
+{
+    ASSERT_EQ(get_type_name<int>(), "int");
+    ASSERT_EQ(get_type_name<double>(), "double");
+    ASSERT_EQ(get_type_name<std::string>(), "string");
+    ASSERT_EQ(get_type_name<test::TestClass>(), "TestClass");
+    ASSERT_EQ(get_type_name<test::nested::NestedClass>(), "NestedClass");
+}

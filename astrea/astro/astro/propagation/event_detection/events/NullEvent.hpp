@@ -10,8 +10,6 @@
  */
 #pragma once
 
-#include <mp-units/core.h>
-
 #include <astro/platforms/Vehicle.hpp>
 
 namespace astrea {

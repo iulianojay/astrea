@@ -80,18 +80,19 @@ include_directories(${TRACE_DIRS})
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared snapshot_shared mp-units::mp-units)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared snapshot_shared mp-units::mp-units GTest::gtest_main)
 
 # Static library
 add_library           (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
 set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_static astro_static snapshot_static mp-units::mp-units)
+target_link_libraries (${PROJECT_NAME}_static PUBLIC math_static astro_static snapshot_static mp-units::mp-units GTest::gtest_main)
 
 # Executable
 add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
 set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_include_directories (${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
 target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
 add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers

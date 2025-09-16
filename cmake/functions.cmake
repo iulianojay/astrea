@@ -44,3 +44,22 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
     endforeach(TEST_FILE ${TEST_FILES})
 
 endfunction()
+
+# Example build function
+function(build_examples CURRENT_PROJECT EXAMPLE_FILES)
+
+    foreach(EXAMPLE_FILE ${EXAMPLE_FILES})
+
+        cmake_path(GET EXAMPLE_FILE PARENT_PATH EXAMPLE_DIRECTORY)
+        get_filename_component(EXAMPLE_NAME ${EXAMPLE_DIRECTORY} NAME)
+
+        message(" -- Building Example: ${EXAMPLE_NAME}")
+
+        add_executable         (${EXAMPLE_NAME} ${EXAMPLE_FILE})
+        set_target_properties  (${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXAMPLE_DIRECTORY}/bin)
+        target_compile_options (${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        target_link_libraries  (${EXAMPLE_NAME} PUBLIC ${CURRENT_PROJECT}_shared)
+
+    endforeach(EXAMPLE_FILE ${EXAMPLE_FILES})
+
+endfunction()
