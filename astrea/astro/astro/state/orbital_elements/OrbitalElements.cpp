@@ -1,5 +1,9 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 
+#include <cassert>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
 #include <stdexcept>
 
 #include <mp-units/math.h>

@@ -32,13 +32,9 @@ using mp_units::si::unit_symbols::W;
 void access_test();
 void link_budget_test();
 
-int main()
-{
-    access_test();
-    return 1;
-}
+int main() { return access_test(); }
 
-void access_test()
+int access_test()
 {
     using namespace astrea;
     using namespace astro;
@@ -173,5 +169,6 @@ void access_test()
     // Call plotter
     std::filesystem::path plotFile = base / "pytrace/plots.py";
     const std::string cmd          = "python3 " + plotFile.string();
-    int result                     = std::system(cmd.c_str());
+
+    return = std::system(cmd.c_str());
 }

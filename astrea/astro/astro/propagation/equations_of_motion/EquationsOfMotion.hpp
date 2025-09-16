@@ -10,17 +10,7 @@
  */
 #pragma once
 
-#include <algorithm>
-#include <cmath>
-#include <exception>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <vector>
-
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/force_models/Force.hpp>
-#include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {

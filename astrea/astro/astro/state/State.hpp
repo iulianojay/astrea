@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include <iostream>
+#include <iosfwd>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>

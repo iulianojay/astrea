@@ -10,15 +10,7 @@
  */
 #pragma once
 
-#include <cfloat>
-#include <cmath>
-#include <iostream>
 #include <string>
-#include <vector>
-
-// mp-units
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/si.h>
 
 // Astro
 #include <astro/astro.fwd.hpp>

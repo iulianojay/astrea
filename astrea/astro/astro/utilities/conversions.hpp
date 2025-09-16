@@ -10,24 +10,9 @@
  */
 #pragma once
 
-#include <cmath>
-#include <functional>
-#include <iostream>
-
-#include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
-#include <mp-units/systems/si/math.h>
-
-#include <units/typedefs.hpp>
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/frames/types/RotatingFrame.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/time/JulianDateClock.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

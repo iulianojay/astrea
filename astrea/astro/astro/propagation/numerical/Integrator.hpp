@@ -10,24 +10,12 @@
  */
 #pragma once
 
-#include <ctime>
-#include <fstream>
-#include <iostream>
-#include <math.h>
 #include <vector>
-
-// mp-units
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
-#include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
-#include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>

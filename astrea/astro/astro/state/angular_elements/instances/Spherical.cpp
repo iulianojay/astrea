@@ -1,7 +1,12 @@
 #include <astro/state/angular_elements/instances/Spherical.hpp>
 
+#include <iomanip>
+#include <iostream>
+
 #include <mp-units/math.h>
+#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>

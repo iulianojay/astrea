@@ -55,11 +55,14 @@ class Shell;
 class Spacecraft;
 template <class Payload_T>
 class PayloadPlatform;
+class Vehicle;
 
 // Propagation
 class EquationsOfMotion;
 class Integrator;
 class LambertSolver;
+class Event;
+class EventDetector;
 
 // Systems
 class AstrodynamicsSystem;

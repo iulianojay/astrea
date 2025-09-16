@@ -1,6 +1,9 @@
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 
+#include <iostream>
+
 #include <mp-units/math.h>
+#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>

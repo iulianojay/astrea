@@ -1,12 +1,19 @@
 #include <astro/systems/CelestialBody.hpp>
 
+#include <cfloat>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
+#include <string>
 
+// mp-units
 #include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
 #include <nlohmann/json.hpp>
