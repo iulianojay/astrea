@@ -1,25 +1,34 @@
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 
+#include <iostream>
+
 #include <mp-units/math.h>
+#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <units/units.hpp>
-
-
-using namespace mp_units;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+KeplerianVop::KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn) :
+    EquationsOfMotion(system),
+    forces(&forces),
+    mu(system.get_center()->get_mu()),
+    doWarn(doWarn)
+{
+}
 
 OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
@@ -87,7 +96,7 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
-void KeplerianVop::check_degenerate(const quantity<one>& ecc, const quantity<rad>& inc) const
+void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const
 {
     if (ecc <= checkTol * one || inc <= checkTol * rad) {
         std::string title;

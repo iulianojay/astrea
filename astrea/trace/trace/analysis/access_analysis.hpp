@@ -12,22 +12,13 @@
 
 #include <vector>
 
-#include <astro/platforms/space/Constellation.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/State.hpp>
-#include <astro/state/StateHistory.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/astro.fwd.hpp>
+#include <units/units.hpp>
+#include <utilities/ProgressBar.hpp>
 
-#include <astro/state/frames/frames.hpp>
-#include <trace/platforms/ground/GroundArchitecture.hpp>
-#include <trace/platforms/ground/GroundStation.hpp>
-#include <trace/platforms/vehicles/Viewer.hpp>
+#include <trace/risesets/AccessArray.hpp>
 #include <trace/risesets/RiseSetArray.hpp>
-#include <trace/types/typedefs.hpp>
-
+#include <trace/trace.fwd.hpp>
 
 namespace astrea {
 namespace trace {
@@ -45,14 +36,7 @@ using ViewerConstellation = astro::Constellation<Viewer>;
 /**
  * @brief Struct to hold access information between two objects.
  */
-struct AccessInfo {
-    Time time;                                 // Time of access
-    astro::RadiusVector<astro::ECI> position1; // Position of the first object at the time of access
-    astro::RadiusVector<astro::ECI> position2; // Position of the second object at the time of access
-    std::size_t id1;                           // ID of the first object
-    std::size_t id2;                           // ID of the second object
-    bool isOcculted;                           // Flag indicating if the access is occulted
-};
+struct AccessInfo;
 
 /**
  * @brief Find accesses between a constellation of viewers.
@@ -94,7 +78,7 @@ concept HasSize = requires(T t) {
 
 template <typename T>
 concept HasSubscriptOperator = requires(T t) {
-    { &t[0] } -> std::convertible_to<SensorPlatform*>;
+    { &t[0] } -> std::convertible_to<astro::PayloadPlatform<Sensor>*>;
 };
 
 
@@ -159,7 +143,11 @@ AccessArray find_accesses(
  * @return true If the two states are occulting each other.
  * @return false If the two states are not occulting each other.
  */
-bool is_earth_occulting(const astro::RadiusVector<astro::ECI>& position1, const astro::RadiusVector<astro::ECI>& position2, const astro::AstrodynamicsSystem& sys);
+bool is_earth_occulting(
+    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& position1,
+    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& position2,
+    const astro::AstrodynamicsSystem& sys
+);
 
 /**
  * @brief Find accesses between two sensor platforms.
@@ -173,8 +161,8 @@ bool is_earth_occulting(const astro::RadiusVector<astro::ECI>& position1, const 
  * @return RiseSetArray A collection of rise/set pairs representing the accesses.
  */
 RiseSetArray find_platform_to_platform_accesses(
-    SensorPlatform* platform1,
-    SensorPlatform* platform2,
+    astro::PayloadPlatform<Sensor>* platform1,
+    astro::PayloadPlatform<Sensor>* platform2,
     const TimeVector& times,
     const astro::AstrodynamicsSystem& sys,
     const astro::Date& epoch,

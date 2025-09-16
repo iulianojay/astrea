@@ -10,11 +10,9 @@
  */
 #pragma once
 
+#include <string>
+
 #include <astro/state/frames/Frame.hpp>
-#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/frames/types/InertialFrame.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {

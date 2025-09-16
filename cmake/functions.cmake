@@ -5,7 +5,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
 
     foreach(TEST_FILE ${TEST_FILES})
 
-        message("Building Test: ${TEST_FILE}")
+        message(" -- Building Test: ${TEST_FILE}")
 
         # Get executable name and build target
         if (${TEST_TYPE} STREQUAL "UNIT")

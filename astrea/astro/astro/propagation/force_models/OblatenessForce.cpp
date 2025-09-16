@@ -13,19 +13,20 @@
 
 #include <math/trig.hpp>
 
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/utilities/conversions.hpp>
 
-using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using namespace mp_units::si::unit_symbols;
-using namespace mp_units::iau::unit_symbols;
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using namespace mp_units::angular;
 
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& _N, const std::size_t& _M) :
     N(_N),

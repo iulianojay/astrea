@@ -10,15 +10,10 @@
  */
 #pragma once
 
-#include <cmath>
-#include <iostream>
-#include <math.h>
-
 #include <units/units.hpp>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -74,8 +69,13 @@ class LambertSolver {
      * @param direction The direction of the orbit (prograde or retrograde).
      * @return A pair of velocity vectors (initial and final) for the spacecraft.
      */
-    static std::pair<VelocityVector<ECI>, VelocityVector<ECI>>
-        solve(const RadiusVector<ECI>& r0, const RadiusVector<ECI>& rf, const Time& dt, const GravParam& mu, const OrbitDirection& direction);
+    static std::pair<VelocityVector<EarthCenteredInertial>, VelocityVector<EarthCenteredInertial>> solve(
+        const RadiusVector<EarthCenteredInertial>& r0,
+        const RadiusVector<EarthCenteredInertial>& rf,
+        const Time& dt,
+        const GravParam& mu,
+        const OrbitDirection& direction
+    );
 
   private:
     static constexpr unsigned ITER_MAX = 1e4;                     //!< Maximum number of iterations for the solver.

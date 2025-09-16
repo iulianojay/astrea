@@ -25,7 +25,9 @@ class CartesianPartial;
 class KeplerianPartial;
 class EquinoctialPartial;
 class TwoLineElementsPartial;
+class GeneralPerturbations;
 class OrbitalElements;
+class OrbitalElementPartials;
 
 template <class Value_T, class Frame_T>
 class CartesianVector;
@@ -53,13 +55,19 @@ class Plane;
 template <class Spacecraft_T>
 class Shell;
 class Spacecraft;
+template <class Payload_T, class PayloadParameters_T>
+class Payload;
+class PayloadParameters;
 template <class Payload_T>
 class PayloadPlatform;
+class Vehicle;
 
 // Propagation
 class EquationsOfMotion;
 class Integrator;
 class LambertSolver;
+class Event;
+class EventDetector;
 
 // Systems
 class AstrodynamicsSystem;

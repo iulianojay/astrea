@@ -169,6 +169,6 @@ using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2
 /**
  * @brief Definition for a temperature quantity.
  */
-using Temperature = mp_units::quantity<detail::temperature_unit>;
+using Temperature = mp_units::quantity_point<detail::temperature_unit>;
 
 } // namespace astrea

@@ -1,12 +1,18 @@
 #include <astro/systems/CelestialBody.hpp>
 
+#include <cfloat>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 #include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
 #include <nlohmann/json.hpp>
@@ -15,7 +21,10 @@
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/utilities/conversions.hpp>
 
+namespace astrea {
+namespace astro {
 
 using namespace mp_units;
 using namespace mp_units::angular;
@@ -27,9 +36,6 @@ using mp_units::non_si::day;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
-
-namespace astrea {
-namespace astro {
 
 
 CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem& system) :

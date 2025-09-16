@@ -1,7 +1,10 @@
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
 namespace astrea {

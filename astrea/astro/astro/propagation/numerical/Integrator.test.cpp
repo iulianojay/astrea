@@ -1,8 +1,15 @@
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
+#include <astro/state/StateHistory.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
+#include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;

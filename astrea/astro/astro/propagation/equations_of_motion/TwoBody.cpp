@@ -4,16 +4,22 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
+namespace astrea {
+namespace astro {
 
 using namespace mp_units;
 using namespace mp_units::si;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-namespace astrea {
-namespace astro {
+TwoBody::TwoBody(const AstrodynamicsSystem& system) :
+    EquationsOfMotion(system),
+    mu(system.get_center()->get_mu())
+{
+}
 
 OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {

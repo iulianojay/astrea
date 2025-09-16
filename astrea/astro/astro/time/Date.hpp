@@ -12,7 +12,7 @@
  */
 #pragma once
 
-#include <sstream>
+#include <iosfwd>
 #include <string>
 
 #include <mp-units/systems/si/chrono.h>
@@ -20,7 +20,6 @@
 #include <units/units.hpp>
 
 #include <astro/time/JulianDateClock.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

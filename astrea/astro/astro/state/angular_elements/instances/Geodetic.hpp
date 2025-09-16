@@ -10,15 +10,7 @@
  */
 #pragma once
 
-#include <array>
-#include <iomanip>
-#include <iostream>
-#include <variant>
-
-// mp-units
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
-#include <mp-units/systems/si.h>
+#include <iosfwd>
 
 // units
 #include <units/units.hpp>

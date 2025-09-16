@@ -10,12 +10,9 @@
  */
 #pragma once
 
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {
@@ -46,7 +43,7 @@ class Force {
      * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<ECI> The computed acceleration vector due to the force.
      */
-    virtual AccelerationVector<ECI>
+    virtual CartesianVector<Acceleration, EarthCenteredInertial>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };
 

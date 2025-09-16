@@ -5,26 +5,32 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-// astro
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/state/CartesianVector.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
-
-
-using namespace mp_units;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::cm;
-using si::unit_symbols::g;
-using si::unit_symbols::kg;
-using si::unit_symbols::km;
-using si::unit_symbols::m;
-using si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::cm;
+using mp_units::si::unit_symbols::g;
+using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::s;
+
 
 AccelerationVector<ECI>
     AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const

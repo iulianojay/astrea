@@ -1,6 +1,11 @@
 #include <gtest/gtest.h>
 
-#include <astro/astro.hpp>
+#include <math/test_util.hpp>
+#include <units/units.hpp>
+
+#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 
 using namespace astrea;
 using namespace astro;

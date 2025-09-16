@@ -18,7 +18,6 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyFactory.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
 
 
 namespace astrea {
@@ -38,13 +37,7 @@ class AstrodynamicsSystem {
      * @param centralBody The name of the central celestial body (default is "Earth").
      * @param allBodies A set of names of all secondary celestial bodies in the system (default is the "Moon").
      */
-    AstrodynamicsSystem(const std::string& centralBody = "Earth", const std::unordered_set<std::string>& secondaryBodies = { "Moon" }) :
-        _centralBody(centralBody),
-        _allBodies(secondaryBodies)
-    {
-        _allBodies.insert(_centralBody);
-        create_all_bodies();
-    };
+    AstrodynamicsSystem(const std::string& centralBody = "Earth", const std::unordered_set<std::string>& secondaryBodies = { "Moon" });
 
     /**
      * @brief Default destructor for the AstrodynamicsSystem class.
@@ -66,21 +59,21 @@ class AstrodynamicsSystem {
      *
      * @return A default AstrodynamicsSystem instance.
      */
-    static AstrodynamicsSystem DEFAULT() { return AstrodynamicsSystem(); }
+    static AstrodynamicsSystem DEFAULT();
 
     /**
      * @brief Returns the central celestial body of the system.
      *
      * @return const std::string& The name of the central celestial body.
      */
-    const std::string& center() const { return _centralBody; }
+    const std::string& center() const;
 
     /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.
      */
-    const CelestialBodyUniquePtr& get_center() const { return _bodyFactory.get(_centralBody); }
+    const CelestialBodyUniquePtr& get_center() const;
 
     /**
      * @brief Return a specific celestial body by name.
@@ -88,7 +81,7 @@ class AstrodynamicsSystem {
      * @param name The name of the celestial body to retrieve.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified name.
      */
-    const CelestialBodyUniquePtr& get(const std::string& name) const { return _bodyFactory.get(name); }
+    const CelestialBodyUniquePtr& get(const std::string& name) const;
 
     /**
      * @brief Get or create a celestial body by name.
@@ -96,18 +89,14 @@ class AstrodynamicsSystem {
      * @param name The name of the celestial body to retrieve or create.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified name, creating it if it does not exist.
      */
-    const CelestialBodyUniquePtr& get_or_create(const std::string& name)
-    {
-        return _bodyFactory.get_or_create(name, *this);
-    }
+    const CelestialBodyUniquePtr& get_or_create(const std::string& name);
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
      *
      * @return const std::unordered_set<std::string>& A set containing the names of all celestial bodies in the system.
      */
-    const std::unordered_set<std::string>& all_bodies() const { return _allBodies; }
-
+    const std::unordered_set<std::string>& all_bodies() const;
     /**
      * @brief Returns a vector of all celestial bodies in the system.
      *

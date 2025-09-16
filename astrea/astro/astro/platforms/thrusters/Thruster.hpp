@@ -10,12 +10,10 @@
  */
 #pragma once
 
-#include <memory>
+#include <units/units.hpp>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/platforms/Payload.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -34,8 +32,8 @@ class ThrusterParameters : public PayloadParameters {
      */
     ThrusterParameters(
         const Thrust& thrust,
-        const astro::RadiusVector<astro::RIC>& boresight       = NADIR_RIC,
-        const astro::RadiusVector<astro::RIC>& attachmentPoint = CENTER
+        const CartesianVector<Distance, RadialInTrackCrossTrack>& boresight       = NADIR_RIC,
+        const CartesianVector<Distance, RadialInTrackCrossTrack>& attachmentPoint = CENTER
     ) :
         PayloadParameters(boresight, attachmentPoint),
         _thrust(thrust)
@@ -66,6 +64,8 @@ class ThrusterParameters : public PayloadParameters {
  */
 class Thruster : public Payload<Thruster, ThrusterParameters> {
 
+    friend Payload<Thruster, ThrusterParameters>;
+
   public:
     /**
      * @brief Constructor for Thruster
@@ -78,7 +78,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
         Payload<Thruster, ThrusterParameters>(parent, parameters)
     {
-        generate_id_hash();
     }
 
     /**
@@ -104,7 +103,7 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     /**
      * @brief Generate a hash for the thruster ID.
      */
-    void generate_id_hash();
+    std::size_t generate_id_hash() const;
 };
 
 /**

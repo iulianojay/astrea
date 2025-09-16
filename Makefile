@@ -14,6 +14,7 @@ build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/gcc-13-23/$(build_type))
 build_tests := OFF
 build_examples := OFF
+build_static := OFF
 cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
@@ -30,7 +31,7 @@ install: build
 
 .PHONY: build
 build: setup
-	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) -DBUILD_TESTS=$(build_tests) -DBUILD_EXAMPLES=$(build_examples)
+	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) -DBUILD_TESTS=$(build_tests) -DBUILD_EXAMPLES=$(build_examples) -DBUILD_STATIC=$(build_static)
 
 .PHONY: setup
 setup: 
@@ -65,6 +66,10 @@ examples:
 .PHONY: verbose
 verbose:
 	$(eval verbose_makefile = ON)
+
+.PHONY: static
+static:
+	$(eval build_static = ON)
 	
 .PHONY: run_tests
 run_tests:

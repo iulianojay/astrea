@@ -8,14 +8,17 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-using namespace mp_units;
-using namespace mp_units::angular;
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
 
 namespace astrea {
-namespace trace {
 
 using astro::ECI;
 using astro::RadiusVector;
+namespace trace {
+
+using namespace mp_units;
+using namespace mp_units::angular;
 
 Angle calculate_angle_between_vectors(const RadiusVector<ECI>& vector1, const RadiusVector<ECI>& vector2)
 {

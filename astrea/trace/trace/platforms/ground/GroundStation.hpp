@@ -10,16 +10,13 @@
  */
 #pragma once
 
+#include <string>
 #include <vector>
 
-#include <mp-units/systems/isq_angle.h>
-
-#include <astro/platforms/PayloadPlatform.hpp>
-#include <astro/state/CartesianVector.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
-#include <astro/utilities/conversions.hpp>
+#include <units/units.hpp>
 
 #include <trace/platforms/ground/GroundPoint.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
@@ -52,16 +49,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
         const Distance& altitude                     = 0.0 * mp_units::si::unit_symbols::km,
         const std::string name                       = "Unnammed",
         const std::vector<SensorParameters>& sensors = {}
-    ) :
-        GroundPoint(parent, latitude, longitude, altitude),
-        SensorPlatform(),
-        _name(name)
-    {
-        for (const auto& sensor : sensors) {
-            attach_payload(sensor);
-        }
-        generate_id_hash();
-    };
+    );
 
     /**
      * @brief Default destructor for the GroundStation class.
@@ -73,14 +61,14 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      *
      * @return std::size_t ID of the payload.
      */
-    std::size_t get_id() const { return _id; }
+    std::size_t get_id() const;
 
     /**
      * @brief Get the name of the ground station.
      *
      * @return std::string The name of the ground station.
      */
-    std::string get_name() const { return _name; }
+    std::string get_name() const;
 
     /**
      * @brief Get the inertial position of the ground station in the ECI frame.
@@ -88,10 +76,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      * @param date The date for which to compute the position.
      * @return RadiusVector<ECI> The inertial position of the ground station.
      */
-    astro::RadiusVector<astro::ECI> get_inertial_position(const astro::Date& date) const
-    {
-        return _lla.get_position(date, _parent);
-    }
+    astro::CartesianVector<Distance, astro::EarthCenteredInertial> get_inertial_position(const astro::Date& date) const;
 
     /**
      * @brief Get the inertial velocity of the ground station in the ECI frame.
@@ -99,22 +84,7 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      * @param date The date for which to compute the velocity.
      * @return VelocityVector<ECI> The inertial velocity of the ground station.
      */
-    astro::VelocityVector<astro::ECI> get_inertial_velocity(const astro::Date& date) const
-    {
-        using namespace astro;
-        using mp_units::isq_angle::cotes_angle;
-        using mp_units::si::unit_symbols::km;
-
-        const RadiusVector<ECEF> rEcef = _lla.get_position(_parent);
-
-        const RadiusVector<ECEF> rEcefPlanar = { rEcef.get_x(), rEcef.get_y(), 0.0 * km };
-        const Distance rEcefPlanarNorm       = rEcefPlanar.norm();
-        const Velocity vEcefMag              = rEcefPlanarNorm * _parent->get_rotation_rate() / cotes_angle;
-        const RadiusVector<ECEF> z           = { 0.0 * km, 0.0 * km, 1.0 * km };
-        const VelocityVector<ECEF> vEcef =
-            (z.cross(rEcefPlanar).unit()) * vEcefMag; // z cross (x,y,0) give perpendicular direction vector
-        return vEcef.in_frame<ECI>(date);
-    }
+    astro::CartesianVector<Velocity, astro::EarthCenteredInertial> get_inertial_velocity(const astro::Date& date) const;
 
   private:
     std::string _name; //!< Name of the ground station.
