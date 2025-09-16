@@ -41,6 +41,8 @@ jobs:
 
     - name: Run Coverage
       run: |
+        mkdir .gcovr
+        touch .gcovr/coverage.xml
         make coverage-cobertura
 
     - name: Code Coverage Report
