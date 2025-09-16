@@ -15,7 +15,7 @@ Velocity Thruster::get_impulsive_delta_v() const
     return get_parameters().get_thrust() / get_parent()->get_mass() * s;
 }
 
-std::size_t Thruster::generate_id_hash()
+std::size_t Thruster::generate_id_hash() const
 {
     // TODO: Fix the hashing. It's not unique
     return std::hash<Thrust>()(get_parameters().get_thrust());

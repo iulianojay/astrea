@@ -77,6 +77,8 @@ class SensorParameters : public astro::PayloadParameters {
  */
 class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParameters> {
 
+    friend Payload<Sensor, SensorParameters>;
+
   public:
     /**
      * @brief Constructs a Sensor from a FieldOfView object.
@@ -90,7 +92,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
         requires(std::is_base_of_v<astro::FrameReference, Parent_T>)
     Sensor(const Parent_T& parent, const SensorParameters& parameters) :
         AccessObject(),
-        Payload<Sensor, SensorParameters>(parent, parameters, generate_id_hash())
+        Payload<Sensor, SensorParameters>(parent, parameters)
     {
     }
 
@@ -120,7 +122,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
     /**
      * @brief Generate a hash for the sensor ID.
      */
-    std::size_t generate_id_hash()
+    std::size_t generate_id_hash() const
     {
         return 0; // TODO: Fix
     }

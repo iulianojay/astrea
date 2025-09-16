@@ -64,6 +64,8 @@ class ThrusterParameters : public PayloadParameters {
  */
 class Thruster : public Payload<Thruster, ThrusterParameters> {
 
+    friend Payload<Thruster, ThrusterParameters>;
+
   public:
     /**
      * @brief Constructor for Thruster
@@ -74,7 +76,7 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     template <typename Parent_T>
         requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
-        Payload<Thruster, ThrusterParameters>(parent, parameters, generate_id_hash())
+        Payload<Thruster, ThrusterParameters>(parent, parameters)
     {
     }
 
@@ -101,7 +103,7 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     /**
      * @brief Generate a hash for the thruster ID.
      */
-    std::size_t generate_id_hash();
+    std::size_t generate_id_hash() const;
 };
 
 /**

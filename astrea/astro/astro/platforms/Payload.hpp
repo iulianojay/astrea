@@ -109,10 +109,10 @@ class Payload { // TODO: add -> : public FrameReference
      */
     template <typename Parent_T>
         requires(std::is_base_of_v<PayloadPlatform<Payload_T>, Parent_T>)
-    Payload(Parent_T& parent, const PayloadParameters_T& parameters, std::size_t id = 0) :
-        _id(id),
+    Payload(const Parent_T& parent, const PayloadParameters_T& parameters) :
         _parent(&parent),
-        _parameters(parameters)
+        _parameters(parameters),
+        _id(generate_id_hash())
     {
     }
 
@@ -130,6 +130,11 @@ class Payload { // TODO: add -> : public FrameReference
     virtual std::size_t get_id() const = 0;
 
     /**
+     * @brief Generate a hash for the payload ID.
+     */
+    std::size_t generate_id_hash() const { return static_cast<const Payload_T*>(this)->generate_id_hash(); }
+
+    /**
      * @brief Get the parent platform of the payload.
      *
      * @return const PayloadPlatform<Payload_T, PayloadParameters_T>* Pointer to the parent platform.
@@ -144,9 +149,9 @@ class Payload { // TODO: add -> : public FrameReference
     PayloadParameters_T get_parameters() const { return _parameters; }
 
   protected:
-    std::size_t _id;                           //!< Unique identifier for the payload
     const PayloadPlatform<Payload_T>* _parent; //!< Parent platform
     PayloadParameters_T _parameters;           //!< Payload parameters
+    std::size_t _id;                           //!< Unique identifier for the payload
 
     /**
      * @brief Set the parent platform of the payload.
