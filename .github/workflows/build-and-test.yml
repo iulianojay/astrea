@@ -38,6 +38,7 @@ jobs:
 
     - name: Build
       run: |
+        echo "ASTREA_ROOT: $ASTREA_ROOT"
         make release all
 
     - name: Run Tests
