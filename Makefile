@@ -108,6 +108,10 @@ check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 
-.PHONY: coverage
-coverage: debug run_tests
-	cd . && sh ./scripts/coverage.sh
+.PHONY: coverage-html
+coverage-html: debug run_tests run_examples
+	cd build && gcovr -r .. --html-nested -o $(ASTREA_ROOT)/.gcovr/coverage.html --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches && cd ..
+
+.PHONY: coverage-cobertura
+coverage-cobertura: debug run_tests run_examples
+	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches && cd ..
