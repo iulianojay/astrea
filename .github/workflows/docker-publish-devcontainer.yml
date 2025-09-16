@@ -10,10 +10,8 @@ on:
     - cron: '26 16 * * *'
   push:
     branches: [ "dev" ]
-  pull_request:
-    branches: [ "dev" ]
     paths:
-      - 'Dockerfile'
+      - 'docker/devcontainer/Dockerfile'
       - '.github/workflows/docker-publish-devcontainer.yml'
 
 env:
