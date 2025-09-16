@@ -45,9 +45,9 @@ class GroundPoint : virtual public AccessObject {
         const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km
     ) :
         AccessObject(),
-        _id(generate_id_hash()),
         _parent(parent),
-        _lla(latitutde, longitude, altitude)
+        _lla(latitutde, longitude, altitude),
+        _id(generate_id_hash())
     {
     }
 
@@ -101,9 +101,9 @@ class GroundPoint : virtual public AccessObject {
     std::size_t get_id() const { return _id; }
 
   protected:
-    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
     astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
+    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
 
     /**
      * @brief Generates a unique identifier for the ground station based on its properties.
