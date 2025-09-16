@@ -3,26 +3,31 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <units/units.hpp>
-
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/types/typedefs.hpp>
-
-
-using namespace mp_units;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
+    EquationsOfMotion(system),
+    forces(&forces),
+    mu(system.get_center()->get_mu())
+{
+}
 
 OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {

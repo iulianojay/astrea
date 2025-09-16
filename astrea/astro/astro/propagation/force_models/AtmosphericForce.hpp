@@ -13,20 +13,10 @@
 #include <map>
 #include <tuple>
 
-// mp-units
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
-#include <mp-units/systems/si.h>
-
-// astro
-#include <astro/propagation/force_models/Force.hpp>
-#include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/types/tuple_hash.hpp>
-#include <astro/types/typedefs.hpp>
 #include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/propagation/force_models/Force.hpp>
 
 namespace astrea {
 namespace astro {
@@ -63,7 +53,7 @@ class AtmosphericForce : public Force {
      * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<ECI> The computed acceleration vector due to atmospheric force.
      */
-    AccelerationVector<ECI>
+    CartesianVector<Acceleration, EarthCenteredInertial>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
@@ -75,7 +65,7 @@ class AtmosphericForce : public Force {
      * @param center Celestial body around which the vehicle is orbiting
      * @return Density The atmospheric density at the given altitude.
      */
-    const Density find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const;
+    const Density find_atmospheric_density(const Date& date, const Cartesian& state, const std::unique_ptr<CelestialBody>& center) const;
 
     static const std::map<Altitude, Density> venutianAtmosphere; //!< Map of atmospheric densities for Venus at different altitudes
     static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere; //!< Map of atmospheric densities for Earth at different altitudes

@@ -54,9 +54,11 @@ set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSI
 target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main)
 
 # Static library
-add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
-set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main)
+if (${BUILD_STATIC})
+    add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
+    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main)
+endif()
 
 # Executable
 # add_executable             (avro_test ${SNAPSHOT_BASE}/drivers/avro_test.cpp)

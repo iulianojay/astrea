@@ -3,19 +3,21 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <astro/platforms/space/Constellation.hpp>
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
 #include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
-#include <utilities/ProgressBar.hpp>
 
+#include <trace/platforms/ground/GroundArchitecture.hpp>
+#include <trace/platforms/ground/GroundStation.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
+#include <trace/platforms/vehicles/Viewer.hpp>
 #include <trace/types/typedefs.hpp>
-
-
-using namespace mp_units;
-using namespace mp_units::angular;
-
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 
@@ -30,6 +32,23 @@ using astro::StateHistory;
 using astro::VelocityVector;
 
 namespace trace {
+
+using namespace mp_units;
+using namespace mp_units::angular;
+
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+
+struct AccessInfo {
+    Time time;                                 // Time of access
+    astro::RadiusVector<astro::ECI> position1; // Position of the first object at the time of access
+    astro::RadiusVector<astro::ECI> position2; // Position of the second object at the time of access
+    std::size_t id1;                           // ID of the first object
+    std::size_t id2;                           // ID of the second object
+    bool isOcculted;                           // Flag indicating if the access is occulted
+};
+
 
 AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const Date& epoch, const AstrodynamicsSystem& sys)
 {

@@ -10,13 +10,12 @@
  */
 #pragma once
 
-#include <units/typedefs.hpp>
+#include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -33,10 +32,7 @@ class EquinoctialVop : public EquationsOfMotion {
      * @param system The astrodynamics system containing the central body and its properties.
      * @param forces The force model to be used in the equations of motion.
      */
-    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
-        EquationsOfMotion(system),
-        forces(&forces),
-        mu(system.get_center()->get_mu()) {};
+    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces);
 
     /**
      * @brief Destructor for the Equinoctial VOP class.
@@ -60,8 +56,8 @@ class EquinoctialVop : public EquationsOfMotion {
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial>(); };
 
   private:
-    mutable bool checkflag                     = false;                 //!< Flag to check for degenerate conditions.
-    mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
+    mutable bool checkflag = false;                 //!< Flag to check for degenerate conditions.
+    Unitless checkTol      = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 
     const ForceModel* forces; //!< The force model used in the equations of motion.
 

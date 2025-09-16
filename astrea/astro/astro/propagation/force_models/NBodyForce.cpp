@@ -5,15 +5,16 @@
 #include <mp-units/systems/iau.h>
 #include <mp-units/systems/si/math.h>
 
-
-using namespace mp_units;
-using namespace mp_units::si;
-using namespace mp_units::non_si;
-using namespace mp_units::si::unit_symbols;
-using namespace mp_units::iau::unit_symbols;
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {
 namespace astro {
+
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 AccelerationVector<ECI>
     NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const

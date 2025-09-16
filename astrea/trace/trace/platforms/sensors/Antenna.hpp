@@ -12,8 +12,7 @@
 
 #include <vector>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>
@@ -58,16 +57,12 @@ class AntennaParameters : public SensorParameters {
         const Unitless& efficiency,
         const Frequency& frequency,
         const Power& power,
-        const astro::RadiusVector<astro::RIC>& boresight       = { -1.0 * astrea::detail::distance_unit, // Nadir
-                                                                   0.0 * astrea::detail::distance_unit,
-                                                                   0.0 * astrea::detail::distance_unit },
-        const astro::RadiusVector<astro::RIC>& attachmentPoint = { 0.0 * astrea::detail::distance_unit, // Center
-                                                                   0.0 * astrea::detail::distance_unit,
-                                                                   0.0 * astrea::detail::distance_unit },
-        const Frequency& noiseBandwidth                        = 0.0 * mp_units::si::unit_symbols::GHz,
-        const Gain& transmitLoss                               = 1.0 * mp_units::one,
-        const Gain& receiverLoss                               = 1.0 * mp_units::one,
-        const PatternApproximation& pattern                    = PatternApproximation::BESSEL
+        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER,
+        const Frequency& noiseBandwidth     = 0.0 * mp_units::si::unit_symbols::GHz,
+        const Gain& transmitLoss            = 1.0 * mp_units::one,
+        const Gain& receiverLoss            = 1.0 * mp_units::one,
+        const PatternApproximation& pattern = PatternApproximation::BESSEL
     ) :
         SensorParameters::SensorParameters(fov, boresight, attachmentPoint),
         _diameter(diameter),
@@ -242,7 +237,8 @@ class AntennaParameters : public SensorParameters {
     Length _wavelength;            //!< Speed of light / frequency
     Gain _gain;                    //!< Peak isotropic power gain
     Power _eirp;                   //!< Equivalent isotropic radiator power
-    Temperature _sysNoiseTemp;     //!< System noise temperature
+
+    Temperature _sysNoiseTemp = mp_units::absolute<mp_units::si::unit_symbols::deg_C>(0.0); //!< System noise temperature
 };
 
 /**

@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <string>
+
 #include <astro/state/frames/Frame.hpp>
 
 namespace astrea {

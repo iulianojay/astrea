@@ -1,11 +1,12 @@
-#include <vector>
+#include <array>
 
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
-#include <tests/utilities/comparisons.hpp>
+#include <astro/state/orbital_data_formats/instances/TwoLineElements.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
 
 using namespace astrea;
 using namespace astro;

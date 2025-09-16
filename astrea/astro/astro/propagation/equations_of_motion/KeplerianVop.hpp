@@ -10,13 +10,12 @@
  */
 #pragma once
 
-#include <units/typedefs.hpp>
+#include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
+#include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -34,11 +33,7 @@ class KeplerianVop : public EquationsOfMotion {
      * @param forces The force model to be used in the equations of motion.
      * @param doWarn Flag to indicate whether to warn about degenerate cases.
      */
-    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true) :
-        EquationsOfMotion(system),
-        forces(&forces),
-        mu(system.get_center()->get_mu()),
-        doWarn(doWarn) {};
+    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true);
 
     /**
      * @brief Destructor for the Keplerian VOP class.
@@ -62,7 +57,7 @@ class KeplerianVop : public EquationsOfMotion {
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian>(); };
 
   private:
-    mp_units::quantity<mp_units::one> checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
+    Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 
     const ForceModel* forces; //!< The force model used in the equations of motion.
     GravParam mu;             //!< Gravitational parameter of the central body.
@@ -74,7 +69,7 @@ class KeplerianVop : public EquationsOfMotion {
      * @param ecc The eccentricity of the orbit.
      * @param inc The inclination of the orbit.
      */
-    void check_degenerate(const mp_units::quantity<mp_units::one>& ecc, const mp_units::quantity<mp_units::angular::unit_symbols::rad>& inc) const;
+    void check_degenerate(const Unitless& ecc, const Angle& inc) const;
 };
 
 } // namespace astro

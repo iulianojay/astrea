@@ -1,9 +1,16 @@
-#include <astro/astro.hpp>
-#include <astro/propagation/event_detection/Event.hpp>
 #include <gtest/gtest.h>
+
+#include <math/test_util.hpp>
+#include <units/units.hpp>
+
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 
 using namespace astrea;
 using namespace astro;
+using namespace mp_units;
+using mp_units::si::unit_symbols::s;
 
 struct TestEvent {
     std::string get_name() const { return "Test Event"; }
@@ -22,7 +29,7 @@ class EventTest : public testing::Test {
     {
         event   = Event(testEvent);
         vehicle = Vehicle();
-        time    = Time(0.0 * mp_units::si::unit_symbols::s);
+        time    = Time(0.0 * s);
         state   = OrbitalElements(Cartesian());
     }
     TestEvent testEvent;
@@ -63,7 +70,7 @@ TEST_F(EventTest, GetName) { ASSERT_EQ(event.get_name(), "Test Event"); }
 TEST_F(EventTest, MeasureEvent)
 {
     Unitless result = event.measure_event(time, state, vehicle);
-    ASSERT_EQ(result, 42.0 * mp_units::one);
+    ASSERT_EQ(result, 42.0 * one);
 }
 
 TEST_F(EventTest, IsTerminal) { ASSERT_FALSE(event.is_terminal()); }

@@ -1,6 +1,24 @@
 #include <astro/propagation/numerical/Integrator.hpp>
 
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <math.h>
+#include <vector>
+
+// mp-units
 #include <mp-units/math.h>
+#include <mp-units/ostream.h>
+#include <mp-units/systems/si.h>
+
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
+#include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/state/StateHistory.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/time/Interval.hpp>
+#include <astro/types/typedefs.hpp>
 
 #include <astro/propagation/numerical/butcher_tableau.hpp> // RK Butcher Tableau
 #include <astro/state/orbital_elements/orbital_elements.hpp>

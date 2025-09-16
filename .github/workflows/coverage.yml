@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C/C++ Code Coverage
 
 permissions:
   contents: read
@@ -10,7 +10,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Build-and-Test:
+  Coverage:
 
     runs-on: ubuntu-latest
     container:
@@ -35,14 +35,23 @@ jobs:
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
 
-    - name: Build
+    - name: Build Debug
       run: |
-        make release all
+        make debug all
 
-    - name: Run Tests
+    - name: Run Coverage
       run: |
-        make run_tests
+        make coverage-cobertura
 
-    - name: Run Examples
-      run: |
-        make run_examples
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: .gcovr/coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: true
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'

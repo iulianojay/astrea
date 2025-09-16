@@ -1,32 +1,26 @@
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <ranges>
-#include <stdio.h>
-
 #include <gtest/gtest.h>
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/international.h>
-#include <mp-units/systems/isq.h>
-#include <mp-units/systems/si.h>
-
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/propagation/numerical/Integrator.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
+#include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
-
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::s;
-
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::W;
-
 
 class CowellsMethodPropagationTest : public testing::Test {
   public:

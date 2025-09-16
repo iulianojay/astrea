@@ -1,5 +1,9 @@
 #include <trace/platforms/sensors/Sensor.hpp>
 
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/FrameReference.hpp>
+#include <astro/state/frames/frames.hpp>
+
 namespace astrea {
 namespace trace {
 

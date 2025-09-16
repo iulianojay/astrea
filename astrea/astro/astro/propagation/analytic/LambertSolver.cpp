@@ -1,5 +1,8 @@
 #include <astro/propagation/analytic/LambertSolver.hpp>
 
+#include <cmath>
+#include <iostream>
+#include <math.h>
 #include <numbers>
 
 #include <mp-units/math.h>
@@ -8,6 +11,11 @@
 #include <mp-units/systems/si.h>
 
 #include <math/trig.hpp>
+
+#include <astro/state/CartesianVector.hpp>
+#include <astro/state/frames/frames.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

@@ -83,9 +83,11 @@ set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSI
 target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared snapshot_shared mp-units::mp-units GTest::gtest_main)
 
 # Static library
-add_library           (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_static PUBLIC math_static astro_static snapshot_static mp-units::mp-units GTest::gtest_main)
+if (${BUILD_STATIC})
+    add_library           (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
+    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries (${PROJECT_NAME}_static PUBLIC math_static astro_static snapshot_static mp-units::mp-units GTest::gtest_main)
+endif()
 
 # Executable
 add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)

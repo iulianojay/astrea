@@ -14,9 +14,7 @@
 
 #include <units/units.hpp>
 
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {

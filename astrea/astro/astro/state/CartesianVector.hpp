@@ -14,6 +14,7 @@
 #include <typeinfo>
 
 #include <mp-units/math.h>
+#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 
 #include <units/typedefs.hpp>

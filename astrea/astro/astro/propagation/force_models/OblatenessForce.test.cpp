@@ -1,22 +1,23 @@
-#include <chrono>
-#include <random>
-#include <vector>
-
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/propagation/force_models/OblatenessForce.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
-using mp_units::one;
+using namespace astrea;
+using namespace astro;
+using namespace mp_units;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
-
-using namespace astrea;
-using namespace astro;
 
 class OblatenessForceTest : public testing::Test {
   public:

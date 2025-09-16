@@ -1,6 +1,11 @@
 #include <gtest/gtest.h>
 
-#include <astro/astro.hpp>
+#include <units/units.hpp>
+
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
 
 using namespace astrea;
 using namespace astro;

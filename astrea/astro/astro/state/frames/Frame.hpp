@@ -2,10 +2,9 @@
 
 #include <string>
 
-#include <units/typedefs.hpp>
+#include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

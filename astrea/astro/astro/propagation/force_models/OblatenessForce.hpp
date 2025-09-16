@@ -10,14 +10,13 @@
  */
 #pragma once
 
-#include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/force_models/Force.hpp>
-#include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/types/typedefs.hpp>
+#include <memory>
+#include <vector>
+
 #include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/propagation/force_models/Force.hpp>
 
 namespace astrea {
 namespace astro {
@@ -47,7 +46,7 @@ class OblatenessForce : public Force {
      * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<ECI> The computed acceleration vector due to oblateness.
      */
-    AccelerationVector<ECI>
+    CartesianVector<Acceleration, EarthCenteredInertial>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
     /**
@@ -64,9 +63,9 @@ class OblatenessForce : public Force {
     mutable std::vector<std::vector<Unitless>> C{}; //!< Cosine coefficients for the spherical harmonics
     mutable std::vector<std::vector<Unitless>> S{}; //!< Sine coefficients for the spherical harmonics
 
-    const std::size_t N;                  //!< Degree of the spherical harmonics
-    const std::size_t M;                  //!< Order of the spherical harmonics
-    const CelestialBodyUniquePtr& center; //!< Pointer to the celestial body for which the oblateness force is computed
+    const std::size_t N;                          //!< Degree of the spherical harmonics
+    const std::size_t M;                          //!< Order of the spherical harmonics
+    const std::unique_ptr<CelestialBody>& center; //!< Pointer to the celestial body for which the oblateness force is computed
 
     /**
      * @brief Computes the Legendre polynomial coefficients for the oblateness force.

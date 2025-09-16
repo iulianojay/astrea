@@ -12,25 +12,12 @@
 
 #include <string>
 
-// mp-units
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
-#include <mp-units/systems/si.h>
-
 #include <units/units.hpp>
 
-// astro
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

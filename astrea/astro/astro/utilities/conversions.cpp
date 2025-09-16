@@ -1,9 +1,12 @@
 #include <astro/utilities/conversions.hpp>
 
-#include <units/units.hpp>
+#include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <units/units.hpp>
 
 using namespace mp_units;
 using namespace mp_units::angular;

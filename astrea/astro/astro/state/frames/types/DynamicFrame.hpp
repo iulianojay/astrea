@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include <memory>
+#include <string>
 
 #include <astro/state/frames/Frame.hpp>
 #include <astro/state/frames/FrameReference.hpp>

@@ -40,9 +40,11 @@ set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSI
 target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units GTest::gtest_main)
 
 # Static library
-add_library           (${PROJECT_NAME}_static STATIC ${UNITS_SOURCES} ${UNITS_HEADERS})
-set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units GTest::gtest_main)
+if (${BUILD_STATIC})
+    add_library           (${PROJECT_NAME}_static STATIC ${UNITS_SOURCES} ${UNITS_HEADERS})
+    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries (${PROJECT_NAME}_static PUBLIC mp-units::mp-units GTest::gtest_main)
+endif()
 
 # Install headers
 file(COPY

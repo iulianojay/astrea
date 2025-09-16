@@ -12,9 +12,6 @@
 
 #include <vector>
 
-#include <mp-units/format.h>
-#include <mp-units/ostream.h>
-
 #include <units/units.hpp>
 
 #include <trace/risesets/riseset_utils.hpp>

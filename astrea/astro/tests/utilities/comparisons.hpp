@@ -1,10 +1,10 @@
 #pragma once
 
-#include <gtest/gtest.h>
+#include <vector>
 
-#include <math/test_util.hpp>
+#include <units/units.hpp>
 
-#include <astro/astro.hpp>
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 
@@ -16,35 +16,14 @@ void ASSERT_EQ_ORB_ELEM(
     const bool& ignoreFastVariable,
     const Unitless& relTol              = 0.0 * mp_units::one,
     const std::vector<Unitless>& absTol = { 0.0 * mp_units::one }
-) noexcept
-{
-    if (first.index() != second.index()) { FAIL() << "Orbital element sets do not match"; }
-
-    auto firstUnitless  = first.to_vector();
-    auto secondUnitless = second.to_vector();
-    const int maxIdx    = ignoreFastVariable ? 5 : 6;
-    for (int ii = 0; ii < maxIdx; ii++) {
-        ASSERT_EQ_QUANTITY(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
-    }
-}
+) noexcept;
 
 void ASSERT_EQ_ORB_PART(
     const OrbitalElementPartials& first,
     const OrbitalElementPartials& second,
     const Unitless& relTol              = 0.0 * mp_units::one,
     const std::vector<Unitless>& absTol = { 0.0 * mp_units::one }
-) noexcept
-{
-    if (first.index() != second.index()) { FAIL() << "Orbital element sets do not match"; }
-
-    // arbitrary normalization. shouldn't affect relative size
-    const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
-    const std::vector<Unitless> firstScaled  = (first * scale).to_vector();
-    const std::vector<Unitless> secondScaled = (second * scale).to_vector();
-    for (int ii = 0; ii < 6; ii++) {
-        ASSERT_EQ_QUANTITY(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
-    }
-}
+) noexcept;
 
 
 template <typename Value_T, typename Frame_T>

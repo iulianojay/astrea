@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include <astro/types/typedefs.hpp>
+#include <units/units.hpp>
 
 namespace astrea {
 namespace astro {
