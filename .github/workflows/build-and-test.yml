@@ -1,5 +1,8 @@
 name: C/C++ CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ "master" ]
@@ -88,9 +91,12 @@ jobs:
         output: both
         thresholds: '60 80'
 
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request'
+    - name: Create Coverage Badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
       with:
-        recreate: true
-        path: code-coverage-results.md
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: 238a4a61ca19471caa1e39376158d625
+        filename: coverage.json
+        label: Hello
+        message: World
+        color: orange
