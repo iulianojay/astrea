@@ -78,9 +78,10 @@ jobs:
         mkdir .gcovr
         touch .gcovr/coverage.xml
         make coverage
-        <.gcovr/coverage.xml grep -Poahr 'coverage line-rate="(0.[0-9]{0,})"' | tee coverage.txt
-        export COVERAGE_PCT=$(grep -o '0.[0-9]*' coverage.txt)
-        export COVERAGE_PCT=${COVERAGE_PCT:2:2}.${COVERAGE_PCT:4:2}
+
+    - name: Extract Coverage Percentage
+      run: |
+        . ./scripts/extract_coverage_pct.sh
         echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
