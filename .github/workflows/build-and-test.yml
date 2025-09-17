@@ -83,7 +83,7 @@ jobs:
       run: |
         touch coverage.txt
         bash ./scripts/extract_coverage_pct.sh
-        echo "COVERAGE_PCT=$(<coverage.txt)" >> "$GITHUB_ENV"
+        echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
       uses: schneegans/dynamic-badges-action@v1.7.0
