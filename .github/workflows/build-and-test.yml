@@ -81,7 +81,7 @@ jobs:
 
     - name: Extract Coverage Percentage
       run: |
-        . ./scripts/extract_coverage_pct.sh
+        source ./scripts/extract_coverage_pct.sh
         echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
