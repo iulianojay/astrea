@@ -81,6 +81,7 @@ jobs:
 
     - name: Extract Coverage Percentage
       run: |
+        touch coverage.txt
         bash ./scripts/extract_coverage_pct.sh
         echo "COVERAGE_PCT=$(<coverage.txt)" >> "$GITHUB_ENV"
 
