@@ -15,4 +15,4 @@ echo "Extracted coverage value: $coverage_value"
 coverage_pct=${coverage_value:2:2}.${coverage_value:4:2}
 echo "Formatted coverage percentage: $coverage_pct"
 
-export COVERAGE_PCT=$coverage_pct
+echo $coverage_pct | tee coverage.txt
