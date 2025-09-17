@@ -93,6 +93,6 @@ jobs:
         filename: coverage.json
         label: Coverage
         message: ${{ env.COVERAGE_PCT }}%
-        valColorRange: 92
+        valColorRange: ${{ env.COVERAGE_PCT }}
         maxColorRange: 100
         minColorRange: 60
