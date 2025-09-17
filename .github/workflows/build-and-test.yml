@@ -80,7 +80,7 @@ jobs:
         make coverage
         <.gcovr/coverage.xml grep -Poahr 'coverage line-rate="(0.[0-9]{0,})"' | tee coverage.txt
         export COVERAGE_PCT=$(grep -o '0.[0-9]*' coverage.txt)
-        echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
+        echo "COVERAGE_PCT=${COVERAGE_PCT:2:2}.${COVERAGE_PCT:4:2}" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
       uses: schneegans/dynamic-badges-action@v1.7.0
