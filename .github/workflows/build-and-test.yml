@@ -81,9 +81,7 @@ jobs:
 
     - name: Extract Coverage Percentage
       run: |
-        bash ./scripts/extract_coverage_pct.sh
-        export COVERAGE_PCT=$(<coverage.txt)
-        echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
+        bash ./scripts/extract_coverage_pct.sh && export COVERAGE_PCT=$(<coverage.txt) && echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
       uses: schneegans/dynamic-badges-action@v1.7.0
