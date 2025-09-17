@@ -2,6 +2,7 @@ name: C/C++ CI
 
 permissions:
   contents: read
+  pull-requests: write
 
 on:
   push:
@@ -11,7 +12,6 @@ on:
 
 jobs:
   Build-and-Test:
-
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev
@@ -27,7 +27,6 @@ jobs:
 
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
     - name: Setup
@@ -46,3 +45,54 @@ jobs:
     - name: Run Examples
       run: |
         make run_examples
+
+  Coverage:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea:dev
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+    - name: https://github.com/actions/checkout/issues/1720
+      run: |
+        chmod -R u+rwX .
+
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
+
+    - name: Setup
+      run: |
+        echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
+        cp -r ./.conan2 ~
+
+    - name: Build Debug
+      run: |
+        make debug all
+
+    - name: Run Coverage
+      run: |
+        mkdir .gcovr
+        touch .gcovr/coverage.xml
+        make coverage
+
+    - name: Extract Coverage Percentage
+      run: |
+        touch coverage.txt
+        bash ./scripts/extract_coverage_pct.sh
+        echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
+
+    - name: Create Coverage Badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: 238a4a61ca19471caa1e39376158d625
+        filename: coverage.json
+        label: Coverage
+        message: ${{ env.COVERAGE_PCT }}%
+        valColorRange: ${{ env.COVERAGE_PCT }}
+        maxColorRange: 100
+        minColorRange: 60
