@@ -2,6 +2,7 @@ name: C/C++ CI
 
 permissions:
   contents: read
+  pull-requests: write
 
 on:
   push:
@@ -77,19 +78,9 @@ jobs:
         mkdir .gcovr
         touch .gcovr/coverage.xml
         make coverage-cobertura
-
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: .gcovr/coverage.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: true
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
+        <.gcovr/coverage.xml grep -Poahr 'coverage line-rate="(0.[0-9]{0,})"' | tee coverage.txt
+        export COVERAGE_PCT=$(grep -o '0.[0-9]*' coverage.txt)
+        echo "COVERAGE_PCT=$COVERAGE_PCT" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
       uses: schneegans/dynamic-badges-action@v1.7.0
@@ -97,6 +88,8 @@ jobs:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 238a4a61ca19471caa1e39376158d625
         filename: coverage.json
-        label: Hello
-        message: World
-        color: orange
+        label: Coverage
+        message: ${{ env.COVERAGE_PCT }}%
+        valColorRange: 92
+        maxColorRange: 100
+        minColorRange: 60
