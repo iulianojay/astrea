@@ -24,6 +24,17 @@ namespace astrea {
 namespace astro {
 
 /**
+ * @brief Enumeration for different Runge-Kutta stepper methods.
+ */
+enum class StepMethod : EnumType {
+    RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
+    RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+    RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+    DOP45, //!< Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+    DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+};
+
+/**
  * @brief Integrator class for numerical propagation of orbital mechanics problems.
  *
  * This class implements various Runge-Kutta methods for integrating the equations of motion
@@ -32,23 +43,30 @@ namespace astro {
 class Integrator {
 
   public:
-    /**
-     * @brief Enumeration for different Runge-Kutta stepper methods.
-     */
-    enum class StepMethod : EnumType {
-        RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
-        RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-        DOP45, //!< Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
-    };
-
     static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day }; //!< Default time interval for propagation
 
     /**
-     * @brief Default constructor for the Integrator class.
+     * @brief Constructs an Integrator with specified parameters.
+     *
+     * @param absTol The absolute tolerance for the integrator (default is 1.0e-13).
+     * @param relTol The relative tolerance for the integrator (default is 1.0e-13).
+     * @param stepMethod The Runge-Kutta step method to use (default is DOP45).
+     * @param initialTimeStep The initial timestep for the integrator (default is 300 seconds).
+     * @param useFixedTimeStep Flag to indicate if a fixed timestep should be used (default is false).
+     * @param fixedTimeStep The fixed timestep to use if enabled (default is 60 seconds).
+     * @param itMax The maximum number of iterations for the integrator (default is 1e8).
+     * @param events A vector of events to be tracked during propagation (default is empty).
      */
-    Integrator() = default;
+    Integrator(
+        const Unitless& absTol           = 1.0e-13 * mp_units::one,
+        const Unitless& relTol           = 1.0e-13 * mp_units::one,
+        const StepMethod& stepMethod     = StepMethod::DOP45,
+        const Time& initialTimeStep      = 300.0 * mp_units::si::unit_symbols::s,
+        const int& maxIterations         = 1e8,
+        const bool& useFixedTimeStep     = false,
+        const Time& fixedTimeStep        = 60.0 * mp_units::si::unit_symbols::s,
+        const std::vector<Event>& events = {}
+    );
 
     /**
      * @brief Default destructor for the Integrator class.
@@ -65,14 +83,7 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(
-        const Date& epoch,
-        const Interval& interval,
-        const EquationsOfMotion& eom,
-        Vehicle& vehicle,
-        bool store                = false,
-        std::vector<Event> events = {}
-    );
+    StateHistory propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
@@ -83,8 +94,7 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory
-        propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch for a specified time using the given equations of motion.
@@ -95,8 +105,7 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory
-        propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     /**
      * @brief Propagate the state of a vehicle from an initial time to a final time using the given equations of motion.
@@ -109,15 +118,8 @@ class Integrator {
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(
-        const Date& epoch,
-        const Time& timeInitial,
-        const Time& timeFinal,
-        const EquationsOfMotion& eom,
-        Vehicle& vehicle,
-        bool store                = false,
-        std::vector<Event> events = {}
-    );
+    StateHistory
+        propagate(const Date& epoch, const Time& timeInitial, const Time& timeFinal, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false);
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -164,9 +166,9 @@ class Integrator {
     /**
      * @brief Set the initial timestep for the integrator.
      *
-     * @param dt0 The initial timestep to set.
+     * @param initialTimeStep The initial timestep to set.
      */
-    void set_initial_timestep(const Time& dt0);
+    void set_initial_timestep(const Time& initialTimeStep);
 
     /**
      * @brief Switch the fixed timestep mode on or off.
@@ -190,11 +192,18 @@ class Integrator {
     void set_timestep(const Time& fixedTimeStep);
 
     /**
+     * @brief Set the events to be tracked during propagation.
+     *
+     * @param events A vector of Event objects to be tracked.
+     */
+    void set_events(const std::vector<Event>& events);
+
+    /**
      * @brief Get the current timestep used by the integrator.
      *
      * @return Time The current timestep.
      */
-    int n_func_evals() { return _functionEvaluations; }
+    int get_n_func_evals() { return _functionEvaluations; }
 
   private:
     // Integrator constants
@@ -203,21 +212,6 @@ class Integrator {
     const Unitless _MIN_ERROR_STEP_FACTOR = 5.0;    //!< Increase step by this factor
     const Unitless _MIN_REL_STEP_SIZE     = 0.2;    //!< If the step size decreases by more than this factor, reduce the
                                                     //!< Relative step size to this value
-
-    // Iteration variables
-    unsigned long _iteration          = 0;   //!< Outer loop iteration count
-    unsigned _variableStepIteration   = 0;   //!< Inner loop iteration count
-    unsigned long _MAX_ITER           = 1e8; //!< Maximum number of iterations for the integrator
-    const unsigned _MAX_VAR_STEP_ITER = 1e3; //!< Max iterations for step sizing loop -> jj shouldn't get above ~10
-
-    // Function evals
-    int _functionEvaluations = 0; //!< Number of function evaluations during integration
-
-    // Time variables
-    Time _timeStepPrevious; //!< Previous time step used in the integration
-
-    // Error variables
-    Unitless _maxErrorPrevious; //!< Maximum error from the previous step
 
     // Butcher Tableau
     std::size_t _nStages{};                    //!< Number of stages in the Butcher tableau for the current step method
@@ -238,43 +232,56 @@ class Integrator {
     clock_t _endClock{};   //!< End time for the timer
 
     // Tolerances
-    Unitless _ABS_TOL = 1.0e-13; //!< Absolute tolerance for the integrator
-    Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
+    Unitless _absTol; //!< Absolute tolerance for the integrator
+    Unitless _relTol; //!< Relative tolerance for the integrator
+
+    // Options
+    StepMethod _stepMethod; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
 
     // Initial step size
-    Time _timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
+    Time _timeStepInitial;  //!< Initial time step for the integrator
+    Time _timeStepPrevious; //!< Previous time step used in the integration
+
+    // Iteration variables
+    int _functionEvaluations        = 0;     //!< Number of function evaluations during integration
+    unsigned long _iteration        = 0;     //!< Outer loop iteration count
+    unsigned _variableStepIteration = 0;     //!< Inner loop iteration count
+    unsigned long _maxIterations;            //!< Maximum number of iterations for the integrator
+    const unsigned _MAX_VAR_STEP_ITER = 1e3; //!< Max iterations for step sizing loop -> jj shouldn't get above ~10
+
+    // Error variables
+    Unitless _maxErrorPrevious; //!< Maximum error from the previous step
 
     // Run options
     bool _printOn = false; //!< Flag to control printing of integration details
     bool _timerOn = false; //!< Flag to control timing of integration performance
 
-    StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
-
     // Fake fixed step
-    bool _useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
-    Time _fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
+    bool _useFixedStep;  //!< Flag to indicate if a fixed step size should be used
+    Time _fixedTimeStep; //!< Fixed time step size to use if fixed step is enabled
 
     // Events
     EventDetector _eventDetector;
+
+    // Pointer to EOM
+    const EquationsOfMotion* _eomPtr = nullptr; //!< Pointer to the equations of motion being used
 
     /**
      * @brief Find the state derivative at a given time using the equations of motion.
      *
      * @param time The time at which to evaluate the state derivative.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the evaluation.
      * @param vehicle The vehicle whose state is being evaluated.
      * @return OrbitalElementPartials The derivatives of the orbital elements with respect to time.
      */
-    OrbitalElementPartials
-        find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    OrbitalElementPartials find_state_derivative(const Time& time, const OrbitalElements& state, Vehicle& vehicle);
 
     /**
      * @brief Set up the main integration loop
      *
      * @param events The events to be tracked during propagation.
      */
-    void setup(const std::vector<Event>& events);
+    void setup();
 
     /**
      * @brief Teardown after the main integration loop
@@ -296,7 +303,7 @@ class Integrator {
      * @param events The events to be tracked during propagation.
      * @return OrbitalElements The state of the vehicle at the specified epoch.
      */
-    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events);
+    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Perform a single step of the integration using the selected Runge-Kutta method.
@@ -308,7 +315,7 @@ class Integrator {
      * @param vehicle The vehicle whose state is being integrated.
      * @return bool True if the step was successful, false otherwise.
      */
-    bool try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool try_step(Time& time, Time& timeStep, OrbitalElements& state, Vehicle& vehicle);
 
     /**
      * @brief Find the maximum error between the new and error states.
@@ -328,7 +335,7 @@ class Integrator {
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    void take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, Vehicle& vehicle);
 
     /**
      * @brief Take a step in the integration.
@@ -341,7 +348,7 @@ class Integrator {
      * @return std::pair<OrbitalElements, OrbitalElements> The new state and the error state after the step.
      */
     std::pair<OrbitalElements, OrbitalElements>
-        take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+        take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, Vehicle& vehicle);
 
     /**
      * @brief Check the error of the current step and adjust the time step accordingly.
@@ -396,7 +403,7 @@ class Integrator {
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    bool check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool check_event(const Time& time, const OrbitalElements& state, Vehicle& vehicle);
 
     /**
      * @brief Validate the current state and time to ensure they are not NaN or infinite.

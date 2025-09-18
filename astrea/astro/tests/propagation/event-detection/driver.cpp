@@ -70,9 +70,10 @@ TEST_F(EventDetectionTest, NoThrust)
 
     // Impulsive burn event
     Event impulse = Event{ ImpulsiveBurn() };
+    integrator.set_events({ impulse });
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
@@ -93,9 +94,10 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
 
     // Impulsive burn event
     Event impulse = Event{ ImpulsiveBurn() };
+    integrator.set_events({ impulse });
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
 
     // Validate
     bool elementsChanged = false;

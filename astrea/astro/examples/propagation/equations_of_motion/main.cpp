@@ -80,7 +80,7 @@ int main()
     const StateHistory history = integrator.propagate(epoch, propInterval, myEoms, vehicle, store);
     std::cout << " Propagation Complete." << std::endl;
 
-    std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
+    std::cout << "Func Evals: " << integrator.get_n_func_evals() << std::endl;
     std::cout << "Final State: " << history.last() << std::endl;
 
     return 0;

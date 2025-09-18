@@ -71,6 +71,14 @@ class EventDetector {
     std::vector<Event> get_events() const;
 
     /**
+     * @brief Check if there are any events being tracked.
+     *
+     * @return true If there are no events being tracked.
+     * @return false If there are events being tracked.
+     */
+    bool empty() const { return _eventTrackers.empty(); }
+
+    /**
      * @brief Detects events for a given time and vehicle.
      *
      * @param time The current time.

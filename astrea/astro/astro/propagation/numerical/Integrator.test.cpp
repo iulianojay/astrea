@@ -61,11 +61,11 @@ TEST_F(IntegratorTest, SetToleranceAndOptions)
 TEST_F(IntegratorTest, SetStepMethod)
 {
     Integrator integrator;
-    EXPECT_NO_THROW(integrator.set_step_method(Integrator::StepMethod::RK45));
-    EXPECT_NO_THROW(integrator.set_step_method(Integrator::StepMethod::RKF45));
-    EXPECT_NO_THROW(integrator.set_step_method(Integrator::StepMethod::RKF78));
-    EXPECT_NO_THROW(integrator.set_step_method(Integrator::StepMethod::DOP45));
-    EXPECT_NO_THROW(integrator.set_step_method(Integrator::StepMethod::DOP78));
+    EXPECT_NO_THROW(integrator.set_step_method(StepMethod::RK45));
+    EXPECT_NO_THROW(integrator.set_step_method(StepMethod::RKF45));
+    EXPECT_NO_THROW(integrator.set_step_method(StepMethod::RKF78));
+    EXPECT_NO_THROW(integrator.set_step_method(StepMethod::DOP45));
+    EXPECT_NO_THROW(integrator.set_step_method(StepMethod::DOP78));
 }
 
 TEST_F(IntegratorTest, SetInitialAndFixedTimestep)
@@ -90,23 +90,23 @@ TEST_F(IntegratorTest, PropagateVariableStep)
     Integrator integrator;
     integrator.switch_fixed_timestep(false);
 
-    integrator.set_step_method(Integrator::StepMethod::RK45);
+    integrator.set_step_method(StepMethod::RK45);
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
-    integrator.set_step_method(Integrator::StepMethod::RKF45);
+    integrator.set_step_method(StepMethod::RKF45);
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
-    integrator.set_step_method(Integrator::StepMethod::RKF78);
+    integrator.set_step_method(StepMethod::RKF78);
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
-    integrator.set_step_method(Integrator::StepMethod::DOP45);
+    integrator.set_step_method(StepMethod::DOP45);
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 
     integrator.switch_print(true);
-    integrator.set_step_method(Integrator::StepMethod::DOP78);
+    integrator.set_step_method(StepMethod::DOP78);
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
 }
@@ -114,5 +114,5 @@ TEST_F(IntegratorTest, PropagateVariableStep)
 TEST_F(IntegratorTest, FunctionEvaluations)
 {
     Integrator integrator;
-    EXPECT_EQ(integrator.n_func_evals(), 0);
+    EXPECT_EQ(integrator.get_n_func_evals(), 0);
 }

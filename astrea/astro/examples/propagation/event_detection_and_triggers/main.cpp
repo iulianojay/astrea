@@ -38,25 +38,26 @@ int main()
     TwoBody eoms(sys);
     // KeplerianVop eoms(sys, forces, false);
 
-    // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
-    // the integrator setters.
-    Integrator integrator;
-    integrator.set_abs_tol(1.0e-10);
-    integrator.set_rel_tol(1.0e-10);
-    integrator.switch_fixed_timestep(true, 60.0 * s);
-
-    bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), days(1) };
-
     // Currently, Astrea only defines a single event, an ImpulsiveBurn which triggers at perigee crossing and always
     // burns in the velocity direction. The impulsive burn event uses the thrust of all attached thrusters in a simple
     // instantaneous impulse. Future releases will support direct event scheduling, and more event types.
     ImpulsiveBurn burn;
     Event burnEvent(burn);
 
+    // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
+    // the integrator setters.
+    Integrator integrator;
+    integrator.set_abs_tol(1.0e-10);
+    integrator.set_rel_tol(1.0e-10);
+    integrator.switch_fixed_timestep(true, 60.0 * s);
+    integrator.set_events({ burnEvent });
+
+    bool store = true; // Users can choose to store the state history during propagation, or not
+    Interval propInterval{ seconds(0), days(1) };
+
     // Propagate - An arbitrary number of events can be passed to the integrator. The integrator will check for zero-crossings
     // at each step, and trigger the event action when a zero-crossing is found or stop propagation if specified.
-    const StateHistory history = integrator.propagate(epoch, propInterval, eoms, vehicle, store, { burnEvent });
+    const StateHistory history = integrator.propagate(epoch, propInterval, eoms, vehicle, store);
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;

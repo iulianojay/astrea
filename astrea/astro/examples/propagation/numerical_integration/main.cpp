@@ -71,7 +71,7 @@ int main()
     const StateHistory keplerianHistory = integrator.propagate(epoch, propInterval, keplerianEom, vehicle, store);
     std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
-    std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
+    std::cout << "Func Evals: " << integrator.get_n_func_evals() << std::endl;
     std::cout << "Two-Body Final State: " << twoBodyHistory.last() << std::endl;
     std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
     std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
