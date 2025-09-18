@@ -6,7 +6,7 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_coordinates/Geodetic.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/utilities/conversions.hpp>

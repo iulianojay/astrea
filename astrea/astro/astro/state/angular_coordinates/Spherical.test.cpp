@@ -4,7 +4,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/angular_elements/instances/Spherical.hpp>
+#include <astro/state/angular_coordinates/Spherical.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>

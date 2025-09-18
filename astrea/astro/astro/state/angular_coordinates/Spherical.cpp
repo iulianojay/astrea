@@ -1,4 +1,4 @@
-#include <astro/state/angular_elements/instances/Spherical.hpp>
+#include <astro/state/angular_coordinates/Spherical.hpp>
 
 #include <iomanip>
 #include <iostream>

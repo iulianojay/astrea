@@ -325,10 +325,7 @@ std::pair<OrbitalElements, OrbitalElements>
                 partial = find_state_derivative(time, state, eom, vehicle);
             }
             else if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-                if (_iteration == 0) { partial = find_state_derivative(time, state, eom, vehicle); }
-                else {
-                    partial = _YFinalPrevious;
-                }
+                partial = (_iteration == 0) ? find_state_derivative(time, state, eom, vehicle) : _YFinalPrevious;
             }
         }
         else {

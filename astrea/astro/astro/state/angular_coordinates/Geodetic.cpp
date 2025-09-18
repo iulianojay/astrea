@@ -1,4 +1,4 @@
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_coordinates/Geodetic.hpp>
 
 #include <iomanip>
 #include <iostream>

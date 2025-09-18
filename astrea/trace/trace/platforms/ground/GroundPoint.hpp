@@ -12,7 +12,7 @@
 
 #include <vector>
 
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/state/angular_coordinates.hpp>
 #include <astro/systems/CelestialBody.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
