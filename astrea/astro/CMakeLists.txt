@@ -36,8 +36,11 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
+    ${ASTRO_BASE}/state/Pose.cpp
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
+
+    ${ASTRO_BASE}/state/angular_elements/Quaternion.cpp
 
     ${ASTRO_BASE}/state/angular_coordinates/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_coordinates/Geodetic.cpp
@@ -101,13 +104,16 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
+    ${ASTRO_BASE}/state/CartesianVector.hpp
+    ${ASTRO_BASE}/state/Pose.hpp
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+
+    ${ASTRO_BASE}/state/angular_elements/Quaternion.hpp
 
     ${ASTRO_BASE}/state/angular_coordinates/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_coordinates/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_coordinates/Spherical.hpp
-    ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
 
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp

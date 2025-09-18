@@ -8,7 +8,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/platforms/Vehicle.hpp>

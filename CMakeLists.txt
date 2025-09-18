@@ -28,6 +28,7 @@ include(cmake/functions.cmake)
 
 # Include dependencies
 find_package(mp-units REQUIRED)
+set(gsl_CONFIG_DEFAULTS_VERSION 1)
 find_package(SQLite3 REQUIRED)
 
 include(FetchContent)

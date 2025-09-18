@@ -12,7 +12,7 @@
 
 #include <iosfwd>
 
-#include <astro/state/angular_elements/AngularElements.hpp>
+#include <astro/state/angular_elements/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -125,7 +125,7 @@ class State {
 
   private:
     OrbitalElements _orbit;             //!< Shape and orientation of the orbit.
-    AngularElements _orientation;       //!< The orientation and rotation of the object.
+    Quaternion _orientation;            //!< The orientation and rotation of the object.
     Date _epoch;                        //!< The time at which the elements are defined.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state
 };
