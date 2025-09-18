@@ -77,7 +77,7 @@ TEST_F(EventDetectionTest, NoThrust)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian kep = state.in_orbital_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
@@ -102,7 +102,7 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     // Validate
     bool elementsChanged = false;
     for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian kep = state.in_orbital_set<Keplerian>();
         if (!nearly_equal(kep, state0, true, REL_TOL)) {
             elementsChanged = true;
             break;

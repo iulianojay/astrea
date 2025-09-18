@@ -65,7 +65,7 @@ Equinoctial::Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& s
 
 Equinoctial::Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
 {
-    *this = elements.in_element_set<Equinoctial>(sys);
+    *this = elements.in_orbital_set<Equinoctial>(sys);
 }
 
 // Copy constructor

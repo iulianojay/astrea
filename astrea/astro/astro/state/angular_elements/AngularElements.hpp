@@ -10,26 +10,9 @@
 namespace astrea {
 namespace astro {
 
-class AngularElements {
-  public:
-    AngularElements()  = default;
-    ~AngularElements() = default;
+class AngularElements {};
 
-  private:
-    std::array<Angle, 3> _angles;                  //!< Euler angles or quaternion
-    std::array<AngularRate, 3> _angularVelocities; //!< Euler angular velocities
-};
-
-
-class AngularElementPartials {
-  public:
-    AngularElementPartials()  = default;
-    ~AngularElementPartials() = default;
-
-  private:
-    std::array<AngularRate, 3> _angularVelocities;            //!< Euler angular velocities
-    std::array<AngularAcceleration, 3> _angularAccelerations; //!< Euler angular accelerations
-}
+class AngularElementPartials {};
 
 
 } // namespace astro

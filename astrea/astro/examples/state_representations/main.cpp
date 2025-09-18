@@ -27,9 +27,9 @@ int main()
     // The state can currently support conversions between any supported element set
     // without needing to directly reference the astrodynamics system. This is a nice conveinience
     // for users who don't want to lug around a system object.
-    std::cout << "State in Keplerian: " << state.in_element_set<Keplerian>() << std::endl;
-    std::cout << "State in Equinoctial: " << state.in_element_set<Equinoctial>() << std::endl;
-    std::cout << "State in Cartesian: " << state.in_element_set<Cartesian>() << std::endl << std::endl;
+    std::cout << "State in Keplerian: " << state.in_orbital_set<Keplerian>() << std::endl;
+    std::cout << "State in Equinoctial: " << state.in_orbital_set<Equinoctial>() << std::endl;
+    std::cout << "State in Cartesian: " << state.in_orbital_set<Cartesian>() << std::endl << std::endl;
 
     // In future release, the state will be used directly for propagation in place of OrbitalElements.
 

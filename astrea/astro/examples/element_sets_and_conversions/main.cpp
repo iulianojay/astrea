@@ -62,12 +62,12 @@ int main()
     std::cout << "OrbitalElements (from Keplerian): " << elements << std::endl;
 
     // This class can handle conversions internally
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_orbital_set<Keplerian>(sys);
     std::cout << "OrbitalElements converted to Keplerian: " << elements << std::endl;
-    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(sys);
+    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_orbital_set<Equinoctial>(sys);
     std::cout << "OrbitalElements converted to Equinoctial: " << converted << std::endl;
 
     // And it can return the desired element set directly
-    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(sys);
+    const Keplerian keplerian2 = elements.in_orbital_set<Keplerian>(sys);
     std::cout << "Extracted Keplerian conversion: " << keplerian2 << std::endl;
 }

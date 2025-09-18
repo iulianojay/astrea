@@ -82,7 +82,7 @@ int main()
     std::cout << "Period After Each Burn:" << std::endl;
     for (const auto& [eventName, dates] : eventTimes) {
         for (const Date& date : dates) {
-            const Keplerian elementsAfterBurn = history.get_state_at(date + 60.0 * s).in_element_set<Keplerian>();
+            const Keplerian elementsAfterBurn = history.get_state_at(date + 60.0 * s).in_orbital_set<Keplerian>();
             mp_units::quantity<h> orbitalPeriod =
                 TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle);
             std::cout << "\t" << orbitalPeriod << std::endl;

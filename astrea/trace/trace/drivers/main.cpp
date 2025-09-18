@@ -77,7 +77,7 @@ int access_test()
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const State& state = sat.get_state();
-                // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
+                // sat.update_state(State(state.get_orbit(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
                 sat.attach_payload(leoCone);
             }
         }

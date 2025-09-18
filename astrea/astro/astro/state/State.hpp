@@ -12,6 +12,7 @@
 
 #include <iosfwd>
 
+#include <astro/state/angular_elements/AngularElements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -42,12 +43,7 @@ class State {
      * @param epoch The epoch of the state.
      * @param sys The astrodynamics system associated with the state.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys) :
-        _elements(elements),
-        _epoch(epoch),
-        _system(&sys)
-    {
-    }
+    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys);
 
     /**
      * @brief Checks if two State objects are equal.
@@ -63,7 +59,7 @@ class State {
      *
      * @return const OrbitalElements& Reference to the orbital elements of the state.
      */
-    const OrbitalElements& get_elements() const { return _elements; }
+    const OrbitalElements& get_orbit() const { return _orbit; }
 
     /**
      * @brief Gets the epoch of the state.
@@ -85,9 +81,9 @@ class State {
      * @tparam T The type to convert the orbital elements to.
      */
     template <IsOrbitalElements T>
-    void convert_to_set()
+    void convert_to_orbital_set()
     {
-        _elements.convert_to_set<T>(get_system());
+        _orbit.convert_to_orbital_set<T>(get_system());
     }
 
     /**
@@ -97,9 +93,9 @@ class State {
      * @return State A new State object with the converted orbital elements.
      */
     template <IsOrbitalElements T>
-    State convert_to_set() const
+    State convert_to_orbital_set() const
     {
-        return { in_element_set<T>(), _epoch, get_system() };
+        return { in_orbital_set<T>(), _epoch, get_system() };
     }
 
     /**
@@ -109,28 +105,29 @@ class State {
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in_element_set() const
+    T in_orbital_set() const
     {
-        return _elements.in_element_set<T>(get_system());
+        return _orbit.in_orbital_set<T>(get_system());
     }
 
     /**
      * @brief Sets the orbital elements of the state.
      *
-     * @param elements The new orbital elements to set.
+     * @param orbit The new orbital elements to set.
      */
     template <IsOrbitalElements T>
-    void set_elements(const T& elements, const bool convertToOriginal = false)
+    void set_elements(const T& orbit, const bool convertToOriginal = false)
     {
-        std::size_t originalIndex = _elements.index();
-        _elements                 = elements;
-        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_system()); }
+        const std::size_t originalIndex = _orbit.index();
+        _orbit                          = orbit;
+        if (convertToOriginal) { _orbit.convert_to_orbital_set(originalIndex, get_system()); }
     }
 
   private:
-    OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
-    Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+    OrbitalElements _orbit;             //!< Shape and orientation of the orbit.
+    AngularElements _orientation;       //!< The orientation and rotation of the object.
+    Date _epoch;                        //!< The time at which the elements are defined.
+    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state
 };
 
 } // namespace astro

@@ -60,14 +60,14 @@ const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const {
 //         auto parentToGrandParent                 = parentBody->get_state_history();
 //         for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
 
-//             centerToRoot[ii].get_elements() = centerToRoot[ii].get_elements() + parentToGrandParent[ii].get_elements();
+//             centerToRoot[ii].get_orbit() = centerToRoot[ii].get_orbit() + parentToGrandParent[ii].get_orbit();
 //         }
 //         parent = parentBody->get_parent();
 //     }
 // }
 // else {
 //     for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-//         centerToRoot[ii].get_elements() = OrbitalElements(Keplerian());
+//         centerToRoot[ii].get_orbit() = OrbitalElements(Keplerian());
 //     }
 // }
 
@@ -79,13 +79,13 @@ const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const {
 //         const CelestialBodyUniquePtr& parentBody = _bodyFactory.get_or_create(parent);
 //         if (parent == "Sun") {
 //             for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-//                 centerToSun[ii].get_elements() = centerToSun[ii].get_elements();
+//                 centerToSun[ii].get_orbit() = centerToSun[ii].get_orbit();
 //             }
 //         }
 //         else {
 //             auto parentToGrandParent = parentBody->get_state_history();
 //             for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-//                 centerToSun[ii].get_elements() = centerToSun[ii].get_elements() + parentToGrandParent[ii].get_elements();
+//                 centerToSun[ii].get_orbit() = centerToSun[ii].get_orbit() + parentToGrandParent[ii].get_orbit();
 //             }
 //         }
 //         parent = parentBody->get_parent();
@@ -93,7 +93,7 @@ const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const {
 // }
 // else {
 //     for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-//         centerToSun[ii].get_elements() = OrbitalElements(Keplerian());
+//         centerToSun[ii].get_orbit() = OrbitalElements(Keplerian());
 //     }
 // }
 
@@ -112,14 +112,14 @@ const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const {
 //         const CelestialBodyUniquePtr& parentBody = _bodyFactory.get(parent);
 //         auto parentToGrandParent                 = parentBody->get_state_history();
 //         for (std::size_t ii = 0; ii < states.size(); ii++) {
-//             states[ii].get_elements() = states[ii].get_elements() + parentToGrandParent[ii].get_elements();
+//             states[ii].get_orbit() = states[ii].get_orbit() + parentToGrandParent[ii].get_orbit();
 //         }
 //         parent = parentBody->get_parent();
 //     }
 
 //     // Convert to state relative to central body
 //     for (std::size_t ii = 0; ii < states.size(); ii++) {
-//         states[ii].get_elements() = states[ii].get_elements() - centerToRoot[ii].get_elements();
+//         states[ii].get_orbit() = states[ii].get_orbit() - centerToRoot[ii].get_orbit();
 //     }
 // }
 // }

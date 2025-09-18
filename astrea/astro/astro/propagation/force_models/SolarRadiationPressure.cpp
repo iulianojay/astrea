@@ -40,7 +40,7 @@ AccelerationVector<ECI>
 
     // Find day nearest to current time
     const State& stateSunToCenter = center->get_state_at(date); // assumes center is a planet
-    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_elements().in_element_set<Cartesian>(sys).get_position();
+    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.get_orbit().in_orbital_set<Cartesian>(sys).get_position();
 
     // Radius from central body to sun
     const RadiusVector<ECI> radiusCenterToSun = -radiusSunToCenter;

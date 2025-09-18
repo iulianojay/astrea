@@ -37,8 +37,8 @@ J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
 OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
 
-    const Keplerian elements  = state.in_element_set<Keplerian>(get_system());
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const Keplerian elements  = state.in_orbital_set<Keplerian>(get_system());
+    const Cartesian cartesian = state.in_orbital_set<Cartesian>(get_system());
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();

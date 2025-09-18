@@ -68,11 +68,11 @@ State StateHistory::get_state_at(const Date& date) const
 
     // Interpolate
     const Date& postDate                = iter->first;
-    const OrbitalElements& postElements = (iter->second).get_elements();
+    const OrbitalElements& postElements = (iter->second).get_orbit();
 
     const Date& preDate                = std::prev(iter)->first;
     const State& preState              = std::prev(iter)->second;
-    const OrbitalElements& preElements = preState.get_elements();
+    const OrbitalElements& preElements = preState.get_orbit();
 
     const auto& system = preState.get_system();
 

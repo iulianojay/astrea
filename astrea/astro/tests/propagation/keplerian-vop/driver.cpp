@@ -71,7 +71,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian kep = state.in_orbital_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
@@ -89,7 +89,7 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian kep = state.in_orbital_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }
@@ -107,7 +107,7 @@ TEST_F(KeplerianVopPropagationTest, LEONoForces)
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian kep = state.in_orbital_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
     }
 }

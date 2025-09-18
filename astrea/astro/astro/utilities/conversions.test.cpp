@@ -99,13 +99,13 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Cartesian>(sys);
+    elements.convert_to_orbital_set<Cartesian>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _cartExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_orbital_set<Keplerian>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _keplExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
@@ -115,10 +115,10 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(sys);
+            elements.convert_to_orbital_set<Cartesian>(sys);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(sys);
+            elements.convert_to_orbital_set<Keplerian>(sys);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -130,13 +130,13 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Cartesian>(sys);
+    elements.convert_to_orbital_set<Cartesian>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _cartExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Equinoctial>(sys);
+    elements.convert_to_orbital_set<Equinoctial>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _equiExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
@@ -146,10 +146,10 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(sys);
+            elements.convert_to_orbital_set<Cartesian>(sys);
 
             // Convert back
-            elements.convert_to_set<Equinoctial>(sys);
+            elements.convert_to_orbital_set<Equinoctial>(sys);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -161,13 +161,13 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
 TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Equinoctial>(sys);
+    elements.convert_to_orbital_set<Equinoctial>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _equiExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_orbital_set<Keplerian>(sys);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _keplExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
@@ -177,10 +177,10 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Equinoctial
-            elements.convert_to_set<Equinoctial>(sys);
+            elements.convert_to_orbital_set<Equinoctial>(sys);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(sys);
+            elements.convert_to_orbital_set<Keplerian>(sys);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -221,10 +221,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(sys);
+//             elements.convert_to_orbital_set<Equinoctial>(sys);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(sys);
+//             elements.convert_to_orbital_set<Keplerian>(sys);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -236,13 +236,13 @@ TEST_F(ConversionTest, LlaToEcef)
 // TEST_F(ConversionTest, EciToEcef)
 // {
 //     OrbitalElements elements = _eciExp;
-//     elements.convert_to_set<Equinoctial>(sys);
+//     elements.convert_to_orbital_set<Equinoctial>(sys);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _ecefExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EcefToEci)
 // {
 //     OrbitalElements elements = _ecefExp;
-//     elements.convert_to_set<Keplerian>(sys);
+//     elements.convert_to_orbital_set<Keplerian>(sys);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _eciExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EciEcefCycle)
@@ -252,10 +252,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(sys);
+//             elements.convert_to_orbital_set<Equinoctial>(sys);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(sys);
+//             elements.convert_to_orbital_set<Keplerian>(sys);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));

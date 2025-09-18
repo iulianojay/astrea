@@ -201,7 +201,7 @@ class OrbitalElements {
      * @param sys The astrodynamics system to use for the conversion.
      * @return OrbitalElements& Reference to the current orbital elements after conversion.
      */
-    OrbitalElements& convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys);
+    OrbitalElements& convert_to_orbital_set(const std::size_t idx, const AstrodynamicsSystem& sys);
 
     /**
      * @brief Converts the current orbital elements to a specific type.
@@ -210,7 +210,7 @@ class OrbitalElements {
      * @param sys The astrodynamics system to use for the conversion.
      * @return OrbitalElements Orbital elements after conversion.
      */
-    OrbitalElements convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys) const;
+    OrbitalElements convert_to_orbital_set(const std::size_t idx, const AstrodynamicsSystem& sys) const;
 
     /**
      * @brief Converts the current orbital elements to a specific type.
@@ -220,9 +220,9 @@ class OrbitalElements {
      * @return A reference to the current orbital elements after conversion.
      */
     template <IsOrbitalElements T>
-    OrbitalElements& convert_to_set(const AstrodynamicsSystem& sys)
+    OrbitalElements& convert_to_orbital_set(const AstrodynamicsSystem& sys)
     {
-        _elements = in_element_set<T>(sys);
+        _elements = in_orbital_set<T>(sys);
         return *this;
     }
 
@@ -234,9 +234,9 @@ class OrbitalElements {
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
+    OrbitalElements convert_to_orbital_set(const AstrodynamicsSystem& sys) const
     {
-        return in_element_set<T>(sys);
+        return in_orbital_set<T>(sys);
     }
 
     /**
@@ -246,7 +246,7 @@ class OrbitalElements {
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in_element_set(const AstrodynamicsSystem& sys) const
+    T in_orbital_set(const AstrodynamicsSystem& sys) const
     {
         return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
     }
@@ -396,7 +396,7 @@ class OrbitalElements {
      * @param sys The astrodynamics system to use for the conversion.
      * @return The converted orbital elements.
      */
-    OrbitalElements convert_to_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const;
+    OrbitalElements convert_to_orbital_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const;
 };
 
 /**

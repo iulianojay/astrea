@@ -216,7 +216,7 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
 
 Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
 {
-    *this = elements.in_element_set<Keplerian>(sys);
+    *this = elements.in_orbital_set<Keplerian>(sys);
 }
 
 // Copy constructor

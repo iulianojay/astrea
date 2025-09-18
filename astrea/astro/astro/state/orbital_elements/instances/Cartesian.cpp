@@ -146,7 +146,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
 
 Cartesian::Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
 {
-    *this = elements.in_element_set<Cartesian>(sys);
+    *this = elements.in_orbital_set<Cartesian>(sys);
 }
 
 // Copy constructor

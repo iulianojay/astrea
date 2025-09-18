@@ -94,7 +94,7 @@ StateHistory
 
         // Check for event
         const bool terminalEvent = check_event(time, state, vehicle);
-        state                    = vehicle.get_state().get_elements();
+        state                    = vehicle.get_state().get_orbit();
         if (terminalEvent) {
             print_iteration(time, state, endTime, state0);
 
@@ -226,10 +226,10 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     // Need to check input elements match expected for EOMS
     const auto& sys                 = eom.get_system();
     const std::size_t expectedSetId = eom.get_expected_set_id();
-    OrbitalElements state0          = vehicle.get_state().get_elements();
+    OrbitalElements state0          = vehicle.get_state().get_orbit();
     if (state0.index() != expectedSetId) {
-        state0 = state0.convert_to_set(expectedSetId, sys);
-        // state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
+        state0 = state0.convert_to_orbital_set(expectedSetId, sys);
+        // state0.convert_to_orbital_set<expectedSetId>(sys); // Can't make get expected set id static :(
         vehicle.update_state({ state0, epoch, sys });
     }
     // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
