@@ -105,7 +105,7 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation ground(sys.get_center().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, "Test site", { groundCone });
+    GroundStation ground(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, "Test site", { groundCone });
     GroundArchitecture grounds({ ground });
 
     // Propagate

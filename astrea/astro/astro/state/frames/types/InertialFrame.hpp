@@ -39,6 +39,10 @@ class InertialFrame : public Frame<Frame_T> {
      * @brief Default destructor for InertialFrame.
      */
     virtual ~InertialFrame() = default;
+
+  private:
+    const CelestialBody* centralBody; //!< The central body associated with the inertial frame.
+                                      // TODO: Extend to barycenter. Maybe with a variant?
 };
 
 } // namespace astro

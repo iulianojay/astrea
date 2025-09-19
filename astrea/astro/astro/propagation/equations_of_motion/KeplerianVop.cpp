@@ -25,7 +25,7 @@ using mp_units::si::unit_symbols::s;
 KeplerianVop::KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn) :
     EquationsOfMotion(system),
     forces(&forces),
-    mu(system.get_center()->get_mu()),
+    mu(system.get_central_body()->get_mu()),
     doWarn(doWarn)
 {
 }

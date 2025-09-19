@@ -15,6 +15,7 @@
 
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -61,26 +62,72 @@ class CelestialBodyFactory {
      * @param system The astrodynamics system to which the body belongs.
      * @return A unique pointer to the created CelestialBody.
      */
-    const CelestialBodyUniquePtr& create(const std::string& name, const AstrodynamicsSystem& system);
+    const CelestialBodyUniquePtr& create(const PlanetaryBody& id, const AstrodynamicsSystem& system);
 
     /**
-     * @brief Gets a celestial body by name.
+     * @brief Creates a celestial body of a specific type.
      *
-     * @param name The name of the celestial body.
+     * This method allows for the creation of celestial bodies of derived types, such as specific planets or moons.
+     * The created body is assigned to the provided astrodynamics system.
+     *
+     * @tparam T The type of celestial body to create, must be derived from CelestialBody.
+     * @tparam Args The types of arguments to pass to the constructor of T.
+     * @param args The arguments to pass to the constructor of T.
+     * @param system The astrodynamics system to which the body belongs.
+     * @return A unique pointer to the created CelestialBody of type T.
+     */
+    template <typename T, typename... Args>
+        requires(std::is_base_of<CelestialBody, T>::value)
+    const CelestialBodyUniquePtr& create(Args&&... args, const AstrodynamicsSystem& system)
+    {
+        const PlanetaryBody id = T::get_id();
+        if (_bodies.count(id) == 0) {
+            CelestialBodyUniquePtr body = std::make_unique<T>(std::forward<Args>(args)...);
+            body->assign_system(system);
+            _bodies.emplace(id, std::move(body));
+        }
+        return get(id);
+    }
+
+    /**
+     * @brief Gets a celestial body by ID.
+     *
+     * @param id The ID of the celestial body.
      * @return A unique pointer to the CelestialBody if found, otherwise nullptr.
      */
-    const CelestialBodyUniquePtr& get(const std::string& name) const;
+    const CelestialBodyUniquePtr& get(const PlanetaryBody& id) const;
 
     /**
-     * @brief Gets or creates a celestial body by name.
+     * @brief Gets or creates a celestial body by ID.
      *
      * If the body does not exist, it will be created using the default JSON file for that body.
      *
-     * @param name The name of the celestial body.
+     * @param id The ID of the celestial body.
      * @param system The astrodynamics system to which the body belongs.
      * @return A unique pointer to the CelestialBody.
      */
-    const CelestialBodyUniquePtr& get_or_create(const std::string& name, const AstrodynamicsSystem& system);
+    const CelestialBodyUniquePtr& get_or_create(const PlanetaryBody& id, const AstrodynamicsSystem& system);
+
+    /**
+     * @brief Gets or creates a celestial body of a specific type.
+     *
+     * This method allows for the retrieval or creation of celestial bodies of derived types, such as specific planets
+     * or moons. If the body does not exist, it will be created using the provided constructor arguments.
+     *
+     * @tparam T The type of celestial body to get or create, must be derived from CelestialBody.
+     * @tparam Args The types of arguments to pass to the constructor of T.
+     * @param args The arguments to pass to the constructor of T.
+     * @param system The astrodynamics system to which the body belongs.
+     * @return A unique pointer to the CelestialBody of type T.
+     */
+    template <typename T, typename... Args>
+        requires(std::is_base_of<CelestialBody, T>::value)
+    const CelestialBodyUniquePtr& get_or_create(Args&&... args, const AstrodynamicsSystem& system)
+    {
+        const PlanetaryBody id = T::get_id();
+        if (_bodies.count(id) == 0) { return create<T>(args..., system); }
+        return _bodies.at(id);
+    }
 
     /**
      * @brief Gets all celestial bodies managed by this factory.
@@ -104,21 +151,14 @@ class CelestialBodyFactory {
     // void propagate_bodies(const Date& epoch, const Time& endTime);
 
     /**
-     * @brief Get the root object of the celestial body hierarchy.
-     *
-     * @return const std::string& The name of the root celestial body.
-     */
-    const std::string& get_root() const { return _root; }
-
-    /**
      * @brief Iterator type for iterating over celestial bodies.
      */
-    using iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::iterator;
+    using iterator = std::unordered_map<PlanetaryBody, CelestialBodyUniquePtr>::iterator;
 
     /**
      * @brief Constant iterator type for iterating over celestial bodies.
      */
-    using const_iterator = std::unordered_map<std::string, CelestialBodyUniquePtr>::const_iterator;
+    using const_iterator = std::unordered_map<PlanetaryBody, CelestialBodyUniquePtr>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the celestial bodies.
@@ -135,37 +175,33 @@ class CelestialBodyFactory {
     auto end() const { return _bodies.end(); }
 
   private:
-    std::unordered_map<std::string, CelestialBodyUniquePtr> _bodies; //!< Map of celestial bodies by name.
-    std::string _root;                                               //!< The name of the root celestial body.
-
-    /**
-     * @brief Finds the root celestial body in the hierarchy.
-     */
-    void find_root();
+    std::unordered_map<PlanetaryBody, CelestialBodyUniquePtr> _bodies; //!< Map of celestial bodies by enum.
 
     //!< Map of celestial body names to their corresponding JSON file paths.
-    const std::unordered_map<std::string, std::string> _buildFiles = { { "Sun", "/data/planetary/Sun/Sun.json" },
-                                                                       { "Mercury", "/data/planetary/Mercury/Mercury.json" },
-                                                                       { "Venus", "/data/planetary/Venus/Venus.json" },
-                                                                       { "Earth", "/data/planetary/Earth/Earth.json" },
-                                                                       { "Moon", "/data/planetary/Earth/Moon.json" },
-                                                                       { "Mars", "/data/planetary/Mars/Mars.json" },
-                                                                       { "Phobos", "/data/planetary/Mars/Phobos.json" },
-                                                                       { "Deimos", "/data/planetary/Mars/Deimos.json" },
-                                                                       { "Jupiter", "/data/planetary/Jupiter/Jupiter.json" },
-                                                                       { "Ganymede", "/data/planetary/Jupiter/Ganymede.json" },
-                                                                       { "Callisto", "/data/planetary/Jupiter/Callisto.json" },
-                                                                       { "Io", "/data/planetary/Jupiter/Io.json" },
-                                                                       { "Europa", "/data/planetary/Jupiter/Europa.json" },
-                                                                       { "Saturn", "/data/planetary/Saturn/Saturn.json" },
-                                                                       { "Titan", "/data/planetary/Saturn/Titan.json" },
-                                                                       { "Rhea", "/data/planetary/Saturn/Rhea.json" },
-                                                                       { "Iapetus", "/data/planetary/Saturn/Iapetus.json" },
-                                                                       { "Uranus", "/data/planetary/Uranus/Uranus.json" },
-                                                                       { "Titania", "/data/planetary/Uranus/Titania.json" },
-                                                                       { "Oberon", "/data/planetary/Uranus/Oberon.json" },
-                                                                       { "Neptune", "/data/planetary/Neptune/Neptune.json" },
-                                                                       { "Triton", "/data/planetary/Neptune/Triton.json" } };
+    const std::unordered_map<PlanetaryBody, std::filesystem::path> _buildFiles = {
+        { PlanetaryBody::SUN, "data/planetary/Sun/Sun.json" },
+        { PlanetaryBody::MERCURY, "data/planetary/Mercury/Mercury.json" },
+        { PlanetaryBody::VENUS, "data/planetary/Venus/Venus.json" },
+        { PlanetaryBody::EARTH, "data/planetary/Earth/Earth.json" },
+        { PlanetaryBody::MOON, "data/planetary/Earth/Moon.json" },
+        { PlanetaryBody::MARS, "data/planetary/Mars/Mars.json" },
+        { PlanetaryBody::PHOBOS, "data/planetary/Mars/Phobos.json" },
+        { PlanetaryBody::DEIMOS, "data/planetary/Mars/Deimos.json" },
+        { PlanetaryBody::JUPITER, "data/planetary/Jupiter/Jupiter.json" },
+        { PlanetaryBody::GANYMEDE, "data/planetary/Jupiter/Ganymede.json" },
+        { PlanetaryBody::CALLISTO, "data/planetary/Jupiter/Callisto.json" },
+        { PlanetaryBody::IO, "data/planetary/Jupiter/Io.json" },
+        { PlanetaryBody::EUROPA, "data/planetary/Jupiter/Europa.json" },
+        { PlanetaryBody::SATURN, "data/planetary/Saturn/Saturn.json" },
+        { PlanetaryBody::TITAN, "data/planetary/Saturn/Titan.json" },
+        { PlanetaryBody::RHEA, "data/planetary/Saturn/Rhea.json" },
+        { PlanetaryBody::IAPETUS, "data/planetary/Saturn/Iapetus.json" },
+        { PlanetaryBody::URANUS, "data/planetary/Uranus/Uranus.json" },
+        { PlanetaryBody::TITANIA, "data/planetary/Uranus/Titania.json" },
+        { PlanetaryBody::OBERON, "data/planetary/Uranus/Oberon.json" },
+        { PlanetaryBody::NEPTUNE, "data/planetary/Neptune/Neptune.json" },
+        { PlanetaryBody::TRITON, "data/planetary/Neptune/Triton.json" }
+    };
 };
 
 } // namespace astro

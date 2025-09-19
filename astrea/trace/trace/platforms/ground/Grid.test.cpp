@@ -25,7 +25,7 @@ class GridTest : public testing::Test {
         spacing = 5.0 * mp_units::angular::unit_symbols::deg;
         weight  = 0.0 * mp_units::one;
 
-        parent         = sys.get("Earth").get();
+        parent         = sys.get(PlanetaryBody::EARTH).get();
         grid           = Grid(parent, corner1, corner4, GridType::UNIFORM, spacing, weight);
         groundStations = { GroundPoint(parent, lat1, lon1, 0.0 * mp_units::si::unit_symbols::km),
                            GroundPoint(parent, lat4, lon4, 0.0 * mp_units::si::unit_symbols::km) };

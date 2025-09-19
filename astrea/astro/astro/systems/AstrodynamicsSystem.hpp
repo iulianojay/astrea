@@ -14,10 +14,10 @@
 #include <unordered_set>
 #include <vector>
 
-#include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyFactory.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/enums.hpp>
 
 
 namespace astrea {
@@ -37,7 +37,10 @@ class AstrodynamicsSystem {
      * @param centralBody The name of the central celestial body (default is "Earth").
      * @param allBodies A set of names of all secondary celestial bodies in the system (default is the "Moon").
      */
-    AstrodynamicsSystem(const std::string& centralBody = "Earth", const std::unordered_set<std::string>& secondaryBodies = { "Moon" });
+    AstrodynamicsSystem(
+        const PlanetaryBody& centralBody                         = PlanetaryBody::EARTH,
+        const std::unordered_set<PlanetaryBody>& secondaryBodies = { PlanetaryBody::MOON }
+    );
 
     /**
      * @brief Default destructor for the AstrodynamicsSystem class.
@@ -64,16 +67,16 @@ class AstrodynamicsSystem {
     /**
      * @brief Returns the central celestial body of the system.
      *
-     * @return const std::string& The name of the central celestial body.
+     * @return const SystemCenter& The name of the central celestial body.
      */
-    const std::string& center() const;
+    const SystemCenter& get_center_type() const;
 
     /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.
      */
-    const CelestialBodyUniquePtr& get_center() const;
+    const CelestialBodyUniquePtr& get_central_body() const;
 
     /**
      * @brief Return a specific celestial body by name.
@@ -81,7 +84,7 @@ class AstrodynamicsSystem {
      * @param name The name of the celestial body to retrieve.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified name.
      */
-    const CelestialBodyUniquePtr& get(const std::string& name) const;
+    const CelestialBodyUniquePtr& get(const PlanetaryBody& name) const;
 
     /**
      * @brief Get or create a celestial body by name.
@@ -89,20 +92,30 @@ class AstrodynamicsSystem {
      * @param name The name of the celestial body to retrieve or create.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified name, creating it if it does not exist.
      */
-    const CelestialBodyUniquePtr& get_or_create(const std::string& name);
+    const CelestialBodyUniquePtr& get_or_create(const PlanetaryBody& name);
 
     /**
-     * @brief Returns a vector of all celestial bodies in the system.
+     * @brief Create a celestial body by id.
      *
-     * @return const std::unordered_set<std::string>& A set containing the names of all celestial bodies in the system.
+     * @param id The id of the celestial body to create.
+     * @param system The astrodynamics system to which the body belongs.
+     * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
-    const std::unordered_set<std::string>& all_bodies() const;
+    const CelestialBodyUniquePtr& create(const PlanetaryBody& id, const AstrodynamicsSystem& system);
+
     /**
      * @brief Returns a vector of all celestial bodies in the system.
      *
      * @return const std::vector<CelestialBodyUniquePtr>& A vector containing pointers to all celestial bodies in the system.
      */
     const auto& get_all_bodies() const { return _bodyFactory.get_all_bodies(); }
+
+    /**
+     * @brief Get the root object of the celestial body hierarchy.
+     *
+     * @return const PlanetaryBody& The name of the root celestial body.
+     */
+    const PlanetaryBody& get_root() const { return _root; }
 
     // RadiusVector<ECI> get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
@@ -131,9 +144,11 @@ class AstrodynamicsSystem {
     auto end() const { return _bodyFactory.end(); }
 
   private:
-    const std::string _centralBody; //!< The name of the central celestial body, default is "Earth".
-    std::unordered_set<std::string> _allBodies; //!< A set of names of all celestial bodies in the system, default includes "Earth" and "Moon".
-    CelestialBodyFactory _bodyFactory; //!< Factory for creating and managing celestial bodies in the system.
+    SystemCenter _centerType;                  //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
+    PlanetaryBody _centralBody;                //!< The id of the central body.
+    std::unordered_set<PlanetaryBody> _bodies; //!< Set of names of all celestial bodies in the system.
+    CelestialBodyFactory _bodyFactory;         //!< Factory for creating and managing celestial bodies in the system.
+    PlanetaryBody _root;                       //!< The root celestial body (first common lineage).
 
     /**
      * @brief Creates all celestial bodies in the system based on the provided names.
@@ -141,6 +156,11 @@ class AstrodynamicsSystem {
      * This method initializes the celestial bodies defined in the `allBodies` set.
      */
     void create_all_bodies();
+
+    /**
+     * @brief Finds the root celestial body in the hierarchy.
+     */
+    void find_root();
 };
 
 } // namespace astro

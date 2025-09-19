@@ -127,7 +127,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
-    ${ASTRO_BASE}/systems/Barycenter.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyFactory.hpp
 

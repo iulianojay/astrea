@@ -2,30 +2,121 @@
 
 #include <filesystem>
 
+#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
+
 namespace astrea {
 namespace astro {
 
-static const std::string ROOT = std::getenv("ASTREA_ROOT");
-
-
-const CelestialBodyUniquePtr& CelestialBodyFactory::create(const std::string& name, const AstrodynamicsSystem& system)
+const CelestialBodyUniquePtr& CelestialBodyFactory::create(const PlanetaryBody& id, const AstrodynamicsSystem& system)
 {
-    const auto file = std::filesystem::absolute(ROOT + _buildFiles.at(name)).lexically_normal();
-    if (_bodies.count(name) == 0) { _bodies.emplace(name, std::make_unique<CelestialBody>(file, system)); }
-    find_root();
-    return get(name);
+    using namespace planetary_bodies;
+    if (_bodies.count(id) == 0) {
+        const auto file = std::filesystem::absolute(ASTREA_ROOT / _buildFiles.at(id)).lexically_normal();
+        switch (id) {
+            case (PlanetaryBody::SUN): {
+                _bodies.emplace(id, std::make_unique<Sun>(system));
+                break;
+            }
+            case (PlanetaryBody::MERCURY): {
+                _bodies.emplace(id, std::make_unique<Mercury>(system));
+                break;
+            }
+            case (PlanetaryBody::VENUS): {
+                _bodies.emplace(id, std::make_unique<Venus>(system));
+                break;
+            }
+            case (PlanetaryBody::EARTH): {
+                _bodies.emplace(id, std::make_unique<Earth>(system));
+                break;
+            }
+            case (PlanetaryBody::MOON): {
+                _bodies.emplace(id, std::make_unique<Moon>(system));
+                break;
+            }
+            case (PlanetaryBody::MARS): {
+                _bodies.emplace(id, std::make_unique<Mars>(system));
+                break;
+            }
+            case (PlanetaryBody::PHOBOS): {
+                _bodies.emplace(id, std::make_unique<Phobos>(system));
+                break;
+            }
+            case (PlanetaryBody::DEIMOS): {
+                _bodies.emplace(id, std::make_unique<Deimos>(system));
+                break;
+            }
+            case (PlanetaryBody::JUPITER): {
+                _bodies.emplace(id, std::make_unique<Jupiter>(system));
+                break;
+            }
+            case (PlanetaryBody::GANYMEDE): {
+                _bodies.emplace(id, std::make_unique<Ganymede>(system));
+                break;
+            }
+            case (PlanetaryBody::CALLISTO): {
+                _bodies.emplace(id, std::make_unique<Callisto>(system));
+                break;
+            }
+            case (PlanetaryBody::IO): {
+                _bodies.emplace(id, std::make_unique<Io>(system));
+                break;
+            }
+            case (PlanetaryBody::EUROPA): {
+                _bodies.emplace(id, std::make_unique<Europa>(system));
+                break;
+            }
+            case (PlanetaryBody::SATURN): {
+                _bodies.emplace(id, std::make_unique<Saturn>(system));
+                break;
+            }
+            case (PlanetaryBody::TITAN): {
+                _bodies.emplace(id, std::make_unique<Titan>(system));
+                break;
+            }
+            case (PlanetaryBody::RHEA): {
+                _bodies.emplace(id, std::make_unique<Rhea>(system));
+                break;
+            }
+            case (PlanetaryBody::IAPETUS): {
+                _bodies.emplace(id, std::make_unique<Iapetus>(system));
+                break;
+            }
+            case (PlanetaryBody::URANUS): {
+                _bodies.emplace(id, std::make_unique<Uranus>(system));
+                break;
+            }
+            case (PlanetaryBody::TITANIA): {
+                _bodies.emplace(id, std::make_unique<Titania>(system));
+                break;
+            }
+            case (PlanetaryBody::OBERON): {
+                _bodies.emplace(id, std::make_unique<Oberon>(system));
+                break;
+            }
+            case (PlanetaryBody::NEPTUNE): {
+                _bodies.emplace(id, std::make_unique<Neptune>(system));
+                break;
+            }
+            case (PlanetaryBody::TRITON): {
+                _bodies.emplace(id, std::make_unique<Triton>(system));
+                break;
+            }
+            default: throw std::runtime_error("Error: Celestial body not implemented in factory.");
+        }
+    }
+    return get(id);
 }
 
-const CelestialBodyUniquePtr& CelestialBodyFactory::get(const std::string& name) const
+const CelestialBodyUniquePtr& CelestialBodyFactory::get(const PlanetaryBody& id) const
 {
-    if (_bodies.count(name) > 0) { return _bodies.at(name); }
-    throw std::out_of_range("Input gravitational body, " + name + ", not found.");
+    if (_bodies.count(id) > 0) { return _bodies.at(id); }
+    throw std::out_of_range("Input gravitational body not found.");
 }
 
-const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const std::string& name, const AstrodynamicsSystem& system)
+const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const PlanetaryBody& id, const AstrodynamicsSystem& system)
 {
-    if (_bodies.count(name) == 0) { create(name, system); }
-    return _bodies.at(name);
+    if (_bodies.count(id) == 0) { create(id, system); }
+    return _bodies.at(id);
 }
 
 
@@ -44,42 +135,6 @@ const CelestialBodyUniquePtr& CelestialBodyFactory::get_or_create(const std::str
 //     }
 // }
 
-
-void CelestialBodyFactory::find_root()
-{
-    // TODO: Move this to the system
-
-    // // Count total planets
-    // std::size_t planetCount = 0;
-    // for (const auto& [name, body] : _bodies) {
-    //     if (body->get_type() == "Planet") {
-    //         planetCount++;
-    //         _root = name;
-    //     }
-    // }
-
-    // // Check if other bodies are children of only planet -
-    // // assumes the common root cannot be a satellite
-    // if (planetCount == 1) {
-    //     for (const auto& [name, body] : _bodies) {
-    //         std::string parent = name;
-    //         while (parent != "Sun" && parent != _root) {
-    //             parent = get_or_create(parent)->get_parent();
-    //         }
-
-    //         // If any object not in same planetary system, the common root
-    //         // must be the Sun
-    //         if (parent == "Sun") {
-    //             _root = "Sun";
-    //             break;
-    //         }
-    //     }
-    // }
-    // else {
-    //     // The only common root for multiple planets is the Sun
-    //     _root = "Sun";
-    // }
-}
 
 } // namespace astro
 } // namespace astrea

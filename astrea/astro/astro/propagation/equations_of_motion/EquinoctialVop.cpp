@@ -25,7 +25,7 @@ using mp_units::si::unit_symbols::s;
 EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
     EquationsOfMotion(system),
     forces(&forces),
-    mu(system.get_center()->get_mu())
+    mu(system.get_central_body()->get_mu())
 {
 }
 

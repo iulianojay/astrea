@@ -52,7 +52,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
     static const quantity twoPiRad        = 2.0 * (mag<pi> * rad);
 
     // Get mu
-    const quantity mu = sys.get_center()->get_mu();
+    const quantity mu = sys.get_central_body()->get_mu();
 
     // Get r and v
     const auto& x  = elements.get_x();

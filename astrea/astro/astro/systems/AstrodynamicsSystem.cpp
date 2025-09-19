@@ -5,35 +5,77 @@
 namespace astrea {
 namespace astro {
 
-AstrodynamicsSystem::AstrodynamicsSystem(const std::string& centralBody, const std::unordered_set<std::string>& secondaryBodies) :
+AstrodynamicsSystem::AstrodynamicsSystem(const PlanetaryBody& centralBody, const std::unordered_set<PlanetaryBody>& secondaryBodies) :
+    _centerType(SystemCenter::CENTRAL_BODY),
     _centralBody(centralBody),
-    _allBodies(secondaryBodies)
+    _bodies(secondaryBodies)
 {
-    _allBodies.insert(_centralBody);
+    _bodies.insert(centralBody);
     create_all_bodies();
 };
 
 void AstrodynamicsSystem::create_all_bodies()
 {
-    for (const auto& body : _allBodies) {
+    for (const auto& body : _bodies) {
         _bodyFactory.create(body, *this);
     }
 };
 
 AstrodynamicsSystem AstrodynamicsSystem::DEFAULT() { return AstrodynamicsSystem(); }
 
-const std::string& AstrodynamicsSystem::center() const { return _centralBody; }
+const SystemCenter& AstrodynamicsSystem::get_center_type() const { return _centerType; }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get_center() const { return _bodyFactory.get(_centralBody); }
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const { return _bodyFactory.get(_centralBody); }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const std::string& name) const { return _bodyFactory.get(name); }
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const PlanetaryBody& id) const { return _bodyFactory.get(id); }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get_or_create(const std::string& name)
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_or_create(const PlanetaryBody& id)
 {
-    return _bodyFactory.get_or_create(name, *this);
+    return _bodyFactory.get_or_create(id, *this);
 }
 
-const std::unordered_set<std::string>& AstrodynamicsSystem::all_bodies() const { return _allBodies; }
+const CelestialBodyUniquePtr& AstrodynamicsSystem::create(const PlanetaryBody& id, const AstrodynamicsSystem& system)
+{
+    _bodies.insert(id);
+    return _bodyFactory.create(id, system);
+}
+
+void AstrodynamicsSystem::find_root()
+{
+    // TODO: Move this to the system
+
+    // Count total planets
+    std::size_t planetCount = 0;
+    for (const auto& id : _bodies) {
+        const auto& body = get(id);
+        if (body->get_type() == CelestialBodyType::PLANET) {
+            planetCount++;
+            _root = id;
+        }
+    }
+
+    // Check if other bodies are children of only planet -
+    // assumes the common root cannot be a satellite
+    if (planetCount == 1) {
+        for (const auto& id : _bodies) {
+            PlanetaryBody parent = id;
+            while (parent != PlanetaryBody::SUN && parent != _root) {
+                parent = get_or_create(parent)->get_parent();
+            }
+
+            // If any object not in same planetary system, the common root
+            // must be the Sun
+            if (parent == PlanetaryBody::SUN) {
+                _root = PlanetaryBody::SUN;
+                break;
+            }
+        }
+    }
+    else {
+        // The only common root for multiple planets is the Sun
+        _root = PlanetaryBody::SUN;
+    }
+}
 
 
 // void AstrodynamicsSystem::propagate_bodies(const Time& propTime)

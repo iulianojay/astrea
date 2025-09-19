@@ -25,7 +25,7 @@ AccelerationVector<ECI>
     SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
-    static const CelestialBodyUniquePtr& center = sys.get_center();
+    static const CelestialBodyUniquePtr& center = sys.get_central_body();
 
     // Extract
     const Distance& x         = state.get_x();

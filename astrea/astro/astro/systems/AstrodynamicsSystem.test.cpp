@@ -28,33 +28,33 @@ int main(int argc, char** argv)
 TEST_F(AstrodynamicsSystemTest, DefaultConstructor)
 {
     ASSERT_NO_THROW(AstrodynamicsSystem());
-    ASSERT_EQ(sys.all_bodies().size(), 2);
-    ASSERT_EQ(sys.center(), "Earth");
+    ASSERT_EQ(sys.get_all_bodies().size(), 2);
+    ASSERT_EQ(sys.get_central_body()->get_name(), "Earth");
 }
 
 TEST_F(AstrodynamicsSystemTest, Constructor)
 {
-    ASSERT_NO_THROW(AstrodynamicsSystem("Moon"));
-    ASSERT_NO_THROW(AstrodynamicsSystem("Moon", { "Earth", "Sun" }));
+    ASSERT_NO_THROW(AstrodynamicsSystem(PlanetaryBody::MOON));
+    ASSERT_NO_THROW(AstrodynamicsSystem(PlanetaryBody::MOON, { PlanetaryBody::EARTH, PlanetaryBody::SUN }));
 }
 
-TEST_F(AstrodynamicsSystemTest, Center) { ASSERT_EQ(sys.center(), "Earth"); }
+TEST_F(AstrodynamicsSystemTest, Center) { ASSERT_EQ(sys.get_central_body()->get_name(), "Earth"); }
 
 TEST_F(AstrodynamicsSystemTest, GetCenter)
 {
-    const auto& center = sys.get_center();
+    const auto& center = sys.get_central_body();
     ASSERT_EQ(center->get_name(), "Earth");
 }
 
 TEST_F(AstrodynamicsSystemTest, Get)
 {
-    const auto& earth = sys.get("Earth");
+    const auto& earth = sys.get(PlanetaryBody::EARTH);
     ASSERT_EQ(earth->get_name(), "Earth");
 }
 
-TEST_F(AstrodynamicsSystemTest, AllBodies)
+TEST_F(AstrodynamicsSystemTest, GetAllBodies)
 {
-    const auto bodies = sys.all_bodies();
+    const auto& bodies = sys.get_all_bodies();
     ASSERT_EQ(bodies.size(), 2);
 }
 

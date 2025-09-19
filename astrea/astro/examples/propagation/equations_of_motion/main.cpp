@@ -51,7 +51,7 @@ int main()
         {
             // Extracting into the desired set can be convenient
             const AstrodynamicsSystem& system = get_system();
-            const auto mu                     = system.get_center()->get_mu();
+            const auto mu                     = system.get_central_body()->get_mu();
             const Cartesian cartesian         = state.in_element_set<Cartesian>(system);
 
             // Pull out the pieces for simple two-body gravity

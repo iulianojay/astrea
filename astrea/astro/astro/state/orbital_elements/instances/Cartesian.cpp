@@ -39,7 +39,7 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
 
     // Get mu
-    const quantity mu = sys.get_center()->get_mu();
+    const quantity mu = sys.get_central_body()->get_mu();
 
     // Extract elements
     const auto& a     = elements.get_semimajor();
@@ -98,7 +98,7 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
 {
 
     // Get mu
-    const quantity mu = sys.get_center()->get_mu();
+    const quantity mu = sys.get_central_body()->get_mu();
 
     // Extract
     const auto& semilatus     = elements.get_semilatus();

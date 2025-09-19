@@ -1,0 +1,24 @@
+#pragma once
+
+#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/planetary_bodies/Earth/Moon.hpp>
+#include <astro/systems/planetary_bodies/Jupiter/Callisto.hpp>
+#include <astro/systems/planetary_bodies/Jupiter/Europa.hpp>
+#include <astro/systems/planetary_bodies/Jupiter/Ganymede.hpp>
+#include <astro/systems/planetary_bodies/Jupiter/Io.hpp>
+#include <astro/systems/planetary_bodies/Jupiter/Jupiter.hpp>
+#include <astro/systems/planetary_bodies/Mars/Deimos.hpp>
+#include <astro/systems/planetary_bodies/Mars/Mars.hpp>
+#include <astro/systems/planetary_bodies/Mars/Phobos.hpp>
+#include <astro/systems/planetary_bodies/Mercury/Mercury.hpp>
+#include <astro/systems/planetary_bodies/Neptune/Neptune.hpp>
+#include <astro/systems/planetary_bodies/Neptune/Triton.hpp>
+#include <astro/systems/planetary_bodies/Saturn/Iapetus.hpp>
+#include <astro/systems/planetary_bodies/Saturn/Rhea.hpp>
+#include <astro/systems/planetary_bodies/Saturn/Saturn.hpp>
+#include <astro/systems/planetary_bodies/Saturn/Titan.hpp>
+#include <astro/systems/planetary_bodies/Sun/Sun.hpp>
+#include <astro/systems/planetary_bodies/Uranus/Oberon.hpp>
+#include <astro/systems/planetary_bodies/Uranus/Titania.hpp>
+#include <astro/systems/planetary_bodies/Uranus/Uranus.hpp>
+#include <astro/systems/planetary_bodies/Venus/Venus.hpp>
