@@ -41,7 +41,7 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = sys.get_central_body()->get_mu();
+        const GravParam mu = sys.get_mu();
         const Velocity V   = sqrt(mu / R);
 
         _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);

@@ -176,32 +176,6 @@ class CelestialBodyFactory {
 
   private:
     std::unordered_map<PlanetaryBody, CelestialBodyUniquePtr> _bodies; //!< Map of celestial bodies by enum.
-
-    //!< Map of celestial body names to their corresponding JSON file paths.
-    const std::unordered_map<PlanetaryBody, std::filesystem::path> _buildFiles = {
-        { PlanetaryBody::SUN, "data/planetary/Sun/Sun.json" },
-        { PlanetaryBody::MERCURY, "data/planetary/Mercury/Mercury.json" },
-        { PlanetaryBody::VENUS, "data/planetary/Venus/Venus.json" },
-        { PlanetaryBody::EARTH, "data/planetary/Earth/Earth.json" },
-        { PlanetaryBody::MOON, "data/planetary/Earth/Moon.json" },
-        { PlanetaryBody::MARS, "data/planetary/Mars/Mars.json" },
-        { PlanetaryBody::PHOBOS, "data/planetary/Mars/Phobos.json" },
-        { PlanetaryBody::DEIMOS, "data/planetary/Mars/Deimos.json" },
-        { PlanetaryBody::JUPITER, "data/planetary/Jupiter/Jupiter.json" },
-        { PlanetaryBody::GANYMEDE, "data/planetary/Jupiter/Ganymede.json" },
-        { PlanetaryBody::CALLISTO, "data/planetary/Jupiter/Callisto.json" },
-        { PlanetaryBody::IO, "data/planetary/Jupiter/Io.json" },
-        { PlanetaryBody::EUROPA, "data/planetary/Jupiter/Europa.json" },
-        { PlanetaryBody::SATURN, "data/planetary/Saturn/Saturn.json" },
-        { PlanetaryBody::TITAN, "data/planetary/Saturn/Titan.json" },
-        { PlanetaryBody::RHEA, "data/planetary/Saturn/Rhea.json" },
-        { PlanetaryBody::IAPETUS, "data/planetary/Saturn/Iapetus.json" },
-        { PlanetaryBody::URANUS, "data/planetary/Uranus/Uranus.json" },
-        { PlanetaryBody::TITANIA, "data/planetary/Uranus/Titania.json" },
-        { PlanetaryBody::OBERON, "data/planetary/Uranus/Oberon.json" },
-        { PlanetaryBody::NEPTUNE, "data/planetary/Neptune/Neptune.json" },
-        { PlanetaryBody::TRITON, "data/planetary/Neptune/Triton.json" }
-    };
 };
 
 } // namespace astro

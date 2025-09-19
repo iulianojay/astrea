@@ -97,8 +97,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle, const A
     _revNumber  = std::stoi(rawTle[1].substr(63, 5));
     _checkSum2  = std::stoi(rawTle[1].substr(68, 1));
 
-    const Distance semimajor =
-        pow<1, 3>(sys.get_central_body()->get_mu() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
+    const Distance semimajor      = pow<1, 3>(sys.get_mu() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
     const Angle inclination       = std::stod(rawTle[1].substr(8, 8)) * deg;
     const Angle rightAscension    = std::stod(rawTle[1].substr(17, 8)) * deg;
     const Unitless eccentricity   = std::stod("." + rawTle[1].substr(26, 7)) * one;

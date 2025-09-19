@@ -34,14 +34,13 @@ int main()
     std::cout << "  Velocity: " << vf << std::endl << std::endl;
 
     // Solve from position and velocity
-    const Cartesian result = LambertSolver::solve({ r0, v0 }, dt, sys.get_central_body()->get_mu());
+    const Cartesian result = LambertSolver::solve({ r0, v0 }, dt, sys.get_mu());
     std::cout << "Final state from r0, v0" << std::endl;
     std::cout << "  Position: " << result.get_position() << std::endl;
     std::cout << "  Velocity: " << result.get_velocity() << std::endl << std::endl;
 
     // Solve from position and position
-    const auto [res0, resf] =
-        LambertSolver::solve(r0, rf, dt, sys.get_central_body()->get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    const auto [res0, resf] = LambertSolver::solve(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
     std::cout << "Initial and final velocity from r0, rf" << std::endl;
     std::cout << "  Initial Velocity: " << res0 << std::endl;
     std::cout << "  Final Velocity: " << resf << std::endl;

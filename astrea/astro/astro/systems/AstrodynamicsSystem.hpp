@@ -117,6 +117,13 @@ class AstrodynamicsSystem {
      */
     const PlanetaryBody& get_root() const { return _root; }
 
+    /**
+     * @brief Get the gravitational parameter (mu) of the central body.
+     *
+     * @return GravParam The gravitational parameter of the central body.
+     */
+    GravParam get_mu() const;
+
     // RadiusVector<ECI> get_radius_to_center(CelestialBody target, double date); //TODO: Implement
 
     /**

@@ -22,7 +22,7 @@ namespace astro {
 CowellsMethod::CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
     EquationsOfMotion(system),
     forces(&forces),
-    mu(system.get_central_body()->get_mu())
+    mu(system.get_mu())
 {
 }
 

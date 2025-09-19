@@ -28,7 +28,7 @@ using mp_units::si::unit_symbols::s;
 
 J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
     EquationsOfMotion(system),
-    mu(system.get_central_body()->get_mu()),
+    mu(system.get_mu()),
     J2(system.get_central_body()->get_j2()),
     equitorialR(system.get_central_body()->get_equitorial_radius())
 {

@@ -1,7 +1,5 @@
 #include <astro/systems/CelestialBodyFactory.hpp>
 
-#include <filesystem>
-
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 
 namespace astrea {
@@ -11,7 +9,6 @@ const CelestialBodyUniquePtr& CelestialBodyFactory::create(const PlanetaryBody& 
 {
     using namespace planetary_bodies;
     if (_bodies.count(id) == 0) {
-        const auto file = std::filesystem::absolute(ASTREA_ROOT / _buildFiles.at(id)).lexically_normal();
         switch (id) {
             case (PlanetaryBody::SUN): {
                 _bodies.emplace(id, std::make_unique<Sun>(system));

@@ -25,7 +25,14 @@ AstrodynamicsSystem AstrodynamicsSystem::DEFAULT() { return AstrodynamicsSystem(
 
 const SystemCenter& AstrodynamicsSystem::get_center_type() const { return _centerType; }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const { return _bodyFactory.get(_centralBody); }
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const
+{
+    switch (_centerType) {
+        case SystemCenter::CENTRAL_BODY: return _bodyFactory.get(_centralBody);
+        case SystemCenter::BARYCENTER:
+        default: throw std::runtime_error("Barycenteric systems have no central body.");
+    }
+}
 
 const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const PlanetaryBody& id) const { return _bodyFactory.get(id); }
 
@@ -74,6 +81,15 @@ void AstrodynamicsSystem::find_root()
     else {
         // The only common root for multiple planets is the Sun
         _root = PlanetaryBody::SUN;
+    }
+}
+
+GravParam AstrodynamicsSystem::get_mu() const
+{
+    switch (_centerType) {
+        case SystemCenter::CENTRAL_BODY: return get_central_body()->get_mu();
+        case SystemCenter::BARYCENTER: throw std::runtime_error("Barycenteric systems have not been implemented yet.");
+        default: throw std::runtime_error("AstrodynamicsSystem::get_mu: Unknown system center type.");
     }
 }
 
