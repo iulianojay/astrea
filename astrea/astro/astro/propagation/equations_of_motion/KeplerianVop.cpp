@@ -57,16 +57,16 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const RadiusVector<ECI> r   = cartesian.get_position();
 
     // Function for finding accel caused by perturbations
-    const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date                          = vehicle.get_state().get_epoch();
+    const AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const RTN rtnFrame                     = RTN::instantaneous(r, v);
-    const AccelerationVector<RTN> accelRtn = rtnFrame.rotate_into_this_frame(accelPerts, date);
+    const RIC ricFrame                     = RIC::instantaneous(r, v);
+    const AccelerationVector<RIC> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
 
-    const Acceleration& radialPert     = accelRtn.get_x();
-    const Acceleration& normalPert     = accelRtn.get_y();
-    const Acceleration& tangentialPert = accelRtn.get_z();
+    const Acceleration& radialPert     = accelRic.get_x();
+    const Acceleration& tangentialPert = accelRic.get_y();
+    const Acceleration& normalPert     = accelRic.get_z();
 
     // Argument of latitude
     const Angle u = w + theta;

@@ -30,8 +30,8 @@ class Frame {
      * @param origin The origin of the frame.
      */
     Frame(const std::string& name, const std::string& origin) :
-        name(name),
-        origin(origin)
+        _name(name),
+        _origin(origin)
     {
     }
 
@@ -74,18 +74,18 @@ class Frame {
      *
      * @return The name of the frame.
      */
-    std::string get_name() const { return name; }
+    std::string get_name() const { return _name; }
 
     /**
      * @brief Get the origin of the frame.
      *
      * @return The origin of the frame.
      */
-    std::string get_origin() const { return origin; }
+    std::string get_origin() const { return _origin; }
 
   protected:
-    std::string name;   //!< Name of the frame.
-    std::string origin; //!< Origin of the frame, typically a celestial body or reference point.
+    std::string _name;   //!< Name of the frame.
+    std::string _origin; //!< Origin of the frame, typically a celestial body or reference point.
 };
 
 

@@ -12,7 +12,9 @@
 
 #include <string>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/state/frames/Frame.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,8 +32,9 @@ class InertialFrame : public Frame<Frame_T> {
      * @param name The name of the inertial frame.
      * @param origin The origin of the inertial frame.
      */
-    InertialFrame(const std::string& name, const std::string& origin) :
-        Frame<Frame_T>(name, origin)
+    InertialFrame(const std::string& name, const std::string& origin, const PlanetaryBody& centralBody) :
+        Frame<Frame_T>(name, origin),
+        _centralBody(centralBody)
     {
     }
 
@@ -41,7 +44,7 @@ class InertialFrame : public Frame<Frame_T> {
     virtual ~InertialFrame() = default;
 
   private:
-    const CelestialBody* centralBody; //!< The central body associated with the inertial frame.
+    const PlanetaryBody _centralBody; //!< The central body associated with the inertial frame.
                                       // TODO: Extend to barycenter. Maybe with a variant?
 };
 
