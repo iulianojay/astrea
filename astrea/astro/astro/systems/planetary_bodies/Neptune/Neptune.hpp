@@ -1,0 +1,32 @@
+#pragma once
+
+#include <astro/astro.fwd.hpp>
+#include <astro/systems/CelestialBody.hpp>
+
+namespace astrea {
+namespace astro {
+namespace planetary_bodies {
+
+class Neptune : public CelestialBody {
+
+    static const std::filesystem::path file() { return ASTREA_ROOT / "data/planetary/Neptune/Neptune.json"; }
+
+  public:
+    Neptune() :
+        CelestialBody(file())
+    {
+    }
+    Neptune(const AstrodynamicsSystem& system) :
+        CelestialBody(file(), system)
+    {
+    }
+    ~Neptune() = default;
+
+    constexpr PlanetaryBody get_parent() const override { return PlanetaryBody::SUN; };
+    static constexpr PlanetaryBody get_id() { return PlanetaryBody::NEPTUNE; };
+    constexpr CelestialBodyType get_type() const override { return CelestialBodyType::PLANET; };
+};
+
+} // namespace planetary_bodies
+} // namespace astro
+} // namespace astrea

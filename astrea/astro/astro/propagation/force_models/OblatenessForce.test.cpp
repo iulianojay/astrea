@@ -23,7 +23,7 @@ class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys("Earth", { "Moon", "Sun" }),
+        sys(PlanetaryBody::EARTH, { PlanetaryBody::MOON, PlanetaryBody::SUN }),
         force(sys, 2, 2)
     {
     }

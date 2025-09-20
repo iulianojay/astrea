@@ -85,7 +85,7 @@ int access_test()
     allSats.add_spacecraft(geo);
 
     // Build out grounds
-    GroundStation dc(sys.get_center().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
+    GroundStation dc(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
     SensorParameters groundCone(
         &fovLeo,
         { 1.0 * astrea::detail::distance_unit, // Anti-Nadir
@@ -98,7 +98,7 @@ int access_test()
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
     LatLon corner4{ 50.0 * deg, 180.0 * deg };
     Angle spacing = 10.0 * deg;
-    Grid grid(sys.get_center().get(), corner1, corner4, GridType::UNIFORM, spacing);
+    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Build EoMs
     TwoBody eom(sys);

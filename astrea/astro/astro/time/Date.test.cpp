@@ -32,7 +32,7 @@ TEST_F(DateTest, JulianDateToSiderealTime)
 {
     // Vallado, Ex. 3-5
     Date date("1992-08-20 12:14:00.0");
-    ASSERT_EQ_QUANTITY(julian_date_to_siderial_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }

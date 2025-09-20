@@ -41,7 +41,7 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = sys.get_center()->get_mu();
+        const GravParam mu = sys.get_mu();
         const Velocity V   = sqrt(mu / R);
 
         _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
@@ -54,8 +54,8 @@ class ConversionTest : public testing::Test {
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
-        // rEquitorial = sys.get_center()->get_equitorial_radius();
-        // rPolar      = sys.get_center()->get_polar_radius();
+        // rEquitorial = sys.get_central_body()->get_equitorial_radius();
+        // rPolar      = sys.get_central_body()->get_polar_radius();
     }
 
     // Expected values

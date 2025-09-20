@@ -31,7 +31,7 @@ using namespace mp_units::angular;
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& _N, const std::size_t& _M) :
     N(_N),
     M(_M),
-    center(sys.get_center())
+    center(sys.get_central_body())
 {
     // Size arrays (size Legendre array now so it only happens once)
     size_vectors(N, M);

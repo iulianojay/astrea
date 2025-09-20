@@ -17,5 +17,4 @@
 // dynamic state/frames
 #include <astro/state/frames/instances/LocalHorizontalLocalVertical.hpp>
 #include <astro/state/frames/instances/RadialInTrackCrossTrack.hpp>
-#include <astro/state/frames/instances/RadialTangentialNormal.hpp>
 #include <astro/state/frames/instances/VelocityNormalBinormal.hpp>

@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
 #include <math/interpolation.hpp>

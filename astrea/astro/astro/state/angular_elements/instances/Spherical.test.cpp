@@ -72,13 +72,13 @@ TEST_F(SphericalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Spherical(rang
 TEST_F(SphericalTest, EciVectorConstructor)
 {
     RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical(rEci, epoch, sys.get_center().get()));
+    ASSERT_NO_THROW(Spherical(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(SphericalTest, EcefVectorConstructor)
 {
     RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical(rEcef, sys.get_center().get()));
+    ASSERT_NO_THROW(Spherical(rEcef, sys.get_central_body().get()));
 }
 
 TEST_F(SphericalTest, OrbitalElementsConstructor)
@@ -189,7 +189,7 @@ TEST_F(SphericalTest, DivisionBySphericalOperator)
 
 TEST_F(SphericalTest, GetPositionEcef)
 {
-    RadiusVector<ECEF> rEcef               = state.get_position(sys.get_center().get());
+    RadiusVector<ECEF> rEcef               = state.get_position(sys.get_central_body().get());
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEcef);
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
@@ -198,7 +198,7 @@ TEST_F(SphericalTest, GetPositionEcef)
 
 TEST_F(SphericalTest, GetPositionEci)
 {
-    RadiusVector<ECI> rEci                 = state.get_position(epoch, sys.get_center().get());
+    RadiusVector<ECI> rEci                 = state.get_position(epoch, sys.get_central_body().get());
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEci.in_frame<ECEF>(epoch));
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);

@@ -94,7 +94,7 @@ TEST_F(ConversionTest, KEPLERIAN_TO_CARTESIAN)
     OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, OrbitalElements::get_set_id<Keplerian>());
     elements.convert(OrbitalElements::get_set_id<Cartesian>(), &sys);
 
-    const double mu = sys.get_center().mu();
+    const double mu = sys.get_central_body().mu();
     const double V  = std::sqrt(mu / elements[0]);
     OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElements::get_set_id<Cartesian>());
 
@@ -105,7 +105,7 @@ TEST_F(ConversionTest, CARTESIAN_TO_KEPLERIAN)
 {
 
     const double semimajor = 10000.0;
-    const double mu        = sys.get_center().mu();
+    const double mu        = sys.get_central_body().mu();
     const double V         = std::sqrt(mu / semimajor);
 
     OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElements::get_set_id<Cartesian>());

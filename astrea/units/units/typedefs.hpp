@@ -13,7 +13,6 @@
 #include <array>
 #include <stdint.h>
 
-#include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
 
 #include <units/custom.hpp>

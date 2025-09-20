@@ -1,7 +1,5 @@
 #include <astro/platforms/vehicles/NullVehicle.hpp>
 
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
 #include <units/units.hpp>

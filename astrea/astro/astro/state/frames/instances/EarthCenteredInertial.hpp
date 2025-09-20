@@ -31,7 +31,7 @@ class EarthCenteredInertial : public InertialFrame<EarthCenteredInertial> {
      * Initializes the ECI frame with a name and origin.
      */
     EarthCenteredInertial() :
-        InertialFrame<EarthCenteredInertial>("Earth Centered Inertial", "Earth")
+        InertialFrame<EarthCenteredInertial>("Earth Centered Inertial", "Earth", PlanetaryBody::EARTH)
     {
     }
 };

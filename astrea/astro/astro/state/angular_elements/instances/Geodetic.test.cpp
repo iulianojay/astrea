@@ -70,13 +70,13 @@ TEST_F(GeodeticTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geodetic(latitu
 TEST_F(GeodeticTest, EciVectorConstructor)
 {
     RadiusVector<ECI> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geodetic(rEci, epoch, sys.get_center().get()));
+    ASSERT_NO_THROW(Geodetic(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(GeodeticTest, EcefVectorConstructor)
 {
     RadiusVector<ECEF> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geodetic(rEcef, sys.get_center().get()));
+    ASSERT_NO_THROW(Geodetic(rEcef, sys.get_central_body().get()));
 }
 
 TEST_F(GeodeticTest, OrbitalElementsConstructor)

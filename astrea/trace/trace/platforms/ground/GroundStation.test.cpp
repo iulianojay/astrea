@@ -19,7 +19,7 @@ class GroundStationTest : public testing::Test {
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
         name      = "TestStation";
         sensors   = {};
-        station   = new GroundStation(sys.get("Earth").get(), latitude, longitude, altitude, name, sensors);
+        station = new GroundStation(sys.get(PlanetaryBody::EARTH).get(), latitude, longitude, altitude, name, sensors);
     }
 
     void TearDown() override { delete station; }
@@ -42,7 +42,10 @@ int main(int argc, char** argv)
 TEST_F(GroundStationTest, Constructor)
 {
     ASSERT_EQ(station->get_name(), name);
-    ASSERT_EQ(station->get_id(), GroundStation(sys.get("Earth").get(), latitude, longitude, altitude, name, sensors).get_id());
+    ASSERT_EQ(
+        station->get_id(),
+        GroundStation(sys.get(PlanetaryBody::EARTH).get(), latitude, longitude, altitude, name, sensors).get_id()
+    );
 }
 
 TEST_F(GroundStationTest, GetName) { ASSERT_EQ(station->get_name(), name); }

@@ -23,7 +23,7 @@ class AtmosphericForceTest : public testing::Test {
   public:
     AtmosphericForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys("Earth", { "Moon", "Sun" }),
+        sys(PlanetaryBody::EARTH, { PlanetaryBody::MOON, PlanetaryBody::SUN }),
         force()
     {
     }
@@ -77,21 +77,21 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
-    AstrodynamicsSystem martianSys("Mars", { "Mars", "Phobos", "Deimos", "Sun" });
+    AstrodynamicsSystem martianSys(PlanetaryBody::MARS, { PlanetaryBody::PHOBOS, PlanetaryBody::DEIMOS, PlanetaryBody::SUN });
     AtmosphericForce martianAtmosphere;
     ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys), Vehicle(sat), martianSys));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
-    AstrodynamicsSystem venutianSys("Venus", { "Venus", "Sun" });
+    AstrodynamicsSystem venutianSys(PlanetaryBody::VENUS, { PlanetaryBody::SUN });
     AtmosphericForce venutianAtmosphere;
     ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys), Vehicle(sat), venutianSys));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AstrodynamicsSystem titanSys("Titan", { "Titan", "Saturn" });
+    AstrodynamicsSystem titanSys(PlanetaryBody::TITAN, { PlanetaryBody::TITAN, PlanetaryBody::SATURN });
     AtmosphericForce titanAtmosphere;
     ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys), Vehicle(sat), titanSys));
 }

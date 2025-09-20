@@ -70,13 +70,13 @@ TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(
 TEST_F(CylindricalTest, EciVectorConstructor)
 {
     RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_center().get()));
+    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, EcefVectorConstructor)
 {
     RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_center().get()));
+    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, OrbitalElementsConstructor)

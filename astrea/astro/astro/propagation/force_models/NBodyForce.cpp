@@ -26,7 +26,7 @@ AccelerationVector<ECI>
     const Distance& z = state.get_z();
 
     // Center body properties
-    static const CelestialBodyUniquePtr& center = sys.get_center();
+    static const CelestialBodyUniquePtr& center = sys.get_central_body();
 
     // Find day nearest to current time
     const Date epoch              = vehicle.get_state().get_epoch();

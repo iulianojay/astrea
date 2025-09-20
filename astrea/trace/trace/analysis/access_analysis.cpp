@@ -26,6 +26,7 @@ using astro::Cartesian;
 using astro::Date;
 using astro::ECEF;
 using astro::ECI;
+using astro::PlanetaryBody;
 using astro::RadiusVector;
 using astro::State;
 using astro::StateHistory;
@@ -205,7 +206,8 @@ bool is_earth_occulting(const RadiusVector<ECI>& position1, const RadiusVector<E
     const RadiusVector<ECI> radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
+    static const Distance& radiusEarthMag =
+        sys.get(PlanetaryBody::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir

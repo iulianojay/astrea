@@ -58,9 +58,8 @@
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/CelestialBodyFactory.hpp>
+#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>

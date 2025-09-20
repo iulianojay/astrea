@@ -60,10 +60,9 @@ int main()
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;
-    std::cout
-        << "Initial Period: "
-        << mp_units::quantity<h>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle))
-        << std::endl;
+    std::cout << "Initial Period: "
+              << mp_units::quantity<h>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / sys.get_mu()) / (isq_angle::cotes_angle))
+              << std::endl;
     std::cout << "Total Thrust: " << mp_units::quantity<kN>(thrusterParams.get_thrust()) << std::endl;
     const Thruster thruster = sat.get_payloads()[0];
     std::cout << "Equivalent Impulsive Delta-V: " << thruster.get_impulsive_delta_v() << std::endl << std::endl;
@@ -83,7 +82,7 @@ int main()
         for (const Date& date : dates) {
             const Keplerian elementsAfterBurn = history.get_state_at(date + 60.0 * s).in_element_set<Keplerian>();
             mp_units::quantity<h> orbitalPeriod =
-                TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle);
+                TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / sys.get_mu()) / (isq_angle::cotes_angle);
             std::cout << "\t" << orbitalPeriod << std::endl;
         }
     }

@@ -9,11 +9,6 @@
 namespace astrea {
 namespace astro {
 
-// TODO: I think type-erase is the right move here, instead of polymorphism. That would allow each frame
-// to exist independently and it would allow more generic and useful Frame-type checking. A "RotatingFrame"
-// wouldn't be some (essentially) meaningless abstract class, but a type-erased container with more restrictions
-// than the more generic Frame class, and so on. It would also allow for state/frames to drop in-place into different contexts
-// (i.e. "this thing here can must be a BodyFixedFrame but I don't care which one", etc.) without multiple inheritance.
 /**
  * @brief Base class for all state/frames.
  */
@@ -35,8 +30,8 @@ class Frame {
      * @param origin The origin of the frame.
      */
     Frame(const std::string& name, const std::string& origin) :
-        name(name),
-        origin(origin)
+        _name(name),
+        _origin(origin)
     {
     }
 
@@ -79,18 +74,18 @@ class Frame {
      *
      * @return The name of the frame.
      */
-    std::string get_name() const { return name; }
+    std::string get_name() const { return _name; }
 
     /**
      * @brief Get the origin of the frame.
      *
      * @return The origin of the frame.
      */
-    std::string get_origin() const { return origin; }
+    std::string get_origin() const { return _origin; }
 
   protected:
-    std::string name;   //!< Name of the frame.
-    std::string origin; //!< Origin of the frame, typically a celestial body or reference point.
+    std::string _name;   //!< Name of the frame.
+    std::string _origin; //!< Origin of the frame, typically a celestial body or reference point.
 };
 
 

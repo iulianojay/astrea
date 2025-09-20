@@ -56,7 +56,7 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<EarthCenteredInertial, RadialInTrackCrossTrack>::from_vectors(r, v, h);
+        return DirectionCosineMatrix<EarthCenteredInertial, RadialInTrackCrossTrack>::from_vectors(r, -r.cross(h), h);
     }
 
   private:

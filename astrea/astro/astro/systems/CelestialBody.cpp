@@ -41,7 +41,13 @@ using mp_units::si::unit_symbols::s;
 CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem& system) :
     _systemPtr(&system)
 {
+    impl_ctor_from_file(file);
+}
 
+CelestialBody::CelestialBody(const std::string& file) { impl_ctor_from_file(file); }
+
+void CelestialBody::impl_ctor_from_file(const std::string& file)
+{
     using json = nlohmann::json;
 
     // Read file into JSON
@@ -55,9 +61,7 @@ CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem&
     const json state         = planetaryData["State"];
 
     // Store
-    _name   = planetaryData["Name"].template get<std::string>();
-    _parent = planetaryData["Parent"].template get<std::string>();
-    _type   = planetaryData["Type"].template get<std::string>();
+    _name = planetaryData["Name"].template get<std::string>();
 
     _mu                = planetaryData["Gravitational Parameter"]["magnitude"].get<double>() * (pow<3>(km) / pow<2>(s));
     _mass              = planetaryData["Mass"]["magnitude"].get<double>() * (mag_power<10, 24> * kg);
@@ -69,7 +73,7 @@ CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem&
     _j3                = planetaryData["J3"]["magnitude"].get<double>() * one;
     _axialTilt         = planetaryData["Axial Tilt"]["magnitude"].get<double>() * deg;
     _rotationRate      = planetaryData["Rotation Rate"]["magnitude"].get<double>() * deg / day;
-    _siderialPeroid    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
+    _siderealPeriod    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
 
     _referenceDate = Date(state["Epoch"].template get<std::string>());
 
@@ -89,8 +93,6 @@ CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem&
 
     _meanAnomaly = sanitize_angle(_trueLatitude - _argumentOfPerigee);
     _trueAnomaly = sanitize_angle(convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity));
-
-    // TODO: Add checks to validate this object
 }
 
 State CelestialBody::get_state_at(const Date& date) const
@@ -107,9 +109,7 @@ State CelestialBody::get_state_at(const Date& date) const
     const Angle Lt      = _trueLatitude + _trueLatitudeRate * timeSinceReferenceEpoch;
 
     // Calculations
-    static const GravParam parentMu = _systemPtr->get(_parent)->get_mu();
-    const quantity ht               = sqrt(parentMu * at * (1 - ecct * ecct));
-    const Angle Met                 = (Lt - wt);
+    const Angle Met = (Lt - wt);
 
     // This approximation has error on the order of ecc^6. It is
     // assumed to be good for this calc since all these bodies are

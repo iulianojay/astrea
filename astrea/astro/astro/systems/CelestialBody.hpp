@@ -10,16 +10,19 @@
  */
 #pragma once
 
+#include <filesystem>
 #include <string>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/time/Date.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
+
+static const std::filesystem::path ASTREA_ROOT = std::getenv("ASTREA_ROOT");
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.
@@ -35,7 +38,14 @@ class CelestialBody {
     /**
      * @brief Default destructor for CelestialBody.
      */
-    ~CelestialBody() = default;
+    virtual ~CelestialBody() = default;
+
+    /**
+     * @brief Constructs a CelestialBody from a file.
+     *
+     * @param file Path to the file containing celestial body data.
+     */
+    CelestialBody(const std::string& file);
 
     /**
      * @brief Constructs a CelestialBody from a file.
@@ -68,6 +78,13 @@ class CelestialBody {
     bool operator==(const CelestialBody& other) const { return _mu == other._mu; } // Probably good enough
 
     /**
+     * @brief Get the parent celestial body.
+     *
+     * @return const std::string& Reference to the name of the parent celestial body.
+     */
+    static constexpr PlanetaryBody get_id() { return PlanetaryBody::UNSET; };
+
+    /**
      * @brief Get the name of the celestial body.
      *
      * @return const std::string& Reference to the name of the celestial body.
@@ -79,14 +96,14 @@ class CelestialBody {
      *
      * @return const std::string& Reference to the name of the parent celestial body.
      */
-    const std::string& get_parent() const { return _parent; };
+    virtual constexpr PlanetaryBody get_parent() const { return PlanetaryBody::UNSET; };
 
     /**
      * @brief Get the type of the celestial body.
      *
-     * @return const std::string& Reference to the type of the celestial body.
+     * @return const CelestialBodyType& Reference to the type of the celestial body.
      */
-    const std::string& get_type() const { return _type; };
+    virtual constexpr CelestialBodyType get_type() const { return CelestialBodyType::UNSET; };
 
     /**
      * @brief Get the gravitational parameter (mu) of the celestial body.
@@ -163,7 +180,7 @@ class CelestialBody {
      *
      * @return const Time& Reference to the sidereal period of the celestial body.
      */
-    const Time& get_siderial_period() const { return _siderialPeroid; };
+    const Time& get_sidereal_period() const { return _siderealPeriod; };
 
     /**
      * @brief Get the semimajor axis of the celestial body.
@@ -274,8 +291,6 @@ class CelestialBody {
   private:
     // Properties
     std::string _name;          //!< Name of the celestial body
-    std::string _parent;        //!< Name of the parent celestial body, if any
-    std::string _type;          //!< Type of the celestial body (e.g., planet, moon)
     Date _referenceDate;        //!< Reference date for the celestial body data
     GravParam _mu;              //!< Gravitational parameter (mu) of the celestial body
     GravParam _parentMu;        //!< Gravitational parameter of the parent celestial body, if any
@@ -287,26 +302,26 @@ class CelestialBody {
 
     Unitless _j2;              //!< J2 gravitational coefficient of the celestial body
     Unitless _j3;              //!< J3 gravitational coefficient of the celestial body
-    Angle _axialTilt;          //!< Axial tilt of the celestial body, used for rotation calculations
-    AngularRate _rotationRate; //!< Rotation rate of the celestial body, used for calculating rotation effects
-    Time _siderialPeroid;      //!< Sidereal period of the celestial body, used for calculating rotation effects
+    Angle _axialTilt;          //!< Axial tilt of the celestial body
+    AngularRate _rotationRate; //!< Rotation rate of the celestial body
+    Time _siderealPeriod;      //!< Sidereal period of the celestial body
 
-    Distance _semimajorAxis; //!< Semimajor axis of the celestial body's orbit
-    Unitless _eccentricity;  //!< Eccentricity of the celestial body's orbit, used for calculating orbital shape
-    Angle _inclination;      //!< Inclination of the celestial body's orbit, used for calculating orbital tilt
-    Angle _rightAscension;   //!< Right ascension of the celestial body's orbit, used for calculating orbital position
-    Angle _argumentOfPerigee; //!< Argument of perigee of the celestial body's orbit, used for calculating orbital position
-    Angle _trueLatitude;      //!< True latitude of the celestial body's orbit, used for calculating orbital position
-    Angle _trueAnomaly;       //!< True anomaly of the celestial body's orbit, used for calculating orbital position
-    Angle _meanAnomaly;       //!< Mean anomaly of the celestial body's orbit, used for calculating orbital position
+    Distance _semimajorAxis;  //!< Semimajor axis
+    Unitless _eccentricity;   //!< Eccentricity
+    Angle _inclination;       //!< Inclination
+    Angle _rightAscension;    //!< Right ascension
+    Angle _argumentOfPerigee; //!< Argument of perigee
+    Angle _trueLatitude;      //!< True latitude
+    Angle _trueAnomaly;       //!< True anomaly
+    Angle _meanAnomaly;       //!< Mean anomaly
 
     // These rates need to stay in rate/JC to avoid numerical issues
-    BodyVelocity _semimajorAxisRate; //!< Rate of change of the semimajor axis, used for calculating orbital evolution
-    BodyUnitlessPerTime _eccentricityRate; //!< Rate of change of the eccentricity, used for calculating orbital evolution
-    BodyAngularRate _inclinationRate;    //!< Rate of change of the inclination, used for calculating orbital evolution
-    BodyAngularRate _rightAscensionRate; //!< Rate of change of the right ascension, used for calculating orbital evolution
-    BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee, used for calculating orbital evolution
-    BodyAngularRate _trueLatitudeRate; //!< Rate of change of the true latitude, used for calculating orbital evolution
+    BodyVelocity _semimajorAxisRate;        //!< Rate of change of the semimajor axis
+    BodyUnitlessPerTime _eccentricityRate;  //!< Rate of change of the eccentricity
+    BodyAngularRate _inclinationRate;       //!< Rate of change of the inclination
+    BodyAngularRate _rightAscensionRate;    //!< Rate of change of the right ascension
+    BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee
+    BodyAngularRate _trueLatitudeRate;      //!< Rate of change of the true latitude
 
     /**
      * @brief Propagates the state of the celestial body from a given epoch to an end epoch.
@@ -318,8 +333,20 @@ class CelestialBody {
      */
     StateHistory _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 
+    /**
+     * @brief Helper function to initialize the CelestialBody from a file.
+     *
+     * @param file Path to the file containing celestial body data.
+     */
+    void impl_ctor_from_file(const std::string& file);
+
     const AstrodynamicsSystem* _systemPtr; //!< Pointer to the AstrodynamicsSystem this celestial body belongs to
 };
+
+/**
+ * @brief Unique pointer type for CelestialBody.
+ */
+using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
 
 } // namespace astro
 } // namespace astrea
@@ -351,7 +378,7 @@ struct std::hash<astrea::astro::CelestialBody> {
         h ^= (std::hash<double>{}(body.get_j3()) << 1);
         h ^= (std::hash<double>{}(body.get_axial_tilt()) << 1);
         h ^= (std::hash<double>{}(body.get_rotation_rate()) << 1);
-        h ^= (std::hash<double>{}(body.get_siderial_period()) << 1);
+        h ^= (std::hash<double>{}(body.get_sidereal_period()) << 1);
         h ^= (std::hash<double>{}(body.get_semimajor()) << 1);
         h ^= (std::hash<double>{}(body.get_eccentricity()) << 1);
         h ^= (std::hash<double>{}(body.get_inclination()) << 1);

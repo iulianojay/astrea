@@ -71,9 +71,7 @@ class EventDetector;
 
 // Systems
 class AstrodynamicsSystem;
-class Barycenter;
 class CelestialBody;
-class CelestialBodyFactory;
 
 // Time
 struct IdPair;

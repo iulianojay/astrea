@@ -17,7 +17,7 @@ using mp_units::si::unit_symbols::s;
 
 TwoBody::TwoBody(const AstrodynamicsSystem& system) :
     EquationsOfMotion(system),
-    mu(system.get_center()->get_mu())
+    mu(system.get_mu())
 {
 }
 

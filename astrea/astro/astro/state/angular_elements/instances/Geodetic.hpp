@@ -85,7 +85,7 @@ class Geodetic {
     template <IsOrbitalElements T>
     Geodetic(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
     {
-        *this = Geodetic(Cartesian(elements, sys).get_position().template in_frame<ECEF>(date), sys.get_center().get());
+        *this = Geodetic(Cartesian(elements, sys).get_position().template in_frame<ECEF>(date), sys.get_central_body().get());
     }
 
     /**
