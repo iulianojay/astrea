@@ -1,59 +1,151 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 #include <astro/state/StateHistory.hpp>
+#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 
 namespace astrea {
 namespace astro {
 
 AstrodynamicsSystem::AstrodynamicsSystem(const PlanetaryBody& centralBody, const std::unordered_set<PlanetaryBody>& secondaryBodies) :
     _centerType(SystemCenter::CENTRAL_BODY),
-    _centralBody(centralBody),
-    _bodies(secondaryBodies)
+    _centralBody(centralBody)
 {
-    _bodies.insert(centralBody);
-    create_all_bodies();
-};
-
-void AstrodynamicsSystem::create_all_bodies()
-{
-    for (const auto& body : _bodies) {
-        _bodyFactory.create(body, *this);
+    create(centralBody);
+    for (const auto& body : secondaryBodies) {
+        create(body);
     }
 };
 
-AstrodynamicsSystem AstrodynamicsSystem::DEFAULT() { return AstrodynamicsSystem(); }
+AstrodynamicsSystem AstrodynamicsSystem::EarthMoon()
+{
+    return AstrodynamicsSystem(PlanetaryBody::EARTH, { PlanetaryBody::MOON });
+}
 
 const SystemCenter& AstrodynamicsSystem::get_center_type() const { return _centerType; }
 
 const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const
 {
     switch (_centerType) {
-        case SystemCenter::CENTRAL_BODY: return _bodyFactory.get(_centralBody);
+        case SystemCenter::CENTRAL_BODY: return get(_centralBody);
         case SystemCenter::BARYCENTER:
         default: throw std::runtime_error("Barycenteric systems have no central body.");
     }
 }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const PlanetaryBody& id) const { return _bodyFactory.get(id); }
-
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get_or_create(const PlanetaryBody& id)
+const CelestialBodyUniquePtr& AstrodynamicsSystem::create(const PlanetaryBody& id)
 {
-    return _bodyFactory.get_or_create(id, *this);
+    using namespace planetary_bodies;
+    if (_bodies.count(id) == 0) {
+        switch (id) {
+            case (PlanetaryBody::SUN): {
+                _bodies.emplace(id, std::make_unique<Sun>(*this));
+                break;
+            }
+            case (PlanetaryBody::MERCURY): {
+                _bodies.emplace(id, std::make_unique<Mercury>(*this));
+                break;
+            }
+            case (PlanetaryBody::VENUS): {
+                _bodies.emplace(id, std::make_unique<Venus>(*this));
+                break;
+            }
+            case (PlanetaryBody::EARTH): {
+                _bodies.emplace(id, std::make_unique<Earth>(*this));
+                break;
+            }
+            case (PlanetaryBody::MOON): {
+                _bodies.emplace(id, std::make_unique<Moon>(*this));
+                break;
+            }
+            case (PlanetaryBody::MARS): {
+                _bodies.emplace(id, std::make_unique<Mars>(*this));
+                break;
+            }
+            case (PlanetaryBody::PHOBOS): {
+                _bodies.emplace(id, std::make_unique<Phobos>(*this));
+                break;
+            }
+            case (PlanetaryBody::DEIMOS): {
+                _bodies.emplace(id, std::make_unique<Deimos>(*this));
+                break;
+            }
+            case (PlanetaryBody::JUPITER): {
+                _bodies.emplace(id, std::make_unique<Jupiter>(*this));
+                break;
+            }
+            case (PlanetaryBody::GANYMEDE): {
+                _bodies.emplace(id, std::make_unique<Ganymede>(*this));
+                break;
+            }
+            case (PlanetaryBody::CALLISTO): {
+                _bodies.emplace(id, std::make_unique<Callisto>(*this));
+                break;
+            }
+            case (PlanetaryBody::IO): {
+                _bodies.emplace(id, std::make_unique<Io>(*this));
+                break;
+            }
+            case (PlanetaryBody::EUROPA): {
+                _bodies.emplace(id, std::make_unique<Europa>(*this));
+                break;
+            }
+            case (PlanetaryBody::SATURN): {
+                _bodies.emplace(id, std::make_unique<Saturn>(*this));
+                break;
+            }
+            case (PlanetaryBody::TITAN): {
+                _bodies.emplace(id, std::make_unique<Titan>(*this));
+                break;
+            }
+            case (PlanetaryBody::RHEA): {
+                _bodies.emplace(id, std::make_unique<Rhea>(*this));
+                break;
+            }
+            case (PlanetaryBody::IAPETUS): {
+                _bodies.emplace(id, std::make_unique<Iapetus>(*this));
+                break;
+            }
+            case (PlanetaryBody::URANUS): {
+                _bodies.emplace(id, std::make_unique<Uranus>(*this));
+                break;
+            }
+            case (PlanetaryBody::TITANIA): {
+                _bodies.emplace(id, std::make_unique<Titania>(*this));
+                break;
+            }
+            case (PlanetaryBody::OBERON): {
+                _bodies.emplace(id, std::make_unique<Oberon>(*this));
+                break;
+            }
+            case (PlanetaryBody::NEPTUNE): {
+                _bodies.emplace(id, std::make_unique<Neptune>(*this));
+                break;
+            }
+            case (PlanetaryBody::TRITON): {
+                _bodies.emplace(id, std::make_unique<Triton>(*this));
+                break;
+            }
+            default: throw std::runtime_error("Error: Celestial body not implemented in factory.");
+        }
+
+        _activeBodies.insert(id);
+        find_system_root();
+    }
+
+    return get(id);
 }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::create(const PlanetaryBody& id, const AstrodynamicsSystem& system)
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get(const PlanetaryBody& id) const
 {
-    _bodies.insert(id);
-    return _bodyFactory.create(id, system);
+    if (_bodies.count(id) > 0) { return _bodies.at(id); }
+    throw std::out_of_range("Input gravitational body not found.");
 }
 
-void AstrodynamicsSystem::find_root()
+void AstrodynamicsSystem::find_system_root()
 {
-    // TODO: Move this to the system
-
     // Count total planets
     std::size_t planetCount = 0;
-    for (const auto& id : _bodies) {
+    for (const auto& id : _activeBodies) {
         const auto& body = get(id);
         if (body->get_type() == CelestialBodyType::PLANET) {
             planetCount++;
@@ -64,15 +156,16 @@ void AstrodynamicsSystem::find_root()
     // Check if other bodies are children of only planet -
     // assumes the common root cannot be a satellite
     if (planetCount == 1) {
-        for (const auto& id : _bodies) {
-            PlanetaryBody parent = id;
-            while (parent != PlanetaryBody::SUN && parent != _root) {
-                parent = get_or_create(parent)->get_parent();
+        for (const auto& id : _activeBodies) {
+            PlanetaryBody parentId = id;
+            while (parentId != PlanetaryBody::SUN && parentId != _root) {
+                parentId = create(parentId)->get_parent();
+                _activeBodies.erase(parentId);
             }
 
             // If any object not in same planetary system, the common root
             // must be the Sun
-            if (parent == PlanetaryBody::SUN) {
+            if (parentId == PlanetaryBody::SUN) {
                 _root = PlanetaryBody::SUN;
                 break;
             }
@@ -94,6 +187,21 @@ GravParam AstrodynamicsSystem::get_mu() const
 }
 
 
+// void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTime)
+// {
+//     // Propagate everything except the Sun
+//     for (auto& [name, body] : _bodies) {
+//         if (name != "Sun") {
+//             // Get parent mu
+//             const std::string parent = body->get_parent();
+//             const auto parentMu      = get_or_create(parent)->get_mu();
+
+//             // Propagate
+//             body->propagate(epoch, endTime, parentMu);
+//         }
+//     }
+// }
+
 // void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
 // {
 // TODO: Since we're now just accessing the location of bodies by date directly,
@@ -109,7 +217,7 @@ GravParam AstrodynamicsSystem::get_mu() const
 // const StateHistory centerToParent    = center->get_state_history();
 
 // // Get root body
-// std::string root          = _bodyFactory.get_root();
+// std::string root          = _bodyFactory.get_system_root();
 // StateHistory centerToRoot = centerToParent;
 // if (_centralBody != root) {
 //     auto parent = center->get_parent();

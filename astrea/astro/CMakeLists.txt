@@ -55,7 +55,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
-    ${ASTRO_BASE}/systems/CelestialBodyFactory.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -128,7 +127,6 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
-    ${ASTRO_BASE}/systems/CelestialBodyFactory.hpp
 
     ${ASTRO_BASE}/time/Date.hpp
     ${ASTRO_BASE}/time/Interval.hpp

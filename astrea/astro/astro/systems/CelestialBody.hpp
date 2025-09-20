@@ -343,6 +343,11 @@ class CelestialBody {
     const AstrodynamicsSystem* _systemPtr; //!< Pointer to the AstrodynamicsSystem this celestial body belongs to
 };
 
+/**
+ * @brief Unique pointer type for CelestialBody.
+ */
+using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
+
 } // namespace astro
 } // namespace astrea
 
