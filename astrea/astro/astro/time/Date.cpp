@@ -60,7 +60,7 @@ std::string Date::epoch() const
     return ss.str();
 }
 
-Angle Date::gmst() const { return julian_date_to_siderial_time(_julianDate); }
+Angle Date::gmst() const { return julian_date_to_sidereal_time(_julianDate); }
 
 // General conversions
 JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format)
@@ -80,7 +80,7 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 
-Angle julian_date_to_siderial_time(const JulianDate& _julianDate)
+Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;

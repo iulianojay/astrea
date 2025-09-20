@@ -99,7 +99,7 @@ class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, Ea
      */
     static DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed> get_dcm(const Date& date)
     {
-        const Angle gst = julian_date_to_siderial_time(date.jd());
+        const Angle gst = julian_date_to_sidereal_time(date.jd());
         return DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed>::Z(gst);
     }
 

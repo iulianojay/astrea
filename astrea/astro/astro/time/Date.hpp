@@ -39,8 +39,10 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
  * @param date The JulianDate to convert.
  * @param format The format of the output string, default is "%Y-%m-%d %H:%M:%S".
  * @return std::string The string representation of the JulianDate.
+ *
+ * @note: This function uses an expantion that only works for Earth-centric sideral times.
  */
-Angle julian_date_to_siderial_time(const JulianDate& date);
+Angle julian_date_to_sidereal_time(const JulianDate& date);
 
 /**
  * @brief Class representing a date in the astrea astro library.

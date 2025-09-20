@@ -180,7 +180,7 @@ class CelestialBody {
      *
      * @return const Time& Reference to the sidereal period of the celestial body.
      */
-    const Time& get_siderial_period() const { return _siderialPeriod; };
+    const Time& get_sidereal_period() const { return _siderealPeriod; };
 
     /**
      * @brief Get the semimajor axis of the celestial body.
@@ -304,7 +304,7 @@ class CelestialBody {
     Unitless _j3;              //!< J3 gravitational coefficient of the celestial body
     Angle _axialTilt;          //!< Axial tilt of the celestial body
     AngularRate _rotationRate; //!< Rotation rate of the celestial body
-    Time _siderialPeriod;      //!< Sidereal period of the celestial body
+    Time _siderealPeriod;      //!< Sidereal period of the celestial body
 
     Distance _semimajorAxis;  //!< Semimajor axis
     Unitless _eccentricity;   //!< Eccentricity
@@ -378,7 +378,7 @@ struct std::hash<astrea::astro::CelestialBody> {
         h ^= (std::hash<double>{}(body.get_j3()) << 1);
         h ^= (std::hash<double>{}(body.get_axial_tilt()) << 1);
         h ^= (std::hash<double>{}(body.get_rotation_rate()) << 1);
-        h ^= (std::hash<double>{}(body.get_siderial_period()) << 1);
+        h ^= (std::hash<double>{}(body.get_sidereal_period()) << 1);
         h ^= (std::hash<double>{}(body.get_semimajor()) << 1);
         h ^= (std::hash<double>{}(body.get_eccentricity()) << 1);
         h ^= (std::hash<double>{}(body.get_inclination()) << 1);

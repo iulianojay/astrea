@@ -73,7 +73,7 @@ void CelestialBody::impl_ctor_from_file(const std::string& file)
     _j3                = planetaryData["J3"]["magnitude"].get<double>() * one;
     _axialTilt         = planetaryData["Axial Tilt"]["magnitude"].get<double>() * deg;
     _rotationRate      = planetaryData["Rotation Rate"]["magnitude"].get<double>() * deg / day;
-    _siderialPeriod    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
+    _siderealPeriod    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
 
     _referenceDate = Date(state["Epoch"].template get<std::string>());
 
