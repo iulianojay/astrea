@@ -124,9 +124,7 @@ class AstrodynamicsSystem {
         const PlanetaryBody id = T::get_id();
         if (_bodies.count(id) == 0) {
             CelestialBodyUniquePtr body = std::make_unique<T>(std::forward<Args>(args)...);
-            body->assign_system(*this);
             _bodies.emplace(id, std::move(body));
-
             _activeBodies.insert(id);
             find_system_root();
         }

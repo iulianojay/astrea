@@ -68,7 +68,6 @@ class CelestialBody {
      * @param rightAscensionRate Rate of change of the right ascension.
      * @param argumentOfPerigeeRate Rate of change of the argument of perigee.
      * @param trueLatitudeRate Rate of change of the true latitude.
-     * @param system Reference to the AstrodynamicsSystem this body belongs to.
      */
     constexpr CelestialBody(
         const std::string& name,
@@ -136,13 +135,6 @@ class CelestialBody {
      * @param other The CelestialBody to copy from.
      */
     CelestialBody(const CelestialBody& other) = default;
-
-    /**
-     * @brief Assigns the system pointer to this celestial body.
-     *
-     * @param systemPtr Reference to the AstrodynamicsSystem this body belongs to.
-     */
-    void assign_system(const AstrodynamicsSystem& system) { _systemPtr = &system; }
 
     /**
      * @brief Equality operator for CelestialBody.
@@ -364,7 +356,7 @@ class CelestialBody {
      * @param date The date at which to get the state of the celestial body.
      * @return State The state of the celestial body at the specified date.
      */
-    State get_state_at(const Date& date) const;
+    OrbitalElements get_elements_at(const Date& date) const;
 
   private:
     // Properties
@@ -402,8 +394,6 @@ class CelestialBody {
     BodyAngularRate _rightAscensionRate;    //!< Rate of change of the right ascension
     BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee
     BodyAngularRate _trueLatitudeRate;      //!< Rate of change of the true latitude
-
-    const AstrodynamicsSystem* _systemPtr; //!< Pointer to the AstrodynamicsSystem this celestial body belongs to
 
     /**
      * @brief Propagates the state of the celestial body from a given epoch to an end epoch.
