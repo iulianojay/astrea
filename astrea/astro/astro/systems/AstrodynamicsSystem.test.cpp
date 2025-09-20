@@ -74,9 +74,9 @@ TEST_F(AstrodynamicsSystemTest, ConstIterator) { ASSERT_NO_THROW(for (const auto
 TEST_F(AstrodynamicsSystemTest, Create)
 {
     ASSERT_EQ(sys.size(), 1);
-    ASSERT_NO_THROW(sys.create<Earth>(sys));
+    ASSERT_NO_THROW(sys.create<Earth>());
     ASSERT_EQ(sys.size(), 1);
-    sys.create<Moon>(sys);
+    sys.create<Moon>();
     ASSERT_EQ(sys.size(), 2);
 }
 

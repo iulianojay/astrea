@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <mp-units/math.h>
+
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -41,7 +43,14 @@ Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc);
  * @param ang The angle to sanitize.
  * @return The sanitized angle.
  */
-Angle sanitize_angle(const Angle& ang);
+constexpr Angle wrap_angle(const Angle& angle)
+{
+    Angle ang = angle;
+    while (ang < 0.0 * astrea::detail::angle_unit) {
+        ang += TWO_PI;
+    }
+    return mp_units::fmod(ang, TWO_PI);
+}
 
 } // namespace astro
 } // namespace astrea

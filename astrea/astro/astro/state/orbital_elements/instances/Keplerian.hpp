@@ -354,7 +354,7 @@ class Keplerian {
      *
      * This method ensures that all angles are within their valid ranges.
      */
-    void sanitize_angles();
+    void wrap_angles();
 
     /**
      * @brief Interpolates an angle between two time points.

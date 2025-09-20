@@ -1,6 +1,5 @@
 #include <astro/utilities/conversions.hpp>
 
-#include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
@@ -10,12 +9,6 @@
 
 using namespace mp_units;
 using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::non_si::day;
-using mp_units::si::unit_symbols::h;
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::min;
-using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
@@ -32,15 +25,6 @@ Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc)
     return ta + (-2.0 * ecc * sin(ta) + (0.75 * pow<2>(ecc) + 0.125 * pow<4>(ecc)) * sin(2.0 * ta) -
                  1.0 / 3.0 * pow<3>(ecc) * sin(3.0 * ta) + 5.0 / 32.0 * pow<4>(ecc) * sin(4.0 * ta)) *
                     isq_angle::cotes_angle;
-}
-
-Angle sanitize_angle(const Angle& angle)
-{
-    Angle ang = angle;
-    while (ang < 0.0 * astrea::detail::angle_unit) {
-        ang += TWO_PI;
-    }
-    return fmod(ang, TWO_PI);
 }
 
 } // namespace astro

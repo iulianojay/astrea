@@ -103,7 +103,7 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
 
     // GST
     static const AngularRate earthRotRate = 1.002737909350795 * 360.0 * deg / day;
-    const Angle greenwichSiderealTime     = sanitize_angle(greenwichUniversalTime + earthRotRate * universalTime);
+    const Angle greenwichSiderealTime     = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
 }

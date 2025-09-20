@@ -43,34 +43,34 @@ TEST_F(CelestialBodyTest, DefaultConstructor) { ASSERT_NO_THROW(CelestialBody())
 
 TEST_F(CelestialBodyTest, FileConstructors)
 {
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Sun/Sun.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mercury/Mercury.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Venus/Venus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Earth.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Moon.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Mars.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Phobos.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Deimos.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Jupiter.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Ganymede.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Callisto.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Io.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Europa.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Saturn.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Titan.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Rhea.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Iapetus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Uranus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Titania.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Oberon.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Neptune/Neptune.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Neptune/Triton.json", sys));
+    ASSERT_NO_THROW(Sun());
+    ASSERT_NO_THROW(Mercury());
+    ASSERT_NO_THROW(Venus());
+    ASSERT_NO_THROW(Earth());
+    ASSERT_NO_THROW(Moon());
+    ASSERT_NO_THROW(Mars());
+    ASSERT_NO_THROW(Phobos());
+    ASSERT_NO_THROW(Deimos());
+    ASSERT_NO_THROW(Jupiter());
+    ASSERT_NO_THROW(Ganymede());
+    ASSERT_NO_THROW(Callisto());
+    ASSERT_NO_THROW(Io());
+    ASSERT_NO_THROW(Europa());
+    ASSERT_NO_THROW(Saturn());
+    ASSERT_NO_THROW(Titan());
+    ASSERT_NO_THROW(Rhea());
+    ASSERT_NO_THROW(Iapetus());
+    ASSERT_NO_THROW(Uranus());
+    ASSERT_NO_THROW(Titania());
+    ASSERT_NO_THROW(Oberon());
+    ASSERT_NO_THROW(Neptune());
+    ASSERT_NO_THROW(Triton());
 }
 
 TEST_F(CelestialBodyTest, Equality)
 {
     const CelestialBody earth2 = earth;
-    const CelestialBody moon   = CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Moon.json", sys);
+    const CelestialBody moon   = Moon();
     ASSERT_EQ(earth, earth2);
     ASSERT_NE(earth, moon);
 }
@@ -114,7 +114,7 @@ TEST_F(CelestialBodyTest, GetJ2) { ASSERT_EQ_QUANTITY(earth.get_j2(), 1082.63e-6
 
 TEST_F(CelestialBodyTest, GetJ3) { ASSERT_EQ_QUANTITY(earth.get_j3(), -0.0000025323 * one, REL_TOL); }
 
-TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_tilt(), Angle(23.44 * deg), REL_TOL); }
+TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_tilt(), Angle(23.439292 * deg), REL_TOL); }
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {

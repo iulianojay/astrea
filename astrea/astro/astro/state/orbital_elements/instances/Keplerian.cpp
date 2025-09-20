@@ -178,7 +178,7 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 
     if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
 
-    sanitize_angles();
+    wrap_angles();
 }
 
 Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys)
@@ -211,7 +211,7 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Anomaly
     _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
 
-    sanitize_angles();
+    wrap_angles();
 }
 
 Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
@@ -386,12 +386,12 @@ std::vector<Unitless> Keplerian::to_vector() const
              _argPerigee / astrea::detail::angle_unit,   _trueAnomaly / astrea::detail::angle_unit };
 }
 
-void Keplerian::sanitize_angles()
+void Keplerian::wrap_angles()
 {
-    _inclination    = sanitize_angle(_inclination);
-    _rightAscension = sanitize_angle(_rightAscension);
-    _argPerigee     = sanitize_angle(_argPerigee);
-    _trueAnomaly    = sanitize_angle(_trueAnomaly);
+    _inclination    = wrap_angle(_inclination);
+    _rightAscension = wrap_angle(_rightAscension);
+    _argPerigee     = wrap_angle(_argPerigee);
+    _trueAnomaly    = wrap_angle(_trueAnomaly);
 }
 
 

@@ -55,7 +55,7 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
     _k = tan(inc / 2.0) * sin(raan);
 
     // True longitude
-    _trueLongitude = sanitize_angle(raan + argPer + theta);
+    _trueLongitude = wrap_angle(raan + argPer + theta);
 }
 
 Equinoctial::Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys) :

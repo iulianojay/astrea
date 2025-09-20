@@ -300,16 +300,16 @@ TEST_F(ConversionTest, SanitizeAngle)
 {
     // Test angle within [0, 2pi]
     Angle ang       = 1.0 * rad;
-    Angle sanitized = sanitize_angle(ang);
+    Angle sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang, REL_TOL);
 
     // Test negative angle
     ang       = -1.0 * rad;
-    sanitized = sanitize_angle(ang);
+    sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang + TWO_PI, REL_TOL);
 
     // Test angle greater than 2pi
     ang       = 3.0 * TWO_PI;
-    sanitized = sanitize_angle(ang);
+    sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang - TWO_PI, REL_TOL);
 }

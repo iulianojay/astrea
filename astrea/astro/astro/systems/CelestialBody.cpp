@@ -21,7 +21,6 @@
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {
@@ -37,63 +36,54 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
+// void CelestialBody::impl_ctor_from_file(const std::string& file)
+// {
+//     using json = nlohmann::json;
 
-CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem& system) :
-    _systemPtr(&system)
-{
-    impl_ctor_from_file(file);
-}
+//     // Read file into JSON
+//     // TODO: Add checks to make sure its a valid JSON
+//     std::ifstream fileStream(file);
 
-CelestialBody::CelestialBody(const std::string& file) { impl_ctor_from_file(file); }
+//     if (!fileStream.good()) { throw std::runtime_error("Error: Could not open file " + file); }
 
-void CelestialBody::impl_ctor_from_file(const std::string& file)
-{
-    using json = nlohmann::json;
+//     // Parse
+//     const json planetaryData = json::parse(fileStream);
+//     const json state         = planetaryData["State"];
 
-    // Read file into JSON
-    // TODO: Add checks to make sure its a valid JSON
-    std::ifstream fileStream(file);
+//     // Store
+//     _name = planetaryData["Name"].template get<std::string>();
 
-    if (!fileStream.good()) { throw std::runtime_error("Error: Could not open file " + file); }
+//     _mu                = planetaryData["Gravitational Parameter"]["magnitude"].get<double>() * (pow<3>(km) / pow<2>(s));
+//     _mass              = planetaryData["Mass"]["magnitude"].get<double>() * (mag_power<10, 24> * kg);
+//     _equitorialRadius  = planetaryData["Equitorial Radius"]["magnitude"].get<double>() * km;
+//     _polarRadius       = planetaryData["Polar Radius"]["magnitude"].get<double>() * km;
+//     _crashRadius       = planetaryData["Crash Radius"]["magnitude"].get<double>() * km;
+//     _sphereOfInfluence = planetaryData["Sphere Of Influence"]["magnitude"].get<double>() * au;
+//     _j2                = planetaryData["J2"]["magnitude"].get<double>() * one;
+//     _j3                = planetaryData["J3"]["magnitude"].get<double>() * one;
+//     _axialTilt         = planetaryData["Axial Tilt"]["magnitude"].get<double>() * deg;
+//     _rotationRate      = planetaryData["Rotation Rate"]["magnitude"].get<double>() * deg / day;
+//     _siderealPeriod    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
 
-    // Parse
-    const json planetaryData = json::parse(fileStream);
-    const json state         = planetaryData["State"];
+//     _referenceDate = Date(state["Epoch"].template get<std::string>());
 
-    // Store
-    _name = planetaryData["Name"].template get<std::string>();
+//     _semimajorAxis     = state["Semimajor Axis"]["value"]["magnitude"].get<double>() * km;
+//     _eccentricity      = state["Eccentricity"]["value"]["magnitude"].get<double>() * one;
+//     _inclination       = state["Inclination"]["value"]["magnitude"].get<double>() * deg;
+//     _rightAscension    = state["Right Ascension"]["value"]["magnitude"].get<double>() * deg;
+//     _argumentOfPerigee = state["Argument Of Perigee"]["value"]["magnitude"].get<double>() * deg;
+//     _trueLatitude      = state["True Latitude"]["value"]["magnitude"].get<double>() * deg;
 
-    _mu                = planetaryData["Gravitational Parameter"]["magnitude"].get<double>() * (pow<3>(km) / pow<2>(s));
-    _mass              = planetaryData["Mass"]["magnitude"].get<double>() * (mag_power<10, 24> * kg);
-    _equitorialRadius  = planetaryData["Equitorial Radius"]["magnitude"].get<double>() * km;
-    _polarRadius       = planetaryData["Polar Radius"]["magnitude"].get<double>() * km;
-    _crashRadius       = planetaryData["Crash Radius"]["magnitude"].get<double>() * km;
-    _sphereOfInfluence = planetaryData["Sphere Of Influence"]["magnitude"].get<double>() * au;
-    _j2                = planetaryData["J2"]["magnitude"].get<double>() * one;
-    _j3                = planetaryData["J3"]["magnitude"].get<double>() * one;
-    _axialTilt         = planetaryData["Axial Tilt"]["magnitude"].get<double>() * deg;
-    _rotationRate      = planetaryData["Rotation Rate"]["magnitude"].get<double>() * deg / day;
-    _siderealPeriod    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
+//     _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"].get<double>() * km / JulianCentury;
+//     _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"].get<double>() * one / JulianCentury;
+//     _inclinationRate       = state["Inclination"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
+//     _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
+//     _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
+//     _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
 
-    _referenceDate = Date(state["Epoch"].template get<std::string>());
-
-    _semimajorAxis     = state["Semimajor Axis"]["value"]["magnitude"].get<double>() * km;
-    _eccentricity      = state["Eccentricity"]["value"]["magnitude"].get<double>() * one;
-    _inclination       = state["Inclination"]["value"]["magnitude"].get<double>() * deg;
-    _rightAscension    = state["Right Ascension"]["value"]["magnitude"].get<double>() * deg;
-    _argumentOfPerigee = state["Argument Of Perigee"]["value"]["magnitude"].get<double>() * deg;
-    _trueLatitude      = state["True Latitude"]["value"]["magnitude"].get<double>() * deg;
-
-    _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"].get<double>() * km / JulianCentury;
-    _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"].get<double>() * one / JulianCentury;
-    _inclinationRate       = state["Inclination"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-
-    _meanAnomaly = sanitize_angle(_trueLatitude - _argumentOfPerigee);
-    _trueAnomaly = sanitize_angle(convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity));
-}
+//     _meanAnomaly = wrap_angle(_trueLatitude - _argumentOfPerigee);
+//     _trueAnomaly = wrap_angle(convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity));
+// }
 
 State CelestialBody::get_state_at(const Date& date) const
 {
