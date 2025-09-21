@@ -1,15 +1,12 @@
+# Adapted from https://github.com/mschmit6/jpl_ephemeris.git
+
 from enum import IntEnum
-import numpy
+import numpy as np
 import os
 
-#---------------------------------------------------------------------------------------------------------------------------
-#---------------------------------------------------------------------------------------------------------------------------
+ASTREA_ROOT = os.getenv("ASTREA_ROOT")
 
-#--------------------------------------
-# Utility Functions
-#--------------------------------------
-
-def parse_header_file(header_file):
+def parse_header_file(headerFile):
     """
     Pull the table out of the DE header file, which is located between the tags "GROUP   1050" and "GROUP   1070"
     
@@ -19,57 +16,57 @@ def parse_header_file(header_file):
 
     """
 
-    def parse_group_1040(lines_group_1040):
+    def parse_group_1040(linesGroup1040):
         """
         Simply identify the index in the block for EMRAT
         """
-        lines_group_1040 = lines_group_1040[2:]
+        linesGroup1040 = linesGroup1040[2:]
 
-        split_block = []
-        for line in lines_group_1040:
+        splitBlock = []
+        for line in linesGroup1040:
             if line.strip() == "":
                 continue
             else:
-                split_block.extend(line.strip().split())
+                splitBlock.extend(line.strip().split())
 
         # Now identify index of EMRAT
-        for ind, val in enumerate(split_block):
+        for ind, val in enumerate(splitBlock):
             if val == "EMRAT":
                 return ind
 
         return None
 
-    def parse_group_1041(lines_group_1041, emrat_ind):
+    def parse_group_1041(linesGroup1041, emratIdx):
         """
         Return the Earth/Moon mass ratio
         """
-        lines_group_1041 = lines_group_1041[2:]
+        linesGroup1041 = linesGroup1041[2:]
 
-        split_block = []
-        for line in lines_group_1041:
+        splitBlock = []
+        for line in linesGroup1041:
             if line.strip() == "":
                 continue
             else:
-                split_block.extend(line.strip().split())
+                splitBlock.extend(line.strip().split())
 
-        return float(split_block[emrat_ind].replace("D", "e"))
+        return float(splitBlock[emratIdx].replace("D", "e"))
         
     def parse_group_1050(lines_group_1050):
         # Put the header lines into a numpy array
-        jpl_ephem_header = []
+        jplEphemHeader = []
         for line in lines_group_1050:
             if line.strip() == "":
                 continue
             else:
-                jpl_ephem_header.append(list(map(int, line.strip().split())))
-        return jpl_ephem_header
+                jplEphemHeader.append(list(map(int, line.strip().split())))
+        return jplEphemHeader
 
-    with open(header_file, 'r') as fID:
+    with open(headerFile, 'r') as fID:
         lines = fID.readlines()
 
     # Parse the file into groupes
     group = None
-    group_lines = {'1040': [], '1041': [], '1050': []}
+    groupLines = {'1040': [], '1041': [], '1050': []}
 
     # Discard the lines until we get to the line containing "GROUP   1050"
     for line in lines:
@@ -80,20 +77,18 @@ def parse_header_file(header_file):
             continue
         else:
             if group == "1040":
-                group_lines['1040'].append(line)
+                groupLines['1040'].append(line)
             elif group == "1041":
-                group_lines['1041'].append(line)
+                groupLines['1041'].append(line)
             elif group == "1050":
-                group_lines['1050'].append(line)
+                groupLines['1050'].append(line)
 
-    emrat_ind = parse_group_1040(group_lines['1040'])
-    if emrat_ind is None:
+    emratIdx = parse_group_1040(groupLines['1040'])
+    if emratIdx is None:
         raise Exception("Failed to parse out the EMRAT value from header file")
-    emratio = parse_group_1041(group_lines['1041'], emrat_ind)
-    jpl_ephem_header = parse_group_1050(group_lines['1050'])
-    return emratio, numpy.asarray(jpl_ephem_header)
-
-#---------------------------------------------------------------------------------------------------------------------------
+    emratio = parse_group_1041(groupLines['1041'], emratIdx)
+    jplEphemHeader = parse_group_1050(groupLines['1050'])
+    return emratio, np.asarray(jplEphemHeader)
 
 class CelestialBodies(IntEnum):
     """
@@ -115,43 +110,40 @@ class CelestialBodies(IntEnum):
     Saturn = 5,         # Saturn from SSB
     Uranus = 6,         # Uranus from SSB
     Neptune = 7,        # Neptune from SSB
-    Pluto = 8,          # Pluto from SSB
-    Moon = 9,           # Moon geocentric position
-    Sun = 10,           # Sun from SSB
-    EarthFromEMB = 11   # Earth from EMB
+    Moon = 8,           # Moon geocentric position
+    Sun = 9,            # Sun from SSB
+    EarthFromEMB = 10   # Earth from EMB
 
-#---------------------------------------------------------------------------------------------------------------------------
 
-def get_table_parameters(celestial_body: CelestialBodies, jpl_ephem_header: numpy.ndarray):
+def get_table_parameters(celestialBody: CelestialBodies, jplEphemHeader: np.ndarray):
     """
     Get start index, end index, and number of polynomials for each Celestial Body
 
     Arguments:
-        celestial_body (CelestialBodies): Enum value representing the celestial body
-        jpl_ephem_header (numpy.ndarray): Numpy array containing the header table 
+        celestialBody (CelestialBodies): Enum value representing the celestial body
+        jplEphemHeader (np.ndarray): Numpy array containing the header table 
 
     Returns:
         tuple: Tuple containing the following values
-            - **start_ind** `(int)`: Index in the JPL ephemeris file at which the celestial body's polynomial coefficients start
-            - **stop_ind** `(int)`: Index in the JPL ephemeris file at which the celestial body's polynomial coefficients stop
+            - **startIdx** `(int)`: Index in the JPL ephemeris file at which the celestial body's polynomial coefficients start
+            - **stopIdx** `(int)`: Index in the JPL ephemeris file at which the celestial body's polynomial coefficients stop
             - **coeff_per_poly** `(int)`: Number of coefficients per polynomial
-            - **num_poly** `(int)`: Number of polynomials required to model the body over the 32 day period
-            - **days_per_poly** `(int)`: Number of days each polynomial represents
+            - **nPoly** `(int)`: Number of polynomials required to model the body over the 32 day period
+            - **daysPerPoly** `(int)`: Number of days each polynomial represents
 
     """
     # Get integer value for the CelestialBody
-    cb_ind = celestial_body.value
+    cbIdx = celestialBody.value
 
     # Extract table information. Note that start/stop index you subtract 1 since Python is 0 based
-    start_ind = jpl_ephem_header[0, cb_ind] - 1
-    stop_ind = jpl_ephem_header[0, cb_ind + 1] - 1
-    coeff_per_poly = jpl_ephem_header[1, cb_ind]
-    num_poly = jpl_ephem_header[2, cb_ind]
-    days_per_poly = 32.0 / num_poly
+    startIdx = jplEphemHeader[0, cbIdx] - 1
+    stopIdx = jplEphemHeader[0, cbIdx + 1] - 1
+    coeffPerPoly = jplEphemHeader[1, cbIdx]
+    nPoly = jplEphemHeader[2, cbIdx]
+    daysPerPoly = 32.0 / nPoly
 
-    return start_ind, stop_ind, coeff_per_poly, num_poly, days_per_poly
+    return startIdx, stopIdx, coeffPerPoly, nPoly, daysPerPoly
 
-#---------------------------------------------------------------------------------------------------------------------------
 
 def jd_to_mjdj2k(jd: float) -> float:
     """
@@ -160,14 +152,13 @@ def jd_to_mjdj2k(jd: float) -> float:
     """
     return jd - 2451545.0
 
-#---------------------------------------------------------------------------------------------------------------------------
 
-def read_in_blocks(file_names: list):
+def read_in_blocks(files: list):
     """
     Read in blocks from multiple files, and concactinate them into a set of blocks
 
     Arguments:
-        file_names (list[str]): List of filenames to parse
+        files (list[str]): List of filenames to parse
 
     Returns:
         list[list]: Each block from the files, as a list of floating point values
@@ -175,85 +166,115 @@ def read_in_blocks(file_names: list):
     """
 
     # Type check to make sure that it is a list being passed in
-    if isinstance(file_names, str):
-        file_names = [file_names]
+    if isinstance(files, str):
+        files = [files]
 
     # read all lines from the file
     lines = []
-    for file in file_names:
+    for file in files:
         with open(file, 'r') as fID:
-            new_lines = fID.readlines()
-            lines += new_lines
+            newLines = fID.readlines()
+            lines += newLines
 
 
     # Split each line up into corresponding "blocks"
-    block_lines = []
-    cur_block = ""
+    blockLines = []
+    curBlock = ""
 
     for line in lines:
-        split_line = line.strip().split()
+        splitLine = line.strip().split()
 
         # Check for the header line
-        if len(split_line) == 2:
-            if split_line[1] == "1018":
-                if len(cur_block) > 0:
-                    block_lines.append(cur_block)
-                cur_block = ""
+        if len(splitLine) == 2:
+            if splitLine[1] == "1018":
+                if len(curBlock) > 0:
+                    blockLines.append(curBlock)
+                curBlock = ""
         else:
-            cur_block += line
+            curBlock += line
 
     # Append the last block
-    block_lines.append(cur_block)
+    blockLines.append(curBlock)
 
     # Split each block up into a list of floating point values
-    float_lines = [convert_to_float(line.split()) for line in block_lines]
+    floatLines = [convert_to_float(line.split()) for line in blockLines]
 
-    return float_lines
+    return floatLines
 
-#---------------------------------------------------------------------------------------------------------------------------
 
-def write_to_file(file_name: str, num_entries, days_per_poly, x_coeff_str, y_coeff_str, z_coeff_str, body):
+
+def write_to_file(sourcePath: str, className: str, nEntries : int, daysPerPoly: float, xCoeffStr: list, yCoeffStr: list, zCoeffStr: list):
     """
     Format and write x, y, z position coefficients to file
-
     """
 
-    with open("{}".format(file_name), 'w') as fID:
+    # Common strings
+    warningString = "//!!!!!!! WARNING: Autogenerated file, do not edit !!!!!!!\n"
+    subTypeString = f"std::array<double, {nEntries}>"
+    typeString = f"std::array<{subTypeString}>, {len(xCoeffStr)}> {className}"
+
+    # Write header file
+    header = f"{sourcePath}/{className}.hpp"
+    headerfile = os.path.join(ASTREA_ROOT, 'astrea/astro', header)
+    with open(headerfile, 'w+') as fID:
+
+        fID.write(warningString)
+
+        fID.write(f"#pragma once\n\n")
+        fID.write(f"#include <array>\n")
+        fID.write(f"#include <units/units.hpp>\n")
+        fID.write(f"#include <astro/systems/planetary_bodies/JplEphemerisTable.hpp>\n\n")
+        fID.write(f"namespace astrea {{\n")
+        fID.write(f"namespace astro {{\n")
+        fID.write(f"namespace planetary_bodies {{\n\n")
+        fID.write(f"struct {className} : public JplEphemerisTable {{\n")
 
         # Write number of days per poly at the top
-        fID.write("static constexpr double days_per_poly_ = {};\n".format(days_per_poly))
+        fID.write(f"static constexpr Time TIME_PER_COEFFICIENT = {daysPerPoly} * mp_units::non_si::day;\n")
 
         # Write the x coefficients to file
-        fID.write("std::array<std::array<double, {}>, {}> {}::x_interp_ ".format(num_entries, len(x_coeff_str), body) + "{\n")
+        fID.write(f"static const {typeString}::X_INTERP;\n")
+        fID.write(f"static const {typeString}::Y_INTERP;\n")
+        fID.write(f"static const {typeString}::Z_INTERP;\n")
 
-        for x in x_coeff_str:
-            fID.write('    std::array<double, {}>'.format(num_entries) + "{" + "{}".format(x) + "},\n")
+        fID.write("};\n\n")
+        fID.write(f"}} // namespace astrea \n")
+        fID.write(f"}} // namespace astro \n")
+        fID.write(f"}} // namespace planetary_bodies \n\n")
 
-        fID.write("};")
+    # Write source file
+    sourcefile = os.path.join(ASTREA_ROOT, 'astrea/astro', f"{sourcePath}/{className}.cpp")
+    with open(sourcefile, 'w+') as fID:
+        fID.write(warningString)
 
-        fID.write("\n\n//--------------------------------------------------------------------------------------------------------------------------\n\n");
+        fID.write(f"#include <{header}>\n\n")
+
+        # Write the x coefficients to file
+        fID.write(f"{typeString}::X_INTERP {{\n")
+        for x in xCoeffStr:
+            fID.write(f"\t{subTypeString} {{{x}}},\n")
+        fID.write("};\n\n")
+        fID.write("//-------------------------------------------------\n")
+        fID.write("//-------------------------------------------------\n\n")
 
         # Write the y coefficients to file
-        fID.write("std::array<std::array<double, {}>, {}> {}::y_interp_ ".format(num_entries, len(x_coeff_str), body) + "{\n")
-
-        for y in y_coeff_str:
-            fID.write('    std::array<double, {}>'.format(num_entries) + "{" + "{}".format(y) + "},\n")
-
-        fID.write("};")
-
-        fID.write("\n\n//--------------------------------------------------------------------------------------------------------------------------\n\n");
+        fID.write(f"{typeString}::Y_INTERP {{\n")
+        for y in yCoeffStr:
+            fID.write(f"\t{subTypeString} {{{y}}},\n")
+        fID.write("};\n\n")
+        fID.write("//-------------------------------------------------\n")
+        fID.write("//-------------------------------------------------\n\n")
 
         # Write the z coefficients to file
-        fID.write("std::array<std::array<double, {}>, {}> {}::z_interp_ ".format(num_entries, len(x_coeff_str), body) + "{\n");
-
-        for z in z_coeff_str:
-            fID.write('    std::array<double, {}>'.format(num_entries) + "{" + "{}".format(z) + "},\n");
-
-        fID.write("};")
+        fID.write(f"{typeString}::Z_INTERP {{\n")
+        for z in zCoeffStr:
+            fID.write(f"\t{subTypeString} {{{z}}},\n")
+        fID.write("};\n\n")
+        fID.write("//-------------------------------------------------\n")
+        fID.write("//-------------------------------------------------\n\n")
 
     return
 
-#---------------------------------------------------------------------------------------------------------------------------
 
 def convert_to_float(words):
     """
@@ -266,134 +287,124 @@ def convert_to_float(words):
         list[str]: Corresponding list of floating point values
 
     """
+    return [float(word.replace("D", "e")) if "D" in word else float(word) for word in words ]
 
-    float_vals = []
 
-    for word in words:
-        if "D" in word:
-            word = word.replace("D", "e")
-
-        float_vals.append(float(word))
-
-    return float_vals
-
-#---------------------------------------------------------------------------------------------------------------------------
-
-def duplicate_start_date(start_mjdj2k_vals, cur_mjd_start):
+def duplicate_start_date(startMjdVals, curMjdStart):
     """
     Function to prevent duplicate start dates when multiple files are used
     
     """
-    for mj2jdk_val in start_mjdj2k_vals:
-        if cur_mjd_start == mj2jdk_val:
+    for mjd in startMjdVals:
+        if curMjdStart == mjd:
             return True
 
     return False
 
-#---------------------------------------------------------------------------------------------------------------------------
 
-def generate_ephemeris_file(line_blocks: list, em_ratio: float, mjdj2k_0: float, mjdj2k_f: float, 
-                            celestial_body: CelestialBodies, jpl_ephem_header: numpy.ndarray):
+def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF: float, 
+                            celestialBody: CelestialBodies, jplEphemHeader: np.ndarray):
     """
     Extract the Chebyshev coefficients for the specified liens, given an initial and final MJD from the J2000 Epoch
 
     Arguments:
-        line_blocks (list[list]): List of floating point values representing each block
+        lineBlocks (list[list]): List of floating point values representing each block
         em_ratio (float): Earth/Moon mass ratio
-        mjdj2k_0 (float): Initial value of MJD from the J2000 Epoch
-        mjdj2k_f (float): Final value of MJD from the J2000 Epoch
-        celestial_body (CelestialBodies): Celestial body to extract
-        jpl_ephem_header (numpy.ndarray): Numpy array containing the header table 
+        mjd0 (float): Initial value of MJD from the J2000 Epoch
+        mjdF (float): Final value of MJD from the J2000 Epoch
+        celestialBody (CelestialBodies): Celestial body to extract
+        jplEphemHeader (np.ndarray): Numpy array containing the header table 
 
     Returns:
         (list, list, list): String representation of Chebyshev interpolants for x, y, z values of position
 
     """
 
-    if celestial_body == CelestialBodies.EarthFromEMB:
+    if celestialBody == CelestialBodies.EarthFromEMB:
         # Have to do extra work to compute the position of Earth relative to EMB
-        generate_earth_relative_to_barycenter_file(line_blocks, em_ratio, mjdj2k_0, mjdj2k_f, jpl_ephem_header)
+        generate_earth_relative_to_barycenter_file(lineBlocks, em_ratio, mjd0, mjdF, jplEphemHeader)
 
     else:
         # Get table parameters for the body
-        START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(celestial_body, jpl_ephem_header)
+        START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(celestialBody, jplEphemHeader)
 
-        x_chebyshev_str = []
-        y_chebyshev_str = []
-        z_chebyshev_str = []
-        start_mjdj2k_vals = []
+        xChebyshevStr = []
+        yChebyshevStr = []
+        zChebyshevStr = []
+        startMjdVals = []
         
-        for block in line_blocks:
+        for block in lineBlocks:
 
             # First, pull out start/stop jd and convert to MJD_J2k
-            mjdj2k_start = jd_to_mjdj2k(block[0])
-            mjdj2k_stop  = jd_to_mjdj2k(block[1])
+            mjdStart = jd_to_mjdj2k(block[0])
+            mjdStop  = jd_to_mjdj2k(block[1])
 
             # Skip a block if it isn't contained within the start/stop window
-            if mjdj2k_stop < mjdj2k_0 or mjdj2k_start > mjdj2k_f:
+            if mjdStop < mjd0 or mjdStart > mjdF:
                 continue
 
             # Get the chebyshev coefficients for the moon
             coeff = block[START_IND:END_IND]
 
             # Process coefficients for Each polynomial
-            cur_ind = 0
+            idx = 0
             for k in range(NUM_POLY):
                 # Set the start/stop MJD values
-                cur_mjd_start = mjdj2k_start + DAYS_PER_POLY * k
-                cur_mjd_stop = cur_mjd_start + DAYS_PER_POLY
+                curMjdStart = mjdStart + DAYS_PER_POLY * k
+                curMjdStop = curMjdStart + DAYS_PER_POLY
 
                 # Prevent duplicate start dates
-                if duplicate_start_date(start_mjdj2k_vals, cur_mjd_start):
+                if duplicate_start_date(startMjdVals, curMjdStart):
                     continue
-                start_mjdj2k_vals.append(cur_mjd_start)
+                startMjdVals.append(curMjdStart)
 
                 # Extract x coefficients
-                x_coeff = coeff[cur_ind:(cur_ind + NUM_COEFF)]
-                x_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in x_coeff]))
-                x_chebyshev_str.append(x_coeff_str)
+                xCoeff = coeff[idx:(idx + NUM_COEFF)]
+                xCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in xCoeff]))
+                xChebyshevStr.append(xCoeffStr)
 
                 # Extract y coefficients
-                cur_ind += NUM_COEFF
-                y_coeff = coeff[cur_ind:(cur_ind + NUM_COEFF)]
-                y_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in y_coeff]))
-                y_chebyshev_str.append(y_coeff_str)
+                idx += NUM_COEFF
+                yCoeff = coeff[idx:(idx + NUM_COEFF)]
+                yCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in yCoeff]))
+                yChebyshevStr.append(yCoeffStr)
 
                 # Extract z coefficients
-                cur_ind += NUM_COEFF
-                z_coeff = coeff[cur_ind:(cur_ind + NUM_COEFF)]
-                z_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in z_coeff]))
-                z_chebyshev_str.append(z_coeff_str)
+                idx += NUM_COEFF
+                zCoeff = coeff[idx:(idx + NUM_COEFF)]
+                zCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in zCoeff]))
+                zChebyshevStr.append(zCoeffStr)
 
                 # Add NUM_COEFF so the next X value starts off properly
-                cur_ind += NUM_COEFF
+                idx += NUM_COEFF
 
-            # Set the previous stop value so that we don't allow overlap between tables
-            prev_mjdj2k_stop = int(mjdj2k_stop)
-
-
-        if celestial_body != CelestialBodies.Moon:
-            write_to_file("{}_position.txt".format(celestial_body.name), NUM_COEFF + 2, DAYS_PER_POLY, x_chebyshev_str,
-                        y_chebyshev_str, z_chebyshev_str, "{}FromSSBGCRFTable".format(celestial_body.name))
+        # Write to file
+        name = celestialBody.name
+        if (celestialBody != CelestialBodies.EMB and celestialBody != CelestialBodies.Moon):
+            outPath = f"astro/systems/planetary_bodies/{name}/ephemeris"
         else:
-            write_to_file("{}_position.txt".format(celestial_body.name), NUM_COEFF + 2, DAYS_PER_POLY, x_chebyshev_str,
-                        y_chebyshev_str, z_chebyshev_str, "{}GCRFTable".format(celestial_body.name))
+            outPath = "astro/systems/planetary_bodies/Earth/ephemeris"
 
-        return x_chebyshev_str, y_chebyshev_str, z_chebyshev_str
+        if celestialBody != CelestialBodies.Moon:
+            write_to_file(outPath, f"{name}EphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
+        elif celestialBody == CelestialBodies.EMB:
+            write_to_file(outPath, f"EmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
+        else:
+            write_to_file(outPath, f"{name}GcrfTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
 
-#---------------------------------------------------------------------------------------------------------------------------
+        return xChebyshevStr, yChebyshevStr, zChebyshevStr
 
-def generate_earth_relative_to_barycenter_file(line_blocks: list, em_ratio: float, mjdj2k_0: float, mjdj2k_f: float, 
-                                               jpl_ephem_header: numpy.ndarray):
+
+def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF: float, jplEphemHeader: np.ndarray):
     """
     Extract the Chebyshev coefficients for the Earth's position relative to the Earth-Moon-Barycenter
 
     Arguments:
-        line_blocks (list[list]): List of floating point values representing each block
+        lineBlocks (list[list]): List of floating point values representing each block
         em_ratio (float): Earth/Moon mass ratio
-        mjdj2k_0 (float): Initial value of MJD from the J2000 Epoch
-        mjdj2k_f (float): Final value of MJD from the J2000 Epoch
-        jpl_ephem_header (numpy.ndarray): Numpy array containing the header table 
+        mjd0 (float): Initial value of MJD from the J2000 Epoch
+        mjdF (float): Final value of MJD from the J2000 Epoch
+        jplEphemHeader (np.ndarray): Numpy array containing the header table 
 
     Returns:
         (list, list, list): String representation of Chebyshev interpolants for x, y, z values of position
@@ -401,89 +412,84 @@ def generate_earth_relative_to_barycenter_file(line_blocks: list, em_ratio: floa
     """
 
     # Get the Chebyshev parameters for the Moon, and will adjust
-    START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(CelestialBodies.Moon, jpl_ephem_header)
+    START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(CelestialBodies.Moon, jplEphemHeader)
 
-    x_chebyshev_str = []
-    y_chebyshev_str = []
-    z_chebyshev_str = []
-    start_mjdj2k_vals = []
+    xChebyshevStr = []
+    yChebyshevStr = []
+    zChebyshevStr = []
+    startMjdVals = []
 
-    for block in line_blocks:
+    for block in lineBlocks:
 
         # First, pull out start/stop jd and convert to MJD_J2k
-        mjdj2k_start = jd_to_mjdj2k(block[0])
-        mjdj2k_stop  = jd_to_mjdj2k(block[1])
+        mjdStart = jd_to_mjdj2k(block[0])
+        mjdStop  = jd_to_mjdj2k(block[1])
 
         # Skip a block if it isn't contained within the start/stop window
-        if mjdj2k_stop < mjdj2k_0 or mjdj2k_start > mjdj2k_f:
+        if mjdStop < mjd0 or mjdStart > mjdF:
             continue
 
         # Get the chebyshev coefficients for the moon
-        moon_coeff = block[START_IND:END_IND]
+        moonCoeff = block[START_IND:END_IND]
 
         # Compute the position of moon relative to EM-barycenter
-        earth_rel_embary = [-v / (1 + em_ratio) for v in moon_coeff]
-
+        earth_rel_embary = [-v / (1 + em_ratio) for v in moonCoeff]
 
         # Process coefficients for Each polynomial
-        cur_ind = 0
+        idx = 0
         for k in range(NUM_POLY):
             # Set the start/stop MJD values
-            cur_mjd_start = mjdj2k_start + DAYS_PER_POLY * k
-            cur_mjd_stop = cur_mjd_start + DAYS_PER_POLY
+            curMjdStart = mjdStart + DAYS_PER_POLY * k
+            curMjdStop = curMjdStart + DAYS_PER_POLY
 
             # Prevent duplicate start dates
-            if duplicate_start_date(start_mjdj2k_vals, cur_mjd_start):
+            if duplicate_start_date(startMjdVals, curMjdStart):
                 continue
-            start_mjdj2k_vals.append(cur_mjd_start)
+            startMjdVals.append(curMjdStart)
 
             # Extract x coefficients
-            x_coeff = earth_rel_embary[cur_ind:(cur_ind + NUM_COEFF)]
-            x_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in x_coeff]))
-            x_chebyshev_str.append(x_coeff_str)
+            xCoeff = earth_rel_embary[idx:(idx + NUM_COEFF)]
+            xCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in xCoeff]))
+            xChebyshevStr.append(xCoeffStr)
 
             # Extract y coefficients
-            cur_ind += NUM_COEFF
-            y_coeff = earth_rel_embary[cur_ind:(cur_ind + NUM_COEFF)]
-            y_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in y_coeff]))
-            y_chebyshev_str.append(y_coeff_str)
+            idx += NUM_COEFF
+            yCoeff = earth_rel_embary[idx:(idx + NUM_COEFF)]
+            yCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in yCoeff]))
+            yChebyshevStr.append(yCoeffStr)
 
             # Extract z coefficients
-            cur_ind += NUM_COEFF
-            z_coeff = earth_rel_embary[cur_ind:(cur_ind + NUM_COEFF)]
-            z_coeff_str = "{},{},{}".format(cur_mjd_start, cur_mjd_stop, ','.join([str("{0:0.15e}".format(val)) for val in z_coeff]))
-            z_chebyshev_str.append(z_coeff_str)
+            idx += NUM_COEFF
+            zCoeff = earth_rel_embary[idx:(idx + NUM_COEFF)]
+            zCoeffStr = "{},{},{}".format(curMjdStart, curMjdStop, ','.join([str("{0:0.15e}".format(val)) for val in zCoeff]))
+            zChebyshevStr.append(zCoeffStr)
 
             # Add NUM_COEFF so the next X value starts off properly
-            cur_ind += NUM_COEFF
+            idx += NUM_COEFF
 
-    write_to_file("earth_relative_to_emb.txt", NUM_COEFF + 2, DAYS_PER_POLY, x_chebyshev_str,
-                  y_chebyshev_str, z_chebyshev_str, "EarthFromEMBGCRFTable")
+    outPath = "astro/systems/planetary_bodies/Earth/ephemeris"
+    write_to_file(outPath, "EarthFromEmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr,
+                  yChebyshevStr, zChebyshevStr)
 
-    return x_chebyshev_str, y_chebyshev_str, z_chebyshev_str
+    return xChebyshevStr, yChebyshevStr, zChebyshevStr
 
-#---------------------------------------------------------------------------------------------------------------------------
-#---------------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # Make output directory
-    ephem_number = "430"
-    output_dir = "output_files_de_{}".format(ephem_number)
-    os.makedirs(output_dir, exist_ok = True)
-
     # Parse the header table
-    emratio, jpl_ephem_header = parse_header_file("de_{}/header.430_572".format(ephem_number))
+    ephemNumber = "430"
+    base = os.path.join(ASTREA_ROOT, "astrea/astro/data/jpl_ephemeris_data")
+    emratio, jplEphemHeader = parse_header_file(f"{base}/de_{ephemNumber}/header.430_572")
 
     # Parse the desired files
-    file_names = ["de_{}/ascp1950.430".format(ephem_number), "de_{}/ascp2050.430".format(ephem_number)]
-    block_lines = read_in_blocks(file_names)
+    files = [
+        f"{base}/de_{ephemNumber}/ascp1950.430", 
+        f"{base}/de_{ephemNumber}/ascp2050.430"
+    ]
+    blockLines = read_in_blocks(files)
 
     # Parse from 2000-1-1T12:00:00 to 2100-1-1T12:00:00, TT
-    mjdj2k_0 = 0
-    mjdj2k_f = 36525
+    mjd0 = 0
+    mjdF = 36525
 
-    # Change to the output directory so we can write files there cleanly 
-    os.chdir(output_dir)
-
-    for celestial_body in CelestialBodies:
-        generate_ephemeris_file(block_lines, emratio, mjdj2k_0, mjdj2k_f, celestial_body, jpl_ephem_header)
+    for celestialBody in CelestialBodies:
+        generate_ephemeris_file(blockLines, emratio, mjd0, mjdF, celestialBody, jplEphemHeader)

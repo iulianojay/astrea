@@ -181,7 +181,7 @@ double evaluate_chebyshev_derivative(double x, double lb, double ub, const std::
     double d = 0.0, dd = 0.0, sv = 0.0;
     double dp = 0.0, ddp = 0.0, svp = 0.0;
 
-    for (unsigned int k = N - 1; k >= 1; k--) {
+    for (std::size_t k = N - 1; k >= 1; k--) {
         // Compute the derivative coefficient values
         svp = dp;
         dp  = y2 * dp - ddp + 2.0 * d;
@@ -224,7 +224,7 @@ double evaluate_chebyshev_derivative(double x, const std::array<double, N>& boun
 
     // Extract lb, ub, and coefficients
     std::array<double, N - 2> coeff;
-    for (unsigned int k = 0; k < N - 2; k++) {
+    for (std::size_t k = 0; k < N - 2; k++) {
         coeff[k] = boundsCoeff[k + 2];
     }
 
