@@ -1,0 +1,45 @@
+{
+    "Name" : "Ganymede",
+    "Parent" : "Jupiter",
+    "Type" : "Satellite",
+
+    "Gravitational Parameter" : { "magnitude": 9887.8, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.14819, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 2631.2, "units": "km" },
+    "Polar Radius" :            { "magnitude": 2631.2, "units": "km" },
+    "Crash Radius" :            { "magnitude": 2631.2, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 0.002435315183093, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 3.198, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 50.317608940768210, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 7.154553, "units": "days" },
+
+    "State" : {
+        "Epoch" : "1997-01-16 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 1070.4e3, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.001, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.18, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 63.552, "units": "deg" },
+            "rate" :  { "magnitude": 976977.7, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 255.969, "units": "deg" },
+            "rate" :  { "magnitude": 3016348.9, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 573.509, "units": "deg" },
+            "rate" :  { "magnitude": 6619278519.62, "units": "deg/JC" }
+        }
+    }
+}

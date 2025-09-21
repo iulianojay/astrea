@@ -2,13 +2,19 @@
 
 #include <map>
 
+#ifdef ASTREA_BUILD_EARTH_EPHEMERIS
+#include <astro/systems/planetary_bodies/Earth/ephemeris/EarthEphemerisTable.hpp>
+#endif // ASTREA_BUILD_EARTH_EPHEMERIS
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+using mp_units::non_si::day;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::s;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
 static constexpr std::map<
@@ -69,6 +75,36 @@ Density Earth::find_atmospheric_density(const Date& date, const Distance& altitu
 
     return referenceDensity * exp((referenceAltitude - altitude) / scaleHeight);
 }
+
+#ifdef ASTREA_BUILD_EARTH_EPHEMERIS
+
+Cartesian Earth::get_ephemeris_at(const Date& date) const override
+{
+    //! Number of days covered by each set of polynomial coefficients
+    static constexpr Time timePerCoefficient = EarthEphemerisTable::TIME_PER_COEFFICIENT;
+
+    // Extract components
+    const std::size_t ind = get_index(date, timePerCoefficient);
+    const auto& xInterp   = EarthEphemerisTable::X_INTERP[ind];
+    const auto& yInterp   = EarthEphemerisTable::Y_INTERP[ind];
+    const auto& zInterp   = EarthEphemerisTable::Z_INTERP[ind];
+
+    // Evaluate Chebyshev polynomials
+    const auto mjd                      = date.mjd();
+    static const double coeffZeroFactor = 1.0;
+
+    Distance x = evaluate_chebyshev_polynomial(mjd, xInterp, coeffZeroFactor) * km;
+    Distance y = evaluate_chebyshev_polynomial(mjd, yInterp, coeffZeroFactor) * km;
+    Distance z = evaluate_chebyshev_polynomial(mjd, zInterp, coeffZeroFactor) * km;
+
+    Velocity vx = evaluate_chebyshev_derivative(mjd, xInterp, coeffZeroFactor) * km / day;
+    Velocity vy = evaluate_chebyshev_derivative(mjd, yInterp, coeffZeroFactor) * km / day;
+    Velocity vz = evaluate_chebyshev_derivative(mjd, zInterp, coeffZeroFactor) * km / day;
+
+    return Cartesian{ x, y, z, vx, vy, vz };
+}
+
+#endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace planetary_bodies
 } // namespace astro

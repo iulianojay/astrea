@@ -359,6 +359,14 @@ class CelestialBody {
     OrbitalElements get_elements_at(const Date& date) const;
 
     /**
+     * @brief Get the Cartesian state of the celestial body at a specific date.
+     *
+     * @param date The date at which to get the Cartesian state of the celestial body.
+     * @return Cartesian The Cartesian state of the celestial body at the specified date.
+     */
+    virtual Cartesian get_ephemeris_at(const Date& date) const;
+
+    /**
      * @brief Finds the atmospheric density at a given date and state.
      *
      * @param date The date at which to find the atmospheric density.

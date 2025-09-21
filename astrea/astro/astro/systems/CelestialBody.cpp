@@ -53,6 +53,11 @@ OrbitalElements CelestialBody::get_elements_at(const Date& date) const
     return OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat));
 }
 
+Cartesian get_ephemeris_at(const Date& date) const
+{
+    throw std::runtime_error("CelestialBody::get_ephemeris_at() - You must compile the ephemeris table for each body.");
+}
+
 Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const
 {
     return 0.0 * kg / (m * m * m);

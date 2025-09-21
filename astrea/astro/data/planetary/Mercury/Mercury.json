@@ -1,0 +1,45 @@
+{
+    "Name" : "Mercury",
+    "Parent" : "Sun",
+    "Type" : "Planet",
+
+    "Gravitational Parameter" : { "magnitude": 22032.0, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 0.330, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 2439.7, "units": "km" },
+    "Polar Radius" :            { "magnitude": 2439.7, "units": "km" },
+    "Crash Radius" :            { "magnitude": 2464.7, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 0.011239389492058, "units": "AU" },
+    "J2" :                      { "magnitude": 60.0e-6, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 0.034, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 6.138107416879796, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 87.969, "units": "days" },
+
+    "State" : {
+        "Epoch" : "2000-01-01 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 0.057909175794378e9, "units": "km" },
+            "rate" :  { "magnitude": 98.7345948600, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.20563069, "units": "" },
+            "rate" :  { "magnitude": 0.00002527, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 7.00487, "units": "deg" },
+            "rate" :  { "magnitude": -0.006530555555555556, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 48.33167, "units": "deg" },
+            "rate" :  { "magnitude": -446.30, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 77.45645, "units": "deg" },
+            "rate" :  { "magnitude": 573.57, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 252.25084, "units": "deg" },
+            "rate" :  { "magnitude": 538101628.29, "units": "deg/JC" }
+        }
+    }
+}

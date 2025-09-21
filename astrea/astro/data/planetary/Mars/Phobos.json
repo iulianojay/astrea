@@ -1,0 +1,45 @@
+{
+    "Name" : "Phobos",
+    "Parent" : "Mars",
+    "Type" : "Satellite",
+
+    "Gravitational Parameter" : { "magnitude": 9.85e-5, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 2.4e-9, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 6.2, "units": "km" },
+    "Polar Radius" :            { "magnitude": 5.1, "units": "km" },
+    "Crash Radius" :            { "magnitude": 6.25, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 9.98573371442e-07, "units": "AU" },
+    "J2" :                      { "magnitude": 0.0, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 25.079, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 6843.889610595355, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 1.26244, "units": "days" },
+
+    "State" : {
+        "Epoch" : "1950-01-01 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 23459.0, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.0005, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 1.79, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 24.525, "units": "deg" },
+            "rate" :  { "magnitude": 2376381, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 285.254, "units": "deg" },
+            "rate" :  { "magnitude": 7111440.9, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 610.583, "units": "deg" },
+            "rate" :  { "magnitude": 37503046910.7, "units": "deg/JC" }
+        }
+    }
+}

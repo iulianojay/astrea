@@ -1,0 +1,45 @@
+{
+    "Name" : "Sun",
+    "Parent" : "None",
+    "Type" : "Star",
+
+    "Gravitational Parameter" : { "magnitude": 1.32712e11, "units": "km^3 / s^2" },
+    "Mass" :                    { "magnitude": 1988500.0, "units": "10^24 * kg" },
+    "Equitorial Radius" :       { "magnitude": 695700.0, "units": "km" },
+    "Polar Radius" :            { "magnitude": 695700.0, "units": "km" },
+    "Crash Radius" :            { "magnitude": 795700.0, "units": "km" },
+    "Sphere Of Influence" :     { "magnitude": 1.0e18, "units": "km" },
+    "J2" :                      { "magnitude": 0.2e-6, "units": "" },
+    "J3" :                      { "magnitude": 0.0, "units": "" },
+    "Axial Tilt" :              { "magnitude": 0.0, "units": "deg" },
+    "Rotation Rate" :           { "magnitude": 0.0, "units": "deg/day" },
+    "Sidereal Peroid" :         { "magnitude": 0.0, "units": "days" },
+
+    "State" : {
+        "Epoch" : "2000-01-01 00:00:00",
+        "Semimajor Axis" : {
+            "value" : { "magnitude": 0.0, "units": "km" },
+            "rate" :  { "magnitude": 0.0, "units": "km/JC" }
+        },
+        "Eccentricity" : {
+            "value" : { "magnitude": 0.0, "units": "" },
+            "rate" :  { "magnitude": 0.0, "units": "1/JC" }
+        },
+        "Inclination" : {
+            "value" : { "magnitude": 0.0, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Right Ascension" : {
+            "value" : { "magnitude": 0.0, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "Argument Of Perigee" : {
+            "value" : { "magnitude": 0.0, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        },
+        "True Latitude" : {
+            "value" : { "magnitude": 0.0, "units": "deg" },
+            "rate" :  { "magnitude": 0.0, "units": "deg/JC" }
+        }
+    }
+}

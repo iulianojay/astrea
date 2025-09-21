@@ -32,6 +32,8 @@ enum class PlanetaryBody : EnumType {
     CUSTOM
 };
 
+enum class PlanetarySystem : EnumType { SOLAR_SYSTEM, EARTH_MOON_SYSTEM };
+
 enum class CelestialBodyType : EnumType { UNSET, STAR, PLANET, MOON };
 
 enum class SystemCenter : EnumType { CENTRAL_BODY, BARYCENTER };

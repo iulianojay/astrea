@@ -13,11 +13,13 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(MATH_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(MATH_SOURCES
+    ${MATH_BASE}/chebyshev_util.cpp
     ${MATH_BASE}/interpolation.cpp
 )
 
 # Headers
 set(MATH_HEADERS
+    ${MATH_BASE}/chebyshev_util.hpp
     ${MATH_BASE}/interpolation.hpp
     ${MATH_BASE}/trig.hpp
 )
