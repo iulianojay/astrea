@@ -408,16 +408,6 @@ class CelestialBody {
     BodyAngularRate _rightAscensionRate;    //!< Rate of change of the right ascension
     BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee
     BodyAngularRate _trueLatitudeRate;      //!< Rate of change of the true latitude
-
-    /**
-     * @brief Propagates the state of the celestial body from a given epoch to an end epoch.
-     *
-     * @param epoch The starting date for propagation.
-     * @param endEpoch The ending date for propagation.
-     * @param parentMu The gravitational parameter of the parent celestial body, if any.
-     * @return StateHistory The history of states propagated from the epoch to the end epoch.
-     */
-    StateHistory _propagate(const Date& epoch, const Date& endEpoch, const GravParam& parentMu);
 };
 
 /**

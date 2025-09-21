@@ -321,6 +321,12 @@ class AstrodynamicsSystem {
      */
     constexpr void find_system_root()
     {
+        // If there's only one body, it is the root
+        if (_activeBodies.size() == 1) {
+            _root = *(_activeBodies.begin());
+            return;
+        }
+
         // Count total planets
         std::size_t planetCount = 0;
         for (const auto& id : _activeBodies) {
@@ -337,8 +343,10 @@ class AstrodynamicsSystem {
             for (const auto& id : _activeBodies) {
                 PlanetaryBody parentId = id;
                 while (parentId != PlanetaryBody::SUN && parentId != _root) {
-                    parentId = create(parentId)->get_parent();
-                    _activeBodies.erase(parentId);
+                    // Don't add parent to active bodies if it's not already there
+                    bool deactivateParent = (_activeBodies.count(parentId) == 0);
+                    parentId              = create(parentId)->get_parent();
+                    if (deactivateParent) { _activeBodies.erase(parentId); }
                 }
 
                 // If any object not in same planetary system, the common root

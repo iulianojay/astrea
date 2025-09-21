@@ -11,7 +11,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<
+static constexpr std::map<
     Altitude,
     std::tuple<
         Altitude,

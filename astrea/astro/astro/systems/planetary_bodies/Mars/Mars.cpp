@@ -11,7 +11,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
+static constexpr std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
     { 2.0 * km, 1.19e-1 * kg / (pow<3>(m)) },  { 4.0 * km, 1.10e-1 * kg / (pow<3>(m)) },
     { 6.0 * km, 1.02e-1 * kg / (pow<3>(m)) },  { 8.0 * km, 9.39e-2 * kg / (pow<3>(m)) },
     { 10.0 * km, 8.64e-2 * kg / (pow<3>(m)) }, { 12.0 * km, 7.93e-2 * kg / (pow<3>(m)) },

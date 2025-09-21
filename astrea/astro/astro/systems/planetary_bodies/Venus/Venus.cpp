@@ -11,7 +11,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
+static constexpr std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
     { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
     { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
     { 15.0 * km, 2.91e1 * kg / (pow<3>(m)) },   { 18.0 * km, 2.46e1 * kg / (pow<3>(m)) },
