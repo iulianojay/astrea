@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include <array>
+#include <stdexcept>
+
 namespace astrea {
 namespace math {
 
@@ -234,5 +237,3 @@ double evaluate_chebyshev_derivative(double x, const std::array<double, N>& boun
 
 } // namespace math
 } // namespace astrea
-
-#endif

@@ -51,6 +51,10 @@ class Uranus : public CelestialBody {
     ~Uranus() = default;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::URANUS; };
+
+#ifdef ASTREA_BUILD_URANUS_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_URANUS_EPHEMERIS
 };
 
 } // namespace planetary_bodies

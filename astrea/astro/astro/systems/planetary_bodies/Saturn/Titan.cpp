@@ -16,7 +16,7 @@ using mp_units::si::unit_symbols::km;
 using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static constexpr std::map<Altitude, TitanDensity> titanicAtmosphere = { // km, g/cm^3
+static const std::map<Altitude, TitanDensity> titanicAtmosphere = { // km, g/cm^3
     { 780.0 * km, 1.00e-12 * g / (pow<3>(cm)) },  { 790.0 * km, 8.45e-12 * g / (pow<3>(cm)) },
     { 800.0 * km, 7.16e-12 * g / (pow<3>(cm)) },  { 810.0 * km, 6.08e-12 * g / (pow<3>(cm)) },
     { 820.0 * km, 5.17e-12 * g / (pow<3>(cm)) },  { 830.0 * km, 4.41e-12 * g / (pow<3>(cm)) },

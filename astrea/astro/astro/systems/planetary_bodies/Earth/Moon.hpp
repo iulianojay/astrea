@@ -51,6 +51,10 @@ class Moon : public CelestialBody {
     ~Moon() = default;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::MOON; };
+
+#ifdef ASTREA_BUILD_EARTH_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_EARTH_EPHEMERIS
 };
 
 } // namespace planetary_bodies

@@ -56,8 +56,14 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Uranus.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Venus/Venus.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
@@ -166,6 +172,8 @@ set(ASTRO_HEADERS
     ${EXTERN_BASE}/date/date.h
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
+
+# Conditional build files
 
 # Set outputs
 set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})

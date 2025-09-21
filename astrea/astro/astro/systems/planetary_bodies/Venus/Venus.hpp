@@ -53,6 +53,10 @@ class Venus : public CelestialBody {
     Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::VENUS; };
+
+#ifdef ASTREA_BUILD_VENUS_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_VENUS_EPHEMERIS
 };
 
 } // namespace planetary_bodies

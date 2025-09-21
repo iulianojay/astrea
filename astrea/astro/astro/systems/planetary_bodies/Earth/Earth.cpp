@@ -4,6 +4,7 @@
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <astro/systems/planetary_bodies/Earth/ephemeris/EarthEphemerisTable.hpp>
+#include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -17,7 +18,7 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static constexpr std::map<
+static const std::map<
     Altitude,
     std::tuple<
         Altitude,

@@ -51,6 +51,10 @@ class Saturn : public CelestialBody {
     ~Saturn() = default;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::SATURN; };
+
+#ifdef ASTREA_BUILD_SATURN_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_SATURN_EPHEMERIS
 };
 
 } // namespace planetary_bodies

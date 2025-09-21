@@ -1,4 +1,4 @@
-#include <astro/systems/chebyshev_util.hpp>
+#include <math/chebyshev_util.hpp>
 
 namespace astrea {
 namespace astro {

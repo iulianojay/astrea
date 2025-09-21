@@ -2,6 +2,11 @@
 
 #include <map>
 
+#ifdef ASTREA_BUILD_MARS_EPHEMERIS
+#include <astro/systems/planetary_bodies/Mars/ephemeris/MarsEphemerisTable.hpp>
+#include <math/chebyshev_utils.hpp>
+#endif // ASTREA_BUILD_MARS_EPHEMERIS
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -11,7 +16,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static constexpr std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
+static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
     { 2.0 * km, 1.19e-1 * kg / (pow<3>(m)) },  { 4.0 * km, 1.10e-1 * kg / (pow<3>(m)) },
     { 6.0 * km, 1.02e-1 * kg / (pow<3>(m)) },  { 8.0 * km, 9.39e-2 * kg / (pow<3>(m)) },
     { 10.0 * km, 8.64e-2 * kg / (pow<3>(m)) }, { 12.0 * km, 7.93e-2 * kg / (pow<3>(m)) },
@@ -52,6 +57,36 @@ Density Mars::find_atmospheric_density(const Date& date, const Distance& altitud
         return 0.0 * kg / (m * m * m);
     }
 }
+
+#ifdef ASTREA_BUILD_MARS_EPHEMERIS
+
+Cartesian Jupiter::get_ephemeris_at(const Date& date) const override
+{
+    //! Number of days covered by each set of polynomial coefficients
+    static constexpr Time timePerCoefficient = MarsEphemerisTable::TIME_PER_COEFFICIENT;
+
+    // Extract components
+    const std::size_t ind = get_index(date, timePerCoefficient);
+    const auto& xInterp   = MarsEphemerisTable::X_INTERP[ind];
+    const auto& yInterp   = MarsEphemerisTable::Y_INTERP[ind];
+    const auto& zInterp   = MarsEphemerisTable::Z_INTERP[ind];
+
+    // Evaluate Chebyshev polynomials
+    const auto mjd                      = date.mjd();
+    static const double coeffZeroFactor = 1.0;
+
+    Distance x = evaluate_chebyshev_polynomial(mjd, xInterp, coeffZeroFactor) * km;
+    Distance y = evaluate_chebyshev_polynomial(mjd, yInterp, coeffZeroFactor) * km;
+    Distance z = evaluate_chebyshev_polynomial(mjd, zInterp, coeffZeroFactor) * km;
+
+    Velocity vx = evaluate_chebyshev_derivative(mjd, xInterp, coeffZeroFactor) * km / day;
+    Velocity vy = evaluate_chebyshev_derivative(mjd, yInterp, coeffZeroFactor) * km / day;
+    Velocity vz = evaluate_chebyshev_derivative(mjd, zInterp, coeffZeroFactor) * km / day;
+
+    return Cartesian{ x, y, z, vx, vy, vz };
+}
+
+#endif // ASTREA_BUILD_MARS_EPHEMERIS
 
 } // namespace planetary_bodies
 } // namespace astro

@@ -51,6 +51,10 @@ class Jupiter : public CelestialBody {
     ~Jupiter() = default;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::JUPITER; };
+
+#ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 };
 
 } // namespace planetary_bodies

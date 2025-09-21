@@ -2,6 +2,11 @@
 
 #include <map>
 
+#ifdef ASTREA_BUILD_VENUS_EPHEMERIS
+#include <astro/systems/planetary_bodies/Venus/ephemeris/VenusEphemerisTable.hpp>
+#include <math/chebyshev_utils.hpp>
+#endif // ASTREA_BUILD_VENUS_EPHEMERIS
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -11,7 +16,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static constexpr std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
+static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
     { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
     { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
     { 15.0 * km, 2.91e1 * kg / (pow<3>(m)) },   { 18.0 * km, 2.46e1 * kg / (pow<3>(m)) },
@@ -41,6 +46,36 @@ Density Venus::find_atmospheric_density(const Date& date, const Distance& altitu
     const auto iter = venutianAtmosphere.upper_bound(altitude);
     return (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
 }
+
+#ifdef ASTREA_BUILD_VENUS_EPHEMERIS
+
+Cartesian Venus::get_ephemeris_at(const Date& date) const override
+{
+    //! Number of days covered by each set of polynomial coefficients
+    static constexpr Time timePerCoefficient = VenusEphemerisTable::TIME_PER_COEFFICIENT;
+
+    // Extract components
+    const std::size_t ind = get_index(date, timePerCoefficient);
+    const auto& xInterp   = VenusEphemerisTable::X_INTERP[ind];
+    const auto& yInterp   = VenusEphemerisTable::Y_INTERP[ind];
+    const auto& zInterp   = VenusEphemerisTable::Z_INTERP[ind];
+
+    // Evaluate Chebyshev polynomials
+    const auto mjd                      = date.mjd();
+    static const double coeffZeroFactor = 1.0;
+
+    Distance x = evaluate_chebyshev_polynomial(mjd, xInterp, coeffZeroFactor) * km;
+    Distance y = evaluate_chebyshev_polynomial(mjd, yInterp, coeffZeroFactor) * km;
+    Distance z = evaluate_chebyshev_polynomial(mjd, zInterp, coeffZeroFactor) * km;
+
+    Velocity vx = evaluate_chebyshev_derivative(mjd, xInterp, coeffZeroFactor) * km / day;
+    Velocity vy = evaluate_chebyshev_derivative(mjd, yInterp, coeffZeroFactor) * km / day;
+    Velocity vz = evaluate_chebyshev_derivative(mjd, zInterp, coeffZeroFactor) * km / day;
+
+    return Cartesian{ x, y, z, vx, vy, vz };
+}
+
+#endif // ASTREA_BUILD_VENUS_EPHEMERIS
 
 } // namespace planetary_bodies
 } // namespace astro

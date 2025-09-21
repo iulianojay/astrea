@@ -51,6 +51,10 @@ class Mercury : public CelestialBody {
     ~Mercury() = default;
 
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::MERCURY; };
+
+#ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
+    Cartesian get_ephemeris_at(const Date& date) const override;
+#endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 };
 
 } // namespace planetary_bodies
