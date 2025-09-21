@@ -358,6 +358,20 @@ class CelestialBody {
      */
     OrbitalElements get_elements_at(const Date& date) const;
 
+    /**
+     * @brief Finds the atmospheric density at a given date and state.
+     *
+     * @param date The date at which to find the atmospheric density.
+     * @param state The Cartesian state vector at which to find the atmospheric density.
+     * @return Density The atmospheric density at the specified date and state.
+     *
+     * @note Assume that most bodies have no significant atmosphere. Assume that
+     * the atmosphere of the gas giants is defined by their radii, e.g.
+     * outside of their equitorial radius, they have no noticible atmosphere
+     * and inside that radius, the object will crash.
+     */
+    virtual Density find_atmospheric_density(const Date& date, const Distance& altitude) const;
+
   private:
     // Properties
     std::string _name;           //!< Name of the celestial body

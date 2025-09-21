@@ -27,6 +27,8 @@ namespace astro {
 
 using namespace mp_units;
 using namespace mp_units::angular;
+using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::m;
 
 OrbitalElements CelestialBody::get_elements_at(const Date& date) const
 {
@@ -49,6 +51,11 @@ OrbitalElements CelestialBody::get_elements_at(const Date& date) const
 
     // Store
     return OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat));
+}
+
+Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const
+{
+    return 0.0 * kg / (m * m * m);
 }
 
 } // namespace astro

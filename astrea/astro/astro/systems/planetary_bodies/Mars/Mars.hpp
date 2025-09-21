@@ -50,6 +50,8 @@ class Mars : public CelestialBody {
     }
     ~Mars() = default;
 
+    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::MARS; };
 };
 

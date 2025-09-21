@@ -28,11 +28,6 @@ namespace astro {
  */
 class AtmosphericForce : public Force {
 
-    /**
-     * @brief Type alias for Density on Titan.
-     */
-    using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
-
   public:
     /**
      * @brief Default constructor for AtmosphericForce.
@@ -66,11 +61,6 @@ class AtmosphericForce : public Force {
      * @return Density The atmospheric density at the given altitude.
      */
     const Density find_atmospheric_density(const Date& date, const Cartesian& state, const std::unique_ptr<CelestialBody>& center) const;
-
-    static const std::map<Altitude, Density> venutianAtmosphere; //!< Map of atmospheric densities for Venus at different altitudes
-    static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere; //!< Map of atmospheric densities for Earth at different altitudes
-    static const std::map<Altitude, Density> martianAtmosphere; //!< Map of atmospheric densities for Mars at different altitudes
-    static const std::map<Altitude, TitanDensity> titanicAtmosphere; //!< Map of atmospheric densities for Titan at different altitudes
 };
 
 } // namespace astro
