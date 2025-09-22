@@ -53,7 +53,7 @@ class Neptune : public CelestialBody {
     static constexpr PlanetaryBody get_id() { return PlanetaryBody::NEPTUNE; };
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
-    Cartesian get_ephemeris_at(const Date& date) const override;
+    OrbitalElements get_elements_at(const Date& date) const override;
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 };
 

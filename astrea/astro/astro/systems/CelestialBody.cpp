@@ -14,7 +14,6 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
-
 #include <nlohmann/json.hpp>
 
 #include <astro/state/State.hpp>
@@ -51,11 +50,6 @@ OrbitalElements CelestialBody::get_elements_at(const Date& date) const
 
     // Store
     return OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat));
-}
-
-Cartesian CelestialBody::get_ephemeris_at(const Date& date) const
-{
-    throw std::runtime_error(get_name() + " - Ephemeris tables not compiled for this body.");
 }
 
 Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const

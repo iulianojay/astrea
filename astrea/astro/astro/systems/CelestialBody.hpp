@@ -12,9 +12,11 @@
 
 #include <string>
 
+#include <math/chebyshev_util.hpp>
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
@@ -351,22 +353,6 @@ class CelestialBody {
     constexpr const BodyAngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
 
     /**
-     * @brief Get the state of the celestial body at a specific date.
-     *
-     * @param date The date at which to get the state of the celestial body.
-     * @return State The state of the celestial body at the specified date.
-     */
-    OrbitalElements get_elements_at(const Date& date) const;
-
-    /**
-     * @brief Get the Cartesian state of the celestial body at a specific date.
-     *
-     * @param date The date at which to get the Cartesian state of the celestial body.
-     * @return Cartesian The Cartesian state of the celestial body at the specified date.
-     */
-    virtual Cartesian get_ephemeris_at(const Date& date) const;
-
-    /**
      * @brief Finds the atmospheric density at a given date and state.
      *
      * @param date The date at which to find the atmospheric density.
@@ -379,6 +365,45 @@ class CelestialBody {
      * and inside that radius, the object will crash.
      */
     virtual Density find_atmospheric_density(const Date& date, const Distance& altitude) const;
+
+    /**
+     * @brief Get the state of the celestial body at a specific date.
+     *
+     * @param date The date at which to get the state of the celestial body.
+     * @return State The state of the celestial body at the specified date.
+     */
+    virtual OrbitalElements get_elements_at(const Date& date) const;
+
+  protected:
+    template <typename Table_T>
+    Cartesian get_elements_at_impl(const Date& date) const
+    {
+        using mp_units::non_si::day;
+        using mp_units::si::unit_symbols::km;
+
+        //! Number of days covered by each set of polynomial coefficients
+        static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
+
+        // Extract components
+        const double indExact = Table_T::get_index(date, timePerCoefficient);
+        const std::size_t ind = static_cast<std::size_t>(std::floor(indExact));
+        const auto& xInterp   = Table_T::X_INTERP[ind];
+        const auto& yInterp   = Table_T::Y_INTERP[ind];
+        const auto& zInterp   = Table_T::Z_INTERP[ind];
+
+        // Evaluate Chebyshev polynomials
+        const double mjd = xInterp[0] + ((indExact - std::floor(indExact)) * timePerCoefficient).numerical_value_in(day); // I hate this
+
+        Distance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
+        Distance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
+        Distance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
+
+        Velocity vx = math::evaluate_chebyshev_derivative(mjd, xInterp, _COEFF_ZERO_FACTOR) * km / day;
+        Velocity vy = math::evaluate_chebyshev_derivative(mjd, yInterp, _COEFF_ZERO_FACTOR) * km / day;
+        Velocity vz = math::evaluate_chebyshev_derivative(mjd, zInterp, _COEFF_ZERO_FACTOR) * km / day;
+
+        return Cartesian{ x, y, z, vx, vy, vz };
+    }
 
   private:
     // Properties
@@ -416,6 +441,8 @@ class CelestialBody {
     BodyAngularRate _rightAscensionRate;    //!< Rate of change of the right ascension
     BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee
     BodyAngularRate _trueLatitudeRate;      //!< Rate of change of the true latitude
+
+    static constexpr double _COEFF_ZERO_FACTOR = 1.0;
 };
 
 /**

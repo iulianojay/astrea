@@ -55,11 +55,13 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Jupiter/Jupiter.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.cpp
@@ -138,6 +140,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Deimos.hpp
@@ -184,6 +187,7 @@ option(BUILD_SATURN "Build Saturn Ephemeris" ON)
 option(BUILD_URANUS "Build Uranus Ephemeris" ON)
 option(BUILD_NEPTUNE "Build Neptune Ephemeris" ON)
 
+set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Set outputs
@@ -215,6 +219,7 @@ add_dependencies           (${PROJECT_NAME}_shared generated_ephemerides)
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main)
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 
 # Static library
 if (${BUILD_STATIC})
@@ -223,6 +228,7 @@ if (${BUILD_STATIC})
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main)
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 endif()
 
 # Install headers

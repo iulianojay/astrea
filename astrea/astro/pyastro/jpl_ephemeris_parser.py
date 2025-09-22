@@ -238,13 +238,19 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"namespace planetary_bodies {{\n\n")
         fID.write(f"struct {className} : public JplEphemerisTable {{\n")
 
+        fID.write(f"\t{className}() = delete;\n")
+        fID.write(f"\t~{className}() = delete;\n\n")
+
         # Write number of days per poly at the top
-        fID.write(f"static constexpr Time TIME_PER_COEFFICIENT = {daysPerPoly} * mp_units::non_si::day;\n")
+        fID.write(f"\tstatic constexpr Time TIME_PER_COEFFICIENT = {daysPerPoly} * mp_units::non_si::day;\n")
 
         # Write the x coefficients to file
-        fID.write(f"static {typeString} X_INTERP;\n")
-        fID.write(f"static {typeString} Y_INTERP;\n")
-        fID.write(f"static {typeString} Z_INTERP;\n")
+        fID.write(f"\tstatic {typeString} X_INTERP;\n")
+        fID.write(f"\tstatic {typeString} Y_INTERP;\n")
+        fID.write(f"\tstatic {typeString} Z_INTERP;\n\n")
+
+        # Write the get_index function
+        fID.write(f"\tstatic std::size_t get_index(const Date& date, const Time& daysPerPoly) {{ return JplEphemerisTable::get_index(date, daysPerPoly); }}\n")
 
         fID.write("};\n\n")
         fID.write(f"}} // namespace astrea \n")

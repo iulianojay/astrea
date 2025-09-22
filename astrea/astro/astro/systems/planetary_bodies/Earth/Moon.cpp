@@ -1,43 +1,24 @@
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/planetary_bodies/Earth/Moon.hpp>
 
 #include <map>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <math/chebyshev_utils.hpp>
-
-#include(.*)
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <ephemerides/Earth/MoonGcrfTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+using mp_units::non_si::day;
+using mp_units::si::unit_symbols::km;
+
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
-Cartesian Moon::get_ephemeris_at(const Date& date) const override
+OrbitalElements Moon::get_elements_at(const Date& date) const
 {
-    //! Number of days covered by each set of polynomial coefficients
-    static constexpr Time timePerCoefficient = MoonEphemerisTable::TIME_PER_COEFFICIENT;
-
-    // Extract components
-    const std::size_t ind = get_index(date, timePerCoefficient);
-    const auto& xInterp   = MoonGcrfTable::X_INTERP[ind];
-    const auto& yInterp   = MoonGcrfTable::Y_INTERP[ind];
-    const auto& zInterp   = MoonGcrfTable::Z_INTERP[ind];
-
-    // Evaluate Chebyshev polynomials
-    const auto mjd                      = date.mjd();
-    static const double coeffZeroFactor = 1.0;
-
-    Distance x = evaluate_chebyshev_polynomial(mjd, xInterp, coeffZeroFactor) * km;
-    Distance y = evaluate_chebyshev_polynomial(mjd, yInterp, coeffZeroFactor) * km;
-    Distance z = evaluate_chebyshev_polynomial(mjd, zInterp, coeffZeroFactor) * km;
-
-    Velocity vx = evaluate_chebyshev_derivative(mjd, xInterp, coeffZeroFactor) * km / day;
-    Velocity vy = evaluate_chebyshev_derivative(mjd, yInterp, coeffZeroFactor) * km / day;
-    Velocity vz = evaluate_chebyshev_derivative(mjd, zInterp, coeffZeroFactor) * km / day;
-
-    return Cartesian{ x, y, z, vx, vy, vz };
+    return OrbitalElements(get_elements_at_impl<MoonGcrfTable>(date));
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

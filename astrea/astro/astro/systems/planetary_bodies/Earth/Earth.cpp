@@ -3,8 +3,9 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <ephemeris/Earth/ephemeris/EarthEphemerisTable.hpp>
-#include <math/chebyshev_utils.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <ephemerides/Earth/EMBEphemerisTable.hpp>
+#include <ephemerides/Earth/EarthFromEmbEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -79,30 +80,13 @@ Density Earth::find_atmospheric_density(const Date& date, const Distance& altitu
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
-Cartesian Earth::get_ephemeris_at(const Date& date) const override
+OrbitalElements Earth::get_elements_at(const Date& date) const
 {
-    //! Number of days covered by each set of polynomial coefficients
-    static constexpr Time timePerCoefficient = EarthEphemerisTable::TIME_PER_COEFFICIENT;
-
-    // Extract components
-    const std::size_t ind = get_index(date, timePerCoefficient);
-    const auto& xInterp   = EarthEphemerisTable::X_INTERP[ind];
-    const auto& yInterp   = EarthEphemerisTable::Y_INTERP[ind];
-    const auto& zInterp   = EarthEphemerisTable::Z_INTERP[ind];
-
-    // Evaluate Chebyshev polynomials
-    const auto mjd                      = date.mjd();
-    static const double coeffZeroFactor = 1.0;
-
-    Distance x = evaluate_chebyshev_polynomial(mjd, xInterp, coeffZeroFactor) * km;
-    Distance y = evaluate_chebyshev_polynomial(mjd, yInterp, coeffZeroFactor) * km;
-    Distance z = evaluate_chebyshev_polynomial(mjd, zInterp, coeffZeroFactor) * km;
-
-    Velocity vx = evaluate_chebyshev_derivative(mjd, xInterp, coeffZeroFactor) * km / day;
-    Velocity vy = evaluate_chebyshev_derivative(mjd, yInterp, coeffZeroFactor) * km / day;
-    Velocity vz = evaluate_chebyshev_derivative(mjd, zInterp, coeffZeroFactor) * km / day;
-
-    return Cartesian{ x, y, z, vx, vy, vz };
+    // Earth is stupid
+    const Cartesian earthFromEmb = get_elements_at_impl<EarthFromEmbEphemerisTable>(date);
+    const Cartesian embFromSun   = get_elements_at_impl<EMBEphemerisTable>(date);
+    const Cartesian earthFromSun = earthFromEmb + embFromSun;
+    return OrbitalElements(earthFromSun);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

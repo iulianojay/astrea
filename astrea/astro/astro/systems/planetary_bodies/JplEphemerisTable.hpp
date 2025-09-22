@@ -15,9 +15,12 @@ namespace astrea {
 namespace astro {
 
 //! Base class for any JPL Celestial-Body (CB) table
-class JplEphemerisTable {
+struct JplEphemerisTable {
 
   protected:
+    JplEphemerisTable()  = delete;
+    ~JplEphemerisTable() = delete;
+
     /**
      * @brief Get the index corresponding to the Chebyshev polynomial coefficients
      *
@@ -26,7 +29,7 @@ class JplEphemerisTable {
      *
      * @return Table lookup index
      */
-    std::size_t get_index(const Date& date, const Time& timePerPoly);
+    static double get_index(const Date& date, const Time& timePerPoly);
 
     //! Lower bound on MJD J2K in the TDB time system
     static const Date START_DATE;
