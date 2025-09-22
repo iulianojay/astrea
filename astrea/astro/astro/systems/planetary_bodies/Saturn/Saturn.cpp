@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS
-#include <astro/systems/planetary_bodies/Saturn/ephemeris/SaturnEphemerisTable.hpp>
+#include <ephemeris/Saturn/ephemeris/SaturnEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS
 

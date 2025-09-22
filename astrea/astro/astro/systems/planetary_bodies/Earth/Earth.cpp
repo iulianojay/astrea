@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <astro/systems/planetary_bodies/Earth/ephemeris/EarthEphemerisTable.hpp>
+#include <ephemeris/Earth/ephemeris/EarthEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 

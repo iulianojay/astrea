@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
-#include <astro/systems/planetary_bodies/Uranus/ephemeris/UranusEphemerisTable.hpp>
+#include <ephemeris/Uranus/ephemeris/UranusEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS
 

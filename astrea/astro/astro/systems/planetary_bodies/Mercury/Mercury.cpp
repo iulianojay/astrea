@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
-#include <astro/systems/planetary_bodies/Mercury/ephemeris/MercuryEphemerisTable.hpp>
+#include <ephemeris/Mercury/ephemeris/MercuryEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 

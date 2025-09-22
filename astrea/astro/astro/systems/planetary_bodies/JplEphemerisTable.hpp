@@ -9,18 +9,15 @@
 
 #pragma once
 
+#include <astro/time/Date.hpp>
+
 namespace astrea {
 namespace astro {
-namespace jpl_ephemeris {
 
 //! Base class for any JPL Celestial-Body (CB) table
 class JplEphemerisTable {
 
   protected:
-    JplEphemerisTable() :
-        _startDate("1/1/2000 12:00:00"),
-        _stopDate("1/1/2100 12:00:00") {};
-
     /**
      * @brief Get the index corresponding to the Chebyshev polynomial coefficients
      *
@@ -32,12 +29,11 @@ class JplEphemerisTable {
     std::size_t get_index(const Date& date, const Time& timePerPoly);
 
     //! Lower bound on MJD J2K in the TDB time system
-    static const Date _startDate;
+    static const Date START_DATE;
 
     //! Upper bound on MJD J2K in the TDB time system
-    static const Date _stopDate;
+    static const Date STOP_DATE;
 };
 
-} // namespace jpl_ephemeris
 } // namespace astro
 } // namespace astrea

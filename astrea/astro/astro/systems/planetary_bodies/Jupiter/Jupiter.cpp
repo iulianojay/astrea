@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
-#include <astro/systems/planetary_bodies/Jupiter/ephemeris/JupiterEphemerisTable.hpp>
+#include <ephemeris/Jupiter/ephemeris/JupiterEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 

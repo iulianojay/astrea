@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
-#include <astro/systems/planetary_bodies/Mars/ephemeris/MarsEphemerisTable.hpp>
+#include <ephemeris/Mars/ephemeris/MarsEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 

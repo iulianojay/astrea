@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
-#include <astro/systems/planetary_bodies/Neptune/ephemeris/NeptuneEphemerisTable.hpp>
+#include <ephemeris/Neptune/ephemeris/NeptuneEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 

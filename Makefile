@@ -97,6 +97,13 @@ docker:
 clean:
 	@cmake --build $(build_path) --target clean
 
+.PHONY: clean-ephem
+clean-ephem:
+	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.hpp')
+	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.cpp')
+	rm -f $(shell find . -type f | grep './install/.*/ephemerides/.*.hpp')
+	rm -f $(shell find . -type f | grep './install/.*/ephemerides/.*.cpp')
+
 .PHONY: new
 new: 
 	rm -rf build

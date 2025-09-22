@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
-#include <astro/systems/planetary_bodies/Venus/ephemeris/VenusEphemerisTable.hpp>
+#include <ephemeris/Venus/ephemeris/VenusEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 

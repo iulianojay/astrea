@@ -3,7 +3,7 @@
 #include <map>
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
-#include <astro/systems/planetary_bodies/Sun/ephemeris/SunEphemerisTable.hpp>
+#include <ephemeris/Sun/ephemeris/SunEphemerisTable.hpp>
 #include <math/chebyshev_utils.hpp>
 #endif // ASTREA_BUILD_SUN_EPHEMERIS
 

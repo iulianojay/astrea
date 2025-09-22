@@ -173,7 +173,18 @@ set(ASTRO_HEADERS
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
 
-# Conditional build files
+# Build ephemeris files
+option(BUILD_SUN "Build Sun Ephemeris" ON)
+option(BUILD_MERCURY "Build Mercury Ephemeris" ON)
+option(BUILD_EARTH "Build Earth Ephemeris" ON)
+option(BUILD_MARS "Build Mars Ephemeris" ON)
+option(BUILD_VENUS "Build Venus Ephemeris" ON)
+option(BUILD_JUPITER "Build Jupiter Ephemeris" ON)
+option(BUILD_SATURN "Build Saturn Ephemeris" ON)
+option(BUILD_URANUS "Build Uranus Ephemeris" ON)
+option(BUILD_NEPTUNE "Build Neptune Ephemeris" ON)
+
+generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Set outputs
 set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
@@ -200,16 +211,18 @@ include_directories(${ASTRO_DIRS})
 
 # Shared library
 add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+add_dependencies           (${PROJECT_NAME}_shared generated_ephemerides)
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main)
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 
 # Static library
 if (${BUILD_STATIC})
     add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+    add_dependencies           (${PROJECT_NAME}_static generated_ephemerides)
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main)
-    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 endif()
 
 # Install headers
