@@ -76,7 +76,8 @@ void ASSERT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+                                                    << "or absolute differences greater than " << absTol << "\n"
                                                     << "First Quantity: " << x << "\n"
                                                     << "Second Quantity: " << y << "\n\n";
 }
@@ -98,7 +99,8 @@ void EXPECT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+                                                    << "or absolute differences greater than " << absTol << "\n"
                                                     << "First Quantity: " << x << "\n"
                                                     << "Second Quantity: " << y << "\n\n";
 }
