@@ -4,8 +4,8 @@
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <ephemerides/Earth/EMBEphemerisTable.hpp>
 #include <ephemerides/Earth/EarthFromEmbEphemerisTable.hpp>
+#include <ephemerides/Earth/EmbEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -84,7 +84,7 @@ OrbitalElements Earth::get_elements_at(const Date& date) const
 {
     // Earth is stupid
     const Cartesian earthFromEmb = get_elements_at_impl<EarthFromEmbEphemerisTable>(date);
-    const Cartesian embFromSun   = get_elements_at_impl<EMBEphemerisTable>(date);
+    const Cartesian embFromSun   = get_elements_at_impl<EmbEphemerisTable>(date);
     const Cartesian earthFromSun = earthFromEmb + embFromSun;
     return OrbitalElements(earthFromSun);
 }

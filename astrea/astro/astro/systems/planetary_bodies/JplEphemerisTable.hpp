@@ -29,7 +29,7 @@ struct JplEphemerisTable {
      *
      * @return Table lookup index
      */
-    static double get_index(const Date& date, const Time& timePerPoly);
+    static std::size_t get_index(const Date& date, const Time& timePerPoly);
 
     //! Lower bound on MJD J2K in the TDB time system
     static const Date START_DATE;

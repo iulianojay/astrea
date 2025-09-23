@@ -385,14 +385,13 @@ class CelestialBody {
         static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
 
         // Extract components
-        const double indExact = Table_T::get_index(date, timePerCoefficient);
-        const std::size_t ind = static_cast<std::size_t>(std::floor(indExact));
+        const std::size_t ind = Table_T::get_index(date, timePerCoefficient);
         const auto& xInterp   = Table_T::X_INTERP[ind];
         const auto& yInterp   = Table_T::Y_INTERP[ind];
         const auto& zInterp   = Table_T::Z_INTERP[ind];
 
         // Evaluate Chebyshev polynomials
-        const double mjd = xInterp[0] + ((indExact - std::floor(indExact)) * timePerCoefficient).numerical_value_in(day); // I hate this
+        const double mjd = (date.mjd() - Date(J2000).mjd()).count();
 
         Distance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
         Distance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;

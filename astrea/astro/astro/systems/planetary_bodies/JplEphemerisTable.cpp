@@ -6,10 +6,10 @@
 namespace astrea {
 namespace astro {
 
-const Date JplEphemerisTable::START_DATE = Date("2000-01-01 12:00:00");
-const Date JplEphemerisTable::STOP_DATE  = Date("2100-01-01 12:00:00");
+const Date JplEphemerisTable::START_DATE = Date("1999-12-24 00:00:00");
+const Date JplEphemerisTable::STOP_DATE  = Date("2100-01-12 00:00:00");
 
-double JplEphemerisTable::get_index(const Date& date, const Time& timePerPoly)
+std::size_t JplEphemerisTable::get_index(const Date& date, const Time& timePerPoly)
 {
     if (date < START_DATE || date > STOP_DATE) {
         throw std::out_of_range(
@@ -18,7 +18,7 @@ double JplEphemerisTable::get_index(const Date& date, const Time& timePerPoly)
             "12:00:00."
         );
     }
-    return static_cast<double>(((date - START_DATE) / timePerPoly).numerical_value_in(mp_units::one));
+    return static_cast<std::size_t>(((date - START_DATE) / timePerPoly).numerical_value_in(mp_units::one));
 }
 
 } // namespace astro

@@ -4,7 +4,7 @@
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <ephemerides/Earth/MoonGcrfTable.hpp>
+#include <ephemerides/Earth/MoonEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -18,7 +18,7 @@ using mp_units::si::unit_symbols::km;
 
 OrbitalElements Moon::get_elements_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<MoonGcrfTable>(date));
+    return OrbitalElements(get_elements_at_impl<MoonEphemerisTable>(date));
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

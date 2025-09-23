@@ -111,9 +111,10 @@ class CelestialBodies(IntEnum):
     Saturn = 5,         # Saturn from SSB
     Uranus = 6,         # Uranus from SSB
     Neptune = 7,        # Neptune from SSB
-    Moon = 8,           # Moon geocentric position
-    Sun = 9,            # Sun from SSB
-    EarthFromEMB = 10   # Earth from EMB
+    Pluto = 8,          # Pluto from SSB
+    Moon = 9,           # Moon geocentric position
+    Sun = 10,           # Sun from SSB
+    EarthFromEMB = 11   # Earth from EMB
 
 
 def get_table_parameters(celestialBody: CelestialBodies, jplEphemHeader: np.ndarray):
@@ -399,18 +400,14 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
         # Write to file
         name = celestialBody.name
         if (celestialBody != CelestialBodies.EMB and celestialBody != CelestialBodies.Moon):
-            # relPath = f"astro/systems/planetary_bodies/{name}"
             relPath = f"{name}"
         else:
-            # relPath = "astro/systems/planetary_bodies/Earth"
             relPath = "Earth"
 
-        if celestialBody != CelestialBodies.Moon:
-            write_to_file(outPath, relPath, f"{name}EphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
-        elif celestialBody == CelestialBodies.EMB:
+        if celestialBody == CelestialBodies.EMB:
             write_to_file(outPath, relPath, f"EmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
         else:
-            write_to_file(outPath, relPath, f"{name}GcrfTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
+            write_to_file(outPath, relPath, f"{name}EphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
 
         return xChebyshevStr, yChebyshevStr, zChebyshevStr
 

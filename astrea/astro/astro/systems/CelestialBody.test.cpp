@@ -198,7 +198,7 @@ TEST_F(CelestialBodyTest, GetTrueLatitudeRate)
 }
 
 // Vallado, Ex. 8.5
-TEST_F(CelestialBodyTest, GetStateAt)
+TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 {
     const Date date("2020-02-18 15:08:47.23847");
     const AstrodynamicsSystem earthMoonSunSys(PlanetaryBody::EARTH, { PlanetaryBody::SUN, PlanetaryBody::MOON });
@@ -213,12 +213,38 @@ TEST_F(CelestialBodyTest, GetStateAt)
 
     // Expected results
     const RadiusVector<ECI> expEarth2SunPosition(-126921698.413 * km, -69561377.707 * km, -30155074.470 * km);
-    std::cout << "Sun Position: " << -earthPosition << std::endl;
+    std::cout << std::endl << "Sun Position: " << -earthPosition << std::endl;
     std::cout << "Expected Sun Position: " << expEarth2SunPosition << std::endl;
     ASSERT_EQ_CART_VEC(-earthPosition, expEarth2SunPosition, REL_TOL);
 
     const RadiusVector<ECI> expEarth2MoonPosition(14462.297 * km, -357096.976 * km, -151599.34 * km);
     std::cout << "Moon Position: " << (moonPosition - earthPosition) << std::endl;
-    std::cout << "Expected Moon Position: " << expEarth2MoonPosition << std::endl;
+    std::cout << "Expected Moon Position: " << expEarth2MoonPosition << std::endl << std::endl;
     ASSERT_EQ_CART_VEC(moonPosition - earthPosition, expEarth2MoonPosition, REL_TOL);
+}
+
+// Vallado, Ex. 8.5
+TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
+{
+    const Date date("2000-01-01 12:00:00");
+    const AstrodynamicsSystem earthMoonSunSys(PlanetaryBody::EARTH, { PlanetaryBody::MOON, PlanetaryBody::SUN });
+    const auto& earth = earthMoonSunSys.get(PlanetaryBody::EARTH);
+    const auto& moon  = earthMoonSunSys.get(PlanetaryBody::MOON);
+    const auto& sun   = earthMoonSunSys.get(PlanetaryBody::SUN);
+
+    // Pull out states
+    const RadiusVector<ECI> sunPosition = sun->get_elements_at(date).in_element_set<Cartesian>(earthMoonSunSys).get_position();
+    const RadiusVector<ECI> earthPosition = earth->get_elements_at(date).in_element_set<Cartesian>(earthMoonSunSys).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
+    const RadiusVector<ECI> moonPosition =
+        moon->get_elements_at(date).in_element_set<Cartesian>(earthMoonSunSys).get_position(); // currently outputs position of Moon wrt Earth
+
+    // Expected results
+    const RadiusVector<ECI> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
+
+    std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
+    std::cout << "Sun to Earth Position: " << earthPosition - sunPosition << std::endl;
+    std::cout << "Sun to Moon Position: " << moonPosition + earthPosition - sunPosition << std::endl;
+    std::cout << "Expected Sun to Moon Position: " << expSunToMoonPosition << std::endl << std::endl;
+
+    ASSERT_EQ_CART_VEC(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL);
 }
