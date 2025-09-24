@@ -12,8 +12,8 @@
 
 #include <string>
 
-#include <astro/state/frames/Frame.hpp>
-#include <astro/state/frames/FrameReference.hpp>
+#include <astro/frames/Frame.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

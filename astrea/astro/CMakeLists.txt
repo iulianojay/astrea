@@ -51,7 +51,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/state/frames/FrameReference.cpp
+    ${ASTRO_BASE}/frames/FrameReference.cpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
@@ -128,14 +128,14 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
     
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/state/frames/instances/body_centered_inertial_frames.hpp
-    ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/state/frames/types/BodyFixedFrame.hpp
-    ${ASTRO_BASE}/state/frames/Frame.hpp
-    ${ASTRO_BASE}/state/frames/FrameReference.hpp
+    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/Frame.hpp
+    ${ASTRO_BASE}/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp

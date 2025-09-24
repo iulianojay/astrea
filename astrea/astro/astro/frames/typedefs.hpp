@@ -1,6 +1,6 @@
 #pragma once
 
-#include <astro/state/frames/instances.fwd.hpp>
+#include <astro/frames/instances.fwd.hpp>
 
 namespace astrea {
 namespace astro {

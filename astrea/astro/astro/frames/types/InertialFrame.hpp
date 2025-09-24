@@ -13,7 +13,7 @@
 #include <string>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/frames/Frame.hpp>
+#include <astro/frames/Frame.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {

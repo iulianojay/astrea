@@ -3,8 +3,8 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/propagation/analytic/LambertSolver.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>

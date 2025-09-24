@@ -3,11 +3,11 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/space/Constellation.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>

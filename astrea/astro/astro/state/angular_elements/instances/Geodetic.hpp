@@ -17,8 +17,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>

@@ -15,7 +15,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/instances/body_centered_inertial_frames.hpp>
 
 namespace astrea {
 namespace astro {

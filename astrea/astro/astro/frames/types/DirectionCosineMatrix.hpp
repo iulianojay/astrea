@@ -15,7 +15,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
 
 namespace astrea {
 namespace astro {

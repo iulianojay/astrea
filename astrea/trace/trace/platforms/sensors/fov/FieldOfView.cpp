@@ -8,8 +8,8 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace trace {

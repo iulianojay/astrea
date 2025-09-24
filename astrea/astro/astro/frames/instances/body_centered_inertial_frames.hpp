@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include <astro/state/frames/Frame.hpp>
+#include <astro/frames/Frame.hpp>
 
 namespace astrea {
 namespace astro {

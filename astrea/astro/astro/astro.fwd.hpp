@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include <astro/state/frames/instances.fwd.hpp>
-#include <astro/state/frames/typedefs.hpp>
+#include <astro/frames/instances.fwd.hpp>
+#include <astro/frames/typedefs.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {

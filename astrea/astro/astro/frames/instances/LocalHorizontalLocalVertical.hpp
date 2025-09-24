@@ -11,10 +11,10 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/frames/types/DynamicFrame.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

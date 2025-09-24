@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>

@@ -4,9 +4,9 @@
 
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/frames/FrameReference.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

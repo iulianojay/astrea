@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Spherical.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>

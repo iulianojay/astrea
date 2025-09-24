@@ -10,21 +10,21 @@
  */
 #pragma once
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
-#include <astro/state/frames/Frame.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
-#include <astro/state/frames/instances/EarthCenteredEarthFixed.hpp>
-#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/state/frames/types/BodyFixedFrame.hpp>
-#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/frames/types/InertialFrame.hpp>
+#include <astro/frames/Frame.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/instances/EarthCenteredEarthFixed.hpp>
+#include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/types/BodyFixedFrame.hpp>
+#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/InertialFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>

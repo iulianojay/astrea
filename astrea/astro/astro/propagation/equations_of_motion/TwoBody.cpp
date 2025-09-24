@@ -4,7 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 namespace astrea {
