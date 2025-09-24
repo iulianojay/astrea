@@ -37,9 +37,9 @@ class SensorParameters : public astro::PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     SensorParameters(
-        const FieldOfView* fov                                                                  = nullptr,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER
+        const FieldOfView* fov                                                               = nullptr,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& attachmentPoint = astro::CENTER
     ) :
         astro::PayloadParameters(boresight, attachmentPoint),
         _fov(fov)

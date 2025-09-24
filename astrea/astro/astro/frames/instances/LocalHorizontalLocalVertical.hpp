@@ -19,6 +19,7 @@
 
 namespace astrea {
 namespace astro {
+namespace frames {
 
 /**
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
@@ -72,10 +73,6 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
     }
 };
 
-/**
- * @brief Alias for LocalHorizontalLocalVertical.
- */
-using LVLH = LocalHorizontalLocalVertical; // Alias for convenience
-
+} // namespace frames
 } // namespace astro
 } // namespace astrea

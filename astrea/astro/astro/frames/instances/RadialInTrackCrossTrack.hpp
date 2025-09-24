@@ -19,6 +19,7 @@
 
 namespace astrea {
 namespace astro {
+namespace frames {
 
 /**
  * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
@@ -49,14 +50,14 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> The DCM from ECI to RIC.
+     * @return DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric> get_dcm(const Date& date) const
     {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack>::from_vectors(r, -r.cross(h), h);
+        return DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric>::from_vectors(r, -r.cross(h), h);
     }
 
   private:
@@ -72,10 +73,6 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
     }
 };
 
-/**
- * @brief Alias for RadialInTrackCrossTrack.
- */
-using RIC = RadialInTrackCrossTrack; // Alias for convenience
-
+} // namespace frames
 } // namespace astro
 } // namespace astrea

@@ -19,6 +19,7 @@
 
 namespace astrea {
 namespace astro {
+namespace frames {
 
 /**
  * @brief Class representing the Velocity, Normal, Binormal (VNB) frame.
@@ -70,10 +71,6 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, Frame
     }
 };
 
-/**
- * @brief Alias for VelocityNormalBinormal.
- */
-using VNB = VelocityNormalBinormal; // Alias for convenience
-
+} // namespace frames
 } // namespace astro
 } // namespace astrea

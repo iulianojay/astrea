@@ -6,6 +6,12 @@ namespace astrea {
 namespace astro {
 namespace frames {
 
+namespace dynamic {
+using lvlh = LocalHorizontalLocalVertical;
+using ric  = RadialInTrackCrossTrack;
+using vnb  = VelocityNormalBinormal;
+} // namespace dynamic
+
 namespace sun {
 using icrf      = SunCenteredIcrf;
 using j2000     = SunCenteredJ2000;

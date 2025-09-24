@@ -32,8 +32,8 @@ class ThrusterParameters : public PayloadParameters {
      */
     ThrusterParameters(
         const Thrust& thrust,
-        const CartesianVector<Distance, RadialInTrackCrossTrack>& boresight       = NADIR_RIC,
-        const CartesianVector<Distance, RadialInTrackCrossTrack>& attachmentPoint = CENTER
+        const CartesianVector<Distance, frames::dynamic::ric>& boresight       = NADIR_RIC,
+        const CartesianVector<Distance, frames::dynamic::ric>& attachmentPoint = CENTER
     ) :
         PayloadParameters(boresight, attachmentPoint),
         _thrust(thrust)

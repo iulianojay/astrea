@@ -26,8 +26,11 @@ int main()
         AccelerationVector<frames::earth::icrf>
             compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
         {
-            const astro::RIC frame = RIC::instantaneous(state.get_position(), state.get_velocity());
-            const AccelerationVector<astro::RIC> nadirAccel{ -1.0 * m / (s * s), 0.0 * m / (s * s), 0.0 * m / (s * s) };
+            const astro::frames::dynamic::ric frame =
+                frames::dynamic::ric::instantaneous(state.get_position(), state.get_velocity());
+            const AccelerationVector<astro::frames::dynamic::ric> nadirAccel{ -1.0 * m / (s * s),
+                                                                              0.0 * m / (s * s),
+                                                                              0.0 * m / (s * s) };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
             std::cout << nadirAccel << std::endl;

@@ -54,15 +54,15 @@ int main()
 
     // For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated
     // to call any vector transformations. They are not required to declare the vector type, however.
-    RadiusVector<RIC> rRic = { 1.0 * m, 2.0 * m, 3.0 * m };
+    RadiusVector<frames::dynamic::ric> rRic = { 1.0 * m, 2.0 * m, 3.0 * m };
 
     Spacecraft frameParent;
-    RIC dynamicRicFrame(&frameParent); // RIC frame attached to a spacecraft. As long as the spacecraft has a state
-                                       // history, the frame can be used to transform vectors.
+    frames::dynamic::ric dynamicRicFrame(&frameParent); // RIC frame attached to a spacecraft. As long as the spacecraft has a state
+                                                        // history, the frame can be used to transform vectors.
 
-    RIC instantaneousRicFrame =
-        RIC::instantaneous(rEci2, vEci); // RIC frame defined at a specific time and state. Transformations to/from
-                                         // instantaneous frames are only valid at the time they are defined.
+    frames::dynamic::ric instantaneousRicFrame =
+        frames::dynamic::ric::instantaneous(rEci2, vEci); // RIC frame defined at a specific time and state. Transformations to/from
+                                                          // instantaneous frames are only valid at the time they are defined.
 
     RadiusVector<frames::earth::icrf> convertedrRic = instantaneousRicFrame.convert_from_this_frame(rRic, date);
 

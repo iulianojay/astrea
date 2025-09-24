@@ -53,8 +53,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const RIC ricFrame                     = RIC::instantaneous(r, v);
-    const AccelerationVector<RIC> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
+    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();

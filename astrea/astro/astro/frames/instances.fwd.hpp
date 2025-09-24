@@ -4,6 +4,10 @@ namespace astrea {
 namespace astro {
 namespace frames {
 
+struct LocalHorizontalLocalVertical;
+struct RadialInTrackCrossTrack;
+struct VelocityNormalBinormal;
+
 struct SunCenteredIcrf;
 struct MercuryCenteredIcrf;
 struct VenusCenteredIcrf;
