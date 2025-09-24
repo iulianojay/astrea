@@ -49,6 +49,12 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
     const auto& w     = elements.get_argument_of_perigee();
     const auto& theta = elements.get_true_anomaly();
 
+    if (a == 0.0 * km) {
+        _r = { 0.0 * km, 0.0 * km, 0.0 * km };
+        _v = { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+        return;
+    }
+
     // Precalculate
     const quantity cosTheta = cos(theta);
     const quantity sinTheta = sin(theta);

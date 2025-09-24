@@ -230,6 +230,8 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
     // returns exact values so this is likely not an indication that there are any accuracy issues
 }
 
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_MOON_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
 // Vallado, Ex. 8.5
 TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 {
@@ -257,3 +259,5 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 
     ASSERT_EQ_CART_VEC(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL);
 }
+
+#endif // defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_MOON_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)

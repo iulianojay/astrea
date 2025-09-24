@@ -81,6 +81,10 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     message(" ---- BUILD_URANUS: ${BUILD_URANUS}")
     message(" ---- BUILD_NEPTUNE: ${BUILD_NEPTUNE}")
 
+    if (NOT ${BUILD_EPHEMERIDES})
+        return()
+    endif()
+
     set(SYSTEM_BODIES "")
     set(BODY_EPHEMERIS_HEADERS "")
     set(BODY_EPHEMERIS_SOURCES "")
