@@ -19,13 +19,13 @@ int main()
     // are incomplete, and the design lacks a complete foray of practical abstractions, utilities, and features, but it's a start.
 
     // Create a system with Earth as the center body
-    AstrodynamicsSystem earthSystem(PlanetaryBody::EARTH); // String were initially used to avoid hard coding CelestialBody
-                                                           // instances, but this may change for pre-defined celestial bodies
+    AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH); // String were initially used to avoid hard coding CelestialBody
+                                                             // instances, but this may change for pre-defined celestial bodies
     const auto& earth = earthSystem.get_central_body();
     std::cout << "Center Body: " << earth->get_name() << std::endl;
 
     // Systems can also have secondary bodies
-    AstrodynamicsSystem earthMoonSystem(PlanetaryBody::EARTH, { PlanetaryBody::MOON });
+    AstrodynamicsSystem earthMoonSystem(CelestialBodyId::EARTH, { CelestialBodyId::MOON });
     std::cout << "Bodies in Earth-Moon System: ";
     for (const auto& [id, body] : earthMoonSystem.get_all_bodies()) {
         std::cout << body->get_name() << " ";
@@ -33,7 +33,7 @@ int main()
     std::cout << std::endl;
 
     // Bodies can be accessed directly from the system
-    const auto& moon = earthMoonSystem.get(PlanetaryBody::MOON);
+    const auto& moon = earthMoonSystem.get(CelestialBodyId::MOON);
     std::cout << "Secondary Body: " << moon->get_name() << std::endl;
 
     return 0;

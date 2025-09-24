@@ -67,14 +67,14 @@ class Cylindrical {
      *
      * @param r Radius vector in ECI (position)
      */
-    Cylindrical(const RadiusVector<ECI>& r, const Date& date, const CelestialBody* parent);
+    Cylindrical(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Cylindrical with position and velocity vectors.
      *
      * @param r Radius vector in ECEF (position)
      */
-    Cylindrical(const RadiusVector<ECEF>& r, const CelestialBody* parent);
+    Cylindrical(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Cylindrical from orbital elements.
@@ -85,8 +85,10 @@ class Cylindrical {
     template <IsOrbitalElements T>
     Cylindrical(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
     {
-        *this =
-            Cylindrical(Cartesian(elements, sys).get_position().template in_frame<ECEF>(date), sys.get_central_body().get());
+        *this = Cylindrical(
+            Cartesian(elements, sys).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            sys.get_central_body().get()
+        );
     }
 
     /**
@@ -215,18 +217,18 @@ class Cylindrical {
     Cylindrical& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Cylindrical state vector to a RadiusVector<ECEF>.
+     * @brief Converts the Cylindrical state vector to a RadiusVector<frames::earth::earth_fixed>.
      *
-     * @return RadiusVector<ECEF> The position vector in Cylindrical coordinates.
+     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Cylindrical coordinates.
      */
-    RadiusVector<ECEF> get_position(const CelestialBody* parent) const;
+    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
 
     /**
-     * @brief Converts the Cylindrical state vector to a RadiusVector<ECI>.
+     * @brief Converts the Cylindrical state vector to a RadiusVector<frames::earth::icrf>.
      *
-     * @return RadiusVector<ECI> The position vector in Cylindrical coordinates.
+     * @return RadiusVector<frames::earth::icrf> The position vector in Cylindrical coordinates.
      */
-    RadiusVector<ECI> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
 
     /**
      * @brief Get the azimuth of the Cylindrical state vector.
@@ -274,7 +276,7 @@ class Cylindrical {
  * @param rEcef The radius vector in ECEF coordinates.
  * @return The range, azimuth, and elevation as a tuple.
  */
-std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<EarthCenteredEarthFixed>& rEcef);
+std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<frames::earth::earth_fixed>& rEcef);
 
 
 /**
@@ -285,7 +287,7 @@ std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const R
  * @param elevation The elevation in meters.
  * @return The radius vector in ECEF coordinates.
  */
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_cylindrical_to_earth_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation);
 
 } // namespace astro

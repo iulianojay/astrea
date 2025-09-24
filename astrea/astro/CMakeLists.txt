@@ -129,11 +129,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
     
     ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
+    ${ASTRO_BASE}/state/frames/instances/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/state/frames/types/RotatingFrame.hpp
+    ${ASTRO_BASE}/state/frames/types/BodyFixedFrame.hpp
     ${ASTRO_BASE}/state/frames/Frame.hpp
     ${ASTRO_BASE}/state/frames/FrameReference.hpp
 

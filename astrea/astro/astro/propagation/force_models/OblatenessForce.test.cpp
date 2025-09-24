@@ -23,7 +23,7 @@ class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys(PlanetaryBody::EARTH, { PlanetaryBody::MOON, PlanetaryBody::SUN }),
+        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         force(sys, 2, 2)
     {
     }
@@ -63,12 +63,12 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 {
     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-    const AccelerationVector<ECEF> expectedEcef{ -1.151903e-6 * km / (s * s),
-                                                 -2.938330e-6 * km / (s * s),
-                                                 -1.023539e-5 * km / (s * s) };
-    const AccelerationVector<ECI> expected = expectedEcef.in_frame<ECI>(epoch);
+    const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
+                                                                       -2.938330e-6 * km / (s * s),
+                                                                       -1.023539e-5 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

@@ -14,13 +14,14 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/state/frames/types/BodyFixedFrame.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/frames/types/RotatingFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
 namespace astro {
+namespace frames {
 
 /**
  * @brief Class representing the Earth-Centered Earth Fixed (ECEF) frame.
@@ -30,21 +31,7 @@ namespace astro {
  * - ECI to ECEF
  * - ECEF to ECI
  */
-class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, EarthCenteredInertial> {
-
-  public:
-    /**
-     * @brief Default constructor for EarthCenteredEarthFixed.
-     *
-     * Initializes the ECEF frame with a name and origin.
-     */
-    EarthCenteredEarthFixed() :
-        RotatingFrame<EarthCenteredEarthFixed, EarthCenteredInertial>("Earth Centered Earth Fixed", "Earth") {};
-
-    /**
-     * @brief Default destructor for EarthCenteredEarthFixed.
-     */
-    ~EarthCenteredEarthFixed() = default;
+struct EarthCenteredEarthFixed : BodyFixedFrame<EarthCenteredEarthFixed, CelestialBodyId::EARTH> {
 
     /**
      * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to Earth-Centered Earth Fixed (ECEF) coordinates.
@@ -64,7 +51,7 @@ class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, Ea
      */
     template <typename Value_T>
     static CartesianVector<Value_T, EarthCenteredEarthFixed>
-        rotate_into_this_frame(const CartesianVector<Value_T, EarthCenteredInertial>& eciVec, const Date& date)
+        rotate_into_this_frame(const CartesianVector<Value_T, frames::earth::icrf>& eciVec, const Date& date)
     {
         return get_dcm(date) * eciVec;
     }
@@ -75,7 +62,7 @@ class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, Ea
      * @tparam Value_T The type of the vector components.
      * @param ecefVec The CartesianVector in Earth-Centered Earth-Fixed coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, EarthCenteredInertial> The converted CartesianVector in ECI coordinates.
+     * @return CartesianVector<Value_T, frames::earth::icrf> The converted CartesianVector in ECI coordinates.
      *
      *  @note: This transformation only accounts for Earth rotation, not nutation or procession, so it
      *      is wrong by the order of several km. TODO: Make this accurate.
@@ -85,7 +72,7 @@ class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, Ea
      *                     0         0     1];
      */
     template <typename Value_T>
-    static CartesianVector<Value_T, EarthCenteredInertial>
+    static CartesianVector<Value_T, frames::earth::icrf>
         rotate_out_of_this_frame(const CartesianVector<Value_T, EarthCenteredEarthFixed>& ecefVec, const Date& date)
     {
         return get_dcm(date).transpose() * ecefVec;
@@ -95,21 +82,15 @@ class EarthCenteredEarthFixed : public RotatingFrame<EarthCenteredEarthFixed, Ea
      * @brief Get the Direction Cosine Matrix (DCM) for the ECEF frame at a given date.
      *
      * @param date The date for which to get the DCM.
-     * @return DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed> The DCM from ECI to ECEF.
+     * @return DirectionCosineMatrix<frames::earth::icrf, EarthCenteredEarthFixed> The DCM from ECI to ECEF.
      */
-    static DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed> get_dcm(const Date& date)
+    static DirectionCosineMatrix<frames::earth::icrf, EarthCenteredEarthFixed> get_dcm(const Date& date)
     {
         const Angle gst = julian_date_to_sidereal_time(date.jd());
-        return DirectionCosineMatrix<EarthCenteredInertial, EarthCenteredEarthFixed>::Z(gst);
+        return DirectionCosineMatrix<frames::earth::icrf, EarthCenteredEarthFixed>::Z(gst);
     }
-
-  private:
 };
 
-/**
- * @brief Alias for EarthCenteredEarthFixed.
- */
-using ECEF = EarthCenteredEarthFixed; // Alias for convenience
-
+} // namespace frames
 } // namespace astro
 } // namespace astrea

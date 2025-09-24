@@ -36,7 +36,6 @@ Equinoctial Equinoctial::GEO(const AstrodynamicsSystem& system) { return Equinoc
 
 Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
 {
-
     // Get r and v
     const auto& a      = elements.get_semimajor();
     const auto& ecc    = elements.get_eccentricity();

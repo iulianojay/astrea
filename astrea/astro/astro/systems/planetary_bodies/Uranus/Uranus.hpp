@@ -19,7 +19,7 @@ class Uranus : public CelestialBody {
     constexpr Uranus() :
         CelestialBody(
             "Uranus",                    //!< Name
-            PlanetaryBody::SUN,          //!< Parent celestial body
+            CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
             Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(5793939.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Uranus : public CelestialBody {
     }
     ~Uranus() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::URANUS; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::URANUS; };
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;

@@ -192,7 +192,7 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
 TEST_F(ConversionTest, EcefToLla)
 {
     // Vallado ex. 3-3
-    const RadiusVector<ECEF> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
+    const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
     const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
@@ -207,7 +207,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const RadiusVector<ECEF> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
 
     // I have no idea why these are not the same
     ASSERT_EQ_QUANTITY(rEcef[0], Distance(6524.834 * km), REL_TOL);

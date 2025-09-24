@@ -67,17 +67,17 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
-     * @return RadiusVector<EarthCenteredInertial> The inertial position of the spacecraft.
+     * @return RadiusVector<frames::earth::icrf> The inertial position of the spacecraft.
      */
-    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override;
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the velocity.
-     * @return VelocityVector<EarthCenteredInertial> The inertial velocity of the spacecraft.
+     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the spacecraft.
      */
-    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override;
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
 
     /**
      * @brief Gets the Cartesian state of the spacecraft at a specific date.

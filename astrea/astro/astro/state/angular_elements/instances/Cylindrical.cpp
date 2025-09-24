@@ -28,12 +28,12 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Cylindrical::Cylindrical(const RadiusVector<ECI>& rEci, const Date& date, const CelestialBody* parent)
+Cylindrical::Cylindrical(const RadiusVector<frames::earth::icrf>& rEci, const Date& date, const CelestialBody* parent)
 {
-    *this = Cylindrical(rEci.in_frame<ECEF>(date), parent);
+    *this = Cylindrical(rEci.in_frame<frames::earth::earth_fixed>(date), parent);
 }
 
-Cylindrical::Cylindrical(const RadiusVector<ECEF>& rEcef, const CelestialBody* parent)
+Cylindrical::Cylindrical(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_range, _azimuth, _elevation) = convert_earth_fixed_to_cylindrical(rEcef);
 }
@@ -143,14 +143,14 @@ Cylindrical Cylindrical::interpolate(const Time& thisTime, const Time& otherTime
     return Cylindrical(interpRange, interpAzimuth, interpElev);
 }
 
-RadiusVector<ECEF> Cylindrical::get_position(const CelestialBody* parent) const
+RadiusVector<frames::earth::earth_fixed> Cylindrical::get_position(const CelestialBody* parent) const
 {
     return convert_cylindrical_to_earth_fixed(_range, _azimuth, _elevation);
 }
 
-RadiusVector<ECI> Cylindrical::get_position(const Date& date, const CelestialBody* parent) const
+RadiusVector<frames::earth::icrf> Cylindrical::get_position(const Date& date, const CelestialBody* parent) const
 {
-    return get_position(parent).in_frame<ECI>(date);
+    return get_position(parent).in_frame<frames::earth::icrf>(date);
 }
 
 std::ostream& operator<<(std::ostream& os, Cylindrical const& elements)
@@ -164,7 +164,7 @@ std::ostream& operator<<(std::ostream& os, Cylindrical const& elements)
 }
 
 
-std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<EarthCenteredEarthFixed>& rEcef)
+std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<frames::earth::earth_fixed>& rEcef)
 {
     const Distance range     = rEcef.norm();
     const Distance elevation = rEcef.get_z();
@@ -174,13 +174,13 @@ std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const R
 }
 
 
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_cylindrical_to_earth_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
 {
     const auto x = range * cos(azimuth);
     const auto y = range * sin(azimuth);
     const auto z = elevation;
-    return RadiusVector<ECEF>(x, y, z);
+    return RadiusVector<frames::earth::earth_fixed>(x, y, z);
 }
 
 } // namespace astro

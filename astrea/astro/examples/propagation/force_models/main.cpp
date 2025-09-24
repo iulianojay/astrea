@@ -23,7 +23,7 @@ int main()
         {
         }
 
-        AccelerationVector<ECI>
+        AccelerationVector<frames::earth::icrf>
             compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
         {
             const astro::RIC frame = RIC::instantaneous(state.get_position(), state.get_velocity());

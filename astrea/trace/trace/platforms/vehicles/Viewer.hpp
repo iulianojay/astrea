@@ -89,9 +89,9 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @brief Get the inertial position of the viewer.
      *
      * @param date The date for which to get the position.
-     * @return astro::RadiusVector<astro::ECI> The inertial position of the viewer.
+     * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial position of the viewer.
      */
-    astro::RadiusVector<astro::ECI> get_inertial_position(const astro::Date& date) const
+    astro::RadiusVector<astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const
     {
         return Spacecraft::get_inertial_position(date);
     }
@@ -100,9 +100,9 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @brief Get the inertial velocity of the viewer.
      *
      * @param date The date for which to get the velocity.
-     * @return astro::RadiusVector<astro::ECI> The inertial velocity of the viewer.
+     * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial velocity of the viewer.
      */
-    astro::VelocityVector<astro::ECI> get_inertial_velocity(const astro::Date& date) const
+    astro::VelocityVector<astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const
     {
         return Spacecraft::get_inertial_velocity(date);
     }

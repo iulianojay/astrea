@@ -23,7 +23,7 @@ class NBodyForceTest : public testing::Test {
   public:
     NBodyForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys(PlanetaryBody::EARTH, { PlanetaryBody::MOON, PlanetaryBody::SUN }),
+        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         force()
     {
     }
@@ -63,11 +63,11 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
 {
     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-    const AccelerationVector<ECI> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
-                                            (1.5243e-10 + -4.3052e-10) * km / (s * s),
-                                            (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
+                                                            (1.5243e-10 + -4.3052e-10) * km / (s * s),
+                                                            (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

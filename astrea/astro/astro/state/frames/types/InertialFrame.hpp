@@ -22,30 +22,10 @@ namespace astro {
 /**
  * @brief Base class for all inertial state/frames.
  */
-template <class Frame_T>
-class InertialFrame : public Frame<Frame_T> {
-
-  public:
-    /**
-     * @brief Constructor for InertialFrame.
-     *
-     * @param name The name of the inertial frame.
-     * @param origin The origin of the inertial frame.
-     */
-    InertialFrame(const std::string& name, const std::string& origin, const PlanetaryBody& centralBody) :
-        Frame<Frame_T>(name, origin),
-        _centralBody(centralBody)
-    {
-    }
-
-    /**
-     * @brief Default destructor for InertialFrame.
-     */
+template <class Frame_T, CelestialBodyId origin, FrameAxis axis = FrameAxis::ICRF>
+    requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
+struct InertialFrame : Frame<Frame_T, origin, axis> {
     virtual ~InertialFrame() = default;
-
-  private:
-    const PlanetaryBody _centralBody; //!< The central body associated with the inertial frame.
-                                      // TODO: Extend to barycenter. Maybe with a variant?
 };
 
 } // namespace astro

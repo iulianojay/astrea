@@ -27,12 +27,12 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Geodetic::Geodetic(const RadiusVector<ECI>& rEci, const Date& date, const CelestialBody* parent)
+Geodetic::Geodetic(const RadiusVector<frames::earth::icrf>& rEci, const Date& date, const CelestialBody* parent)
 {
-    *this = Geodetic(rEci.in_frame<ECEF>(date), parent);
+    *this = Geodetic(rEci.in_frame<frames::earth::earth_fixed>(date), parent);
 }
 
-Geodetic::Geodetic(const RadiusVector<ECEF>& rEcef, const CelestialBody* parent)
+Geodetic::Geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_latitude, _longitude, _altitude) =
         convert_earth_fixed_to_geodetic(rEcef, parent->get_equitorial_radius(), parent->get_polar_radius());
@@ -142,14 +142,14 @@ Geodetic Geodetic::interpolate(const Time& thisTime, const Time& otherTime, cons
     return Geodetic(interpLat, interpLon, interpAlt);
 }
 
-RadiusVector<ECEF> Geodetic::get_position(const CelestialBody* parent) const
+RadiusVector<frames::earth::earth_fixed> Geodetic::get_position(const CelestialBody* parent) const
 {
     return convert_geodetic_to_earth_fixed(_latitude, _longitude, _altitude, parent->get_equitorial_radius(), parent->get_polar_radius());
 }
 
-RadiusVector<ECI> Geodetic::get_position(const Date& date, const CelestialBody* parent) const
+RadiusVector<frames::earth::icrf> Geodetic::get_position(const Date& date, const CelestialBody* parent) const
 {
-    return get_position(parent).in_frame<ECI>(date);
+    return get_position(parent).in_frame<frames::earth::icrf>(date);
 }
 
 std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
@@ -163,7 +163,7 @@ std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
 }
 
 std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geodetic(const RadiusVector<EarthCenteredEarthFixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
+    convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
     static const unsigned MAX_ITER  = 1e3;
     static const Distance MAX_ERROR = 1.0e-9 * km;
@@ -200,7 +200,7 @@ std::tuple<Angle, Angle, Distance>
     return { latitude, longitude, altitude };
 }
 
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
     const quantity sinLat = sin(lat);

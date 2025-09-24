@@ -36,8 +36,8 @@ TEST_F(AstrodynamicsSystemTest, DefaultConstructor)
 
 TEST_F(AstrodynamicsSystemTest, Constructor)
 {
-    ASSERT_NO_THROW(AstrodynamicsSystem(PlanetaryBody::MOON));
-    ASSERT_NO_THROW(AstrodynamicsSystem(PlanetaryBody::MOON, { PlanetaryBody::EARTH, PlanetaryBody::SUN }));
+    ASSERT_NO_THROW(AstrodynamicsSystem(CelestialBodyId::MOON));
+    ASSERT_NO_THROW(AstrodynamicsSystem(CelestialBodyId::MOON, { CelestialBodyId::EARTH, CelestialBodyId::SUN }));
 }
 
 TEST_F(AstrodynamicsSystemTest, Center) { ASSERT_EQ(sys.get_central_body()->get_name(), "Earth"); }
@@ -50,15 +50,15 @@ TEST_F(AstrodynamicsSystemTest, GetCenter)
 
 TEST_F(AstrodynamicsSystemTest, GetExists)
 {
-    const auto& earth = sys.get(PlanetaryBody::EARTH);
+    const auto& earth = sys.get(CelestialBodyId::EARTH);
     ASSERT_EQ(earth->get_name(), "Earth");
 }
 
 TEST_F(AstrodynamicsSystemTest, GetDoesNotExist)
 {
-    ASSERT_ANY_THROW(sys.get(PlanetaryBody::MOON));
-    sys.create(PlanetaryBody::MOON);
-    ASSERT_NO_THROW(sys.get(PlanetaryBody::MOON));
+    ASSERT_ANY_THROW(sys.get(CelestialBodyId::MOON));
+    sys.create(CelestialBodyId::MOON);
+    ASSERT_NO_THROW(sys.get(CelestialBodyId::MOON));
 }
 
 TEST_F(AstrodynamicsSystemTest, GetAllBodies)
@@ -93,11 +93,11 @@ TEST_F(AstrodynamicsSystemTest, PropagateBodies) {}
 
 TEST_F(AstrodynamicsSystemTest, GetRoot)
 {
-    sys.create(PlanetaryBody::MOON);
-    sys.create(PlanetaryBody::EARTH);
-    ASSERT_EQ(sys.get_system_root(), PlanetaryBody::EARTH);
-    sys.create(PlanetaryBody::SUN);
-    ASSERT_EQ(sys.get_system_root(), PlanetaryBody::SUN);
-    sys.create(PlanetaryBody::JUPITER);
-    ASSERT_EQ(sys.get_system_root(), PlanetaryBody::SUN);
+    sys.create(CelestialBodyId::MOON);
+    sys.create(CelestialBodyId::EARTH);
+    ASSERT_EQ(sys.get_system_root(), CelestialBodyId::EARTH);
+    sys.create(CelestialBodyId::SUN);
+    ASSERT_EQ(sys.get_system_root(), CelestialBodyId::SUN);
+    sys.create(CelestialBodyId::JUPITER);
+    ASSERT_EQ(sys.get_system_root(), CelestialBodyId::SUN);
 }

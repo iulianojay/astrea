@@ -21,10 +21,10 @@
 #include <astro/state/frames/FrameReference.hpp>
 #include <astro/state/frames/frames.hpp>
 #include <astro/state/frames/instances/EarthCenteredEarthFixed.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/state/frames/types/BodyFixedFrame.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/frames/types/InertialFrame.hpp>
-#include <astro/state/frames/types/RotatingFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>

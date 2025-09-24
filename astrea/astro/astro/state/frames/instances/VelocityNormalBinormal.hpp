@@ -12,7 +12,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
@@ -23,9 +23,9 @@ namespace astro {
 /**
  * @brief Class representing the Velocity, Normal, Binormal (VNB) frame.
  */
-class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
+class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB> {
 
-    friend DynamicFrame<VelocityNormalBinormal>;
+    friend DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>;
 
   public:
     /**
@@ -34,7 +34,7 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
      * Initializes the ECEF frame with a name and origin.
      */
     VelocityNormalBinormal(const FrameReference* parent) :
-        DynamicFrame("Velocity, Normal, Binormal", parent)
+        DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>(parent)
     {
     }
 
@@ -47,14 +47,14 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
      * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal> The DCM from ECI to VNB.
+     * @return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal> The DCM from ECI to VNB.
      */
-    DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<EarthCenteredInertial, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
+        return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
     }
 
   private:
@@ -64,8 +64,8 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal> {
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    VelocityNormalBinormal(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Velocity, Normal, Binormal", position, velocity)
+    VelocityNormalBinormal(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+        DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>(position, velocity)
     {
     }
 };

@@ -58,7 +58,7 @@ class Cartesian {
      * @param r Radius vector (position)
      * @param v Velocity vector
      */
-    Cartesian(const RadiusVector<ECI>& r, const VelocityVector<ECI>& v) :
+    Cartesian(const RadiusVector<frames::earth::icrf>& r, const VelocityVector<frames::earth::icrf>& v) :
         _r(r),
         _v(v)
     {
@@ -226,8 +226,8 @@ class Cartesian {
      */
     Cartesian operator+(const Cartesian& other) const;
 
-    Cartesian operator+(const RadiusVector<ECI>& r) const;
-    Cartesian operator+(const VelocityVector<ECI>& v) const;
+    Cartesian operator+(const RadiusVector<frames::earth::icrf>& r) const;
+    Cartesian operator+(const VelocityVector<frames::earth::icrf>& v) const;
 
     /**
      * @brief Adds another Cartesian object to the current one.
@@ -237,8 +237,8 @@ class Cartesian {
      */
     Cartesian& operator+=(const Cartesian& other);
 
-    Cartesian& operator+=(const RadiusVector<ECI>& r);
-    Cartesian& operator+=(const VelocityVector<ECI>& v);
+    Cartesian& operator+=(const RadiusVector<frames::earth::icrf>& r);
+    Cartesian& operator+=(const VelocityVector<frames::earth::icrf>& v);
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -248,8 +248,8 @@ class Cartesian {
      */
     Cartesian operator-(const Cartesian& other) const;
 
-    Cartesian operator-(const RadiusVector<ECI>& r) const;
-    Cartesian operator-(const VelocityVector<ECI>& v) const;
+    Cartesian operator-(const RadiusVector<frames::earth::icrf>& r) const;
+    Cartesian operator-(const VelocityVector<frames::earth::icrf>& v) const;
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -259,8 +259,8 @@ class Cartesian {
      */
     Cartesian& operator-=(const Cartesian& other);
 
-    Cartesian& operator-=(const RadiusVector<ECI>& r);
-    Cartesian& operator-=(const VelocityVector<ECI>& v);
+    Cartesian& operator-=(const RadiusVector<frames::earth::icrf>& r);
+    Cartesian& operator-=(const VelocityVector<frames::earth::icrf>& v);
 
     /**
      * @brief Multiplies the Cartesian state vector by a scalar.
@@ -311,18 +311,18 @@ class Cartesian {
     Cartesian& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Cartesian state vector to a RadiusVector<ECI>.
+     * @brief Converts the Cartesian state vector to a RadiusVector<frames::earth::icrf>.
      *
-     * @return RadiusVector<ECI> The position vector in Cartesian coordinates.
+     * @return RadiusVector<frames::earth::icrf> The position vector in Cartesian coordinates.
      */
-    const RadiusVector<ECI>& get_position() const { return _r; }
+    const RadiusVector<frames::earth::icrf>& get_position() const { return _r; }
 
     /**
-     * @brief Converts the Cartesian state vector to a VelocityVector<ECI>.
+     * @brief Converts the Cartesian state vector to a VelocityVector<frames::earth::icrf>.
      *
-     * @return VelocityVector<ECI> The velocity vector in Cartesian coordinates.
+     * @return VelocityVector<frames::earth::icrf> The velocity vector in Cartesian coordinates.
      */
-    const VelocityVector<ECI>& get_velocity() const { return _v; }
+    const VelocityVector<frames::earth::icrf>& get_velocity() const { return _v; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -386,8 +386,8 @@ class Cartesian {
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
 
   private:
-    RadiusVector<ECI> _r;   //!< Position vector
-    VelocityVector<ECI> _v; //!< Velocity vector
+    RadiusVector<frames::earth::icrf> _r;   //!< Position vector
+    VelocityVector<frames::earth::icrf> _v; //!< Velocity vector
 };
 
 /**
@@ -427,7 +427,7 @@ class CartesianPartial {
      * @param v Velocity vector
      * @param a Acceleration vector
      */
-    CartesianPartial(const VelocityVector<ECI>& v, const AccelerationVector<ECI>& a) :
+    CartesianPartial(const VelocityVector<frames::earth::icrf>& v, const AccelerationVector<frames::earth::icrf>& a) :
         _v(v),
         _a(a)
     {
@@ -442,8 +442,8 @@ class CartesianPartial {
     Cartesian operator*(const Time& time) const;
 
   private:
-    VelocityVector<ECI> _v;     //!< Velocity vector
-    AccelerationVector<ECI> _a; //!< Acceleration vector
+    VelocityVector<frames::earth::icrf> _v;     //!< Velocity vector
+    AccelerationVector<frames::earth::icrf> _a; //!< Acceleration vector
 };
 
 } // namespace astro

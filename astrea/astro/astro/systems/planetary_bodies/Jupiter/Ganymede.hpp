@@ -19,7 +19,7 @@ class Ganymede : public CelestialBody {
     constexpr Ganymede() :
         CelestialBody(
             "Ganymede",                  //!< Name
-            PlanetaryBody::JUPITER,      //!< Parent celestial body
+            CelestialBodyId::JUPITER,    //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1997-01-16 00:00:00"), //!< Reference date for the celestial body data
             GravParam(9887.8 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Ganymede : public CelestialBody {
     }
     ~Ganymede() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::GANYMEDE; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::GANYMEDE; };
 };
 
 } // namespace planetary_bodies

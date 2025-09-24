@@ -27,8 +27,8 @@ class LambertSolverTest : public testing::Test {
     AstrodynamicsSystem sys;
 
     // Numbers from Vallado, 5th Ed., Ex. 7-5
-    RadiusVector<ECI> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
-    VelocityVector<ECI> v0{ 2.058913 * km / s, 2.915964 * km / s }, vf{ -3.451565 * km / s, 0.910314 * km / s };
+    RadiusVector<frames::earth::icrf> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
+    VelocityVector<frames::earth::icrf> v0{ 2.058913 * km / s, 2.915964 * km / s }, vf{ -3.451565 * km / s, 0.910314 * km / s };
     Time dt = 76.0 * min;
 };
 

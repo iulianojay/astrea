@@ -19,7 +19,7 @@ class Oberon : public CelestialBody {
     constexpr Oberon() :
         CelestialBody(
             "Oberon",                    //!< Name
-            PlanetaryBody::URANUS,       //!< Parent celestial body
+            CelestialBodyId::URANUS,     //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1980-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(192.4 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Oberon : public CelestialBody {
     }
     ~Oberon() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::OBERON; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::OBERON; };
 };
 
 } // namespace planetary_bodies

@@ -19,7 +19,7 @@ class Sun : public CelestialBody {
     constexpr Sun() :
         CelestialBody(
             "Sun",                       //!< Name
-            PlanetaryBody::SUN,          //!< Parent celestial body
+            CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::STAR,     //!< Type
             Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(1.32712e11 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Sun : public CelestialBody {
     }
     ~Sun() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::SUN; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::SUN; };
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;

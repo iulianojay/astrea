@@ -396,9 +396,9 @@ struct VehicleInner final : public VehicleInnerBase {
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
-     * @return RadiusVector<EarthCenteredInertial>
+     * @return RadiusVector<frames::earth::icrf>
      */
-    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override final
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override final
     {
         return _value.get_inertial_position(date);
     }
@@ -407,9 +407,9 @@ struct VehicleInner final : public VehicleInnerBase {
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the velocity.
-     * @return VelocityVector<EarthCenteredInertial>
+     * @return VelocityVector<frames::earth::icrf>
      */
-    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override final
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override final
     {
         return _value.get_inertial_velocity(date);
     }
@@ -418,9 +418,9 @@ struct VehicleInner final : public VehicleInnerBase {
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the acceleration.
-     * @return AccelerationVector<EarthCenteredInertial>
+     * @return AccelerationVector<frames::earth::icrf>
      */
-    AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const override final
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override final
     {
         return _value.get_inertial_acceleration(date);
     }
@@ -840,9 +840,9 @@ class Vehicle : public FrameReference {
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
-     * @return RadiusVector<EarthCenteredInertial>
+     * @return RadiusVector<frames::earth::icrf>
      */
-    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override
     {
         return ptr()->get_inertial_position(date);
     }
@@ -851,9 +851,9 @@ class Vehicle : public FrameReference {
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the velocity.
-     * @return VelocityVector<EarthCenteredInertial>
+     * @return VelocityVector<frames::earth::icrf>
      */
-    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override
     {
         return ptr()->get_inertial_velocity(date);
     }
@@ -862,9 +862,9 @@ class Vehicle : public FrameReference {
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the acceleration.
-     * @return AccelerationVector<EarthCenteredInertial>
+     * @return AccelerationVector<frames::earth::icrf>
      */
-    AccelerationVector<EarthCenteredInertial> get_inertial_acceleration(const Date& date) const override
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override
     {
         return ptr()->get_inertial_acceleration(date);
     }

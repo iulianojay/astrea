@@ -12,7 +12,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
@@ -23,9 +23,9 @@ namespace astro {
 /**
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
  */
-class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical> {
+class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH> {
 
-    friend DynamicFrame<LocalHorizontalLocalVertical>;
+    friend DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>;
 
   public:
     LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
@@ -36,7 +36,7 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      * Initializes the ECEF frame with a name and origin.
      */
     LocalHorizontalLocalVertical(const FrameReference* parent) :
-        DynamicFrame("Local Horizontal, Local Vertical", parent)
+        DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>(parent)
     {
     }
 
@@ -49,14 +49,14 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
      *
      * @param date The date for which the DCM is computed.
-     * @return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
+     * @return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
      */
-    DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<EarthCenteredInertial, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
+        return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
     }
 
   private:
@@ -66,8 +66,8 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    LocalHorizontalLocalVertical(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Local Horizontal, Local Vertical", position, velocity)
+    LocalHorizontalLocalVertical(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+        DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>(position, velocity)
     {
     }
 };

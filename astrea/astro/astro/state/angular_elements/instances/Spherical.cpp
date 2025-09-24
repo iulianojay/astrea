@@ -27,12 +27,12 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Spherical::Spherical(const RadiusVector<ECI>& rEci, const Date& date, const CelestialBody* parent)
+Spherical::Spherical(const RadiusVector<frames::earth::icrf>& rEci, const Date& date, const CelestialBody* parent)
 {
-    *this = Spherical(rEci.in_frame<ECEF>(date), parent);
+    *this = Spherical(rEci.in_frame<frames::earth::earth_fixed>(date), parent);
 }
 
-Spherical::Spherical(const RadiusVector<ECEF>& rEcef, const CelestialBody* parent)
+Spherical::Spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_range, _inclination, _azimuth) = convert_earth_fixed_to_spherical(rEcef);
 }
@@ -142,14 +142,14 @@ Spherical Spherical::interpolate(const Time& thisTime, const Time& otherTime, co
     return Spherical(interpRange, interpInc, interpAzimuth);
 }
 
-RadiusVector<ECEF> Spherical::get_position(const CelestialBody* parent) const
+RadiusVector<frames::earth::earth_fixed> Spherical::get_position(const CelestialBody* parent) const
 {
     return convert_spherical_to_earth_fixed(_range, _inclination, _azimuth);
 }
 
-RadiusVector<ECI> Spherical::get_position(const Date& date, const CelestialBody* parent) const
+RadiusVector<frames::earth::icrf> Spherical::get_position(const Date& date, const CelestialBody* parent) const
 {
-    return get_position(parent).in_frame<ECI>(date);
+    return get_position(parent).in_frame<frames::earth::icrf>(date);
 }
 
 std::ostream& operator<<(std::ostream& os, Spherical const& elements)
@@ -163,7 +163,7 @@ std::ostream& operator<<(std::ostream& os, Spherical const& elements)
 }
 
 
-std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<EarthCenteredEarthFixed>& rEcef)
+std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef)
 {
     const Distance range    = rEcef.norm();
     const Angle inclination = acos(rEcef.get_z() / range);
@@ -181,13 +181,13 @@ std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const Radius
 }
 
 
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_spherical_to_earth_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
     const auto x = range * sin(inclination) * cos(azimuth);
     const auto y = range * sin(inclination) * sin(azimuth);
     const auto z = range * cos(inclination);
-    return RadiusVector<ECEF>(x, y, z);
+    return RadiusVector<frames::earth::earth_fixed>(x, y, z);
 }
 
 } // namespace astro

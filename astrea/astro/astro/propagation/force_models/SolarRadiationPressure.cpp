@@ -21,33 +21,33 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<ECI>
+AccelerationVector<frames::earth::icrf>
     SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
 
     // Extract
-    const Distance& x         = state.get_x();
-    const Distance& y         = state.get_y();
-    const Distance& z         = state.get_z();
-    const RadiusVector<ECI> r = state.get_position();
-    const Distance R          = sqrt(x * x + y * y + z * z);
+    const Distance& x                         = state.get_x();
+    const Distance& y                         = state.get_y();
+    const Distance& z                         = state.get_z();
+    const RadiusVector<frames::earth::icrf> r = state.get_position();
+    const Distance R                          = sqrt(x * x + y * y + z * z);
 
     // Central body properties
     static const Distance& equitorialR = center->get_equitorial_radius();
     static const bool isSun            = (center->get_name() == "Sun");
 
     // Find day nearest to current time
-    const OrbitalElements& stateSunToCenter   = center->get_elements_at(date); // assumes center is a planet
-    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
+    const OrbitalElements& stateSunToCenter = center->get_elements_at(date); // assumes center is a planet
+    const RadiusVector<frames::earth::icrf> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
 
     // Radius from central body to sun
-    const RadiusVector<ECI> radiusCenterToSun = -radiusSunToCenter;
-    const Distance radialMagnitudeCenterToSun = radiusCenterToSun.norm();
+    const RadiusVector<frames::earth::icrf> radiusCenterToSun = -radiusSunToCenter;
+    const Distance radialMagnitudeCenterToSun                 = radiusCenterToSun.norm();
 
-    const RadiusVector<ECI> radiusVehicleToSun = radiusCenterToSun - r;
-    const Distance radialMagnitudeVehicleToSun = radiusVehicleToSun.norm();
+    const RadiusVector<frames::earth::icrf> radiusVehicleToSun = radiusCenterToSun - r;
+    const Distance radialMagnitudeVehicleToSun                 = radiusVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU
     static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-6 * N / pow<2>(m);
@@ -71,11 +71,11 @@ AccelerationVector<ECI>
             static const Distance diamSun = 696000.0 * km;
             const Distance Xu             = equitorialR * radialMagnitudeCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<ECI> rP = -Xu * radiusCenterToSun / radialMagnitudeCenterToSun;
-            const Distance normRP      = rP.norm();
+            const RadiusVector<frames::earth::icrf> rP = -Xu * radiusCenterToSun / radialMagnitudeCenterToSun;
+            const Distance normRP                      = rP.norm();
 
-            const RadiusVector<ECI> rPs = r - rP;
-            const Distance normRPs      = rPs.norm();
+            const RadiusVector<frames::earth::icrf> rPs = r - rP;
+            const Distance normRPs                      = rPs.norm();
             const Angle alphaps = abs(angular::asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
 
             if (alphaps < angular::asin(equitorialR / Xu)) { // Umbra
@@ -94,9 +94,9 @@ AccelerationVector<ECI>
     const quantity accelRelativeMagnitude    = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
                                             radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
 
-    const AccelerationVector<ECI> accelSRP = { accelRelativeMagnitude * radiusVehicleToSun[0],
-                                               accelRelativeMagnitude * radiusVehicleToSun[1],
-                                               accelRelativeMagnitude * radiusVehicleToSun[2] };
+    const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelativeMagnitude * radiusVehicleToSun[0],
+                                                               accelRelativeMagnitude * radiusVehicleToSun[1],
+                                                               accelRelativeMagnitude * radiusVehicleToSun[2] };
 
     return accelSRP;
 }

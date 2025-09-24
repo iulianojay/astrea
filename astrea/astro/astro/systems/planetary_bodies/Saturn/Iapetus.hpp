@@ -19,7 +19,7 @@ class Iapetus : public CelestialBody {
     constexpr Iapetus() :
         CelestialBody(
             "Iapetus",                   //!< Name
-            PlanetaryBody::SATURN,       //!< Parent celestial body
+            CelestialBodyId::SATURN,     //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(153.94 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Iapetus : public CelestialBody {
     }
     ~Iapetus() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::IAPETUS; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::IAPETUS; };
 };
 
 } // namespace planetary_bodies

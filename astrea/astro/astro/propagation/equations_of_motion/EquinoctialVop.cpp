@@ -45,12 +45,12 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<ECI> r   = cartesian.get_position();
-    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // Function for finding accel caused by perturbations
-    const Date date                          = vehicle.get_state().get_epoch();
-    const AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date = vehicle.get_state().get_epoch();
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
     const RIC ricFrame                     = RIC::instantaneous(r, v);

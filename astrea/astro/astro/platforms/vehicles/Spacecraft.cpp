@@ -106,13 +106,13 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
-RadiusVector<EarthCenteredInertial> Spacecraft::get_inertial_position(const Date& date) const
+RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
 {
     const Cartesian elements = get_cartesian_state(date);
     return elements.get_position();
 }
 
-VelocityVector<EarthCenteredInertial> Spacecraft::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
 {
     const Cartesian elements = get_cartesian_state(date);
     return elements.get_velocity();

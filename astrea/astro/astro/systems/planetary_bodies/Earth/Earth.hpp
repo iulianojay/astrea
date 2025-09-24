@@ -19,7 +19,7 @@ class Earth : public CelestialBody {
     constexpr Earth() :
         CelestialBody(
             "Earth",                     //!< Name
-            PlanetaryBody::SUN,          //!< Parent celestial body
+            CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
             Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -52,7 +52,7 @@ class Earth : public CelestialBody {
 
     Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::EARTH; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::EARTH; };
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;

@@ -16,7 +16,7 @@ using namespace mp_units;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<ECI>
+AccelerationVector<frames::earth::icrf>
     NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
@@ -29,32 +29,33 @@ AccelerationVector<ECI>
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
 
     // Find day nearest to current time
-    const Date epoch                          = vehicle.get_state().get_epoch();
-    const OrbitalElements& stateSunToCenter   = center->get_elements_at(date);
-    const RadiusVector<ECI> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
+    const Date epoch                        = vehicle.get_state().get_epoch();
+    const OrbitalElements& stateSunToCenter = center->get_elements_at(date);
+    const RadiusVector<frames::earth::icrf> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
 
     // Radius from central body to sun
-    const RadiusVector<ECI> radiusCenterToSun{ // flip vector direction
-                                               -radiusSunToCenter[0],
-                                               -radiusSunToCenter[1],
-                                               -radiusSunToCenter[2]
+    const RadiusVector<frames::earth::icrf> radiusCenterToSun{ // flip vector direction
+                                                               -radiusSunToCenter[0],
+                                                               -radiusSunToCenter[1],
+                                                               -radiusSunToCenter[2]
     };
 
     // Reset perturbation
-    AccelerationVector<ECI> accelNBody{ 0.0 * km / (s * s) };
+    AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * km / (s * s) };
     for (const auto& [name, body] : sys.get_all_bodies()) {
 
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const OrbitalElements stateCenterToNBody    = center->get_elements_at(date);
-        const RadiusVector<ECI> radiusCenterToNbody = stateCenterToNBody.in_element_set<Cartesian>(sys).get_position();
+        const OrbitalElements stateCenterToNBody = center->get_elements_at(date);
+        const RadiusVector<frames::earth::icrf> radiusCenterToNbody =
+            stateCenterToNBody.in_element_set<Cartesian>(sys).get_position();
         // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
 
         // Find radius from central body and spacecraft to nth body
-        const RadiusVector<ECI> radiusVehicleToNbody{ radiusCenterToNbody[0] - x,
-                                                      radiusCenterToNbody[1] - y,
-                                                      radiusCenterToNbody[2] - z };
+        const RadiusVector<frames::earth::icrf> radiusVehicleToNbody{ radiusCenterToNbody[0] - x,
+                                                                      radiusCenterToNbody[1] - y,
+                                                                      radiusCenterToNbody[2] - z };
 
         // Normalize
         const quantity radiusVehicleToNbodyMagnitude = sqrt(

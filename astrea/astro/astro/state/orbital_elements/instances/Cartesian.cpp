@@ -191,15 +191,15 @@ Cartesian& Cartesian::operator+=(const Cartesian& other)
     return *this;
 }
 
-Cartesian Cartesian::operator+(const RadiusVector<ECI>& r) const { return Cartesian(_r + r, _v); }
-Cartesian& Cartesian::operator+=(const RadiusVector<ECI>& r)
+Cartesian Cartesian::operator+(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r + r, _v); }
+Cartesian& Cartesian::operator+=(const RadiusVector<frames::earth::icrf>& r)
 {
     _r += r;
     return *this;
 }
 
-Cartesian Cartesian::operator+(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v + v); }
-Cartesian& Cartesian::operator+=(const VelocityVector<ECI>& v)
+Cartesian Cartesian::operator+(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v + v); }
+Cartesian& Cartesian::operator+=(const VelocityVector<frames::earth::icrf>& v)
 {
     _v += v;
     return *this;
@@ -213,15 +213,15 @@ Cartesian& Cartesian::operator-=(const Cartesian& other)
     return *this;
 }
 
-Cartesian Cartesian::operator-(const RadiusVector<ECI>& r) const { return Cartesian(_r - r, _v); }
-Cartesian& Cartesian::operator-=(const RadiusVector<ECI>& r)
+Cartesian Cartesian::operator-(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r - r, _v); }
+Cartesian& Cartesian::operator-=(const RadiusVector<frames::earth::icrf>& r)
 {
     _r -= r;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v - v); }
-Cartesian& Cartesian::operator-=(const VelocityVector<ECI>& v)
+Cartesian Cartesian::operator-(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v - v); }
+Cartesian& Cartesian::operator-=(const VelocityVector<frames::earth::icrf>& v)
 {
     _v -= v;
     return *this;

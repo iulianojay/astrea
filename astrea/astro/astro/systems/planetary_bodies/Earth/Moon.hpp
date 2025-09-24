@@ -19,7 +19,7 @@ class Moon : public CelestialBody {
     constexpr Moon() :
         CelestialBody(
             "Moon",                      //!< Name
-            PlanetaryBody::EARTH,        //!< Parent celestial body
+            CelestialBodyId::EARTH,      //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(4902.8 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Moon : public CelestialBody {
     }
     ~Moon() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::MOON; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::MOON; };
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;

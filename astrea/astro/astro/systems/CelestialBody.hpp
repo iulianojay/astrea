@@ -73,7 +73,7 @@ class CelestialBody {
      */
     constexpr CelestialBody(
         const std::string& name,
-        const PlanetaryBody& parent,
+        const CelestialBodyId& parent,
         const CelestialBodyType& type,
         const Date& referenceDate,
         const GravParam& mu,
@@ -151,7 +151,7 @@ class CelestialBody {
      *
      * @return const std::string& Reference to the name of the parent celestial body.
      */
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::UNSET; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::UNSET; };
 
     /**
      * @brief Get the name of the celestial body.
@@ -165,7 +165,7 @@ class CelestialBody {
      *
      * @return const std::string& Reference to the name of the parent celestial body.
      */
-    constexpr const PlanetaryBody& get_parent() const { return _parent; };
+    constexpr const CelestialBodyId& get_parent() const { return _parent; };
 
     /**
      * @brief Get the type of the celestial body.
@@ -407,7 +407,7 @@ class CelestialBody {
   private:
     // Properties
     std::string _name;           //!< Name of the celestial body
-    PlanetaryBody _parent;       //!< Parent celestial body
+    CelestialBodyId _parent;     //!< Parent celestial body
     CelestialBodyType _type;     //!< Type of the celestial body
     Date _referenceDate;         //!< Reference date for the celestial body data
     GravParam _mu;               //!< Gravitational parameter (mu) of the celestial body

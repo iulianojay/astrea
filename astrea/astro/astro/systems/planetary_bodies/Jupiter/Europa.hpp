@@ -19,7 +19,7 @@ class Europa : public CelestialBody {
     constexpr Europa() :
         CelestialBody(
             "Europa",                    //!< Name
-            PlanetaryBody::JUPITER,      //!< Parent celestial body
+            CelestialBodyId::JUPITER,    //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1997-01-16 00:00:00"), //!< Reference date for the celestial body data
             GravParam(3202.7 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Europa : public CelestialBody {
     }
     ~Europa() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::EUROPA; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::EUROPA; };
 };
 
 } // namespace planetary_bodies

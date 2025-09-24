@@ -19,7 +19,7 @@ class Deimos : public CelestialBody {
     constexpr Deimos() :
         CelestialBody(
             "Deimos",                    //!< Name
-            PlanetaryBody::MARS,         //!< Parent celestial body
+            CelestialBodyId::MARS,       //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1950-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(7.112e-4 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Deimos : public CelestialBody {
     }
     ~Deimos() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::DEIMOS; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::DEIMOS; };
 };
 
 } // namespace planetary_bodies

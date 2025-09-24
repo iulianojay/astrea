@@ -19,7 +19,7 @@ class Saturn : public CelestialBody {
     constexpr Saturn() :
         CelestialBody(
             "Saturn",                    //!< Name
-            PlanetaryBody::SUN,          //!< Parent celestial body
+            CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
             Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(37931187.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Saturn : public CelestialBody {
     }
     ~Saturn() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::SATURN; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::SATURN; };
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;

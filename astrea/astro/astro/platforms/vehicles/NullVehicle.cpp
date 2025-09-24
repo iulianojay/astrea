@@ -34,17 +34,17 @@ Mass NullVehicle::get_mass() const { return _mass; }
 
 std::string NullVehicle::get_name() const { return "NullVehicle"; }
 
-RadiusVector<ECI> NullVehicle::get_inertial_position(const Date& date) const
+RadiusVector<frames::earth::icrf> NullVehicle::get_inertial_position(const Date& date) const
 {
     return { 0.0 * km, 0.0 * km, 0.0 * km };
 }
 
-VelocityVector<ECI> NullVehicle::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::earth::icrf> NullVehicle::get_inertial_velocity(const Date& date) const
 {
     return { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
 }
 
-AccelerationVector<ECI> NullVehicle::get_inertial_acceleration(const Date& date) const
+AccelerationVector<frames::earth::icrf> NullVehicle::get_inertial_acceleration(const Date& date) const
 {
     return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
 }

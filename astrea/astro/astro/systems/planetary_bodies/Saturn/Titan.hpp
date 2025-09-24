@@ -19,7 +19,7 @@ class Titan : public CelestialBody {
     constexpr Titan() :
         CelestialBody(
             "Titan",                     //!< Name
-            PlanetaryBody::SATURN,       //!< Parent celestial body
+            CelestialBodyId::SATURN,     //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(8978.1 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -52,7 +52,7 @@ class Titan : public CelestialBody {
 
     Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::TITAN; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::TITAN; };
 };
 
 } // namespace planetary_bodies

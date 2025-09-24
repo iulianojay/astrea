@@ -28,8 +28,8 @@ namespace trace {
  * @return Angle The angle between the two vectors.
  */
 Angle calculate_angle_between_vectors(
-    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& vector1,
-    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& vector2
+    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& vector1,
+    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& vector2
 );
 
 /**
@@ -60,8 +60,8 @@ class FieldOfView {
      * @return false If the target is outside the field of view.
      */
     virtual bool contains(
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const = 0;
 };
 
@@ -96,8 +96,8 @@ class CircularFieldOfView : public FieldOfView {
      * @return false If the target is outside the circular field of view.
      */
     bool contains(
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const;
 
   private:
@@ -152,8 +152,8 @@ class PolygonalFieldOfView : public FieldOfView {
      * @return false If the target is outside the polygonal field of view.
      */
     bool contains(
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& boresight,
-        const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& target
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
+        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const
     {
         return false;

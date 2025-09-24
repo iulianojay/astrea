@@ -53,12 +53,12 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<ECI> v = cartesian.get_velocity();
-    const RadiusVector<ECI> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
     // Function for finding accel caused by perturbations
-    const Date date                          = vehicle.get_state().get_epoch();
-    const AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date = vehicle.get_state().get_epoch();
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
     const RIC ricFrame                     = RIC::instantaneous(r, v);

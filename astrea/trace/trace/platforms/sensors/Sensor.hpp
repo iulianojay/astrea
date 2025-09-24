@@ -116,7 +116,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const;
+    bool contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const;
 
   private:
     /**

@@ -19,7 +19,7 @@ class Phobos : public CelestialBody {
     constexpr Phobos() :
         CelestialBody(
             "Phobos",                    //!< Name
-            PlanetaryBody::MARS,         //!< Parent celestial body
+            CelestialBodyId::MARS,       //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1950-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(9.85e-5 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Phobos : public CelestialBody {
     }
     ~Phobos() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::PHOBOS; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::PHOBOS; };
 };
 
 } // namespace planetary_bodies

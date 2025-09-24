@@ -37,7 +37,6 @@ Keplerian Keplerian::GEO() { return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad
 
 Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 {
-
     /*
         Force rounding errors to assume zero values for angles. Assume complex
         results are the result of rounding errors. Flip values near their antipode

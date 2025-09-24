@@ -32,7 +32,7 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 
-AccelerationVector<ECI>
+AccelerationVector<frames::earth::icrf>
     AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
 
@@ -66,7 +66,7 @@ AccelerationVector<ECI>
     const Mass mass                          = vehicle.get_mass();
     const quantity dragMagnitude = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
 
-    const AccelerationVector<ECI> accelDrag{ dragMagnitude * relVx, dragMagnitude * relVy, dragMagnitude * relVz };
+    const AccelerationVector<frames::earth::icrf> accelDrag{ dragMagnitude * relVx, dragMagnitude * relVy, dragMagnitude * relVz };
 
     // Velocity in the radial direction
     const Velocity radialVelcityMagnitude = (vx * x + vy * y + vz * z) / R;
@@ -77,7 +77,7 @@ AccelerationVector<ECI>
     const quantity tempA =
         0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * radialVelcityMagnitude * radialVelcityMagnitude / R;
 
-    const AccelerationVector<ECI> accelLift{ tempA * x, tempA * y, tempA * z };
+    const AccelerationVector<frames::earth::icrf> accelLift{ tempA * x, tempA * y, tempA * z };
 
     return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
 }
@@ -90,7 +90,7 @@ const Density AtmosphericForce::find_atmospheric_density(const Date& date, const
     static const Distance polarR      = center->get_polar_radius();
 
     // Find altitude
-    const RadiusVector<ECEF> rEcef = state.get_position().in_frame<ECEF>(date);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] =
         convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
 

@@ -12,7 +12,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
+#include <astro/state/frames/instances/body_centered_inertial_frames.hpp>
 #include <astro/state/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
@@ -23,9 +23,9 @@ namespace astro {
 /**
  * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
  */
-class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
+class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC> {
 
-    friend DynamicFrame<RadialInTrackCrossTrack>;
+    friend DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>;
 
   public:
     RadialInTrackCrossTrack() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
@@ -36,7 +36,7 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
      * Initializes the ECEF frame with a name and origin.
      */
     RadialInTrackCrossTrack(const FrameReference* parent) :
-        DynamicFrame("Radial, In-Track, Cross-Track", parent)
+        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(parent)
     {
     }
 
@@ -49,14 +49,14 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<EarthCenteredInertial, RadialInTrackCrossTrack> The DCM from ECI to RIC.
+     * @return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<EarthCenteredInertial, RadialInTrackCrossTrack> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> get_dcm(const Date& date) const
     {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<EarthCenteredInertial, RadialInTrackCrossTrack>::from_vectors(r, -r.cross(h), h);
+        return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack>::from_vectors(r, -r.cross(h), h);
     }
 
   private:
@@ -66,8 +66,8 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack> {
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    RadialInTrackCrossTrack(const RadiusVector<EarthCenteredInertial>& position, const VelocityVector<EarthCenteredInertial>& velocity) :
-        DynamicFrame("Radial, In-Track, Cross-Track", position, velocity)
+    RadialInTrackCrossTrack(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(position, velocity)
     {
     }
 };

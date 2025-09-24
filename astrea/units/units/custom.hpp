@@ -23,7 +23,11 @@ namespace astrea {
 inline constexpr struct JulianCentury final : mp_units::named_unit<"JulianCentury", mp_units::mag<36525> * mp_units::non_si::day> {
 } JulianCentury;
 
-inline constexpr struct EarthRadii final : mp_units::named_unit<"EarthRadii", mp_units::mag<6378> * mp_units::si::unit_symbols::km> {
+/**
+ * @brief Definition for Earth Radii as 6378 km.
+ */
+inline constexpr struct EarthRadii final
+    : mp_units::named_unit<"EarthRadii", mp_units::mag<6378> * mp_units::si::unit_symbols::km> {
 } EarthRadii;
 
 } // namespace astrea

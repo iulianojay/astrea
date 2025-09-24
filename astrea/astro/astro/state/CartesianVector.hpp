@@ -21,6 +21,7 @@
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/state/frames/Frame.hpp>
 
 namespace astrea {
 namespace astro {
@@ -431,6 +432,28 @@ class CartesianVector {
         static_assert(false, "Parity Error: Two state/frames cannot have an equivalent conversion. Please remove one.");
     }
 
+    template <typename Frame_U, typename Frame_V>
+        requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
+    CartesianVector<Value_T, Frame_V> translate(const CartesianVector<Value_T, Frame_U>& other) const
+    {
+        // r<Frame_T> + r<Frame_U> = r<Frame_V>
+        // ie. rEarth<ssb::icrf> + rMoon<earth::icrf> = rMoon<ssb::icrf> -> there's no way to do this without explicitly knowing Frame_V
+        return CartesianVector<Value_T, Frame_V>(
+            _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
+        );
+    }
+
+    template <typename Frame_U, typename Frame_V>
+        requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
+    CartesianVector<Value_T, Frame_V> offset(const CartesianVector<Value_T, Frame_U>& other) const
+    {
+        // r<Frame_T> - r<Frame_U> = r<Frame_V>
+        // i.e. rEarth<ssb::icrf> - rSun<earth::icrf> = rEarth<sun::icrf> -> there's no way to do this without explicitly knowing Frame_V
+        return CartesianVector<Value_T, Frame_V>(
+            _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
+        );
+    }
+
   private:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
@@ -449,8 +472,7 @@ template <class Value_T, class Frame_T>
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
     static const Frame_T frame;
-    static const std::string name = frame.get_name();
-    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "] (" << name << ")";
+    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
     return os;
 }
 
@@ -468,7 +490,7 @@ template <class Value_T, class Frame_T>
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
     static const std::string name = utilities::get_type_name<Frame_T>();
-    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "] (" << name << ")";
+    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
     return os;
 }
 

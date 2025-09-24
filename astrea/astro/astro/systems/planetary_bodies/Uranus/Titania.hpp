@@ -19,7 +19,7 @@ class Titania : public CelestialBody {
     constexpr Titania() :
         CelestialBody(
             "Titania",                   //!< Name
-            PlanetaryBody::URANUS,       //!< Parent celestial body
+            CelestialBodyId::URANUS,     //!< Parent celestial body
             CelestialBodyType::MOON,     //!< Type
             Date("1980-01-01 00:00:00"), //!< Reference date for the celestial body data
             GravParam(228.2 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
@@ -50,7 +50,7 @@ class Titania : public CelestialBody {
     }
     ~Titania() = default;
 
-    static constexpr PlanetaryBody get_id() { return PlanetaryBody::TITANIA; };
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::TITANIA; };
 };
 
 } // namespace planetary_bodies
