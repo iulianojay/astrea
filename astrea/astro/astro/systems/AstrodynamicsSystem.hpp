@@ -143,100 +143,8 @@ class AstrodynamicsSystem {
      */
     constexpr const CelestialBodyUniquePtr& create(const CelestialBodyId& id)
     {
-        using namespace planetary_bodies;
         if (_bodies.count(id) == 0) {
-            switch (id) {
-                case (CelestialBodyId::SUN): {
-                    _bodies.emplace(id, std::make_unique<Sun>());
-                    break;
-                }
-                case (CelestialBodyId::MERCURY): {
-                    _bodies.emplace(id, std::make_unique<Mercury>());
-                    break;
-                }
-                case (CelestialBodyId::VENUS): {
-                    _bodies.emplace(id, std::make_unique<Venus>());
-                    break;
-                }
-                case (CelestialBodyId::EARTH): {
-                    _bodies.emplace(id, std::make_unique<Earth>());
-                    break;
-                }
-                case (CelestialBodyId::MOON): {
-                    _bodies.emplace(id, std::make_unique<Moon>());
-                    break;
-                }
-                case (CelestialBodyId::MARS): {
-                    _bodies.emplace(id, std::make_unique<Mars>());
-                    break;
-                }
-                case (CelestialBodyId::PHOBOS): {
-                    _bodies.emplace(id, std::make_unique<Phobos>());
-                    break;
-                }
-                case (CelestialBodyId::DEIMOS): {
-                    _bodies.emplace(id, std::make_unique<Deimos>());
-                    break;
-                }
-                case (CelestialBodyId::JUPITER): {
-                    _bodies.emplace(id, std::make_unique<Jupiter>());
-                    break;
-                }
-                case (CelestialBodyId::GANYMEDE): {
-                    _bodies.emplace(id, std::make_unique<Ganymede>());
-                    break;
-                }
-                case (CelestialBodyId::CALLISTO): {
-                    _bodies.emplace(id, std::make_unique<Callisto>());
-                    break;
-                }
-                case (CelestialBodyId::IO): {
-                    _bodies.emplace(id, std::make_unique<Io>());
-                    break;
-                }
-                case (CelestialBodyId::EUROPA): {
-                    _bodies.emplace(id, std::make_unique<Europa>());
-                    break;
-                }
-                case (CelestialBodyId::SATURN): {
-                    _bodies.emplace(id, std::make_unique<Saturn>());
-                    break;
-                }
-                case (CelestialBodyId::TITAN): {
-                    _bodies.emplace(id, std::make_unique<Titan>());
-                    break;
-                }
-                case (CelestialBodyId::RHEA): {
-                    _bodies.emplace(id, std::make_unique<Rhea>());
-                    break;
-                }
-                case (CelestialBodyId::IAPETUS): {
-                    _bodies.emplace(id, std::make_unique<Iapetus>());
-                    break;
-                }
-                case (CelestialBodyId::URANUS): {
-                    _bodies.emplace(id, std::make_unique<Uranus>());
-                    break;
-                }
-                case (CelestialBodyId::TITANIA): {
-                    _bodies.emplace(id, std::make_unique<Titania>());
-                    break;
-                }
-                case (CelestialBodyId::OBERON): {
-                    _bodies.emplace(id, std::make_unique<Oberon>());
-                    break;
-                }
-                case (CelestialBodyId::NEPTUNE): {
-                    _bodies.emplace(id, std::make_unique<Neptune>());
-                    break;
-                }
-                case (CelestialBodyId::TRITON): {
-                    _bodies.emplace(id, std::make_unique<Triton>());
-                    break;
-                }
-                default: throw std::runtime_error("Error: Celestial body not implemented in factory.");
-            }
-
+            _bodies.emplace(id, create_impl(id));
             _activeBodies.insert(id);
             find_system_root();
         }
@@ -244,6 +152,13 @@ class AstrodynamicsSystem {
         return get(id);
     }
 
+    /**
+     * @brief Create a celestial body by id (const version).
+     *
+     * @param id The id of the celestial body to create.
+     * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
+     */
+    constexpr CelestialBodyUniquePtr create(const CelestialBodyId& id) const { return create_impl(id); }
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
@@ -363,6 +278,80 @@ class AstrodynamicsSystem {
         else {
             // The only common root for multiple planets is the Sun
             _root = CelestialBodyId::SUN;
+        }
+    }
+
+    constexpr CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const
+    {
+        using namespace planetary_bodies;
+        switch (id) {
+            case (CelestialBodyId::SUN): {
+                return std::make_unique<Sun>();
+            }
+            case (CelestialBodyId::MERCURY): {
+                return std::make_unique<Mercury>();
+            }
+            case (CelestialBodyId::VENUS): {
+                return std::make_unique<Venus>();
+            }
+            case (CelestialBodyId::EARTH): {
+                return std::make_unique<Earth>();
+            }
+            case (CelestialBodyId::MOON): {
+                return std::make_unique<Moon>();
+            }
+            case (CelestialBodyId::MARS): {
+                return std::make_unique<Mars>();
+            }
+            case (CelestialBodyId::PHOBOS): {
+                return std::make_unique<Phobos>();
+            }
+            case (CelestialBodyId::DEIMOS): {
+                return std::make_unique<Deimos>();
+            }
+            case (CelestialBodyId::JUPITER): {
+                return std::make_unique<Jupiter>();
+            }
+            case (CelestialBodyId::GANYMEDE): {
+                return std::make_unique<Ganymede>();
+            }
+            case (CelestialBodyId::CALLISTO): {
+                return std::make_unique<Callisto>();
+            }
+            case (CelestialBodyId::IO): {
+                return std::make_unique<Io>();
+            }
+            case (CelestialBodyId::EUROPA): {
+                return std::make_unique<Europa>();
+            }
+            case (CelestialBodyId::SATURN): {
+                return std::make_unique<Saturn>();
+            }
+            case (CelestialBodyId::TITAN): {
+                return std::make_unique<Titan>();
+            }
+            case (CelestialBodyId::RHEA): {
+                return std::make_unique<Rhea>();
+            }
+            case (CelestialBodyId::IAPETUS): {
+                return std::make_unique<Iapetus>();
+            }
+            case (CelestialBodyId::URANUS): {
+                return std::make_unique<Uranus>();
+            }
+            case (CelestialBodyId::TITANIA): {
+                return std::make_unique<Titania>();
+            }
+            case (CelestialBodyId::OBERON): {
+                return std::make_unique<Oberon>();
+            }
+            case (CelestialBodyId::NEPTUNE): {
+                return std::make_unique<Neptune>();
+            }
+            case (CelestialBodyId::TRITON): {
+                return std::make_unique<Triton>();
+            }
+            default: throw std::runtime_error("Error: Celestial body not implemented in factory.");
         }
     }
 };

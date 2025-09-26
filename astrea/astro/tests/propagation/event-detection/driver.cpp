@@ -30,6 +30,7 @@ using mp_units::si::unit_symbols::W;
 class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
+        mu(sys.get_mu()),
         eom(sys),
         start(seconds(0)),
         end(weeks(1)),
@@ -44,6 +45,7 @@ class EventDetectionTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     TwoBody eom;
     ForceModel forces;
     Integrator integrator;
@@ -65,7 +67,7 @@ TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Impulsive burn event
@@ -87,7 +89,7 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
     ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
     leo.attach_payload(thrusterParams);
     Vehicle vehicle{ leo };
 

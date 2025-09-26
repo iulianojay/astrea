@@ -28,6 +28,7 @@ using mp_units::si::unit_symbols::W;
 class TwoBodyPropagationTest : public testing::Test {
   public:
     TwoBodyPropagationTest() :
+        mu(sys.get_mu()),
         eom(sys),
         start(seconds(0)),
         end(weeks(1)),
@@ -42,6 +43,7 @@ class TwoBodyPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     TwoBody eom;
     ForceModel forces;
     Integrator integrator;
@@ -63,7 +65,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft geo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -81,7 +83,7 @@ TEST_F(TwoBodyPropagationTest, GPS)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft meo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -99,7 +101,7 @@ TEST_F(TwoBodyPropagationTest, LEO)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

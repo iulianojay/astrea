@@ -24,7 +24,7 @@ TwoBody::TwoBody(const AstrodynamicsSystem& system) :
 OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
     // Extract
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();

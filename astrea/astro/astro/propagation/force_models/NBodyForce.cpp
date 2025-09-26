@@ -8,6 +8,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -27,11 +28,13 @@ AccelerationVector<frames::earth::icrf>
 
     // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
+    static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
 
     // Find day nearest to current time
     const Date epoch                        = vehicle.get_state().get_epoch();
     const OrbitalElements& stateSunToCenter = center->get_elements_at(date);
-    const RadiusVector<frames::earth::icrf> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
+    const RadiusVector<frames::earth::icrf> radiusSunToCenter =
+        stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
 
     // Radius from central body to sun
     const RadiusVector<frames::earth::icrf> radiusCenterToSun{ // flip vector direction
@@ -49,7 +52,7 @@ AccelerationVector<frames::earth::icrf>
         // Find day nearest to current time
         const OrbitalElements stateCenterToNBody = center->get_elements_at(date);
         const RadiusVector<frames::earth::icrf> radiusCenterToNbody =
-            stateCenterToNBody.in_element_set<Cartesian>(sys).get_position();
+            stateCenterToNBody.in_element_set<Cartesian>(sun->get_mu()).get_position();
         // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
 
         // Find radius from central body and spacecraft to nth body

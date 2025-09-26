@@ -31,10 +31,10 @@ EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceMod
 
 OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
     // Get need representations
-    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(get_system());
-    const Cartesian cartesian     = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu           = get_system().get_mu();
+    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(mu);
+    const Cartesian cartesian     = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();

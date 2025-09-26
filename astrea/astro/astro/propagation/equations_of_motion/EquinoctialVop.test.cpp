@@ -50,7 +50,7 @@ TEST_F(EquinoctialTest, GetExpectedSet)
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial state0 = Equinoctial::LEO(sys);
+    Equinoctial state0 = Equinoctial::LEO(sys.get_mu());
     EquinoctialPartial expected =
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
 

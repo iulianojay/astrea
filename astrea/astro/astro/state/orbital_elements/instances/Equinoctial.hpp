@@ -73,7 +73,7 @@ class Equinoctial {
      * @param elements The Equinoctial object to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Equinoctial& elements, const AstrodynamicsSystem& sys) :
+    Equinoctial(const Equinoctial& elements, const GravParam& mu) :
         Equinoctial(elements)
     {
     }
@@ -84,7 +84,7 @@ class Equinoctial {
      * @param elements The Keplerian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys);
+    Equinoctial(const Keplerian& elements, const GravParam& mu);
 
     /**
      * @brief Constructs an Equinoctial object from Cartesian elements.
@@ -92,7 +92,7 @@ class Equinoctial {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys);
+    Equinoctial(const Cartesian& elements, const GravParam& mu);
 
     /**
      * @brief Constructs an Equinoctial object from OrbitalElements.
@@ -100,57 +100,57 @@ class Equinoctial {
      * @param elements The OrbitalElements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Equinoctial(const OrbitalElements& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Equinoctial state vectors for a LEO orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Equinoctial Predefined Equinoctial state vector for a LEO orbit.
      */
-    static Equinoctial LEO(const AstrodynamicsSystem& system);
+    static Equinoctial LEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Equinoctial state vectors for a LMEO orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Equinoctial Predefined Equinoctial state vector for a LMEO orbit.
      */
-    static Equinoctial LMEO(const AstrodynamicsSystem& system);
+    static Equinoctial LMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Equinoctial state vectors for a GPS orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Equinoctial Predefined Equinoctial state vector for a GPS orbit.
      */
-    static Equinoctial GPS(const AstrodynamicsSystem& system);
+    static Equinoctial GPS(const GravParam& mu);
 
     /**
      * @brief A static method to create Equinoctial state vectors for a HMEO orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Equinoctial Predefined Equinoctial state vector for a HMEO orbit.
      */
-    static Equinoctial HMEO(const AstrodynamicsSystem& system);
+    static Equinoctial HMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Equinoctial state vectors for a GEO orbit.
      *
      * This method return predefined Equinoctial state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Equinoctial Predefined Equinoctial state vector for a GEO orbit.
      */
-    static Equinoctial GEO(const AstrodynamicsSystem& system);
+    static Equinoctial GEO(const GravParam& mu);
 
     /**
      * @brief Copy constructor for Equinoctial.
@@ -329,12 +329,11 @@ class Equinoctial {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Another Equinoctial object to interpolate with
-     * @param sys Astrodynamics system used for interpolation
+     * @param mu The gravitational parameter to use for the interpolation
      * @param targetTime Time of the target state
      * @return Equinoctial Interpolated Equinoctial state vector.
      */
-    Equinoctial
-        interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
     Distance _semilatus;  //!< Semilatus rectum of the orbit

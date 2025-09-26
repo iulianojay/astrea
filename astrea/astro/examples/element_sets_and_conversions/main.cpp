@@ -30,11 +30,12 @@ int main()
 
     // Conversions at the instance level are done through constructors
     AstrodynamicsSystem sys; // Default system is Earth
-    Keplerian keplerian{ cartesian, sys };
-    Equinoctial equinoctial{ keplerian, sys };
+    const auto& mu = sys.get_mu();
+    Keplerian keplerian{ cartesian, mu };
+    Equinoctial equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;
     std::cout << "Converted to Equinoctial: " << equinoctial << std::endl;
-    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, sys) << std::endl << std::endl;
+    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, mu) << std::endl << std::endl;
 
     // Each element set also supports common operators **but only for the same element set**
     Cartesian cartesian2{
@@ -62,12 +63,12 @@ int main()
     std::cout << "OrbitalElements (from Keplerian): " << elements << std::endl;
 
     // This class can handle conversions internally
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(mu);
     std::cout << "OrbitalElements converted to Keplerian: " << elements << std::endl;
-    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(sys);
+    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(mu);
     std::cout << "OrbitalElements converted to Equinoctial: " << converted << std::endl;
 
     // And it can return the desired element set directly
-    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(sys);
+    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(mu);
     std::cout << "Extracted Keplerian conversion: " << keplerian2 << std::endl;
 }

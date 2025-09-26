@@ -86,7 +86,7 @@ class Geodetic {
     Geodetic(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
     {
         *this = Geodetic(
-            Cartesian(elements, sys).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
             sys.get_central_body().get()
         );
     }

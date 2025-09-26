@@ -81,19 +81,19 @@ TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
     AstrodynamicsSystem martianSys(CelestialBodyId::MARS, { CelestialBodyId::PHOBOS, CelestialBodyId::DEIMOS, CelestialBodyId::SUN });
     AtmosphericForce martianAtmosphere;
-    ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys), Vehicle(sat), martianSys));
+    ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys.get_mu()), Vehicle(sat), martianSys));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
     AstrodynamicsSystem venutianSys(CelestialBodyId::VENUS, { CelestialBodyId::SUN });
     AtmosphericForce venutianAtmosphere;
-    ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys), Vehicle(sat), venutianSys));
+    ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys.get_mu()), Vehicle(sat), venutianSys));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
     AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::TITAN, CelestialBodyId::SATURN });
     AtmosphericForce titanAtmosphere;
-    ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys), Vehicle(sat), titanSys));
+    ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys.get_mu()), Vehicle(sat), titanSys));
 }

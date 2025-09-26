@@ -32,16 +32,16 @@ class Earth : public CelestialBody {
             Unitless(-0.0000025323 * mp_units::one),                 //!< J3 gravitational coefficient
             Angle(23.439292 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(360.9851887442813 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(365.256 * mp_units::non_si::day),                                        //!< Sidereal period
-            Distance(0.149597887455766e9 * mp_units::si::unit_symbols::km),               //!< Semimajor axis
-            Unitless(0.01671022 * mp_units::one),                                         //!< Eccentricity
-            Angle(0.00005 * mp_units::angular::unit_symbols::deg),                        //!< Inclination
-            Angle(-11.26064 * mp_units::angular::unit_symbols::deg),                      //!< Right ascension
-            Angle(102.94719 * mp_units::angular::unit_symbols::deg),                      //!< Argument of perigee
-            Angle(100.46435 * mp_units::angular::unit_symbols::deg),                      //!< True latitude
-            BodyVelocity(-7.4798935500 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
+            Time(365.256 * mp_units::non_si::day),                          //!< Sidereal period
+            Distance(0.149597887455766e9 * mp_units::si::unit_symbols::km), //!< Semimajor axis
+            Unitless(0.01671022 * mp_units::one),                           //!< Eccentricity
+            Angle(0.00005 * mp_units::angular::unit_symbols::deg),          //!< Inclination
+            Angle(-11.26064 * mp_units::angular::unit_symbols::deg),        //!< Right ascension
+            Angle(102.94719 * mp_units::angular::unit_symbols::deg),        //!< Argument of perigee
+            Angle(100.46435 * mp_units::angular::unit_symbols::deg),        //!< True latitude
+            BodyVelocity(-7.4798935500 * mp_units::si::unit_symbols::km / JulianCentury),
             BodyUnitlessPerTime(-0.00003804 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-0.013038888888888888 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
+            BodyAngularRate(-46.94 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(-18228.25 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
             BodyAngularRate(1198.28 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
             BodyAngularRate(129597740.63 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude

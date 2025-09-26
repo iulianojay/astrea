@@ -8,7 +8,7 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -26,6 +26,7 @@ AccelerationVector<frames::earth::icrf>
 {
 
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
+    static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
 
     // Extract
     const Distance& x                         = state.get_x();
@@ -40,7 +41,8 @@ AccelerationVector<frames::earth::icrf>
 
     // Find day nearest to current time
     const OrbitalElements& stateSunToCenter = center->get_elements_at(date); // assumes center is a planet
-    const RadiusVector<frames::earth::icrf> radiusSunToCenter = stateSunToCenter.in_element_set<Cartesian>(sys).get_position();
+    const RadiusVector<frames::earth::icrf> radiusSunToCenter =
+        stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
 
     // Radius from central body to sun
     const RadiusVector<frames::earth::icrf> radiusCenterToSun = -radiusSunToCenter;

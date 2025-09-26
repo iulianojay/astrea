@@ -21,14 +21,16 @@ class OrbitalElementsTest : public testing::Test {
 
     void SetUp() override
     {
-        _cartElements = Cartesian::LEO(_sys);
+        _mu           = _sys.get_mu();
+        _cartElements = Cartesian::LEO(_mu);
         _keplElements = Keplerian::LEO();
-        _equiElements = Equinoctial::LEO(_sys);
+        _equiElements = Equinoctial::LEO(_mu);
     }
 
     const Unitless REL_TOL = 1.0e-6;
 
     AstrodynamicsSystem _sys;
+    GravParam _mu;
     OrbitalElements _cartElements;
     OrbitalElements _keplElements;
     OrbitalElements _equiElements;
@@ -69,70 +71,70 @@ TEST_F(OrbitalElementsTest, ConvertInPlace)
 {
     OrbitalElements elements = _cartElements;
     ASSERT_EQ(elements.index(), 0);
-    elements.convert_to_set<Keplerian>(_sys);
+    elements.convert_to_set<Keplerian>(_mu);
     ASSERT_EQ(elements.index(), 1);
-    elements.convert_to_set<Equinoctial>(_sys);
+    elements.convert_to_set<Equinoctial>(_mu);
     ASSERT_EQ(elements.index(), 2);
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetCartesian)
 {
-    OrbitalElements newElements = _cartElements.convert_to_set<Keplerian>(_sys);
+    OrbitalElements newElements = _cartElements.convert_to_set<Keplerian>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian>());
-    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _sys);
+    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian>());
 
-    newElements = _cartElements.convert_to_set<Equinoctial>(_sys);
+    newElements = _cartElements.convert_to_set<Equinoctial>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
-    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _sys);
+    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_sys););
+    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_mu););
     ASSERT_NO_THROW(
-        newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _sys)
+        newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetKeplerian)
 {
-    OrbitalElements newElements = _keplElements.convert_to_set<Cartesian>(_sys);
+    OrbitalElements newElements = _keplElements.convert_to_set<Cartesian>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian>());
-    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _sys);
+    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian>());
 
-    newElements = _keplElements.convert_to_set<Equinoctial>(_sys);
+    newElements = _keplElements.convert_to_set<Equinoctial>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
-    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _sys);
+    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
 
-    ASSERT_NO_THROW(newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set<Cartesian>(_sys));
+    ASSERT_NO_THROW(newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set<Cartesian>(_mu));
     ASSERT_NO_THROW(
-        newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _sys)
+        newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetEquinoctial)
 {
-    OrbitalElements newElements = _equiElements.convert_to_set<Keplerian>(_sys);
+    OrbitalElements newElements = _equiElements.convert_to_set<Keplerian>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian>());
-    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _sys);
+    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian>());
 
-    newElements = _equiElements.convert_to_set<Cartesian>(_sys);
+    newElements = _equiElements.convert_to_set<Cartesian>(_mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian>());
-    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _sys);
+    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian>(_sys););
+    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian>(_mu););
     ASSERT_NO_THROW(
-        newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _sys)
+        newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, In)
 {
-    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian>(_sys));
-    ASSERT_NO_THROW(Equinoctial equinoctial = _cartElements.in_element_set<Equinoctial>(_sys));
+    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian>(_mu));
+    ASSERT_NO_THROW(Equinoctial equinoctial = _cartElements.in_element_set<Equinoctial>(_mu));
 }
 
 TEST_F(OrbitalElementsTest, Addition)
@@ -223,15 +225,15 @@ TEST_F(OrbitalElementsTest, ToVector)
 
 TEST_F(OrbitalElementsTest, InterpolateCartesian)
 {
-    Cartesian original = Cartesian::LEO(_sys);
-    Cartesian final    = Cartesian::LEO(_sys) * Unitless(1.1 * one);
+    Cartesian original = Cartesian::LEO(_mu);
+    Cartesian final    = Cartesian::LEO(_mu) * Unitless(1.1 * one);
 
-    OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _sys, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _sys, 0.5 * s);
+    OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
     ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
-    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _sys, 0.5 * s));
-    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _sys, 0.5 * s));
+    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, InterpolateKeplerian)
@@ -239,25 +241,25 @@ TEST_F(OrbitalElementsTest, InterpolateKeplerian)
     Keplerian original = Keplerian::LEO();
     Keplerian final    = Keplerian::LEO() * Unitless(1.1 * one);
 
-    OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _sys, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _sys, 0.5 * s);
+    OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
     ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
-    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _sys, 0.5 * s));
-    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _sys, 0.5 * s));
+    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
 {
-    Equinoctial original = Equinoctial::LEO(_sys);
-    Equinoctial final    = Equinoctial::LEO(_sys) * Unitless(1.1 * one);
+    Equinoctial original = Equinoctial::LEO(_mu);
+    Equinoctial final    = Equinoctial::LEO(_mu) * Unitless(1.1 * one);
 
-    OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _sys, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _sys, 0.5 * s);
+    OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
     ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
-    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _sys, 0.5 * s));
-    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _sys, 0.5 * s));
+    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, Extract)
@@ -280,7 +282,7 @@ TEST_F(OrbitalElementsTest, Stream)
     std::stringstream exp;
 
     ss << _cartElements;
-    exp << Cartesian::LEO(_sys);
+    exp << Cartesian::LEO(_mu);
     ASSERT_EQ(ss.str(), exp.str());
 
     ss.str("");
@@ -292,7 +294,7 @@ TEST_F(OrbitalElementsTest, Stream)
     ss.str("");
     ss << _equiElements;
     exp.str("");
-    exp << Equinoctial::LEO(_sys);
+    exp << Equinoctial::LEO(_mu);
     ASSERT_EQ(ss.str(), exp.str());
 }
 

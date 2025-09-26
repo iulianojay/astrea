@@ -28,13 +28,13 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Equinoctial Equinoctial::LEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::LEO(), system); }
-Equinoctial Equinoctial::LMEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::LMEO(), system); }
-Equinoctial Equinoctial::GPS(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::GPS(), system); }
-Equinoctial Equinoctial::HMEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::HMEO(), system); }
-Equinoctial Equinoctial::GEO(const AstrodynamicsSystem& system) { return Equinoctial(Keplerian::GEO(), system); }
+Equinoctial Equinoctial::LEO(const GravParam& mu) { return Equinoctial(Keplerian::LEO(), mu); }
+Equinoctial Equinoctial::LMEO(const GravParam& mu) { return Equinoctial(Keplerian::LMEO(), mu); }
+Equinoctial Equinoctial::GPS(const GravParam& mu) { return Equinoctial(Keplerian::GPS(), mu); }
+Equinoctial Equinoctial::HMEO(const GravParam& mu) { return Equinoctial(Keplerian::HMEO(), mu); }
+Equinoctial Equinoctial::GEO(const GravParam& mu) { return Equinoctial(Keplerian::GEO(), mu); }
 
-Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& sys)
+Equinoctial::Equinoctial(const Keplerian& elements, const GravParam& mu)
 {
     // Get r and v
     const auto& a      = elements.get_semimajor();
@@ -57,14 +57,14 @@ Equinoctial::Equinoctial(const Keplerian& elements, const AstrodynamicsSystem& s
     _trueLongitude = wrap_angle(raan + argPer + theta);
 }
 
-Equinoctial::Equinoctial(const Cartesian& elements, const AstrodynamicsSystem& sys) :
-    Equinoctial(Keplerian(elements, sys), sys)
+Equinoctial::Equinoctial(const Cartesian& elements, const GravParam& mu) :
+    Equinoctial(Keplerian(elements, mu), mu)
 {
 }
 
-Equinoctial::Equinoctial(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+Equinoctial::Equinoctial(const OrbitalElements& elements, const GravParam& mu)
 {
-    *this = elements.in_element_set<Equinoctial>(sys);
+    *this = elements.in_element_set<Equinoctial>(mu);
 }
 
 // Copy constructor
@@ -201,7 +201,7 @@ Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
 
 
 Equinoctial
-    Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+    Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const
 {
     const Distance interpSemimajor =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, other.get_semilatus() }, targetTime);

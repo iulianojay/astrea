@@ -32,9 +32,9 @@ KeplerianVop::KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& 
 
 OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
-    const Keplerian elements  = state.in_element_set<Keplerian>(get_system());
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu       = get_system().get_mu();
+    const Keplerian elements  = state.in_element_set<Keplerian>(mu);
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();

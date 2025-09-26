@@ -25,6 +25,7 @@ using mp_units::si::unit_symbols::W;
 class CowellsMethodPropagationTest : public testing::Test {
   public:
     CowellsMethodPropagationTest() :
+        mu(sys.get_mu()),
         eom(sys, forces),
         start(seconds(0)),
         end(weeks(1)),
@@ -39,6 +40,7 @@ class CowellsMethodPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     CowellsMethod eom;
     ForceModel forces;
     Integrator integrator;
@@ -60,7 +62,7 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft geo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -78,7 +80,7 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft meo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -96,7 +98,7 @@ TEST_F(CowellsMethodPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, sys), epoch, sys });
+    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

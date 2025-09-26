@@ -74,14 +74,15 @@ State StateHistory::get_state_at(const Date& date) const
     const State& preState              = std::prev(iter)->second;
     const OrbitalElements& preElements = preState.get_elements();
 
-    const auto& system = preState.get_system();
+    const AstrodynamicsSystem& system = preState.get_system();
+    const auto& mu                    = system.get_mu();
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * mp_units::si::unit_symbols::s;
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 
-    OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, system, time);
+    OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
     return State({ interpolatedElements, date, system });
 
     // // Insert if we want this to store

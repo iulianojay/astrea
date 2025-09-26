@@ -86,7 +86,7 @@ class Cartesian {
      * @param elements Another Cartesian object
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Cartesian& elements, const AstrodynamicsSystem& sys) :
+    Cartesian(const Cartesian& elements, const GravParam& mu) :
         Cartesian(elements)
     {
     }
@@ -97,7 +97,7 @@ class Cartesian {
      * @param elements Keplerian elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Keplerian& elements, const GravParam& mu);
 
     /**
      * @brief Constructor for Cartesian from Equinoctial elements.
@@ -105,7 +105,7 @@ class Cartesian {
      * @param elements Equinoctial elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Equinoctial& elements, const GravParam& mu);
 
     /**
      * @brief Constructor for Cartesian from OrbitalElements.
@@ -113,57 +113,57 @@ class Cartesian {
      * @param elements OrbitalElements object
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const OrbitalElements& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a LEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a LEO orbit.
      */
-    static Cartesian LEO(const AstrodynamicsSystem& system);
+    static Cartesian LEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a LMEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a LMEO orbit.
      */
-    static Cartesian LMEO(const AstrodynamicsSystem& system);
+    static Cartesian LMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a GPS orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a GPS orbit.
      */
-    static Cartesian GPS(const AstrodynamicsSystem& system);
+    static Cartesian GPS(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a HMEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a HMEO orbit.
      */
-    static Cartesian HMEO(const AstrodynamicsSystem& system);
+    static Cartesian HMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a GEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a GEO orbit.
      */
-    static Cartesian GEO(const AstrodynamicsSystem& system);
+    static Cartesian GEO(const GravParam& mu);
 
     /**
      * @brief Copy constructor for Cartesian.
@@ -379,11 +379,11 @@ class Cartesian {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Cartesian state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
     RadiusVector<frames::earth::icrf> _r;   //!< Position vector
