@@ -21,7 +21,7 @@ class Venus : public CelestialBody {
             "Venus",                     //!< Name
             CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
+            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
             Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
             Distance(6051.8 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
@@ -32,19 +32,19 @@ class Venus : public CelestialBody {
             Unitless(-0.0000025323e-6 * mp_units::one),         //!< J3 gravitational coefficient
             Angle(2.64 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(224.701 * mp_units::non_si::day),                                         //!< Sidereal period
-            Distance(0.108208925730193e9 * mp_units::si::unit_symbols::km),                //!< Semimajor axis
-            Unitless(0.00677323 * mp_units::one),                                          //!< Eccentricity
-            Angle(3.39471 * mp_units::angular::unit_symbols::deg),                         //!< Inclination
-            Angle(76.68069 * mp_units::angular::unit_symbols::deg),                        //!< Right ascension
-            Angle(131.53298 * mp_units::angular::unit_symbols::deg),                       //!< Argument of perigee
-            Angle(181.97973 * mp_units::angular::unit_symbols::deg),                       //!< True latitude
-            BodyVelocity(137.6300413200 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(-0.00004938 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-0.0007944444444444444 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(-996.89 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(-108.80 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
-            BodyAngularRate(210664136.06 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
+            Time(224.701 * mp_units::non_si::day),                                      //!< Sidereal period
+            Distance(0.72333566 * mp_units::iau::unit_symbols::au),                     //!< Semimajor axis
+            Unitless(0.00677672 * mp_units::one),                                       //!< Eccentricity
+            Angle(3.39467605 * mp_units::angular::unit_symbols::deg),                   //!< Inclination
+            Angle(76.67984255 * mp_units::angular::unit_symbols::deg),                  //!< Longitude of ascending node
+            Angle(131.60246718 * mp_units::angular::unit_symbols::deg),                 //!< Longitude of perihelion
+            Angle(181.97909950 * mp_units::angular::unit_symbols::deg),                 //!< Mean longitude
+            BodyVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
+            BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
+            BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
+            BodyAngularRate(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
+            BodyAngularRate(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
         )
     {
     }

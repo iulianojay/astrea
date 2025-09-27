@@ -37,13 +37,13 @@ class Iapetus : public CelestialBody {
             Unitless(0.0010 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(0.35 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(351.042 * mp_units::angular::unit_symbols::deg),              //!< Longitude of the ascending node
-            Angle(232.661 * mp_units::angular::unit_symbols::deg),              //!< Argument of perigee
+            Angle(232.661 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
             Angle(412.44 * mp_units::angular::unit_symbols::deg),               //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(3616878.77 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(10841361.7 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(10841361.7 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(10489285497.13 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

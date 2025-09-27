@@ -62,14 +62,14 @@ class CelestialBody {
      * @param eccentricity Eccentricity.
      * @param inclination Inclination.
      * @param rightAscension Right ascension.
-     * @param argumentOfPerigee Argument of perigee.
-     * @param trueLatitude True latitude.
+     * @param longitudeOfPerigee Longitude of perigee.
+     * @param meanLongitude True latitude.
      * @param semimajorAxisRate Rate of change of the semimajor axis.
      * @param eccentricityRate Rate of change of the eccentricity.
      * @param inclinationRate Rate of change of the inclination.
      * @param rightAscensionRate Rate of change of the right ascension.
-     * @param argumentOfPerigeeRate Rate of change of the argument of perigee.
-     * @param trueLatitudeRate Rate of change of the true latitude.
+     * @param longitudeOfPerigeeRate Rate of change of the longitude of perigee.
+     * @param meanLongitudeRate Rate of change of the mean longitude.
      */
     constexpr CelestialBody(
         const std::string& name,
@@ -91,14 +91,14 @@ class CelestialBody {
         const Unitless& eccentricity,
         const Angle& inclination,
         const Angle& rightAscension,
-        const Angle& argumentOfPerigee,
-        const Angle& trueLatitude,
+        const Angle& longitudeOfPerigee,
+        const Angle& meanLongitude,
         const BodyVelocity& semimajorAxisRate,
         const BodyUnitlessPerTime& eccentricityRate,
         const BodyAngularRate& inclinationRate,
         const BodyAngularRate& rightAscensionRate,
-        const BodyAngularRate& argumentOfPerigeeRate,
-        const BodyAngularRate& trueLatitudeRate
+        const BodyAngularRate& longitudeOfPerigeeRate,
+        const BodyAngularRate& meanLongitudeRate
     ) :
         _name(name),
         _parent(parent),
@@ -119,15 +119,15 @@ class CelestialBody {
         _eccentricity(eccentricity),
         _inclination(inclination),
         _rightAscension(rightAscension),
-        _argumentOfPerigee(argumentOfPerigee),
-        _trueLatitude(trueLatitude),
-        _meanAnomaly(wrap_angle(_trueLatitude - _argumentOfPerigee)),
+        _longitudeOfPerigee(longitudeOfPerigee),
+        _meanLongitude(meanLongitude),
+        _meanAnomaly(wrap_angle(_meanLongitude - _longitudeOfPerigee)),
         _semimajorAxisRate(semimajorAxisRate),
         _eccentricityRate(eccentricityRate),
         _inclinationRate(inclinationRate),
         _rightAscensionRate(rightAscensionRate),
-        _argumentOfPerigeeRate(argumentOfPerigeeRate),
-        _trueLatitudeRate(trueLatitudeRate)
+        _longitudeOfPerigeeRate(longitudeOfPerigeeRate),
+        _meanLongitudeRate(meanLongitudeRate)
     {
     }
 
@@ -280,18 +280,18 @@ class CelestialBody {
     constexpr const Angle& get_right_ascension() const { return _rightAscension; };
 
     /**
-     * @brief Get the argument of perigee of the celestial body.
+     * @brief Get the longitude of perigee of the celestial body.
      *
-     * @return const Angle& Reference to the argument of perigee of the celestial body.
+     * @return const Angle& Reference to the longitude of perigee of the celestial body.
      */
-    constexpr const Angle& get_argument_of_perigee() const { return _argumentOfPerigee; };
+    constexpr const Angle& get_longitude_of_perigee() const { return _longitudeOfPerigee; };
 
     /**
-     * @brief Get the true latitude of the celestial body.
+     * @brief Get the mean longitude of the celestial body.
      *
-     * @return const Angle& Reference to the true latitude of the celestial body.
+     * @return const Angle& Reference to the mean longitude of the celestial body.
      */
-    constexpr const Angle& get_true_latitude() const { return _trueLatitude; };
+    constexpr const Angle& get_mean_longitude() const { return _meanLongitude; };
 
     /**
      * @brief Get the true anomaly of the celestial body.
@@ -339,18 +339,18 @@ class CelestialBody {
     constexpr const BodyAngularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
 
     /**
-     * @brief Get the argument of perigee rate of the celestial body.
+     * @brief Get the longitude of perigee rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the argument of perigee rate of the celestial body.
+     * @return const BodyAngularRate& Reference to the longitude of perigee rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_argument_of_perigee_rate() const { return _argumentOfPerigeeRate; };
+    constexpr const BodyAngularRate& get_longitude_of_perigee_rate() const { return _longitudeOfPerigeeRate; };
 
     /**
-     * @brief Get the true latitude rate of the celestial body.
+     * @brief Get the mean longitude rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the true latitude rate of the celestial body.
+     * @return const BodyAngularRate& Reference to the mean longitude rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_true_latitude_rate() const { return _trueLatitudeRate; };
+    constexpr const BodyAngularRate& get_mean_longitude_rate() const { return _meanLongitudeRate; };
 
     /**
      * @brief Finds the atmospheric density at a given date and state.
@@ -375,6 +375,13 @@ class CelestialBody {
     virtual OrbitalElements get_elements_at(const Date& date) const;
 
   protected:
+    /**
+     * @brief Get the state of the celestial body at a specific date using a specific data table.
+     *
+     * @tparam Table_T The data table type to use for interpolation.
+     * @param date The date at which to get the state of the celestial body.
+     * @return Cartesian The Cartesian state of the celestial body at the specified date.
+     */
     template <typename Table_T>
     Cartesian get_elements_at_impl(const Date& date) const
     {
@@ -404,7 +411,7 @@ class CelestialBody {
         return Cartesian{ x, y, z, vx, vy, vz };
     }
 
-  private:
+  protected:
     // Properties
     std::string _name;           //!< Name of the celestial body
     CelestialBodyId _parent;     //!< Parent celestial body
@@ -424,24 +431,35 @@ class CelestialBody {
     AngularRate _rotationRate; //!< Rotation rate of the celestial body
     Time _siderealPeriod;      //!< Sidereal period of the celestial body
 
-    Distance _semimajorAxis;  //!< Semimajor axis
-    Unitless _eccentricity;   //!< Eccentricity
-    Angle _inclination;       //!< Inclination
-    Angle _rightAscension;    //!< Right ascension
-    Angle _argumentOfPerigee; //!< Argument of perigee
-    Angle _trueLatitude;      //!< True latitude
-    Angle _trueAnomaly;       //!< True anomaly
-    Angle _meanAnomaly;       //!< Mean anomaly
+    Distance _semimajorAxis;   //!< Semimajor axis
+    Unitless _eccentricity;    //!< Eccentricity
+    Angle _inclination;        //!< Inclination
+    Angle _rightAscension;     //!< Right ascension
+    Angle _longitudeOfPerigee; //!< Argument of perigee
+    Angle _meanLongitude;      //!< True latitude
+    Angle _trueAnomaly;        //!< True anomaly
+    Angle _meanAnomaly;        //!< Mean anomaly
 
     // These rates need to stay in rate/JC to avoid numerical issues
-    BodyVelocity _semimajorAxisRate;        //!< Rate of change of the semimajor axis
-    BodyUnitlessPerTime _eccentricityRate;  //!< Rate of change of the eccentricity
-    BodyAngularRate _inclinationRate;       //!< Rate of change of the inclination
-    BodyAngularRate _rightAscensionRate;    //!< Rate of change of the right ascension
-    BodyAngularRate _argumentOfPerigeeRate; //!< Rate of change of the argument of perigee
-    BodyAngularRate _trueLatitudeRate;      //!< Rate of change of the true latitude
+    BodyVelocity _semimajorAxisRate;         //!< Rate of change of the semimajor axis
+    BodyUnitlessPerTime _eccentricityRate;   //!< Rate of change of the eccentricity
+    BodyAngularRate _inclinationRate;        //!< Rate of change of the inclination
+    BodyAngularRate _rightAscensionRate;     //!< Rate of change of the right ascension
+    BodyAngularRate _longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee
+    BodyAngularRate _meanLongitudeRate;      //!< Rate of change of the mean longitude
 
     static constexpr double _COEFF_ZERO_FACTOR = 1.0;
+
+    using CoefficientPack = std::tuple<
+        mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
+        mp_units::quantity<mp_units::angular::unit_symbols::rad>,
+        mp_units::quantity<mp_units::angular::unit_symbols::rad>,
+        mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
+    virtual constexpr CoefficientPack get_linear_expansion_coefficients() const
+    {
+        using mp_units::angular::unit_symbols::rad;
+        return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
+    }
 };
 
 /**
@@ -484,8 +502,8 @@ struct std::hash<astrea::astro::CelestialBody> {
         h ^= (std::hash<double>{}(body.get_eccentricity()) << 1);
         h ^= (std::hash<double>{}(body.get_inclination()) << 1);
         h ^= (std::hash<double>{}(body.get_right_ascension()) << 1);
-        h ^= (std::hash<double>{}(body.get_argument_of_perigee()) << 1);
-        h ^= (std::hash<double>{}(body.get_true_latitude()) << 1);
+        h ^= (std::hash<double>{}(body.get_longitude_of_perigee()) << 1);
+        h ^= (std::hash<double>{}(body.get_mean_longitude()) << 1);
         */
 
         return h;

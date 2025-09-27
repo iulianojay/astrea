@@ -37,13 +37,13 @@ class Moon : public CelestialBody {
             Unitless(0.0549 * mp_units::one),                                   //!< Eccentricity
             Angle(5.145 * mp_units::angular::unit_symbols::deg),                //!< Inclination
             Angle(125.08 * mp_units::angular::unit_symbols::deg),               //!< Right ascension
-            Angle(83.23 * mp_units::angular::unit_symbols::deg),                //!< Argument of perigee
+            Angle(83.23 * mp_units::angular::unit_symbols::deg),                //!< Longtiude of perigee
             Angle(218.5 * mp_units::angular::unit_symbols::deg),                //!< True latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(6967741.9 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(28578547 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(28578547 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(1761137860.75 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

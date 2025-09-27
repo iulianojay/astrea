@@ -37,13 +37,13 @@ class Rhea : public CelestialBody {
             Unitless(0.0283 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(14.72 * mp_units::angular::unit_symbols::deg),                //!< Inclination of the orbit
             Angle(81.105 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(352.711 * mp_units::angular::unit_symbols::deg),              //!< Argument of perigee
+            Angle(352.711 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
             Angle(554.5 * mp_units::angular::unit_symbols::deg),                //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(37688.33 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(11498.3 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(11498.3 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(59680892.45 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

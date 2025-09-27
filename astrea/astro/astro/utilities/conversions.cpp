@@ -9,6 +9,8 @@
 
 using namespace mp_units;
 using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
 
 namespace astrea {
 namespace astro {
@@ -26,6 +28,26 @@ Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc)
                  1.0 / 3.0 * pow<3>(ecc) * sin(3.0 * ta) + 5.0 / 32.0 * pow<4>(ecc) * sin(4.0 * ta)) *
                     isq_angle::cotes_angle;
 }
+
+Angle convert_eccentric_anomaly_to_mean_anomaly(const Angle& ea, const Unitless ecc)
+{
+    return ea - ecc * sin(ea) * isq_angle::cotes_angle;
+}
+
+Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless ecc)
+{
+    Angle ea        = ma - ecc * sin(ma) * isq_angle::cotes_angle;
+    const Angle tol = 1.0e-10 * rad;
+    unsigned iter   = 0;
+    Angle deltaE    = 1.0 * rad;
+    while (iter < 1e2 && abs(deltaE) > tol) {
+        deltaE = ma - (ea - ecc * sin(ea) * isq_angle::cotes_angle) / (1.0 * one - ecc * cos(ea));
+        ea += deltaE;
+        ++iter;
+    }
+    return ea;
+}
+
 
 } // namespace astro
 } // namespace astrea

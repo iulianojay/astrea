@@ -37,13 +37,13 @@ class Deimos : public CelestialBody {
             Unitless(0.0151 * mp_units::one),                                   //!< Eccentricity
             Angle(1.08 * mp_units::angular::unit_symbols::deg),                 //!< Inclination
             Angle(207.784 * mp_units::angular::unit_symbols::deg),              //!< Right ascension
-            Angle(357.841 * mp_units::angular::unit_symbols::deg),              //!< Argument of perigee
+            Angle(357.841 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
             Angle(448.9 * mp_units::angular::unit_symbols::deg),                //!< True latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(57302029 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(171830131 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(171830131 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(148603627216.0 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

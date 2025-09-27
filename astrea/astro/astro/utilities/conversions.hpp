@@ -38,6 +38,24 @@ Angle convert_mean_anomaly_to_true_anomaly(const Angle& ma, const Unitless ecc);
 Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc);
 
 /**
+ * @brief Convert the eccentric anomaly to the mean anomaly.
+ *
+ * @param ea The eccentric anomaly.
+ * @param ecc The eccentricity.
+ * @return The mean anomaly.
+ */
+Angle convert_eccentric_anomaly_to_mean_anomaly(const Angle& ea, const Unitless ecc);
+
+/**
+ * @brief Convert the mean anomaly to the eccentric anomaly using Newton's method.
+ *
+ * @param ma The mean anomaly.
+ * @param ecc The eccentricity.
+ * @return The eccentric anomaly.
+ */
+Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless ecc);
+
+/**
  * @brief Sanitize an angle to ensure it is within the range [0, 2π).
  *
  * @param ang The angle to sanitize.

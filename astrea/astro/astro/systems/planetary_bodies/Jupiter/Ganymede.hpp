@@ -37,13 +37,13 @@ class Ganymede : public CelestialBody {
             Unitless(0.001 * mp_units::one),                                    //!< Eccentricity of the orbit
             Angle(0.18 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(63.552 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(255.969 * mp_units::angular::unit_symbols::deg),              //!< Argument of perigee
+            Angle(255.969 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
             Angle(573.509 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(976977.7 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(3016348.9 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(3016348.9 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(6619278519.62 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

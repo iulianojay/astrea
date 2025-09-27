@@ -21,7 +21,7 @@ class Jupiter : public CelestialBody {
             "Jupiter",                   //!< Name
             CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
+            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(126686535.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
             Mass(1898.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
             Distance(3396.2 * mp_units::si::unit_symbols::km),                             //!< Equatorial radius
@@ -32,19 +32,19 @@ class Jupiter : public CelestialBody {
             Unitless(0.0 * mp_units::one),                      //!< J3 gravitational coefficient
             Angle(3.13 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(350.8928680212322 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(4332.589 * mp_units::non_si::day),                                          //!< Sidereal period
-            Distance(0.778412028336152e9 * mp_units::si::unit_symbols::km),                  //!< Semimajor axis
-            Unitless(0.04839266 * mp_units::one),                                            //!< Eccentricity
-            Angle(1.30530 * mp_units::angular::unit_symbols::deg),                           //!< Inclination
-            Angle(100.55615 * mp_units::angular::unit_symbols::deg),                         //!< Right ascension
-            Angle(14.75385 * mp_units::angular::unit_symbols::deg),                          //!< Argument of perigee
-            Angle(34.40438 * mp_units::angular::unit_symbols::deg),                          //!< True latitude
-            BodyVelocity(90861.2589092700 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(-0.00012880 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-0.001152777777777778 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(1217.17 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(839.93 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
-            BodyAngularRate(68905103.78 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
+            Time(4332.589 * mp_units::non_si::day),                     //!< Sidereal period
+            Distance(5.20288700 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
+            Unitless(0.04838624 * mp_units::one),                       //!< Eccentricity
+            Angle(1.30439695 * mp_units::angular::unit_symbols::deg),   //!< Inclination
+            Angle(100.47390909 * mp_units::angular::unit_symbols::deg), //!< Longitude of ascending node
+            Angle(14.72847983 * mp_units::angular::unit_symbols::deg),  //!< Longitude of perihelion
+            Angle(34.39644051 * mp_units::angular::unit_symbols::deg),  //!< Mean longitude
+            BodyVelocity(-0.00011607 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(-0.00013253 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
+            BodyAngularRate(-0.00183714 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
+            BodyAngularRate(0.20469106 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
+            BodyAngularRate(0.21252668 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
+            BodyAngularRate(3034.74612775 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
         )
     {
     }
@@ -55,6 +55,13 @@ class Jupiter : public CelestialBody {
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
     OrbitalElements get_elements_at(const Date& date) const override;
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
+
+  private:
+    constexpr CoefficientPack get_linear_expansion_coefficients() const override
+    {
+        using mp_units::angular::unit_symbols::rad;
+        return std::make_tuple(-0.00012452 * rad / (JulianCentury * JulianCentury), 0.06064060 * rad, -0.35635438 * rad, 38.35125000 * rad / JulianCentury);
+    }
 };
 
 } // namespace planetary_bodies

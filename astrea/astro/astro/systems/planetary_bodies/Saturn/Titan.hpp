@@ -37,13 +37,13 @@ class Titan : public CelestialBody {
             Unitless(0.0292 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(0.33 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(28.060 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(208.592 * mp_units::angular::unit_symbols::deg),              //!< Argument of perigee
+            Angle(208.592 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
             Angle(371.902 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(183934.15 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(551990.5 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
+            BodyAngularRate(551990.5 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
             BodyAngularRate(2969198512.13 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
         )
     {

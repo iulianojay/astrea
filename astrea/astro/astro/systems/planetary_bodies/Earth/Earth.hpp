@@ -21,7 +21,7 @@ class Earth : public CelestialBody {
             "Earth",                     //!< Name
             CelestialBodyId::SUN,        //!< Parent celestial body
             CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 00:00:00"), //!< Reference date for the celestial body data
+            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
             GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
             Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
             Distance(6378.1 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
@@ -32,19 +32,19 @@ class Earth : public CelestialBody {
             Unitless(-0.0000025323 * mp_units::one),                 //!< J3 gravitational coefficient
             Angle(23.439292 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(360.9851887442813 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(365.256 * mp_units::non_si::day),                          //!< Sidereal period
-            Distance(0.149597887455766e9 * mp_units::si::unit_symbols::km), //!< Semimajor axis
-            Unitless(0.01671022 * mp_units::one),                           //!< Eccentricity
-            Angle(0.00005 * mp_units::angular::unit_symbols::deg),          //!< Inclination
-            Angle(-11.26064 * mp_units::angular::unit_symbols::deg),        //!< Right ascension
-            Angle(102.94719 * mp_units::angular::unit_symbols::deg),        //!< Argument of perigee
-            Angle(100.46435 * mp_units::angular::unit_symbols::deg),        //!< True latitude
-            BodyVelocity(-7.4798935500 * mp_units::si::unit_symbols::km / JulianCentury),
-            BodyUnitlessPerTime(-0.00003804 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-46.94 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(-18228.25 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
-            BodyAngularRate(1198.28 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the argument of perigee
-            BodyAngularRate(129597740.63 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the true latitude
+            Time(365.256 * mp_units::non_si::day),                                      //!< Sidereal period
+            Distance(1.00000261 * mp_units::iau::unit_symbols::au),                     //!< Semimajor axis
+            Unitless(0.01671123 * mp_units::one),                                       //!< Eccentricity
+            Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),                  //!< Inclination
+            Angle(0.0 * mp_units::angular::unit_symbols::deg),                          //!< Longitude of ascending node
+            Angle(102.93768193 * mp_units::angular::unit_symbols::deg),                 //!< Longitude of perihelion
+            Angle(100.46457166 * mp_units::angular::unit_symbols::deg),                 //!< Mean longitude
+            BodyVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(-0.00004392 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
+            BodyAngularRate(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
+            BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
+            BodyAngularRate(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
+            BodyAngularRate(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
         )
     {
     }
