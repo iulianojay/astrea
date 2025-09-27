@@ -37,7 +37,7 @@ class Triton : public CelestialBody {
             Unitless(0.000016 * mp_units::one),                                 //!< Eccentricity of the orbit
             Angle(157.345 * mp_units::angular::unit_symbols::deg),              //!< Inclination of the orbit
             Angle(177.608 * mp_units::angular::unit_symbols::deg),              //!< Longitude of the ascending node
-            Angle(243.75 * mp_units::angular::unit_symbols::deg),               //!< Longtiude of perigee
+            Angle(243.75 * mp_units::angular::unit_symbols::deg),               //!< Longitude of perigee
             Angle(596.007 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity

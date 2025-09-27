@@ -37,7 +37,7 @@ class Titan : public CelestialBody {
             Unitless(0.0292 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(0.33 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(28.060 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(208.592 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
+            Angle(208.592 * mp_units::angular::unit_symbols::deg),              //!< Longitude of perigee
             Angle(371.902 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity

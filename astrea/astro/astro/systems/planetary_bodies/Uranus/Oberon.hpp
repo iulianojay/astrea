@@ -37,7 +37,7 @@ class Oberon : public CelestialBody {
             Unitless(0.0014 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(0.07 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(279.771 * mp_units::angular::unit_symbols::deg),              //!< Longitude of the ascending node
-            Angle(24.171 * mp_units::angular::unit_symbols::deg),               //!< Longtiude of perigee
+            Angle(24.171 * mp_units::angular::unit_symbols::deg),               //!< Longitude of perigee
             Angle(307.259 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity

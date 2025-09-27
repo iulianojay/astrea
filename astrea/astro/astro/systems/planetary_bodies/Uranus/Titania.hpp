@@ -37,7 +37,7 @@ class Titania : public CelestialBody {
             Unitless(0.0011 * mp_units::one),                                   //!< Eccentricity of the orbit
             Angle(0.08 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(99.771 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(24.17 * mp_units::angular::unit_symbols::deg),                //!< Longtiude of perigee
+            Angle(24.17 * mp_units::angular::unit_symbols::deg),                //!< Longitude of perigee
             Angle(48.785 * mp_units::angular::unit_symbols::deg),               //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity

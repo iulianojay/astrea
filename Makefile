@@ -27,7 +27,7 @@ all: examples tests install
 # Conan commands - for now
 .PHONY: install
 install: build
-	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j 20
+	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j20
 
 .PHONY: build
 build: setup

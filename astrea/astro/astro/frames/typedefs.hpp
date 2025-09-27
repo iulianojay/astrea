@@ -7,9 +7,10 @@ namespace astro {
 namespace frames {
 
 namespace dynamic {
-using lvlh = LocalHorizontalLocalVertical;
-using ric  = RadialInTrackCrossTrack;
-using vnb  = VelocityNormalBinormal;
+using lvlh      = LocalHorizontalLocalVertical;
+using ric       = RadialInTrackCrossTrack;
+using vnb       = VelocityNormalBinormal;
+using perifocal = Perifocal;
 } // namespace dynamic
 
 namespace sun {

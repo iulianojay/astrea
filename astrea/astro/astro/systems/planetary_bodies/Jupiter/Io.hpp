@@ -37,7 +37,7 @@ class Io : public CelestialBody {
             Unitless(0.004 * mp_units::one),                                    //!< Eccentricity of the orbit
             Angle(0.04 * mp_units::angular::unit_symbols::deg),                 //!< Inclination of the orbit
             Angle(43.977 * mp_units::angular::unit_symbols::deg),               //!< Longitude of the ascending node
-            Angle(128.106 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
+            Angle(128.106 * mp_units::angular::unit_symbols::deg),              //!< Longitude of perigee
             Angle(470.127 * mp_units::angular::unit_symbols::deg),              //!< Mean anomaly or true latitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semi-major axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity

@@ -52,24 +52,36 @@ OrbitalElements CelestialBody::get_elements_at(const Date& date) const
     const Angle thetat           = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
     const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Met, ecct);
 
+
     // This approximation is in the perifocal frame
-    const Distance xPerifocal = at * (cos(eccentricAnomaly) - ecct); // TODO: Make a perifocal frame
-    const Distance yPerifocal = at * sqrt(1 - ecct * ecct) * sin(eccentricAnomaly);
+    const RadiusVector<frames::dynamic::perifocal> rPerifocal{ at * (cos(eccentricAnomaly) - ecct),
+                                                               at * sqrt(1 - ecct * ecct) * sin(eccentricAnomaly),
+                                                               0.0 * m };
 
     // Rotate to the J2000 frame
-    const Distance xJ2000 = (cos(argPert) * cos(raant) - sin(argPert) * sin(raant) * cos(inct)) * xPerifocal -
-                            (sin(argPert) * cos(raant) + cos(argPert) * sin(raant) * cos(inct)) * yPerifocal;
-    const Distance yJ2000 = (cos(argPert) * sin(raant) + sin(argPert) * cos(raant) * cos(inct)) * xPerifocal -
-                            (sin(argPert) * sin(raant) - cos(argPert) * cos(raant) * cos(inct)) * yPerifocal;
-    const Distance zJ2000 = (sin(argPert) * sin(inct)) * xPerifocal + (cos(argPert) * sin(inct)) * yPerifocal;
-    const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000(xJ2000, yJ2000, zJ2000);
+    const DCM<frames::dynamic::perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000{
+        // TODO: Figure this out
+        { CartesianVector<Unitless, frames::dynamic::perifocal>(
+              cos(argPert) * cos(raant) - sin(argPert) * sin(raant) * cos(inct),
+              -sin(argPert) * cos(raant) - cos(argPert) * sin(raant) * cos(inct),
+              0.0 * one
+          ),
+          CartesianVector<Unitless, frames::dynamic::perifocal>(
+              cos(argPert) * sin(raant) + sin(argPert) * cos(raant) * cos(inct),
+              -sin(argPert) * sin(raant) + cos(argPert) * cos(raant) * cos(inct),
+              0.0 * one
+          ),
+          CartesianVector<Unitless, frames::dynamic::perifocal>(sin(argPert) * sin(inct), cos(argPert) * sin(inct), 0.0 * one) }
+    };
+
+    const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
 
     // Rotate to the ICRF frame
-    const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
-    const RadiusVector<frames::earth::icrf> rICRF = DCM<frames::solar_system_barycenter::j2000, frames::earth::icrf>::X(obliquity) *
-                                                    rJ2000; // TODO: solve this earth centered everything problem
+    static const Angle obliquity     = Angle(23.43928 * deg); // obliquity at J2000
+    static const auto dcmJ2000ToICRF = DCM<frames::solar_system_barycenter::j2000, frames::earth::icrf>::X(obliquity);
 
-    const VelocityVector<frames::earth::icrf> vICRF(0.0 * m / s, 0.0 * m / s, 0.0 * m / s);
+    const RadiusVector<frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
+    const VelocityVector<frames::solar_system_barycenter::icrf> vICRF(0.0 * m / s, 0.0 * m / s, 0.0 * m / s); // TODO: Fix this
 
     return OrbitalElements(Cartesian(rICRF, vICRF));
 }

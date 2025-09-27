@@ -14,7 +14,6 @@ namespace astro {
 namespace planetary_bodies {
 
 class Moon : public CelestialBody {
-
   public:
     constexpr Moon() :
         CelestialBody(
@@ -33,12 +32,12 @@ class Moon : public CelestialBody {
             Angle(1.543 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(13.176195007686115 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
             Time(27.3220 * mp_units::non_si::day),                              //!< Sidereal period
-            Distance(384.4e3 * mp_units::si::unit_symbols::km),                 //!< Semimajor axis
-            Unitless(0.0549 * mp_units::one),                                   //!< Eccentricity
-            Angle(5.145 * mp_units::angular::unit_symbols::deg),                //!< Inclination
-            Angle(125.08 * mp_units::angular::unit_symbols::deg),               //!< Right ascension
-            Angle(83.23 * mp_units::angular::unit_symbols::deg),                //!< Longtiude of perigee
-            Angle(218.5 * mp_units::angular::unit_symbols::deg),                //!< True latitude
+            Distance(380318 * mp_units::si::unit_symbols::km),                  //!< Semimajor axis
+            Unitless(0.063843 * mp_units::one),                                 //!< Eccentricity
+            Angle(5.28619 * mp_units::angular::unit_symbols::deg),              //!< Inclination
+            Angle(98.13908 * mp_units::angular::unit_symbols::deg),             //!< Right ascension
+            Angle(179.16058 * mp_units::angular::unit_symbols::deg),            //!< Longitude of perigee
+            Angle(135.89122 * mp_units::angular::unit_symbols::deg),            //!< Mean longitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination

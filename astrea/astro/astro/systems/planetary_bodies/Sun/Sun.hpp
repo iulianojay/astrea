@@ -37,8 +37,8 @@ class Sun : public CelestialBody {
             Unitless(0.0 * mp_units::one),                                                   //!< Eccentricity
             Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Inclination
             Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Right ascension
-            Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Longtiude of perigee
-            Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< True latitude
+            Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Longitude of perigee
+            Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Mean longitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination

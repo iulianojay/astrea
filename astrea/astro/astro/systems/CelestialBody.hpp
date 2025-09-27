@@ -63,7 +63,7 @@ class CelestialBody {
      * @param inclination Inclination.
      * @param rightAscension Right ascension.
      * @param longitudeOfPerigee Longitude of perigee.
-     * @param meanLongitude True latitude.
+     * @param meanLongitude Mean longitude.
      * @param semimajorAxisRate Rate of change of the semimajor axis.
      * @param eccentricityRate Rate of change of the eccentricity.
      * @param inclinationRate Rate of change of the inclination.
@@ -411,7 +411,6 @@ class CelestialBody {
         return Cartesian{ x, y, z, vx, vy, vz };
     }
 
-  protected:
     // Properties
     std::string _name;           //!< Name of the celestial body
     CelestialBodyId _parent;     //!< Parent celestial body
@@ -436,7 +435,7 @@ class CelestialBody {
     Angle _inclination;        //!< Inclination
     Angle _rightAscension;     //!< Right ascension
     Angle _longitudeOfPerigee; //!< Argument of perigee
-    Angle _meanLongitude;      //!< True latitude
+    Angle _meanLongitude;      //!< Mean longitude
     Angle _trueAnomaly;        //!< True anomaly
     Angle _meanAnomaly;        //!< Mean anomaly
 

@@ -7,6 +7,7 @@ namespace frames {
 struct LocalHorizontalLocalVertical;
 struct RadialInTrackCrossTrack;
 struct VelocityNormalBinormal;
+struct Perifocal;
 
 struct SunCenteredIcrf;
 struct MercuryCenteredIcrf;

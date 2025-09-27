@@ -37,8 +37,8 @@ class Deimos : public CelestialBody {
             Unitless(0.0151 * mp_units::one),                                   //!< Eccentricity
             Angle(1.08 * mp_units::angular::unit_symbols::deg),                 //!< Inclination
             Angle(207.784 * mp_units::angular::unit_symbols::deg),              //!< Right ascension
-            Angle(357.841 * mp_units::angular::unit_symbols::deg),              //!< Longtiude of perigee
-            Angle(448.9 * mp_units::angular::unit_symbols::deg),                //!< True latitude
+            Angle(357.841 * mp_units::angular::unit_symbols::deg),              //!< Longitude of perigee
+            Angle(448.9 * mp_units::angular::unit_symbols::deg),                //!< Mean longitude
             BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
