@@ -10,6 +10,7 @@
  */
 #pragma once
 
+#include <astro/frames/transformations.hpp>
 #include <astro/frames/typedefs.hpp>
 
 // static state/frames

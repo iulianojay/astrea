@@ -14,6 +14,7 @@
 #include <math/trig.hpp>
 
 #include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>

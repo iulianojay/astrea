@@ -80,6 +80,20 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
+    
+    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/CartesianVector.hpp
+    ${ASTRO_BASE}/frames/frame_concepts.hpp
+    ${ASTRO_BASE}/frames/Frame.hpp
+    ${ASTRO_BASE}/frames/FrameReference.hpp
+    ${ASTRO_BASE}/frames/instances.fwd.hpp
+    ${ASTRO_BASE}/frames/transformations.hpp
+    ${ASTRO_BASE}/frames/typedefs.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp
@@ -114,28 +128,16 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
-
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
-
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
-    
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
-    
-    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
-    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
-    ${ASTRO_BASE}/frames/Frame.hpp
-    ${ASTRO_BASE}/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp

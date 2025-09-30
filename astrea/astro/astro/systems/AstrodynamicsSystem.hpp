@@ -129,7 +129,7 @@ class AstrodynamicsSystem {
             CelestialBodyUniquePtr body = std::make_unique<T>(std::forward<Args>(args)...);
             _bodies.emplace(id, std::move(body));
             _activeBodies.insert(id);
-            find_system_root();
+            _root = find_common_root(_activeBodies);
         }
         return get(id);
     }
@@ -146,7 +146,7 @@ class AstrodynamicsSystem {
         if (_bodies.count(id) == 0) {
             _bodies.emplace(id, create_impl(id));
             _activeBodies.insert(id);
-            find_system_root();
+            _root = find_common_root(_activeBodies);
         }
 
         return get(id);
@@ -201,7 +201,16 @@ class AstrodynamicsSystem {
      */
     constexpr void clear() { return _bodies.clear(); }
 
-    // RadiusVector<frames::earth::icrf> get_radius_to_center(CelestialBody target, double date); //TODO: Implement
+    /**
+     * @brief Get the relative position between two celestial bodies at a specific date.
+     *
+     * @param date The date at which to get the relative position.
+     * @param id1 The ID of the first celestial body.
+     * @param id2 The ID of the second celestial body.
+     * @return CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> The relative position vector from id2 to id1.
+     */
+    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf>
+        get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
      * @brief Iterator type for iterating over celestial bodies.
@@ -237,48 +246,46 @@ class AstrodynamicsSystem {
     /**
      * @brief Finds the root celestial body in the hierarchy.
      */
-    constexpr void find_system_root()
+    constexpr CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies)
     {
         // If there's only one body, it is the root
-        if (_activeBodies.size() == 1) {
-            _root = *(_activeBodies.begin());
-            return;
-        }
+        if (bodies.size() == 1) { return *(bodies.begin()); }
 
         // Count total planets
+        CelestialBodyId root;
         std::size_t planetCount = 0;
-        for (const auto& id : _activeBodies) {
+        for (const auto& id : bodies) {
             const auto& body = get(id);
             if (body->get_type() == CelestialBodyType::PLANET) {
                 planetCount++;
-                _root = id;
+                root = id;
             }
         }
 
         // Check if other bodies are children of only planet -
         // assumes the common root cannot be a satellite
         if (planetCount == 1) {
-            for (const auto& id : _activeBodies) {
+            for (const auto& id : bodies) {
                 CelestialBodyId parentId = id;
                 while (parentId != CelestialBodyId::SUN && parentId != _root) {
                     // Don't add parent to active bodies if it's not already there
-                    bool deactivateParent = (_activeBodies.count(parentId) == 0);
-                    parentId              = create(parentId)->get_parent();
-                    if (deactivateParent) { _activeBodies.erase(parentId); }
+                    parentId = create(parentId)->get_parent();
                 }
 
                 // If any object not in same planetary system, the common root
                 // must be the Sun
                 if (parentId == CelestialBodyId::SUN) {
-                    _root = CelestialBodyId::SUN;
+                    root = CelestialBodyId::SUN;
                     break;
                 }
             }
         }
         else {
             // The only common root for multiple planets is the Sun
-            _root = CelestialBodyId::SUN;
+            root = CelestialBodyId::SUN;
         }
+
+        return root;
     }
 
     constexpr CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const

@@ -16,9 +16,9 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
 
-OrbitalElements Sun::get_elements_at(const Date& date) const
+OrbitalElements Sun::get_keplerian_elements_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<SunEphemerisTable>(date));
+    return OrbitalElements(get_keplerian_elements_at_impl<SunEphemerisTable>(date));
 }
 
 #endif // ASTREA_BUILD_SUN_EPHEMERIS

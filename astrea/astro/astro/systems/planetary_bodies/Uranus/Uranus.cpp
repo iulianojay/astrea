@@ -16,9 +16,10 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
 
-OrbitalElements Uranus::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<UranusEphemerisTable>(date));
+    const auto positionUbFromSsb = get_position_at_impl<UranusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return positionUbFromSsb; // TODO: Add correction for Uranus' position from Uranus barycenter
 }
 
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS

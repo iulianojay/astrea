@@ -13,9 +13,10 @@ namespace planetary_bodies {
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
 
-OrbitalElements Jupiter::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<JupiterEphemerisTable>(date));
+    const auto positionJbFromSsb = get_position_at_impl<JupiterEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return positionJbFromSsb; // TODO: Add correction for Jupiter's position from Jupiter barycenter
 }
 
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS

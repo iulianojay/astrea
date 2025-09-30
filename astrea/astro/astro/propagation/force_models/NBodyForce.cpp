@@ -32,7 +32,7 @@ AccelerationVector<frames::earth::icrf>
 
     // Find day nearest to current time
     const Date epoch                        = vehicle.get_state().get_epoch();
-    const OrbitalElements& stateSunToCenter = center->get_elements_at(date);
+    const OrbitalElements& stateSunToCenter = center->get_keplerian_elements_at(date);
     const RadiusVector<frames::earth::icrf> radiusSunToCenter =
         stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
 
@@ -50,7 +50,7 @@ AccelerationVector<frames::earth::icrf>
         if (body == center) { continue; }
 
         // Find day nearest to current time
-        const OrbitalElements stateCenterToNBody = center->get_elements_at(date);
+        const OrbitalElements stateCenterToNBody = center->get_keplerian_elements_at(date);
         const RadiusVector<frames::earth::icrf> radiusCenterToNbody =
             stateCenterToNBody.in_element_set<Cartesian>(sun->get_mu()).get_position();
         // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");

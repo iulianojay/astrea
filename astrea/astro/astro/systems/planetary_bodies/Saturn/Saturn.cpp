@@ -16,9 +16,10 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS
 
-OrbitalElements Saturn::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<SaturnEphemerisTable>(date));
+    const auto positionSbFromSsb = get_position_at_impl<SaturnEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return positionSbFromSsb; // TODO: Add correction for Saturn's position from Saturn barycenter
 }
 
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS

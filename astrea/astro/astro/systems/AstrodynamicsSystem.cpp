@@ -1,112 +1,18 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
+#include <astro/frames/frames.hpp>
 #include <astro/state/StateHistory.hpp>
 
 namespace astrea {
 namespace astro {
 
-// void CelestialBodyFactory::propagate_bodies(const Date& epoch, const Time& endTime)
-// {
-//     // Propagate everything except the Sun
-//     for (auto& [name, body] : _bodies) {
-//         if (name != "Sun") {
-//             // Get parent mu
-//             const std::string parent = body->get_parent();
-//             const auto parentMu      = get_or_create(parent)->get_mu();
-
-//             // Propagate
-//             body->propagate(epoch, endTime, parentMu);
-//         }
-//     }
-// }
-
-// void AstrodynamicsSystem::propagate_bodies(const Time& propTime)
-// {
-// TODO: Since we're now just accessing the location of bodies by date directly,
-// we don't need to do this in advance. But this logic is still useful for getting relative locations.
-// Figure out how to make it accessible if needed. Since this is looking like an earth-centric tool,
-// this might be overkill.
-
-// // Ask factory to propagate
-// _bodyFactory.propagate_bodies(epoch, propTime);
-
-// // Assign properties from central body
-// const CelestialBodyUniquePtr& center = _bodyFactory.get(_centralBody);
-// const StateHistory centerToParent    = center->get_state_history();
-
-// // Get root body
-// std::string root          = _bodyFactory.get_system_root();
-// StateHistory centerToRoot = centerToParent;
-// if (_centralBody != root) {
-//     auto parent = center->get_parent();
-//     while (parent != root) {
-//         const CelestialBodyUniquePtr& parentBody = _bodyFactory.get(parent);
-//         auto parentToGrandParent                 = parentBody->get_state_history();
-//         for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-
-//             centerToRoot[ii].get_elements() = centerToRoot[ii].get_elements() + parentToGrandParent[ii].get_elements();
-//         }
-//         parent = parentBody->get_parent();
-//     }
-// }
-// else {
-//     for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-//         centerToRoot[ii].get_elements() = OrbitalElements(Keplerian());
-//     }
-// }
-
-// // Get root to Sun
-// if (_centralBody != "Sun") {
-//     StateHistory centerToSun = centerToParent;
-//     auto parent              = center->get_parent();
-//     while (parent != "None") {
-//         const CelestialBodyUniquePtr& parentBody = _bodyFactory.get_or_create(parent);
-//         if (parent == "Sun") {
-//             for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-//                 centerToSun[ii].get_elements() = centerToSun[ii].get_elements();
-//             }
-//         }
-//         else {
-//             auto parentToGrandParent = parentBody->get_state_history();
-//             for (std::size_t ii = 0; ii < centerToSun.size(); ii++) {
-//                 centerToSun[ii].get_elements() = centerToSun[ii].get_elements() + parentToGrandParent[ii].get_elements();
-//             }
-//         }
-//         parent = parentBody->get_parent();
-//     }
-// }
-// else {
-//     for (std::size_t ii = 0; ii < centerToRoot.size(); ii++) {
-//         centerToSun[ii].get_elements() = OrbitalElements(Keplerian());
-//     }
-// }
-
-// // Get states for ith bodies to center
-// std::vector<StateHistory> statesToCenter;
-// for (auto&& [name, ithBody] : _bodyFactory) {
-//     if (name == _centralBody) { continue; }
-
-//     // Get ith body states
-//     statesToCenter.push_back(ithBody->get_state_history());
-
-//     // If parent is not root, back track to root
-//     auto parent  = ithBody->get_parent();
-//     auto& states = statesToCenter.back();
-//     while (parent != root && parent != "None") {
-//         const CelestialBodyUniquePtr& parentBody = _bodyFactory.get(parent);
-//         auto parentToGrandParent                 = parentBody->get_state_history();
-//         for (std::size_t ii = 0; ii < states.size(); ii++) {
-//             states[ii].get_elements() = states[ii].get_elements() + parentToGrandParent[ii].get_elements();
-//         }
-//         parent = parentBody->get_parent();
-//     }
-
-//     // Convert to state relative to central body
-//     for (std::size_t ii = 0; ii < states.size(); ii++) {
-//         states[ii].get_elements() = states[ii].get_elements() - centerToRoot[ii].get_elements();
-//     }
-// }
-// }
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf>
+    AstrodynamicsSystem::get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
+{
+    const auto pos1 = get(id1)->get_position_at(date);
+    const auto pos2 = get(id2)->get_position_at(date);
+    return pos1 - pos2;
+}
 
 } // namespace astro
 } // namespace astrea

@@ -55,7 +55,7 @@ class Mars : public CelestialBody {
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::MARS; };
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
-    OrbitalElements get_elements_at(const Date& date) const override;
+    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 };
 

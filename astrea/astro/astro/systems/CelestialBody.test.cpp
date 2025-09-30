@@ -132,7 +132,7 @@ TEST_F(CelestialBodyTest, GetSiderealPeriod)
 
 TEST_F(CelestialBodyTest, GetSemimajor)
 {
-    ASSERT_EQ_QUANTITY(earth.get_semimajor(), Distance(1.00000261 * au), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_semimajor(), InterplanetaryDistance(1.00000261 * au), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetEccentricity)
@@ -213,19 +213,22 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
     const auto& sunMu   = sun->get_mu();
 
     // Pull out states
-    const RadiusVector<frames::earth::icrf> sunPosition =
-        sun->get_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Sun wrt Solar System Barycenter
-    const RadiusVector<frames::earth::icrf> earthPosition =
-        earth->get_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
-    const RadiusVector<frames::earth::icrf> moonPosition =
-        moon->get_elements_at(date).in_element_set<Cartesian>(earthMu).get_position(); // currently outputs position of Moon wrt Earth
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> sunPosition = sun->get_position_at(date);
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> earthPosition =
+        earth->get_position_at(date);
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> moonPosition =
+        moon->get_position_at(date);
 
     // Expected results
-    const RadiusVector<frames::earth::icrf> expEarth2SunPosition(126921698.413 * km, -69561377.707 * km, -30155074.470 * km); // Vallado lists a negative x value, likely in error
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> expEarth2SunPosition(
+        126921698.413 * km, -69561377.707 * km, -30155074.470 * km
+    ); // Vallado lists a negative x value, likely in error
     std::cout << std::endl << "Earth to Sun Position: " << sunPosition - earthPosition << std::endl;
     std::cout << "Expected Earth to Sun Position: " << expEarth2SunPosition << std::endl;
 
-    const RadiusVector<frames::earth::icrf> expEarth2MoonPosition(14462.297 * km, -357096.976 * km, -151599.34 * km);
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> expEarth2MoonPosition(
+        14462.297 * km, -357096.976 * km, -151599.34 * km
+    );
     std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
     std::cout << "Expected Moon Position: " << expEarth2MoonPosition << std::endl << std::endl;
 
@@ -258,11 +261,11 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 
     // Pull out states
     const RadiusVector<frames::earth::icrf> sunPosition =
-        sun->get_elements_at(date).in_element_set<Cartesian>(sunMu).get_position();
+        sun->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position();
     const RadiusVector<frames::earth::icrf> earthPosition =
-        earth->get_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
+        earth->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
     const RadiusVector<frames::earth::icrf> moonPosition =
-        moon->get_elements_at(date).in_element_set<Cartesian>(earthMu).get_position(); // currently outputs position of Moon wrt Earth
+        moon->get_keplerian_elements_at(date).in_element_set<Cartesian>(earthMu).get_position(); // currently outputs position of Moon wrt Earth
 
     // Expected results
     const RadiusVector<frames::earth::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);

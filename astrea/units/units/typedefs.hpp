@@ -76,9 +76,14 @@ using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>
 using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
 
 /**
+ * @brief Definition for a interplanetary distance quantity.
+ */
+using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::au>;
+
+/**
  * @brief Definition for a body-related velocity.
  */
-using BodyVelocity = mp_units::quantity<detail::distance_unit / JulianCentury>;
+using BodyVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
 
 /**
  * @brief Definition for a body-related unitless per time.

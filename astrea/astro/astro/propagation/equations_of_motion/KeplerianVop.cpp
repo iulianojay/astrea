@@ -8,6 +8,7 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>

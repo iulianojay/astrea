@@ -53,7 +53,7 @@ class Sun : public CelestialBody {
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::SUN; };
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
-    OrbitalElements get_elements_at(const Date& date) const override;
+    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 #endif // ASTREA_BUILD_SUN_EPHEMERIS
 };
 

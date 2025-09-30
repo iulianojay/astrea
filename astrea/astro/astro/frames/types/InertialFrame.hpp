@@ -22,9 +22,9 @@ namespace astro {
 /**
  * @brief Base class for all inertial state/frames.
  */
-template <class Frame_T, CelestialBodyId origin, FrameAxis axis = FrameAxis::ICRF>
+template <CelestialBodyId origin, FrameAxis axis = FrameAxis::ICRF>
     requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
-struct InertialFrame : Frame<Frame_T, origin, axis> {
+struct InertialFrame : Frame<origin, axis> {
     virtual ~InertialFrame() = default;
 };
 

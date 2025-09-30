@@ -19,6 +19,7 @@
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {
@@ -31,7 +32,7 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-OrbitalElements CelestialBody::get_elements_at(const Date& date) const
+Keplerian CelestialBody::get_keplerian_elements_at(const Date& date) const
 {
     // Time since reference epoch in Julian centuries
     const quantity<JulianCentury> T = date.jd() - _referenceDate.jd();
@@ -49,41 +50,51 @@ OrbitalElements CelestialBody::get_elements_at(const Date& date) const
     const Angle argPert     = wrap_angle(wt - raant);
 
     // This approximation has error on the order of ecc^6
-    const Angle thetat           = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
-    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Met, ecct);
+    const Angle thetat = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
 
+    return Keplerian(at, ecct, inct, raant, argPert, thetat);
+}
 
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> CelestialBody::get_position_at(const Date& date) const
+{
     // This approximation is in the perifocal frame
-    const RadiusVector<frames::dynamic::perifocal> rPerifocal{ at * (cos(eccentricAnomaly) - ecct),
-                                                               at * sqrt(1 - ecct * ecct) * sin(eccentricAnomaly),
-                                                               0.0 * m };
+    const Keplerian coes         = get_keplerian_elements_at(date);
+    const Distance a             = coes.get_semimajor();
+    const Unitless ecc           = coes.get_eccentricity();
+    const Angle inc              = coes.get_inclination();
+    const Angle raan             = coes.get_right_ascension();
+    const Angle argPer           = coes.get_argument_of_perigee();
+    const Angle theta            = coes.get_true_anomaly();
+    const Angle Me               = convert_true_anomaly_to_mean_anomaly(theta, ecc);
+    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
 
-    // Rotate to the J2000 frame
-    const DCM<frames::dynamic::perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000{
-        // TODO: Figure this out
-        { CartesianVector<Unitless, frames::dynamic::perifocal>(
-              cos(argPert) * cos(raant) - sin(argPert) * sin(raant) * cos(inct),
-              -sin(argPert) * cos(raant) - cos(argPert) * sin(raant) * cos(inct),
-              0.0 * one
-          ),
-          CartesianVector<Unitless, frames::dynamic::perifocal>(
-              cos(argPert) * sin(raant) + sin(argPert) * cos(raant) * cos(inct),
-              -sin(argPert) * sin(raant) + cos(argPert) * cos(raant) * cos(inct),
-              0.0 * one
-          ),
-          CartesianVector<Unitless, frames::dynamic::perifocal>(sin(argPert) * sin(inct), cos(argPert) * sin(inct), 0.0 * one) }
+    // Position in perifocal frame
+    const CartesianVector<InterplanetaryDistance, frames::dynamic::perifocal> rPerifocal{
+        a * (cos(eccentricAnomaly) - ecc), a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly), 0.0 * m
     };
 
-    const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
+    // Rotate to the J2000 frame
+    const DCM<frames::dynamic::perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
+        // TODO: Figure this out
+        { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
+          -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
+          0.0 * one,
+          cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
+          -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
+          0.0 * one,
+          sin(argPer) * sin(inc),
+          cos(argPer) * sin(inc),
+          0.0 * one }
+    );
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
 
     // Rotate to the ICRF frame
-    static const Angle obliquity     = Angle(23.43928 * deg); // obliquity at J2000
-    static const auto dcmJ2000ToICRF = DCM<frames::solar_system_barycenter::j2000, frames::earth::icrf>::X(obliquity);
+    static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
+    static const auto dcmJ2000ToICRF =
+        DCM<frames::solar_system_barycenter::j2000, frames::solar_system_barycenter::icrf>::X(obliquity);
 
-    const RadiusVector<frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
-    const VelocityVector<frames::solar_system_barycenter::icrf> vICRF(0.0 * m / s, 0.0 * m / s, 0.0 * m / s); // TODO: Fix this
-
-    return OrbitalElements(Cartesian(rICRF, vICRF));
+    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
+    return rICRF;
 }
 
 Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const

@@ -18,11 +18,11 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Base class for all rotating state/frames.
+ * @brief Base class for all body fixed frames.
  */
-template <class Frame_T, CelestialBodyId origin>
+template <CelestialBodyId origin>
     requires(origin != CelestialBodyId::UNSET)
-struct BodyFixedFrame : public Frame<Frame_T, origin, FrameAxis::BODY_FIXED> {
+struct BodyFixedFrame : public Frame<origin, FrameAxis::BODY_FIXED> {
     virtual ~BodyFixedFrame() = default;
 };
 

@@ -16,9 +16,10 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
 
-OrbitalElements Neptune::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<NeptuneEphemerisTable>(date));
+    const auto positionNbFromSsb = get_position_at_impl<NeptuneEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return positionNbFromSsb; // TODO: Add correction for Neptune's position from Neptune barycenter
 }
 
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS

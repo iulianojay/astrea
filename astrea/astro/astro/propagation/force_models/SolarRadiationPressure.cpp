@@ -40,7 +40,7 @@ AccelerationVector<frames::earth::icrf>
     static const bool isSun            = (center->get_name() == "Sun");
 
     // Find day nearest to current time
-    const OrbitalElements& stateSunToCenter = center->get_elements_at(date); // assumes center is a planet
+    const OrbitalElements& stateSunToCenter = center->get_keplerian_elements_at(date); // assumes center is a planet
     const RadiusVector<frames::earth::icrf> radiusSunToCenter =
         stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
 

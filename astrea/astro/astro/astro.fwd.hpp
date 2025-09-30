@@ -38,14 +38,14 @@ class CartesianVector;
 
 class StringLiteral;
 
-template <class Frame_T, CelestialBodyId origin, FrameAxis axis>
+template <CelestialBodyId origin, FrameAxis axis>
 class Frame;
 
-template <class Frame_T, CelestialBodyId origin, FrameAxis axis>
+template <CelestialBodyId origin, FrameAxis axis>
     requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
 class InertialFrame;
 
-template <class Frame_T, CelestialBodyId origin>
+template <CelestialBodyId origin>
     requires(origin != CelestialBodyId::UNSET)
 class BodyFixedFrame;
 

@@ -22,19 +22,14 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/Frame.hpp>
+#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/transformations.hpp>
 
 namespace astrea {
 namespace astro {
 
-template <typename Value_T, typename Frame_T, typename Frame_U>
-concept HasStaticConvertTo = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date) {
-    { Frame_U::rotate_into_this_frame(vec, date) } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
-};
-
-template <typename Value_T, typename Frame_T, typename Frame_U>
-concept HasStaticConvertFrom = requires(const CartesianVector<Value_T, Frame_T>& vec, const Date& date) {
-    { Frame_T::rotate_out_of_this_frame(vec, date) } -> std::same_as<CartesianVector<Value_T, Frame_U>>;
-};
+// TODO: Generalize this class further so it can accept copy/move assignment/construction
+// from other vectors in the same frame with a compatible unit (Value Type)
 
 /**
  * @brief Class representing a 3D vector in Cartesian coordinates.
@@ -76,10 +71,6 @@ class CartesianVector {
 
     /**
      * @brief Explicitly deleted copy constructor to prevent implicit frame switches.
-     *
-     * @tparam Frame_U The frame type of the other CartesianVector.
-     * @param other The other CartesianVector to copy from.
-     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
      */
     template <typename Frame_U>
     CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
@@ -393,43 +384,16 @@ class CartesianVector {
         return mp_units::angular::acos(ratio);
     }
 
-    /**
-     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference using the target frame.
-     *
-     * @tparam Frame_U The frame type to convert to.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<T> A new CartesianVector in the specified frame.
-     */
-    template <typename Frame_U>
-        requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U> && !HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
+    template <IsStaticFrame Frame_U>
     CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
     {
-        return Frame_U::rotate_into_this_frame(*this, date);
+        return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
-
-    /**
-     * @brief Convert the CartesianVector to a CartesianVector in a specified frame of reference using the current frame.
-     *
-     * @tparam Frame_U The frame type to convert to.
-     * @param date The date for which the conversion is performed.
-     * @return CartesianVector<T> A new CartesianVector in the specified frame.
-     */
-    template <typename Frame_U>
-        requires(!HasStaticConvertTo<Value_T, Frame_T, Frame_U> && HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
+    template <IsStaticFrame Frame_U>
+    CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
     {
-        return Frame_T::rotate_out_of_this_frame(*this, date);
-    }
-
-    /**
-     * @brief Overload to handle casses where two state/frames define the same conversion.
-     */
-    template <typename Frame_U>
-        requires(HasStaticConvertTo<Value_T, Frame_T, Frame_U> && HasStaticConvertFrom<Value_T, Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
-    {
-        static_assert(false, "Parity Error: Two state/frames cannot have an equivalent conversion. Please remove one.");
+        return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
     template <typename Frame_U, typename Frame_V>
@@ -437,7 +401,11 @@ class CartesianVector {
     CartesianVector<Value_T, Frame_V> translate(const CartesianVector<Value_T, Frame_U>& other) const
     {
         // r<Frame_T> + r<Frame_U> = r<Frame_V>
-        // ie. rEarth<ssb::icrf> + rMoon<earth::icrf> = rMoon<ssb::icrf> -> there's no way to do this without explicitly knowing Frame_V
+        //      rEarth<ssb::icrf> + rMoon<earth::icrf> = rMoon<ssb::icrf>
+        //      rEarth<ssb::icrf> + rMoon<ssb::icrf> = (rEarth + rMoon)<ssb::icrf>
+        //      rEarth<ssb::icrf> + rMoon<jupiter::icrf> = (???)<???>
+        // there's no way to enforce this makes sense at compile time without explicitly knowing where the vectors start
+        // and end, so it has to be left to the user to use it correctly
         return CartesianVector<Value_T, Frame_V>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
         );
@@ -447,8 +415,6 @@ class CartesianVector {
         requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_V> offset(const CartesianVector<Value_T, Frame_U>& other) const
     {
-        // r<Frame_T> - r<Frame_U> = r<Frame_V>
-        // i.e. rEarth<ssb::icrf> - rSun<earth::icrf> = rEarth<sun::icrf> -> there's no way to do this without explicitly knowing Frame_V
         return CartesianVector<Value_T, Frame_V>(
             _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
         );

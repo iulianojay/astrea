@@ -16,7 +16,6 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
@@ -254,9 +253,9 @@ class CelestialBody {
     /**
      * @brief Get the semimajor axis of the celestial body.
      *
-     * @return const Distance& Reference to the semimajor axis of the celestial body.
+     * @return const InterplanetaryDistance& Reference to the semimajor axis of the celestial body.
      */
-    constexpr const Distance& get_semimajor() const { return _semimajorAxis; };
+    constexpr const InterplanetaryDistance& get_semimajor() const { return _semimajorAxis; };
 
     /**
      * @brief Get the eccentricity of the celestial body.
@@ -367,51 +366,22 @@ class CelestialBody {
     virtual Density find_atmospheric_density(const Date& date, const Distance& altitude) const;
 
     /**
-     * @brief Get the state of the celestial body at a specific date.
+     * @brief Get the keplerian elements of the celestial body at a specific date using a linear approximation.
      *
      * @param date The date at which to get the state of the celestial body.
-     * @return State The state of the celestial body at the specified date.
+     * @return Keplerian The approximate Keplerian elements of the celestial body at the specified date.
      */
-    virtual OrbitalElements get_elements_at(const Date& date) const;
+    Keplerian get_keplerian_elements_at(const Date& date) const;
+
+    /**
+     * @brief Get the position of the celestial body at a specific date in the ICRF frame.
+     *
+     * @param date The date at which to get the position of the celestial body.
+     * @return CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> The position of the celestial body at the specified date.
+     */
+    virtual CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 
   protected:
-    /**
-     * @brief Get the state of the celestial body at a specific date using a specific data table.
-     *
-     * @tparam Table_T The data table type to use for interpolation.
-     * @param date The date at which to get the state of the celestial body.
-     * @return Cartesian The Cartesian state of the celestial body at the specified date.
-     */
-    template <typename Table_T>
-    Cartesian get_elements_at_impl(const Date& date) const
-    {
-        using mp_units::non_si::day;
-        using mp_units::si::unit_symbols::km;
-
-        //! Number of days covered by each set of polynomial coefficients
-        static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
-
-        // Extract components
-        const std::size_t ind = Table_T::get_index(date, timePerCoefficient);
-        const auto& xInterp   = Table_T::X_INTERP[ind];
-        const auto& yInterp   = Table_T::Y_INTERP[ind];
-        const auto& zInterp   = Table_T::Z_INTERP[ind];
-
-        // Evaluate Chebyshev polynomials
-        const double mjd = (date.mjd() - Date(J2000).mjd()).count();
-
-        Distance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
-        Distance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
-        Distance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
-
-        Velocity vx = math::evaluate_chebyshev_derivative(mjd, xInterp, _COEFF_ZERO_FACTOR) * km / day;
-        Velocity vy = math::evaluate_chebyshev_derivative(mjd, yInterp, _COEFF_ZERO_FACTOR) * km / day;
-        Velocity vz = math::evaluate_chebyshev_derivative(mjd, zInterp, _COEFF_ZERO_FACTOR) * km / day;
-
-        return Cartesian{ x, y, z, vx, vy, vz };
-    }
-
-    // Properties
     std::string _name;           //!< Name of the celestial body
     CelestialBodyId _parent;     //!< Parent celestial body
     CelestialBodyType _type;     //!< Type of the celestial body
@@ -430,14 +400,14 @@ class CelestialBody {
     AngularRate _rotationRate; //!< Rotation rate of the celestial body
     Time _siderealPeriod;      //!< Sidereal period of the celestial body
 
-    Distance _semimajorAxis;   //!< Semimajor axis
-    Unitless _eccentricity;    //!< Eccentricity
-    Angle _inclination;        //!< Inclination
-    Angle _rightAscension;     //!< Right ascension
-    Angle _longitudeOfPerigee; //!< Argument of perigee
-    Angle _meanLongitude;      //!< Mean longitude
-    Angle _trueAnomaly;        //!< True anomaly
-    Angle _meanAnomaly;        //!< Mean anomaly
+    InterplanetaryDistance _semimajorAxis; //!< Semimajor axis
+    Unitless _eccentricity;                //!< Eccentricity
+    Angle _inclination;                    //!< Inclination
+    Angle _rightAscension;                 //!< Right ascension
+    Angle _longitudeOfPerigee;             //!< Argument of perigee
+    Angle _meanLongitude;                  //!< Mean longitude
+    Angle _trueAnomaly;                    //!< True anomaly
+    Angle _meanAnomaly;                    //!< Mean anomaly
 
     // These rates need to stay in rate/JC to avoid numerical issues
     BodyVelocity _semimajorAxisRate;         //!< Rate of change of the semimajor axis
@@ -448,6 +418,54 @@ class CelestialBody {
     BodyAngularRate _meanLongitudeRate;      //!< Rate of change of the mean longitude
 
     static constexpr double _COEFF_ZERO_FACTOR = 1.0;
+
+    template <typename Table_T, typename Frame_T>
+    CartesianVector<InterplanetaryDistance, Frame_T> get_position_at_impl(const Date& date) const
+    {
+        using mp_units::si::unit_symbols::km;
+
+        // Evaluate Chebyshev polynomials
+        const auto [xInterp, yInterp, zInterp] = get_chebyshev_table_coefficients<Table_T>(date);
+        const double mjd                       = (date.mjd() - Date(J2000).mjd()).count();
+
+        InterplanetaryDistance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
+        InterplanetaryDistance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
+        InterplanetaryDistance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
+
+        return CartesianVector<InterplanetaryDistance, Frame_T>(x, y, z);
+    }
+
+    template <typename Table_T, typename Frame_T>
+    CartesianVector<Velocity, Frame_T> get_velocity_at_impl(const Date& date) const
+    {
+        using mp_units::non_si::day;
+        using mp_units::si::unit_symbols::km;
+
+        // Evaluate Chebyshev polynomials
+        const auto [xInterp, yInterp, zInterp] = get_chebyshev_table_coefficients<Table_T>(date);
+        const double mjd                       = (date.mjd() - Date(J2000).mjd()).count();
+
+        Velocity vx = math::evaluate_chebyshev_derivative(mjd, xInterp, _COEFF_ZERO_FACTOR) * km / day;
+        Velocity vy = math::evaluate_chebyshev_derivative(mjd, yInterp, _COEFF_ZERO_FACTOR) * km / day;
+        Velocity vz = math::evaluate_chebyshev_derivative(mjd, zInterp, _COEFF_ZERO_FACTOR) * km / day;
+
+        return CartesianVector<Velocity, Frame_T>(vx, vy, vz);
+    }
+
+    template <typename Table_T>
+    const auto get_chebyshev_table_coefficients(const Date& date) const
+    {
+        //! Number of days covered by each set of polynomial coefficients
+        static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
+
+        // Extract components
+        const std::size_t ind = Table_T::get_index(date, timePerCoefficient);
+        const auto& xInterp   = Table_T::X_INTERP[ind];
+        const auto& yInterp   = Table_T::Y_INTERP[ind];
+        const auto& zInterp   = Table_T::Z_INTERP[ind];
+
+        return std::make_tuple(xInterp, yInterp, zInterp);
+    }
 
     using CoefficientPack = std::tuple<
         mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,

@@ -24,7 +24,7 @@ namespace astro {
  */
 template <class Frame_T, FrameAxis axis>
     requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::BODY_FIXED)
-struct DynamicFrame : public Frame<Frame_T, CelestialBodyId::CUSTOM, axis> {
+struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, axis> {
   protected:
     /**
      * @brief Constructor for DynamicFrame.
@@ -139,6 +139,8 @@ struct DynamicFrame : public Frame<Frame_T, CelestialBodyId::CUSTOM, axis> {
     {
         return static_cast<const Frame_T*>(this)->get_dcm(date);
     }
+
+    RadiusVector<frames::earth::icrf> get_center_offset(const Date& date) const { return get_inertial_position(date); }
 
   protected:
     const FrameReference* _parent;                 //!< The parent object this frame is attached to.

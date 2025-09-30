@@ -80,13 +80,11 @@ Density Earth::find_atmospheric_density(const Date& date, const Distance& altitu
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
-OrbitalElements Earth::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    // Earth is stupid
-    const Cartesian earthFromEmb = get_elements_at_impl<EarthFromEmbEphemerisTable>(date);
-    const Cartesian embFromSun   = get_elements_at_impl<EmbEphemerisTable>(date);
-    const Cartesian earthFromSun = earthFromEmb + embFromSun;
-    return OrbitalElements(earthFromSun);
+    const auto positionEmbFromSsb = get_position_at_impl<EmbEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    const auto positionEarthFromEmb = get_position_at_impl<EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
+    return positionEmbFromSsb.translate(positionEarthFromEmb);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

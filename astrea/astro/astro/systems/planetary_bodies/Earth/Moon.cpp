@@ -16,9 +16,12 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
-OrbitalElements Moon::get_elements_at(const Date& date) const
+CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_elements_at_impl<MoonEphemerisTable>(date));
+    static const Earth earth;
+    const auto positionEarthFromSsb  = earth.get_position_at(date);
+    const auto positionMoonFromEarth = get_position_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
+    return positionEarthFromSsb.translate(positionMoonFromEarth);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
