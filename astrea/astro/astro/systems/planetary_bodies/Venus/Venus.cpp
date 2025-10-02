@@ -50,7 +50,7 @@ Density Venus::find_atmospheric_density(const Date& date, const Distance& altitu
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
 
-CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
     const auto positionVbFromSsb = get_position_at_impl<VenusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
     return positionVbFromSsb; // TODO: Add correction for Venus' position from Venus barycenter

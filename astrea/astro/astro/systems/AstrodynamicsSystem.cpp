@@ -6,7 +6,7 @@
 namespace astrea {
 namespace astro {
 
-CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf>
+RadiusVector<frames::solar_system_barycenter::icrf>
     AstrodynamicsSystem::get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
 {
     const auto pos1 = get(id1)->get_position_at(date);

@@ -1,3 +1,13 @@
+/**
+ * @file Venus.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Venus class.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <mp-units/systems/angular.h>
@@ -13,9 +23,20 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @class Venus
+ * @brief Represents the Venus celestial body.
+ *
+ * This class provides properties and methods specific to Venus, including its physical and orbital parameters.
+ */
 class Venus : public CelestialBody {
 
   public:
+    /**
+     * @brief Default constructor for the Venus class.
+     *
+     * Initializes the Venus object with predefined physical and orbital parameters.
+     */
     constexpr Venus() :
         CelestialBody(
             "Venus",                     //!< Name
@@ -32,14 +53,14 @@ class Venus : public CelestialBody {
             Unitless(-0.0000025323e-6 * mp_units::one),         //!< J3 gravitational coefficient
             Angle(2.64 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(224.701 * mp_units::non_si::day),                                      //!< Sidereal period
-            Distance(0.72333566 * mp_units::iau::unit_symbols::au),                     //!< Semimajor axis
-            Unitless(0.00677672 * mp_units::one),                                       //!< Eccentricity
-            Angle(3.39467605 * mp_units::angular::unit_symbols::deg),                   //!< Inclination
-            Angle(76.67984255 * mp_units::angular::unit_symbols::deg),                  //!< Longitude of ascending node
-            Angle(131.60246718 * mp_units::angular::unit_symbols::deg),                 //!< Longitude of perihelion
-            Angle(181.97909950 * mp_units::angular::unit_symbols::deg),                 //!< Mean longitude
-            BodyVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            Time(224.701 * mp_units::non_si::day),                      //!< Sidereal period
+            Distance(0.72333566 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
+            Unitless(0.00677672 * mp_units::one),                       //!< Eccentricity
+            Angle(3.39467605 * mp_units::angular::unit_symbols::deg),   //!< Inclination
+            Angle(76.67984255 * mp_units::angular::unit_symbols::deg),  //!< Longitude of ascending node
+            Angle(131.60246718 * mp_units::angular::unit_symbols::deg), //!< Longitude of perihelion
+            Angle(181.97909950 * mp_units::angular::unit_symbols::deg), //!< Mean longitude
+            InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
             BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
@@ -48,14 +69,38 @@ class Venus : public CelestialBody {
         )
     {
     }
+
+    /**
+     * @brief Default destructor for the Venus class.
+     */
     ~Venus() = default;
 
+    /**
+     * @brief Find the atmospheric density at a given date and altitude.
+     *
+     * @param date The date for which to find the atmospheric density.
+     * @param altitude The altitude at which to find the atmospheric density.
+     * @return Density The atmospheric density at the given date and altitude.
+     */
     Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
 
+    /**
+     * @brief Get the unique identifier for the Venus celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for Venus.
+     */
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::VENUS; };
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
-    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the position of the Venus at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the position of the Venus.
+     * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Venus at the given date.
+     */
+    RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 };
 

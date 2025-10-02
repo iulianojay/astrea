@@ -384,33 +384,72 @@ class CartesianVector {
         return mp_units::angular::acos(ratio);
     }
 
+    /**
+     * @brief Rotate this vector into another frame at a given date.
+     *
+     * @tparam Frame_U The target frame type to rotate into.
+     * @param date The date at which to perform the rotation.
+     * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     */
     template <IsStaticFrame Frame_U>
     CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
     {
         return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
+    /**
+     * @brief Transform this vector into another frame at a given date, accounting for both rotation and translation.
+     *
+     * @tparam Frame_U The target frame type to transform into.
+     * @param date The date at which to perform the transformation.
+     * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
+     */
     template <IsStaticFrame Frame_U>
     CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
     {
         return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
+    /**
+     * @brief Translate this vector by another vector in a different frame, resulting in a vector in a third frame.
+     *
+     * This operation is valid when the two frames share the same axis but have different origins.
+     * For example, translating a position vector of the Moon relative to the Earth by the position vector
+     * of the Earth relative to the Solar System Barycenter results in the position vector of the Moon
+     * relative to the Solar System Barycenter.
+     *
+     * @tparam Frame_U The frame type of the vector to translate by.
+     * @tparam Frame_V The frame type of the resulting vector.
+     * @param other The CartesianVector to translate by.
+     * @return CartesianVector<Value_T, Frame_V> A new CartesianVector in the resulting frame.
+     * @note It is the user's responsibility to ensure that this operation makes sense in the context of the frames involved.
+     *      r<Frame_T> + r<Frame_U> = r<Frame_V>
+     *           rEarth<ssb::icrf> + rMoon<earth::icrf> = rMoon<ssb::icrf>
+     *           rEarth<ssb::icrf> + rMoon<ssb::icrf> = (rEarth + rMoon)<ssb::icrf>
+     *           rEarth<ssb::icrf> + rMoon<jupiter::icrf> = (???)<???>
+     *      there's no way to enforce this makes sense at compile time without explicitly knowing where the vectors start
+     *      and end, so it has to be left to the user to use it correctly
+     */
     template <typename Frame_U, typename Frame_V>
         requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_V> translate(const CartesianVector<Value_T, Frame_U>& other) const
     {
-        // r<Frame_T> + r<Frame_U> = r<Frame_V>
-        //      rEarth<ssb::icrf> + rMoon<earth::icrf> = rMoon<ssb::icrf>
-        //      rEarth<ssb::icrf> + rMoon<ssb::icrf> = (rEarth + rMoon)<ssb::icrf>
-        //      rEarth<ssb::icrf> + rMoon<jupiter::icrf> = (???)<???>
-        // there's no way to enforce this makes sense at compile time without explicitly knowing where the vectors start
-        // and end, so it has to be left to the user to use it correctly
         return CartesianVector<Value_T, Frame_V>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
         );
     }
 
+    /**
+     * @brief Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame.
+     *
+     * @tparam Frame_U The frame type of the vector to calculate the offset from.
+     * @tparam Frame_V The frame type of the resulting vector.
+     * @param other The CartesianVector to calculate the offset from.
+     * @return CartesianVector<Value_T, Frame_V> A new CartesianVector in the resulting frame.
+     * @note It is the user's responsibility to ensure that this operation makes sense in the context of the frames involved.
+     */
     template <typename Frame_U, typename Frame_V>
         requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_V> offset(const CartesianVector<Value_T, Frame_U>& other) const

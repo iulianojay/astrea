@@ -179,9 +179,9 @@ set(ASTRO_HEADERS
 )
 
 # Build ephemeris files
-option(BUILD_SUN "Build Sun Ephemeris" OFF)
+option(BUILD_SUN "Build Sun Ephemeris" ON)
 option(BUILD_MERCURY "Build Mercury Ephemeris" OFF)
-option(BUILD_EARTH "Build Earth Ephemeris" OFF)
+option(BUILD_EARTH "Build Earth Ephemeris" ON)
 option(BUILD_MARS "Build Mars Ephemeris" OFF)
 option(BUILD_VENUS "Build Venus Ephemeris" OFF)
 option(BUILD_JUPITER "Build Jupiter Ephemeris" OFF)

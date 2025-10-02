@@ -1,3 +1,13 @@
+/**
+ * @file Frame.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Definition for a Frame in astrea.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <string>

@@ -1,3 +1,13 @@
+/**
+ * @file Sun.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Sun class.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <mp-units/systems/angular.h>
@@ -13,9 +23,20 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @class Sun
+ * @brief Represents the Sun celestial body.
+ *
+ * This class provides properties and methods specific to the Sun, including its physical and orbital parameters.
+ */
 class Sun : public CelestialBody {
 
   public:
+    /**
+     * @brief Default constructor for the Sun class.
+     *
+     * Initializes the Sun object with predefined physical and orbital parameters.
+     */
     constexpr Sun() :
         CelestialBody(
             "Sun",                       //!< Name
@@ -39,8 +60,8 @@ class Sun : public CelestialBody {
             Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Right ascension
             Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Longitude of perigee
             Angle(0.0 * mp_units::angular::unit_symbols::deg),                               //!< Mean longitude
-            BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
+            InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
@@ -48,12 +69,29 @@ class Sun : public CelestialBody {
         )
     {
     }
+
+    /**
+     * @brief Default destructor for the Sun class.
+     */
     ~Sun() = default;
 
+    /**
+     * @brief Get the unique identifier for the Sun celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for the Sun.
+     */
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::SUN; };
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
-    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the position of the Sun at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the position of the Sun.
+     * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Sun at the given date.
+     */
+    RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
 #endif // ASTREA_BUILD_SUN_EPHEMERIS
 };
 

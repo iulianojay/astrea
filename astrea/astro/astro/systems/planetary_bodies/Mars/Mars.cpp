@@ -61,7 +61,7 @@ Density Mars::find_atmospheric_density(const Date& date, const Distance& altitud
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
 
-CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
     const auto positionJbFromSsb = get_position_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
     return positionJbFromSsb; // TODO: Add correction for Mars' position from Mars barycenter

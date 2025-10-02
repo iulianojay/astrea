@@ -92,7 +92,7 @@ class CelestialBody {
         const Angle& rightAscension,
         const Angle& longitudeOfPerigee,
         const Angle& meanLongitude,
-        const BodyVelocity& semimajorAxisRate,
+        const InterplanetaryVelocity& semimajorAxisRate,
         const BodyUnitlessPerTime& eccentricityRate,
         const BodyAngularRate& inclinationRate,
         const BodyAngularRate& rightAscensionRate,
@@ -253,9 +253,9 @@ class CelestialBody {
     /**
      * @brief Get the semimajor axis of the celestial body.
      *
-     * @return const InterplanetaryDistance& Reference to the semimajor axis of the celestial body.
+     * @return const Distance& Reference to the semimajor axis of the celestial body.
      */
-    constexpr const InterplanetaryDistance& get_semimajor() const { return _semimajorAxis; };
+    constexpr const Distance& get_semimajor() const { return _semimajorAxis; };
 
     /**
      * @brief Get the eccentricity of the celestial body.
@@ -312,9 +312,9 @@ class CelestialBody {
     /**
      * @brief Get the semimajor axis rate of the celestial body.
      *
-     * @return const BodyVelocity& Reference to the semimajor axis rate of the celestial body.
+     * @return const InterplanetaryVelocity& Reference to the semimajor axis rate of the celestial body.
      */
-    constexpr const BodyVelocity& get_semimajor_rate() const { return _semimajorAxisRate; };
+    constexpr const InterplanetaryVelocity& get_semimajor_rate() const { return _semimajorAxisRate; };
 
     /**
      * @brief Get the eccentricity rate of the celestial body.
@@ -377,9 +377,9 @@ class CelestialBody {
      * @brief Get the position of the celestial body at a specific date in the ICRF frame.
      *
      * @param date The date at which to get the position of the celestial body.
-     * @return CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> The position of the celestial body at the specified date.
+     * @return CartesianVector<Distance,  frames::solar_system_barycenter::icrf> The position of the celestial body at the specified date.
      */
-    virtual CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+    virtual CartesianVector<Distance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 
   protected:
     std::string _name;           //!< Name of the celestial body
@@ -400,27 +400,35 @@ class CelestialBody {
     AngularRate _rotationRate; //!< Rotation rate of the celestial body
     Time _siderealPeriod;      //!< Sidereal period of the celestial body
 
-    InterplanetaryDistance _semimajorAxis; //!< Semimajor axis
-    Unitless _eccentricity;                //!< Eccentricity
-    Angle _inclination;                    //!< Inclination
-    Angle _rightAscension;                 //!< Right ascension
-    Angle _longitudeOfPerigee;             //!< Argument of perigee
-    Angle _meanLongitude;                  //!< Mean longitude
-    Angle _trueAnomaly;                    //!< True anomaly
-    Angle _meanAnomaly;                    //!< Mean anomaly
+    Distance _semimajorAxis;   //!< Semimajor axis
+    Unitless _eccentricity;    //!< Eccentricity
+    Angle _inclination;        //!< Inclination
+    Angle _rightAscension;     //!< Right ascension
+    Angle _longitudeOfPerigee; //!< Argument of perigee
+    Angle _meanLongitude;      //!< Mean longitude
+    Angle _trueAnomaly;        //!< True anomaly
+    Angle _meanAnomaly;        //!< Mean anomaly
 
     // These rates need to stay in rate/JC to avoid numerical issues
-    BodyVelocity _semimajorAxisRate;         //!< Rate of change of the semimajor axis
-    BodyUnitlessPerTime _eccentricityRate;   //!< Rate of change of the eccentricity
-    BodyAngularRate _inclinationRate;        //!< Rate of change of the inclination
-    BodyAngularRate _rightAscensionRate;     //!< Rate of change of the right ascension
-    BodyAngularRate _longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee
-    BodyAngularRate _meanLongitudeRate;      //!< Rate of change of the mean longitude
+    InterplanetaryVelocity _semimajorAxisRate; //!< Rate of change of the semimajor axis
+    BodyUnitlessPerTime _eccentricityRate;     //!< Rate of change of the eccentricity
+    BodyAngularRate _inclinationRate;          //!< Rate of change of the inclination
+    BodyAngularRate _rightAscensionRate;       //!< Rate of change of the right ascension
+    BodyAngularRate _longitudeOfPerigeeRate;   //!< Rate of change of the longitude of perigee
+    BodyAngularRate _meanLongitudeRate;        //!< Rate of change of the mean longitude
 
     static constexpr double _COEFF_ZERO_FACTOR = 1.0;
 
+    /**
+     * @brief Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials.
+     *
+     * @tparam Table_T The Chebyshev table type to use for interpolation.
+     * @tparam Frame_T The frame type in which to return the position.
+     * @param date The date at which to get the position of the celestial body.
+     * @return CartesianVector<Distance, Frame_T> The position of the celestial body at the specified date in the specified frame.
+     */
     template <typename Table_T, typename Frame_T>
-    CartesianVector<InterplanetaryDistance, Frame_T> get_position_at_impl(const Date& date) const
+    CartesianVector<Distance, Frame_T> get_position_at_impl(const Date& date) const
     {
         using mp_units::si::unit_symbols::km;
 
@@ -428,13 +436,21 @@ class CelestialBody {
         const auto [xInterp, yInterp, zInterp] = get_chebyshev_table_coefficients<Table_T>(date);
         const double mjd                       = (date.mjd() - Date(J2000).mjd()).count();
 
-        InterplanetaryDistance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
-        InterplanetaryDistance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
-        InterplanetaryDistance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
+        Distance x = math::evaluate_chebyshev_polynomial(mjd, xInterp, _COEFF_ZERO_FACTOR) * km;
+        Distance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
+        Distance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
 
-        return CartesianVector<InterplanetaryDistance, Frame_T>(x, y, z);
+        return CartesianVector<Distance, Frame_T>(x, y, z);
     }
 
+    /**
+     * @brief Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials.
+     *
+     * @tparam Table_T The Chebyshev table type to use for interpolation.
+     * @tparam Frame_T The frame type in which to return the velocity.
+     * @param date The date at which to get the velocity of the celestial body.
+     * @return CartesianVector<Velocity, Frame_T> The velocity of the celestial body at the specified date in the specified frame.
+     */
     template <typename Table_T, typename Frame_T>
     CartesianVector<Velocity, Frame_T> get_velocity_at_impl(const Date& date) const
     {
@@ -452,6 +468,13 @@ class CelestialBody {
         return CartesianVector<Velocity, Frame_T>(vx, vy, vz);
     }
 
+    /**
+     * @brief Get the Chebyshev polynomial coefficients for the celestial body at a specific date.
+     *
+     * @tparam Table_T The Chebyshev table type to use for interpolation.
+     * @param date The date at which to get the Chebyshev coefficients.
+     * @return A tuple containing references to the x, y, and z Chebyshev coefficient vectors.
+     */
     template <typename Table_T>
     const auto get_chebyshev_table_coefficients(const Date& date) const
     {
@@ -467,11 +490,23 @@ class CelestialBody {
         return std::make_tuple(xInterp, yInterp, zInterp);
     }
 
+    /**
+     * @brief Type alias for a tuple of linear expansion coefficients.
+     */
     using CoefficientPack = std::tuple<
         mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
         mp_units::quantity<mp_units::angular::unit_symbols::rad>,
         mp_units::quantity<mp_units::angular::unit_symbols::rad>,
         mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
+
+    /**
+     * @brief Get the linear expansion coefficients for the celestial body's orbital elements.
+     *
+     * @return CoefficientPack A tuple containing the linear expansion coefficients.
+     *
+     * @note The default implementation returns zero coefficients, indicating no perturbations.
+     *       Derived classes should override this method to provide actual coefficients.
+     */
     virtual constexpr CoefficientPack get_linear_expansion_coefficients() const
     {
         using mp_units::angular::unit_symbols::rad;

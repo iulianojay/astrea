@@ -83,7 +83,7 @@ using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::a
 /**
  * @brief Definition for a body-related velocity.
  */
-using BodyVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
+using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
 
 /**
  * @brief Definition for a body-related unitless per time.

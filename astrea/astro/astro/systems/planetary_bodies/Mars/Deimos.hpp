@@ -1,3 +1,13 @@
+/**
+ * @file Deimos.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Deimos class.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <mp-units/systems/angular.h>
@@ -13,9 +23,20 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @class Deimos
+ * @brief Represents the Deimos celestial body.
+ *
+ * This class provides properties and methods specific to Deimos, including its physical and orbital parameters.
+ */
 class Deimos : public CelestialBody {
 
   public:
+    /**
+     * @brief Default constructor for the Deimos class.
+     *
+     * Initializes the Deimos object with predefined physical and orbital parameters.
+     */
     constexpr Deimos() :
         CelestialBody(
             "Deimos",                    //!< Name
@@ -32,15 +53,15 @@ class Deimos : public CelestialBody {
             Unitless(0.0 * mp_units::one),                        //!< J3 gravitational coefficient
             Angle(25.199 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(27092.28308927283 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(0.31891 * mp_units::non_si::day),                              //!< Sidereal period
-            Distance(9378.0 * mp_units::si::unit_symbols::km),                  //!< Semimajor axis
-            Unitless(0.0151 * mp_units::one),                                   //!< Eccentricity
-            Angle(1.08 * mp_units::angular::unit_symbols::deg),                 //!< Inclination
-            Angle(207.784 * mp_units::angular::unit_symbols::deg),              //!< Right ascension
-            Angle(357.841 * mp_units::angular::unit_symbols::deg),              //!< Longitude of perigee
-            Angle(448.9 * mp_units::angular::unit_symbols::deg),                //!< Mean longitude
-            BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
+            Time(0.31891 * mp_units::non_si::day),                                        //!< Sidereal period
+            Distance(9378.0 * mp_units::si::unit_symbols::km),                            //!< Semimajor axis
+            Unitless(0.0151 * mp_units::one),                                             //!< Eccentricity
+            Angle(1.08 * mp_units::angular::unit_symbols::deg),                           //!< Inclination
+            Angle(207.784 * mp_units::angular::unit_symbols::deg),                        //!< Right ascension
+            Angle(357.841 * mp_units::angular::unit_symbols::deg),                        //!< Longitude of perigee
+            Angle(448.9 * mp_units::angular::unit_symbols::deg),                          //!< Mean longitude
+            InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(57302029 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
             BodyAngularRate(171830131 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
@@ -48,8 +69,17 @@ class Deimos : public CelestialBody {
         )
     {
     }
+
+    /**
+     * @brief Default destructor for the Deimos class.
+     */
     ~Deimos() = default;
 
+    /**
+     * @brief Get the unique identifier for the Deimos celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for Deimos.
+     */
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::DEIMOS; };
 };
 

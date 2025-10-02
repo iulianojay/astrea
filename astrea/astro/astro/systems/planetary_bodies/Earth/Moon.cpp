@@ -16,7 +16,7 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
-CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const
 {
     static const Earth earth;
     const auto positionEarthFromSsb  = earth.get_position_at(date);

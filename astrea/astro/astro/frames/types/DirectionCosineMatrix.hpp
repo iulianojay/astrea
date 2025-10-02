@@ -135,6 +135,14 @@ class DirectionCosineMatrix {
                                                                  std::array<Unitless, 3>{ x[2], y[2], z[2] } } };
     }
 
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> identity()
+    {
+        using mp_units::one;
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ 1.0 * one, 0.0 * one, 0.0 * one },
+                                                                 std::array<Unitless, 3>{ 0.0 * one, 1.0 * one, 0.0 * one },
+                                                                 std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } } };
+    }
+
     DirectionCosineMatrix<Out_Frame_T, In_Frame_T> transpose() const
     {
         return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{
@@ -182,48 +190,30 @@ class DirectionCosineMatrix {
 template <typename In_Frame_T, typename Out_Frame_T>
 using DCM = DirectionCosineMatrix<In_Frame_T, Out_Frame_T>;
 
+// Defined template function and then delete it so we can enforce lookup restrictions
 template <typename Frame_T, typename Frame_U>
-inline DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-{
-    throw std::runtime_error(
-        "No DCM between frames " + utilities::get_type_name<Frame_T>() + " and " + utilities::get_type_name<Frame_U>() + " has been defined."
-    );
-}
-
-template <typename Frame_T, typename Frame_U>
-    requires(IsDynamicFrame<Frame_T> || IsDynamicFrame<Frame_U>)
-inline DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-{
-    throw std::runtime_error(
-        "Dynamic frame conversions cannot be called statically. Instances of the dynamic frame must be created at "
-        "runtime with a platform to reference."
-    );
-}
-
+inline DCM<Frame_T, Frame_U> get_dcm(const Date& date) = delete;
 
 struct DcmManager {
-    template <typename Frame_T, typename Frame_U>
-        requires(HasDcm<Frame_T, Frame_U> && !HasDcm<Frame_U, Frame_T>)
-    static DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-    {
-        return get_dcm<Frame_T, Frame_U>(date);
-    }
+    DcmManager()                  = delete;
+    ~DcmManager()                 = delete;
+    DcmManager(const DcmManager&) = delete;
+    DcmManager(DcmManager&&)      = delete;
 
     template <typename Frame_T, typename Frame_U>
-        requires(!HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>)
     static DCM<Frame_T, Frame_U> get_dcm(const Date& date)
     {
-        return get_dcm<Frame_T, Frame_U>(date).transpose();
-    }
+        static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
+        static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
+        static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T>, "No DCM defined between these two frames.");
 
-    template <typename Frame_T, typename Frame_U>
-        requires(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>)
-    static DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-    {
-        throw std::runtime_error(
-            "DCM defined in both directions between " + utilities::get_type_name<Frame_T>() + " and " +
-            utilities::get_type_name<Frame_U>() + ". Please define only one to avoid symmetry issues."
-        );
+        if constexpr (HasDcm<Frame_T, Frame_U> && !HasDcm<Frame_U, Frame_T>) {
+            return astrea::astro::get_dcm<Frame_T, Frame_U>(date);
+        }
+        else if constexpr (!HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>) {
+            return astrea::astro::get_dcm<Frame_U, Frame_T>(date).transpose();
+        }
+        throw std::logic_error("How did you get here?");
     }
 };
 

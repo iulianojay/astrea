@@ -1,3 +1,13 @@
+/**
+ * @file instances.fwd.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Forward declarations for frame instances.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 namespace astrea {

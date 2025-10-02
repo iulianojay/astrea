@@ -1,3 +1,13 @@
+/**
+ * @file planetary_bodies.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file that includes all planetary bodies.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <astro/systems/planetary_bodies/Earth/Earth.hpp>

@@ -1,3 +1,13 @@
+/**
+ * @file Jupiter.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Jupiter class.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <mp-units/systems/angular.h>
@@ -13,9 +23,20 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @class Jupiter
+ * @brief Represents the Jupiter celestial body.
+ *
+ * This class provides properties and methods specific to Jupiter, including its physical and orbital parameters.
+ */
 class Jupiter : public CelestialBody {
 
   public:
+    /**
+     * @brief Default constructor for the Jupiter class.
+     *
+     * Initializes the Jupiter object with predefined physical and orbital parameters.
+     */
     constexpr Jupiter() :
         CelestialBody(
             "Jupiter",                   //!< Name
@@ -39,7 +60,7 @@ class Jupiter : public CelestialBody {
             Angle(100.47390909 * mp_units::angular::unit_symbols::deg), //!< Longitude of ascending node
             Angle(14.72847983 * mp_units::angular::unit_symbols::deg),  //!< Longitude of perihelion
             Angle(34.39644051 * mp_units::angular::unit_symbols::deg),  //!< Mean longitude
-            BodyVelocity(-0.00011607 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            InterplanetaryVelocity(-0.00011607 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
             BodyUnitlessPerTime(-0.00013253 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
             BodyAngularRate(-0.00183714 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(0.20469106 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
@@ -48,15 +69,40 @@ class Jupiter : public CelestialBody {
         )
     {
     }
+
+    /**
+     * @brief Default destructor for the Jupiter class.
+     */
     ~Jupiter() = default;
 
+    /**
+     * @brief Get the unique identifier for the Jupiter celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for Jupiter.
+     */
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::JUPITER; };
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
-    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the position of the Jupiter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the position of the Jupiter.
+     * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Jupiter at the given date.
+     */
+    RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 
   private:
+    /**
+     * @brief Get the linear expansion coefficients for Jupiter's orbital elements.
+     *
+     * This function returns a tuple containing the coefficients for the linear expansion of Jupiter's
+     * orbital elements, which are used to compute the position and velocity of Jupiter over time.
+     *
+     * @return CoefficientPack A tuple containing the linear expansion coefficients.
+     */
     constexpr CoefficientPack get_linear_expansion_coefficients() const override
     {
         using mp_units::angular::unit_symbols::rad;

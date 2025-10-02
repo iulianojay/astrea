@@ -1,3 +1,13 @@
+/**
+ * @file Phobos.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Phobos class.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <mp-units/systems/angular.h>
@@ -13,9 +23,20 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @class Phobos
+ * @brief Represents the Phobos celestial body.
+ *
+ * This class provides properties and methods specific to Phobos, including its physical and orbital parameters.
+ */
 class Phobos : public CelestialBody {
 
   public:
+    /**
+     * @brief Default constructor for the Phobos class.
+     *
+     * Initializes the Phobos object with predefined physical and orbital parameters.
+     */
     constexpr Phobos() :
         CelestialBody(
             "Phobos",                    //!< Name
@@ -32,15 +53,15 @@ class Phobos : public CelestialBody {
             Unitless(0.0 * mp_units::one),                        //!< J3 gravitational coefficient
             Angle(25.079 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
             AngularRate(6843.889610595355 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(1.26244 * mp_units::non_si::day),                              //!< Sidereal period
-            Distance(23459.0 * mp_units::si::unit_symbols::km),                 //!< Semimajor axis
-            Unitless(0.0005 * mp_units::one),                                   //!< Eccentricity
-            Angle(1.79 * mp_units::angular::unit_symbols::deg),                 //!< Inclination
-            Angle(24.525 * mp_units::angular::unit_symbols::deg),               //!< Right ascension
-            Angle(285.254 * mp_units::angular::unit_symbols::deg),              //!< Longitude of perigee
-            Angle(610.583 * mp_units::angular::unit_symbols::deg),              //!< Mean longitude
-            BodyVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),           //!< Rate of change of the eccentricity
+            Time(1.26244 * mp_units::non_si::day),                                        //!< Sidereal period
+            Distance(23459.0 * mp_units::si::unit_symbols::km),                           //!< Semimajor axis
+            Unitless(0.0005 * mp_units::one),                                             //!< Eccentricity
+            Angle(1.79 * mp_units::angular::unit_symbols::deg),                           //!< Inclination
+            Angle(24.525 * mp_units::angular::unit_symbols::deg),                         //!< Right ascension
+            Angle(285.254 * mp_units::angular::unit_symbols::deg),                        //!< Longitude of perigee
+            Angle(610.583 * mp_units::angular::unit_symbols::deg),                        //!< Mean longitude
+            InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
             BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
             BodyAngularRate(2376381 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the right ascension
             BodyAngularRate(7111440.9 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perigee
@@ -48,8 +69,17 @@ class Phobos : public CelestialBody {
         )
     {
     }
+
+    /**
+     * @brief Default destructor for the Phobos class.
+     */
     ~Phobos() = default;
 
+    /**
+     * @brief Get the unique identifier for the Phobos celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for Phobos.
+     */
     static constexpr CelestialBodyId get_id() { return CelestialBodyId::PHOBOS; };
 };
 

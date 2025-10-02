@@ -14,11 +14,13 @@
 namespace astrea {
 namespace astro {
 
-//! Base class for any JPL Celestial-Body (CB) table
+/**
+ * @brief Base class for any JPL CelestialBody table.
+ */
 struct JplEphemerisTable {
 
   protected:
-    JplEphemerisTable()  = delete;
+    JplEphemerisTable()  = delete; // Prevent construction
     ~JplEphemerisTable() = delete;
 
     /**

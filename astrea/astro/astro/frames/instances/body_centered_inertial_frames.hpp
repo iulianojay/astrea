@@ -1,7 +1,7 @@
 /**
  * @file EarthCentered.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the EarthCentered struct in the astro namespace
+ * @brief Header file for all (most? common?) body-centered inertial frames.
  * @version 0.1
  * @date 2025-08-05
  *

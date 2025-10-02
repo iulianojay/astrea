@@ -38,24 +38,24 @@ Keplerian CelestialBody::get_keplerian_elements_at(const Date& date) const
     const quantity<JulianCentury> T = date.jd() - _referenceDate.jd();
 
     // Keplerian element approximation pulled from here: https://ssd.jpl.nasa.gov/planets/approx_pos.html
-    const Distance at   = _semimajorAxis + _semimajorAxisRate * T;
-    const Unitless ecct = _eccentricity + _eccentricityRate * T;
-    const Angle inct    = _inclination + _inclinationRate * T;
-    const Angle raant   = _rightAscension + _rightAscensionRate * T;
-    const Angle wt      = _longitudeOfPerigee + _longitudeOfPerigeeRate * T;
-    const Angle Lt      = _meanLongitude + _meanLongitudeRate * T;
+    const Distance a   = _semimajorAxis + _semimajorAxisRate * T;
+    const Unitless ecc = _eccentricity + _eccentricityRate * T;
+    const Angle inc    = _inclination + _inclinationRate * T;
+    const Angle raan   = _rightAscension + _rightAscensionRate * T;
+    const Angle w      = _longitudeOfPerigee + _longitudeOfPerigeeRate * T;
+    const Angle L      = _meanLongitude + _meanLongitudeRate * T;
 
     const auto [B, C, S, F] = get_linear_expansion_coefficients();
-    const Angle Met         = wrap_angle(Lt - wt + B * T * T + C * cos(F * T) + S * sin(F * T));
-    const Angle argPert     = wrap_angle(wt - raant);
+    const Angle Me          = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
+    const Angle argPer      = wrap_angle(w - raan);
 
     // This approximation has error on the order of ecc^6
-    const Angle thetat = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
+    const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
 
-    return Keplerian(at, ecct, inct, raant, argPert, thetat);
+    return Keplerian(a, ecc, inc, raan, argPer, thetat);
 }
 
-CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> CelestialBody::get_position_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> CelestialBody::get_position_at(const Date& date) const
 {
     // This approximation is in the perifocal frame
     const Keplerian coes         = get_keplerian_elements_at(date);
@@ -69,31 +69,29 @@ CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> C
     const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
 
     // Position in perifocal frame
-    const CartesianVector<InterplanetaryDistance, frames::dynamic::perifocal> rPerifocal{
-        a * (cos(eccentricAnomaly) - ecc), a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly), 0.0 * m
-    };
+    const RadiusVector<frames::dynamic::perifocal> rPerifocal{ a * (cos(eccentricAnomaly) - ecc),
+                                                               a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
+                                                               0.0 * m };
 
     // Rotate to the J2000 frame
     const DCM<frames::dynamic::perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
-        // TODO: Figure this out
-        { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
-          -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
-          0.0 * one,
-          cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
-          -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
-          0.0 * one,
-          sin(argPer) * sin(inc),
-          cos(argPer) * sin(inc),
-          0.0 * one }
+        { // TODO: Figure this out
+          std::array<Unitless, 3>{ cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
+                                   -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
+                                   0.0 * one },
+          std::array<Unitless, 3>{ cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
+                                   -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
+                                   0.0 * one },
+          std::array<Unitless, 3>{ sin(argPer) * sin(inc), cos(argPer) * sin(inc), 0.0 * one } }
     );
-    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
+    const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
 
     // Rotate to the ICRF frame
     static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
     static const auto dcmJ2000ToICRF =
         DCM<frames::solar_system_barycenter::j2000, frames::solar_system_barycenter::icrf>::X(obliquity);
 
-    const CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
+    const RadiusVector<frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
     return rICRF;
 }
 

@@ -1,3 +1,13 @@
+/**
+ * @file typedefs.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Definitions and shorthand for frames.
+ * @version 0.1
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
 #pragma once
 
 #include <astro/frames/instances.fwd.hpp>
@@ -32,8 +42,8 @@ using venus_fixed = VenusCenteredVenusFixed;
 } // namespace venus
 
 namespace earth {
-using icrf        = EarthCenteredIcrf;
-using j2000       = EarthCenteredJ2000;
+using icrf        = EarthCenteredIcrf;  // GCRF frame, sometimes ECI
+using j2000       = EarthCenteredJ2000; // EME2000 frame, sometimes ECI
 using earth_fixed = EarthCenteredEarthFixed;
 } // namespace earth
 
@@ -146,7 +156,7 @@ using triton_fixed = TritonCenteredTritonFixed;
 } // namespace triton
 
 namespace solar_system_barycenter {
-using icrf  = SolarSystemBarycenterIcrf;
+using icrf  = SolarSystemBarycenterIcrf; // Generally, the ICRF frame
 using j2000 = SolarSystemBarycenterJ2000;
 } // namespace solar_system_barycenter
 

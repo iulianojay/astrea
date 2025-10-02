@@ -207,9 +207,9 @@ class AstrodynamicsSystem {
      * @param date The date at which to get the relative position.
      * @param id1 The ID of the first celestial body.
      * @param id2 The ID of the second celestial body.
-     * @return CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf> The relative position vector from id2 to id1.
+     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The relative position vector from id2 to id1.
      */
-    CartesianVector<InterplanetaryDistance, frames::solar_system_barycenter::icrf>
+    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
         get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
@@ -245,6 +245,9 @@ class AstrodynamicsSystem {
 
     /**
      * @brief Finds the root celestial body in the hierarchy.
+     *
+     * @param bodies A set of celestial body IDs to consider.
+     * @return CelestialBodyId The ID of the root celestial body.
      */
     constexpr CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies)
     {
@@ -288,6 +291,14 @@ class AstrodynamicsSystem {
         return root;
     }
 
+    /**
+     * @brief Implementation function to create a celestial body by id.
+     *
+     * @param id The id of the celestial body to create.
+     * @return CelestialBodyUniquePtr A unique pointer to the created celestial body.
+     * @throws std::runtime_error If the celestial body ID is not implemented in the factory.
+     * @note Dont judge me.
+     */
     constexpr CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const
     {
         using namespace planetary_bodies;
