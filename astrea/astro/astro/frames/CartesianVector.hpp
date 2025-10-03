@@ -59,41 +59,15 @@ class CartesianVector {
     {
     }
 
-    /**
-     * @brief Constructor for CartesianVector from an array.
-     *
-     * @param vec An array containing the x, y, and z components of the vector.
-     */
-    CartesianVector(const std::array<Value_T, 3>& vec) :
-        _vector(vec)
-    {
-    }
-
-    /**
-     * @brief Explicitly deleted copy constructor to prevent implicit frame switches.
-     */
+    // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <typename Frame_U>
     CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
-
-    /**
-     * @brief Explicitly deleted copy assignment constructor to prevent implicit frame switches.
-     *
-     * @tparam Frame_U The frame type of the other CartesianVector.
-     * @param other The other CartesianVector to copy from.
-     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
-     */
     template <typename Frame_U>
-    CartesianVector<Value_T, Frame_U> operator=(const CartesianVector<Value_T, Frame_T>& other) = delete;
-
-    /**
-     * @brief Explicitly deleted copy assignment constructor to prevent implicit frame switches.
-     *
-     * @tparam Frame_U The frame type of the other CartesianVector.
-     * @param other The other CartesianVector to copy from.
-     * @return CartesianVector <Value_T, Frame_T> A new CartesianVector that is a copy of the other.
-     */
+    CartesianVector(CartesianVector<Value_T, Frame_U>&& other) = delete;
     template <typename Frame_U>
     CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
+    template <typename Frame_U>
+    CartesianVector<Value_T, Frame_T> operator=(CartesianVector<Value_T, Frame_U>&& other) = delete;
 
     /**
      * @brief Copy constructor for CartesianVector that implicitly converts the frame.
@@ -476,7 +450,7 @@ template <class Value_T, class Frame_T>
     requires(std::is_constructible<Frame_T>::value)
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
-    static const Frame_T frame;
+    // static const Frame_T frame;
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
     return os;
 }
@@ -494,7 +468,7 @@ template <class Value_T, class Frame_T>
     requires(!std::is_constructible<Frame_T>::value)
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
-    static const std::string name = utilities::get_type_name<Frame_T>();
+    // static const std::string name = utilities::get_type_name<Frame_T>(); // Make this utilities function constexpr
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
     return os;
 }
