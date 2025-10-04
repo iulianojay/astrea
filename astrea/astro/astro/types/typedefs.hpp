@@ -10,15 +10,39 @@
  */
 #pragma once
 
-#include <stdint.h>
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/frames/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief Type definition for enumeration types.
+ * @brief Type alias for a vector representing a radius in 3D space.
  */
-using EnumType = uint32_t;
+template <typename Frame_T>
+using RadiusVector = CartesianVector<Distance, Frame_T>;
+
+/**
+ * @brief Type alias for a vector representing velocity in 3D space.
+ */
+template <typename Frame_T>
+using VelocityVector = CartesianVector<Velocity, Frame_T>;
+
+/**
+ * @brief Type alias for a vector representing acceleration in 3D space.
+ */
+template <typename Frame_T>
+using AccelerationVector = CartesianVector<Acceleration, Frame_T>;
+
+/**
+ * @brief Type alias for a vector representing unit vectors in 3D space.
+ *
+ * This is used for direction vectors that do not have units of distance, velocity, or acceleration.
+ */
+template <typename Frame_T>
+using UnitVector = CartesianVector<Unitless, Frame_T>;
 
 } // namespace astro
 } // namespace astrea

@@ -16,9 +16,9 @@ using mp_units::si::unit_symbols::km;
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
 
-OrbitalElements Sun::get_keplerian_elements_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> Sun::get_position_at(const Date& date) const
 {
-    return OrbitalElements(get_keplerian_elements_at_impl<SunEphemerisTable>(date));
+    return get_position_at_impl<SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
 
 #endif // ASTREA_BUILD_SUN_EPHEMERIS

@@ -70,10 +70,25 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-    // TODO: Make sure these values match when SPICE ephemerides aren't used
+    // // Vallado's expected results
+    // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),
+    //                                                         1.0298e-10 * km / (s * s),
+    //                                                         4.4651e-11 * km / (s * s) };
+
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // These values come from a run of this code, not Vallado's. They're within ~20% of Vallado's
+    const AccelerationVector<frames::earth::icrf> expected{ -1.6020954749490711e-10 * km / (s * s),
+                                                            8.7799006711875608e-11 * km / (s * s),
+                                                            3.8068764763680937e-11 * km / (s * s) };
+
+#elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // These are kinda bad. Pretty close to ephemris values, but still off Vallados
     const AccelerationVector<frames::earth::icrf> expected{ -1.59324328e-10 * km / (s * s),
                                                             8.92084894e-11 * km / (s * s),
                                                             3.86793674e-11 * km / (s * s) };
+#endif
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

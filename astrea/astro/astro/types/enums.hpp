@@ -1,10 +1,18 @@
 #pragma once
 
-#include <astro/types/typedefs.hpp>
+#include <stdint.h>
 
 namespace astrea {
 namespace astro {
 
+/**
+ * @brief Type definition for enumeration types.
+ */
+using EnumType = uint32_t;
+
+/**
+ * @brief Celestial body identifiers.
+ */
 enum class CelestialBodyId : EnumType {
     UNSET,
 
@@ -45,10 +53,19 @@ enum class CelestialBodyId : EnumType {
     CUSTOM
 };
 
+/**
+ * @brief Celestial body types.
+ */
 enum class CelestialBodyType : EnumType { UNSET, STAR, PLANET, MOON };
 
+/**
+ * @brief System center types.
+ */
 enum class SystemCenter : EnumType { CENTRAL_BODY, BARYCENTER };
 
+/**
+ * @brief Reference frames axes.
+ */
 enum class FrameAxis : EnumType {
     /** International Celestial Reference Frame */
     ICRF,

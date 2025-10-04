@@ -258,15 +258,13 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
     const auto& sunMu   = sun->get_mu();
 
     // Pull out states
-    const RadiusVector<frames::earth::icrf> sunPosition =
-        sun->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position();
-    const RadiusVector<frames::earth::icrf> earthPosition =
-        earth->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
-    const RadiusVector<frames::earth::icrf> moonPosition =
-        moon->get_keplerian_elements_at(date).in_element_set<Cartesian>(earthMu).get_position(); // currently outputs position of Moon wrt Earth
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = sun->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = earth->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition =
+        moon->get_position_at(date); // currently outputs relative to Earth position
 
     // Expected results
-    const RadiusVector<frames::earth::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
+    const RadiusVector<frames::solar_system_barycenter::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
 
     std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
     std::cout << "Sun to Earth Position: " << earthPosition - sunPosition << std::endl;

@@ -378,6 +378,9 @@ class CelestialBody {
      *
      * @param date The date at which to get the position of the celestial body.
      * @return CartesianVector<Distance,  frames::solar_system_barycenter::icrf> The position of the celestial body at the specified date.
+     *
+     * @note This function is wrong. It actually returns the position in the ICRF frame, centered on the object's parent. Need to figure out
+     *      how to make dynamic centers work with frames.
      */
     virtual CartesianVector<Distance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 

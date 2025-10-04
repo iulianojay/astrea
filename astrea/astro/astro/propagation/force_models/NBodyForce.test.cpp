@@ -64,15 +64,31 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     // These two won't match exactly because of numerous numerical differences between this code and Vallado's. Both
     // results have a similar magnitude and direction, but the values can be different up to 25%. Given that these tests
     // are meant to be pragmatically approachable estimations, not exact reproductions of Vallado's work, and since
-    // matching them exactly is impractical, the expected values are taken from a run of this code.
+    // matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
+    // Vallado's expected result:
+    // const AccelerationVector<frames::earth::icrf> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
+    //                                                         (1.5243e-10 + -4.3052e-10) * km / (s * s),
+    //                                                         (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
+
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // These values come from a run of this code, not Vallado's, but they're close
+    const AccelerationVector<frames::earth::icrf> expected{ 2.7129560e-10 * km / (s * s),
+                                                            -2.8755079e-10 * km / (s * s),
+                                                            -8.7523151e-10 * km / (s * s) };
+
+#elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // These are big bad
     const AccelerationVector<frames::earth::icrf> expected{ 6.391114272e-10 * km / (s * s),
                                                             -1.4610138560e-10 * km / (s * s),
                                                             -8.216647495e-10 * km / (s * s) };
+#endif
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
