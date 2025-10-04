@@ -29,34 +29,33 @@ AccelerationVector<frames::earth::icrf>
     static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
 
     // Extract
-    const Distance& x                         = state.get_x();
-    const Distance& y                         = state.get_y();
-    const Distance& z                         = state.get_z();
+    const Distance& x = state.get_x();
+    const Distance& y = state.get_y();
+    const Distance& z = state.get_z();
+
     const RadiusVector<frames::earth::icrf> r = state.get_position();
-    const Distance R                          = sqrt(x * x + y * y + z * z);
+    const Distance R                          = r.norm();
 
     // Central body properties
     static const Distance& equitorialR = center->get_equitorial_radius();
     static const bool isSun            = (center->get_name() == "Sun");
 
     // Find day nearest to current time
-    const OrbitalElements& stateSunToCenter = center->get_keplerian_elements_at(date); // assumes center is a planet
-    const RadiusVector<frames::earth::icrf> radiusSunToCenter =
-        stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
+    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToCenter = center->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
 
     // Radius from central body to sun
-    const RadiusVector<frames::earth::icrf> radiusCenterToSun = -radiusSunToCenter;
-    const Distance radialMagnitudeCenterToSun                 = radiusCenterToSun.norm();
+    RadiusVector<frames::earth::icrf> radiusCenterToSun =
+        (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::earth::icrf>(); // TODO: Should this use the translate function? I hate that function.
+    const Distance radialMagnitudeCenterToSun = radiusCenterToSun.norm();
 
     const RadiusVector<frames::earth::icrf> radiusVehicleToSun = radiusCenterToSun - r;
     const Distance radialMagnitudeVehicleToSun                 = radiusVehicleToSun.norm();
 
-    // Average solar radiation pressure at 1 AU
-    static const quantity<N / pow<2>(m)> SRP_1AU = 4.556485540406757e-6 * N / pow<2>(m);
-
-    // Scaled to average distance from Sun
-    const quantity<kg / (m * pow<2>(s))> solarRadiationPressure =
-        SRP_1AU * (au * au) / (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
+    // Average solar radiation pressure at 1 AU scaled to average distance from Sun
+    static const quantity<N / pow<2>(m)> solarRadiationPressureAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
+    const quantity<N / pow<2>(m)> solarRadiationPressure               = solarRadiationPressureAtOneAU * (au * au) /
+                                                           (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
 
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
@@ -93,8 +92,8 @@ AccelerationVector<frames::earth::icrf>
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity accelRelativeMagnitude    = -solarRadiationPressure * coefficientOfReflectivity * (areaSun) / mass /
-                                            radialMagnitudeVehicleToSun * fractionOfRecievedSunlight;
+    const quantity accelRelativeMagnitude    = -solarRadiationPressure * fractionOfRecievedSunlight *
+                                            coefficientOfReflectivity * areaSun / (mass * radialMagnitudeVehicleToSun);
 
     const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelativeMagnitude * radiusVehicleToSun[0],
                                                                accelRelativeMagnitude * radiusVehicleToSun[1],
