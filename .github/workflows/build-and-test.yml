@@ -33,10 +33,11 @@ jobs:
       run: |
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
+        make python_env
+        source .venv/bin/activate
 
     - name: Build
       run: |
-        make python_env
         make release all
 
     - name: Run Tests
@@ -69,6 +70,8 @@ jobs:
       run: |
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
+        make python_env
+        source .venv/bin/activate
 
     - name: Build Debug
       run: |
