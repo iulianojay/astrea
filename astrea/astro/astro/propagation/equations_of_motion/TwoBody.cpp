@@ -4,7 +4,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 namespace astrea {
@@ -24,10 +24,10 @@ TwoBody::TwoBody(const AstrodynamicsSystem& system) :
 OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
     // Extract
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
-    const RadiusVector<ECI> r   = cartesian.get_position();
-    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // mu/R^3
     const Distance R                 = r.norm();

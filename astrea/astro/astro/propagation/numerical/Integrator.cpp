@@ -220,7 +220,7 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     const std::size_t expectedSetId = eom.get_expected_set_id();
     OrbitalElements state0          = vehicle.get_state().get_elements();
     if (state0.index() != expectedSetId) {
-        state0 = state0.convert_to_set(expectedSetId, sys);
+        state0 = state0.convert_to_set(expectedSetId, sys.get_mu());
         // state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
         vehicle.update_state({ state0, epoch, sys });
     }

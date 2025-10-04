@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Cylindrical.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -69,13 +69,13 @@ TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(
 
 TEST_F(CylindricalTest, EciVectorConstructor)
 {
-    RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, EcefVectorConstructor)
 {
-    RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_central_body().get()));
 }
 

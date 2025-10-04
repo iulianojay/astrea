@@ -41,9 +41,9 @@ class SolarRadiationPressure : public Force {
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @param sys Astrodynamics system containing celestial body data
-     * @return AccelerationVector<ECI> The computed acceleration vector due to solar radiation pressure.
+     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to solar radiation pressure.
      */
-    CartesianVector<Acceleration, EarthCenteredInertial>
+    CartesianVector<Acceleration, frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:

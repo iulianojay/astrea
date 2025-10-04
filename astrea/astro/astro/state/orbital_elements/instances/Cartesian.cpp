@@ -29,18 +29,14 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Cartesian Cartesian::LEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::LEO(), system); }
-Cartesian Cartesian::LMEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::LMEO(), system); }
-Cartesian Cartesian::GPS(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::GPS(), system); }
-Cartesian Cartesian::HMEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::HMEO(), system); }
-Cartesian Cartesian::GEO(const AstrodynamicsSystem& system) { return Cartesian(Keplerian::GEO(), system); }
+Cartesian Cartesian::LEO(const GravParam& mu) { return Cartesian(Keplerian::LEO(), mu); }
+Cartesian Cartesian::LMEO(const GravParam& mu) { return Cartesian(Keplerian::LMEO(), mu); }
+Cartesian Cartesian::GPS(const GravParam& mu) { return Cartesian(Keplerian::GPS(), mu); }
+Cartesian Cartesian::HMEO(const GravParam& mu) { return Cartesian(Keplerian::HMEO(), mu); }
+Cartesian Cartesian::GEO(const GravParam& mu) { return Cartesian(Keplerian::GEO(), mu); }
 
-Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
+Cartesian::Cartesian(const Keplerian& elements, const GravParam& mu)
 {
-
-    // Get mu
-    const quantity mu = sys.get_mu();
-
     // Extract elements
     const auto& a     = elements.get_semimajor();
     const auto& ecc   = elements.get_eccentricity();
@@ -48,6 +44,12 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
     const auto& raan  = elements.get_right_ascension();
     const auto& w     = elements.get_argument_of_perigee();
     const auto& theta = elements.get_true_anomaly();
+
+    if (a == 0.0 * km) {
+        _r = { 0.0 * km, 0.0 * km, 0.0 * km };
+        _v = { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+        return;
+    }
 
     // Precalculate
     const quantity cosTheta = cos(theta);
@@ -94,12 +96,8 @@ Cartesian::Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys)
 }
 
 
-Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys)
+Cartesian::Cartesian(const Equinoctial& elements, const GravParam& mu)
 {
-
-    // Get mu
-    const quantity mu = sys.get_mu();
-
     // Extract
     const auto& semilatus     = elements.get_semilatus();
     const auto& f             = elements.get_f();
@@ -144,9 +142,9 @@ Cartesian::Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
-Cartesian::Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+Cartesian::Cartesian(const OrbitalElements& elements, const GravParam& mu)
 {
-    *this = elements.in_element_set<Cartesian>(sys);
+    *this = elements.in_element_set<Cartesian>(mu);
 }
 
 // Copy constructor
@@ -191,15 +189,15 @@ Cartesian& Cartesian::operator+=(const Cartesian& other)
     return *this;
 }
 
-Cartesian Cartesian::operator+(const RadiusVector<ECI>& r) const { return Cartesian(_r + r, _v); }
-Cartesian& Cartesian::operator+=(const RadiusVector<ECI>& r)
+Cartesian Cartesian::operator+(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r + r, _v); }
+Cartesian& Cartesian::operator+=(const RadiusVector<frames::earth::icrf>& r)
 {
     _r += r;
     return *this;
 }
 
-Cartesian Cartesian::operator+(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v + v); }
-Cartesian& Cartesian::operator+=(const VelocityVector<ECI>& v)
+Cartesian Cartesian::operator+(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v + v); }
+Cartesian& Cartesian::operator+=(const VelocityVector<frames::earth::icrf>& v)
 {
     _v += v;
     return *this;
@@ -213,15 +211,15 @@ Cartesian& Cartesian::operator-=(const Cartesian& other)
     return *this;
 }
 
-Cartesian Cartesian::operator-(const RadiusVector<ECI>& r) const { return Cartesian(_r - r, _v); }
-Cartesian& Cartesian::operator-=(const RadiusVector<ECI>& r)
+Cartesian Cartesian::operator-(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r - r, _v); }
+Cartesian& Cartesian::operator-=(const RadiusVector<frames::earth::icrf>& r)
 {
     _r -= r;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const VelocityVector<ECI>& v) const { return Cartesian(_r, _v - v); }
-Cartesian& Cartesian::operator-=(const VelocityVector<ECI>& v)
+Cartesian Cartesian::operator-(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v - v); }
+Cartesian& Cartesian::operator-=(const VelocityVector<frames::earth::icrf>& v)
 {
     _v -= v;
     return *this;
@@ -245,15 +243,12 @@ Cartesian& Cartesian::operator/=(const Unitless& divisor)
     return *this;
 }
 
-Cartesian
-    Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const
 {
-    const Keplerian kepl      = Keplerian(*this, sys);
-    const Keplerian otherKepl = Keplerian(other, sys);
-
-    const Keplerian output = kepl.interpolate(thisTime, otherTime, otherKepl, sys, targetTime);
-
-    return Cartesian(output, sys);
+    const Keplerian kepl      = Keplerian(*this, mu);
+    const Keplerian otherKepl = Keplerian(other, mu);
+    const Keplerian output    = kepl.interpolate(thisTime, otherTime, otherKepl, mu, targetTime);
+    return Cartesian(output, mu);
 }
 
 std::vector<Unitless> Cartesian::to_vector() const

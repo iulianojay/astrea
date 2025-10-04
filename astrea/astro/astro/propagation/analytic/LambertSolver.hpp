@@ -13,7 +13,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -69,9 +70,9 @@ class LambertSolver {
      * @param direction The direction of the orbit (prograde or retrograde).
      * @return A pair of velocity vectors (initial and final) for the spacecraft.
      */
-    static std::pair<VelocityVector<EarthCenteredInertial>, VelocityVector<EarthCenteredInertial>> solve(
-        const RadiusVector<EarthCenteredInertial>& r0,
-        const RadiusVector<EarthCenteredInertial>& rf,
+    static std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icrf>> solve(
+        const RadiusVector<frames::earth::icrf>& r0,
+        const RadiusVector<frames::earth::icrf>& rf,
         const Time& dt,
         const GravParam& mu,
         const OrbitDirection& direction

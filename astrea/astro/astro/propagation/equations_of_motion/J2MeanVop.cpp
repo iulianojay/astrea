@@ -36,9 +36,9 @@ J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
 
 OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
-    const Keplerian elements  = state.in_element_set<Keplerian>(get_system());
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu       = get_system().get_mu();
+    const Keplerian elements  = state.in_element_set<Keplerian>(mu);
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();
@@ -52,8 +52,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<ECI> v = cartesian.get_velocity();
-    const RadiusVector<ECI> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
     const Distance x = cartesian.get_x();
     const Distance y = cartesian.get_y();
@@ -71,9 +71,9 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity termB = z * z / (R * R);
 
     // accel due to oblateness
-    AccelerationVector<ECI> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
-                                                termA * (1.0 - 5.0 * termB) * y,
-                                                termA * (1.0 - 3.0 * termB) * z };
+    AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                                                termA * (1.0 - 5.0 * termB) * y,
+                                                                termA * (1.0 - 3.0 * termB) * z };
 
     // Calculate R, N, and T
     const Acceleration normalPert = accelOblateness.dot(Nhat);

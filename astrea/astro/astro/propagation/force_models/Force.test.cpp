@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -20,10 +20,10 @@ using mp_units::si::unit_symbols::s;
 class DummyForce : public Force {
   public:
     DummyForce() = default;
-    AccelerationVector<ECI>
+    AccelerationVector<frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
     {
-        return AccelerationVector<ECI>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
 };
 

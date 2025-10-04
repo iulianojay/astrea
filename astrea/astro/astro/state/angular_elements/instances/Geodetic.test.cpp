@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -69,13 +69,13 @@ TEST_F(GeodeticTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geodetic(latitu
 
 TEST_F(GeodeticTest, EciVectorConstructor)
 {
-    RadiusVector<ECI> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::icrf> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Geodetic(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(GeodeticTest, EcefVectorConstructor)
 {
-    RadiusVector<ECEF> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::earth_fixed> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Geodetic(rEcef, sys.get_central_body().get()));
 }
 

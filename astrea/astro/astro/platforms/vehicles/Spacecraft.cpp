@@ -9,12 +9,12 @@
 #include <math/interpolation.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
@@ -106,13 +106,13 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
-RadiusVector<EarthCenteredInertial> Spacecraft::get_inertial_position(const Date& date) const
+RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
 {
     const Cartesian elements = get_cartesian_state(date);
     return elements.get_position();
 }
 
-VelocityVector<EarthCenteredInertial> Spacecraft::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
 {
     const Cartesian elements = get_cartesian_state(date);
     return elements.get_velocity();

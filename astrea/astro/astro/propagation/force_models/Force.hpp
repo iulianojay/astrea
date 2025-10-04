@@ -13,6 +13,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace astro {
@@ -41,9 +42,9 @@ class Force {
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @param sys Astrodynamics system containing celestial body data
-     * @return AccelerationVector<ECI> The computed acceleration vector due to the force.
+     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to the force.
      */
-    virtual CartesianVector<Acceleration, EarthCenteredInertial>
+    virtual CartesianVector<Acceleration, frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const = 0;
 };
 

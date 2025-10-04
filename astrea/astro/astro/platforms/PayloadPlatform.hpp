@@ -12,7 +12,7 @@
 
 #include <vector>
 
-#include <astro/state/frames/FrameReference.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/types/typedefs.hpp>
 
 

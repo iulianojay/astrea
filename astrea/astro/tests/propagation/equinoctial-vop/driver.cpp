@@ -28,6 +28,7 @@ using mp_units::si::unit_symbols::W;
 class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
+        mu(sys.get_mu()),
         eom(sys, forces),
         start(seconds(0)),
         end(weeks(1)),
@@ -42,6 +43,7 @@ class EquinoctialVopPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     EquinoctialVop eom;
     ForceModel forces;
     Integrator integrator;
@@ -63,7 +65,7 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft geo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -81,7 +83,7 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft meo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -99,7 +101,7 @@ TEST_F(EquinoctialVopPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft leo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

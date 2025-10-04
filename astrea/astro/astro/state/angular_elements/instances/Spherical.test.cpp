@@ -3,9 +3,9 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Spherical.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -71,13 +71,13 @@ TEST_F(SphericalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Spherical(rang
 
 TEST_F(SphericalTest, EciVectorConstructor)
 {
-    RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Spherical(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(SphericalTest, EcefVectorConstructor)
 {
-    RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
     ASSERT_NO_THROW(Spherical(rEcef, sys.get_central_body().get()));
 }
 
@@ -189,8 +189,8 @@ TEST_F(SphericalTest, DivisionBySphericalOperator)
 
 TEST_F(SphericalTest, GetPositionEcef)
 {
-    RadiusVector<ECEF> rEcef               = state.get_position(sys.get_central_body().get());
-    auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEcef);
+    RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position(sys.get_central_body().get());
+    auto [convRange, convInc, convAzimuth]         = convert_earth_fixed_to_spherical(rEcef);
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
     ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
@@ -198,8 +198,8 @@ TEST_F(SphericalTest, GetPositionEcef)
 
 TEST_F(SphericalTest, GetPositionEci)
 {
-    RadiusVector<ECI> rEci                 = state.get_position(epoch, sys.get_central_body().get());
-    auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEci.in_frame<ECEF>(epoch));
+    RadiusVector<frames::earth::icrf> rEci = state.get_position(epoch, sys.get_central_body().get());
+    auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEci.in_frame<frames::earth::earth_fixed>(epoch));
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
     ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
@@ -226,7 +226,7 @@ TEST_F(SphericalTest, Getters)
 
 TEST_F(SphericalTest, ConvertEarthFixedToSpherical)
 {
-    RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEcef);
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
@@ -235,8 +235,8 @@ TEST_F(SphericalTest, ConvertEarthFixedToSpherical)
 
 TEST_F(SphericalTest, ConvertSphericalToEarthFixed)
 {
-    RadiusVector<ECEF> rEcef               = convert_spherical_to_earth_fixed(range, inclination, azimuth);
-    auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEcef);
+    RadiusVector<frames::earth::earth_fixed> rEcef = convert_spherical_to_earth_fixed(range, inclination, azimuth);
+    auto [convRange, convInc, convAzimuth]         = convert_earth_fixed_to_spherical(rEcef);
     ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
     ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
     ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);

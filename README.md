@@ -15,6 +15,9 @@ This is a passion project that has largely been developed largely by a single de
 - Statically typed units using mp-units
     - Allows for custom units, unit extensions, and compile-time unit conversions
 - Statically typed frames and coordinate transformations
+    - Numerous utilities for automatic frame transformations
+    - Extensible framework for user-defined frames
+    - Dynamic frame support
 - Statically typed orbital element sets, and orbital data formats
     - Simple transformations between each
 - Utility classes for automatic conversions to and from Julian Date, UTC, TT, and other common time systems.
@@ -26,17 +29,18 @@ This is a passion project that has largely been developed largely by a single de
     - Celestial bodies, and system definitions
     - Custom force models, integrators, equations of motion, event detection, and analytic solvers
 - Custom mathamatics routines that work with mp-units types
+- Partial SPICE integration 
+    - Chebyshev polynomials compiled directly for planets and the Moon
+    - Very fast ephemris access with SPICE accuracy
 
 And it's still growing!
 
 ## What's coming?
 
 - User-friendly installation
-- SPICE integration
 - High fidelity VnV
     - Real world comparisons using GPS data
 - Speed guarantees using Google Benchmark
-- Safer, more generic frame definitions
 - More complete element set definitions and faster transformations
 - Maneuvers, and full 6-DoF simulation
     - Statically typed attitude representations

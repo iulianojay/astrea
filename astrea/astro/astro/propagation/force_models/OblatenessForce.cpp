@@ -13,9 +13,10 @@
 
 #include <math/trig.hpp>
 
+#include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -118,7 +119,7 @@ void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, con
 }
 
 
-AccelerationVector<ECI>
+AccelerationVector<frames::earth::icrf>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
     // Extract
@@ -134,7 +135,7 @@ AccelerationVector<ECI>
     static const Distance& polarR      = center->get_polar_radius();
 
     // Find lat and long
-    const RadiusVector<ECEF> rEcef             = state.get_position().in_frame<ECEF>(date);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geodetic(rEcef, equitorialR, polarR);
 
     const Distance& xEcef = rEcef[0];
@@ -205,12 +206,12 @@ AccelerationVector<ECI>
     const quantity term2 = dVdlon / (planarR * planarR);
 
     // Calculate accel in Ecef (not with respect to Ecef)
-    AccelerationVector<ECEF> accelOblatenessEcef = { term1 * xEcef - term2 * yEcef,
-                                                     term1 * yEcef + term2 * xEcef,
-                                                     oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) };
+    AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
+        term1 * xEcef - term2 * yEcef, term1 * yEcef + term2 * xEcef, oneOverR * (dVdr * z + oneOverR * planarR * dVdlat)
+    };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    return accelOblatenessEcef.in_frame<ECI>(date);
+    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
 }
 
 void OblatenessForce::assign_legendre(const Unitless& x) const

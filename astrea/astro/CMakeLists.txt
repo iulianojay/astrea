@@ -51,10 +51,22 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/state/frames/FrameReference.cpp
+    ${ASTRO_BASE}/frames/FrameReference.cpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/CelestialBody.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Jupiter/Jupiter.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Uranus.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Venus/Venus.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -68,6 +80,20 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
+    
+    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
+    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
+    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/CartesianVector.hpp
+    ${ASTRO_BASE}/frames/frame_concepts.hpp
+    ${ASTRO_BASE}/frames/Frame.hpp
+    ${ASTRO_BASE}/frames/FrameReference.hpp
+    ${ASTRO_BASE}/frames/instances.fwd.hpp
+    ${ASTRO_BASE}/frames/transformations.hpp
+    ${ASTRO_BASE}/frames/typedefs.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp
@@ -102,31 +128,38 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
-
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
-
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
-    
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
-    
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredEarthFixed.hpp
-    ${ASTRO_BASE}/state/frames/instances/EarthCenteredInertial.hpp
-    ${ASTRO_BASE}/state/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/state/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/state/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/state/frames/types/RotatingFrame.hpp
-    ${ASTRO_BASE}/state/frames/Frame.hpp
-    ${ASTRO_BASE}/state/frames/FrameReference.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Deimos.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Phobos.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Triton.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Iapetus.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Rhea.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Uranus.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Titania.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Oberon.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Venus/Venus.hpp
 
     ${ASTRO_BASE}/time/Date.hpp
     ${ASTRO_BASE}/time/Interval.hpp
@@ -144,6 +177,21 @@ set(ASTRO_HEADERS
     ${EXTERN_BASE}/date/date.h
     ${EXTERN_BASE}/nlohmann/json.hpp
 )
+
+# Build ephemeris files
+option(BUILD_SUN "Build Sun Ephemeris" ON)
+option(BUILD_MERCURY "Build Mercury Ephemeris" OFF)
+option(BUILD_EARTH "Build Earth Ephemeris" ON)
+option(BUILD_MARS "Build Mars Ephemeris" OFF)
+option(BUILD_VENUS "Build Venus Ephemeris" OFF)
+option(BUILD_JUPITER "Build Jupiter Ephemeris" OFF)
+option(BUILD_SATURN "Build Saturn Ephemeris" OFF)
+option(BUILD_URANUS "Build Uranus Ephemeris" OFF)
+option(BUILD_NEPTUNE "Build Neptune Ephemeris" OFF)
+set(BUILD_EPHEMERIDES (BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR BUILD_VENUS OR BUILD_JUPITER OR BUILD_SATURN OR BUILD_URANUS OR BUILD_NEPTUNE))
+
+set(EPHEMERIS_COMPILE_DEFINES "")
+generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Set outputs
 set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
@@ -170,16 +218,24 @@ include_directories(${ASTRO_DIRS})
 
 # Shared library
 add_library                (${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+if (${BUILD_EPHEMERIDES})
+    add_dependencies       (${PROJECT_NAME}_shared generated_ephemerides)
+endif()
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main)
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 
 # Static library
 if (${BUILD_STATIC})
     add_library                (${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+    if (${BUILD_EPHEMERIDES})
+        add_dependencies           (${PROJECT_NAME}_static generated_ephemerides)
+    endif()
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main)
-    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 endif()
 
 # Install headers

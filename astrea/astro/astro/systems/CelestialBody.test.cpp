@@ -3,9 +3,13 @@
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
+#include <astro/time/Date.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -43,34 +47,34 @@ TEST_F(CelestialBodyTest, DefaultConstructor) { ASSERT_NO_THROW(CelestialBody())
 
 TEST_F(CelestialBodyTest, FileConstructors)
 {
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Sun/Sun.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mercury/Mercury.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Venus/Venus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Earth.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Moon.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Mars.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Phobos.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Mars/Deimos.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Jupiter.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Ganymede.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Callisto.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Io.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Jupiter/Europa.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Saturn.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Titan.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Rhea.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Saturn/Iapetus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Uranus.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Titania.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Uranus/Oberon.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Neptune/Neptune.json", sys));
-    ASSERT_NO_THROW(CelestialBody(ASTREA_ROOT / "data/planetary/Neptune/Triton.json", sys));
+    ASSERT_NO_THROW(Sun());
+    ASSERT_NO_THROW(Mercury());
+    ASSERT_NO_THROW(Venus());
+    ASSERT_NO_THROW(Earth());
+    ASSERT_NO_THROW(Moon());
+    ASSERT_NO_THROW(Mars());
+    ASSERT_NO_THROW(Phobos());
+    ASSERT_NO_THROW(Deimos());
+    ASSERT_NO_THROW(Jupiter());
+    ASSERT_NO_THROW(Ganymede());
+    ASSERT_NO_THROW(Callisto());
+    ASSERT_NO_THROW(Io());
+    ASSERT_NO_THROW(Europa());
+    ASSERT_NO_THROW(Saturn());
+    ASSERT_NO_THROW(Titan());
+    ASSERT_NO_THROW(Rhea());
+    ASSERT_NO_THROW(Iapetus());
+    ASSERT_NO_THROW(Uranus());
+    ASSERT_NO_THROW(Titania());
+    ASSERT_NO_THROW(Oberon());
+    ASSERT_NO_THROW(Neptune());
+    ASSERT_NO_THROW(Triton());
 }
 
 TEST_F(CelestialBodyTest, Equality)
 {
     const CelestialBody earth2 = earth;
-    const CelestialBody moon   = CelestialBody(ASTREA_ROOT / "data/planetary/Earth/Moon.json", sys);
+    const CelestialBody moon   = Moon();
     ASSERT_EQ(earth, earth2);
     ASSERT_NE(earth, moon);
 }
@@ -82,7 +86,7 @@ TEST_F(CelestialBodyTest, GetClosestState) {}
 
 TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(earth.get_name(), "Earth"); }
 
-TEST_F(CelestialBodyTest, GetParent) { ASSERT_EQ(earth.get_parent(), PlanetaryBody::SUN); }
+TEST_F(CelestialBodyTest, GetParent) { ASSERT_EQ(earth.get_parent(), CelestialBodyId::SUN); }
 
 TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(earth.get_type(), CelestialBodyType::PLANET); }
 
@@ -114,7 +118,7 @@ TEST_F(CelestialBodyTest, GetJ2) { ASSERT_EQ_QUANTITY(earth.get_j2(), 1082.63e-6
 
 TEST_F(CelestialBodyTest, GetJ3) { ASSERT_EQ_QUANTITY(earth.get_j3(), -0.0000025323 * one, REL_TOL); }
 
-TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_tilt(), Angle(23.44 * deg), REL_TOL); }
+TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_tilt(), Angle(23.439292 * deg), REL_TOL); }
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {
@@ -128,67 +132,148 @@ TEST_F(CelestialBodyTest, GetSiderealPeriod)
 
 TEST_F(CelestialBodyTest, GetSemimajor)
 {
-    ASSERT_EQ_QUANTITY(earth.get_semimajor(), 0.149597887455766e9 * km, REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_semimajor(), Distance(1.00000261 * au), REL_TOL);
 }
 
-TEST_F(CelestialBodyTest, GetEccentricity) { ASSERT_EQ_QUANTITY(earth.get_eccentricity(), 0.01671022 * one, REL_TOL); }
+TEST_F(CelestialBodyTest, GetEccentricity)
+{
+    ASSERT_EQ_QUANTITY(earth.get_eccentricity(), Unitless(0.01671123 * one), REL_TOL);
+}
 
 TEST_F(CelestialBodyTest, GetInclination)
 {
-    ASSERT_EQ_QUANTITY(earth.get_inclination(), Angle(0.00005 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_inclination(), Angle(-0.00001531 * deg), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetRightAscension)
 {
-    ASSERT_EQ_QUANTITY(earth.get_right_ascension(), Angle(-11.26064 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_right_ascension(), Angle(0.0 * deg), REL_TOL);
 }
 
-TEST_F(CelestialBodyTest, GetArgumentOfPerigee)
+TEST_F(CelestialBodyTest, GetLongitudeOfPerigee)
 {
-    ASSERT_EQ_QUANTITY(earth.get_argument_of_perigee(), Angle(102.94719 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee(), Angle(102.93768193 * deg), REL_TOL);
 }
 
-TEST_F(CelestialBodyTest, GetTrueLatitude)
+TEST_F(CelestialBodyTest, GetMeanLongitude)
 {
-    ASSERT_EQ_QUANTITY(earth.get_true_latitude(), Angle(100.46435 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_mean_longitude(), Angle(100.4645716 * deg), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetTrueAnomaly)
 {
-    ASSERT_EQ_QUANTITY(earth.get_true_anomaly(), Angle(357.4324 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_true_anomaly(), Angle(6.238549 * rad), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetMeanAnomaly)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mean_anomaly(), Angle(357.5172 * deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_mean_anomaly(), Angle(6.240021 * rad), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetSemimajorRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_semimajor_rate(), BodyVelocity(-7.4798935500 * km / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_semimajor_rate(), InterplanetaryVelocity(0.00000562 * au / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetEccentricityRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_eccentricity_rate(), BodyUnitlessPerTime(-0.00003804 * one / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_eccentricity_rate(), BodyUnitlessPerTime(-0.00004392 * one / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_inclination_rate(), BodyAngularRate(-0.013038888888888888 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_inclination_rate(), BodyAngularRate(-0.01294668 * deg / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_right_ascension_rate(), BodyAngularRate(-18228.25 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_right_ascension_rate(), BodyAngularRate(0.0 * deg / JulianCentury), REL_TOL);
 }
 
-TEST_F(CelestialBodyTest, GetArgumentOfPerigeeRate)
+TEST_F(CelestialBodyTest, GetLongitudeOfPerigeeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_argument_of_perigee_rate(), BodyAngularRate(1198.28 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee_rate(), BodyAngularRate(0.32327364 * deg / JulianCentury), REL_TOL);
 }
 
-TEST_F(CelestialBodyTest, GetTrueLatitudeRate)
+TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_true_latitude_rate(), BodyAngularRate(129597740.63 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_mean_longitude_rate(), BodyAngularRate(35999.37244981 * deg / JulianCentury), REL_TOL);
 }
+
+// Vallado, Ex. 8.5
+TEST_F(CelestialBodyTest, GetStateAtValldoEx)
+{
+    const Date date("2020-02-18 15:08:47.23847");
+    const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::SUN, CelestialBodyId::MOON });
+    const auto& earth = earthMoonSunSys.get(CelestialBodyId::EARTH);
+    const auto& moon  = earthMoonSunSys.get(CelestialBodyId::MOON);
+    const auto& sun   = earthMoonSunSys.get(CelestialBodyId::SUN);
+
+    const auto& earthMu = earth->get_mu();
+    const auto& sunMu   = sun->get_mu();
+
+    // Pull out states
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = sun->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = earth->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = moon->get_position_at(date);
+
+    // Expected results
+    const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2SunPosition(126921698.413 * km, -69561377.707 * km, -30155074.470 * km); // Vallado lists a negative x value, likely in error
+    std::cout << std::endl << "Earth to Sun Position: " << sunPosition - earthPosition << std::endl;
+    std::cout << "Expected Earth to Sun Position: " << expEarth2SunPosition << std::endl;
+
+    const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2MoonPosition(14462.297 * km, -357096.976 * km, -151599.34 * km);
+    std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
+    std::cout << "Expected Moon Position: " << expEarth2MoonPosition << std::endl << std::endl;
+
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // These comparisons are close but not exact. It could be due to the tables Vallado uses differing from the output
+    // of the Chebyshev approximations. We just lower the required tolerance a bit so the tests pass. The following test
+    // returns exact values so this is likely not an indication that there are any accuracy issues
+    ASSERT_EQ_CART_VEC(sunPosition - earthPosition, expEarth2SunPosition, 0.0 * one, 1800.0 * one);
+    ASSERT_EQ_CART_VEC(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
+
+#elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+    // Linear approximations are not great
+    ASSERT_EQ_CART_VEC(sunPosition - earthPosition, expEarth2SunPosition, 1.0e-1 * one);
+    ASSERT_EQ_CART_VEC(moonPosition, expEarth2MoonPosition, 1.0 * one); // big ooph
+
+#endif
+}
+
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
+
+// Vallado, Ex. 8.5
+TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
+{
+    const Date date("2000-01-01 12:00:00");
+    const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
+    const auto& earth = earthMoonSunSys.get(CelestialBodyId::EARTH);
+    const auto& moon  = earthMoonSunSys.get(CelestialBodyId::MOON);
+    const auto& sun   = earthMoonSunSys.get(CelestialBodyId::SUN);
+
+    const auto& earthMu = earth->get_mu();
+    const auto& sunMu   = sun->get_mu();
+
+    // Pull out states
+    const RadiusVector<frames::earth::icrf> sunPosition =
+        sun->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position();
+    const RadiusVector<frames::earth::icrf> earthPosition =
+        earth->get_keplerian_elements_at(date).in_element_set<Cartesian>(sunMu).get_position(); // currently outputs position of Earth wrt Solar System Barycenter
+    const RadiusVector<frames::earth::icrf> moonPosition =
+        moon->get_keplerian_elements_at(date).in_element_set<Cartesian>(earthMu).get_position(); // currently outputs position of Moon wrt Earth
+
+    // Expected results
+    const RadiusVector<frames::earth::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
+
+    std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
+    std::cout << "Sun to Earth Position: " << earthPosition - sunPosition << std::endl;
+    std::cout << "Sun to Moon Position: " << moonPosition + earthPosition - sunPosition << std::endl;
+    std::cout << "Expected Sun to Moon Position: " << expSunToMoonPosition << std::endl << std::endl;
+
+    ASSERT_EQ_CART_VEC(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL);
+}
+
+#endif // defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_MOON_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)

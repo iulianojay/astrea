@@ -13,12 +13,15 @@ class FieldOfViewTest : public testing::Test {
     FieldOfViewTest() = default;
     void SetUp() override
     {
-        boresight =
-            RadiusVector<ECI>(1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km);
-        targetInside =
-            RadiusVector<ECI>(0.9 * mp_units::si::unit_symbols::km, 0.1 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km);
-        targetOutside =
-            RadiusVector<ECI>(0.0 * mp_units::si::unit_symbols::km, 1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km);
+        boresight = RadiusVector<frames::earth::icrf>(
+            1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
+        );
+        targetInside = RadiusVector<frames::earth::icrf>(
+            0.9 * mp_units::si::unit_symbols::km, 0.1 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
+        );
+        targetOutside = RadiusVector<frames::earth::icrf>(
+            0.0 * mp_units::si::unit_symbols::km, 1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
+        );
 
         halfCone = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad;
 
@@ -31,9 +34,9 @@ class FieldOfViewTest : public testing::Test {
         polyFovPoints = PolygonalFieldOfView(points);
     }
 
-    RadiusVector<ECI> boresight;
-    RadiusVector<ECI> targetInside;
-    RadiusVector<ECI> targetOutside;
+    RadiusVector<frames::earth::icrf> boresight;
+    RadiusVector<frames::earth::icrf> targetInside;
+    RadiusVector<frames::earth::icrf> targetOutside;
 
     Angle halfCone;
     CircularFieldOfView circFov;

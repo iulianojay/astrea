@@ -37,9 +37,9 @@ class SensorParameters : public astro::PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     SensorParameters(
-        const FieldOfView* fov                                                                  = nullptr,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER
+        const FieldOfView* fov                                                               = nullptr,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& attachmentPoint = astro::CENTER
     ) :
         astro::PayloadParameters(boresight, attachmentPoint),
         _fov(fov)
@@ -116,7 +116,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const;
+    bool contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const;
 
   private:
     /**

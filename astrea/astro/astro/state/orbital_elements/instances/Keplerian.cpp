@@ -13,7 +13,6 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <math/interpolation.hpp>
@@ -35,9 +34,8 @@ Keplerian Keplerian::GPS() { return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad
 Keplerian Keplerian::HMEO() { return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
 Keplerian Keplerian::GEO() { return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
 
-Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
+Keplerian::Keplerian(const Cartesian& elements, const GravParam& mu)
 {
-
     /*
         Force rounding errors to assume zero values for angles. Assume complex
         results are the result of rounding errors. Flip values near their antipode
@@ -46,24 +44,21 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 
         No idea how much of this is just wrong.
     */
-    static const quantity<one> tol        = 1.0e-10 * one;
-    static const quantity<rad> angularTol = 1.0e-10 * rad;
-    static const quantity piRad           = 1.0 * (mag<pi> * rad);
-    static const quantity twoPiRad        = 2.0 * (mag<pi> * rad);
-
-    // Get mu
-    const quantity mu = sys.get_mu();
+    static const Unitless tol     = 1.0e-10 * one;
+    static const Angle angularTol = 1.0e-10 * rad;
+    static const Angle piRad      = 1.0 * (mag<pi> * rad);
+    static const Angle twoPiRad   = 2.0 * (mag<pi> * rad);
 
     // Get r and v
-    const auto& x  = elements.get_x();
-    const auto& y  = elements.get_y();
-    const auto& z  = elements.get_z();
-    const auto& vx = elements.get_vx();
-    const auto& vy = elements.get_vy();
-    const auto& vz = elements.get_vz();
+    const Distance& x  = elements.get_x();
+    const Distance& y  = elements.get_y();
+    const Distance& z  = elements.get_z();
+    const Velocity& vx = elements.get_vx();
+    const Velocity& vy = elements.get_vy();
+    const Velocity& vz = elements.get_vz();
 
-    const quantity R = sqrt(x * x + y * y + z * z);
-    const quantity V = sqrt(vx * vx + vy * vy + vz * vz);
+    const Distance R = sqrt(x * x + y * y + z * z);
+    const Velocity V = sqrt(vx * vx + vy * vy + vz * vz);
 
     // Catch default/nonsense case
     if (R == 0.0 * km) {
@@ -77,29 +72,28 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
     }
 
     // Specific Relative Angular Momentum
-    const quantity hx = y * vz - z * vy; // h = cross(r, v)
-    const quantity hy = z * vx - x * vz;
-    const quantity hz = x * vy - y * vx;
+    const SpecificAngularMomentum hx = y * vz - z * vy; // h = cross(r, v)
+    const SpecificAngularMomentum hy = z * vx - x * vz;
+    const SpecificAngularMomentum hz = x * vy - y * vx;
 
-    const quantity normH = sqrt(hx * hx + hy * hy + hz * hz);
+    const SpecificAngularMomentum normH = sqrt(hx * hx + hy * hy + hz * hz);
 
     // Setup
-    const quantity Nx = -hy; // N = cross([0 0 1], h)
-    const quantity Ny = hx;
-
+    const quantity Nx    = -hy; // N = cross([0 0 1], h)
+    const quantity Ny    = hx;
     const quantity normN = sqrt(Nx * Nx + Ny * Ny);
 
     // Semimajor Axis
     _semimajor = 1.0 / (2.0 / R - V * V / mu);
 
     // Eccentricity
-    const quantity dotRV                = x * vx + y * vy + z * vz;
-    const quantity oneOverMu            = (1.0 / mu);
-    const quantity vSquaredMinuMuTimesR = (V * V - mu / R);
+    const quantity<pow<2>(km) / s> dotRV                = x * vx + y * vy + z * vz;
+    const quantity<pow<2>(s) / pow<3>(km)> oneOverMu    = (1.0 / mu);
+    const quantity<pow<2>(km / s)> vSquaredMinuMuTimesR = (V * V - mu / R);
 
-    const quantity eccX = oneOverMu * (vSquaredMinuMuTimesR * x - dotRV * vx);
-    const quantity eccY = oneOverMu * (vSquaredMinuMuTimesR * y - dotRV * vy);
-    const quantity eccZ = oneOverMu * (vSquaredMinuMuTimesR * z - dotRV * vz);
+    const Unitless eccX = oneOverMu * (vSquaredMinuMuTimesR * x - dotRV * vx);
+    const Unitless eccY = oneOverMu * (vSquaredMinuMuTimesR * y - dotRV * vy);
+    const Unitless eccZ = oneOverMu * (vSquaredMinuMuTimesR * z - dotRV * vz);
 
     _eccentricity = sqrt(eccX * eccX + eccY * eccY + eccZ * eccZ);
 
@@ -178,10 +172,10 @@ Keplerian::Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys)
 
     if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
 
-    sanitize_angles();
+    wrap_angles();
 }
 
-Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys)
+Keplerian::Keplerian(const Equinoctial& elements, const GravParam& mu)
 {
 
     const auto& semilatus     = elements.get_semilatus();
@@ -211,12 +205,12 @@ Keplerian::Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys
     // Anomaly
     _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
 
-    sanitize_angles();
+    wrap_angles();
 }
 
-Keplerian::Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys)
+Keplerian::Keplerian(const OrbitalElements& elements, const GravParam& mu)
 {
-    *this = elements.in_element_set<Keplerian>(sys);
+    *this = elements.in_element_set<Keplerian>(mu);
 }
 
 // Copy constructor
@@ -352,8 +346,7 @@ Keplerian& Keplerian::operator/=(const Unitless& divisor)
     return *this;
 }
 
-Keplerian
-    Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+Keplerian Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::vector<Time> times = { thisTime, otherTime };
     const Distance interpSemimajor = math::interpolate<Time, Distance>(times, { _semimajor, other.get_semimajor() }, targetTime);
@@ -386,12 +379,12 @@ std::vector<Unitless> Keplerian::to_vector() const
              _argPerigee / astrea::detail::angle_unit,   _trueAnomaly / astrea::detail::angle_unit };
 }
 
-void Keplerian::sanitize_angles()
+void Keplerian::wrap_angles()
 {
-    _inclination    = sanitize_angle(_inclination);
-    _rightAscension = sanitize_angle(_rightAscension);
-    _argPerigee     = sanitize_angle(_argPerigee);
-    _trueAnomaly    = sanitize_angle(_trueAnomaly);
+    _inclination    = wrap_angle(_inclination);
+    _rightAscension = wrap_angle(_rightAscension);
+    _argPerigee     = wrap_angle(_argPerigee);
+    _trueAnomaly    = wrap_angle(_trueAnomaly);
 }
 
 

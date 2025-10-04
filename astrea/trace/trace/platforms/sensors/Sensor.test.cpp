@@ -39,7 +39,7 @@ TEST_F(SensorTest, GetId) { ASSERT_NO_THROW(sensor->get_id()); }
 
 // TEST_F(SensorTest, Contains)
 // {
-//     RadiusVector<ECI> sensor2target(1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 *
+//     RadiusVector<frames::earth::icrf> sensor2target(1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 *
 //     mp_units::si::unit_symbols::km); ASSERT_TRUE(sensor->contains(sensor2target, Date()));
 // }
 

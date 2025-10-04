@@ -21,8 +21,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -58,7 +58,7 @@ class Cartesian {
      * @param r Radius vector (position)
      * @param v Velocity vector
      */
-    Cartesian(const RadiusVector<ECI>& r, const VelocityVector<ECI>& v) :
+    Cartesian(const RadiusVector<frames::earth::icrf>& r, const VelocityVector<frames::earth::icrf>& v) :
         _r(r),
         _v(v)
     {
@@ -86,7 +86,7 @@ class Cartesian {
      * @param elements Another Cartesian object
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Cartesian& elements, const AstrodynamicsSystem& sys) :
+    Cartesian(const Cartesian& elements, const GravParam& mu) :
         Cartesian(elements)
     {
     }
@@ -97,7 +97,7 @@ class Cartesian {
      * @param elements Keplerian elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Keplerian& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Keplerian& elements, const GravParam& mu);
 
     /**
      * @brief Constructor for Cartesian from Equinoctial elements.
@@ -105,7 +105,7 @@ class Cartesian {
      * @param elements Equinoctial elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const Equinoctial& elements, const GravParam& mu);
 
     /**
      * @brief Constructor for Cartesian from OrbitalElements.
@@ -113,57 +113,57 @@ class Cartesian {
      * @param elements OrbitalElements object
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Cartesian(const OrbitalElements& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a LEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a LEO orbit.
      */
-    static Cartesian LEO(const AstrodynamicsSystem& system);
+    static Cartesian LEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a LMEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a LMEO orbit.
      */
-    static Cartesian LMEO(const AstrodynamicsSystem& system);
+    static Cartesian LMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a GPS orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a GPS orbit.
      */
-    static Cartesian GPS(const AstrodynamicsSystem& system);
+    static Cartesian GPS(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a HMEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a HMEO orbit.
      */
-    static Cartesian HMEO(const AstrodynamicsSystem& system);
+    static Cartesian HMEO(const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a GEO orbit.
      *
      * This method return predefined Cartesian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Cartesian Predefined Cartesian state vector for a GEO orbit.
      */
-    static Cartesian GEO(const AstrodynamicsSystem& system);
+    static Cartesian GEO(const GravParam& mu);
 
     /**
      * @brief Copy constructor for Cartesian.
@@ -226,8 +226,8 @@ class Cartesian {
      */
     Cartesian operator+(const Cartesian& other) const;
 
-    Cartesian operator+(const RadiusVector<ECI>& r) const;
-    Cartesian operator+(const VelocityVector<ECI>& v) const;
+    Cartesian operator+(const RadiusVector<frames::earth::icrf>& r) const;
+    Cartesian operator+(const VelocityVector<frames::earth::icrf>& v) const;
 
     /**
      * @brief Adds another Cartesian object to the current one.
@@ -237,8 +237,8 @@ class Cartesian {
      */
     Cartesian& operator+=(const Cartesian& other);
 
-    Cartesian& operator+=(const RadiusVector<ECI>& r);
-    Cartesian& operator+=(const VelocityVector<ECI>& v);
+    Cartesian& operator+=(const RadiusVector<frames::earth::icrf>& r);
+    Cartesian& operator+=(const VelocityVector<frames::earth::icrf>& v);
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -248,8 +248,8 @@ class Cartesian {
      */
     Cartesian operator-(const Cartesian& other) const;
 
-    Cartesian operator-(const RadiusVector<ECI>& r) const;
-    Cartesian operator-(const VelocityVector<ECI>& v) const;
+    Cartesian operator-(const RadiusVector<frames::earth::icrf>& r) const;
+    Cartesian operator-(const VelocityVector<frames::earth::icrf>& v) const;
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -259,8 +259,8 @@ class Cartesian {
      */
     Cartesian& operator-=(const Cartesian& other);
 
-    Cartesian& operator-=(const RadiusVector<ECI>& r);
-    Cartesian& operator-=(const VelocityVector<ECI>& v);
+    Cartesian& operator-=(const RadiusVector<frames::earth::icrf>& r);
+    Cartesian& operator-=(const VelocityVector<frames::earth::icrf>& v);
 
     /**
      * @brief Multiplies the Cartesian state vector by a scalar.
@@ -311,18 +311,18 @@ class Cartesian {
     Cartesian& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Cartesian state vector to a RadiusVector<ECI>.
+     * @brief Converts the Cartesian state vector to a RadiusVector<frames::earth::icrf>.
      *
-     * @return RadiusVector<ECI> The position vector in Cartesian coordinates.
+     * @return RadiusVector<frames::earth::icrf> The position vector in Cartesian coordinates.
      */
-    const RadiusVector<ECI>& get_position() const { return _r; }
+    const RadiusVector<frames::earth::icrf>& get_position() const { return _r; }
 
     /**
-     * @brief Converts the Cartesian state vector to a VelocityVector<ECI>.
+     * @brief Converts the Cartesian state vector to a VelocityVector<frames::earth::icrf>.
      *
-     * @return VelocityVector<ECI> The velocity vector in Cartesian coordinates.
+     * @return VelocityVector<frames::earth::icrf> The velocity vector in Cartesian coordinates.
      */
-    const VelocityVector<ECI>& get_velocity() const { return _v; }
+    const VelocityVector<frames::earth::icrf>& get_velocity() const { return _v; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -379,15 +379,15 @@ class Cartesian {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Cartesian state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
-    RadiusVector<ECI> _r;   //!< Position vector
-    VelocityVector<ECI> _v; //!< Velocity vector
+    RadiusVector<frames::earth::icrf> _r;   //!< Position vector
+    VelocityVector<frames::earth::icrf> _v; //!< Velocity vector
 };
 
 /**
@@ -427,7 +427,7 @@ class CartesianPartial {
      * @param v Velocity vector
      * @param a Acceleration vector
      */
-    CartesianPartial(const VelocityVector<ECI>& v, const AccelerationVector<ECI>& a) :
+    CartesianPartial(const VelocityVector<frames::earth::icrf>& v, const AccelerationVector<frames::earth::icrf>& a) :
         _v(v),
         _a(a)
     {
@@ -442,8 +442,8 @@ class CartesianPartial {
     Cartesian operator*(const Time& time) const;
 
   private:
-    VelocityVector<ECI> _v;     //!< Velocity vector
-    AccelerationVector<ECI> _a; //!< Acceleration vector
+    VelocityVector<frames::earth::icrf> _v;     //!< Velocity vector
+    AccelerationVector<frames::earth::icrf> _a; //!< Acceleration vector
 };
 
 } // namespace astro

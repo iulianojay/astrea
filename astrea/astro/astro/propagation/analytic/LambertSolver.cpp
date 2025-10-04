@@ -12,8 +12,8 @@
 
 #include <math/trig.hpp>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -28,8 +28,8 @@ using mp_units::angular::unit_symbols::rad;
 Cartesian LambertSolver::solve(const Cartesian& state0, const Time& dt, const GravParam& mu)
 {
     // Parse initial state
-    const RadiusVector<ECI> r0   = state0.get_position();
-    const VelocityVector<ECI> v0 = state0.get_velocity();
+    const RadiusVector<frames::earth::icrf> r0   = state0.get_position();
+    const VelocityVector<frames::earth::icrf> v0 = state0.get_velocity();
 
     // Constants
     const Distance R0 = r0.norm();
@@ -72,13 +72,13 @@ Cartesian LambertSolver::solve(const Cartesian& state0, const Time& dt, const Gr
             const quantity g = dt - 1.0 * one / sqMU * Xsq * X * Sz;
 
             // Find r
-            const RadiusVector<ECI> rf = f * r0 + g * v0;
-            const Distance Rf          = rf.norm();
+            const RadiusVector<frames::earth::icrf> rf = f * r0 + g * v0;
+            const Distance Rf                          = rf.norm();
 
             // Find v
-            const quantity fdot          = sqMU / (Rf * R0) * X * (z * Sz - 1.0 * one);
-            const quantity gdot          = 1.0 * one - Xsq / Rf * Cz;
-            const VelocityVector<ECI> vf = fdot * r0 + gdot * v0;
+            const quantity fdot                          = sqMU / (Rf * R0) * X * (z * Sz - 1.0 * one);
+            const quantity gdot                          = 1.0 * one - Xsq / Rf * Cz;
+            const VelocityVector<frames::earth::icrf> vf = fdot * r0 + gdot * v0;
 
             return Cartesian(rf, vf);
         }
@@ -89,8 +89,13 @@ Cartesian LambertSolver::solve(const Cartesian& state0, const Time& dt, const Gr
 }
 
 // r and r Lambert solver
-std::pair<VelocityVector<ECI>, VelocityVector<ECI>>
-    LambertSolver::solve(const RadiusVector<ECI>& r0, const RadiusVector<ECI>& rf, const Time& dt, const GravParam& mu, const LambertSolver::OrbitDirection& direction)
+std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icrf>> LambertSolver::solve(
+    const RadiusVector<frames::earth::icrf>& r0,
+    const RadiusVector<frames::earth::icrf>& rf,
+    const Time& dt,
+    const GravParam& mu,
+    const LambertSolver::OrbitDirection& direction
+)
 {
     // Constants
     const Distance R0   = r0.norm();
@@ -142,8 +147,8 @@ std::pair<VelocityVector<ECI>, VelocityVector<ECI>>
             const quantity divG = 1.0 / g;
 
             // v1 and v2
-            const VelocityVector<ECI> v0 = divG * (rf - f * r0);
-            const VelocityVector<ECI> vf = divG * (gdot * rf - r0);
+            const VelocityVector<frames::earth::icrf> v0 = divG * (rf - f * r0);
+            const VelocityVector<frames::earth::icrf> vf = divG * (gdot * rf - r0);
 
             return { v0, vf };
         }

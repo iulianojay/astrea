@@ -19,10 +19,10 @@ using mp_units::si::unit_symbols::s;
 
 class DummyForce : public Force {
   public:
-    AccelerationVector<ECI>
+    AccelerationVector<frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
     {
-        return AccelerationVector<ECI>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
 };
 

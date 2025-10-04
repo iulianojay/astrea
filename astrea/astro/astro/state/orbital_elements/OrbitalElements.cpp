@@ -119,7 +119,7 @@ std::vector<Unitless> OrbitalElements::to_vector() const
 }
 
 OrbitalElements
-    OrbitalElements::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const
+    OrbitalElements::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const GravParam& mu, const Time& targetTime) const
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
@@ -127,7 +127,7 @@ OrbitalElements
                 throw_mismatched_types();
             }
             const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-            return x.interpolate(thisTime, otherTime, y, sys, targetTime);
+            return x.interpolate(thisTime, otherTime, y, mu, targetTime);
         },
         _elements
     );
@@ -136,31 +136,31 @@ OrbitalElements
 const OrbitalElements::ElementVariant& OrbitalElements::extract() const { return _elements; }
 OrbitalElements::ElementVariant& OrbitalElements::extract() { return _elements; }
 
-OrbitalElements& OrbitalElements::convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys)
+OrbitalElements& OrbitalElements::convert_to_set(const std::size_t idx, const GravParam& mu)
 {
-    *this = convert_to_set_impl(idx, sys);
+    *this = convert_to_set_impl(idx, mu);
     return *this;
 }
 
-OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys) const
+OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const GravParam& mu) const
 {
-    return convert_to_set_impl(idx, sys);
+    return convert_to_set_impl(idx, mu);
 }
 
-OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const
+OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const GravParam& mu) const
 {
     // TODO: Surely, there's a better way to do this
     switch (idx) {
         case (OrbitalElements::get_set_id<Cartesian>()): { // ooh boy we're fragile
-            return in_element_set<Cartesian>(sys);
+            return in_element_set<Cartesian>(mu);
             break;
         }
         case (OrbitalElements::get_set_id<Keplerian>()): {
-            return in_element_set<Keplerian>(sys);
+            return in_element_set<Keplerian>(mu);
             break;
         }
         case (OrbitalElements::get_set_id<Equinoctial>()): {
-            return in_element_set<Equinoctial>(sys);
+            return in_element_set<Equinoctial>(mu);
             break;
         }
         default: throw std::runtime_error("Unrecognized element set requested.");

@@ -10,6 +10,10 @@
  */
 #pragma once
 
+#include <astro/frames/instances.fwd.hpp>
+#include <astro/frames/typedefs.hpp>
+#include <astro/types/enums.hpp>
+
 namespace astrea {
 namespace astro {
 
@@ -32,20 +36,25 @@ class OrbitalElementPartials;
 template <class Value_T, class Frame_T>
 class CartesianVector;
 
-template <class Frame_T>
+class StringLiteral;
+
+template <CelestialBodyId origin, FrameAxis axis>
 class Frame;
-template <class Frame_T>
+
+template <CelestialBodyId origin, FrameAxis axis>
+    requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
 class InertialFrame;
-template <class Frame_T, class Parent_Frame_T>
-class RotatingFrame;
-template <class Frame_T>
+
+template <CelestialBodyId origin>
+    requires(origin != CelestialBodyId::UNSET)
+class BodyFixedFrame;
+
+template <class Frame_T, FrameAxis axis>
+    requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::BODY_FIXED)
 class DynamicFrame;
 
 template <typename In_Frame_T, typename Out_Frame_T>
 class DirectionCosineMatrix;
-
-class EarthCenteredInertial;
-class EarthCenteredEarthFixed;
 
 // Platforms
 template <class Spacecraft_T>

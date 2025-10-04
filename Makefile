@@ -27,14 +27,14 @@ all: examples tests install
 # Conan commands - for now
 .PHONY: install
 install: build
-	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j 20
+	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j20
 
 .PHONY: build
 build: setup
 	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) -DBUILD_TESTS=$(build_tests) -DBUILD_EXAMPLES=$(build_examples) -DBUILD_STATIC=$(build_static)
 
 .PHONY: setup
-setup: 
+setup:
 	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing 
 
 .PHONY: debug
@@ -97,6 +97,11 @@ docker:
 clean:
 	@cmake --build $(build_path) --target clean
 
+.PHONY: clean-ephem
+clean-ephem:
+	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.hpp')
+	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.cpp')
+
 .PHONY: new
 new: 
 	rm -rf build
@@ -115,3 +120,19 @@ coverage-html: debug run_tests run_examples
 .PHONY: coverage
 coverage: debug run_tests run_examples
 	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
+
+.PHONY: build_env
+build_env: 
+	rm -rf .venv
+	python3 -m venv .venv
+
+.PHONY: activate_env
+activate_env:
+	source .venv/bin/activate
+
+.PHONY: install_deps
+install_deps:
+	.venv/bin/pip install -r requirements.txt
+
+.PHONY: python_env
+python_env: build_env activate_env install_deps

@@ -44,7 +44,7 @@ TEST_F(TwoBodyTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), Orbit
 
 TEST_F(TwoBodyTest, Derivative)
 {
-    Cartesian state0          = Cartesian::LEO(sys);
+    Cartesian state0          = Cartesian::LEO(sys.get_mu());
     CartesianPartial expected = CartesianPartial(
         state0.get_vx(), state0.get_vy(), state0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );

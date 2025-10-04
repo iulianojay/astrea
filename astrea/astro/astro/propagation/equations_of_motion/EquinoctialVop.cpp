@@ -6,9 +6,9 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 
@@ -31,10 +31,10 @@ EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceMod
 
 OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
     // Get need representations
-    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(get_system());
-    const Cartesian cartesian     = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu           = get_system().get_mu();
+    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(mu);
+    const Cartesian cartesian     = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -45,16 +45,16 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<ECI> r   = cartesian.get_position();
-    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // Function for finding accel caused by perturbations
-    const Date date                          = vehicle.get_state().get_epoch();
-    const AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date = vehicle.get_state().get_epoch();
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const RIC ricFrame                     = RIC::instantaneous(r, v);
-    const AccelerationVector<RIC> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
+    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();

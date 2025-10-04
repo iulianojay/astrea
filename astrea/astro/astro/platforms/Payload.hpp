@@ -12,21 +12,21 @@
 
 #include <memory>
 
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
-static const astro::RadiusVector<astro::RIC> NADIR_RIC = { -1.0 * astrea::detail::distance_unit,
-                                                           0.0 * astrea::detail::distance_unit,
-                                                           0.0 * astrea::detail::distance_unit };
-static const astro::RadiusVector<astro::RIC> CENTER    = { 0.0 * astrea::detail::distance_unit,
-                                                           0.0 * astrea::detail::distance_unit,
-                                                           0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC = { -1.0 * astrea::detail::distance_unit,
+                                                                            0.0 * astrea::detail::distance_unit,
+                                                                            0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER    = { 0.0 * astrea::detail::distance_unit,
+                                                                            0.0 * astrea::detail::distance_unit,
+                                                                            0.0 * astrea::detail::distance_unit };
 
 /**
  * @brief Class for storing and managing payload parameters.
@@ -39,7 +39,10 @@ class PayloadParameters {
      * @param boresight Boresight direction in RIC coordinates (default is Nadir).
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
-    PayloadParameters(const astro::RadiusVector<astro::RIC>& boresight = NADIR_RIC, const astro::RadiusVector<astro::RIC>& attachmentPoint = CENTER) :
+    PayloadParameters(
+        const astro::RadiusVector<astro::frames::dynamic::ric>& boresight       = NADIR_RIC,
+        const astro::RadiusVector<astro::frames::dynamic::ric>& attachmentPoint = CENTER
+    ) :
         _boresight(boresight),
         _attachmentPoint(attachmentPoint)
     {
@@ -54,37 +57,37 @@ class PayloadParameters {
     /**
      * @brief Get the boresight direction of the payload.
      *
-     * @return astro::RadiusVector<astro::RIC> Boresight direction of the payload.
+     * @return astro::RadiusVector<astro::frames::dynamic::ric>Boresight direction of the payload.
      */
-    astro::RadiusVector<astro::RIC> get_boresight() const { return _boresight; }
+    astro::RadiusVector<astro::frames::dynamic::ric> get_boresight() const { return _boresight; }
 
     /**
      * @brief Get the attachment point of the payload.
      *
-     * @return astro::RadiusVector<astro::RIC> Attachment point of the payload.
+     * @return astro::RadiusVector<astro::frames::dynamic::ric>Attachment point of the payload.
      */
-    astro::RadiusVector<astro::RIC> get_attachment_point() const { return _attachmentPoint; }
+    astro::RadiusVector<astro::frames::dynamic::ric> get_attachment_point() const { return _attachmentPoint; }
 
     /**
      * @brief Set the boresight direction of the payload.
      *
-     * @param boresight astro::RadiusVector<astro::RIC> Boresight direction of the payload.
+     * @param boresight astro::RadiusVector<astro::frames::dynamic::ric>Boresight direction of the payload.
      */
-    void set_boresight(const astro::RadiusVector<astro::RIC>& boresight) { _boresight = boresight; }
+    void set_boresight(const astro::RadiusVector<astro::frames::dynamic::ric>& boresight) { _boresight = boresight; }
 
     /**
      * @brief Set the attachment point of the payload.
      *
-     * @param attachmentPoint astro::RadiusVector<astro::RIC> Attachment point of the payload.
+     * @param attachmentPoint astro::RadiusVector<astro::frames::dynamic::ric>Attachment point of the payload.
      */
-    void set_attachment_point(const astro::RadiusVector<astro::RIC>& attachmentPoint)
+    void set_attachment_point(const astro::RadiusVector<astro::frames::dynamic::ric>& attachmentPoint)
     {
         _attachmentPoint = attachmentPoint;
     }
 
   protected:
-    astro::RadiusVector<astro::RIC> _boresight; //!< Boresight vector of the payload, indicating the direction it is pointing
-    astro::RadiusVector<astro::RIC> _attachmentPoint; //!< Attachment point of the payload on the platform
+    astro::RadiusVector<astro::frames::dynamic::ric> _boresight; //!< Boresight vector of the payload, indicating the direction it is pointing
+    astro::RadiusVector<astro::frames::dynamic::ric> _attachmentPoint; //!< Attachment point of the payload on the platform
 
     // TODO: Make a fixed-offset frame for attachment point
 };

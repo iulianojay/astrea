@@ -74,17 +74,17 @@ class GroundStation : public GroundPoint, public SensorPlatform {
      * @brief Get the inertial position of the ground station in the ECI frame.
      *
      * @param date The date for which to compute the position.
-     * @return RadiusVector<ECI> The inertial position of the ground station.
+     * @return RadiusVector<frames::earth::icrf> The inertial position of the ground station.
      */
-    astro::CartesianVector<Distance, astro::EarthCenteredInertial> get_inertial_position(const astro::Date& date) const;
+    astro::CartesianVector<Distance, astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const;
 
     /**
      * @brief Get the inertial velocity of the ground station in the ECI frame.
      *
      * @param date The date for which to compute the velocity.
-     * @return VelocityVector<ECI> The inertial velocity of the ground station.
+     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the ground station.
      */
-    astro::CartesianVector<Velocity, astro::EarthCenteredInertial> get_inertial_velocity(const astro::Date& date) const;
+    astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
 
   private:
     std::string _name; //!< Name of the ground station.

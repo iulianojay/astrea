@@ -79,25 +79,25 @@ class NullVehicle : public FrameReference {
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, EarthCenteredInertial>
+     * @return CartesianVector<Distance, frames::earth::icrf>
      */
-    CartesianVector<Distance, EarthCenteredInertial> get_inertial_position(const Date& date) const final;
+    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const final;
 
     /**
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, EarthCenteredInertial>
+     * @return CartesianVector<Velocity, frames::earth::icrf>
      */
-    CartesianVector<Velocity, EarthCenteredInertial> get_inertial_velocity(const Date& date) const final;
+    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const final;
 
     /**
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the acceleration.
-     * @return CartesianVector<Acceleration, EarthCenteredInertial>
+     * @return CartesianVector<Acceleration, frames::earth::icrf>
      */
-    CartesianVector<Acceleration, EarthCenteredInertial> get_inertial_acceleration(const Date& date) const final;
+    CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const final;
 
   private:
     State _state0; // Initial state of the vehicle

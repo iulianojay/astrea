@@ -144,8 +144,8 @@ AccessArray find_accesses(
  * @return false If the two states are not occulting each other.
  */
 bool is_earth_occulting(
-    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& position1,
-    const astro::CartesianVector<Distance, astro::EarthCenteredInertial>& position2,
+    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& position1,
+    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& position2,
     const astro::AstrodynamicsSystem& sys
 );
 
