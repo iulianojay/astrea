@@ -1,5 +1,7 @@
 #include <astro/propagation/force_models/NBodyForce.hpp>
 
+#include <iostream>
+
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
@@ -20,65 +22,42 @@ using mp_units::si::unit_symbols::s;
 AccelerationVector<frames::earth::icrf>
     NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-
     // Extract
-    const Distance& x = state.get_x();
-    const Distance& y = state.get_y();
-    const Distance& z = state.get_z();
+    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
     // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
-    static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
 
     // Find day nearest to current time
-    const Date epoch                        = vehicle.get_state().get_epoch();
-    const OrbitalElements& stateSunToCenter = center->get_keplerian_elements_at(date);
-    const RadiusVector<frames::earth::icrf> radiusSunToCenter =
-        stateSunToCenter.in_element_set<Cartesian>(sun->get_mu()).get_position();
-
-    // Radius from central body to sun
-    const RadiusVector<frames::earth::icrf> radiusCenterToSun{ // flip vector direction
-                                                               -radiusSunToCenter[0],
-                                                               -radiusSunToCenter[1],
-                                                               -radiusSunToCenter[2]
-    };
+    const RadiusVector<frames::solar_system_barycenter::icrf> rCenterToSsb = -center->get_position_at(date);
 
     // Reset perturbation
     AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * km / (s * s) };
-    for (const auto& [name, body] : sys.get_all_bodies()) {
+    for (const auto& [id, body] : sys) {
 
-        if (body == center) { continue; }
+        if (body->get_name() == center->get_name()) { continue; }
 
-        // Find day nearest to current time
-        const OrbitalElements stateCenterToNBody = center->get_keplerian_elements_at(date);
-        const RadiusVector<frames::earth::icrf> radiusCenterToNbody =
-            stateCenterToNBody.in_element_set<Cartesian>(sun->get_mu()).get_position();
-        // TODO: This won't work for bodies in other planetary systems. Need a function like sys.get_radius_to_sun("name");
-
-        // Find radius from central body and spacecraft to nth body
-        const RadiusVector<frames::earth::icrf> radiusVehicleToNbody{ radiusCenterToNbody[0] - x,
-                                                                      radiusCenterToNbody[1] - y,
-                                                                      radiusCenterToNbody[2] - z };
+        // Find center to nth body and spacecraft to nth body
+        RadiusVector<frames::earth::icrf> rCenterToNbody;
+        if (body->get_type() == CelestialBodyType::MOON) {
+            // Moons return position w.r.t their planet. TODO: Fix this. This will only work for the Earth-Moon system right now
+            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
+        }
+        else {
+            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::earth::icrf>(); // Gross
+        }
+        const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize
-        const quantity radiusVehicleToNbodyMagnitude = sqrt(
-            radiusVehicleToNbody[0] * radiusVehicleToNbody[0] + radiusVehicleToNbody[1] * radiusVehicleToNbody[1] +
-            radiusVehicleToNbody[2] * radiusVehicleToNbody[2]
-        );
-        const quantity radiusCenterToNbodyMagnitude = sqrt(
-            radiusCenterToNbody[0] * radiusCenterToNbody[0] + radiusCenterToNbody[1] * radiusCenterToNbody[1] +
-            radiusCenterToNbody[2] * radiusCenterToNbody[2]
-        );
+        const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
+        const Distance rMagCenterToNbody  = rCenterToNbody.norm();
 
         // Perturbational force from nth body
-        const quantity directCoefficient =
-            body->get_mu() / (radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude * radiusVehicleToNbodyMagnitude);
-        const quantity indirectCoefficient =
-            body->get_mu() / (radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude * radiusCenterToNbodyMagnitude);
+        const GravParam mu                 = body->get_mu();
+        const quantity directCoefficient   = mu / pow<3>(rMagVehicleToNbody);
+        const quantity indirectCoefficient = mu / pow<3>(rMagCenterToNbody);
 
-        accelNBody[0] += directCoefficient * radiusVehicleToNbody[0] - indirectCoefficient * radiusCenterToNbody[0];
-        accelNBody[1] += directCoefficient * radiusVehicleToNbody[1] - indirectCoefficient * radiusCenterToNbody[1];
-        accelNBody[2] += directCoefficient * radiusVehicleToNbody[2] - indirectCoefficient * radiusCenterToNbody[2];
+        accelNBody += directCoefficient * rVehicleToNbody - indirectCoefficient * rCenterToNbody;
     }
 
     return accelNBody;

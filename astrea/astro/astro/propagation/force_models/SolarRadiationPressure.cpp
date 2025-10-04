@@ -29,55 +29,49 @@ AccelerationVector<frames::earth::icrf>
     static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
 
     // Extract
-    const Distance& x = state.get_x();
-    const Distance& y = state.get_y();
-    const Distance& z = state.get_z();
-
-    const RadiusVector<frames::earth::icrf> r = state.get_position();
-    const Distance R                          = r.norm();
+    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
+    const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 
     // Central body properties
-    static const Distance& equitorialR = center->get_equitorial_radius();
-    static const bool isSun            = (center->get_name() == "Sun");
+    static const bool isSun = (center->get_id() == CelestialBodyId::SUN);
 
     // Find day nearest to current time
     const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToCenter = center->get_position_at(date);
     const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
 
     // Radius from central body to sun
-    RadiusVector<frames::earth::icrf> radiusCenterToSun =
-        (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::earth::icrf>(); // TODO: Should this use the translate function? I hate that function.
-    const Distance radialMagnitudeCenterToSun = radiusCenterToSun.norm();
+    RadiusVector<frames::earth::icrf> rCenterToSun = (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::earth::icrf>(); // TODO: Should this use the translate function? I hate that function.
+    const Distance rMagCenterToSun = rCenterToSun.norm();
 
-    const RadiusVector<frames::earth::icrf> radiusVehicleToSun = radiusCenterToSun - r;
-    const Distance radialMagnitudeVehicleToSun                 = radiusVehicleToSun.norm();
+    const RadiusVector<frames::earth::icrf> rVehicleToSun = rCenterToSun - rCenterToVehicle;
+    const Distance rMagVehicleToSun                       = rVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU scaled to average distance from Sun
-    static const quantity<N / pow<2>(m)> solarRadiationPressureAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
-    const quantity<N / pow<2>(m)> solarRadiationPressure               = solarRadiationPressureAtOneAU * (au * au) /
-                                                           (radialMagnitudeVehicleToSun * radialMagnitudeVehicleToSun); // Scale by(1AU/R)^2 for other bodies
+    static const quantity<N / pow<2>(m)> srpAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
+    const quantity<N / pow<2>(m)> srp =
+        srpAtOneAU * (au * au) / (rMagVehicleToSun * rMagVehicleToSun); // Scale by(1AU/R)^2 for other bodies
 
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (!isSun) {
+        static const Distance& equitorialR = center->get_equitorial_radius();
+
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
-        const Angle refAngle = angular::acos(
-            (radiusCenterToSun[0] * x + radiusCenterToSun[1] * y + radiusCenterToSun[2] * z) / (radialMagnitudeCenterToSun * R)
-        );
-        const Angle refAngle1 = angular::acos(equitorialR / R);
-        const Angle refAngle2 = angular::acos(equitorialR / radialMagnitudeCenterToSun);
+        const Angle refAngle = angular::acos(rCenterToSun.dot(rCenterToVehicle) / (rMagCenterToSun * rMagCenterToVehicle));
+        const Angle refAngle1 = angular::acos(equitorialR / rMagCenterToVehicle);
+        const Angle refAngle2 = angular::acos(equitorialR / rMagCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
             static const Distance diamSun = 696000.0 * km;
-            const Distance Xu             = equitorialR * radialMagnitudeCenterToSun / (diamSun - equitorialR);
+            const Distance Xu             = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<frames::earth::icrf> rP = -Xu * radiusCenterToSun / radialMagnitudeCenterToSun;
+            const RadiusVector<frames::earth::icrf> rP = -Xu * rCenterToSun / rMagCenterToSun;
             const Distance normRP                      = rP.norm();
 
-            const RadiusVector<frames::earth::icrf> rPs = r - rP;
+            const RadiusVector<frames::earth::icrf> rPs = rCenterToVehicle - rP;
             const Distance normRPs                      = rPs.norm();
-            const Angle alphaps = abs(angular::asin((-rPs[0] * rP[0] - rPs[1] * rP[1] - rPs[2] * rP[2]) / (normRP * normRPs)));
+            const Angle alphaps                         = abs(angular::asin(-rPs.dot(rP) / (normRP * normRPs)));
 
             if (alphaps < angular::asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
@@ -92,12 +86,11 @@ AccelerationVector<frames::earth::icrf>
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity accelRelativeMagnitude    = -solarRadiationPressure * fractionOfRecievedSunlight *
-                                            coefficientOfReflectivity * areaSun / (mass * radialMagnitudeVehicleToSun);
+    const quantity accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / (mass * rMagVehicleToSun);
 
-    const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelativeMagnitude * radiusVehicleToSun[0],
-                                                               accelRelativeMagnitude * radiusVehicleToSun[1],
-                                                               accelRelativeMagnitude * radiusVehicleToSun[2] };
+    const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelMag * rVehicleToSun[0],
+                                                               accelRelMag * rVehicleToSun[1],
+                                                               accelRelMag * rVehicleToSun[2] };
 
     return accelSRP;
 }

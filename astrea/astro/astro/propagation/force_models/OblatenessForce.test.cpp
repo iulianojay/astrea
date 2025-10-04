@@ -31,7 +31,7 @@ class OblatenessForceTest : public testing::Test {
     void SetUp() override
     {
         // Vallado Ex. 8.5
-        sat.set_mass(100.0 * kg);
+        sat.set_mass(1000.0 * kg);
         sat.set_coefficient_of_drag(2.2 * one);
         sat.set_coefficient_of_lift(0.0 * one);
         sat.set_coefficient_of_reflectivity(1.0 * one);
