@@ -36,6 +36,7 @@ jobs:
 
     - name: Build
       run: |
+        make python_env
         make release all
 
     - name: Run Tests

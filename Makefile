@@ -120,3 +120,19 @@ coverage-html: debug run_tests run_examples
 .PHONY: coverage
 coverage: debug run_tests run_examples
 	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
+
+.PHONY: build_env
+build_env: 
+	rm -rf .venv
+	python3 -m venv .venv
+
+.PHONY: activate_env
+activate_env:
+	source .venv/bin/activate
+
+.PHONY: install_deps
+install_deps:
+	.venv/bin/pip install -r requirements.txt
+
+.PHONY: python_env
+python_env: build_env activate_env install_deps

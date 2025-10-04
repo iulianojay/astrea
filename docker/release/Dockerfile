@@ -27,7 +27,6 @@ RUN apt-get update && \
     git \
     && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install conan --break-system-packages
 
 COPY .conan2/ $ASTREA_ROOT/.conan2
 COPY astrea $ASTREA_ROOT/astrea 
@@ -46,13 +45,15 @@ RUN mkdir /github/home/open-source && \
     git checkout v2.4.0 && \
     cd $ASTREA_ROOT
 
+RUN make python_env
 RUN make release all
 
 FROM base AS final
 
+COPY --from=build $ASTREA_ROOT/.venv $ASTREA_ROOT/.venv
 COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
 COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
 COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile 
 COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern 
-COPY data $ASTREA_ROOT/data 
+COPY astrea/astro/data $ASTREA_ROOT/astrea/astro/data 
 
