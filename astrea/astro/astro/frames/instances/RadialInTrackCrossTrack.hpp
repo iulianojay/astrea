@@ -52,12 +52,12 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> get_dcm(const Date& date) const
     {
         const auto r = get_inertial_position(date).unit();
         const auto v = get_inertial_velocity(date).unit();
         const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric>::from_vectors(r, -r.cross(h), h);
+        return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack>::from_vectors(r, -r.cross(h), h);
     }
 
   private:
@@ -72,6 +72,10 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
     {
     }
 };
+
+namespace dynamic {
+using ric = RadialInTrackCrossTrack;
+} // namespace dynamic
 
 } // namespace frames
 } // namespace astro

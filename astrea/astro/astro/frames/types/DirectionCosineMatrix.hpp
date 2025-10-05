@@ -11,6 +11,7 @@
 #pragma once
 
 #include <array>
+#include <iostream>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -210,10 +211,10 @@ struct DcmManager {
         if constexpr (IsSameFrame<Frame_T, Frame_U>) {
             return astrea::astro::DCM<Frame_T, Frame_U>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
         }
-        else if constexpr (HasDcm<Frame_T, Frame_U> && !HasDcm<Frame_U, Frame_T>) {
+        else if constexpr (HasDcm<Frame_T, Frame_U>) {
             return astrea::astro::get_dcm<Frame_T, Frame_U>(date);
         }
-        else if constexpr (!HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>) {
+        else if constexpr (HasDcm<Frame_U, Frame_T>) {
             return astrea::astro::get_dcm<Frame_U, Frame_T>(date).transpose();
         }
         throw std::logic_error("How did you get here?");

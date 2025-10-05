@@ -13,6 +13,7 @@
 #include <vector>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/dynamic_frames.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>

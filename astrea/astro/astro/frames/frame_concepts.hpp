@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <concepts>
+
 #include <astro/astro.fwd.hpp>
 
 namespace astrea {
@@ -22,9 +24,7 @@ namespace astro {
  * @return true if the frame is inertial (ICRF or J2000), false otherwise.
  */
 template <typename Frame_T>
-concept IsInertialFrame = requires {
-    { Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000 };
-};
+concept IsInertialFrame = (Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000);
 
 /**
  * @brief Concept to determine if a frame is body-fixed.
@@ -33,9 +33,7 @@ concept IsInertialFrame = requires {
  * @return true if the frame is body-fixed, false otherwise.
  */
 template <typename Frame_T>
-concept IsBodyFixedFrame = requires {
-    { Frame_T::get_axis() == FrameAxis::BODY_FIXED };
-};
+concept IsBodyFixedFrame = (Frame_T::get_axis() == FrameAxis::BODY_FIXED);
 
 /**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).
@@ -44,11 +42,8 @@ concept IsBodyFixedFrame = requires {
  * @return true if the frame is static, false otherwise.
  */
 template <typename Frame_T>
-concept IsStaticFrame = requires {
-    {
-        Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000 || Frame_T::get_axis() == FrameAxis::BODY_FIXED
-    };
-};
+concept IsStaticFrame =
+    (Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000 || Frame_T::get_axis() == FrameAxis::BODY_FIXED);
 
 /**
  * @brief Concept to determine if a frame is dynamic (LVLH, RIC, VNB).
@@ -57,11 +52,8 @@ concept IsStaticFrame = requires {
  * @return true if the frame is dynamic, false otherwise.
  */
 template <typename Frame_T>
-concept IsDynamicFrame = requires {
-    {
-        Frame_T::get_axis() == FrameAxis::LVLH || Frame_T::get_axis() == FrameAxis::RIC || Frame_T::get_axis() == FrameAxis::VNB
-    };
-};
+concept IsDynamicFrame =
+    (Frame_T::get_axis() == FrameAxis::LVLH || Frame_T::get_axis() == FrameAxis::RIC || Frame_T::get_axis() == FrameAxis::VNB);
 
 /**
  * @brief Concept to determine if two frames share the same origin.
@@ -71,9 +63,7 @@ concept IsDynamicFrame = requires {
  * @return true if both frames share the same origin, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasSameOrigin = requires {
-    { Frame_T::get_origin() == Frame_U::get_origin() };
-};
+concept HasSameOrigin = (Frame_T::get_origin() == Frame_U::get_origin());
 
 /**
  * @brief Concept to determine if two frames share the same axis.
@@ -83,9 +73,7 @@ concept HasSameOrigin = requires {
  * @return true if both frames share the same axis, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasSameAxis = requires {
-    { Frame_T::get_axis() == Frame_U::get_axis() };
-};
+concept HasSameAxis = (Frame_T::get_axis() == Frame_U::get_axis());
 
 /**
  * @brief Concept to determine if two frames are the same (same origin and same axis).
@@ -95,12 +83,7 @@ concept HasSameAxis = requires {
  * @return true if both frames are the same, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept IsSameFrame = requires {
-    requires HasSameOrigin<Frame_T, Frame_U>;
-    requires HasSameAxis<Frame_T, Frame_U>;
-    { Frame_T::get_origin() != CelestialBodyId::CUSTOM }; // dynamic frames will look the same
-    { Frame_U::get_origin() != CelestialBodyId::CUSTOM };
-};
+concept IsSameFrame = HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>;
 
 /**
  * @brief Concept to determine if a Direction Cosine Matrix (DCM) can be obtained between two frames at a given date.
@@ -111,9 +94,7 @@ concept IsSameFrame = requires {
  * @return true if the specialization of get_dcm has been defined, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasDcm = requires(const Date& date) {
-    { get_dcm<Frame_T, Frame_U>(date) };
-};
+concept HasDcm = requires(const Date& date) { get_dcm<Frame_T, Frame_U>(date); };
 
 /**
  * @brief Concept to determine if a frame class has a member function to obtain the Direction Cosine Matrix (DCM) to another frame at a given date.
@@ -125,9 +106,8 @@ concept HasDcm = requires(const Date& date) {
  * @return true if the frame class has a member function get_dcm for the target frame, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasDcmMethod = requires(const Frame_T& frame, const Date& date) {
-    { frame.template get_dcm<Frame_T, Frame_U>(date) };
-};
+concept HasDcmMethod =
+    requires(const Frame_T& frame, const Date& date) { frame.template get_dcm<Frame_T, Frame_U>(date); };
 
 } // namespace astro
 } // namespace astrea

@@ -69,12 +69,13 @@ RadiusVector<frames::solar_system_barycenter::icrf> CelestialBody::get_position_
     const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
 
     // Position in perifocal frame
-    const RadiusVector<frames::dynamic::perifocal> rPerifocal{ a * (cos(eccentricAnomaly) - ecc),
-                                                               a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
-                                                               0.0 * m };
+    class perifocal;
+    const RadiusVector<perifocal> rPerifocal{ a * (cos(eccentricAnomaly) - ecc),
+                                              a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
+                                              0.0 * m };
 
     // Rotate to the J2000 frame
-    const DCM<frames::dynamic::perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
+    const DCM<perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
         { // TODO: Figure this out
           std::array<Unitless, 3>{ cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
                                    -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),

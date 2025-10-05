@@ -17,13 +17,23 @@
 #include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/FrameReference.hpp>
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/instances/EarthCenteredEarthFixed.hpp>
+#include <astro/frames/transformations.hpp>
+
+#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/instances/VelocityNormalBinormal.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/instances/body_fixed_frames.hpp>
+#include <astro/frames/instances/defined_rotations.hpp>
 #include <astro/frames/types/BodyFixedFrame.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/frames/types/InertialFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>

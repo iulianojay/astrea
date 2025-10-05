@@ -13,6 +13,7 @@
 #include <vector>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frames.hpp>
 #include <units/units.hpp>
 #include <utilities/ProgressBar.hpp>
 

@@ -15,7 +15,11 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/instances/defined_rotations.hpp>
+#include <astro/frames/types/BodyFixedFrame.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/InertialFrame.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {

@@ -81,19 +81,22 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
     
-    ${ASTRO_BASE}/frames/instances/EarthCenteredEarthFixed.hpp
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
+    ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
+    ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
     ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/frames/types/InertialFrame.hpp
     ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
     ${ASTRO_BASE}/frames/CartesianVector.hpp
+    ${ASTRO_BASE}/frames/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/frame_concepts.hpp
     ${ASTRO_BASE}/frames/Frame.hpp
     ${ASTRO_BASE}/frames/FrameReference.hpp
-    ${ASTRO_BASE}/frames/instances.fwd.hpp
+    ${ASTRO_BASE}/frames/frames.hpp
     ${ASTRO_BASE}/frames/transformations.hpp
-    ${ASTRO_BASE}/frames/typedefs.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp
