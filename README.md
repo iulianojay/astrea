@@ -318,7 +318,7 @@ On build, files should be installed locally in the `install` folder. This proces
 
 ## License and acknowledgments
 
-- License: See LICENSE
+- License: Astrea is licensed under the GNU Lesser General Public License (LGPL). See LICENSE and LICENSE.LESSER for details.
 - Built using the follwing open-source libraries and tools:
     * [mp-units](https://github.com/mpusz/mp-units)
     * [googletest](https://github.com/google/googletest)

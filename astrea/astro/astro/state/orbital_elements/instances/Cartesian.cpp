@@ -1,4 +1,6 @@
 /*
+ * The GNU Lesser General Public License (LGPL)
+ *
  * Copyright (c) 2025 Jay Iuliano
  *
  * This file is part of Astrea.
