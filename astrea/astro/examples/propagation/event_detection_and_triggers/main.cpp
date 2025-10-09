@@ -23,7 +23,7 @@ int main()
 
     // Setup initial state
     AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;
+    const Date epoch;        // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch, sys);
 
@@ -34,8 +34,8 @@ int main()
     Vehicle vehicle(sat);
 
     // Build EoMs
-    ForceModel forces;
     TwoBody eoms(sys);
+    // ForceModel forces; // We could add forces if we wanted
     // KeplerianVop eoms(sys, forces, false);
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
@@ -46,7 +46,8 @@ int main()
     integrator.switch_fixed_timestep(true, 60.0 * s);
 
     bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), days(1) };
+    Interval propInterval{ seconds(0), days(1) }; // A propagation interval relative to the epoch. Intervals
+                                                  // can also be negative for backwards propagation.
 
     // Currently, Astrea only defines a single event, an ImpulsiveBurn which triggers at perigee crossing and always
     // burns in the velocity direction. The impulsive burn event uses the thrust of all attached thrusters in a simple

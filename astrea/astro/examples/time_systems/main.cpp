@@ -22,8 +22,8 @@ int main()
     // But users can create Date objects from any supported clock type
     // or from calendar date strings
     Date now = Date::now();
-    Date fromString{ "2024-01-01 00:00:00" }; // UTC by default
-    Date fromFormattedString{ "2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S" };
+    Date fromString{ "2024-01-01 00:00:00" };                               // UTC by default
+    Date fromFormattedString{ "2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S" }; // Users can use custom formats
 
     // Under the hood, the Date class stores time values as a Julian date, and
     // uses std::chrono to handle precision and duration arithmetic.
@@ -38,6 +38,7 @@ int main()
     const auto utc        = date.utc();
     const auto gps        = date.gps();
     const auto sys        = date.sys();
+    const auto tai        = date.tai();
 
     // Users can also convert to other clock types manually
     auto highResClockTime = date.in_clock<std::chrono::high_resolution_clock>();

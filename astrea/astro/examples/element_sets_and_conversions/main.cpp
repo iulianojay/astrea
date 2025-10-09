@@ -18,8 +18,6 @@ int main()
     // - Classical Orbital Elements (Keplerian)
     // - Modified Equinoctial Elements (Equinoctial)
     // - State Vectors (Cartesian)
-    // Each element set can be defined independent of a reference system, but a reference system is required
-    // for conversions and propagation.
 
     // For now, the Cartesian element set is defined in the ECI frame, but future releases will support
     // other frames as well.
@@ -29,7 +27,7 @@ int main()
     std::cout << "Cartesian: " << cartesian << std::endl;
 
     // Conversions at the instance level are done through constructors
-    AstrodynamicsSystem sys; // Default system is Earth
+    AstrodynamicsSystem sys; // Default system is Earth-Moon system
     const auto& mu = sys.get_mu();
     Keplerian keplerian{ cartesian, mu };
     Equinoctial equinoctial{ keplerian, mu };

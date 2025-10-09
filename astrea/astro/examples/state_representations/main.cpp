@@ -16,7 +16,7 @@ int main()
     // The Astrea State is a fully-defined state representation that can hold any supported
     // orbital element set, an epoch, and the system the set is defined in. Currently, it does not
     // support angular (kinematic) states, but this will be added in a future release.
-    AstrodynamicsSystem sys; // Default system is Earth
+    AstrodynamicsSystem sys; // Default system is Earth-Moon
     Cartesian cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };

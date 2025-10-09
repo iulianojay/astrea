@@ -23,18 +23,20 @@ int main()
         {
         }
 
+        // Currently, forces are expected to return acceleration in the Earth-centered ICRF frame. Future releases will
+        // allow forces to specify the output frame.
         AccelerationVector<frames::earth::icrf>
             compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
         {
-            const astro::frames::dynamic::ric frame =
-                frames::dynamic::ric::instantaneous(state.get_position(), state.get_velocity());
-            const AccelerationVector<astro::frames::dynamic::ric> nadirAccel{ -1.0 * m / (s * s),
-                                                                              0.0 * m / (s * s),
-                                                                              0.0 * m / (s * s) };
+            // Build out a burn in the RIC frame, pointing in the nadir direction
+            using RIC       = astro::frames::dynamic::ric;
+            const RIC frame = frames::dynamic::ric::instantaneous(state.get_position(), state.get_velocity());
+            const AccelerationVector<RIC> nadirAccel{ -1.0 * m / (s * s), 0.0 * m / (s * s), 0.0 * m / (s * s) };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
             std::cout << nadirAccel << std::endl;
 
+            // Rotate the acceleration back to the inertial frame for output
             return frame.rotate_out_of_this_frame(nadirAccel, date);
         }
 

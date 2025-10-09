@@ -22,7 +22,7 @@ int main()
 
     // Setup initial state
     AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;
+    const Date epoch;        // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch, sys);
 
@@ -31,8 +31,8 @@ int main()
     Spacecraft sat(state0);
     Vehicle vehicle(sat);
 
-    // Build a force model - two-body gravity is included by default, but this may be changed in future releases to give
-    // users more flexibility.
+    // Build a force model - point mass gravity is always included, but this may be changed in future releases to
+    // give users more flexibility.
     ForceModel forces;
     forces.add<AtmosphericForce>();
     forces.add<OblatenessForce>(sys, 10, 10);
@@ -51,7 +51,8 @@ int main()
     integrator.set_rel_tol(1.0e-10);
 
     bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), minutes(1) };
+    Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals
+                                                     // can also be negative for backwards propagation.
 
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
