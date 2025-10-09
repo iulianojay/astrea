@@ -133,6 +133,7 @@ activate_env:
 .PHONY: install_deps
 install_deps:
 	.venv/bin/pip install -r requirements.txt
+	.venv/bin/pip install conan
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps
