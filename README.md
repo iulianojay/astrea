@@ -29,6 +29,10 @@ This is a passion project that has largely been developed largely by a single de
     - Celestial bodies, and system definitions
     - Custom force models, integrators, equations of motion, event detection, and analytic solvers
 - Custom mathamatics routines that work with mp-units types
+- In house propagation with user-defined event detection
+    - Numerical and analytic propagation methods supported 
+    - Framework for user-defined forces, and equations of motion
+- Impulsive and continuous thrust support
 - Partial SPICE integration 
     - Chebyshev polynomials compiled directly for planets and the Moon
     - Fast ephemris access with SPICE accuracy
@@ -250,15 +254,19 @@ Examples have been built out more completely for the astro tool in Astrea (astre
 ## What's coming?
 
 - User-friendly installation
+    - cmake packaging
+    - compiled deployments
+    - support for different environments and operating systems
 - High fidelity VnV
     - Real world comparisons using GPS data
 - Speed guarantees using Google Benchmark
 - More complete element set definitions and faster transformations
 - Maneuvers, and full 6-DoF simulation
-    - Statically typed attitude representations
+    - Strongly typed attitude representations
     - Control mechanisms such as reaction wheels
 - Cislunar equations of motion, including CR3BP and BC4BM
 - SPG4 and SPG8 propagators
+- Schedulers
 - High fidelity atmospheric models
 - Transfer optimization utilities
 - A Qt GUI for basic analysis and visualization
