@@ -1,5 +1,7 @@
 #pragma once
 
+#include <units/units.hpp>
+
 #include <astro/frames/frames.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/time/Date.hpp>
@@ -17,7 +19,7 @@ template <typename Frame_T, typename Frame_U>
     requires(Frame_T::get_axis() == FrameAxis::J2000 && Frame_U::get_axis() == FrameAxis::ICRF && HasSameOrigin<Frame_T, Frame_U>)
 inline DCM<Frame_T, Frame_U> get_dcm(const Date& date)
 {
-    using mp_units::si::unit_symbols::deg;
+    using mp_units::angular::unit_symbols::deg;
     static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
     return DCM<Frame_T, Frame_U>::X(obliquity);
 }

@@ -229,19 +229,22 @@ TEST_F(CartesianVectorTest, TestFrameTransformation)
     ASSERT_EQ_CART_VEC(vecInSameFrame, vec1, REL_TOL);
 
     // Frame transformation to a different frame should compile and return a vector in the new frame
-    // ASSERT_NO_THROW(vec1.in_frame<frames::earth::j2000>(Date()));
-    // ASSERT_NO_THROW(vec1.with_respect_to_frame<frames::earth::j2000>(Date())); // TODO: Fix this function
+    vec1.in_frame<frames::earth::j2000>(Date()); // really just want these to compile
+    // vec1.with_respect_to_frame<frames::earth::j2000>(Date()); // TODO: Figure this out
+
+    CartesianVector<Unitless, frames::earth::j2000> vecJ2000{ 1.0 * one, 0.0 * one, 0.0 * one };
+    vecJ2000.in_frame<frames::earth::icrf>(Date());
 
     // TODO: Let's get some regressions for these
 }
 
-// TEST_F(CartesianVectorTest, TestTranslationAndOffset)
-// {
-//     // Translation between frames with same axes but different origins should compile
-//     CartesianVector<Unitless, frames::earth::j2000> vecJ2000(1.0 * one, 0.0 * one, 0.0 * one);
-//     ASSERT_NO_THROW(vec1.translate<frames::earth::j2000, frames::earth::icrf>(vecJ2000));
-//     ASSERT_NO_THROW(vec1.offset<frames::earth::j2000, frames::earth::icrf>(vecJ2000));
-// }
+TEST_F(CartesianVectorTest, TestTranslationAndOffset)
+{
+    // Translation between frames with same axes but different origins should compile
+    CartesianVector<Unitless, frames::moon::icrf> vecICRF(1.0 * one, 0.0 * one, 0.0 * one);
+    vec1.translate<frames::moon::icrf, frames::earth::icrf>(vecICRF);
+    vec1.offset<frames::moon::icrf, frames::earth::icrf>(vecICRF);
+}
 
 TEST_F(CartesianVectorTest, TestOutputStream)
 {

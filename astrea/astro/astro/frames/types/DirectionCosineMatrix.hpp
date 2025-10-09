@@ -195,31 +195,5 @@ using DCM = DirectionCosineMatrix<In_Frame_T, Out_Frame_T>;
 template <typename Frame_T, typename Frame_U>
 inline DCM<Frame_T, Frame_U> get_dcm(const Date& date) = delete;
 
-struct DcmManager {
-    DcmManager()                  = delete;
-    ~DcmManager()                 = delete;
-    DcmManager(const DcmManager&) = delete;
-    DcmManager(DcmManager&&)      = delete;
-
-    template <typename Frame_T, typename Frame_U>
-    static DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-    {
-        static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
-        static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
-        static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM defined between these two frames.");
-
-        if constexpr (IsSameFrame<Frame_T, Frame_U>) {
-            return astrea::astro::DCM<Frame_T, Frame_U>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
-        }
-        else if constexpr (HasDcm<Frame_T, Frame_U>) {
-            return astrea::astro::get_dcm<Frame_T, Frame_U>(date);
-        }
-        else if constexpr (HasDcm<Frame_U, Frame_T>) {
-            return astrea::astro::get_dcm<Frame_U, Frame_T>(date).transpose();
-        }
-        throw std::logic_error("How did you get here?");
-    }
-};
-
 } // namespace astro
 } // namespace astrea

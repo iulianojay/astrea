@@ -372,19 +372,20 @@ class CartesianVector {
         return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
-    /**
-     * @brief Transform this vector into another frame at a given date, accounting for both rotation and translation.
-     *
-     * @tparam Frame_U The target frame type to transform into.
-     * @param date The date at which to perform the transformation.
-     * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
-     * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
-     */
-    template <IsStaticFrame Frame_U>
-    CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
-    {
-        return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
-    }
+    // /**
+    //  * @brief Transform this vector into another frame at a given date, accounting for both rotation and translation.
+    //  *
+    //  * @tparam Frame_U The target frame type to transform into.
+    //  * @param date The date at which to perform the transformation.
+    //  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+    //  * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
+    //  */
+    // template <typename Frame_U>
+    //     requires(IsStaticFrame<Frame_U>)
+    // CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
+    // {
+    //     return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
+    // }
 
     /**
      * @brief Translate this vector by another vector in a different frame, resulting in a vector in a third frame.
