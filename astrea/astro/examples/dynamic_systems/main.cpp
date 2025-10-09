@@ -15,12 +15,10 @@ int main()
     // The AstrodynamicsSystem is Astrea's attempt to capture definitions and utilities around celestial bodies in a
     // dynamic system. The intention is that users can define a system with either a given body or a barycenter as the
     // center, and then add arbitrarily many or unique celestial bodies. Currently, the system is limited to only using
-    // predefined bodies from the CelestialBody class, and it can only use a single body as the system center. Some parts
-    // are incomplete, and the design lacks a complete foray of practical abstractions, utilities, and features, but it's a start.
+    // predefined bodies from the CelestialBody class, and it can only use a single body as the system center.
 
-    // Create a system with Earth as the center body
-    AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH); // String were initially used to avoid hard coding CelestialBody
-                                                             // instances, but this may change for pre-defined celestial bodies
+    // Create a system with Earth as the center (and only) body
+    AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH);
     const auto& earth = earthSystem.get_central_body();
     std::cout << "Center Body: " << earth->get_name() << std::endl;
 

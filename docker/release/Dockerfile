@@ -28,6 +28,9 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
+# For some reason, this is the only way to install conan and gcovr
+RUN pip install gcovr conan --break-system-packages
+
 COPY .conan2/ $ASTREA_ROOT/.conan2
 COPY astrea $ASTREA_ROOT/astrea 
 COPY cmake $ASTREA_ROOT/cmake 

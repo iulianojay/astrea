@@ -26,6 +26,20 @@ template <CelestialBodyId origin, FrameAxis axis = FrameAxis::ICRF>
     requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
 struct InertialFrame : Frame<origin, axis> {
     virtual ~InertialFrame() = default;
+
+    /**
+     * @brief Get the origin of the frame.
+     *
+     * @return The origin of the frame.
+     */
+    static constexpr CelestialBodyId get_origin() { return Frame<origin, axis>::get_origin(); }
+
+    /**
+     * @brief Get the origin of the frame.
+     *
+     * @return The origin of the frame.
+     */
+    static constexpr FrameAxis get_axis() { return Frame<origin, axis>::get_axis(); }
 };
 
 } // namespace astro

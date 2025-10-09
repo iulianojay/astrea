@@ -13,6 +13,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/State.hpp>
 
 namespace astrea {

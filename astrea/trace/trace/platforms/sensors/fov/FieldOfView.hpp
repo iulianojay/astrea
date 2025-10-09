@@ -16,6 +16,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/dynamic_frames.hpp>
 
 namespace astrea {
 namespace trace {

@@ -16,6 +16,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

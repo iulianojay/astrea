@@ -19,12 +19,12 @@ int main()
     // more advanced Lambert solvers, including multi-revolution solutions,
     // distinctions between minimum energy and minimum time solutions, etc.
 
+    // We pull from known solutions from Vallado, 5th Ed., Ex. 7-5 to validate the implementation
     AstrodynamicsSystem sys;
     RadiusVector<frames::earth::icrf> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
     VelocityVector<frames::earth::icrf> v0{ 2.058913 * km / s, 2.915964 * km / s }, vf{ -3.451565 * km / s, 0.910314 * km / s };
     Time dt = 76.0 * min;
 
-    // Known solution from Vallado, 5th Ed., Ex. 7-5
     std::cout << "Known initial state" << std::endl;
     std::cout << "  Position: " << r0 << std::endl;
     std::cout << "  Velocity: " << v0 << std::endl << std::endl;

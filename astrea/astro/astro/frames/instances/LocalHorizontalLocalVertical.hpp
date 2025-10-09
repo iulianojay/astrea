@@ -73,6 +73,10 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
     }
 };
 
+namespace dynamic {
+using lvlh = LocalHorizontalLocalVertical;
+} // namespace dynamic
+
 } // namespace frames
 } // namespace astro
 } // namespace astrea

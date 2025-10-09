@@ -10,14 +10,5 @@
  */
 #pragma once
 
-#include <astro/frames/transformations.hpp>
-#include <astro/frames/typedefs.hpp>
-
-// static state/frames
-#include <astro/frames/instances/EarthCenteredEarthFixed.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
-
-// dynamic state/frames
-#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
-#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
-#include <astro/frames/instances/VelocityNormalBinormal.hpp>
+#include <astro/frames/instances/body_fixed_frames.hpp>

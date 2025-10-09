@@ -42,6 +42,8 @@ enum class CelestialBodyId : EnumType {
 
     // Barycenters
     SOLAR_SYSTEM_BARYCENTER,
+    MERCURY_BARYCENTER,
+    VENUS_BARYCENTER,
     EARTH_BARYCENTER,
     MARS_BARYCENTER,
     JUPITER_BARYCENTER,

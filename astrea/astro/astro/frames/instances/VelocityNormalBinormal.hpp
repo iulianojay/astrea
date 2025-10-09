@@ -71,6 +71,10 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, Frame
     }
 };
 
+namespace dynamic {
+using vnb = VelocityNormalBinormal;
+} // namespace dynamic
+
 } // namespace frames
 } // namespace astro
 } // namespace astrea

@@ -1,5 +1,5 @@
 /**
- * @file EarthCentered.hpp
+ * @file body_centered_inertial_frames.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for all (most? common?) body-centered inertial frames.
  * @version 0.1
@@ -10,93 +10,167 @@
  */
 #pragma once
 
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/InertialFrame.hpp>
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {
 namespace frames {
 
-// Planetary Bodies
-struct SunCenteredIcrf final : InertialFrame<CelestialBodyId::SUN, FrameAxis::ICRF> {};
-struct MercuryCenteredIcrf final : InertialFrame<CelestialBodyId::MERCURY, FrameAxis::ICRF> {};
-struct VenusCenteredIcrf final : InertialFrame<CelestialBodyId::VENUS, FrameAxis::ICRF> {};
-struct EarthCenteredIcrf final : InertialFrame<CelestialBodyId::EARTH, FrameAxis::ICRF> {};
-struct MoonCenteredIcrf final : InertialFrame<CelestialBodyId::MOON, FrameAxis::ICRF> {};
-struct MarsCenteredIcrf final : InertialFrame<CelestialBodyId::MARS, FrameAxis::ICRF> {};
-struct PhobosCenteredIcrf final : InertialFrame<CelestialBodyId::PHOBOS, FrameAxis::ICRF> {};
-struct DeimosCenteredIcrf final : InertialFrame<CelestialBodyId::DEIMOS, FrameAxis::ICRF> {};
-struct JupiterCenteredIcrf final : InertialFrame<CelestialBodyId::JUPITER, FrameAxis::ICRF> {};
-struct GanymedeCenteredIcrf final : InertialFrame<CelestialBodyId::GANYMEDE, FrameAxis::ICRF> {};
-struct CallistoCenteredIcrf final : InertialFrame<CelestialBodyId::CALLISTO, FrameAxis::ICRF> {};
-struct IoCenteredIcrf final : InertialFrame<CelestialBodyId::IO, FrameAxis::ICRF> {};
-struct EuropaCenteredIcrf final : InertialFrame<CelestialBodyId::EUROPA, FrameAxis::ICRF> {};
-struct SaturnCenteredIcrf final : InertialFrame<CelestialBodyId::SATURN, FrameAxis::ICRF> {};
-struct TitanCenteredIcrf final : InertialFrame<CelestialBodyId::TITAN, FrameAxis::ICRF> {};
-struct RheaCenteredIcrf final : InertialFrame<CelestialBodyId::RHEA, FrameAxis::ICRF> {};
-struct IapetusCenteredIcrf final : InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::ICRF> {};
-struct UranusCenteredIcrf final : InertialFrame<CelestialBodyId::URANUS, FrameAxis::ICRF> {};
-struct TitaniaCenteredIcrf final : InertialFrame<CelestialBodyId::TITANIA, FrameAxis::ICRF> {};
-struct OberonCenteredIcrf final : InertialFrame<CelestialBodyId::OBERON, FrameAxis::ICRF> {};
-struct NeptuneCenteredIcrf final : InertialFrame<CelestialBodyId::NEPTUNE, FrameAxis::ICRF> {};
-struct TritonCenteredIcrf final : InertialFrame<CelestialBodyId::TRITON, FrameAxis::ICRF> {};
+namespace sun {
+using icrf  = InertialFrame<CelestialBodyId::SUN, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::SUN, FrameAxis::J2000>;
+} // namespace sun
 
-struct SunCenteredJ2000 final : InertialFrame<CelestialBodyId::SUN, FrameAxis::J2000> {};
-struct MercuryCenteredJ2000 final : InertialFrame<CelestialBodyId::MERCURY, FrameAxis::J2000> {};
-struct VenusCenteredJ2000 final : InertialFrame<CelestialBodyId::VENUS, FrameAxis::J2000> {};
-struct EarthCenteredJ2000 final : InertialFrame<CelestialBodyId::EARTH, FrameAxis::J2000> {};
-struct MoonCenteredJ2000 final : InertialFrame<CelestialBodyId::MOON, FrameAxis::J2000> {};
-struct MarsCenteredJ2000 final : InertialFrame<CelestialBodyId::MARS, FrameAxis::J2000> {};
-struct PhobosCenteredJ2000 final : InertialFrame<CelestialBodyId::PHOBOS, FrameAxis::J2000> {};
-struct DeimosCenteredJ2000 final : InertialFrame<CelestialBodyId::DEIMOS, FrameAxis::J2000> {};
-struct JupiterCenteredJ2000 final : InertialFrame<CelestialBodyId::JUPITER, FrameAxis::J2000> {};
-struct GanymedeCenteredJ2000 final : InertialFrame<CelestialBodyId::GANYMEDE, FrameAxis::J2000> {};
-struct CallistoCenteredJ2000 final : InertialFrame<CelestialBodyId::CALLISTO, FrameAxis::J2000> {};
-struct IoCenteredJ2000 final : InertialFrame<CelestialBodyId::IO, FrameAxis::J2000> {};
-struct EuropaCenteredJ2000 final : InertialFrame<CelestialBodyId::EUROPA, FrameAxis::J2000> {};
-struct SaturnCenteredJ2000 final : InertialFrame<CelestialBodyId::SATURN, FrameAxis::J2000> {};
-struct TitanCenteredJ2000 final : InertialFrame<CelestialBodyId::TITAN, FrameAxis::J2000> {};
-struct RheaCenteredJ2000 final : InertialFrame<CelestialBodyId::RHEA, FrameAxis::J2000> {};
-struct IapetusCenteredJ2000 final : InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::J2000> {};
-struct UranusCenteredJ2000 final : InertialFrame<CelestialBodyId::URANUS, FrameAxis::J2000> {};
-struct TitaniaCenteredJ2000 final : InertialFrame<CelestialBodyId::TITANIA, FrameAxis::J2000> {};
-struct OberonCenteredJ2000 final : InertialFrame<CelestialBodyId::OBERON, FrameAxis::J2000> {};
-struct NeptuneCenteredJ2000 final : InertialFrame<CelestialBodyId::NEPTUNE, FrameAxis::J2000> {};
-struct TritonCenteredJ2000 final : InertialFrame<CelestialBodyId::TRITON, FrameAxis::J2000> {};
+namespace mercury {
+using icrf  = InertialFrame<CelestialBodyId::MERCURY, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::MERCURY, FrameAxis::J2000>;
+} // namespace mercury
 
-// Barycenteral
-struct SolarSystemBarycenterIcrf final : InertialFrame<CelestialBodyId::SOLAR_SYSTEM_BARYCENTER, FrameAxis::ICRF> {};
-struct MercuryBarycenterIcrf final : InertialFrame<CelestialBodyId::MERCURY, FrameAxis::ICRF> {};
-struct VenusBarycenterIcrf final : InertialFrame<CelestialBodyId::VENUS, FrameAxis::ICRF> {};
-struct EarthBarycenterIcrf final : InertialFrame<CelestialBodyId::EARTH_BARYCENTER, FrameAxis::ICRF> {};
-struct MarsBarycenterIcrf final : InertialFrame<CelestialBodyId::MARS_BARYCENTER, FrameAxis::ICRF> {};
-struct JupiterBarycenterIcrf final : InertialFrame<CelestialBodyId::JUPITER_BARYCENTER, FrameAxis::ICRF> {};
-struct SaturnBarycenterIcrf final : InertialFrame<CelestialBodyId::SATURN_BARYCENTER, FrameAxis::ICRF> {};
-struct UranusBarycenterIcrf final : InertialFrame<CelestialBodyId::URANUS_BARYCENTER, FrameAxis::ICRF> {};
-struct NeptuneBarycenterIcrf final : InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::ICRF> {};
+namespace venus {
+using icrf  = InertialFrame<CelestialBodyId::VENUS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::VENUS, FrameAxis::J2000>;
+} // namespace venus
 
-struct SolarSystemBarycenterJ2000 final : InertialFrame<CelestialBodyId::SOLAR_SYSTEM_BARYCENTER, FrameAxis::J2000> {};
-struct MercuryBarycenterJ2000 final : InertialFrame<CelestialBodyId::MERCURY, FrameAxis::J2000> {};
-struct VenusBarycenterJ2000 final : InertialFrame<CelestialBodyId::VENUS, FrameAxis::J2000> {};
-struct EarthBarycenterJ2000 final : InertialFrame<CelestialBodyId::EARTH_BARYCENTER, FrameAxis::J2000> {};
-struct MarsBarycenterJ2000 final : InertialFrame<CelestialBodyId::MARS_BARYCENTER, FrameAxis::J2000> {};
-struct JupiterBarycenterJ2000 final : InertialFrame<CelestialBodyId::JUPITER_BARYCENTER, FrameAxis::J2000> {};
-struct SaturnBarycenterJ2000 final : InertialFrame<CelestialBodyId::SATURN_BARYCENTER, FrameAxis::J2000> {};
-struct UranusBarycenterJ2000 final : InertialFrame<CelestialBodyId::URANUS_BARYCENTER, FrameAxis::J2000> {};
-struct NeptuneBarycenterJ2000 final : InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::J2000> {};
+namespace earth {
+using icrf  = InertialFrame<CelestialBodyId::EARTH, FrameAxis::ICRF>;  // GCRF frame, sometimes ECI
+using j2000 = InertialFrame<CelestialBodyId::EARTH, FrameAxis::J2000>; // EME2000 frame, sometimes ECI
+} // namespace earth
+
+namespace moon {
+using icrf  = InertialFrame<CelestialBodyId::MOON, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::MOON, FrameAxis::J2000>;
+} // namespace moon
+
+namespace mars {
+using icrf  = InertialFrame<CelestialBodyId::MARS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::MARS, FrameAxis::J2000>;
+} // namespace mars
+
+namespace phobos {
+using icrf  = InertialFrame<CelestialBodyId::PHOBOS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::PHOBOS, FrameAxis::J2000>;
+} // namespace phobos
+
+namespace deimos {
+using icrf  = InertialFrame<CelestialBodyId::DEIMOS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::DEIMOS, FrameAxis::J2000>;
+} // namespace deimos
+
+namespace jupiter {
+using icrf  = InertialFrame<CelestialBodyId::JUPITER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::JUPITER, FrameAxis::J2000>;
+} // namespace jupiter
+
+namespace ganymede {
+using icrf  = InertialFrame<CelestialBodyId::GANYMEDE, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::GANYMEDE, FrameAxis::J2000>;
+} // namespace ganymede
+
+namespace callisto {
+using icrf  = InertialFrame<CelestialBodyId::CALLISTO, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::CALLISTO, FrameAxis::J2000>;
+} // namespace callisto
+
+namespace io {
+using icrf  = InertialFrame<CelestialBodyId::IO, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::IO, FrameAxis::J2000>;
+} // namespace io
+
+namespace europa {
+using icrf  = InertialFrame<CelestialBodyId::EUROPA, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::EUROPA, FrameAxis::J2000>;
+} // namespace europa
+
+namespace saturn {
+using icrf  = InertialFrame<CelestialBodyId::SATURN, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::SATURN, FrameAxis::J2000>;
+} // namespace saturn
+
+namespace titan {
+using icrf  = InertialFrame<CelestialBodyId::TITAN, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::TITAN, FrameAxis::J2000>;
+} // namespace titan
+
+namespace rhea {
+using icrf  = InertialFrame<CelestialBodyId::RHEA, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::RHEA, FrameAxis::J2000>;
+} // namespace rhea
+
+namespace iapetus {
+using icrf  = InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::J2000>;
+} // namespace iapetus
+
+namespace uranus {
+using icrf  = InertialFrame<CelestialBodyId::URANUS, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::URANUS, FrameAxis::J2000>;
+} // namespace uranus
+
+namespace titania {
+using icrf  = InertialFrame<CelestialBodyId::TITANIA, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::TITANIA, FrameAxis::J2000>;
+} // namespace titania
+
+namespace oberon {
+using icrf  = InertialFrame<CelestialBodyId::OBERON, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::OBERON, FrameAxis::J2000>;
+} // namespace oberon
+
+namespace neptune {
+using icrf  = InertialFrame<CelestialBodyId::NEPTUNE, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::NEPTUNE, FrameAxis::J2000>;
+} // namespace neptune
+
+namespace triton {
+using icrf  = InertialFrame<CelestialBodyId::TRITON, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::TRITON, FrameAxis::J2000>;
+} // namespace triton
+
+namespace solar_system_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::SOLAR_SYSTEM_BARYCENTER, FrameAxis::ICRF>; // Generally, the ICRF frame
+using j2000 = InertialFrame<CelestialBodyId::SOLAR_SYSTEM_BARYCENTER, FrameAxis::J2000>;
+} // namespace solar_system_barycenter
+
+namespace mercury_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::MERCURY_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::MERCURY_BARYCENTER, FrameAxis::J2000>;
+} // namespace mercury_barycenter
+
+namespace venus_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::VENUS_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::VENUS_BARYCENTER, FrameAxis::J2000>;
+} // namespace venus_barycenter
+
+namespace earth_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::EARTH_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::EARTH_BARYCENTER, FrameAxis::J2000>;
+} // namespace earth_barycenter
+
+namespace mars_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::MARS_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::MARS_BARYCENTER, FrameAxis::J2000>;
+} // namespace mars_barycenter
+
+namespace jupiter_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::JUPITER_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::JUPITER_BARYCENTER, FrameAxis::J2000>;
+} // namespace jupiter_barycenter
+
+namespace saturn_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::SATURN_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::SATURN_BARYCENTER, FrameAxis::J2000>;
+} // namespace saturn_barycenter
+
+namespace uranus_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::URANUS_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::URANUS_BARYCENTER, FrameAxis::J2000>;
+} // namespace uranus_barycenter
+
+namespace neptune_barycenter {
+using icrf  = InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::ICRF>;
+using j2000 = InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::J2000>;
+} // namespace neptune_barycenter
 
 } // namespace frames
-
-
-template <typename Frame_T, typename Frame_U>
-    requires(Frame_T::get_axis() == FrameAxis::J2000 && Frame_U::get_axis() == FrameAxis::ICRF && HasSameOrigin<Frame_T, Frame_U>)
-inline DCM<Frame_T, Frame_U> get_dcm(const Date& date)
-{
-    using mp_units::si::unit_symbols::deg;
-    static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
-    return DCM<Frame_T, Frame_U>::X(obliquity);
-}
-
-
 } // namespace astro
 } // namespace astrea

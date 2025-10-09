@@ -15,7 +15,11 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/instances/defined_rotations.hpp>
+#include <astro/frames/types/BodyFixedFrame.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/InertialFrame.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {
@@ -67,6 +71,41 @@ CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
     return sys.get_relative_position(date, Frame_T::get_origin(), Frame_U::get_origin()).template force_frame_conversion<Frame_T>();
 }
 
+namespace {
+
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) between two frames at a given date.
+ *
+ * This function retrieves the DCM that transforms vectors from Frame_T to Frame_U.
+ * If the DCM is not directly defined, it attempts to use the inverse DCM if available.
+ *
+ * @tparam Frame_T The source frame type.
+ * @tparam Frame_U The target frame type.
+ * @param date The date at which to retrieve the DCM.
+ * @return DCM<Frame_T, Frame_U> The Direction Cosine Matrix from Frame_T to Frame_U.
+ * @throws std::runtime_error If no DCM is defined between the two frames.
+ */
+template <typename Frame_T, typename Frame_U>
+DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
+{
+    static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
+    static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
+    static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM defined between these two frames.");
+
+    if constexpr (IsSameFrame<Frame_T, Frame_U>) {
+        return DCM<Frame_T, Frame_U>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
+    }
+    else if constexpr (HasDcm<Frame_T, Frame_U>) {
+        return get_dcm<Frame_T, Frame_U>(date);
+    }
+    else if constexpr (HasDcm<Frame_U, Frame_T>) {
+        return get_dcm<Frame_U, Frame_T>(date).transpose();
+    }
+    throw std::logic_error("How did you get here?");
+}
+
+} // namespace
+
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).
  *
@@ -83,7 +122,7 @@ CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 template <typename Value_T, typename Frame_T, typename Frame_U>
 CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
-    const auto dcm = DcmManager::get_dcm<Frame_T, Frame_U>(date);
+    const auto dcm = get_dcm_impl<Frame_T, Frame_U>(date);
     return dcm * vec;
 }
 
@@ -102,13 +141,15 @@ CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector
  * @note This function returns a vector with respect to the new frame, but specializations currently only exist for
  * inertial frames directly provided by this library. It will not work for custom or dynamic frames.
  */
-template <typename Frame_T, typename Frame_U>
-CartesianVector<Distance, Frame_U> transform_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
-{
-    const auto offset = get_center_offset<Frame_T, Frame_U>(date);
-    const auto dcm    = DcmManager::get_dcm<Frame_T, Frame_U>(date);
-    return CartesianVector<Distance, Frame_U>(dcm * (vec + offset));
-}
+// template <typename Value_T, typename Frame_T, typename Frame_U>
+// CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+// {
+//     static_assert(std::is_same_v<Value_T, Distance>, "Transformations with respect to a frame are only implemented for Distance vectors at this time.");
+
+//     const auto offset = get_center_offset<Frame_T, Frame_U>(date);
+//     const auto dcm    = DcmManager::get_dcm<Frame_T, Frame_U>(date);
+//     return CartesianVector<Value_T, Frame_U>(dcm * vec + offset);
+// }
 
 
 } // namespace frames

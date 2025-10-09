@@ -12,9 +12,12 @@
 
 #include <string>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -60,6 +63,20 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, axis> {
     }
 
   public:
+    /**
+     * @brief Get the origin of the frame.
+     *
+     * @return The origin of the frame.
+     */
+    static constexpr CelestialBodyId get_origin() { return Frame<CelestialBodyId::CUSTOM, axis>::get_origin(); }
+
+    /**
+     * @brief Get the origin of the frame.
+     *
+     * @return The origin of the frame.
+     */
+    static constexpr FrameAxis get_axis() { return Frame<CelestialBodyId::CUSTOM, axis>::get_axis(); }
+
     /**
      * @brief Creates an instantaneous Frame_T frame.
      *
