@@ -2,6 +2,7 @@
 .devcontainer
 .coverage
 .gcovr
+.venv
 .vscode
 CMake*
 bin

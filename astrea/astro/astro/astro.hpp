@@ -2,29 +2,47 @@
  * @file astro.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the astro module
- * @version 0.1
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
-#include <astro/state/frames/Frame.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
-#include <astro/state/frames/instances/EarthCenteredEarthFixed.hpp>
-#include <astro/state/frames/instances/EarthCenteredInertial.hpp>
-#include <astro/state/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/frames/types/InertialFrame.hpp>
-#include <astro/state/frames/types/RotatingFrame.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/Frame.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
+
+#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/instances/VelocityNormalBinormal.hpp>
+#include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/instances/body_fixed_frames.hpp>
+#include <astro/frames/instances/defined_rotations.hpp>
+#include <astro/frames/types/BodyFixedFrame.hpp>
+#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/types/DynamicFrame.hpp>
+#include <astro/frames/types/InertialFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>
@@ -58,9 +76,8 @@
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/CelestialBodyFactory.hpp>
+#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>

@@ -1,0 +1,32 @@
+name: C/C++ CD
+
+permissions: write-all
+
+on:
+  push:
+    branches: [ "dev" ]
+
+jobs:
+  Bump-Version:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea:dev
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+        
+    - name: Mark repository as safe
+      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      
+    - name: Fetch tags
+      run: git fetch --prune --unshallow --tags
+
+    - name: Increment Version
+      run: |
+        sh ./scripts/increment_version.sh

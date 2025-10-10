@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 
 #include <gtest/gtest.h>
 #include <random>
@@ -94,7 +107,7 @@ TEST_F(ConversionTest, KEPLERIAN_TO_CARTESIAN)
     OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, 0.0, 0.0 }, OrbitalElements::get_set_id<Keplerian>());
     elements.convert(OrbitalElements::get_set_id<Cartesian>(), &sys);
 
-    const double mu = sys.get_center().mu();
+    const double mu = sys.get_central_body().mu();
     const double V  = std::sqrt(mu / elements[0]);
     OrbitalElements expectedElements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElements::get_set_id<Cartesian>());
 
@@ -105,7 +118,7 @@ TEST_F(ConversionTest, CARTESIAN_TO_KEPLERIAN)
 {
 
     const double semimajor = 10000.0;
-    const double mu        = sys.get_center().mu();
+    const double mu        = sys.get_central_body().mu();
     const double V         = std::sqrt(mu / semimajor);
 
     OrbitalElements elements({ semimajor, 0.0, 0.0, 0.0, V, 0.0 }, OrbitalElements::get_set_id<Cartesian>());

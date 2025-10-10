@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <iostream>
 
 #include <units/units.hpp>
@@ -22,8 +35,8 @@ int main()
     // But users can create Date objects from any supported clock type
     // or from calendar date strings
     Date now = Date::now();
-    Date fromString{ "2024-01-01 00:00:00" }; // UTC by default
-    Date fromFormattedString{ "2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S" };
+    Date fromString{ "2024-01-01 00:00:00" };                               // UTC by default
+    Date fromFormattedString{ "2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S" }; // Users can use custom formats
 
     // Under the hood, the Date class stores time values as a Julian date, and
     // uses std::chrono to handle precision and duration arithmetic.
@@ -38,6 +51,7 @@ int main()
     const auto utc        = date.utc();
     const auto gps        = date.gps();
     const auto sys        = date.sys();
+    const auto tai        = date.tai();
 
     // Users can also convert to other clock types manually
     auto highResClockTime = date.in_clock<std::chrono::high_resolution_clock>();

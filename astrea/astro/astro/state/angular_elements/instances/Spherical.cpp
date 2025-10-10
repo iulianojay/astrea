@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/state/angular_elements/instances/Spherical.hpp>
 
 #include <iomanip>
@@ -9,6 +22,8 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -27,12 +42,12 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Spherical::Spherical(const RadiusVector<ECI>& rEci, const Date& date, const CelestialBody* parent)
+Spherical::Spherical(const RadiusVector<frames::earth::icrf>& rEci, const Date& date, const CelestialBody* parent)
 {
-    *this = Spherical(rEci.in_frame<ECEF>(date), parent);
+    *this = Spherical(rEci.in_frame<frames::earth::earth_fixed>(date), parent);
 }
 
-Spherical::Spherical(const RadiusVector<ECEF>& rEcef, const CelestialBody* parent)
+Spherical::Spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_range, _inclination, _azimuth) = convert_earth_fixed_to_spherical(rEcef);
 }
@@ -142,14 +157,14 @@ Spherical Spherical::interpolate(const Time& thisTime, const Time& otherTime, co
     return Spherical(interpRange, interpInc, interpAzimuth);
 }
 
-RadiusVector<ECEF> Spherical::get_position(const CelestialBody* parent) const
+RadiusVector<frames::earth::earth_fixed> Spherical::get_position(const CelestialBody* parent) const
 {
     return convert_spherical_to_earth_fixed(_range, _inclination, _azimuth);
 }
 
-RadiusVector<ECI> Spherical::get_position(const Date& date, const CelestialBody* parent) const
+RadiusVector<frames::earth::icrf> Spherical::get_position(const Date& date, const CelestialBody* parent) const
 {
-    return get_position(parent).in_frame<ECI>(date);
+    return get_position(parent).in_frame<frames::earth::icrf>(date);
 }
 
 std::ostream& operator<<(std::ostream& os, Spherical const& elements)
@@ -163,7 +178,7 @@ std::ostream& operator<<(std::ostream& os, Spherical const& elements)
 }
 
 
-std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<EarthCenteredEarthFixed>& rEcef)
+std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef)
 {
     const Distance range    = rEcef.norm();
     const Angle inclination = acos(rEcef.get_z() / range);
@@ -181,13 +196,13 @@ std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const Radius
 }
 
 
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_spherical_to_earth_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
     const auto x = range * sin(inclination) * cos(azimuth);
     const auto y = range * sin(inclination) * sin(azimuth);
     const auto z = range * cos(inclination);
-    return RadiusVector<ECEF>(x, y, z);
+    return RadiusVector<frames::earth::earth_fixed>(x, y, z);
 }
 
 } // namespace astro

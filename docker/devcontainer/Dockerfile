@@ -27,7 +27,9 @@ RUN apt-get update && \
     git \
     && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install gcovr conan --break-system-packages 
+
+# For some reason, this is the only way to install conan and gcovr
+RUN pip install gcovr conan --break-system-packages
 
 # Clone mp-units instead of copying local version
 RUN mkdir /github/home/open-source && \

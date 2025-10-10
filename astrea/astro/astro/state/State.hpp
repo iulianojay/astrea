@@ -2,10 +2,18 @@
  * @file State.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Class representing the state of an astronomical object
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -87,7 +95,7 @@ class State {
     template <IsOrbitalElements T>
     void convert_to_set()
     {
-        _elements.convert_to_set<T>(get_system());
+        _elements.convert_to_set<T>(get_mu());
     }
 
     /**
@@ -111,7 +119,7 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        return _elements.in_element_set<T>(get_system());
+        return _elements.in_element_set<T>(get_mu());
     }
 
     /**
@@ -124,13 +132,26 @@ class State {
     {
         std::size_t originalIndex = _elements.index();
         _elements                 = elements;
-        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_system()); }
+        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
     }
 
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+
+    /**
+     * @brief Gets the gravitational parameter (mu) of the central body in the astrodynamics system.
+     *
+     * @return GravParam The gravitational parameter (mu) of the central body, or zero if no system is associated.
+     */
+    GravParam get_mu() const
+    {
+        using namespace mp_units;
+        using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::s;
+        return _system ? _system->get_mu() : 0.0 * pow<3>(km) / pow<2>(s);
+    }
 };
 
 } // namespace astro

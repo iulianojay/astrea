@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/state/StateHistory.hpp>
 
 #include <mp-units/math.h>
@@ -74,14 +87,15 @@ State StateHistory::get_state_at(const Date& date) const
     const State& preState              = std::prev(iter)->second;
     const OrbitalElements& preElements = preState.get_elements();
 
-    const auto& system = preState.get_system();
+    const AstrodynamicsSystem& system = preState.get_system();
+    const auto& mu                    = system.get_mu();
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * mp_units::si::unit_symbols::s;
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 
-    OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, system, time);
+    OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
     return State({ interpolatedElements, date, system });
 
     // // Insert if we want this to store

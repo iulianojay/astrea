@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -24,13 +37,11 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
-#include <snapshot/snapshot.hpp>
 #include <trace/trace.hpp>
 
 using namespace astrea;
 using namespace astro;
 using namespace trace;
-using namespace snapshot;
 using namespace sqlite_orm;
 
 using namespace mp_units;
@@ -46,6 +57,7 @@ using mp_units::si::unit_symbols::W;
 class GeoToGroundAccessTest : public testing::Test {
   public:
     GeoToGroundAccessTest() :
+        mu(sys.get_mu()),
         semimajorGeo(42164.0 * km),
         eom(sys),
         start(seconds(0)),
@@ -64,6 +76,7 @@ class GeoToGroundAccessTest : public testing::Test {
     void SetUp() override {}
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     const Distance semimajorGeo;
     TwoBody eom;
     ForceModel forces;
@@ -86,7 +99,7 @@ int main(int argc, char** argv)
 TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 {
     // Build constellation
-    Viewer geo({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
+    Viewer geo({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch, sys });
 
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo);
@@ -105,7 +118,7 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation ground(sys.get_center().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, "Test site", { groundCone });
+    GroundStation ground(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, "Test site", { groundCone });
     GroundArchitecture grounds({ ground });
 
     // Propagate
@@ -122,8 +135,8 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
-    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys), epoch, sys });
+    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch, sys });
+    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch, sys });
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);
@@ -154,10 +167,10 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 TEST_F(GeoToGroundAccessTest, FourBallGeo)
 {
     // Build constellation
-    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
-    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys), epoch, sys });
-    Viewer geo3({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys), epoch, sys });
-    Viewer geo4({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), sys), epoch, sys });
+    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch, sys });
+    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), mu), epoch, sys });
+    Viewer geo3({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch, sys });
+    Viewer geo4({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), mu), epoch, sys });
 
     Constellation<Viewer> fourBallGeo;
     fourBallGeo.add_spacecraft(geo1);

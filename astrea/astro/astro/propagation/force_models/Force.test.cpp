@@ -1,11 +1,24 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -20,10 +33,10 @@ using mp_units::si::unit_symbols::s;
 class DummyForce : public Force {
   public:
     DummyForce() = default;
-    AccelerationVector<ECI>
+    AccelerationVector<frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
     {
-        return AccelerationVector<ECI>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
 };
 

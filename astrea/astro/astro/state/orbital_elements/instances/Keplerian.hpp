@@ -2,10 +2,18 @@
  * @file Keplerian.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the Keplerian class and its associated methods.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -73,7 +81,7 @@ class Keplerian {
      * @param elements The Keplerian elements to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Keplerian& elements, const AstrodynamicsSystem& sys) :
+    Keplerian(const Keplerian& elements, const GravParam& mu) :
         Keplerian(elements)
     {
     }
@@ -84,7 +92,7 @@ class Keplerian {
      * @param elements The OrbitalElements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const OrbitalElements& elements, const AstrodynamicsSystem& sys);
+    Keplerian(const OrbitalElements& elements, const GravParam& mu);
 
     /**
      * @brief Constructs a Keplerian object from Cartesian elements.
@@ -92,7 +100,7 @@ class Keplerian {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Cartesian& elements, const AstrodynamicsSystem& sys);
+    Keplerian(const Cartesian& elements, const GravParam& mu);
 
     /**
      * @brief Constructs a Keplerian object from Equinoctial elements.
@@ -100,14 +108,14 @@ class Keplerian {
      * @param elements The Equinoctial elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Equinoctial& elements, const AstrodynamicsSystem& sys);
+    Keplerian(const Equinoctial& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Keplerian state vectors for a LEO orbit.
      *
      * This method return predefined Keplerian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Keplerian Predefined Keplerian state vector for a LEO orbit.
      */
     static Keplerian LEO();
@@ -117,7 +125,7 @@ class Keplerian {
      *
      * This method return predefined Keplerian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Keplerian Predefined Keplerian state vector for a LMEO orbit.
      */
     static Keplerian LMEO();
@@ -127,7 +135,7 @@ class Keplerian {
      *
      * This method return predefined Keplerian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Keplerian Predefined Keplerian state vector for a GPS orbit.
      */
     static Keplerian GPS();
@@ -137,7 +145,7 @@ class Keplerian {
      *
      * This method return predefined Keplerian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Keplerian Predefined Keplerian state vector for a HMEO orbit.
      */
     static Keplerian HMEO();
@@ -147,7 +155,7 @@ class Keplerian {
      *
      * This method return predefined Keplerian state vectors for various types of orbits.
      *
-     * @param system Astrodynamics system containing celestial body data
+     * @param mu Gravitational parameter of the central body
      * @return Keplerian Predefined Keplerian state vector for a GEO orbit.
      */
     static Keplerian GEO();
@@ -327,11 +335,11 @@ class Keplerian {
      * @param thisTime The time of the first Keplerian state vector.
      * @param otherTime The time of the second Keplerian state vector.
      * @param other The second Keplerian state vector to interpolate with.
-     * @param sys The astrodynamics system context for conversion.
+     * @param mu The gravitational parameter of the central body.
      * @param targetTime The target time for interpolation.
      * @return Keplerian Interpolated Keplerian state vector at the target time.
      */
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const;
 
     /**
      * @brief Converts the Keplerian state vector to a vector of unitless values.
@@ -354,7 +362,7 @@ class Keplerian {
      *
      * This method ensures that all angles are within their valid ranges.
      */
-    void sanitize_angles();
+    void wrap_angles();
 
     /**
      * @brief Interpolates an angle between two time points.

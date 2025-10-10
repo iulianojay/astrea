@@ -1,13 +1,26 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <trace/trace.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/space/Constellation.hpp>
-#include <astro/state/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -21,11 +34,11 @@
 
 namespace astrea {
 
+using namespace astro::frames;
 using astro::AstrodynamicsSystem;
 using astro::Cartesian;
+using astro::CelestialBodyId;
 using astro::Date;
-using astro::ECEF;
-using astro::ECI;
 using astro::RadiusVector;
 using astro::State;
 using astro::StateHistory;
@@ -38,15 +51,16 @@ using namespace mp_units::angular;
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
+using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 
 struct AccessInfo {
-    Time time;                                 // Time of access
-    astro::RadiusVector<astro::ECI> position1; // Position of the first object at the time of access
-    astro::RadiusVector<astro::ECI> position2; // Position of the second object at the time of access
-    std::size_t id1;                           // ID of the first object
-    std::size_t id2;                           // ID of the second object
-    bool isOcculted;                           // Flag indicating if the access is occulted
+    Time time;              // Time of access
+    EciRadiusVec position1; // Position of the first object at the time of access
+    EciRadiusVec position2; // Position of the second object at the time of access
+    std::size_t id1;        // ID of the first object
+    std::size_t id2;        // ID of the second object
+    bool isOcculted;        // Flag indicating if the access is occulted
 };
 
 
@@ -159,9 +173,9 @@ RiseSetArray find_platform_to_platform_accesses(
     std::size_t ii = 0;
     for (const auto& time : times) {
         // Get ECI state of ground station
-        const Date date                   = epoch + time;
-        const RadiusVector<ECI> position1 = platform1->get_inertial_position(date);
-        const RadiusVector<ECI> position2 = platform2->get_inertial_position(date);
+        const Date date              = epoch + time;
+        const EciRadiusVec position1 = platform1->get_inertial_position(date);
+        const EciRadiusVec position2 = platform2->get_inertial_position(date);
 
         // Get sat -> ground vector at current time
         accessInfo[ii].time       = time;
@@ -191,21 +205,22 @@ RiseSetArray find_platform_to_platform_accesses(
     return access;
 }
 
-bool is_earth_occulting(const RadiusVector<ECI>& position1, const RadiusVector<ECI>& position2, const AstrodynamicsSystem& sys)
+bool is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2, const AstrodynamicsSystem& sys)
 {
     // NOTE: Only checking one direction. Blocking 1->2 automatically means blocking 2->1
     // NOTE: Assumes Earth-centered
     // NOTE: Assumes spherical Earth
 
-    // Also make RadiusVector<ECI> a class with utilities like magnitude, etc.
-    const RadiusVector<ECI> nadir1 = -position1;
-    const Distance nadir1Mag       = nadir1.norm();
+    // Also make EciRadiusVec a class with utilities like magnitude, etc.
+    const EciRadiusVec nadir1 = -position1;
+    const Distance nadir1Mag  = nadir1.norm();
 
     // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-    const RadiusVector<ECI> radius1to2 = position2 - position1;
+    const EciRadiusVec radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    static const Distance& radiusEarthMag = sys.get("Earth")->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
+    static const Distance& radiusEarthMag =
+        sys.get(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir
@@ -233,14 +248,14 @@ RiseSetArray
     const Time end   = accessInfo.back().time;
     for (const auto& specificAccessInfo : accessInfo) {
         // Extract
-        const Time& time                   = specificAccessInfo.time;
-        const RadiusVector<ECI>& position1 = specificAccessInfo.position1; // TODO: + attachment point?
-        const RadiusVector<ECI>& position2 = specificAccessInfo.position2;
-        const bool& isOcculted             = specificAccessInfo.isOcculted;
+        const Time& time              = specificAccessInfo.time;
+        const EciRadiusVec& position1 = specificAccessInfo.position1; // TODO: + attachment point?
+        const EciRadiusVec& position2 = specificAccessInfo.position2;
+        const bool& isOcculted        = specificAccessInfo.isOcculted;
 
         // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-        const RadiusVector<ECI>& radius1to2 = position2 - position1;
-        const RadiusVector<ECI>& radius2to1 = position1 - position2;
+        const EciRadiusVec& radius1to2 = position2 - position1;
+        const EciRadiusVec& radius2to1 = position1 - position2;
 
         // Check if they can see each other
         const Date date = epoch + time;

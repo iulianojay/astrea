@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/propagation/numerical/Integrator.hpp>
 
 #include <ctime>
@@ -220,7 +233,7 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     const std::size_t expectedSetId = eom.get_expected_set_id();
     OrbitalElements state0          = vehicle.get_state().get_elements();
     if (state0.index() != expectedSetId) {
-        state0 = state0.convert_to_set(expectedSetId, sys);
+        state0 = state0.convert_to_set(expectedSetId, sys.get_mu());
         // state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
         vehicle.update_state({ state0, epoch, sys });
     }

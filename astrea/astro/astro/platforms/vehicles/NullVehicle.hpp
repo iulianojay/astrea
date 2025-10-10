@@ -2,10 +2,18 @@
  * @file NullVehicle.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief A class representing a null vehicle in the astrea astro platform.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -13,6 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/State.hpp>
 
 namespace astrea {
@@ -79,25 +88,25 @@ class NullVehicle : public FrameReference {
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, EarthCenteredInertial>
+     * @return CartesianVector<Distance, frames::earth::icrf>
      */
-    CartesianVector<Distance, EarthCenteredInertial> get_inertial_position(const Date& date) const final;
+    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const final;
 
     /**
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, EarthCenteredInertial>
+     * @return CartesianVector<Velocity, frames::earth::icrf>
      */
-    CartesianVector<Velocity, EarthCenteredInertial> get_inertial_velocity(const Date& date) const final;
+    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const final;
 
     /**
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the acceleration.
-     * @return CartesianVector<Acceleration, EarthCenteredInertial>
+     * @return CartesianVector<Acceleration, frames::earth::icrf>
      */
-    CartesianVector<Acceleration, EarthCenteredInertial> get_inertial_acceleration(const Date& date) const final;
+    CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const final;
 
   private:
     State _state0; // Initial state of the vehicle

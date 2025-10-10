@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
@@ -23,7 +36,7 @@ class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys("Earth", { "Moon", "Sun" }),
+        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         force(sys, 2, 2)
     {
     }
@@ -31,7 +44,7 @@ class OblatenessForceTest : public testing::Test {
     void SetUp() override
     {
         // Vallado Ex. 8.5
-        sat.set_mass(100.0 * kg);
+        sat.set_mass(1000.0 * kg);
         sat.set_coefficient_of_drag(2.2 * one);
         sat.set_coefficient_of_lift(0.0 * one);
         sat.set_coefficient_of_reflectivity(1.0 * one);
@@ -63,12 +76,12 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 {
     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-    const AccelerationVector<ECEF> expectedEcef{ -1.151903e-6 * km / (s * s),
-                                                 -2.938330e-6 * km / (s * s),
-                                                 -1.023539e-5 * km / (s * s) };
-    const AccelerationVector<ECI> expected = expectedEcef.in_frame<ECI>(epoch);
+    const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
+                                                                       -2.938330e-6 * km / (s * s),
+                                                                       -1.023539e-5 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

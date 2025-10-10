@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
 
 #include <mp-units/math.h>
@@ -6,9 +19,10 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 
@@ -25,16 +39,16 @@ using mp_units::si::unit_symbols::s;
 EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
     EquationsOfMotion(system),
     forces(&forces),
-    mu(system.get_center()->get_mu())
+    mu(system.get_mu())
 {
 }
 
 OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
     // Get need representations
-    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(get_system());
-    const Cartesian cartesian     = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu           = get_system().get_mu();
+    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(mu);
+    const Cartesian cartesian     = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -45,20 +59,20 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<ECI> r   = cartesian.get_position();
-    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // Function for finding accel caused by perturbations
-    const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date = vehicle.get_state().get_epoch();
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T
-    const RTN rtnFrame                     = RTN::instantaneous(r, v);
-    const AccelerationVector<RTN> accelRtn = rtnFrame.rotate_into_this_frame(accelPerts, date);
+    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
 
-    const Acceleration& radialPert     = accelRtn.get_x();
-    const Acceleration& normalPert     = accelRtn.get_y();
-    const Acceleration& tangentialPert = accelRtn.get_z();
+    const Acceleration& radialPert     = accelRic.get_x();
+    const Acceleration& tangentialPert = accelRic.get_y();
+    const Acceleration& normalPert     = accelRic.get_z();
 
     // Variables precalculated for speed
     const Unitless cosL = cos(L);

@@ -2,10 +2,18 @@
  * @file Antenna.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Antenna class for representing antenna properties and behaviors.
- * @version 0.1
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -13,6 +21,7 @@
 #include <vector>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/dynamic_frames.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>
@@ -57,8 +66,8 @@ class AntennaParameters : public SensorParameters {
         const Unitless& efficiency,
         const Frequency& frequency,
         const Power& power,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& attachmentPoint = astro::CENTER,
         const Frequency& noiseBandwidth     = 0.0 * mp_units::si::unit_symbols::GHz,
         const Gain& transmitLoss            = 1.0 * mp_units::one,
         const Gain& receiverLoss            = 1.0 * mp_units::one,

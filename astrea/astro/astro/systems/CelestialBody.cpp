@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/systems/CelestialBody.hpp>
 
 #include <cfloat>
@@ -14,121 +27,91 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
-
 #include <nlohmann/json.hpp>
 
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {
 
 using namespace mp_units;
 using namespace mp_units::angular;
-
 using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
-using mp_units::iau::unit_symbols::au;
-using mp_units::non_si::day;
 using mp_units::si::unit_symbols::kg;
-using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-
-CelestialBody::CelestialBody(const std::string& file, const AstrodynamicsSystem& system) :
-    _systemPtr(&system)
+Keplerian CelestialBody::get_keplerian_elements_at(const Date& date) const
 {
+    // Time since reference epoch in Julian centuries
+    const quantity<JulianCentury> T = date.jd() - _referenceDate.jd();
 
-    using json = nlohmann::json;
+    // Keplerian element approximation pulled from here: https://ssd.jpl.nasa.gov/planets/approx_pos.html
+    const Distance a   = _semimajorAxis + _semimajorAxisRate * T;
+    const Unitless ecc = _eccentricity + _eccentricityRate * T;
+    const Angle inc    = _inclination + _inclinationRate * T;
+    const Angle raan   = _rightAscension + _rightAscensionRate * T;
+    const Angle w      = _longitudeOfPerigee + _longitudeOfPerigeeRate * T;
+    const Angle L      = _meanLongitude + _meanLongitudeRate * T;
 
-    // Read file into JSON
-    // TODO: Add checks to make sure its a valid JSON
-    std::ifstream fileStream(file);
+    const auto [B, C, S, F] = get_linear_expansion_coefficients();
+    const Angle Me          = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
+    const Angle argPer      = wrap_angle(w - raan);
 
-    if (!fileStream.good()) { throw std::runtime_error("Error: Could not open file " + file); }
+    // This approximation has error on the order of ecc^6
+    const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
 
-    // Parse
-    const json planetaryData = json::parse(fileStream);
-    const json state         = planetaryData["State"];
-
-    // Store
-    _name   = planetaryData["Name"].template get<std::string>();
-    _parent = planetaryData["Parent"].template get<std::string>();
-    _type   = planetaryData["Type"].template get<std::string>();
-
-    _mu                = planetaryData["Gravitational Parameter"]["magnitude"].get<double>() * (pow<3>(km) / pow<2>(s));
-    _mass              = planetaryData["Mass"]["magnitude"].get<double>() * (mag_power<10, 24> * kg);
-    _equitorialRadius  = planetaryData["Equitorial Radius"]["magnitude"].get<double>() * km;
-    _polarRadius       = planetaryData["Polar Radius"]["magnitude"].get<double>() * km;
-    _crashRadius       = planetaryData["Crash Radius"]["magnitude"].get<double>() * km;
-    _sphereOfInfluence = planetaryData["Sphere Of Influence"]["magnitude"].get<double>() * au;
-    _j2                = planetaryData["J2"]["magnitude"].get<double>() * one;
-    _j3                = planetaryData["J3"]["magnitude"].get<double>() * one;
-    _axialTilt         = planetaryData["Axial Tilt"]["magnitude"].get<double>() * deg;
-    _rotationRate      = planetaryData["Rotation Rate"]["magnitude"].get<double>() * deg / day;
-    _siderialPeroid    = planetaryData["Sidereal Peroid"]["magnitude"].get<double>() * day;
-
-    _referenceDate = Date(state["Epoch"].template get<std::string>());
-
-    _semimajorAxis     = state["Semimajor Axis"]["value"]["magnitude"].get<double>() * km;
-    _eccentricity      = state["Eccentricity"]["value"]["magnitude"].get<double>() * one;
-    _inclination       = state["Inclination"]["value"]["magnitude"].get<double>() * deg;
-    _rightAscension    = state["Right Ascension"]["value"]["magnitude"].get<double>() * deg;
-    _argumentOfPerigee = state["Argument Of Perigee"]["value"]["magnitude"].get<double>() * deg;
-    _trueLatitude      = state["True Latitude"]["value"]["magnitude"].get<double>() * deg;
-
-    _semimajorAxisRate     = state["Semimajor Axis"]["rate"]["magnitude"].get<double>() * km / JulianCentury;
-    _eccentricityRate      = state["Eccentricity"]["rate"]["magnitude"].get<double>() * one / JulianCentury;
-    _inclinationRate       = state["Inclination"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _rightAscensionRate    = state["Right Ascension"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _argumentOfPerigeeRate = state["Argument Of Perigee"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-    _trueLatitudeRate      = state["True Latitude"]["rate"]["magnitude"].get<double>() * deg / JulianCentury;
-
-    _meanAnomaly = sanitize_angle(_trueLatitude - _argumentOfPerigee);
-    _trueAnomaly = sanitize_angle(convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity));
-
-    // TODO: Add checks to validate this object
+    return Keplerian(a, ecc, inc, raan, argPer, thetat);
 }
 
-State CelestialBody::get_state_at(const Date& date) const
+RadiusVector<frames::solar_system_barycenter::icrf> CelestialBody::get_position_at(const Date& date) const
 {
-    // Loop over each day in the epoch range
-    const quantity<JulianCentury> timeSinceReferenceEpoch = date.jd() - _referenceDate.jd();
+    // This approximation is in the perifocal frame
+    const Keplerian coes         = get_keplerian_elements_at(date);
+    const Distance a             = coes.get_semimajor();
+    const Unitless ecc           = coes.get_eccentricity();
+    const Angle inc              = coes.get_inclination();
+    const Angle raan             = coes.get_right_ascension();
+    const Angle argPer           = coes.get_argument_of_perigee();
+    const Angle theta            = coes.get_true_anomaly();
+    const Angle Me               = convert_true_anomaly_to_mean_anomaly(theta, ecc);
+    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
 
-    // KEPLERIANs
-    const Distance at   = _semimajorAxis + _semimajorAxisRate * timeSinceReferenceEpoch;
-    const Unitless ecct = _eccentricity + _eccentricityRate * timeSinceReferenceEpoch;
-    const Angle inct    = _inclination + _inclinationRate * timeSinceReferenceEpoch;
-    const Angle raant   = _rightAscension + _rightAscensionRate * timeSinceReferenceEpoch;
-    const Angle wt      = _argumentOfPerigee + _argumentOfPerigeeRate * timeSinceReferenceEpoch - raant;
-    const Angle Lt      = _trueLatitude + _trueLatitudeRate * timeSinceReferenceEpoch;
+    // Position in perifocal frame
+    class perifocal;
+    const RadiusVector<perifocal> rPerifocal{ a * (cos(eccentricAnomaly) - ecc),
+                                              a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
+                                              0.0 * m };
 
-    // Calculations
-    static const GravParam parentMu = _systemPtr->get(_parent)->get_mu();
-    const quantity ht               = sqrt(parentMu * at * (1 - ecct * ecct));
-    const Angle Met                 = (Lt - wt);
+    // Rotate to the J2000 frame
+    const DCM<perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
+        { // TODO: Figure this out
+          std::array<Unitless, 3>{ cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
+                                   -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
+                                   0.0 * one },
+          std::array<Unitless, 3>{ cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
+                                   -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
+                                   0.0 * one },
+          std::array<Unitless, 3>{ sin(argPer) * sin(inc), cos(argPer) * sin(inc), 0.0 * one } }
+    );
+    const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
 
-    // This approximation has error on the order of ecc^6. It is
-    // assumed to be good for this calc since all these bodies are
-    // nearly circular. Solving Kepler"s equations takes a very long
-    // time
-    // const Unitless ecct_2 = ecct * ecct;
-    // const Unitless ecct_3 = ecct_2 * ecct;
-    // const Unitless ecct_4 = ecct_3 * ecct;
-    // const Unitless ecct_5 = ecct_4 * ecct;
+    // Rotate to the ICRF frame
+    static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
+    static const auto dcmJ2000ToICRF =
+        DCM<frames::solar_system_barycenter::j2000, frames::solar_system_barycenter::icrf>::X(obliquity);
 
-    // const Angle thetat = Met + ((2.0 * ecct - 0.25 * ecct_3 + 5.0 / 96.0 * ecct_5) * sin(Met) +
-    //                             (1.25 * ecct_2 - 11.0 / 24.0 * ecct_4) * sin(2.0 * Met) +
-    //                             (13.0 / 12.0 * ecct_3 - 43.0 / 64.0 * ecct_5) * sin(3.0 * Met) +
-    //                             103.0 / 96.0 * ecct_4 * sin(4 * Met) + 1097.0 / 960.0 * ecct_5 * sin(5 * Met)) *
-    //                                isq_angle::cotes_angle;
-    const Angle thetat = convert_mean_anomaly_to_true_anomaly(_meanAnomaly, _eccentricity);
+    const RadiusVector<frames::solar_system_barycenter::icrf> rICRF = dcmJ2000ToICRF * rJ2000;
+    return rICRF;
+}
 
-    // Store
-    return State(OrbitalElements(Keplerian(at, ecct, inct, raant, wt, thetat)), date, *_systemPtr);
+Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const
+{
+    return 0.0 * kg / (m * m * m);
 }
 
 } // namespace astro

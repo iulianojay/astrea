@@ -1,17 +1,32 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <trace/platforms/sensors/Sensor.hpp>
 
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/FrameReference.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace trace {
 
-bool Sensor::contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const
+bool Sensor::contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const
 {
     if (!_parameters.get_fov()) { return false; }
-    const astro::RIC frame(_parent);
-    const astro::RadiusVector<astro::ECI> boresightEci = frame.convert_from_this_frame(_parameters.get_boresight(), date);
+    const astro::frames::dynamic::ric frame(_parent);
+    const astro::RadiusVector<astro::frames::earth::icrf> boresightEci =
+        frame.convert_from_this_frame(_parameters.get_boresight(), date);
     return _parameters.get_fov()->contains(boresightEci, sensor2target);
 }
 

@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <iostream>
 
 #include <units/units.hpp>
@@ -16,7 +29,7 @@ int main()
     // The Astrea State is a fully-defined state representation that can hold any supported
     // orbital element set, an epoch, and the system the set is defined in. Currently, it does not
     // support angular (kinematic) states, but this will be added in a future release.
-    AstrodynamicsSystem sys; // Default system is Earth
+    AstrodynamicsSystem sys; // Default system is Earth-Moon
     Cartesian cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };

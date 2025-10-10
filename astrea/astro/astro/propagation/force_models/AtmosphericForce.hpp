@@ -2,10 +2,18 @@
  * @file AtmosphericForce.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the AtmosphericForce class, which computes the atmospheric force on a vehicle.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -28,11 +36,6 @@ namespace astro {
  */
 class AtmosphericForce : public Force {
 
-    /**
-     * @brief Type alias for Density on Titan.
-     */
-    using TitanDensity = mp_units::quantity<mp_units::si::unit_symbols::g / (mp_units::pow<3>(mp_units::si::unit_symbols::cm))>;
-
   public:
     /**
      * @brief Default constructor for AtmosphericForce.
@@ -51,9 +54,9 @@ class AtmosphericForce : public Force {
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @param sys Astrodynamics system containing celestial body data
-     * @return AccelerationVector<ECI> The computed acceleration vector due to atmospheric force.
+     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to atmospheric force.
      */
-    CartesianVector<Acceleration, EarthCenteredInertial>
+    CartesianVector<Acceleration, frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
@@ -66,11 +69,6 @@ class AtmosphericForce : public Force {
      * @return Density The atmospheric density at the given altitude.
      */
     const Density find_atmospheric_density(const Date& date, const Cartesian& state, const std::unique_ptr<CelestialBody>& center) const;
-
-    static const std::map<Altitude, Density> venutianAtmosphere; //!< Map of atmospheric densities for Venus at different altitudes
-    static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> earthAtmosphere; //!< Map of atmospheric densities for Earth at different altitudes
-    static const std::map<Altitude, Density> martianAtmosphere; //!< Map of atmospheric densities for Mars at different altitudes
-    static const std::map<Altitude, TitanDensity> titanicAtmosphere; //!< Map of atmospheric densities for Titan at different altitudes
 };
 
 } // namespace astro

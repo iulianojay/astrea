@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
 
 #include <algorithm>
@@ -28,17 +41,17 @@ using mp_units::si::unit_symbols::s;
 
 J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
     EquationsOfMotion(system),
-    mu(system.get_center()->get_mu()),
-    J2(system.get_center()->get_j2()),
-    equitorialR(system.get_center()->get_equitorial_radius())
+    mu(system.get_mu()),
+    J2(system.get_central_body()->get_j2()),
+    equitorialR(system.get_central_body()->get_equitorial_radius())
 {
 }
 
 OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
-
-    const Keplerian elements  = state.in_element_set<Keplerian>(get_system());
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu       = get_system().get_mu();
+    const Keplerian elements  = state.in_element_set<Keplerian>(mu);
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     // Extract
     const quantity<km>& a = elements.get_semimajor();
@@ -52,8 +65,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<ECI> v = cartesian.get_velocity();
-    const RadiusVector<ECI> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
     const Distance x = cartesian.get_x();
     const Distance y = cartesian.get_y();
@@ -71,9 +84,9 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity termB = z * z / (R * R);
 
     // accel due to oblateness
-    AccelerationVector<ECI> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
-                                                termA * (1.0 - 5.0 * termB) * y,
-                                                termA * (1.0 - 3.0 * termB) * z };
+    AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                                                termA * (1.0 - 5.0 * termB) * y,
+                                                                termA * (1.0 - 3.0 * termB) * z };
 
     // Calculate R, N, and T
     const Acceleration normalPert = accelOblateness.dot(Nhat);

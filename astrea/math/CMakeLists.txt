@@ -1,9 +1,18 @@
 
+# Copyright (c) 2025 Jay Iuliano
+# 
+# This file is part of Astrea.
+# Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+# have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
     "math" 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Library for Simple Math Utilities" 
     LANGUAGES CXX
 )
@@ -13,11 +22,13 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(MATH_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(MATH_SOURCES
+    ${MATH_BASE}/chebyshev_util.cpp
     ${MATH_BASE}/interpolation.cpp
 )
 
 # Headers
 set(MATH_HEADERS
+    ${MATH_BASE}/chebyshev_util.hpp
     ${MATH_BASE}/interpolation.hpp
     ${MATH_BASE}/trig.hpp
 )

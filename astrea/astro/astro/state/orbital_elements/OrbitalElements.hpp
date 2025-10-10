@@ -2,10 +2,18 @@
  * @file OrbitalElements.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the OrbitalElements class and its associated methods.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -34,8 +42,8 @@ namespace astro {
  * @tparam U The type to construct from.
  */
 template <typename T, typename U>
-concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys) {
-    { U(elements, sys) };
+concept IsConstructableTo = requires(T elements, const GravParam& mu) {
+    { U(elements, mu) };
 };
 
 /**
@@ -44,8 +52,8 @@ concept IsConstructableTo = requires(T elements, const AstrodynamicsSystem& sys)
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectCartesianConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
-    { elements.to_cartesian(sys) } -> std::same_as<Cartesian>;
+concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
+    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
 };
 
 /**
@@ -54,8 +62,8 @@ concept HasDirectCartesianConversion = requires(const T elements, const Astrodyn
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectKeplerianConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
-    { elements.to_keplerian(sys) } -> std::same_as<Keplerian>;
+concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
+    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
 };
 
 /**
@@ -64,8 +72,8 @@ concept HasDirectKeplerianConversion = requires(const T elements, const Astrodyn
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasDirectEquinoctialConversion = requires(const T elements, const AstrodynamicsSystem& sys) {
-    { elements.to_equinoctial(sys) } -> std::same_as<Equinoctial>;
+concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
+    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
 };
 
 /**
@@ -75,8 +83,8 @@ concept HasDirectEquinoctialConversion = requires(const T elements, const Astrod
  */
 template <typename T>
 concept HasIterpolate =
-    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const AstrodynamicsSystem& sys, const Time& targetTime) {
-        { elements.interpolate(thisTime, otherTime, other, sys, targetTime) } -> std::same_as<T>;
+    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const GravParam& mu, const Time& targetTime) {
+        { elements.interpolate(thisTime, otherTime, other, mu, targetTime) } -> std::same_as<T>;
     };
 
 /**
@@ -198,31 +206,31 @@ class OrbitalElements {
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam index The index of the orbital element type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return OrbitalElements& Reference to the current orbital elements after conversion.
      */
-    OrbitalElements& convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys);
+    OrbitalElements& convert_to_set(const std::size_t idx, const GravParam& mu);
 
     /**
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam index The index of the orbital element type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return OrbitalElements Orbital elements after conversion.
      */
-    OrbitalElements convert_to_set(const std::size_t idx, const AstrodynamicsSystem& sys) const;
+    OrbitalElements convert_to_set(const std::size_t idx, const GravParam& mu) const;
 
     /**
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam T The type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return A reference to the current orbital elements after conversion.
      */
     template <IsOrbitalElements T>
-    OrbitalElements& convert_to_set(const AstrodynamicsSystem& sys)
+    OrbitalElements& convert_to_set(const GravParam& mu)
     {
-        _elements = in_element_set<T>(sys);
+        _elements = in_element_set<T>(mu);
         return *this;
     }
 
@@ -230,25 +238,25 @@ class OrbitalElements {
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam T The type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    OrbitalElements convert_to_set(const AstrodynamicsSystem& sys) const
+    OrbitalElements convert_to_set(const GravParam& mu) const
     {
-        return in_element_set<T>(sys);
+        return in_element_set<T>(mu);
     }
 
     /**
      * @brief Converts the current orbital elements to a specified type.
      *
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in_element_set(const AstrodynamicsSystem& sys) const
+    T in_element_set(const GravParam& mu) const
     {
-        return std::visit([&](const auto& x) -> T { return T(x, sys); }, _elements);
+        return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
     }
 
     /**
@@ -346,12 +354,12 @@ class OrbitalElements {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Another OrbitalElements object to interpolate with
-     * @param sys The astrodynamics system to use for the interpolation
+     * @param mu The gravitational parameter to use for the interpolation
      * @param targetTime The target time for interpolation
      * @return Interpolated OrbitalElements at the target time.
      */
     OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const AstrodynamicsSystem& sys, const Time& targetTime) const;
+        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const GravParam& mu, const Time& targetTime) const;
 
     /**
      * @brief Extracts the underlying orbital elements as a variant.
@@ -393,10 +401,10 @@ class OrbitalElements {
      * @brief Implementation of the conversion to a specific type.
      *
      * @param idx The index of the orbital element type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return The converted orbital elements.
      */
-    OrbitalElements convert_to_set_impl(const std::size_t idx, const AstrodynamicsSystem& sys) const;
+    OrbitalElements convert_to_set_impl(const std::size_t idx, const GravParam& mu) const;
 };
 
 /**
@@ -457,7 +465,7 @@ class OrbitalElementPartials {
      * @brief Converts the current orbital element partials to a specific type.
      *
      * @tparam T The type to convert to.
-     * @param sys The astrodynamics system to use for the conversion.
+     * @param mu The gravitational parameter to use for the conversion.
      * @return A reference to the current orbital element partials after conversion.
      */
     OrbitalElements operator*(const Time& time) const;

@@ -1,11 +1,24 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Cylindrical.hpp>
-#include <astro/state/frames/frames.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -69,14 +82,14 @@ TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(
 
 TEST_F(CylindricalTest, EciVectorConstructor)
 {
-    RadiusVector<ECI> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_center().get()));
+    RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, EcefVectorConstructor)
 {
-    RadiusVector<ECEF> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_center().get()));
+    RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
+    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, OrbitalElementsConstructor)

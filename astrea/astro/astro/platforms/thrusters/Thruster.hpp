@@ -2,10 +2,18 @@
  * @file Thruster.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Thruster class definition for astrea access platform
- * @version 0.1
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -13,6 +21,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/Payload.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -32,8 +42,8 @@ class ThrusterParameters : public PayloadParameters {
      */
     ThrusterParameters(
         const Thrust& thrust,
-        const CartesianVector<Distance, RadialInTrackCrossTrack>& boresight       = NADIR_RIC,
-        const CartesianVector<Distance, RadialInTrackCrossTrack>& attachmentPoint = CENTER
+        const CartesianVector<Distance, frames::dynamic::ric>& boresight       = NADIR_RIC,
+        const CartesianVector<Distance, frames::dynamic::ric>& attachmentPoint = CENTER
     ) :
         PayloadParameters(boresight, attachmentPoint),
         _thrust(thrust)

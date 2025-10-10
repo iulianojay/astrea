@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
@@ -23,7 +36,7 @@ class AtmosphericForceTest : public testing::Test {
   public:
     AtmosphericForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys("Earth", { "Moon", "Sun" }),
+        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         force()
     {
     }
@@ -31,7 +44,7 @@ class AtmosphericForceTest : public testing::Test {
     void SetUp() override
     {
         // Vallado Ex. 8.5
-        sat.set_mass(100.0 * kg);
+        sat.set_mass(1000.0 * kg);
         sat.set_coefficient_of_drag(2.2 * one);
         sat.set_coefficient_of_lift(0.0 * one);
         sat.set_coefficient_of_reflectivity(1.0 * one);
@@ -63,10 +76,12 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 {
     Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<ECI> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
-    const AccelerationVector<ECEF> expectedEcef{ 1.4553e-9 * km / (s * s), 1.5354e-9 * km / (s * s), 3.2957e-9 * km / (s * s) };
-    const AccelerationVector<ECI> expected = expectedEcef.in_frame<ECI>(epoch);
+    const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
+                                                                       1.5354e-9 * km / (s * s),
+                                                                       3.2957e-9 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
@@ -77,21 +92,21 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
-    AstrodynamicsSystem martianSys("Mars", { "Mars", "Phobos", "Deimos", "Sun" });
+    AstrodynamicsSystem martianSys(CelestialBodyId::MARS, { CelestialBodyId::PHOBOS, CelestialBodyId::DEIMOS, CelestialBodyId::SUN });
     AtmosphericForce martianAtmosphere;
-    ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys), Vehicle(sat), martianSys));
+    ASSERT_NO_THROW(martianAtmosphere.compute_force(epoch, Cartesian::LEO(martianSys.get_mu()), Vehicle(sat), martianSys));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
-    AstrodynamicsSystem venutianSys("Venus", { "Venus", "Sun" });
+    AstrodynamicsSystem venutianSys(CelestialBodyId::VENUS, { CelestialBodyId::SUN });
     AtmosphericForce venutianAtmosphere;
-    ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys), Vehicle(sat), venutianSys));
+    ASSERT_NO_THROW(venutianAtmosphere.compute_force(epoch, Cartesian::LEO(venutianSys.get_mu()), Vehicle(sat), venutianSys));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AstrodynamicsSystem titanSys("Titan", { "Titan", "Saturn" });
+    AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::TITAN, CelestialBodyId::SATURN });
     AtmosphericForce titanAtmosphere;
-    ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys), Vehicle(sat), titanSys));
+    ASSERT_NO_THROW(titanAtmosphere.compute_force(epoch, Cartesian::LEO(titanSys.get_mu()), Vehicle(sat), titanSys));
 }

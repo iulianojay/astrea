@@ -2,10 +2,18 @@
  * @file util.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Utility functions for unit comparisons in the astrea project.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -76,7 +84,8 @@ void ASSERT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+                                                    << "or absolute differences greater than " << absTol << "\n"
                                                     << "First Quantity: " << x << "\n"
                                                     << "Second Quantity: " << y << "\n\n";
 }
@@ -98,7 +107,8 @@ void EXPECT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had differences greater than " << relTol * 100 << "%\n"
+    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+                                                    << "or absolute differences greater than " << absTol << "\n"
                                                     << "First Quantity: " << x << "\n"
                                                     << "Second Quantity: " << y << "\n\n";
 }

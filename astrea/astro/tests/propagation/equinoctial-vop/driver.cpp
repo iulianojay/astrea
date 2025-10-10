@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
@@ -28,6 +41,7 @@ using mp_units::si::unit_symbols::W;
 class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
+        mu(sys.get_mu()),
         eom(sys, forces),
         start(seconds(0)),
         end(weeks(1)),
@@ -42,6 +56,7 @@ class EquinoctialVopPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
+    GravParam mu;
     EquinoctialVop eom;
     ForceModel forces;
     Integrator integrator;
@@ -63,7 +78,7 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft geo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ geo };
 
     // Propagate
@@ -81,7 +96,7 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft meo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ meo };
 
     // Propagate
@@ -99,7 +114,7 @@ TEST_F(EquinoctialVopPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Equinoctial(state0, sys), epoch, sys });
+    Spacecraft leo({ Equinoctial(state0, mu), epoch, sys });
     Vehicle vehicle{ leo };
 
     // Propagate

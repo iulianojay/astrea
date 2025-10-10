@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <random>
 
 #include <gtest/gtest.h>
@@ -28,6 +41,7 @@ class ConversionTest : public testing::Test {
     const Unitless REL_TOL = 1e-4 * one;
 
     ConversionTest() :
+        mu(sys.get_mu()),
         rng(rd()),
         semimajorDist(6380.0 * km, 40000.0 * km),
         eccDist(0.0 * one, 0.99 * one),
@@ -41,7 +55,7 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = sys.get_center()->get_mu();
+        const GravParam mu = sys.get_mu();
         const Velocity V   = sqrt(mu / R);
 
         _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
@@ -54,8 +68,8 @@ class ConversionTest : public testing::Test {
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
-        // rEquitorial = sys.get_center()->get_equitorial_radius();
-        // rPolar      = sys.get_center()->get_polar_radius();
+        // rEquitorial = sys.get_central_body()->get_equitorial_radius();
+        // rPolar      = sys.get_central_body()->get_polar_radius();
     }
 
     // Expected values
@@ -68,6 +82,7 @@ class ConversionTest : public testing::Test {
 
     // Setup
     AstrodynamicsSystem sys;
+    GravParam mu;
     Distance rEquitorial;
     Distance rPolar;
 
@@ -84,7 +99,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements random_elements()
     {
         Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
-        return OrbitalElements(T(elements, AstrodynamicsSystem()));
+        return OrbitalElements(T(elements, AstrodynamicsSystem().get_mu()));
     }
 };
 
@@ -99,13 +114,13 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Cartesian>(sys);
+    elements.convert_to_set<Cartesian>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _cartExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _keplExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
@@ -115,10 +130,10 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(sys);
+            elements.convert_to_set<Cartesian>(mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(sys);
+            elements.convert_to_set<Keplerian>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -130,13 +145,13 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Cartesian>(sys);
+    elements.convert_to_set<Cartesian>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _cartExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Equinoctial>(sys);
+    elements.convert_to_set<Equinoctial>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _equiExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
@@ -146,10 +161,10 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(sys);
+            elements.convert_to_set<Cartesian>(mu);
 
             // Convert back
-            elements.convert_to_set<Equinoctial>(sys);
+            elements.convert_to_set<Equinoctial>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -161,13 +176,13 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
 TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Equinoctial>(sys);
+    elements.convert_to_set<Equinoctial>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _equiExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _keplExp, false, REL_TOL));
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
@@ -177,10 +192,10 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Equinoctial
-            elements.convert_to_set<Equinoctial>(sys);
+            elements.convert_to_set<Equinoctial>(mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(sys);
+            elements.convert_to_set<Keplerian>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -192,7 +207,7 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
 TEST_F(ConversionTest, EcefToLla)
 {
     // Vallado ex. 3-3
-    const RadiusVector<ECEF> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
+    const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
     const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
@@ -207,7 +222,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const RadiusVector<ECEF> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
 
     // I have no idea why these are not the same
     ASSERT_EQ_QUANTITY(rEcef[0], Distance(6524.834 * km), REL_TOL);
@@ -221,10 +236,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(sys);
+//             elements.convert_to_set<Equinoctial>(mu);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(sys);
+//             elements.convert_to_set<Keplerian>(mu);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -236,13 +251,13 @@ TEST_F(ConversionTest, LlaToEcef)
 // TEST_F(ConversionTest, EciToEcef)
 // {
 //     OrbitalElements elements = _eciExp;
-//     elements.convert_to_set<Equinoctial>(sys);
+//     elements.convert_to_set<Equinoctial>(mu);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _ecefExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EcefToEci)
 // {
 //     OrbitalElements elements = _ecefExp;
-//     elements.convert_to_set<Keplerian>(sys);
+//     elements.convert_to_set<Keplerian>(mu);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, _eciExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EciEcefCycle)
@@ -252,10 +267,10 @@ TEST_F(ConversionTest, LlaToEcef)
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(sys);
+//             elements.convert_to_set<Equinoctial>(mu);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(sys);
+//             elements.convert_to_set<Keplerian>(mu);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(elements, originalElements, false, REL_TOL));
@@ -300,16 +315,16 @@ TEST_F(ConversionTest, SanitizeAngle)
 {
     // Test angle within [0, 2pi]
     Angle ang       = 1.0 * rad;
-    Angle sanitized = sanitize_angle(ang);
+    Angle sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang, REL_TOL);
 
     // Test negative angle
     ang       = -1.0 * rad;
-    sanitized = sanitize_angle(ang);
+    sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang + TWO_PI, REL_TOL);
 
     // Test angle greater than 2pi
     ang       = 3.0 * TWO_PI;
-    sanitized = sanitize_angle(ang);
+    sanitized = wrap_angle(ang);
     ASSERT_EQ_QUANTITY(sanitized, ang - TWO_PI, REL_TOL);
 }

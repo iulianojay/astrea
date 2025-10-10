@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -24,14 +37,12 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
-#include <snapshot/snapshot.hpp>
 #include <trace/trace.hpp>
 
 using namespace astrea;
 using namespace astro;
 using namespace astrea;
 using namespace trace;
-using namespace snapshot;
 using namespace sqlite_orm;
 
 using namespace mp_units;
@@ -87,8 +98,8 @@ int main(int argc, char** argv)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 {
     // Build constellation
-    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys), epoch, sys });
-    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys), epoch, sys });
+    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys });
+    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys.get_mu()), epoch, sys });
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);

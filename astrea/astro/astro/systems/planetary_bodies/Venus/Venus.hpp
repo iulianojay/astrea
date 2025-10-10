@@ -1,0 +1,118 @@
+/**
+ * @file Venus.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the Venus class.
+ * @date 2025-10-02
+ *
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+#pragma once
+
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/iau.h>
+#include <mp-units/systems/si.h>
+
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/systems/CelestialBody.hpp>
+#include <astro/types/typedefs.hpp>
+
+namespace astrea {
+namespace astro {
+namespace planetary_bodies {
+
+/**
+ * @class Venus
+ * @brief Represents the Venus celestial body.
+ *
+ * This class provides properties and methods specific to Venus, including its physical and orbital parameters.
+ */
+class Venus : public CelestialBody {
+
+  public:
+    /**
+     * @brief Default constructor for the Venus class.
+     *
+     * Initializes the Venus object with predefined physical and orbital parameters.
+     */
+    constexpr Venus() :
+        CelestialBody(
+            "Venus",                     //!< Name
+            CelestialBodyId::SUN,        //!< Parent celestial body
+            CelestialBodyType::PLANET,   //!< Type
+            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
+            GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
+            Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
+            Distance(6051.8 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
+            Distance(6051.8 * mp_units::si::unit_symbols::km),                           //!< Polar radius
+            Distance(6301.8 * mp_units::si::unit_symbols::km),                           //!< Crash radius
+            Distance(0.061640255733634 * mp_units::iau::unit_symbols::au),               //!< Crash radius
+            Unitless(4.458e-6 * mp_units::one),                 //!< J2 gravitational coefficient
+            Unitless(-0.0000025323e-6 * mp_units::one),         //!< J3 gravitational coefficient
+            Angle(2.64 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
+            AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
+            Time(224.701 * mp_units::non_si::day),                      //!< Sidereal period
+            Distance(0.72333566 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
+            Unitless(0.00677672 * mp_units::one),                       //!< Eccentricity
+            Angle(3.39467605 * mp_units::angular::unit_symbols::deg),   //!< Inclination
+            Angle(76.67984255 * mp_units::angular::unit_symbols::deg),  //!< Longitude of ascending node
+            Angle(131.60246718 * mp_units::angular::unit_symbols::deg), //!< Longitude of perihelion
+            Angle(181.97909950 * mp_units::angular::unit_symbols::deg), //!< Mean longitude
+            InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
+            BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
+            BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
+            BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
+            BodyAngularRate(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
+            BodyAngularRate(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
+        )
+    {
+    }
+
+    /**
+     * @brief Default destructor for the Venus class.
+     */
+    ~Venus() = default;
+
+    /**
+     * @brief Find the atmospheric density at a given date and altitude.
+     *
+     * @param date The date for which to find the atmospheric density.
+     * @param altitude The altitude at which to find the atmospheric density.
+     * @return Density The atmospheric density at the given date and altitude.
+     */
+    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+
+    /**
+     * @brief Get the unique identifier for the Venus celestial body.
+     *
+     * @return CelestialBodyId The unique identifier for Venus.
+     */
+    static constexpr CelestialBodyId get_id() { return CelestialBodyId::VENUS; };
+
+#ifdef ASTREA_BUILD_VENUS_EPHEMERIS
+
+    /**
+     * @brief Get the position of the Venus at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the position of the Venus.
+     * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Venus at the given date.
+     */
+    RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+#endif // ASTREA_BUILD_VENUS_EPHEMERIS
+};
+
+} // namespace planetary_bodies
+} // namespace astro
+} // namespace astrea

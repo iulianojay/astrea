@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <iostream>
 
 #include <units/units.hpp>
@@ -23,7 +36,7 @@ int main()
 
     // Setup initial state
     AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;
+    const Date epoch;        // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch, sys);
 
@@ -34,8 +47,8 @@ int main()
     Vehicle vehicle(sat);
 
     // Build EoMs
-    ForceModel forces;
     TwoBody eoms(sys);
+    // ForceModel forces; // We could add forces if we wanted
     // KeplerianVop eoms(sys, forces, false);
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
@@ -46,7 +59,8 @@ int main()
     integrator.switch_fixed_timestep(true, 60.0 * s);
 
     bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), days(1) };
+    Interval propInterval{ seconds(0), days(1) }; // A propagation interval relative to the epoch. Intervals
+                                                  // can also be negative for backwards propagation.
 
     // Currently, Astrea only defines a single event, an ImpulsiveBurn which triggers at perigee crossing and always
     // burns in the velocity direction. The impulsive burn event uses the thrust of all attached thrusters in a simple
@@ -60,10 +74,9 @@ int main()
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;
-    std::cout
-        << "Initial Period: "
-        << mp_units::quantity<h>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle))
-        << std::endl;
+    std::cout << "Initial Period: "
+              << mp_units::quantity<h>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / sys.get_mu()) / (isq_angle::cotes_angle))
+              << std::endl;
     std::cout << "Total Thrust: " << mp_units::quantity<kN>(thrusterParams.get_thrust()) << std::endl;
     const Thruster thruster = sat.get_payloads()[0];
     std::cout << "Equivalent Impulsive Delta-V: " << thruster.get_impulsive_delta_v() << std::endl << std::endl;
@@ -83,7 +96,7 @@ int main()
         for (const Date& date : dates) {
             const Keplerian elementsAfterBurn = history.get_state_at(date + 60.0 * s).in_element_set<Keplerian>();
             mp_units::quantity<h> orbitalPeriod =
-                TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / sys.get_center()->get_mu()) / (isq_angle::cotes_angle);
+                TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / sys.get_mu()) / (isq_angle::cotes_angle);
             std::cout << "\t" << orbitalPeriod << std::endl;
         }
     }

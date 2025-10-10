@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <iostream>
 
 #include <units/units.hpp>
@@ -18,8 +31,6 @@ int main()
     // - Classical Orbital Elements (Keplerian)
     // - Modified Equinoctial Elements (Equinoctial)
     // - State Vectors (Cartesian)
-    // Each element set can be defined independent of a reference system, but a reference system is required
-    // for conversions and propagation.
 
     // For now, the Cartesian element set is defined in the ECI frame, but future releases will support
     // other frames as well.
@@ -29,12 +40,13 @@ int main()
     std::cout << "Cartesian: " << cartesian << std::endl;
 
     // Conversions at the instance level are done through constructors
-    AstrodynamicsSystem sys; // Default system is Earth
-    Keplerian keplerian{ cartesian, sys };
-    Equinoctial equinoctial{ keplerian, sys };
+    AstrodynamicsSystem sys; // Default system is Earth-Moon system
+    const auto& mu = sys.get_mu();
+    Keplerian keplerian{ cartesian, mu };
+    Equinoctial equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;
     std::cout << "Converted to Equinoctial: " << equinoctial << std::endl;
-    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, sys) << std::endl << std::endl;
+    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, mu) << std::endl << std::endl;
 
     // Each element set also supports common operators **but only for the same element set**
     Cartesian cartesian2{
@@ -62,12 +74,12 @@ int main()
     std::cout << "OrbitalElements (from Keplerian): " << elements << std::endl;
 
     // This class can handle conversions internally
-    elements.convert_to_set<Keplerian>(sys);
+    elements.convert_to_set<Keplerian>(mu);
     std::cout << "OrbitalElements converted to Keplerian: " << elements << std::endl;
-    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(sys);
+    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(mu);
     std::cout << "OrbitalElements converted to Equinoctial: " << converted << std::endl;
 
     // And it can return the desired element set directly
-    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(sys);
+    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(mu);
     std::cout << "Extracted Keplerian conversion: " << keplerian2 << std::endl;
 }

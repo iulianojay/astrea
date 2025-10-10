@@ -4,10 +4,18 @@
  * @brief Date class for handling time in the astrea astro library.
  * @details This class provides functionality for handling dates, including conversions to and from Julian dates,
  *          sidereal time calculations, and various clock conversions.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -39,8 +47,10 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
  * @param date The JulianDate to convert.
  * @param format The format of the output string, default is "%Y-%m-%d %H:%M:%S".
  * @return std::string The string representation of the JulianDate.
+ *
+ * @note: This function uses an expantion that only works for Earth-centric sideral times.
  */
-Angle julian_date_to_siderial_time(const JulianDate& date);
+Angle julian_date_to_sidereal_time(const JulianDate& date);
 
 /**
  * @brief Class representing a date in the astrea astro library.

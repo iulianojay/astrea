@@ -2,10 +2,18 @@
  * @file Geodetic.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the Geodetic class and its associated methods.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -17,8 +25,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
@@ -67,14 +75,14 @@ class Geodetic {
      *
      * @param r Radius vector in ECI (position)
      */
-    Geodetic(const RadiusVector<ECI>& r, const Date& date, const CelestialBody* parent);
+    Geodetic(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Geodetic with position and velocity vectors.
      *
      * @param r Radius vector in ECEF (position)
      */
-    Geodetic(const RadiusVector<ECEF>& r, const CelestialBody* parent);
+    Geodetic(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Geodetic from orbital elements.
@@ -85,7 +93,10 @@ class Geodetic {
     template <IsOrbitalElements T>
     Geodetic(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
     {
-        *this = Geodetic(Cartesian(elements, sys).get_position().template in_frame<ECEF>(date), sys.get_center().get());
+        *this = Geodetic(
+            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            sys.get_central_body().get()
+        );
     }
 
     /**
@@ -214,18 +225,18 @@ class Geodetic {
     Geodetic& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Geodetic state vector to a RadiusVector<ECEF>.
+     * @brief Converts the Geodetic state vector to a RadiusVector<frames::earth::earth_fixed>.
      *
-     * @return RadiusVector<ECEF> The position vector in Geodetic coordinates.
+     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Geodetic coordinates.
      */
-    RadiusVector<ECEF> get_position(const CelestialBody* parent) const;
+    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
 
     /**
-     * @brief Converts the Geodetic state vector to a RadiusVector<ECI>.
+     * @brief Converts the Geodetic state vector to a RadiusVector<frames::earth::icrf>.
      *
-     * @return RadiusVector<ECI> The position vector in Geodetic coordinates.
+     * @return RadiusVector<frames::earth::icrf> The position vector in Geodetic coordinates.
      */
-    RadiusVector<ECI> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
 
     /**
      * @brief Get the latitude of the Geodetic state vector.
@@ -276,7 +287,7 @@ class Geodetic {
  * @return The latitude, longitude, and altitude as a tuple.
  */
 std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geodetic(const RadiusVector<EarthCenteredEarthFixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
+    convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
 
 
 /**
@@ -289,7 +300,7 @@ std::tuple<Angle, Angle, Distance>
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
 
 } // namespace astro

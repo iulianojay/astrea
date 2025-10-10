@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 
 #include <mp-units/math.h>
@@ -22,25 +35,26 @@ namespace astro {
 CowellsMethod::CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
     EquationsOfMotion(system),
     forces(&forces),
-    mu(system.get_center()->get_mu())
+    mu(system.get_mu())
 {
 }
 
 OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
 {
     // Extract
-    const Cartesian cartesian = state.in_element_set<Cartesian>(get_system());
+    const GravParam& mu       = get_system().get_mu();
+    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
-    const RadiusVector<ECI> r   = cartesian.get_position();
-    const VelocityVector<ECI> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // mu/R^3
     const Distance R                 = r.norm();
     const quantity muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const Date date                    = vehicle.get_state().get_epoch();
-    AccelerationVector<ECI> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const Date date = vehicle.get_state().get_epoch();
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);

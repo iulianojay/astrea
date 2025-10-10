@@ -1,14 +1,25 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/platforms/vehicles/NullVehicle.hpp>
 
-#include <mp-units/compat_macros.h>
-#include <mp-units/ext/format.h>
 #include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
-#include <astro/state/CartesianVector.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/frames/FrameReference.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -36,17 +47,17 @@ Mass NullVehicle::get_mass() const { return _mass; }
 
 std::string NullVehicle::get_name() const { return "NullVehicle"; }
 
-RadiusVector<ECI> NullVehicle::get_inertial_position(const Date& date) const
+RadiusVector<frames::earth::icrf> NullVehicle::get_inertial_position(const Date& date) const
 {
     return { 0.0 * km, 0.0 * km, 0.0 * km };
 }
 
-VelocityVector<ECI> NullVehicle::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::earth::icrf> NullVehicle::get_inertial_velocity(const Date& date) const
 {
     return { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
 }
 
-AccelerationVector<ECI> NullVehicle::get_inertial_acceleration(const Date& date) const
+AccelerationVector<frames::earth::icrf> NullVehicle::get_inertial_acceleration(const Date& date) const
 {
     return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
 }

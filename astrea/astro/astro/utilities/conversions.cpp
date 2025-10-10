@@ -1,6 +1,18 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <astro/utilities/conversions.hpp>
 
-#include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
@@ -11,11 +23,7 @@
 using namespace mp_units;
 using namespace mp_units::angular;
 using mp_units::angular::unit_symbols::deg;
-using mp_units::non_si::day;
-using mp_units::si::unit_symbols::h;
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::min;
-using mp_units::si::unit_symbols::s;
+using mp_units::angular::unit_symbols::rad;
 
 namespace astrea {
 namespace astro {
@@ -34,14 +42,25 @@ Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc)
                     isq_angle::cotes_angle;
 }
 
-Angle sanitize_angle(const Angle& angle)
+Angle convert_eccentric_anomaly_to_mean_anomaly(const Angle& ea, const Unitless ecc)
 {
-    Angle ang = angle;
-    while (ang < 0.0 * astrea::detail::angle_unit) {
-        ang += TWO_PI;
-    }
-    return fmod(ang, TWO_PI);
+    return ea - ecc * sin(ea) * isq_angle::cotes_angle;
 }
+
+Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless ecc)
+{
+    Angle ea        = ma - ecc * sin(ma) * isq_angle::cotes_angle;
+    const Angle tol = 1.0e-10 * rad;
+    unsigned iter   = 0;
+    Angle deltaE    = 1.0 * rad;
+    while (iter < 1e2 && abs(deltaE) > tol) {
+        deltaE = ma - (ea - ecc * sin(ea) * isq_angle::cotes_angle) / (1.0 * one - ecc * cos(ea));
+        ea += deltaE;
+        ++iter;
+    }
+    return ea;
+}
+
 
 } // namespace astro
 } // namespace astrea

@@ -2,10 +2,18 @@
  * @file Sensor.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Sensor class definition for astrea access platform
- * @version 0.1
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -37,9 +45,9 @@ class SensorParameters : public astro::PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     SensorParameters(
-        const FieldOfView* fov                                                                  = nullptr,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& boresight       = astro::NADIR_RIC,
-        const astro::CartesianVector<Distance, astro::RadialInTrackCrossTrack>& attachmentPoint = astro::CENTER
+        const FieldOfView* fov                                                               = nullptr,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& boresight       = astro::NADIR_RIC,
+        const astro::CartesianVector<Distance, astro::frames::dynamic::ric>& attachmentPoint = astro::CENTER
     ) :
         astro::PayloadParameters(boresight, attachmentPoint),
         _fov(fov)
@@ -116,7 +124,7 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
      * @return true If the target is within the sensor's field of view.
      * @return false If the target is outside the sensor's field of view.
      */
-    bool contains(const astro::RadiusVector<astro::ECI>& sensor2target, const astro::Date& date) const;
+    bool contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const;
 
   private:
     /**

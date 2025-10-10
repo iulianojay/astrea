@@ -2,10 +2,18 @@
  * @file Spacecraft.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief A class representing a spacecraft in the astrea astro platform.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -67,17 +75,17 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
-     * @return RadiusVector<EarthCenteredInertial> The inertial position of the spacecraft.
+     * @return RadiusVector<frames::earth::icrf> The inertial position of the spacecraft.
      */
-    RadiusVector<EarthCenteredInertial> get_inertial_position(const Date& date) const override;
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the velocity.
-     * @return VelocityVector<EarthCenteredInertial> The inertial velocity of the spacecraft.
+     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the spacecraft.
      */
-    VelocityVector<EarthCenteredInertial> get_inertial_velocity(const Date& date) const override;
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
 
     /**
      * @brief Gets the Cartesian state of the spacecraft at a specific date.

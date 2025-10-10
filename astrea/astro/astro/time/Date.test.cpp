@@ -1,3 +1,16 @@
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <gtest/gtest.h>
 
 #include <math/test_util.hpp>
@@ -32,7 +45,7 @@ TEST_F(DateTest, JulianDateToSiderealTime)
 {
     // Vallado, Ex. 3-5
     Date date("1992-08-20 12:14:00.0");
-    ASSERT_EQ_QUANTITY(julian_date_to_siderial_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
+    ASSERT_EQ_QUANTITY(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }

@@ -2,10 +2,18 @@
  * @file typedefs.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Type definitions for astrea units
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -13,7 +21,6 @@
 #include <array>
 #include <stdint.h>
 
-#include <mp-units/compat_macros.h>
 #include <mp-units/ext/format.h>
 
 #include <units/custom.hpp>
@@ -77,9 +84,14 @@ using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>
 using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
 
 /**
+ * @brief Definition for a interplanetary distance quantity.
+ */
+using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::au>;
+
+/**
  * @brief Definition for a body-related velocity.
  */
-using BodyVelocity = mp_units::quantity<detail::distance_unit / JulianCentury>;
+using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
 
 /**
  * @brief Definition for a body-related unitless per time.

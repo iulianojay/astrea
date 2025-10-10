@@ -2,10 +2,18 @@
  * @file Spherical.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the Spherical class and its associated methods.
- * @version 0.1
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -17,8 +25,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/CartesianVector.hpp>
-#include <astro/state/frames/frames.hpp>
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
@@ -67,14 +75,14 @@ class Spherical {
      *
      * @param r Radius vector in ECI (position)
      */
-    Spherical(const RadiusVector<ECI>& r, const Date& date, const CelestialBody* parent);
+    Spherical(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Spherical with position and velocity vectors.
      *
      * @param r Radius vector in ECEF (position)
      */
-    Spherical(const RadiusVector<ECEF>& r, const CelestialBody* parent);
+    Spherical(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
 
     /**
      * @brief Constructor for Spherical from orbital elements.
@@ -85,7 +93,10 @@ class Spherical {
     template <IsOrbitalElements T>
     Spherical(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
     {
-        *this = Spherical(Cartesian(elements, sys).get_position().template in_frame<ECEF>(date), sys.get_center().get());
+        *this = Spherical(
+            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            sys.get_central_body().get()
+        );
     }
 
     /**
@@ -214,18 +225,18 @@ class Spherical {
     Spherical& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Spherical state vector to a RadiusVector<ECEF>.
+     * @brief Converts the Spherical state vector to a RadiusVector<frames::earth::earth_fixed>.
      *
-     * @return RadiusVector<ECEF> The position vector in Spherical coordinates.
+     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Spherical coordinates.
      */
-    RadiusVector<ECEF> get_position(const CelestialBody* parent) const;
+    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
 
     /**
-     * @brief Converts the Spherical state vector to a RadiusVector<ECI>.
+     * @brief Converts the Spherical state vector to a RadiusVector<frames::earth::icrf>.
      *
-     * @return RadiusVector<ECI> The position vector in Spherical coordinates.
+     * @return RadiusVector<frames::earth::icrf> The position vector in Spherical coordinates.
      */
-    RadiusVector<ECI> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
 
     /**
      * @brief Get the azimuth of the Spherical state vector.
@@ -273,7 +284,7 @@ class Spherical {
  * @param rEcef The radius vector in ECEF coordinates.
  * @return The range, inclination, and azimuth as a tuple.
  */
-std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<EarthCenteredEarthFixed>& rEcef);
+std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef);
 
 
 /**
@@ -284,7 +295,7 @@ std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const Radius
  * @param range The range in meters.
  * @return The radius vector in ECEF coordinates.
  */
-RadiusVector<EarthCenteredEarthFixed>
+RadiusVector<frames::earth::earth_fixed>
     convert_spherical_to_earth_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth);
 
 } // namespace astro
