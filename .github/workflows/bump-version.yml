@@ -1,8 +1,7 @@
 name: C/C++ CD
 
 permissions:
-  contents: read
-  pull-requests: write
+  contents: write
 
 on:
   push:
