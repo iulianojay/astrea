@@ -232,6 +232,7 @@ function(get_version_from_git)
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 
+    message(STATUS "Full Tag: ${GIT_TAG}")
     string(REGEX REPLACE "^v" "" CLEAN_TAG "${GIT_TAG}")
     if(CLEAN_TAG MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-.*)?$")
 
