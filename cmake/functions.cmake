@@ -211,7 +211,6 @@ function(get_version_from_git)
         return()
     endif()
 
-    message(STATUS "Git executable: ${GIT_EXECUTABLE}")
     execute_process(
         COMMAND ${GIT_EXECUTABLE} describe --tags --always
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -232,7 +231,6 @@ function(get_version_from_git)
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 
-    message(STATUS "Full Tag: ${GIT_TAG}")
     string(REGEX REPLACE "^v" "" CLEAN_TAG "${GIT_TAG}")
     if(CLEAN_TAG MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-.*)?$")
 
