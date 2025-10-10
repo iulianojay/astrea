@@ -1,7 +1,6 @@
 name: C/C++ CD
 
-permissions:
-  contents: write
+permissions: write-all
 
 on:
   push:
