@@ -34,6 +34,7 @@ jobs:
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
         make python_env
+        git config --global --add safe.directory '*'
 
     - name: Build
       run: |
@@ -70,6 +71,7 @@ jobs:
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
         make python_env
+        git config --global --add safe.directory '*'
 
     - name: Build Debug
       run: |
