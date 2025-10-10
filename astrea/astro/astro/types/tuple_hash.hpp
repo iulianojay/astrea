@@ -2,7 +2,6 @@
  * @file tuple_hash.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file provides a hash function for tuples.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

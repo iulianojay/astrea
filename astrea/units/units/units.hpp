@@ -2,7 +2,6 @@
  * @file units.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for astrea units
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

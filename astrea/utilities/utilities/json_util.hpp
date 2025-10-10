@@ -2,7 +2,6 @@
  * @file json_util.hpp
  * @author your name (you@domain.com)
  * @brief JSON utility functions for extracting and manipulating JSON data.
- * @version 0.1
  * @date 2025-10-09
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

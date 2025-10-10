@@ -2,7 +2,6 @@
  * @file RiseSetArray.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Contains the RiseSetArray class, which represents an array of rise and set times.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

@@ -2,7 +2,6 @@
  * @file AtmosphericForce.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the AtmosphericForce class, which computes the atmospheric force on a vehicle.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

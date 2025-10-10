@@ -2,7 +2,6 @@
  * @file Force.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the Force class, which defines the interface for force models in astrodynamics.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

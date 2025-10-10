@@ -2,7 +2,6 @@
  * @file constants.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Contains definitions for constant values used in astrea.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

@@ -1,7 +1,7 @@
 /**
- * @file snapshot.hpp
+ * @file version.hpp.in
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the snapshot module
+ * @brief This file contains the version information for the Astrea library.
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -18,6 +18,8 @@
  */
 #pragma once
 
-#include <snapshot/database/Database.hpp>
-#include <snapshot/http-queries/ethz/EthzClient.hpp>
-#include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>
+#define ASTREA_VERSION_MAJOR @ASTREA_VERSION_MAJOR @
+#define ASTREA_VERSION_MINOR @ASTREA_VERSION_MINOR @
+#define ASTREA_VERSION_PATCH @ASTREA_VERSION_PATCH @
+#define ASTREA_VERSION @ASTREA_VERSION @
+#define ASTREA_FULL_VERSION @ASTREA_FULL_VERSION @

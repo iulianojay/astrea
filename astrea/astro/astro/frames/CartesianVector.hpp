@@ -2,7 +2,6 @@
  * @file CartesianVector.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the CartesianVector class, which represents a 3D vector in Cartesian coordinates.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

@@ -2,7 +2,6 @@
  * @file Database.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Database utility wrapper for the snapshot module
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

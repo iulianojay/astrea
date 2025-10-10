@@ -2,7 +2,6 @@
  * @file Vehicle.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief A class representing a vehicle in the astrea astro platform.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

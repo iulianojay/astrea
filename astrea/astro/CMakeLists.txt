@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.28.3)
 
 project(
     astro 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Core Physics and Astrodynamics Library" 
     LANGUAGES CXX
 )

@@ -2,7 +2,6 @@
  * @file variant_util.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Utility functions for working with std::variant
- * @version 0.1
  * @date 2025-10-09
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

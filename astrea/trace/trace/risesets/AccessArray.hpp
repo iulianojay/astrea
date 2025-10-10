@@ -3,7 +3,6 @@
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Contains the AccessArray class, which is a collection of RiseSetArrays indexed by sender and receiver IDs, and
  * provides methods for manipulating and querying access times.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

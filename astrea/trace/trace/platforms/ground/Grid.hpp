@@ -2,7 +2,6 @@
  * @file Grid.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Grid class for managing a grid of ground points.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

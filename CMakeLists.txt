@@ -9,9 +9,17 @@
 
 cmake_minimum_required(VERSION 3.28.3)
 
+include(cmake/functions.cmake)
+configure_file(
+    ${CMAKE_SOURCE_DIR}/cmake/version.hpp.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.hpp
+)
+get_version_from_git()
+
+message(STATUS "Configuring Astrea version ${ASTREA_VERSION}")
 project(
     astrea 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Astrea: Nebula Back-End Simulation Library" 
     LANGUAGES CXX
 )
@@ -31,9 +39,6 @@ include(cmake/standard_project_settings.cmake)
 if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
 endif()
-
-
-include(cmake/functions.cmake)
 
 # Include dependencies
 find_package(mp-units REQUIRED)

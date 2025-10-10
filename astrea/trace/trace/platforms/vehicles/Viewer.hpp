@@ -2,7 +2,6 @@
  * @file Viewer.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Viewer class for managing access and sensors on a spacecraft.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

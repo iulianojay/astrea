@@ -2,7 +2,6 @@
  * @file Antenna.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Antenna class for representing antenna properties and behaviors.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

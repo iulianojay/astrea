@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches: [ "dev" ]
+
+jobs:
+  Build-and-Test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea:dev
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Fetch tags
+      run: git fetch --prune --unshallow --tags
+
+    - name: Increment Version
+      run: |
+        sh ./scripts/increment_version.sh

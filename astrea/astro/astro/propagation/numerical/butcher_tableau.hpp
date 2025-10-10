@@ -2,7 +2,6 @@
  * @file butcher_tableau.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Constants for Runge-Kutta methods used in numerical integration
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

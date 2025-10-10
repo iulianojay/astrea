@@ -2,7 +2,6 @@
  * @file defined_rotations.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for defined rotations between common frames.
- * @version 0.1
  * @date 2025-10-09
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

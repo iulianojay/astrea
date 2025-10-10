@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.28.3)
 
 project(
     "math" 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Library for Simple Math Utilities" 
     LANGUAGES CXX
 )

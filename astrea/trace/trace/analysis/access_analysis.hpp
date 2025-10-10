@@ -2,7 +2,6 @@
  * @file access_analysis.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for access analysis functions in the astrea access library.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

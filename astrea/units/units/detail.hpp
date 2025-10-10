@@ -2,7 +2,6 @@
  * @file detail.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Contains detail namespace with unit definitions for astrea project.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

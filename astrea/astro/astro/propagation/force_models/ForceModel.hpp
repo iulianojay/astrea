@@ -2,7 +2,6 @@
  * @file ForceModel.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the ForceModel class, which manages multiple force models and computes the total force on a vehicle.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

@@ -2,7 +2,6 @@
  * @file JulianDateClock.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief A clock implementation for Julian Dates. Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

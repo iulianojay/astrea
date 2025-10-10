@@ -2,7 +2,6 @@
  * @file riseset_utils.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Utility functions for manipulating RiseSetArray objects.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
