@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.28.3)
 
 project(
     "snapshot" 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Library for Ingesting and Storing Live Satellite Data" 
     LANGUAGES CXX
 )

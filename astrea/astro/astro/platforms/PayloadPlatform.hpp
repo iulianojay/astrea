@@ -2,7 +2,6 @@
  * @file PayloadPlatform.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the PayloadPlatform class, which represents a platform that can have payloads attached to it.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

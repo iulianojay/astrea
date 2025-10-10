@@ -2,7 +2,6 @@
  * @file FieldOfView.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Field of View (FoV) classes for representing different types of sensor fields of view.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

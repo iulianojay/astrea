@@ -2,7 +2,6 @@
  * @file AccessObject.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief AccessObject class for managing access rights.
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

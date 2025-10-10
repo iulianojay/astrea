@@ -2,7 +2,6 @@
  * @file body_centered_inertial_frames.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for all (most? common?) body-centered inertial frames.
- * @version 0.1
  * @date 2025-08-05
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

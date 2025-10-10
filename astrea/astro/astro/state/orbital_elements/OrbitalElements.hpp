@@ -2,7 +2,6 @@
  * @file OrbitalElements.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief This file defines the OrbitalElements class and its associated methods.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

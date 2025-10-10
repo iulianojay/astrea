@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.28.3)
 
 project(
     trace 
-    VERSION 0.0.1 
+    VERSION ${ASTREA_VERSION}
     DESCRIPTION "Library for Trace-Based Simulation and Analysis" 
     LANGUAGES CXX
 )

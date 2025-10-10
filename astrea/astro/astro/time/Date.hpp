@@ -4,7 +4,6 @@
  * @brief Date class for handling time in the astrea astro library.
  * @details This class provides functionality for handling dates, including conversions to and from Julian dates,
  *          sidereal time calculations, and various clock conversions.
- * @version 0.1
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

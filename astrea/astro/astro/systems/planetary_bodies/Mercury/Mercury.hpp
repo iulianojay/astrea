@@ -2,7 +2,6 @@
  * @file Mercury.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the Mercury class.
- * @version 0.1
  * @date 2025-10-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

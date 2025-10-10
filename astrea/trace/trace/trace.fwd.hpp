@@ -2,7 +2,6 @@
  * @file trace.fwd.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Forward declarations for the trace module.
- * @version 0.1
  * @date 2025-10-09
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

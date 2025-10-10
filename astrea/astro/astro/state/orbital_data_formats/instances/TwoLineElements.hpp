@@ -2,7 +2,6 @@
  * @file TwoLineElements.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for the TwoLineElements class
- * @version 0.1
  * @date 2025-08-27
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

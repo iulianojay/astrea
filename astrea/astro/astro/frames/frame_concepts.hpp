@@ -2,7 +2,6 @@
  * @file frame_concepts.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Definitions for frame concepts and other compile-time utilities.
- * @version 0.1
  * @date 2025-10-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

@@ -2,7 +2,6 @@
  * @file angular_elements.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Utility header to include all angular element headers
- * @version 0.1
  * @date 2025-10-09
  *
  * @copyright Copyright (c) 2025 Jay Iuliano

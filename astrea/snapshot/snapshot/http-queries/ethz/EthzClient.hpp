@@ -2,7 +2,6 @@
  * @file EthzClient.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief EthzClient class for interacting with the ETHZ satellite database API
- * @version 0.1
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
