@@ -211,6 +211,7 @@ function(get_version_from_git)
         return()
     endif()
 
+    message(STATUS "Git executable: ${GIT_EXECUTABLE}")
     execute_process(
         COMMAND ${GIT_EXECUTABLE} describe --tags --always
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
