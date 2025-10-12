@@ -62,10 +62,11 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      */
     DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
-        const auto r = get_inertial_position(date).unit();
-        const auto v = get_inertial_velocity(date).unit();
-        const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical>::from_vectors((-h).cross(-r), -h, -r);
+        const auto r               = get_inertial_position(date).unit();
+        const auto v               = get_inertial_velocity(date).unit();
+        const auto h               = r.cross(v).unit();
+        const auto localHorizontal = ((-h).cross(-r)).unit();
+        return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
     }
 
   private:
