@@ -36,7 +36,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/extern)
 
         # Dependencies
-        target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
+        target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main benchmark::benchmark)
 
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")

@@ -71,5 +71,8 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 include(GoogleTest)
 
+# Google benchmark
+find_package(benchmark REQUIRED)
+
 # Get code
 add_subdirectory(astrea)
