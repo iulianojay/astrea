@@ -60,10 +60,11 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, Frame
      */
     DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
-        const auto r = get_inertial_position(date).unit();
-        const auto v = get_inertial_velocity(date).unit();
-        const auto h = r.cross(v).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal>::from_vectors(v, h, v.cross(h));
+        const auto r        = get_inertial_position(date).unit();
+        const auto v        = get_inertial_velocity(date).unit();
+        const auto h        = r.cross(v).unit();
+        const auto binormal = (v.cross(h)).unit();
+        return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal>::from_vectors(v, h, binormal);
     }
 
   private:
