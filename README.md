@@ -160,21 +160,34 @@ Dynamic frames can either be attached to a FrameReference object (such as a spac
 
 ```cpp
 // RadiusVector<Frame_T> = CartesianVector<Distance, Frame_T>
-RadiusVector<RIC> rRic = { 1.0 * m, 2.0 * m, 3.0 * m };
+RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
 Spacecraft frameParent;
 RIC dynamicRicFrame(&frameParent);                              // RIC frame attached to a spacecraft
 RIC instantaneousRicFrame = RIC::instantaneous(posVec, velVec); // RIC frame defined at a specific time
 
 // RadiusVector<ECI> rEciFromRic = rRic.in_frame<ECI>(J2000); // No RIC frame instance at compile time: compiler will fail!
-RadiusVector<ECI> convertedrRic = instantaneousRicFrame.convert_from_this_frame(rRic, J2000); // frame instance handles the conversion
+RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);       // DCM * r
+RadiusVector<ECI> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);        // DCM * r + framePos
+RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
+RadiusVector<RIC> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM_T * (r - framePos)
 
+std::cout << "RIC frame parent position: " << posECI << std::endl;
+std::cout << "RIC frame parent velocity: " << velEci << std::endl;
 std::cout << "Position in RIC: " << rRic << std::endl;
-std::cout << "Position in instantaneous RIC: " << convertedrRic << std::endl;
+std::cout << "Position rotated into ECI: " << rotatedrRic << std::endl;
+std::cout << "Position w.r.t ECI: " << convertedrRic << std::endl;
+std::cout << "Rotated back into RIC: " << rRic2 << std::endl;
+std::cout << "Transformed back w.r.t RIC: " << rRic3 << std::endl << std::endl;
 
 // Outputs:
-// Position in RIC: [0.001 km, 0.002 km, 0.003 km]
-// Position in instantaneous RIC: [0.00474166 km, 0.002 km, 0.003 km]
+// RIC frame parent position:   [1 km, 0 km, 0 km]
+// RIC frame parent velocity:   [0 km/s, 1 km/s, 0 km/s]
+// Position in RIC:             [1 km, 2 km, 3 km]
+// Position rotated into ECI:   [1 km, 2 km, 3 km]
+// Position w.r.t ECI:          [2 km, 2 km, 3 km]
+// Rotated back into RIC:       [1 km, 2 km, 3 km]
+// Transformed back w.r.t RIC:  [1 km, 2 km, 3 km]
 ```
 
 Astrea hosts it's own Integrator. While many numerical integrators exist, with far more robust implementations, Astrea's integrator is designed specifically for integrating the strongly typed element sets that Astrea uses without potentially dangerous unit-unsafe operations. This also helps to avoid hidden numerical errors, rounding issues, or possible implicit unit conversions. As such, the integration process is less complete, and more difficult to work with than some libraries, but also more transparent, and more extensible. For most users, integration will be no more difficult than that when using a more sophisticated integration library.

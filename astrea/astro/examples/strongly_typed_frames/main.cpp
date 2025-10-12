@@ -22,6 +22,7 @@ using namespace astro;
 using namespace mp_units;
 
 using mp_units::non_si::day;
+using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
@@ -56,8 +57,8 @@ int main()
     std::cout << "rEciCross: " << rEciCross << std::endl;
 
     // There are also some convenience type definitions for common cartesian vector types.
-    RadiusVector<ECI> rEci2{ 1.0 * m, 2.0 * m, 3.0 * m };              // = CartesianVector<Distance, ECI>
-    VelocityVector<ECI> vEci{ 1.0 * m / s, 2.0 * m / s, 3.0 * m / s }; // = CartesianVector<Velocity, ECI>
+    RadiusVector<ECI> posECI{ 1.0 * km, 0.0 * km, 0.0 * km };               // = CartesianVector<Distance, ECI>
+    VelocityVector<ECI> velEci{ 0.0 * km / s, 1.0 * km / s, 0.0 * km / s }; // = CartesianVector<Velocity, ECI>
 
     // To convert to a static frame, we can use the in_frame method templated to the frame we'd like to convert to.
     Date date;
@@ -66,7 +67,7 @@ int main()
 
     std::cout << std::endl << "Position in ECI: " << rEci << std::endl;
     std::cout << "Position in ECEF @ J2000: " << rEcefJ2000 << std::endl;
-    std::cout << "Position in ECEF @ J2000 + 12 hours: " << rEcef << std::endl;
+    std::cout << "Position in ECEF @ J2000 + 12 hours: " << rEcef << std::endl << std::endl;
 
     // Implicit frame switches are not allowed, but can be forced in special circumstances
     // CartesianVector<Length, ECEF> rEcefImplicit = rEci; // Compiler will fail!
@@ -84,25 +85,33 @@ int main()
 
     // For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated
     // to call any vector transformations. They are not required to declare the vector type, however.
-    RadiusVector<RIC> rRic = { 1.0 * m, 2.0 * m, 3.0 * m };
+    RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
     // Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
     Spacecraft frameParent;
     RIC dynamicRicFrame(&frameParent); // RIC frame attached to a spacecraft. As long as the spacecraft has a state
                                        // history, the frame can be used to transform vectors.
 
-    RIC instantaneousRicFrame =
-        RIC::instantaneous(rEci2, vEci); // RIC frame defined at a specific time and state. Transformations to/from
-                                         // instantaneous frames are only valid at the time they are defined.
+    RIC instRicFrame =
+        RIC::instantaneous(posECI, velEci); // RIC frame defined at a specific time and state. Transformations to/from
+                                            // instantaneous frames are only valid at the time they are defined.
 
     // Convert from RIC to ECI using the instantaneous dynamic frame
     // Note: here we use the convert_from_this_frame method, as we are converting from RIC to ECI.
     // While static frames handle the direction of conversion automatically, dynamic frames do not and
     // require the user to specify the direction by calling the appropriate method.
-    RadiusVector<ECI> convertedrRic = instantaneousRicFrame.convert_from_this_frame(rRic, date);
+    RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);       // DCM * r
+    RadiusVector<ECI> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);        // DCM * r + framePos
+    RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
+    RadiusVector<RIC> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM_T * (r - framePos)
 
+    std::cout << "RIC frame parent position: " << posECI << std::endl;
+    std::cout << "RIC frame parent velocity: " << velEci << std::endl;
     std::cout << "Position in RIC: " << rRic << std::endl;
-    std::cout << "Position in instantaneous RIC: " << convertedrRic << std::endl;
+    std::cout << "Position rotated into ECI: " << rotatedrRic << std::endl;
+    std::cout << "Position w.r.t ECI: " << convertedrRic << std::endl;
+    std::cout << "Rotated back into RIC: " << rRic2 << std::endl;
+    std::cout << "Transformed back w.r.t RIC: " << rRic3 << std::endl << std::endl;
 
     return 0;
 }
