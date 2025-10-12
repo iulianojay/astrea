@@ -53,13 +53,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 # Shared library
 add_library           (${PROJECT_NAME}_shared SHARED ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
 set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main benchmark::benchmark)
+target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 
 # Static library
 if (${BUILD_STATIC})
     add_library           (${PROJECT_NAME}_static STATIC ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
     set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries (${PROJECT_NAME}_static PUBLIC mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main benchmark::benchmark)
+    target_link_libraries (${PROJECT_NAME}_static PUBLIC mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm)
 endif()
 
 # Install headers

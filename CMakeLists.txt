@@ -59,6 +59,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sqlite_orm)
 
+FetchContent_Declare(
+    benchmark 
+    GIT_REPOSITORY https://github.com/google/benchmark.git
+    GIT_TAG v1.9.4
+)
+set(BENCHMARK_USE_BUNDLED_GTEST OFF)
+FetchContent_MakeAvailable(benchmark)
+
 # Add google test
 set(INSTALL_GTEST OFF)
 FetchContent_Declare(
@@ -70,9 +78,6 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 include(GoogleTest)
-
-# Google benchmark
-find_package(benchmark REQUIRED)
 
 # Get code
 add_subdirectory(astrea)
