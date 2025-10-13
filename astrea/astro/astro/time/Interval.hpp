@@ -32,6 +32,13 @@ namespace astro {
 class Interval {
   public:
     /**
+     * @brief Default constructor for Interval.
+     *
+     * Initializes both start and end times to their default values.
+     */
+    Interval() = default;
+
+    /**
      * @brief Constructs an Interval object with the specified start and end times.
      *
      * @param start The start time of the interval.

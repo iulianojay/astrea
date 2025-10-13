@@ -1,6 +1,6 @@
 # Folders
-.devcontainer
 .coverage
+.devcontainer
 .gcovr
 .venv
 .vscode
@@ -25,6 +25,7 @@ build.txt
 package.json
 get-pip.py
 pyastro/astro.py
+.benchmark
 .coverage.info
 snapshot.db
 snapshot.db-journal
