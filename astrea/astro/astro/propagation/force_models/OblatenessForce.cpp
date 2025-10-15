@@ -42,37 +42,39 @@ namespace astro {
 using namespace mp_units;
 using namespace mp_units::angular;
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& _N, const std::size_t& _M) :
-    N(_N),
-    M(_M),
-    center(sys.get_central_body())
+
+LegendreCache::LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order)
 {
     // Size arrays (size Legendre array now so it only happens once)
-    size_vectors(N, M);
+    size_vectors(degree, order);
 
     // Read coefficients from file
-    ingest_legendre_coefficient_file(N, M);
+    ingest_legendre_coefficient_file(degree, order, sys.get_central_body());
+
+    // Precompute Legendre polynomials
+    precompute_legendre(degree, order);
 }
 
-void OblatenessForce::size_vectors(const std::size_t& N, const std::size_t& M)
+
+void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& order)
 {
-    C.resize(N + 1);
-    S.resize(N + 1);
-    P.resize(N + 1);
-    normalizingCoefficients.resize(N + 1);
-    for (std::size_t n = 0; n < N + 1; ++n) {
-        C[n].resize(M + 1);
-        S[n].resize(M + 1);
-        P[n].resize(M + 1);
-        normalizingCoefficients[n].resize(M + 1);
+    _C.resize(degree + 1);
+    _S.resize(degree + 1);
+    _P.resize(degree + 1);
+    _normalizingCoefficients.resize(degree + 1);
+    for (std::size_t n = 0; n < degree + 1; ++n) {
+        _C[n].resize(order + 1);
+        _S[n].resize(order + 1);
+        _P[n].resize(order + 1);
+        _normalizingCoefficients[n].resize(order + 1);
     }
 }
 
 
-void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, const std::size_t& M)
+void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order, const std::unique_ptr<CelestialBody>& center)
 {
-
     // Open coefficients file
+    // TODO: Attach these files to the CelestialBody class
     std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "/data/gravity_models/";
     std::filesystem::path filename;
     std::string centerName = center->get_name();
@@ -107,28 +109,93 @@ void OblatenessForce::ingest_legendre_coefficient_file(const std::size_t& N, con
         n = (std::size_t)lineData[0];
         m = (std::size_t)lineData[1];
 
-        C[n][m] = lineData[2];
-        S[n][m] = lineData[3];
-        for (std::size_t m = 0; m < N + 1; ++m) {
+        _C[n][m] = lineData[2];
+        _S[n][m] = lineData[3];
+        for (std::size_t m = 0; m < degree + 1; ++m) {
             Unitless factorialCoefficient = 1.0 * one; // !(n + m)/!(n - m)
             for (std::size_t ii = n + m; ii > n - m; --ii) {
                 factorialCoefficient *= ii;
             }
             // TODO: This will cause MASSIVE slowdowns for m ~ n >> 1. need a smarter way to do these factorials
 
-            const auto delta              = (m == 0) ? 1 : 2;
-            normalizingCoefficients[n][m] = sqrt(delta * (2 * n + 1) / factorialCoefficient);
+            const auto delta               = (m == 0) ? 1 : 2;
+            _normalizingCoefficients[n][m] = sqrt(delta * (2 * n + 1) / factorialCoefficient);
 
             // Normalize coefficients if needed
             if (centerName == "Mars") {
-                C[n][m] /= normalizingCoefficients[n][m];
-                S[n][m] /= normalizingCoefficients[n][m];
+                _C[n][m] /= _normalizingCoefficients[n][m];
+                _S[n][m] /= _normalizingCoefficients[n][m];
             }
         }
 
-        if (n >= N && m >= M) { break; }
+        if (n >= degree && m >= order) { break; }
     }
     file.close();
+}
+
+
+void LegendreCache::precompute_legendre(const std::size_t& degree, const std::size_t& order)
+{
+    for (std::size_t ii = 0; ii < _N_POLY; ++ii) {
+        const Unitless sinLat = -1.0 + (double)ii / (double)(_N_POLY - 1) * one;
+        assign_legendre(degree, order, sinLat);
+    }
+}
+
+
+void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x)
+{
+    const std::size_t index = get_index(x);
+    for (std::size_t n = 0; n < degree + 1; ++n) {
+        for (std::size_t m = 0; m < order + 1; ++m) {
+            _P[n][m][index] = _normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
+        }
+    }
+}
+
+
+Unitless LegendreCache::get_legendre_polynomial_fast(const std::size_t& n, const std::size_t& m, const Unitless& x) const
+{
+    return _P[n][m][get_index(x)];
+}
+
+
+Unitless LegendreCache::get_legendre_polynomial_interp(const std::size_t& n, const std::size_t& m, const Unitless& x) const
+{
+    // If exactly -1 or 1, return those values directly
+    if (x == -1) { return _P[n][m][0]; }
+    else if (x == 1) {
+        return _P[n][m][_N_POLY - 1];
+    }
+
+    // Since the get_index function casts to std::size_t, it will always round down. So if the index is the last
+    // index, return that value directly to avoid out-of-bounds access.
+    const std::size_t index = get_index(x);
+    if (index == _N_POLY - 1) { return _P[n][m][_N_POLY - 1]; }
+
+    // Otherwise, linearly interpolate between the two nearest precomputed values
+    const Unitless x0 = -1.0 + static_cast<double>(index) / static_cast<double>(_N_POLY - 1) * one;
+    const Unitless x1 = -1.0 + static_cast<double>(index + 1) / static_cast<double>(_N_POLY - 1) * one;
+    const Unitless y0 = _P[n][m][index];
+    const Unitless y1 = _P[n][m][index + 1];
+
+    return y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+}
+
+
+std::size_t LegendreCache::get_index(const Unitless& x) const
+{
+    return static_cast<std::size_t>((x + 1.0 * one) / (2.0 * one) * static_cast<double>(_N_POLY - 1));
+}
+
+
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order, bool useFastLegendre) :
+    _degree(degree),
+    _order(order),
+    _center(sys.get_central_body()),
+    _legendreCache(sys, degree, order),
+    _useFastLegendre(useFastLegendre)
+{
 }
 
 
@@ -143,9 +210,9 @@ AccelerationVector<frames::earth::icrf>
     const quantity<one / astrea::detail::distance_unit> oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
 
     // Central body properties
-    static const GravParam& mu         = center->get_mu();
-    static const Distance& equitorialR = center->get_equitorial_radius();
-    static const Distance& polarR      = center->get_polar_radius();
+    static const GravParam& mu         = _center->get_mu();
+    static const Distance& equitorialR = _center->get_equitorial_radius();
+    static const Distance& polarR      = _center->get_polar_radius();
 
     // Find lat and long
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
@@ -157,41 +224,56 @@ AccelerationVector<frames::earth::icrf>
     const Unitless sinLat = sin(latitude);
     const Unitless tanLat = tan(latitude);
 
-    // Populate Legendre polynomial array
-    assign_legendre(sinLat);
+    // // Populate Legendre polynomial array
+    // assign_legendre(sinLat);
 
     // Calculate serivative of gravitational potential field with respect to
     Unitless dVdr_   = 0.0 * one; // radius
     Unitless dVdlat_ = 0.0 * one; // geocentric latitude
     Unitless dVdlon_ = 0.0 * one; // longitude
-    for (std::size_t n = 2; n < N + 1; ++n) {
+    for (std::size_t n = 2; n < _degree + 1; ++n) {
         const Unitless nn = (double)n * one;
+
+        /*
+            V(r, lat, lon) = mu/r * sum(n=0->N) (Re/r)^n * sum(m=0->min(n,M)) (Cnm*cos(m*lon) + Snm*sin(m*lon)) * Pnm(sin(lat))
+            dVdr = -mu/r^2 * sum(n=0->N) (n + 1)(Re/r)^n * sum(m=0->min(n,M)) (Cnm*cos(m*lon) + Snm*sin(m*lon)) * Pnm(sin(lat))
+            dVdlat = mu/r * sum(n=0->N) (Re/r)^n * sum(m=0->min(n,M)) (Cnm*cos(m*lon) + Snm*sin(m*lon)) * dPnm(sin(lat))/dlat
+            dVdlon = mu/r * sum(n=0->N) (Re/r)^n * sum(m=0->min(n,M)) m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
+        */
 
         // Reset inner sums
         Unitless dVdrInnerSum   = 0.0 * one;
         Unitless dVdlatInnerSum = 0.0 * one;
         Unitless dVdlonInnerSum = 0.0 * one;
-        for (std::size_t m = 0; m < std::min(n, M) + 1; ++m) {
+        for (std::size_t m = 0; m < std::min(n, _order + 1); ++m) {
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
-            const Unitless cosMLon = cos(mm * longitude);
-            const Unitless sinMLon = sin(mm * longitude);
-            const Unitless term    = (C[n][m] * cosMLon + S[n][m] * sinMLon);
+            const Unitless Pnm   = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
+                                                      _legendreCache.get_legendre_polynomial_interp(n, m, sinLat);
+            const Unitless Pnmp1 = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
+                                                      _legendreCache.get_legendre_polynomial_interp(n, m + 1, sinLat);
+            const Unitless Cnm   = _legendreCache.get_cosine_coefficient(n, m);
+            const Unitless Snm   = _legendreCache.get_sine_coefficient(n, m);
+
+            const Unitless cosMLon      = cos(mm * longitude);
+            const Unitless sinMLon      = sin(mm * longitude);
+            const Unitless cCosPlusSSin = (Cnm * cosMLon + Snm * sinMLon);
 
             // dVdr
-            dVdrInnerSum += term * P[n][m];
+            dVdrInnerSum += cCosPlusSSin * Pnm;
 
             // dVdlat
-            dVdlatInnerSum += term * (P[n][m + 1] - mm * tanLat * P[n][m]);
+            dVdlatInnerSum += cCosPlusSSin * (Pnmp1 - mm * tanLat * Pnm);
 
             // dVdlon
-            dVdlonInnerSum += mm * P[n][m] * (S[n][m] * cosMLon - C[n][m] * sinMLon);
+            dVdlonInnerSum += mm * Pnm * (Snm * cosMLon - Cnm * sinMLon);
         }
         // Precalculate common terms
-        Unitless rRatio = 1.0 * one;
+        Unitless rRatio                 = 1.0 * one;
+        const quantity equitorialROverR = equitorialR * oneOverR;
         for (std::size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
-            rRatio *= equitorialR * oneOverR;
+            rRatio *= equitorialROverR;
         }
 
         // dVdr
@@ -225,15 +307,6 @@ AccelerationVector<frames::earth::icrf>
 
     // Rotate back into inertial coordinates (no accel conversions required)
     return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
-}
-
-void OblatenessForce::assign_legendre(const Unitless& x) const
-{
-    for (std::size_t n = 0; n < N + 1; ++n) {
-        for (std::size_t m = 0; m < M + 1; ++m) {
-            P[n][m] = normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
-        }
-    }
 }
 
 } // namespace astro
