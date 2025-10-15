@@ -154,10 +154,34 @@ void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t
 }
 
 
-Unitless LegendreCache::get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const
+Unitless LegendreCache::get_legendre_polynomial_fast(const std::size_t& n, const std::size_t& m, const Unitless& x) const
 {
     return _P[n][m][get_index(x)];
 }
+
+
+Unitless LegendreCache::get_legendre_polynomial_interp(const std::size_t& n, const std::size_t& m, const Unitless& x) const
+{
+    // If exactly -1 or 1, return those values directly
+    if (x == -1) { return _P[n][m][0]; }
+    else if (x == 1) {
+        return _P[n][m][_N_POLY - 1];
+    }
+
+    // Since the get_index function casts to std::size_t, it will always round down. So if the index is the last
+    // index, return that value directly to avoid out-of-bounds access.
+    const std::size_t index = get_index(x);
+    if (index == _N_POLY - 1) { return _P[n][m][_N_POLY - 1]; }
+
+    // Otherwise, linearly interpolate between the two nearest precomputed values
+    const Unitless x0 = -1.0 + static_cast<double>(index) / static_cast<double>(_N_POLY - 1) * one;
+    const Unitless x1 = -1.0 + static_cast<double>(index + 1) / static_cast<double>(_N_POLY - 1) * one;
+    const Unitless y0 = _P[n][m][index];
+    const Unitless y1 = _P[n][m][index + 1];
+
+    return y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+}
+
 
 std::size_t LegendreCache::get_index(const Unitless& x) const
 {
@@ -165,11 +189,12 @@ std::size_t LegendreCache::get_index(const Unitless& x) const
 }
 
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order) :
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order, bool useFastLegendre) :
     _degree(degree),
     _order(order),
     _center(sys.get_central_body()),
-    _legendreCache(sys, degree, order)
+    _legendreCache(sys, degree, order),
+    _useFastLegendre(useFastLegendre)
 {
 }
 
@@ -224,8 +249,10 @@ AccelerationVector<frames::earth::icrf>
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
-            const Unitless Pnm   = _legendreCache.get_legendre_polynomial(n, m, sinLat);
-            const Unitless Pnmp1 = _legendreCache.get_legendre_polynomial(n, m + 1, sinLat);
+            const Unitless Pnm   = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
+                                                      _legendreCache.get_legendre_polynomial_interp(n, m, sinLat);
+            const Unitless Pnmp1 = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
+                                                      _legendreCache.get_legendre_polynomial_interp(n, m + 1, sinLat);
             const Unitless Cnm   = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm   = _legendreCache.get_sine_coefficient(n, m);
 

@@ -51,14 +51,24 @@ class LegendreCache {
     LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& N, const std::size_t& M);
 
     /**
-     * @brief Gets the precomputed Legendre polynomial value for given n, m, and x.
+     * @brief Gets the precomputed Legendre polynomial value for given n, m, and x. Uses interpolation.
      *
      * @param n Degree of the polynomial
      * @param m Order of the polynomial
      * @param x Value at which to evaluate the polynomial
      * @return Unitless The value of the Legendre polynomial Pnm at x
      */
-    Unitless get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
+    Unitless get_legendre_polynomial_interp(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
+
+    /**
+     * @brief Gets the precomputed Legendre polynomial value for given n, m, and x. Uses fast lookup without interpolation.
+     *
+     * @param n Degree of the polynomial
+     * @param m Order of the polynomial
+     * @param x Value at which to evaluate the polynomial
+     * @return Unitless The value of the Legendre polynomial Pnm at x
+     */
+    Unitless get_legendre_polynomial_fast(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
 
     /**
      * @brief Gets the cosine coefficient for given n and m.
@@ -143,7 +153,7 @@ class OblatenessForce : public Force {
      * @param N Degree of the spherical harmonics (default is 2)
      * @param M Order of the spherical harmonics (default is 0)
      */
-    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
+    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0, bool useFastLegendre = true);
 
     /**
      * @brief Computes the gravitational force due to the oblateness of a celestial body.
@@ -162,6 +172,7 @@ class OblatenessForce : public Force {
     const std::size_t _order;                      //!< Order of the spherical harmonics
     const std::unique_ptr<CelestialBody>& _center; //!< Pointer to the celestial body for which the oblateness force is computed
     const LegendreCache _legendreCache;            //!< Cache for Legendre polynomials and coefficients
+    const bool _useFastLegendre; //!< Whether to use fast lookup for Legendre polynomials without interpolation
 };
 
 } // namespace astro
