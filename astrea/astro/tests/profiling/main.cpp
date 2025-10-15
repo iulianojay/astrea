@@ -23,6 +23,8 @@ using mp_units::si::unit_symbols::s;
 
 int main()
 {
+    auto start = std::chrono::steady_clock::now();
+
     // Setup system
     AstrodynamicsSystem sys;
     Date epoch = Date::now();
@@ -46,6 +48,11 @@ int main()
     // Propagate
     Interval propInterval{ seconds(0), weeks(1) };
     integrator.propagate(epoch, propInterval, eom, geo);
+
+    auto end  = std::chrono::steady_clock::now();
+    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
+
+    std::cout << "Runtime: " << diff.count() / 1e9 << " (s)" << std::endl;
 
     return 0;
 }
