@@ -86,8 +86,6 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    // It's hard to say if these can match. They're in the same direction, but small differences in values
-    // change these equally small outputs. Itermediary values are similar, but not identical
-    // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
-    // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
+    ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
 }
