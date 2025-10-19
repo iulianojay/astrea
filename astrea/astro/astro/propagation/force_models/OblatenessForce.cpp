@@ -75,7 +75,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, 
 {
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
-    std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "/data/gravity_models/";
+    std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "astrea/astro/data/gravity_models/";
     std::filesystem::path filename;
     std::string centerName = center->get_name();
     if (centerName == "Venus") {          // Venus

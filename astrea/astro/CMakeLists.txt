@@ -267,3 +267,7 @@ endif()
 if(${BUILD_TESTS})
     add_subdirectory(tests)
 endif()
+
+if(${BUILD_PROFILERS})
+    add_subdirectory(tests/profiling)
+endif()

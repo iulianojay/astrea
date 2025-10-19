@@ -59,6 +59,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sqlite_orm)
 
+FetchContent_Declare(matplotplusplus
+    GIT_REPOSITORY https://github.com/alandefreitas/matplotplusplus
+    GIT_TAG v1.2.2
+)
+FetchContent_MakeAvailable(matplotplusplus)
+
 # Add google test
 set(INSTALL_GTEST OFF)
 FetchContent_Declare(

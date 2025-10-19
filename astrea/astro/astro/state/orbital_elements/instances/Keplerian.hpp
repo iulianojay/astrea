@@ -286,6 +286,36 @@ class Keplerian {
     Keplerian& operator/=(const Unitless& divisor);
 
     /**
+     * @brief Set the semimajor axis of the Keplerian state vector.
+     */
+    void set_semimajor(const Distance& semimajor) { _semimajor = semimajor; }
+
+    /**
+     * @brief Set the eccentricity of the Keplerian state vector.
+     */
+    void set_eccentricity(const Unitless& eccentricity) { _eccentricity = eccentricity; }
+
+    /**
+     * @brief Set the inclination of the Keplerian state vector.
+     */
+    void set_inclination(const Angle& inclination) { _inclination = inclination; }
+
+    /**
+     * @brief Set the right ascension of the ascending node of the Keplerian state vector.
+     */
+    void set_right_ascension(const Angle& rightAscension) { _rightAscension = rightAscension; }
+
+    /**
+     * @brief Get the argument of perigee of the Keplerian state vector.
+     */
+    void set_argument_of_perigee(const Angle& argPerigee) { _argPerigee = argPerigee; }
+
+    /**
+     * @brief Get the true anomaly of the Keplerian state vector.
+     */
+    void set_true_anomaly(const Angle& trueAnomaly) { _trueAnomaly = trueAnomaly; }
+
+    /**
      * @brief Get the semimajor axis of the Keplerian state vector.
      *
      * @return const Distance& Reference to the semimajor axis component of the Keplerian state vector.

@@ -64,9 +64,6 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
 
     if (doWarn) { check_degenerate(ecc, inc); }
 
-    // h
-    const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
-
     // conversions KEPLERIANs to r and v
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
     const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
@@ -93,6 +90,7 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const Unitless sinU  = sin(u);
 
     const Distance R                    = r.norm();
+    const SpecificAngularMomentum h     = sqrt(mu * a * (1 - ecc * ecc));
     const quantity hSquared             = h * h;
     const UnitlessPerTime hOverRSquared = h / (R * R);
 
@@ -100,7 +98,7 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const quantity dhdt = R * tangentialPert;
     const UnitlessPerTime deccdt =
         h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
-    const Velocity dadt      = 2.0 / (mu * (1 - ecc * ecc)) * (h * dhdt + a * mu * ecc * deccdt);
+    const Velocity dadt = 2.0 * a * (1.0 / h * dhdt - ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
     const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
     const AngularRate dthetadt =
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *

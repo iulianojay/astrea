@@ -26,7 +26,3 @@ add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 # Build
 build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}")
 build_tests(${PROJECT_NAME} "REGRESSION" "${REGRESSION_TEST_SOURCES}")
-
-if(${BUILD_PROFILERS})
-    add_subdirectory(profiling)
-endif()

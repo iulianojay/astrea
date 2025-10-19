@@ -96,6 +96,13 @@ class StateHistory {
     void clear();
 
     /**
+     * @brief Retrieves the epoch (first date) of the state history.
+     *
+     * @return const Date& Reference to the epoch of the state history.
+     */
+    const Date& epoch() const { return _states.begin()->first; }
+
+    /**
      * @brief Retrieves the first and last states in the history.
      *
      * @return const State& Reference to the first state.

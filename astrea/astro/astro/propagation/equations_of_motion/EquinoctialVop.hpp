@@ -53,6 +53,8 @@ class EquinoctialVop : public EquationsOfMotion {
      * @param state The current orbital elements of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
+     *
+     * @ref https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf
      */
     OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
 

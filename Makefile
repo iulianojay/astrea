@@ -39,7 +39,8 @@ build: setup
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
-	-DBUILD_PROFILERS=$(build_profilers)
+	-DBUILD_PROFILERS=$(build_profilers) \
+	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
 
 .PHONY: setup
 setup: activate_env

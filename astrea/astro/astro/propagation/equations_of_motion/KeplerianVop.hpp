@@ -54,6 +54,8 @@ class KeplerianVop : public EquationsOfMotion {
      * @param state The current orbital elements of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
+     *
+     * @ref Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variation of Parameters
      */
     OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
 

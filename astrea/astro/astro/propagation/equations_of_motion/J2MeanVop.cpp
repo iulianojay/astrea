@@ -64,7 +64,7 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
     const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
-    // conversions KEPLERIANs to r and v
+    // conversions Keplerian elements to r and v
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
     const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
@@ -73,12 +73,6 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const Distance z = cartesian.get_z();
     const Distance R = r.norm();
 
-    // Define perturbation vectors relative to the satellites RNT body frame
-    /*
-       N -> perturbing accel normal to orbital plane in direction of angular momentum vector
-    */
-    const UnitVector Nhat = r.cross(v).unit();
-
     // Variables to reduce calculations
     const quantity termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
     const quantity termB = z * z / (R * R);
@@ -86,20 +80,22 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     // accel due to oblateness
     AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
                                                                 termA * (1.0 - 5.0 * termB) * y,
-                                                                termA * (1.0 - 3.0 * termB) * z };
+                                                                termA * (3.0 - 5.0 * termB) * z };
 
-    // Calculate R, N, and T
+    // Only normal pert required
+    const UnitVector Nhat         = r.cross(v).unit();
     const Acceleration normalPert = accelOblateness.dot(Nhat);
 
-    // h
+    // Precompute
+    const Angle u                   = w + theta;
     const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
-    // Calculate the derivatives of the KEPLERIANs - only raan and w considered
+    // Calculate the derivatives of the Keplerian elements - only raan and w considered
     static const Velocity dadt          = 0.0 * km / s;
     static const UnitlessPerTime deccdt = 0.0 * one / s;
-    const AngularRate _dincdt           = R / h * cos(w + theta) * normalPert * rad;
+    const AngularRate _dincdt           = R / h * cos(u) * normalPert * rad;
     const AngularRate dthetadt          = h / (R * R) * rad;
-    const AngularRate draandt           = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
+    const AngularRate draandt           = R * sin(u) / (h * sin(inc)) * normalPert * rad;
     const AngularRate dwdt              = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.

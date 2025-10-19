@@ -78,22 +78,21 @@ OrbitalElementPartials EquinoctialVop::operator()(const OrbitalElements& state, 
     const Unitless cosL = cos(L);
     const Unitless sinL = sin(L);
 
-    const quantity termA = sqrt(p / mu);
-    const quantity termB = 1.0 + f * cosL + g * sinL;
-    const quantity sSq   = 1.0 + h * h + k * k;
+    const quantity sqPOverMu = sqrt(p / mu);
+    const quantity w         = 1.0 + f * cosL + g * sinL;
+    const quantity sSq       = 1.0 + h * h + k * k;
 
-    const quantity termC = (h * sinL - k * cosL) / termB;
-    const quantity termD = termA * sSq / (2.0 * termB);
+    // Common terms
+    const quantity termA = (h * sinL - k * cosL) / w * normalPert;
+    const quantity termB = sqPOverMu * sSq / (2.0 * w);
 
     // Derivative functions
-    const Velocity dpdt = 2.0 * p / termB * termA * tangentialPert;
-    const UnitlessPerTime dfdt =
-        termA * (radialPert * sinL + ((termB + 1) * cosL + f) / termB * tangentialPert - g * termC * normalPert);
-    const UnitlessPerTime dgdt =
-        termA * (-radialPert * cosL + ((termB + 1) * sinL + g) / termB * tangentialPert + f * termC * normalPert);
-    const UnitlessPerTime dhdt = termD * cosL * normalPert;
-    const UnitlessPerTime dkdt = termD * sinL * normalPert;
-    const AngularRate dLdt = (sqrt(mu * p) * termB * termB / (p * p) + termA * termC * normalPert) * (isq_angle::cotes_angle);
+    const Velocity dpdt = 2.0 * p / w * sqPOverMu * tangentialPert;
+    const UnitlessPerTime dfdt = sqPOverMu * (radialPert * sinL + ((w + 1) * cosL + f) / w * tangentialPert - g * termA);
+    const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
+    const UnitlessPerTime dhdt = termB * cosL * normalPert;
+    const UnitlessPerTime dkdt = termB * sinL * normalPert;
+    const AngularRate dLdt     = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
 
     return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

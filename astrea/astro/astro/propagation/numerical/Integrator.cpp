@@ -37,6 +37,7 @@
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
 using namespace mp_units;
+using mp_units::si::unit_symbols::ms;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {
@@ -55,19 +56,19 @@ OrbitalElementPartials
 
 
 StateHistory
-    Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
+    Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
 {
     return propagate(epoch, interval.start, interval.end, eom, vehicle, store, events);
 }
 
-StateHistory Integrator::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
+StateHistory Integrator::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
 {
     const Date startEpoch = vehicle.get_state().get_epoch();
     const Time propTime   = endEpoch - startEpoch;
     return propagate(startEpoch, 0.0 * s, propTime, eom, vehicle, store, events);
 }
 
-StateHistory Integrator::propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store, std::vector<Event> events)
+StateHistory Integrator::propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
 {
     return propagate(vehicle.get_state().get_epoch(), 0.0 * s, propTime, eom, vehicle, store, events);
 }
@@ -77,7 +78,7 @@ StateHistory Integrator::propagate(
     const Time& startTime,
     const Time& endTime,
     const EquationsOfMotion& eom,
-    Vehicle& vehicle,
+    Vehicle vehicle,
     bool store,
     std::vector<Event> events
 )
@@ -223,7 +224,8 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
 {
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    if (epoch != vehicleEpoch) {
+    const auto diff         = mp_units::abs(epoch - vehicleEpoch);
+    if (mp_units::abs(epoch - vehicleEpoch) > 1.0 * ms) {
         const Time propTime = epoch - vehicleEpoch;
         propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
     }

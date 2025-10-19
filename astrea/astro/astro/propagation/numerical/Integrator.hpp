@@ -77,7 +77,7 @@ class Integrator {
         const Date& epoch,
         const Interval& interval,
         const EquationsOfMotion& eom,
-        Vehicle& vehicle,
+        Vehicle vehicle,
         bool store                = false,
         std::vector<Event> events = {}
     );
@@ -92,7 +92,7 @@ class Integrator {
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
     StateHistory
-        propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+        propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch for a specified time using the given equations of motion.
@@ -104,7 +104,7 @@ class Integrator {
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
     StateHistory
-        propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle& vehicle, bool store = false, std::vector<Event> events = {});
+        propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
 
     /**
      * @brief Propagate the state of a vehicle from an initial time to a final time using the given equations of motion.
@@ -122,7 +122,7 @@ class Integrator {
         const Time& timeInitial,
         const Time& timeFinal,
         const EquationsOfMotion& eom,
-        Vehicle& vehicle,
+        Vehicle vehicle,
         bool store                = false,
         std::vector<Event> events = {}
     );
