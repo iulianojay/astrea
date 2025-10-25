@@ -139,9 +139,9 @@ class DirectionCosineMatrix {
         const CartesianVector<Unitless, In_Frame_T>& z
     )
     {
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ x[0], y[0], z[0] },
-                                                                 std::array<Unitless, 3>{ x[1], y[1], z[1] },
-                                                                 std::array<Unitless, 3>{ x[2], y[2], z[2] } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ x[0], x[1], x[2] },
+                                                                 std::array<Unitless, 3>{ y[0], y[1], y[2] },
+                                                                 std::array<Unitless, 3>{ z[0], z[1], z[2] } } };
     }
 
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> identity()

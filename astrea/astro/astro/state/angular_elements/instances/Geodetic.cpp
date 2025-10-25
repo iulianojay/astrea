@@ -35,10 +35,11 @@
 using namespace mp_units;
 using namespace mp_units::non_si;
 using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::mm;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
@@ -181,8 +182,8 @@ std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
 std::tuple<Angle, Angle, Distance>
     convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
-    static const unsigned MAX_ITER  = 1e3;
-    static const Distance MAX_ERROR = 1.0e-9 * km;
+    static const unsigned MAX_ITER  = 1e4;
+    static const Distance MAX_ERROR = 1 * mm;
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];

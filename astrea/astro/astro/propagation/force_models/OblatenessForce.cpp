@@ -146,7 +146,7 @@ void LegendreCache::precompute_legendre(const std::size_t& degree, const std::si
 void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x)
 {
     const std::size_t index = get_index(x);
-    for (std::size_t n = 0; n < degree + 1; ++n) {
+    for (std::size_t n = 2; n < degree + 1; ++n) {
         for (std::size_t m = 0; m < order + 1; ++m) {
             _P[n][m][index] = _normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
         }

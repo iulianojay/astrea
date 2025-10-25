@@ -59,7 +59,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sqlite_orm)
 
-FetchContent_Declare(matplotplusplus
+FetchContent_Declare(
+    matplotplusplus
     GIT_REPOSITORY https://github.com/alandefreitas/matplotplusplus
     GIT_TAG v1.2.2
 )
