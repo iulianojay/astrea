@@ -51,24 +51,14 @@ class LegendreCache {
     LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& N, const std::size_t& M);
 
     /**
-     * @brief Gets the precomputed Legendre polynomial value for given n, m, and x. Uses interpolation.
+     * @brief Gets the exact Legendre polynomial value for given n, m, and x.
      *
      * @param n Degree of the polynomial
      * @param m Order of the polynomial
      * @param x Value at which to evaluate the polynomial
      * @return Unitless The value of the Legendre polynomial Pnm at x
      */
-    Unitless get_legendre_polynomial_interp(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
-
-    /**
-     * @brief Gets the precomputed Legendre polynomial value for given n, m, and x. Uses fast lookup without interpolation.
-     *
-     * @param n Degree of the polynomial
-     * @param m Order of the polynomial
-     * @param x Value at which to evaluate the polynomial
-     * @return Unitless The value of the Legendre polynomial Pnm at x
-     */
-    Unitless get_legendre_polynomial_fast(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
+    Unitless get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
 
     /**
      * @brief Gets the cosine coefficient for given n and m.
@@ -77,7 +67,7 @@ class LegendreCache {
      * @param m Order of the polynomial
      * @return Unitless The value of the cosine coefficient Cnm
      */
-    Unitless get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const { return _C[n][m]; }
+    Unitless get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
     /**
      * @brief Gets the sine coefficient for given n and m.
@@ -86,24 +76,7 @@ class LegendreCache {
      * @param m Order of the polynomial
      * @return Unitless The value of the sine coefficient Snm
      */
-    Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const { return _S[n][m]; }
-
-  private:
-    // -1 <= sinLat <= 1
-    // Result = (N + 1) * (M * 1) * (2 * granularity) entries
-    static constexpr std::size_t _N_POLY = 2000; //!< Number of entries in the Legendre polynomial cache
-
-    std::vector<std::vector<std::array<Unitless, _N_POLY>>> _P{}; // !< Legendre polynomial coefficients
-    std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
-    std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
-    std::vector<std::vector<Unitless>> _S{};                       //!< Sine coefficients for the spherical harmonics
-
-    /**
-     * @brief Precomputes the Legendre polynomial coefficients for the oblateness force.
-     * @param degree Degree of the spherical harmonics
-     * @param order Order of the spherical harmonics
-     */
-    void precompute_legendre(const std::size_t& degree, const std::size_t& order);
+    Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
     /**
      * @brief Computes the Legendre polynomial coefficients for the oblateness force.
@@ -113,12 +86,11 @@ class LegendreCache {
      */
     void assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x);
 
-    /**
-     * @brief Gets the index in the precomputed Legendre polynomial array for a given x value.
-     * @param x Value at which to evaluate the Legendre polynomial
-     * @return std::size_t The index in the precomputed Legendre polynomial array
-     */
-    std::size_t get_index(const Unitless& x) const;
+  private:
+    std::vector<std::vector<Unitless>> _P{};                       //!< Legendre polynomial coefficients
+    std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
+    std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
+    std::vector<std::vector<Unitless>> _S{};                       //!< Sine coefficients for the spherical harmonics
 
     /**
      * @brief Sets the size of the vectors used for storing oblateness coefficients.
@@ -152,8 +124,10 @@ class OblatenessForce : public Force {
      * @param sys Astrodynamics system containing celestial body data
      * @param N Degree of the spherical harmonics (default is 2)
      * @param M Order of the spherical harmonics (default is 0)
+     * @param findExactLegendre Whether to find exact Legendre values (default is false)
+     * @param useFastLegendre Whether to use fast lookup for Legendre polynomials without interpolation (default is true)
      */
-    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0, bool useFastLegendre = true);
+    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
 
     /**
      * @brief Computes the gravitational force due to the oblateness of a celestial body.
@@ -172,7 +146,6 @@ class OblatenessForce : public Force {
     const std::size_t _order;                      //!< Order of the spherical harmonics
     const std::unique_ptr<CelestialBody>& _center; //!< Pointer to the celestial body for which the oblateness force is computed
     const LegendreCache _legendreCache;            //!< Cache for Legendre polynomials and coefficients
-    const bool _useFastLegendre; //!< Whether to use fast lookup for Legendre polynomials without interpolation
 };
 
 } // namespace astro

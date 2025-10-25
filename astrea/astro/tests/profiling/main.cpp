@@ -61,7 +61,7 @@ int main()
     CowellsMethod cm(sys, forces);
     KeplerianVop kepVop(sys, forces);
     EquinoctialVop eqVop(sys, forces);
-    // J2MeanVop j2(sys);
+    J2MeanVop j2(sys);
 
     // Setup integrator
     Integrator integrator;
@@ -83,9 +83,9 @@ int main()
     const auto trajEqVop = integrator.propagate(epoch, propInterval, eqVop, Vehicle(sat), true);
     std::cout << "Equinoctial VOP Complete." << std::endl;
 
-    // std::cout << "Propagating with Mean J2 VOP... ";
-    // const auto trajJ2 = integrator.propagate(epoch, propInterval, j2, Vehicle(sat), true);
-    // std::cout << "Mean J2 VOP Complete." << std::endl;
+    std::cout << "Propagating with Mean J2 VOP... ";
+    const auto trajJ2 = integrator.propagate(epoch, propInterval, j2, Vehicle(sat), true);
+    std::cout << "Mean J2 VOP Complete." << std::endl;
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -102,8 +102,10 @@ int main()
     // plot_trajectory(trajEqVop, "equinoctial_vop_trajectory.png");
     // plot_trajectory(trajJ2, "mean_j2_vop_trajectory.png");
 
-    compare_orbital_elements({ trajCm, trajKepVop, trajEqVop }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP" }, "orbital_elements_comparison.png");
-    compare_trajectories({ trajCm, trajKepVop, trajEqVop }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP" }, "trajectory_comparison.png");
+    compare_orbital_elements(
+        { trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, "orbital_elements_comparison.png"
+    );
+    compare_trajectories({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, "trajectory_comparison.png");
 
     return 0;
 }

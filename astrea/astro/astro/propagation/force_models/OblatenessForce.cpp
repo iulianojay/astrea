@@ -50,9 +50,6 @@ LegendreCache::LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& 
 
     // Read coefficients from file
     ingest_legendre_coefficient_file(degree, order, sys.get_central_body());
-
-    // Precompute Legendre polynomials
-    precompute_legendre(degree, order);
 }
 
 
@@ -134,67 +131,33 @@ void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, 
 }
 
 
-void LegendreCache::precompute_legendre(const std::size_t& degree, const std::size_t& order)
-{
-    for (std::size_t ii = 0; ii < _N_POLY; ++ii) {
-        const Unitless sinLat = -1.0 + (double)ii / (double)(_N_POLY - 1) * one;
-        assign_legendre(degree, order, sinLat);
-    }
-}
-
-
 void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x)
 {
-    const std::size_t index = get_index(x);
     for (std::size_t n = 2; n < degree + 1; ++n) {
         for (std::size_t m = 0; m < order + 1; ++m) {
-            _P[n][m][index] = _normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
+            _P[n][m] = _normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
         }
     }
 }
 
 
-Unitless LegendreCache::get_legendre_polynomial_fast(const std::size_t& n, const std::size_t& m, const Unitless& x) const
+Unitless LegendreCache::get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const
 {
-    return _P[n][m][get_index(x)];
+    return _normalizingCoefficients[n][m] * math::assoc_legendre(n, m, x);
 }
 
 
-Unitless LegendreCache::get_legendre_polynomial_interp(const std::size_t& n, const std::size_t& m, const Unitless& x) const
-{
-    // If exactly -1 or 1, return those values directly
-    if (x == -1) { return _P[n][m][0]; }
-    else if (x == 1) {
-        return _P[n][m][_N_POLY - 1];
-    }
-
-    // Since the get_index function casts to std::size_t, it will always round down. So if the index is the last
-    // index, return that value directly to avoid out-of-bounds access.
-    const std::size_t index = get_index(x);
-    if (index == _N_POLY - 1) { return _P[n][m][_N_POLY - 1]; }
-
-    // Otherwise, linearly interpolate between the two nearest precomputed values
-    const Unitless x0 = -1.0 + static_cast<double>(index) / static_cast<double>(_N_POLY - 1) * one;
-    const Unitless x1 = -1.0 + static_cast<double>(index + 1) / static_cast<double>(_N_POLY - 1) * one;
-    const Unitless y0 = _P[n][m][index];
-    const Unitless y1 = _P[n][m][index + 1];
-
-    return y0 + (y1 - y0) * (x - x0) / (x1 - x0);
-}
+Unitless LegendreCache::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const { return _C[n][m]; }
 
 
-std::size_t LegendreCache::get_index(const Unitless& x) const
-{
-    return static_cast<std::size_t>((x + 1.0 * one) / (2.0 * one) * static_cast<double>(_N_POLY - 1));
-}
+Unitless LegendreCache::get_sine_coefficient(const std::size_t& n, const std::size_t& m) const { return _S[n][m]; }
 
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order, bool useFastLegendre) :
+OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order) :
     _degree(degree),
     _order(order),
     _center(sys.get_central_body()),
-    _legendreCache(sys, degree, order),
-    _useFastLegendre(useFastLegendre)
+    _legendreCache(sys, degree, order)
 {
 }
 
@@ -210,9 +173,9 @@ AccelerationVector<frames::earth::icrf>
     const quantity<one / astrea::detail::distance_unit> oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
 
     // Central body properties
-    static const GravParam& mu         = _center->get_mu();
-    static const Distance& equitorialR = _center->get_equitorial_radius();
-    static const Distance& polarR      = _center->get_polar_radius();
+    const GravParam& mu         = _center->get_mu();
+    const Distance& equitorialR = _center->get_equitorial_radius();
+    const Distance& polarR      = _center->get_polar_radius();
 
     // Find lat and long
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
@@ -249,10 +212,8 @@ AccelerationVector<frames::earth::icrf>
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
-            const Unitless Pnm   = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
-                                                      _legendreCache.get_legendre_polynomial_interp(n, m, sinLat);
-            const Unitless Pnmp1 = _useFastLegendre ? _legendreCache.get_legendre_polynomial_fast(n, m, sinLat) :
-                                                      _legendreCache.get_legendre_polynomial_interp(n, m + 1, sinLat);
+            const Unitless Pnm   = _legendreCache.get_legendre_polynomial(n, m, sinLat);
+            const Unitless Pnmp1 = _legendreCache.get_legendre_polynomial(n, m + 1, sinLat);
             const Unitless Cnm   = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm   = _legendreCache.get_sine_coefficient(n, m);
 
