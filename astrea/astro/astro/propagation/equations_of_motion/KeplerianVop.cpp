@@ -98,7 +98,7 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const quantity dhdt = R * tangentialPert;
     const UnitlessPerTime deccdt =
         h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
-    const Velocity dadt = 2.0 * a * (1.0 / h * dhdt - ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
+    const Velocity dadt = 2.0 * a * (1.0 / h * dhdt + ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
     const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
     const AngularRate dthetadt =
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *

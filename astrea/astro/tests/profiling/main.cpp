@@ -52,9 +52,10 @@ int main()
 
     // Force model
     ForceModel forces;
-    // forces.add<OblatenessForce>(sys, 100, 100);
-    // forces.add<SolarRadiationPressure>();
+    forces.add<OblatenessForce>(sys, 100, 100);
+    forces.add<SolarRadiationPressure>();
     forces.add<AtmosphericForce>();
+    forces.add<NBodyForce>();
 
     // Build EoMs
     CowellsMethod cm(sys, forces);
@@ -66,6 +67,7 @@ int main()
     Integrator integrator;
     integrator.set_abs_tol(1.0e-13);
     integrator.set_rel_tol(1.0e-13);
+    integrator.switch_fixed_timestep(true, 30.0 * s);
 
     // Propagate
     Interval propInterval{ seconds(0), days(1) };
@@ -338,8 +340,9 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
         nexttile();
         auto ax = gca();
 
-        double minTime = std::numeric_limits<double>::max();
-        double maxTime = std::numeric_limits<double>::lowest();
+        double minTime     = std::numeric_limits<double>::max();
+        double maxTime     = std::numeric_limits<double>::lowest();
+        unsigned int iTraj = 0;
         for (const auto& trajectory : trajectories) {
             std::vector<double> time                = extract_raw_time_data(trajectory);
             std::array<std::vector<double>, 6> data = extract_raw_orbital_elements(trajectory);
@@ -348,8 +351,9 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
             if (time.back() > maxTime) { maxTime = time.back(); }
 
             auto p = plot(ax, time, data[iPlot]);
-            p->line_width(4);
+            p->line_width(6 - iTraj);
             hold(on);
+            ++iTraj;
         }
 
         legend(ax, trajLabels);
@@ -401,12 +405,14 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
         // 3-D trajectory plots
         auto ax = subplot(2, 2, iPlot);
 
+        unsigned int iTraj = 0;
         for (const auto& trajectory : trajectories) {
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
 
             auto p = plot3(ax, data[3 * iPlot], data[3 * iPlot + 1], data[3 * iPlot + 2]);
-            p->line_width(4);
+            p->line_width(6 - iTraj);
             hold(on);
+            ++iTraj;
         }
 
         legend(ax, trajLabels);
