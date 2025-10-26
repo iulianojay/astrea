@@ -208,7 +208,7 @@ AccelerationVector<frames::earth::icrf>
         Unitless dVdrInnerSum   = 0.0 * one;
         Unitless dVdlatInnerSum = 0.0 * one;
         Unitless dVdlonInnerSum = 0.0 * one;
-        for (std::size_t m = 0; m < std::min(n, _order + 1); ++m) {
+        for (std::size_t m = 0; m < std::min(n, _order) + 1; ++m) {
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
