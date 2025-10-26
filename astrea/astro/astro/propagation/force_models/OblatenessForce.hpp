@@ -44,11 +44,12 @@ class LegendreCache {
 
     /**
      * @brief Builds the cache for Legendre polynomials and coefficients.
+     *
      * @param sys Astrodynamics system containing celestial body data
-     * @param N Degree of the spherical harmonics
-     * @param M Order of the spherical harmonics
+     * @param degree Degree of the spherical harmonics
+     * @param order Order of the spherical harmonics
      */
-    LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& N, const std::size_t& M);
+    LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
 
     /**
      * @brief Gets the exact Legendre polynomial value for given n, m, and x.
@@ -80,6 +81,7 @@ class LegendreCache {
 
     /**
      * @brief Computes the Legendre polynomial coefficients for the oblateness force.
+     *
      * @param x Value at which to evaluate the Legendre polynomial
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
@@ -94,6 +96,7 @@ class LegendreCache {
 
     /**
      * @brief Sets the size of the vectors used for storing oblateness coefficients.
+     *
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
      */
@@ -101,11 +104,12 @@ class LegendreCache {
 
     /**
      * @brief Ingests the Legendre coefficient file to populate the coefficients.
+     *
+     * @param sys Astrodynamics system containing celestial body data
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
-     * @param center Pointer to the celestial body for which the coefficients are being ingested
      */
-    void ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order, const std::unique_ptr<CelestialBody>& center);
+    void ingest_legendre_coefficient_file(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
 };
 
 /**
@@ -142,10 +146,10 @@ class OblatenessForce : public Force {
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
 
   private:
-    const std::size_t _degree;                     //!< Degree of the spherical harmonics
-    const std::size_t _order;                      //!< Order of the spherical harmonics
-    const std::unique_ptr<CelestialBody>& _center; //!< Pointer to the celestial body for which the oblateness force is computed
-    const LegendreCache _legendreCache;            //!< Cache for Legendre polynomials and coefficients
+    const std::size_t _degree;          //!< Degree of the spherical harmonics
+    const std::size_t _order;           //!< Order of the spherical harmonics
+    const AstrodynamicsSystem* _sys;    //!< Pointer to the astrodynamics system
+    const LegendreCache _legendreCache; //!< Cache for Legendre polynomials and coefficients
 };
 
 } // namespace astro

@@ -91,6 +91,13 @@ class AstrodynamicsSystem {
     constexpr const SystemCenter& get_center_type() const { return _centerType; }
 
     /**
+     * @brief Returns the central celestial body ID.
+     *
+     * @return const CelestialBodyId& The ID of the central celestial body.
+     */
+    constexpr const CelestialBodyId& get_central_body_id() const { return _centralBody; }
+
+    /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.

@@ -49,7 +49,7 @@ LegendreCache::LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& 
     size_vectors(degree, order);
 
     // Read coefficients from file
-    ingest_legendre_coefficient_file(degree, order, sys.get_central_body());
+    ingest_legendre_coefficient_file(sys, degree, order);
 }
 
 
@@ -68,24 +68,28 @@ void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& o
 }
 
 
-void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order, const std::unique_ptr<CelestialBody>& center)
+void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order)
 {
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
     std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "astrea/astro/data/gravity_models/";
     std::filesystem::path filename;
-    std::string centerName = center->get_name();
-    if (centerName == "Venus") {          // Venus
-        filename = path / "shgj120p.txt"; // Normalized?
-    }
-    else if (centerName == "Earth") {                        // Earth
-        filename = path / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
-    }
-    else if (centerName == "Moon") {      // Moon
-        filename = path / "jgl165p1.txt"; // Normalized?
-    }
-    else if (centerName == "Mars") {       // Mars
-        filename = path / "%sgmm3120.txt"; // Do not appear to be normalized
+    const CelestialBodyId centerId =
+        sys.get_central_body_id(); // TODO: This forces the oblatness to only consider the system central body
+    switch (centerId) {
+        case CelestialBodyId::VENUS:
+            filename = path / "shgj120p.txt"; // Normalized?
+            break;
+        case CelestialBodyId::EARTH:
+            filename = path / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+            break;
+        case CelestialBodyId::MOON:
+            filename = path / "jgl165p1.txt"; // Normalized?
+            break;
+        case CelestialBodyId::MARS:
+            filename = path / "%sgmm3120.txt"; // Do not appear to be normalized
+            break;
+        default: throw std::runtime_error("Legendre coefficient file for central body not found.");
     }
     std::ifstream file(filename);
 
@@ -113,13 +117,14 @@ void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, 
             for (std::size_t ii = n + m; ii > n - m; --ii) {
                 factorialCoefficient *= ii;
             }
-            // TODO: This will cause MASSIVE slowdowns for m ~ n >> 1. need a smarter way to do these factorials
+            // TODO: This will cause big slowdowns for m ~ n >> 1. need a smarter way to do these factorials.
+            // Should be a way to do this recursively using previous values from earlier n and m calculations.
 
-            const auto delta               = (m == 0) ? 1 : 2;
+            const unsigned int delta       = (m == 0) ? 1 : 2;
             _normalizingCoefficients[n][m] = sqrt(delta * (2 * n + 1) / factorialCoefficient);
 
             // Normalize coefficients if needed
-            if (centerName == "Mars") {
+            if (centerId == CelestialBodyId::MARS) {
                 _C[n][m] /= _normalizingCoefficients[n][m];
                 _S[n][m] /= _normalizingCoefficients[n][m];
             }
@@ -156,7 +161,7 @@ Unitless LegendreCache::get_sine_coefficient(const std::size_t& n, const std::si
 OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order) :
     _degree(degree),
     _order(order),
-    _center(sys.get_central_body()),
+    _sys(&sys),
     _legendreCache(sys, degree, order)
 {
 }
@@ -173,9 +178,9 @@ AccelerationVector<frames::earth::icrf>
     const quantity<one / astrea::detail::distance_unit> oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
 
     // Central body properties
-    const GravParam& mu         = _center->get_mu();
-    const Distance& equitorialR = _center->get_equitorial_radius();
-    const Distance& polarR      = _center->get_polar_radius();
+    const GravParam& mu         = _sys->get_mu();
+    const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
+    const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
     // Find lat and long
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
@@ -186,9 +191,6 @@ AccelerationVector<frames::earth::icrf>
 
     const Unitless sinLat = sin(latitude);
     const Unitless tanLat = tan(latitude);
-
-    // // Populate Legendre polynomial array
-    // assign_legendre(sinLat);
 
     // Calculate serivative of gravitational potential field with respect to
     Unitless dVdr_   = 0.0 * one; // radius
