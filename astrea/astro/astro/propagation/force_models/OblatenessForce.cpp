@@ -263,7 +263,7 @@ AccelerationVector<frames::earth::icrf>
     const quantity term1 = oneOverR * (dVdr - z * oneOverR / planarR * dVdlat);
     const quantity term2 = dVdlon / (planarR * planarR);
 
-    // Calculate accel in Ecef (not with respect to Ecef)
+    // Calculate accel in ECEF (not with respect to ECEF)
     AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
         term1 * xEcef - term2 * yEcef, term1 * yEcef + term2 * xEcef, oneOverR * (dVdr * z + oneOverR * planarR * dVdlat)
     };
