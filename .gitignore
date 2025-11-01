@@ -30,5 +30,9 @@ snapshot.db
 snapshot.db-journal
 spacetrack.query-history.json
 
+# NASA 6DOF checkcases data files
+**/nasa_6dof_checkcases/checkcases/**/*.csv
+**/nasa_6dof_checkcases/**/*.m
+
 # Must include
 !CMakeLists.txt
