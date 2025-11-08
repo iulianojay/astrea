@@ -15,6 +15,7 @@ build_path := $(abspath ./build/gcc-13-23/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
+build_checkcase_db := OFF
 build_static := OFF
 cxx := g++-13
 verbose_makefile := OFF
@@ -40,6 +41,7 @@ build: setup
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
+	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
 	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
 
 .PHONY: setup
@@ -65,7 +67,7 @@ relwithdebinfo:
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 	
 .PHONY: tests
-tests:
+tests: checkcase_db
 	$(eval build_tests = ON)
 
 .PHONY: examples
@@ -75,6 +77,10 @@ examples:
 .PHONY: profiling
 profiling:
 	$(eval build_profilers = ON)
+
+.PHONY: checkcase_db
+checkcase_db:
+	$(eval build_checkcase_db = ON)
 
 .PHONY: verbose
 verbose:

@@ -20,6 +20,8 @@
 
 #include <cstdlib>
 #include <cxxabi.h>
+#include <iostream>
+#include <optional>
 #include <string>
 
 namespace astrea {
@@ -44,6 +46,12 @@ std::string trim(const std::string& str, const std::string& whitespace = " \t");
  */
 std::string replace_all(std::string const& original, std::string const& before, std::string const& after);
 
+/**
+ * @brief Gets the demangled(ish) type name of a given type.
+ *
+ * @tparam T The type to get the name of.
+ * @return The demangled type name as a string.
+ */
 template <typename T>
 std::string get_type_name()
 {
