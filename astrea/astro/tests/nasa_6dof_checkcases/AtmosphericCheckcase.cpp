@@ -20,6 +20,7 @@ namespace astrea {
 namespace astro {
 namespace tests {
 
+using nlohmann::json;
 using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
@@ -31,7 +32,18 @@ std::ostream& operator<<(std::ostream& os, const std::optional<T>& opt)
     return opt ? os << opt.value() : os << "Unassigned";
 }
 
-AtmosphericCheckcase::AtmosphericCheckcase(const std::filesystem::path& filepath) {}
+AtmosphericCheckcase::AtmosphericCheckcase(const std::filesystem::path& filepath) :
+    id(-1)
+{
+    // Just use the folder name
+    name = filepath.parent_path().stem().string();
+
+    // Pull the rest from the filename
+    const std::string filename            = filepath.stem().string();
+    const std::vector<std::string> tokens = utilities::split(filename, "_");
+    checkcase_num                         = std::stoul(tokens[1]);
+    sim_num                               = std::stoul(tokens[tokens.size() - 1]);
+}
 
 AtmosphericCheckcaseRow::AtmosphericCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data) :
     id(-1),

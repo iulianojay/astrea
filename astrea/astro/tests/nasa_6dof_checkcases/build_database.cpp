@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <string>
 
+#include <csv-parser/csv.hpp>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
@@ -40,6 +41,7 @@ int main()
     using namespace astro;
     using namespace astro::tests;
     using namespace sqlite_orm;
+    using json = nlohmann::json;
 
     // Build database
     auto ccdb = get_checkcase_database();
@@ -49,20 +51,20 @@ int main()
     std::vector<std::filesystem::path> checkcaseFiles;
     const std::string root = std::getenv("ASTREA_ROOT");
     auto atmoIterator =
-        std::filesystem::directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/atmospheric/");
+        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/atmospheric");
     for (const auto& entry : atmoIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }
 
     // Store in DB
     utilities::ProgressBar bar1(checkcaseFiles.size(), "Building Atmospheric Checkcases");
-    for (const auto& data : checkcaseFiles) {
+    for (const auto& filepath : checkcaseFiles) {
 
         // Progress bar
         bar1();
 
         // Build object
-        const AtmosphericCheckcase checkcase(data);
+        const AtmosphericCheckcase checkcase(filepath);
 
         // Insert or update
         auto all = ccdb.get_all<AtmosphericCheckcase>(where(c(&AtmosphericCheckcase::id) == checkcase.id));
@@ -70,25 +72,39 @@ int main()
         else {
             ccdb.update(checkcase);
         }
+
+        // Extract row data
+        csv::CSVReader reader(filepath.string());
+        for (const auto& row : reader) {
+            const json rowJson = json::parse(row.to_json());
+            AtmosphericCheckcaseRow checkcaseRow(checkcase.checkcase_num, rowJson);
+
+            auto all = ccdb.get_all<AtmosphericCheckcaseRow>(where(c(&AtmosphericCheckcaseRow::id) == checkcaseRow.id));
+            if (all.size() == 0) { ccdb.insert(checkcaseRow); }
+            else {
+                ccdb.update(checkcaseRow);
+            }
+        }
     }
+    std::cout << std::endl;
 
     // Now get orbital checkcase files
     checkcaseFiles.clear();
     auto orbitIterator =
-        std::filesystem::directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/orbital/");
+        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/orbital/");
     for (const auto& entry : orbitIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }
 
     // Store in DB
     utilities::ProgressBar bar2(checkcaseFiles.size(), "Building Orbital Checkcases");
-    for (const auto& data : checkcaseFiles) {
+    for (const auto& filepath : checkcaseFiles) {
 
         // Progress bar
         bar2();
 
         // Build object
-        const OrbitalCheckcase checkcase(data);
+        const OrbitalCheckcase checkcase(filepath);
 
         // Insert or update
         auto all = ccdb.get_all<OrbitalCheckcase>(where(c(&OrbitalCheckcase::id) == checkcase.id));
@@ -96,7 +112,21 @@ int main()
         else {
             ccdb.update(checkcase);
         }
+
+        // Extract row data
+        csv::CSVReader reader(filepath.string());
+        for (const auto& row : reader) {
+            const json rowJson = json::parse(row.to_json());
+            OrbitalCheckcaseRow checkcaseRow(checkcase.checkcase_num, rowJson);
+
+            auto all = ccdb.get_all<OrbitalCheckcaseRow>(where(c(&OrbitalCheckcaseRow::id) == checkcaseRow.id));
+            if (all.size() == 0) { ccdb.insert(checkcaseRow); }
+            else {
+                ccdb.update(checkcaseRow);
+            }
+        }
     }
+    std::cout << std::endl;
 
     return 0;
 }

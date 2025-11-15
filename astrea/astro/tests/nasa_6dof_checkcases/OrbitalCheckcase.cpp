@@ -20,6 +20,7 @@ namespace astrea {
 namespace astro {
 namespace tests {
 
+using nlohmann::json;
 using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
@@ -29,6 +30,35 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::optional<T>& opt)
 {
     return opt ? os << opt.value() : os << "Unassigned";
+}
+
+
+OrbitalCheckcase::OrbitalCheckcase(const std::filesystem::path& filepath) :
+    id(-1)
+{
+    // Just use the folder name
+    name = filepath.parent_path().stem().string();
+
+    // Pull the rest from the filename
+    const std::string filename            = filepath.stem().string();
+    const std::vector<std::string> tokens = utilities::split(filename, "_");
+    checkcase_num                         = std::stoul(tokens[1]);
+
+    // Whatever
+    const std::string simLetter = tokens[tokens.size() - 1];
+    if (simLetter == "A") { sim_num = 1; }
+    else if (simLetter == "B") {
+        sim_num = 2;
+    }
+    else if (simLetter == "C") {
+        sim_num = 3;
+    }
+    else if (simLetter == "D") {
+        sim_num = 4;
+    }
+    else {
+        sim_num = 0;
+    }
 }
 
 OrbitalCheckcaseRow::OrbitalCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data) :
