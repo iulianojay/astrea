@@ -46,26 +46,26 @@ build: setup
 
 .PHONY: setup
 setup: activate_env
-	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing 
+	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing
 
 .PHONY: debug
-debug: 
+debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: release
-release: 
+release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: relwithdebinfo
-relwithdebinfo: 
+relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: tests
 tests: checkcase_db
 	$(eval build_tests = ON)
@@ -89,7 +89,7 @@ verbose:
 .PHONY: static
 static:
 	$(eval build_static = ON)
-	
+
 .PHONY: run_tests
 run_tests:
 	cd $(build_path)/astrea/math/tests && ctest --output-on-failure
@@ -110,7 +110,7 @@ run_examples:
 
 .PHONY: docker
 docker:
-	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile .
+	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile . --build-arg USER=$(username)
 
 .PHONY: clean
 clean:
@@ -122,7 +122,7 @@ clean-ephem:
 	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.cpp')
 
 .PHONY: new
-new: 
+new:
 	rm -rf build
 	rm -rf install
 
@@ -141,7 +141,7 @@ coverage: debug run_tests run_examples
 	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
 
 .PHONY: build_env
-build_env: 
+build_env:
 	rm -rf .venv
 	python3 -m venv .venv
 

@@ -19,6 +19,8 @@ RUN apt-get update && \
     curl \
     libsqlite3-dev \
     libssl-dev \
+    libgl1-mesa-dev \
+    xorg-dev \
     python3 \
     python3-pip \
     python3-venv \
