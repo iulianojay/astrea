@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -14,14 +14,14 @@ set(BASE ${CMAKE_CURRENT_SOURCE_DIR})
 set(DRIVER_NAME astro_nasa_6dof_checkcase_builder)
 
 set(CHECKCASE_DB_HEADERS
-    ${BASE}/AtmosphericCheckcase.hpp
-    ${BASE}/CheckcaseDatabase.hpp
-    ${BASE}/OrbitalCheckcase.hpp
+    ${BASE}/helpers/AtmosphericCheckcase.hpp
+    ${BASE}/helpers/CheckcaseDatabase.hpp
+    ${BASE}/helpers/OrbitalCheckcase.hpp
 )
 
 set(CHECKCASE_DB_SOURCES
-    ${BASE}/AtmosphericCheckcase.cpp
-    ${BASE}/OrbitalCheckcase.cpp
+    ${BASE}/helpers/AtmosphericCheckcase.cpp
+    ${BASE}/helpers/OrbitalCheckcase.cpp
 )
 
 add_library                (${DRIVER_NAME}_shared SHARED ${CHECKCASE_DB_SOURCES} ${CHECKCASE_DB_HEADERS})

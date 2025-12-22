@@ -25,9 +25,9 @@
 #include <utilities/ProgressBar.hpp>
 
 #include <astro/time/Date.hpp>
-#include <tests/nasa_6dof_checkcases/AtmosphericCheckcase.hpp>
-#include <tests/nasa_6dof_checkcases/CheckcaseDatabase.hpp>
-#include <tests/nasa_6dof_checkcases/OrbitalCheckcase.hpp>
+#include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
+#include <tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp>
+#include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 
 /**
  * @brief Builds out the checkcase database by reading data from public NASA checkcase files.
@@ -51,7 +51,7 @@ int main()
     std::vector<std::filesystem::path> checkcaseFiles;
     const std::string root = std::getenv("ASTREA_ROOT");
     auto atmoIterator =
-        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/atmospheric");
+        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/atmospheric");
     for (const auto& entry : atmoIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }
@@ -91,7 +91,7 @@ int main()
     // Now get orbital checkcase files
     checkcaseFiles.clear();
     auto orbitIterator =
-        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/data/nasa_6dof_checkcases/checkcases/orbital/");
+        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/orbital/");
     for (const auto& entry : orbitIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }
