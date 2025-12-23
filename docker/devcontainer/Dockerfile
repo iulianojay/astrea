@@ -17,6 +17,7 @@ RUN apt-get update && \
     bash-completion \
     mono-mcs \
     curl \
+    clang-format \
     libsqlite3-dev \
     libssl-dev \
     libgl1-mesa-dev \
