@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -18,9 +18,9 @@ get_version_from_git()
 
 message(STATUS "Configuring Astrea version ${ASTREA_VERSION}")
 project(
-    astrea 
+    astrea
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Astrea: Nebula Back-End Simulation Library" 
+    DESCRIPTION "Astrea: Nebula Back-End Simulation Library"
     LANGUAGES CXX
 )
 
@@ -45,16 +45,21 @@ find_package(mp-units REQUIRED)
 find_package(SQLite3 REQUIRED)
 
 include(FetchContent)
+set(DEP_DIR "${CMAKE_CURRENT_BINARY_DIR}/_deps")
+message(" -- Dependency directory ${DEP_DIR}")
+
+make_directory("${DEP_DIR}/cpr-src")
+message(" -- Built directory ${DEP_DIR}/cpr-src")
 FetchContent_Declare(
-    cpr 
+    cpr
     GIT_REPOSITORY https://github.com/libcpr/cpr.git
     GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06
 ) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
 FetchContent_MakeAvailable(cpr)
 
 FetchContent_Declare(
-    sqlite_orm 
-    GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git 
+    sqlite_orm
+    GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git
     GIT_TAG v1.9.1
 )
 FetchContent_MakeAvailable(sqlite_orm)
@@ -68,6 +73,8 @@ FetchContent_MakeAvailable(matplotplusplus)
 
 # Add google test
 set(INSTALL_GTEST OFF)
+make_directory("${DEP_DIR}/googletest-src")
+message(" -- Built directory ${DEP_DIR}/googletest-src")
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz

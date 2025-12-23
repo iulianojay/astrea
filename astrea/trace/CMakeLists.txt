@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -10,9 +10,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    trace 
+    trace
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Library for Trace-Based Simulation and Analysis" 
+    DESCRIPTION "Library for Trace-Based Simulation and Analysis"
     LANGUAGES CXX
 )
 
@@ -51,15 +51,15 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/platforms/ground/GroundArchitecture.hpp
     ${TRACE_BASE}/platforms/ground/GroundPoint.hpp
     ${TRACE_BASE}/platforms/ground/GroundStation.hpp
-    
+
     ${TRACE_BASE}/platforms/vehicles/Viewer.hpp
 
     ${TRACE_BASE}/risesets/AccessArray.hpp
     ${TRACE_BASE}/risesets/RiseSetArray.hpp
     ${TRACE_BASE}/risesets/riseset_utils.hpp
-    
+
     ${TRACE_BASE}/types/typedefs.hpp
-    
+
     ${EXTERN_BASE}/nlohmann/json.hpp
     ${EXTERN_BASE}/csv-parser/csv.hpp
 )

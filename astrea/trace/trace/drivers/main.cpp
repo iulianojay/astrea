@@ -68,6 +68,10 @@ int access_test()
     auto everythingElseGps =
         snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%STARLINK%")));
 
+    if (geoGp.size() == 0 || everythingElseGps.size() == 0) {
+        throw std::runtime_error("Error: Nothing pulled from database. Are you sure you filled it?");
+    }
+
     // Build constellation
     Viewer geo(geoGp[0], sys);
     // Constellation<Viewer> allSats(everythingElseGps, sys);

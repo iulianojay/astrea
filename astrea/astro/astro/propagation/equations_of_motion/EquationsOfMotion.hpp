@@ -35,7 +35,7 @@ class EquationsOfMotion {
      * @param system The astrodynamics system containing the central body and its properties.
      */
     EquationsOfMotion(const AstrodynamicsSystem& system) :
-        system(&system) {};
+        system(&system){};
 
     /**
      * @brief Destructor for the Equations of Motion class.
@@ -64,6 +64,8 @@ class EquationsOfMotion {
      * @return const AstrodynamicsSystem& The astrodynamics system.
      */
     const AstrodynamicsSystem& get_system() const { return *system; }
+
+    // const Jacobian get_jacobian() const { return Jacobian(*this); }
 
   protected:
     const AstrodynamicsSystem* system; ///< Pointer to the astrodynamics system containing the central body and its properties.
