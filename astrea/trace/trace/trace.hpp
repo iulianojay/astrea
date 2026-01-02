@@ -28,6 +28,8 @@
 #include <trace/platforms/sensors/Antenna.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
 #include <trace/platforms/sensors/fov/FieldOfView.hpp>
+#include <trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp>
+#include <trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp>
 
 #include <trace/platforms/vehicles/Viewer.hpp>
 

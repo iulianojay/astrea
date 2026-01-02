@@ -101,9 +101,9 @@ int access_test()
     GroundStation dc(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
     SensorParameters groundCone(
         &fovLeo,
-        { 1.0 * astrea::detail::distance_unit, // Anti-Nadir
-          0.0 * astrea::detail::distance_unit,
-          0.0 * astrea::detail::distance_unit }
+        { 1.0 * m, // Anti-Nadir, units don't matter
+          0.0 * m,
+          0.0 * m }
     );
     dc.attach_payload(groundCone);
     GroundArchitecture grounds({ dc });

@@ -11,15 +11,10 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <trace/platforms/sensors/fov/FieldOfView.hpp>
+#include <trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp>
 
 #include <cmath>
 #include <stdexcept>
-
-#include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
-#include <mp-units/systems/si/math.h>
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
@@ -31,16 +26,9 @@ using namespace mp_units;
 using namespace mp_units::angular;
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
-Angle calculate_angle_between_vectors(const EciRadiusVec& vector1, const EciRadiusVec& vector2)
+bool CircularFieldOfView::contains(const EciRadiusVec& boresight, const EciRadiusVec& target) const
 {
-    const Distance v1Mag = vector1.norm();
-    const Distance v2Mag = vector2.norm();
-    const auto v1DotV2   = vector1.dot(vector2);
-    const auto ratio     = v1DotV2 / (v1Mag * v2Mag);
-    if (ratio > 1.0 * one) {
-        return 0.0 * astrea::detail::angle_unit;
-    } // catch rounding errors - TODO: Make this more intelligent
-    return acos(ratio);
+    return (calculate_angle_between_vectors(boresight, target) <= _halfConeAngle);
 }
 
 } // namespace trace

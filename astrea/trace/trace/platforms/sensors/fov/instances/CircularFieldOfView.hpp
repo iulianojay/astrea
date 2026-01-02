@@ -21,57 +21,52 @@
 #include <numbers>
 #include <unordered_map>
 
-#include <units/units.hpp>
-
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/dynamic_frames.hpp>
+#include <units/units.hpp>
+
+#include <trace/platforms/sensors/fov/FieldOfView.hpp>
 
 namespace astrea {
 namespace trace {
 
 /**
- * @brief Computes the angle between two radius vectors.
+ * @brief Circular field of view implementation.
  *
- * @param vector1 The first radius vector.
- * @param vector2 The second radius vector.
- * @return Angle The angle between the two vectors.
+ * This class represents a circular field of view defined by a half-cone angle.
  */
-Angle calculate_angle_between_vectors(
-    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& vector1,
-    const astro::CartesianVector<Distance, astro::frames::earth::icrf>& vector2
-);
-
-/**
- * @brief Base class for Field of View (FoV) representations.
- *
- * This class defines the interface for different types of fields of view.
- */
-class FieldOfView {
+class CircularFieldOfView : public FieldOfView {
   public:
     /**
-     * @brief Default constructor for FieldOfView.
-     */
-    FieldOfView() = default;
-
-    /**
-     * @brief Virtual destructor for FieldOfView.
+     * @brief Constructor for CircularFieldOfView.
      *
-     * Ensures proper cleanup of derived classes.
+     * @param halfConeAngle The half-cone angle defining the field of view.
      */
-    ~FieldOfView() = default;
+    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
+        _halfConeAngle(halfConeAngle)
+    {
+    }
 
     /**
-     * @brief Checks if a target is within the field of view.
+     * @brief Default destructor for CircularFieldOfView.
+     */
+    ~CircularFieldOfView() = default;
+
+    /**
+     * @brief Checks if a target is within the circular field of view.
      *
      * @param boresight The boresight vector of the sensor.
      * @param target The target vector to check.
-     * @return true If the target is within the field of view.
-     * @return false If the target is outside the field of view.
+     * @return true If the target is within the circular field of view.
+     * @return false If the target is outside the circular field of view.
      */
-    virtual bool contains(
+    bool contains(
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
-    ) const = 0;
+    ) const;
+
+  private:
+    Angle _halfConeAngle; // Half-cone angle defining the circular field of view
 };
 
 } // namespace trace
