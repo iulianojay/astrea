@@ -51,16 +51,26 @@ PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeWidth, const Ang
 
 bool PolygonalFieldOfView::contains(const EciRadiusVec& boresight, const EciRadiusVec& target) const
 {
-    // Point in polygon for convex polygons
+    const Angle angleBetween = calculate_angle_between_vectors(boresight, target);
+
+    // First we check if it's within the smallest enclosing circle
+    static const auto comparitor = [](const auto& a, const auto& b) { return a.second < b.second; };
+    static const Angle minAngle  = std::min_element(_points.begin(), _points.end(), comparitor)->second;
+    if (angleBetween <= minAngle) { return true; }
+
+    // Now we check if it's outside the max angle
+    static const Angle maxAngle = std::max_element(_points.begin(), _points.end(), comparitor)->second;
+    if (angleBetween > maxAngle) { return false; }
+
+    // Neither less than the smallest angle nor greater than the largest angle, so we have to do
+    // actual math. Build out the polygon of the FoV in the plan normal to the boresight
     static const std::vector<std::pair<Unitless, Unitless>> polygon = build_polygon();
 
     // Check if the target vector is in the trangle formed by the origin and the two vertices
     // NOTE: The second angle calculated here (atan2) is wrong - it should be calculated from the plane normal to
     //  the boresight vector, not to the ECI x-y plane
-    const std::pair<Unitless, Unitless>& point = {
-        sin(calculate_angle_between_vectors(boresight, target)) * cos(atan2(target[1], target[0])),
-        sin(calculate_angle_between_vectors(boresight, target)) * sin(atan2(target[1], target[0]))
-    };
+    const std::pair<Unitless, Unitless>& point = { sin(angleBetween) * cos(atan2(target[1], target[0])),
+                                                   sin(angleBetween) * sin(atan2(target[1], target[0])) };
 
     // Run in polygon test
     return point_in_polygon(point, polygon);
@@ -68,6 +78,8 @@ bool PolygonalFieldOfView::contains(const EciRadiusVec& boresight, const EciRadi
 
 std::vector<std::pair<Unitless, Unitless>> PolygonalFieldOfView::build_polygon() const
 {
+    // This assumes the distance from the origin to the points is 1 unit
+    // This will make it harder to compute the intersection of the target vector with the polygon plane
     std::vector<std::pair<Unitless, Unitless>> polygon;
     for (auto it = _points.begin(); it != _points.end(); ++it) {
         // Construct x, y from angles

@@ -85,6 +85,9 @@ class PolygonalFieldOfView : public FieldOfView {
     ) const;
 
   private:
+    // TODO: These angle are actually defined w.r.t a frame so we need to figure out what that
+    // is and how to define it meaningfully. It might have to come from a FrameReference object
+    // Probably will be some body-fixed frame aligned with the sensor boresight
     phmap::btree_map<Angle, Angle> _points; //<! Map of angles defining the polygonal field of view
 
     /**

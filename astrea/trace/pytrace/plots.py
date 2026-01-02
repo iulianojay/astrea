@@ -249,3 +249,5 @@ if __name__ == "__main__":
     plot_trace_bars(results, traceOutfile, main, target, colors)
     plot_number_of_accesses(results, countOutfile, target)
     plot_number_of_accesses(results, interfereOutfile, target, True)
+
+# TODO: Replace this all with c++ matplotlib
