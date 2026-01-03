@@ -88,7 +88,16 @@ class PolygonalFieldOfView : public FieldOfView {
     // TODO: These angle are actually defined w.r.t a frame so we need to figure out what that
     // is and how to define it meaningfully. It might have to come from a FrameReference object
     // Probably will be some body-fixed frame aligned with the sensor boresight
+    // The key angle is the azimuthal angle around the boresight, and the value angle is the
+    // off-boresight angle at that azimuth
     phmap::btree_map<Angle, Angle> _points; //<! Map of angles defining the polygonal field of view
+    Angle _minHalfAngle;                    //<! Minimum off-boresight half angle
+    Angle _maxHalfAngle;                    //<! Maximum off-boresight half angle
+
+    /**
+     * @brief Finds the minimum and maximum off-boresight angles from _points
+     */
+    void find_min_and_max_angles();
 
     /**
      * @brief Builds the polygon from the defined points.

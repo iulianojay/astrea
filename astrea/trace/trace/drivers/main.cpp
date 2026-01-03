@@ -34,6 +34,12 @@
 #include <snapshot/snapshot.hpp>
 #include <trace/trace.hpp>
 
+using namespace astrea;
+using namespace astro;
+using namespace trace;
+using namespace snapshot;
+using namespace sqlite_orm;
+
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
@@ -42,18 +48,17 @@ using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
-int access_test();
-int link_budget_test();
+int interference_test();
+int iceye_test();
 
-int main() { return access_test(); }
-
-int access_test()
+int main()
 {
-    using namespace astrea;
-    using namespace astro;
-    using namespace trace;
-    using namespace snapshot;
-    using namespace sqlite_orm;
+    // return interference_test();
+    return iceye_test();
+}
+
+int interference_test()
+{
 
     // Setup system
     AstrodynamicsSystem sys;
@@ -147,7 +152,7 @@ int access_test()
     // Save
     const std::string root        = std::getenv("ASTREA_ROOT");
     std::filesystem::path base    = root + "/astrea/trace/";
-    std::filesystem::path outfile = base / "trace/drivers/results/revisit.csv";
+    std::filesystem::path outfile = base / "trace/drivers/results/interference/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
@@ -159,6 +164,127 @@ int access_test()
             // Gross
             std::string sender, receiver;
             for (const auto& shell : allSats.get_shells()) {
+                for (const auto& plane : shell.get_planes()) {
+                    for (const auto& viewer : plane.get_all_spacecraft()) {
+                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
+                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
+                    }
+                }
+            }
+            for (const auto& ground : grounds) {
+                if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
+                if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
+            }
+
+            std::vector<std::string> row{ sender, receiver };
+            for (const auto& str : risesets.to_string_vector()) {
+                row.push_back(str);
+            }
+            writer << row;
+        }
+    }
+
+    // Call plotter
+    std::filesystem::path plotFile = base / "pytrace/plots.py";
+    const std::string cmd          = "python3 " + plotFile.string();
+
+    return std::system(cmd.c_str());
+}
+
+
+int iceye_test()
+{
+    // Setup system
+    AstrodynamicsSystem sys;
+    Date epoch = Date::now();
+
+    // Query database
+    auto snapshot = get_snapshot();
+    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
+
+    if (iceyeSats.size() == 0) {
+        std::cerr << "No ICEYE satellites found in database!" << std::endl;
+        return -1;
+    }
+
+    // Build constellation
+    Constellation<Viewer> iceyeConstel(iceyeSats, sys);
+
+    // Add sensors
+    CircularFieldOfView fovLeo(30.0 * deg);
+    SensorParameters leoCone(&fovLeo);
+
+    for (auto& shell : iceyeConstel.get_shells()) {
+        for (auto& plane : shell.get_planes()) {
+            for (auto& sat : plane.get_all_spacecraft()) {
+                sat.attach_payload(leoCone);
+                // std::cout << sat.get_name() << " : " << sat.get_initial_state() << std::endl;
+            }
+        }
+    }
+
+    // Build out grounds
+    GroundStation home(sys.get_central_body().get(), 60.1869 * deg, 24.8201 * deg, 0.0 * km, { "ICEYE Oy" });
+    SensorParameters groundCone(
+        &fovLeo,
+        { 1.0 * m, // Anti-Nadir, units don't matter
+          0.0 * m,
+          0.0 * m }
+    );
+    home.attach_payload(groundCone);
+    GroundArchitecture grounds({ home });
+
+    LatLon corner1{ -50.0 * deg, -180.0 * deg };
+    LatLon corner4{ 50.0 * deg, 180.0 * deg };
+    Angle spacing = 10.0 * deg;
+    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
+
+    // Build EoMs
+    J2MeanVop eom(sys);
+
+    // Setup integrator
+    Integrator integrator;
+    integrator.set_abs_tol(1.0e-10);
+    integrator.set_rel_tol(1.0e-10);
+
+    // Propagate
+    auto start = std::chrono::steady_clock::now();
+
+    Interval propInterval{ seconds(0), days(30) };
+    iceyeConstel.propagate(epoch, eom, integrator, propInterval);
+
+    auto end  = std::chrono::steady_clock::now();
+    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
+
+    std::cout << std::endl << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
+
+    start = std::chrono::steady_clock::now();
+
+    // Find access
+    Time accessResolution = seconds(30);
+    // const auto accesses   = find_accesses(iceyeConstel, accessResolution, epoch, sys);
+    const auto accesses = find_accesses(iceyeConstel, grounds, accessResolution, epoch, sys);
+
+    end  = std::chrono::steady_clock::now();
+    diff = std::chrono::duration_cast<nanoseconds>(end - start);
+
+    std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+
+    // Save
+    const std::string root        = std::getenv("ASTREA_ROOT");
+    std::filesystem::path base    = root + "/astrea/trace/";
+    std::filesystem::path outfile = base / "trace/drivers/results/iceye/revisit.csv";
+    std::filesystem::create_directories(outfile.parent_path());
+    std::ofstream ss(outfile);
+    auto writer = csv::make_csv_writer(ss);
+
+    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
+    for (const auto& [idPair, risesets] : accesses) {
+        if (risesets.size() > 0) {
+
+            // Gross
+            std::string sender, receiver;
+            for (const auto& shell : iceyeConstel.get_shells()) {
                 for (const auto& plane : shell.get_planes()) {
                     for (const auto& viewer : plane.get_all_spacecraft()) {
                         if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }

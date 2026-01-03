@@ -31,6 +31,7 @@ PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeAngle, const int
     for (Angle theta = 0.0 * astrea::detail::angle_unit; theta < TWO_PI; theta += (TWO_PI / nPoints)) {
         _points[theta] = halfConeAngle;
     }
+    find_min_and_max_angles();
 }
 
 PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeWidth, const Angle& halfConeHeight, const int& nPoints)
@@ -45,22 +46,31 @@ PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeWidth, const Ang
     for (Angle theta = 0.0; theta < TWO_PI; theta += (TWO_PI/nPoints)) {
         points[theta] = 0.0;
     }
+    find_min_and_max_angles();
     */
+}
+
+void PolygonalFieldOfView::find_min_and_max_angles()
+{
+    static const auto comparitor = [](const auto& a, const auto& b) { return a.second < b.second; };
+
+    // Max cone is just the largest off-boresight angle
+    _maxHalfAngle = std::max_element(_points.begin(), _points.end(), comparitor)->second;
+
+    // TODO: Min cone requires harder math. Voronoi diagram might be required. Figure out how to do this
+    _minHalfAngle = 0.0 * astrea::detail::angle_unit;
 }
 
 
 bool PolygonalFieldOfView::contains(const EciRadiusVec& boresight, const EciRadiusVec& target) const
 {
+    // First we check if it's within the smallest enclosing cone or outside the largest
+    // I'm hoping this covers most cases
     const Angle angleBetween = calculate_angle_between_vectors(boresight, target);
-
-    // First we check if it's within the smallest enclosing circle
-    static const auto comparitor = [](const auto& a, const auto& b) { return a.second < b.second; };
-    static const Angle minAngle  = std::min_element(_points.begin(), _points.end(), comparitor)->second;
-    if (angleBetween <= minAngle) { return true; }
-
-    // Now we check if it's outside the max angle
-    static const Angle maxAngle = std::max_element(_points.begin(), _points.end(), comparitor)->second;
-    if (angleBetween > maxAngle) { return false; }
+    if (angleBetween <= _minHalfAngle) { return true; }
+    else if (angleBetween > _maxHalfAngle) {
+        return false;
+    }
 
     // Neither less than the smallest angle nor greater than the largest angle, so we have to do
     // actual math. Build out the polygon of the FoV in the plan normal to the boresight

@@ -235,15 +235,15 @@ def plot_number_of_accesses(
 
 if __name__ == "__main__":
 
-    base = os.path.join(ASTREA_ROOT, "astrea/trace/trace/drivers/results/")
+    base = os.path.join(ASTREA_ROOT, "astrea/trace/trace/drivers/results/iceye")
 
     results = os.path.join(base, "revisit.csv")
     traceOutfile = os.path.join(base, "revisit.png")
     countOutfile = os.path.join(base, "trace_count.png")
     interfereOutfile = os.path.join(base, "interference_count.png")
 
-    target = "Washington DC"
-    main = "ARCTURUS"
+    target = "ICEYE Oy"
+    main = "ICEYE-X62"
     colors = {main: "tab:blue"}
 
     plot_trace_bars(results, traceOutfile, main, target, colors)
