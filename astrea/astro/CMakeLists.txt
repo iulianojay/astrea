@@ -1,6 +1,6 @@
 
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -11,9 +11,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    astro 
+    astro
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Core Physics and Astrodynamics Library" 
+    DESCRIPTION "Core Physics and Astrodynamics Library"
     LANGUAGES CXX
 )
 
@@ -56,7 +56,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
-    
+
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
@@ -89,10 +89,11 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-    
+
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
+    ${ASTRO_BASE}/frames/instances/EastNorthUp.hpp
     ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
