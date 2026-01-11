@@ -128,7 +128,8 @@ inline auto get_checkcase_database()
         sqlite_orm::make_table(
             "AtmosphericCheckcaseRows",
             sqlite_orm::make_column("id", &AtmosphericCheckcaseRow::id, sqlite_orm::primary_key().autoincrement()),
-            sqlite_orm::make_column("checkcase_id", &AtmosphericCheckcaseRow::checkcase_id),
+            sqlite_orm::make_column("checkcase_num", &AtmosphericCheckcaseRow::checkcase_num),
+            sqlite_orm::make_column("sim_num", &AtmosphericCheckcaseRow::sim_num),
             sqlite_orm::make_column("time", &AtmosphericCheckcaseRow::time),
             sqlite_orm::make_column("eiPosition_ft_X", &AtmosphericCheckcaseRow::eiPosition_ft_X),
             sqlite_orm::make_column("eiPosition_ft_Y", &AtmosphericCheckcaseRow::eiPosition_ft_Y),
@@ -170,7 +171,8 @@ inline auto get_checkcase_database()
         sqlite_orm::make_table(
             "OrbitalCheckcaseRows",
             sqlite_orm::make_column("id", &OrbitalCheckcaseRow::id, sqlite_orm::primary_key().autoincrement()),
-            sqlite_orm::make_column("checkcase_id", &OrbitalCheckcaseRow::checkcase_id),
+            sqlite_orm::make_column("checkcase_num", &OrbitalCheckcaseRow::checkcase_num),
+            sqlite_orm::make_column("sim_num", &OrbitalCheckcaseRow::sim_num),
             sqlite_orm::make_column("time", &OrbitalCheckcaseRow::time),
             sqlite_orm::make_column("gePosition_m_X", &OrbitalCheckcaseRow::gePosition_m_X),
             sqlite_orm::make_column("gePosition_m_Y", &OrbitalCheckcaseRow::gePosition_m_Y),

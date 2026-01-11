@@ -13,6 +13,8 @@
 
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 
+#include <algorithm>
+
 #include <utilities/json_util.hpp>
 #include <utilities/string_util.hpp>
 
@@ -61,9 +63,10 @@ OrbitalCheckcase::OrbitalCheckcase(const std::filesystem::path& filepath) :
     }
 }
 
-OrbitalCheckcaseRow::OrbitalCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data) :
+OrbitalCheckcaseRow::OrbitalCheckcaseRow(const unsigned& checkcase_num, const unsigned& sim_num, const nlohmann::json& data) :
     id(-1),
-    checkcase_id(checkcase_id),
+    checkcase_num(checkcase_num),
+    sim_num(sim_num),
     time(extract_from_json<double>(data, "time")),
     gePosition_m_X(extract_optional_from_json<double>(data, "gePosition_m_X")),
     gePosition_m_Y(extract_optional_from_json<double>(data, "gePosition_m_Y")),
@@ -100,7 +103,8 @@ OrbitalCheckcaseRow::OrbitalCheckcaseRow(const unsigned& checkcase_id, const nlo
 std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& orbitalRow)
 {
     os << "id: " << orbitalRow.id << std::endl;
-    os << "checkcase_id: " << orbitalRow.checkcase_id << std::endl;
+    os << "checkcase_num: " << orbitalRow.checkcase_num << std::endl;
+    os << "sim_num: " << orbitalRow.sim_num << std::endl;
     os << "time: " << orbitalRow.time << std::endl;
     os << "gePosition_m_X: " << orbitalRow.gePosition_m_X << std::endl;
     os << "gePosition_m_Y: " << orbitalRow.gePosition_m_Y << std::endl;
