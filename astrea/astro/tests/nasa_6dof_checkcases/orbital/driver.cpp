@@ -12,6 +12,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <matplot/matplot.h>
 #include <mp-units/math.h>
 #include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
@@ -23,6 +24,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -30,6 +32,7 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
+#include <astro/utilities/plotting.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 #include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
@@ -41,7 +44,9 @@ using namespace astro;
 using namespace astro::tests;
 
 using namespace sqlite_orm;
+using namespace matplot;
 using namespace mp_units;
+
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::km;
@@ -62,18 +67,23 @@ class Orbital6DofTest : public testing::Test {
             RadiusVector<frames::earth::icrf>(-4315.96774 * km, 960.35620 * km, 5167.26953 * km),
             VelocityVector<frames::earth::icrf>(0.129091037 * km / s, -7.491513855 * km / s, 1.452515654 * km / s)
         ),
-        propInterval(0.0 * s, 28860.0 * s)
+        propInterval(0.0 * s, 28800.0 * s)
     {
         integrator.switch_fixed_timestep(true);
-        integrator.set_timestep(60.0 * s);
+        integrator.set_timestep(30.0 * s);
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
+
+        outputDir = std::getenv("ASTREA_ROOT");
+        outputDir /= "astrea/astro/tests/nasa_6dof_checkcases/orbital/results";
     }
 
     void SetUp() override {}
 
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
+
+    std::filesystem::path outputDir;
 
     AstrodynamicsSystem sys;
     GravParam mu;
@@ -99,11 +109,12 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
     Vehicle vehicle{ sat };
 
     // Setup Propagator
-    TwoBody eom(sys);
     ForceModel forces;
+    TwoBody eom(sys);
+    KeplerianVop keplerianVop(sys, forces, false);
 
     std::cout << "Propagating Checkcase 2...";
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
     std::cout << " Propagation Complete." << std::endl << std::endl;
 
     // Grab history from database
@@ -112,6 +123,15 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
 
     auto checkcases = ccdb.get_all<OrbitalCheckcase>(where(like(&OrbitalCheckcase::name, "Orbit_02%%")));
     std::cout << "Validating Checkcase 2 against " << checkcases.size() << " simulations." << std::endl;
+
+    std::vector<StateHistory> allHistories;
+    allHistories.reserve(checkcases.size() + 1);
+    allHistories.push_back(stateHistory); // first history is propagated history
+
+    std::vector<std::string> allLabels;
+    allLabels.reserve(checkcases.size() + 1);
+    allLabels.push_back("Astrea Propagation");
+
     for (const auto& checkcase : checkcases) {
         auto rows = ccdb.get_all<OrbitalCheckcaseRow>(where(
             c(&OrbitalCheckcaseRow::checkcase_num) == checkcase.checkcase_num &&
@@ -124,13 +144,15 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
         Distance maxPositionError = 0.0 * km;
         Velocity avgVelocityError = 0.0 * km / s;
         Velocity maxVelocityError = 0.0 * km / s;
+
+        StateHistory expectedHistory;
         for (const auto& row : rows) {
-            const Time time             = row.time * s;
+
+            // Pull out propagated state at time
+            const Time time             = std::round(row.time) * s;
             const State propagatedState = stateHistory.get_state_at(epoch + time);
+            const Cartesian cart        = propagatedState.in_element_set<Cartesian>();
 
-            const Cartesian cart = propagatedState.in_element_set<Cartesian>();
-
-            // Position
             const RadiusVector<frames::earth::icrf> pos(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
             const auto positionError    = cart.get_position() - pos;
             const auto positionErrorMag = positionError.norm();
@@ -139,17 +161,37 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
             const auto velocityError    = cart.get_velocity() - vel;
             const auto velocityErrorMag = velocityError.norm();
 
+            // Store
+            expectedHistory.insert(epoch + time, State({ Cartesian(pos, vel) }, epoch + time, sys));
+
+            // Stats
             maxPositionError = math::max(maxPositionError, positionErrorMag);
             maxVelocityError = math::max(maxVelocityError, velocityErrorMag);
             avgPositionError += positionErrorMag;
             avgVelocityError += velocityErrorMag;
         }
-        avgPositionError /= (static_cast<double>(rows.size()) * 3.0);
-        avgVelocityError /= (static_cast<double>(rows.size()) * 3.0);
+        avgPositionError /= static_cast<double>(rows.size());
+        avgVelocityError /= static_cast<double>(rows.size());
 
         std::cout << "\t\tAverage Position Error: " << avgPositionError.in(m) << std::endl;
         std::cout << "\t\tMaximum Position Error: " << maxPositionError.in(m) << std::endl;
         std::cout << "\t\tAverage Velocity Error: " << avgVelocityError.in(cm / s) << std::endl;
         std::cout << "\t\tMaximum Velocity Error: " << maxVelocityError.in(cm / s) << std::endl;
+
+        allHistories.push_back(expectedHistory);
+        allLabels.push_back("Checkcase Sim " + std::to_string(checkcase.sim_num));
     }
+
+    // Build out exact results to compare
+    StateHistory analyticHistory;
+    const Keplerian elements0(circular, mu);
+    for (const auto& [date, state] : stateHistory) {
+        // this ignores anomaly changes but whatever
+        analyticHistory.insert(date, State({ elements0 }, date, sys));
+    }
+    allHistories.push_back(analyticHistory);
+    allLabels.push_back("Analytic Solution");
+
+    plotting::compare_trajectories(allHistories, allLabels, outputDir / "checkcase_2" / "trajectory_comparison.png");
+    plotting::compare_orbital_elements(allHistories, allLabels, outputDir / "checkcase_2" / "orbital_elements_comparison.png");
 }

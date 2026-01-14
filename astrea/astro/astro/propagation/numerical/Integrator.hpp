@@ -51,7 +51,7 @@ class Integrator {
         DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day }; //!< Default time interval for propagation
+    static inline Interval defaultInterval{ 0.0 * astrea::detail::time_unit, 86400.0 * astrea::detail::time_unit }; //!< Default time interval for propagation
 
     /**
      * @brief Default constructor for the Integrator class.
@@ -250,7 +250,7 @@ class Integrator {
     Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
 
     // Initial step size
-    Time _timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
+    Time _timeStepInitial = 60.0 * astrea::detail::time_unit; //!< Initial time step for the integrator
 
     // Run options
     bool _printOn = false; //!< Flag to control printing of integration details
@@ -259,8 +259,8 @@ class Integrator {
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
 
     // Fake fixed step
-    bool _useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
-    Time _fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
+    bool _useFixedStep  = false;                           //!< Flag to indicate if a fixed step size should be used
+    Time _fixedTimeStep = 1.0 * astrea::detail::time_unit; //!< Fixed time step size to use if fixed step is enabled
 
     // Events
     EventDetector _eventDetector;

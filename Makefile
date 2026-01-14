@@ -31,7 +31,7 @@ profile: profiling install
 
 # Conan commands - for now
 .PHONY: install
-install: build
+install:
 	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j20
 
 .PHONY: build
@@ -67,7 +67,7 @@ relwithdebinfo:
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 
 .PHONY: tests
-tests: checkcase_db
+tests: #checkcase_db
 	$(eval build_tests = ON)
 
 .PHONY: examples
