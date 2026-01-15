@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -7,9 +7,11 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-add_subdirectory(trace)
+# add_subdirectory(trace)
 add_subdirectory(astro)
 add_subdirectory(math)
-add_subdirectory(snapshot)
+
+# add_subdirectory(snapshot)
 add_subdirectory(utilities)
+
 # add_subdirectory(units) // ignore until it has compiled files in it

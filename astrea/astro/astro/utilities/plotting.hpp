@@ -63,6 +63,33 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
  */
 void compare_trajectories(const std::vector<StateHistory>& trajectories, const std::vector<std::string>& labels, const std::filesystem::path& outfile);
 
+/**
+ * @brief Compares multiple trajectories by plotting their orbital elements.
+ *
+ * @param trajectories A vector of state histories representing the trajectories.
+ * @param labels A vector of labels for each trajectory.
+ * @param outfile The path to the file to save the comparison plot.
+ */
+void plot_difference_orbital_elements(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& labels,
+    const std::filesystem::path& outfile
+);
+/**
+ * @brief Compares multiple trajectories by plotting their Cartesian components.
+ *
+ * @param trajectories A vector of state histories representing the trajectories.
+ * @param labels A vector of labels for each trajectory.
+ * @param outfile The path to the file to save the comparison plot.
+ */
+void plot_difference_trajectories(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& labels,
+    const std::filesystem::path& outfile
+);
+
 } // namespace plotting
 } // namespace astro
 } // namespace astrea

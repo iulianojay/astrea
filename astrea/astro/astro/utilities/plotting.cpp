@@ -445,6 +445,190 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
     save(outfile);
 }
 
+void plot_difference_orbital_elements(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& trajLabels,
+    const std::filesystem::path& outfile
+)
+{
+    const auto font             = "Arial";
+    const float size            = 20.0;
+    const bool plotFastVariable = false;
+    const std::size_t nPlots    = plotFastVariable ? 6 : 5;
+
+    auto h = figure(true);
+    h->title("Orbital Element History");
+    h->number_title(false);
+    h->size(2000, 1500);
+    h->font(font);
+    h->font_size(size + 5.0);
+
+    const std::array<std::string, 6> labels      = { "Δ Semimajor Axis",  "Δ Eccentricity",    "Δ Inclination",
+                                                     "Δ Right Ascension", "Δ Arg. of Perigee", "Δ True Anomaly" };
+    const std::array<std::string, 6> units       = { "km", " ", "deg", "deg", "deg", "deg" };
+    const std::array<std::string, 6> tickformats = { "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e" };
+
+    tiledlayout(nPlots, 1);
+    const std::array<std::vector<double>, 6> expectedData = extract_raw_orbital_elements(expected);
+    for (std::size_t iPlot = 0; iPlot < nPlots; ++iPlot) {
+
+        nexttile();
+        auto ax = gca();
+
+        double minTime     = std::numeric_limits<double>::max();
+        double maxTime     = std::numeric_limits<double>::lowest();
+        unsigned int iTraj = 0;
+        for (const auto& trajectory : trajectories) {
+            const std::vector<double> time                = extract_raw_time_data(trajectory);
+            const std::array<std::vector<double>, 6> data = extract_raw_orbital_elements(trajectory);
+
+            std::array<std::vector<double>, 6> diff;
+            for (std::size_t ii = 0; ii < 6; ++ii) {
+                for (std::size_t jj = 0; jj < data[ii].size(); ++jj) {
+                    diff[ii].push_back(data[ii][jj] - expectedData[ii][jj]);
+                }
+            }
+
+            if (time.front() < minTime) { minTime = time.front(); }
+            if (time.back() > maxTime) { maxTime = time.back(); }
+
+            auto p = plot(ax, time, diff[iPlot]);
+            p->line_width(6 - iTraj / 2.0);
+            hold(on);
+            ++iTraj;
+        }
+
+        legend(ax, trajLabels);
+        grid(ax, on);
+
+        xlim(ax, { minTime, maxTime });
+
+        ylabel(ax, labels[iPlot] + " \\n(" + units[iPlot] + ")");
+        ytickformat(ax, tickformats[iPlot]);
+        if (iPlot == nPlots - 1) {
+            xlabel(ax, "Time");
+            xtickformat(ax, "%g days");
+            ax->x_axis().label_font_size(size);
+            ax->x_axis().label_weight("bold");
+        }
+
+        ax->font_size(size);
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+    }
+    std::filesystem::create_directories(outfile.parent_path());
+    save(outfile);
+}
+
+void plot_difference_trajectories(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& trajLabels,
+    const std::filesystem::path& outfile
+)
+{
+    const auto font  = "Arial";
+    const float size = 20.0;
+
+    auto h = figure(true);
+    h->title("State History");
+    h->number_title(false);
+    h->size(2000, 1500);
+    h->font(font);
+    h->font_size(size + 5.0);
+
+    const std::array<std::string, 6> labels = { "ΔX", "ΔY", "ΔZ", "ΔVX", "ΔVY", "ΔVZ" };
+    const std::array<std::string, 6> units  = { "km", "km/s" };
+
+    const std::array<std::vector<double>, 6> expectedData = extract_raw_cartesian_elements(expected);
+    for (std::size_t iPlot = 0; iPlot < 2; ++iPlot) {
+        // 3-D trajectory plots
+        auto ax = subplot(2, 2, iPlot);
+
+        unsigned int iTraj = 0;
+        for (const auto& trajectory : trajectories) {
+            const std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
+
+            std::array<std::vector<double>, 6> diff;
+            for (std::size_t ii = 0; ii < 6; ++ii) {
+                diff[ii].reserve(data[ii].size());
+                for (std::size_t jj = 0; jj < data[ii].size(); ++jj) {
+                    diff[ii].push_back(data[ii][jj] - expectedData[ii][jj]);
+                }
+            }
+
+            auto p = plot3(ax, diff[3 * iPlot], diff[3 * iPlot + 1], diff[3 * iPlot + 2]);
+            p->line_width(6 - iTraj);
+            hold(on);
+            ++iTraj;
+        }
+
+        legend(ax, trajLabels);
+        grid(ax, on);
+
+        xlabel(ax, labels[3 * iPlot] + " \\n(" + units[iPlot] + ")");
+        ylabel(ax, labels[3 * iPlot + 1] + " \\n(" + units[iPlot] + ")");
+        zlabel(ax, labels[3 * iPlot + 2] + " \\n(" + units[iPlot] + ")");
+
+        xtickformat(ax, "%0.2e");
+        ytickformat(ax, "%0.2e");
+        ztickformat(ax, "%0.2e");
+
+        ax->font_size(size);
+        ax->x_axis().label_font_size(size);
+        ax->x_axis().label_weight("bold");
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+        ax->z_axis().label_font_size(size);
+        ax->z_axis().label_weight("bold");
+
+        // magnitude plots
+        ax    = subplot(2, 2, iPlot + 2);
+        iTraj = 0;
+        for (const auto& trajectory : trajectories) {
+            std::vector<double> time                = extract_raw_time_data(trajectory);
+            std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
+            const Date epoch                        = trajectory.epoch();
+
+            std::vector<double> dR;
+            std::vector<double> dV;
+            for (std::size_t ii = 0; ii < time.size(); ++ii) {
+                const double dx  = data[0][ii] - expectedData[0][ii];
+                const double dy  = data[1][ii] - expectedData[1][ii];
+                const double dz  = data[2][ii] - expectedData[2][ii];
+                const double dvx = data[3][ii] - expectedData[3][ii];
+                const double dvy = data[4][ii] - expectedData[4][ii];
+                const double dvz = data[5][ii] - expectedData[5][ii];
+                dR.push_back(sqrt(dx * dx + dy * dy + dz * dz));
+                dV.push_back(sqrt(dvx * dvx + dvy * dvy + dvz * dvz));
+            }
+            auto p = plot(ax, time, iPlot == 0 ? dR : dV);
+            p->line_width(5 - iTraj);
+            hold(on);
+            ++iTraj;
+        }
+
+        legend(ax, trajLabels);
+        grid(ax, on);
+
+        xlabel(ax, "Time");
+        xtickformat(ax, "%g days");
+        ylabel(ax, iPlot == 0 ? "Δ Range \\n(km)" : "Δ Velocity \\n(km/s)");
+
+        xtickformat(ax, "%g");
+        ytickformat(ax, "%0.2e");
+
+        ax->font_size(size);
+        ax->x_axis().label_font_size(size);
+        ax->x_axis().label_weight("bold");
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+    }
+    std::filesystem::create_directories(outfile.parent_path());
+    save(outfile);
+}
+
 } // namespace plotting
 } // namespace astro
 } // namespace astrea

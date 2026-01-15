@@ -11,6 +11,8 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <numbers>
+
 #include <gtest/gtest.h>
 #include <matplot/matplot.h>
 #include <mp-units/math.h>
@@ -51,8 +53,71 @@ using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::mm;
 using mp_units::si::unit_symbols::s;
 
+template <auto R, typename Rep>
+class Stats {
+  public:
+    Stats()  = default;
+    ~Stats() = default;
+
+    Stats(const std::vector<quantity<R, Rep>>& data) :
+        _data(data)
+    {
+    }
+
+    Stats(std::vector<quantity<R, Rep>>&& data) :
+        _data(std::move(data))
+    {
+    }
+
+    quantity<R, Rep> mean() const
+    {
+        quantity<R, Rep> sum = 0.0 * R;
+        for (const auto& val : _data) {
+            sum += val;
+        }
+        return sum / static_cast<Rep>(_data.size());
+    }
+
+    quantity<R, Rep> stddev() const
+    {
+        const quantity<R, Rep> mu = mean();
+        quantity<R * R, Rep> sum  = 0.0 * R * R;
+        for (const auto& val : _data) {
+            sum += (val - mu) * (val - mu);
+        }
+        return mp_units::sqrt(sum / static_cast<Rep>(_data.size() - 1));
+    }
+
+    quantity<R, Rep> max() const
+    {
+        quantity<R, Rep> maxVal = _data[0];
+        for (const auto& val : _data) {
+            if (val > maxVal) { maxVal = val; }
+        }
+        return maxVal;
+    }
+
+    quantity<R, Rep> min() const
+    {
+        quantity<R, Rep> minVal = _data[0];
+        for (const auto& val : _data) {
+            if (val < minVal) { minVal = val; }
+        }
+        return minVal;
+    }
+
+    template <auto R2>
+    void add_value(const quantity<R2, Rep>& value)
+    {
+        _data.push_back(value);
+    }
+
+  private:
+    std::vector<quantity<R, Rep>> _data;
+};
 
 class Orbital6DofTest : public testing::Test {
   public:
@@ -70,7 +135,7 @@ class Orbital6DofTest : public testing::Test {
         propInterval(0.0 * s, 28800.0 * s)
     {
         integrator.switch_fixed_timestep(true);
-        integrator.set_timestep(30.0 * s);
+        integrator.set_timestep(0.1 * s);
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
 
@@ -79,6 +144,14 @@ class Orbital6DofTest : public testing::Test {
     }
 
     void SetUp() override {}
+
+    const State parse_row_as_state(const OrbitalCheckcaseRow& row) const
+    {
+        const Time time = std::round(row.time) * s;
+        const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
+        const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
+        return State({ Cartesian(position, velocity) }, epoch + time, sys);
+    }
 
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
@@ -105,16 +178,17 @@ int main(int argc, char** argv)
 TEST_F(Orbital6DofTest, Checkcase2Propagation)
 {
     // Circular initial conditions
-    Spacecraft sat({ Cartesian(circular, mu), epoch, sys });
+    Spacecraft sat({ Keplerian(circular, mu), epoch, sys });
     Vehicle vehicle{ sat };
 
     // Setup Propagator
     ForceModel forces;
-    TwoBody eom(sys);
+    TwoBody cartesianTwoBody(sys);
     KeplerianVop keplerianVop(sys, forces, false);
 
     std::cout << "Propagating Checkcase 2...";
-    const auto stateHistory = integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
+    const auto stateHistory = integrator.propagate(epoch, propInterval, cartesianTwoBody, vehicle, true);
+    // const auto stateHistory = integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
     std::cout << " Propagation Complete." << std::endl << std::endl;
 
     // Grab history from database
@@ -132,6 +206,7 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
     allLabels.reserve(checkcases.size() + 1);
     allLabels.push_back("Astrea Propagation");
 
+    StateHistory analyticHistory;
     for (const auto& checkcase : checkcases) {
         auto rows = ccdb.get_all<OrbitalCheckcaseRow>(where(
             c(&OrbitalCheckcaseRow::checkcase_num) == checkcase.checkcase_num &&
@@ -140,58 +215,60 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
         if (rows.size() == 0) { continue; }
 
         std::cout << "\tValidating against " << rows.size() << " points in Simulation " << checkcase.sim_num << std::endl;
-        Distance avgPositionError = 0.0 * km;
-        Distance maxPositionError = 0.0 * km;
-        Velocity avgVelocityError = 0.0 * km / s;
-        Velocity maxVelocityError = 0.0 * km / s;
 
+        Stats<m, double> rStats;
+        Stats<(mm / s), double> vStats;
         StateHistory expectedHistory;
         for (const auto& row : rows) {
 
             // Pull out propagated state at time
-            const Time time             = std::round(row.time) * s;
-            const State propagatedState = stateHistory.get_state_at(epoch + time);
-            const Cartesian cart        = propagatedState.in_element_set<Cartesian>();
+            const State state       = parse_row_as_state(row);
+            const Date currentEpoch = state.get_epoch();
+            const Cartesian cart    = state.in_element_set<Cartesian>();
+            const auto pos          = cart.get_position();
+            const auto vel          = cart.get_velocity();
 
-            const RadiusVector<frames::earth::icrf> pos(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
-            const auto positionError    = cart.get_position() - pos;
-            const auto positionErrorMag = positionError.norm();
-
-            const VelocityVector<frames::earth::icrf> vel(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
-            const auto velocityError    = cart.get_velocity() - vel;
-            const auto velocityErrorMag = velocityError.norm();
+            const State propState    = stateHistory.get_state_at(currentEpoch);
+            const Cartesian propCart = propState.in_element_set<Cartesian>();
+            const auto propPos       = propCart.get_position();
+            const auto propVel       = propCart.get_velocity();
 
             // Store
-            expectedHistory.insert(epoch + time, State({ Cartesian(pos, vel) }, epoch + time, sys));
+            expectedHistory.insert(currentEpoch, state);
+
+            // Compare
+            const auto positionError    = propPos - pos;
+            const auto positionErrorMag = positionError.norm();
+
+            const auto velocityError    = propVel - vel;
+            const auto velocityErrorMag = velocityError.norm();
 
             // Stats
-            maxPositionError = math::max(maxPositionError, positionErrorMag);
-            maxVelocityError = math::max(maxVelocityError, velocityErrorMag);
-            avgPositionError += positionErrorMag;
-            avgVelocityError += velocityErrorMag;
+            rStats.add_value(positionErrorMag);
+            vStats.add_value(velocityErrorMag);
         }
-        avgPositionError /= static_cast<double>(rows.size());
-        avgVelocityError /= static_cast<double>(rows.size());
 
-        std::cout << "\t\tAverage Position Error: " << avgPositionError.in(m) << std::endl;
-        std::cout << "\t\tMaximum Position Error: " << maxPositionError.in(m) << std::endl;
-        std::cout << "\t\tAverage Velocity Error: " << avgVelocityError.in(cm / s) << std::endl;
-        std::cout << "\t\tMaximum Velocity Error: " << maxVelocityError.in(cm / s) << std::endl;
+        std::cout << "\t\tPosition Error [avg, max]: [" << rStats.mean() << " ± " << rStats.stddev() << ", "
+                  << rStats.max() << "]" << std::endl;
+        std::cout << "\t\tVelocity Error [avg, max]: [" << vStats.mean() << " ± " << vStats.stddev() << ", "
+                  << vStats.max() << "]" << std::endl;
 
-        allHistories.push_back(expectedHistory);
-        allLabels.push_back("Checkcase Sim " + std::to_string(checkcase.sim_num));
+        if (checkcase.sim_num == 0) { analyticHistory = expectedHistory; }
+        else {
+            allHistories.push_back(expectedHistory);
+            allLabels.push_back("Checkcase Sim " + std::to_string(checkcase.sim_num));
+        }
     }
 
-    // Build out exact results to compare
-    StateHistory analyticHistory;
-    const Keplerian elements0(circular, mu);
-    for (const auto& [date, state] : stateHistory) {
-        // this ignores anomaly changes but whatever
-        analyticHistory.insert(date, State({ elements0 }, date, sys));
-    }
+    // Plot
+    const auto base = outputDir / "checkcase_2";
+
+    plotting::plot_difference_orbital_elements(analyticHistory, allHistories, allLabels, base / "orbital_elements_difference.png");
+    plotting::plot_difference_trajectories(analyticHistory, allHistories, allLabels, base / "trajectory_difference.png");
+
     allHistories.push_back(analyticHistory);
     allLabels.push_back("Analytic Solution");
 
-    plotting::compare_trajectories(allHistories, allLabels, outputDir / "checkcase_2" / "trajectory_comparison.png");
-    plotting::compare_orbital_elements(allHistories, allLabels, outputDir / "checkcase_2" / "orbital_elements_comparison.png");
+    plotting::compare_orbital_elements(allHistories, allLabels, base / "orbital_elements_comparison.png");
+    plotting::compare_trajectories(allHistories, allLabels, base / "trajectory_comparison.png");
 }
