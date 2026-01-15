@@ -50,7 +50,6 @@ using namespace matplot;
 using namespace mp_units;
 
 using mp_units::angular::unit_symbols::deg;
-using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::mm;
@@ -122,6 +121,7 @@ class Stats {
 class Orbital6DofTest : public testing::Test {
   public:
     Orbital6DofTest() :
+        sys(),
         mu(sys.get_mu()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
@@ -135,7 +135,7 @@ class Orbital6DofTest : public testing::Test {
         propInterval(0.0 * s, 28800.0 * s)
     {
         integrator.switch_fixed_timestep(true);
-        integrator.set_timestep(0.1 * s);
+        integrator.set_timestep(60.0 * s);
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
 
@@ -186,12 +186,8 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
     TwoBody cartesianTwoBody(sys);
     KeplerianVop keplerianVop(sys, forces, false);
 
-    std::cout << "Propagating Checkcase 2...";
     const auto stateHistory = integrator.propagate(epoch, propInterval, cartesianTwoBody, vehicle, true);
     // const auto stateHistory = integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
-    std::cout << " Propagation Complete." << std::endl << std::endl;
-
-    // Grab history from database
     auto ccdb = get_checkcase_database();
     ccdb.sync_schema();
 
@@ -214,13 +210,12 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
         ));
         if (rows.size() == 0) { continue; }
 
-        std::cout << "\tValidating against " << rows.size() << " points in Simulation " << checkcase.sim_num << std::endl;
+        std::cout << "\tSimulation " << checkcase.sim_num << ":" << std::endl;
 
         Stats<m, double> rStats;
         Stats<(mm / s), double> vStats;
         StateHistory expectedHistory;
         for (const auto& row : rows) {
-
             // Pull out propagated state at time
             const State state       = parse_row_as_state(row);
             const Date currentEpoch = state.get_epoch();

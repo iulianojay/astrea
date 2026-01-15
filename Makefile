@@ -67,7 +67,7 @@ relwithdebinfo:
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
 
 .PHONY: tests
-tests: #checkcase_db
+tests:
 	$(eval build_tests = ON)
 
 .PHONY: examples

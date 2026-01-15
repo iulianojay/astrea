@@ -20,6 +20,8 @@
  */
 #pragma once
 
+#include <cstddef>
+
 namespace astrea {
 namespace astro {
 
@@ -29,7 +31,7 @@ static const std::size_t nStages = 6;
 
 static const double c[6]    = { 0.0, 0.2, 0.3, 0.6, 1.0, 0.875 };
 static const double b[6]    = { 37.0 / 378.0, 0.0, 250.0 / 621.0, 125.0 / 594.0, 0.0, 512.0 / 1771.0 };
-static const double bhat[6] = { 2825.0 / 27648.0, 0.0, 18575.0 / 48384.0, 13525.0 / 55296.0, 277.00 / 14336.0, 0.25 };
+static const double bhat[6] = { 2825.0 / 27648.0, 0.0, 18575.0 / 48384.0, 13525.0 / 55296.0, 277.0 / 14336.0, 0.25 };
 static const double a[6][6] = { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
                                 { 0.2, 0.0, 0.0, 0.0, 0.0, 0.0 },
                                 { 3.0 / 40.0, 9.0 / 40.0, 0.0, 0.0, 0.0, 0.0 },
