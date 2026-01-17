@@ -53,7 +53,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle); // TODO: Enforce returned element matches the partial of the expected set
+    return eom(state, vehicle);
 }
 
 
@@ -322,10 +322,8 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                "RKF78, DOP45, DOP78}."
-            );
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 
@@ -336,9 +334,8 @@ std::pair<OrbitalElements, OrbitalElements>
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i-1) k_j a[i][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
         // Calculate intermediate state for current stage (except stage 0)
-        if (iStage == 0) { _statePlusKi = state; }
-        else {
-            _statePlusKi = state;
+        _statePlusKi = state;
+        if (iStage > 0) {
             for (std::size_t jStage = 0; jStage < iStage; ++jStage) {
                 _statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
             }
@@ -434,8 +431,36 @@ void Integrator::store_final_func_eval(const Time& timeStep)
     }
 }
 
+Unitless Integrator::get_relative_step_size(const Unitless& maxError) const
+{
+    // stupid function for stupid people
+
+    // Don't scale if error is zero
+    if (maxError == 0.0 * astrea::detail::unitless || (_iteration > 0 && _maxErrorPrevious == 0.0 * astrea::detail::unitless)) {
+        return 1.0 * astrea::detail::unitless;
+    }
+
+    // Ignore pi controller on first iteration or if error is large
+    const bool ignorePiController = (_iteration == 0 || maxError > 1.0 * astrea::detail::unitless);
+    const bool isFourthOrderMethod =
+        (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RK45);
+
+    // Get controller value
+    Unitless relativeTimeStep{};
+    if (isFourthOrderMethod) {
+        relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
+        if (!ignorePiController) { relativeTimeStep *= pow<7, 50>(maxError / _maxErrorPrevious); }
+    }
+    else {
+        relativeTimeStep = pow<1, 8>(_EPSILON / maxError);
+        if (!ignorePiController) { relativeTimeStep *= pow<7, 80>(maxError / _maxErrorPrevious); }
+    }
+    return relativeTimeStep;
+}
+
 bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
 {
+    const Unitless relativeStepSize = get_relative_step_size(maxError);
     if (maxError <= 1.0) { // Step succeeded
         // Step
         time += timeStep;
@@ -449,21 +474,11 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 
         // Get new step after stepping time
         if (_iteration == 0) {
-            timeStep *= (maxError < _MIN_ERROR_TO_CATCH) ? _MIN_ERROR_STEP_FACTOR : pow<1, 5>(_EPSILON / maxError);
+            timeStep *= (maxError < _MIN_ERROR_TO_CATCH) ? _MIN_ERROR_STEP_FACTOR : relativeStepSize;
         }
         else {
-            // Predicted relative step size
-            Unitless relativeTimeStep = 1.0 * mp_units::one;
-            if (maxError == 0.0 * astrea::detail::unitless && _maxErrorPrevious == 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
-                // std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
-            }
-            else {
-                relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
-                                   pow<3, 50>(maxError / _maxErrorPrevious);
-            }
-
             // New step size
-            timeStep *= relativeTimeStep;
+            timeStep *= relativeStepSize;
         }
 
         // Go to next step
@@ -471,11 +486,8 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
     }
 
     // Error is too large. Truncate stepsize
-    // Predicted relative step size
-    const Unitless relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
-
     // Keep step from getting too small too fast
-    timeStep *= (relativeTimeStep < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeTimeStep;
+    timeStep *= (relativeStepSize < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeStepSize;
 
     return false;
 }

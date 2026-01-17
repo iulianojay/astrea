@@ -295,7 +295,7 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
     auto h = figure(true);
     h->title("Orbital Element History");
     h->number_title(false);
-    h->size(2000, 1500);
+    h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
@@ -321,7 +321,7 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
             if (time.back() > maxTime) { maxTime = time.back(); }
 
             auto p = plot(ax, time, data[iPlot]);
-            p->line_width(6 - iTraj / 2.0);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }
@@ -357,7 +357,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
     auto h = figure(true);
     h->title("State History");
     h->number_title(false);
-    h->size(2000, 1500);
+    h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
@@ -373,7 +373,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
 
             auto p = plot3(ax, data[3 * iPlot], data[3 * iPlot + 1], data[3 * iPlot + 2]);
-            p->line_width(6 - iTraj);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }
@@ -420,7 +420,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
                 V.push_back(sqrt(vx * vx + vy * vy + vz * vz));
             }
             auto p = plot(ax, time, iPlot == 0 ? R : V);
-            p->line_width(5 - iTraj);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }
@@ -460,7 +460,7 @@ void plot_difference_orbital_elements(
     auto h = figure(true);
     h->title("Orbital Element History");
     h->number_title(false);
-    h->size(2000, 1500);
+    h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
@@ -494,7 +494,7 @@ void plot_difference_orbital_elements(
             if (time.back() > maxTime) { maxTime = time.back(); }
 
             auto p = plot(ax, time, diff[iPlot]);
-            p->line_width(6 - iTraj / 2.0);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }
@@ -534,7 +534,7 @@ void plot_difference_trajectories(
     auto h = figure(true);
     h->title("State History");
     h->number_title(false);
-    h->size(2000, 1500);
+    h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
@@ -559,7 +559,7 @@ void plot_difference_trajectories(
             }
 
             auto p = plot3(ax, diff[3 * iPlot], diff[3 * iPlot + 1], diff[3 * iPlot + 2]);
-            p->line_width(6 - iTraj);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }
@@ -604,7 +604,7 @@ void plot_difference_trajectories(
                 dV.push_back(sqrt(dvx * dvx + dvy * dvy + dvz * dvz));
             }
             auto p = plot(ax, time, iPlot == 0 ? dR : dV);
-            p->line_width(5 - iTraj);
+            p->line_width(10.0 - iTraj);
             hold(on);
             ++iTraj;
         }

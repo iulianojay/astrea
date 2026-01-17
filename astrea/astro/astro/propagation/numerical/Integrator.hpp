@@ -239,7 +239,7 @@ class Integrator {
     // ith order steps
     std::array<OrbitalElements, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
     OrbitalElements _statePlusKi;                           //!< State vector plus the ith order step
-    OrbitalElementPartials _YFinalPrevious;                 //!< Previous final state vector for the Runge-Kutta method
+    OrbitalElementPartials _YFinalPrevious; //!< Previous final state vector for the Dormand-Prince method
 
     // Clock variables
     clock_t _startClock{}; //!< Start time for the timer
@@ -363,6 +363,14 @@ class Integrator {
      * @return bool True if the step was accepted, false if it needs to be retried with a smaller step size.
      */
     bool check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+
+    /**
+     * @brief Get the relative step size based on the maximum error.
+     *
+     * @param maxError The maximum error from the current step.
+     * @return Unitless The relative step size to adjust the time step.
+     */
+    Unitless get_relative_step_size(const Unitless& maxError) const;
 
     /**
      * @brief Store the most recent function evaluation results for Dormand-Prince methods.

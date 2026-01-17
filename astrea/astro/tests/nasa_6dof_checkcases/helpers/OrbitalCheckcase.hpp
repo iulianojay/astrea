@@ -129,10 +129,10 @@ struct OrbitalCheckcaseRow {
  * This function allows printing the contents of a OrbitalCheckcaseRow object to an output stream.
  *
  * @param os The output stream to write to.
- * @param checkcase The OrbitalCheckcaseRow object to print.
- * @return The output stream after writing the GP data.
+ * @param orbitalRow The OrbitalCheckcaseRow object to print.
+ * @return The output stream after writing the row.
  */
-std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& checkcase);
+std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& orbitalRow);
 
 } // namespace tests
 } // namespace astro
