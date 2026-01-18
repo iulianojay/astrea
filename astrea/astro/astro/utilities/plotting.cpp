@@ -66,6 +66,24 @@ std::vector<double> extract_raw_time_data(const StateHistory& trajectory);
 std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHistory& trajectory);
 
 /**
+ * @brief Extracts raw orbital elements from a StateHistory object at specified times.
+ *
+ * @param times A vector of time values in days at which to extract the orbital elements.
+ * @param trajectory The state history representing the trajectory.
+ * @return std::array<std::vector<double>, 6> An array of vectors containing the orbital elements:
+ *         [0] Semimajor Axis (km)
+ *         [1] Eccentricity
+ *         [2] Inclination (deg)
+ *         [3] Right Ascension of Ascending Node (deg)
+ *         [4] Argument of Perigee (deg)
+ *         [5] True Anomaly (deg)
+ *
+ * @note This function is intended for internal use within the plotting utilities and is NOT safe as it makes units implicit.
+ */
+std::array<std::vector<double>, 6>
+    extract_raw_orbital_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory);
+
+/**
  * @brief Extracts raw Cartesian elements from a StateHistory object.
  *
  * @param trajectory The state history representing the trajectory.
@@ -80,6 +98,24 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHisto
  * @note This function is intended for internal use within the plotting utilities and is NOT safe as it makes units implicit.
  */
 std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHistory& trajectory);
+
+/**
+ * @brief Extracts raw Cartesian elements from a StateHistory object at specified times.
+ *
+ * @param times A vector of time values in days at which to extract the Cartesian elements.
+ * @param trajectory The state history representing the trajectory.
+ * @return std::array<std::vector<double>, 6> An array of vectors containing the Cartesian elements:
+ *         [0] X Position (km)
+ *         [1] Y Position (km)
+ *         [2] Z Position (km)
+ *         [3] X Velocity (km/s)
+ *         [4] Y Velocity (km/s)
+ *         [5] Z Velocity (km/s)
+ *
+ * @note This function is intended for internal use within the plotting utilities and is NOT safe as it makes units implicit.
+ */
+std::array<std::vector<double>, 6>
+    extract_raw_cartesian_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory);
 
 
 std::vector<double> extract_raw_time_data(const StateHistory& trajectory)
@@ -118,11 +154,60 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHisto
 }
 
 
+std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory)
+{
+    std::array<std::vector<double>, 6> data;
+    const Date epoch = trajectory.epoch();
+    for (const auto& time : times) {
+        const Keplerian kep = trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian>();
+        const auto a        = kep.get_semimajor();
+        const auto e        = kep.get_eccentricity();
+        const auto i        = wrap_angle(kep.get_inclination());
+        const auto r        = wrap_angle(kep.get_right_ascension());
+        const auto w        = wrap_angle(kep.get_argument_of_perigee());
+        const auto th       = wrap_angle(kep.get_true_anomaly());
+
+        data[0].push_back(a.numerical_value_in(km));
+        data[1].push_back(e.numerical_value_in(one));
+        data[2].push_back(i.numerical_value_in(deg));
+        data[3].push_back(r.numerical_value_in(deg));
+        data[4].push_back(w.numerical_value_in(deg));
+        data[5].push_back(th.numerical_value_in(deg));
+    }
+    return data;
+}
+
+
 std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHistory& trajectory)
 {
     std::array<std::vector<double>, 6> data;
     for (const auto& [date, state] : trajectory) {
         const Cartesian cart = state.in_element_set<Cartesian>();
+
+        const auto x  = cart.get_x();
+        const auto y  = cart.get_y();
+        const auto z  = cart.get_z();
+        const auto vx = cart.get_vx();
+        const auto vy = cart.get_vy();
+        const auto vz = cart.get_vz();
+
+        data[0].push_back(x.numerical_value_in(km));
+        data[1].push_back(y.numerical_value_in(km));
+        data[2].push_back(z.numerical_value_in(km));
+        data[3].push_back(vx.numerical_value_in(km / s));
+        data[4].push_back(vy.numerical_value_in(km / s));
+        data[5].push_back(vz.numerical_value_in(km / s));
+    }
+    return data;
+}
+
+
+std::array<std::vector<double>, 6> extract_raw_cartesian_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory)
+{
+    std::array<std::vector<double>, 6> data;
+    const Date epoch = trajectory.epoch();
+    for (const auto& time : times) {
+        const Cartesian cart = trajectory.get_state_at(epoch + time * day).in_element_set<Cartesian>();
 
         const auto x  = cart.get_x();
         const auto y  = cart.get_y();
@@ -470,6 +555,8 @@ void plot_difference_orbital_elements(
     const std::array<std::string, 6> tickformats = { "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e" };
 
     tiledlayout(nPlots, 1);
+
+    const std::vector<double> time                        = extract_raw_time_data(expected);
     const std::array<std::vector<double>, 6> expectedData = extract_raw_orbital_elements(expected);
     for (std::size_t iPlot = 0; iPlot < nPlots; ++iPlot) {
 
@@ -480,8 +567,7 @@ void plot_difference_orbital_elements(
         double maxTime     = std::numeric_limits<double>::lowest();
         unsigned int iTraj = 0;
         for (const auto& trajectory : trajectories) {
-            const std::vector<double> time                = extract_raw_time_data(trajectory);
-            const std::array<std::vector<double>, 6> data = extract_raw_orbital_elements(trajectory);
+            const std::array<std::vector<double>, 6> data = extract_raw_orbital_elements_at_times(time, trajectory);
 
             std::array<std::vector<double>, 6> diff;
             for (std::size_t ii = 0; ii < 6; ++ii) {
@@ -541,6 +627,7 @@ void plot_difference_trajectories(
     const std::array<std::string, 6> labels = { "ΔX", "ΔY", "ΔZ", "ΔVX", "ΔVY", "ΔVZ" };
     const std::array<std::string, 6> units  = { "km", "km/s" };
 
+    const std::vector<double> time                        = extract_raw_time_data(expected);
     const std::array<std::vector<double>, 6> expectedData = extract_raw_cartesian_elements(expected);
     for (std::size_t iPlot = 0; iPlot < 2; ++iPlot) {
         // 3-D trajectory plots
@@ -548,7 +635,7 @@ void plot_difference_trajectories(
 
         unsigned int iTraj = 0;
         for (const auto& trajectory : trajectories) {
-            const std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
+            const std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements_at_times(time, trajectory);
 
             std::array<std::vector<double>, 6> diff;
             for (std::size_t ii = 0; ii < 6; ++ii) {
@@ -587,8 +674,7 @@ void plot_difference_trajectories(
         ax    = subplot(2, 2, iPlot + 2);
         iTraj = 0;
         for (const auto& trajectory : trajectories) {
-            std::vector<double> time                = extract_raw_time_data(trajectory);
-            std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
+            std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements_at_times(time, trajectory);
             const Date epoch                        = trajectory.epoch();
 
             std::vector<double> dR;
