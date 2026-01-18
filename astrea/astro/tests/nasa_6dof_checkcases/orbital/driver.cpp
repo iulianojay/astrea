@@ -52,6 +52,7 @@ using namespace mp_units;
 
 using mp_units::angular::unit_symbols::deg;
 using mp_units::international::unit_symbols::ft;
+using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::mm;
@@ -154,25 +155,23 @@ class Orbital6DofTest : public testing::Test {
 
     void SetUp() override {}
 
-    std::pair<std::vector<StateHistory>, std::vector<std::string>> run_all_propagations()
+    std::vector<std::pair<StateHistory, std::string>> run_all_propagations()
     {
-        std::vector<StateHistory> histories;
-        std::vector<std::string> labels;
+        std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto eomId : { TWO_BODY, COWELLS_METHOD, KEPLERIAN_VOP, EQUINOCTIAL_VOP }) {
-            histories.push_back(run_propagation(eomId));
 
             std::string eomName;
             switch (eomId) {
-                case TWO_BODY: eomName = "Two Body"; break;
-                case COWELLS_METHOD: eomName = "Cowell's Method"; break;
-                case KEPLERIAN_VOP: eomName = "Keplerian VOP"; break;
-                case EQUINOCTIAL_VOP: eomName = "Equinoctial VOP"; break;
-                default: eomName = "Unknown EOM"; break;
+                case TWO_BODY: eomName = "Two_Body"; break;
+                case COWELLS_METHOD: eomName = "Cowells_Method"; break;
+                case KEPLERIAN_VOP: eomName = "Keplerian_VOP"; break;
+                case EQUINOCTIAL_VOP: eomName = "Equinoctial_VOP"; break;
+                default: throw std::runtime_error("Invalid EOM ID");
             }
-            labels.push_back("Astrea Propagation - " + eomName);
+            results.push_back({ run_propagation(eomId), eomName });
         }
 
-        return { histories, labels };
+        return results;
     }
 
     StateHistory run_propagation(const EomType eomId)
@@ -230,15 +229,14 @@ class Orbital6DofTest : public testing::Test {
         const Time time = std::round(row.time) * s;
         const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
         const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
-        const AccelerationVector<frames::earth::icrf> acceleration(
-            row.eiAccel_m_s2_X * m / (s * s), row.eiAccel_m_s2_Y * m / (s * s), row.eiAccel_m_s2_Z * m / (s * s)
-        );
-        return State({ Cartesian(position, velocity) }, CartesianPartial(velocity, acceleration), epoch + time, sys);
+        return State({ Cartesian(position, velocity) }, epoch + time, sys);
     }
 
-    std::vector<StateHistory> get_checkcase_histories(const std::vector<OrbitalCheckcase>& checkcases) const
+    std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
     {
-        std::vector<StateHistory> histories;
+        const auto checkcases = get_checkcases(pattern);
+
+        std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto& checkcase : checkcases) {
             auto rows = get_checkcase_rows(checkcase);
             if (rows.size() == 0) { continue; }
@@ -248,13 +246,71 @@ class Orbital6DofTest : public testing::Test {
                 const State state = parse_row_as_state(row);
                 history.insert(state.get_epoch(), state);
             }
-            histories.push_back(history);
+            results.push_back({ history, "Checkcase " + std::to_string(checkcase.sim_num) });
         }
-        return histories;
+        return results;
     }
 
-    const Unitless REL_TOL = 1.0e-6;
-    const Unitless ABS_TOL = 1.0e-2;
+    void validate_propagation_vs_checkcase(
+        const StateHistory& propHistory,
+        const std::string& propLabel,
+        const StateHistory& checkcaseHistory,
+        const std::string& checkcaseLabel
+    ) const
+    {
+        Stats<mm, double> rStats;
+        Stats<(mm / s), double> vStats;
+        for (const auto& [date, checkcaseState] : checkcaseHistory) {
+            const State propState    = propHistory.get_state_at(date);
+            const Cartesian propCart = propState.in_element_set<Cartesian>();
+            const auto propPos       = propCart.get_position();
+            const auto propVel       = propCart.get_velocity();
+
+            const Cartesian cart = checkcaseState.in_element_set<Cartesian>();
+            const auto pos       = cart.get_position();
+            const auto vel       = cart.get_velocity();
+
+            // Compare
+            const auto positionError    = propPos - pos;
+            const auto positionErrorMag = positionError.norm();
+
+            const auto velocityError    = propVel - vel;
+            const auto velocityErrorMag = velocityError.norm();
+
+            if (positionErrorMag > 100.0 * m) { continue; }
+
+            rStats.add_value(positionErrorMag);
+            vStats.add_value(velocityErrorMag);
+        }
+
+        EXPECT_TRUE(rStats.max() < _MAX_R_ERROR) << "Max allowed position error (" << _MAX_R_ERROR << ") violated comparing "
+                                                 << propLabel << " to " << checkcaseLabel << "[" << rStats.mean()
+                                                 << " ± " << rStats.stddev() << ", " << rStats.max() << "]" << std::endl;
+        EXPECT_TRUE(vStats.max() < _MAX_V_ERROR) << "Max allowed velocity error (" << _MAX_V_ERROR << ") violated comparing "
+                                                 << propLabel << " to " << checkcaseLabel << "[" << vStats.mean()
+                                                 << " ± " << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+    }
+
+    // void plot() // just keep for now
+    // {
+    // std::string name = std::regex_replace(labels[propNum], std::regex(" "), "_");
+    // name             = std::regex_replace(name, std::regex("-"), "");
+    // name             = std::regex_replace(name, std::regex("__"), "_");
+    // name             = std::regex_replace(name, std::regex("Astrea_Propagation_"), "");
+    // const auto base  = outputDir / "checkcase_2" / name;
+
+    // plotting::plot_difference_orbital_elements(analyticHistory, tempHistories, tempLabels, base / "orbital_elements_difference.png");
+    // plotting::plot_difference_trajectories(analyticHistory, tempHistories, tempLabels, base / "trajectory_difference.png");
+
+    // histories.push_back(analyticHistory);
+    // labels.push_back("Analytic Solution");
+
+    // plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
+    // plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+    // }
+
+    const Distance _MAX_R_ERROR = 10.0 * m;
+    const Velocity _MAX_V_ERROR = 1.0 * cm / s;
 
     std::filesystem::path outputDir;
 
@@ -282,100 +338,17 @@ used by the checkcases is wrong or imprecise.
 
 TEST_F(Orbital6DofTest, Checkcase2Propagation)
 {
-    std::cout << "mu: " << mu.in(mp_units::pow<3>(km) / mp_units::pow<2>(s)) << std::endl;
-    std::cout << "mu: " << mu.in(mp_units::pow<3>(ft) / mp_units::pow<2>(s)) << std::endl;
+    const auto propagations = run_all_propagations();
 
-    auto [histories, labels] = run_all_propagations();
+    const auto checkcases = get_checkcase_histories("Orbit_02%%");
 
-    const auto checkcases = get_checkcases("Orbit_02%%");
-
-    std::vector<StateHistory> checkcaseHistories = get_checkcase_histories(checkcases);
-
-    std::cout << "Validating Checkcase 2 against " << checkcases.size() << " simulations." << std::endl;
-
-    std::size_t propNum = 0;
-    for (const auto& propHistory : histories) {
-
-        std::cout << "\nPropagation " << labels[propNum] << std::endl;
-        std::size_t checkcaseNum = 0;
-
-        StateHistory analyticHistory;
-
-        auto tempHistories = histories;
-        auto tempLabels    = labels;
-        for (const auto& checkcaseHistory : checkcaseHistories) {
-
-            Stats<mm, double> rStats;
-            Stats<(mm / s), double> vStats;
-            // Stats<(µm / (s * s)), double> aStats;
-            std::cout << "\t Checking checkcase " << checkcases[checkcaseNum].sim_num << "..." << std::endl;
-
-            if (checkcases[checkcaseNum].sim_num == 0) { analyticHistory = propHistory; }
-            else {
-                tempHistories.push_back(checkcaseHistory);
-                tempLabels.push_back("Checkcase " + std::to_string(checkcases[checkcaseNum].sim_num));
-            }
-
-            for (const auto& [date, state] : checkcaseHistory) {
-                const State stateProp    = propHistory.get_state_at(date);
-                const Cartesian propCart = stateProp.in_element_set<Cartesian>();
-                const auto propPos       = propCart.get_position();
-                const auto propVel       = propCart.get_velocity();
-                // const auto propPartial   = stateProp.get_partials().value().extract();
-                // const auto propAcc       = std::get<CartesianPartial>(propPartial).get_acceleration();
-
-                const Cartesian cart = state.in_element_set<Cartesian>();
-                const auto pos       = cart.get_position();
-                const auto vel       = cart.get_velocity();
-                // const auto partial      = state.get_partials().value().extract();
-                //  const auto acc          = std::get<CartesianPartial>(partial).get_acceleration();
-
-                // Compare
-                const auto positionError    = propPos - pos;
-                const auto positionErrorMag = positionError.norm();
-
-                const auto velocityError    = propVel - vel;
-                const auto velocityErrorMag = velocityError.norm();
-
-                // const auto accelerationError    = propAcc - acc;
-                // const auto accelerationErrorMag = accelerationError.norm();
-
-                if (positionErrorMag > 100.0 * m) { continue; }
-
-                rStats.add_value(positionErrorMag);
-                vStats.add_value(velocityErrorMag);
-                // aStats.add_value(accelerationErrorMag);
-            }
-
-            std::cout << "\t\tPosition Error [avg, max]: [" << rStats.mean() << " ± " << rStats.stddev() << ", "
-                      << rStats.max() << "]" << std::endl;
-            std::cout << "\t\tVelocity Error [avg, max]: [" << vStats.mean() << " ± " << vStats.stddev() << ", "
-                      << vStats.max() << "]" << std::endl;
-            // std::cout << "\t\tAcceleration Error [avg, max]: [" << aStats.mean() << " ± " << aStats.stddev() << ", "
-            //           << aStats.max() << "]" << std::endl;
-
-            checkcaseNum++;
+    for (const auto& [propHistory, propLabel] : propagations) {
+        for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
+            validate_propagation_vs_checkcase(propHistory, propLabel, checkcaseHistory, checkcaseLabel);
         }
-
-        // // Plot
-        // std::string name = std::regex_replace(labels[propNum], std::regex(" "), "_");
-        // name             = std::regex_replace(name, std::regex("-"), "");
-        // name             = std::regex_replace(name, std::regex("__"), "_");
-        // name             = std::regex_replace(name, std::regex("Astrea_Propagation_"), "");
-        // const auto base  = outputDir / "checkcase_2" / name;
-
-        // plotting::plot_difference_orbital_elements(analyticHistory, tempHistories, tempLabels, base / "orbital_elements_difference.png");
-        // plotting::plot_difference_trajectories(analyticHistory, tempHistories, tempLabels, base / "trajectory_difference.png");
-
-        // histories.push_back(analyticHistory);
-        // labels.push_back("Analytic Solution");
-
-        // plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
-        // plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
-
-        propNum++;
     }
 }
+
 
 } // namespace tests
 } // namespace astro
