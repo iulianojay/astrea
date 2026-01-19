@@ -287,7 +287,7 @@ AccelerationVector<frames::earth::icrf>
     // Rotate back into inertial coordinates (no accel conversions required)
     const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
     static bool compare = true;
-    if (compare) {
+    if (compare) { // TODO: Remove this
         using mp_units::si::unit_symbols::m;
         using mp_units::si::unit_symbols::s;
         AccelerationVector<frames::earth::icrf> expected = { 5.51387371235876 * m / (s * s),

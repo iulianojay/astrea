@@ -12,6 +12,8 @@
  */
 
 #include <numbers>
+#include <regex>
+#include <vector>
 
 #include <gtest/gtest.h>
 #include <matplot/matplot.h>
@@ -48,10 +50,9 @@
 #include <astro/utilities/plotting.hpp>
 #include <tests/utilities/comparisons.hpp>
 
-#include <regex>
-#include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
+#include <tests/nasa_6dof_checkcases/helpers/Stats.hpp>
 
 using namespace sqlite_orm;
 using namespace matplot;
@@ -69,75 +70,16 @@ namespace astrea {
 namespace astro {
 namespace tests {
 
-template <auto R, typename Rep>
-class Stats {
-  public:
-    Stats()  = default;
-    ~Stats() = default;
-
-    Stats(const std::vector<quantity<R, Rep>>& data) :
-        _data(data)
-    {
-    }
-
-    Stats(std::vector<quantity<R, Rep>>&& data) :
-        _data(std::move(data))
-    {
-    }
-
-    quantity<R, Rep> mean() const
-    {
-        quantity<R, Rep> sum = 0.0 * R;
-        for (const auto& val : _data) {
-            sum += val;
-        }
-        return sum / static_cast<Rep>(_data.size());
-    }
-
-    quantity<R, Rep> stddev() const
-    {
-        const quantity<R, Rep> mu = mean();
-        quantity<R * R, Rep> sum  = 0.0 * R * R;
-        for (const auto& val : _data) {
-            sum += (val - mu) * (val - mu);
-        }
-        return mp_units::sqrt(sum / static_cast<Rep>(_data.size() - 1));
-    }
-
-    quantity<R, Rep> max() const
-    {
-        quantity<R, Rep> maxVal = _data[0];
-        for (const auto& val : _data) {
-            if (val > maxVal) { maxVal = val; }
-        }
-        return maxVal;
-    }
-
-    quantity<R, Rep> min() const
-    {
-        quantity<R, Rep> minVal = _data[0];
-        for (const auto& val : _data) {
-            if (val < minVal) { minVal = val; }
-        }
-        return minVal;
-    }
-
-    template <auto R2>
-    void add_value(const quantity<R2, Rep>& value)
-    {
-        _data.push_back(value);
-    }
-
-  private:
-    std::vector<quantity<R, Rep>> _data;
-};
-
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
 
 class Orbital6DofTest : public testing::Test {
+
+    using RStats = Stats<m, double>;
+    using VStats = Stats<(cm / s), double>;
+
   public:
     Orbital6DofTest() :
-        sys(),
+        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         mu(sys.get_mu()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
@@ -260,11 +202,11 @@ class Orbital6DofTest : public testing::Test {
     {
         const auto checkcases = get_checkcase_histories(checkcaseName + "%%");
 
-        std::vector<std::vector<Stats<m, double>>> allRStats;
-        std::vector<std::vector<Stats<(cm / s), double>>> allVStats;
+        std::vector<std::vector<RStats>> allRStats;
+        std::vector<std::vector<VStats>> allVStats;
         for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
-            std::vector<Stats<m, double>> rStatsList;
-            std::vector<Stats<(cm / s), double>> vStatsList;
+            std::vector<RStats> rStatsList;
+            std::vector<VStats> vStatsList;
             for (const auto& [propHistory, propLabel] : propHistories) {
                 const auto [rStats, vStats] =
                     validate_propagation_vs_checkcase(propHistory, propLabel, checkcaseHistory, checkcaseLabel, checkcaseName);
@@ -273,15 +215,15 @@ class Orbital6DofTest : public testing::Test {
             }
 
             std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel;
-            make_summary_all_propagations(rStatsList, vStatsList, propHistories, checkcaseLabel, base);
+            make_summary_for_all_propagations(rStatsList, vStatsList, propHistories, checkcaseLabel, base);
 
             allRStats.push_back(rStatsList);
             allVStats.push_back(vStatsList);
         }
-        make_summary_all_checkcases(propHistories, checkcases, checkcaseName, allRStats, allVStats);
+        make_summary_for_all_checkcases(propHistories, checkcases, checkcaseName, allRStats, allVStats);
     }
 
-    std::pair<Stats<m, double>, Stats<(cm / s), double>> validate_propagation_vs_checkcase(
+    std::pair<RStats, VStats> validate_propagation_vs_checkcase(
         const StateHistory& propHistory,
         const std::string& propLabel,
         const StateHistory& checkcaseHistory,
@@ -292,8 +234,8 @@ class Orbital6DofTest : public testing::Test {
         unsigned nViolations            = 0;
         const unsigned N_MAX_VIOLATIONS = 5;
 
-        Stats<m, double> rStats;
-        Stats<(cm / s), double> vStats;
+        RStats rStats;
+        VStats vStats;
         for (const auto& [date, checkcaseState] : checkcaseHistory) {
             const State propState    = propHistory.get_state_at(date);
             const Cartesian propCart = propState.in_element_set<Cartesian>();
@@ -312,7 +254,7 @@ class Orbital6DofTest : public testing::Test {
             const auto velocityErrorMag = velocityError.norm();
 
             if (positionErrorMag > _MAX_R_ERROR * 10 || velocityErrorMag > _MAX_V_ERROR * 10) {
-                // This seems to happen sparringly. Ignore it if it just happens a couple times.
+                // This seems to happen from bad checkcase data every now and then. Ignore it if it just happens a couple times.
                 if (nViolations < N_MAX_VIOLATIONS) { continue; }
                 nViolations++;
             }
@@ -338,12 +280,12 @@ class Orbital6DofTest : public testing::Test {
         return { rStats, vStats };
     }
 
-    void make_summary_all_checkcases(
+    void make_summary_for_all_checkcases(
         const std::vector<std::pair<StateHistory, std::string>>& propHistories,
         const std::vector<std::pair<StateHistory, std::string>>& checkcaseHistories,
         const std::string& checkcaseName,
-        const std::vector<std::vector<Stats<m, double>>>& allRStats,
-        const std::vector<std::vector<Stats<(cm / s), double>>>& allVStats
+        const std::vector<std::vector<RStats>>& allRStats,
+        const std::vector<std::vector<VStats>>& allVStats
     ) const
     {
         std::filesystem::path base = outputDir / checkcaseName;
@@ -359,15 +301,15 @@ class Orbital6DofTest : public testing::Test {
             const auto& checkcaseLabel = checkcaseHistories[i].second;
             for (std::size_t j = 0; j < propHistories.size(); ++j) {
                 summaryFile << checkcaseLabel << ", "
-                            << get_output_row(propHistories[j].second, allRStats[i][j], allVStats[i][j]) << std::endl;
+                            << make_row_string(propHistories[j].second, allRStats[i][j], allVStats[i][j]) << std::endl;
             }
         }
         summaryFile.close();
     }
 
-    void make_summary_all_propagations(
-        const std::vector<Stats<m, double>>& rStatsList,
-        const std::vector<Stats<(cm / s), double>>& vStatsList,
+    void make_summary_for_all_propagations(
+        const std::vector<RStats>& rStatsList,
+        const std::vector<VStats>& vStatsList,
         const std::vector<std::pair<StateHistory, std::string>>& propHistories,
         const std::string& checkcaseLabel,
         const std::filesystem::path& base
@@ -383,13 +325,13 @@ class Orbital6DofTest : public testing::Test {
                        "Velocity Error"
                     << std::endl;
         for (std::size_t ii = 0; ii < propHistories.size(); ++ii) {
-            summaryFile << get_output_row(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
+            summaryFile << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
         }
 
         summaryFile.close();
     }
 
-    std::string get_output_row(const std::string& propLabel, const Stats<m, double>& rStats, const Stats<(cm / s), double>& vStats) const
+    std::string make_row_string(const std::string& propLabel, const RStats& rStats, const VStats& vStats) const
     {
         std::ostringstream oss;
         oss << propLabel << ", ";
@@ -438,14 +380,15 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-/*
-A mu value of 398600.436 reduces the error of this comparison to mm level. This suggests that the published value
-used by the checkcases is wrong or imprecise.
-*/
-
 
 TEST_F(Orbital6DofTest, Checkcase2Propagation)
 {
+
+    /*
+    A mu value of 398600.436 reduces the error of this comparison to mm level. This suggests that the published value
+    used by the checkcases is wrong or imprecise.
+    */
+
     ForceModel forces;
 
     const auto propagations = run_all_propagations(forces, false);
@@ -473,6 +416,17 @@ TEST_F(Orbital6DofTest, Checkcase3BPropagation)
     const auto propagations = run_all_propagations(forces);
 
     compare_all_propagations_to_checkcases(propagations, "Orbit_03B");
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase4Propagation)
+{
+    ForceModel forces;
+    forces.add<NBodyForce>();
+
+    const auto propagations = run_all_propagations(forces);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_04");
 }
 
 
