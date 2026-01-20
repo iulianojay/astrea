@@ -63,15 +63,15 @@ TEST_F(AstrodynamicsSystemTest, GetCenter)
 
 TEST_F(AstrodynamicsSystemTest, GetExists)
 {
-    const auto& earth = sys.get(CelestialBodyId::EARTH);
+    const auto& earth = sys.get_body(CelestialBodyId::EARTH);
     ASSERT_EQ(earth->get_name(), "Earth");
 }
 
 TEST_F(AstrodynamicsSystemTest, GetDoesNotExist)
 {
-    ASSERT_ANY_THROW(sys.get(CelestialBodyId::MOON));
-    sys.create(CelestialBodyId::MOON);
-    ASSERT_NO_THROW(sys.get(CelestialBodyId::MOON));
+    ASSERT_ANY_THROW(sys.get_body(CelestialBodyId::MOON));
+    sys.add_body(CelestialBodyId::MOON);
+    ASSERT_NO_THROW(sys.get_body(CelestialBodyId::MOON));
 }
 
 TEST_F(AstrodynamicsSystemTest, GetAllBodies)
@@ -87,16 +87,16 @@ TEST_F(AstrodynamicsSystemTest, ConstIterator) { ASSERT_NO_THROW(for (const auto
 TEST_F(AstrodynamicsSystemTest, Create)
 {
     ASSERT_EQ(sys.size(), 1);
-    ASSERT_NO_THROW(sys.create<Earth>());
+    ASSERT_NO_THROW(sys.add_body<Earth>());
     ASSERT_EQ(sys.size(), 1);
-    sys.create<Moon>();
+    sys.add_body<Moon>();
     ASSERT_EQ(sys.size(), 2);
 }
 
 TEST_F(AstrodynamicsSystemTest, Clear)
 {
     ASSERT_EQ(sys.size(), 1);
-    sys.create<Jupiter>();
+    sys.add_body<Jupiter>();
     ASSERT_EQ(sys.size(), 2);
     sys.clear();
     ASSERT_EQ(sys.size(), 0);
@@ -106,11 +106,11 @@ TEST_F(AstrodynamicsSystemTest, PropagateBodies) {}
 
 TEST_F(AstrodynamicsSystemTest, GetRoot)
 {
-    sys.create(CelestialBodyId::MOON);
-    sys.create(CelestialBodyId::EARTH);
+    sys.add_body(CelestialBodyId::MOON);
+    sys.add_body(CelestialBodyId::EARTH);
     ASSERT_EQ(sys.get_system_root(), CelestialBodyId::EARTH);
-    sys.create(CelestialBodyId::SUN);
+    sys.add_body(CelestialBodyId::SUN);
     ASSERT_EQ(sys.get_system_root(), CelestialBodyId::SUN);
-    sys.create(CelestialBodyId::JUPITER);
+    sys.add_body(CelestialBodyId::JUPITER);
     ASSERT_EQ(sys.get_system_root(), CelestialBodyId::SUN);
 }

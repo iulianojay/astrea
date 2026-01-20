@@ -38,7 +38,7 @@ AccelerationVector<frames::earth::icrf>
     SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
     const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
+    const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
     // Extract
     const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
