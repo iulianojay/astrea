@@ -61,6 +61,7 @@ using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::international::unit_symbols::ft;
 using mp_units::si::unit_symbols::cm;
+using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
@@ -71,6 +72,8 @@ namespace astro {
 namespace tests {
 
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
+enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
+enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
 class Orbital6DofTest : public testing::Test {
 
@@ -103,7 +106,8 @@ class Orbital6DofTest : public testing::Test {
 
     void SetUp() override {}
 
-    std::vector<std::pair<StateHistory, std::string>> run_all_propagations(const ForceModel& forces, const bool& ignoreTwoBody = true)
+    std::vector<std::pair<StateHistory, std::string>>
+        run_all_propagations(const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType, const bool& ignoreTwoBody = true)
     {
         std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto eomId : { TWO_BODY, COWELLS_METHOD, KEPLERIAN_VOP, EQUINOCTIAL_VOP }) {
@@ -117,15 +121,71 @@ class Orbital6DofTest : public testing::Test {
                 case EQUINOCTIAL_VOP: eomName = "Equinoctial_VOP"; break;
                 default: throw std::runtime_error("Invalid EOM ID");
             }
-            results.push_back({ run_propagation(eomId, forces), eomName });
+            results.push_back({ run_propagation(eomId, forces, orbitType, vehicleType), eomName });
         }
 
         return results;
     }
 
-    StateHistory run_propagation(const EomType eomId, const ForceModel& forces)
+    Spacecraft build_spacecraft(const InitialOrbitType& orbitType, const VehicleType& vehicleType)
     {
-        Spacecraft sat({ Keplerian(circular, mu), epoch, sys });
+        OrbitalElements initialState = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
+        Spacecraft sat({ initialState, epoch, sys });
+
+        switch (vehicleType) {
+            case ISS: {
+                sat.set_mass(4.5e5 * kg);
+                sat.set_ram_area(2.5e3 * m * m);
+                sat.set_lift_area(2.5e3 * m * m);
+                sat.set_solar_area(2.5e3 * m * m);
+                sat.set_coefficient_of_drag(2.2);
+                sat.set_coefficient_of_lift(2.2);
+                sat.set_coefficient_of_reflectivity(1.1);
+                break;
+            }
+
+            case SPHERE: {
+                sat.set_mass(1.0 * kg);
+                sat.set_ram_area(1.0 * m * m);
+                sat.set_lift_area(0.0 * m * m);
+                sat.set_solar_area(1.0 * m * m);
+                sat.set_coefficient_of_drag(0.02);
+                sat.set_coefficient_of_lift(0.0);
+                sat.set_coefficient_of_reflectivity(1.1);
+                break;
+            }
+
+            case BRICK: {
+                sat.set_mass(1.0 * kg);
+                sat.set_ram_area(206.451 * cm * cm);
+                sat.set_lift_area(206.451 * cm * cm);
+                sat.set_solar_area(206.451 * cm * cm);
+                sat.set_coefficient_of_drag(2.2);
+                sat.set_coefficient_of_lift(2.2);
+                sat.set_coefficient_of_reflectivity(1.1);
+                break;
+            }
+
+            case CYLINDER: {
+                sat.set_mass(1000.0 * kg);
+                sat.set_ram_area(12.0 * m * m);
+                sat.set_lift_area(12.0 * m * m);
+                sat.set_solar_area(12.0 * m * m);
+                sat.set_coefficient_of_drag(2.2);
+                sat.set_coefficient_of_lift(2.2);
+                sat.set_coefficient_of_reflectivity(1.1);
+                break;
+            }
+
+            default: throw std::runtime_error("Invalid Vehicle Type");
+        }
+
+        return sat;
+    }
+
+    StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
+    {
+        Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
 
         switch (eomId) {
@@ -255,8 +315,8 @@ class Orbital6DofTest : public testing::Test {
 
             if (positionErrorMag > _MAX_R_ERROR * 10 || velocityErrorMag > _MAX_V_ERROR * 10) {
                 // This seems to happen from bad checkcase data every now and then. Ignore it if it just happens a couple times.
-                if (nViolations < N_MAX_VIOLATIONS) { continue; }
                 nViolations++;
+                if (nViolations < N_MAX_VIOLATIONS) { continue; }
             }
 
             rStats.add_value(positionErrorMag);
@@ -381,7 +441,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase2Propagation)
+TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 {
 
     /*
@@ -391,43 +451,118 @@ TEST_F(Orbital6DofTest, Checkcase2Propagation)
 
     ForceModel forces;
 
-    const auto propagations = run_all_propagations(forces, false);
+    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS, false);
 
     compare_all_propagations_to_checkcases(propagations, "Orbit_02");
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase3APropagation)
+TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblatness)
 {
     ForceModel forces;
     forces.add<OblatenessForce>(sys, 4, 4);
 
-    const auto propagations = run_all_propagations(forces);
+    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
     compare_all_propagations_to_checkcases(propagations, "Orbit_03A");
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase3BPropagation)
+TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblatness)
 {
     ForceModel forces;
     forces.add<OblatenessForce>(sys, 8, 8);
 
-    const auto propagations = run_all_propagations(forces);
+    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
     compare_all_propagations_to_checkcases(propagations, "Orbit_03B");
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase4Propagation)
+TEST_F(Orbital6DofTest, Checkcase4_NBody)
 {
     ForceModel forces;
     forces.add<NBodyForce>();
 
-    const auto propagations = run_all_propagations(forces);
+    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
     compare_all_propagations_to_checkcases(propagations, "Orbit_04");
 }
+
+
+TEST_F(Orbital6DofTest, Checkcase5A_SrpSolarMin)
+{
+    ForceModel forces;
+    forces.add<SolarRadiationPressure>();
+
+    const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_05A");
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase5B_SrpSolarMean)
+{
+    ForceModel forces;
+    forces.add<SolarRadiationPressure>();
+
+    const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_05B");
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
+{
+    ForceModel forces;
+    forces.add<SolarRadiationPressure>();
+
+    const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_05C");
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
+{
+    ForceModel forces;
+    forces.add<AtmosphericForce>();
+
+    const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_06A");
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
+{
+    ForceModel forces;
+    forces.add<AtmosphericForce>();
+
+    const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_06B");
+}
+
+
+// TEST_F(Orbital6DofTest, Checkcase6C_CylinderWithPlaneChange)
+// {
+//     ForceModel forces;
+
+//     const auto propagations = run_all_propagations(forces, CIRCULAR, CYLINDER);
+
+//     compare_all_propagations_to_checkcases(propagations, "Orbit_06C");
+// }
+
+
+// TEST_F(Orbital6DofTest, Checkcase6D_CylinderWithEarthDeparture)
+// {
+//     ForceModel forces;
+
+//     const auto propagations = run_all_propagations(forces, CIRCULAR, CYLINDER);
+
+//     compare_all_propagations_to_checkcases(propagations, "Orbit_06D");
+// }
 
 
 } // namespace tests

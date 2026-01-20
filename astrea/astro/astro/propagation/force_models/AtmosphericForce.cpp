@@ -35,6 +35,9 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
+using mp_units::pow;
+using mp_units::angular::atan;
+using mp_units::angular::sin;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::cm;
@@ -48,8 +51,8 @@ using mp_units::si::unit_symbols::s;
 AccelerationVector<frames::earth::icrf>
     AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-
-    static const CelestialBodyUniquePtr& center = sys.get_central_body();
+    const CelestialBodyUniquePtr& center = sys.get_central_body();
+    const AngularRate& bodyRotationRate  = center->get_rotation_rate();
 
     // Extract
     const RadiusVector<frames::earth::icrf>& r   = state.get_position();
@@ -63,9 +66,6 @@ AccelerationVector<frames::earth::icrf>
     const Velocity& vy = v.get_y();
     const Velocity& vz = v.get_z();
 
-    // Central body properties
-    static const AngularRate& bodyRotationRate = center->get_rotation_rate();
-
     // Find velocity relative to atmosphere
     const VelocityVector<frames::earth::icrf> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
                                                               vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
@@ -75,24 +75,21 @@ AccelerationVector<frames::earth::icrf>
     const Density atmosphericDensity = find_atmospheric_density(date, state, center);
 
     // Accel due to drag
-    const Velocity relativeVelocityMagnitude = relVelocity.norm();
-    const Unitless coefficientOfDrag         = vehicle.get_coefficient_of_drag();
-    const SurfaceArea areaRam                = vehicle.get_ram_area();
-    const Mass mass                          = vehicle.get_mass();
-    const UnitlessPerTime dragTerm = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * relativeVelocityMagnitude;
+    const Velocity relVelMag         = relVelocity.norm();
+    const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag();
+    const SurfaceArea areaRam        = vehicle.get_ram_area();
+    const Mass mass                  = vehicle.get_mass();
+    const Acceleration dragAccelMag = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * pow<2>(relVelMag);
 
-    const AccelerationVector<frames::earth::icrf> accelDrag = dragTerm * relVelocity;
-
-    // Velocity in the radial direction
-    const quantity radialVelocityMagnitude = r.dot(v) / R;
+    const AccelerationVector<frames::earth::icrf> accelDrag = dragAccelMag * (relVelocity / relVelMag);
 
     // accel due to lift
-    const Unitless coefficientOfLift         = vehicle.get_coefficient_of_lift();
-    const SurfaceArea areaLift               = vehicle.get_lift_area();
-    const quantity<one / pow<2>(s)> liftTerm = 0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity *
-                                               radialVelocityMagnitude * radialVelocityMagnitude / R;
-
-    const AccelerationVector<frames::earth::icrf> accelLift = liftTerm * r;
+    const Angle angleOfAttack        = atan(relVelocity.get_z() / relVelocity.get_x());
+    const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
+    const SurfaceArea areaLift       = vehicle.get_lift_area();
+    const Acceleration liftAccelMag =
+        0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
+    const AccelerationVector<frames::earth::icrf> accelLift = liftAccelMag * (r / R); // just assume radial lift for now
 
     return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
 }
