@@ -36,16 +36,12 @@ const State& StateHistory::get_closest_state(const Date& date) const
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state before existing propagation bounds. Try "
-            "repropagating to include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try "
+                                 "repropagating to include all desired dates.");
     }
     else if (iter == _states.end()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state after existing propagation bounds. Try "
-            "repropagating to include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try "
+                                 "repropagating to include all desired dates.");
     }
 
     // Compare date before and after index
@@ -67,16 +63,12 @@ State StateHistory::get_state_at(const Date& date) const
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
     else if (iter == _states.end()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
 
     // Interpolate
@@ -91,7 +83,7 @@ State StateHistory::get_state_at(const Date& date) const
     const auto& mu                    = system.get_mu();
 
     // Normalize to initial date for simplicity
-    const Time time0 = 0.0 * mp_units::si::unit_symbols::s;
+    const Time time0 = 0.0 * astrea::detail::time_unit;
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 

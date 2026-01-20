@@ -40,10 +40,10 @@ namespace astrea {
  * @return true if the two quantities are nearly equal within the specified tolerance.
  * @return false if they are not nearly equal.
  */
-template <auto R, typename Rep>
+template <auto R1, auto R2, typename Rep>
 [[nodiscard]] constexpr bool nearly_equal(
-    const mp_units::quantity<R, Rep>& x,
-    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<R1, Rep>& x,
+    const mp_units::quantity<R2, Rep>& y,
     const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
@@ -54,14 +54,14 @@ template <auto R, typename Rep>
 
     // Check rel tol
     if (relTol != 0.0 * mp_units::one) {
-        if (a != 0.0 * R && b != 0.0 * R) {
+        if (a != 0.0 * R1 && b != 0.0 * R1) {
             if (abs((a - b) / a) > relTol) { return false; }
         }
     }
 
     // Check abs tol
     if (absTol != 0.0 * mp_units::one) {
-        if (abs(a - b) > absTol * R) { return false; }
+        if (abs(a - b) > absTol * R1) { return false; }
     }
 
     return true;
@@ -76,10 +76,10 @@ template <auto R, typename Rep>
  * @param y Second quantity to compare.
  * @param REL_TOL Relative tolerance for comparison.
  */
-template <auto R, typename Rep>
+template <auto R1, auto R2, typename Rep>
 void ASSERT_EQ_QUANTITY(
-    const mp_units::quantity<R, Rep>& x,
-    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<R1, Rep>& x,
+    const mp_units::quantity<R2, Rep>& y,
     const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
@@ -99,10 +99,10 @@ void ASSERT_EQ_QUANTITY(
  * @param y Second quantity to compare.
  * @param REL_TOL Relative tolerance for comparison.
  */
-template <auto R, typename Rep>
+template <auto R1, auto R2, typename Rep>
 void EXPECT_EQ_QUANTITY(
-    const mp_units::quantity<R, Rep>& x,
-    const mp_units::quantity<R, Rep>& y,
+    const mp_units::quantity<R1, Rep>& x,
+    const mp_units::quantity<R2, Rep>& y,
     const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept

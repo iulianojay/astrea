@@ -41,7 +41,7 @@ namespace tests {
  *
  * @note: We put this here to avoid conflicts with abstract Force class in astro
  */
-using Force = mp_units::quantity<detail::force_unit>;
+using Force = mp_units::quantity<astrea::detail::force_unit>;
 
 /**
  * @brief AtmosphericCheckcase structure representing a NASA 6DOF atmospheric checkcase.
@@ -69,35 +69,6 @@ struct AtmosphericCheckcase {
     unsigned checkcase_num; //!< Checkcase number
     unsigned sim_num;       //!< Simulation number
     std::string name;       //!< Checkcase name
-
-  private:
-    std::vector<Time> time;                                               //!< Time history
-    std::vector<RadiusVector<frames::earth::icrf>> eciPosition;           //!< ECI position history
-    std::vector<RadiusVector<frames::earth::earth_fixed>> ecefPosition;   //!< ECEF position history
-    std::vector<VelocityVector<frames::earth::icrf>> eciVelocity;         //!< ECI velocity history
-    std::vector<VelocityVector<frames::earth::earth_fixed>> ecefVelocity; //!< ECEF velocity history
-    std::vector<Altitude> altitudeMsl;                                    //!< Altitude above mean-sea-level history
-    std::vector<Angle> longitude;                                         //!< Longitude history
-    std::vector<Angle> latitude;                                          //!< Latitude history
-    std::vector<Acceleration> localGravity;                               //!< Local gravity history
-    std::vector<Angle> yaw;                                               //!< Yaw history
-    std::vector<Angle> pitch;                                             //!< Pitch history
-    std::vector<Angle> roll;                                              //!< Roll history
-    std::vector<AngularRate> bodyAngularRateWrtEciRoll;                   //!< Body angular rate w.r.t ECI roll history
-    std::vector<AngularRate> bodyAngularRateWrtEciPitch;                  //!< Body angular rate w.r.t ECI pitch history
-    std::vector<AngularRate> bodyAngularRateWrtEciYaw;                    //!< Body angular rate w.r.t ECI yaw history
-    std::vector<Velocity> altitudeRateWrtMsl;                             //!< Altitude rate w.r.t MSL history
-    std::vector<Velocity> speedOfSound;                                   //!< Speed of sound history
-    std::vector<Density> airDensity;                                      //!< Air density history
-    std::vector<Pressure> ambientPressure;                                //!< Ambient pressure history
-    std::vector<Temperature> ambientTemperature;                          //!< Ambient temperature history
-    std::vector<CartesianVector<Force, frames::earth::icrf>> aeroBodyForce; //!< Aerodynamic body force history
-    std::vector<Moment> aeroBodyMomentL;                                    //!< Aerodynamic body moment L history
-    std::vector<Moment> aeroBodyMomentM;                                    //!< Aerodynamic body moment M history
-    std::vector<Moment> aeroBodyMomentN;                                    //!< Aerodynamic body moment N history
-    std::vector<Velocity> mach;                                             //!< Mach number history
-    std::vector<Pressure> dynamicPressure;                                  //!< Dynamic pressure history
-    std::vector<Velocity> trueAirspeed;                                     //!< True airspeed history
 };
 
 /**
@@ -115,7 +86,7 @@ struct AtmosphericCheckcaseRow {
      *
      * @param data The JSON object containing the checkcase row data.
      */
-    AtmosphericCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data);
+    AtmosphericCheckcaseRow(const unsigned& checkcase_num, const unsigned& sim_num, const nlohmann::json& data);
 
     /**
      * @brief Default destructor for AtmosphericCheckcaseRow.
@@ -123,7 +94,8 @@ struct AtmosphericCheckcaseRow {
     ~AtmosphericCheckcaseRow() = default;
 
     int id;                                     //!< Database ID for the checkcase row
-    unsigned checkcase_id;                      //!< Checkcase database ID
+    unsigned checkcase_num;                     //!< Checkcase database ID
+    unsigned sim_num;                           //!< Simulation number
     double time;                                //!< Time in seconds??
     std::optional<double> eiPosition_ft_X;      //!< Earth-inertial position X in feet
     std::optional<double> eiPosition_ft_Y;      //!< Earth-inertial position Y in feet

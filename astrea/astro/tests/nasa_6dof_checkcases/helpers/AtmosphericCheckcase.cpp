@@ -45,9 +45,10 @@ AtmosphericCheckcase::AtmosphericCheckcase(const std::filesystem::path& filepath
     sim_num                               = std::stoul(tokens[tokens.size() - 1]);
 }
 
-AtmosphericCheckcaseRow::AtmosphericCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data) :
+AtmosphericCheckcaseRow::AtmosphericCheckcaseRow(const unsigned& checkcase_num, const unsigned& sim_num, const nlohmann::json& data) :
     id(-1),
-    checkcase_id(checkcase_id),
+    checkcase_num(checkcase_num),
+    sim_num(sim_num),
     time(extract_from_json<double>(data, "time")),
     eiPosition_ft_X(extract_optional_from_json<double>(data, "eiPosition_ft_X")),
     eiPosition_ft_Y(extract_optional_from_json<double>(data, "eiPosition_ft_Y")),
@@ -91,7 +92,7 @@ AtmosphericCheckcaseRow::AtmosphericCheckcaseRow(const unsigned& checkcase_id, c
 std::ostream& operator<<(std::ostream& os, const AtmosphericCheckcaseRow& atmosphericRow)
 {
     os << "id: " << atmosphericRow.id << std::endl;
-    os << "checkcase_id: " << atmosphericRow.checkcase_id << std::endl;
+    os << "checkcase_num: " << atmosphericRow.checkcase_num << std::endl;
     os << "time: " << atmosphericRow.time << std::endl;
     os << "eiPosition_ft_X: " << atmosphericRow.eiPosition_ft_X << std::endl;
     os << "eiPosition_ft_Y: " << atmosphericRow.eiPosition_ft_Y << std::endl;

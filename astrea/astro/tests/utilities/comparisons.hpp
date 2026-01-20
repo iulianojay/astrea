@@ -26,10 +26,10 @@ void ASSERT_EQ_ORB_PART(
 ) noexcept;
 
 
-template <typename Value_T, typename Frame_T>
+template <typename Value_T, typename Frame_T, typename Value_U>
 void ASSERT_EQ_CART_VEC(
     const CartesianVector<Value_T, Frame_T>& vec,
-    const CartesianVector<Value_T, Frame_T>& expected,
+    const CartesianVector<Value_U, Frame_T>& expected,
     const Unitless& relTol = 0.0 * mp_units::one,
     const Unitless& absTol = 0.0 * mp_units::one
 ) noexcept

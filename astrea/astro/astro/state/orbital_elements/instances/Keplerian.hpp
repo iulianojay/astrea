@@ -358,6 +358,21 @@ class Keplerian {
     const Angle& get_true_anomaly() const { return _trueAnomaly; }
 
     /**
+     * @brief Get the mean anomaly of the Keplerian state vector.
+     *
+     * @return Angle Mean anomaly of the Keplerian state vector.
+     */
+    Angle get_mean_anomaly() const;
+
+    /**
+     * @brief Get the mean motion of the Keplerian state vector.
+     *
+     * @param mu Gravitational parameter of the central body
+     * @return MeanMotion Mean motion of the Keplerian state vector.
+     */
+    MeanMotion get_mean_motion(const GravParam& mu) const;
+
+    /**
      * @brief Interpolates between two Keplerian state vectors.
      *
      * This method performs linear interpolation between two Keplerian state vectors at a specified target time.

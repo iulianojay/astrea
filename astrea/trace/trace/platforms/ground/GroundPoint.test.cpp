@@ -27,7 +27,7 @@ class GroundPointTest : public testing::Test {
 
     void SetUp() override
     {
-        parent    = sys.get(CelestialBodyId::EARTH).get();
+        parent    = sys.get_body(CelestialBodyId::EARTH).get();
         latitude  = 0.5 * mp_units::angular::unit_symbols::rad;
         longitude = 1.0 * mp_units::angular::unit_symbols::rad;
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
@@ -52,7 +52,7 @@ TEST_F(GroundPointTest, DefaultConstructor) { ASSERT_NO_THROW(GroundPoint()); }
 
 TEST_F(GroundPointTest, Constructor)
 {
-    ASSERT_NO_THROW(GroundPoint(sys.get(CelestialBodyId::EARTH).get(), latitude, longitude, altitude));
+    ASSERT_NO_THROW(GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude));
 }
 
 TEST_F(GroundPointTest, GetLatitude) { ASSERT_EQ(point.get_latitude(), latitude); }
@@ -61,9 +61,9 @@ TEST_F(GroundPointTest, GetLongitude) { ASSERT_EQ(point.get_longitude(), longitu
 
 TEST_F(GroundPointTest, GetAltitude) { ASSERT_EQ(point.get_altitude(), altitude); }
 
-TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get(CelestialBodyId::EARTH).get()); }
+TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get_body(CelestialBodyId::EARTH).get()); }
 
 TEST_F(GroundPointTest, GetId)
 {
-    ASSERT_EQ(point.get_id(), GroundPoint(sys.get(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
+    ASSERT_EQ(point.get_id(), GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
 }

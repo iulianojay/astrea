@@ -51,7 +51,7 @@ class Integrator {
         DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval{ 0.0 * mp_units::non_si::day, 1.0 * mp_units::non_si::day }; //!< Default time interval for propagation
+    static inline Interval defaultInterval{ 0.0 * astrea::detail::time_unit, 86400.0 * astrea::detail::time_unit }; //!< Default time interval for propagation
 
     /**
      * @brief Default constructor for the Integrator class.
@@ -239,7 +239,7 @@ class Integrator {
     // ith order steps
     std::array<OrbitalElements, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
     OrbitalElements _statePlusKi;                           //!< State vector plus the ith order step
-    OrbitalElementPartials _YFinalPrevious;                 //!< Previous final state vector for the Runge-Kutta method
+    OrbitalElementPartials _YFinalPrevious; //!< Previous final state vector for the Dormand-Prince method
 
     // Clock variables
     clock_t _startClock{}; //!< Start time for the timer
@@ -250,7 +250,7 @@ class Integrator {
     Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
 
     // Initial step size
-    Time _timeStepInitial = 300.0 * mp_units::si::unit_symbols::s; //!< Initial time step for the integrator
+    Time _timeStepInitial = 60.0 * astrea::detail::time_unit; //!< Initial time step for the integrator
 
     // Run options
     bool _printOn = false; //!< Flag to control printing of integration details
@@ -259,8 +259,8 @@ class Integrator {
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
 
     // Fake fixed step
-    bool _useFixedStep  = false;                               //!< Flag to indicate if a fixed step size should be used
-    Time _fixedTimeStep = 1.0 * mp_units::si::unit_symbols::s; //!< Fixed time step size to use if fixed step is enabled
+    bool _useFixedStep  = false;                           //!< Flag to indicate if a fixed step size should be used
+    Time _fixedTimeStep = 1.0 * astrea::detail::time_unit; //!< Fixed time step size to use if fixed step is enabled
 
     // Events
     EventDetector _eventDetector;
@@ -363,6 +363,14 @@ class Integrator {
      * @return bool True if the step was accepted, false if it needs to be retried with a smaller step size.
      */
     bool check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+
+    /**
+     * @brief Get the relative step size based on the maximum error.
+     *
+     * @param maxError The maximum error from the current step.
+     * @return Unitless The relative step size to adjust the time step.
+     */
+    Unitless get_relative_step_size(const Unitless& maxError) const;
 
     /**
      * @brief Store the most recent function evaluation results for Dormand-Prince methods.

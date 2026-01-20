@@ -219,8 +219,7 @@ bool is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& posit
     const EciRadiusVec radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    static const Distance& radiusEarthMag =
-        sys.get(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
+    static const Distance& radiusEarthMag = sys.get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir

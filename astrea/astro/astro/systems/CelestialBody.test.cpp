@@ -218,9 +218,9 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 {
     const Date date("2020-02-18 15:08:47.23847");
     const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::SUN, CelestialBodyId::MOON });
-    const auto& earth = earthMoonSunSys.get(CelestialBodyId::EARTH);
-    const auto& moon  = earthMoonSunSys.get(CelestialBodyId::MOON);
-    const auto& sun   = earthMoonSunSys.get(CelestialBodyId::SUN);
+    const auto& earth = earthMoonSunSys.get_body(CelestialBodyId::EARTH);
+    const auto& moon  = earthMoonSunSys.get_body(CelestialBodyId::MOON);
+    const auto& sun   = earthMoonSunSys.get_body(CelestialBodyId::SUN);
 
     const auto& earthMu = earth->get_mu();
     const auto& sunMu   = sun->get_mu();
@@ -263,9 +263,9 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 {
     const Date date("2000-01-01 12:00:00");
     const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
-    const auto& earth = earthMoonSunSys.get(CelestialBodyId::EARTH);
-    const auto& moon  = earthMoonSunSys.get(CelestialBodyId::MOON);
-    const auto& sun   = earthMoonSunSys.get(CelestialBodyId::SUN);
+    const auto& earth = earthMoonSunSys.get_body(CelestialBodyId::EARTH);
+    const auto& moon  = earthMoonSunSys.get_body(CelestialBodyId::MOON);
+    const auto& sun   = earthMoonSunSys.get_body(CelestialBodyId::SUN);
 
     const auto& earthMu = earth->get_mu();
     const auto& sunMu   = sun->get_mu();
