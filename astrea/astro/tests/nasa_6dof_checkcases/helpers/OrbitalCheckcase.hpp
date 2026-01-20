@@ -62,29 +62,6 @@ struct OrbitalCheckcase {
     unsigned checkcase_num; //!< Checkcase number
     unsigned sim_num;       //!< Simulation number
     std::string name;       //!< Checkcase name
-
-  private:
-    std::vector<Time> time;                                               //!< Time history
-    std::vector<RadiusVector<frames::earth::icrf>> eciPosition;           //!< ECI position history
-    std::vector<VelocityVector<frames::earth::icrf>> eciVelocity;         //!< ECI velocity history
-    std::vector<AccelerationVector<frames::earth::icrf>> eciAcceleration; //!< ECI acceleration history
-    std::vector<AccelerationVector<frames::earth::icrf>> eciGravity;      //!< ECI gravity history
-    std::vector<RadiusVector<frames::earth::earth_fixed>> ecefPosition;   //!< ECEF position history
-    std::vector<VelocityVector<frames::earth::earth_fixed>> ecefVelocity; //!< ECEF velocity history
-    std::vector<Distance> semimajor;                                      //!< Semi-major axis history
-    std::vector<Date> gast;                                               //!< Greenwich apparent sidereal time history
-    std::vector<Angle> roll;                                              //!< Euler angle (roll) history
-    std::vector<Angle> pitch;                                             //!< Euler angle (pitch) history
-    std::vector<Angle> yaw;                                               //!< Euler angle (yaw) history
-    std::vector<AngularRate> rollRateWrtEciRoll;                          //!< Roll rate w.r.t ECI roll history
-    std::vector<AngularRate> pitchRateWrtEciPitch;                        //!< Pitch rate w.r.t ECI pitch history
-    std::vector<AngularRate> yawRateWrtEciYaw;                            //!< Yaw rate w.r.t ECI yaw history
-    std::vector<AngularRate> bodyAngularRateWrtEciRoll;                   //!< Body angular rate w.r.t ECI roll history
-    std::vector<AngularRate> bodyAngularRateWrtEciPitch;                  //!< Body angular rate w.r.t ECI pitch history
-    std::vector<AngularRate> bodyAngularRateWrtEciYaw;                    //!< Body angular rate w.r.t ECI yaw history
-    std::vector<Density> airDensity;                                      //!< Air density history
-    std::vector<Pressure> ambientPressure;                                //!< Ambient pressure history
-    std::vector<Temperature> ambientTemperature;                          //!< Ambient temperature history
 };
 
 /**
@@ -100,9 +77,11 @@ struct OrbitalCheckcaseRow {
     /**
      * @brief Constructor that initializes OrbitalCheckcaseRow from a JSON object.
      *
+     * @param checkcase_num The checkcase number associated with this row.
+     * @param sim_num The simulation number associated with this row.
      * @param data The JSON object containing the checkcase row data.
      */
-    OrbitalCheckcaseRow(const unsigned& checkcase_id, const nlohmann::json& data);
+    OrbitalCheckcaseRow(const unsigned& checkcase_num, const unsigned& sim_num, const nlohmann::json& data);
 
     /**
      * @brief Default destructor for OrbitalCheckcaseRow.
@@ -110,7 +89,8 @@ struct OrbitalCheckcaseRow {
     ~OrbitalCheckcaseRow() = default;
 
     int id;                                         //!< Database ID for the checkcase row
-    unsigned checkcase_id;                          //!< Checkcase database ID
+    unsigned checkcase_num;                         //!< Checkcase ID
+    unsigned sim_num;                               //!< Simulation number
     double time;                                    //!< Time in seconds
     std::optional<double> gePosition_m_X;           //!< Geodetic position X in meters
     std::optional<double> gePosition_m_Y;           //!< Geodetic position Y in meters
@@ -149,10 +129,10 @@ struct OrbitalCheckcaseRow {
  * This function allows printing the contents of a OrbitalCheckcaseRow object to an output stream.
  *
  * @param os The output stream to write to.
- * @param checkcase The OrbitalCheckcaseRow object to print.
- * @return The output stream after writing the GP data.
+ * @param orbitalRow The OrbitalCheckcaseRow object to print.
+ * @return The output stream after writing the row.
  */
-std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& checkcase);
+std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& orbitalRow);
 
 } // namespace tests
 } // namespace astro

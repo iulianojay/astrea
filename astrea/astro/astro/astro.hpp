@@ -85,3 +85,6 @@
 
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
+
+#include <astro/utilities/conversions.hpp>
+#include <astro/utilities/plotting.hpp>

@@ -26,6 +26,7 @@ RUN apt-get update && \
     python3-pip \
     python3-venv \
     git \
+    gnuplot \
     && \
     rm -rf /var/lib/apt/lists/*
 

@@ -77,7 +77,7 @@ int main()
         csv::CSVReader reader(filepath.string());
         for (const auto& row : reader) {
             const json rowJson = json::parse(row.to_json());
-            AtmosphericCheckcaseRow checkcaseRow(checkcase.checkcase_num, rowJson);
+            AtmosphericCheckcaseRow checkcaseRow(checkcase.checkcase_num, checkcase.sim_num, rowJson);
 
             auto all = ccdb.get_all<AtmosphericCheckcaseRow>(where(c(&AtmosphericCheckcaseRow::id) == checkcaseRow.id));
             if (all.size() == 0) { ccdb.insert(checkcaseRow); }
@@ -117,7 +117,7 @@ int main()
         csv::CSVReader reader(filepath.string());
         for (const auto& row : reader) {
             const json rowJson = json::parse(row.to_json());
-            OrbitalCheckcaseRow checkcaseRow(checkcase.checkcase_num, rowJson);
+            OrbitalCheckcaseRow checkcaseRow(checkcase.checkcase_num, checkcase.sim_num, rowJson);
 
             auto all = ccdb.get_all<OrbitalCheckcaseRow>(where(c(&OrbitalCheckcaseRow::id) == checkcaseRow.id));
             if (all.size() == 0) { ccdb.insert(checkcaseRow); }

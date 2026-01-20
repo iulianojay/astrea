@@ -29,14 +29,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
+add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
+
 include(cmake/standard_project_settings.cmake)
 
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 
 # target_compile_features(astrea_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
-
-if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
+if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
     message(FATAL_ERROR "GCC 13.1.0 or greater required.")
 endif()
 
@@ -45,11 +46,6 @@ find_package(mp-units REQUIRED)
 find_package(SQLite3 REQUIRED)
 
 include(FetchContent)
-set(DEP_DIR "${CMAKE_CURRENT_BINARY_DIR}/_deps")
-message(" -- Dependency directory ${DEP_DIR}")
-
-make_directory("${DEP_DIR}/cpr-src")
-message(" -- Built directory ${DEP_DIR}/cpr-src")
 FetchContent_Declare(
     cpr
     GIT_REPOSITORY https://github.com/libcpr/cpr.git

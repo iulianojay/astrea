@@ -24,17 +24,19 @@
 #include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
+#include <math/math.hpp>
+#include <units/units.hpp>
+
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/propagation/numerical/butcher_tableau.hpp> // RK Butcher Tableau
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/orbital_elements.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
-
-#include <astro/propagation/numerical/butcher_tableau.hpp> // RK Butcher Tableau
-#include <astro/state/orbital_elements/orbital_elements.hpp>
 
 using namespace mp_units;
 using mp_units::si::unit_symbols::ms;
@@ -51,7 +53,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle); // TODO: Enforce returned element matches the partial of the expected set
+    return eom(state, vehicle);
 }
 
 
@@ -224,8 +226,8 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
 {
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    const auto diff         = mp_units::abs(epoch - vehicleEpoch);
-    if (mp_units::abs(epoch - vehicleEpoch) > 1.0 * ms) {
+    const auto diff         = math::abs(epoch - vehicleEpoch);
+    if (math::abs(epoch - vehicleEpoch) > 1.0 * ms) {
         const Time propTime = epoch - vehicleEpoch;
         propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
     }
@@ -320,10 +322,8 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                "RKF78, DOP45, DOP78}."
-            );
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 
@@ -331,16 +331,24 @@ void Integrator::setup_butcher_tableau()
 std::pair<OrbitalElements, OrbitalElements>
     Integrator::take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
-    // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i+1) k_j a[i+1][j])
+    // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i-1) k_j a[i][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
-        // Find derivative
+        // Calculate intermediate state for current stage (except stage 0)
+        _statePlusKi = state;
+        if (iStage > 0) {
+            for (std::size_t jStage = 0; jStage < iStage; ++jStage) {
+                _statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
+            }
+        }
+
+        // Find derivative at the intermediate state
         OrbitalElementPartials partial;
         if (iStage == 0) {
             if (_stepMethod == StepMethod::RK45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RKF78) {
-                partial = find_state_derivative(time, state, eom, vehicle);
+                partial = find_state_derivative(time, _statePlusKi, eom, vehicle);
             }
             else if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-                if (_iteration == 0) { partial = find_state_derivative(time, state, eom, vehicle); }
+                if (_iteration == 0) { partial = find_state_derivative(time, _statePlusKi, eom, vehicle); }
                 else {
                     partial = _YFinalPrevious;
                 }
@@ -349,15 +357,9 @@ std::pair<OrbitalElements, OrbitalElements>
         else {
             partial = find_state_derivative(time + _c[iStage] * timeStep, _statePlusKi, eom, vehicle);
         }
-        _statePlusKi = state;
 
-        // Correct k value
+        // Store k value
         _kMatrix[iStage] = partial * timeStep;
-
-        // Get k next step
-        for (std::size_t jStage = 0; jStage < iStage + 1; ++jStage) {
-            _statePlusKi += _kMatrix[jStage] * _a[iStage + 1][jStage];
-        }
     }
 
     // Get new state and state error
@@ -379,14 +381,12 @@ Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const Orbit
     const auto stateNewScaled   = stateNew.to_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
-        const auto err = mp_units::abs(stateErrorScaled[ii]) / (_ABS_TOL + mp_units::abs(stateNewScaled[ii]) * _REL_TOL);
+        const auto err = math::abs(stateErrorScaled[ii]) / (_ABS_TOL + math::abs(stateNewScaled[ii]) * _REL_TOL);
         if (err > maxError) { maxError = err; }
 
-        // Catch huge steps
-        /* There has to be a better way to do this. It's still possible for the integration to
-           pass through a singularity without a huge step */
-        if (mp_units::abs(stateNewScaled[ii] - stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless ||
-            mp_units::isinf(stateNewScaled[ii]) || mp_units::isnan(stateNewScaled[ii])) {
+        // Catch NaN/Inf values and unreasonably large error estimates
+        if (mp_units::isinf(stateNewScaled[ii]) || mp_units::isnan(stateNewScaled[ii]) || mp_units::isinf(stateErrorScaled[ii]) ||
+            mp_units::isnan(stateErrorScaled[ii]) || math::abs(stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless) {
             /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                If the step is legitimate, but just very large, this will just force
                it to lower the step slightly and try again without killing the run */
@@ -416,11 +416,8 @@ void Integrator::take_fixed_step(Time& time, Time& timeStep, OrbitalElements& st
     // Take step
     const auto [stateNew, stateError] = take_step(time, timeStep, state, eom, vehicle);
 
-    // Step time
     time += timeStep;
-
-    // Adding the state error improves the next guess (???)
-    state = stateNew + stateError;
+    state = stateNew;
 
     // Store final function eval for Dormand-Prince methods
     store_final_func_eval(timeStep);
@@ -434,8 +431,36 @@ void Integrator::store_final_func_eval(const Time& timeStep)
     }
 }
 
+Unitless Integrator::get_relative_step_size(const Unitless& maxError) const
+{
+    // stupid function for stupid people
+
+    // Don't scale if error is zero
+    if (maxError == 0.0 * astrea::detail::unitless || (_iteration > 0 && _maxErrorPrevious == 0.0 * astrea::detail::unitless)) {
+        return 1.0 * astrea::detail::unitless;
+    }
+
+    // Ignore pi controller on first iteration or if error is large
+    const bool ignorePiController = (_iteration == 0 || maxError > 1.0 * astrea::detail::unitless);
+    const bool isFourthOrderMethod =
+        (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RK45);
+
+    // Get controller value
+    Unitless relativeTimeStep{};
+    if (isFourthOrderMethod) {
+        relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
+        if (!ignorePiController) { relativeTimeStep *= pow<7, 50>(maxError / _maxErrorPrevious); }
+    }
+    else {
+        relativeTimeStep = pow<1, 8>(_EPSILON / maxError);
+        if (!ignorePiController) { relativeTimeStep *= pow<7, 80>(maxError / _maxErrorPrevious); }
+    }
+    return relativeTimeStep;
+}
+
 bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
 {
+    const Unitless relativeStepSize = get_relative_step_size(maxError);
     if (maxError <= 1.0) { // Step succeeded
         // Step
         time += timeStep;
@@ -449,21 +474,11 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 
         // Get new step after stepping time
         if (_iteration == 0) {
-            timeStep *= (maxError < _MIN_ERROR_TO_CATCH) ? _MIN_ERROR_STEP_FACTOR : pow<1, 5>(_EPSILON / maxError);
+            timeStep *= (maxError < _MIN_ERROR_TO_CATCH) ? _MIN_ERROR_STEP_FACTOR : relativeStepSize;
         }
         else {
-            // Predicted relative step size
-            Unitless relativeTimeStep = 1.0 * mp_units::one;
-            if (maxError == 0.0 * astrea::detail::unitless && _maxErrorPrevious == 0.0 * astrea::detail::unitless) { // TODO: Check more closely why we're getting 0 error
-                // std::cout << "Integrator Error: Max error is zero. This should not happen." << std::endl;
-            }
-            else {
-                relativeTimeStep = abs(timeStep / _timeStepPrevious) * pow<2, 25>(_EPSILON / maxError) *
-                                   pow<3, 50>(maxError / _maxErrorPrevious);
-            }
-
             // New step size
-            timeStep *= relativeTimeStep;
+            timeStep *= relativeStepSize;
         }
 
         // Go to next step
@@ -471,11 +486,8 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
     }
 
     // Error is too large. Truncate stepsize
-    // Predicted relative step size
-    const Unitless relativeTimeStep = pow<1, 5>(_EPSILON / maxError);
-
     // Keep step from getting too small too fast
-    timeStep *= (relativeTimeStep < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeTimeStep;
+    timeStep *= (relativeStepSize < _MIN_REL_STEP_SIZE) ? _MIN_REL_STEP_SIZE : relativeStepSize;
 
     return false;
 }

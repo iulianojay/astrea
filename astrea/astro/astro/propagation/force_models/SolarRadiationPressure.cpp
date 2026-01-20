@@ -37,16 +37,15 @@ using mp_units::si::unit_symbols::s;
 AccelerationVector<frames::earth::icrf>
     SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-
-    static const CelestialBodyUniquePtr& center = sys.get_central_body();
-    static const CelestialBodyUniquePtr& sun    = sys.create(CelestialBodyId::SUN);
+    const CelestialBodyUniquePtr& center = sys.get_central_body();
+    const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
     // Extract
     const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 
     // Central body properties
-    static const bool isSun = (center->get_id() == CelestialBodyId::SUN);
+    const bool isSun = (center->get_id() == CelestialBodyId::SUN);
 
     // Find day nearest to current time
     const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToCenter = center->get_position_at(date);

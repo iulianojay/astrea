@@ -72,7 +72,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 {
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
-    std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "astrea/astro/data/gravity_models/";
+    std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "/astrea/astro/data/gravity_models/";
     std::filesystem::path filename;
     const CelestialBodyId centerId =
         sys.get_central_body_id(); // TODO: This forces the oblatness to only consider the system central body
@@ -87,11 +87,12 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
             filename = path / "jgl165p1.txt"; // Normalized?
             break;
         case CelestialBodyId::MARS:
-            filename = path / "%sgmm3120.txt"; // Do not appear to be normalized
+            filename = path / "gmm3120.txt"; // Do not appear to be normalized
             break;
         default: throw std::runtime_error("Legendre coefficient file for central body not found.");
     }
     std::ifstream file(filename);
+    if (file.fail()) { throw std::runtime_error("Failed to open Legendre coefficient file: " + filename.string()); }
 
     // Read coefficients from file
     std::string line;
@@ -112,9 +113,17 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
         _C[n][m] = lineData[2];
         _S[n][m] = lineData[3];
-        for (std::size_t m = 0; m < degree + 1; ++m) {
-            Unitless factorialCoefficient = 1.0 * one; // !(n + m)/!(n - m)
-            for (std::size_t ii = n + m; ii > n - m; --ii) {
+
+        if (n >= degree && m >= order) { break; }
+    }
+    file.close();
+
+    // Calculate normalization coefficients after reading all coefficients
+    for (std::size_t n = 0; n <= degree; ++n) {
+        for (std::size_t m = 0; m <= std::min(n, order); ++m) {
+            // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
+            Unitless factorialCoefficient = 1.0 * one;
+            for (std::size_t ii = n - m + 1; ii <= n + m; ++ii) {
                 factorialCoefficient *= ii;
             }
             // TODO: This will cause big slowdowns for m ~ n >> 1. need a smarter way to do these factorials.
@@ -129,10 +138,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
                 _S[n][m] /= _normalizingCoefficients[n][m];
             }
         }
-
-        if (n >= degree && m >= order) { break; }
     }
-    file.close();
 }
 
 
@@ -190,6 +196,7 @@ AccelerationVector<frames::earth::icrf>
     const Distance& yEcef = rEcef[1];
 
     const Unitless sinLat = sin(latitude);
+    const Unitless cosLat = cos(latitude);
     const Unitless tanLat = tan(latitude);
 
     // Calculate serivative of gravitational potential field with respect to
@@ -214,10 +221,9 @@ AccelerationVector<frames::earth::icrf>
             const Unitless mm = (double)m * one;
 
             // Precalculate common terms
-            const Unitless Pnm   = _legendreCache.get_legendre_polynomial(n, m, sinLat);
-            const Unitless Pnmp1 = _legendreCache.get_legendre_polynomial(n, m + 1, sinLat);
-            const Unitless Cnm   = _legendreCache.get_cosine_coefficient(n, m);
-            const Unitless Snm   = _legendreCache.get_sine_coefficient(n, m);
+            const Unitless Pnm = _legendreCache.get_legendre_polynomial(n, m, sinLat);
+            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
+            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
             const Unitless cosMLon      = cos(mm * longitude);
             const Unitless sinMLon      = sin(mm * longitude);
@@ -227,14 +233,22 @@ AccelerationVector<frames::earth::icrf>
             dVdrInnerSum += cCosPlusSSin * Pnm;
 
             // dVdlat
-            dVdlatInnerSum += cCosPlusSSin * (Pnmp1 - mm * tanLat * Pnm);
+            Unitless dPnmdLat = 0.0 * one;
+            if (m < n) {
+                const Unitless Pnmp1 = _legendreCache.get_legendre_polynomial(n, m + 1, sinLat);
+                dPnmdLat             = mm * sinLat * Pnm + cosLat * sqrt((nn - mm) * (nn + mm + 1.0)) * Pnmp1;
+            }
+            else {
+                dPnmdLat = cosLat * mm * tanLat * Pnm;
+            }
+            dVdlatInnerSum += cCosPlusSSin * dPnmdLat;
 
             // dVdlon
             dVdlonInnerSum += mm * Pnm * (Snm * cosMLon - Cnm * sinMLon);
         }
-        // Precalculate common terms
+        // Precalculate common terms - use proper power function
+        const Unitless equitorialROverR = equitorialR * oneOverR;
         Unitless rRatio                 = 1.0 * one;
-        const quantity equitorialROverR = equitorialR * oneOverR;
         for (std::size_t ii = 0; ii < n; ii++) { // TODO: Make this a pow function for unitless only
             rRatio *= equitorialROverR;
         }
@@ -265,11 +279,34 @@ AccelerationVector<frames::earth::icrf>
 
     // Calculate accel in ECEF (not with respect to ECEF)
     AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
-        term1 * xEcef - term2 * yEcef, term1 * yEcef + term2 * xEcef, oneOverR * (dVdr * z + oneOverR * planarR * dVdlat)
+        term1 * xEcef - term2 * yEcef,                      //
+        term1 * yEcef + term2 * xEcef,                      //
+        oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) //
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    static bool compare = true;
+    if (compare) { // TODO: Remove this
+        using mp_units::si::unit_symbols::m;
+        using mp_units::si::unit_symbols::s;
+        AccelerationVector<frames::earth::icrf> expected = { 5.51387371235876 * m / (s * s),
+                                                             -1.22700119262805 * m / (s * s),
+                                                             -6.62056474851441 * m / (s * s) };
+
+        const auto rEci                                       = state.get_position();
+        const AccelerationVector<frames::earth::icrf> gravity = -mu / mp_units::pow<3>(rEci.norm()) * rEci;
+        expected -= gravity;
+
+        const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
+
+        std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
+        std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
+        std::cout << "Difference: " << diff << " (" << diff.norm() << ")" << std::endl;
+
+        compare = false;
+    }
+    return accelOblatenessIcrf;
 }
 
 } // namespace astro
