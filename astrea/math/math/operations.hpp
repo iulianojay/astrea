@@ -79,5 +79,14 @@ template <auto R, typename Rep>
     }
 }
 
+template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
+    requires requires(Rep v) { pow(v, v); } || requires(Rep v) { std::pow(v, v); }
+[[nodiscard]] inline mp_units::quantity<mp_units::one, Rep>
+    pow(const mp_units::quantity<R, Rep>& q, const mp_units::quantity<R, Rep>& n) noexcept
+{
+    using std::pow;
+    return mp_units::quantity{ pow(q.numerical_value_in(mp_units::one), n.numerical_value_in(mp_units::one)), mp_units::one };
+}
+
 } // namespace math
 } // namespace astrea
