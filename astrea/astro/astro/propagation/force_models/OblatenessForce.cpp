@@ -38,6 +38,9 @@
 
 
 namespace astrea {
+
+using math::assoc_legendre;
+
 namespace astro {
 
 using namespace mp_units;
@@ -79,23 +82,36 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 {
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
+    // TODO: Change to binary files cause boy are these big
     std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "/astrea/astro/data/gravity_models/";
     std::filesystem::path filename;
     const CelestialBodyId centerId =
         sys.get_central_body_id(); // TODO: This forces the oblatness to only consider the system central body
     switch (centerId) {
+        case CelestialBodyId::MERCURY:
+            // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/
+            filename = path / "Mercury" / "jgmess_160a_sha.tab"; // Normalized
+            break;
+
         case CelestialBodyId::VENUS:
-            filename = path / "shgj120p.txt"; // Normalized?
+            // https://pds-geosciences.wustl.edu/mgn/mgn-v-rss-5-gravity-l2-v1/mg_5201/gravity/
+            filename = path / "Venus" / "shgj180u.a01"; // Normalized?
             break;
+
         case CelestialBodyId::EARTH:
-            filename = path / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+            filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
             break;
+
         case CelestialBodyId::MOON:
-            filename = path / "jgl165p1.txt"; // Normalized?
+            // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/
+            filename = path / "Moon" / "jggrx_0420a_sha.tab"; // Normalized?
             break;
+
         case CelestialBodyId::MARS:
-            filename = path / "gmm3120.txt"; // Do not appear to be normalized
+            // https://pds-geosciences.wustl.edu/mro/mro-m-rss-5-sdp-v1/mrors_1xxx/data/shadr/
+            filename = path / "Mars" / "jgmro_120f_sha.tab"; // Normalized?
             break;
+
         default: throw std::runtime_error("Legendre coefficient file for central body not found.");
     }
     std::ifstream file(filename);
@@ -153,7 +169,6 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
 void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x)
 {
-    using astrea::math::assoc_legendre;
     for (std::size_t n = 2; n < degree + 1; ++n) {
         for (std::size_t m = 0; m < order + 1; ++m) {
             _P[n][m] = _normalizingCoefficients[n][m] * assoc_legendre(n, m, x);
@@ -164,7 +179,6 @@ void LegendreCache::assign_legendre(const std::size_t& degree, const std::size_t
 
 Unitless LegendreCache::get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const
 {
-    using astrea::math::assoc_legendre;
     return _normalizingCoefficients[n][m] * assoc_legendre(n, m, x);
 }
 
@@ -192,7 +206,7 @@ AccelerationVector<frames::earth::icrf>
     const Distance& y = state.get_y();
     const Distance& z = state.get_z();
 
-    const quantity<astrea::detail::unitless / astrea::detail::distance_unit> oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
+    const quantity oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
 
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
