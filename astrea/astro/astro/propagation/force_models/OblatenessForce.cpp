@@ -100,6 +100,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
         case CelestialBodyId::EARTH:
             filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+            // filename = path / "Earth" / "WGS84"; // Normalized
             break;
 
         case CelestialBodyId::MOON:
@@ -201,24 +202,22 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size
 AccelerationVector<frames::earth::icrf>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-    // Extract
-    const Distance& x = state.get_x();
-    const Distance& y = state.get_y();
-    const Distance& z = state.get_z();
-
-    const quantity oneOverR = 1.0 / sqrt(x * x + y * y + z * z);
-
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
     const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
-    // Find lat and long
+    // Find lat and lon
+    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geodetic(rEcef, equitorialR, polarR);
 
+    // Precomput common terms
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
+    const Distance& zEcef = rEcef[2];
+
+    const quantity oneOverR = 1.0 / rEci.norm();
 
     const Unitless equitorialROverR = equitorialR * oneOverR;
 
@@ -253,13 +252,10 @@ AccelerationVector<frames::earth::icrf>
             dVdrInnerSum += cCosPlusSSin * Pnm;
 
             // dVdlat
-            Unitless dPnmdLat = 0.0 * astrea::detail::unitless;
+            Unitless dPnmdLat = mm * sinLat * Pnm;
             if (m < n) {
                 const Unitless Pnmp1 = _legendreCache.get_legendre_polynomial(n, m + 1, sinLat);
-                dPnmdLat             = mm * sinLat * Pnm + cosLat * sqrt((nn - mm) * (nn + mm + 1.0)) * Pnmp1;
-            }
-            else {
-                dPnmdLat = mm * sinLat * Pnm;
+                dPnmdLat += cosLat * sqrt((nn - mm) * (nn + mm + 1.0)) * Pnmp1;
             }
             dVdlatInnerSum += cCosPlusSSin * dPnmdLat;
 
@@ -294,26 +290,24 @@ AccelerationVector<frames::earth::icrf>
     // Calculate partials of radius, geocentric latitude, and longitude with respect to radius in Ecef frame
     const Distance planarR = sqrt(xEcef * xEcef + yEcef * yEcef); // km
 
-    const quantity term1 = oneOverR * (dVdr - z * oneOverR / planarR * dVdlat);
+    const quantity term1 = oneOverR * (dVdr - zEcef * oneOverR / planarR * dVdlat);
     const quantity term2 = dVdlon / (planarR * planarR);
 
     // Calculate accel in ECEF (not with respect to ECEF)
     AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
-        term1 * xEcef - term2 * yEcef,                      //
-        term1 * yEcef + term2 * xEcef,                      //
-        oneOverR * (dVdr * z + oneOverR * planarR * dVdlat) //
+        term1 * xEcef - term2 * yEcef,                          //
+        term1 * yEcef + term2 * xEcef,                          //
+        oneOverR * (dVdr * zEcef + oneOverR * planarR * dVdlat) //
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
     const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
     static bool compare = true;
     if (compare) { // TODO: Remove this
-        AccelerationVector<frames::earth::icrf> expected = { 5.51387371235876 * m / (s * s),
-                                                             -1.22700119262805 * m / (s * s),
-                                                             -6.62056474851441 * m / (s * s) };
-
-        const auto rEci                                       = state.get_position();
         const AccelerationVector<frames::earth::icrf> gravity = -mu / pow<3>(rEci.norm()) * rEci;
+        AccelerationVector<frames::earth::icrf> expected      = { 5.51387371235876 * m / (s * s),
+                                                                  -1.22700119262805 * m / (s * s),
+                                                                  -6.62056474851441 * m / (s * s) };
         expected -= gravity;
 
         const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
@@ -321,6 +315,8 @@ AccelerationVector<frames::earth::icrf>
         std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
         std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
         std::cout << "Difference: " << diff << " (" << diff.norm() << ")" << std::endl;
+        std::cout << "% Diff: [" << diff[0] / expected[0] * 100.0 << " %, " << diff[1] / expected[1] * 100.0 << " %, "
+                  << diff[2] / expected[2] * 100.0 << " %] (" << diff.norm() / expected.norm() * 100.0 << " %)" << std::endl;
 
         compare = false;
     }
