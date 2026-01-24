@@ -55,7 +55,7 @@ class Earth : public CelestialBody {
             // GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - real published number
             GravParam(398600.436 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - number that matches the NASA checkcases
             Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(6378.1 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
+            Distance(6378.1363 * mp_units::si::unit_symbols::km),                        //!< Equatorial radius
             Distance(6356.752 * mp_units::si::unit_symbols::km),                         //!< Polar radius
             Distance(6478.1 * mp_units::si::unit_symbols::km),                           //!< Crash radius
             Distance(0.092449582665046 * mp_units::iau::unit_symbols::au),               //!< Crash radius

@@ -29,6 +29,9 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
+
+using mp_units::pow;
+
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
@@ -53,7 +56,7 @@ AccelerationVector<frames::earth::icrf>
         // Find center to nth body and spacecraft to nth body
         RadiusVector<frames::earth::icrf> rCenterToNbody;
         if (body->get_type() == CelestialBodyType::MOON) {
-            // Moons return position w.r.t their planet. TODO: Fix this. This will only work for the Earth-Moon system right now
+            // TODO: Moons return position w.r.t their planet. Fix this. This will only work for the Earth-Moon system right now
             rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
         }
         else {
