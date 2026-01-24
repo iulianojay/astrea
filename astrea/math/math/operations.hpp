@@ -63,20 +63,13 @@ template <auto R, typename Rep>
     }
 }
 
-template <auto R, typename Rep>
-    requires requires(Rep v) { abs(v); } || requires(Rep v) { std::abs(v); }
-[[nodiscard]] inline mp_units::quantity<R, Rep> abs(const mp_units::quantity<R, Rep>& q) noexcept
+template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
+    requires requires(Rep v) { pow(v, v); } || requires(Rep v) { std::pow(v, v); }
+[[nodiscard]] inline mp_units::quantity<mp_units::one, Rep>
+    pow(const mp_units::quantity<R, Rep>& q, const mp_units::quantity<R, Rep>& n) noexcept
 {
-    using std::abs;
-    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
-        // check what is the return type when called with the integral value
-        using rep = decltype(abs(q.force_numerical_value_in(q.unit)));
-        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ abs(value_cast<rep>(q).numerical_value_in(q.unit)), q.unit };
-    }
-    else {
-        return mp_units::quantity{ abs(q.numerical_value_in(q.unit)), q.unit };
-    }
+    using std::pow;
+    return mp_units::quantity{ pow(q.numerical_value_in(mp_units::one), n.numerical_value_in(mp_units::one)), mp_units::one };
 }
 
 } // namespace math

@@ -79,15 +79,15 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
 
     // Vallado Ex. 8.5 expected results
-    // const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
-    //                                                                    -2.938330e-6 * km / (s * s),
-    //                                                                    -1.023539e-5 * km / (s * s) };
-    // const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
+    const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
+                                                                       -2.938330e-6 * km / (s * s),
+                                                                       -1.023539e-5 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
 
     // My results - TODO: Figure this out
-    const AccelerationVector<frames::earth::icrf> expected{ -4.33495448e-08 * km / (s * s),
-                                                            -9.20504000e-07 * km / (s * s),
-                                                            -6.45221000e-06 * km / (s * s) };
+    // const AccelerationVector<frames::earth::icrf> expected{ -4.33495448e-08 * km / (s * s),
+    //                                                         -9.20504000e-07 * km / (s * s),
+    //                                                         -6.45221000e-06 * km / (s * s) };
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

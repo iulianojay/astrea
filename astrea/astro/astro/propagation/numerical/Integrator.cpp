@@ -224,10 +224,12 @@ void Integrator::teardown()
 
 OrbitalElements Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events)
 {
+    using mp_units::abs;
+
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    const auto diff         = math::abs(epoch - vehicleEpoch);
-    if (math::abs(epoch - vehicleEpoch) > 1.0 * ms) {
+    const auto diff         = abs(epoch - vehicleEpoch);
+    if (abs(epoch - vehicleEpoch) > 1.0 * ms) {
         const Time propTime = epoch - vehicleEpoch;
         propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
     }
@@ -375,22 +377,26 @@ std::pair<OrbitalElements, OrbitalElements>
 
 Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const OrbitalElements& stateError) const
 {
+    using mp_units::abs;
+    using mp_units::isinf;
+    using mp_units::isnan;
+
     // Find max error from step
-    Unitless maxError           = 0.0;
+    Unitless maxError           = 0.0 * astrea::detail::unitless;
     const auto stateErrorScaled = stateError.to_vector();
     const auto stateNewScaled   = stateNew.to_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
-        const auto err = math::abs(stateErrorScaled[ii]) / (_ABS_TOL + math::abs(stateNewScaled[ii]) * _REL_TOL);
+        const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
         if (err > maxError) { maxError = err; }
 
         // Catch NaN/Inf values and unreasonably large error estimates
-        if (mp_units::isinf(stateNewScaled[ii]) || mp_units::isnan(stateNewScaled[ii]) || mp_units::isinf(stateErrorScaled[ii]) ||
-            mp_units::isnan(stateErrorScaled[ii]) || math::abs(stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless) {
+        if (isinf(stateNewScaled[ii]) || isnan(stateNewScaled[ii]) || isinf(stateErrorScaled[ii]) ||
+            isnan(stateErrorScaled[ii]) || abs(stateErrorScaled[ii]) > 1.0e6 * astrea::detail::unitless) {
             /* 1e6 is arbitrily chosen but is a safe bet for orbital calculations.
                If the step is legitimate, but just very large, this will just force
                it to lower the step slightly and try again without killing the run */
-            maxError = 2.0; // Force step failure
+            maxError = 2.0 * astrea::detail::unitless; // Force step failure
         }
     }
 
