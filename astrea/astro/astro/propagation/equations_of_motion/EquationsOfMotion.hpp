@@ -19,6 +19,7 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
+#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {
@@ -50,6 +51,18 @@ class EquationsOfMotion {
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
     virtual OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+
+    /**
+     * @brief Computes the state transition matrix (STM).
+     *
+     * @param state The current orbital elements of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    virtual StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+    {
+        throw std::runtime_error("STM computation not implemented for these equations of motion.");
+    };
 
     /**
      * @brief Returns the expected set of orbital elements for this method.

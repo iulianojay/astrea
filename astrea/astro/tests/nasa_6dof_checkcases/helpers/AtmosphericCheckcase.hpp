@@ -35,13 +35,6 @@
 namespace astrea {
 namespace astro {
 
-/**
- * @brief Definition for a force quantity.
- *
- * @note: We put this here to avoid conflicts with abstract Force class in astro
- */
-using Force = mp_units::quantity<astrea::detail::force_unit>;
-
 namespace tests {
 
 /**

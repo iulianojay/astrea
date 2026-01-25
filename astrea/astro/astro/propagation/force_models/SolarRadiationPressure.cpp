@@ -107,7 +107,11 @@ AccelerationVector<frames::earth::icrf>
     const Mass mass                          = vehicle.get_mass();
     const quantity accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / (mass * rMagVehicleToSun);
 
-    const AccelerationVector<frames::earth::icrf> accelSRP = accelRelMag * rVehicleToSun;
+    // accelRelMag * rVehicleToSun fails to compile because it can't deduce the unit conversion
+    // TODO: Add constructor to CartesianVector that can deduce the unit conversion
+    const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelMag * rVehicleToSun.get_x(),
+                                                               accelRelMag * rVehicleToSun.get_y(),
+                                                               accelRelMag * rVehicleToSun.get_z() };
 
     return accelSRP;
 }
