@@ -17,7 +17,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
@@ -220,8 +219,8 @@ std::tuple<Angle, Angle, Distance>
 RadiusVector<frames::earth::earth_fixed>
     convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
-    const quantity sinLat = sin(lat);
-    const quantity cosLat = cos(lat);
+    const Unitless sinLat = sin(lat);
+    const Unitless cosLat = cos(lat);
 
     const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
     const Unitless eSq = (2.0 - f) * f;

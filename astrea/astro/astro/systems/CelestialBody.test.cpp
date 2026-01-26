@@ -115,7 +115,7 @@ TEST_F(CelestialBodyTest, GetMass)
 
 TEST_F(CelestialBodyTest, GetEquitorialRadius)
 {
-    ASSERT_EQ_QUANTITY(earth.get_equitorial_radius(), 6378.1 * km, REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_equitorial_radius(), 6378.138 * km, REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetPolarRadius) { ASSERT_EQ_QUANTITY(earth.get_polar_radius(), 6356.752 * km, REL_TOL); }

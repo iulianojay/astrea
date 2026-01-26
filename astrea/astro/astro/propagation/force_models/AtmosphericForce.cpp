@@ -97,10 +97,6 @@ AccelerationVector<frames::earth::icrf>
 
 const Density AtmosphericForce::find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
-    // Central body properties
-    static const Distance equitorialR = center->get_equitorial_radius();
-    static const Distance polarR      = center->get_polar_radius();
-
     // Find altitude
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] =

@@ -105,11 +105,9 @@ AccelerationVector<frames::earth::icrf>
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / (mass * rMagVehicleToSun);
+    const Acceleration accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / mass;
 
-    const AccelerationVector<frames::earth::icrf> accelSRP = accelRelMag * rVehicleToSun;
-
-    return accelSRP;
+    return accelRelMag * rVehicleToSun / rMagVehicleToSun;
 }
 
 } // namespace astro

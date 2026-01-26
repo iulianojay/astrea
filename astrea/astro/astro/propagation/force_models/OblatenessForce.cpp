@@ -223,7 +223,6 @@ AccelerationVector<frames::earth::icrf>
 
     const Unitless sinLat = sin(latitude);
     const Unitless cosLat = cos(latitude);
-    const Unitless tanLat = tan(latitude);
 
     // Calculate serivative of gravitational potential field with respect to
     Unitless dVdr_   = 0.0 * astrea::detail::unitless; // radius

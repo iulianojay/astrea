@@ -19,9 +19,7 @@
 #include <math.h>
 #include <vector>
 
-// mp-units
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/si.h>
 
 #include <math/math.hpp>
@@ -228,7 +226,6 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
 
     // Propagate vehicle to initial time without storing
     const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    const auto diff         = abs(epoch - vehicleEpoch);
     if (abs(epoch - vehicleEpoch) > 1.0 * ms) {
         const Time propTime = epoch - vehicleEpoch;
         propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
