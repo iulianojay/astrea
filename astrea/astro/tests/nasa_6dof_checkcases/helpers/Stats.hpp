@@ -21,7 +21,6 @@
 #include <vector>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/international.h>
 

@@ -23,7 +23,6 @@
 #include <gtest/gtest.h>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 

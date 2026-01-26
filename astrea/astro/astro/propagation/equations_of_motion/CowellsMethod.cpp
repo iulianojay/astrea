@@ -49,8 +49,8 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // mu/R^3
-    const Distance R                 = r.norm();
-    const quantity muOverRadiusCubed = mu / (R * R * R);
+    const Distance R             = r.norm();
+    const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
     const Date date = vehicle.get_state().get_epoch();

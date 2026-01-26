@@ -22,7 +22,6 @@
 #include <typeinfo>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 
 #include <units/typedefs.hpp>
@@ -39,6 +38,13 @@ namespace astro {
 // TODO: Generalize this class further so it can accept copy/move assignment/construction
 // from other vectors in the same frame with a compatible unit (Value Type)
 
+
+template <class T, template <class...> class Template>
+struct is_specialization : std::false_type {};
+
+template <template <class...> class Template, class... Args>
+struct is_specialization<Template<Args...>, Template> : std::true_type {};
+
 /**
  * @brief Class representing a 3D vector in Cartesian coordinates.
  *
@@ -49,9 +55,6 @@ namespace astro {
  */
 template <class Value_T, class Frame_T>
 class CartesianVector {
-
-    template <class Value_U, class Frame_U>
-    friend std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_U, Frame_U>& state);
 
   public:
     /**
@@ -203,6 +206,7 @@ class CartesianVector {
      * @return CartesianVector<Value_T * Value_U, Frame_T> A new CartesianVector that is the product of this vector and the scalar.
      */
     template <typename Value_U>
+        requires(!is_specialization<Value_U, CartesianVector>::value)
     CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> operator*(const Value_U& scalar) const
     {
         return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>(_vector[0] * scalar, _vector[1] * scalar, _vector[2] * scalar);
@@ -230,6 +234,7 @@ class CartesianVector {
      * @return CartesianVector<decltype(Value_T{} / U{})> A new CartesianVector that is the quotient of this vector and the scalar.
      */
     template <typename Value_U>
+        requires(!is_specialization<Value_U, CartesianVector>::value)
     CartesianVector<decltype(Value_T{} / Value_U{}), Frame_T> operator/(const Value_U& scalar) const
     {
         return CartesianVector<decltype(Value_T{} / Value_U{}), Frame_T>(_vector[0] / scalar, _vector[1] / scalar, _vector[2] / scalar);
@@ -492,10 +497,11 @@ std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_
  * @return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> A new CartesianVector that is the product of the scalar and the vector.
  */
 template <typename Value_T, typename Value_U, typename Frame_T>
+    requires(!is_specialization<Value_U, CartesianVector>::value)
 CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
     operator*(const Value_U& scalar, const CartesianVector<Value_T, Frame_T>& vec)
 {
-    return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>(vec.get_x() * scalar, vec.get_y() * scalar, vec.get_z() * scalar);
+    return vec * scalar;
 }
 
 /**
@@ -508,10 +514,11 @@ CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
  * @return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> A new CartesianVector that is the quotient of the scalar and the vector.
  */
 template <typename Value_T, typename Value_U, typename Frame_T>
+    requires(!is_specialization<Value_U, CartesianVector>::value)
 CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
     operator/(const Value_U& scalar, const CartesianVector<Value_T, Frame_T>& vec)
 {
-    return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>(vec.get_x() / scalar, vec.get_y() / scalar, vec.get_z() / scalar);
+    return vec / scalar;
 }
 
 } // namespace astro

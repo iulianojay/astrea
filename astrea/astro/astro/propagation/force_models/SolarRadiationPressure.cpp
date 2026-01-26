@@ -105,15 +105,9 @@ AccelerationVector<frames::earth::icrf>
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
     const Mass mass                          = vehicle.get_mass();
-    const quantity accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / (mass * rMagVehicleToSun);
+    const Acceleration accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / mass;
 
-    // accelRelMag * rVehicleToSun fails to compile because it can't deduce the unit conversion
-    // TODO: Add constructor to CartesianVector that can deduce the unit conversion
-    const AccelerationVector<frames::earth::icrf> accelSRP = { accelRelMag * rVehicleToSun.get_x(),
-                                                               accelRelMag * rVehicleToSun.get_y(),
-                                                               accelRelMag * rVehicleToSun.get_z() };
-
-    return accelSRP;
+    return accelRelMag * rVehicleToSun / rMagVehicleToSun;
 }
 
 } // namespace astro
