@@ -66,37 +66,14 @@ class StateTransitionMatrix {
      * @tparam ii Row index
      * @tparam jj Column index
      * @param value Value to set
-     */
-    template <std::size_t ii, std::size_t jj>
-    void set(const auto& value)
-    {
-        std::visit([&](auto&& stm) { stm.template set<ii, jj>(value); }, _stm);
-    }
-
-    /**
-     * @brief Get the STM element at (ii, jj).
      *
-     * @tparam ii Row index
-     * @tparam jj Column index
-     * @return auto& STM element at (ii, jj)
+     * @note The value's unit will be forced to a unitless representation inside the STM. It is on the user to ensure
+     *  that the correct units are used for the STM elements. I'm sorry.
      */
-    template <std::size_t ii, std::size_t jj>
-    const auto& get() const
+    template <Quantity Value_T, std::size_t ii, std::size_t jj>
+    void set(const Value_T& value)
     {
-        return std::visit([&](auto&& stm) -> const auto& { return stm.template get<ii, jj>(); }, _stm);
-    }
-
-    /**
-     * @brief Get the STM element at (ii, jj).
-     *
-     * @tparam ii Row index
-     * @tparam jj Column index
-     * @return auto& STM element at (ii, jj)
-     */
-    template <std::size_t ii, std::size_t jj>
-    auto& get()
-    {
-        return std::visit([&](auto&& stm) -> auto& { return stm.template get<ii, jj>(); }, _stm);
+        _stm[ii][jj] = value.in(value.unit);
     }
 
     /**
@@ -104,13 +81,10 @@ class StateTransitionMatrix {
      *
      * @return std::vector<Unitless> Vector representation of the STM.
      */
-    std::vector<Unitless> force_force_to_vector() const
-    {
-        return std::visit([&](auto&& stm) -> std::vector<Unitless> { return stm.force_force_to_vector(); }, _stm);
-    }
+    std::vector<Unitless> force_to_vector() const;
 
   private:
-    std::variant<CartesianStm> _stm; //, KeplerianStm, EquinoctialStm> _stm;
+    std::array<std::array<Unitless, 6>, 6> _stm; //, KeplerianStm, EquinoctialStm> _stm;
 };
 
 } // namespace astro

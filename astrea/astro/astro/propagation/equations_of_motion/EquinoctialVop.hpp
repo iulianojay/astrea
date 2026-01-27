@@ -59,6 +59,15 @@ class EquinoctialVop : public EquationsOfMotion {
     OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
 
     /**
+     * @brief Computes the state transition matrix (STM) using Cowell's method.
+     *
+     * @param state The current orbital elements of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const override;
+
+    /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.
      *
      * @return std::size_t The expected set id of orbital elements.

@@ -38,6 +38,7 @@ namespace astro {
 class Equinoctial {
 
     friend std::ostream& operator<<(std::ostream&, Equinoctial const&);
+    friend class OrbitalElements;
 
   public:
     /**
@@ -350,6 +351,14 @@ class Equinoctial {
     Unitless _h;          //!< The first component of the planar vector
     Unitless _k;          //!< The second component of the planar vector
     Angle _trueLongitude; //!< True longitude of the orbit
+
+    /**
+     * @brief Creates a Equinoctial object from a vector of unitless values.
+     *
+     * @param vec Vector containing the components of the Equinoctial state vector.
+     * @return Equinoctial Constructed Equinoctial object.
+     */
+    static Equinoctial from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -402,6 +411,13 @@ class EquinoctialPartial {
      * @return Equinoctial Resulting Equinoctial state vector after multiplication.
      */
     Equinoctial operator*(const Time& time) const;
+
+    /**
+     * @brief Converts the EquinoctialPartial state vector to a vector of unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the components of the EquinoctialPartial state vector.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Velocity _semilatusPartial;        //!< Semilatus rectum partial derivative

@@ -86,7 +86,11 @@ StateTransitionMatrix TwoBody::compute_stm(const OrbitalElements& state, const V
     quantity muOverR3      = mu / pow<3>(R);
     quantity threeMuOverR5 = 3 * mu / pow<5>(R);
 
-    CartesianStm stm;
+    StateTransitionMatrix stm;
+
+    stm.set<0, 3>(1.0 * one);
+    stm.set<1, 4>(1.0 * one);
+    stm.set<2, 5>(1.0 * one);
 
     stm.set<3, 0>(-muOverR3 + threeMuOverR5 * x * x);
     stm.set<3, 1>(threeMuOverR5 * x * y);

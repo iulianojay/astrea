@@ -59,10 +59,7 @@ class EquationsOfMotion {
      * @param vehicle The vehicle for which the STM is being computed.
      * @return StateTransitionMatrix The computed state transition matrix.
      */
-    virtual StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
-    {
-        return StateTransitionMatrix(*this, state, vehicle);
-    };
+    virtual StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const = 0;
 
     /**
      * @brief Returns the expected set of orbital elements for this method.

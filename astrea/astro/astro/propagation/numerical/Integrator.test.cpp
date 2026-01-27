@@ -40,6 +40,11 @@ class DummyEOM : public EquationsOfMotion {
         return OrbitalElementPartials();
     }
 
+    StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const override
+    {
+        return StateTransitionMatrix();
+    }
+
     constexpr std::size_t get_expected_set_id() const override { return 0; }
 };
 

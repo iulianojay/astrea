@@ -108,6 +108,12 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
+
+StateTransitionMatrix KeplerianVop::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+{
+    return StateTransitionMatrix(*this, state, vehicle);
+}
+
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const
 {
     if (ecc <= checkTol * one || inc <= checkTol * rad) {

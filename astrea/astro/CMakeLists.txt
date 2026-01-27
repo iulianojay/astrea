@@ -44,6 +44,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
+    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/instances/CartesianStm.cpp
 
     ${ASTRO_BASE}/state/State.cpp

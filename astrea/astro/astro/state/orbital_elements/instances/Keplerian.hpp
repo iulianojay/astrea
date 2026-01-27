@@ -38,6 +38,7 @@ namespace astro {
 class Keplerian {
 
     friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+    friend class OrbitalElements;
 
   public:
     /**
@@ -418,6 +419,15 @@ class Keplerian {
      * @return Angle The interpolated angle at the target time.
      */
     Angle interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const;
+
+
+    /**
+     * @brief Creates a Keplerian object from a vector of unitless values.
+     *
+     * @param vec Vector containing the components of the Keplerian state vector.
+     * @return Keplerian Constructed Keplerian object.
+     */
+    static Keplerian from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -476,6 +486,13 @@ class KeplerianPartial {
      * @return Keplerian Resulting Keplerian state vector after multiplication.
      */
     Keplerian operator*(const Time& time) const;
+
+    /**
+     * @brief Converts the KeplerianPartial state vector to a vector of unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the components of the KeplerianPartial state vector.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Velocity _semimajorPartial;           //!< Semimajor axis partial derivative

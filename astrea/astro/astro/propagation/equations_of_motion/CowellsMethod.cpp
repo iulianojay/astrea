@@ -21,6 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 
@@ -58,6 +59,17 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
 
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
+}
+
+
+StateTransitionMatrix CowellsMethod::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+{
+    if (forces->size() == 0) {
+        // If no perturbations, use two-body STM
+        TwoBody twoBody(get_system());
+        return twoBody.compute_stm(state, vehicle);
+    }
+    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 } // namespace astro

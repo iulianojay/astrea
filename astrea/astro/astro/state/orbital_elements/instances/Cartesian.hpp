@@ -44,7 +44,7 @@ namespace astro {
 class Cartesian {
 
     friend std::ostream& operator<<(std::ostream&, Cartesian const&);
-    friend CartesianPartial;
+    friend class OrbitalElements;
 
   public:
     /**
@@ -396,6 +396,14 @@ class Cartesian {
   private:
     RadiusVector<frames::earth::icrf> _r;   //!< Position vector
     VelocityVector<frames::earth::icrf> _v; //!< Velocity vector
+
+    /**
+     * @brief Creates a Cartesian object from a vector of unitless values.
+     *
+     * @param vec Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
+     * @return Cartesian Constructed Cartesian object.
+     */
+    static Cartesian from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -448,6 +456,13 @@ class CartesianPartial {
      * @return Cartesian Resulting Cartesian state vector after multiplication.
      */
     Cartesian operator*(const Time& time) const;
+
+    /**
+     * @brief Converts the CartesianPartial state vector to a vector of unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the components of the CartesianPartial state vector.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     VelocityVector<frames::earth::icrf> _v;     //!< Velocity vector

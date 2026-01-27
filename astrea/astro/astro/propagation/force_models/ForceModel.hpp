@@ -50,6 +50,13 @@ class ForceModel {
     ~ForceModel() = default;
 
     /**
+     * @brief Returns the number of forces added to the ForceModel.
+     *
+     * @return std::size_t Number of forces.
+     */
+    std::size_t size() const { return forces.size(); }
+
+    /**
      * @brief Adds a force model of type T with the given arguments.
      *
      * @tparam T Type of the force model to add

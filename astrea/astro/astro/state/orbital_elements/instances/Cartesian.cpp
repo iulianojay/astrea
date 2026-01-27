@@ -265,15 +265,34 @@ Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, co
 
 std::vector<Unitless> Cartesian::force_to_vector() const
 {
-    return { _r[0] / astrea::detail::distance_unit,
-             _r[1] / astrea::detail::distance_unit,
-             _r[2] / astrea::detail::distance_unit,
-             _v[0] / (astrea::detail::distance_unit / astrea::detail::time_unit),
-             _v[1] / (astrea::detail::distance_unit / astrea::detail::time_unit),
-             _v[2] / (astrea::detail::distance_unit / astrea::detail::time_unit) };
+    return { _r[0] / _r[0].unit, _r[1] / _r[1].unit, _r[2] / _r[2].unit,
+             _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit };
+}
+
+Cartesian Cartesian::from_vector(const std::vector<Unitless>& vec)
+{
+    if (vec.size() != 6) {
+        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
+    }
+
+    return Cartesian(
+        vec[0] * astrea::detail::distance_unit,
+        vec[1] * astrea::detail::distance_unit,
+        vec[2] * astrea::detail::distance_unit,
+        vec[3] * astrea::detail::distance_unit / astrea::detail::time_unit,
+        vec[4] * astrea::detail::distance_unit / astrea::detail::time_unit,
+        vec[5] * astrea::detail::distance_unit / astrea::detail::time_unit
+    );
 }
 
 Cartesian CartesianPartial::operator*(const Time& time) const { return Cartesian(_v * time, _a * time); }
+
+
+std::vector<Unitless> CartesianPartial::force_to_vector() const
+{
+    return { _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit,
+             _a[0] / _a[0].unit, _a[1] / _a[1].unit, _a[2] / _a[2].unit };
+}
 
 std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
 {

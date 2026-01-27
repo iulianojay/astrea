@@ -393,9 +393,9 @@ Angle Keplerian::interpolate_angle(const std::vector<Time>& times, const std::ve
 
 std::vector<Unitless> Keplerian::force_to_vector() const
 {
-    return { _semimajor / astrea::detail::distance_unit, _eccentricity,
-             _inclination / astrea::detail::angle_unit,  _rightAscension / astrea::detail::angle_unit,
-             _argPerigee / astrea::detail::angle_unit,   _trueAnomaly / astrea::detail::angle_unit };
+    return { _semimajor / _semimajor.unit,     _eccentricity,
+             _inclination / _inclination.unit, _rightAscension / _rightAscension.unit,
+             _argPerigee / _argPerigee.unit,   _trueAnomaly / _trueAnomaly.unit };
 }
 
 void Keplerian::wrap_angles()
@@ -404,6 +404,21 @@ void Keplerian::wrap_angles()
     _rightAscension = wrap_angle(_rightAscension);
     _argPerigee     = wrap_angle(_argPerigee);
     _trueAnomaly    = wrap_angle(_trueAnomaly);
+}
+
+Keplerian Keplerian::from_vector(const std::vector<Unitless>& vec)
+{
+    if (vec.size() != 6) {
+        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Keplerian.");
+    }
+    return Keplerian(
+        vec[0] * detail::distance_unit,
+        vec[1],
+        vec[2] * detail::angle_unit,
+        vec[3] * detail::angle_unit,
+        vec[4] * detail::angle_unit,
+        vec[5] * detail::angle_unit
+    );
 }
 
 
@@ -417,6 +432,13 @@ Keplerian KeplerianPartial::operator*(const Time& time) const
         _argPerigeePartial * time,
         _trueAnomalyPartial * time
     );
+}
+
+std::vector<Unitless> KeplerianPartial::force_to_vector() const
+{
+    return { _semimajorPartial / _semimajorPartial.unit,     _eccentricityPartial / _eccentricityPartial.unit,
+             _inclinationPartial / _inclinationPartial.unit, _rightAscensionPartial / _rightAscensionPartial.unit,
+             _argPerigeePartial / _argPerigeePartial.unit,   _trueAnomalyPartial / _trueAnomalyPartial.unit };
 }
 
 std::ostream& operator<<(std::ostream& os, Keplerian const& elements)

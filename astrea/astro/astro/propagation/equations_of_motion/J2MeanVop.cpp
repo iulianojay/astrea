@@ -109,5 +109,11 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
+
+StateTransitionMatrix J2MeanVop::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+{
+    return StateTransitionMatrix(*this, state, vehicle);
+}
+
 } // namespace astro
 } // namespace astrea
