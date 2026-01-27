@@ -52,11 +52,11 @@ class Cartesian {
      *
      * Initializes the Cartesian state vector with zero values.
      */
-    Cartesian(Unitless scale = 0.0 * detail::unitless) :
-        _r(scale * detail::distance_unit, scale * detail::distance_unit, scale * detail::distance_unit),
-        _v(scale * detail::distance_unit / detail::time_unit,
-           scale * detail::distance_unit / detail::time_unit,
-           scale * detail::distance_unit / detail::time_unit)
+    Cartesian(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _r(scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit),
+        _v(scale * astrea::detail::distance_unit / astrea::detail::time_unit,
+           scale * astrea::detail::distance_unit / astrea::detail::time_unit,
+           scale * astrea::detail::distance_unit / astrea::detail::time_unit)
     {
     }
 
@@ -379,7 +379,7 @@ class Cartesian {
      *
      * @return std::vector<Unitless> Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
     /**
      * @brief Interpolates between two Cartesian states at a given time.

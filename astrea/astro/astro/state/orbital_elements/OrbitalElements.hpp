@@ -94,7 +94,7 @@ concept HasIterpolate =
  */
 template <typename T>
 concept HasToVector = requires(const T elements) {
-    { elements.to_vector() } -> std::same_as<std::vector<Unitless>>;
+    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
 };
 
 /**
@@ -330,7 +330,7 @@ class OrbitalElements {
      * @param other Another OrbitalElements object
      * @return Resultant vector of unitless values after division.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
     /**
      * @brief Divides the OrbitalElements by a scalar.

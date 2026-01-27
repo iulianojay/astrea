@@ -263,7 +263,7 @@ Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, co
     return Cartesian(output, mu);
 }
 
-std::vector<Unitless> Cartesian::to_vector() const
+std::vector<Unitless> Cartesian::force_to_vector() const
 {
     return { _r[0] / astrea::detail::distance_unit,
              _r[1] / astrea::detail::distance_unit,

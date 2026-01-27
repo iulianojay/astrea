@@ -51,24 +51,14 @@ class StateTransitionMatrix {
     }
 
     /**
-     * @brief Constructor for StateTransitionMatrix from a KeplerianStm.
+     * @brief Constructor for StateTransitionMatrix. Uses the provided equations of motion
+     *  and state to initialize the STM numerically.
      *
-     * @param stm The KeplerianStm to initialize from.
+     * @param eom Equations of motion object
+     * @param state Current orbital elements state vector
+     * @param vehicle Vehicle object
      */
-    // StateTransitionMatrix(KeplerianStm stm) :
-    //     _stm(stm)
-    // {
-    // }
-
-    // /**
-    //  * @brief Constructor for StateTransitionMatrix from an EquinoctialStm.
-    //  *
-    //  * @param stm The EquinoctialStm to initialize from.
-    //  */
-    // StateTransitionMatrix(EquinoctialStm stm) :
-    //     _stm(stm)
-    // {
-    // }
+    StateTransitionMatrix(const EquationsOfMotion& eom, const OrbitalElements& state, const Vehicle& vehicle);
 
     /**
      * @brief Set the STM element at (ii, jj) to the provided value.
@@ -114,9 +104,9 @@ class StateTransitionMatrix {
      *
      * @return std::vector<Unitless> Vector representation of the STM.
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<Unitless> force_force_to_vector() const
     {
-        return std::visit([&](auto&& stm) -> std::vector<Unitless> { return stm.force_to_vector(); }, _stm);
+        return std::visit([&](auto&& stm) -> std::vector<Unitless> { return stm.force_force_to_vector(); }, _stm);
     }
 
   private:

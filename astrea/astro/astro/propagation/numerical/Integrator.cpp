@@ -380,8 +380,8 @@ Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const Orbit
 
     // Find max error from step
     Unitless maxError           = 0.0 * astrea::detail::unitless;
-    const auto stateErrorScaled = stateError.to_vector();
-    const auto stateNewScaled   = stateNew.to_vector();
+    const auto stateErrorScaled = stateError.force_to_vector();
+    const auto stateNewScaled   = stateNew.force_to_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
         const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
@@ -549,7 +549,7 @@ bool Integrator::check_event(const Time& time, const OrbitalElements& state, con
 bool Integrator::validate_state_and_time(const Time& time, const OrbitalElements& state) const
 {
     if (isinf(abs(time)) || isnan(abs(time))) { return false; }
-    for (const auto& x : state.to_vector()) {
+    for (const auto& x : state.force_to_vector()) {
         if (isinf(abs(x)) || isnan(abs(x))) { return false; }
     }
     return true;

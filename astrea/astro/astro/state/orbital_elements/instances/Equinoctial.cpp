@@ -227,7 +227,7 @@ Equinoctial
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-std::vector<Unitless> Equinoctial::to_vector() const
+std::vector<Unitless> Equinoctial::force_to_vector() const
 {
     return { _semilatus / astrea::detail::distance_unit, _f, _g, _h, _k, _trueLongitude / astrea::detail::angle_unit };
 }

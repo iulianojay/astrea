@@ -61,7 +61,7 @@ class EquationsOfMotion {
      */
     virtual StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
     {
-        throw std::runtime_error("STM computation not implemented for these equations of motion.");
+        return StateTransitionMatrix(*this, state, vehicle);
     };
 
     /**

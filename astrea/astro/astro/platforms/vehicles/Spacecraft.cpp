@@ -141,7 +141,7 @@ Cartesian Spacecraft::get_cartesian_state(const Date& date) const
 
 void Spacecraft::generate_id_hash()
 {
-    const auto elements0 = _state0.get_elements().to_vector();
+    const auto elements0 = _state0.get_elements().force_to_vector();
     _id = std::hash<Unitless>()(elements0[0]) ^ std::hash<Unitless>()(elements0[1]) ^ std::hash<Unitless>()(elements0[2]) ^
           std::hash<Unitless>()(elements0[3]) ^ std::hash<Unitless>()(elements0[4]) ^ std::hash<Unitless>()(elements0[5]);
     _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));

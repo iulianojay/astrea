@@ -392,7 +392,7 @@ class Keplerian {
      * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
      * argument of perigee, and true anomaly components of the Keplerian state vector.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Distance _semimajor;    //!< Semimajor axis of the orbit

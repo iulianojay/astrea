@@ -329,7 +329,7 @@ class Equinoctial {
      *
      * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
     /**
      * @brief Interpolates the Equinoctial state vector between two time instances.

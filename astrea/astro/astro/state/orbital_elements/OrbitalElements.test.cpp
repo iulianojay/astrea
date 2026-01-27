@@ -102,7 +102,8 @@ TEST_F(OrbitalElementsTest, ConvertToSetCartesian)
     newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_mu););
+    ASSERT_NO_THROW(OrbitalElements newElements =
+                        static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_mu););
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _mu)
     );
@@ -138,7 +139,8 @@ TEST_F(OrbitalElementsTest, ConvertToSetEquinoctial)
     newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian>(_mu););
+    ASSERT_NO_THROW(OrbitalElements newElements =
+                        static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian>(_mu););
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_equiElements).convert_to_set(OrbitalElements::get_set_id<Cartesian>(), _mu)
     );
@@ -231,9 +233,9 @@ TEST_F(OrbitalElementsTest, DivisionByTime)
 
 TEST_F(OrbitalElementsTest, ToVector)
 {
-    ASSERT_NO_THROW(_cartElements.to_vector());
-    ASSERT_NO_THROW(_keplElements.to_vector());
-    ASSERT_NO_THROW(_equiElements.to_vector());
+    ASSERT_NO_THROW(_cartElements.force_to_vector());
+    ASSERT_NO_THROW(_keplElements.force_to_vector());
+    ASSERT_NO_THROW(_equiElements.force_to_vector());
 }
 
 TEST_F(OrbitalElementsTest, InterpolateCartesian)

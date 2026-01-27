@@ -167,7 +167,7 @@ class CartesianStm {
      *
      * @return std::vector<Unitless> Vector representation of the STM.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<Unitless> force_force_to_vector() const;
 
     /**
      * @brief Default destructor for CartesianStm.

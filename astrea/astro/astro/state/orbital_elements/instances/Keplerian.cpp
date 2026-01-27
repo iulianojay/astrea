@@ -391,7 +391,7 @@ Angle Keplerian::interpolate_angle(const std::vector<Time>& times, const std::ve
     return math::interpolate<Time, Angle>(times, { angles[0], angles[1] }, targetTime);
 }
 
-std::vector<Unitless> Keplerian::to_vector() const
+std::vector<Unitless> Keplerian::force_to_vector() const
 {
     return { _semimajor / astrea::detail::distance_unit, _eccentricity,
              _inclination / astrea::detail::angle_unit,  _rightAscension / astrea::detail::angle_unit,

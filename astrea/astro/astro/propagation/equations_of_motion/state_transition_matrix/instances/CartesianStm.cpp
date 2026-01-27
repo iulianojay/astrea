@@ -10,7 +10,7 @@ CartesianStm::CartesianStm(const EquationsOfMotion& eom, const Cartesian& state)
     // do this numerically
 }
 
-std::vector<Unitless> CartesianStm::force_to_vector() const
+std::vector<Unitless> CartesianStm::force_force_to_vector() const
 {
     // Fill in the STM elements in row-major order
     std::vector<Unitless> stmVector(36);
