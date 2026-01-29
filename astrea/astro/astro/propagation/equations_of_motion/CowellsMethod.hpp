@@ -50,11 +50,12 @@ class CowellsMethod : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using Cowell's method.
      *
+     * @param date The current date for which the equations of motion are being computed.
      * @param state The current orbital elements of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Returns the expected set of orbital elements for this method.

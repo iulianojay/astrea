@@ -223,6 +223,7 @@ class Integrator {
 
     // Time variables
     Time _timeStepPrevious; //!< Previous time step used in the integration
+    Date _epoch0;           //!< Initial epoch for the propagation
 
     // Error variables
     Unitless _maxErrorPrevious; //!< Maximum error from the previous step

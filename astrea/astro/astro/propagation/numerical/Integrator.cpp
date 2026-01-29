@@ -51,7 +51,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle);
+    return eom(_epoch0 + time, state, vehicle);
 }
 
 
@@ -92,6 +92,7 @@ StateHistory Integrator::propagate(
     if (!forwardTime) { timeStep = -timeStep; }
 
     // States
+    _epoch0                      = epoch;
     const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle, events);
     OrbitalElements state        = state0;
 

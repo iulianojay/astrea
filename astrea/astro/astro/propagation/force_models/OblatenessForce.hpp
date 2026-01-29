@@ -52,16 +52,6 @@ class LegendreCache {
     LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
 
     /**
-     * @brief Gets the exact Legendre polynomial value for given n, m, and x.
-     *
-     * @param n Degree of the polynomial
-     * @param m Order of the polynomial
-     * @param x Value at which to evaluate the polynomial
-     * @return Unitless The value of the Legendre polynomial Pnm at x
-     */
-    Unitless get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
-
-    /**
      * @brief Gets the cosine coefficient for given n and m.
      *
      * @param n Degree of the polynomial
@@ -86,10 +76,10 @@ class LegendreCache {
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
      */
-    void assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x);
+    std::vector<std::vector<Unitless>>
+        get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
   private:
-    std::vector<std::vector<Unitless>> _P{};                       //!< Legendre polynomial coefficients
     std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
     std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
     std::vector<std::vector<Unitless>> _S{};                       //!< Sine coefficients for the spherical harmonics

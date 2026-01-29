@@ -39,7 +39,7 @@ CowellsMethod::CowellsMethod(const AstrodynamicsSystem& system, const ForceModel
 {
 }
 
-OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials CowellsMethod::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
 {
     // Extract
     const GravParam& mu       = get_system().get_mu();
@@ -53,7 +53,6 @@ OrbitalElementPartials CowellsMethod::operator()(const OrbitalElements& state, c
     const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const Date date = vehicle.get_state().get_epoch();
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Derivative

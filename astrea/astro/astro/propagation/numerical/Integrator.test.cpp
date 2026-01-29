@@ -35,7 +35,7 @@ class DummyEOM : public EquationsOfMotion {
     {
     }
 
-    OrbitalElementPartials operator()(const OrbitalElements&, const Vehicle&) const override
+    OrbitalElementPartials operator()(const Date& epoch, const OrbitalElements&, const Vehicle&) const override
     {
         return OrbitalElementPartials();
     }

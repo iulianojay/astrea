@@ -198,10 +198,8 @@ OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { retu
 
 void throw_mismatched_types()
 {
-    throw std::runtime_error(
-        "Cannot perform operations on orbital elements from different "
-        "element sets."
-    );
+    throw std::runtime_error("Cannot perform operations on orbital elements from different "
+                             "element sets.");
 }
 
 
