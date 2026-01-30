@@ -457,10 +457,8 @@ AccelerationVector<frames::earth::icrf>
     const Acceleration muOverR2 = mu / (equitorialR * equitorialR);
     const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
-    // Transform back to inertial frame
-    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
-
-    return accelOblatenessIcrf;
+    // Transform back to inertial frame - original values are in ecef, not w.r.t ecef
+    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
 }
 
 } // namespace astro

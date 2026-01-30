@@ -257,16 +257,19 @@ class Orbital6DofTest : public testing::Test {
         return results;
     }
 
-    void compare_all_propagations_to_checkcases(const std::vector<std::pair<StateHistory, std::string>>& propHistories, const std::string& checkcaseName) const
+    void compare_all_propagations_to_checkcases(const std::vector<std::pair<StateHistory, std::string>>& propagations, const std::string& checkcaseName) const
     {
         const auto checkcases = get_checkcase_histories(checkcaseName + "%%");
 
         std::vector<std::vector<RStats>> allRStats;
         std::vector<std::vector<VStats>> allVStats;
+
+        std::vector<StateHistory> checkcaseHistories;
+        std::vector<std::string> checkcaseLabels;
         for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
             std::vector<RStats> rStatsList;
             std::vector<VStats> vStatsList;
-            for (const auto& [propHistory, propLabel] : propHistories) {
+            for (const auto& [propHistory, propLabel] : propagations) {
                 const auto [rStats, vStats] =
                     validate_propagation_vs_checkcase(propHistory, propLabel, checkcaseHistory, checkcaseLabel, checkcaseName);
                 rStatsList.push_back(rStats);
@@ -274,12 +277,29 @@ class Orbital6DofTest : public testing::Test {
             }
 
             std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel;
-            make_summary_for_all_propagations(rStatsList, vStatsList, propHistories, checkcaseLabel, base);
+            make_summary_for_all_propagations(rStatsList, vStatsList, propagations, checkcaseLabel, base);
 
             allRStats.push_back(rStatsList);
             allVStats.push_back(vStatsList);
+
+            checkcaseHistories.push_back(checkcaseHistory);
+            checkcaseLabels.push_back(checkcaseLabel);
         }
-        make_summary_for_all_checkcases(propHistories, checkcases, checkcaseName, allRStats, allVStats);
+        make_summary_for_all_checkcases(propagations, checkcases, checkcaseName, allRStats, allVStats);
+
+        std::vector<StateHistory> propHistories;
+        std::vector<std::string> propLabels;
+        for (const auto& [propHistory, propLabel] : propagations) {
+            propHistories.push_back(propHistory);
+            propLabels.push_back(propLabel);
+        }
+
+        for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
+            std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel;
+            make_comparison_plots(propHistories, propLabels, checkcaseHistory, checkcaseLabel, base);
+        }
+
+        make_comparison_plots(propHistories, propLabels, checkcaseHistories, checkcaseLabels, outputDir / checkcaseName);
     }
 
     std::pair<RStats, VStats> validate_propagation_vs_checkcase(
@@ -414,6 +434,42 @@ class Orbital6DofTest : public testing::Test {
 
         std::vector<StateHistory> histories = { checkcaseHistory, propHistory };
         std::vector<std::string> labels     = { checkcaseLabel, propLabel };
+        plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
+        plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+    }
+
+    void make_comparison_plots(
+        const std::vector<StateHistory>& propHistories,
+        const std::vector<std::string>& propLabels,
+        const StateHistory& checkcaseHistory,
+        const std::string& checkcaseLabel,
+        const std::filesystem::path& base
+    ) const
+    {
+        std::vector<StateHistory> histories = propHistories;
+        histories.push_back(checkcaseHistory);
+
+        std::vector<std::string> labels = propLabels;
+        labels.push_back(checkcaseLabel);
+
+        plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
+        plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+    }
+
+    void make_comparison_plots(
+        const std::vector<StateHistory>& propHistories,
+        const std::vector<std::string>& propLabels,
+        const std::vector<StateHistory>& checkcaseHistories,
+        const std::vector<std::string>& checkcaseLabels,
+        const std::filesystem::path& base
+    ) const
+    {
+        std::vector<StateHistory> histories = checkcaseHistories;
+        histories.insert(histories.end(), propHistories.begin(), propHistories.end());
+
+        std::vector<std::string> labels = checkcaseLabels;
+        labels.insert(labels.end(), propLabels.begin(), propLabels.end());
+
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
     }
