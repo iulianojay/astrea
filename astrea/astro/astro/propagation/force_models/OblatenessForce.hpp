@@ -79,6 +79,14 @@ class LegendreCache {
     std::vector<std::vector<Unitless>>
         get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
+    /**
+     * @brief Gets the normalizing coefficient for given n and m.
+     * @param n Degree of the polynomial
+     * @param m Order of the polynomial
+     * @return Unitless The value of the normalizing coefficient Nnm
+     */
+    Unitless get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const;
+
   private:
     std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
     std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
@@ -134,6 +142,22 @@ class OblatenessForce : public Force {
      */
     CartesianVector<Acceleration, frames::earth::icrf>
         compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+
+    /**
+     * @brief Computes the gravitational force using Montenbruck & Gill (2000) V and W recurrence relations.
+     *
+     * This method implements the algorithm from "Satellite Orbits: Models, Methods and Applications"
+     * by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
+     * with recurrence relations for more efficient and numerically stable computation.
+     *
+     * @param date Date of the computation
+     * @param state Cartesian state vector of the vehicle
+     * @param vehicle Vehicle object representing the spacecraft
+     * @param sys Astrodynamics system containing celestial body data
+     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
+     */
+    CartesianVector<Acceleration, frames::earth::icrf>
+        compute_force_mg(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics

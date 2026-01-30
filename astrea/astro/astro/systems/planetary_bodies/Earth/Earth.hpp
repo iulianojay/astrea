@@ -55,14 +55,17 @@ class Earth : public CelestialBody {
             // GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - real published number
             GravParam(398600.436 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - number that matches the NASA checkcases
             Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(6378.1363 * mp_units::si::unit_symbols::km),                        //!< Equatorial radius
-            Distance(6356.752 * mp_units::si::unit_symbols::km),                         //!< Polar radius
-            Distance(6478.1 * mp_units::si::unit_symbols::km),                           //!< Crash radius
-            Distance(0.092449582665046 * mp_units::iau::unit_symbols::au),               //!< Crash radius
-            Unitless(1082.63e-6 * mp_units::one),                    //!< J2 gravitational coefficient
+            Distance(6378.137 * mp_units::si::unit_symbols::km),                         //!< Equatorial radius
+            // Distance(6356.752 * mp_units::si::unit_symbols::km),                         //!< Polar radius
+            Distance(6356755.38082 * mp_units::si::unit_symbols::m),       //!< Polar radius
+            Distance(6478.1 * mp_units::si::unit_symbols::km),             //!< Crash radius
+            Distance(0.092449582665046 * mp_units::iau::unit_symbols::au), //!< Crash radius
+            // Unitless(1082.63e-6 * mp_units::one),                    //!< J2 gravitational coefficient
+            Unitless(0.00108262982 * mp_units::one),                 //!< J2 gravitational coefficient
             Unitless(-0.0000025323 * mp_units::one),                 //!< J3 gravitational coefficient
             Angle(23.439292 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
-            AngularRate(360.9851887442813 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
+            // AngularRate(360.9851887442813 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
+            AngularRate(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s), //!< Rotation rate
             Time(365.256 * mp_units::non_si::day),                      //!< Sidereal period
             Distance(1.00000261 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
             Unitless(0.01671123 * mp_units::one),                       //!< Eccentricity

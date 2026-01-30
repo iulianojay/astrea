@@ -456,7 +456,7 @@ TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblatness)
+TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 {
     ForceModel forces;
     forces.add<OblatenessForce>(sys, 4, 4);
@@ -467,7 +467,7 @@ TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblatness)
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblatness)
+TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 {
     ForceModel forces;
     forces.add<OblatenessForce>(sys, 8, 8);

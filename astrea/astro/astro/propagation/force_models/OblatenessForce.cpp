@@ -99,8 +99,9 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
             break;
 
         case CelestialBodyId::EARTH:
-            filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+            // filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
             // filename = path / "Earth" / "WGS84"; // Normalized
+            filename = path / "Earth" / "NASA_6DoF"; // Normalized
             break;
 
         case CelestialBodyId::MOON:
@@ -146,7 +147,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
     for (std::size_t n = 0; n <= degree; ++n) {
         for (std::size_t m = 0; m <= std::min(n, order); ++m) {
             // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
-            Unitless factorialCoefficient = 1.0 * astrea::detail::unitless;
+            Unitless factorialCoefficient = 1.0 * one;
             for (std::size_t ii = n - m + 1; ii <= n + m; ++ii) {
                 factorialCoefficient *= ii;
             }
@@ -171,17 +172,6 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 std::vector<std::vector<Unitless>>
     LegendreCache::get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const
 {
-    // Use recursive formulas to compute associated Legendre polynomials P_n^m(x)
-    // More efficient than computing each P_n^m independently
-    //
-    // References:
-    // - Press, W. H., et al. (2007). Numerical Recipes: The Art of Scientific Computing (3rd ed.). Cambridge University Press.
-    //   Section 6.7: Spherical Harmonics
-    // - Abramowitz, M., & Stegun, I. A. (1964). Handbook of Mathematical Functions. National Bureau of Standards.
-    //   Section 8.5: Associated Legendre Functions
-    // - Holmes, S. A., & Featherstone, W. E. (2002). A unified approach to the Clenshaw summation and the recursive
-    //   computation of very high degree and order normalised associated Legendre functions. Journal of Geodesy, 76(5), 279-299.
-
     std::vector<std::vector<Unitless>> P(degree + 1);
     for (std::size_t n = 0; n < degree + 1; ++n) {
         P[n].resize(order + 1, 0.0 * one);
@@ -193,19 +183,17 @@ std::vector<std::vector<Unitless>>
     Unitless Pmm = 1.0 * one; // P_0^0 = 1
     for (std::size_t m = 0; m <= std::min(degree, order); ++m) {
         if (m > 0) {
-            // P_m^m = -(2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
-            Pmm *= -(2.0 * m - 1.0) * sqrtOneMinusX2;
+            // P_m^m = (2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
+            Pmm *= (2.0 * m - 1.0) * sqrtOneMinusX2;
         }
 
-        const auto sign = ((m % 2 == 0) ? 1.0 : -1.0) * one;
-
-        if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm * sign; }
+        if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm; }
 
         // Compute P_{m+1}^m if m+1 <= degree
         if (m + 1 <= degree) {
             // P_{m+1}^m = x * (2m+1) * P_m^m
             const Unitless Pmp1m = x * (2.0 * m + 1.0) * Pmm;
-            if (m + 1 >= 2) { P[m + 1][m] = _normalizingCoefficients[m + 1][m] * Pmp1m * sign; }
+            if (m + 1 >= 2) { P[m + 1][m] = _normalizingCoefficients[m + 1][m] * Pmp1m; }
 
             // Compute P_n^m for n > m+1 using three-term recursion
             // (n-m)*P_n^m = x*(2n-1)*P_{n-1}^m - (n+m-1)*P_{n-2}^m
@@ -215,7 +203,7 @@ std::vector<std::vector<Unitless>>
             for (std::size_t n = m + 2; n <= degree; ++n) {
                 const Unitless Pnm = (x * (2.0 * n - 1.0) * Pnm1 - (n + m - 1.0) * Pnm2) / (n - m);
 
-                if (n >= 2) { P[n][m] = _normalizingCoefficients[n][m] * Pnm * sign; }
+                if (n >= 2) { P[n][m] = _normalizingCoefficients[n][m] * Pnm; }
 
                 // Shift for next iteration
                 Pnm2 = Pnm1;
@@ -225,6 +213,12 @@ std::vector<std::vector<Unitless>>
     }
 
     return P;
+}
+
+
+Unitless LegendreCache::get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const
+{
+    return _normalizingCoefficients[n][m];
 }
 
 
@@ -246,46 +240,45 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size
 AccelerationVector<frames::earth::icrf>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
-    using eci  = frames::earth::icrf;
-    using ecef = frames::earth::earth_fixed;
-
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
     const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
     // Find lat and lon
-    const RadiusVector<eci> rEci               = state.get_position();
-    const RadiusVector<ecef> rEcef             = state.get_position().in_frame<ecef>(date);
-    const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geodetic(rEcef, equitorialR, polarR);
+    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geocentric(rEcef, equitorialR, polarR);
 
     // Precomput common terms
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
     const Distance& zEcef = rEcef[2];
 
-    const auto oneOverR = 1.0 / rEci.norm();
-
+    const Distance rho              = sqrt(xEcef * xEcef + yEcef * yEcef);
+    const auto oneOverR             = 1.0 / rEci.norm();
     const Unitless equitorialROverR = equitorialR * oneOverR;
 
     const Unitless sinLat = sin(latitude);
     const Unitless cosLat = cos(latitude);
+    const Unitless tanLat = tan(latitude);
 
+    // Get Legendre polynomial coefficients
     const auto P = _legendreCache.get_legendre_coefficients(_degree, _order, sinLat);
 
     // Calculate serivative of gravitational potential field with respect to
-    Unitless dVdr_   = 0.0 * astrea::detail::unitless; // radius
-    Unitless dVdlat_ = 0.0 * astrea::detail::unitless; // geocentric latitude
-    Unitless dVdlon_ = 0.0 * astrea::detail::unitless; // longitude
+    Unitless dVdrOuterSum   = 0.0 * one; // radius
+    Unitless dVdlatOuterSum = 0.0 * one; // geocentric latitude
+    Unitless dVdlonOuterSum = 0.0 * one; // longitude
     for (std::size_t n = 2; n < _degree + 1; ++n) {
-        const Unitless nn = static_cast<double>(n) * astrea::detail::unitless;
+        const Unitless nn = static_cast<double>(n) * one;
 
         // Reset inner sums
-        Unitless dVdrInnerSum   = 0.0 * astrea::detail::unitless;
-        Unitless dVdlatInnerSum = 0.0 * astrea::detail::unitless;
-        Unitless dVdlonInnerSum = 0.0 * astrea::detail::unitless;
+        Unitless dVdrInnerSum   = 0.0 * one;
+        Unitless dVdlatInnerSum = 0.0 * one;
+        Unitless dVdlonInnerSum = 0.0 * one;
         for (std::size_t m = 0; m < std::min(n, _order) + 1; ++m) {
-            const Unitless mm = static_cast<double>(m) * astrea::detail::unitless;
+            const Unitless mm = static_cast<double>(m) * one;
 
             // Precalculate common terms
             const Unitless Pnm = P[n][m];
@@ -300,8 +293,8 @@ AccelerationVector<frames::earth::icrf>
             dVdrInnerSum += cCosPlusSSin * Pnm;
 
             // dVdlat
-            Unitless dPnmdLat = mm * sinLat * Pnm;
-            if (m < n) { dPnmdLat += cosLat * sqrt((nn - mm) * (nn + mm + 1.0)) * P[n][m + 1]; }
+            Unitless dPnmdLat = mm * tanLat * Pnm;
+            if (m < n) { dPnmdLat += sqrt((nn - mm) * (nn + mm + 1.0)) * P[n][m + 1] * cosLat; }
             dVdlatInnerSum += cCosPlusSSin * dPnmdLat;
 
             // dVdlon
@@ -319,44 +312,46 @@ AccelerationVector<frames::earth::icrf>
             dVdlon =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M))   m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
         */
 
-        dVdr_ += rRatio * (nn + 1.0) * dVdrInnerSum;
-        dVdlat_ += rRatio * dVdlatInnerSum;
-        dVdlon_ += rRatio * dVdlonInnerSum;
+        dVdrOuterSum += rRatio * (nn + 1.0) * dVdrInnerSum;
+        dVdlatOuterSum += rRatio * dVdlatInnerSum;
+        dVdlonOuterSum += rRatio * dVdlonInnerSum;
     }
 
     // Correct
     const auto muOverR = mu * oneOverR; // km^2/s^2
 
-    const auto dVdr   = -dVdr_ * (muOverR * oneOverR); // km/s^2
-    const auto dVdlat = dVdlat_ * muOverR;             // km^2/s^2
-    const auto dVdlon = dVdlon_ * muOverR;             // TODO: Investigate: My notes say this: dVdlon_ * (muOverR *
-                                                       // oneOverR) but units imply what's uncommented -> km^2/s^2
+    const auto dVdr   = -dVdrOuterSum * (muOverR * oneOverR); // km/s^2
+    const auto dVdlat = dVdlatOuterSum * muOverR;             // km^2/s^2
+    const auto dVdlon = dVdlonOuterSum * muOverR;             // km^2/s^2
 
     // Calculate partials of radius, geocentric latitude, and longitude with respect to radius in Ecef frame
-    const Distance planarR = sqrt(xEcef * xEcef + yEcef * yEcef); // km
-
-    const auto term1 = oneOverR * (dVdr - zEcef * oneOverR / planarR * dVdlat);
-    const auto term2 = dVdlon / (planarR * planarR);
+    const auto term1 = oneOverR * (dVdr - zEcef * oneOverR / rho * dVdlat);
+    const auto term2 = dVdlon / (rho * rho);
 
     // Calculate accel in ECEF (not with respect to ECEF)
-    AccelerationVector<ecef> accelOblatenessEcef = {
-        term1 * xEcef - term2 * yEcef,                          //
-        term1 * yEcef + term2 * xEcef,                          //
-        oneOverR * (dVdr * zEcef + oneOverR * planarR * dVdlat) //
+    const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
+        term1 * xEcef - term2 * yEcef,                      //
+        term1 * yEcef + term2 * xEcef,                      //
+        oneOverR * (dVdr * zEcef + oneOverR * rho * dVdlat) //
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    const AccelerationVector<eci> accelOblatenessIcrf = accelOblatenessEcef.in_frame<eci>(date);
-    static bool compare                               = true;
+    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+
+    const auto recurrence = compute_force_mg(date, state, vehicle, sys);
+
+    static bool compare = true;
     if (compare) { // TODO: Remove this
-        const AccelerationVector<eci> gravity = -mu / pow<3>(rEci.norm()) * rEci;
-        AccelerationVector<eci> expected      = { 5.51387371235876 * m / (s * s),
-                                                  -1.22700119262805 * m / (s * s),
-                                                  -6.62056474851441 * m / (s * s) };
+        const AccelerationVector<frames::earth::icrf> gravity = -mu / pow<3>(rEci.norm()) * rEci;
+        AccelerationVector<frames::earth::icrf> expected      = { 5.51387371235876 * m / (s * s),
+                                                                  -1.22700119262805 * m / (s * s),
+                                                                  -6.62056474851441 * m / (s * s) };
         expected -= gravity;
 
-        const AccelerationVector<eci> diff = accelOblatenessIcrf - expected;
+        const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
 
+        std::cout << "Gravity: " << gravity << " (" << gravity.norm() << ")" << std::endl;
+        std::cout << "Recurrence Accel: " << recurrence << " (" << recurrence.norm() << ")" << std::endl;
         std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
         std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
         std::cout << "Difference: " << diff << " (" << diff.norm() << ")" << std::endl;
@@ -365,6 +360,129 @@ AccelerationVector<frames::earth::icrf>
 
         compare = false;
     }
+    return recurrence;
+}
+
+
+AccelerationVector<frames::earth::icrf>
+    OblatenessForce::compute_force_mg(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+{
+    // Montenbruck & Gill (2000) V and W recurrence relations method
+    // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
+
+    // Central body properties
+    const GravParam& mu         = _sys->get_mu();
+    const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
+
+    // Transform position to body-fixed frame
+    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+
+    // Position components in ECEF
+    const Distance& x = rEcef[0];
+    const Distance& y = rEcef[1];
+    const Distance& z = rEcef[2];
+
+    // Compute derived quantities
+    const Distance r          = rEci.norm();
+    const Unitless xOverR     = x / r;
+    const Unitless yOverR     = y / r;
+    const Unitless zOverR     = z / r;
+    const Unitless rEqOverR   = equitorialR / r;
+    const Unitless rEqOverRSq = pow<2>(rEqOverR);
+
+    // Initialize V and W matrices
+    // V[n][m] and W[n][m] for n=0 to degree, m=0 to order
+    std::vector<std::vector<Unitless>> V(_degree + 2);
+    std::vector<std::vector<Unitless>> W(_degree + 2);
+
+    for (std::size_t n = 0; n <= _degree + 1; ++n) {
+        V[n].resize(_order + 2, 0.0 * one);
+        W[n].resize(_order + 2, 0.0 * one);
+    }
+
+    // Compute V and W using recurrence relations (Montenbruck & Gill Eq. 3.33)
+    // Base case: V[0][0] = Re/r, W[0][0] = 0
+    V[0][0] = rEqOverR;
+
+    // Combined recursion for V[n][m] and W[n][m]
+    for (std::size_t m = 0; m <= _order + 1; ++m) {
+        const Unitless mm = static_cast<double>(m) * one;
+
+        for (std::size_t n = (m == 0 ? 1 : m); n <= _degree + 1; ++n) {
+            const Unitless nn = static_cast<double>(n) * one;
+
+            if (m == 0) {
+                // First column recursion: V[n][0] and W[n][0]
+                V[n][0] = ((2.0 * nn - 1.0) / nn) * zOverR * rEqOverR * V[n - 1][0];
+                if (n > 1) { V[n][0] -= ((nn - 1.0) / nn) * rEqOverRSq * V[n - 2][0]; }
+            }
+            else if (n == m) {
+                // Diagonal recursion: V[m][m] and W[m][m]
+                V[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * V[m - 1][m - 1] - yOverR * W[m - 1][m - 1]);
+                W[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * W[m - 1][m - 1] + yOverR * V[m - 1][m - 1]);
+            }
+            else {
+                // General recursion for n > m
+                const Unitless factor1 = rEqOverR * zOverR * (2.0 * nn - 1.0) / (nn - mm);
+                const Unitless factor2 = rEqOverRSq * (nn + mm - 1.0) / (nn - mm);
+
+                V[n][m] = factor1 * V[n - 1][m];
+                W[n][m] = factor1 * W[n - 1][m];
+
+                if (n > 2) {
+                    V[n][m] -= factor2 * V[n - 2][m];
+                    W[n][m] -= factor2 * W[n - 2][m];
+                }
+            }
+        }
+    }
+
+    // Compute acceleration components using V and W
+    // Following Montenbruck & Gill Eq. 3.35
+    Unitless ax = 0.0 * one;
+    Unitless ay = 0.0 * one;
+    Unitless az = 0.0 * one;
+    for (std::size_t m = 0; m <= _order; ++m) {
+        const Unitless mm = static_cast<double>(m) * one;
+
+        for (std::size_t n = m; n <= _degree; ++n) {
+            const Unitless nn = static_cast<double>(n) * one;
+
+            const Unitless Nnm = _legendreCache.get_normalizing_coefficient(n, m);
+            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m) * Nnm;
+            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m) * Nnm;
+
+            if (m == 0) {
+                // Special case for m = 0 (zonal harmonics)
+                ax += -Cnm * V[n + 1][1];
+                ay += -Cnm * W[n + 1][1];
+            }
+            else {
+                // Sectoral and tesseral harmonics (m > 0)
+                const Unitless nmFactor = (nn - mm + 2.0) * (nn - mm + 1.0);
+
+                // ax component
+                ax += 0.5 * ((-Cnm * V[n + 1][m + 1] - Snm * W[n + 1][m + 1]) +
+                             nmFactor * (Cnm * V[n + 1][m - 1] + Snm * W[n + 1][m - 1]));
+
+                // ay component
+                ay += 0.5 * ((-Cnm * W[n + 1][m + 1] + Snm * V[n + 1][m + 1]) +
+                             nmFactor * (-Cnm * W[n + 1][m - 1] + Snm * V[n + 1][m - 1]));
+            }
+
+            // az component
+            az += (nn - mm + 1.0) * (-Cnm * V[n + 1][m] - Snm * W[n + 1][m]);
+        }
+    }
+
+    // Scale by mu/r^2
+    const Acceleration muOverR2 = mu / (equitorialR * equitorialR);
+    const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
+
+    // Transform back to inertial frame
+    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+
     return accelOblatenessIcrf;
 }
 
