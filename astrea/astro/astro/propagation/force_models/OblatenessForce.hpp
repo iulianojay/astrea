@@ -69,15 +69,15 @@ class LegendreCache {
      */
     Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
-    /**
-     * @brief Computes the Legendre polynomial coefficients for the oblateness force.
-     *
-     * @param x Value at which to evaluate the Legendre polynomial
-     * @param degree Degree of the spherical harmonics
-     * @param order Order of the spherical harmonics
-     */
-    std::vector<std::vector<Unitless>>
-        get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
+    // /**
+    //  * @brief Computes the Legendre polynomial coefficients for the oblateness force.
+    //  *
+    //  * @param x Value at which to evaluate the Legendre polynomial
+    //  * @param degree Degree of the spherical harmonics
+    //  * @param order Order of the spherical harmonics
+    //  */
+    // std::vector<std::vector<Unitless>>
+    //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
     /**
      * @brief Gets the normalizing coefficient for given n and m.
@@ -132,18 +132,6 @@ class OblatenessForce : public Force {
     OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
 
     /**
-     * @brief Computes the gravitational force due to the oblateness of a celestial body.
-     *
-     * @param date Date of the computation
-     * @param state Cartesian state vector of the vehicle
-     * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
-     */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
-
-    /**
      * @brief Computes the gravitational force using Montenbruck & Gill (2000) V and W recurrence relations.
      *
      * This method implements the algorithm from "Satellite Orbits: Models, Methods and Applications"
@@ -157,7 +145,7 @@ class OblatenessForce : public Force {
      * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
      */
     CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force_mg(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics

@@ -67,12 +67,10 @@ void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& o
 {
     _C.resize(degree + 1);
     _S.resize(degree + 1);
-    // _P.resize(degree + 1);
     _normalizingCoefficients.resize(degree + 1);
     for (std::size_t n = 0; n < degree + 1; ++n) {
         _C[n].resize(order + 1);
         _S[n].resize(order + 1);
-        // _P[n].resize(order + 1);
         _normalizingCoefficients[n].resize(order + 1);
     }
 }
@@ -169,51 +167,51 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 }
 
 
-std::vector<std::vector<Unitless>>
-    LegendreCache::get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const
-{
-    std::vector<std::vector<Unitless>> P(degree + 1);
-    for (std::size_t n = 0; n < degree + 1; ++n) {
-        P[n].resize(order + 1, 0.0 * one);
-    }
+// std::vector<std::vector<Unitless>>
+//     LegendreCache::get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const
+// {
+//     std::vector<std::vector<Unitless>> P(degree + 1);
+//     for (std::size_t n = 0; n < degree + 1; ++n) {
+//         P[n].resize(order + 1, 0.0 * one);
+//     }
 
-    const Unitless sqrtOneMinusX2 = sqrt(1.0 * one - x * x);
+//     const Unitless sqrtOneMinusX2 = sqrt(1.0 * one - x * x);
 
-    // Compute diagonal terms P_m^m using recursion
-    Unitless Pmm = 1.0 * one; // P_0^0 = 1
-    for (std::size_t m = 0; m <= std::min(degree, order); ++m) {
-        if (m > 0) {
-            // P_m^m = (2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
-            Pmm *= (2.0 * m - 1.0) * sqrtOneMinusX2;
-        }
+//     // Compute diagonal terms P_m^m using recursion
+//     Unitless Pmm = 1.0 * one; // P_0^0 = 1
+//     for (std::size_t m = 0; m <= std::min(degree, order); ++m) {
+//         if (m > 0) {
+//             // P_m^m = (2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
+//             Pmm *= (2.0 * m - 1.0) * sqrtOneMinusX2;
+//         }
 
-        if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm; }
+//         if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm; }
 
-        // Compute P_{m+1}^m if m+1 <= degree
-        if (m + 1 <= degree) {
-            // P_{m+1}^m = x * (2m+1) * P_m^m
-            const Unitless Pmp1m = x * (2.0 * m + 1.0) * Pmm;
-            if (m + 1 >= 2) { P[m + 1][m] = _normalizingCoefficients[m + 1][m] * Pmp1m; }
+//         // Compute P_{m+1}^m if m+1 <= degree
+//         if (m + 1 <= degree) {
+//             // P_{m+1}^m = x * (2m+1) * P_m^m
+//             const Unitless Pmp1m = x * (2.0 * m + 1.0) * Pmm;
+//             if (m + 1 >= 2) { P[m + 1][m] = _normalizingCoefficients[m + 1][m] * Pmp1m; }
 
-            // Compute P_n^m for n > m+1 using three-term recursion
-            // (n-m)*P_n^m = x*(2n-1)*P_{n-1}^m - (n+m-1)*P_{n-2}^m
-            Unitless Pnm2 = Pmm;   // P_{n-2}^m
-            Unitless Pnm1 = Pmp1m; // P_{n-1}^m
+//             // Compute P_n^m for n > m+1 using three-term recursion
+//             // (n-m)*P_n^m = x*(2n-1)*P_{n-1}^m - (n+m-1)*P_{n-2}^m
+//             Unitless Pnm2 = Pmm;   // P_{n-2}^m
+//             Unitless Pnm1 = Pmp1m; // P_{n-1}^m
 
-            for (std::size_t n = m + 2; n <= degree; ++n) {
-                const Unitless Pnm = (x * (2.0 * n - 1.0) * Pnm1 - (n + m - 1.0) * Pnm2) / (n - m);
+//             for (std::size_t n = m + 2; n <= degree; ++n) {
+//                 const Unitless Pnm = (x * (2.0 * n - 1.0) * Pnm1 - (n + m - 1.0) * Pnm2) / (n - m);
 
-                if (n >= 2) { P[n][m] = _normalizingCoefficients[n][m] * Pnm; }
+//                 if (n >= 2) { P[n][m] = _normalizingCoefficients[n][m] * Pnm; }
 
-                // Shift for next iteration
-                Pnm2 = Pnm1;
-                Pnm1 = Pnm;
-            }
-        }
-    }
+//                 // Shift for next iteration
+//                 Pnm2 = Pnm1;
+//                 Pnm1 = Pnm;
+//             }
+//         }
+//     }
 
-    return P;
-}
+//     return P;
+// }
 
 
 Unitless LegendreCache::get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const
@@ -236,6 +234,9 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size
 {
 }
 
+/*
+For the life of me, I could not get this to match the NASA checkcases. I can't find anything wrong with it. If you figure
+it out, let me know.
 
 AccelerationVector<frames::earth::icrf>
     OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
@@ -304,13 +305,13 @@ AccelerationVector<frames::earth::icrf>
         // Precalculate common terms
         const Unitless rRatio = astrea::math::pow(equitorialROverR, nn);
 
-        /*
-            V      =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
-
-            dVdr   = -mu/r^2 * sum(n=0->N) (n + 1)(Re/r)^n * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
-            dVdlat =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M)) dPnm(sin(lat))/dlat * (Cnm*cos(m*lon) + Snm*sin(m*lon))
-            dVdlon =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M))   m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
-        */
+        //
+        //  V      =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //
+        //  dVdr   = -mu/r^2 * sum(n=0->N) (n + 1)(Re/r)^n * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //  dVdlat =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M)) dPnm(sin(lat))/dlat * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //  dVdlon =  mu/r   * sum(n=0->N) (Re/r)^n        * sum(m=0->min(n,M))   m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
+        //
 
         dVdrOuterSum += rRatio * (nn + 1.0) * dVdrInnerSum;
         dVdlatOuterSum += rRatio * dVdlatInnerSum;
@@ -336,36 +337,12 @@ AccelerationVector<frames::earth::icrf>
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
-
-    const auto recurrence = compute_force_mg(date, state, vehicle, sys);
-
-    static bool compare = true;
-    if (compare) { // TODO: Remove this
-        const AccelerationVector<frames::earth::icrf> gravity = -mu / pow<3>(rEci.norm()) * rEci;
-        AccelerationVector<frames::earth::icrf> expected      = { 5.51387371235876 * m / (s * s),
-                                                                  -1.22700119262805 * m / (s * s),
-                                                                  -6.62056474851441 * m / (s * s) };
-        expected -= gravity;
-
-        const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
-
-        std::cout << "Gravity: " << gravity << " (" << gravity.norm() << ")" << std::endl;
-        std::cout << "Recurrence Accel: " << recurrence << " (" << recurrence.norm() << ")" << std::endl;
-        std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
-        std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
-        std::cout << "Difference: " << diff << " (" << diff.norm() << ")" << std::endl;
-        std::cout << "% Diff: [" << diff[0] / expected[0] * 100.0 << " %, " << diff[1] / expected[1] * 100.0 << " %, "
-                  << diff[2] / expected[2] * 100.0 << " %] (" << diff.norm() / expected.norm() * 100.0 << " %)" << std::endl;
-
-        compare = false;
-    }
-    return recurrence;
+    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
 }
-
+*/
 
 AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force_mg(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
 {
     // Montenbruck & Gill (2000) V and W recurrence relations method
     // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
