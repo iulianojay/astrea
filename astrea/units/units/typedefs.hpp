@@ -183,4 +183,14 @@ using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2
  */
 using Temperature = mp_units::quantity_point<detail::temperature_unit>;
 
+/**
+ * @brief Definition for a pressure quantity.
+ */
+using Pressure = mp_units::quantity<detail::pressure_unit>;
+
+/**
+ * @brief Definition for a moment quantity.
+ */
+using Moment = mp_units::quantity<detail::force_unit * detail::minor_distance_unit>;
+
 } // namespace astrea

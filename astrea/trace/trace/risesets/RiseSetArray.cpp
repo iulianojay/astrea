@@ -15,8 +15,6 @@
 
 #include <stdexcept>
 
-#include <mp-units/ostream.h>
-
 namespace astrea {
 namespace trace {
 

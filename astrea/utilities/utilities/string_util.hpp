@@ -20,7 +20,10 @@
 
 #include <cstdlib>
 #include <cxxabi.h>
+#include <iostream>
+#include <optional>
 #include <string>
+#include <vector>
 
 namespace astrea {
 namespace utilities {
@@ -44,6 +47,12 @@ std::string trim(const std::string& str, const std::string& whitespace = " \t");
  */
 std::string replace_all(std::string const& original, std::string const& before, std::string const& after);
 
+/**
+ * @brief Gets the demangled(ish) type name of a given type.
+ *
+ * @tparam T The type to get the name of.
+ * @return The demangled type name as a string.
+ */
 template <typename T>
 std::string get_type_name()
 {
@@ -52,6 +61,17 @@ std::string get_type_name()
     static const std::string name     = fullName.substr(fullName.find_last_of("::") + 1);
     return name;
 }
+
+/**
+ * @brief Splits a string into a vector of substrings based on a delimiter.
+ *
+ * @param s The string to split.
+ * @param delimiter The delimiter to split by.
+ * @return A vector of substrings.
+ *
+ * @note Taken from https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
+ */
+std::vector<std::string> split(std::string s, const std::string& delimiter);
 
 } // namespace utilities
 } // namespace astrea

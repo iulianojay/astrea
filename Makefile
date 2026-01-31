@@ -15,7 +15,9 @@ build_path := $(abspath ./build/gcc-13-23/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
+build_checkcase_db := OFF
 build_static := OFF
+run_6dof_checkcases := OFF
 cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
@@ -25,12 +27,15 @@ warnings_as_errors := OFF
 .PHONY: all
 all: examples tests install
 
+.PHONY: checkcases
+checkcases: checkcase_db 6dof_checkcases tests
+
 .PHONY: profile
 profile: profiling install
 
 # Conan commands - for now
 .PHONY: install
-install: build
+install:
 	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j20
 
 .PHONY: build
@@ -39,30 +44,33 @@ build: setup
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
-	-DBUILD_PROFILERS=$(build_profilers)
+	-DBUILD_PROFILERS=$(build_profilers) \
+	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
 
 .PHONY: setup
 setup: activate_env
-	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing 
+	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing
 
 .PHONY: debug
-debug: 
+debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: release
-release: 
+release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: relwithdebinfo
-relwithdebinfo: 
+relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
-	
+
 .PHONY: tests
 tests:
 	$(eval build_tests = ON)
@@ -75,6 +83,14 @@ examples:
 profiling:
 	$(eval build_profilers = ON)
 
+.PHONY: checkcase_db
+checkcase_db:
+	$(eval build_checkcase_db = ON)
+
+.PHONY: 6dof_checkcases
+6dof_checkcases:
+	$(eval run_6dof_checkcases = ON)
+
 .PHONY: verbose
 verbose:
 	$(eval verbose_makefile = ON)
@@ -82,7 +98,7 @@ verbose:
 .PHONY: static
 static:
 	$(eval build_static = ON)
-	
+
 .PHONY: run_tests
 run_tests:
 	cd $(build_path)/astrea/math/tests && ctest --output-on-failure
@@ -103,7 +119,7 @@ run_examples:
 
 .PHONY: docker
 docker:
-	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile .
+	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile . --build-arg USER=$(username)
 
 .PHONY: clean
 clean:
@@ -115,7 +131,7 @@ clean-ephem:
 	rm -f $(shell find . -type f | grep './build/.*/ephemerides/.*.cpp')
 
 .PHONY: new
-new: 
+new:
 	rm -rf build
 	rm -rf install
 
@@ -127,20 +143,36 @@ check: build
 
 .PHONY: coverage-html
 coverage-html: debug run_tests run_examples
-	cd build && gcovr -r .. --html-nested -o $(ASTREA_ROOT)/.gcovr/coverage.html --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches && cd ..
+	cd build && \
+	gcovr -r .. --html-nested \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.html \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found && \
+	cd ..
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
-	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
+	cd build && \
+	gcovr -r .. --cobertura-pretty \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.xml  \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found \
+	&& cd ..
 
 .PHONY: build_env
-build_env: 
+build_env:
 	rm -rf .venv
 	python3 -m venv .venv
 
 .PHONY: activate_env
 activate_env:
-	source .venv/bin/activate
+	. .venv/bin/activate
 
 .PHONY: install_deps
 install_deps:

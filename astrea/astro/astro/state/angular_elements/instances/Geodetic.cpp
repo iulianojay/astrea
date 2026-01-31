@@ -17,7 +17,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
@@ -35,10 +34,11 @@
 using namespace mp_units;
 using namespace mp_units::non_si;
 using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::mm;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
@@ -181,8 +181,8 @@ std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
 std::tuple<Angle, Angle, Distance>
     convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
-    static const unsigned MAX_ITER  = 1e3;
-    static const Distance MAX_ERROR = 1.0e-9 * km;
+    static const unsigned MAX_ITER  = 1e4;
+    static const Distance MAX_ERROR = 1 * mm;
 
     const Distance& xEcef = rEcef[0];
     const Distance& yEcef = rEcef[1];
@@ -208,9 +208,8 @@ std::tuple<Angle, Angle, Distance>
     if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
 
     const Angle longitude = atan2(yEcef, xEcef);
-    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq)); // geodetic
-    // _latitude = atan((1.0 - f) * (1.0 - f) * tan(lat)); // geocentric
-    Distance altitude = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
+    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq));
+    Distance altitude     = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
     if (altitude < 0.0 * km) { altitude = 0.0 * km; }
 
     return { latitude, longitude, altitude };
@@ -219,8 +218,8 @@ std::tuple<Angle, Angle, Distance>
 RadiusVector<frames::earth::earth_fixed>
     convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
-    const quantity sinLat = sin(lat);
-    const quantity cosLat = cos(lat);
+    const Unitless sinLat = sin(lat);
+    const Unitless cosLat = cos(lat);
 
     const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
     const Unitless eSq = (2.0 - f) * f;

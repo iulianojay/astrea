@@ -44,7 +44,7 @@ int main()
     std::cout << std::endl;
 
     // Bodies can be accessed directly from the system
-    const auto& moon = earthMoonSystem.get(CelestialBodyId::MOON);
+    const auto& moon = earthMoonSystem.get_body(CelestialBodyId::MOON);
     std::cout << "Secondary Body: " << moon->get_name() << std::endl;
 
     return 0;

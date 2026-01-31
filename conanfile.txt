@@ -1,5 +1,5 @@
 [requires]
-mp-units/2.4.0
+mp-units/2.5.0
 
 [options]
 # The below mp-units options are set to defaults by Conan.

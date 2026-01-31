@@ -247,7 +247,7 @@ class AntennaParameters : public SensorParameters {
     Gain _gain;                    //!< Peak isotropic power gain
     Power _eirp;                   //!< Equivalent isotropic radiator power
 
-    Temperature _sysNoiseTemp = mp_units::absolute<mp_units::si::unit_symbols::deg_C>(0.0); //!< System noise temperature
+    Temperature _sysNoiseTemp = mp_units::point<mp_units::si::unit_symbols::deg_C>(0.0); //!< System noise temperature
 };
 
 /**

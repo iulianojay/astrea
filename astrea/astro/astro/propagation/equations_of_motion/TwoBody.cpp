@@ -34,7 +34,7 @@ TwoBody::TwoBody(const AstrodynamicsSystem& system) :
 {
 }
 
-OrbitalElementPartials TwoBody::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
 {
     // Extract
     const Cartesian cartesian = state.in_element_set<Cartesian>(mu);

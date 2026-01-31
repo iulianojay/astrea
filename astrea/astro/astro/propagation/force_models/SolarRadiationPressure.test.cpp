@@ -97,7 +97,7 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
-    // These are kinda bad. Pretty close to ephemris values, but still off Vallados
+    // These are kinda bad. Pretty close to ephemeris values, but still off Vallados
     const AccelerationVector<frames::earth::icrf> expected{ -1.59324328e-10 * km / (s * s),
                                                             8.92084894e-11 * km / (s * s),
                                                             3.86793674e-11 * km / (s * s) };

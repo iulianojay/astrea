@@ -17,7 +17,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
@@ -260,6 +259,13 @@ Keplerian& Keplerian::operator=(Keplerian&& other) noexcept
         _trueAnomaly    = std::move(other._trueAnomaly);
     }
     return *this;
+}
+
+Angle Keplerian::get_mean_anomaly() const { return convert_true_anomaly_to_mean_anomaly(_trueAnomaly, _eccentricity); }
+
+MeanMotion Keplerian::get_mean_motion(const GravParam& mu) const
+{
+    return sqrt(mu / (_semimajor * _semimajor * _semimajor));
 }
 
 // Copy assignment operator

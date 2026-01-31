@@ -38,15 +38,11 @@ std::string extract_string_from_json(const nlohmann::json& json, const std::stri
 
 std::optional<std::string> extract_optional_string_from_json(const nlohmann::json& json, const std::string& key)
 {
-    if (json.contains(key)) {
-        if (json[key].empty() || json[key].is_null()) { return std::nullopt; }
-        else {
-            std::string retval;
-            std::getline(std::stringstream(clean_entry(json[key])), retval);
-            return retval;
-        }
-    }
-    throw std::runtime_error("Key " + key + " not found.");
+    if (!json.contains(key) || json[key].empty() || json[key].is_null()) { return std::nullopt; }
+
+    std::string retval;
+    std::getline(std::stringstream(clean_entry(json[key])), retval);
+    return retval;
 }
 
 } // namespace utilities

@@ -24,7 +24,7 @@ namespace astro {
 State& StateHistory::operator[](const Date& date) { return _states[date]; }
 const State& StateHistory::at(const Date& date) const { return _states.at(date); }
 
-void StateHistory::insert(const Date& date, const State& state) { _states[date] = state; }
+void StateHistory::insert(const Date& date, const State& state) { _states.insert({ date, state }); }
 std::size_t StateHistory::size() const { return _states.size(); }
 void StateHistory::clear() { _states.clear(); }
 
@@ -35,17 +35,9 @@ const State& StateHistory::get_closest_state(const Date& date) const
 
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
-    if (iter == _states.begin()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state before existing propagation bounds. Try "
-            "repropagating to include all desired dates."
-        );
-    }
+    if (iter == _states.begin()) { return first(); }
     else if (iter == _states.end()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state after existing propagation bounds. Try "
-            "repropagating to include all desired dates."
-        );
+        return last();
     }
 
     // Compare date before and after index
@@ -67,16 +59,12 @@ State StateHistory::get_state_at(const Date& date) const
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
     else if (iter == _states.end()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
 
     // Interpolate
@@ -91,7 +79,7 @@ State StateHistory::get_state_at(const Date& date) const
     const auto& mu                    = system.get_mu();
 
     // Normalize to initial date for simplicity
-    const Time time0 = 0.0 * mp_units::si::unit_symbols::s;
+    const Time time0 = 0.0 * astrea::detail::time_unit;
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 

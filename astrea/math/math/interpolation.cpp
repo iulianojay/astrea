@@ -62,7 +62,7 @@ std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector
         v[ii + 1] = b[ii + 1] - b[ii] - h[ii] * v[ii] / u[ii];
     }
 
-    for (size_t ii = n - 2; ii >= 0; --ii) {
+    for (int ii = n - 2; ii >= 0; --ii) {
         z[ii + 1] = (v[ii + 1] - h[ii + 1] * z[ii + 2]) / u[ii + 1];
     }
 

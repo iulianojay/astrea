@@ -1,6 +1,6 @@
 
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -11,9 +11,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    astro 
+    astro
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Core Physics and Astrodynamics Library" 
+    DESCRIPTION "Core Physics and Astrodynamics Library"
     LANGUAGES CXX
 )
 
@@ -50,13 +50,14 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
-    
+
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
@@ -80,6 +81,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/time/Date.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
+    ${ASTRO_BASE}/utilities/plotting.cpp
 
     ${ASTRO_BASE}/../tests/utilities/comparisons.cpp
 )
@@ -89,7 +91,7 @@ set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
-    
+
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
@@ -141,6 +143,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
@@ -182,6 +185,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/variant_util.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
+    ${ASTRO_BASE}/utilities/plotting.hpp
 
     ${ASTRO_BASE}/../tests/utilities/comparisons.hpp
 
@@ -234,7 +238,7 @@ if (${BUILD_EPHEMERIDES})
     add_dependencies       (${PROJECT_NAME}_shared generated_ephemerides)
 endif()
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main matplot)
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 
@@ -245,7 +249,7 @@ if (${BUILD_STATIC})
         add_dependencies           (${PROJECT_NAME}_static generated_ephemerides)
     endif()
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main)
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main matplot)
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
     target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 endif()

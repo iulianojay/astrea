@@ -52,9 +52,9 @@ class AstrodynamicsSystem {
         _centerType(SystemCenter::CENTRAL_BODY),
         _centralBody(centralBody)
     {
-        create(centralBody);
+        add_body(centralBody);
         for (const auto& body : secondaryBodies) {
-            create(body);
+            add_body(body);
         }
     }
 
@@ -91,6 +91,13 @@ class AstrodynamicsSystem {
     constexpr const SystemCenter& get_center_type() const { return _centerType; }
 
     /**
+     * @brief Returns the central celestial body ID.
+     *
+     * @return const CelestialBodyId& The ID of the central celestial body.
+     */
+    constexpr const CelestialBodyId& get_central_body_id() const { return _centralBody; }
+
+    /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.
@@ -98,7 +105,7 @@ class AstrodynamicsSystem {
     constexpr const CelestialBodyUniquePtr& get_central_body() const
     {
         switch (_centerType) {
-            case SystemCenter::CENTRAL_BODY: return get(_centralBody);
+            case SystemCenter::CENTRAL_BODY: return get_body(_centralBody);
             case SystemCenter::BARYCENTER:
             default: throw std::runtime_error("Barycenteric systems have no central body.");
         }
@@ -110,7 +117,7 @@ class AstrodynamicsSystem {
      * @param id The ID of the celestial body to retrieve.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified ID.
      */
-    constexpr const CelestialBodyUniquePtr& get(const CelestialBodyId& id) const
+    constexpr const CelestialBodyUniquePtr& get_body(const CelestialBodyId& id) const
     {
         if (_bodies.count(id) > 0) { return _bodies.at(id); }
         throw std::out_of_range("Input gravitational body not found.");
@@ -130,7 +137,7 @@ class AstrodynamicsSystem {
      */
     template <typename T, typename... Args>
         requires(std::is_base_of<CelestialBody, T>::value)
-    constexpr const CelestialBodyUniquePtr& create(Args&&... args)
+    constexpr const CelestialBodyUniquePtr& add_body(Args&&... args)
     {
         const CelestialBodyId id = T::get_id();
         if (_bodies.count(id) == 0) {
@@ -139,7 +146,7 @@ class AstrodynamicsSystem {
             _activeBodies.insert(id);
             _root = find_common_root(_activeBodies);
         }
-        return get(id);
+        return get_body(id);
     }
 
     /**
@@ -149,7 +156,7 @@ class AstrodynamicsSystem {
      * @param system The astrodynamics system to which the body belongs.
      * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
-    constexpr const CelestialBodyUniquePtr& create(const CelestialBodyId& id)
+    constexpr const CelestialBodyUniquePtr& add_body(const CelestialBodyId& id)
     {
         if (_bodies.count(id) == 0) {
             _bodies.emplace(id, create_impl(id));
@@ -157,7 +164,7 @@ class AstrodynamicsSystem {
             _root = find_common_root(_activeBodies);
         }
 
-        return get(id);
+        return get_body(id);
     }
 
     /**
@@ -166,7 +173,7 @@ class AstrodynamicsSystem {
      * @param id The id of the celestial body to create.
      * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
-    constexpr CelestialBodyUniquePtr create(const CelestialBodyId& id) const { return create_impl(id); }
+    constexpr CelestialBodyUniquePtr add_body(const CelestialBodyId& id) const { return create_impl(id); }
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
@@ -266,7 +273,7 @@ class AstrodynamicsSystem {
         CelestialBodyId root;
         std::size_t planetCount = 0;
         for (const auto& id : bodies) {
-            const auto& body = get(id);
+            const auto& body = get_body(id);
             if (body->get_type() == CelestialBodyType::PLANET) {
                 planetCount++;
                 root = id;
@@ -280,7 +287,7 @@ class AstrodynamicsSystem {
                 CelestialBodyId parentId = id;
                 while (parentId != CelestialBodyId::SUN && parentId != _root) {
                     // Don't add parent to active bodies if it's not already there
-                    parentId = create(parentId)->get_parent();
+                    parentId = add_body(parentId)->get_parent();
                 }
 
                 // If any object not in same planetary system, the common root

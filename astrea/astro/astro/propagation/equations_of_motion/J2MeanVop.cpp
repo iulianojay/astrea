@@ -47,24 +47,23 @@ J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
 {
 }
 
-OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
 {
     const GravParam& mu       = get_system().get_mu();
     const Keplerian elements  = state.in_element_set<Keplerian>(mu);
     const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     // Extract
-    const quantity<km>& a = elements.get_semimajor();
-    // const double<rad>& raan = elements.get_right_ascension();
-    const quantity<rad>& w     = elements.get_argument_of_perigee();
-    const quantity<rad>& theta = elements.get_true_anomaly();
+    const Distance& a = elements.get_semimajor();
+    // const Angle& raan = elements.get_right_ascension();
+    const Angle& w     = elements.get_argument_of_perigee();
+    const Angle& theta = elements.get_true_anomaly();
 
-    // Prevents singularities from occuring in the propagation. Will cause
-    // inaccuracies.
-    const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
-    const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
+    // Prevents singularities from occuring in the propagation. Will cause inaccuracies.
+    const Unitless& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
+    const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
-    // conversions KEPLERIANs to r and v
+    // conversions Keplerian elements to r and v
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
     const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
@@ -73,33 +72,29 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const Distance z = cartesian.get_z();
     const Distance R = r.norm();
 
-    // Define perturbation vectors relative to the satellites RNT body frame
-    /*
-       N -> perturbing accel normal to orbital plane in direction of angular momentum vector
-    */
-    const UnitVector Nhat = r.cross(v).unit();
-
     // Variables to reduce calculations
-    const quantity termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
-    const quantity termB = z * z / (R * R);
+    const auto termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
+    const auto termB = z * z / (R * R);
 
     // accel due to oblateness
     AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
                                                                 termA * (1.0 - 5.0 * termB) * y,
-                                                                termA * (1.0 - 3.0 * termB) * z };
+                                                                termA * (3.0 - 5.0 * termB) * z };
 
-    // Calculate R, N, and T
+    // Only normal pert required
+    const UnitVector Nhat         = r.cross(v).unit();
     const Acceleration normalPert = accelOblateness.dot(Nhat);
 
-    // h
+    // Precompute
+    const Angle u                   = w + theta;
     const SpecificAngularMomentum h = sqrt(mu * a * (1 - ecc * ecc));
 
-    // Calculate the derivatives of the KEPLERIANs - only raan and w considered
+    // Calculate the derivatives of the Keplerian elements - only raan and w considered
     static const Velocity dadt          = 0.0 * km / s;
     static const UnitlessPerTime deccdt = 0.0 * one / s;
-    const AngularRate _dincdt           = R / h * cos(w + theta) * normalPert * rad;
+    const AngularRate _dincdt           = R / h * cos(u) * normalPert * rad;
     const AngularRate dthetadt          = h / (R * R) * rad;
-    const AngularRate draandt           = R * sin(w + theta) / (h * sin(inc)) * normalPert * rad;
+    const AngularRate draandt           = R * sin(u) / (h * sin(inc)) * normalPert * rad;
     const AngularRate dwdt              = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
