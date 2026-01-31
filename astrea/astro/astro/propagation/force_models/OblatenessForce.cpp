@@ -97,9 +97,9 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
             break;
 
         case CelestialBodyId::EARTH:
-            // filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
+            filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // Normalized
             // filename = path / "Earth" / "WGS84"; // Normalized
-            filename = path / "Earth" / "NASA_6DoF"; // Normalized
+            // filename = path / "Earth" / "NASA_6DoF"; // Normalized - only goes to 8x8
             break;
 
         case CelestialBodyId::MOON:

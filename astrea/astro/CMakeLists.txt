@@ -271,11 +271,3 @@ endif()
 if(${BUILD_TESTS})
     add_subdirectory(tests)
 endif()
-
-if(${BUILD_PROFILERS})
-    add_subdirectory(tests/profiling)
-endif()
-
-if(${BUILD_CHECKCASE_DATABASE})
-    add_subdirectory(tests/nasa_6dof_checkcases)
-endif()

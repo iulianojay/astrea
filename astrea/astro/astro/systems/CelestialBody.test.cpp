@@ -135,7 +135,7 @@ TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_til
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_rotation_rate(), AngularRate(360.9851887442813 * deg / day), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_rotation_rate(), AngularRate(7.29211514670638e-5 * rad / s), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetSiderealPeriod)

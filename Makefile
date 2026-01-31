@@ -17,6 +17,7 @@ build_examples := OFF
 build_profilers := OFF
 build_checkcase_db := OFF
 build_static := OFF
+run_6dof_checkcases := OFF
 cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
@@ -25,6 +26,9 @@ warnings_as_errors := OFF
 
 .PHONY: all
 all: examples tests install
+
+.PHONY: checkcases
+checkcases: checkcase_db 6dof_checkcases tests
 
 .PHONY: profile
 profile: profiling install
@@ -42,6 +46,7 @@ build: setup
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
 	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
 
 .PHONY: setup
@@ -81,6 +86,10 @@ profiling:
 .PHONY: checkcase_db
 checkcase_db:
 	$(eval build_checkcase_db = ON)
+
+.PHONY: 6dof_checkcases
+6dof_checkcases:
+	$(eval run_6dof_checkcases = ON)
 
 .PHONY: verbose
 verbose:

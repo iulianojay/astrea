@@ -429,6 +429,9 @@ class Orbital6DofTest : public testing::Test {
         const std::filesystem::path& base
     ) const
     {
+        std::cout.setstate(std::ios::failbit);
+        std::cerr.setstate(std::ios::failbit);
+
         plotting::plot_difference_orbital_elements(checkcaseHistory, { propHistory }, { propLabel }, base / "orbital_elements_difference.png");
         plotting::plot_difference_trajectories(checkcaseHistory, { propHistory }, { propLabel }, base / "trajectory_difference.png");
 
@@ -436,6 +439,9 @@ class Orbital6DofTest : public testing::Test {
         std::vector<std::string> labels     = { checkcaseLabel, propLabel };
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+
+        std::cout.clear();
+        std::cerr.clear();
     }
 
     void make_comparison_plots(
@@ -446,6 +452,9 @@ class Orbital6DofTest : public testing::Test {
         const std::filesystem::path& base
     ) const
     {
+        std::cout.setstate(std::ios::failbit);
+        std::cerr.setstate(std::ios::failbit);
+
         std::vector<StateHistory> histories = propHistories;
         histories.push_back(checkcaseHistory);
 
@@ -454,6 +463,9 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+
+        std::cout.clear();
+        std::cerr.clear();
     }
 
     void make_comparison_plots(
@@ -464,6 +476,9 @@ class Orbital6DofTest : public testing::Test {
         const std::filesystem::path& base
     ) const
     {
+        std::cout.setstate(std::ios::failbit);
+        std::cerr.setstate(std::ios::failbit);
+
         std::vector<StateHistory> histories = checkcaseHistories;
         histories.insert(histories.end(), propHistories.begin(), propHistories.end());
 
@@ -472,6 +487,9 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+
+        std::cout.clear();
+        std::cerr.clear();
     }
 
     const Distance _MAX_R_ERROR = 10.0 * m;
