@@ -13,7 +13,10 @@
 
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 
+#include <iostream>
+
 #include <utilities/json_util.hpp>
+#include <utilities/string_util.hpp>
 
 namespace astrea {
 namespace astro {
@@ -22,6 +25,21 @@ using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
 using utilities::extract_string_from_json;
+
+/**
+ * @brief Overloaded output stream operator for an optional type.
+ *
+ * This function allows printing the contents of an optional type to an output stream.
+ *
+ * @param os The output stream to write to.
+ * @param opt The optional object to print.
+ * @return The output stream after writing the optional data.
+ */
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::optional<T>& opt)
+{
+    return opt ? os << opt.value() : os << "Unassigned";
+}
 
 GeneralPerturbations::GeneralPerturbations(const nlohmann::json& data) :
     DB_ID(-1),

@@ -148,9 +148,7 @@ class State {
     GravParam get_mu() const
     {
         using namespace mp_units;
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-        return _system ? _system->get_mu() : 0.0 * pow<3>(km) / pow<2>(s);
+        return _system ? _system->get_mu() : 0.0 * pow<3>(astrea::detail::distance_unit) / pow<2>(astrea::detail::time_unit);
     }
 };
 

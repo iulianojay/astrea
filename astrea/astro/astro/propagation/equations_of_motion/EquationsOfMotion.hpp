@@ -35,7 +35,7 @@ class EquationsOfMotion {
      * @param system The astrodynamics system containing the central body and its properties.
      */
     EquationsOfMotion(const AstrodynamicsSystem& system) :
-        system(&system) {};
+        system(&system){};
 
     /**
      * @brief Destructor for the Equations of Motion class.
@@ -45,11 +45,12 @@ class EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements.
      *
+     * @param date The current date for which the equations of motion are being computed.
      * @param state The current orbital elements of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    virtual OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+    virtual OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
 
     /**
      * @brief Returns the expected set of orbital elements for this method.

@@ -52,7 +52,10 @@ T extract_from_json(const nlohmann::json& json, const std::string& key)
         if (json[key].empty() || json[key].is_null()) { throw std::runtime_error("Null value not allowed."); }
         else {
             T retval;
-            std::stringstream(clean_entry(json[key])) >> retval;
+            if (json[key].is_string()) { std::stringstream(clean_entry(json[key])) >> retval; }
+            else {
+                retval = json[key].get<T>();
+            }
             return retval;
         }
     }
@@ -71,16 +74,14 @@ T extract_from_json(const nlohmann::json& json, const std::string& key)
 template <typename T>
 std::optional<T> extract_optional_from_json(const nlohmann::json& json, const std::string& key)
 {
-    if (json.contains(key)) {
-        if (json[key].empty() || json[key].is_null()) { return std::nullopt; }
-        else {
-            T retval;
-            const std::string output = clean_entry(json[key]);
-            std::stringstream(output) >> retval;
-            return retval;
-        }
+    if (!json.contains(key) || json[key].empty() || json[key].is_null()) { return std::nullopt; }
+
+    T retval;
+    if (json[key].is_string()) { std::stringstream(clean_entry(json[key])) >> retval; }
+    else {
+        retval = json[key].get<T>();
     }
-    throw std::runtime_error("Key " + key + " not found.");
+    return retval;
 }
 
 /**

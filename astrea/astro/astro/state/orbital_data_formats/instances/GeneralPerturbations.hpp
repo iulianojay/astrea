@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <iostream>
+#include <iosfwd>
 #include <optional>
 #include <string>
 
@@ -96,21 +96,6 @@ struct GeneralPerturbations { // TODO: Right now, units are implied, but they sh
     std::optional<std::string> TLE_LINE1;         //!< TLE line 1 (first line of TLE data)
     std::optional<std::string> TLE_LINE2;         //!< TLE line 2 (second line of TLE data)
 };
-
-/**
- * @brief Overloaded output stream operator for an optional type.
- *
- * This function allows printing the contents of an optional type to an output stream.
- *
- * @param os The output stream to write to.
- * @param opt The optional object to print.
- * @return The output stream after writing the optional data.
- */
-template <typename T>
-std::ostream& operator<<(std::ostream& os, std::optional<T> const& opt)
-{
-    return opt ? os << opt.value() : os << "Unassigned";
-}
 
 /**
  * @brief Overloaded output stream operator for GeneralPerturbations.

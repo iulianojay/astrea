@@ -106,7 +106,7 @@ template <typename T>
 concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
     { elements + other } -> std::same_as<T>;
     { elements - other } -> std::same_as<T>;
-    { elements * scalar } -> std::same_as<T>;
+    { elements* scalar } -> std::same_as<T>;
     { elements / scalar } -> std::same_as<T>;
 };
 
@@ -523,7 +523,7 @@ void throw_mismatched_types();
  * @return true if the two OrbitalElements objects are nearly equal
  * @return false if the two OrbitalElements objects are not nearly equal
  */
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * mp_units::one);
+bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * astrea::detail::unitless);
 
 /**
  * @brief Checks if two OrbitalElementPartials objects are nearly equal.
@@ -541,7 +541,7 @@ bool nearly_equal(
     const OrbitalElementPartials& first,
     const OrbitalElementPartials& second,
     bool ignoreFastVariable = false,
-    Unitless relTol         = 1.0e-5 * mp_units::one
+    Unitless relTol         = 1.0e-5 * astrea::detail::unitless
 );
 
 } // namespace astro

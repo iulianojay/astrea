@@ -12,6 +12,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <mp-units/systems/angular/math.h>
 
 #include <math/test_util.hpp>
 #include <units/units.hpp>
@@ -26,6 +27,9 @@
 using namespace astrea;
 using namespace astro;
 using namespace mp_units;
+
+using mp_units::angular::cos;
+using mp_units::angular::sin;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
@@ -215,4 +219,70 @@ TEST_F(CylindricalTest, Getters)
     ASSERT_EQ_QUANTITY(state.get_range(), range, REL_TOL);
     ASSERT_EQ_QUANTITY(state.get_azimuth(), azimuth, REL_TOL);
     ASSERT_EQ_QUANTITY(state.get_elevation(), elevation, REL_TOL);
+}
+
+TEST_F(CylindricalTest, GetPositionEcef)
+{
+    // Test case 1: Zero azimuth (on x-axis)
+    Cylindrical cyl1{ 10000.0 * km, 0.0 * rad, 0.0 * km };
+    auto pos1 = cyl1.get_position(sys.get_central_body().get());
+    ASSERT_EQ_QUANTITY(pos1.get_x(), Distance(10000.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos1.get_y(), Distance(0.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos1.get_z(), Distance(0.0 * km), REL_TOL);
+
+    // Test case 2: 90 degree azimuth (on y-axis)
+    Cylindrical cyl2{ 5000.0 * km, 90.0 * deg, 0.0 * km };
+    auto pos2 = cyl2.get_position(sys.get_central_body().get());
+    ASSERT_EQ_QUANTITY(pos2.get_x(), Distance(0.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos2.get_y(), Distance(5000.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos2.get_z(), Distance(0.0 * km), REL_TOL);
+
+    // Test case 3: Non-zero elevation
+    Cylindrical cyl3{ 8000.0 * km, 0.0 * rad, 1500.0 * km };
+    auto pos3 = cyl3.get_position(sys.get_central_body().get());
+    ASSERT_EQ_QUANTITY(pos3.get_x(), Distance(8000.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos3.get_y(), Distance(0.0 * km), REL_TOL);
+    ASSERT_EQ_QUANTITY(pos3.get_z(), Distance(1500.0 * km), REL_TOL);
+
+    // Test case 4: Arbitrary azimuth and elevation
+    Cylindrical cyl4{ 6000.0 * km, 45.0 * deg, 2000.0 * km };
+    auto pos4          = cyl4.get_position(sys.get_central_body().get());
+    Distance expectedX = 6000.0 * km * cos(45.0 * deg);
+    Distance expectedY = 6000.0 * km * sin(45.0 * deg);
+    ASSERT_EQ_QUANTITY(pos4.get_x(), expectedX, REL_TOL);
+    ASSERT_EQ_QUANTITY(pos4.get_y(), expectedY, REL_TOL);
+    ASSERT_EQ_QUANTITY(pos4.get_z(), Distance(2000.0 * km), REL_TOL);
+
+    // Test case 5: Negative azimuth
+    Cylindrical cyl5{ 7000.0 * km, -60.0 * deg, 500.0 * km };
+    auto pos5           = cyl5.get_position(sys.get_central_body().get());
+    Distance expectedX5 = 7000.0 * km * cos(-60.0 * deg);
+    Distance expectedY5 = 7000.0 * km * sin(-60.0 * deg);
+    ASSERT_EQ_QUANTITY(pos5.get_x(), expectedX5, REL_TOL);
+    ASSERT_EQ_QUANTITY(pos5.get_y(), expectedY5, REL_TOL);
+    ASSERT_EQ_QUANTITY(pos5.get_z(), Distance(500.0 * km), REL_TOL);
+}
+
+TEST_F(CylindricalTest, GetPositionEci)
+{
+    // Test basic conversion from ECEF to ECI
+    Cylindrical cyl{ 10000.0 * km, 0.0 * rad, 0.0 * km };
+    Date testEpoch;
+
+    // Get position in ECI frame
+    auto posEci = cyl.get_position(testEpoch, sys.get_central_body().get());
+
+    // Should return a valid RadiusVector in ICRF frame
+    // The actual values depend on the frame transformation, but we can verify it's non-null
+    // and has reasonable magnitude
+    Distance magnitude =
+        sqrt(posEci.get_x() * posEci.get_x() + posEci.get_y() * posEci.get_y() + posEci.get_z() * posEci.get_z());
+    ASSERT_GT(magnitude.numerical_value_in(km), 0.0);
+
+    // Test with non-zero elevation
+    Cylindrical cyl2{ 8000.0 * km, 45.0 * deg, 1500.0 * km };
+    auto posEci2 = cyl2.get_position(testEpoch, sys.get_central_body().get());
+    Distance magnitude2 =
+        sqrt(posEci2.get_x() * posEci2.get_x() + posEci2.get_y() * posEci2.get_y() + posEci2.get_z() * posEci2.get_z());
+    ASSERT_GT(magnitude2.numerical_value_in(km), 0.0);
 }

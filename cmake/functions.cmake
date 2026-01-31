@@ -10,7 +10,7 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 # Test build function
-function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
+function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES HELPER_HDRS HELPER_SRCS)
 
     foreach(TEST_FILE ${TEST_FILES})
 
@@ -31,6 +31,9 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES)
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
+
+        # Helper files
+        target_sources(${TEST_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
 
         # Includes
         target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/extern)

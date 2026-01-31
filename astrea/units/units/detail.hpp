@@ -38,6 +38,8 @@ inline constexpr auto unitless            = mp_units::one;
 inline constexpr auto power_unit          = mp_units::si::unit_symbols::W;
 inline constexpr auto frequency_unit      = mp_units::si::unit_symbols::Hz;
 inline constexpr auto temperature_unit    = mp_units::si::unit_symbols::K;
+inline constexpr auto pressure_unit = mp_units::si::unit_symbols::Pa; // TODO: Make sure this won't cause lots of conversions
+inline constexpr auto force_unit = mp_units::si::unit_symbols::N; // TODO: Make sure this won't cause lots of conversions
 
 } // namespace detail
 } // namespace astrea
