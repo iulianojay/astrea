@@ -11,10 +11,29 @@ cmake_minimum_required(VERSION 3.28.3)
 
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
+# Option to control whether to run 6DOF checkcases (can be slow)
+if(NOT DEFINED RUN_6DOF_CHECKCASES)
+    set(RUN_6DOF_CHECKCASES ON CACHE BOOL "Run NASA 6DOF checkcase tests")
+endif()
+
+# Add profilers and checkcase tests
+if(${BUILD_PROFILERS})
+    add_subdirectory(tests/profiling)
+endif()
+
+if(${BUILD_CHECKCASE_DATABASE})
+    add_subdirectory(tests/nasa_6dof_checkcases)
+endif()
+
 # Get sources
 set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
 file(GLOB_RECURSE UNIT_TEST_SOURCES CONFIGURE_DEPENDS ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/**/driver.cpp)
+
+# Filter out 6DOF checkcase tests if RUN_6DOF_CHECKCASES is OFF
+if(NOT ${RUN_6DOF_CHECKCASES})
+    list(FILTER REGRESSION_TEST_SOURCES EXCLUDE REGEX "nasa_6dof_checkcases")
+endif()
 
 # Set install rpath
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")

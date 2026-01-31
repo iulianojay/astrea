@@ -26,7 +26,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include <units/units.hpp>
+#include <units/typedefs.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
@@ -34,8 +34,14 @@
 
 namespace astrea {
 namespace astro {
-
 namespace tests {
+
+/**
+ * @brief Definition for a force quantity.
+ *
+ * @note: We put this here to avoid conflicts with abstract Force class in astro
+ */
+using Force = mp_units::quantity<astrea::detail::force_unit>;
 
 /**
  * @brief AtmosphericCheckcase structure representing a NASA 6DOF atmospheric checkcase.

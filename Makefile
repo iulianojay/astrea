@@ -17,6 +17,7 @@ build_examples := OFF
 build_profilers := OFF
 build_checkcase_db := OFF
 build_static := OFF
+run_6dof_checkcases := OFF
 cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
@@ -25,6 +26,9 @@ warnings_as_errors := OFF
 
 .PHONY: all
 all: examples tests install
+
+.PHONY: checkcases
+checkcases: checkcase_db 6dof_checkcases tests
 
 .PHONY: profile
 profile: profiling install
@@ -42,6 +46,7 @@ build: setup
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
 	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
 
 .PHONY: setup
@@ -81,6 +86,10 @@ profiling:
 .PHONY: checkcase_db
 checkcase_db:
 	$(eval build_checkcase_db = ON)
+
+.PHONY: 6dof_checkcases
+6dof_checkcases:
+	$(eval run_6dof_checkcases = ON)
 
 .PHONY: verbose
 verbose:
@@ -134,11 +143,27 @@ check: build
 
 .PHONY: coverage-html
 coverage-html: debug run_tests run_examples
-	cd build && gcovr -r .. --html-nested -o $(ASTREA_ROOT)/.gcovr/coverage.html --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches && cd ..
+	cd build && \
+	gcovr -r .. --html-nested \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.html \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found && \
+	cd ..
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
-	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
+	cd build && \
+	gcovr -r .. --cobertura-pretty \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.xml  \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found \
+	&& cd ..
 
 .PHONY: build_env
 build_env:
@@ -147,7 +172,7 @@ build_env:
 
 .PHONY: activate_env
 activate_env:
-	source .venv/bin/activate
+	. .venv/bin/activate
 
 .PHONY: install_deps
 install_deps:

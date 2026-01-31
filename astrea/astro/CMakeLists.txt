@@ -52,6 +52,7 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
@@ -147,6 +148,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
+    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
@@ -241,11 +243,10 @@ add_library(${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
 endif()
-
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main matplot)
-target_include_directories(${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions(${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main matplot)
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 
 # Static library
 if(${BUILD_STATIC})
@@ -254,11 +255,10 @@ if(${BUILD_STATIC})
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
-
-    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main matplot)
-    target_include_directories(${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions(${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main matplot)
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 endif()
 
 # Install headers

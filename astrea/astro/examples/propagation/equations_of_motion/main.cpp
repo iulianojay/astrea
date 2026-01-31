@@ -60,7 +60,7 @@ int main()
             return OrbitalElements::get_set_id<Cartesian>();
         };
 
-        OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override
+        OrbitalElementPartials operator()(const Date& epoch, const OrbitalElements& state, const Vehicle& vehicle) const override
         {
             // Extracting into the desired set can be convenient
             const AstrodynamicsSystem& system = get_system();

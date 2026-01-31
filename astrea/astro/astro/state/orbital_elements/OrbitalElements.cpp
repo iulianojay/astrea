@@ -199,13 +199,10 @@ OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { retu
 
 void throw_mismatched_types()
 {
-    throw std::runtime_error("Cannot perform operations on orbital elements from different "
-                             "element sets.");
-}
-
-std::vector<Unitless> OrbitalElementPartials::force_to_vector() const
-{
-    return std::visit([&](const auto& x) -> std::vector<Unitless> { return x.force_to_vector(); }, _elements);
+    throw std::runtime_error(
+        "Cannot perform operations on orbital elements from different "
+        "element sets."
+    );
 }
 
 
