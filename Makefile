@@ -33,14 +33,14 @@ checkcases: checkcase_db 6dof_checkcases tests
 .PHONY: profile
 profile: profiling install
 
-# Conan commands - for now
 .PHONY: install
 install:
-	cmake --build --preset conan-gcc-13-23-$(build_type_lower) -DINSTALL_GTEST=OFF --target install -j20
+	cmake --build $(build_path) --target install -j20
 
 .PHONY: build
-build: setup
-	cmake -S . --preset conan-gcc-13-23-$(build_type_lower) \
+build:
+	cmake -S . -B $(build_path) \
+	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
@@ -48,10 +48,6 @@ build: setup
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
 	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
 	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
-
-.PHONY: setup
-setup: activate_env
-	conan install . -pr ./.conan2/profiles/gcc13-$(build_type_lower) -b=missing
 
 .PHONY: debug
 debug:
@@ -177,7 +173,6 @@ activate_env:
 .PHONY: install_deps
 install_deps:
 	.venv/bin/pip install -r requirements.txt
-	.venv/bin/pip install conan
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps

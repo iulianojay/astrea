@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -10,9 +10,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    "units" 
+    "units"
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Library for Utilities for United Types" 
+    DESCRIPTION "Library for Utilities for United Types"
     LANGUAGES CXX
 )
 
@@ -29,12 +29,6 @@ set(UNITS_HEADERS
     ${UNITS_BASE}/typedefs.hpp
 )
 
-# Includes
-set(UNITS_DIRS
-    ${CMAKE_CURRENT_LIST_DIR}
-)
-include_directories(${UNITS_DIRS})
-
 # Set outputs
 set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
@@ -42,16 +36,29 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
+# Includes
+set(UNITS_DIRS
+    ${EXTERN_BASE}
+    ${CMAKE_CURRENT_LIST_DIR}
+)
+
+# Find library
+set(UNITS_LIBS
+    mp-units::mp-units
+)
+
 # Shared library
-add_library           (${PROJECT_NAME}_shared SHARED ${UNITS_SOURCES} ${UNITS_HEADERS})
-set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC mp-units::mp-units GTest::gtest_main)
+add_library(${PROJECT_NAME}_shared SHARED ${UNITS_SOURCES} ${UNITS_HEADERS})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${PROJECT_NAME}_shared PUBLIC ${UNITS_LIBS})
+target_include_directories(${PROJECT_NAME}_shared PUBLIC ${UNITS_DIRS})
 
 # Static library
-if (${BUILD_STATIC})
-    add_library           (${PROJECT_NAME}_static STATIC ${UNITS_SOURCES} ${UNITS_HEADERS})
-    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries (${PROJECT_NAME}_static PUBLIC mp-units::mp-units GTest::gtest_main)
+if(${BUILD_STATIC})
+    add_library(${PROJECT_NAME}_static STATIC ${UNITS_SOURCES} ${UNITS_HEADERS})
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries(${PROJECT_NAME}_static PUBLIC ${UNITS_LIBS})
+    target_include_directories(${PROJECT_NAME}_static PUBLIC ${UNITS_DIRS})
 endif()
 
 # Install headers
@@ -65,5 +72,5 @@ file(COPY
 
 # add_subdirectory(examples EXCLUDE_FROM_ALL)
 # if(${BUILD_TESTS})
-#     add_subdirectory(tests)
+# add_subdirectory(tests)
 # endif()

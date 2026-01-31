@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -10,9 +10,9 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 project(
-    "snapshot" 
+    "snapshot"
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Library for Ingesting and Storing Live Satellite Data" 
+    DESCRIPTION "Library for Ingesting and Storing Live Satellite Data"
     LANGUAGES CXX
 )
 
@@ -35,19 +35,7 @@ set(SNAPSHOT_HEADERS
     ${SNAPSHOT_BASE}/http-queries/ethz/EthzClient.hpp
     ${SNAPSHOT_BASE}/http-queries/spacetrack/SpaceTrackClient.hpp
     ${SNAPSHOT_BASE}/types/typedefs.hpp
-
-    ${EXTERN_BASE}/nlohmann/json.hpp
-    ${EXTERN_BASE}/date/date.h
 )
-
-# Includes
-set(SNAPSHOT_DIRS
-    ${EXTERN_BASE}
-    ${CMAKE_CURRENT_LIST_DIR}
-    $ENV{HOME}/open-source/mp-units/src/core/include
-    $ENV{HOME}/open-source/mp-units/src/systems/include
-)
-include_directories(${SNAPSHOT_DIRS})
 
 # Set outputs
 set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
@@ -56,16 +44,34 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
+# Includes
+set(SNAPSHOT_DIRS
+    ${EXTERN_BASE}
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../astro
+    ${CMAKE_CURRENT_LIST_DIR}/../utilities
+)
+
+# Find library
+set(SNAPSHOT_LIBS
+    mp-units::mp-units
+    nlohmann_json::nlohmann_json
+    cpr::cpr
+    sqlite_orm::sqlite_orm
+)
+
 # Shared library
-add_library           (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
-set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main)
+add_library(${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared ${SNAPSHOT_LIBS})
+target_include_directories(${PROJECT_NAME}_shared PUBLIC ${SNAPSHOT_DIRS})
 
 # Static library
-if (${BUILD_STATIC})
-    add_library           (${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
-    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static mp-units::mp-units cpr::cpr sqlite_orm::sqlite_orm GTest::gtest_main)
+if(${BUILD_STATIC})
+    add_library(${PROJECT_NAME}_static STATIC ${SNAPSHOT_SOURCES} ${SNAPSHOT_HEADERS})
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries(${PROJECT_NAME}_static PUBLIC astro_shared utilities_static ${SNAPSHOT_LIBS})
+    target_include_directories(${PROJECT_NAME}_static PUBLIC ${SNAPSHOT_DIRS})
 endif()
 
 # Executable
@@ -78,13 +84,12 @@ endif()
 # set_target_properties      (query_test PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 # target_include_directories (query_test PUBLIC ${SNAPSHOT_DIRS})
 # target_link_libraries      (query_test PUBLIC ${PROJECT_NAME}_shared)
-
-add_executable             (${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp ${EXTERN_BASE}/nlohmann/json.hpp)
-set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories (${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
-target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs)
-add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
+add_executable(${PROJECT_NAME}_exe ${SNAPSHOT_BASE}/drivers/main.cpp ${EXTERN_BASE}/nlohmann/json.hpp)
+set_target_properties(${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_include_directories(${PROJECT_NAME}_exe PUBLIC ${SNAPSHOT_DIRS})
+target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs)
+add_custom_target(${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers
 file(COPY
@@ -96,7 +101,7 @@ file(COPY
 )
 
 if(${BUILD_EXAMPLES})
-#     add_subdirectory(examples)
+    # add_subdirectory(examples)
 endif()
 
 if(${BUILD_TESTS})
