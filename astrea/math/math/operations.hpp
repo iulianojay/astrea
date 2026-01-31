@@ -32,17 +32,7 @@ template <auto R, typename Rep>
 [[nodiscard]] inline mp_units::quantity<R, Rep> max(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
 {
     using std::max;
-    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
-        // check what is the return type when called with the integral value
-        using rep = decltype(max(q1.force_numerical_value_in(q1.unit), q2.force_numerical_value_in(q1.unit)));
-        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{
-            max(value_cast<rep>(q1).numerical_value_in(q1.unit), value_cast<rep>(q2).numerical_value_in(q1.unit)), q1.unit
-        };
-    }
-    else {
-        return mp_units::quantity{ max(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
-    }
+    return mp_units::quantity{ max(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
 template <auto R, typename Rep>
@@ -50,17 +40,7 @@ template <auto R, typename Rep>
 [[nodiscard]] inline mp_units::quantity<R, Rep> min(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
 {
     using std::min;
-    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
-        // check what is the return type when called with the integral value
-        using rep = decltype(min(q1.force_numerical_value_in(q1.unit), q2.force_numerical_value_in(q1.unit)));
-        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{
-            min(value_cast<rep>(q1).numerical_value_in(q1.unit), value_cast<rep>(q2).numerical_value_in(q1.unit)), q1.unit
-        };
-    }
-    else {
-        return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
-    }
+    return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>

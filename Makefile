@@ -143,11 +143,27 @@ check: build
 
 .PHONY: coverage-html
 coverage-html: debug run_tests run_examples
-	cd build && gcovr -r .. --html-nested -o $(ASTREA_ROOT)/.gcovr/coverage.html --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches && cd ..
+	cd build && \
+	gcovr -r .. --html-nested \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.html \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found && \
+	cd ..
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
-	cd build && gcovr -r .. --cobertura-pretty -o $(ASTREA_ROOT)/.gcovr/coverage.xml  --merge-mode-functions=separate --filter ".*/astrea/" --exclude-unreachable-branches -s && cd ..
+	cd build && \
+	gcovr -r .. --cobertura-pretty \
+	-o $(ASTREA_ROOT)/.gcovr/coverage.xml  \
+	--merge-mode-functions=separate \
+	--filter ".*/astrea/" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude-unreachable-branches -s \
+	--gcov-ignore-errors=no_working_dir_found \
+	&& cd ..
 
 .PHONY: build_env
 build_env:

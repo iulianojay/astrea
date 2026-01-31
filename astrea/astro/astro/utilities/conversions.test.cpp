@@ -311,6 +311,38 @@ TEST_F(ConversionTest, ConvertTrueAnomalyToMeanAnomaly)
     ASSERT_EQ_QUANTITY(ma, 0.1522418 * rad, REL_TOL);
 }
 
+TEST_F(ConversionTest, ConvertMeanAnomalyToEccentricAnomaly)
+{
+    // Test for circular orbit (ecc = 0)
+    Angle ma     = thetaDist(rng);
+    Unitless ecc = 0.0 * one;
+    Angle ea     = convert_mean_anomaly_to_eccentric_anomaly(ma, ecc);
+    ASSERT_EQ_QUANTITY(ea, ma, REL_TOL);
+
+    // Test for elliptical orbit (ecc > 0)
+    ma  = 0.5 * rad;
+    ecc = 0.5 * one;
+    ea  = convert_mean_anomaly_to_eccentric_anomaly(ma, ecc);
+
+    ASSERT_EQ_QUANTITY(ea, 0.54596 * rad, REL_TOL);
+}
+
+TEST_F(ConversionTest, ConvertEccentricAnomalyToMeanAnomaly)
+{
+    // Test for circular orbit (ecc = 0)
+    Angle ea     = thetaDist(rng);
+    Unitless ecc = 0.0 * one;
+    Angle ma     = convert_eccentric_anomaly_to_mean_anomaly(ea, ecc);
+    ASSERT_EQ_QUANTITY(ma, ea, REL_TOL);
+
+    // Test for elliptical orbit (ecc > 0)
+    ea  = 0.5 * rad;
+    ecc = 0.5 * one;
+    ma  = convert_eccentric_anomaly_to_mean_anomaly(ea, ecc);
+
+    ASSERT_EQ_QUANTITY(ma, 0.260287 * rad, REL_TOL);
+}
+
 TEST_F(ConversionTest, SanitizeAngle)
 {
     // Test angle within [0, 2pi]
