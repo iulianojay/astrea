@@ -28,10 +28,10 @@ jobs:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
-        
+
     - name: Mark repository as safe
       run: git config --global --add safe.directory $GITHUB_WORKSPACE
-      
+
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
 
@@ -43,6 +43,7 @@ jobs:
 
     - name: Build
       run: |
+        make release examples tests build
         make release all
 
     - name: Run Tests
@@ -70,10 +71,10 @@ jobs:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
-        
+
     - name: Mark repository as safe
       run: git config --global --add safe.directory $GITHUB_WORKSPACE
-      
+
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
 
@@ -85,6 +86,7 @@ jobs:
 
     - name: Build Debug
       run: |
+        make debug examples tests build
         make debug all
 
     - name: Run Coverage
