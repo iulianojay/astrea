@@ -43,6 +43,7 @@ jobs:
 
     - name: Build
       run: |
+        source .venv/bin/activate
         make release examples tests build
         make release all
 
@@ -86,6 +87,7 @@ jobs:
 
     - name: Build Debug
       run: |
+        source .venv/bin/activate
         make debug examples tests build
         make debug all
 
