@@ -76,6 +76,10 @@ enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
 class Orbital6DofTest : public testing::Test {
 
+    // TODO: Make NASA 6DoF Tests generate a report file. Add this output to CI.
+    // TODO: Finish implementing all force models in the tests. This includes more atmosphere models, and different
+    //       SRP models. It may also include closing down any errors further.
+
     using RStats = Stats<m, double>;
     using VStats = Stats<(cm / s), double>;
 
