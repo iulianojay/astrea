@@ -156,7 +156,7 @@ build_env:
 
 .PHONY: activate_env
 activate_env:
-	source .venv/bin/activate
+	. .venv/bin/activate
 
 .PHONY: install_deps
 install_deps:
