@@ -17,12 +17,16 @@ RUN apt-get update && \
     bash-completion \
     mono-mcs \
     curl \
+    clang-format \
     libsqlite3-dev \
     libssl-dev \
+    libgl1-mesa-dev \
+    xorg-dev \
     python3 \
     python3-pip \
     python3-venv \
     git \
+    gnuplot \
     && \
     rm -rf /var/lib/apt/lists/*
 
