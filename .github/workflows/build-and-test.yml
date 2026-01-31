@@ -40,11 +40,10 @@ jobs:
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
         make python_env
-        . .venv/bin/activate
 
     - name: Build
       run: |
-        make release examples tests build
+        . .venv/bin/activate && make release examples tests build
         make release all
 
     - name: Run Tests
@@ -84,11 +83,10 @@ jobs:
         echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         cp -r ./.conan2 ~
         make python_env
-        . .venv/bin/activate
 
     - name: Build Debug
       run: |
-        make debug examples tests build
+        . .venv/bin/activate && make debug examples tests build
         make debug all
 
     - name: Run Coverage
