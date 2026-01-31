@@ -93,7 +93,7 @@ jobs:
       run: |
         mkdir .gcovr
         touch .gcovr/coverage.xml
-        make coverage
+        . .venv/bin/activate && make coverage
 
     - name: Extract Coverage Percentage
       run: |
