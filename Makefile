@@ -12,6 +12,7 @@ tests_path := tests
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/gcc-13-23/$(build_type))
+install_path := $(abspath ./install/gcc-13-23/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
@@ -35,12 +36,13 @@ profile: profiling install
 
 .PHONY: install
 install:
-	cmake --build $(build_path) --target install -j20
+	cmake --build $(build_path) --target install -j5
 
 .PHONY: build
 build:
 	cmake -S . -B $(build_path) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
+	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
@@ -54,18 +56,21 @@ debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
+	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
+	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
+	$(eval install_path := $(abspath $(ASTREA_ROOT)/install/gcc-13-23/$(build_type)))
 
 .PHONY: tests
 tests:

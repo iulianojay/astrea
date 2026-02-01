@@ -21,7 +21,7 @@
 #include <set>
 #include <vector>
 
-#include <parallel_hashmap/btree.h>
+#include <gtl/btree.hpp>
 
 #include <units/units.hpp>
 
@@ -94,7 +94,7 @@ class EventDetector {
      * @param epoch The epoch to which the event times are relative.
      * @return const std::vector<Date>& A vector of dates representing the event times.
      */
-    phmap::btree_map<std::string, std::vector<Date>> get_event_times(const Date& epoch) const;
+    gtl::btree_map<std::string, std::vector<Date>> get_event_times(const Date& epoch) const;
 
   private:
     std::vector<EventTracker> _eventTrackers; //!< The list of Event trackers.

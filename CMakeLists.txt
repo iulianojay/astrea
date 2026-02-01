@@ -33,9 +33,6 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
 
-include(cmake/standard_project_settings.cmake)
-include(cmake/CPM.cmake)
-
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 
@@ -45,84 +42,10 @@ if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
 endif()
 
 # Include dependencies
-find_package(SQLite3 REQUIRED)
+include(cmake/dependencies.cmake)
 
-CPMFindPackage(
-    NAME gsl-lite
-    VERSION 1.0.1
-    GITHUB_REPOSITORY gsl-lite/gsl-lite
-)
-
-CPMFindPackage(
-    NAME mp-units
-    VERSION 2.5.0
-    GITHUB_REPOSITORY mpusz/mp-units
-    SOURCE_SUBDIR src
-    SYSTEM YES
-    EXCLUDE_FROM_ALL YES
-    OPTIONS
-    "MP_UNITS_BUILD_INSTALL OFF"
-)
-
-CPMFindPackage(
-    NAME cpr
-    GITHUB_REPOSITORY libcpr/cpr
-    GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06
-)
-
-CPMFindPackage(
-    NAME sqlite_orm
-    GITHUB_REPOSITORY fnc12/sqlite_orm
-    GIT_TAG v1.9.1
-)
-
-CPMFindPackage(
-    NAME matplotplusplus
-    GITHUB_REPOSITORY alandefreitas/matplotplusplus
-    GIT_TAG v1.2.2
-)
-
-CPMFindPackage(
-    NAME date
-    GITHUB_REPOSITORY HowardHinnant/date
-    GIT_TAG v3.0.1
-)
-
-CPMFindPackage(
-    NAME nlohmann_json
-    VERSION 3.11.3
-    GITHUB_REPOSITORY nlohmann/json
-)
-
-CPMFindPackage(
-    NAME parallel-hashmap
-    GITHUB_REPOSITORY greg7mdp/parallel-hashmap
-    GIT_TAG v1.4.0
-)
-
-# Doesn't follow standard versioning so use FetchContent
-include(FetchContent)
-FetchContent_Declare(
-    csv
-    GIT_REPOSITORY https://github.com/vincentlaucsb/csv-parser.git
-    GIT_SHALLOW TRUE
-    GIT_TAG 2.3.0
-)
-FetchContent_MakeAvailable(csv)
-
-# Add google test
-set(INSTALL_GTEST OFF)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-CPMFindPackage(
-    NAME googletest
-    GITHUB_REPOSITORY google/googletest
-    VERSION 1.17.0
-    OPTIONS
-    "INSTALL_GTEST OFF"
-)
-
-enable_testing()
-include(GoogleTest)
+# Settings after dependencies so there aren't 1000 warnings
+include(cmake/standard_project_settings.cmake)
 
 # Get code
 add_subdirectory(astrea)

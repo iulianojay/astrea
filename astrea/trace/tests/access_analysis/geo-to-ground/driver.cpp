@@ -26,7 +26,7 @@
 
 #include <sqlite3.h>
 
-#include <csv-parser/csv.hpp>
+#include <csv.hpp>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>

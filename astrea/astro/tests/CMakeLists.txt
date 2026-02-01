@@ -44,12 +44,14 @@ add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
 # Helper files
 set(HELPER_HEADERS
+    ${BASE}/../tests/utilities/comparisons.hpp
     ${BASE}/../tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp
     ${BASE}/../tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp
     ${BASE}/../tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp
 )
 
 set(HELPER_SOURCES
+    ${BASE}/../tests/utilities/comparisons.cpp
     ${BASE}/../tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.cpp
     ${BASE}/../tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.cpp
 )

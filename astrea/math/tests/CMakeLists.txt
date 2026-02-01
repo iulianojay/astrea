@@ -25,6 +25,7 @@ add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
 # Helper files
 set(HELPER_HEADERS
+    ${BASE}/test_util.hpp
 )
 
 set(HELPER_SOURCES
@@ -32,6 +33,6 @@ set(HELPER_SOURCES
 
 # Add subdirectories for regressions
 # add_subdirectory(some-regression-test)
-build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
 
+build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
 # build_tests("REGRESSION" "${REGRESSION_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")

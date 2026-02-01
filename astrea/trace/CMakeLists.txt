@@ -61,11 +61,11 @@ set(TRACE_HEADERS
 )
 
 # Set outputs
-set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
+# set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
+# set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(TRACE_DIRS
@@ -86,30 +86,29 @@ set(TRACE_LIBS
     csv
     sqlite_orm::sqlite_orm
     date::date
-    parallel_hashmap
 )
 
 # Shared library
-add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
-target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
+add_library                (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
 
 # Static library
 if(${BUILD_STATIC})
-    add_library(${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
-    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
-    target_include_directories(${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
+    add_library                (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
+    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
 endif()
 
 # Executable
-add_executable(${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
-set_target_properties(${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_include_directories(${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
-target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
-target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
-add_custom_target(${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
+add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
+set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_include_directories (${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
+target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
+target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
+add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers
 file(COPY

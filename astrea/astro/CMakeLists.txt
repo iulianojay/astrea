@@ -81,8 +81,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/utilities/conversions.cpp
     ${ASTRO_BASE}/utilities/plotting.cpp
-
-    ${ASTRO_BASE}/../tests/utilities/comparisons.cpp
 )
 
 # Headers
@@ -184,8 +182,6 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/utilities/conversions.hpp
     ${ASTRO_BASE}/utilities/plotting.hpp
-
-    ${ASTRO_BASE}/../tests/utilities/comparisons.hpp
 )
 
 # Build ephemeris files
@@ -204,15 +200,14 @@ set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Set outputs
-set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
+# set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
+# set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(ASTRO_DIRS
-    ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../math
     ${CMAKE_CURRENT_LIST_DIR}/../snapshot
@@ -227,10 +222,9 @@ set(ASTRO_LIBS
     matplot
     nlohmann_json::nlohmann_json
     cpr::cpr
-    csv
     sqlite_orm::sqlite_orm
     date::date
-    parallel_hashmap
+    gtl
 )
 
 # Shared library
@@ -240,10 +234,10 @@ if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
 endif()
 
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
-target_include_directories(${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions(${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 
 # Static library
 if(${BUILD_STATIC})
@@ -253,10 +247,10 @@ if(${BUILD_STATIC})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
 
-    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
-    target_include_directories(${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions(${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
 endif()
 
 # Install headers
