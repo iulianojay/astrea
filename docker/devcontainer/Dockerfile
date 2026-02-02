@@ -45,8 +45,8 @@ WORKDIR $USER_HOME
 # Set env
 ENV ASTREA_ROOT=$USER_HOME/astrea
 
-# For some reason, this is the only way to install conan and gcovr
-RUN pip install gcovr conan --break-system-packages
+# For some reason, this is the only way to install gcovr
+RUN pip install gcovr --break-system-packages
 
 # Clone mp-units instead of copying local version
 RUN mkdir $USER_HOME/open-source && \

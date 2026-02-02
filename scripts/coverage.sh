@@ -9,7 +9,6 @@ eval "lcov --directory ./build/ --capture --output-file $OUTFILE -rc lcov_branch
 # Remove external dependencies
 eval "lcov -r $OUTFILE "*/usr/*" -o $OUTFILE"
 eval "lcov -r $OUTFILE "*/extern/*" -o $OUTFILE"
-eval "lcov -r $OUTFILE "*/.conan2/*" -o $OUTFILE"
 eval "lcov -r $OUTFILE "*mp-units*" -o $OUTFILE"
 eval "lcov -r $OUTFILE "*googletest*" -o $OUTFILE"
 
