@@ -286,7 +286,7 @@ Examples have been built out more completely for the astro tool in Astrea (astre
 
 ## Build and install
 
-Since conan is used to build mp-units and it's dependencies, users must have conan profiles setup for the build process to work. To simplify this, required conan files are stored in the repo root directory in `.conan2`. Move this folder to your home directory and install the Astrea python environment with
+Astrea uses a small Python script to build out some files. In order to run this, first install the Astrea's python environment with
 ```bash
 make python_env
 ```
@@ -296,27 +296,20 @@ Once this is built, activate the environment with
 source ./.venv/bin/activate
 ```
 
-The python runs conan and builds out some files used in place of certain SPICE calls.
-
-Once the python is activated, build first with
-```bash
-make build
-```
-
-and install with
+Once the python is activated, build and install with
 ```bash
 make install
 ```
 
 Options can be added at either step to update the configuration accordingly.
 ```bash
-make debug build
 make debug install
 ```
 ```bash
 make relwithdebinfo tests examples build
-make relwithdebinfo tests examples install
+make relwithdebinfo all install
 ```
+where `all` can replace `tests examples`.
 
 The build step only needs to be done once per independent bulid configuration.
 
