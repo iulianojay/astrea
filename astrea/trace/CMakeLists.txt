@@ -60,13 +60,6 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/types/typedefs.hpp
 )
 
-# Set outputs
-# set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-# set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
-
 # Includes
 set(TRACE_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
@@ -82,7 +75,6 @@ set(TRACE_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    cpr::cpr
     csv
     sqlite_orm::sqlite_orm
     date::date

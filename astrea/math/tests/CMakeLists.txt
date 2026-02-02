@@ -16,7 +16,6 @@ set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
 file(GLOB_RECURSE UNIT_TEST_SOURCES CONFIGURE_DEPENDS ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/**/driver.cpp)
 
-# Set install rpath
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
 
 # Target for all tests
@@ -25,7 +24,6 @@ add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
 # Helper files
 set(HELPER_HEADERS
-    ${BASE}/test_util.hpp
 )
 
 set(HELPER_SOURCES

@@ -10,7 +10,7 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 # Test build function
-function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES HELPER_HDRS HELPER_SRCS)
+function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER_SRCS)
 
     foreach(TEST_FILE ${TEST_FILES})
 
@@ -39,7 +39,6 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES HELPER_HDRS HELPER_SRC
         target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib)
 
         # Dependencies
-        message(STATUS "Linking ${TEST_EXE} against ${CURRENT_PROJECT}_shared and GTest::gtest_main")
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
 
         # Install

@@ -23,10 +23,10 @@ cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
 
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := install
 
 .PHONY: all
-all: examples tests install
+all: examples tests
 
 .PHONY: checkcases
 checkcases: checkcase_db 6dof_checkcases tests
@@ -35,8 +35,8 @@ checkcases: checkcase_db 6dof_checkcases tests
 profile: profiling install
 
 .PHONY: install
-install:
-	cmake --build $(build_path) --target install -j5
+install: build
+	cmake --build $(build_path) --target install -j10
 
 .PHONY: build
 build:
@@ -48,8 +48,7 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
-	-DMATPLOTPP_BUILD_EXPERIMENTAL_OPENGL_BACKEND=ON
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
 
 .PHONY: debug
 debug:

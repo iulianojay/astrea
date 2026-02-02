@@ -8,11 +8,13 @@
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
 include(cmake/CPM.cmake)
+include(FetchContent)
 
 # SQLite3 for databases
 find_package(SQLite3 REQUIRED)
 
 # MP-Units dependency that I need to install for some reason
+add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
 CPMFindPackage(
     NAME gsl-lite
     VERSION 1.0.1
@@ -36,8 +38,11 @@ CPMFindPackage(
 CPMFindPackage(
     NAME cpr
     GITHUB_REPOSITORY libcpr/cpr
-    GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06
+    GIT_TAG 1.11.0
     GIT_SHALLOW TRUE
+    OPTIONS
+    "CPR_BUILD_TESTS OFF"
+    "BUILD_SHARED_LIBS ON"
 )
 
 # SQLite ORM for better interaction with SQLite
@@ -54,6 +59,10 @@ CPMFindPackage(
     GITHUB_REPOSITORY alandefreitas/matplotplusplus
     GIT_TAG v1.2.2
     GIT_SHALLOW TRUE
+    OPTIONS
+    "MATPLOTPP_BUILD_EXAMPLES OFF"
+    "MATPLOTPP_BUILD_SHARED_LIBS ON"
+    "MATPLOTPP_BUILD_TESTS OFF"
 )
 
 # Date for literally just like one thing please standards committee, adopt this
@@ -82,7 +91,6 @@ CPMFindPackage(
 
 # CSV Parsing that sucks less
 # Doesn't follow standard versioning so use FetchContent
-include(FetchContent)
 FetchContent_Declare(
     csv
     GIT_REPOSITORY https://github.com/vincentlaucsb/csv-parser.git
@@ -92,8 +100,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(csv)
 
 # Google test cause I Love massive endless macro heavy tools
-set(INSTALL_GTEST OFF)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 CPMFindPackage(
     NAME googletest
     GITHUB_REPOSITORY google/googletest
@@ -102,6 +108,6 @@ CPMFindPackage(
     OPTIONS
     "INSTALL_GTEST OFF"
 )
-
-enable_testing()
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 include(GoogleTest)
+enable_testing()
