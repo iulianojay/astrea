@@ -47,17 +47,17 @@ set(UTILITIES_LIBS
 )
 
 # Shared library
-add_library(${PROJECT_NAME}_shared SHARED ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${PROJECT_NAME}_shared PUBLIC ${UTILITIES_LIBS})
-target_include_directories(${PROJECT_NAME}_shared PUBLIC ${UTILITIES_DIRS})
+add_library                (${PROJECT_NAME}_shared SHARED ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_LIBS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_DIRS})
 
 # Static library
 if(${BUILD_STATIC})
-    add_library(${PROJECT_NAME}_static STATIC ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
-    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries(${PROJECT_NAME}_static PUBLIC ${UTILITIES_LIBS})
-    target_include_directories(${PROJECT_NAME}_static PUBLIC ${UTILITIES_DIRS})
+    add_library                (${PROJECT_NAME}_static STATIC ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
+    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC ${UTILITIES_LIBS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${UTILITIES_DIRS})
 endif()
 
 # Install headers
