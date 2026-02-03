@@ -145,7 +145,7 @@ check: build
 coverage-html: debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --html-nested \
-	-o ./.gcovr/coverage.html \
+	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
 	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
@@ -157,7 +157,7 @@ coverage-html: debug run_tests run_examples
 coverage: debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --cobertura-pretty \
-	-o ./.gcovr/coverage.xml  \
+	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
 	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
