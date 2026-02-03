@@ -53,7 +53,8 @@ Y interpolate(const std::vector<X>& x, const std::vector<Y>& y, const X& sx)
     return y0 + (sx - x0) * (y1 - y0) / (x1 - x0);
 }
 
-std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& sx);
+// TDOD: Fix UB somewhere in spline or just get rid of spline.
+// std::vector<double> cubic_spline(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& sx);
 
 } // namespace math
 } // namespace astrea
