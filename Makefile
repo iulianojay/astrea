@@ -68,8 +68,8 @@ release:
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath $(ASTREA_ROOT)/build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath $(ASTREA_ROOT)/install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
+	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
 
 .PHONY: tests
 tests:
@@ -115,7 +115,7 @@ rerun_tests:
 
 .PHONY: run_examples
 run_examples:
-	sh $(ASTREA_ROOT)/scripts/run_examples.sh
+	sh ./scripts/run_examples.sh
 
 .PHONY: docker
 docker:
@@ -145,7 +145,7 @@ check: build
 coverage-html: debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --html-nested \
-	-o $(ASTREA_ROOT)/.gcovr/coverage.html \
+	-o ./.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
 	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
@@ -157,7 +157,7 @@ coverage-html: debug run_tests run_examples
 coverage: debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --cobertura-pretty \
-	-o $(ASTREA_ROOT)/.gcovr/coverage.xml  \
+	-o ./.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
 	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \

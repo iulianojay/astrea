@@ -42,9 +42,6 @@ RUN chown -R $USER:$USER $USER_HOME
 USER $USER
 WORKDIR $USER_HOME
 
-# Set env
-ENV ASTREA_ROOT=$USER_HOME/astrea
-
 # For some reason, this is the only way to install gcovr
 RUN pip install gcovr --break-system-packages
 

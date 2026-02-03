@@ -37,7 +37,6 @@ jobs:
 
     - name: Setup
       run: |
-        echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         make python_env
 
     - name: Build and Install Release
@@ -78,7 +77,6 @@ jobs:
 
     - name: Setup
       run: |
-        echo "ASTREA_ROOT=$(pwd)" >> "$GITHUB_ENV"
         make python_env
 
     - name: Build and Install Debug

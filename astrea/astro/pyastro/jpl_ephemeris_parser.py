@@ -5,14 +5,14 @@ import numpy as np
 import os
 import argparse
 
-ASTREA_ROOT = os.getenv("ASTREA_ROOT")
+ASTRO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
 
 def parse_header_file(headerFile):
     """
     Pull the table out of the DE header file, which is located between the tags "GROUP   1050" and "GROUP   1070"
-    
+
     Returns:
-        ndarray: Numpy array containing the header table 
+        ndarray: Numpy array containing the header table
         float: Earth/Moon mass ratio
 
     """
@@ -51,7 +51,7 @@ def parse_header_file(headerFile):
                 splitBlock.extend(line.strip().split())
 
         return float(splitBlock[emratIdx].replace("D", "e"))
-        
+
     def parse_group_1050(lines_group_1050):
         # Put the header lines into a numpy array
         jplEphemHeader = []
@@ -123,7 +123,7 @@ def get_table_parameters(celestialBody: CelestialBodies, jplEphemHeader: np.ndar
 
     Arguments:
         celestialBody (CelestialBodies): Enum value representing the celestial body
-        jplEphemHeader (np.ndarray): Numpy array containing the header table 
+        jplEphemHeader (np.ndarray): Numpy array containing the header table
 
     Returns:
         tuple: Tuple containing the following values
@@ -316,7 +316,7 @@ def convert_to_float(words):
 def duplicate_start_date(startMjdVals, curMjdStart):
     """
     Function to prevent duplicate start dates when multiple files are used
-    
+
     """
     for mjd in startMjdVals:
         if curMjdStart == mjd:
@@ -335,7 +335,7 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
         mjd0 (float): Initial value of MJD from the J2000 Epoch
         mjdF (float): Final value of MJD from the J2000 Epoch
         celestialBody (CelestialBodies): Celestial body to extract
-        jplEphemHeader (np.ndarray): Numpy array containing the header table 
+        jplEphemHeader (np.ndarray): Numpy array containing the header table
 
     Returns:
         (list, list, list): String representation of Chebyshev interpolants for x, y, z values of position
@@ -354,7 +354,7 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
         yChebyshevStr = []
         zChebyshevStr = []
         startMjdVals = []
-        
+
         for block in lineBlocks:
 
             # First, pull out start/stop jd and convert to MJD_J2k
@@ -421,7 +421,7 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
         em_ratio (float): Earth/Moon mass ratio
         mjd0 (float): Initial value of MJD from the J2000 Epoch
         mjdF (float): Final value of MJD from the J2000 Epoch
-        jplEphemHeader (np.ndarray): Numpy array containing the header table 
+        jplEphemHeader (np.ndarray): Numpy array containing the header table
 
     Returns:
         (list, list, list): String representation of Chebyshev interpolants for x, y, z values of position
@@ -497,17 +497,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate JPL Ephemeris files for Astrea")
     parser.add_argument('--bodies', nargs='+', type=str, default=[body.name for body in CelestialBodies],
                         help='List of celestial bodies to generate ephemeris files for. Default is all bodies.')
-    parser.add_argument('-o', '--output_path', type=str, default=os.path.join(ASTREA_ROOT, "astrea/astro/systems/planetary_bodies"))
+    parser.add_argument('-o', '--output_path', type=str, default=os.path.join(ASTRO_ROOT, "/systems/planetary_bodies"))
     args = parser.parse_args()
 
     # Parse the header table
     ephemNumber = "430"
-    base = os.path.join(ASTREA_ROOT, "astrea/astro/data/jpl_ephemeris_data")
+    base = os.path.join(ASTRO_ROOT, "data", "jpl_ephemeris_data")
     emratio, jplEphemHeader = parse_header_file(f"{base}/de_{ephemNumber}/header.430_572")
 
     # Parse the desired files
     files = [
-        f"{base}/de_{ephemNumber}/ascp1950.430", 
+        f"{base}/de_{ephemNumber}/ascp1950.430",
         f"{base}/de_{ephemNumber}/ascp2050.430"
     ]
     blockLines = read_in_blocks(files)

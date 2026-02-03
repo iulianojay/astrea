@@ -42,16 +42,17 @@
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 
+#include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
-#include <tests/utilities/comparisons.hpp>
 
 #include <tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/Stats.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace sqlite_orm;
 using namespace matplot;
@@ -103,8 +104,8 @@ class Orbital6DofTest : public testing::Test {
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
 
-        outputDir = std::getenv("ASTREA_ROOT");
-        outputDir /= "astrea/astro/tests/nasa_6dof_checkcases/orbital/results";
+        outputDir = std::string(_ASTRO_ROOT_);
+        outputDir /= "/tests/nasa_6dof_checkcases/orbital/results";
     }
 
     void SetUp() override {}
