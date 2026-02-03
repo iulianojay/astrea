@@ -33,16 +33,14 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
-# For some reason, this is the only way to install conan and gcovr
-RUN pip install gcovr conan --break-system-packages
+# For some reason, this is the only way to install gcovr
+RUN pip install gcovr --break-system-packages
 
-COPY .conan2/ $ASTREA_ROOT/.conan2
 COPY astrea $ASTREA_ROOT/astrea
 COPY cmake $ASTREA_ROOT/cmake
 COPY extern $ASTREA_ROOT/extern
 COPY scripts $ASTREA_ROOT/scripts
 COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt
-COPY conanfile.txt $ASTREA_ROOT/conanfile.txt
 COPY Makefile $ASTREA_ROOT/Makefile
 
 # Clone mp-units instead of copying local version

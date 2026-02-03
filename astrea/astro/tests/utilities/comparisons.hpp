@@ -10,6 +10,18 @@ namespace astrea {
 
 namespace astro {
 
+/**
+ * @brief Asserts that two OrbitalElements objects are equal within specified tolerances.
+ *
+ * This function checks if two OrbitalElements objects are equal within the given relative and absolute tolerances.
+ * If they are not equal, it triggers a test failure.
+ *
+ * @param first The first OrbitalElements object to compare.
+ * @param second The second OrbitalElements object to compare.
+ * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
+ * @param relTol Relative tolerance for the comparison.
+ * @param absTol Absolute tolerances for each element in the comparison.
+ */
 void ASSERT_EQ_ORB_ELEM(
     const OrbitalElements& first,
     const OrbitalElements& second,
@@ -18,6 +30,17 @@ void ASSERT_EQ_ORB_ELEM(
     const std::vector<Unitless>& absTol = { 0.0 * mp_units::one }
 ) noexcept;
 
+/**
+ * @brief Asserts that two OrbitalElementPartials objects are equal within specified tolerances.
+ *
+ * This function checks if two OrbitalElementPartials objects are equal within the given relative and absolute
+ * tolerances. If they are not equal, it triggers a test failure.
+ *
+ * @param first The first OrbitalElementPartials object to compare.
+ * @param second The second OrbitalElementPartials object to compare.
+ * @param relTol Relative tolerance for the comparison.
+ * @param absTol Absolute tolerances for each element in the comparison.
+ */
 void ASSERT_EQ_ORB_PART(
     const OrbitalElementPartials& first,
     const OrbitalElementPartials& second,
@@ -25,7 +48,20 @@ void ASSERT_EQ_ORB_PART(
     const std::vector<Unitless>& absTol = { 0.0 * mp_units::one }
 ) noexcept;
 
-
+/**
+ * @brief Asserts that two CartesianVector objects are equal within specified tolerances.
+ *
+ * This function checks if two CartesianVector objects are equal within the given relative and absolute tolerances.
+ * If they are not equal, it triggers a test failure.
+ *
+ * @tparam Value_T The value type of the first CartesianVector.
+ * @tparam Frame_T The frame type of the CartesianVectors.
+ * @tparam Value_U The value type of the second CartesianVector.
+ * @param vec The first CartesianVector to compare.
+ * @param expected The second CartesianVector to compare.
+ * @param relTol Relative tolerance for the comparison.
+ * @param absTol Absolute tolerance for the comparison.
+ */
 template <typename Value_T, typename Frame_T, typename Value_U>
 void ASSERT_EQ_CART_VEC(
     const CartesianVector<Value_T, Frame_T>& vec,

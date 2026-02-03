@@ -31,6 +31,7 @@
 
 #include <units/typedefs.hpp>
 
+#include <astro/astro.macros.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 
@@ -122,9 +123,8 @@ CheckcaseDatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& 
  */
 inline auto get_checkcase_database()
 {
-    static const std::string root = std::getenv("ASTREA_ROOT");
     return sqlite_orm::make_storage(
-        root + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/checkcases.db",
+        std::string(_ASTRO_ROOT_) + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/checkcases.db",
         sqlite_orm::make_table(
             "AtmosphericCheckcaseRows",
             sqlite_orm::make_column("id", &AtmosphericCheckcaseRow::id, sqlite_orm::primary_key().autoincrement()),

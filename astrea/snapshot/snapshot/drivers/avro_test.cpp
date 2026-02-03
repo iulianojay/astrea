@@ -73,8 +73,7 @@ int main()
 
 // void ex2()
 // {
-//     static const std::string root = std::getenv("ASTREA_ROOT");
-//     std::ifstream infileStream(root + "/astrea/snapshot/database/cartesian.json");
+//     std::ifstream infileStream(_SNAPSHOT_ROOT_ + "/database/cartesian.json");
 
 //     avro::ValidSchema cartesianSchema;
 //     avro::compileJsonSchema(infileStream, cartesianSchema);
@@ -116,8 +115,8 @@ int main()
 // void ex3()
 // {
 //     // Load schema
-//     std::string schemaFile = "./astrea/snapshot/database/cartesian.json";
-//     std::string outFile    = "./astrea/snapshot/database/cartesian.avro";
+//     std::string schemaFile = _SNAPSHOT_ROOT_ + "/database/cartesian.json";
+//     std::string outFile    = _SNAPSHOT_ROOT_ + "/database/cartesian.avro";
 
 //     avro::ValidSchema cartesianSchema = loadSchema(schemaFile);
 
