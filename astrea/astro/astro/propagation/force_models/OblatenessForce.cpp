@@ -370,10 +370,8 @@ AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const Sta
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
 
     // Transform position to body-fixed frame
-    const Cartesian cartesian                    = state.in_element_set<Cartesian>();
-    const Date date                              = state.get_epoch();
-    const RadiusVector<frames::earth::icrf> rEci = cartesian.get_position();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = cartesian.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const Date date                                      = state.get_epoch();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
 
     // Position components in ECEF
     const Distance& x = rEcef[0];
@@ -381,7 +379,7 @@ AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const Sta
     const Distance& z = rEcef[2];
 
     // Compute derived quantities
-    const Distance r          = rEci.norm();
+    const Distance r          = rEcef.norm();
     const Unitless xOverR     = x / r;
     const Unitless yOverR     = y / r;
     const Unitless zOverR     = z / r;

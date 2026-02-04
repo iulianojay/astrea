@@ -55,13 +55,12 @@ AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const St
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const AngularRate& bodyRotationRate  = center->get_rotation_rate();
 
-    const Cartesian cartesian                    = state.in_element_set<Cartesian>();
-    const RadiusVector<frames::earth::icrf>& r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf>& v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf>& r   = state.get_position();
+    const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
-    const Distance& R = r.norm();
+    const Distance R  = r.norm();
 
     const Velocity& vx = v.get_x();
     const Velocity& vy = v.get_y();
@@ -99,13 +98,11 @@ AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const St
 const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
 {
     // Find altitude
-    const Date date      = state.get_epoch();
-    const Cartesian cart = state.in_element_set<Cartesian>();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = cart.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
     const auto [latitude, longitude, altitude] =
         convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
 
-    return center->find_atmospheric_density(date, altitude);
+    return center->find_atmospheric_density(state.get_epoch(), altitude);
 }
 
 

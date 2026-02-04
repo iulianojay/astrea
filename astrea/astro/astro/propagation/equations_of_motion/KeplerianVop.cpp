@@ -46,12 +46,11 @@ KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
 OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const auto mu             = state.get_system().get_mu();
-    const Date& date          = state.get_epoch();
-    const Keplerian elements  = state.in_element_set<Keplerian>();
-    const Cartesian cartesian = state.in_element_set<Cartesian>();
+    const auto mu    = state.get_system().get_mu();
+    const Date& date = state.get_epoch();
 
-    const Distance& a = elements.get_semimajor();
+    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Distance& a        = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
     const Angle& theta = elements.get_true_anomaly();
@@ -64,8 +63,8 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
 
     // Function for finding accel caused by perturbations
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);

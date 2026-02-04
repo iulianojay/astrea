@@ -48,7 +48,6 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const auto mu                 = state.get_system().get_mu();
     const Date& date              = state.get_epoch();
     const Equinoctial equinoctial = state.in_element_set<Equinoctial>();
-    const Cartesian cartesian     = state.in_element_set<Cartesian>();
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -59,8 +58,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // Function for finding accel caused by perturbations
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);

@@ -130,6 +130,32 @@ class State {
     }
 
     /**
+     * @brief Gets the position vector from the state.
+     *
+     * @return RadiusVector<frames::earth::icrf> The position vector of the state.
+     */
+    RadiusVector<frames::earth::icrf> get_position() const { return in_element_set<Cartesian>().get_position(); }
+
+    /**
+     * @brief Gets the velocity vector from the state.
+     *
+     * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
+     */
+    VelocityVector<frames::earth::icrf> get_velocity() const { return in_element_set<Cartesian>().get_velocity(); }
+
+    /**
+     * @brief Gets the position vector in a specified frame.
+     *
+     * @tparam Frame_T The frame type to get the position in.
+     * @return RadiusVector<Frame_T> The position vector in the specified frame.
+     */
+    template <typename Frame_T>
+    RadiusVector<Frame_T> get_position_in_frame() const
+    {
+        return get_position().template in_frame<Frame_T>(_epoch);
+    }
+
+    /**
      * @brief Sets the orbital elements of the state.
      *
      * @param elements The new orbital elements to set.

@@ -43,14 +43,13 @@ using mp_units::si::unit_symbols::s;
 
 OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& vehicle) const
 {
-    const auto mu             = state.get_system().get_mu();
-    const auto J2             = state.get_system().get_central_body()->get_j2();
-    const auto equitorialR    = state.get_system().get_central_body()->get_equitorial_radius();
-    const Keplerian elements  = state.in_element_set<Keplerian>();
-    const Cartesian cartesian = state.in_element_set<Cartesian>();
-
     // Extract
-    const Distance& a = elements.get_semimajor();
+    const auto mu          = state.get_system().get_mu();
+    const auto J2          = state.get_system().get_central_body()->get_j2();
+    const auto equitorialR = state.get_system().get_central_body()->get_equitorial_radius();
+
+    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Distance& a        = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
     const Angle& theta = elements.get_true_anomaly();
@@ -60,17 +59,17 @@ OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& 
     const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions Keplerian elements to r and v
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
-    const Distance x = cartesian.get_x();
-    const Distance y = cartesian.get_y();
-    const Distance z = cartesian.get_z();
-    const Distance R = r.norm();
+    const Distance& x = r.get_x();
+    const Distance& y = r.get_y();
+    const Distance& z = r.get_z();
+    const Distance R  = r.norm();
 
     // Variables to reduce calculations
-    const auto termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
-    const auto termB = z * z / (R * R);
+    const auto termA = -1.5 * J2 * mu * pow<2>(equitorialR) / pow<5>(R);
+    const auto termB = pow<2>(z / R);
 
     // accel due to oblateness
     AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,

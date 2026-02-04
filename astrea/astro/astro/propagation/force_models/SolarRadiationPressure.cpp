@@ -45,11 +45,10 @@ AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(co
     // Extract
     const AstrodynamicsSystem& sys       = state.get_system();
     const Date date                      = state.get_epoch();
-    const Cartesian cartesian            = state.in_element_set<Cartesian>();
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
-    const RadiusVector<frames::earth::icrf> rCenterToVehicle = cartesian.get_position();
+    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 
     // Central body properties

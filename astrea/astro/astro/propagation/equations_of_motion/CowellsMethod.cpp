@@ -42,11 +42,10 @@ CowellsMethod::CowellsMethod(const ForceModel& forces) :
 OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const auto mu             = state.get_system().get_mu();
-    const Cartesian cartesian = state.in_element_set<Cartesian>();
+    const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R             = r.norm();

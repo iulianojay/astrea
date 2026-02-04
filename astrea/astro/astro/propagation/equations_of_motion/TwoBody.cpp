@@ -35,11 +35,10 @@ using mp_units::si::unit_symbols::s;
 OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const auto mu             = state.get_system().get_mu();
-    const Cartesian cartesian = state.in_element_set<Cartesian>();
+    const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R        = r.norm();
@@ -70,14 +69,13 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const auto mu             = state.get_system().get_mu();
-    const Cartesian cartesian = state.in_element_set<Cartesian>();
+    const auto mu = state.get_system().get_mu();
 
-    const auto r = cartesian.get_position();
-    const auto x = r[0];
-    const auto y = r[1];
-    const auto z = r[2];
-    const auto R = r.norm();
+    const auto r  = state.get_position();
+    const auto& x = r[0];
+    const auto& y = r[1];
+    const auto& z = r[2];
+    const auto R  = r.norm();
 
     quantity muOverR3      = mu / pow<3>(R);
     quantity threeMuOverR5 = 3 * mu / pow<5>(R);

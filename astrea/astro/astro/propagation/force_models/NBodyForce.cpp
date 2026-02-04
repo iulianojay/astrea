@@ -40,8 +40,7 @@ AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& s
     // Extract
     const AstrodynamicsSystem& sys                            = state.get_system();
     const Date date                                           = state.get_epoch();
-    const Cartesian cartesian                                 = state.in_element_set<Cartesian>();
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = cartesian.get_position();
+    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
     // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_central_body();
