@@ -29,10 +29,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
-add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
-
-include(cmake/standard_project_settings.cmake)
-
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 
@@ -42,43 +38,10 @@ if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.1.0)
 endif()
 
 # Include dependencies
-find_package(mp-units REQUIRED)
-find_package(SQLite3 REQUIRED)
+include(cmake/dependencies.cmake)
 
-include(FetchContent)
-
-FetchContent_Declare(
-    cpr
-    GIT_REPOSITORY https://github.com/libcpr/cpr.git
-    GIT_TAG dd967cb48ea6bcbad9f1da5ada0db8ac0d532c06
-) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
-FetchContent_MakeAvailable(cpr)
-
-FetchContent_Declare(
-    sqlite_orm
-    GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git
-    GIT_TAG v1.9.1
-)
-FetchContent_MakeAvailable(sqlite_orm)
-
-FetchContent_Declare(
-    matplotplusplus
-    GIT_REPOSITORY https://github.com/alandefreitas/matplotplusplus
-    GIT_TAG v1.2.2
-)
-FetchContent_MakeAvailable(matplotplusplus)
-
-# Add google test
-set(INSTALL_GTEST OFF)
-FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/releases/download/v1.17.0/googletest-1.17.0.tar.gz
-)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
-enable_testing()
-include(GoogleTest)
+# Settings after dependencies so there aren't 1000 warnings
+include(cmake/standard_project_settings.cmake)
 
 # Get code
 add_subdirectory(astrea)

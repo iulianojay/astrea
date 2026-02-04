@@ -17,7 +17,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
@@ -209,9 +208,8 @@ std::tuple<Angle, Angle, Distance>
     if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
 
     const Angle longitude = atan2(yEcef, xEcef);
-    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq)); // geodetic
-    // _latitude = atan((1.0 - f) * (1.0 - f) * tan(lat)); // geocentric
-    Distance altitude = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
+    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq));
+    Distance altitude     = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
     if (altitude < 0.0 * km) { altitude = 0.0 * km; }
 
     return { latitude, longitude, altitude };
@@ -220,8 +218,8 @@ std::tuple<Angle, Angle, Distance>
 RadiusVector<frames::earth::earth_fixed>
     convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
-    const quantity sinLat = sin(lat);
-    const quantity cosLat = cos(lat);
+    const Unitless sinLat = sin(lat);
+    const Unitless cosLat = cos(lat);
 
     const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
     const Unitless eSq = (2.0 - f) * f;

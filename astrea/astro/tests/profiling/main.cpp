@@ -11,8 +11,10 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/astro.hpp>
 #include <matplot/matplot.h>
+
+#include <astro/astro.hpp>
+#include <astro/astro.macros.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -99,8 +101,8 @@ int main()
     // plot_trajectory(trajJ2, "mean_j2_vop_trajectory.png");
 
 
-    std::filesystem::path outputDir = std::getenv("ASTREA_ROOT");
-    outputDir /= "astrea/astro/tests/profiling/results";
+    std::filesystem::path outputDir(std::string(_ASTRO_ROOT_));
+    outputDir /= "tests/profiling/results";
 
     std::filesystem::path outfile = outputDir / "orbital_elements_comparison.png";
     compare_orbital_elements({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, outfile);

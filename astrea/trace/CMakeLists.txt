@@ -19,7 +19,6 @@ project(
 set(CMAKE_CXX_STANDARD 23)
 
 # Objects
-set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(TRACE_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/access_analysis.cpp
@@ -63,42 +62,42 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/risesets/riseset_utils.hpp
 
     ${TRACE_BASE}/types/typedefs.hpp
-
-    ${EXTERN_BASE}/nlohmann/json.hpp
-    ${EXTERN_BASE}/csv-parser/csv.hpp
 )
-
-# Set outputs
-set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # Includes
 set(TRACE_DIRS
-    ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../math
     ${CMAKE_CURRENT_LIST_DIR}/../astro
     ${CMAKE_CURRENT_LIST_DIR}/../snapshot
     ${CMAKE_CURRENT_LIST_DIR}/../units
     ${CMAKE_CURRENT_LIST_DIR}/../utilities
-    $ENV{HOME}/open-source/mp-units/src/core/include
-    $ENV{HOME}/open-source/mp-units/src/systems/include
 )
-include_directories(${TRACE_DIRS})
+
+# Find library
+set(TRACE_LIBS
+    mp-units::mp-units
+    matplot
+    nlohmann_json::nlohmann_json
+    csv
+    sqlite_orm::sqlite_orm
+    date::date
+)
 
 # Shared library
-add_library           (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared mp-units::mp-units GTest::gtest_main)
+add_library                (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
+target_include_directories (${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 
 # Static library
-if (${BUILD_STATIC})
-    add_library           (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
-    set_target_properties (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries (${PROJECT_NAME}_static PUBLIC math_static astro_static mp-units::mp-units GTest::gtest_main)
+if(${BUILD_STATIC})
+    add_library                (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
+    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
+    target_include_directories (${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
 # Executable

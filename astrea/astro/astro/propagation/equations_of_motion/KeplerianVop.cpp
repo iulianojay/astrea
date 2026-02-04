@@ -16,7 +16,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/ostream.h>
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
@@ -45,7 +44,7 @@ KeplerianVop::KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& 
 {
 }
 
-OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
 {
     const GravParam& mu       = get_system().get_mu();
     const Keplerian elements  = state.in_element_set<Keplerian>(mu);
@@ -69,7 +68,6 @@ OrbitalElementPartials KeplerianVop::operator()(const OrbitalElements& state, co
     const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
 
     // Function for finding accel caused by perturbations
-    const Date date = vehicle.get_state().get_epoch();
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
 
     // Calculate R, N, and T

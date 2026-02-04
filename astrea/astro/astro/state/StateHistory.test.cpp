@@ -38,8 +38,8 @@ class StateHistoryTest : public testing::Test {
         time2 = 2.0 * s;
 
         state0 = State(Cartesian(0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
-        state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
-        state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
+        state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1, sys);
+        state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2, sys);
 
         history.insert(epoch + time0, state0);
         history.insert(epoch + time1, state1);
@@ -125,14 +125,27 @@ TEST_F(StateHistoryTest, GetClosestState)
     ASSERT_EQ(history.get_closest_state(epoch + 0.75 * s), state1);
 }
 
+TEST_F(StateHistoryTest, GetClosestStateBeforeFirstEpoch)
+{
+    ASSERT_EQ(history.get_closest_state(epoch - time1), state0);
+}
+
+TEST_F(StateHistoryTest, GetClosestStateAfterLastEpoch)
+{
+    ASSERT_EQ(history.get_closest_state(epoch + 2.0 * time1), state1);
+}
+
 TEST_F(StateHistoryTest, GetStateAt)
 {
-
     StateHistory newHistory;
     newHistory.insert(epoch + time0, state0);
     newHistory.insert(epoch + time2, state2);
-    ASSERT_EQ(history.get_state_at(epoch + time1), state1);
+    ASSERT_EQ(newHistory.get_state_at(epoch + time1), state1);
 }
+
+TEST_F(StateHistoryTest, GetStateAtBeforeFirstEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch - time1)); }
+
+TEST_F(StateHistoryTest, GetStateAtAfterLastEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch + 2.0 * time1)); }
 
 TEST_F(StateHistoryTest, Iterator) { ASSERT_NO_THROW(for (auto& [t, s] : history)); }
 

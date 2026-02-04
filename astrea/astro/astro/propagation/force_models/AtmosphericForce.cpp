@@ -36,7 +36,7 @@ namespace astro {
 
 using namespace mp_units;
 using mp_units::pow;
-using mp_units::angular::atan;
+using mp_units::angular::atan2;
 using mp_units::angular::sin;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
@@ -84,7 +84,7 @@ AccelerationVector<frames::earth::icrf>
     const AccelerationVector<frames::earth::icrf> accelDrag = dragAccelMag * (relVelocity / relVelMag);
 
     // accel due to lift
-    const Angle angleOfAttack        = atan(relVelocity.get_z() / relVelocity.get_x());
+    const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
     const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
     const SurfaceArea areaLift       = vehicle.get_lift_area();
     const Acceleration liftAccelMag =
@@ -97,10 +97,6 @@ AccelerationVector<frames::earth::icrf>
 
 const Density AtmosphericForce::find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const
 {
-    // Central body properties
-    static const Distance equitorialR = center->get_equitorial_radius();
-    static const Distance polarR      = center->get_polar_radius();
-
     // Find altitude
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] =
