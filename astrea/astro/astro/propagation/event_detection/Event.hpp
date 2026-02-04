@@ -42,7 +42,7 @@ concept HasGetName = requires(const T event) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasMeasureEvent = requires(const T event, const Time& time, const OrbitalElements& state, const Vehicle& vehicle) {
+concept HasMeasureEvent = requires(const T event, const Time& time, const State& state, const Vehicle& vehicle) {
     { event.measure_event(time, state, vehicle) } -> std::same_as<Unitless>;
 };
 
@@ -110,7 +110,7 @@ struct EventInnerBase {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    virtual Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+    virtual Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const = 0;
 
     /**
      * @brief Checks if the Event is a terminal Event.
@@ -217,7 +217,7 @@ struct EventInner final : public EventInnerBase {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const override final
+    Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override final
     {
         return _value.measure_event(time, state, vehicle);
     }
@@ -404,7 +404,7 @@ class Event {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+    Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
     {
         return ptr()->measure_event(time, state, vehicle);
     }

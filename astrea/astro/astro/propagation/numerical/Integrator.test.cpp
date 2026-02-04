@@ -30,17 +30,9 @@ using namespace astro;
 
 class DummyEOM : public EquationsOfMotion {
   public:
-    DummyEOM(const AstrodynamicsSystem& system) :
-        EquationsOfMotion(system)
-    {
-    }
+    OrbitalElementPartials operator()(const State&, const Vehicle&) const override { return OrbitalElementPartials(); }
 
-    OrbitalElementPartials operator()(const Date& epoch, const OrbitalElements&, const Vehicle&) const override
-    {
-        return OrbitalElementPartials();
-    }
-
-    StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const override
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
     {
         return StateTransitionMatrix();
     }
@@ -50,10 +42,7 @@ class DummyEOM : public EquationsOfMotion {
 
 class IntegratorTest : public ::testing::Test {
   public:
-    IntegratorTest() :
-        eom(sys)
-    {
-    }
+    IntegratorTest() {}
 
     void SetUp() override {}
 

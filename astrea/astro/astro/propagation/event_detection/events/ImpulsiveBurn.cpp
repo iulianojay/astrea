@@ -17,15 +17,13 @@
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/orbital_elements.hpp>
 
 namespace astrea {
 namespace astro {
 
 std::string ImpulsiveBurn::get_name() const { return "Impulsive Burn"; }
 
-Unitless ImpulsiveBurn::measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+Unitless ImpulsiveBurn::measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
     const Keplerian elements = vehicle.get_state().in_element_set<Keplerian>();
 

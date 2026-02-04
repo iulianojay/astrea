@@ -44,17 +44,6 @@ namespace astrea {
 namespace astro {
 
 
-OrbitalElementPartials
-    Integrator::find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
-{
-    // Count fevals
-    ++_functionEvaluations;
-
-    // Ask eom object to evaluate
-    return eom(_epoch0 + time, state, vehicle);
-}
-
-
 StateHistory
     Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
 {
@@ -92,22 +81,20 @@ StateHistory Integrator::propagate(
     if (!forwardTime) { timeStep = -timeStep; }
 
     // States
-    _epoch0                      = epoch;
-    const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle, events);
-    OrbitalElements state        = state0;
+    const State state0 = get_initial_state(epoch, eom, vehicle, events);
+    State state        = state0;
 
     // Setup
     setup(events);
 
     // Fruit Loop
-    const auto& sys = eom.get_system();
     StateHistory stateHistory;
-    if (store) { stateHistory[epoch + time] = State({ state, epoch, sys }); }
+    if (store) { stateHistory[epoch + time] = state; }
     while (_iteration < _MAX_ITER) {
 
         // Check for event
         const bool terminalEvent = check_event(time, state, eom, vehicle);
-        state                    = vehicle.get_state().get_elements();
+        state                    = vehicle.get_state();
         if (terminalEvent) {
             print_iteration(time, state, endTime, state0);
 
@@ -158,8 +145,8 @@ StateHistory Integrator::propagate(
         }
 
         // Successful event
-        vehicle.update_state({ state, epoch + time, sys });
-        if (store) { stateHistory[epoch + time] = vehicle.get_state(); }
+        vehicle.update_state(state);
+        if (store) { stateHistory[epoch + time] = state; }
 
         // Ensure last step goes to exact final time
         if ((forwardTime && time + timeStep > endTime && time < endTime) ||
@@ -179,7 +166,7 @@ StateHistory Integrator::propagate(
     }
 
     // Store last state if not already stored
-    if (!store) { stateHistory[epoch + time] = vehicle.get_state(); }
+    if (!store) { stateHistory[epoch + time] = state; }
 
     // Store event times
     if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(epoch)); }
@@ -221,7 +208,7 @@ void Integrator::teardown()
 }
 
 
-OrbitalElements Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events)
+State Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events)
 {
     using mp_units::abs;
 
@@ -233,17 +220,17 @@ OrbitalElements Integrator::get_initial_state(const Date& epoch, const Equations
     }
 
     // Need to check input elements match expected for EOMS
-    const auto& sys                 = eom.get_system();
+    const auto& sys                 = vehicle.get_state().get_system();
     const std::size_t expectedSetId = eom.get_expected_set_id();
-    OrbitalElements state0          = vehicle.get_state().get_elements();
-    if (state0.index() != expectedSetId) {
-        state0 = state0.convert_to_set(expectedSetId, sys.get_mu());
-        // state0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
-        vehicle.update_state({ state0, epoch, sys });
+    OrbitalElements elements0       = vehicle.get_state().get_elements();
+    if (elements0.index() != expectedSetId) {
+        elements0 = elements0.convert_to_set(expectedSetId, sys.get_mu());
+        // elements0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
+        vehicle.update_state({ elements0, epoch, sys });
     }
     // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
 
-    return state0;
+    return vehicle.get_state();
 }
 
 void Integrator::setup_butcher_tableau()
@@ -322,16 +309,29 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                "RKF78, DOP45, DOP78}."
-            );
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 
+StatePartial Integrator::find_state_derivative(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+{
+    // Count fevals
+    ++_functionEvaluations;
+
+    // Ask eom object to evaluate
+    State stateTemp = state;
+    vehicle.update_state(stateTemp);
+    stateTemp.set_epoch(_epoch0 + time);
+
+    const OrbitalElementPartials orbitalElementPartials = eom(stateTemp, vehicle);
+
+    return { orbitalElementPartials, state.get_epoch(), state.get_system() };
+}
+
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-std::pair<OrbitalElements, OrbitalElements>
-    Integrator::take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+std::pair<State, State>
+    Integrator::take_step(const Time& time, const Time& timeStep, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i-1) k_j a[i][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
@@ -344,7 +344,7 @@ std::pair<OrbitalElements, OrbitalElements>
         }
 
         // Find derivative at the intermediate state
-        OrbitalElementPartials partial;
+        StatePartial partial;
         if (iStage == 0) {
             if (_stepMethod == StepMethod::RK45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RKF78) {
                 partial = find_state_derivative(time, _statePlusKi, eom, vehicle);
@@ -365,8 +365,8 @@ std::pair<OrbitalElements, OrbitalElements>
     }
 
     // Get new state and state error
-    OrbitalElements stateNew   = state + _kMatrix[0] * _b[0];
-    OrbitalElements stateError = _kMatrix[0] * _db[0];
+    State stateNew   = state + _kMatrix[0] * _b[0];
+    State stateError = _kMatrix[0] * _db[0];
     for (std::size_t iStage = 1; iStage < _nStages; ++iStage) {
         stateNew += _kMatrix[iStage] * _b[iStage];
         stateError += _kMatrix[iStage] * _db[iStage];
@@ -375,7 +375,7 @@ std::pair<OrbitalElements, OrbitalElements>
     return { stateNew, stateError };
 }
 
-Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const OrbitalElements& stateError) const
+Unitless Integrator::find_max_error(const State& stateNew, const State& stateError) const
 {
     using mp_units::abs;
     using mp_units::isinf;
@@ -383,8 +383,8 @@ Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const Orbit
 
     // Find max error from step
     Unitless maxError           = 0.0 * astrea::detail::unitless;
-    const auto stateErrorScaled = stateError.to_vector();
-    const auto stateNewScaled   = stateNew.to_vector();
+    const auto stateErrorScaled = stateError.force_to_vector();
+    const auto stateNewScaled   = stateNew.force_to_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
         const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
@@ -404,7 +404,7 @@ Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const Orbit
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
-bool Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+bool Integrator::try_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Take step
     const auto [stateNew, stateError] = take_step(time, timeStep, state, eom, vehicle);
@@ -417,7 +417,7 @@ bool Integrator::try_step(Time& time, Time& timeStep, OrbitalElements& state, co
 }
 
 
-void Integrator::take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+void Integrator::take_fixed_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     // Take step
     const auto [stateNew, stateError] = take_step(time, timeStep, state, eom, vehicle);
@@ -464,7 +464,7 @@ Unitless Integrator::get_relative_step_size(const Unitless& maxError) const
     return relativeTimeStep;
 }
 
-bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state)
+bool Integrator::check_error(const Unitless& maxError, const State& stateNew, const State& stateError, Time& time, Time& timeStep, State& state)
 {
     const Unitless relativeStepSize = get_relative_step_size(maxError);
     if (maxError <= 1.0) { // Step succeeded
@@ -499,7 +499,7 @@ bool Integrator::check_error(const Unitless& maxError, const OrbitalElements& st
 }
 
 
-void Integrator::print_iteration(const Time& time, const OrbitalElements& state, const Time& endTime, const OrbitalElements& state0)
+void Integrator::print_iteration(const Time& time, const State& state, const Time& endTime, const State& state0)
 {
     // This message is not lined up with iteration since ti and statei are advanced before this but it's okay
     if (_printOn) {
@@ -544,12 +544,12 @@ void Integrator::print_performance() const
     }
 }
 
-bool Integrator::check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+bool Integrator::check_event(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
 {
     return _eventDetector.detect_events(time, state, vehicle);
 }
 
-bool Integrator::validate_state_and_time(const Time& time, const OrbitalElements& state) const
+bool Integrator::validate_state_and_time(const Time& time, const State& state) const
 {
     if (isinf(abs(time)) || isnan(abs(time))) { return false; }
     for (const auto& x : state.force_to_vector()) {

@@ -37,10 +37,9 @@ class EquinoctialVop : public EquationsOfMotion {
     /**
      * @brief Constructor for the Equinoctial VOP class.
      *
-     * @param system The astrodynamics system containing the central body and its properties.
      * @param forces The force model to be used in the equations of motion.
      */
-    EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces);
+    EquinoctialVop(const ForceModel& forces);
 
     /**
      * @brief Destructor for the Equinoctial VOP class.
@@ -50,23 +49,22 @@ class EquinoctialVop : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using the Equinoctial VOP method.
      *
-     * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      *
      * @ref https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf
      */
-    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using Cowell's method.
      *
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the STM is being computed.
      * @return StateTransitionMatrix The computed state transition matrix.
      */
-    StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const override;
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.
@@ -76,12 +74,8 @@ class EquinoctialVop : public EquationsOfMotion {
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial>(); };
 
   private:
-    mutable bool checkflag = false;                 //!< Flag to check for degenerate conditions.
-    Unitless checkTol      = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
-
-    const ForceModel* forces; //!< The force model used in the equations of motion.
-
-    GravParam mu; //!< Gravitational parameter of the central body.
+    const Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
+    const ForceModel* forces;                        //!< The force model used in the equations of motion.
 };
 
 } // namespace astro

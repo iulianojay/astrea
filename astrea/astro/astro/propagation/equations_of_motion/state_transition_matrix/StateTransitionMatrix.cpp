@@ -1,6 +1,7 @@
 #include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 
 using namespace mp_units;
@@ -9,7 +10,7 @@ namespace astrea {
 namespace astro {
 
 
-StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const OrbitalElements& state, const Vehicle& vehicle)
+StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const State& state, const Vehicle& vehicle)
 {
     /**
      * f(s) = [f0(s), f1(s), ..., fn(s)] where fi is the ith component of the equations of motion
@@ -28,7 +29,7 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
      */
 
     const std::vector<Unitless> s0 = state.force_to_vector();
-    const std::size_t typeIdx      = state.index();
+    const std::size_t typeIdx      = state.get_elements().index();
     const std::vector<Unitless> f0 = eom(state, vehicle).force_to_vector();
 
     // The size of dsi will have different sensitivity based on the element type so we use a relative perturbation
@@ -45,8 +46,8 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
             sMinusDs[ii] -= dsi;
 
             // Convert back to OrbitalElements
-            const OrbitalElements statePlus  = OrbitalElements::from_vector(sPlusDs, typeIdx);
-            const OrbitalElements stateMinus = OrbitalElements::from_vector(sMinusDs, typeIdx);
+            const State statePlus  = State::from_vector(sPlusDs, typeIdx);
+            const State stateMinus = State::from_vector(sMinusDs, typeIdx);
 
             // Compute f(s + dsi)
             const std::vector<Unitless> fPerturbedPlus  = eom(statePlus, vehicle).force_to_vector();

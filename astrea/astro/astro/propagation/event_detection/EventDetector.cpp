@@ -39,7 +39,7 @@ std::vector<Event> EventDetector::get_events() const
     return events;
 }
 
-bool EventDetector::detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle)
+bool EventDetector::detect_events(const Time& time, const State& state, Vehicle& vehicle)
 {
     bool isTerminal = false;
     const Time eventTime = mp_units::round<mp_units::si::unit_symbols::s>(time); // Round to seconds to avoid numerical issues

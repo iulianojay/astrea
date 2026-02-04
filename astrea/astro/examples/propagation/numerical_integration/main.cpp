@@ -52,10 +52,10 @@ int main()
 
     // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the
     // base EquationsOfMotion class. Note that a force or perturbation model is not required.
-    TwoBody twoBodyEom(sys);                       // No forces
-    J2MeanVop j2MeanEom(sys);                      // Forces assumed
-    CowellsMethod cowellsEom(sys, forces);         // Regular force model
-    KeplerianVop keplerianEom(sys, forces, false); // Input options for rounding errors
+    TwoBody twoBodyEom;                       // No forces
+    J2MeanVop j2MeanEom;                      // Forces assumed
+    CowellsMethod cowellsEom(forces);         // Regular force model
+    KeplerianVop keplerianEom(forces, false); // Input options for rounding errors
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.

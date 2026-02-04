@@ -75,14 +75,11 @@ class ForceModel {
     /**
      * @brief Computes the total force on a vehicle by summing the forces from all added force models.
      *
-     * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<frames::earth::icrf> The total computed acceleration vector from all force models.
      */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
+    CartesianVector<Acceleration, frames::earth::icrf> compute_forces(const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Retrieves a force model by name.

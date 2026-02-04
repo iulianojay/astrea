@@ -35,11 +35,13 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf>
-    NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
+    const AstrodynamicsSystem& sys                            = state.get_system();
+    const Date date                                           = state.get_epoch();
+    const Cartesian cartesian                                 = state.in_element_set<Cartesian>();
+    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = cartesian.get_position();
 
     // Center body properties
     static const CelestialBodyUniquePtr& center = sys.get_central_body();

@@ -39,7 +39,7 @@ class CowellsMethodPropagationTest : public testing::Test {
   public:
     CowellsMethodPropagationTest() :
         mu(sys.get_mu()),
-        eom(sys, forces),
+        eom(forces),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),

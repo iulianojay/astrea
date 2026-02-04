@@ -37,11 +37,10 @@ class KeplerianVop : public EquationsOfMotion {
     /**
      * @brief Constructor for the Keplerian VOP class.
      *
-     * @param system The astrodynamics system containing the central body and its properties.
      * @param forces The force model to be used in the equations of motion.
      * @param doWarn Flag to indicate whether to warn about degenerate cases.
      */
-    KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn = true);
+    KeplerianVop(const ForceModel& forces, const bool doWarn = true);
 
     /**
      * @brief Destructor for the Keplerian VOP class.
@@ -52,22 +51,22 @@ class KeplerianVop : public EquationsOfMotion {
      * @brief Computes the partial derivatives of the orbital elements using the Keplerian VOP method.
      *
      * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      *
      * @ref Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variation of Parameters
      */
-    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using Cowell's method.
      *
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the STM is being computed.
      * @return StateTransitionMatrix The computed state transition matrix.
      */
-    StateTransitionMatrix compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const override;
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.

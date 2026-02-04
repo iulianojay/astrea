@@ -42,7 +42,7 @@ class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
         mu(sys.get_mu()),
-        eom(sys, forces),
+        eom(forces),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),

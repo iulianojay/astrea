@@ -23,6 +23,7 @@
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -39,19 +40,14 @@ using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
-    EquationsOfMotion(system),
-    mu(system.get_mu()),
-    J2(system.get_central_body()->get_j2()),
-    equitorialR(system.get_central_body()->get_equitorial_radius())
-{
-}
 
-OrbitalElementPartials J2MeanVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& vehicle) const
 {
-    const GravParam& mu       = get_system().get_mu();
-    const Keplerian elements  = state.in_element_set<Keplerian>(mu);
-    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
+    const auto mu             = state.get_system().get_mu();
+    const auto J2             = state.get_system().get_central_body()->get_j2();
+    const auto equitorialR    = state.get_system().get_central_body()->get_equitorial_radius();
+    const Keplerian elements  = state.in_element_set<Keplerian>();
+    const Cartesian cartesian = state.in_element_set<Cartesian>();
 
     // Extract
     const Distance& a = elements.get_semimajor();
@@ -100,16 +96,13 @@ OrbitalElementPartials J2MeanVop::operator()(const Date& date, const OrbitalElem
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
     AngularRate dincdt = _dincdt;
-    if (inc == incTol && dincdt <= incTol * one / s) {
-        dincdt    = 0.0 * rad / s;
-        checkflag = true;
-    }
+    if (inc == incTol && dincdt <= incTol * one / s) { dincdt = 0.0 * rad / s; }
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 
-StateTransitionMatrix J2MeanVop::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+StateTransitionMatrix J2MeanVop::compute_stm(const State& state, const Vehicle& vehicle) const
 {
     return StateTransitionMatrix(*this, state, vehicle);
 }

@@ -42,7 +42,6 @@ class TwoBodyPropagationTest : public testing::Test {
   public:
     TwoBodyPropagationTest() :
         mu(sys.get_mu()),
-        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),

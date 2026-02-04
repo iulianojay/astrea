@@ -138,14 +138,11 @@ class OblatenessForce : public Force {
      * by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
      * with recurrence relations for more efficient and numerically stable computation.
      *
-     * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
      */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
+    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const;
 
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics

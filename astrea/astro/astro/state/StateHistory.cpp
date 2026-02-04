@@ -24,7 +24,7 @@ namespace astro {
 State& StateHistory::operator[](const Date& date) { return _states[date]; }
 const State& StateHistory::at(const Date& date) const { return _states.at(date); }
 
-void StateHistory::insert(const Date& date, const State& state) { _states.insert({ date, state }); }
+void StateHistory::insert(const State& state) { _states.insert({ state.get_epoch(), state }); }
 std::size_t StateHistory::size() const { return _states.size(); }
 void StateHistory::clear() { _states.clear(); }
 
@@ -59,16 +59,12 @@ State StateHistory::get_state_at(const Date& date) const
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
     else if (iter == _states.end()) {
-        throw std::runtime_error(
-            "Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
-            "include all desired dates."
-        );
+        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
+                                 "include all desired dates.");
     }
 
     // Interpolate

@@ -33,7 +33,7 @@ using namespace astro;
 class EquinoctialTest : public testing::Test {
   public:
     EquinoctialTest() :
-        eom(sys, forces)
+        eom(forces)
     {
     }
 
@@ -63,10 +63,11 @@ TEST_F(EquinoctialTest, GetExpectedSet)
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial state0 = Equinoctial::LEO(sys.get_mu());
+    Equinoctial equi0 = Equinoctial::LEO(sys.get_mu());
     EquinoctialPartial expected =
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
+    State state(equi0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(epoch, state0, sat);
+    OrbitalElementPartials dstate = eom(state, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

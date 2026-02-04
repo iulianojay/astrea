@@ -41,7 +41,6 @@ using mp_units::si::unit_symbols::W;
 class J2MeanVopPropagationTest : public testing::Test {
   public:
     J2MeanVopPropagationTest() :
-        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),

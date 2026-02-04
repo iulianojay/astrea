@@ -49,9 +49,9 @@ int main()
     Vehicle vehicle(sat);
 
     // Build EoMs
-    TwoBody eoms(sys);
+    TwoBody eoms;
     // ForceModel forces; // We could add forces if we wanted
-    // KeplerianVop eoms(sys, forces, false);
+    // KeplerianVop eoms(forces, false);
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.

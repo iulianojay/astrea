@@ -24,10 +24,88 @@ std::ostream& operator<<(std::ostream& os, const State& state)
     return os;
 }
 
+
+State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
+{
+    return State(OrbitalElements::from_vector(vec, idx), Date(), AstrodynamicsSystem());
+}
+
 bool State::operator==(const State& other) const
 {
     return _epoch == other._epoch && _elements == other._elements && _system == other._system;
 }
+
+State State::operator+(const State& other) const
+{
+    _validate_system_and_epoch(other);
+    return { _elements + other._elements, _epoch, get_system() };
+}
+
+State& State::operator+=(const State& other)
+{
+    _validate_system_and_epoch(other);
+    _elements += other._elements;
+    return *this;
+}
+
+State State::operator-(const State& other) const
+{
+    _validate_system_and_epoch(other);
+    return { _elements - other._elements, _epoch, get_system() };
+}
+
+State& State::operator-=(const State& other)
+{
+    _validate_system_and_epoch(other);
+    _elements -= other._elements;
+    return *this;
+}
+
+State State::operator*(const Unitless& scalar) const { return { _elements * scalar, _epoch, get_system() }; }
+
+State& State::operator*=(const Unitless& scalar)
+{
+    _elements *= scalar;
+    return *this;
+}
+
+State State::operator/(const Unitless& scalar) const { return { _elements / scalar, _epoch, get_system() }; }
+
+State& State::operator/=(const Unitless& scalar)
+{
+    _elements /= scalar;
+    return *this;
+}
+
+StatePartial State::operator/(const Time& divisor) const { return { _elements / divisor, _epoch, get_system() }; }
+
+void State::_validate_system_and_epoch(const State& other) const
+{
+    _validate_system(other);
+    _validate_epoch(other);
+}
+
+void State::_validate_system(const State& other) const
+{
+    if (&get_system() != &other.get_system()) {
+        throw std::runtime_error("States belong to different astrodynamics systems.");
+    }
+}
+
+void State::_validate_epoch(const State& other) const
+{
+    if (get_epoch() != other.get_epoch()) { throw std::runtime_error("State epochs do not match."); }
+}
+
+
+State StatePartial::operator*(const Time& time) const
+{
+    return { _elementPartials * time, _epoch + time, get_system() };
+}
+
+const AstrodynamicsSystem& StatePartial::get_system() const { return *_system; }
+
+const Date& StatePartial::get_epoch() const { return _epoch; }
 
 } // namespace astro
 } // namespace astrea

@@ -45,7 +45,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/instances/CartesianStm.cpp
 
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
@@ -140,7 +139,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/instances/CartesianStm.hpp
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp

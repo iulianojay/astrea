@@ -239,7 +239,7 @@ For the life of me, I could not get this to match the NASA checkcases. I can't f
 it out, let me know.
 
 AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
@@ -360,8 +360,7 @@ AccelerationVector<frames::earth::icrf>
 }
 */
 
-AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Montenbruck & Gill (2000) V and W recurrence relations method
     // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
@@ -371,8 +370,10 @@ AccelerationVector<frames::earth::icrf>
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
 
     // Transform position to body-fixed frame
-    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const Cartesian cartesian                    = state.in_element_set<Cartesian>();
+    const Date date                              = state.get_epoch();
+    const RadiusVector<frames::earth::icrf> rEci = cartesian.get_position();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = cartesian.get_position().in_frame<frames::earth::earth_fixed>(date);
 
     // Position components in ECEF
     const Distance& x = rEcef[0];

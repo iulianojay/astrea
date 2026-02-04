@@ -33,7 +33,7 @@ using namespace astro;
 class KeplerianVopTest : public testing::Test {
   public:
     KeplerianVopTest() :
-        eom(sys, forces)
+        eom(forces)
     {
     }
 
@@ -63,10 +63,12 @@ TEST_F(KeplerianVopTest, GetExpectedSet)
 
 TEST_F(KeplerianVopTest, Derivative)
 {
-    Keplerian state0 = Keplerian::LEO();
+    Keplerian kep0 = Keplerian::LEO();
     KeplerianPartial expected =
         KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
 
-    OrbitalElementPartials dstate = eom(epoch, state0, sat);
+    State state(kep0, epoch, sys);
+
+    OrbitalElementPartials dstate = eom(state, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

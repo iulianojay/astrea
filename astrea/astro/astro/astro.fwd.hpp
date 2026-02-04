@@ -24,6 +24,7 @@ namespace astrea {
 namespace astro {
 
 class State;
+class StatePartial;
 class StateHistory;
 
 // ELement sets

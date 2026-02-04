@@ -24,7 +24,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -238,9 +238,9 @@ class Integrator {
     std::array<Unitless, _MAX_STAGES> _c  = {}; //!< Nodes for the Butcher tableau
 
     // ith order steps
-    std::array<OrbitalElements, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
-    OrbitalElements _statePlusKi;                           //!< State vector plus the ith order step
-    OrbitalElementPartials _YFinalPrevious; //!< Previous final state vector for the Dormand-Prince method
+    std::array<State, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
+    State _statePlusKi;                           //!< State vector plus the ith order step
+    StatePartial _YFinalPrevious;                 //!< Previous final state vector for the Dormand-Prince method
 
     // Clock variables
     clock_t _startClock{}; //!< Start time for the timer
@@ -273,10 +273,9 @@ class Integrator {
      * @param state The current state of the vehicle represented as orbital elements.
      * @param eom The equations of motion to use for the evaluation.
      * @param vehicle The vehicle whose state is being evaluated.
-     * @return OrbitalElementPartials The derivatives of the orbital elements with respect to time.
+     * @return StatePartial The derivatives of the orbital elements with respect to time.
      */
-    OrbitalElementPartials
-        find_state_derivative(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    StatePartial find_state_derivative(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Set up the main integration loop
@@ -303,9 +302,9 @@ class Integrator {
      * @param state0 The initial state of the vehicle before propagation.
      * @param vehicle The vehicle whose state is being evaluated.
      * @param events The events to be tracked during propagation.
-     * @return OrbitalElements The state of the vehicle at the specified epoch.
+     * @return State The state of the vehicle at the specified epoch.
      */
-    OrbitalElements get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events);
+    State get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events);
 
     /**
      * @brief Perform a single step of the integration using the selected Runge-Kutta method.
@@ -317,7 +316,7 @@ class Integrator {
      * @param vehicle The vehicle whose state is being integrated.
      * @return bool True if the step was successful, false otherwise.
      */
-    bool try_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool try_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Find the maximum error between the new and error states.
@@ -326,7 +325,7 @@ class Integrator {
      * @param stateError The error in the state after the step.
      * @return Unitless The maximum error found.
      */
-    Unitless find_max_error(const OrbitalElements& stateNew, const OrbitalElements& stateError) const;
+    Unitless find_max_error(const State& stateNew, const State& stateError) const;
 
     /**
      * @brief Take a fixed step in the integration.
@@ -337,7 +336,7 @@ class Integrator {
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    void take_fixed_step(Time& time, Time& timeStep, OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void take_fixed_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Take a step in the integration.
@@ -347,10 +346,10 @@ class Integrator {
      * @param state The current state of the vehicle represented as orbital elements.
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
-     * @return std::pair<OrbitalElements, OrbitalElements> The new state and the error state after the step.
+     * @return std::pair<State, State> The new state and the error state after the step.
      */
-    std::pair<OrbitalElements, OrbitalElements>
-        take_step(const Time& time, const Time& timeStep, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    std::pair<State, State>
+        take_step(const Time& time, const Time& timeStep, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Check the error of the current step and adjust the time step accordingly.
@@ -363,7 +362,7 @@ class Integrator {
      * @param state The current state of the vehicle represented as orbital elements.
      * @return bool True if the step was accepted, false if it needs to be retried with a smaller step size.
      */
-    bool check_error(const Unitless& maxError, const OrbitalElements& stateNew, const OrbitalElements& stateError, Time& time, Time& timeStep, OrbitalElements& state);
+    bool check_error(const Unitless& maxError, const State& stateNew, const State& stateError, Time& time, Time& timeStep, State& state);
 
     /**
      * @brief Get the relative step size based on the maximum error.
@@ -388,7 +387,7 @@ class Integrator {
      * @param timeFinal The final time for the integration.
      * @param stateInitial The initial state of the vehicle at the start of the integration.
      */
-    void print_iteration(const Time& time, const OrbitalElements& state, const Time& timeFinal, const OrbitalElements& stateInitial);
+    void print_iteration(const Time& time, const State& state, const Time& timeFinal, const State& stateInitial);
 
     /**
      * @brief Print the performance metrics of the integration including total time, function evaluations, and iterations.
@@ -413,7 +412,7 @@ class Integrator {
      * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    bool check_event(const Time& time, const OrbitalElements& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool check_event(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
 
     /**
      * @brief Validate the current state and time to ensure they are not NaN or infinite.
@@ -423,7 +422,7 @@ class Integrator {
      * @return true If the state and time are valid.
      * @return false If the state or time are invalid (NaN or infinite).
      */
-    bool validate_state_and_time(const Time& time, const OrbitalElements& state) const;
+    bool validate_state_and_time(const Time& time, const State& state) const;
 };
 
 } // namespace astro

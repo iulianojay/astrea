@@ -23,6 +23,7 @@
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 
@@ -36,19 +37,18 @@ using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-EquinoctialVop::EquinoctialVop(const AstrodynamicsSystem& system, const ForceModel& forces) :
-    EquationsOfMotion(system),
-    forces(&forces),
-    mu(system.get_mu())
+EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
+    forces(&forces)
 {
 }
 
-OrbitalElementPartials EquinoctialVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Get need representations
-    const GravParam& mu           = get_system().get_mu();
-    const Equinoctial equinoctial = state.in_element_set<Equinoctial>(mu);
-    const Cartesian cartesian     = state.in_element_set<Cartesian>(mu);
+    const auto mu                 = state.get_system().get_mu();
+    const Date& date              = state.get_epoch();
+    const Equinoctial equinoctial = state.in_element_set<Equinoctial>();
+    const Cartesian cartesian     = state.in_element_set<Cartesian>();
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -63,7 +63,7 @@ OrbitalElementPartials EquinoctialVop::operator()(const Date& date, const Orbita
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
 
     // Function for finding accel caused by perturbations
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
@@ -98,7 +98,7 @@ OrbitalElementPartials EquinoctialVop::operator()(const Date& date, const Orbita
 }
 
 
-StateTransitionMatrix EquinoctialVop::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+StateTransitionMatrix EquinoctialVop::compute_stm(const State& state, const Vehicle& vehicle) const
 {
     return StateTransitionMatrix(*this, state, vehicle);
 }

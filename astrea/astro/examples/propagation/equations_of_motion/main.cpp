@@ -48,10 +48,6 @@ int main()
     // for some given state and vehicle. Astrea provides several common EoMs, but users can create their own by
     // inheriting from the EquationsOfMotion base class.
     struct MyEquationsOfMotion : public EquationsOfMotion {
-        MyEquationsOfMotion(const AstrodynamicsSystem& system) :
-            EquationsOfMotion(system) // An astrodynamics system must be provided
-        {
-        }
 
         // The expected set id is used to tell the integrator what type of elements to propagate
         constexpr std::size_t get_expected_set_id() const
@@ -60,12 +56,12 @@ int main()
             return OrbitalElements::get_set_id<Cartesian>();
         };
 
-        OrbitalElementPartials operator()(const Date& epoch, const OrbitalElements& state, const Vehicle& vehicle) const override
+        OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system = get_system();
+            const AstrodynamicsSystem& system = state.get_system();
             const auto mu                     = system.get_mu();
-            const Cartesian cartesian         = state.in_element_set<Cartesian>(mu);
+            const Cartesian cartesian         = state.in_element_set<Cartesian>();
 
             // Pull out the pieces for simple two-body gravity
             const auto r = cartesian.get_position();
@@ -77,8 +73,14 @@ int main()
 
             return partials;
         }
+
+        StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
+        {
+            // For simple EoMs, the STM can be computed using the StateTransitionMatrix class
+            return StateTransitionMatrix(*this, state, vehicle);
+        }
     };
-    MyEquationsOfMotion myEoms(sys);
+    MyEquationsOfMotion myEoms;
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.

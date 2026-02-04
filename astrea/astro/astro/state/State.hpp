@@ -36,6 +36,8 @@ namespace astro {
 class State {
 
     friend std::ostream& operator<<(std::ostream& os, const State& state);
+    friend class Integrator;
+    friend class StateTransitionMatrix;
 
   public:
     /**
@@ -135,6 +137,20 @@ class State {
         if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
     }
 
+    /**
+     * @brief Sets the epoch of the state.
+     *
+     * @param epoch The new epoch to set.
+     */
+    void set_epoch(const Date& epoch) { _epoch = epoch; }
+
+    /**
+     * @brief Sets the astrodynamics system associated with the state.
+     *
+     * @param sys The new astrodynamics system to set.
+     */
+    void set_system(const AstrodynamicsSystem& sys) { _system = &sys; }
+
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
@@ -150,6 +166,165 @@ class State {
         using namespace mp_units;
         return _system ? _system->get_mu() : 0.0 * pow<3>(astrea::detail::distance_unit) / pow<2>(astrea::detail::time_unit);
     }
+
+    /**
+     * @brief Converts the OrbitalElements to a vector of Unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
+     */
+    std::vector<Unitless> force_to_vector() const { return _elements.force_to_vector(); }
+
+
+    /**
+     * @brief Creates an OrbitalElements object from a vector of Unitless values.
+     *
+     * @param vec The vector of Unitless values.
+     * @param idx The index of the orbital element type to create.
+     * @return OrbitalElements The created OrbitalElements object.
+     */
+    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+
+    /**
+     * @brief Adds two State objects together.
+     *
+     * @param other The other State object to add.
+     * @return State The resulting State after addition.
+     */
+    State operator+(const State& other) const;
+
+    /**
+     * @brief Adds another State object to this State object in place.
+     *
+     * @param other The other State object to add.
+     * @return Reference to the current State object after addition.
+     */
+    State& operator+=(const State& other);
+
+    /**
+     * @brief Subtracts another State object from this State object.
+     *
+     * @param other The other State object to subtract.
+     * @return State The resulting State after subtraction.
+     */
+    State operator-(const State& other) const;
+
+    /**
+     * @brief Subtracts another State object from this State object in place.
+     *
+     * @param other The other State object to subtract.
+     * @return Reference to the current State object after subtraction.
+     */
+    State& operator-=(const State& other);
+
+    /**
+     * @brief Multiplies the State by a scalar.
+     *
+     * @param scalar The scalar to multiply with.
+     * @return State The resulting State after multiplication.
+     */
+    State operator*(const Unitless& scalar) const;
+
+    /**
+     * @brief Multiplies the State by a scalar in place.
+     *
+     * @param scalar The scalar to multiply with.
+     * @return Reference to the current State object after multiplication.
+     */
+    State& operator*=(const Unitless& scalar);
+
+    /**
+     * @brief Divides the State by a scalar.
+     *
+     * @param scalar The scalar to divide by.
+     * @return State The resulting State after division.
+     */
+    State operator/(const Unitless& scalar) const;
+
+    /**
+     * @brief Divides the State by a scalar in place.
+     *
+     * @param scalar The scalar to divide by.
+     * @return Reference to the current State object after division.
+     */
+    State& operator/=(const Unitless& scalar);
+
+    /**
+     * @brief Divides the State by a Time to get a StatePartial.
+     *
+     * @param divisor The Time to divide by.
+     * @return StatePartial The resulting StatePartial after division.
+     */
+    StatePartial operator/(const Time& divisor) const;
+
+    /**
+     * @brief Validates that another State object belongs to the same astrodynamics system and has the same epoch.
+     *
+     * @param other The other State object to validate against.
+     */
+    void _validate_system_and_epoch(const State& other) const;
+
+    /**
+     * @brief Validates that another State object belongs to the same astrodynamics system.
+     *
+     * @param other The other State object to validate against.
+     */
+    void _validate_system(const State& other) const;
+
+    /**
+     * @brief Validates that another State object has the same epoch.
+     *
+     * @param other The other State object to validate against.
+     */
+    void _validate_epoch(const State& other) const;
+};
+
+class StatePartial {
+  public:
+    /**
+     * @brief Default constructor for StatePartial.
+     */
+    StatePartial() = default;
+
+    /**
+     * @brief Constructs a StatePartial with given orbital element partials and astrodynamics system.
+     *
+     * @param elementPartials The orbital element partials of the state.
+     * @param epoch The epoch of the state.
+     * @param sys The astrodynamics system associated with the state.
+     */
+    StatePartial(const OrbitalElementPartials& elementPartials, const Date& epoch, const AstrodynamicsSystem& sys) :
+        _elementPartials(elementPartials),
+        _epoch(epoch),
+        _system(&sys)
+    {
+    }
+
+    /**
+     * @brief Multiplies the StatePartial by a time to get a State.
+     *
+     * @param time The time to multiply with.
+     * @return State The resulting State after multiplication.
+     */
+    State operator*(const Time& time) const;
+
+    /**
+     * @brief Gets the astrodynamics system associated with the state.
+     *
+     * @return const AstrodynamicsSystem& Reference to the astrodynamics system.
+     */
+    const AstrodynamicsSystem& get_system() const;
+
+    /**
+     * @brief Gets the epoch of the state partial.
+     *
+     * @return const Date& Reference to the epoch of the state partial.
+     */
+    const Date& get_epoch() const;
+
+  private:
+    OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and orientation of the orbit.
+    Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
+    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
 };
 
 } // namespace astro

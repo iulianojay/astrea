@@ -20,7 +20,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/State.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -31,7 +31,7 @@ struct TestEvent {
 
     std::string get_name() const { return "Test Event"; }
 
-    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const
+    Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
     {
         static int sign = -1;
         sign *= -1;
@@ -58,7 +58,7 @@ class EventDetectorTest : public testing::Test {
     Event event{ TestEvent() };
     Event terminalEvent{ TerminalTestEvent() };
     Vehicle vehicle{ Spacecraft() };
-    OrbitalElements elements;
+    State state{};
 };
 
 
@@ -81,7 +81,7 @@ TEST_F(EventDetectorTest, DetectNonTerminalEvents)
 {
     detector.set_events({ event });
     for (int ii = 0; ii < 10; ++ii) {
-        const bool isTerminal = detector.detect_events(Time(ii * s), elements, vehicle);
+        const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
         ASSERT_EQ(isTerminal, false);
     }
 }
@@ -90,7 +90,7 @@ TEST_F(EventDetectorTest, DetectTerminalEvents)
 {
     detector.set_events({ terminalEvent });
     for (int ii = 0; ii < 10; ++ii) {
-        const bool isTerminal = detector.detect_events(Time(ii * s), elements, vehicle);
+        const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
         ASSERT_EQ(isTerminal, bool(ii > 0));
     }
 }

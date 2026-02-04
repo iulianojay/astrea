@@ -41,7 +41,7 @@ using mp_units::si::unit_symbols::W;
 class KeplerianVopPropagationTest : public testing::Test {
   public:
     KeplerianVopPropagationTest() :
-        eom(sys, forces),
+        eom(forces),
         start(seconds(0)),
         end(weeks(1)),
         propInterval({ start, end }),
@@ -55,8 +55,8 @@ class KeplerianVopPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
-    KeplerianVop eom;
     ForceModel forces;
+    KeplerianVop eom;
     Integrator integrator;
     Time start;
     Time end;

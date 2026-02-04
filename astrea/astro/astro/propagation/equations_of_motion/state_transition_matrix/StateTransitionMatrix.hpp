@@ -20,10 +20,11 @@
 
 #include <variant>
 
+#include <mp-units/concepts.h>
+
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/instances/CartesianStm.hpp>
 
 namespace astrea {
 namespace astro {
@@ -41,24 +42,15 @@ class StateTransitionMatrix {
     ~StateTransitionMatrix() = default;
 
     /**
-     * @brief Constructor for StateTransitionMatrix from a CartesianStm.
-     *
-     * @param stm The CartesianStm to initialize from.
-     */
-    StateTransitionMatrix(CartesianStm stm) :
-        _stm(stm)
-    {
-    }
-
-    /**
      * @brief Constructor for StateTransitionMatrix. Uses the provided equations of motion
      *  and state to initialize the STM numerically.
      *
      * @param eom Equations of motion object
+     * @param date Current date
      * @param state Current orbital elements state vector
      * @param vehicle Vehicle object
      */
-    StateTransitionMatrix(const EquationsOfMotion& eom, const OrbitalElements& state, const Vehicle& vehicle);
+    StateTransitionMatrix(const EquationsOfMotion& eom, const State& state, const Vehicle& vehicle);
 
     /**
      * @brief Set the STM element at (ii, jj) to the provided value.
@@ -70,10 +62,10 @@ class StateTransitionMatrix {
      * @note The value's unit will be forced to a unitless representation inside the STM. It is on the user to ensure
      *  that the correct units are used for the STM elements. I'm sorry.
      */
-    template <Quantity Value_T, std::size_t ii, std::size_t jj>
+    template <std::size_t ii, std::size_t jj, mp_units::Quantity Value_T>
     void set(const Value_T& value)
     {
-        _stm[ii][jj] = value.in(value.unit);
+        _stm[ii][jj] = value.numerical_value_in(value.unit) * mp_units::one;
     }
 
     /**
