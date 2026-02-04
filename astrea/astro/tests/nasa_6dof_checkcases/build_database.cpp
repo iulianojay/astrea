@@ -18,12 +18,13 @@
 #include <stdexcept>
 #include <string>
 
-#include <csv-parser/csv.hpp>
+#include <csv.hpp>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
 #include <utilities/ProgressBar.hpp>
 
+#include <astro/astro.macros.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp>
@@ -49,9 +50,8 @@ int main()
 
     // Get atmospheric checkcase files
     std::vector<std::filesystem::path> checkcaseFiles;
-    const std::string root = std::getenv("ASTREA_ROOT");
     auto atmoIterator =
-        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/atmospheric");
+        std::filesystem::recursive_directory_iterator(std::string(_ASTRO_ROOT_) + "/tests/nasa_6dof_checkcases/data/checkcases/atmospheric");
     for (const auto& entry : atmoIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }

@@ -21,7 +21,7 @@
 
 #include <mp-units/math.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 
 using namespace mp_units;
 
@@ -213,7 +213,7 @@ bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, b
     const std::vector<Unitless> firstScaled  = first.force_to_vector();
     const std::vector<Unitless> secondScaled = second.force_to_vector();
     for (int ii = 0; ii < 6; ii++) {
-        if (!astrea::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
+        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
     }
     return true;
 }
@@ -227,7 +227,7 @@ bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementParti
     const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
     const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
     for (int ii = 0; ii < 6; ii++) {
-        if (!astrea::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
+        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
     }
     return true;
 }

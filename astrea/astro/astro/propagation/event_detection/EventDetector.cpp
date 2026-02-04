@@ -96,9 +96,9 @@ bool EventDetector::detect_event(const Time& time, const Unitless& value, EventT
     return false;
 }
 
-phmap::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
+gtl::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
 {
-    phmap::btree_map<std::string, std::vector<Date>> eventTimes;
+    gtl::btree_map<std::string, std::vector<Date>> eventTimes;
     for (const auto& tracker : _eventTrackers) {
         std::vector<Date> dates;
         for (const auto& time : tracker.detectionTimes) {

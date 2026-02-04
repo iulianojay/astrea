@@ -27,6 +27,7 @@
 #include <math/operations.hpp>
 #include <math/trig.hpp>
 
+#include <astro/astro.macros.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
 #include <astro/platforms/Vehicle.hpp>
@@ -35,7 +36,6 @@
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/utilities/conversions.hpp>
-
 
 namespace astrea {
 
@@ -81,7 +81,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
     // TODO: Change to binary files cause boy are these big
-    std::filesystem::path path = std::string(std::getenv("ASTREA_ROOT")) + "/astrea/astro/data/gravity_models/";
+    std::filesystem::path path = std::string(_ASTRO_ROOT_) + "/data/gravity_models/";
     std::filesystem::path filename;
     const CelestialBodyId centerId =
         sys.get_central_body_id(); // TODO: This forces the oblatness to only consider the system central body

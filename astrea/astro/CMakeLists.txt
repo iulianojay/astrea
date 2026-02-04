@@ -84,12 +84,9 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/utilities/conversions.cpp
     ${ASTRO_BASE}/utilities/plotting.cpp
-
-    ${ASTRO_BASE}/../tests/utilities/comparisons.cpp
 )
 
 # Headers
-set(EXTERN_BASE ${CMAKE_CURRENT_LIST_DIR}/../../extern)
 set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
@@ -191,12 +188,6 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/utilities/conversions.hpp
     ${ASTRO_BASE}/utilities/plotting.hpp
-
-    ${ASTRO_BASE}/../tests/utilities/comparisons.hpp
-
-    # Extern
-    ${EXTERN_BASE}/date/date.h
-    ${EXTERN_BASE}/nlohmann/json.hpp
 )
 
 # Build ephemeris files
@@ -214,28 +205,25 @@ set(BUILD_EPHEMERIDES(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR
 set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
-# Set outputs
-set(REL_INSTALL_PATH install/${CMAKE_HOST_SYSTEM_PROCESSOR}-${CMAKE_SYSTEM_NAME}/${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}/${CMAKE_BUILD_TYPE})
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/../../${REL_INSTALL_PATH}/${PROJECT_NAME})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
-
 # Includes
 set(ASTRO_DIRS
-    ${EXTERN_BASE}
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../math
     ${CMAKE_CURRENT_LIST_DIR}/../snapshot
     ${CMAKE_CURRENT_LIST_DIR}/../units
     ${CMAKE_CURRENT_LIST_DIR}/../utilities
-    $ENV{HOME}/open-source/mp-units/src/core/include
-    $ENV{HOME}/open-source/mp-units/src/systems/include
 )
 include_directories(${ASTRO_DIRS})
 
-# # Find library
-# find_library(AVRO avrocpp)
+# Find library
+set(ASTRO_LIBS
+    mp-units::mp-units
+    matplot
+    nlohmann_json::nlohmann_json
+    sqlite_orm::sqlite_orm
+    date::date
+    gtl
+)
 
 # Shared library
 add_library(${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
@@ -243,10 +231,11 @@ add_library(${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
 endif()
+
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units GTest::gtest_main matplot)
+target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 
 # Static library
 if(${BUILD_STATIC})
@@ -255,10 +244,11 @@ if(${BUILD_STATIC})
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
+
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static mp-units::mp-units GTest::gtest_main matplot)
+    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES})
+    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
 # Install headers
