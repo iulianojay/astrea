@@ -21,7 +21,7 @@
 
 #include <sqlite3.h>
 
-#include <csv-parser/csv.hpp>
+#include <csv.hpp>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
@@ -32,7 +32,9 @@
 
 #include <astro/astro.hpp>
 #include <snapshot/snapshot.hpp>
+
 #include <trace/trace.hpp>
+#include <trace/trace.macros.hpp>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -149,8 +151,7 @@ int access_test()
     std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
-    const std::string root        = std::getenv("ASTREA_ROOT");
-    std::filesystem::path base    = root + "/astrea/trace/";
+    std::filesystem::path base    = std::string(_TRACE_ROOT_) + "/astrea/trace/";
     std::filesystem::path outfile = base / "trace/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);

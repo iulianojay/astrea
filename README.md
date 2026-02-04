@@ -8,7 +8,7 @@
 
 Astrea is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
 
-This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover ever feature, but we're on our way! 
+This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover ever feature, but we're on our way!
 
 ## What can it do
 
@@ -22,7 +22,7 @@ This is a passion project that has largely been developed largely by a single de
     - Simple transformations between each
 - Utility classes for automatic conversions to and from Julian Date, UTC, TT, and other common time systems.
 - Clients for pulling Spacetrack data
-- Access analysis (revisit) including link budget, and basic interference calculations 
+- Access analysis (revisit) including link budget, and basic interference calculations
 - Extensible definitions for:
     - Vehicles, spacecraft, and payloads
     - Frames, orbital elements, and orbital data formats
@@ -30,12 +30,13 @@ This is a passion project that has largely been developed largely by a single de
     - Custom force models, integrators, equations of motion, event detection, and analytic solvers
 - Custom mathamatics routines that work with mp-units types
 - In house propagation with user-defined event detection
-    - Numerical and analytic propagation methods supported 
+    - Numerical and analytic propagation methods supported
     - Framework for user-defined forces, and equations of motion
 - Impulsive and continuous thrust support
-- Partial SPICE integration 
+- Partial SPICE integration
     - Chebyshev polynomials compiled directly for planets and the Moon
     - Fast ephemris access with SPICE accuracy
+- High-fidelity comparisons using NASA's published 6DoF test data
 
 And it's still growing!
 
@@ -43,7 +44,7 @@ And it's still growing!
 Astrea relies on the mp-units library to handle units. This allows for strong typing of physical quantities, and compile-time unit checking, while also forcing developers to be explicit about units. This process helps avoid hard-to-see coversion issues, implicit units declarations, and inconsistencies in rounding and precision.
 
 ```cpp
-// In general, the mp-units library is highly generalized for any united quantity, but Astrea uses simple type wrappers for consistency and convenience. 
+// In general, the mp-units library is highly generalized for any united quantity, but Astrea uses simple type wrappers for consistency and convenience.
 quantity<s> t = 1.0 * s; // mp-units explicit style
 Time time     = 1.0 * s; // Astrea implicit style
 
@@ -104,7 +105,7 @@ using RIC  = frames::dynamic::ric;       // dynamic
 The CartesianVector class is a simple wrapper around a 3D vector, templated by the united-type and the frame the vector is defined in (or with respect to, depending). It also hosts several common vector operations, such as dot and cross products.
 ```cpp
 // Some length vector in ECI frame
-CartesianVector<Length, ECI> rEci{ 1.0 * m, 2.0 * m, 3.0 * m }; 
+CartesianVector<Length, ECI> rEci{ 1.0 * m, 2.0 * m, 3.0 * m };
 
 auto rEciMag   = rEci.norm();
 auto rEciUnit  = rEci.unit();
@@ -155,7 +156,7 @@ CartesianVector<Length, MyFrame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
 // CartesianVector<Length, ECI> rEcef = rCustom.in_frame<ECI>(J2000); // Compiler will fail!
 ```
 
-For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated to call any vector transformations. They are not required to declare the vector type, however, transformation to/from dynamic frames are not allowed without an instance of the dynamic frame. 
+For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated to call any vector transformations. They are not required to declare the vector type, however, transformation to/from dynamic frames are not allowed without an instance of the dynamic frame.
 Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
 
 ```cpp
@@ -262,7 +263,7 @@ std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::en
 // Keplerian VOP Final State: 2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, 0 rad, 0 rad, 0.0378809 rad] (Keplerian)
 ```
 
-Examples have been built out more completely for the astro tool in Astrea (astrea/astro/examples). 
+Examples have been built out more completely for the astro tool in Astrea (astrea/astro/examples).
 
 ## What's coming?
 
@@ -270,8 +271,7 @@ Examples have been built out more completely for the astro tool in Astrea (astre
     - cmake packaging
     - compiled deployments
     - support for different environments and operating systems
-- High fidelity VnV
-    - Real world comparisons using GPS data
+- Real world comparisons using GPS data
 - Speed guarantees using Google Benchmark
 - More complete element set definitions and faster transformations
 - Maneuvers, and full 6-DoF simulation
@@ -284,42 +284,39 @@ Examples have been built out more completely for the astro tool in Astrea (astre
 - Transfer optimization utilities
 - A Qt GUI for basic analysis and visualization
 
-## Requirements and dependencies
-
-The following are required to run all features in Astrea. The version requirements have not been thoroughly tested so many features will likely work with older versions. 
- * cmake 3.31.6 
- * conan 2.13.0
- * g++ 13.1.0 
- * make 4.3 - (only required to use the Makefile directly)
- * curl 7.81.0 - (only required to use snapshot features)
- * sqlite3 3.37.2 - (only required to use snapshot features)
- * python3 3.10.12 - (only required to use plotting features)
-
-Astrea uses numerous open-source libraries to solve various problems. Many of the dependencies are stored locally in header-only versions for convenience and simplicity. The only dependency that currently requires manual installation on your system is [mp-units](https://github.com/mpusz/mp-units). 
-
-Conan is used to build mp-units and its dependencies and otherwise links into Astrea's cmake system to build everything else. 
-
 ## Build and install
 
-Since conan is used to build mp-units and it's dependencies, users must have conan profiles setup for the build process to work. To simplify this, required conan files are stored in the repo root directory in `.conan2`. Move this folder to the your home directory after installing conan, overwritting any equivalent files, and Astrea should build out of the box.
+Astrea uses a small Python script to build out some files. In order to run this, first install the Astrea's python environment with
+```bash
+make python_env
+```
 
-To build and install easily, simply run the default make commmand. The default recipe builds all targets in release. Building other build types simply requires appending the type
+Once this is built, activate the environment with
+```bash
+source ./.venv/bin/activate
+```
 
+Once the python is activated, build and install with
+```bash
+make install
+```
+
+Options can be added at either step to update the configuration accordingly.
 ```bash
 make debug install
 ```
 ```bash
-make relwithdebinfo install 
+make relwithdebinfo tests examples build
+make relwithdebinfo all install
 ```
+where `all` can replace `tests examples`.
 
-Similarly, tests can be built by appending the test command
-```bash
-make debug tests
-```
+The build step only needs to be done once per independent bulid configuration.
 
-Or run with the run_tests command
+There are also some simple commands to run all the tests and examples.
 ```bash
 make run_tests
+make run_examples
 ```
 
 On build, files should be installed locally in the `install` folder. This process is fully customizable with standard cmake commands if you want a different build process, install location, etc. See the recipes in the Makefile for more details.

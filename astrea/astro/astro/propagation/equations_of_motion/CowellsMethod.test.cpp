@@ -67,7 +67,7 @@ TEST_F(CowellsMethodTest, Derivative)
         state0.get_vx(), state0.get_vy(), state0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom(epoch, state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
@@ -80,6 +80,6 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
         state0.get_vx(), state0.get_vy(), state0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom(epoch, state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

@@ -47,22 +47,21 @@ J2MeanVop::J2MeanVop(const AstrodynamicsSystem& system) :
 {
 }
 
-OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
 {
     const GravParam& mu       = get_system().get_mu();
     const Keplerian elements  = state.in_element_set<Keplerian>(mu);
     const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
 
     // Extract
-    const quantity<km>& a = elements.get_semimajor();
-    // const double<rad>& raan = elements.get_right_ascension();
-    const quantity<rad>& w     = elements.get_argument_of_perigee();
-    const quantity<rad>& theta = elements.get_true_anomaly();
+    const Distance& a = elements.get_semimajor();
+    // const Angle& raan = elements.get_right_ascension();
+    const Angle& w     = elements.get_argument_of_perigee();
+    const Angle& theta = elements.get_true_anomaly();
 
-    // Prevents singularities from occuring in the propagation. Will cause
-    // inaccuracies.
-    const quantity<one>& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
-    const quantity<rad>& inc = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
+    // Prevents singularities from occuring in the propagation. Will cause inaccuracies.
+    const Unitless& ecc = (elements.get_eccentricity() < eccTol) ? eccTol : elements.get_eccentricity();
+    const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions Keplerian elements to r and v
     const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
@@ -74,8 +73,8 @@ OrbitalElementPartials J2MeanVop::operator()(const OrbitalElements& state, const
     const Distance R = r.norm();
 
     // Variables to reduce calculations
-    const quantity termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
-    const quantity termB = z * z / (R * R);
+    const auto termA = -1.5 * J2 * mu * equitorialR * equitorialR / (R * R * R * R * R);
+    const auto termB = z * z / (R * R);
 
     // accel due to oblateness
     AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,

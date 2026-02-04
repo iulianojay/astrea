@@ -52,16 +52,6 @@ class LegendreCache {
     LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
 
     /**
-     * @brief Gets the exact Legendre polynomial value for given n, m, and x.
-     *
-     * @param n Degree of the polynomial
-     * @param m Order of the polynomial
-     * @param x Value at which to evaluate the polynomial
-     * @return Unitless The value of the Legendre polynomial Pnm at x
-     */
-    Unitless get_legendre_polynomial(const std::size_t& n, const std::size_t& m, const Unitless& x) const;
-
-    /**
      * @brief Gets the cosine coefficient for given n and m.
      *
      * @param n Degree of the polynomial
@@ -79,17 +69,25 @@ class LegendreCache {
      */
     Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
+    // /**
+    //  * @brief Computes the Legendre polynomial coefficients for the oblateness force.
+    //  *
+    //  * @param x Value at which to evaluate the Legendre polynomial
+    //  * @param degree Degree of the spherical harmonics
+    //  * @param order Order of the spherical harmonics
+    //  */
+    // std::vector<std::vector<Unitless>>
+    //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
+
     /**
-     * @brief Computes the Legendre polynomial coefficients for the oblateness force.
-     *
-     * @param x Value at which to evaluate the Legendre polynomial
-     * @param degree Degree of the spherical harmonics
-     * @param order Order of the spherical harmonics
+     * @brief Gets the normalizing coefficient for given n and m.
+     * @param n Degree of the polynomial
+     * @param m Order of the polynomial
+     * @return Unitless The value of the normalizing coefficient Nnm
      */
-    void assign_legendre(const std::size_t& degree, const std::size_t& order, const Unitless& x);
+    Unitless get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const;
 
   private:
-    std::vector<std::vector<Unitless>> _P{};                       //!< Legendre polynomial coefficients
     std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
     std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
     std::vector<std::vector<Unitless>> _S{};                       //!< Sine coefficients for the spherical harmonics
@@ -134,7 +132,11 @@ class OblatenessForce : public Force {
     OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
 
     /**
-     * @brief Computes the gravitational force due to the oblateness of a celestial body.
+     * @brief Computes the gravitational force using Montenbruck & Gill (2000) V and W recurrence relations.
+     *
+     * This method implements the algorithm from "Satellite Orbits: Models, Methods and Applications"
+     * by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
+     * with recurrence relations for more efficient and numerically stable computation.
      *
      * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
@@ -143,7 +145,7 @@ class OblatenessForce : public Force {
      * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
      */
     CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
 
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics

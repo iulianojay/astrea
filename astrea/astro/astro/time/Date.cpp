@@ -22,6 +22,7 @@
 #include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <mp-units/math.h>
 
+#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -108,14 +109,14 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
     const Time julianDay0 = julianDay - universalTime; // julian day number on this julian date
 
     // TODO: This difference can be done, somehow, with mp_units mechanisms
-    const quantity<JulianCentury> T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
-    const quantity<one> T0                          = T0JulianCenturies / JulianCentury;
+    const auto T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
+    const auto T0                = T0JulianCenturies / JulianCentury;
 
     const Angle greenwichUniversalTime =
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularRate earthRotRate = 1.002737909350795 * 360.0 * deg / day;
+    static const AngularRate earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
     const Angle greenwichSiderealTime     = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;

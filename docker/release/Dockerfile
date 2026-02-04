@@ -5,7 +5,7 @@ FROM ubuntu:latest AS base
 RUN apt-get update && \
     apt-get -y install \
     make \
-    cmake 
+    cmake
 
 ENV ASTREA_ROOT=/github/home/astrea
 WORKDIR $ASTREA_ROOT
@@ -16,29 +16,32 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install \
     gcc \
-    gdb \ 
+    gdb \
+    bash-completion \
     mono-mcs \
     curl \
+    clang-format \
     libsqlite3-dev \
     libssl-dev \
+    libgl1-mesa-dev \
+    xorg-dev \
     python3 \
     python3-pip \
     python3-venv \
     git \
+    gnuplot \
     && \
     rm -rf /var/lib/apt/lists/*
 
-# For some reason, this is the only way to install conan and gcovr
-RUN pip install gcovr conan --break-system-packages
+# For some reason, this is the only way to install gcovr
+RUN pip install gcovr --break-system-packages
 
-COPY .conan2/ $ASTREA_ROOT/.conan2
-COPY astrea $ASTREA_ROOT/astrea 
-COPY cmake $ASTREA_ROOT/cmake 
-COPY extern $ASTREA_ROOT/extern 
-COPY scripts $ASTREA_ROOT/scripts 
-COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt 
-COPY conanfile.txt $ASTREA_ROOT/conanfile.txt 
-COPY Makefile $ASTREA_ROOT/Makefile 
+COPY astrea $ASTREA_ROOT/astrea
+COPY cmake $ASTREA_ROOT/cmake
+COPY extern $ASTREA_ROOT/extern
+COPY scripts $ASTREA_ROOT/scripts
+COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt
+COPY Makefile $ASTREA_ROOT/Makefile
 
 # Clone mp-units instead of copying local version
 RUN mkdir /github/home/open-source && \
@@ -56,7 +59,7 @@ FROM base AS final
 COPY --from=build $ASTREA_ROOT/.venv $ASTREA_ROOT/.venv
 COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
 COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
-COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile 
-COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern 
-COPY astrea/astro/data $ASTREA_ROOT/astrea/astro/data 
+COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile
+COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern
+COPY astrea/astro/data $ASTREA_ROOT/astrea/astro/data
 

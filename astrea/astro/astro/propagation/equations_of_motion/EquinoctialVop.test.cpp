@@ -67,6 +67,6 @@ TEST_F(EquinoctialTest, Derivative)
     EquinoctialPartial expected =
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom(epoch, state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

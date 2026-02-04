@@ -26,7 +26,7 @@
 
 #include <sqlite3.h>
 
-#include <csv-parser/csv.hpp>
+#include <csv.hpp>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
@@ -96,19 +96,28 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
+TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
-    Viewer geo({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch, sys });
+    const Cartesian elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const State state0(elem0, epoch, sys);
 
-    Constellation<Viewer> twoBallGeo;
-    twoBallGeo.add_spacecraft(geo);
+    const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
+    const auto& centralBody    = sys.get_central_body();
+    const auto rEq             = centralBody->get_equitorial_radius();
+    const auto rPolar          = centralBody->get_polar_radius();
+    const auto [lat, lon, alt] = astro::convert_earth_fixed_to_geodetic(rEcef, rEq, rPolar);
+
+    Viewer geo(state0);
+
+    Constellation<Viewer> constel;
+    constel.add_spacecraft(geo);
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
     SensorParameters geoCone(&fov180deg);
 
-    for (auto& shell : twoBallGeo.get_shells()) {
+    for (auto& shell : constel.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 sat.attach_payload(geoCone);
@@ -118,14 +127,14 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation ground(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, "Test site", { groundCone });
+    GroundStation ground(centralBody.get(), lat, lon, 0.0 * km, "Test site", { groundCone });
     GroundArchitecture grounds({ ground });
 
     // Propagate
-    twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
+    constel.propagate(epoch, eom, integrator, accessInterval);
 
     // Find access
-    const auto accesses = find_accesses(twoBallGeo, grounds, resolution, epoch, sys);
+    const auto accesses = find_accesses(constel, grounds, resolution, epoch, sys);
 
     // Assert that there is access
     ASSERT_TRUE(accesses.size() > 0);

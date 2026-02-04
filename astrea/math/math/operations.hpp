@@ -27,22 +27,51 @@
 namespace astrea {
 namespace math {
 
+
+/**
+ * @brief Check if two quantities of the same unit are nearly equal within a relative tolerance.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param x First quantity to compare.
+ * @param y Second quantity to compare.
+ * @param relTol Relative tolerance for comparison.
+ * @return true if the two quantities are nearly equal within the specified tolerance.
+ * @return false if they are not nearly equal.
+ */
+template <auto R1, auto R2, typename Rep>
+[[nodiscard]] constexpr bool nearly_equal(
+    const mp_units::quantity<R1, Rep>& x,
+    const mp_units::quantity<R2, Rep>& y,
+    const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
+    const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
+) noexcept
+{
+    // Bring both to the same unit for comparison
+    const auto a = x.in(x.unit);
+    const auto b = y.in(x.unit);
+
+    // Check rel tol
+    if (relTol != 0.0 * mp_units::one) {
+        if (a != 0.0 * R1 && b != 0.0 * R1) {
+            if (abs((a - b) / a) > relTol) { return false; }
+        }
+    }
+
+    // Check abs tol
+    if (absTol != 0.0 * mp_units::one) {
+        if (abs(a - b) > absTol * R1) { return false; }
+    }
+
+    return true;
+}
+
 template <auto R, typename Rep>
     requires requires(Rep v) { max(v, v); } || requires(Rep v) { std::max(v, v); }
 [[nodiscard]] inline mp_units::quantity<R, Rep> max(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
 {
     using std::max;
-    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
-        // check what is the return type when called with the integral value
-        using rep = decltype(max(q1.force_numerical_value_in(q1.unit), q2.force_numerical_value_in(q1.unit)));
-        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{
-            max(value_cast<rep>(q1).numerical_value_in(q1.unit), value_cast<rep>(q2).numerical_value_in(q1.unit)), q1.unit
-        };
-    }
-    else {
-        return mp_units::quantity{ max(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
-    }
+    return mp_units::quantity{ max(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
 template <auto R, typename Rep>
@@ -50,17 +79,7 @@ template <auto R, typename Rep>
 [[nodiscard]] inline mp_units::quantity<R, Rep> min(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
 {
     using std::min;
-    if constexpr (!mp_units::treat_as_floating_point<Rep>) {
-        // check what is the return type when called with the integral value
-        using rep = decltype(min(q1.force_numerical_value_in(q1.unit), q2.force_numerical_value_in(q1.unit)));
-        // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{
-            min(value_cast<rep>(q1).numerical_value_in(q1.unit), value_cast<rep>(q2).numerical_value_in(q1.unit)), q1.unit
-        };
-    }
-    else {
-        return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
-    }
+    return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>

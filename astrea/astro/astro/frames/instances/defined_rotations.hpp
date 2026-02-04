@@ -59,7 +59,7 @@ inline DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>
     get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(const Date& date)
 {
     const Angle gst = julian_date_to_sidereal_time(date.jd());
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>::Z(gst);
+    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>::Z(-gst);
 }
 
 } // namespace astro

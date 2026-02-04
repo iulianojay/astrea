@@ -16,7 +16,6 @@ set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
 file(GLOB_RECURSE UNIT_TEST_SOURCES CONFIGURE_DEPENDS ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/**/driver.cpp)
 
-# Set install rpath
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
 
 # Target for all tests
@@ -32,6 +31,6 @@ set(HELPER_SOURCES
 
 # Add subdirectories for regressions
 # add_subdirectory(some-regression-test)
-build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
 
+build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
 # build_tests("REGRESSION" "${REGRESSION_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")

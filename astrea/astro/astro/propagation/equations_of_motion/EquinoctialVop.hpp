@@ -50,13 +50,14 @@ class EquinoctialVop : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using the Equinoctial VOP method.
      *
+     * @param date The current date for which the equations of motion are being computed.
      * @param state The current orbital elements of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      *
      * @ref https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf
      */
-    OrbitalElementPartials operator()(const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using Cowell's method.

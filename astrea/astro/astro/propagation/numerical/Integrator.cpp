@@ -51,7 +51,7 @@ OrbitalElementPartials
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
-    return eom(state, vehicle);
+    return eom(_epoch0 + time, state, vehicle);
 }
 
 
@@ -92,6 +92,7 @@ StateHistory Integrator::propagate(
     if (!forwardTime) { timeStep = -timeStep; }
 
     // States
+    _epoch0                      = epoch;
     const OrbitalElements state0 = get_initial_state(epoch, eom, vehicle, events);
     OrbitalElements state        = state0;
 
@@ -380,8 +381,8 @@ Unitless Integrator::find_max_error(const OrbitalElements& stateNew, const Orbit
 
     // Find max error from step
     Unitless maxError           = 0.0 * astrea::detail::unitless;
-    const auto stateErrorScaled = stateError.force_to_vector();
-    const auto stateNewScaled   = stateNew.force_to_vector();
+    const auto stateErrorScaled = stateError.to_vector();
+    const auto stateNewScaled   = stateNew.to_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
         const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
