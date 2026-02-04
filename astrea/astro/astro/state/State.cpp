@@ -37,26 +37,26 @@ bool State::operator==(const State& other) const
 
 State State::operator+(const State& other) const
 {
-    _validate_system_and_epoch(other);
+    validate_system(other);
     return { _elements + other._elements, _epoch, get_system() };
 }
 
 State& State::operator+=(const State& other)
 {
-    _validate_system_and_epoch(other);
+    validate_system(other);
     _elements += other._elements;
     return *this;
 }
 
 State State::operator-(const State& other) const
 {
-    _validate_system_and_epoch(other);
+    validate_system(other);
     return { _elements - other._elements, _epoch, get_system() };
 }
 
 State& State::operator-=(const State& other)
 {
-    _validate_system_and_epoch(other);
+    validate_system(other);
     _elements -= other._elements;
     return *this;
 }
@@ -79,24 +79,12 @@ State& State::operator/=(const Unitless& scalar)
 
 StatePartial State::operator/(const Time& divisor) const { return { _elements / divisor, _epoch, get_system() }; }
 
-void State::_validate_system_and_epoch(const State& other) const
-{
-    _validate_system(other);
-    _validate_epoch(other);
-}
-
-void State::_validate_system(const State& other) const
+void State::validate_system(const State& other) const
 {
     if (&get_system() != &other.get_system()) {
         throw std::runtime_error("States belong to different astrodynamics systems.");
     }
 }
-
-void State::_validate_epoch(const State& other) const
-{
-    if (get_epoch() != other.get_epoch()) { throw std::runtime_error("State epochs do not match."); }
-}
-
 
 State StatePartial::operator*(const Time& time) const
 {

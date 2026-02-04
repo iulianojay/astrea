@@ -44,8 +44,8 @@ class KeplerianVopTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    KeplerianVop eom;
     ForceModel forces;
+    KeplerianVop eom;
 };
 
 

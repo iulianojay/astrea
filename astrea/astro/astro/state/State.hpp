@@ -257,25 +257,11 @@ class State {
     StatePartial operator/(const Time& divisor) const;
 
     /**
-     * @brief Validates that another State object belongs to the same astrodynamics system and has the same epoch.
-     *
-     * @param other The other State object to validate against.
-     */
-    void _validate_system_and_epoch(const State& other) const;
-
-    /**
      * @brief Validates that another State object belongs to the same astrodynamics system.
      *
      * @param other The other State object to validate against.
      */
-    void _validate_system(const State& other) const;
-
-    /**
-     * @brief Validates that another State object has the same epoch.
-     *
-     * @param other The other State object to validate against.
-     */
-    void _validate_epoch(const State& other) const;
+    void validate_system(const State& other) const;
 };
 
 class StatePartial {

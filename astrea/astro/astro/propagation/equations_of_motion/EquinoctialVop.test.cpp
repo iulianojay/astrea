@@ -44,8 +44,8 @@ class EquinoctialTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    EquinoctialVop eom;
     ForceModel forces;
+    EquinoctialVop eom;
 };
 
 
