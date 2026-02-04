@@ -25,9 +25,9 @@ std::ostream& operator<<(std::ostream& os, const State& state)
 }
 
 
-State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
+State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys)
 {
-    return State(OrbitalElements::from_vector(vec, idx), Date(), AstrodynamicsSystem());
+    return State(OrbitalElements::from_vector(vec, idx), Date(), sys);
 }
 
 bool State::operator==(const State& other) const

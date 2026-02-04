@@ -99,7 +99,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements random_elements()
     {
         Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
-        return OrbitalElements(T(elements, AstrodynamicsSystem().get_mu()));
+        return OrbitalElements(T(elements, sys.get_mu()));
     }
 };
 

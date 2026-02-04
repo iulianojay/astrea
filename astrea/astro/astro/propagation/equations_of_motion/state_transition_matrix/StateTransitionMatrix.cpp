@@ -28,6 +28,7 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
      * underlying units, and then force a conversion back. This makes this function implicity unsafe from a unit perspective.
      */
 
+    const AstrodynamicsSystem& sys = state.get_system();
     const std::vector<Unitless> s0 = state.force_to_vector();
     const std::size_t typeIdx      = state.get_elements().index();
     const std::vector<Unitless> f0 = eom(state, vehicle).force_to_vector();
@@ -46,8 +47,8 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
             sMinusDs[ii] -= dsi;
 
             // Convert back to OrbitalElements
-            const State statePlus  = State::from_vector(sPlusDs, typeIdx);
-            const State stateMinus = State::from_vector(sMinusDs, typeIdx);
+            const State statePlus  = State::from_vector(sPlusDs, typeIdx, sys);
+            const State stateMinus = State::from_vector(sMinusDs, typeIdx, sys);
 
             // Compute f(s + dsi)
             const std::vector<Unitless> fPerturbedPlus  = eom(statePlus, vehicle).force_to_vector();

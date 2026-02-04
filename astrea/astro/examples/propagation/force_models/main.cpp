@@ -61,12 +61,13 @@ int main()
     };
 
     // Input arguments are forwarded to the constructor of the Force subclass
+    AstrodynamicsSystem sys;
     ForceModel forceModel;
     forceModel.add<ContinuousThrust>("My Continuous Thrust");
 
     // During propagation, the force model is queried for the total acceleration
     Cartesian cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
-    State state(cart, Date(), AstrodynamicsSystem());
+    State state(cart, Date(), sys);
     const auto totalAcceleration = forceModel.compute_forces(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
 

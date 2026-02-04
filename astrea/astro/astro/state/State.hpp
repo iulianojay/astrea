@@ -60,6 +60,11 @@ class State {
     }
 
     /**
+     * @brief Deleted constructor for State to prevent constructing a reference to an AstrodynamicsSystem rvalue
+     */
+    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&) = delete;
+
+    /**
      * @brief Checks if two State objects are equal.
      *
      * @param other The other State object to compare with.
@@ -168,7 +173,7 @@ class State {
     }
 
     /**
-     * @brief Converts the OrbitalElements to a vector of Unitless values.
+     * @brief Converts the State to a vector of Unitless values.
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
@@ -176,13 +181,14 @@ class State {
 
 
     /**
-     * @brief Creates an OrbitalElements object from a vector of Unitless values.
+     * @brief Creates an State object from a vector of Unitless values.
      *
      * @param vec The vector of Unitless values.
      * @param idx The index of the orbital element type to create.
-     * @return OrbitalElements The created OrbitalElements object.
+     * @param sys The astrodynamics system associated with the state.
+     * @return State The created State object.
      */
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys);
 
     /**
      * @brief Adds two State objects together.
