@@ -120,7 +120,7 @@ int access_test()
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Build EoMs
-    TwoBody eom(sys);
+    TwoBody eom;
 
     // Setup integrator
     Integrator integrator;

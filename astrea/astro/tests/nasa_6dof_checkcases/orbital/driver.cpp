@@ -104,8 +104,7 @@ class Orbital6DofTest : public testing::Test {
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
 
-        outputDir = std::string(_ASTRO_ROOT_);
-        outputDir /= "/tests/nasa_6dof_checkcases/orbital/results";
+        outputDir = std::string(_ASTRO_ROOT_) + "/tests/nasa_6dof_checkcases/orbital/results";
     }
 
     void SetUp() override {}
@@ -194,22 +193,22 @@ class Orbital6DofTest : public testing::Test {
 
         switch (eomId) {
             case TWO_BODY: {
-                TwoBody twoBody(sys);
+                TwoBody twoBody;
                 return integrator.propagate(epoch, propInterval, twoBody, vehicle, true);
             }
 
             case COWELLS_METHOD: {
-                CowellsMethod cowells(sys, forces);
+                CowellsMethod cowells(forces);
                 return integrator.propagate(epoch, propInterval, cowells, vehicle, true);
             }
 
             case KEPLERIAN_VOP: {
-                KeplerianVop keplerianVop(sys, forces, false);
+                KeplerianVop keplerianVop(forces, false);
                 return integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
             }
 
             case EQUINOCTIAL_VOP: {
-                EquinoctialVop equinoctialVop(sys, forces);
+                EquinoctialVop equinoctialVop(forces);
                 return integrator.propagate(epoch, propInterval, equinoctialVop, vehicle, true);
             }
 
@@ -254,7 +253,7 @@ class Orbital6DofTest : public testing::Test {
             StateHistory history;
             for (const auto& row : rows) {
                 const State state = parse_row_as_state(row);
-                history.insert(state.get_epoch(), state);
+                history.insert(state);
             }
             results.push_back({ history, "Checkcase " + std::to_string(checkcase.sim_num) });
         }

@@ -58,7 +58,6 @@ class SimpleGeoAccessTest : public testing::Test {
   public:
     SimpleGeoAccessTest() :
         semimajorGeo(42164.0 * km),
-        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
         accessInterval({ start, end }),

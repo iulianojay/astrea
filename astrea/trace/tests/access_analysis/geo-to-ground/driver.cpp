@@ -59,7 +59,6 @@ class GeoToGroundAccessTest : public testing::Test {
     GeoToGroundAccessTest() :
         mu(sys.get_mu()),
         semimajorGeo(42164.0 * km),
-        eom(sys),
         start(seconds(0)),
         end(weeks(1)),
         accessInterval({ start, end }),
