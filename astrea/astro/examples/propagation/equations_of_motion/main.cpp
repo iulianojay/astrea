@@ -94,9 +94,6 @@ int main()
     std::cout << "Propagating My Equations of Motion...";
     const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
 
-    // Or you can propagate to a specific end epoch
-    // Date endEpoch = epoch + minutes(1);
-    // const StateHistory history = integrator.propagate(state0, endEpoch, myEoms, vehicle, store);
     std::cout << " Propagation Complete." << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;

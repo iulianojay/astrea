@@ -60,6 +60,15 @@ class State {
     }
 
     /**
+     * @brief Constructs a State from a StateHistory object.
+     *
+     * @param history The StateHistory object to construct the State from.
+     *
+     * @note This only works if the StateHistory contains exactly one state.
+     */
+    State(const StateHistory& history);
+
+    /**
      * @brief Deleted constructor for State to prevent constructing a reference to an AstrodynamicsSystem rvalue
      */
     State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&) = delete;

@@ -72,7 +72,7 @@ int main()
     std::cout << "Propagating...";
     const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, twoBodyEom, vehicle, store);
     std::cout << " Two Body Propagation Complete." << std::endl << "Propagating...";
-    vehicle = Vehicle(sat); // reset the vehicle
+    vehicle = Vehicle(sat); // reset the vehicle in case the propagation updates it
 
     const StateHistory j2MeanHistory = integrator.propagate(state0, propTime, j2MeanEom, vehicle, store);
     std::cout << " J2 Mean Propagation Complete." << std::endl << "Propagating...";
@@ -90,6 +90,13 @@ int main()
     std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
     std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
     std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
+
+    // And if you want, you can propagate to a specific end epoch instead of for an amount of time
+    Date endEpoch              = epoch + propTime;
+    const StateHistory history = integrator.propagate(state0, endEpoch, twoBodyEom, vehicle, store);
+
+    // And if you don't care about storing the history, you can skip that too
+    const State statef = integrator.propagate(state0, propTime, twoBodyEom, vehicle);
 
     return 0;
 }

@@ -15,6 +15,8 @@
 
 #include <iostream>
 
+#include <astro/state/StateHistory.hpp>
+
 namespace astrea {
 namespace astro {
 
@@ -22,6 +24,15 @@ std::ostream& operator<<(std::ostream& os, const State& state)
 {
     os << state.get_epoch() << ", " << state.get_elements();
     return os;
+}
+
+State::State(const StateHistory& history)
+{
+    if (history.size() != 1) {
+        throw std::runtime_error("StateHistory must contain exactly one state to construct a State.");
+    }
+    const auto& state = history.first();
+    *this             = state;
 }
 
 
