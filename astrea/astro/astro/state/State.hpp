@@ -106,6 +106,30 @@ class State {
     }
 
     /**
+     * @brief Converts the orbital elements to a different type based on index.
+     *
+     * @param idx The index of the orbital element type to convert to.
+     */
+    State& convert_to_set(const std::size_t idx)
+    {
+        _elements.convert_to_set(idx, get_mu());
+        return *this;
+    }
+
+    /**
+     * @brief Converts the state to a different type of orbital elements based on index.
+     *
+     * @param idx The index of the orbital element type to convert to.
+     * @return State A new State object with the converted orbital elements.
+     */
+    State convert_to_set(const std::size_t idx) const
+    {
+        State newState = *this;
+        newState._elements.convert_to_set(idx, get_mu());
+        return newState;
+    }
+
+    /**
      * @brief Converts the state to a different type of orbital elements.
      *
      * @tparam T The type to convert the state to.

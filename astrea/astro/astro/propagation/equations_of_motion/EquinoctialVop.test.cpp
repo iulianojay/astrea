@@ -19,6 +19,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>

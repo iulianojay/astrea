@@ -41,7 +41,7 @@ int main()
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
-    Spacecraft sat(state0);
+    Spacecraft sat;
     Vehicle vehicle(sat);
 
     // Equations of motion are the basis for dynamic progagation. This class is meant to provide a partial derivative
@@ -86,14 +86,17 @@ int main()
     // the integrator setters.
     Integrator integrator;
 
-    bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals
-                                                     // can also be negative for backwards propagation.
+    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    Time propTime = minutes(1); // Propagation time can also be negative for backwards propagation.
 
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating My Equations of Motion...";
-    const StateHistory history = integrator.propagate(epoch, propInterval, myEoms, vehicle, store);
+    const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
+
+    // Or you can propagate to a specific end epoch
+    // Date endEpoch = epoch + minutes(1);
+    // const StateHistory history = integrator.propagate(state0, endEpoch, myEoms, vehicle, store);
     std::cout << " Propagation Complete." << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;

@@ -41,7 +41,7 @@ int main()
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
-    Spacecraft sat(state0);
+    Spacecraft sat;
     Vehicle vehicle(sat);
 
     // Build a force model - point mass gravity is always included, but this may be changed in future releases to
@@ -63,26 +63,26 @@ int main()
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals
-                                                     // can also be negative for backwards propagation.
+    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    Time propTime = minutes(1); // A propagation interval relative to the epoch. Intervals
+                                // can also be negative for backwards propagation.
 
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating...";
-    const StateHistory twoBodyHistory = integrator.propagate(epoch, propInterval, twoBodyEom, vehicle, store);
+    const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, twoBodyEom, vehicle, store);
     std::cout << " Two Body Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat); // reset the vehicle
 
-    const StateHistory j2MeanHistory = integrator.propagate(epoch, propInterval, j2MeanEom, vehicle, store);
+    const StateHistory j2MeanHistory = integrator.propagate(state0, propTime, j2MeanEom, vehicle, store);
     std::cout << " J2 Mean Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory cowellsHistory = integrator.propagate(epoch, propInterval, cowellsEom, vehicle, store);
+    const StateHistory cowellsHistory = integrator.propagate(state0, propTime, cowellsEom, vehicle, store);
     std::cout << " Cowell's Method Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory keplerianHistory = integrator.propagate(epoch, propInterval, keplerianEom, vehicle, store);
+    const StateHistory keplerianHistory = integrator.propagate(state0, propTime, keplerianEom, vehicle, store);
     std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;

@@ -39,15 +39,15 @@ class Interval {
      */
     Interval(const Time& start, const Time& end) :
         start(start),
-        end(end) {};
+        propTime(end){};
 
     /**
      * @brief Default destructor for Interval.
      */
     ~Interval() = default;
 
-    Time start; ///< The start time of the interval.
-    Time end;   ///< The end time of the interval.
+    Time start;    ///< The start time of the interval.
+    Time propTime; ///< The end time of the interval.
 };
 
 } // namespace astro

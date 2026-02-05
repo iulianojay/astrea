@@ -274,18 +274,10 @@ void Constellation<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval)
-{
-    Integrator integrator;
-    propagate(epoch, eom, integrator, interval);
-}
-
-
-template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Constellation<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
 {
     for (auto& shell : shells) {
-        shell.propagate(epoch, eom, integrator, interval);
+        shell.propagate(propTime, eom, integrator);
     }
 }
 

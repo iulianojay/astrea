@@ -97,7 +97,7 @@ class Orbital6DofTest : public testing::Test {
             RadiusVector<frames::earth::icrf>(-4315.96774 * km, 960.35620 * km, 5167.26953 * km),
             VelocityVector<frames::earth::icrf>(0.129091037 * km / s, -7.491513855 * km / s, 1.452515654 * km / s)
         ),
-        propInterval(0.0 * s, 28800.0 * s)
+        propTime(28800.0 * s)
     {
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
@@ -132,9 +132,7 @@ class Orbital6DofTest : public testing::Test {
 
     Spacecraft build_spacecraft(const InitialOrbitType& orbitType, const VehicleType& vehicleType)
     {
-        OrbitalElements initialState = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
-        Spacecraft sat({ initialState, epoch, sys });
-
+        Spacecraft sat;
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(4.5e5 * kg);
@@ -188,28 +186,31 @@ class Orbital6DofTest : public testing::Test {
 
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
+        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
+        State state0(initialElements, epoch, sys);
+
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
 
         switch (eomId) {
             case TWO_BODY: {
                 TwoBody twoBody;
-                return integrator.propagate(epoch, propInterval, twoBody, vehicle, true);
+                return integrator.propagate(state0, propTime, twoBody, vehicle, true);
             }
 
             case COWELLS_METHOD: {
                 CowellsMethod cowells(forces);
-                return integrator.propagate(epoch, propInterval, cowells, vehicle, true);
+                return integrator.propagate(state0, propTime, cowells, vehicle, true);
             }
 
             case KEPLERIAN_VOP: {
                 KeplerianVop keplerianVop(forces, false);
-                return integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
+                return integrator.propagate(state0, propTime, keplerianVop, vehicle, true);
             }
 
             case EQUINOCTIAL_VOP: {
                 EquinoctialVop equinoctialVop(forces);
-                return integrator.propagate(epoch, propInterval, equinoctialVop, vehicle, true);
+                return integrator.propagate(state0, propTime, equinoctialVop, vehicle, true);
             }
 
             default: throw std::runtime_error("Invalid EOM ID");
@@ -506,7 +507,7 @@ class Orbital6DofTest : public testing::Test {
     Date epoch;
     Cartesian circular;
     Cartesian elliptic;
-    Interval propInterval;
+    Time propTime;
     Integrator integrator;
 };
 

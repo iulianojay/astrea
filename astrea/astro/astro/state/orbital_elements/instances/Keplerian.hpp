@@ -46,13 +46,13 @@ class Keplerian {
      *
      * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
      */
-    Keplerian(Unitless scale = 0.0 * detail::unitless) :
-        _semimajor(scale * detail::distance_unit),
-        _eccentricity(scale * detail::unitless),
-        _inclination(scale * detail::angle_unit),
-        _rightAscension(scale * detail::angle_unit),
-        _argPerigee(scale * detail::angle_unit),
-        _trueAnomaly(scale * detail::angle_unit)
+    Keplerian(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _semimajor(scale * astrea::detail::distance_unit),
+        _eccentricity(scale * astrea::detail::unitless),
+        _inclination(scale * astrea::detail::angle_unit),
+        _rightAscension(scale * astrea::detail::angle_unit),
+        _argPerigee(scale * astrea::detail::angle_unit),
+        _trueAnomaly(scale * astrea::detail::angle_unit)
     {
     }
 

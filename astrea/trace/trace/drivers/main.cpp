@@ -130,8 +130,8 @@ int access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), hours(24) };
-    allSats.propagate(epoch, eom, integrator, propInterval);
+    Time propTime = hours(24);
+    allSats.propagate(propTime, eom, integrator);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);

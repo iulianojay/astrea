@@ -87,7 +87,7 @@ class EventDetector {
      * @return true If a terminal event was detected.
      * @return false If no terminal event was detected.
      */
-    bool detect_events(const Time& time, const State& state, Vehicle& vehicle);
+    bool detect_events(const Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Retrieves the event times recorded during propagation.

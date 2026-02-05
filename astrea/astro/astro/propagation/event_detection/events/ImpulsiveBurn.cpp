@@ -25,7 +25,7 @@ std::string ImpulsiveBurn::get_name() const { return "Impulsive Burn"; }
 
 Unitless ImpulsiveBurn::measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Keplerian elements = vehicle.get_state().in_element_set<Keplerian>();
+    const Keplerian elements = state.in_element_set<Keplerian>();
 
     // TODO: Generalize to some scheduler
     const Angle& trueAnomaly = elements.get_true_anomaly();
@@ -41,10 +41,9 @@ Unitless ImpulsiveBurn::measure_event(const Time& time, const State& state, cons
     }
 }
 
-void ImpulsiveBurn::trigger_action(Vehicle& vehicle) const
+void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehicle) const
 {
     // Pull out state
-    State& state       = vehicle.get_state();
     Cartesian elements = state.in_element_set<Cartesian>();
 
     // Just sum up all the thrusters

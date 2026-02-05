@@ -22,7 +22,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/FrameReference.hpp>
-#include <astro/state/State.hpp>
 
 namespace astrea {
 namespace astro {
@@ -37,10 +36,9 @@ class NullVehicle : public FrameReference {
     /**
      * @brief Constructs a NullVehicle with an initial state and mass.
      *
-     * @param state0 The initial state of the vehicle, defaulting to a zero state.
      * @param mass The mass of the vehicle, defaulting to zero kilograms.
      */
-    NullVehicle(const State& state0 = State(), const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg);
+    NullVehicle(const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg);
 
     /**
      * @brief Clone the NullVehicle object.
@@ -48,27 +46,6 @@ class NullVehicle : public FrameReference {
      * @return NullVehicle* A pointer to a new NullVehicle object that is a copy of this one.
      */
     NullVehicle* clone() const;
-
-    /**
-     * @brief Updates the state of the vehicle.
-     *
-     * @param state The new state to set for the vehicle.
-     */
-    void update_state(const State& state);
-
-    /**
-     * @brief Gets the current state of the vehicle.
-     *
-     * @return State& A reference to the current state of the vehicle.
-     */
-    State& get_state();
-
-    /**
-     * @brief Gets the initial state of the vehicle.
-     *
-     * @return const State& A reference to the initial state of the vehicle.
-     */
-    const State& get_initial_state() const;
 
     /**
      * @brief Gets the mass of the vehicle.
@@ -109,9 +86,7 @@ class NullVehicle : public FrameReference {
     CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const final;
 
   private:
-    State _state0; // Initial state of the vehicle
-    State _state;  // Current state of the vehicle
-    Mass _mass;    // Mass of the vehicle
+    Mass _mass; // Mass of the vehicle
 };
 
 } // namespace astro

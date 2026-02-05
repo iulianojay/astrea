@@ -32,7 +32,7 @@ struct TestEvent {
         return 42.0 * mp_units::one;
     }
     bool is_terminal() const { return false; }
-    void trigger_action(Vehicle& vehicle) const {}
+    void trigger_action(const Time& time, State& state, Vehicle& vehicle) const {}
 };
 
 class EventTest : public testing::Test {
@@ -88,7 +88,7 @@ TEST_F(EventTest, MeasureEvent)
 
 TEST_F(EventTest, IsTerminal) { ASSERT_FALSE(event.is_terminal()); }
 
-TEST_F(EventTest, TriggerAction) { ASSERT_NO_THROW(event.trigger_action(vehicle)); }
+TEST_F(EventTest, TriggerAction) { ASSERT_NO_THROW(event.trigger_action(time, state, vehicle)); }
 
 TEST_F(EventTest, GetPtr)
 {

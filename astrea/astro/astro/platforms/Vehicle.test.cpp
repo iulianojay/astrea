@@ -17,7 +17,6 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 
 using namespace astrea;
@@ -31,7 +30,7 @@ class VehicleTest : public testing::Test {
     {
         StateHistory history;
         history[Date()] = State();
-        satWithHistory.store_state_history(history);
+        satWithHistory.set_state_history(history);
 
         vehicle            = Vehicle(sat);
         vehicleWithHistory = Vehicle(satWithHistory);
@@ -65,26 +64,6 @@ TEST_F(VehicleTest, MoveAssignment)
 {
     Vehicle other;
     ASSERT_NO_THROW(other = std::move(vehicle));
-}
-
-TEST_F(VehicleTest, UpdateState)
-{
-    State state;
-    ASSERT_NO_THROW(vehicle.update_state(state));
-}
-
-TEST_F(VehicleTest, GetState)
-{
-    State& vehicleState = vehicle.get_state();
-    State& satState     = sat.get_state();
-    ASSERT_EQ(vehicleState, satState);
-}
-
-TEST_F(VehicleTest, GetInitialState)
-{
-    const State& vehicleInitState = vehicle.get_initial_state();
-    const State& satInitState     = sat.get_initial_state();
-    ASSERT_EQ(vehicleInitState, satInitState);
 }
 
 TEST_F(VehicleTest, GetMass)
@@ -135,8 +114,6 @@ TEST_F(VehicleTest, GetCoefficientOfReflectivity)
     Unitless satReflectivityCoefficient     = sat.get_coefficient_of_reflectivity();
     ASSERT_EQ(vehicleReflectivityCoefficient, satReflectivityCoefficient);
 }
-
-TEST_F(VehicleTest, Clear) { ASSERT_NO_THROW(vehicle.clear()); }
 
 TEST_F(VehicleTest, GetInertialPosition)
 {

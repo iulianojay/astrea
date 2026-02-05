@@ -56,9 +56,11 @@ class ImpulsiveBurn {
     /**
      * @brief Triggers an impulsive burn.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
      * @param vehicle The Vehicle to trigger the action on.
      */
-    void trigger_action(Vehicle& vehicle) const;
+    void trigger_action(const Time& time, State& state, Vehicle& vehicle) const;
 
     /**
      * @brief Checks if the Event is a terminal Event.

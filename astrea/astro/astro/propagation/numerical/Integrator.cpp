@@ -43,60 +43,40 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
+StateHistory
+    Integrator::propagate(const State& state0, const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
+{
+    const Time propTime = endEpoch - state0.get_epoch();
+    return propagate(state0, propTime, eom, vehicle, store, events);
+}
 
 StateHistory
-    Integrator::propagate(const Date& epoch, const Interval& interval, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
-{
-    return propagate(epoch, interval.start, interval.end, eom, vehicle, store, events);
-}
-
-StateHistory Integrator::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
-{
-    const Date startEpoch = vehicle.get_state().get_epoch();
-    const Time propTime   = endEpoch - startEpoch;
-    return propagate(startEpoch, 0.0 * s, propTime, eom, vehicle, store, events);
-}
-
-StateHistory Integrator::propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
-{
-    return propagate(vehicle.get_state().get_epoch(), 0.0 * s, propTime, eom, vehicle, store, events);
-}
-
-StateHistory Integrator::propagate(
-    const Date& epoch,
-    const Time& startTime,
-    const Time& endTime,
-    const EquationsOfMotion& eom,
-    Vehicle vehicle,
-    bool store,
-    std::vector<Event> events
-)
+    Integrator::propagate(const State& state0, const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store, std::vector<Event> events)
 {
     // Time
-    Time time     = startTime;
+    Time time     = 0.0 * s;
     Time timeStep = (_useFixedStep) ? _fixedTimeStep : _timeStepInitial;
-    if (timeStep > endTime - startTime) { timeStep = endTime - startTime; }
+    if (timeStep > propTime) { timeStep = propTime; }
 
-    const bool forwardTime = (endTime > startTime);
+    const bool forwardTime = (propTime > 0.0 * s);
     if (!forwardTime) { timeStep = -timeStep; }
 
-    // States
-    const State state0 = get_initial_state(epoch, eom, vehicle, events);
-    State state        = state0;
+    // State
+    const Date epoch = state0.get_epoch();
+    State state      = state0.convert_to_set(eom.get_expected_set_id());
 
     // Setup
     setup(events);
 
     // Fruit Loop
     StateHistory stateHistory;
-    if (store) { stateHistory[epoch + time] = state; }
+    if (store) { stateHistory.insert(state); }
     while (_iteration < _MAX_ITER) {
 
         // Check for event
-        const bool terminalEvent = check_event(time, state, eom, vehicle);
-        state                    = vehicle.get_state();
+        const bool terminalEvent = check_event(time, state, vehicle);
         if (terminalEvent) {
-            print_iteration(time, state, endTime, state0);
+            print_iteration(time, state, propTime, state0);
 
             std::cout << "Warning: Terminal conditions detected.";
             return stateHistory;
@@ -145,28 +125,27 @@ StateHistory Integrator::propagate(
         }
 
         // Successful event
-        vehicle.update_state(state);
-        if (store) { stateHistory[epoch + time] = state; }
+        if (store) { stateHistory.insert(state); }
 
         // Ensure last step goes to exact final time
-        if ((forwardTime && time + timeStep > endTime && time < endTime) ||
-            (!forwardTime && time + timeStep < endTime && time > endTime)) {
-            timeStep = endTime - time;
+        if ((forwardTime && time + timeStep > propTime && time < propTime) ||
+            (!forwardTime && time + timeStep < propTime && time > propTime)) {
+            timeStep = propTime - time;
         }
         // Break if final time is reached
-        else if (time == endTime) {
+        else if (time == propTime) {
             break;
         }
 
         // Print time and state
-        print_iteration(time, state, endTime, state0);
+        print_iteration(time, state, propTime, state0);
 
         // Step iteration
         ++_iteration;
     }
 
     // Store last state if not already stored
-    if (!store) { stateHistory[epoch + time] = state; }
+    if (!store) { stateHistory.insert(state); }
 
     // Store event times
     if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(epoch)); }
@@ -207,31 +186,6 @@ void Integrator::teardown()
     }
 }
 
-
-State Integrator::get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events)
-{
-    using mp_units::abs;
-
-    // Propagate vehicle to initial time without storing
-    const Date vehicleEpoch = vehicle.get_state().get_epoch();
-    if (abs(epoch - vehicleEpoch) > 1.0 * ms) {
-        const Time propTime = epoch - vehicleEpoch;
-        propagate(vehicleEpoch, 0.0 * s, propTime, eom, vehicle, false, events); // TODO: I think this is correct but it is causing slowdowns of ~O(100)
-    }
-
-    // Need to check input elements match expected for EOMS
-    const auto& sys                 = vehicle.get_state().get_system();
-    const std::size_t expectedSetId = eom.get_expected_set_id();
-    OrbitalElements elements0       = vehicle.get_state().get_elements();
-    if (elements0.index() != expectedSetId) {
-        elements0 = elements0.convert_to_set(expectedSetId, sys.get_mu());
-        // elements0.convert_to_set<expectedSetId>(sys); // Can't make get expected set id static :(
-        vehicle.update_state({ elements0, epoch, sys });
-    }
-    // TODO: Should the integration function be templated? Should EOM have a different architecture? Ugh.
-
-    return vehicle.get_state();
-}
 
 void Integrator::setup_butcher_tableau()
 {
@@ -321,12 +275,11 @@ StatePartial Integrator::find_state_derivative(const Time& time, const State& st
 
     // Ask eom object to evaluate
     State stateTemp = state;
-    vehicle.update_state(stateTemp);
     stateTemp.set_epoch(_epoch0 + time);
 
     const OrbitalElementPartials orbitalElementPartials = eom(stateTemp, vehicle);
 
-    return { orbitalElementPartials, state.get_epoch(), state.get_system() };
+    return { orbitalElementPartials, stateTemp.get_epoch(), state.get_system() };
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
@@ -424,6 +377,7 @@ void Integrator::take_fixed_step(Time& time, Time& timeStep, State& state, const
 
     time += timeStep;
     state = stateNew;
+    state.set_epoch(_epoch0 + time);
 
     // Store final function eval for Dormand-Prince methods
     store_final_func_eval(timeStep);
@@ -471,6 +425,7 @@ bool Integrator::check_error(const Unitless& maxError, const State& stateNew, co
         // Step
         time += timeStep;
         state = stateNew;
+        state.set_epoch(_epoch0 + time);
 
         store_final_func_eval(timeStep);
 
@@ -544,7 +499,7 @@ void Integrator::print_performance() const
     }
 }
 
-bool Integrator::check_event(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle)
+bool Integrator::check_event(const Time& time, State& state, Vehicle& vehicle)
 {
     return _eventDetector.detect_events(time, state, vehicle);
 }

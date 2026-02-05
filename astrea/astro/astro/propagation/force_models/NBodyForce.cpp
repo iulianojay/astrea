@@ -21,6 +21,7 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/enums.hpp>

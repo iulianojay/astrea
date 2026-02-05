@@ -53,6 +53,8 @@ const State& StateHistory::get_closest_state(const Date& date) const
 
 State StateHistory::get_state_at(const Date& date) const
 {
+    if (_states.size() == 0) { throw std::runtime_error("No states stored in StateHistory to extrapolate from."); }
+
     // If exact, return
     if (_states.contains(date)) { return _states.at(date); }
 

@@ -36,10 +36,8 @@ Shell<Spacecraft_T>::Shell(
 {
 
     if (T % P) {
-        throw std::runtime_error(
-            "The Walker constructor requires the total number planes is a multiple of the total "
-            "number of of satellites."
-        );
+        throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total "
+                                 "number of of satellites.");
     }
 
     const size_t satsPerPlane = T / P;
@@ -52,18 +50,14 @@ Shell<Spacecraft_T>::Shell(
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
         for (auto& sat : plane.satellites) {
-            sat = Spacecraft_T(
-                { OrbitalElements(
-                      Keplerian{ semimajor,
-                                 0.0 * mp_units::one,
-                                 inclination,
-                                 (anchorRAAN + deltaRAAN * iPlane),
-                                 0.0 * mp_units::angular::unit_symbols::rad,
-                                 (anchorAnomaly + deltaAnomaly * iAnom) }
-                  ),
-                  epoch,
-                  sys }
-            );
+            sat = Spacecraft_T({ OrbitalElements(Keplerian{ semimajor,
+                                                            0.0 * mp_units::one,
+                                                            inclination,
+                                                            (anchorRAAN + deltaRAAN * iPlane),
+                                                            0.0 * mp_units::angular::unit_symbols::rad,
+                                                            (anchorAnomaly + deltaAnomaly * iAnom) }),
+                                 epoch,
+                                 sys });
             ++iAnom;
         }
         plane.generate_id_hash();
@@ -171,10 +165,10 @@ void Shell<Spacecraft_T>::generate_id_hash()
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval)
+void Shell<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
 {
     for (auto& plane : planes) {
-        plane.propagate(epoch, eom, integrator, interval);
+        plane.propagate(propTime, eom, integrator);
     }
 }
 

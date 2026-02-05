@@ -48,8 +48,9 @@ class IntegratorTest : public ::testing::Test {
 
     AstrodynamicsSystem sys;
     Date epoch;
-    Interval interval{ seconds(0), days(1) };
     Vehicle vehicle;
+    State state;
+    Time propTime{ days(1) };
     DummyEOM eom;
 };
 
@@ -89,7 +90,7 @@ TEST_F(IntegratorTest, PropagateFixedStep)
 {
     Integrator integrator;
     integrator.switch_fixed_timestep(true, 60.0 * mp_units::si::unit_symbols::s);
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 }
 
 TEST_F(IntegratorTest, PropagateVariableStep)
@@ -98,24 +99,24 @@ TEST_F(IntegratorTest, PropagateVariableStep)
     integrator.switch_fixed_timestep(false);
 
     integrator.set_step_method(Integrator::StepMethod::RK45);
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::RKF45);
     vehicle = Vehicle();
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::RKF78);
     vehicle = Vehicle();
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 
     integrator.set_step_method(Integrator::StepMethod::DOP45);
     vehicle = Vehicle();
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 
     integrator.switch_print(true);
     integrator.set_step_method(Integrator::StepMethod::DOP78);
     vehicle = Vehicle();
-    EXPECT_NO_THROW({ auto history = integrator.propagate(epoch, interval, eom, vehicle); });
+    EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 }
 
 TEST_F(IntegratorTest, FunctionEvaluations)

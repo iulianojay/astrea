@@ -62,8 +62,8 @@ concept HasIsTerminal = requires(const T event) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasTriggerEvent = requires(const T event, Vehicle& vehicle) {
-    { event.trigger_action(vehicle) } -> std::same_as<void>;
+concept HasTriggerEvent = requires(const T event, const Time& time, State& state, Vehicle& vehicle) {
+    { event.trigger_action(time, state, vehicle) } -> std::same_as<void>;
 };
 
 
@@ -106,6 +106,8 @@ struct EventInnerBase {
     /**
      * @brief Detects if the Event is triggered by a Vehicle.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to check.
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
@@ -123,10 +125,12 @@ struct EventInnerBase {
     /**
      * @brief Triggers the Event for a Vehicle.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to trigger the Event for.
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
-    virtual void trigger_action(Vehicle& vehicle) const = 0;
+    virtual void trigger_action(const Time& time, State& state, Vehicle& vehicle) const = 0;
 
     /**
      * @brief Clones the Event inner implementation.
@@ -213,6 +217,8 @@ struct EventInner final : public EventInnerBase {
     /**
      * @brief Detects if the Event is triggered by a Vehicle.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to check.
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
@@ -233,24 +239,31 @@ struct EventInner final : public EventInnerBase {
     /**
      * @brief Triggers the Event for a Vehicle.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to trigger the Event for.
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
-    void trigger_action(Vehicle& vehicle) const override final { return trigger_action_impl(_value, vehicle); }
+    void trigger_action(const Time& time, State& state, Vehicle& vehicle) const override final
+    {
+        return trigger_action_impl(_value, time, state, vehicle);
+    }
 
     /**
      * @brief Implementation of the trigger_action function for an Event with a trigger.
      *
      * @tparam U The type of the Event implementation.
      * @param value The Event implementation instance.
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to trigger the Event for.
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
     template <typename U>
         requires(HasTriggerEvent<U>)
-    void trigger_action_impl(const U& value, Vehicle& vehicle) const
+    void trigger_action_impl(const U& value, const Time& time, State& state, Vehicle& vehicle) const
     {
-        value.trigger_action(vehicle);
+        value.trigger_action(time, state, vehicle);
     }
 
     /**
@@ -258,12 +271,14 @@ struct EventInner final : public EventInnerBase {
      *
      * @tparam U The type of the Event implementation.
      * @param value The Event implementation instance.
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to trigger the Event for.
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
     template <typename U>
         requires(!HasTriggerEvent<U>)
-    void trigger_action_impl(const U& value, Vehicle& vehicle) const
+    void trigger_action_impl(const U& value, const Time& time, State& state, Vehicle& vehicle) const
     {
     }
 
@@ -420,10 +435,15 @@ class Event {
     /**
      * @brief Triggers the Event for a Vehicle.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle.
      * @param vehicle The Vehicle to trigger the Event for.
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
-    void trigger_action(Vehicle& vehicle) const { return ptr()->trigger_action(vehicle); }
+    void trigger_action(const Time& time, State& state, Vehicle& vehicle) const
+    {
+        return ptr()->trigger_action(time, state, vehicle);
+    }
 
     /**
      * @brief Gets the name of the Event.

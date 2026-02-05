@@ -66,25 +66,20 @@ class Integrator {
     /**
      * @brief Propagate the state of a vehicle over a specified time interval using the given equations of motion.
      *
-     * @param epoch The initial epoch (start time) for the propagation.
-     * @param interval The time interval over which to propagate the state.
+     * @param state0 The initial state from which to start propagation.
+     * @param propTime The total propagation time after the initial state epoch.
      * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
      * @param store Whether to store the state history during propagation. Default is false.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(
-        const Date& epoch,
-        const Interval& interval,
-        const EquationsOfMotion& eom,
-        Vehicle vehicle,
-        bool store                = false,
-        std::vector<Event> events = {}
-    );
+    StateHistory
+        propagate(const State& state0, const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
      *
+     * @param state0 The initial state from which to start propagation.
      * @param endEpoch The final epoch (end time) for the propagation.
      * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
@@ -92,40 +87,7 @@ class Integrator {
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
     StateHistory
-        propagate(const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
-
-    /**
-     * @brief Propagate the state of a vehicle from its current epoch for a specified time using the given equations of motion.
-     *
-     * @param propTime Total propagation time after vehicle epoch.
-     * @param eom The equations of motion to use for the propagation.
-     * @param vehicle The vehicle whose state is to be propagated.
-     * @param store Whether to store the state history during propagation. Default is false.
-     * @return StateHistory The history of the vehicle's state over the propagated interval.
-     */
-    StateHistory
-        propagate(const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
-
-    /**
-     * @brief Propagate the state of a vehicle from an initial time to a final time using the given equations of motion.
-     *
-     * @param epoch The initial epoch (start time) for the propagation.
-     * @param timeInitial The initial time for propagation.
-     * @param timeFinal The final time for propagation.
-     * @param eom The equations of motion to use for the propagation.
-     * @param vehicle The vehicle whose state is to be propagated.
-     * @param store Whether to store the state history during propagation. Default is false.
-     * @return StateHistory The history of the vehicle's state over the propagated interval.
-     */
-    StateHistory propagate(
-        const Date& epoch,
-        const Time& timeInitial,
-        const Time& timeFinal,
-        const EquationsOfMotion& eom,
-        Vehicle vehicle,
-        bool store                = false,
-        std::vector<Event> events = {}
-    );
+        propagate(const State& state0, const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -295,18 +257,6 @@ class Integrator {
     void setup_butcher_tableau();
 
     /**
-     * @brief Get the initial state of the vehicle at the specified epoch.
-     *
-     * @param epoch The epoch at which to get the initial state.
-     * @param eom The equations of motion to use for the evaluation.
-     * @param state0 The initial state of the vehicle before propagation.
-     * @param vehicle The vehicle whose state is being evaluated.
-     * @param events The events to be tracked during propagation.
-     * @return State The state of the vehicle at the specified epoch.
-     */
-    State get_initial_state(const Date& epoch, const EquationsOfMotion& eom, Vehicle& vehicle, std::vector<Event> events);
-
-    /**
      * @brief Perform a single step of the integration using the selected Runge-Kutta method.
      *
      * @param time The current time in the integration.
@@ -383,7 +333,7 @@ class Integrator {
      * @brief Print the current iteration details including time, state, and performance metrics.
      *
      * @param time The current time in the integration.
-     * @param state The current state of the vehicle represented as orbital elements.
+     * @param state The current state of the vehicle.
      * @param timeFinal The final time for the integration.
      * @param stateInitial The initial state of the vehicle at the start of the integration.
      */
@@ -409,10 +359,9 @@ class Integrator {
      *
      * @param time The current time in the integration.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    bool check_event(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool check_event(const Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Validate the current state and time to ensure they are not NaN or infinite.

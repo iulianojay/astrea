@@ -218,23 +218,13 @@ class Constellation {
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     /**
-     * @brief Propagate the Constellation using the provided epoch and Equations of Motion.
-     *
-     * @param epoch The epoch at which to propagate the Constellation.
-     * @param eom The Equations of Motion to use for propagation.
-     * @param interval The time interval for propagation, defaults to Integrator::defaultInterval.
-     */
-    void propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
-
-    /**
      * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
      *
-     * @param epoch The epoch at which to propagate the Constellation.
+     * @param propTime The total propagation time after the initial state epoch.
      * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
-     * @param interval The time interval for propagation, defaults to Integrator::defaultInterval.
      */
-    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator = Integrator());
 
 
     // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;

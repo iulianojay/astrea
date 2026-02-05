@@ -19,6 +19,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>

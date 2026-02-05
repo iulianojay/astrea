@@ -26,7 +26,6 @@
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
-#include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -43,13 +42,6 @@ using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
-
-Spacecraft::Spacecraft(const State& state0) :
-    _state(state0),
-    _state0(state0)
-{
-    generate_id_hash();
-}
 
 Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys)
 {
@@ -70,8 +62,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
     );
     Date epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
 
-    _state0 = State(coes, epoch, sys);
-    update_state(_state0);
+    store_state(State(coes, epoch, sys));
 
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these
@@ -86,16 +77,14 @@ bool Spacecraft::operator==(const Spacecraft& other) const
     return (_id == other._id) && (_name == other._name) && (_mass == other._mass) &&
            (_coefficientOfDrag == other._coefficientOfDrag) && (_coefficientOfLift == other._coefficientOfLift) &&
            (_coefficientOfReflectivity == other._coefficientOfReflectivity) && (_ramArea == other._ramArea) &&
-           (_sunArea == other._sunArea) && (_liftArea == other._liftArea) && (_state == other._state) &&
-           (_state0 == other._state0);
+           (_sunArea == other._sunArea) && (_liftArea == other._liftArea);
 }
 
-State& Spacecraft::get_state() { return _state; };
-const State& Spacecraft::get_initial_state() const { return _state0; }
-void Spacecraft::update_state(const State& state) { _state = state; }
-void Spacecraft::store_state_history(const StateHistory& history) { _stateHistory = history; }
+// State History Management
+void Spacecraft::set_state_history(const StateHistory& history) { _stateHistory = history; }
 StateHistory& Spacecraft::get_state_history() { return _stateHistory; }
 const StateHistory& Spacecraft::get_state_history() const { return _stateHistory; }
+void Spacecraft::store_state(const State& state) { _stateHistory[state.get_epoch()] = state; }
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
@@ -121,30 +110,19 @@ void Spacecraft::set_name(const std::string& name) { _name = name; }
 
 RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
 {
-    const Cartesian elements = get_cartesian_state(date);
+    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
     return elements.get_position();
 }
 
 VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
 {
-    const Cartesian elements = get_cartesian_state(date);
+    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
     return elements.get_velocity();
-}
-
-Cartesian Spacecraft::get_cartesian_state(const Date& date) const
-{
-    if (_stateHistory.size() == 0) { throw std::runtime_error("State history is empty"); }
-    const State state        = _stateHistory.get_state_at(date);
-    const Cartesian elements = state.in_element_set<Cartesian>();
-    return elements;
 }
 
 void Spacecraft::generate_id_hash()
 {
-    const auto elements0 = _state0.get_elements().force_to_vector();
-    _id = std::hash<Unitless>()(elements0[0]) ^ std::hash<Unitless>()(elements0[1]) ^ std::hash<Unitless>()(elements0[2]) ^
-          std::hash<Unitless>()(elements0[3]) ^ std::hash<Unitless>()(elements0[4]) ^ std::hash<Unitless>()(elements0[5]);
-    _id ^= std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));
+    _id = std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));
     _id ^= std::hash<double>()(_coefficientOfDrag.numerical_value_ref_in(_coefficientOfDrag.unit));
     _id ^= std::hash<double>()(_coefficientOfLift.numerical_value_ref_in(_coefficientOfLift.unit));
     _id ^= std::hash<double>()(_coefficientOfReflectivity.numerical_value_ref_in(_coefficientOfReflectivity.unit));

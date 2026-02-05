@@ -38,7 +38,7 @@ class SpacecraftTest : public testing::Test {
     {
         StateHistory history;
         history[Date()] = State();
-        spacecraftWithHistory.store_state_history(history);
+        spacecraftWithHistory.set_state_history(history);
     }
 
     AstrodynamicsSystem sys;
@@ -87,16 +87,6 @@ TEST_F(SpacecraftTest, EqualityOperator)
     other.set_name("DifferentName");
     ASSERT_FALSE(spacecraft == other);
 }
-
-TEST_F(SpacecraftTest, UpdateState)
-{
-    State state;
-    ASSERT_NO_THROW(spacecraft.update_state(state));
-}
-
-TEST_F(SpacecraftTest, GetState) { ASSERT_EQ(spacecraft.get_state(), State()); }
-
-TEST_F(SpacecraftTest, GetInitialState) { ASSERT_EQ(spacecraft.get_initial_state(), State()); }
 
 TEST_F(SpacecraftTest, GetMass) { ASSERT_EQ(spacecraft.get_mass(), Spacecraft::DEFAULT_MASS); }
 
@@ -185,12 +175,6 @@ TEST_F(SpacecraftTest, GetStateHistory)
 {
     ASSERT_EQ(spacecraftWithHistory.get_state_history()[Date()], State());
     ASSERT_EQ(static_cast<const Spacecraft&>(spacecraftWithHistory).get_state_history().at(Date()), State());
-}
-
-TEST_F(SpacecraftTest, GetCartesianState)
-{
-    ASSERT_ANY_THROW(spacecraft.get_cartesian_state(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_cartesian_state(Date()));
 }
 
 TEST_F(SpacecraftTest, GetInertialPosition)
