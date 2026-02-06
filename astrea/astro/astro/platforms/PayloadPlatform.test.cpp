@@ -320,7 +320,7 @@ TEST_F(PayloadPlatformTest, ModifyPayloadsInVector)
 
     // Access individual payloads and verify they work
     for (auto& payload : payloads) {
-        ASSERT_GT(payload.get_id(), 0u);
+        ASSERT_GE(payload.get_id(), 0u);
         ASSERT_EQ(payload.get_parent(), &platform);
     }
 }

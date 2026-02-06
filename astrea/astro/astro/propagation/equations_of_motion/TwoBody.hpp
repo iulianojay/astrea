@@ -35,11 +35,9 @@ class TwoBody : public EquationsOfMotion {
 
   public:
     /**
-     * @brief Constructor for the Two Body equations of motion class.
-     *
-     * @param system The astrodynamics system containing the central body and its properties.
+     * @brief Default constructor for the Two Body equations of motion class.
      */
-    TwoBody(const AstrodynamicsSystem& system);
+    TwoBody() = default;
 
     /**
      * @brief Destructor for the Two Body equations of motion class.
@@ -49,12 +47,20 @@ class TwoBody : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using the Two Body method.
      *
-     * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+
+    /**
+     * @brief Computes the state transition matrix (STM) using the Two Body method.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using the Two Body method.
@@ -71,9 +77,6 @@ class TwoBody : public EquationsOfMotion {
      * @return std::size_t The expected set id of orbital elements.
      */
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); };
-
-  private:
-    GravParam mu; //!< Gravitational parameter of the central body.
 };
 
 } // namespace astro

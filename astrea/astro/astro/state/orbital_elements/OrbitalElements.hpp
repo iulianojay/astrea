@@ -163,6 +163,7 @@ class OrbitalElements {
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
     friend class StateTransitionMatrix;
+    friend class State;
 
   public:
     /**

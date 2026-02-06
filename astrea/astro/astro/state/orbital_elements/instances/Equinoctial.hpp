@@ -46,13 +46,13 @@ class Equinoctial {
      *
      * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
      */
-    Equinoctial(Unitless scale = 0.0 * detail::unitless) :
-        _semilatus(scale * detail::distance_unit),
-        _f(scale * detail::unitless),
-        _g(scale * detail::unitless),
-        _h(scale * detail::unitless),
-        _k(scale * detail::unitless),
-        _trueLongitude(scale * detail::angle_unit)
+    Equinoctial(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _semilatus(scale * astrea::detail::distance_unit),
+        _f(scale * astrea::detail::unitless),
+        _g(scale * astrea::detail::unitless),
+        _h(scale * astrea::detail::unitless),
+        _k(scale * astrea::detail::unitless),
+        _trueLongitude(scale * astrea::detail::angle_unit)
     {
     }
 

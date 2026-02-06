@@ -18,6 +18,7 @@
 #include <mp-units/systems/iau.h>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -40,13 +41,14 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf>
-    SolarRadiationPressure::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(const State& state, const Vehicle& vehicle) const
 {
+    // Extract
+    const AstrodynamicsSystem& sys       = state.get_system();
+    const Date date                      = state.get_epoch();
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
-    // Extract
     const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 

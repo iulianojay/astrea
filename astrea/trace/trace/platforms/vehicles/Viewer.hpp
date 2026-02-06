@@ -58,16 +58,6 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
     }
 
     /**
-     * @brief Constructor for Viewer with initial state.
-     * @param state0 The initial state of the spacecraft.
-     */
-    Viewer(const astro::State& state0) :
-        Spacecraft(state0),
-        AccessObject()
-    {
-    }
-
-    /**
      * @brief Default destructor for Viewer.
      */
     ~Viewer() = default;

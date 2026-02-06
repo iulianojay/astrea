@@ -28,42 +28,11 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Concept to check if a type has a method to update the state.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasUpdateState = requires(T vehicle, const State& state) {
-    { vehicle.update_state(state) };
-};
-
-/**
- * @brief Concept to check if a type has a method to get the current state.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasGetState = requires(T vehicle) {
-    { vehicle.get_state() } -> std::same_as<State&>;
-};
-
-/**
- * @brief Concept to check if a type has a method to get the initial state.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasGetInitialState = requires(const T vehicle) {
-    { vehicle.get_initial_state() } -> std::same_as<const State&>;
-};
 
 /**
  * @brief Concept to check if a type has a method to get the mass.
@@ -136,16 +105,6 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
 };
 
 /**
- * @brief Concept to check if a type has a method to clear its state.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasClear = requires(T vehicle) {
-    { vehicle.clear() };
-};
-
-/**
  * @brief Concept to check if a type is a user-defined vehicle.
  *
  * @tparam T The type to check.
@@ -157,9 +116,6 @@ concept IsUserDefinedVehicle = requires(T) {
     std::is_copy_constructible<T>::value;
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
-    requires HasUpdateState<T>;
-    requires HasGetState<T>;
-    requires HasGetInitialState<T>;
     requires HasGetMass<T>;
 };
 
@@ -174,27 +130,6 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @brief Destructor for VehicleInnerBase.
      */
     virtual ~VehicleInnerBase() {}
-
-    /**
-     * @brief Updates the state of the vehicle.
-     *
-     * @param state The new state to set for the vehicle.
-     */
-    virtual void update_state(const State& state) = 0;
-
-    /**
-     * @brief Gets the current state of the vehicle.
-     *
-     * @return State& A reference to the current state of the vehicle.
-     */
-    virtual State& get_state() = 0;
-
-    /**
-     * @brief Gets the initial state of the vehicle.
-     *
-     * @return const State& A reference to the initial state of the vehicle.
-     */
-    virtual const State& get_initial_state() const = 0;
 
     /**
      * @brief Gets the mass of the vehicle.
@@ -244,11 +179,6 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
-
-    /**
-     * @brief Clears the state of the vehicle.
-     */
-    virtual void clear() = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -326,27 +256,6 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
-     * @brief Updates the state of the vehicle.
-     *
-     * @param state The new state to set for the vehicle.
-     */
-    void update_state(const State& state) final { _value.update_state(state); }
-
-    /**
-     * @brief Gets the current state of the vehicle.
-     *
-     * @return State& A reference to the current state of the vehicle.
-     */
-    State& get_state() final { return _value.get_state(); }
-
-    /**
-     * @brief Gets the initial state of the vehicle.
-     *
-     * @return const State& A reference to the initial state of the vehicle.
-     */
-    const State& get_initial_state() const final { return _value.get_initial_state(); }
-
-    /**
      * @brief Gets the mass of the vehicle.
      *
      * @return Mass The mass of the vehicle.
@@ -394,11 +303,6 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
-
-    /**
-     * @brief Clears the state of the vehicle.
-     */
-    void clear() final { clear_impl(_value); };
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
@@ -610,29 +514,6 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
-     * @brief Does nothing on clear
-     *
-     * @param value The vehicle instance to clear.
-     */
-    template <typename U>
-        requires(!HasClear<U>)
-    void clear_impl(U&)
-    {
-    }
-
-    /**
-     * @brief Clears the state of the vehicle.
-     *
-     * @param value The vehicle instance to clear.
-     */
-    template <typename U>
-        requires(HasClear<U>)
-    void clear_impl(U& value)
-    {
-        value.clear();
-    }
-
-    /**
      * @brief Clones the vehicle inner implementation.
      *
      * @return std::unique_ptr<VehicleInnerBase> A unique pointer to the cloned vehicle inner implementation.
@@ -697,8 +578,7 @@ class Vehicle : public FrameReference {
      * @tparam T The type of the user-defined vehicle.
      * @param x The user-defined vehicle instance to initialize the Vehicle.
      */
-    template <typename T>
-        requires(IsGenericallyConstructableVehicle<T>)
+    template <IsGenericallyConstructableVehicle T>
     explicit Vehicle(T&& x) :
         _ptr(std::make_unique<detail::VehicleInner<remove_cv_ref<T>>>(std::forward<T>(x)))
     {
@@ -741,8 +621,7 @@ class Vehicle : public FrameReference {
      * @param x The user-defined vehicle instance to assign to the Vehicle.
      * @return Vehicle& A reference to the current Vehicle instance.
      */
-    template <typename T>
-        requires(IsGenericallyConstructableVehicle<T>)
+    template <IsGenericallyConstructableVehicle T>
     Vehicle& operator=(T&& x)
     {
         return (*this) = Vehicle(std::forward<T>(x));
@@ -754,41 +633,12 @@ class Vehicle : public FrameReference {
      * @tparam T The type of the user-defined vehicle to extract.
      * @return const T* A pointer to the user-defined vehicle if it matches the type, otherwise nullptr.
      */
-    template <typename T>
-        requires(IsGenericallyConstructableVehicle<T>)
+    template <IsGenericallyConstructableVehicle T>
     const T* extract() const noexcept
     {
         auto p = static_cast<const detail::VehicleInner<T>*>(ptr());
         return p == nullptr ? nullptr : &(p->_value);
     }
-
-    /**
-     * @brief Updates the state of the vehicle.
-     *
-     * @param state The new state to set for the vehicle.
-     */
-    void update_state(const State& state) { return _ptr->update_state(state); }
-
-    /**
-     * @brief Gets the current state of the vehicle.
-     *
-     * @return State& A reference to the current state of the vehicle.
-     */
-    State& get_state() { return _ptr->get_state(); }
-
-    /**
-     * @brief Gets the state of the vehicle.
-     *
-     * @return State A copy to the state of the vehicle.
-     */
-    State get_state() const { return _ptr->get_state(); } // TODO: Extend to const context instead of copying
-
-    /**
-     * @brief Gets the initial state of the vehicle.
-     *
-     * @return const State& A reference to the initial state of the vehicle.
-     */
-    const State& get_initial_state() const { return _ptr->get_state(); }
 
     /**
      * @brief Gets the mass of the vehicle.
@@ -838,11 +688,6 @@ class Vehicle : public FrameReference {
      * @return Unitless The coefficient of reflectivity.
      */
     Unitless get_coefficient_of_reflectivity() const { return _ptr->get_coefficient_of_reflectivity(); }
-
-    /**
-     * @brief Clears the state of the vehicle.
-     */
-    void clear() { _ptr->clear(); }
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
@@ -901,7 +746,6 @@ class Vehicle : public FrameReference {
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; //!< Pointer to the internal vehicle implementation, which can be a user-defined type
 
-    State _state;                        //!< Current state of the vehicle
     Mass _mass;                          //!< Mass of the vehicle
     SurfaceArea _ramArea;                //!< Ram area of the vehicle
     SurfaceArea _liftArea;               //!< Lift area of the vehicle

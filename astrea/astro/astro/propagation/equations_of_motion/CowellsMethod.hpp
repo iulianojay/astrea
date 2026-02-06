@@ -37,10 +37,9 @@ class CowellsMethod : public EquationsOfMotion {
     /**
      * @brief Constructor for Cowell's Method.
      *
-     * @param system The astrodynamics system containing the central body and its properties.
      * @param forces The force model to be used in the equations of motion.
      */
-    CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces);
+    CowellsMethod(const ForceModel& forces);
 
     /**
      * @brief Destructor for Cowell's Method.
@@ -50,12 +49,20 @@ class CowellsMethod : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using Cowell's method.
      *
-     * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+
+    /**
+     * @brief Computes the state transition matrix (STM) using Cowell's method.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using Cowell's method.
@@ -75,7 +82,6 @@ class CowellsMethod : public EquationsOfMotion {
 
   private:
     const ForceModel* forces; //!< The force model used in the equations of motion.
-    GravParam mu;             //!< Gravitational parameter of the central body.
 };
 
 } // namespace astro

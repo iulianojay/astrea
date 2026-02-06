@@ -19,7 +19,7 @@
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/instances/CartesianStm.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 namespace astrea {
@@ -32,19 +32,13 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-TwoBody::TwoBody(const AstrodynamicsSystem& system) :
-    EquationsOfMotion(system),
-    mu(system.get_mu())
-{
-}
-
-OrbitalElementPartials TwoBody::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
+    const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R        = r.norm();
@@ -55,7 +49,7 @@ OrbitalElementPartials TwoBody::operator()(const Date& date, const OrbitalElemen
 }
 
 
-StateTransitionMatrix TwoBody::compute_stm(const OrbitalElements& state, const Vehicle& vehicle) const
+StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& vehicle) const
 {
     /*
         |   0       0       0        1        0        0    |
@@ -75,13 +69,13 @@ StateTransitionMatrix TwoBody::compute_stm(const OrbitalElements& state, const V
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
+    const auto mu = state.get_system().get_mu();
 
-    const auto r = cartesian.get_position();
-    const auto x = r[0];
-    const auto y = r[1];
-    const auto z = r[2];
-    const auto R = r.norm();
+    const auto r  = state.get_position();
+    const auto& x = r[0];
+    const auto& y = r[1];
+    const auto& z = r[2];
+    const auto R  = r.norm();
 
     quantity muOverR3      = mu / pow<3>(R);
     quantity threeMuOverR5 = 3 * mu / pow<5>(R);

@@ -316,7 +316,7 @@ TEST_F(EquinoctialTest, Getters)
 
 TEST_F(EquinoctialTest, ToVector)
 {
-    std::vector<Unitless> vec = state.to_vector();
+    std::vector<Unitless> vec = state.force_to_vector();
     ASSERT_EQ(vec.size(), 6);
     ASSERT_EQ_QUANTITY(vec[0], p / (1.0 * km), REL_TOL);
     ASSERT_EQ_QUANTITY(vec[1], f, REL_TOL);
