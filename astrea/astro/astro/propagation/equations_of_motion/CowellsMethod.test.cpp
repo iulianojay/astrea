@@ -69,7 +69,7 @@ TEST_F(CowellsMethodTest, Derivative)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom(epoch, state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
@@ -83,6 +83,6 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom(epoch, state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

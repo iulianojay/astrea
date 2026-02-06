@@ -31,6 +31,9 @@ all: examples tests
 .PHONY: checkcases
 checkcases: checkcase_db 6dof_checkcases tests
 
+.PHONY: checkcases
+checkcases: checkcase_db 6dof_checkcases tests
+
 .PHONY: profile
 profile: profiling install
 

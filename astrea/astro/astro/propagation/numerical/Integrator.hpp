@@ -323,6 +323,14 @@ class Integrator {
     Unitless get_relative_step_size(const Unitless& maxError) const;
 
     /**
+     * @brief Get the relative step size based on the maximum error.
+     *
+     * @param maxError The maximum error from the current step.
+     * @return Unitless The relative step size to adjust the time step.
+     */
+    Unitless get_relative_step_size(const Unitless& maxError) const;
+
+    /**
      * @brief Store the most recent function evaluation results for Dormand-Prince methods.
      *
      * @param timeStep The current time step used for the integration.

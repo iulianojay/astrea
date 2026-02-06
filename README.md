@@ -302,6 +302,29 @@ make install
 
 Options can be added at either step to update the configuration accordingly.
 ```bash
+make python_env
+```
+
+Once this is built, activate the environment with
+```bash
+source ./.venv/bin/activate
+```
+
+The python runs conan and builds out some files used in place of certain SPICE calls.
+
+Once the python is activated, build first with
+```bash
+make build
+```
+
+and install with
+```bash
+make install
+```
+
+Options can be added at either step to update the configuration accordingly.
+```bash
+make debug build
 make debug install
 ```
 ```bash
