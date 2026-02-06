@@ -19,6 +19,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -32,7 +33,7 @@ using mp_units::si::unit_symbols::s;
 class CowellsMethodTest : public testing::Test {
   public:
     CowellsMethodTest() :
-        eom(sys, forces)
+        eom(forces)
     {
     }
 
@@ -43,8 +44,8 @@ class CowellsMethodTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    CowellsMethod eom;
     ForceModel forces;
+    CowellsMethod eom;
 };
 
 
@@ -62,24 +63,26 @@ TEST_F(CowellsMethodTest, GetExpectedSet)
 
 TEST_F(CowellsMethodTest, Derivative)
 {
-    Cartesian state0          = Cartesian::LEO(sys.get_mu());
+    Cartesian cart0           = Cartesian::LEO(sys.get_mu());
     CartesianPartial expected = CartesianPartial(
-        state0.get_vx(), state0.get_vy(), state0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
+        cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
+    State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(epoch, state0, sat);
+    OrbitalElementPartials dstate = eom(state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
 // Vallado, Ex. 8.5
 TEST_F(CowellsMethodTest, DerivativeValladoEx85)
 {
-    Cartesian state0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    Cartesian cart0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     CartesianPartial expected = CartesianPartial(
-        state0.get_vx(), state0.get_vy(), state0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
+        cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
+    State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(epoch, state0, sat);
+    OrbitalElementPartials dstate = eom(state0, sat);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

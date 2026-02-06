@@ -74,9 +74,10 @@ TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForc
 // Vallado, Ex. 8.5
 TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 {
-    Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    State state(cart, epoch, sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
 
     // Vallado Ex. 8.5 expected results
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),

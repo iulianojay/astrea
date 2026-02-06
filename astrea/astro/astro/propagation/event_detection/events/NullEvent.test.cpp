@@ -32,12 +32,12 @@ class NullEventTest : public testing::Test {
     {
         event   = NullEvent();
         time    = Time(0.0 * mp_units::si::unit_symbols::s);
-        state   = OrbitalElements(Cartesian());
+        state   = State();
         vehicle = Vehicle();
     }
     NullEvent event;
     Time time;
-    OrbitalElements state;
+    State state;
     Vehicle vehicle;
 };
 

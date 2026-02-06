@@ -41,10 +41,8 @@ using mp_units::si::unit_symbols::W;
 class KeplerianVopPropagationTest : public testing::Test {
   public:
     KeplerianVopPropagationTest() :
-        eom(sys, forces),
-        start(seconds(0)),
-        end(weeks(1)),
-        propInterval({ start, end }),
+        eom(forces),
+        propTime(weeks(1)),
         epoch(J2000)
     {
     }
@@ -55,12 +53,10 @@ class KeplerianVopPropagationTest : public testing::Test {
     const Unitless ABS_TOL = 1.0e-2;
 
     AstrodynamicsSystem sys;
-    KeplerianVop eom;
     ForceModel forces;
+    KeplerianVop eom;
     Integrator integrator;
-    Time start;
-    Time end;
-    Interval propInterval;
+    Time propTime;
     Date epoch;
 };
 
@@ -75,17 +71,18 @@ int main(int argc, char** argv)
 TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian state0 = Keplerian::GEO();
-    Spacecraft geo({ state0, epoch, sys });
+    Keplerian kep0 = Keplerian::GEO();
+    State state{ kep0, epoch, sys };
+    Spacecraft geo;
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
 }
 
@@ -93,17 +90,18 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian state0 = Keplerian::GPS();
-    Spacecraft meo({ state0, epoch, sys });
+    Keplerian kep0 = Keplerian::GPS();
+    State state{ kep0, epoch, sys };
+    Spacecraft meo;
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
 }
 
@@ -111,16 +109,17 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 TEST_F(KeplerianVopPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ state0, epoch, sys });
+    Keplerian kep0 = Keplerian::LEO();
+    State state{ kep0, epoch, sys };
+    Spacecraft leo;
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
 }

@@ -57,7 +57,7 @@ class Plane {
     /**
      * @brief Destructor for Plane.
      */
-    ~Plane() = default;
+    ~Plane() { generate_id(); };
 
     /**
      * @brief Add a Spacecraft to the Plane.
@@ -98,11 +98,20 @@ class Plane {
     /**
      * @brief Propagate the Plane using the provided epoch and Equations of Motion.
      *
-     * @param epoch The epoch at which to propagate the Plane.
+     * @param propTime The total propagation time after the initial state epoch.
      * @param eom The Equations of Motion to use for propagation.
-     * @param interval The time interval for propagation, defaults to Integrator::defaultInterval.
+     * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+
+    /**
+     * @brief Propagate the Plane using the provided epoch and Equations of Motion.
+     *
+     * @param endEpoch The end epoch for propagation.
+     * @param eom The Equations of Motion to use for propagation.
+     * @param integrator The Integrator to use for propagation.
+     */
+    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
 
     /**
      * @brief Iterator for iterating over all Spacecraft in the Plane.
@@ -175,7 +184,7 @@ class Plane {
      *
      * This function generates a unique ID hash for the Plane based on its contents.
      */
-    void generate_id_hash();
+    void generate_id();
 };
 
 } // namespace astro

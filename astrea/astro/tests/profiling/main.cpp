@@ -46,7 +46,7 @@ int main()
     initialElements.set_inclination(25.0 * deg);
 
     State state0(initialElements, epoch, sys);
-    Spacecraft sat(state0);
+    Spacecraft sat;
 
     // Force model
     ForceModel forces;
@@ -56,10 +56,10 @@ int main()
     forces.add<NBodyForce>();
 
     // Build EoMs
-    CowellsMethod cm(sys, forces);
-    KeplerianVop kepVop(sys, forces);
-    EquinoctialVop eqVop(sys, forces);
-    J2MeanVop j2(sys);
+    CowellsMethod cm(forces);
+    KeplerianVop kepVop(forces);
+    EquinoctialVop eqVop(forces);
+    J2MeanVop j2;
 
     // Setup integrator
     Integrator integrator;
@@ -68,21 +68,22 @@ int main()
     integrator.switch_fixed_timestep(true, 30.0 * s);
 
     // Propagate
-    Interval propInterval{ seconds(0), days(1) };
+    Time propTime = days(1);
+
     std::cout << "Propagating with Cowell's Method... ";
-    const auto trajCm = integrator.propagate(epoch, propInterval, cm, Vehicle(sat), true);
+    const auto trajCm = integrator.propagate(state0, propTime, cm, Vehicle(sat), true);
     std::cout << "Cowell's Method Complete." << std::endl;
 
     std::cout << "Propagating with Keplerian VOP... ";
-    const auto trajKepVop = integrator.propagate(epoch, propInterval, kepVop, Vehicle(sat), true);
+    const auto trajKepVop = integrator.propagate(state0, propTime, kepVop, Vehicle(sat), true);
     std::cout << "Keplerian VOP Complete." << std::endl;
 
     std::cout << "Propagating with Equinoctial VOP... ";
-    const auto trajEqVop = integrator.propagate(epoch, propInterval, eqVop, Vehicle(sat), true);
+    const auto trajEqVop = integrator.propagate(state0, propTime, eqVop, Vehicle(sat), true);
     std::cout << "Equinoctial VOP Complete." << std::endl;
 
     std::cout << "Propagating with Mean J2 VOP... ";
-    const auto trajJ2 = integrator.propagate(epoch, propInterval, j2, Vehicle(sat), true);
+    const auto trajJ2 = integrator.propagate(state0, propTime, j2, Vehicle(sat), true);
     std::cout << "Mean J2 VOP Complete." << std::endl;
 
     auto end  = std::chrono::steady_clock::now();

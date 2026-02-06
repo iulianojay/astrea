@@ -50,6 +50,13 @@ class ForceModel {
     ~ForceModel() = default;
 
     /**
+     * @brief Returns the number of forces added to the ForceModel.
+     *
+     * @return std::size_t Number of forces.
+     */
+    std::size_t size() const { return forces.size(); }
+
+    /**
      * @brief Adds a force model of type T with the given arguments.
      *
      * @tparam T Type of the force model to add
@@ -68,14 +75,11 @@ class ForceModel {
     /**
      * @brief Computes the total force on a vehicle by summing the forces from all added force models.
      *
-     * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<frames::earth::icrf> The total computed acceleration vector from all force models.
      */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_forces(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const;
+    CartesianVector<Acceleration, frames::earth::icrf> compute_forces(const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Retrieves a force model by name.

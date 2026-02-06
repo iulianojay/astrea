@@ -79,9 +79,10 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     // other numerical differences between this code and Vallado's, this is close enough.
     // Since matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
-    Cartesian state{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(epoch, state, Vehicle(sat), sys);
+    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    State state(cart, epoch, sys);
+    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
 
     // // Vallado's expected results
     // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),

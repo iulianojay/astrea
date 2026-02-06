@@ -41,8 +41,8 @@ class StateHistoryTest : public testing::Test {
         state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1, sys);
         state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2, sys);
 
-        history.insert(epoch + time0, state0);
-        history.insert(epoch + time1, state1);
+        history.insert(state0);
+        history.insert(state1);
     }
 
     StateHistory history;
@@ -86,7 +86,7 @@ TEST_F(StateHistoryTest, At)
 TEST_F(StateHistoryTest, Insert)
 {
     ASSERT_EQ(history.size(), 2);
-    history.insert(epoch + time2, state2);
+    history.insert(state2);
     ASSERT_EQ(history.size(), 3);
 
     ASSERT_EQ(history.at(epoch + time2), state2);
@@ -138,8 +138,8 @@ TEST_F(StateHistoryTest, GetClosestStateAfterLastEpoch)
 TEST_F(StateHistoryTest, GetStateAt)
 {
     StateHistory newHistory;
-    newHistory.insert(epoch + time0, state0);
-    newHistory.insert(epoch + time2, state2);
+    newHistory.insert(state0);
+    newHistory.insert(state2);
     ASSERT_EQ(newHistory.get_state_at(epoch + time1), state1);
 }
 

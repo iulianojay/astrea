@@ -34,6 +34,8 @@
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
 
+#include <snapshot/snapshot.macros.hpp>
+
 namespace astrea {
 namespace snapshot {
 
@@ -137,7 +139,7 @@ DatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& database)
 inline auto get_snapshot()
 {
     return sqlite_orm::make_storage(
-        std::string(_ASTRO_ROOT_) + "/astrea/snapshot/snapshot/database/snapshot.db",
+        std::string(_SNAPSHOT_ROOT_) + "/snapshot/database/snapshot.db",
         sqlite_orm::make_table(
             "GeneralPerturbations",
             sqlite_orm::make_column("DB_ID", &astro::GeneralPerturbations::DB_ID, sqlite_orm::primary_key().autoincrement()),

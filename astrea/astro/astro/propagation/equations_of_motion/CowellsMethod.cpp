@@ -21,6 +21,8 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
 
@@ -32,31 +34,39 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-CowellsMethod::CowellsMethod(const AstrodynamicsSystem& system, const ForceModel& forces) :
-    EquationsOfMotion(system),
-    forces(&forces),
-    mu(system.get_mu())
+CowellsMethod::CowellsMethod(const ForceModel& forces) :
+    forces(&forces)
 {
 }
 
-OrbitalElementPartials CowellsMethod::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const GravParam& mu       = get_system().get_mu();
-    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
+    const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R             = r.norm();
     const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Run find functions for force model
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
+}
+
+
+StateTransitionMatrix CowellsMethod::compute_stm(const State& state, const Vehicle& vehicle) const
+{
+    if (forces->size() == 0) {
+        // If no perturbations, use two-body STM
+        const TwoBody twoBody;
+        return twoBody.compute_stm(state, vehicle);
+    }
+    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 } // namespace astro

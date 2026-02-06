@@ -24,6 +24,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
@@ -48,19 +49,19 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 
-AccelerationVector<frames::earth::icrf>
-    AtmosphericForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
+    // Extract
+    const AstrodynamicsSystem& sys       = state.get_system();
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const AngularRate& bodyRotationRate  = center->get_rotation_rate();
 
-    // Extract
     const RadiusVector<frames::earth::icrf>& r   = state.get_position();
     const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
-    const Distance& R = r.norm();
+    const Distance R  = r.norm();
 
     const Velocity& vx = v.get_x();
     const Velocity& vy = v.get_y();
@@ -72,7 +73,7 @@ AccelerationVector<frames::earth::icrf>
                                                               vz };
 
     // Exponential Drag Model
-    const Density atmosphericDensity = find_atmospheric_density(date, state, center);
+    const Density atmosphericDensity = find_atmospheric_density(state, center);
 
     // Accel due to drag
     const Velocity relVelMag         = relVelocity.norm();
@@ -95,14 +96,14 @@ AccelerationVector<frames::earth::icrf>
 }
 
 
-const Density AtmosphericForce::find_atmospheric_density(const Date& date, const Cartesian& state, const CelestialBodyUniquePtr& center) const
+const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
 {
     // Find altitude
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
     const auto [latitude, longitude, altitude] =
         convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
 
-    return center->find_atmospheric_density(date, altitude);
+    return center->find_atmospheric_density(state.get_epoch(), altitude);
 }
 
 

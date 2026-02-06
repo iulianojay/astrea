@@ -38,12 +38,15 @@ int main()
 
         // Currently, forces are expected to return acceleration in the Earth-centered ICRF frame. Future releases will
         // allow forces to specify the output frame.
-        AccelerationVector<frames::earth::icrf>
-            compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
+        AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
         {
+            // Grab the cartesian elements and date
+            const Date date           = state.get_epoch();
+            const Cartesian cartesian = state.in_element_set<Cartesian>();
+
             // Build out a burn in the RIC frame, pointing in the nadir direction
             using RIC       = astro::frames::dynamic::ric;
-            const RIC frame = frames::dynamic::ric::instantaneous(state.get_position(), state.get_velocity());
+            const RIC frame = frames::dynamic::ric::instantaneous(cartesian.get_position(), cartesian.get_velocity());
             const AccelerationVector<RIC> nadirAccel{ -1.0 * m / (s * s), 0.0 * m / (s * s), 0.0 * m / (s * s) };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
@@ -58,12 +61,14 @@ int main()
     };
 
     // Input arguments are forwarded to the constructor of the Force subclass
+    AstrodynamicsSystem sys;
     ForceModel forceModel;
     forceModel.add<ContinuousThrust>("My Continuous Thrust");
 
     // During propagation, the force model is queried for the total acceleration
-    Cartesian state{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
-    const auto totalAcceleration = forceModel.compute_forces(Date(), state, Vehicle(), AstrodynamicsSystem());
+    Cartesian cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
+    State state(cart, Date(), sys);
+    const auto totalAcceleration = forceModel.compute_forces(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
 
     return 0;

@@ -1,3 +1,4 @@
+import argparse
 import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -9,6 +10,7 @@ from typing import List, Any
 from risesets import riseset_difference
 
 ASTREA_ROOT = os.getenv("ASTREA_ROOT")
+
 
 
 def ingest_riseset_csv(infile: str) -> pd.DataFrame:
@@ -45,12 +47,17 @@ def get_risesets_from_row(row: pd.Series) -> List[Any]:
 
 
 def get_non_interfering_riseset_times(
-    risesets: List[float], interferences: List[List[float]]
+    risesets: List[float], interference: List[float]
 ) -> List[float]:
 
-    for interference in interferences:
-        risesets = riseset_difference(risesets, interference)
-    return risesets
+    # TODO: THIS IS NOT GENERALIZED AND WILL USUALLY BE WRONG
+    times = [risesets[0][0]]
+    for rise, set in interference[0]:
+        times.append(rise)
+        times.append(set)
+    times.append(risesets[0][1])
+
+    return [(times[ii], times[ii + 1]) for ii in range(0, len(times), 2)]
 
 
 def plot_trace_bars(
@@ -75,6 +82,7 @@ def plot_trace_bars(
     labels = []
     usedPairs = []
     iPlot = 0
+    mainRisesets = []
     interferingRisesets = []
     for index, row in df.iterrows():
         if index == 0:
@@ -121,6 +129,10 @@ def plot_trace_bars(
         ]
         ax.broken_barh(risesetBars, (-0.2 + iPlot * 1.0, 0.4), color=color)
         iPlot += 1
+
+    if len(mainRisesets) == 0:
+        print(f"Warning: No risesets found for {main}. Plot will be empty.")
+        return
 
     # Plot interference bar
     nonInterferedRisesets = get_non_interfering_riseset_times(
@@ -223,10 +235,10 @@ def plot_number_of_accesses(
     ax.set_xlabel("Time of Day")
     if plotInterference:
         ax.set_ylabel(f"Number of Interference Sources")
-        ax.set_title(f"Number of Possible Interference Events Traceing {target}")
+        ax.set_title(f"Number of Possible Interference Events Tracing {target}")
     else:
-        ax.set_ylabel(f"Number _accesses")
-        ax.set_title(f"Number of Simultaneous _accesses to {target}")
+        ax.set_ylabel(f"Number of Accesses")
+        ax.set_title(f"Number of Simultaneous Accesses to {target}")
     ax.grid()
 
     # Save
@@ -235,19 +247,21 @@ def plot_number_of_accesses(
 
 if __name__ == "__main__":
 
-    base = os.path.join(ASTREA_ROOT, "astrea/trace/trace/drivers/results/iceye")
+    argparser = argparse.ArgumentParser(description="Plot trace results.")
+    argparser.add_argument("--outfile", type=str, help="The output file for the plot.",
+                           default=os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', "revisit.csv"))
+    args = argparser.parse_args()
 
-    results = os.path.join(base, "revisit.csv")
+    results = args.outfile
+    base = os.path.dirname(args.outfile)
     traceOutfile = os.path.join(base, "revisit.png")
     countOutfile = os.path.join(base, "trace_count.png")
     interfereOutfile = os.path.join(base, "interference_count.png")
 
-    target = "ICEYE Oy"
-    main = "ICEYE-X62"
+    target = "Washington DC"
+    main = "ARCTURUS"
     colors = {main: "tab:blue"}
 
     plot_trace_bars(results, traceOutfile, main, target, colors)
     plot_number_of_accesses(results, countOutfile, target)
     plot_number_of_accesses(results, interfereOutfile, target, True)
-
-# TODO: Replace this all with c++ matplotlib

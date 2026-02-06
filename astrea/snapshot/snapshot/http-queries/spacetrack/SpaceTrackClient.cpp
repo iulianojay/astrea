@@ -28,6 +28,9 @@ namespace snapshot {
 
 void SpaceTrackClient::login(const std::string& username, const std::string& password)
 {
+    if (username.empty()) { throw std::runtime_error("Error: No username provided."); }
+    if (password.empty()) { throw std::runtime_error("Error: No password provided."); }
+
     cpr::Payload loginParams    = { { "identity", username }, { "password", password } };
     cpr::Response loginResponse = cpr::Post(_loginUrl, loginParams);
     _loginCookies               = loginResponse.cookies;
@@ -209,16 +212,12 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
 
         // Throw
         if (nLastHour >= MAX_QUERIES_PER_HOUR) {
-            throw std::runtime_error(
-                "Error: Maximum number of hourly queries reached (300). Exiting so SpaceTrack "
-                "doesn't ban you."
-            );
+            throw std::runtime_error("Error: Maximum number of hourly queries reached (300). Exiting so SpaceTrack "
+                                     "doesn't ban you.");
         }
         if (nLastMinute >= MAX_QUERIES_PER_MINUTE) {
-            throw std::runtime_error(
-                "Error: Maximum number of queries per minute reached (30). Exiting so SpaceTrack "
-                "doesn't ban you."
-            );
+            throw std::runtime_error("Error: Maximum number of queries per minute reached (30). Exiting so SpaceTrack "
+                                     "doesn't ban you.");
         }
     }
 

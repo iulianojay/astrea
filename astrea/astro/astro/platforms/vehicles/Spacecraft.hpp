@@ -23,8 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
-#include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 
 namespace astrea {
@@ -32,7 +32,7 @@ namespace astro {
 
 /**
  * @brief A class representing a spacecraft in the astrea astro platform.
- * This class encapsulates the properties and behaviors of a spacecraft, including its state,
+ * This class encapsulates the properties of a spacecraft, including its
  * mass, dynamic coefficients, and surface areas.
  */
 class Spacecraft : public ThrusterPlatform {
@@ -41,14 +41,7 @@ class Spacecraft : public ThrusterPlatform {
     /**
      * @brief Default constructor for Spacecraft.
      */
-    Spacecraft() = default;
-
-    /**
-     * @brief Constructs a Spacecraft with an initial state.
-     *
-     * @param state0 The initial state of the spacecraft.
-     */
-    Spacecraft(const State& state0);
+    Spacecraft() { generate_id(); };
 
     /**
      * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
@@ -88,40 +81,32 @@ class Spacecraft : public ThrusterPlatform {
     VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
 
     /**
-     * @brief Gets the Cartesian state of the spacecraft at a specific date.
+     * @brief Stores the state history of the spacecraft.
      *
-     * @param date The date at which to retrieve the state.
-     * @return Cartesian The Cartesian state of the spacecraft.
+     * @param history The StateHistory object to store.
      */
-    Cartesian get_cartesian_state(const Date& date) const;
+    void set_state_history(const StateHistory& history);
 
     /**
-     * @brief Updates the state of the spacecraft.
+     * @brief Stores a single state in the spacecraft's state history.
      *
-     * @param state The new state to set for the spacecraft.
+     * @param state The State object to store.
      */
-    void update_state(const State& state);
+    void store_state(const State& state);
 
     /**
-     * @brief Gets the current state of the spacecraft.
+     * @brief Gets the initial state of the spacecraft.
      *
-     * @return State& A reference to the current state of the spacecraft.
+     * @return State& A reference to the initial state of the spacecraft.
      */
-    State& get_state();
+    State& get_initial_state() { return _stateHistory.begin()->second; }
 
     /**
      * @brief Gets the initial state of the spacecraft.
      *
      * @return const State& A reference to the initial state of the spacecraft.
      */
-    const State& get_initial_state() const;
-
-    /**
-     * @brief Stores the state history of the spacecraft.
-     *
-     * @param history The StateHistory object to store.
-     */
-    void store_state_history(const StateHistory& history);
+    const State& get_initial_state() const { return _stateHistory.begin()->second; }
 
     /**
      * @brief Gets the state history of the spacecraft.
@@ -282,17 +267,17 @@ class Spacecraft : public ThrusterPlatform {
     SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                  //!< Solar area of the spacecraft
     SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                   //!< Lift area of the spacecraft
 
-    // Orbital elements
-    State _state;               // Current state of the spacecraft
-    State _state0;              // Initial state of the spacecraft
+    // State history
     StateHistory _stateHistory; // History of states for the spacecraft
 
     /**
      * @brief Generates a unique identifier for the spacecraft based on its properties.
      * This method is called in the constructor to ensure that each spacecraft has a unique ID.
      */
-    void generate_id_hash();
+    void generate_id();
 };
+
+static_assert(IsUserDefinedVehicle<Spacecraft>, "Spacecraft must satisfy the IsVehicle concept");
 
 } // namespace astro
 } // namespace astrea

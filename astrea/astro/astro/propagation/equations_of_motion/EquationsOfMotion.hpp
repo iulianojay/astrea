@@ -19,6 +19,7 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
+#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 namespace astrea {
@@ -30,12 +31,9 @@ namespace astro {
 class EquationsOfMotion {
   public:
     /**
-     * @brief Constructor for the Equations of Motion class.
-     *
-     * @param system The astrodynamics system containing the central body and its properties.
+     * @brief Default constructor for the Equations of Motion class.
      */
-    EquationsOfMotion(const AstrodynamicsSystem& system) :
-        system(&system){};
+    EquationsOfMotion() = default;
 
     /**
      * @brief Destructor for the Equations of Motion class.
@@ -46,11 +44,21 @@ class EquationsOfMotion {
      * @brief Computes the partial derivatives of the orbital elements.
      *
      * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    virtual OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const = 0;
+    virtual OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const = 0;
+
+    /**
+     * @brief Computes the state transition matrix (STM).
+     *
+     * @param date The current date for which the STM is being computed.
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    virtual StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const = 0;
 
     /**
      * @brief Returns the expected set of orbital elements for this method.
@@ -58,16 +66,6 @@ class EquationsOfMotion {
      * @return std::size_t The expected set id of orbital elements.
      */
     virtual constexpr std::size_t get_expected_set_id() const = 0;
-
-    /**
-     * @brief Returns the astrodynamics system associated with this equations of motion.
-     *
-     * @return const AstrodynamicsSystem& The astrodynamics system.
-     */
-    const AstrodynamicsSystem& get_system() const { return *system; }
-
-  protected:
-    const AstrodynamicsSystem* system; ///< Pointer to the astrodynamics system containing the central body and its properties.
 };
 
 } // namespace astro

@@ -44,7 +44,7 @@ class Constellation {
     /**
      * @brief Default constructor for Constellation.
      */
-    Constellation() = default;
+    Constellation() { generate_id(); };
 
     /**
      * @brief Construct a Constellation from a vector of Shells.
@@ -218,23 +218,22 @@ class Constellation {
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     /**
-     * @brief Propagate the Constellation using the provided epoch and Equations of Motion.
+     * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
      *
-     * @param epoch The epoch at which to propagate the Constellation.
+     * @param propTime The total propagation time after the initial state epoch.
      * @param eom The Equations of Motion to use for propagation.
-     * @param interval The time interval for propagation, defaults to Integrator::defaultInterval.
+     * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Date& epoch, EquationsOfMotion& eom, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator = Integrator());
 
     /**
      * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
      *
-     * @param epoch The epoch at which to propagate the Constellation.
+     * @param endEpoch The total propagation time after the initial state epoch.
      * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
-     * @param interval The time interval for propagation, defaults to Integrator::defaultInterval.
      */
-    void propagate(const Date& epoch, EquationsOfMotion& eom, Integrator& integrator, const Interval& interval = Integrator::defaultInterval);
+    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator = Integrator());
 
 
     // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
@@ -487,7 +486,7 @@ class Constellation {
     /**
      * @brief Generate a unique ID hash for the Constellation.
      */
-    void generate_id_hash();
+    void generate_id();
 };
 
 } // namespace astro

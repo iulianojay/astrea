@@ -18,11 +18,11 @@ endif()
 
 # Add profilers and checkcase tests
 if(${BUILD_PROFILERS})
-    add_subdirectory(tests/profiling)
+    add_subdirectory(profiling)
 endif()
 
-if(${BUILD_CHECKCASE_DATABASE})
-    add_subdirectory(tests/nasa_6dof_checkcases)
+if(${BUILD_CHECKCASE_DATABASE} OR ${RUN_6DOF_CHECKCASES})
+    add_subdirectory(nasa_6dof_checkcases)
 endif()
 
 # Get sources

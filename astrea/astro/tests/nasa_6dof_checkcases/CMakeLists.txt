@@ -25,12 +25,25 @@ set(CHECKCASE_DB_SOURCES
     ${BASE}/helpers/OrbitalCheckcase.cpp
 )
 
+set(CHECKCASE_LIBS
+    snapshot_shared
+    astro_shared
+    math_shared
+    utilities_shared
+    mp-units::mp-units
+    sqlite_orm::sqlite_orm
+    matplot
+    nlohmann_json::nlohmann_json
+    csv
+    gtl
+)
+
 add_library(${DRIVER_NAME}_shared SHARED ${CHECKCASE_DB_SOURCES} ${CHECKCASE_DB_HEADERS})
 set_target_properties(${DRIVER_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${DRIVER_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${DRIVER_NAME}_shared PUBLIC math_shared utilities_shared mp-units::mp-units)
+target_link_libraries(${DRIVER_NAME}_shared PUBLIC ${CHECKCASE_LIBS})
 target_include_directories(${DRIVER_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 
 add_executable(${DRIVER_NAME} ${BASE}/build_database.cpp)
 set_target_properties(${DRIVER_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BASE}/bin)
 target_compile_options(${DRIVER_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
-target_link_libraries(${DRIVER_NAME} PUBLIC ${DRIVER_NAME}_shared astro_shared)
+target_link_libraries(${DRIVER_NAME} PUBLIC ${DRIVER_NAME}_shared ${CHECKCASE_LIBS})

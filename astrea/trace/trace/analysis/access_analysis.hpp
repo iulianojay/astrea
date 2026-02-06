@@ -35,7 +35,7 @@ namespace trace {
 /**
  * @brief Type alias for a vector of time values.
  */
-using TimeVector = std::vector<Time>;
+using DateVector = std::vector<astro::Date>;
 
 /**
  * @brief Type alias for a constellation of Viewer objects.
@@ -52,10 +52,18 @@ struct AccessInfo;
  *
  * @param constel The constellation of viewers.
  * @param resolution The time resolution for access calculations.
+ * @param startDate The start date for the analysis.
+ * @param endDate The end date for the analysis.
  * @param sys The astrodynamics system used for calculations.
  * @return AccessArray A collection of accesses between viewers.
  */
-AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
+AccessArray find_internal_accesses(
+    ViewerConstellation& constel,
+    const Time& resolution,
+    const astro::Date& startDate,
+    const astro::Date& endDate,
+    const astro::AstrodynamicsSystem& sys
+);
 
 /**
  * @brief Find accesses between a constellation of viewers and a ground architecture.
@@ -63,22 +71,29 @@ AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& res
  * @param constel The constellation of viewers.
  * @param grounds The ground architecture containing ground stations.
  * @param resolution The time resolution for access calculations.
- * @param epoch The epoch date for the analysis.
+ * @param startDate The start date for the analysis.
+ * @param endDate The end date for the analysis.
  * @param sys The astrodynamics system used for calculations.
  * @return AccessArray A collection of accesses between viewers and ground stations.
  */
-AccessArray
-    find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const astro::Date& epoch, const astro::AstrodynamicsSystem& sys);
+AccessArray find_accesses(
+    ViewerConstellation& constel,
+    GroundArchitecture& grounds,
+    const Time& resolution,
+    const astro::Date& startDate,
+    const astro::Date& endDate,
+    const astro::AstrodynamicsSystem& sys
+);
 
 
 /**
- * @brief Create a time vector from a state history.
+ * @brief Create a date vector from a state history.
  *
- * @param states The state history from which to create the time vector.
+ * @param states The state history from which to create the date vector.
  * @param resolution The time resolution for the vector.
- * @return TimeVector A vector of times corresponding to the state history.
+ * @return DateVector A vector of dates corresponding to the state history.
  */
-TimeVector create_time_vector(const Time& start, const Time& end, const Time& resolution);
+DateVector create_date_vector(const astro::Date& startDate, const astro::Date& endDate, const Time& resolution);
 
 template <typename T>
 concept HasSize = requires(T t) {
@@ -99,15 +114,14 @@ template <typename T, typename U>
 AccessArray find_accesses(
     T& platformContainer1,
     U& platformContainer2,
-    const Time& start,
-    const Time& end,
+    const astro::Date& startDate,
+    const astro::Date& endDate,
     const Time& resolution,
-    const astro::Date& epoch,
     const astro::AstrodynamicsSystem& sys
 )
 {
     // Create time array
-    TimeVector times = create_time_vector(start, end, resolution); // TODO: Check all state histories for common time frame
+    DateVector dates = create_date_vector(startDate, endDate, resolution); // TODO: Check all state histories for common time frame
 
     // For each sat
     // AccessArray allAccesses = find_accesses(platformContainer1, resolution, sys); // Do sat-sat first?
@@ -127,7 +141,7 @@ AccessArray find_accesses(
             const std::size_t id2 = platform2.get_id();
 
             // Satellite-level access for platform1 -> platform2
-            RiseSetArray access = find_platform_to_platform_accesses(&platform1, &platform2, times, sys, epoch);
+            RiseSetArray access = find_platform_to_platform_accesses(&platform1, &platform2, dates, sys);
 
             // Store
             if (access.size() > 0) {
@@ -163,18 +177,16 @@ bool is_earth_occulting(
  *
  * @param platform1 The first sensor platform.
  * @param platform2 The second sensor platform.
- * @param times The times at which to check for accesses.
+ * @param dates The dates at which to check for accesses.
  * @param sys The astrodynamics system used for calculations.
- * @param epoch The epoch date for the analysis.
  * @param twoWay Flag indicating if the access should be two-way (default is false).
  * @return RiseSetArray A collection of rise/set pairs representing the accesses.
  */
 RiseSetArray find_platform_to_platform_accesses(
     astro::PayloadPlatform<Sensor>* platform1,
     astro::PayloadPlatform<Sensor>* platform2,
-    const TimeVector& times,
+    const DateVector& dates,
     const astro::AstrodynamicsSystem& sys,
-    const astro::Date& epoch,
     const bool& twoWay = false
 );
 

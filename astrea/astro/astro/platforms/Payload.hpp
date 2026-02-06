@@ -124,7 +124,7 @@ class Payload { // TODO: add -> : public FrameReference
     Payload(const Parent_T& parent, const PayloadParameters_T& parameters) :
         _parent(&parent),
         _parameters(parameters),
-        _id(generate_id_hash())
+        _id(generate_id())
     {
     }
 
@@ -144,7 +144,7 @@ class Payload { // TODO: add -> : public FrameReference
     /**
      * @brief Generate a hash for the payload ID.
      */
-    std::size_t generate_id_hash() const { return static_cast<const Payload_T*>(this)->generate_id_hash(); }
+    std::size_t generate_id() const { return static_cast<const Payload_T*>(this)->generate_id(); }
 
     /**
      * @brief Get the parent platform of the payload.
