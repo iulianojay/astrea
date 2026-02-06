@@ -26,45 +26,9 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
+#include <math/operations.hpp>
+
 namespace astrea {
-
-/**
- * @brief Check if two quantities of the same unit are nearly equal within a relative tolerance.
- *
- * @tparam R The unit type (e.g., distance, time).
- * @tparam Rep The representation type (e.g., double).
- * @param x First quantity to compare.
- * @param y Second quantity to compare.
- * @param relTol Relative tolerance for comparison.
- * @return true if the two quantities are nearly equal within the specified tolerance.
- * @return false if they are not nearly equal.
- */
-template <auto R1, auto R2, typename Rep>
-[[nodiscard]] constexpr bool nearly_equal(
-    const mp_units::quantity<R1, Rep>& x,
-    const mp_units::quantity<R2, Rep>& y,
-    const mp_units::quantity<mp_units::one, Rep>& relTol = 0.0 * mp_units::one,
-    const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
-) noexcept
-{
-    // Bring both to the same unit for comparison
-    const auto a = x.in(x.unit);
-    const auto b = y.in(x.unit);
-
-    // Check rel tol
-    if (relTol != 0.0 * mp_units::one) {
-        if (a != 0.0 * R1 && b != 0.0 * R1) {
-            if (abs((a - b) / a) > relTol) { return false; }
-        }
-    }
-
-    // Check abs tol
-    if (absTol != 0.0 * mp_units::one) {
-        if (abs(a - b) > absTol * R1) { return false; }
-    }
-
-    return true;
-}
 
 /**
  * @brief Assert that two quantities of the same unit are nearly equal within a relative tolerance.
@@ -83,10 +47,11 @@ void ASSERT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    ASSERT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
-                                                    << "or absolute differences greater than " << absTol << "\n"
-                                                    << "First Quantity: " << x << "\n"
-                                                    << "Second Quantity: " << y << "\n\n";
+    ASSERT_TRUE(math::nearly_equal(x, y, relTol, absTol))
+        << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+        << "or absolute differences greater than " << absTol << "\n"
+        << "First Quantity: " << x << "\n"
+        << "Second Quantity: " << y << "\n\n";
 }
 
 /**
@@ -106,10 +71,11 @@ void EXPECT_EQ_QUANTITY(
     const mp_units::quantity<mp_units::one, Rep>& absTol = 0.0 * mp_units::one
 ) noexcept
 {
-    EXPECT_TRUE(nearly_equal(x, y, relTol, absTol)) << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
-                                                    << "or absolute differences greater than " << absTol << "\n"
-                                                    << "First Quantity: " << x << "\n"
-                                                    << "Second Quantity: " << y << "\n\n";
+    EXPECT_TRUE(math::nearly_equal(x, y, relTol, absTol))
+        << "Comparison had relative differences greater than " << relTol * 100 << "%\n"
+        << "or absolute differences greater than " << absTol << "\n"
+        << "First Quantity: " << x << "\n"
+        << "Second Quantity: " << y << "\n\n";
 }
 
 } // namespace astrea

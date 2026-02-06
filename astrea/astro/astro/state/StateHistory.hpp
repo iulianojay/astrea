@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <parallel_hashmap/btree.h>
+#include <gtl/btree.hpp>
 
 #include <astro/state/State.hpp>
 #include <astro/types/typedefs.hpp>
@@ -35,8 +35,8 @@ namespace astro {
  */
 class StateHistory {
 
-    using StateMap      = phmap::btree_map<Date, State>;
-    using EventTimesMap = phmap::btree_map<std::string, std::vector<Date>>;
+    using StateMap      = gtl::btree_map<Date, State>;
+    using EventTimesMap = gtl::btree_map<std::string, std::vector<Date>>;
 
   public:
     /**
@@ -81,7 +81,7 @@ class StateHistory {
      * @param date The date at which the state is recorded.
      * @param state The state to be inserted.
      */
-    void insert(const Date& date, const State& state);
+    void insert(const State& state);
 
     /**
      * @brief Get the number of states in the history.

@@ -18,11 +18,11 @@ endif()
 
 # Add profilers and checkcase tests
 if(${BUILD_PROFILERS})
-    add_subdirectory(tests/profiling)
+    add_subdirectory(profiling)
 endif()
 
-if(${BUILD_CHECKCASE_DATABASE})
-    add_subdirectory(tests/nasa_6dof_checkcases)
+if(${BUILD_CHECKCASE_DATABASE} OR ${RUN_6DOF_CHECKCASES})
+    add_subdirectory(nasa_6dof_checkcases)
 endif()
 
 # Get sources
@@ -30,29 +30,41 @@ set(BASE ${CMAKE_CURRENT_SOURCE_DIR}/../${PROJECT_NAME})
 file(GLOB_RECURSE UNIT_TEST_SOURCES CONFIGURE_DEPENDS ${BASE}/*.test.cpp ${BASE}/**/*.test.cpp)
 file(GLOB_RECURSE REGRESSION_TEST_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/**/driver.cpp)
 
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
+
 # Filter out 6DOF checkcase tests if RUN_6DOF_CHECKCASES is OFF
 if(NOT ${RUN_6DOF_CHECKCASES})
-    list(FILTER REGRESSION_TEST_SOURCES EXCLUDE REGEX "nasa_6dof_checkcases")
+    list(FILTER REGRESSION_TEST_SOURCES EXCLUDE REGEX "nasa_6dof_checkcases") #TODO: Separate 6dof tests into separate lists
 endif()
-
-# Set install rpath
-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
 
 # Target for all tests
 add_custom_target(${PROJECT_NAME}_tests)
 add_dependencies(${PROJECT_NAME}_tests ${PROJECT_NAME}_shared)
 
 # Helper files
+set(HELPER_BASE ${CMAKE_CURRENT_SOURCE_DIR}/../tests)
 set(HELPER_HEADERS
-    ${BASE}/../tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp
-    ${BASE}/../tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp
-    ${BASE}/../tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp
+    ${HELPER_BASE}/utilities/comparisons.hpp
 )
 
 set(HELPER_SOURCES
-    ${BASE}/../tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.cpp
-    ${BASE}/../tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.cpp
+    ${HELPER_BASE}/utilities/comparisons.cpp
 )
+
+if(${RUN_6DOF_CHECKCASES})
+    set(HELPER_HEADERS
+        ${HELPER_HEADERS}
+        ${HELPER_BASE}/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp
+        ${HELPER_BASE}/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp
+        ${HELPER_BASE}/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp
+    )
+
+    set(HELPER_SOURCES
+        ${HELPER_SOURCES}
+        ${HELPER_BASE}/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.cpp
+        ${HELPER_BASE}/nasa_6dof_checkcases/helpers/OrbitalCheckcase.cpp
+    )
+endif()
 
 # Build
 build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")

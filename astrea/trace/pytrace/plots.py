@@ -1,3 +1,4 @@
+import argparse
 import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -7,22 +8,25 @@ import numpy as np
 import datetime
 from typing import List, Any
 
+
 def ingest_riseset_csv(infile: str) -> pd.DataFrame:
     # Loop the data lines
-    with open(infile, 'r') as temp_f:
+    with open(infile, "r") as temp_f:
         # get n of columns in each line
-        col_count = [ len(l.split(",")) for l in temp_f.readlines() ]
-    
+        col_count = [len(l.split(",")) for l in temp_f.readlines()]
+
     # Generate column names  (names will be 0, 1, 2, ..., maximum columns - 1)
     column_names = [i for i in range(0, max(col_count))]
 
     # Read results
-    return pd.read_csv(infile, index_col=False, header=None, names=column_names, low_memory=False)
+    return pd.read_csv(
+        infile, index_col=False, header=None, names=column_names, low_memory=False
+    )
 
 
 def get_midnight_of_today() -> datetime.datetime:
     now = datetime.datetime.now()
-    return now.replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+    return now.replace(hour=0, minute=0, second=0, microsecond=0)
 
 
 def get_risesets_from_row(row: pd.Series) -> List[Any]:
@@ -30,15 +34,17 @@ def get_risesets_from_row(row: pd.Series) -> List[Any]:
     for ii in range(2, row.values.size, 2):
         # Correct typing and convert from seconds
         rise = float(row.values[ii])
-        set = float(row.values[ii+1])
+        set = float(row.values[ii + 1])
         if not np.isnan(rise) and not np.isnan(set):
             risesets.append((rise / 3600, set / 3600))
-        else: 
+        else:
             break
     return risesets
 
 
-def get_non_interfering_riseset_times(risesets: List[float], interference: List[float]) -> List[float]:
+def get_non_interfering_riseset_times(
+    risesets: List[float], interference: List[float]
+) -> List[float]:
 
     # TODO: THIS IS NOT GENERALIZED AND WILL USUALLY BE WRONG
     times = [risesets[0][0]]
@@ -46,18 +52,24 @@ def get_non_interfering_riseset_times(risesets: List[float], interference: List[
         times.append(rise)
         times.append(set)
     times.append(risesets[0][1])
-        
-    return [(times[ii], times[ii+1]) for ii in range(0, len(times), 2)]
+
+    return [(times[ii], times[ii + 1]) for ii in range(0, len(times), 2)]
 
 
-def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, colors: dict = None) -> None:
+def plot_trace_bars(
+    results: str, outfile: str, main: str, target: str = None, colors: dict = None
+) -> None:
 
     # Read results
     df = ingest_riseset_csv(results)
 
     # Get time of day
     midnight = get_midnight_of_today()
-    timeTicks = mdates.drange(midnight, midnight + datetime.timedelta(days=1, hours=2), datetime.timedelta(hours=2))
+    timeTicks = mdates.drange(
+        midnight,
+        midnight + datetime.timedelta(days=1, hours=2),
+        datetime.timedelta(hours=2),
+    )
 
     # Setup plot
     fig, ax = plt.subplots()
@@ -66,9 +78,10 @@ def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, c
     labels = []
     usedPairs = []
     iPlot = 0
+    mainRisesets = []
     interferingRisesets = []
     for index, row in df.iterrows():
-        if index == 0: 
+        if index == 0:
             continue
 
         sender = row[0]
@@ -78,7 +91,7 @@ def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, c
             continue
 
         # Set plot color
-        color = 'tab:red'
+        color = "tab:red"
         if colors is not None:
             if sender in colors.keys():
                 color = colors[sender]
@@ -91,7 +104,9 @@ def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, c
 
         # Store labels
         usedPairs.append((sender, receiver))
-        labels.append(f'{sender} \u21D4 {receiver}') # TODO: use unicode single-direction arrow for one-way analysis
+        labels.append(
+            f"{sender} \u21d4 {receiver}"
+        )  # TODO: use unicode single-direction arrow for one-way analysis
 
         # Store risesets
         risesets = get_risesets_from_row(row)
@@ -102,24 +117,36 @@ def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, c
 
         # Plot
         risesetBars = [
-            (midnight + datetime.timedelta(hours=rise), datetime.timedelta(hours=set-rise)) 
+            (
+                midnight + datetime.timedelta(hours=rise),
+                datetime.timedelta(hours=set - rise),
+            )
             for rise, set in risesets
         ]
-        ax.broken_barh(risesetBars, (-0.2 + iPlot*1.0, 0.4), color=color)
+        ax.broken_barh(risesetBars, (-0.2 + iPlot * 1.0, 0.4), color=color)
         iPlot += 1
-    
+
+    if len(mainRisesets) == 0:
+        print(f"Warning: No risesets found for {main}. Plot will be empty.")
+        return
+
     # Plot interference bar
-    nonInterferedRisesets = get_non_interfering_riseset_times(mainRisesets, interferingRisesets)
+    nonInterferedRisesets = get_non_interfering_riseset_times(
+        mainRisesets, interferingRisesets
+    )
     risesetBars = [
-        (midnight + datetime.timedelta(hours=rise), datetime.timedelta(hours=set-rise - 0.075)) 
+        (
+            midnight + datetime.timedelta(hours=rise),
+            datetime.timedelta(hours=set - rise - 0.075),
+        )
         for rise, set in nonInterferedRisesets
     ]
-    ax.broken_barh(risesetBars, (-0.2 + iPlot*1.0, 0.4), color='tab:green')
-    labels.append(f'{main} \u21D4 {target}\n(no interference)')
+    ax.broken_barh(risesetBars, (-0.2 + iPlot * 1.0, 0.4), color="tab:green")
+    labels.append(f"{main} \u21d4 {target}\n(no interference)")
 
     # Cleanup
     ax.xaxis_date()
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     fig.autofmt_xdate()
 
     ax.set_xlim(risesetBars[0][0], risesetBars[-1][0] + risesetBars[-1][1])
@@ -127,24 +154,26 @@ def plot_trace_bars(results: str, outfile: str, main: str, target: str = None, c
     ax.set_xlabel("Rise - Set Times")
 
     ax.invert_yaxis()
-    ax.set_yticks(range(len(labels)), labels=labels, ma='center')
-    
+    ax.set_yticks(range(len(labels)), labels=labels, ma="center")
+
     ax.set_title(f"Trace Times to {target}")
     ax.grid()
 
     # Save
-    fig.savefig(outfile, bbox_inches='tight')
+    fig.savefig(outfile, bbox_inches="tight")
 
 
-def plot_number_of_accesses(results: str, outfile: str, target: str = None, plotInterference:bool = False) -> None:
+def plot_number_of_accesses(
+    results: str, outfile: str, target: str = None, plotInterference: bool = False
+) -> None:
 
     # Read results
     df = ingest_riseset_csv(results)
-    
+
     # Get _accesses
     _accesses = {}
     for index, row in df.iterrows():
-        if index == 0: 
+        if index == 0:
             continue
 
         sender = row[0]
@@ -154,13 +183,16 @@ def plot_number_of_accesses(results: str, outfile: str, target: str = None, plot
             continue
 
         # Avoid plotting same pairs twice - TODO: Update this for one-way analysis
-        if (sender, receiver) in _accesses.keys() or (receiver, sender) in _accesses.keys():
+        if (sender, receiver) in _accesses.keys() or (
+            receiver,
+            sender,
+        ) in _accesses.keys():
             continue
 
         _accesses[(sender, receiver)] = get_risesets_from_row(row)
 
     # Loop over rows
-    times = [x/60.0 for x in range(0, 1440)] # hours
+    times = [x / 60.0 for x in range(0, 1440)]  # hours
     n_accesses = []
     for t in times:
         count = 0
@@ -176,17 +208,21 @@ def plot_number_of_accesses(results: str, outfile: str, target: str = None, plot
     # Get time of day
     midnight = get_midnight_of_today()
     timesHours = [midnight + datetime.timedelta(hours=t) for t in times]
-    timeTicks = mdates.drange(midnight, midnight + datetime.timedelta(days=1, hours=2), datetime.timedelta(hours=2))
+    timeTicks = mdates.drange(
+        midnight,
+        midnight + datetime.timedelta(days=1, hours=2),
+        datetime.timedelta(hours=2),
+    )
 
     # Plot
     fig, ax = plt.subplots()
-    ax.bar(timesHours, n_accesses, width = (timesHours[1] - timesHours[0]))
+    ax.bar(timesHours, n_accesses, width=(timesHours[1] - timesHours[0]))
 
     ax.xaxis_date()
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     fig.autofmt_xdate()
 
-    limit = int(np.ceil(np.max(n_accesses)*1.1))
+    limit = int(np.ceil(np.max(n_accesses) * 1.1))
 
     ax.set_xlim(timesHours[0], timesHours[-1])
     ax.set_xticks(timeTicks)
@@ -195,28 +231,32 @@ def plot_number_of_accesses(results: str, outfile: str, target: str = None, plot
     ax.set_xlabel("Time of Day")
     if plotInterference:
         ax.set_ylabel(f"Number of Interference Sources")
-        ax.set_title(f"Number of Possible Interference Events Traceing {target}")
+        ax.set_title(f"Number of Possible Interference Events Tracing {target}")
     else:
-        ax.set_ylabel(f"Number _accesses")
-        ax.set_title(f"Number of Simultaneous _accesses to {target}")
+        ax.set_ylabel(f"Number of Accesses")
+        ax.set_title(f"Number of Simultaneous Accesses to {target}")
     ax.grid()
 
     # Save
-    fig.savefig(outfile, bbox_inches='tight')
+    fig.savefig(outfile, bbox_inches="tight")
 
 
-if __name__=='__main__':
+if __name__ == "__main__":
 
-    base = '/home/jay/projects/astrea/astrea/trace/trace/drivers/results/'
+    argparser = argparse.ArgumentParser(description="Plot trace results.")
+    argparser.add_argument("--outfile", type=str, help="The output file for the plot.",
+                           default=os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', "revisit.csv"))
+    args = argparser.parse_args()
 
-    results = os.path.join(base, 'revisit.csv') 
-    traceOutfile = os.path.join(base, 'revisit.png')
-    countOutfile = os.path.join(base, 'trace_count.png')
-    interfereOutfile = os.path.join(base, 'interference_count.png')
+    results = args.outfile
+    base = os.path.dirname(args.outfile)
+    traceOutfile = os.path.join(base, "revisit.png")
+    countOutfile = os.path.join(base, "trace_count.png")
+    interfereOutfile = os.path.join(base, "interference_count.png")
 
     target = "Washington DC"
     main = "ARCTURUS"
-    colors = {main: 'tab:blue'}
+    colors = {main: "tab:blue"}
 
     plot_trace_bars(results, traceOutfile, main, target, colors)
     plot_number_of_accesses(results, countOutfile, target)

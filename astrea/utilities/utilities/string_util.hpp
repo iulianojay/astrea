@@ -18,11 +18,15 @@
  */
 #pragma once
 
+#include <algorithm>
 #include <cstdlib>
+#include <cstring>
 #include <cxxabi.h>
 #include <iostream>
+#include <memory>
 #include <optional>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace astrea {

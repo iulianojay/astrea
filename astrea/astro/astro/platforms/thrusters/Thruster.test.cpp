@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(ThrusterTest, GetId) { ASSERT_EQ(thruster.get_id(), std::hash<Thrust>()(thrust)); }
+TEST_F(ThrusterTest, GetId) { ASSERT_EQ(thruster.get_id(), 0); }
 
 TEST_F(ThrusterTest, GetImpulsiveDeltaV)
 {

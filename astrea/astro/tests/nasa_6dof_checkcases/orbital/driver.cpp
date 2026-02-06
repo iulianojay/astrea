@@ -42,16 +42,17 @@
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 
+#include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
-#include <tests/utilities/comparisons.hpp>
 
 #include <tests/nasa_6dof_checkcases/helpers/CheckcaseDatabase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 #include <tests/nasa_6dof_checkcases/helpers/Stats.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace sqlite_orm;
 using namespace matplot;
@@ -96,15 +97,14 @@ class Orbital6DofTest : public testing::Test {
             RadiusVector<frames::earth::icrf>(-4315.96774 * km, 960.35620 * km, 5167.26953 * km),
             VelocityVector<frames::earth::icrf>(0.129091037 * km / s, -7.491513855 * km / s, 1.452515654 * km / s)
         ),
-        propInterval(0.0 * s, 28800.0 * s)
+        propTime(28800.0 * s)
     {
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
         integrator.set_abs_tol(1.0e-13);
         integrator.set_rel_tol(1.0e-13);
 
-        outputDir = std::getenv("ASTREA_ROOT");
-        outputDir /= "astrea/astro/tests/nasa_6dof_checkcases/orbital/results";
+        outputDir = std::string(_ASTRO_ROOT_) + "/tests/nasa_6dof_checkcases/orbital/results";
     }
 
     void SetUp() override {}
@@ -132,9 +132,7 @@ class Orbital6DofTest : public testing::Test {
 
     Spacecraft build_spacecraft(const InitialOrbitType& orbitType, const VehicleType& vehicleType)
     {
-        OrbitalElements initialState = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
-        Spacecraft sat({ initialState, epoch, sys });
-
+        Spacecraft sat;
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(4.5e5 * kg);
@@ -188,28 +186,31 @@ class Orbital6DofTest : public testing::Test {
 
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
+        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
+        State state0(initialElements, epoch, sys);
+
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
 
         switch (eomId) {
             case TWO_BODY: {
-                TwoBody twoBody(sys);
-                return integrator.propagate(epoch, propInterval, twoBody, vehicle, true);
+                TwoBody twoBody;
+                return integrator.propagate(state0, propTime, twoBody, vehicle, true);
             }
 
             case COWELLS_METHOD: {
-                CowellsMethod cowells(sys, forces);
-                return integrator.propagate(epoch, propInterval, cowells, vehicle, true);
+                CowellsMethod cowells(forces);
+                return integrator.propagate(state0, propTime, cowells, vehicle, true);
             }
 
             case KEPLERIAN_VOP: {
-                KeplerianVop keplerianVop(sys, forces, false);
-                return integrator.propagate(epoch, propInterval, keplerianVop, vehicle, true);
+                KeplerianVop keplerianVop(forces, false);
+                return integrator.propagate(state0, propTime, keplerianVop, vehicle, true);
             }
 
             case EQUINOCTIAL_VOP: {
-                EquinoctialVop equinoctialVop(sys, forces);
-                return integrator.propagate(epoch, propInterval, equinoctialVop, vehicle, true);
+                EquinoctialVop equinoctialVop(forces);
+                return integrator.propagate(state0, propTime, equinoctialVop, vehicle, true);
             }
 
             default: throw std::runtime_error("Invalid EOM ID");
@@ -253,7 +254,7 @@ class Orbital6DofTest : public testing::Test {
             StateHistory history;
             for (const auto& row : rows) {
                 const State state = parse_row_as_state(row);
-                history.insert(state.get_epoch(), state);
+                history.insert(state);
             }
             results.push_back({ history, "Checkcase " + std::to_string(checkcase.sim_num) });
         }
@@ -506,7 +507,7 @@ class Orbital6DofTest : public testing::Test {
     Date epoch;
     Cartesian circular;
     Cartesian elliptic;
-    Interval propInterval;
+    Time propTime;
     Integrator integrator;
 };
 

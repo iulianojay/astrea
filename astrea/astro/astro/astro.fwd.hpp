@@ -24,6 +24,7 @@ namespace astrea {
 namespace astro {
 
 class State;
+class StatePartial;
 class StateHistory;
 
 // ELement sets
@@ -38,6 +39,11 @@ class TwoLineElementsPartial;
 class GeneralPerturbations;
 class OrbitalElements;
 class OrbitalElementPartials;
+
+class CartesianStm;
+class KeplerianStm;
+class EquinoctialStm;
+class StateTransitionMatrix;
 
 template <class Value_T, class Frame_T>
 class CartesianVector;

@@ -51,14 +51,16 @@ class ImpulsiveBurn {
      * @return true If the Event is triggered by the Vehicle.
      * @return false If the Event is not triggered by the Vehicle.
      */
-    Unitless measure_event(const Time& time, const OrbitalElements& state, const Vehicle& vehicle) const;
+    Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Triggers an impulsive burn.
      *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
      * @param vehicle The Vehicle to trigger the action on.
      */
-    void trigger_action(Vehicle& vehicle) const;
+    void trigger_action(const Time& time, State& state, Vehicle& vehicle) const;
 
     /**
      * @brief Checks if the Event is a terminal Event.

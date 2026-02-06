@@ -38,6 +38,7 @@ namespace astro {
 class Equinoctial {
 
     friend std::ostream& operator<<(std::ostream&, Equinoctial const&);
+    friend class OrbitalElements;
 
   public:
     /**
@@ -45,13 +46,13 @@ class Equinoctial {
      *
      * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
      */
-    Equinoctial(Unitless scale = 0.0 * detail::unitless) :
-        _semilatus(scale * detail::distance_unit),
-        _f(scale * detail::unitless),
-        _g(scale * detail::unitless),
-        _h(scale * detail::unitless),
-        _k(scale * detail::unitless),
-        _trueLongitude(scale * detail::angle_unit)
+    Equinoctial(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _semilatus(scale * astrea::detail::distance_unit),
+        _f(scale * astrea::detail::unitless),
+        _g(scale * astrea::detail::unitless),
+        _h(scale * astrea::detail::unitless),
+        _k(scale * astrea::detail::unitless),
+        _trueLongitude(scale * astrea::detail::angle_unit)
     {
     }
 
@@ -329,7 +330,7 @@ class Equinoctial {
      *
      * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
     /**
      * @brief Interpolates the Equinoctial state vector between two time instances.
@@ -350,6 +351,14 @@ class Equinoctial {
     Unitless _h;          //!< The first component of the planar vector
     Unitless _k;          //!< The second component of the planar vector
     Angle _trueLongitude; //!< True longitude of the orbit
+
+    /**
+     * @brief Creates a Equinoctial object from a vector of unitless values.
+     *
+     * @param vec Vector containing the components of the Equinoctial state vector.
+     * @return Equinoctial Constructed Equinoctial object.
+     */
+    static Equinoctial from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -402,6 +411,13 @@ class EquinoctialPartial {
      * @return Equinoctial Resulting Equinoctial state vector after multiplication.
      */
     Equinoctial operator*(const Time& time) const;
+
+    /**
+     * @brief Converts the EquinoctialPartial state vector to a vector of unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the components of the EquinoctialPartial state vector.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Velocity _semilatusPartial;        //!< Semilatus rectum partial derivative

@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Jay Iuliano
-# 
+#
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
 # as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -10,7 +10,7 @@
 cmake_minimum_required(VERSION 3.28.3)
 
 # Test build function
-function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES HELPER_HDRS HELPER_SRCS)
+function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER_SRCS)
 
     foreach(TEST_FILE ${TEST_FILES})
 
@@ -36,7 +36,7 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES HELPER_HDRS HELPER_SRC
         target_sources(${TEST_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
 
         # Includes
-        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/extern)
+        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib)
 
         # Dependencies
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
@@ -128,7 +128,7 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
         build_system_ephemeris(Mars "${SYSTEM_BODIES}")
         set(ALL_DEFINES ${ALL_DEFINES} ASTREA_BUILD_MARS_EPHEMERIS)
     endif()
-    
+
     if (${BUILD_JUPITER})
         set(SYSTEM_BODIES Jupiter) # Io Europa Ganymede Callisto)
         build_system_ephemeris(Jupiter "${SYSTEM_BODIES}")
@@ -153,26 +153,26 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
         set(ALL_DEFINES ${ALL_DEFINES} ASTREA_BUILD_NEPTUNE_EPHEMERIS)
     endif()
     set(EPHEMERIS_COMPILE_DEFINES ${ALL_DEFINES} PARENT_SCOPE)
-    
+
     string(REPLACE ";"  ", " PRINTABLE_BODIES "${ALL_BODIES}")
     message(" -- Bodies to Compile Ephemerides for: " ${PRINTABLE_BODIES})
     string(REPLACE ";"  "\n\t" PRINTABLE_HEADERS "${BODY_EPHEMERIS_HEADERS}")
     string(REPLACE ";"  "\n\t" PRINTABLE_SOURCES "${BODY_EPHEMERIS_SOURCES}")
     message(" -- Compiled Ephemeride HEADERS: \n\t" ${PRINTABLE_HEADERS})
     message(" -- Compiled Ephemeride SOURCES: \n\t" ${PRINTABLE_SOURCES})
-    
+
     string(REPLACE ";"  " " PYTHONIC_BODIES "${ALL_BODIES}")
     add_custom_command(
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND $ENV{ASTREA_ROOT}/.venv/bin/python ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${PROJECT_SOURCE_DIRECTORY}/../../.venv/bin/python ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
         COMMENT " -- Generating Ephemerides for: ${PRINTABLE_BODIES}"
     )
-    add_custom_target(generated_ephemerides 
+    add_custom_target(generated_ephemerides
         DEPENDS ${BODY_EPHEMERIS_HEADERS} ${BODY_EPHEMERIS_SOURCES}
     )
 
@@ -201,7 +201,7 @@ function(build_system_ephemeris BODY_SYSTEM SYSTEM_BODIES)
         endif()
 
     endforeach()
-    
+
     set(BODY_EPHEMERIS_HEADERS ${BODY_EPHEMERIS_HEADERS} ${ALL_EPHEMERIS_HEADERS} PARENT_SCOPE)
     set(BODY_EPHEMERIS_SOURCES ${BODY_EPHEMERIS_SOURCES} ${ALL_EPHEMERIS_SOURCES} PARENT_SCOPE)
 

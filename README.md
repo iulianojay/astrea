@@ -201,7 +201,7 @@ const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * d
 const State state0(elements, epoch, sys);
 
 // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.
-Spacecraft sat(state0); // This can be replaced with a user's custom type
+Spacecraft sat; // This can be replaced with a user's custom type
 Vehicle vehicle(sat);
 
 // Build a force model
@@ -211,10 +211,10 @@ forces.add<OblatenessForce>(sys, 10, 10);
 // forces.add<UserDefinedForce>(...); // Users can add their own perturbations to the propagation
 
 // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the base EquationsOfMotion class. Note that a force or perturbation model is not required.
-TwoBody twoBodyEom(sys);                       // No forces
-J2MeanVop j2MeanEom(sys);                      // Forces assumed
-CowellsMethod cowellsEom(sys, forces);         // Regular force model
-KeplerianVop keplerianEom(sys, forces, false); // Input options for rounding errors
+TwoBody twoBodyEom;                       // No forces
+J2MeanVop j2MeanEom;                      // Forces assumed
+CowellsMethod cowellsEom(forces);         // Regular force model
+KeplerianVop keplerianEom(forces, false); // Input options for rounding errors
 
 // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using the integrator setters.
 Integrator integrator;
@@ -222,26 +222,25 @@ integrator.set_abs_tol(1.0e-10);
 integrator.set_rel_tol(1.0e-10);
 
 bool store = true; // Users can choose to store the state history during propagation, or not
-Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals can also be negative for backwards propagation.
 
 // Propagation is done with the element representation that the equations of motion expect. This is to avoid unnecessary conversions during the integration process.
 std::cout << "Propagating...";
-const StateHistory twoBodyHistory = integrator.propagate(epoch, propInterval, twoBodyEom, vehicle, store);
+const StateHistory twoBodyHistory = integrator.propagate(state0, minutes(1), twoBodyEom, vehicle, store);
 std::cout << " Two Body Propagation Complete." << std::endl;
 vehicle = Vehicle(sat); // reset the vehicle
 
 std::cout << "Propagating...";
-const StateHistory j2MeanHistory = integrator.propagate(epoch, propInterval, j2MeanEom, vehicle, store);
+const StateHistory j2MeanHistory = integrator.propagate(state0, minutes(1), j2MeanEom, vehicle, store);
 std::cout << " J2 Mean Propagation Complete." << std::endl;
 vehicle = Vehicle(sat);
 
 std::cout << "Propagating...";
-const StateHistory cowellsHistory = integrator.propagate(epoch, propInterval, cowellsEom, vehicle, store);
+const StateHistory cowellsHistory = integrator.propagate(state0, minutes(1), cowellsEom, vehicle, store);
 std::cout << " Cowell's Method Propagation Complete." << std::endl;
 vehicle = Vehicle(sat);
 
 std::cout << "Propagating...";
-const StateHistory keplerianHistory = integrator.propagate(epoch, propInterval, keplerianEom, vehicle, store);
+const StateHistory keplerianHistory = integrator.propagate(state0, minutes(1), keplerianEom, vehicle, store);
 std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
 std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
@@ -286,7 +285,7 @@ Examples have been built out more completely for the astro tool in Astrea (astre
 
 ## Build and install
 
-Since conan is used to build mp-units and it's dependencies, users must have conan profiles setup for the build process to work. To simplify this, required conan files are stored in the repo root directory in `.conan2`. Move this folder to your home directory and install the Astrea python environment with
+Astrea uses a small Python script to build out some files. In order to run this, first install the Astrea's python environment with
 ```bash
 make python_env
 ```
@@ -296,27 +295,20 @@ Once this is built, activate the environment with
 source ./.venv/bin/activate
 ```
 
-The python runs conan and builds out some files used in place of certain SPICE calls.
-
-Once the python is activated, build first with
-```bash
-make build
-```
-
-and install with
+Once the python is activated, build and install with
 ```bash
 make install
 ```
 
 Options can be added at either step to update the configuration accordingly.
 ```bash
-make debug build
 make debug install
 ```
 ```bash
 make relwithdebinfo tests examples build
-make relwithdebinfo tests examples install
+make relwithdebinfo all install
 ```
+where `all` can replace `tests examples`.
 
 The build step only needs to be done once per independent bulid configuration.
 

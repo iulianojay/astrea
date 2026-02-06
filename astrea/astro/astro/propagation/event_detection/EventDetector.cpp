@@ -39,7 +39,7 @@ std::vector<Event> EventDetector::get_events() const
     return events;
 }
 
-bool EventDetector::detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle)
+bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehicle)
 {
     bool isTerminal = false;
     const Time eventTime = mp_units::round<mp_units::si::unit_symbols::s>(time); // Round to seconds to avoid numerical issues
@@ -58,7 +58,7 @@ bool EventDetector::detect_events(const Time& time, const OrbitalElements& state
             tracker.detectionTimes.insert(eventTime);
 
             // Trigger action
-            event.trigger_action(vehicle);
+            event.trigger_action(eventTime, state, vehicle);
 
             // Check for termination
             if (event.is_terminal()) { isTerminal = true; }
@@ -96,9 +96,9 @@ bool EventDetector::detect_event(const Time& time, const Unitless& value, EventT
     return false;
 }
 
-phmap::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
+gtl::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
 {
-    phmap::btree_map<std::string, std::vector<Date>> eventTimes;
+    gtl::btree_map<std::string, std::vector<Date>> eventTimes;
     for (const auto& tracker : _eventTrackers) {
         std::vector<Date> dates;
         for (const auto& time : tracker.detectionTimes) {
