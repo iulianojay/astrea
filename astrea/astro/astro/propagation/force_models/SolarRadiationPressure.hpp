@@ -45,14 +45,11 @@ class SolarRadiationPressure : public Force {
     /**
      * @brief Computes the solar radiation pressure force on a spacecraft.
      *
-     * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to solar radiation pressure.
      */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
 
   private:
 };

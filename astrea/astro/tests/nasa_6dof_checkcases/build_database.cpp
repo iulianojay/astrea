@@ -91,7 +91,7 @@ int main()
     // Now get orbital checkcase files
     checkcaseFiles.clear();
     auto orbitIterator =
-        std::filesystem::recursive_directory_iterator(root + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/orbital/");
+        std::filesystem::recursive_directory_iterator(std::string(_ASTRO_ROOT_) + "/tests/nasa_6dof_checkcases/data/checkcases/orbital/");
     for (const auto& entry : orbitIterator) {
         if (entry.path().extension() == ".csv") { checkcaseFiles.push_back(entry.path()); }
     }

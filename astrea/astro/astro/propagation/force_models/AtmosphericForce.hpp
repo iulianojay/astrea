@@ -50,25 +50,21 @@ class AtmosphericForce : public Force {
     /**
      * @brief Computes the atmospheric force on a vehicle.
      *
-     * @param date Date of the computation
-     * @param state Cartesian state vector of the vehicle
+     * @param state State of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @param sys Astrodynamics system containing celestial body data
      * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to atmospheric force.
      */
-    CartesianVector<Acceleration, frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override;
+    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
 
   private:
     /**
      * @brief Finds the atmospheric density at a given altitude.
      *
-     * @param date Date of the computation
      * @param state Cartesian state vector of the vehicle
      * @param center Celestial body around which the vehicle is orbiting
      * @return Density The atmospheric density at the given altitude.
      */
-    const Density find_atmospheric_density(const Date& date, const Cartesian& state, const std::unique_ptr<CelestialBody>& center) const;
+    const Density find_atmospheric_density(const State& state, const std::unique_ptr<CelestialBody>& center) const;
 };
 
 } // namespace astro

@@ -21,6 +21,7 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/enums.hpp>
@@ -35,10 +36,11 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf>
-    NBodyForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Extract
+    const AstrodynamicsSystem& sys                            = state.get_system();
+    const Date date                                           = state.get_epoch();
     const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
     // Center body properties

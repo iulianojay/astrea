@@ -94,7 +94,7 @@ concept HasIterpolate =
  */
 template <typename T>
 concept HasToVector = requires(const T elements) {
-    { elements.to_vector() } -> std::same_as<std::vector<Unitless>>;
+    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
 };
 
 /**
@@ -162,6 +162,8 @@ class OrbitalElements {
     using ElementVariant = std::variant<Cartesian, Keplerian, Equinoctial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
+    friend class StateTransitionMatrix;
+    friend class State;
 
   public:
     /**
@@ -325,12 +327,11 @@ class OrbitalElements {
     OrbitalElementPartials operator/(const Time& divisor) const;
 
     /**
-     * @brief Divides the OrbitalElements by another OrbitalElements object.
+     * @brief Converts the OrbitalElements to a vector of Unitless values.
      *
-     * @param other Another OrbitalElements object
-     * @return Resultant vector of unitless values after division.
+     * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
     /**
      * @brief Divides the OrbitalElements by a scalar.
@@ -405,6 +406,15 @@ class OrbitalElements {
      * @return The converted orbital elements.
      */
     OrbitalElements convert_to_set_impl(const std::size_t idx, const GravParam& mu) const;
+
+    /**
+     * @brief Creates an OrbitalElements object from a vector of Unitless values.
+     *
+     * @param vec The vector of Unitless values.
+     * @param idx The index of the orbital element type to create.
+     * @return OrbitalElements The created OrbitalElements object.
+     */
+    static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 };
 
 /**
@@ -490,6 +500,13 @@ class OrbitalElementPartials {
      * @return std::size_t The index of the current orbital element partials in the variant.
      */
     constexpr std::size_t index() const { return _elements.index(); }
+
+    /**
+     * @brief Converts the OrbitalElementPartials to a vector of Unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     PartialVariant _elements; //!< Variant holding the orbital element partials (CartesianPartial, KeplerianPartial, EquinoctialPartial)

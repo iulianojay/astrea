@@ -38,6 +38,7 @@ namespace astro {
 class Keplerian {
 
     friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+    friend class OrbitalElements;
 
   public:
     /**
@@ -45,13 +46,13 @@ class Keplerian {
      *
      * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
      */
-    Keplerian(Unitless scale = 0.0 * detail::unitless) :
-        _semimajor(scale * detail::distance_unit),
-        _eccentricity(scale * detail::unitless),
-        _inclination(scale * detail::angle_unit),
-        _rightAscension(scale * detail::angle_unit),
-        _argPerigee(scale * detail::angle_unit),
-        _trueAnomaly(scale * detail::angle_unit)
+    Keplerian(Unitless scale = 0.0 * astrea::detail::unitless) :
+        _semimajor(scale * astrea::detail::distance_unit),
+        _eccentricity(scale * astrea::detail::unitless),
+        _inclination(scale * astrea::detail::angle_unit),
+        _rightAscension(scale * astrea::detail::angle_unit),
+        _argPerigee(scale * astrea::detail::angle_unit),
+        _trueAnomaly(scale * astrea::detail::angle_unit)
     {
     }
 
@@ -392,7 +393,7 @@ class Keplerian {
      * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
      * argument of perigee, and true anomaly components of the Keplerian state vector.
      */
-    std::vector<Unitless> to_vector() const;
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Distance _semimajor;    //!< Semimajor axis of the orbit
@@ -418,6 +419,15 @@ class Keplerian {
      * @return Angle The interpolated angle at the target time.
      */
     Angle interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const;
+
+
+    /**
+     * @brief Creates a Keplerian object from a vector of unitless values.
+     *
+     * @param vec Vector containing the components of the Keplerian state vector.
+     * @return Keplerian Constructed Keplerian object.
+     */
+    static Keplerian from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -476,6 +486,13 @@ class KeplerianPartial {
      * @return Keplerian Resulting Keplerian state vector after multiplication.
      */
     Keplerian operator*(const Time& time) const;
+
+    /**
+     * @brief Converts the KeplerianPartial state vector to a vector of unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the components of the KeplerianPartial state vector.
+     */
+    std::vector<Unitless> force_to_vector() const;
 
   private:
     Velocity _semimajorPartial;           //!< Semimajor axis partial derivative

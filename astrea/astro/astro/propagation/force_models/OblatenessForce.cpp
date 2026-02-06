@@ -31,6 +31,7 @@
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
@@ -239,7 +240,7 @@ For the life of me, I could not get this to match the NASA checkcases. I can't f
 it out, let me know.
 
 AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+    OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
@@ -337,12 +338,30 @@ AccelerationVector<frames::earth::icrf>
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    static bool compare = true;
+    if (compare) { // TODO: Remove this
+        const AccelerationVector<frames::earth::icrf> gravity = -mu / pow<3>(rEci.norm()) * rEci;
+        AccelerationVector<frames::earth::icrf> expected      = { 5.51387371235876 * m / (s * s),
+                                                                  -1.22700119262805 * m / (s * s),
+                                                                  -6.62056474851441 * m / (s * s) };
+        expected -= gravity;
+
+        const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
+
+        std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
+        std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
+        std::cout << "Difference: " << diff << " (" << diff.norm() << ")" << std::endl;
+        std::cout << "% Diff: [" << diff[0] / expected[0] * 100.0 << " %, " << diff[1] / expected[1] * 100.0 << " %, "
+                  << diff[2] / expected[2] * 100.0 << " %] (" << diff.norm() / expected.norm() * 100.0 << " %)" << std::endl;
+
+        compare = false;
+    }
+    return accelOblatenessIcrf;
 }
 */
 
-AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const
+AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
 {
     // Montenbruck & Gill (2000) V and W recurrence relations method
     // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
@@ -352,8 +371,8 @@ AccelerationVector<frames::earth::icrf>
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
 
     // Transform position to body-fixed frame
-    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const Date date                                      = state.get_epoch();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
 
     // Position components in ECEF
     const Distance& x = rEcef[0];
@@ -361,7 +380,7 @@ AccelerationVector<frames::earth::icrf>
     const Distance& z = rEcef[2];
 
     // Compute derived quantities
-    const Distance r          = rEci.norm();
+    const Distance r          = rEcef.norm();
     const Unitless xOverR     = x / r;
     const Unitless yOverR     = y / r;
     const Unitless zOverR     = z / r;

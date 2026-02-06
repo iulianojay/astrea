@@ -82,11 +82,12 @@ class EventDetector {
      * @brief Detects events for a given time and vehicle.
      *
      * @param time The current time.
+     * @param state The current state.
      * @param vehicle The Vehicle to check for events.
      * @return true If a terminal event was detected.
      * @return false If no terminal event was detected.
      */
-    bool detect_events(const Time& time, const OrbitalElements& state, Vehicle& vehicle);
+    bool detect_events(const Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Retrieves the event times recorded during propagation.

@@ -19,6 +19,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -32,8 +33,7 @@ using mp_units::si::unit_symbols::s;
 
 class DummyForce : public Force {
   public:
-    AccelerationVector<frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
+    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
     {
         return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
@@ -41,11 +41,11 @@ class DummyForce : public Force {
 
 class ForceModelTest : public testing::Test {
   public:
-    ForceModelTest() = default;
+    ForceModelTest(){};
     void SetUp() override {}
+
     DummyForce force;
     Date date;
-    Cartesian state;
     Vehicle vehicle;
     AstrodynamicsSystem sys;
 };
@@ -57,30 +57,33 @@ int main(int argc, char** argv)
 }
 
 
-TEST(ForceModelStandaloneTest, DefaultConstructor) { ASSERT_NO_THROW(ForceModel()); }
+TEST(ForceModelTest, DefaultConstructor) { ASSERT_NO_THROW(ForceModel()); }
 
-TEST(ForceModelStandaloneTest, AddForce)
+TEST(ForceModelTest, AddForce)
 {
     ForceModel model;
     auto& ptr = model.add<DummyForce>();
     EXPECT_NE(ptr.get(), nullptr);
 }
 
-TEST(ForceModelStandaloneTest, ComputeForces)
+TEST(ForceModelTest, ComputeForces)
 {
     ForceModel model;
     model.add<DummyForce>();
-    Date date;
-    Cartesian state;
+
     Vehicle vehicle;
     AstrodynamicsSystem sys;
-    auto accel = model.compute_forces(date, state, vehicle, sys);
+    Date date;
+    Cartesian cart;
+    State state(cart, date, sys);
+
+    auto accel = model.compute_forces(state, vehicle);
     EXPECT_EQ(accel.get_x(), 0.0 * km / (s * s));
     EXPECT_EQ(accel.get_y(), 0.0 * km / (s * s));
     EXPECT_EQ(accel.get_z(), 0.0 * km / (s * s));
 }
 
-TEST(ForceModelStandaloneTest, AtByName)
+TEST(ForceModelTest, AtByName)
 {
     ForceModel model;
     model.add<DummyForce>();
@@ -89,7 +92,7 @@ TEST(ForceModelStandaloneTest, AtByName)
     EXPECT_NE(ptr.get(), nullptr);
 }
 
-TEST(ForceModelStandaloneTest, GetByType)
+TEST(ForceModelTest, GetByType)
 {
     ForceModel model;
     model.add<DummyForce>();

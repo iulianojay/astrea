@@ -23,6 +23,7 @@
 #include <astro/frames/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 
@@ -36,39 +37,37 @@ using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-KeplerianVop::KeplerianVop(const AstrodynamicsSystem& system, const ForceModel& forces, const bool doWarn) :
-    EquationsOfMotion(system),
+KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
     forces(&forces),
-    mu(system.get_mu()),
     doWarn(doWarn)
 {
 }
 
-OrbitalElementPartials KeplerianVop::operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicle& vehicle) const
 {
-    const GravParam& mu       = get_system().get_mu();
-    const Keplerian elements  = state.in_element_set<Keplerian>(mu);
-    const Cartesian cartesian = state.in_element_set<Cartesian>(mu);
-
     // Extract
-    const quantity<km>& a = elements.get_semimajor();
-    // const double<rad>& raan = elements.get_right_ascension();
-    const quantity<rad>& w     = elements.get_argument_of_perigee();
-    const quantity<rad>& theta = elements.get_true_anomaly();
+    const auto mu    = state.get_system().get_mu();
+    const Date& date = state.get_epoch();
+
+    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Distance& a        = elements.get_semimajor();
+    // const Angle& raan = elements.get_right_ascension();
+    const Angle& w     = elements.get_argument_of_perigee();
+    const Angle& theta = elements.get_true_anomaly();
 
     // Prevents singularities from occuring in the propagation. Will cause
     // inaccuracies.
-    const quantity<one>& ecc = (elements.get_eccentricity() < checkTol * one) ? checkTol * one : elements.get_eccentricity();
-    const quantity<rad>& inc = (elements.get_inclination() < checkTol * rad) ? checkTol * rad : elements.get_inclination();
+    const Unitless& ecc = (elements.get_eccentricity() < checkTol * one) ? checkTol * one : elements.get_eccentricity();
+    const Angle& inc    = (elements.get_inclination() < checkTol * rad) ? checkTol * rad : elements.get_inclination();
 
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<frames::earth::icrf> v = cartesian.get_velocity();
-    const RadiusVector<frames::earth::icrf> r   = cartesian.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
 
     // Function for finding accel caused by perturbations
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(date, cartesian, vehicle, get_system());
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
@@ -105,6 +104,12 @@ OrbitalElementPartials KeplerianVop::operator()(const Date& date, const OrbitalE
     const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
+}
+
+
+StateTransitionMatrix KeplerianVop::compute_stm(const State& state, const Vehicle& vehicle) const
+{
+    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const

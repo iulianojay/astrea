@@ -58,10 +58,7 @@ class SimpleGeoAccessTest : public testing::Test {
   public:
     SimpleGeoAccessTest() :
         semimajorGeo(42164.0 * km),
-        eom(sys),
-        start(seconds(0)),
-        end(weeks(1)),
-        accessInterval({ start, end }),
+        propTime(weeks(1)),
         resolution(minutes(1)),
         epoch(J2000)
     {
@@ -80,9 +77,7 @@ class SimpleGeoAccessTest : public testing::Test {
     TwoBody eom;
     ForceModel forces;
     Integrator integrator;
-    Time start;
-    Time end;
-    Interval accessInterval;
+    Time propTime;
     Time resolution;
     Date epoch;
 };
@@ -98,8 +93,14 @@ int main(int argc, char** argv)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 {
     // Build constellation
-    Viewer geo1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys });
-    Viewer geo2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys.get_mu()), epoch, sys });
+    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys);
+    Viewer geo1;
+    geo1.store_state(state1);
+
+    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys.get_mu()), epoch, sys);
+    Viewer geo2;
+    geo2.store_state(state2);
+
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);
@@ -117,17 +118,17 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
+    twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, sys);
+    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is 100% access
     ASSERT_TRUE(accesses.size() > 0);
     for (const auto& [idPair, risesets] : accesses) {
         ASSERT_EQ(risesets.size(), 2); // Entire interval
-        ASSERT_EQ(risesets[0], start);
-        ASSERT_EQ(risesets[1], end);
+        ASSERT_EQ(risesets[0], 0.0 * s);
+        ASSERT_EQ(risesets[1], propTime);
     }
 }
 
@@ -135,8 +136,14 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    Viewer geo1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
-    Viewer geo2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
+    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys);
+    Viewer geo1;
+    geo1.store_state(state1);
+
+    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys.get_mu()), epoch, sys);
+    Viewer geo2;
+    geo2.store_state(state2);
+
     Constellation<Viewer> twoBallGeo;
     twoBallGeo.add_spacecraft(geo1);
     twoBallGeo.add_spacecraft(geo2);
@@ -154,10 +161,10 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(epoch, eom, integrator, accessInterval);
+    twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, sys);
+    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
@@ -167,10 +174,19 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 TEST_F(SimpleGeoAccessTest, FourBallGeo)
 {
     // Build constellation
-    Viewer geo1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
-    Viewer geo2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch, sys });
-    Viewer geo3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
-    Viewer geo4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch, sys });
+    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
+    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch, sys });
+    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
+    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch, sys });
+
+    Viewer geo1;
+    geo1.store_state(state1);
+    Viewer geo2;
+    geo2.store_state(state2);
+    Viewer geo3;
+    geo3.store_state(state3);
+    Viewer geo4;
+    geo4.store_state(state4);
 
     Constellation<Viewer> fourBallGeo;
     fourBallGeo.add_spacecraft(geo1);
@@ -191,10 +207,10 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(epoch, eom, integrator, accessInterval);
+    fourBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, sys);
+    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
     ASSERT_TRUE(accesses.size() > 0);
@@ -217,12 +233,10 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     ASSERT_EQ(access34.size(), 2);
 
     // Access time
-    const Time zero    = start;
-    const Time simTime = end - start;
-    ASSERT_EQ(access12.access_time(Stat::MEAN), simTime);
-    ASSERT_EQ(access13.access_time(Stat::MEAN), zero);
-    ASSERT_EQ(access14.access_time(Stat::MEAN), simTime);
-    ASSERT_EQ(access23.access_time(Stat::MEAN), simTime);
-    ASSERT_EQ(access24.access_time(Stat::MEAN), zero);
-    ASSERT_EQ(access34.access_time(Stat::MEAN), simTime);
+    ASSERT_EQ(access12.access_time(Stat::MEAN), propTime);
+    ASSERT_EQ(access13.access_time(Stat::MEAN), 0 * s);
+    ASSERT_EQ(access14.access_time(Stat::MEAN), propTime);
+    ASSERT_EQ(access23.access_time(Stat::MEAN), propTime);
+    ASSERT_EQ(access24.access_time(Stat::MEAN), 0 * s);
+    ASSERT_EQ(access34.access_time(Stat::MEAN), propTime);
 }

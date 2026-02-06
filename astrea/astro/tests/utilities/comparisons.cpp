@@ -33,8 +33,8 @@ void ASSERT_EQ_ORB_ELEM(
 {
     if (first.index() != second.index()) { FAIL() << "Orbital element sets do not match"; }
 
-    auto firstUnitless  = first.to_vector();
-    auto secondUnitless = second.to_vector();
+    auto firstUnitless  = first.force_to_vector();
+    auto secondUnitless = second.force_to_vector();
     const int maxIdx    = ignoreFastVariable ? 5 : 6;
     for (int ii = 0; ii < maxIdx; ii++) {
         ASSERT_EQ_QUANTITY(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
@@ -47,8 +47,8 @@ void ASSERT_EQ_ORB_PART(const OrbitalElementPartials& first, const OrbitalElemen
 
     // arbitrary normalization. shouldn't affect relative size
     const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
-    const std::vector<Unitless> firstScaled  = (first * scale).to_vector();
-    const std::vector<Unitless> secondScaled = (second * scale).to_vector();
+    const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
+    const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
     for (int ii = 0; ii < 6; ii++) {
         ASSERT_EQ_QUANTITY(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
     }

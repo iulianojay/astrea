@@ -1,7 +1,12 @@
-/*
- * The GNU Lesser General Public License (LGPL)
+/**
+ * @file snapshot.macros.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Macros for the snapshot module
+ * @date 2025-08-03
  *
- * Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -9,30 +14,13 @@
  * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
  */
+#pragma once
 
-#include <astro/platforms/thrusters/Thruster.hpp>
+#ifndef _SNAPSHOT_ROOT_
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#define _SNAPSHOT_ROOT_
+static_assert(false, "_SNAPSHOT_ROOT_ environment variable not set or passed to compiler.");
 
-namespace astrea {
-namespace astro {
-
-using mp_units::si::unit_symbols::s;
-
-std::size_t Thruster::get_id() const { return _id; }
-
-Velocity Thruster::get_impulsive_delta_v() const
-{
-    return get_parameters().get_thrust() / get_parent()->get_mass() * s;
-}
-
-std::size_t Thruster::generate_id() const
-{
-    static std::size_t idCounter = 0;
-    return idCounter++;
-}
-
-} // namespace astro
-} // namespace astrea
+#endif // _SNAPSHOT_ROOT_

@@ -55,7 +55,7 @@ class GroundPoint : virtual public AccessObject {
         AccessObject(),
         _parent(parent),
         _lla(latitutde, longitude, altitude),
-        _id(generate_id_hash())
+        _id(generate_id())
     {
     }
 
@@ -117,10 +117,10 @@ class GroundPoint : virtual public AccessObject {
      * @brief Generates a unique identifier for the ground station based on its properties.
      * This method is called in the constructor to ensure that each ground station has a unique ID.
      */
-    std::size_t generate_id_hash()
+    std::size_t generate_id()
     {
-        return std::hash<Angle>()(_lla.get_latitude()) ^ std::hash<Angle>()(_lla.get_longitude()) ^
-               std::hash<Distance>()(_lla.get_altitude());
+        static std::size_t idCounter = 0;
+        return idCounter++;
     }
 };
 

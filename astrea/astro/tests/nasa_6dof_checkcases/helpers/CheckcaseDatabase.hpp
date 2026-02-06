@@ -124,7 +124,7 @@ CheckcaseDatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& 
 inline auto get_checkcase_database()
 {
     return sqlite_orm::make_storage(
-        std::string(_ASTRO_ROOT_) + "/astrea/astro/tests/nasa_6dof_checkcases/data/checkcases/checkcases.db",
+        std::string(_ASTRO_ROOT_) + "/tests/nasa_6dof_checkcases/data/checkcases/checkcases.db",
         sqlite_orm::make_table(
             "AtmosphericCheckcaseRows",
             sqlite_orm::make_column("id", &AtmosphericCheckcaseRow::id, sqlite_orm::primary_key().autoincrement()),

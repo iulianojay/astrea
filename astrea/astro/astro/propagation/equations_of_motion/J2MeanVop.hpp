@@ -35,11 +35,9 @@ class J2MeanVop : public EquationsOfMotion {
 
   public:
     /**
-     * @brief Constructor for the J2 Mean VOP class.
-     *
-     * @param system The astrodynamics system containing the central body and its properties.
+     * @brief Default constructor for the J2 Mean VOP class.
      */
-    J2MeanVop(const AstrodynamicsSystem& system);
+    J2MeanVop() = default;
 
     /**
      * @brief Destructor for the J2 Mean VOP class.
@@ -49,12 +47,20 @@ class J2MeanVop : public EquationsOfMotion {
     /**
      * @brief Computes the partial derivatives of the orbital elements using the J2 Mean VOP method.
      *
-     * @param date The current date for which the equations of motion are being computed.
-     * @param state The current orbital elements of the vehicle.
+     * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const Date& date, const OrbitalElements& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+
+    /**
+     * @brief Computes the state transition matrix (STM) using Cowell's method.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the STM is being computed.
+     * @return StateTransitionMatrix The computed state transition matrix.
+     */
+    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.
@@ -64,13 +70,8 @@ class J2MeanVop : public EquationsOfMotion {
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian>(); };
 
   private:
-    mutable bool checkflag = false;                                        //!< Flag to check for degenerate conditions.
-    Unitless eccTol        = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
-    Angle incTol           = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.
-
-    GravParam mu;         //!< Gravitational parameter of the central body.
-    Unitless J2;          //!< J2 coefficient of the central body.
-    Distance equitorialR; //!< Equatorial radius of the central body.
+    const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
+    const Angle incTol    = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.
 };
 
 } // namespace astro

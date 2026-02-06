@@ -44,10 +44,7 @@ class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
         mu(sys.get_mu()),
-        eom(sys),
-        start(seconds(0)),
-        end(weeks(1)),
-        propInterval({ start, end }),
+        propTime(weeks(1)),
         epoch(J2000)
     {
     }
@@ -62,9 +59,7 @@ class EventDetectionTest : public testing::Test {
     TwoBody eom;
     ForceModel forces;
     Integrator integrator;
-    Time start;
-    Time end;
-    Interval propInterval;
+    Time propTime;
     Date epoch;
 };
 
@@ -79,20 +74,21 @@ int main(int argc, char** argv)
 TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
-    Keplerian state0 = Keplerian::LEO();
-    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
+    Keplerian kep0 = Keplerian::LEO();
+    State state{ kep0, epoch, sys };
+    Spacecraft leo;
     Vehicle vehicle{ leo };
 
     // Impulsive burn event
     Event impulse = Event{ ImpulsiveBurn() };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true, { impulse });
 
     // Validate
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
 }
 
@@ -100,9 +96,11 @@ TEST_F(EventDetectionTest, NoThrust)
 TEST_F(EventDetectionTest, ImpulsiveBurn)
 {
     // Build constellation
-    Keplerian state0 = Keplerian::LEO();
-    ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
-    Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
+    const Keplerian kep0 = Keplerian::LEO();
+    const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
+    const State state{ kep0, epoch, sys };
+
+    Spacecraft leo;
     leo.attach_payload(thrusterParams);
     Vehicle vehicle{ leo };
 
@@ -110,13 +108,15 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     Event impulse = Event{ ImpulsiveBurn() };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true, { impulse });
 
     // Validate
+    std::cout << "state0: " << kep0 << std::endl;
     bool elementsChanged = false;
     for (const auto& [time, state] : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        if (!nearly_equal(kep, state0, true, REL_TOL)) {
+        std::cout << "\t" << time << ": " << kep << std::endl;
+        if (!nearly_equal(kep, kep0, true, REL_TOL)) {
             elementsChanged = true;
             break;
         }

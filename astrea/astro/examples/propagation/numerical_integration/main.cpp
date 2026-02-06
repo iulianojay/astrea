@@ -41,7 +41,7 @@ int main()
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
-    Spacecraft sat(state0);
+    Spacecraft sat;
     Vehicle vehicle(sat);
 
     // Build a force model - point mass gravity is always included, but this may be changed in future releases to
@@ -52,10 +52,10 @@ int main()
 
     // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the
     // base EquationsOfMotion class. Note that a force or perturbation model is not required.
-    TwoBody twoBodyEom(sys);                       // No forces
-    J2MeanVop j2MeanEom(sys);                      // Forces assumed
-    CowellsMethod cowellsEom(sys, forces);         // Regular force model
-    KeplerianVop keplerianEom(sys, forces, false); // Input options for rounding errors
+    TwoBody twoBodyEom;                       // No forces
+    J2MeanVop j2MeanEom;                      // Forces assumed
+    CowellsMethod cowellsEom(forces);         // Regular force model
+    KeplerianVop keplerianEom(forces, false); // Input options for rounding errors
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.
@@ -63,26 +63,26 @@ int main()
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals
-                                                     // can also be negative for backwards propagation.
+    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    Time propTime = minutes(1); // A propagation interval relative to the epoch. Intervals
+                                // can also be negative for backwards propagation.
 
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating...";
-    const StateHistory twoBodyHistory = integrator.propagate(epoch, propInterval, twoBodyEom, vehicle, store);
+    const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, twoBodyEom, vehicle, store);
     std::cout << " Two Body Propagation Complete." << std::endl << "Propagating...";
-    vehicle = Vehicle(sat); // reset the vehicle
+    vehicle = Vehicle(sat); // reset the vehicle in case the propagation updates it
 
-    const StateHistory j2MeanHistory = integrator.propagate(epoch, propInterval, j2MeanEom, vehicle, store);
+    const StateHistory j2MeanHistory = integrator.propagate(state0, propTime, j2MeanEom, vehicle, store);
     std::cout << " J2 Mean Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory cowellsHistory = integrator.propagate(epoch, propInterval, cowellsEom, vehicle, store);
+    const StateHistory cowellsHistory = integrator.propagate(state0, propTime, cowellsEom, vehicle, store);
     std::cout << " Cowell's Method Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory keplerianHistory = integrator.propagate(epoch, propInterval, keplerianEom, vehicle, store);
+    const StateHistory keplerianHistory = integrator.propagate(state0, propTime, keplerianEom, vehicle, store);
     std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
@@ -90,6 +90,13 @@ int main()
     std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
     std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
     std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
+
+    // And if you want, you can propagate to a specific end epoch instead of for an amount of time
+    Date endEpoch              = epoch + propTime;
+    const StateHistory history = integrator.propagate(state0, endEpoch, twoBodyEom, vehicle, store);
+
+    // And if you don't care about storing the history, you can skip that too
+    const State statef = integrator.propagate(state0, propTime, twoBodyEom, vehicle);
 
     return 0;
 }

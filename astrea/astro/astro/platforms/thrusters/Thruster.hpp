@@ -113,7 +113,7 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
     /**
      * @brief Generate a hash for the thruster ID.
      */
-    std::size_t generate_id_hash() const;
+    std::size_t generate_id() const;
 };
 
 /**

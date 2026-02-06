@@ -19,6 +19,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/Force.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -33,8 +34,7 @@ using mp_units::si::unit_symbols::s;
 class DummyForce : public Force {
   public:
     DummyForce() = default;
-    AccelerationVector<frames::earth::icrf>
-        compute_force(const Date& date, const Cartesian& state, const Vehicle& vehicle, const AstrodynamicsSystem& sys) const override
+    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
     {
         return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
@@ -47,7 +47,7 @@ class ForceTest : public testing::Test {
 
     DummyForce force;
     Date date;
-    Cartesian state;
+    Cartesian cart;
     Vehicle vehicle;
     AstrodynamicsSystem sys;
 };
@@ -62,7 +62,8 @@ TEST_F(ForceTest, DefaultConstructor) { ASSERT_NO_THROW(DummyForce()); }
 
 TEST_F(ForceTest, ComputeForce)
 {
-    auto accel = force.compute_force(date, state, vehicle, sys);
+    const State state(cart, date, sys);
+    auto accel = force.compute_force(state, vehicle);
     ASSERT_EQ(accel.get_x(), 0.0 * km / (s * s));
     ASSERT_EQ(accel.get_y(), 0.0 * km / (s * s));
     ASSERT_EQ(accel.get_z(), 0.0 * km / (s * s));

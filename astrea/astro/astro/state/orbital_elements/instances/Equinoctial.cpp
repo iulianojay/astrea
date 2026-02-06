@@ -227,14 +227,32 @@ Equinoctial
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-std::vector<Unitless> Equinoctial::to_vector() const
+std::vector<Unitless> Equinoctial::force_to_vector() const
 {
-    return { _semilatus / astrea::detail::distance_unit, _f, _g, _h, _k, _trueLongitude / astrea::detail::angle_unit };
+    return { _semilatus / _semilatus.unit, _f, _g, _h, _k, _trueLongitude / _trueLongitude.unit };
+}
+
+Equinoctial Equinoctial::from_vector(const std::vector<Unitless>& vec)
+{
+    if (vec.size() != 6) {
+        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
+    }
+    return Equinoctial(vec[0] * detail::distance_unit, vec[1], vec[2], vec[3], vec[4], vec[5] * detail::angle_unit);
 }
 
 Equinoctial EquinoctialPartial::operator*(const Time& time) const
 {
     return Equinoctial(_semilatusPartial * time, _fPartial * time, _gPartial * time, _hPartial * time, _kPartial * time, _trueLongitudePartial * time);
+}
+
+std::vector<Unitless> EquinoctialPartial::force_to_vector() const
+{
+    return { _semilatusPartial / _semilatusPartial.unit,
+             _fPartial / _fPartial.unit,
+             _gPartial / _gPartial.unit,
+             _hPartial / _hPartial.unit,
+             _kPartial / _kPartial.unit,
+             _trueLongitudePartial / _trueLongitudePartial.unit };
 }
 
 std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)

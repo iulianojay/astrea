@@ -41,17 +41,13 @@ int main()
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
-    Spacecraft sat(state0);
+    Spacecraft sat;
     Vehicle vehicle(sat);
 
     // Equations of motion are the basis for dynamic progagation. This class is meant to provide a partial derivative
     // for some given state and vehicle. Astrea provides several common EoMs, but users can create their own by
     // inheriting from the EquationsOfMotion base class.
     struct MyEquationsOfMotion : public EquationsOfMotion {
-        MyEquationsOfMotion(const AstrodynamicsSystem& system) :
-            EquationsOfMotion(system) // An astrodynamics system must be provided
-        {
-        }
 
         // The expected set id is used to tell the integrator what type of elements to propagate
         constexpr std::size_t get_expected_set_id() const
@@ -60,12 +56,12 @@ int main()
             return OrbitalElements::get_set_id<Cartesian>();
         };
 
-        OrbitalElementPartials operator()(const Date& epoch, const OrbitalElements& state, const Vehicle& vehicle) const override
+        OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system = get_system();
+            const AstrodynamicsSystem& system = state.get_system();
             const auto mu                     = system.get_mu();
-            const Cartesian cartesian         = state.in_element_set<Cartesian>(mu);
+            const Cartesian cartesian         = state.in_element_set<Cartesian>();
 
             // Pull out the pieces for simple two-body gravity
             const auto r = cartesian.get_position();
@@ -77,21 +73,27 @@ int main()
 
             return partials;
         }
+
+        StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
+        {
+            // For simple EoMs, the STM can be computed using the StateTransitionMatrix class
+            return StateTransitionMatrix(*this, state, vehicle);
+        }
     };
-    MyEquationsOfMotion myEoms(sys);
+    MyEquationsOfMotion myEoms;
 
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.
     Integrator integrator;
 
-    bool store = true; // Users can choose to store the state history during propagation, or not
-    Interval propInterval{ seconds(0), minutes(1) }; // A propagation interval relative to the epoch. Intervals
-                                                     // can also be negative for backwards propagation.
+    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    Time propTime = minutes(1); // Propagation time can also be negative for backwards propagation.
 
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating My Equations of Motion...";
-    const StateHistory history = integrator.propagate(epoch, propInterval, myEoms, vehicle, store);
+    const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
+
     std::cout << " Propagation Complete." << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;

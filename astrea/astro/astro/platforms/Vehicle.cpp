@@ -36,7 +36,6 @@ Vehicle::Vehicle() :
 // Copy constructor
 Vehicle::Vehicle(const Vehicle& other) :
     _ptr(other._ptr->clone()),
-    _state(other._state),
     _mass(other._mass),
     _ramArea(other._ramArea),
     _liftArea(other._liftArea),
@@ -50,7 +49,6 @@ Vehicle::Vehicle(const Vehicle& other) :
 // Move constructor
 Vehicle::Vehicle(Vehicle&& other) noexcept :
     _ptr(std::move(other._ptr)),
-    _state(std::move(other._state)),
     _mass(std::move(other._mass)),
     _ramArea(std::move(other._ramArea)),
     _liftArea(std::move(other._liftArea)),
@@ -63,7 +61,6 @@ Vehicle::Vehicle(Vehicle&& other) noexcept :
 
 void Vehicle::generic_ctor_impl()
 {
-    _state                     = std::move(ptr()->get_state());
     _mass                      = ptr()->get_mass();
     _ramArea                   = ptr()->get_ram_area();
     _liftArea                  = ptr()->get_lift_area();
@@ -77,7 +74,7 @@ void Vehicle::generic_ctor_impl()
 Vehicle& Vehicle::operator=(Vehicle&& other) noexcept
 {
     if (this != &other) {
-        _ptr = std::move(other._ptr), _state = std::move(other._state);
+        _ptr                       = std::move(other._ptr);
         _mass                      = std::move(other._mass);
         _ramArea                   = std::move(other._ramArea);
         _liftArea                  = std::move(other._liftArea);

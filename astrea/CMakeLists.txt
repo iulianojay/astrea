@@ -10,6 +10,7 @@
 add_subdirectory(trace)
 add_subdirectory(astro)
 add_subdirectory(math)
+# add_subdirectory(pathfinder)
 add_subdirectory(snapshot)
 add_subdirectory(utilities)
 

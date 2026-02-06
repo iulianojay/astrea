@@ -42,9 +42,7 @@
 //   public:
 //     Atmospheric6DofTest() :
 //         mu(sys.get_mu()),
-//         eom(sys),
-//         start(seconds(0)),
-//         end(weeks(1)),
+//         propTime(weeks(1)),
 //         propInterval({ start, end }),
 //         epoch(J2000)
 //     {
@@ -60,9 +58,7 @@
 //     TwoBody eom;
 //     ForceModel forces;
 //     Integrator integrator;
-//     Time start;
-//     Time end;
-//     Interval propInterval;
+//     Time propTime;
 //     Date epoch;
 // };
 
@@ -82,7 +78,7 @@
 //     Vehicle vehicle{ geo };
 
 //     // Propagate
-//     const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+//     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
 //     for (const auto& [time, state] : stateHistory) {
@@ -100,7 +96,7 @@
 //     Vehicle vehicle{ meo };
 
 //     // Propagate
-//     const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+//     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
 //     for (const auto& [time, state] : stateHistory) {
@@ -118,7 +114,7 @@
 //     Vehicle vehicle{ leo };
 
 //     // Propagate
-//     const auto stateHistory = integrator.propagate(epoch, propInterval, eom, vehicle, true);
+//     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
 //     for (const auto& [time, state] : stateHistory) {
