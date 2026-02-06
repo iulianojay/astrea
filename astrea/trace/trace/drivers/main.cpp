@@ -202,7 +202,7 @@ int access_test()
     }
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py";
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string();
     const std::string cmd          = "python3 " + plotFile.string();
 
     return std::system(cmd.c_str());
