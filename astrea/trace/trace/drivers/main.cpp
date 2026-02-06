@@ -59,16 +59,12 @@ int access_test()
 
     // Setup system
     AstrodynamicsSystem sys;
-    Date epoch = Date::now();
+    Date startDate = Date::now();
 
     // Query database
     auto snapshot = get_snapshot();
-    // auto geoGp    = snapshot.get_all<GeneralPerturbations>(where(c(&GeneralPerturbations::NORAD_CAT_ID) == 62455));
     auto geoGp = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ARCTURUS%")));
-    // auto everythingElseGps =
-    //     snapshot.get_all<GeneralPerturbations>(where(c(&GeneralPerturbations::APOAPSIS) <= (geoGp[0].APOAPSIS.value() * 0.9)));
-    auto everythingElseGps =
-        snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%STARLINK%")));
+    auto everythingElseGps = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%")));
 
     if (geoGp.size() == 0 || everythingElseGps.size() == 0) {
         throw std::runtime_error("Error: Nothing pulled from database. Are you sure you filled it?");
@@ -76,10 +72,7 @@ int access_test()
 
     // Build constellation
     Viewer geo(geoGp[0], sys);
-    // Constellation<Viewer> allSats(everythingElseGps, sys);
-    Constellation<Viewer> allSats(
-        { everythingElseGps[0], everythingElseGps[1], everythingElseGps[2], everythingElseGps[3], everythingElseGps[4] }, sys
-    );
+    Constellation<Viewer> allSats(everythingElseGps, sys);
 
     // Add sensors
     CircularFieldOfView fovGeo(15.0 * deg);
@@ -96,7 +89,7 @@ int access_test()
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const State& state = sat.get_state();
-                // sat.update_state(State(state.get_elements(), epoch, sys)); // Force inital epoch to match cause it's SLOW right now
+                // sat.update_state(State(state.get_elements(), startDate, sys)); // Force inital startDate to match cause it's SLOW right now
                 sat.attach_payload(leoCone);
             }
         }
@@ -120,7 +113,7 @@ int access_test()
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Build EoMs
-    TwoBody eom;
+    J2MeanVop eom;
 
     // Setup integrator
     Integrator integrator;
@@ -130,8 +123,9 @@ int access_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Time propTime = hours(24);
-    allSats.propagate(propTime, eom, integrator);
+    Time propTime = days(24);
+    Date endDate  = startDate + propTime;
+    allSats.propagate(endDate, eom, integrator);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -140,10 +134,34 @@ int access_test()
 
     start = std::chrono::steady_clock::now();
 
+    for (auto& shell : allSats.get_shells()) {
+        for (auto& plane : shell.get_planes()) {
+            for (auto& sat : plane.get_all_spacecraft()) {
+                // Check that state history is populated and has correct time frame
+                const auto& stateHistory = sat.get_state_history();
+                if (stateHistory.size() == 0) {
+                    throw std::runtime_error("Error: State history not populated after propagation.");
+                }
+                if (stateHistory.first().get_epoch() > startDate) {
+                    std::ostringstream oss;
+                    oss << "Error: State history starts at the wrong time! Expected: " << startDate
+                        << ", Actual: " << stateHistory.first().get_epoch();
+                    throw std::runtime_error(oss.str());
+                }
+                if (stateHistory.last().get_epoch() != endDate) {
+                    std::ostringstream oss;
+                    oss << "Error: State history ends at the wrong time! Expected: " << endDate
+                        << ", Actual: " << stateHistory.last().get_epoch();
+                    throw std::runtime_error(oss.str());
+                }
+            }
+        }
+    }
+
     // Find access
     Time accessResolution = minutes(1.0);
-    // const auto accesses   = find_accesses(allSats, accessResolution, epoch, sys);
-    const auto accesses = find_accesses(allSats, grounds, accessResolution, epoch, sys);
+    // const auto accesses   = find_accesses(allSats, accessResolution, startDate, endDate, sys);
+    const auto accesses = find_accesses(allSats, grounds, accessResolution, startDate, endDate, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -151,8 +169,7 @@ int access_test()
     std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
     // Save
-    std::filesystem::path base    = std::string(_TRACE_ROOT_) + "/astrea/trace/";
-    std::filesystem::path outfile = base / "trace/drivers/results/revisit.csv";
+    std::filesystem::path outfile = std::string(_TRACE_ROOT_) + "/trace/drivers/results/revisit.csv";
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
@@ -185,7 +202,7 @@ int access_test()
     }
 
     // Call plotter
-    std::filesystem::path plotFile = base / "pytrace/plots.py";
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py";
     const std::string cmd          = "python3 " + plotFile.string();
 
     return std::system(cmd.c_str());

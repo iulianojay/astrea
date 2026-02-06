@@ -62,8 +62,8 @@ StateHistory
     if (!forwardTime) { timeStep = -timeStep; }
 
     // State
-    const Date epoch = state0.get_epoch();
-    State state      = state0.convert_to_set(eom.get_expected_set_id());
+    _epoch0     = state0.get_epoch();
+    State state = state0.convert_to_set(eom.get_expected_set_id());
 
     // Setup
     setup(events);
@@ -148,7 +148,7 @@ StateHistory
     if (!store) { stateHistory.insert(state); }
 
     // Store event times
-    if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(epoch)); }
+    if (!events.empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(_epoch0)); }
 
     teardown();
 

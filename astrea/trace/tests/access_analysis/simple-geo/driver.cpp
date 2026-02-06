@@ -121,7 +121,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, sys);
+    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is 100% access
     ASSERT_TRUE(accesses.size() > 0);
@@ -164,7 +164,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, sys);
+    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
@@ -210,7 +210,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     fourBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, sys);
+    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, epoch + propTime, sys);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
     ASSERT_TRUE(accesses.size() > 0);

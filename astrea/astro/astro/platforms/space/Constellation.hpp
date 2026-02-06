@@ -226,6 +226,15 @@ class Constellation {
      */
     void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator = Integrator());
 
+    /**
+     * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
+     *
+     * @param endEpoch The total propagation time after the initial state epoch.
+     * @param eom The Equations of Motion to use for propagation.
+     * @param integrator The Integrator to use for propagation.
+     */
+    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator = Integrator());
+
 
     // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
     // using const_iterator = std::vector<Shell<Spacecraft_T>>::const_iterator;

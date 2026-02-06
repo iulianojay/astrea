@@ -105,6 +105,15 @@ class Plane {
     void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
 
     /**
+     * @brief Propagate the Plane using the provided epoch and Equations of Motion.
+     *
+     * @param endEpoch The end epoch for propagation.
+     * @param eom The Equations of Motion to use for propagation.
+     * @param integrator The Integrator to use for propagation.
+     */
+    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+
+    /**
      * @brief Iterator for iterating over all Spacecraft in the Plane.
      */
     using iterator = std::vector<Spacecraft_T>::iterator;

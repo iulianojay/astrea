@@ -64,14 +64,11 @@ struct AccessInfo {
 };
 
 
-AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const Date& epoch, const AstrodynamicsSystem& sys)
+AccessArray
+    find_internal_accesses(ViewerConstellation& constel, const Time& resolution, const Date& startDate, const Date& endDate, const AstrodynamicsSystem& sys)
 {
     // Create time array
-    const auto& states    = constel[0].get_state_history();
-    const Date& startDate = states.first().get_epoch();
-    const Date& endDate   = states.last().get_epoch();
-
-    TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
+    DateVector dates = create_date_vector(startDate, endDate, resolution); // TODO: Check all state histories for common time frame
 
     // For each sat
     AccessArray allAccesses;
@@ -85,7 +82,7 @@ AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& res
             const std::size_t id2 = viewer2.get_id();
 
             // Satellite-level access for viewer1 -> viewer2
-            RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer1, &viewer2, times, sys, epoch);
+            RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer1, &viewer2, dates, sys);
 
             // Store
             if (satAccess.size() > 0) {
@@ -99,16 +96,17 @@ AccessArray find_internal_accesses(ViewerConstellation& constel, const Time& res
     return allAccesses;
 }
 
-AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const Time& resolution, const Date& epoch, const AstrodynamicsSystem& sys)
+AccessArray find_accesses(
+    ViewerConstellation& constel,
+    GroundArchitecture& grounds,
+    const Time& resolution,
+    const Date& startDate,
+    const Date& endDate,
+    const astro::AstrodynamicsSystem& sys
+)
 {
-    // TODO: Rework all this into a class
-
     // Create time array
-    const auto& states    = constel[0].get_state_history();
-    const Date& startDate = states.first().get_epoch();
-    const Date& endDate   = states.last().get_epoch();
-
-    TimeVector times = create_time_vector(0.0 * s, endDate - startDate, resolution); // TODO: Check all state histories for common time frame
+    DateVector dates = create_date_vector(startDate, endDate, resolution); // TODO: Check all state histories for common time frame
 
     // For each sat
     // AccessArray allAccesses = find_accesses(constel, resolution, sys); // Do sat-sat first?
@@ -125,7 +123,7 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
                     const std::size_t groundId = ground.get_id();
 
                     // Satellite-level access for viewer1 -> viewer2
-                    RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer, &ground, times, sys, epoch);
+                    RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer, &ground, dates, sys);
 
                     // Store
                     if (satAccess.size() > 0) {
@@ -142,43 +140,42 @@ AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grou
     return allAccesses;
 }
 
-TimeVector create_time_vector(const Time& start, const Time& end, const Time& resolution)
+DateVector create_date_vector(const Date& startDate, const Date& endDate, const Time& resolution)
 {
     // Fill
-    Time time = start;
-    TimeVector times;
-    times.emplace_back(time);
-    while (start + time < end) {
-        if (start + time + resolution >= end) { time = end; }
+    Time time = 0.0 * s;
+    DateVector dates;
+    dates.emplace_back(startDate);
+    while (startDate + time < endDate) {
+        if (startDate + time + resolution >= endDate) { time = endDate - startDate; }
         else {
             time += resolution;
         }
-        times.emplace_back(time);
+        dates.emplace_back(startDate + time);
     }
 
-    return times;
+    return dates;
 }
 
 RiseSetArray find_platform_to_platform_accesses(
     SensorPlatform* platform1,
     SensorPlatform* platform2,
-    const TimeVector& times,
-    const AstrodynamicsSystem& sys,
-    const Date& epoch,
+    const DateVector& dates,
+    const astro::AstrodynamicsSystem& sys,
     const bool& twoWay
 )
 {
     // Get all access info once to avoid unnecessary calcs
-    std::vector<AccessInfo> accessInfo(times.size());
-    std::size_t ii = 0;
-    for (const auto& time : times) {
+    std::vector<AccessInfo> accessInfo(dates.size());
+    std::size_t ii   = 0;
+    const Date epoch = dates.front();
+    for (const auto& date : dates) {
         // Get ECI state of ground station
-        const Date date              = epoch + time;
         const EciRadiusVec position1 = platform1->get_inertial_position(date);
         const EciRadiusVec position2 = platform2->get_inertial_position(date);
 
         // Get sat -> ground vector at current time
-        accessInfo[ii].time       = time;
+        accessInfo[ii].time       = date - epoch;
         accessInfo[ii].id1        = platform1->get_id();
         accessInfo[ii].id2        = platform2->get_id();
         accessInfo[ii].position1  = position1;

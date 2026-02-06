@@ -172,5 +172,14 @@ void Shell<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotio
     }
 }
 
+
+template <class Spacecraft_T>
+void Shell<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+{
+    for (auto& plane : planes) {
+        plane.propagate(endEpoch, eom, integrator);
+    }
+}
+
 } // namespace astro
 } // namespace astrea

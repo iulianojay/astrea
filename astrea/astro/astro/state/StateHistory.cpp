@@ -13,6 +13,8 @@
 
 #include <astro/state/StateHistory.hpp>
 
+#include <iostream>
+
 #include <mp-units/math.h>
 
 using namespace mp_units;
@@ -61,12 +63,16 @@ State StateHistory::get_state_at(const Date& date) const
     // Check if input date is out of bounds
     auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
-        throw std::runtime_error("Cannot extrapolate to state before existing propagation bounds. Try repropagating to "
-                                 "include all desired dates.");
+        std::ostringstream oss;
+        oss << "Cannot extrapolate to date (" << date << ") before first state (" << _states.begin()->first
+            << "). Try repropagating to include all desired dates.";
+        throw std::runtime_error(oss.str());
     }
     else if (iter == _states.end()) {
-        throw std::runtime_error("Cannot extrapolate to state after existing propagation bounds. Try repropagating to "
-                                 "include all desired dates.");
+        std::ostringstream oss;
+        oss << "Cannot extrapolate to date (" << date << ") after last state (" << _states.rbegin()->first
+            << "). Try repropagating to include all desired dates.";
+        throw std::runtime_error(oss.str());
     }
 
     // Interpolate

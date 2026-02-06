@@ -281,5 +281,14 @@ void Constellation<Spacecraft_T>::propagate(const Time& propTime, const Equation
     }
 }
 
+
+template <class Spacecraft_T>
+void Constellation<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+{
+    for (auto& shell : shells) {
+        shell.propagate(endEpoch, eom, integrator);
+    }
+}
+
 } // namespace astro
 } // namespace astrea
