@@ -64,6 +64,8 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
 
     store_state(State(coes, epoch, sys));
 
+    generate_id();
+
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these
     // _mass
@@ -120,15 +122,10 @@ VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date
     return elements.get_velocity();
 }
 
-void Spacecraft::generate_id_hash()
+void Spacecraft::generate_id()
 {
-    _id = std::hash<double>()(_mass.numerical_value_ref_in(_mass.unit));
-    _id ^= std::hash<double>()(_coefficientOfDrag.numerical_value_ref_in(_coefficientOfDrag.unit));
-    _id ^= std::hash<double>()(_coefficientOfLift.numerical_value_ref_in(_coefficientOfLift.unit));
-    _id ^= std::hash<double>()(_coefficientOfReflectivity.numerical_value_ref_in(_coefficientOfReflectivity.unit));
-    _id ^= std::hash<double>()(_ramArea.numerical_value_ref_in(_ramArea.unit));
-    _id ^= std::hash<double>()(_sunArea.numerical_value_ref_in(_sunArea.unit));
-    _id ^= std::hash<double>()(_liftArea.numerical_value_ref_in(_liftArea.unit));
+    static std::size_t idCounter = 0;
+    _id                          = idCounter++;
 }
 
 } // namespace astro

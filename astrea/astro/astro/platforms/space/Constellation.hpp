@@ -44,7 +44,7 @@ class Constellation {
     /**
      * @brief Default constructor for Constellation.
      */
-    Constellation() = default;
+    Constellation() { generate_id(); };
 
     /**
      * @brief Construct a Constellation from a vector of Shells.
@@ -486,7 +486,7 @@ class Constellation {
     /**
      * @brief Generate a unique ID hash for the Constellation.
      */
-    void generate_id_hash();
+    void generate_id();
 };
 
 } // namespace astro

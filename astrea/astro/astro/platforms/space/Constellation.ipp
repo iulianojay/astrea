@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(std::vector<Shell<Spacecraft_T>> _shells)
 {
     shells = _shells;
-    generate_id_hash();
+    generate_id();
 }
 
 
@@ -20,7 +20,7 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Plane<Spacecraft_T>> plan
 
     shells.push_back(noShell);
 
-    generate_id_hash();
+    generate_id();
 }
 
 
@@ -33,7 +33,7 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 
     shells.push_back(noShell);
 
-    generate_id_hash();
+    generate_id();
 }
 
 template <class Spacecraft_T>
@@ -63,7 +63,7 @@ Constellation<Spacecraft_T>::Constellation(
 
     shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
-    generate_id_hash();
+    generate_id();
 }
 
 template <class Spacecraft_T>
@@ -264,12 +264,10 @@ const Spacecraft_T& Constellation<Spacecraft_T>::get_spacecraft(const size_t& sp
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::generate_id_hash()
+void Constellation<Spacecraft_T>::generate_id()
 {
-    id = std::hash<size_t>()(shells[0].id);
-    for (size_t ii = 1; ii < shells.size(); ii++) {
-        id ^= std::hash<size_t>()(shells[ii].id);
-    }
+    static std::size_t idCounter = 0;
+    id                           = idCounter++;
 }
 
 

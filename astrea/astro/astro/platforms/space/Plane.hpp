@@ -57,7 +57,7 @@ class Plane {
     /**
      * @brief Destructor for Plane.
      */
-    ~Plane() = default;
+    ~Plane() { generate_id(); };
 
     /**
      * @brief Add a Spacecraft to the Plane.
@@ -184,7 +184,7 @@ class Plane {
      *
      * This function generates a unique ID hash for the Plane based on its contents.
      */
-    void generate_id_hash();
+    void generate_id();
 };
 
 } // namespace astro

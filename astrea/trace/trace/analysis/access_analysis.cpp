@@ -168,7 +168,7 @@ RiseSetArray find_platform_to_platform_accesses(
     // Get all access info once to avoid unnecessary calcs
     std::vector<AccessInfo> accessInfo(dates.size());
     std::size_t ii   = 0;
-    const Date epoch = dates.front();
+    const Date epoch = dates[0];
     for (const auto& date : dates) {
         // Get ECI state of ground station
         const EciRadiusVec position1 = platform1->get_inertial_position(date);

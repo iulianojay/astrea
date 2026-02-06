@@ -92,7 +92,7 @@ class Shell {
      * @brief Destructor for Shell.
      * Cleans up the shell and its planes.
      */
-    ~Shell() = default;
+    ~Shell() { generate_id(); };
 
     /**
      * @brief Returns the size of the shell, which is the number of spacecraft it contains.
@@ -406,7 +406,7 @@ class Shell {
     std::string name;
     std::vector<Plane<Spacecraft_T>> planes;
 
-    void generate_id_hash();
+    void generate_id();
 };
 
 } // namespace astro

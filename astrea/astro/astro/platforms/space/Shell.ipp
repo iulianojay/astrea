@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
     planes(_planes)
 {
-    generate_id_hash();
+    generate_id();
 }
 
 
@@ -18,7 +18,7 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 
     planes.push_back(noPlane);
 
-    generate_id_hash();
+    generate_id();
 }
 
 template <class Spacecraft_T>
@@ -60,9 +60,9 @@ Shell<Spacecraft_T>::Shell(
                                  sys });
             ++iAnom;
         }
-        plane.generate_id_hash();
+        plane.generate_id();
     }
-    generate_id_hash();
+    generate_id();
 }
 
 
@@ -155,12 +155,10 @@ const Spacecraft_T& Shell<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::generate_id_hash()
+void Shell<Spacecraft_T>::generate_id()
 {
-    id = std::hash<size_t>()(planes[0].id);
-    for (size_t ii = 1; ii < planes.size(); ii++) {
-        id ^= std::hash<size_t>()(planes[ii].id);
-    }
+    static std::size_t idCounter = 0;
+    id                           = idCounter++;
 }
 
 

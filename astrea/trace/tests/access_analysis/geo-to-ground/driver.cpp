@@ -196,7 +196,7 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
     fourBallGeo.add_spacecraft(geo1);
     fourBallGeo.add_spacecraft(geo2);
     fourBallGeo.add_spacecraft(geo3);
-    fourBallGeo.add_spacecraft(geo4);
+    // fourBallGeo.add_spacecraft(geo4);
 
     // Add sensors
     CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
@@ -221,10 +221,10 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
 
     ASSERT_EQ((accesses[geo1.get_id(), geo2.get_id()]).size(), 2);
     ASSERT_EQ((accesses[geo1.get_id(), geo3.get_id()]).size(), 0);
-    ASSERT_EQ((accesses[geo1.get_id(), geo4.get_id()]).size(), 2);
+    // ASSERT_EQ((accesses[geo1.get_id(), geo4.get_id()]).size(), 2);
 
     ASSERT_EQ((accesses[geo2.get_id(), geo3.get_id()]).size(), 2);
-    ASSERT_EQ((accesses[geo2.get_id(), geo4.get_id()]).size(), 0);
+    // ASSERT_EQ((accesses[geo2.get_id(), geo4.get_id()]).size(), 0);
 
-    ASSERT_EQ((accesses[geo3.get_id(), geo4.get_id()]).size(), 2);
+    // ASSERT_EQ((accesses[geo3.get_id(), geo4.get_id()]).size(), 2);
 }

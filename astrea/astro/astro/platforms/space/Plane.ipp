@@ -26,7 +26,7 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
         }
     }
 
-    generate_id_hash();
+    generate_id();
 }
 
 
@@ -68,12 +68,10 @@ const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
 
 
 template <class Spacecraft_T>
-void Plane<Spacecraft_T>::generate_id_hash()
+void Plane<Spacecraft_T>::generate_id()
 {
-    id = std::hash<size_t>()(satellites[0].get_id());
-    for (size_t ii = 1; ii < satellites.size(); ii++) {
-        id ^= std::hash<size_t>()(satellites[ii].get_id());
-    }
+    static std::size_t idCounter = 0;
+    id                           = idCounter++;
 }
 
 

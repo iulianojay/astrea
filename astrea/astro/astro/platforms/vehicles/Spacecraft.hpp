@@ -41,7 +41,7 @@ class Spacecraft : public ThrusterPlatform {
     /**
      * @brief Default constructor for Spacecraft.
      */
-    Spacecraft() = default;
+    Spacecraft() { generate_id(); };
 
     /**
      * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
@@ -274,7 +274,7 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Generates a unique identifier for the spacecraft based on its properties.
      * This method is called in the constructor to ensure that each spacecraft has a unique ID.
      */
-    void generate_id_hash();
+    void generate_id();
 };
 
 static_assert(IsUserDefinedVehicle<Spacecraft>, "Spacecraft must satisfy the IsVehicle concept");
