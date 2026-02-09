@@ -20,6 +20,8 @@
 
 #include <trace/analysis/access_analysis.hpp>
 
+#include <trace/io/output.hpp>
+
 #include <trace/platforms/ground/Grid.hpp>
 #include <trace/platforms/ground/GroundArchitecture.hpp>
 #include <trace/platforms/ground/GroundPoint.hpp>

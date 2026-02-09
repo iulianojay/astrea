@@ -33,7 +33,13 @@ namespace trace {
 enum class Stat {
     MIN,  //!< Minimum value
     MEAN, //!< Mean value
-    MAX   //!< Maximum value
+    MAX,  //!< Maximum value
+    PCT   //!< Percentile value
+};
+
+enum class RisesetMetric {
+    GAP,         //!< Time gap between rise and set
+    ACCESS_TIME, //!< Time of access based on rise and set times
 };
 
 /**
@@ -212,18 +218,20 @@ class RiseSetArray {
     /**
      * @brief Calculates the gap between rise and set times.
      *
-     * @param stat The statistical measure to calculate (MIN, MEAN, MAX).
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated gap based on the specified statistic.
      */
-    Time gap(const Stat& stat = Stat::MEAN) const;
+    Time gap(const Stat& stat = Stat::MEAN, const Unitless percentile = 0.5) const;
 
     /**
      * @brief Calculates the access time based on rise and set times.
      *
-     * @param stat The statistical measure to calculate (MIN, MEAN, MAX).
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated access time based on the specified statistic.
      */
-    Time access_time(const Stat& stat = Stat::MEAN) const;
+    Time access_time(const Stat& stat = Stat::MEAN, const Unitless percentile = 0.5) const;
 
     /**
      * @brief Iterator type for the RiseSetArray.
@@ -314,6 +322,16 @@ class RiseSetArray {
      * @return std::string A formatted string representation of the Time object.
      */
     std::string to_formatted_string(Time t) const;
+
+    /**
+     * @brief Calculates a specified statistic (MIN, MEAN, MAX, PCT) for the rise/set pairs based on the specified metric (GAP or ACCESS_TIME).
+     *
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
+     * @param metric The metric to calculate the statistic for (GAP or ACCESS_TIME).
+     * @return Time The calculated statistic based on the specified metric and statistic type.
+     */
+    Time calculate_statistic(const Stat& stat, const Unitless& percentile, const RisesetMetric metric) const;
 };
 
 } // namespace trace

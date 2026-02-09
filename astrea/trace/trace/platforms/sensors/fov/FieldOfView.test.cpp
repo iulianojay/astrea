@@ -12,6 +12,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <gtl/btree.hpp>
 
 #include <astro/astro.hpp>
 
@@ -53,7 +54,7 @@ class FieldOfViewTest : public testing::Test {
 
     Angle halfCone;
     CircularFieldOfView circFov;
-    std::unordered_map<Angle, Angle> points;
+    gtl::btree_map<Angle, Angle> points;
     PolygonalFieldOfView polyFovPoints;
 };
 

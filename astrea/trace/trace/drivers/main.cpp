@@ -50,16 +50,21 @@ using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::W;
 
-int interference_test();
+int arcturus_starlink_interference_test();
 int iceye_test();
+
+
+template <typename T>
+AccessArray
+    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, GroundArchitecture& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
 
 int main()
 {
-    // return interference_test();
+    // return arcturus_starlink_interference_test();
     return iceye_test();
 }
 
-int interference_test()
+int arcturus_starlink_interference_test()
 {
 
     // Setup system
@@ -69,7 +74,9 @@ int interference_test()
     // Query database
     auto snapshot = get_snapshot();
     auto geoGp = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ARCTURUS%")));
-    auto everythingElseGps = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%")));
+    auto everythingElseGps =
+        snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%STARLINK%")));
+
 
     if (geoGp.size() == 0 || everythingElseGps.size() == 0) {
         throw std::runtime_error("Error: Nothing pulled from database. Are you sure you filled it?");
@@ -93,8 +100,6 @@ int interference_test()
     for (auto& shell : allSats.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
-                // const State& state = sat.get_state();
-                // sat.update_state(State(state.get_elements(), startDate, sys)); // Force inital startDate to match cause it's SLOW right now
                 sat.attach_payload(leoCone);
             }
         }
@@ -110,106 +115,27 @@ int interference_test()
           0.0 * m }
     );
     dc.attach_payload(groundCone);
-    GroundArchitecture grounds({ dc });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
     LatLon corner4{ 50.0 * deg, 180.0 * deg };
     Angle spacing = 10.0 * deg;
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
-    // Build EoMs
-    J2MeanVop eom;
+    GroundArchitecture grounds({ dc });
 
-    // Setup integrator
-    Integrator integrator;
-    integrator.set_abs_tol(1.0e-10);
-    integrator.set_rel_tol(1.0e-10);
-
-    // Propagate
-    auto start = std::chrono::steady_clock::now();
-
-    Time propTime = days(24);
-    Date endDate  = startDate + propTime;
-    allSats.propagate(endDate, eom, integrator);
-
-    auto end  = std::chrono::steady_clock::now();
-    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
-
-    std::cout << std::endl << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
-
-    start = std::chrono::steady_clock::now();
-
-    for (auto& shell : allSats.get_shells()) {
-        for (auto& plane : shell.get_planes()) {
-            for (auto& sat : plane.get_all_spacecraft()) {
-                // Check that state history is populated and has correct time frame
-                const auto& stateHistory = sat.get_state_history();
-                if (stateHistory.size() == 0) {
-                    throw std::runtime_error("Error: State history not populated after propagation.");
-                }
-                if (stateHistory.first().get_epoch() > startDate) {
-                    std::ostringstream oss;
-                    oss << "Error: State history starts at the wrong time! Expected: " << startDate
-                        << ", Actual: " << stateHistory.first().get_epoch();
-                    throw std::runtime_error(oss.str());
-                }
-                if (stateHistory.last().get_epoch() != endDate) {
-                    std::ostringstream oss;
-                    oss << "Error: State history ends at the wrong time! Expected: " << endDate
-                        << ", Actual: " << stateHistory.last().get_epoch();
-                    throw std::runtime_error(oss.str());
-                }
-            }
-        }
-    }
-
-    // Find access
-    Time accessResolution = minutes(1.0);
-    // const auto accesses   = find_accesses(allSats, accessResolution, startDate, endDate, sys);
-    const auto accesses = find_accesses(allSats, grounds, accessResolution, startDate, endDate, sys);
-
-    end  = std::chrono::steady_clock::now();
-    diff = std::chrono::duration_cast<nanoseconds>(end - start);
-
-    std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+    // Propagate and find access
+    const AccessArray accesses = propagate_and_run_access_analysis(allSats, grounds, startDate, sys);
 
     // Save
     std::filesystem::path outfile = std::string(_TRACE_ROOT_) + "/trace/drivers/results/revisit.csv";
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
-    auto writer = csv::make_csv_writer(ss);
-
-    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
-    for (const auto& [idPair, risesets] : accesses) {
-        if (risesets.size() > 0) {
-
-            // Gross
-            std::string sender, receiver;
-            for (const auto& shell : allSats.get_shells()) {
-                for (const auto& plane : shell.get_planes()) {
-                    for (const auto& viewer : plane.get_all_spacecraft()) {
-                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
-                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
-                    }
-                }
-            }
-            for (const auto& ground : grounds) {
-                if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
-            }
-
-            std::vector<std::string> row{ sender, receiver };
-            for (const auto& str : risesets.to_string_vector()) {
-                row.push_back(str);
-            }
-            writer << row;
-        }
-    }
+    save_accesses_to_file(accesses, outfile, allSats, grounds);
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string();
-    const std::string cmd          = "python3 " + plotFile.string();
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string() +
+                                     " --target \"Washington DC\" --main \"ARCTURUS\"";
+    const std::string cmd = "python3 " + plotFile.string();
 
+    std::cout << "Plotting results with command: " << cmd << std::endl;
     return std::system(cmd.c_str());
 }
 
@@ -218,7 +144,7 @@ int iceye_test()
 {
     // Setup system
     AstrodynamicsSystem sys;
-    Date epoch = Date::now();
+    Date startDate = Date::now();
 
     // Query database
     auto snapshot = get_snapshot();
@@ -254,15 +180,36 @@ int iceye_test()
           0.0 * m }
     );
     home.attach_payload(groundCone);
-    GroundArchitecture grounds({ home });
 
     LatLon corner1{ -50.0 * deg, -180.0 * deg };
     LatLon corner4{ 50.0 * deg, 180.0 * deg };
     Angle spacing = 10.0 * deg;
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
+    GroundArchitecture grounds({ home });
+
+    // Propagate and find access
+    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grounds, startDate, sys);
+
+    // Save
+    std::filesystem::path outfile = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye/risesets.csv";
+    save_accesses_to_file(accesses, outfile, iceyeConstel, grounds);
+
+    // Call plotter
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string() +
+                                     " --target \"ICEYE Oy\" --main \"ICEYE-X48\"";
+    const std::string cmd = "python3 " + plotFile.string();
+
+    std::cout << "Plotting results with command: " << cmd << std::endl;
+    return std::system(cmd.c_str());
+}
+
+template <typename T>
+AccessArray
+    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, GroundArchitecture& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
+{
     // Build EoMs
-    J2MeanVop eom(sys);
+    J2MeanVop eom;
 
     // Setup integrator
     Integrator integrator;
@@ -272,8 +219,9 @@ int iceye_test()
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Interval propInterval{ seconds(0), days(30) };
-    iceyeConstel.propagate(epoch, eom, integrator, propInterval);
+    Time propTime = days(30.0);
+    Date endDate  = startDate + propTime;
+    constellation.propagate(endDate, eom, integrator);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
@@ -283,53 +231,13 @@ int iceye_test()
     start = std::chrono::steady_clock::now();
 
     // Find access
-    Time accessResolution = seconds(30);
-    // const auto accesses   = find_accesses(iceyeConstel, accessResolution, epoch, sys);
-    const auto accesses = find_accesses(iceyeConstel, grounds, accessResolution, epoch, sys);
+    Time accessResolution = minutes(1.0);
+    const auto accesses   = find_accesses(constellation, grounds, accessResolution, startDate, endDate, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
     std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
 
-    // Save
-    const std::string root        = std::getenv("ASTREA_ROOT");
-    std::filesystem::path base    = root + "/astrea/trace/";
-    std::filesystem::path outfile = base / "trace/drivers/results/iceye/revisit.csv";
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
-    auto writer = csv::make_csv_writer(ss);
-
-    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
-    for (const auto& [idPair, risesets] : accesses) {
-        if (risesets.size() > 0) {
-
-            // Gross
-            std::string sender, receiver;
-            for (const auto& shell : iceyeConstel.get_shells()) {
-                for (const auto& plane : shell.get_planes()) {
-                    for (const auto& viewer : plane.get_all_spacecraft()) {
-                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
-                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
-                    }
-                }
-            }
-            for (const auto& ground : grounds) {
-                if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
-            }
-
-            std::vector<std::string> row{ sender, receiver };
-            for (const auto& str : risesets.to_string_vector()) {
-                row.push_back(str);
-            }
-            writer << row;
-        }
-    }
-
-    // Call plotter
-    std::filesystem::path plotFile = base / "pytrace/plots.py";
-    const std::string cmd          = "python3 " + plotFile.string();
-
-    return std::system(cmd.c_str());
+    return accesses;
 }

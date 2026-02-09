@@ -7,7 +7,7 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-# add_subdirectory(trace)
+add_subdirectory(trace)
 add_subdirectory(astro)
 add_subdirectory(math)
 # add_subdirectory(pathfinder)

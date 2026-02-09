@@ -250,6 +250,8 @@ if __name__ == "__main__":
     argparser = argparse.ArgumentParser(description="Plot trace results.")
     argparser.add_argument("--outfile", type=str, help="The output file for the plot.",
                            default=os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', "revisit.csv"))
+    argparser.add_argument("--target", type=str, help="The target ground site.", default="Washington DC")
+    argparser.add_argument("--main", type=str, help="The main satellite to plot.", default="ARCTURUS")
     args = argparser.parse_args()
 
     results = args.outfile
@@ -258,9 +260,11 @@ if __name__ == "__main__":
     countOutfile = os.path.join(base, "trace_count.png")
     interfereOutfile = os.path.join(base, "interference_count.png")
 
-    target = "Washington DC"
-    main = "ARCTURUS"
+    target = args.target
+    main = args.main
     colors = {main: "tab:blue"}
+
+    print(f"Reading trace results from {results}. Targeting {target} with main satellite {main}...")
 
     plot_trace_bars(results, traceOutfile, main, target, colors)
     plot_number_of_accesses(results, countOutfile, target)

@@ -21,7 +21,7 @@
 #include <numbers>
 #include <vector>
 
-#include <parallel_hashmap/btree.h>
+#include <gtl/btree.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/dynamic_frames.hpp>
@@ -61,7 +61,7 @@ class PolygonalFieldOfView : public FieldOfView {
      *
      * @param points A map of angles defining the polygonal field of view.
      */
-    PolygonalFieldOfView(const phmap::btree_map<Angle, Angle>& points) :
+    PolygonalFieldOfView(const gtl::btree_map<Angle, Angle>& points) :
         _points(points)
     {
     }
@@ -90,9 +90,9 @@ class PolygonalFieldOfView : public FieldOfView {
     // Probably will be some body-fixed frame aligned with the sensor boresight
     // The key angle is the azimuthal angle around the boresight, and the value angle is the
     // off-boresight angle at that azimuth
-    phmap::btree_map<Angle, Angle> _points; //<! Map of angles defining the polygonal field of view
-    Angle _minHalfAngle;                    //<! Minimum off-boresight half angle
-    Angle _maxHalfAngle;                    //<! Maximum off-boresight half angle
+    gtl::btree_map<Angle, Angle> _points; //<! Map of angles defining the polygonal field of view
+    Angle _minHalfAngle;                  //<! Minimum off-boresight half angle
+    Angle _maxHalfAngle;                  //<! Maximum off-boresight half angle
 
     /**
      * @brief Finds the minimum and maximum off-boresight angles from _points

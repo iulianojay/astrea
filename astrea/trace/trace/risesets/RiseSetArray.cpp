@@ -15,6 +15,11 @@
 
 #include <stdexcept>
 
+#include <mp-units/systems/si.h>
+
+using mp_units::one;
+using mp_units::si::unit_symbols::s;
+
 namespace astrea {
 namespace trace {
 
@@ -143,77 +148,75 @@ std::vector<std::string> RiseSetArray::to_string_vector() const
 }
 
 
-Time RiseSetArray::gap(const Stat& stat) const
+Time RiseSetArray::gap(const Stat& stat, const Unitless percentile) const
 {
-    Time retval = 0.0 * mp_units::si::unit_symbols::s;
-
-    // No gaps
-    if (_risesets.size() <= 2) { return retval; }
-
-    for (std::size_t ii = 1; ii < _risesets.size() - 1; ii += 2) {
-        const Time gap = _risesets[ii + 1] - _risesets[ii];
-
-        if (ii == 1) {
-            retval = gap;
-            continue;
-        }
-        switch (stat) {
-            case (Stat::MIN): {
-                if (gap < retval) { retval = gap; }
-                break;
-            }
-            case (Stat::MAX): {
-                if (gap > retval) { retval = gap; }
-                break;
-            }
-            case (Stat::MEAN): {
-                retval += gap;
-                break;
-            }
-            default: throw std::runtime_error("Unknown gap statistic requested.");
-        }
-    }
-    if (stat == Stat::MEAN) {
-        const std::size_t nGaps = _risesets.size() / 2 - 1;
-        retval /= nGaps;
-    }
-    return retval;
+    return calculate_statistic(stat, percentile, RisesetMetric::GAP);
 }
 
 
-Time RiseSetArray::access_time(const Stat& stat) const
+Time RiseSetArray::access_time(const Stat& stat, const Unitless percentile) const
 {
+    return calculate_statistic(stat, percentile, RisesetMetric::ACCESS_TIME);
+}
+
+
+Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percentile, const RisesetMetric metric) const
+{
+
     Time retval = 0.0 * mp_units::si::unit_symbols::s;
 
     // Empty
     if (_risesets.size() < 2) { return retval; }
 
-    for (std::size_t ii = 0; ii < _risesets.size(); ii += 2) {
-        const Time accessTime = _risesets[ii + 1] - _risesets[ii];
+    // Gap measures space between accesses so we can just shift the starting index
+    // This value also happens to represent the difference in number of each metric type so we use it to shift
+    // the array sizes for each accordingly
+    std::size_t startIdx = metric == RisesetMetric::GAP ? 1 : 0;
 
-        if (ii == 0) {
-            retval = accessTime;
+    // Percentile calcs
+    if (stat == Stat::PCT) {
+        if (percentile < 0 || percentile > 1) { throw std::runtime_error("Percentile must be between 0 and 1."); }
+
+        const double nMetricIntervals = static_cast<double>(_risesets.size() / 2 - startIdx);
+        const std::size_t index = static_cast<std::size_t>(std::ceil(percentile.numerical_value_in(one) * nMetricIntervals)) - 1;
+
+        std::vector<Time> metricTimes; // TODO: Update this so the vector is built in sorted order
+        metricTimes.reserve(nMetricIntervals);
+        for (std::size_t ii = startIdx; ii < _risesets.size() - 1; ii += 2) {
+            metricTimes.push_back(_risesets[ii + 1] - _risesets[ii]);
+        }
+        std::sort(metricTimes.begin(), metricTimes.end());
+
+        return metricTimes[index];
+    }
+
+    // Non-percentile calcs
+    for (std::size_t ii = startIdx; ii < _risesets.size(); ii += 2) {
+        const Time metricTime = _risesets[ii + 1] - _risesets[ii];
+
+        if (ii == startIdx) {
+            retval = metricTime;
             continue;
         }
         switch (stat) {
             case (Stat::MIN): {
-                if (accessTime < retval) { retval = accessTime; }
+                if (metricTime < retval) { retval = metricTime; }
                 break;
             }
             case (Stat::MAX): {
-                if (accessTime > retval) { retval = accessTime; }
+                if (metricTime > retval) { retval = metricTime; }
                 break;
             }
             case (Stat::MEAN): {
-                retval += accessTime;
+                retval += metricTime;
                 break;
             }
             default: throw std::runtime_error("Unknown access time statistic requested.");
         }
     }
     if (stat == Stat::MEAN) {
-        const std::size_t nAccess = _risesets.size() / 2;
-        retval /= nAccess;
+        const std::size_t nMetricIntervals = _risesets.size() / 2 - startIdx;
+        retval /= nMetricIntervals;
     }
     return retval;
 }
