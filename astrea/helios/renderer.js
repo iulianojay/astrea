@@ -2,6 +2,7 @@
 try {
     const THREE             = require('three');
     const { OrbitControls } = require('three/examples/jsm/controls/OrbitControls.js');
+    const { TIFFLoader }    = require('three/examples/jsm/loaders/TIFFLoader.js');
 
     console.log('Three.js loaded, version:', THREE.REVISION);
 
@@ -12,7 +13,7 @@ try {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping         = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.0;
 
@@ -22,13 +23,15 @@ try {
 
     // Orbit Controls
     const controls         = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.minDistance   = 1.5;
-    controls.maxDistance   = 100;
+    controls.enableDamping = false;
+    controls.minDistance   = 1;
+    controls.maxDistance   = 10;
     controls.enablePan     = true;
+    controls.rotateSpeed   = 0.8;
+    controls.zoomSpeed     = 1.0;
 
     // Texture loader
+    const tiffLoader    = new TIFFLoader();
     const textureLoader = new THREE.TextureLoader();
 
     // Create starfield
@@ -40,7 +43,7 @@ try {
         );
 
         const starsVertices = [];
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < 5000; i++) {
             const radius = 500 + Math.random() * 500;
             const theta  = Math.random() * Math.PI * 2;
             const phi    = Math.acos(2 * Math.random() - 1);
@@ -64,14 +67,23 @@ try {
     {
         const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
 
-        // Load textures
-        const earthTexture      = textureLoader.load('images/earthmap.jpg');
+        // Load TIFF textures
+        const earthTexture = tiffLoader.load(
+            'images/HugeEarthMaps/Color/Earth-Color-Map-40k.tif',
+            (texture) => { console.log('Earth texture loaded:', texture.image.width, 'x', texture.image.height); }
+        );
         earthTexture.colorSpace = THREE.SRGBColorSpace;
 
-        const cloudsTexture      = textureLoader.load('images/cloud_combined.jpg');
+        const cloudsTexture = tiffLoader.load(
+            'images/HugeEarthMaps/Clouds/Earth-Cloud-Map-40K.tif',
+            (texture) => { console.log('Clouds texture loaded:', texture.image.width, 'x', texture.image.height); }
+        );
         cloudsTexture.colorSpace = THREE.SRGBColorSpace;
 
-        const lightsTexture      = textureLoader.load('images/earth_lights.png');
+        const lightsTexture = tiffLoader.load(
+            'images/HugeEarthMaps/Night/Earth-Night-Map-50K.tif',
+            (texture) => { console.log('Lights texture loaded:', texture.image.width, 'x', texture.image.height); }
+        );
         lightsTexture.colorSpace = THREE.SRGBColorSpace;
 
         // Earth material
@@ -79,17 +91,17 @@ try {
             map: earthTexture,
             bumpScale: 0.03,
             specular: new THREE.Color(0x333333),
-            shininess: 10,
+            shininess: 6,
             emissiveMap: lightsTexture,
             emissive: new THREE.Color(0xffff88),
-            emissiveIntensity: 0.5
+            emissiveIntensity: 0.75
         });
 
         const earth = new THREE.Mesh(earthGeometry, earthMaterial);
         scene.add(earth);
 
         // Clouds layer
-        const cloudsGeometry = new THREE.SphereGeometry(1.01, 64, 64);
+        const cloudsGeometry = new THREE.SphereGeometry(1.01, 32, 32);
         const cloudsMaterial =
             new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true, opacity: 0.4, depthWrite: false });
 
@@ -133,16 +145,16 @@ try {
     function setupLighting()
     {
         // Ambient light for overall illumination
-        const ambientLight = new THREE.AmbientLight(0x222222, 0.5);
+        const ambientLight = new THREE.AmbientLight(0x222222, 2.0);
         scene.add(ambientLight);
 
         // Sun as directional light (distant light source)
-        const sunLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        const sunLight = new THREE.DirectionalLight(0xffffff, 10.0);
         sunLight.position.set(5, 2, 3);
         scene.add(sunLight);
 
         // Add subtle hemisphere light for atmospheric effect
-        const hemiLight = new THREE.HemisphereLight(0x4488ff, 0x002244, 0.3);
+        const hemiLight = new THREE.HemisphereLight(0x4488ff, 0x002244, 0.5);
         scene.add(hemiLight);
 
         return { ambientLight, sunLight, hemiLight };
@@ -168,7 +180,7 @@ try {
         earth.rotation.y += 0.0005;
 
         // Rotate clouds slightly faster
-        clouds.rotation.y += 0.0007;
+        if (clouds) { clouds.rotation.y += 0.0007; }
 
         // Subtle starfield rotation
         starfield.rotation.y += 0.00002;
