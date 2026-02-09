@@ -13,6 +13,7 @@
 
 #include <trace/risesets/RiseSetArray.hpp>
 
+#include <limits>
 #include <stdexcept>
 
 #include <mp-units/systems/si.h>
@@ -162,72 +163,66 @@ Time RiseSetArray::access_time(const Stat& stat, const Unitless percentile) cons
 
 Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percentile, const RisesetMetric metric) const
 {
-
-    Time retval = 0.0 * mp_units::si::unit_symbols::s;
-
-    // Empty
-    if (_risesets.size() < 2) { return retval; }
+    // TODO: Is this a good default value? Is it necessarily meaningless or should it be negative or error?
+    Time retval = 0.0 * s;
 
     // Gap measures space between accesses so we can just shift the starting index
     // This value also happens to represent the difference in number of each metric type so we use it to shift
     // the array sizes for each accordingly
-    std::size_t startIdx = metric == RisesetMetric::GAP ? 1 : 0;
+    std::size_t idxOffset = metric == RisesetMetric::GAP ? 1 : 0;
+
+    // Empty or not enough risesets for any gap
+    if (_risesets.size() < 2 + idxOffset) { return retval; }
 
     // Percentile calcs
     if (stat == Stat::PCT) {
-        if (percentile < 0 || percentile > 1) { throw std::runtime_error("Percentile must be between 0 and 1."); }
+        if (percentile < 0 * one || percentile > 1 * one) {
+            throw std::runtime_error("Percentile must be between 0 and 1.");
+        }
 
-        const double nMetricIntervals = static_cast<double>(_risesets.size() / 2 - startIdx);
+        const double nMetricIntervals = static_cast<double>(_risesets.size() / 2 - idxOffset);
         const std::size_t index = static_cast<std::size_t>(std::ceil(percentile.numerical_value_in(one) * nMetricIntervals)) - 1;
 
-        std::vector<Time> metricTimes; // TODO: Update this so the vector is built in sorted order
-        metricTimes.reserve(nMetricIntervals);
-        for (std::size_t ii = startIdx; ii < _risesets.size() - 1; ii += 2) {
-            metricTimes.push_back(_risesets[ii + 1] - _risesets[ii]);
+        std::vector<Time> durations; // TODO: Update this so the vector is built in sorted order
+        durations.reserve(nMetricIntervals);
+        for (std::size_t ii = idxOffset; ii < _risesets.size() - 1; ii += 2) {
+            durations.push_back(_risesets[ii + 1] - _risesets[ii]);
         }
-        std::sort(metricTimes.begin(), metricTimes.end());
+        std::sort(durations.begin(), durations.end());
 
-        return metricTimes[index];
+        return durations[index];
     }
 
     // Non-percentile calcs
-    for (std::size_t ii = startIdx; ii < _risesets.size(); ii += 2) {
-        const Time metricTime = _risesets[ii + 1] - _risesets[ii];
+    if (stat == Stat::MIN) { retval = std::numeric_limits<double>::max() * s; }
+    for (std::size_t ii = idxOffset; ii < _risesets.size() - 1; ii += 2) {
+        const Time duration = _risesets[ii + 1] - _risesets[ii];
 
-        if (ii == startIdx) {
-            retval = metricTime;
+        if (ii == idxOffset) {
+            retval = duration;
             continue;
         }
         switch (stat) {
             case (Stat::MIN): {
-                if (metricTime < retval) { retval = metricTime; }
+                if (duration < retval) { retval = duration; }
                 break;
             }
             case (Stat::MAX): {
-                if (metricTime > retval) { retval = metricTime; }
+                if (duration > retval) { retval = duration; }
                 break;
             }
             case (Stat::MEAN): {
-                retval += metricTime;
+                retval += duration;
                 break;
             }
             default: throw std::runtime_error("Unknown access time statistic requested.");
         }
     }
     if (stat == Stat::MEAN) {
-        const std::size_t nMetricIntervals = _risesets.size() / 2 - startIdx;
+        const std::size_t nMetricIntervals = _risesets.size() / 2 - idxOffset;
         retval /= nMetricIntervals;
     }
     return retval;
-}
-
-
-std::string RiseSetArray::to_formatted_string(Time t) const
-{
-    std::ostringstream out;
-    out.precision(1);
-    out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
-    return std::move(out).str();
 }
 
 

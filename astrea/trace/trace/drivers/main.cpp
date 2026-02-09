@@ -127,12 +127,16 @@ int arcturus_starlink_interference_test()
     const AccessArray accesses = propagate_and_run_access_analysis(allSats, grounds, startDate, sys);
 
     // Save
-    std::filesystem::path outfile = std::string(_TRACE_ROOT_) + "/trace/drivers/results/revisit.csv";
-    save_accesses_to_file(accesses, outfile, allSats, grounds);
+    std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
+    std::filesystem::path accessOutfile  = base / "revisit.csv";
+    std::filesystem::path metricsOutfile = base / "metrics.csv";
+
+    save_accesses_to_file(accesses, accessOutfile, allSats, grounds);
+    save_access_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string() +
-                                     " --target \"Washington DC\" --main \"ARCTURUS\"";
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
+                                     accessOutfile.string() + " --target \"Washington DC\" --main \"ARCTURUS\"";
     const std::string cmd = "python3 " + plotFile.string();
 
     std::cout << "Plotting results with command: " << cmd << std::endl;
@@ -192,16 +196,22 @@ int iceye_test()
     const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grounds, startDate, sys);
 
     // Save
-    std::filesystem::path outfile = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye/risesets.csv";
-    save_accesses_to_file(accesses, outfile, iceyeConstel, grounds);
+    std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
+    std::filesystem::path accessOutfile  = base / "revisit.csv";
+    std::filesystem::path metricsOutfile = base / "metrics.csv";
+
+    save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grounds);
+    save_access_metrics_to_file(accesses, metricsOutfile, iceyeConstel, grounds);
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outfile.string() +
-                                     " --target \"ICEYE Oy\" --main \"ICEYE-X48\"";
-    const std::string cmd = "python3 " + plotFile.string();
+    // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
+    //                                  accessOutfile.string() + " --target \"ICEYE Oy\" --main \"ICEYE-X48\"";
+    // const std::string cmd = "python3 " + plotFile.string();
 
-    std::cout << "Plotting results with command: " << cmd << std::endl;
-    return std::system(cmd.c_str());
+    // std::cout << "Plotting results with command: " << cmd << std::endl;
+    // return std::system(cmd.c_str());
+
+    return 0;
 }
 
 template <typename T>
@@ -215,6 +225,9 @@ AccessArray
     Integrator integrator;
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
+
+    Time accessResolution = seconds(1.0);
+    integrator.set_timestep(accessResolution);
 
     // Propagate
     auto start = std::chrono::steady_clock::now();
@@ -231,8 +244,7 @@ AccessArray
     start = std::chrono::steady_clock::now();
 
     // Find access
-    Time accessResolution = minutes(1.0);
-    const auto accesses   = find_accesses(constellation, grounds, accessResolution, startDate, endDate, sys);
+    const auto accesses = find_accesses(constellation, grounds, accessResolution, startDate, endDate, sys);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);

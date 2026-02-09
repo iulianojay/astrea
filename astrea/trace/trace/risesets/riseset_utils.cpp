@@ -13,7 +13,9 @@
 
 #include <trace/risesets/riseset_utils.hpp>
 
+#include <fstream>
 #include <limits>
+#include <sstream>
 #include <vector>
 
 #include <mp-units/systems/si.h>
@@ -25,6 +27,14 @@
 
 namespace astrea {
 namespace trace {
+
+std::string to_formatted_string(Time t)
+{
+    std::ostringstream out;
+    out.precision(1);
+    out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
+    return std::move(out).str();
+}
 
 RiseSetArray riseset_union(const RiseSetArray& a, const RiseSetArray& b)
 {

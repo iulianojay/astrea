@@ -316,14 +316,6 @@ class RiseSetArray {
     void validate_risesets(const std::vector<Time>& risesets) const;
 
     /**
-     * @brief Converts a Time object to a formatted string.
-     *
-     * @param t The Time object to convert.
-     * @return std::string A formatted string representation of the Time object.
-     */
-    std::string to_formatted_string(Time t) const;
-
-    /**
      * @brief Calculates a specified statistic (MIN, MEAN, MAX, PCT) for the rise/set pairs based on the specified metric (GAP or ACCESS_TIME).
      *
      * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
