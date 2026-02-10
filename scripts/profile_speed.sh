@@ -1,15 +1,15 @@
 
 DEBUG=RelWithDebInfo
-# PROGRAM=./install/x86_64-Linux/GNU-13.1.0/$DEBUG/trace/bin/trace
-# OUTFILE=./astrea/trace/trace/drivers/results/callgrind.out
-PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
-OUTFILE=./astrea/astro/tests/profiling/results/callgrind.out
+PROGRAM=./install/gcc-13-23/$DEBUG/bin/trace/trace
+OUTFILE=./astrea/trace/trace/drivers/results/callgrind.out
+# PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
+# OUTFILE=./astrea/astro/tests/profiling/results/callgrind.out
 
 OPTIONS="--callgrind-out-file=$OUTFILE --dump-instr=yes --collect-jumps=yes"
 CALLGRIND_CMD="valgrind --tool=callgrind $OPTIONS $PROGRAM"
 
 echo $CALLGRIND_CMD
-eval $CALLGRIND_CMD
+# eval $CALLGRIND_CMD
 
 CALLGRIND_OPTIONS="--threshold=100 --tree=both"
 ANNOTATE_INCLUSIVE_CMD="callgrind_annotate $CALLGRIND_OPTIONS --inclusive=yes $OUTFILE  > $OUTFILE.inclusive"

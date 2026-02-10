@@ -54,9 +54,9 @@ int arcturus_starlink_interference_test();
 int iceye_test();
 
 
-template <typename T>
+template <typename T, typename U>
 AccessArray
-    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, GroundArchitecture& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
+    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
 
 int main()
 {
@@ -190,18 +190,16 @@ int iceye_test()
     Angle spacing = 10.0 * deg;
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
-    GroundArchitecture grounds({ home });
-
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grounds, startDate, sys);
+    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys);
 
     // Save
     std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
     std::filesystem::path accessOutfile  = base / "revisit.csv";
     std::filesystem::path metricsOutfile = base / "metrics.csv";
 
-    save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grounds);
-    save_access_metrics_to_file(accesses, metricsOutfile, iceyeConstel, grounds);
+    save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
+    save_access_metrics_to_file(accesses, metricsOutfile, iceyeConstel, grid);
 
     // Call plotter
     // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
@@ -214,9 +212,8 @@ int iceye_test()
     return 0;
 }
 
-template <typename T>
-AccessArray
-    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, GroundArchitecture& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
+template <typename T, typename U>
+AccessArray propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
 {
     // Build EoMs
     J2MeanVop eom;
@@ -226,7 +223,7 @@ AccessArray
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    Time accessResolution = seconds(1.0);
+    Time accessResolution = seconds(60.0);
     integrator.set_timestep(accessResolution);
 
     // Propagate
@@ -244,7 +241,8 @@ AccessArray
     start = std::chrono::steady_clock::now();
 
     // Find access
-    const auto accesses = find_accesses(constellation, grounds, accessResolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys);
+    const auto accesses = analyzer.find_accesses(constellation, grounds);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);

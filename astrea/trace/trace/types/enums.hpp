@@ -1,7 +1,7 @@
 /**
- * @file typedefs.hpp
+ * @file enums.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Contains type definitions for the astrea access library.
+ * @brief Contains enums definitions for the astrea access library.
  * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -18,23 +18,39 @@
  */
 #pragma once
 
-#include <cstdint>
+#include <trace/types/typedefs.hpp>
 
 namespace astrea {
 namespace trace {
 
 /**
- * @brief Type definition for enumeration types.
+ * @brief Enumeration of statistical measures for RiseSetArray.
  */
-using EnumType = uint32_t;
+enum class Stat : EnumType {
+    MIN,  //!< Minimum value
+    MEAN, //!< Mean value
+    MAX,  //!< Maximum value
+    PCT   //!< Percentile value
+};
 
 /**
- * @brief Latitude/Longitude coordinate pair.
- *
- * This type is used to represent a geographic location on the Earth's surface.
+ * @brief Enumeration for different rise/set metrics.
  */
-using LatLon = std::pair<Angle, Angle>;
+enum class RisesetMetric : EnumType {
+    GAP,        //!< Time gap between rise and set
+    ACCESS_TIME //!< Time of access based on rise and set times
+};
 
+/**
+ * @brief Enumeration for different grid types.
+ */
+enum class GridType : EnumType {
+    UNIFORM,     //!< Uniform grid with equal spacing
+    EQUAL_AREA,  //!< Equal area grid with varying spacing
+    WEIGHTED_NS, //!< Weighted grid with North-South emphasis
+    WEIGHTED_EW, //!< Weighted grid with East-West emphasis
+    MANUAL       //!< Manual grid with user-defined points
+};
 
 } // namespace trace
 } // namespace astrea

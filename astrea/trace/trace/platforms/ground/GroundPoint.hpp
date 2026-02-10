@@ -73,6 +73,13 @@ class GroundPoint : virtual public AccessObject {
     bool operator==(const GroundPoint& other) const { return _lla == other._lla; }
 
     /**
+     * @brief Gets the geodetic coordinates of the ground point.
+     *
+     * @return const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the ground point.
+     */
+    const astro::Geodetic& get_lla() const { return _lla; }
+
+    /**
      * @brief Gets the latitude of the ground point.
      *
      * @return Angle The latitude of the ground point.
@@ -120,7 +127,7 @@ class GroundPoint : virtual public AccessObject {
     std::size_t generate_id()
     {
         static std::size_t idCounter = 0;
-        return idCounter++;
+        return idCounter--; // TODO: NOT THIS (but have to for now cause otherwise viewer ids can conflict with ground IDs)
     }
 };
 

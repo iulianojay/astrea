@@ -39,4 +39,5 @@
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/risesets/riseset_utils.hpp>
 
+#include <trace/types/enums.hpp>
 #include <trace/types/typedefs.hpp>

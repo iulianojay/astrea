@@ -94,13 +94,8 @@ struct RisesetStats {
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
-template <typename T>
-void save_accesses_to_file(
-    const AccessArray& accesses,
-    const std::filesystem::path& outfile,
-    const astro::Constellation<T>& satellites,
-    const std::optional<GroundArchitecture>& grounds = std::nullopt
-)
+template <typename T, typename U>
+void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::path& outfile, const astro::Constellation<T>& satellites, const U& grounds = U())
 {
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);
@@ -120,10 +115,20 @@ void save_accesses_to_file(
                     }
                 }
             }
-            if (grounds.has_value()) {
-                for (const auto& ground : grounds.value()) {
-                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
+            if (grounds.size() != 0) {
+                for (const auto& ground : grounds) {
+                    if (ground.get_id() == idPair.sender) {
+                        if constexpr (std::derived_from<U, GroundArchitecture>) { sender = ground.get_name(); }
+                        else {
+                            sender = "Ground Point " + std::to_string(ground.get_id());
+                        }
+                    }
+                    if (ground.get_id() == idPair.receiver) {
+                        if constexpr (std::derived_from<U, GroundArchitecture>) { receiver = ground.get_name(); }
+                        else {
+                            receiver = "Ground Point " + std::to_string(ground.get_id());
+                        }
+                    }
                 }
             }
 
@@ -146,12 +151,12 @@ void save_accesses_to_file(
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
-template <typename T>
+template <typename T, typename U>
 void save_access_metrics_to_file(
     const AccessArray& accesses,
     const std::filesystem::path& outfile,
     const astro::Constellation<T>& satellites,
-    const std::optional<GroundArchitecture>& grounds = std::nullopt
+    const U& grounds = U()
 )
 {
     std::filesystem::create_directories(outfile.parent_path());
@@ -185,20 +190,26 @@ void save_access_metrics_to_file(
                     }
                 }
             }
-            if (grounds.has_value()) {
-                for (const auto& ground : grounds.value()) {
-                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
+            if (grounds.size() != 0) {
+                for (const auto& ground : grounds) {
+                    if (ground.get_id() == idPair.sender) {
+                        if (ground.get_id() == idPair.receiver) {
+                            if constexpr (std::derived_from<U, GroundArchitecture>) { sender = ground.get_name(); }
+                            else {
+                                sender = "Ground Point " + std::to_string(ground.get_id());
+                            }
+                        }
+                    }
                 }
-            }
 
-            RisesetStats stats(risesets);
+                RisesetStats stats(risesets);
 
-            std::vector<std::string> row{ sender, receiver };
-            for (const auto& str : stats.to_string_vector()) {
-                row.push_back(str);
+                std::vector<std::string> row{ sender, receiver };
+                for (const auto& str : stats.to_string_vector()) {
+                    row.push_back(str);
+                }
+                writer << row;
             }
-            writer << row;
         }
     }
 }

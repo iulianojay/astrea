@@ -23,24 +23,11 @@
 #include <units/units.hpp>
 
 #include <trace/risesets/riseset_utils.hpp>
+#include <trace/types/enums.hpp>
+#include <trace/types/typedefs.hpp>
 
 namespace astrea {
 namespace trace {
-
-/**
- * @brief Enumeration of statistical measures for RiseSetArray.
- */
-enum class Stat {
-    MIN,  //!< Minimum value
-    MEAN, //!< Mean value
-    MAX,  //!< Maximum value
-    PCT   //!< Percentile value
-};
-
-enum class RisesetMetric {
-    GAP,         //!< Time gap between rise and set
-    ACCESS_TIME, //!< Time of access based on rise and set times
-};
 
 /**
  * @brief Represents an array of rise and set times.

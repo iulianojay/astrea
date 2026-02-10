@@ -23,12 +23,18 @@ namespace astrea {
 namespace trace {
 
 struct IdPair;
+class RiseSetArray;
 class AccessArray;
+
+class Grid;
+class GroundPoint;
 class GroundArchitecture;
 class GroundStation;
+
 class Sensor;
 class Viewer;
-class RiseSetArray;
+
+struct AccessInfo;
 
 } // namespace trace
 } // namespace astrea
