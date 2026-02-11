@@ -242,7 +242,7 @@ AccessArray propagate_and_run_access_analysis(astro::Constellation<T>& constella
 
     // Find access
     AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys);
-    const auto accesses = analyzer.find_accesses(constellation, grounds);
+    const auto accesses = analyzer.find_accesses(constellation, grounds, true);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);

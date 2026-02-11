@@ -18,6 +18,7 @@
  */
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include <gtl/btree.hpp>
@@ -29,6 +30,8 @@
 #include <units/units.hpp>
 #include <utilities/ProgressBar.hpp>
 
+#include <trace/analysis/PositionCache.hpp>
+#include <trace/analysis/SpatialIndex.hpp>
 #include <trace/risesets/AccessArray.hpp>
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/trace.fwd.hpp>
@@ -65,6 +68,15 @@ using DateVector = std::vector<astro::Date>;
 using ViewerConstellation = astro::Constellation<Viewer>;
 
 
+using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
+
+using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation>>;
+
+using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint>>;
+
+using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
+
+
 class AccessAnalyzer {
 
   public:
@@ -97,7 +109,7 @@ class AccessAnalyzer {
      * @param sys The astrodynamics system used for calculations.
      * @return AccessArray A collection of accesses between viewers.
      */
-    AccessArray find_internal_accesses(ViewerConstellation& constel);
+    AccessArray find_internal_accesses(ViewerConstellation& constel, const bool clearPositionCache = true);
 
     /**
      * @brief Find accesses between a constellation of viewers and a ground architecture.
@@ -127,7 +139,8 @@ class AccessAnalyzer {
     astro::Date _endDate;                   //!< End date for access analysis
     const astro::AstrodynamicsSystem* _sys; //!< Pointer to the astrodynamics system used for calculations
     DateVector _dates;                      //!< Vector of dates, created from startDate, endDate, and resolution
-    gtl::btree_map<std::pair<std::size_t, astro::Date>, EciRadiusVec> _positionHistory; //!< B-tree map storing the state history of platforms at each date for efficient access calculations
+    PositionCache _positionCache;           //!< Optimized contiguous cache for platform positions
+    SpatialIndex _spatialIndex;             //!< Spatial index for ground points
 
     /**
      * @brief Create a date vector from input start date, end date, and resolution.
@@ -137,67 +150,14 @@ class AccessAnalyzer {
     void create_date_vector();
 
     /**
-     * @brief Find accesses between two containers of platforms.
-     *
-     * @tparam T The type of the first platform container, which must satisfy the IsPlatformContainer concept.
-     * @tparam U The type of the second platform container, which must satisfy the IsPlatformContainer concept.
-     * @param platformContainer1 The first container of platforms for which to find accesses.
-     * @param platformContainer2 The second container of platforms for which to find accesses.
-     * @param includeInternalAccesses Flag indicating whether to include internal accesses within the first container (default is false).
-     * @return AccessArray A collection of accesses between platforms in the two containers.
+     * @brief Check if coarse geometric access is possible (range and occultation only)
      */
-    template <typename T, typename U>
-        requires IsPlatformContainer<T> && IsPlatformContainer<U> //
-    AccessArray find_accesses(T& platformContainer1, U& platformContainer2, const bool includeInternalAccesses = false)
-    {
-        _positionHistory.clear();
-        for (const auto& date : _dates) {
-            for (auto& platform : platformContainer1) {
-                const std::size_t platformId           = platform.get_id();
-                _positionHistory[{ platformId, date }] = platform.get_inertial_position(date);
-            }
-            for (auto& platform : platformContainer2) {
-                const std::size_t platformId           = platform.get_id();
-                _positionHistory[{ platformId, date }] = platform.get_inertial_position(date);
-            }
-        }
+    std::vector<bool> check_coarse_visibility(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
 
-        // For each sat
-        AccessArray allAccesses;
-        if (includeInternalAccesses) {
-            allAccesses = find_internal_accesses(platformContainer1);
-            allAccesses | find_internal_accesses(platformContainer2);
-        }
-
-        // Loop over each container
-        utilities::ProgressBar progressBar(platformContainer1.size() * platformContainer2.size(), "\tAccess");
-        for (std::size_t iPlatform1 = 0; iPlatform1 < platformContainer1.size(); ++iPlatform1) {
-            // Extract first platform
-            auto& platform1       = platformContainer1[iPlatform1];
-            const std::size_t id1 = platform1.get_id();
-
-            for (std::size_t iPlatform2 = 0; iPlatform2 < platformContainer2.size(); ++iPlatform2) {
-
-                // Extract second platform
-                auto& platform2       = platformContainer2[iPlatform2];
-                const std::size_t id2 = platform2.get_id();
-
-                // Satellite-level access for platform1 -> platform2
-                RiseSetArray access = find_platform_to_platform_accesses(&platform1, &platform2);
-
-                // Store
-                if (access.size() > 0) {
-                    platform1.add_access(id2, access);
-                    platform2.add_access(id1, access);
-                    allAccesses[id1, id2] = access; // TODO: Consider id2->id1 as well?
-                }
-
-                progressBar();
-            }
-        }
-
-        return allAccesses;
-    }
+    /**
+     * @brief Batch check occultation for multiple position pairs
+     */
+    std::vector<bool> check_occultation_batch(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
 
     /**
      * @brief Check if two states are occulting each other.
@@ -207,7 +167,7 @@ class AccessAnalyzer {
      * @return true If the two states are occulting each other.
      * @return false If the two states are not occulting each other.
      */
-    bool is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2);
+    bool is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2) const;
 
     /**
      * @brief Find accesses between two sensor platforms.
@@ -253,6 +213,120 @@ class AccessAnalyzer {
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
     RiseSetArray find_sensor_to_ground_point_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor, const GroundPoint& groundPoint);
+
+    /**
+     * @brief Check if a satellite can access a ground point based on their positions and the Earth's radius.
+     *
+     * @param satellite The viewer representing the satellite.
+     * @param groundPoint The ground point to check for access.
+     * @return true If the satellite can access the ground point.
+     * @return false If the satellite cannot access the ground point.
+     */
+    bool can_satellite_access_ground_point(const Viewer& satellite, const GroundPoint& groundPoint) const;
+
+
+    /**
+     * @brief Fast check if a satellite orbit can access another satellite orbit
+     *
+     * @param sat1 The first satellite viewer.
+     * @param sat2 The second satellite viewer.
+     * @return true If the satellites can access each other.
+     * @return false If the satellites cannot access each other.
+     */
+    bool can_satellites_access_each_other(const Viewer& sat1, const Viewer& sat2) const;
+
+
+    /**
+     * @brief Compute maximum possible sensor range based on altitude and Earth radius
+     *
+     * @param altitude The altitude of the satellite above Earth's surface.
+     * @param earthRadius The radius of the Earth.
+     * @return Distance The maximum slant range from the satellite to a point on the Earth's surface, assuming a spherical Earth and no atmospheric refraction.
+     */
+    inline Distance compute_max_slant_range(const Distance& altitude, const Distance& earthRadius)
+    {
+        using namespace mp_units;
+        return sqrt(pow<2>(altitude + earthRadius) - pow<2>(earthRadius));
+    }
+
+    /**
+     * @brief Fast check if two positions are definitely too far apart
+     *
+     * @param pos1 The first position vector.
+     * @param pos2 The second position vector.
+     * @param maxRange The maximum range for access.
+     * @return true If the positions are too far apart to have access.
+     * @return false If the positions are within the maximum range.
+     */
+    inline bool are_positions_too_far(const EciRadiusVec& pos1, const EciRadiusVec& pos2, const Distance& maxRange)
+    {
+        using namespace mp_units;
+
+        // Quick bounding box check before computing actual distance
+        const auto diff   = pos2 - pos1;
+        const Distance dx = abs(diff[0]);
+        const Distance dy = abs(diff[1]);
+        const Distance dz = abs(diff[2]);
+
+        // If any component exceeds max range, definitely too far
+        if (dx > maxRange || dy > maxRange || dz > maxRange) { return true; }
+
+        // Check actual distance
+        const Distance distance = diff.norm();
+        return distance > maxRange;
+    }
+
+    /**
+     * @brief Cache the inertial positions of viewers in a constellation for all time steps.
+     *
+     * @param constel The constellation of viewers for which to cache positions.
+     * @return ViewerRefVec A vector of pointers to the viewers in the constellation, in the same order as the position cache entries.
+     */
+    ViewerRefVec cache_viewers(ViewerConstellation& constel);
+
+    /**
+     * @brief Cache the inertial positions of ground stations in a ground architecture for all time steps.
+     *
+     * @param grounds The ground architecture containing the ground stations to cache.
+     * @return GroundStationRefVec A vector of pointers to the ground stations in the
+     * architecture, in the same order as the position cache entries.
+     */
+    GroundStationRefVec cache_ground_points(GroundArchitecture& grounds);
+
+    /**
+     * @brief Cache the inertial positions of ground points in a grid for all time steps.
+     *
+     * @param grid The grid containing the ground points to cache.
+     * @return GroundPointRefVec A vector of pointers to the ground points in the grid, in the same order as the position cache entries.
+     */
+    GroundPointRefVec cache_ground_points(Grid& grid);
+
+    /**
+     * @brief Filter out impossible viewer-ground station pairs based on coarse geometric checks.
+     *
+     * @param viewers The vector of viewer pointers to check.
+     * @param groundStations The vector of ground station pointers to check.
+     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
+     */
+    PairVec filter_impossible_pairs(const ViewerRefVec& viewers) const;
+
+    /**
+     * @brief Filter out impossible viewer-ground station pairs based on coarse geometric checks.
+     *
+     * @param viewers The vector of viewer pointers to check.
+     * @param groundStations The vector of ground station pointers to check.
+     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
+     */
+    PairVec filter_impossible_pairs(const ViewerRefVec& viewers, const GroundStationRefVec& groundStations) const;
+
+    /**
+     * @brief Filter out impossible viewer-ground point pairs based on coarse geometric checks.
+     *
+     * @param viewers The vector of viewer pointers to check.
+     * @param groundPoints The vector of ground point pointers to check.
+     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
+     */
+    PairVec filter_impossible_pairs(const ViewerRefVec& viewers, const GroundPointRefVec& groundPoints) const;
 };
 
 } // namespace trace
