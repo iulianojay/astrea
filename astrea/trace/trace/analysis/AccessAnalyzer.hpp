@@ -140,7 +140,10 @@ class AccessAnalyzer {
     const astro::AstrodynamicsSystem* _sys; //!< Pointer to the astrodynamics system used for calculations
     DateVector _dates;                      //!< Vector of dates, created from startDate, endDate, and resolution
     PositionCache _positionCache;           //!< Optimized contiguous cache for platform positions
-    SpatialIndex _spatialIndex;             //!< Spatial index for ground points
+
+    // This isn't doing anything currently, but I'm not convinced it's a terrible idea to speed up the pre-checks by
+    // binning the ground points using the spatial index and only checking the corners for very dense grids.
+    SpatialIndex _spatialIndex; //!< Spatial index for ground points
 
     /**
      * @brief Create a date vector from input start date, end date, and resolution.

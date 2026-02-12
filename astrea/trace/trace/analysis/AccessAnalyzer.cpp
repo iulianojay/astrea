@@ -250,21 +250,13 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& gr
     const std::size_t nGrounds   = grid.size();
     const std::size_t nTimesteps = _dates.size();
 
-    // Build position cache
+    // Build spatial index and position cache
+    _spatialIndex.clear();
     _positionCache.clear();
     _positionCache.reserve(nViewers + nGrounds, nTimesteps);
 
     ViewerRefVec viewers           = cache_viewers(constel);
     GroundPointRefVec groundPoints = cache_ground_points(grid);
-
-    // Build spatial index for ground points
-    std::cout << "\tBuilding spatial index..." << std::endl;
-    _spatialIndex.clear();
-    std::size_t gpIdx = 0;
-    for (auto& groundPoint : grid) {
-        _spatialIndex.add_ground_point(gpIdx, groundPoint.get_latitude(), groundPoint.get_longitude());
-        gpIdx++;
-    }
 
     // Pre-filter and build pairs using spatial indexing
     const auto validPairs = filter_impossible_pairs(viewers, groundPoints);
