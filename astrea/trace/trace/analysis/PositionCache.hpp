@@ -1,16 +1,23 @@
 /**
  * @file PositionCache.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Optimized position caching for access analysis
- * @date 2026-02-10
+ * @brief Header file for position caching trace library.
+ * @date 2025-08-03
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
  */
 #pragma once
 
-#include <unordered_map>
 #include <vector>
 
 #include <gtl/btree.hpp>
@@ -38,114 +45,133 @@ class PositionCache {
 
     /**
      * @brief Reserve space for platforms and timesteps
+     *
+     * @param nPlatforms Number of platforms to cache
+     * @param nTimesteps Number of timesteps to cache per platform
      */
-    void reserve(std::size_t nPlatforms, std::size_t nTimesteps)
-    {
-        _platformIds.reserve(nPlatforms);
-        _positions.reserve(nPlatforms);
-        _llaCache.reserve(nPlatforms);
-    }
+    void reserve(std::size_t nPlatforms, std::size_t nTimesteps);
 
     /**
      * @brief Add a platform to the cache
+     *
+     * @param platformId Unique ID of the platform
+     * @param nTimesteps Number of timesteps to cache for this platform
+     * @return std::size_t Index of the platform in the cache
      */
-    std::size_t add_platform(std::size_t platformId, std::size_t nTimesteps)
-    {
-        const std::size_t idx = _platformIds.size();
-        _platformIds.push_back(platformId);
-        _positions.emplace_back(nTimesteps);
-        _llaCache.emplace_back(nTimesteps);
-        _idToIndex[platformId] = idx;
-        return idx;
-    }
+    std::size_t add_platform(std::size_t platformId, std::size_t nTimesteps);
 
     /**
      * @brief Set position for a platform at a specific timestep
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @param timeIdx Index of the timestep
+     * @param position ECI position vector to cache
+     * @param lla Geodetic coordinates to cache
      */
-    void set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position, const astro::Geodetic& lla)
-    {
-        _positions[platformIdx][timeIdx] = position;
-        _llaCache[platformIdx][timeIdx]  = lla;
-    }
+    void set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position, const astro::Geodetic& lla);
 
     /**
      * @brief Get position by platform ID and time index
+     *
+     * @param platformId Unique ID of the platform
+     * @param timeIdx Index of the timestep
+     * @return const EciRadiusVec& Cached ECI position vector
      */
-    const EciRadiusVec& get_position(std::size_t platformId, std::size_t timeIdx) const
-    {
-        return _positions[_idToIndex.at(platformId)][timeIdx];
-    }
+    const EciRadiusVec& get_position_by_id(std::size_t platformId, std::size_t timeIdx) const;
 
     /**
      * @brief Get LLA by platform ID and time index
+     *
+     * @param platformId Unique ID of the platform
+     * @param timeIdx Index of the timestep
+     * @return const astro::Geodetic& Cached geodetic coordinates
      */
-    const astro::Geodetic& get_lla(std::size_t platformId, std::size_t timeIdx) const
-    {
-        return _llaCache[_idToIndex.at(platformId)][timeIdx];
-    }
+    const astro::Geodetic& get_lla_by_id(std::size_t platformId, std::size_t timeIdx) const;
 
     /**
      * @brief Get position by platform index and time index (faster)
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @param timeIdx Index of the timestep
+     * @return const EciRadiusVec& Cached ECI position vector
      */
-    const EciRadiusVec& get_position_fast(std::size_t platformIdx, std::size_t timeIdx) const
-    {
-        return _positions[platformIdx][timeIdx];
-    }
+    const EciRadiusVec& get_position_by_index(std::size_t platformIdx, std::size_t timeIdx) const;
 
     /**
      * @brief Get LLA by platform index and time index (faster)
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @param timeIdx Index of the timestep
+     * @return const astro::Geodetic& Cached geodetic coordinates
      */
-    const astro::Geodetic& get_lla_fast(std::size_t platformIdx, std::size_t timeIdx) const
-    {
-        return _llaCache[platformIdx][timeIdx];
-    }
+    const astro::Geodetic& get_lla_by_index(std::size_t platformIdx, std::size_t timeIdx) const;
+
+    /**
+     * @brief Get all positions for a platform across time by platform ID
+     *
+     * @param platformId Unique ID of the platform
+     * @return const std::vector<EciRadiusVec>& Cached ECI position vectors across time
+     */
+    const std::vector<EciRadiusVec>& get_platform_positions_by_id(std::size_t platformId) const;
 
     /**
      * @brief Get all positions for a platform across time
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @return const std::vector<EciRadiusVec>& Cached ECI position vectors across time
      */
-    const std::vector<EciRadiusVec>& get_platform_positions(std::size_t platformIdx) const
-    {
-        return _positions[platformIdx];
-    }
+    const std::vector<EciRadiusVec>& get_platform_positions_by_index(std::size_t platformIdx) const;
+
+    /**
+     * @brief Get all LLAs for a platform across time by platform ID
+     *
+     * @param platformId Unique ID of the platform
+     * @return const std::vector<astro::Geodetic>& Cached geodetic coordinates across time
+     */
+    const std::vector<astro::Geodetic>& get_platform_lla_by_id(std::size_t platformId) const;
 
     /**
      * @brief Get all LLAs for a platform across time
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @return const std::vector<astro::Geodetic>& Cached geodetic coordinates across time
      */
-    const std::vector<astro::Geodetic>& get_platform_lla(std::size_t platformIdx) const
-    {
-        return _llaCache[platformIdx];
-    }
+    const std::vector<astro::Geodetic>& get_platform_lla_by_index(std::size_t platformIdx) const;
 
     /**
      * @brief Convert platform ID to internal index
+     *
+     * @param platformId Unique ID of the platform
+     * @return std::size_t Index of the platform in the cache
      */
-    std::size_t get_index(std::size_t platformId) const { return _idToIndex.at(platformId); }
+    std::size_t get_index(std::size_t platformId) const;
 
     /**
      * @brief Get platform ID from internal index
+     *
+     * @param platformIdx Index of the platform in the cache
+     * @return std::size_t Unique ID of the platform
      */
-    std::size_t get_platform_id(std::size_t platformIdx) const { return _platformIds[platformIdx]; }
+    std::size_t get_platform_id(std::size_t platformIdx) const;
 
     /**
-     * @brief Get nber of platforms
+     * @brief Get number of platforms
+     *
+     * @return std::size_t Number of platforms in the cache
      */
-    std::size_t n_platforms() const { return _platformIds.size(); }
+    std::size_t n_platforms() const;
 
     /**
-     * @brief Get nber of timesteps
+     * @brief Get number of timesteps
+     *
+     * @return std::size_t Number of timesteps cached per platform
      */
-    std::size_t n_timesteps() const { return _positions.empty() ? 0 : _positions[0].size(); }
+    std::size_t n_timesteps() const;
 
     /**
      * @brief Clear all data
      */
-    void clear()
-    {
-        _platformIds.clear();
-        _positions.clear();
-        _llaCache.clear();
-        _idToIndex.clear();
-    }
+    void clear();
 
   private:
     std::vector<std::size_t> _platformIds;               //!< Platform IDs in order

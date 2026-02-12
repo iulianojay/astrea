@@ -11,10 +11,13 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <trace/analysis/access_analysis.hpp>
+#include <trace/analysis/AccessAnalyzer.hpp>
 
 #include <algorithm>
 #include <execution>
+
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
 
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>
@@ -23,8 +26,6 @@
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
-#include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 
 #include <trace/analysis/PositionCache.hpp>
 #include <trace/analysis/SpatialIndex.hpp>
@@ -70,7 +71,7 @@ struct AccessInfo {
 
 ViewerRefVec AccessAnalyzer::cache_viewers(ViewerConstellation& constel)
 {
-    std::cout << "\tCaching positions..." << std::endl;
+    std::cout << "\tCaching satellite positions..." << std::endl;
 
     const std::size_t nTimesteps = _dates.size();
     ViewerRefVec viewers;
@@ -143,45 +144,15 @@ PairVec AccessAnalyzer::filter_impossible_pairs(const ViewerRefVec& viewers) con
     PairVec validPairs;
     for (std::size_t ii = 0; ii < nViewers; ++ii) {
         for (std::size_t jj = ii + 1; jj < nViewers; ++jj) {
-            if (can_satellites_access_each_other(*viewers[ii], *viewers[jj])) { validPairs.emplace_back(ii, jj); }
-        }
-    }
-
-    std::cout << " (kept " << validPairs.size() << " / " << (nViewers * (nViewers - 1) / 2) << " pairs)" << std::endl;
-    return validPairs;
-}
-
-
-PairVec AccessAnalyzer::filter_impossible_pairs(const ViewerRefVec& viewers, const GroundStationRefVec& groundStations) const
-{
-    std::cout << "\tFiltering impossible sat-to-ground pairs..." << std::flush;
-    PairVec validPairs;
-    for (std::size_t iViewer = 0; iViewer < viewers.size(); ++iViewer) {
-        for (std::size_t iGround = 0; iGround < groundStations.size(); ++iGround) {
-            if (can_satellite_access_ground_point(*viewers[iViewer], *groundStations[iGround])) {
-                validPairs.emplace_back(iViewer, iGround);
+            if (can_objects_ever_access_each_other(viewers[ii]->get_id(), viewers[jj]->get_id())) {
+                validPairs.emplace_back(ii, jj);
             }
         }
     }
 
-    std::cout << " (kept " << validPairs.size() << " / " << (viewers.size() * groundStations.size()) << " pairs)" << std::endl;
-    return validPairs;
-}
+    std::cout << " kept " << validPairs.size() << " / " << (nViewers * (nViewers - 1) / 2) << " pairs ("
+              << (100.0 * validPairs.size() / (nViewers * (nViewers - 1) / 2)) << "%)" << std::endl;
 
-
-PairVec AccessAnalyzer::filter_impossible_pairs(const ViewerRefVec& viewers, const GroundPointRefVec& groundPoints) const
-{
-    std::cout << "\tFiltering impossible sat-to-ground pairs..." << std::flush;
-    PairVec validPairs;
-    for (std::size_t iViewer = 0; iViewer < viewers.size(); ++iViewer) {
-        for (std::size_t iGround = 0; iGround < groundPoints.size(); ++iGround) {
-            if (can_satellite_access_ground_point(*viewers[iViewer], *groundPoints[iGround])) {
-                validPairs.emplace_back(iViewer, iGround);
-            }
-        }
-    }
-
-    std::cout << " (kept " << validPairs.size() << " / " << (viewers.size() * groundPoints.size()) << " pairs)" << std::endl;
     return validPairs;
 }
 
@@ -190,7 +161,6 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
 {
     const std::size_t nViewers   = constel.size();
     const std::size_t nTimesteps = _dates.size();
-    const Distance earthRadius   = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius();
 
     // Build position cache
     if (clearPositionCache) {
@@ -210,17 +180,17 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
 
     // Note: Parallel execution requires thread-safe access storage
     for (const auto& [iViewer, jViewer] : validPairs) {
-        Viewer& viewer1 = *viewers[iViewer];
-        Viewer& viewer2 = *viewers[jViewer];
+        auto& viewer1 = viewers[iViewer];
+        auto& viewer2 = viewers[jViewer];
 
-        const RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer1, &viewer2);
+        const RiseSetArray satAccess = find_platform_to_platform_accesses(viewer1, viewer2);
 
         if (satAccess.size() > 0) {
-            const std::size_t id1 = viewer1.get_id();
-            const std::size_t id2 = viewer2.get_id();
+            const std::size_t id1 = viewer1->get_id();
+            const std::size_t id2 = viewer2->get_id();
 
-            viewer1.add_access(id2, satAccess);
-            viewer2.add_access(id1, satAccess);
+            viewer1->add_access(id2, satAccess);
+            viewer2->add_access(id1, satAccess);
             allAccesses[id1, id2] = satAccess;
         }
         progressBar();
@@ -234,7 +204,6 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
     const std::size_t nViewers   = constel.size();
     const std::size_t nGrounds   = grounds.size();
     const std::size_t nTimesteps = _dates.size();
-    const Distance earthRadius   = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius();
 
     // Build position cache
     _positionCache.clear();
@@ -253,17 +222,20 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
     utilities::ProgressBar progressBar(validPairs.size(), "\tSat->Ground Access");
 
     for (const auto& [iViewer, iGround] : validPairs) {
-        Viewer& viewer               = *viewers[iViewer];
-        GroundStation& groundStation = *groundStations[iGround];
+        auto& viewer        = viewers[iViewer];
+        auto& groundStation = groundStations[iGround];
 
-        const RiseSetArray satAccess = find_platform_to_platform_accesses(&viewer, &groundStation);
+        // If the ground station has Sensors, treat it as a SensorPlatform, otherwise, treat it as a GroundPoint
+        const RiseSetArray satAccess = groundStation->get_payloads().size() > 0 ?
+                                           find_platform_to_platform_accesses(viewer, groundStation) :
+                                           find_platform_to_ground_point_accesses(viewer, groundStation);
 
         if (satAccess.size() > 0) {
-            const std::size_t viewerId = viewer.get_id();
-            const std::size_t groundId = groundStation.get_id();
+            const std::size_t viewerId = viewer->get_id();
+            const std::size_t groundId = groundStation->get_id();
 
-            viewer.add_access(groundId, satAccess);
-            groundStation.add_access(viewerId, satAccess);
+            viewer->add_access(groundId, satAccess);
+            groundStation->add_access(viewerId, satAccess);
             allAccesses[viewerId, groundId] = satAccess;
         }
         progressBar();
@@ -277,7 +249,6 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& gr
     const std::size_t nViewers   = constel.size();
     const std::size_t nGrounds   = grid.size();
     const std::size_t nTimesteps = _dates.size();
-    const Distance earthRadius   = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius();
 
     // Build position cache
     _positionCache.clear();
@@ -305,17 +276,17 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& gr
     utilities::ProgressBar progressBar(validPairs.size(), "\tSat->Grid Access");
 
     for (const auto& [iViewer, iGround] : validPairs) {
-        Viewer& viewer           = *viewers[iViewer];
-        GroundPoint& groundPoint = *groundPoints[iGround];
+        auto& viewer      = viewers[iViewer];
+        auto& groundPoint = groundPoints[iGround];
 
-        const RiseSetArray satAccess = find_platform_to_ground_point_accesses(&viewer, groundPoint);
+        const RiseSetArray satAccess = find_platform_to_ground_point_accesses(viewer, groundPoint);
 
         if (satAccess.size() > 0) {
-            const std::size_t viewerId = viewer.get_id();
-            const std::size_t groundId = groundPoint.get_id();
+            const std::size_t viewerId = viewer->get_id();
+            const std::size_t groundId = groundPoint->get_id();
 
-            viewer.add_access(groundId, satAccess);
-            groundPoint.add_access(viewerId, satAccess);
+            viewer->add_access(groundId, satAccess);
+            groundPoint->add_access(viewerId, satAccess);
             allAccesses[viewerId, groundId] = satAccess;
         }
         progressBar();
@@ -339,19 +310,18 @@ void AccessAnalyzer::create_date_vector()
     }
 }
 
-RiseSetArray AccessAnalyzer::find_platform_to_platform_accesses(SensorPlatform* platform1, SensorPlatform* platform2, const bool twoWay)
+RiseSetArray
+    AccessAnalyzer::find_platform_to_platform_accesses(std::shared_ptr<SensorPlatform> platform1, std::shared_ptr<SensorPlatform> platform2, const bool twoWay)
 {
-    const std::size_t id1  = platform1->get_id();
-    const std::size_t id2  = platform2->get_id();
-    const std::size_t idx1 = _positionCache.get_index(id1);
-    const std::size_t idx2 = _positionCache.get_index(id2);
+    const std::size_t id1 = platform1->get_id();
+    const std::size_t id2 = platform2->get_id();
 
     // Get position vectors (cached, contiguous memory)
-    const auto& positions1 = _positionCache.get_platform_positions(idx1);
-    const auto& positions2 = _positionCache.get_platform_positions(idx2);
+    const auto& positions1 = _positionCache.get_platform_positions_by_id(id1);
+    const auto& positions2 = _positionCache.get_platform_positions_by_id(id2);
 
     // Fast coarse visibility check (batch occultation + range)
-    std::vector<bool> coarseAccess = check_coarse_visibility(positions1, positions2);
+    std::vector<bool> coarseAccess = check_occulting_times(positions1, positions2);
 
     // Early exit if no coarse access at all
     if (std::none_of(coarseAccess.begin(), coarseAccess.end(), [](bool b) { return b; })) {
@@ -391,19 +361,17 @@ RiseSetArray AccessAnalyzer::find_platform_to_platform_accesses(SensorPlatform* 
     return access;
 }
 
-RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(SensorPlatform* platform, const GroundPoint& groundPoint)
+RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_ptr<SensorPlatform> platform, const std::shared_ptr<GroundPoint> groundPoint)
 {
-    const std::size_t id1  = platform->get_id();
-    const std::size_t id2  = groundPoint.get_id();
-    const std::size_t idx1 = _positionCache.get_index(id1);
-    const std::size_t idx2 = _positionCache.get_index(id2);
+    const std::size_t id1 = platform->get_id();
+    const std::size_t id2 = groundPoint->get_id();
 
     // Get position vectors (cached, contiguous memory)
-    const auto& positions1 = _positionCache.get_platform_positions(idx1);
-    const auto& positions2 = _positionCache.get_platform_positions(idx2);
+    const auto& positions1 = _positionCache.get_platform_positions_by_id(id1);
+    const auto& positions2 = _positionCache.get_platform_positions_by_id(id2);
 
     // Fast coarse visibility check
-    std::vector<bool> coarseAccess = check_coarse_visibility(positions1, positions2);
+    std::vector<bool> coarseAccess = check_occulting_times(positions1, positions2);
 
     // Early exit if no coarse access
     if (std::none_of(coarseAccess.begin(), coarseAccess.end(), [](bool b) { return b; })) { return {}; }
@@ -426,12 +394,12 @@ RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(SensorPlatfo
     // Determine access sensor by sensor
     RiseSetArray access;
     for (auto& sensor : platform->get_payloads()) {
-        const RiseSetArray sensorAccess = find_sensor_to_ground_point_accesses(accessInfo, sensor, groundPoint);
+        const RiseSetArray sensorAccess = find_sensor_to_ground_point_accesses(accessInfo, sensor, *groundPoint);
 
         // Store
         if (sensorAccess.size() > 0) {
             access = (access | sensorAccess);
-            sensor.add_access(groundPoint.get_id(), sensorAccess);
+            sensor.add_access(groundPoint->get_id(), sensorAccess);
         }
     }
 
@@ -593,7 +561,7 @@ RiseSetArray
 }
 
 std::vector<bool>
-    AccessAnalyzer::check_coarse_visibility(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2)
+    AccessAnalyzer::check_occulting_times(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2)
 {
     const std::size_t n = positions1.size();
     std::vector<bool> result(n);
@@ -607,13 +575,13 @@ std::vector<bool>
 std::vector<bool>
     AccessAnalyzer::check_occultation_batch(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2)
 {
-    const std::size_t n = positions1.size();
-    std::vector<bool> result(n);
+    const std::size_t nPositions = positions1.size();
+    std::vector<bool> result(nPositions);
 
     static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km;
 
     // Vectorized occultation check (can be further optimized with SIMD)
-    for (std::size_t ii = 0; ii < n; ++ii) {
+    for (std::size_t ii = 0; ii < nPositions; ++ii) {
         const EciRadiusVec& position1 = positions1[ii];
         const EciRadiusVec& position2 = positions2[ii];
 
@@ -641,29 +609,10 @@ std::vector<bool>
 }
 
 
-bool AccessAnalyzer::can_satellite_access_ground_point(const Viewer& satellite, const GroundPoint& groundPoint) const
+bool AccessAnalyzer::can_objects_ever_access_each_other(const std::size_t& id1, const std::size_t& id2) const
 {
-    // Loop over positions
-    const auto satIdx = _positionCache.get_platform_id(satellite.get_id());
-    const auto& llas  = _positionCache.get_platform_lla(satIdx);
-    const Angle lat   = groundPoint.get_latitude();
-    const Angle lon   = groundPoint.get_longitude();
-    for (const auto& lla : llas) {
-        const Angle& satLat = lla.get_latitude();
-        const Angle& satLon = lla.get_longitude();
-        const Angle arcDiff = sqrt(pow<2>(satLat - lat) + pow<2>(satLon - lon));
-
-        // This is the absolute max in all cases. We might be able to tighten this with some altitude ideas
-        if (arcDiff < 90.0 * deg) { return true; }
-    }
-    return false;
-}
-
-
-bool AccessAnalyzer::can_satellites_access_each_other(const Viewer& sat1, const Viewer& sat2) const
-{
-    const auto& positions1 = _positionCache.get_platform_positions(_positionCache.get_index(sat1.get_id()));
-    const auto& positions2 = _positionCache.get_platform_positions(_positionCache.get_index(sat2.get_id()));
+    const auto& positions1 = _positionCache.get_platform_positions_by_id(id1);
+    const auto& positions2 = _positionCache.get_platform_positions_by_id(id2);
 
     for (std::size_t ii = 0; ii < positions1.size(); ++ii) {
         if (!is_earth_occulting(positions1[ii], positions2[ii])) { return true; }

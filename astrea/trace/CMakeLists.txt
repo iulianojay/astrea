@@ -21,7 +21,9 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(TRACE_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(TRACE_SOURCES
-    ${TRACE_BASE}/analysis/access_analysis.cpp
+    ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
+    ${TRACE_BASE}/analysis/PositionCache.cpp
+    ${TRACE_BASE}/analysis/SpatialIndex.cpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.cpp
     ${TRACE_BASE}/platforms/sensors/Sensor.cpp
@@ -42,7 +44,9 @@ set(TRACE_SOURCES
 set(TRACE_HEADERS
     ${TRACE_BASE}/trace.hpp
 
-    ${TRACE_BASE}/analysis/access_analysis.hpp
+    ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
+    ${TRACE_BASE}/analysis/PositionCache.hpp
+    ${TRACE_BASE}/analysis/SpatialIndex.hpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
@@ -85,27 +89,28 @@ set(TRACE_LIBS
 )
 
 # Shared library
-add_library                (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
+target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
+target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 
 # Static library
 if(${BUILD_STATIC})
-    add_library                (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
-    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
-    target_include_directories (${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
-    target_compile_definitions (${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    add_library(${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
+    target_include_directories(${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
+    target_compile_definitions(${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
 # Executable
-add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
-set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/trace)
-target_include_directories (${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
-target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
+add_executable(${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
+set_target_properties(${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/trace)
+target_include_directories(${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
+target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
+target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
+
 # add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers

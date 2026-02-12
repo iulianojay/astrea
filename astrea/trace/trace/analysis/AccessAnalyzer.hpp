@@ -1,5 +1,5 @@
 /**
- * @file access_analysis.hpp
+ * @file AccessAnalyzer.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for access analysis functions in the astrea access library.
  * @date 2025-08-03
@@ -48,7 +48,7 @@ concept HasSize = requires(T t) {
 
 template <typename T>
 concept HasSubscriptOperator = requires(T t) {
-    { &t[0] } -> std::convertible_to<astro::PayloadPlatform<Sensor>*>;
+    { &t[0] } -> std::convertible_to<std::shared_ptr<astro::PayloadPlatform<Sensor>>>;
 };
 
 
@@ -152,7 +152,7 @@ class AccessAnalyzer {
     /**
      * @brief Check if coarse geometric access is possible (range and occultation only)
      */
-    std::vector<bool> check_coarse_visibility(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
+    std::vector<bool> check_occulting_times(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
 
     /**
      * @brief Batch check occultation for multiple position pairs
@@ -179,8 +179,11 @@ class AccessAnalyzer {
      * @param twoWay Flag indicating if the access should be two-way (default is false).
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
-    RiseSetArray
-        find_platform_to_platform_accesses(astro::PayloadPlatform<Sensor>* platform1, astro::PayloadPlatform<Sensor>* platform2, const bool twoWay = false);
+    RiseSetArray find_platform_to_platform_accesses(
+        std::shared_ptr<astro::PayloadPlatform<Sensor>> platform1,
+        std::shared_ptr<astro::PayloadPlatform<Sensor>> platform2,
+        const bool twoWay = false
+    );
 
     /**
      * @brief Find accesses between a sensor platform and a ground point.
@@ -189,7 +192,8 @@ class AccessAnalyzer {
      * @param groundPoint The ground point to check for accesses.
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
-    RiseSetArray find_platform_to_ground_point_accesses(astro::PayloadPlatform<Sensor>* platform, const GroundPoint& groundPoint);
+    RiseSetArray
+        find_platform_to_ground_point_accesses(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform, const std::shared_ptr<GroundPoint> groundPoint);
 
     /**
      * @brief Find accesses between a sensor and another sensor.
@@ -215,66 +219,14 @@ class AccessAnalyzer {
     RiseSetArray find_sensor_to_ground_point_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor, const GroundPoint& groundPoint);
 
     /**
-     * @brief Check if a satellite can access a ground point based on their positions and the Earth's radius.
+     * @brief Check if a satellite can access a ground point based on Earth occulating.
      *
-     * @param satellite The viewer representing the satellite.
-     * @param groundPoint The ground point to check for access.
-     * @return true If the satellite can access the ground point.
-     * @return false If the satellite cannot access the ground point.
+     * @param id1 The id of the first object.
+     * @param id2 The id of the second object.
+     * @return true If the objects can access each other.
+     * @return false If the objects never access each other.
      */
-    bool can_satellite_access_ground_point(const Viewer& satellite, const GroundPoint& groundPoint) const;
-
-
-    /**
-     * @brief Fast check if a satellite orbit can access another satellite orbit
-     *
-     * @param sat1 The first satellite viewer.
-     * @param sat2 The second satellite viewer.
-     * @return true If the satellites can access each other.
-     * @return false If the satellites cannot access each other.
-     */
-    bool can_satellites_access_each_other(const Viewer& sat1, const Viewer& sat2) const;
-
-
-    /**
-     * @brief Compute maximum possible sensor range based on altitude and Earth radius
-     *
-     * @param altitude The altitude of the satellite above Earth's surface.
-     * @param earthRadius The radius of the Earth.
-     * @return Distance The maximum slant range from the satellite to a point on the Earth's surface, assuming a spherical Earth and no atmospheric refraction.
-     */
-    inline Distance compute_max_slant_range(const Distance& altitude, const Distance& earthRadius)
-    {
-        using namespace mp_units;
-        return sqrt(pow<2>(altitude + earthRadius) - pow<2>(earthRadius));
-    }
-
-    /**
-     * @brief Fast check if two positions are definitely too far apart
-     *
-     * @param pos1 The first position vector.
-     * @param pos2 The second position vector.
-     * @param maxRange The maximum range for access.
-     * @return true If the positions are too far apart to have access.
-     * @return false If the positions are within the maximum range.
-     */
-    inline bool are_positions_too_far(const EciRadiusVec& pos1, const EciRadiusVec& pos2, const Distance& maxRange)
-    {
-        using namespace mp_units;
-
-        // Quick bounding box check before computing actual distance
-        const auto diff   = pos2 - pos1;
-        const Distance dx = abs(diff[0]);
-        const Distance dy = abs(diff[1]);
-        const Distance dz = abs(diff[2]);
-
-        // If any component exceeds max range, definitely too far
-        if (dx > maxRange || dy > maxRange || dz > maxRange) { return true; }
-
-        // Check actual distance
-        const Distance distance = diff.norm();
-        return distance > maxRange;
-    }
+    bool can_objects_ever_access_each_other(const std::size_t& id1, const std::size_t& id2) const;
 
     /**
      * @brief Cache the inertial positions of viewers in a constellation for all time steps.
@@ -302,31 +254,38 @@ class AccessAnalyzer {
     GroundPointRefVec cache_ground_points(Grid& grid);
 
     /**
-     * @brief Filter out impossible viewer-ground station pairs based on coarse geometric checks.
+     * @brief Filter out impossible viewer-viewer pairs based on Earth occultation.
      *
      * @param viewers The vector of viewer pointers to check.
-     * @param groundStations The vector of ground station pointers to check.
      * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
      */
     PairVec filter_impossible_pairs(const ViewerRefVec& viewers) const;
 
     /**
-     * @brief Filter out impossible viewer-ground station pairs based on coarse geometric checks.
+     * @brief Filter out impossible viewer-ground pairs based on Earth occultation.
      *
-     * @param viewers The vector of viewer pointers to check.
-     * @param groundStations The vector of ground station pointers to check.
+     * @param objects1 The vector of object shared pointers to check.
+     * @param objects2 The vector of object shared pointers to check.
      * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
      */
-    PairVec filter_impossible_pairs(const ViewerRefVec& viewers, const GroundStationRefVec& groundStations) const;
+    template <typename T, typename U>
+        requires requires(T t) { t.get_id(); } && requires(U u) { u.get_id(); }
+    PairVec filter_impossible_pairs(const std::vector<std::shared_ptr<T>>& objects1, const std::vector<std::shared_ptr<U>>& objects2) const
+    {
+        std::cout << "\tFiltering impossible pairs..." << std::flush;
+        PairVec validPairs;
+        for (std::size_t ii = 0; ii < objects1.size(); ++ii) {
+            for (std::size_t jj = 0; jj < objects2.size(); ++jj) {
+                if (can_objects_ever_access_each_other(objects1[ii]->get_id(), objects2[jj]->get_id())) {
+                    validPairs.emplace_back(ii, jj);
+                }
+            }
+        }
 
-    /**
-     * @brief Filter out impossible viewer-ground point pairs based on coarse geometric checks.
-     *
-     * @param viewers The vector of viewer pointers to check.
-     * @param groundPoints The vector of ground point pointers to check.
-     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
-     */
-    PairVec filter_impossible_pairs(const ViewerRefVec& viewers, const GroundPointRefVec& groundPoints) const;
+        std::cout << " kept " << validPairs.size() << " / " << (objects1.size() * objects2.size()) << " pairs ("
+                  << (100.0 * validPairs.size() / (objects1.size() * objects2.size())) << "%)" << std::endl;
+        return validPairs;
+    }
 };
 
 } // namespace trace

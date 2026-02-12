@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <trace/analysis/access_analysis.hpp>
+#include <trace/analysis/AccessAnalyzer.hpp>
 
 #include <trace/io/output.hpp>
 
