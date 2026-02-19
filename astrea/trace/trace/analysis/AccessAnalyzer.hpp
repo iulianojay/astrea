@@ -153,16 +153,6 @@ class AccessAnalyzer {
     void create_date_vector();
 
     /**
-     * @brief Check if coarse geometric access is possible (range and occultation only)
-     */
-    std::vector<bool> check_occulting_times(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
-
-    /**
-     * @brief Batch check occultation for multiple position pairs
-     */
-    std::vector<bool> check_occultation_batch(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2);
-
-    /**
      * @brief Check if two states are occulting each other.
      *
      * @param state1 The first state to check.

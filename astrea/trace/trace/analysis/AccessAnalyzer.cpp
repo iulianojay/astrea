@@ -63,8 +63,6 @@ using mp_units::si::unit_symbols::s;
 struct AccessInfo {
     Time time;               // Time of access
     EciRadiusVec radius1to2; // Vector from the first object to the second object at the time of access
-    std::size_t id1;         // ID of the first object
-    std::size_t id2;         // ID of the second object
     bool isOcculted;         // Flag indicating if the access is occulted
 };
 
@@ -308,26 +306,14 @@ RiseSetArray
     const auto& positions1 = _positionCache.get_platform_positions_by_id(id1);
     const auto& positions2 = _positionCache.get_platform_positions_by_id(id2);
 
-    // Fast coarse visibility check (batch occultation + range)
-    std::vector<bool> coarseAccess = check_occulting_times(positions1, positions2);
-
-    // Early exit if no coarse access at all
-    if (std::none_of(coarseAccess.begin(), coarseAccess.end(), [](bool b) { return b; })) {
-        return {}; // No possible access
-    }
-
     // Build access info only for potential access windows
     std::vector<AccessInfo> accessInfo;
     accessInfo.reserve(_dates.size());
-
-    const Date epoch = _dates[0];
     for (std::size_t ii = 0; ii < _dates.size(); ++ii) {
         AccessInfo info;
-        info.time       = _dates[ii] - epoch;
-        info.id1        = id1;
-        info.id2        = id2;
+        info.time       = _dates[ii] - _startDate;
         info.radius1to2 = positions2[ii] - positions1[ii];
-        info.isOcculted = !coarseAccess[ii];
+        info.isOcculted = is_earth_occulting(positions1[ii], positions2[ii]);
         accessInfo.push_back(info);
     }
 
@@ -335,7 +321,7 @@ RiseSetArray
     RiseSetArray access;
     for (auto& sensor1 : platform1->get_payloads()) {
         for (auto& sensor2 : platform2->get_payloads()) {
-            RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay);
+            const RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay);
 
             // Store
             if (sensorAccess.size() > 0) {
@@ -358,24 +344,14 @@ RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_
     const auto& positions1 = _positionCache.get_platform_positions_by_id(id1);
     const auto& positions2 = _positionCache.get_platform_positions_by_id(id2);
 
-    // Fast coarse visibility check
-    std::vector<bool> coarseAccess = check_occulting_times(positions1, positions2);
-
-    // Early exit if no coarse access
-    if (std::none_of(coarseAccess.begin(), coarseAccess.end(), [](bool b) { return b; })) { return {}; }
-
     // Build access info
     std::vector<AccessInfo> accessInfo;
     accessInfo.reserve(_dates.size());
-
-    const Date epoch = _startDate;
     for (std::size_t ii = 0; ii < _dates.size(); ++ii) {
         AccessInfo info;
-        info.time       = _dates[ii] - epoch;
-        info.id1        = id1;
-        info.id2        = id2;
+        info.time       = _dates[ii] - _startDate;
         info.radius1to2 = positions2[ii] - positions1[ii];
-        info.isOcculted = !coarseAccess[ii];
+        info.isOcculted = is_earth_occulting(positions1[ii], positions2[ii]);
         accessInfo.push_back(info);
     }
 
@@ -392,38 +368,6 @@ RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_
     }
 
     return access;
-}
-
-bool AccessAnalyzer::is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2) const
-{
-    // NOTE: Only checking one direction. Blocking 1->2 automatically means blocking 2->1
-    // NOTE: Assumes Earth-centered
-    // NOTE: Assumes spherical Earth
-
-    // Also make EciRadiusVec a class with utilities like magnitude, etc.
-    const EciRadiusVec nadir1 = -position1;
-    const Distance nadir1Mag  = nadir1.norm();
-
-    // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
-    const EciRadiusVec radius1to2 = position2 - position1;
-
-    // Get edge angle of Earth
-    static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
-    const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
-
-    // Get angle from boresight and sat to nadir
-    const Angle satelliteNadirAngle = nadir1.offset_angle(radius1to2);
-
-    // If nadir->satellite angle greater than Earth limb, Earth cannot block
-    if (satelliteNadirAngle <= earthLimbAngle) {
-        // Satellite is within Earth limb, check which is closer
-        const Distance radius1to2Mag  = radius1to2.norm();
-        const Distance earthLimbRange = nadir1Mag * cos(earthLimbAngle);
-
-        // If outside farthest Earth limb distance - Earth must be blocking
-        if (radius1to2Mag > earthLimbRange) { return true; }
-    }
-    return false;
 }
 
 RiseSetArray
@@ -548,52 +492,36 @@ RiseSetArray
     return access;
 }
 
-std::vector<bool>
-    AccessAnalyzer::check_occulting_times(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2)
+bool AccessAnalyzer::is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2) const
 {
-    const std::size_t n = positions1.size();
-    std::vector<bool> result(n);
+    // NOTE: Only checking one direction. Blocking 1->2 automatically means blocking 2->1
+    // NOTE: Assumes Earth-centered
+    // NOTE: Assumes spherical Earth
 
-    // Batch process occultation checks
-    result = check_occultation_batch(positions1, positions2);
+    // Also make EciRadiusVec a class with utilities like magnitude, etc.
+    const EciRadiusVec nadir1 = -position1;
+    const Distance nadir1Mag  = nadir1.norm();
 
-    return result;
-}
+    // TODO: This subtraction will be duplicated many times. Look into doing elsewhere
+    const EciRadiusVec radius1to2 = position2 - position1;
 
-std::vector<bool>
-    AccessAnalyzer::check_occultation_batch(const std::vector<EciRadiusVec>& positions1, const std::vector<EciRadiusVec>& positions2)
-{
-    const std::size_t nPositions = positions1.size();
-    std::vector<bool> result(nPositions);
+    // Get edge angle of Earth
+    static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
+    const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
-    static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km;
+    // Get angle from boresight and sat to nadir
+    const Angle satelliteNadirAngle = nadir1.offset_angle(radius1to2);
 
-    // Vectorized occultation check (can be further optimized with SIMD)
-    for (std::size_t ii = 0; ii < nPositions; ++ii) {
-        const EciRadiusVec& position1 = positions1[ii];
-        const EciRadiusVec& position2 = positions2[ii];
+    // If nadir->satellite angle greater than Earth limb, Earth cannot block
+    if (satelliteNadirAngle <= earthLimbAngle) {
+        // Satellite is within Earth limb, check which is closer
+        const Distance radius1to2Mag  = radius1to2.norm();
+        const Distance earthLimbRange = nadir1Mag * cos(earthLimbAngle);
 
-        const EciRadiusVec nadir1     = -position1;
-        const Distance nadir1Mag      = nadir1.norm();
-        const EciRadiusVec radius1to2 = position2 - position1;
-
-        const Angle earthLimbAngle      = asin(radiusEarthMag / nadir1Mag);
-        const Angle satelliteNadirAngle = nadir1.offset_angle(radius1to2);
-
-        if (satelliteNadirAngle <= earthLimbAngle) {
-            const Distance radius1to2Mag  = radius1to2.norm();
-            const Distance earthLimbRange = nadir1Mag * cos(earthLimbAngle);
-
-            if (radius1to2Mag > earthLimbRange) {
-                result[ii] = false; // Occulted
-                continue;
-            }
-        }
-
-        result[ii] = true; // Not occulted
+        // If outside farthest Earth limb distance - Earth must be blocking
+        if (radius1to2Mag > earthLimbRange) { return true; }
     }
-
-    return result;
+    return false;
 }
 
 
