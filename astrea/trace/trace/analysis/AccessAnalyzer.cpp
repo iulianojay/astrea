@@ -83,9 +83,7 @@ ViewerRefVec AccessAnalyzer::cache_viewers(ViewerConstellation& constel)
                 const std::size_t platformIdx = _positionCache.add_platform(viewer.get_id(), nTimesteps);
 
                 for (std::size_t iTime = 0; iTime < nTimesteps; ++iTime) {
-                    const auto position = viewer.get_inertial_position(_dates[iTime]);
-                    const auto lla      = astro::Geodetic(position, _dates[iTime], _sys->get_central_body().get());
-                    _positionCache.set_position(platformIdx, iTime, position, lla);
+                    _positionCache.set_position(platformIdx, iTime, viewer.get_inertial_position(_dates[iTime]));
                 }
             }
         }
@@ -104,7 +102,7 @@ GroundStationRefVec AccessAnalyzer::cache_ground_points(GroundArchitecture& grou
         const std::size_t platformIdx = _positionCache.add_platform(ground.get_id(), nTimesteps);
 
         for (std::size_t iTime = 0; iTime < nTimesteps; ++iTime) {
-            _positionCache.set_position(platformIdx, iTime, ground.get_inertial_position(_dates[iTime]), ground.get_lla());
+            _positionCache.set_position(platformIdx, iTime, ground.get_inertial_position(_dates[iTime]));
         }
     }
     return groundStations;
@@ -125,9 +123,7 @@ GroundPointRefVec AccessAnalyzer::cache_ground_points(Grid& grid)
         const std::size_t platformIdx = _positionCache.add_platform(groundPoint.get_id(), nTimesteps);
 
         for (std::size_t iTime = 0; iTime < nTimesteps; ++iTime) {
-            const astro::Geodetic lla = groundPoint.get_lla();
-            const auto position       = lla.get_position(_dates[iTime], groundPoint.get_parent());
-            _positionCache.set_position(platformIdx, iTime, position, lla);
+            _positionCache.set_position(platformIdx, iTime, groundPoint.get_inertial_position(_dates[iTime]));
         }
         gpIdx++;
     }

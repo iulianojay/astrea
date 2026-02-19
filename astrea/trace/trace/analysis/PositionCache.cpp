@@ -20,7 +20,6 @@ void PositionCache::reserve(std::size_t nPlatforms, std::size_t nTimesteps)
 {
     _platformIds.reserve(nPlatforms);
     _positions.reserve(nPlatforms);
-    _llaCache.reserve(nPlatforms);
 }
 
 std::size_t PositionCache::add_platform(std::size_t platformId, std::size_t nTimesteps)
@@ -28,15 +27,13 @@ std::size_t PositionCache::add_platform(std::size_t platformId, std::size_t nTim
     const std::size_t idx = _platformIds.size();
     _platformIds.push_back(platformId);
     _positions.emplace_back(nTimesteps);
-    _llaCache.emplace_back(nTimesteps);
     _idToIndex[platformId] = idx;
     return idx;
 }
 
-void PositionCache::set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position, const astro::Geodetic& lla)
+void PositionCache::set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position)
 {
     _positions[platformIdx][timeIdx] = position;
-    _llaCache[platformIdx][timeIdx]  = lla;
 }
 
 const EciRadiusVec& PositionCache::get_position_by_id(std::size_t platformId, std::size_t timeIdx) const
@@ -44,19 +41,9 @@ const EciRadiusVec& PositionCache::get_position_by_id(std::size_t platformId, st
     return _positions[_idToIndex.at(platformId)][timeIdx];
 }
 
-const astro::Geodetic& PositionCache::get_lla_by_id(std::size_t platformId, std::size_t timeIdx) const
-{
-    return _llaCache[_idToIndex.at(platformId)][timeIdx];
-}
-
 const EciRadiusVec& PositionCache::get_position_by_index(std::size_t platformIdx, std::size_t timeIdx) const
 {
     return _positions[platformIdx][timeIdx];
-}
-
-const astro::Geodetic& PositionCache::get_lla_by_index(std::size_t platformIdx, std::size_t timeIdx) const
-{
-    return _llaCache[platformIdx][timeIdx];
 }
 
 const std::vector<EciRadiusVec>& PositionCache::get_platform_positions_by_id(std::size_t platformId) const
@@ -67,16 +54,6 @@ const std::vector<EciRadiusVec>& PositionCache::get_platform_positions_by_id(std
 const std::vector<EciRadiusVec>& PositionCache::get_platform_positions_by_index(std::size_t platformIdx) const
 {
     return _positions[platformIdx];
-}
-
-const std::vector<astro::Geodetic>& PositionCache::get_platform_lla_by_id(std::size_t platformId) const
-{
-    return _llaCache[_idToIndex.at(platformId)];
-}
-
-const std::vector<astro::Geodetic>& PositionCache::get_platform_lla_by_index(std::size_t platformIdx) const
-{
-    return _llaCache[platformIdx];
 }
 
 std::size_t PositionCache::get_index(std::size_t platformId) const { return _idToIndex.at(platformId); }
@@ -91,7 +68,6 @@ void PositionCache::clear()
 {
     _platformIds.clear();
     _positions.clear();
-    _llaCache.clear();
     _idToIndex.clear();
 }
 

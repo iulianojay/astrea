@@ -30,6 +30,7 @@ set(TRACE_SOURCES
 
     ${TRACE_BASE}/platforms/ground/Grid.cpp
     ${TRACE_BASE}/platforms/ground/GroundStation.cpp
+    ${TRACE_BASE}/platforms/ground/GroundPoint.cpp
 
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.cpp
     ${TRACE_BASE}/platforms/sensors/fov/instances/CircularFieldOfView.cpp

@@ -66,9 +66,8 @@ class PositionCache {
      * @param platformIdx Index of the platform in the cache
      * @param timeIdx Index of the timestep
      * @param position ECI position vector to cache
-     * @param lla Geodetic coordinates to cache
      */
-    void set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position, const astro::Geodetic& lla);
+    void set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position);
 
     /**
      * @brief Get position by platform ID and time index
@@ -80,15 +79,6 @@ class PositionCache {
     const EciRadiusVec& get_position_by_id(std::size_t platformId, std::size_t timeIdx) const;
 
     /**
-     * @brief Get LLA by platform ID and time index
-     *
-     * @param platformId Unique ID of the platform
-     * @param timeIdx Index of the timestep
-     * @return const astro::Geodetic& Cached geodetic coordinates
-     */
-    const astro::Geodetic& get_lla_by_id(std::size_t platformId, std::size_t timeIdx) const;
-
-    /**
      * @brief Get position by platform index and time index (faster)
      *
      * @param platformIdx Index of the platform in the cache
@@ -96,15 +86,6 @@ class PositionCache {
      * @return const EciRadiusVec& Cached ECI position vector
      */
     const EciRadiusVec& get_position_by_index(std::size_t platformIdx, std::size_t timeIdx) const;
-
-    /**
-     * @brief Get LLA by platform index and time index (faster)
-     *
-     * @param platformIdx Index of the platform in the cache
-     * @param timeIdx Index of the timestep
-     * @return const astro::Geodetic& Cached geodetic coordinates
-     */
-    const astro::Geodetic& get_lla_by_index(std::size_t platformIdx, std::size_t timeIdx) const;
 
     /**
      * @brief Get all positions for a platform across time by platform ID
@@ -121,22 +102,6 @@ class PositionCache {
      * @return const std::vector<EciRadiusVec>& Cached ECI position vectors across time
      */
     const std::vector<EciRadiusVec>& get_platform_positions_by_index(std::size_t platformIdx) const;
-
-    /**
-     * @brief Get all LLAs for a platform across time by platform ID
-     *
-     * @param platformId Unique ID of the platform
-     * @return const std::vector<astro::Geodetic>& Cached geodetic coordinates across time
-     */
-    const std::vector<astro::Geodetic>& get_platform_lla_by_id(std::size_t platformId) const;
-
-    /**
-     * @brief Get all LLAs for a platform across time
-     *
-     * @param platformIdx Index of the platform in the cache
-     * @return const std::vector<astro::Geodetic>& Cached geodetic coordinates across time
-     */
-    const std::vector<astro::Geodetic>& get_platform_lla_by_index(std::size_t platformIdx) const;
 
     /**
      * @brief Convert platform ID to internal index
@@ -176,7 +141,6 @@ class PositionCache {
   private:
     std::vector<std::size_t> _platformIds;               //!< Platform IDs in order
     std::vector<std::vector<EciRadiusVec>> _positions;   //!< [platformIdx][timeIdx]
-    std::vector<std::vector<astro::Geodetic>> _llaCache; //!< Cache for LLA
     gtl::btree_map<std::size_t, std::size_t> _idToIndex; //!< Map from platform ID to index
 };
 
