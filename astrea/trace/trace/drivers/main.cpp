@@ -56,7 +56,7 @@ int iceye_test();
 
 template <typename T, typename U>
 AccessArray
-    propagate_and_run_AccessAnalyzer(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
+    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
 
 int main()
 {
@@ -124,7 +124,7 @@ int arcturus_starlink_interference_test()
     GroundArchitecture grounds({ dc });
 
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_AccessAnalyzer(allSats, grounds, startDate, sys);
+    const AccessArray accesses = propagate_and_run_access_analysis(allSats, grounds, startDate, sys);
 
     // Save
     std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
@@ -163,7 +163,7 @@ int iceye_test()
     Constellation<Viewer> iceyeConstel(iceyeSats, sys);
 
     // Add sensors
-    CircularFieldOfView fovLeo(30.0 * deg);
+    CircularFieldOfView fovLeo(90.0 * deg);
     SensorParameters leoCone(&fovLeo);
 
     for (auto& shell : iceyeConstel.get_shells()) {
@@ -187,11 +187,11 @@ int iceye_test()
 
     LatLon corner1{ -90.0 * deg, -180.0 * deg };
     LatLon corner4{ 90.0 * deg, 180.0 * deg };
-    Angle spacing = 5.0 * deg;
+    Angle spacing = 10.0 * deg;
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_AccessAnalyzer(iceyeConstel, grid, startDate, sys);
+    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys);
 
     // Save
     std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
@@ -213,7 +213,7 @@ int iceye_test()
 }
 
 template <typename T, typename U>
-AccessArray propagate_and_run_AccessAnalyzer(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
+AccessArray propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
 {
     // Build EoMs
     J2MeanVop eom;
@@ -229,7 +229,7 @@ AccessArray propagate_and_run_AccessAnalyzer(astro::Constellation<T>& constellat
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Time propTime = days(30.0);
+    Time propTime = days(7.0);
     Date endDate  = startDate + propTime;
     constellation.propagate(endDate, eom, integrator);
 

@@ -506,20 +506,21 @@ bool AccessAnalyzer::is_earth_occulting(const EciRadiusVec& position1, const Eci
     const EciRadiusVec radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + 100.0 * km; // TODO: Generalize for any body?
+    static const Distance atmosphereHeight = 100.0 * km; // TODO: Generalize for any body?
+    static const Distance& radiusEarthMag = _sys->get_body(CelestialBodyId::EARTH)->get_equitorial_radius() + atmosphereHeight;
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir
     const Angle satelliteNadirAngle = nadir1.offset_angle(radius1to2);
 
-    // If nadir->satellite angle greater than Earth limb, Earth cannot block
+    // If nadir->object angle greater than Earth limb, Earth cannot block
     if (satelliteNadirAngle <= earthLimbAngle) {
         // Satellite is within Earth limb, check which is closer
         const Distance radius1to2Mag  = radius1to2.norm();
         const Distance earthLimbRange = nadir1Mag * cos(earthLimbAngle);
 
         // If outside farthest Earth limb distance - Earth must be blocking
-        if (radius1to2Mag > earthLimbRange) { return true; }
+        if (radius1to2Mag > earthLimbRange + 10.0 * km) { return true; }
     }
     return false;
 }

@@ -117,18 +117,8 @@ void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::p
             }
             if (grounds.size() != 0) {
                 for (const auto& ground : grounds) {
-                    if (ground.get_id() == idPair.sender) {
-                        if constexpr (std::derived_from<U, GroundArchitecture>) { sender = ground.get_name(); }
-                        else {
-                            sender = "Ground Point " + std::to_string(ground.get_id());
-                        }
-                    }
-                    if (ground.get_id() == idPair.receiver) {
-                        if constexpr (std::derived_from<U, GroundArchitecture>) { receiver = ground.get_name(); }
-                        else {
-                            receiver = "Ground Point " + std::to_string(ground.get_id());
-                        }
-                    }
+                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
+                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
                 }
             }
 
@@ -192,14 +182,8 @@ void save_access_metrics_to_file(
             }
             if (grounds.size() != 0) {
                 for (const auto& ground : grounds) {
-                    if (ground.get_id() == idPair.sender) {
-                        if (ground.get_id() == idPair.receiver) {
-                            if constexpr (std::derived_from<U, GroundArchitecture>) { sender = ground.get_name(); }
-                            else {
-                                sender = "Ground Point " + std::to_string(ground.get_id());
-                            }
-                        }
-                    }
+                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
+                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
                 }
 
                 RisesetStats stats(risesets);
