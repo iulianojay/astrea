@@ -28,6 +28,8 @@
 
 #include <astro/platforms/space/Constellation.hpp>
 
+#include <trace/analysis/stats/AccessStats.hpp>
+#include <trace/analysis/stats/RiseSetStats.hpp>
 #include <trace/platforms/ground/GroundArchitecture.hpp>
 #include <trace/risesets/AccessArray.hpp>
 #include <trace/risesets/RiseSetArray.hpp>
@@ -37,53 +39,6 @@ using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace trace {
-
-struct RisesetStats {
-
-    RisesetStats(const RiseSetArray& risesets) :
-        avgAccessTime(risesets.access_time(Stat::MEAN)),
-        minAccessTime(risesets.access_time(Stat::MIN)),
-        maxAccessTime(risesets.access_time(Stat::MAX)),
-        pct10AccessTime(risesets.access_time(Stat::PCT, 0.1)),
-        pct90AccessTime(risesets.access_time(Stat::PCT, 0.9)),
-        avgGapTime(risesets.gap(Stat::MEAN)),
-        minGapTime(risesets.gap(Stat::MIN)),
-        maxGapTime(risesets.gap(Stat::MAX)),
-        pct10GapTime(risesets.gap(Stat::PCT, 0.1)),
-        pct90GapTime(risesets.gap(Stat::PCT, 0.9))
-    {
-    }
-
-    std::vector<std::string> to_string_vector() const
-    {
-        std::vector<std::string> retval;
-        retval.reserve(10);
-
-        retval.push_back(to_formatted_string(minAccessTime));
-        retval.push_back(to_formatted_string(avgAccessTime));
-        retval.push_back(to_formatted_string(maxAccessTime));
-        retval.push_back(to_formatted_string(pct10AccessTime));
-        retval.push_back(to_formatted_string(pct90AccessTime));
-        retval.push_back(to_formatted_string(minGapTime));
-        retval.push_back(to_formatted_string(avgGapTime));
-        retval.push_back(to_formatted_string(maxGapTime));
-        retval.push_back(to_formatted_string(pct10GapTime));
-        retval.push_back(to_formatted_string(pct90GapTime));
-
-        return retval;
-    }
-
-    Time avgAccessTime;
-    Time minAccessTime;
-    Time maxAccessTime;
-    Time pct10AccessTime;
-    Time pct90AccessTime;
-    Time avgGapTime;
-    Time minGapTime;
-    Time maxGapTime;
-    Time pct10GapTime;
-    Time pct90GapTime;
-};
 
 /**
  * @brief Saves the AccessArray to a file in a human-readable format.
@@ -142,7 +97,7 @@ void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::p
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
-void save_access_metrics_to_file(
+void save_riseset_metrics_to_file(
     const AccessArray& accesses,
     const std::filesystem::path& outfile,
     const astro::Constellation<T>& satellites,
@@ -153,20 +108,19 @@ void save_access_metrics_to_file(
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
 
-    writer << std::vector<std::string>({
-        "Sender",
-        "Receiver",
-        "MIN Access Time (s)",
-        "AVG Access Time (s)",
-        "MAX Access Time (s)",
-        "10th PCT Access Time (s)",
-        "90th PCT Access Time (s)",
-        "MIN Gap Time (s)",
-        "AVG Gap Time (s)",
-        "MAX Gap Time (s)",
-        "10th PCT Gap Time (s)",
-        "90th PCT Gap Time (s)",
-    });
+    std::vector<std::string> header = { "Sender", "Receiver" };
+    for (const auto& metric : { "Access", "Gap" }) {
+        header.push_back(std::string("MIN ") + metric + " Time (s)");
+        header.push_back(std::string("AVG ") + metric + " Time (s)");
+        header.push_back(std::string("MAX ") + metric + " Time (s)");
+
+        for (const auto& pct : Stats().defaultPercentiles) {
+            int pctVal = pct.numerical_value_ref_in(pct.unit) * 100;
+            header.push_back(std::to_string(pctVal) + "th PCT " + metric + " Time (s)");
+        }
+    }
+
+    writer << header;
     for (const auto& [idPair, risesets] : accesses) {
         if (risesets.size() > 0) {
 
@@ -185,16 +139,90 @@ void save_access_metrics_to_file(
                     if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
                     if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
                 }
+            }
 
-                RisesetStats stats(risesets);
+            RiseSetStats stats(idPair.sender, idPair.receiver, risesets);
 
-                std::vector<std::string> row{ sender, receiver };
-                for (const auto& str : stats.to_string_vector()) {
-                    row.push_back(str);
-                }
-                writer << row;
+            std::vector<std::string> row{ sender, receiver };
+            for (const auto& str : stats.to_string_vector()) {
+                row.push_back(str);
+            }
+            writer << row;
+        }
+    }
+}
+
+
+/**
+ * @brief Saves the AccessArray to a file in a human-readable format.
+ *
+ * @tparam T The type of Spacecraft used in the Constellation.
+ * @param accesses The AccessArray containing the access times to be saved.
+ * @param outfile The name of the file to save to.
+ * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+ * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+ */
+template <typename T, typename U>
+void save_access_metrics_to_file(
+    const AccessArray& accesses,
+    const std::filesystem::path& outfile,
+    const astro::Constellation<T>& satellites,
+    const U& grounds = U()
+)
+{
+    AccessStats stats(accesses);
+
+    std::filesystem::create_directories(outfile.parent_path());
+    std::ofstream ss(outfile);
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> statStrings = { "MIN", "AVG", "MAX" };
+    for (const auto& pct : Stats().defaultPercentiles) {
+        int pctVal = pct.numerical_value_ref_in(pct.unit) * 100;
+        statStrings.push_back(std::to_string(pctVal) + "th PCT");
+    }
+
+    std::vector<std::string> header = { "Object" };
+    for (const auto& statStr : statStrings) {
+        for (const auto& metric : { "Access", "Gap" }) {
+            header.push_back(std::string("MIN ") + statStr + " " + metric + " Time (s)");
+            header.push_back(std::string("AVG ") + statStr + " " + metric + " Time (s)");
+            header.push_back(std::string("MAX ") + statStr + " " + metric + " Time (s)");
+
+            for (const auto& pct : Stats().defaultPercentiles) {
+                int pctVal = pct.numerical_value_ref_in(pct.unit) * 100;
+                header.push_back(std::to_string(pctVal) + "th PCT " + statStr + " " + metric + " Time (s)");
             }
         }
+    }
+
+    writer << header;
+    for (const auto& [id, statsPair] : stats.stats) {
+
+        // Gross
+        std::string object;
+        for (const auto& shell : satellites.get_shells()) {
+            for (const auto& plane : shell.get_planes()) {
+                for (const auto& viewer : plane.get_all_spacecraft()) {
+                    if (viewer.get_id() == id) { object = viewer.get_name(); }
+                }
+            }
+        }
+        if (grounds.size() != 0) {
+            for (const auto& ground : grounds) {
+                if (ground.get_id() == id) { object = ground.get_name(); }
+            }
+        }
+
+        std::vector<std::string> row{ object };
+        const auto& [accessStats, gapStats] = statsPair;
+        for (const auto& str : accessStats.to_string_vector()) {
+            row.push_back(str);
+        }
+        for (const auto& str : gapStats.to_string_vector()) {
+            row.push_back(str);
+        }
+        writer << row;
     }
 }
 

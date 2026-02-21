@@ -1,8 +1,8 @@
 /**
- * @file trace.fwd.hpp
+ * @file AccessStats.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Forward declarations for the trace module.
- * @date 2025-10-09
+ * @brief Contains utilities for calculating access statistics.
+ * @date 2025-08-03
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
  *
@@ -16,29 +16,44 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
-
 #pragma once
+
+#include <string>
+#include <vector>
+
+#include <gtl/btree.hpp>
+
+#include <units/units.hpp>
+
+#include <trace/analysis/stats/RiseSetStats.hpp>
+#include <trace/trace.fwd.hpp>
+#include <trace/types/IdPair.hpp>
 
 namespace astrea {
 namespace trace {
 
-struct IdPair;
-class RiseSetArray;
-class AccessArray;
+struct HyperStats {
 
-class Grid;
-class GroundPoint;
-class GroundArchitecture;
-class GroundStation;
+    HyperStats() = default;
 
-class Sensor;
-class Viewer;
+    HyperStats(const std::vector<Stats>& statsVec);
 
-struct AccessInfo;
+    std::vector<std::string> to_string_vector() const;
 
-struct Stats;
-struct RiseSetStats;
-struct AccessStats;
+    Stats min;
+    Stats max;
+    Stats avg;
+    std::vector<Stats> percentiles;
+};
+
+struct AccessStats {
+    AccessStats() = default;
+
+    AccessStats(const AccessArray& accesses);
+
+    gtl::btree_map<std::size_t, std::pair<HyperStats, HyperStats>> stats;
+    gtl::btree_map<IdPair, RiseSetStats> risesetStats;
+};
 
 } // namespace trace
 } // namespace astrea

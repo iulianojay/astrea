@@ -132,6 +132,7 @@ int arcturus_starlink_interference_test()
     std::filesystem::path metricsOutfile = base / "metrics.csv";
 
     save_accesses_to_file(accesses, accessOutfile, allSats, grounds);
+    save_riseset_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
     save_access_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
 
     // Call plotter
@@ -194,12 +195,14 @@ int iceye_test()
     const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys);
 
     // Save
-    std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
-    std::filesystem::path accessOutfile  = base / "revisit.csv";
-    std::filesystem::path metricsOutfile = base / "metrics.csv";
+    std::filesystem::path base                  = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
+    std::filesystem::path accessOutfile         = base / "risesets.csv";
+    std::filesystem::path risesetMetricsOutfile = base / "riseset_metrics.csv";
+    std::filesystem::path accessMetricsOutfile  = base / "access_metrics.csv";
 
     save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
-    save_access_metrics_to_file(accesses, metricsOutfile, iceyeConstel, grid);
+    save_riseset_metrics_to_file(accesses, risesetMetricsOutfile, iceyeConstel, grid);
+    save_access_metrics_to_file(accesses, accessMetricsOutfile, iceyeConstel, grid);
 
     // Call plotter
     // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
@@ -229,7 +232,7 @@ AccessArray propagate_and_run_access_analysis(astro::Constellation<T>& constella
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Time propTime = days(7.0);
+    Time propTime = days(30.0);
     Date endDate  = startDate + propTime;
     constellation.propagate(endDate, eom, integrator);
 

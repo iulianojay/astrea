@@ -236,10 +236,10 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     ASSERT_EQ(access34.size(), 2);
 
     // Access time
-    ASSERT_EQ(access12.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access13.access_time(Stat::MEAN), 0 * s);
-    ASSERT_EQ(access14.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access23.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access24.access_time(Stat::MEAN), 0 * s);
-    ASSERT_EQ(access34.access_time(Stat::MEAN), propTime);
+    ASSERT_EQ(access12.access_time(StatType::MEAN), propTime);
+    ASSERT_EQ(access13.access_time(StatType::MEAN), 0 * s);
+    ASSERT_EQ(access14.access_time(StatType::MEAN), propTime);
+    ASSERT_EQ(access23.access_time(StatType::MEAN), propTime);
+    ASSERT_EQ(access24.access_time(StatType::MEAN), 0 * s);
+    ASSERT_EQ(access34.access_time(StatType::MEAN), propTime);
 }

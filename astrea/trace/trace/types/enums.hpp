@@ -26,7 +26,7 @@ namespace trace {
 /**
  * @brief Enumeration of statistical measures for RiseSetArray.
  */
-enum class Stat : EnumType {
+enum class StatType : EnumType {
     MIN,  //!< Minimum value
     MEAN, //!< Mean value
     MAX,  //!< Maximum value
@@ -36,7 +36,7 @@ enum class Stat : EnumType {
 /**
  * @brief Enumeration for different rise/set metrics.
  */
-enum class RisesetMetric : EnumType {
+enum class RiseSetMetric : EnumType {
     GAP,        //!< Time gap between rise and set
     ACCESS_TIME //!< Time of access based on rise and set times
 };

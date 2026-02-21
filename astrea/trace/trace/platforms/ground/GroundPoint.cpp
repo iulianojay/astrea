@@ -25,6 +25,7 @@
 
 using namespace mp_units;
 using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
 using mp_units::isq_angle::cotes_angle;
 using mp_units::si::unit_symbols::km;
 
@@ -77,8 +78,10 @@ VelocityVector<frames::earth::icrf> GroundPoint::get_inertial_velocity(const Dat
 std::string GroundPoint::get_name() const
 {
     std::ostringstream oss;
-    oss << "(" << _lla.get_latitude() << ", " << _lla.get_longitude() << ", " << _lla.get_altitude() << ")";
-    oss << " [" << _parent->get_name() << "]";
+    oss << "[" << _lla.get_latitude().in(deg) << ", " << _lla.get_longitude().in(deg);
+    if (_lla.get_altitude() != 0.0 * km) { oss << ", " << _lla.get_altitude(); }
+    oss << "]";
+    oss << " (" << _parent->get_name() << ")";
     return oss.str();
 }
 

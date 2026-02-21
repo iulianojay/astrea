@@ -364,6 +364,7 @@ RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_
         if (sensorAccess.size() > 0) {
             access = (access | sensorAccess);
             sensor.add_access(groundPoint->get_id(), sensorAccess);
+            groundPoint->add_access(sensor.get_id(), sensorAccess);
         }
     }
 

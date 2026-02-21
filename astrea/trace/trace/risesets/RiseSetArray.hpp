@@ -209,7 +209,9 @@ class RiseSetArray {
      * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated gap based on the specified statistic.
      */
-    Time gap(const Stat& stat = Stat::MEAN, const Unitless percentile = 0.5) const;
+    Time gap(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
+
+    std::vector<Time> get_gap_times() const;
 
     /**
      * @brief Calculates the access time based on rise and set times.
@@ -218,7 +220,9 @@ class RiseSetArray {
      * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated access time based on the specified statistic.
      */
-    Time access_time(const Stat& stat = Stat::MEAN, const Unitless percentile = 0.5) const;
+    Time access_time(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
+
+    std::vector<Time> get_access_times() const;
 
     /**
      * @brief Iterator type for the RiseSetArray.
@@ -310,7 +314,7 @@ class RiseSetArray {
      * @param metric The metric to calculate the statistic for (GAP or ACCESS_TIME).
      * @return Time The calculated statistic based on the specified metric and statistic type.
      */
-    Time calculate_statistic(const Stat& stat, const Unitless& percentile, const RisesetMetric metric) const;
+    Time calculate_statistic(const StatType& stat, const Unitless& percentile, const RiseSetMetric metric) const;
 };
 
 } // namespace trace

@@ -24,6 +24,8 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
     ${TRACE_BASE}/analysis/PositionCache.cpp
     ${TRACE_BASE}/analysis/SpatialIndex.cpp
+    ${TRACE_BASE}/analysis/stats/RiseSetStats.cpp
+    ${TRACE_BASE}/analysis/stats/AccessStats.cpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.cpp
     ${TRACE_BASE}/platforms/sensors/Sensor.cpp
@@ -48,6 +50,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
     ${TRACE_BASE}/analysis/PositionCache.hpp
     ${TRACE_BASE}/analysis/SpatialIndex.hpp
+    ${TRACE_BASE}/analysis/stats/RiseSetStats.hpp
+    ${TRACE_BASE}/analysis/stats/AccessStats.hpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
@@ -66,6 +70,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/risesets/RiseSetArray.hpp
     ${TRACE_BASE}/risesets/riseset_utils.hpp
 
+    ${TRACE_BASE}/types/enums.hpp
+    ${TRACE_BASE}/types/IdPair.hpp
     ${TRACE_BASE}/types/typedefs.hpp
 )
 

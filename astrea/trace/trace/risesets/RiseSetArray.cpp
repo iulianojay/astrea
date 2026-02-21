@@ -149,19 +149,41 @@ std::vector<std::string> RiseSetArray::to_string_vector() const
 }
 
 
-Time RiseSetArray::gap(const Stat& stat, const Unitless percentile) const
+Time RiseSetArray::gap(const StatType& stat, const Unitless percentile) const
 {
-    return calculate_statistic(stat, percentile, RisesetMetric::GAP);
+    return calculate_statistic(stat, percentile, RiseSetMetric::GAP);
 }
 
 
-Time RiseSetArray::access_time(const Stat& stat, const Unitless percentile) const
+std::vector<Time> RiseSetArray::get_gap_times() const
 {
-    return calculate_statistic(stat, percentile, RisesetMetric::ACCESS_TIME);
+    std::vector<Time> gaps;
+    gaps.reserve(_risesets.size() / 2 - 1);
+    for (std::size_t ii = 1; ii < _risesets.size() - 1; ii += 2) {
+        gaps.push_back(_risesets[ii + 1] - _risesets[ii]);
+    }
+    return gaps;
 }
 
 
-Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percentile, const RisesetMetric metric) const
+Time RiseSetArray::access_time(const StatType& stat, const Unitless percentile) const
+{
+    return calculate_statistic(stat, percentile, RiseSetMetric::ACCESS_TIME);
+}
+
+
+std::vector<Time> RiseSetArray::get_access_times() const
+{
+    std::vector<Time> accesses;
+    accesses.reserve(_risesets.size() / 2);
+    for (std::size_t ii = 0; ii < _risesets.size() - 1; ii += 2) {
+        accesses.push_back(_risesets[ii + 1] - _risesets[ii]);
+    }
+    return accesses;
+}
+
+
+Time RiseSetArray::calculate_statistic(const StatType& stat, const Unitless& percentile, const RiseSetMetric metric) const
 {
     // TODO: Is this a good default value? Is it necessarily meaningless or should it be negative or error?
     Time retval = 0.0 * s;
@@ -169,13 +191,13 @@ Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percent
     // Gap measures space between accesses so we can just shift the starting index
     // This value also happens to represent the difference in number of each metric type so we use it to shift
     // the array sizes for each accordingly
-    std::size_t idxOffset = metric == RisesetMetric::GAP ? 1 : 0;
+    std::size_t idxOffset = metric == RiseSetMetric::GAP ? 1 : 0;
 
     // Empty or not enough risesets for any gap
     if (_risesets.size() < 2 + idxOffset) { return retval; }
 
     // Percentile calcs
-    if (stat == Stat::PCT) {
+    if (stat == StatType::PCT) {
         if (percentile < 0 * one || percentile > 1 * one) {
             throw std::runtime_error("Percentile must be between 0 and 1.");
         }
@@ -194,7 +216,7 @@ Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percent
     }
 
     // Non-percentile calcs
-    if (stat == Stat::MIN) { retval = std::numeric_limits<double>::max() * s; }
+    if (stat == StatType::MIN) { retval = std::numeric_limits<double>::max() * s; }
     for (std::size_t ii = idxOffset; ii < _risesets.size() - 1; ii += 2) {
         const Time duration = _risesets[ii + 1] - _risesets[ii];
 
@@ -203,22 +225,22 @@ Time RiseSetArray::calculate_statistic(const Stat& stat, const Unitless& percent
             continue;
         }
         switch (stat) {
-            case (Stat::MIN): {
+            case (StatType::MIN): {
                 if (duration < retval) { retval = duration; }
                 break;
             }
-            case (Stat::MAX): {
+            case (StatType::MAX): {
                 if (duration > retval) { retval = duration; }
                 break;
             }
-            case (Stat::MEAN): {
+            case (StatType::MEAN): {
                 retval += duration;
                 break;
             }
             default: throw std::runtime_error("Unknown access time statistic requested.");
         }
     }
-    if (stat == Stat::MEAN) {
+    if (stat == StatType::MEAN) {
         const std::size_t nMetricIntervals = _risesets.size() / 2 - idxOffset;
         retval /= nMetricIntervals;
     }
