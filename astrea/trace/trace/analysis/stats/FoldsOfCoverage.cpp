@@ -39,7 +39,7 @@ FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resoluti
         }
 
         // loop over time
-        _folds[id] = std::vector<std::size_t>(nTimes, 0);
+        _folds[id] = std::vector<double>(nTimes, 0);
         for (std::size_t iTime = 0; iTime < nTimes; ++iTime) {
             const Time t = start + iTime * resolution;
 
@@ -52,7 +52,7 @@ FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resoluti
 
     // Get stats
     for (const auto& [id, foldsVector] : _folds) {
-        _stats[id] = Stats<std::size_t>(foldsVector);
+        _stats[id] = Stats<double>(foldsVector);
     }
 }
 

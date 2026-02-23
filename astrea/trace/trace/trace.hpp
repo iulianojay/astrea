@@ -19,6 +19,14 @@
 #pragma once
 
 #include <trace/analysis/AccessAnalyzer.hpp>
+#include <trace/analysis/PositionCache.hpp>
+#include <trace/analysis/SpatialIndex.hpp>
+#include <trace/analysis/plots/Plotter.hpp>
+#include <trace/analysis/stats/AccessStats.hpp>
+#include <trace/analysis/stats/FoldsOfCoverage.hpp>
+#include <trace/analysis/stats/HyperStats.hpp>
+#include <trace/analysis/stats/RiseSetStats.hpp>
+#include <trace/analysis/stats/Stats.hpp>
 
 #include <trace/io/output.hpp>
 

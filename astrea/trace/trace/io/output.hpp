@@ -183,7 +183,7 @@ void save_access_metrics_to_file(
         statStrings.push_back(std::to_string(pctVal) + "th PCT");
     }
 
-    std::vector<std::string> header = { "Object", "N Folds" };
+    std::vector<std::string> header = { "Object" };
     for (const auto& statStr : statStrings) {
         for (const auto& metric : { "Access", "Gap" }) {
             header.push_back(std::string("MIN ") + statStr + " " + metric + " Time (s)");
@@ -253,7 +253,7 @@ void save_number_of_folds_to_file(
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
 
-    std::vector<std::string> header = { "Object", "N Folds" };
+    std::vector<std::string> header = { "Object" };
     header.push_back(std::string("MIN N Folds"));
     header.push_back(std::string("AVG N Folds"));
     header.push_back(std::string("MAX N Folds"));
@@ -262,6 +262,7 @@ void save_number_of_folds_to_file(
         int pctVal = pct.numerical_value_ref_in(pct.unit);
         header.push_back(std::to_string(pctVal) + "th PCT N Folds");
     }
+    header.push_back(std::string("N Folds"));
 
     writer << header;
     for (const auto& [id, foldsVector] : folds) {

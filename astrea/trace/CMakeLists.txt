@@ -25,6 +25,8 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/PositionCache.cpp
     ${TRACE_BASE}/analysis/SpatialIndex.cpp
 
+    ${TRACE_BASE}/analysis/plots/Plotter.cpp
+
     ${TRACE_BASE}/analysis/stats/RiseSetStats.cpp
     ${TRACE_BASE}/analysis/stats/AccessStats.cpp
     ${TRACE_BASE}/analysis/stats/FoldsOfCoverage.cpp
@@ -54,6 +56,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
     ${TRACE_BASE}/analysis/PositionCache.hpp
     ${TRACE_BASE}/analysis/SpatialIndex.hpp
+
+    ${TRACE_BASE}/analysis/plots/Plotter.hpp
 
     ${TRACE_BASE}/analysis/stats/RiseSetStats.hpp
     ${TRACE_BASE}/analysis/stats/AccessStats.hpp

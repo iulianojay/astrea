@@ -56,12 +56,12 @@ class FoldsOfCoverage {
     /**
      * @brief Iterator type for the FoldsOfCoverage.
      */
-    using iterator = gtl::btree_map<std::size_t, std::vector<std::size_t>>::iterator;
+    using iterator = gtl::btree_map<std::size_t, std::vector<double>>::iterator;
 
     /**
      * @brief Constant iterator type for the FoldsOfCoverage.
      */
-    using const_iterator = gtl::btree_map<std::size_t, std::vector<std::size_t>>::const_iterator;
+    using const_iterator = gtl::btree_map<std::size_t, std::vector<double>>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the FoldsOfCoverage.
@@ -111,11 +111,11 @@ class FoldsOfCoverage {
      * @param id The ID to get the statistics for.
      * @return Stats<std::size_t> The statistics for the given ID.
      */
-    const Stats<std::size_t>& get_stats(const std::size_t& id) const { return _stats.at(id); }
+    const Stats<double>& get_stats(const std::size_t& id) const { return _stats.at(id); }
 
   private:
-    gtl::btree_map<std::size_t, std::vector<std::size_t>> _folds; //!< Map of receiver ID to vector of folds of coverage over time.
-    gtl::btree_map<std::size_t, Stats<std::size_t>> _stats; //!< Map of receiver ID to statistics for the folds of coverage.
+    gtl::btree_map<std::size_t, std::vector<double>> _folds; //!< Map of receiver ID to vector of folds of coverage over time.
+    gtl::btree_map<std::size_t, Stats<double>> _stats; //!< Map of receiver ID to statistics for the folds of coverage.
 };
 
 } // namespace trace
