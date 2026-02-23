@@ -21,63 +21,10 @@
 #include <trace/risesets/riseset_utils.hpp>
 #include <trace/types/enums.hpp>
 
-using mp_units::one;
-using mp_units::si::unit_symbols::s;
-
 namespace astrea {
 namespace trace {
 
-
-Stats::Stats(const RiseSetArray& risesets, const RiseSetMetric& metric)
-{
-    percentiles.reserve(defaultPercentiles.size());
-    switch (metric) {
-        case (RiseSetMetric::ACCESS_TIME): *this = Stats(risesets.get_access_times()); break;
-        case (RiseSetMetric::GAP): *this = Stats(risesets.get_gap_times()); break;
-        default: throw std::runtime_error("Unrecognized riseset metric.");
-    }
-}
-
-Stats::Stats(std::vector<Time> times)
-{
-    if (times.size() == 0) { throw std::runtime_error("Cannot calculate statistics on an empty vector."); }
-
-    // Sort automatically gives min, max, and sets up for percentile calcs
-    std::sort(times.begin(), times.end());
-
-    min = times[0];
-    max = times[times.size() - 1];
-    avg = 0.0 * s;
-    for (const auto& time : times) {
-        avg += time;
-    }
-    avg /= static_cast<double>(times.size());
-
-    const std::size_t nTimes = times.size();
-    for (const auto& pct : defaultPercentiles) {
-        const std::size_t index = static_cast<std::size_t>(std::ceil(pct.numerical_value_in(one) * nTimes)) - 1;
-        percentiles.push_back(times[index]);
-    }
-}
-
-std::vector<std::string> Stats::to_string_vector() const
-{
-    std::vector<std::string> retval;
-    retval.reserve(3 + defaultPercentiles.size());
-
-    retval.push_back(to_formatted_string(min));
-    retval.push_back(to_formatted_string(avg));
-    retval.push_back(to_formatted_string(max));
-    for (const auto& pct : percentiles) {
-        retval.push_back(to_formatted_string(pct));
-    }
-
-    return retval;
-}
-
-RiseSetStats::RiseSetStats(const std::size_t sender, const std::size_t receiver, const RiseSetArray& risesets) :
-    sender(sender),
-    receiver(receiver)
+RiseSetStats::RiseSetStats(const RiseSetArray& risesets)
 {
     stats[RiseSetMetric::ACCESS_TIME] = Stats(risesets, RiseSetMetric::ACCESS_TIME);
     stats[RiseSetMetric::GAP]         = Stats(risesets, RiseSetMetric::GAP);
@@ -86,7 +33,7 @@ RiseSetStats::RiseSetStats(const std::size_t sender, const std::size_t receiver,
 std::vector<std::string> RiseSetStats::to_string_vector() const
 {
     std::vector<std::string> retval;
-    retval.reserve(stats.size() * (Stats().defaultPercentiles.size() + 3));
+    retval.reserve(stats.size() * (DEFAULT_PERCENTILES.size() + 3));
 
     for (const auto& [metric, stat] : stats) {
         const auto statStringVec = stat.to_string_vector();

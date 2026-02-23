@@ -211,6 +211,11 @@ class RiseSetArray {
      */
     Time gap(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
 
+    /**
+     * @brief Get a vector of gap durations for this rise-set array
+     *
+     * @return std::vector<Time> Vector of gap durations in the order that they appear
+     */
     std::vector<Time> get_gap_times() const;
 
     /**
@@ -222,7 +227,14 @@ class RiseSetArray {
      */
     Time access_time(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
 
+    /**
+     * @brief Get a vector of access durations for this rise-set array
+     *
+     * @return std::vector<Time> Vector of access durations in the order that they appear
+     */
     std::vector<Time> get_access_times() const;
+
+    bool has_access(const Time& time) const;
 
     /**
      * @brief Iterator type for the RiseSetArray.

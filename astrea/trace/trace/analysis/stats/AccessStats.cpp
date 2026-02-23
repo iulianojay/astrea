@@ -19,86 +19,30 @@ namespace astrea {
 namespace trace {
 
 
-HyperStats::HyperStats(const std::vector<Stats>& statsVec)
-{
-    std::vector<Time> minVals;
-    std::vector<Time> maxVals;
-    std::vector<Time> avgVals;
-    std::vector<std::vector<Time>> pctVals;
-
-    const std::size_t statsSize = statsVec.size();
-    minVals.reserve(statsSize);
-    maxVals.reserve(statsSize);
-    avgVals.reserve(statsSize);
-
-    const std::size_t nPercentiles = Stats().defaultPercentiles.size();
-    pctVals.resize(nPercentiles);
-    for (std::size_t ii = 0; ii < nPercentiles; ++ii) {
-        pctVals[ii].reserve(statsSize);
-    }
-
-    // stats of stats. oh joy
-    for (const auto& stats : statsVec) {
-        minVals.push_back(stats.min);
-        maxVals.push_back(stats.max);
-        avgVals.push_back(stats.avg);
-
-        for (std::size_t ii = 0; ii < nPercentiles; ++ii) {
-            pctVals[ii].push_back(stats.percentiles[ii]);
-        }
-    }
-
-    min = Stats(minVals);
-    max = Stats(maxVals);
-    avg = Stats(avgVals);
-    for (std::size_t ii = 0; ii < nPercentiles; ++ii) {
-        percentiles.push_back(Stats(pctVals[ii]));
-    }
-}
-
-
-std::vector<std::string> HyperStats::to_string_vector() const
-{
-    std::vector<std::string> retval;
-
-    const auto minStrVec = min.to_string_vector();
-    const auto avgStrVec = avg.to_string_vector();
-    const auto maxStrVec = max.to_string_vector();
-
-    retval.reserve(minStrVec.size() * minStrVec.size());
-    retval.insert(retval.end(), minStrVec.begin(), minStrVec.end());
-    retval.insert(retval.end(), avgStrVec.begin(), avgStrVec.end());
-    retval.insert(retval.end(), maxStrVec.begin(), maxStrVec.end());
-
-    for (const auto& pct : percentiles) {
-        const auto pctStrVec = pct.to_string_vector();
-        retval.insert(retval.end(), pctStrVec.begin(), pctStrVec.end());
-    }
-
-    return retval;
-}
-
-
 AccessStats::AccessStats(const AccessArray& accesses)
 {
-    gtl::btree_set<std::size_t> ids;
+    // Aggregate risesets for receivers only
     for (const auto& [idPair, risesets] : accesses) {
-        ids.insert(idPair.sender);
-        ids.insert(idPair.receiver);
-        risesetStats[idPair] = RiseSetStats(idPair.sender, idPair.receiver, risesets);
+        if (risesets.size() == 0) { continue; }
+        risesetStats[idPair] = RiseSetStats(risesets);
+        aggregateRisesets[idPair.receiver] |= risesets;
     }
 
-    for (const auto& id : ids) {
-        std::vector<Stats> accessStatsVec;
-        std::vector<Stats> gapStatsVec;
-        for (const auto& [idPair, risesets] : accesses) {
-            if (idPair.sender == id || idPair.receiver == id) {
-                const auto& stats = risesetStats.at(idPair);
-                accessStatsVec.push_back(stats.stats.at(RiseSetMetric::ACCESS_TIME));
-                gapStatsVec.push_back(stats.stats.at(RiseSetMetric::GAP));
+    for (const auto& [id, risesets] : aggregateRisesets) {
+        // Get hyper-statistics for each riseset metric
+        for (const auto& metric : { RiseSetMetric::ACCESS_TIME, RiseSetMetric::GAP }) {
+            std::vector<Stats<Time>> statsVec;
+            for (const auto& [idPair, risesets] : accesses) {
+                if (idPair.sender == id || idPair.receiver == id) {
+                    const auto& stats = risesetStats.at(idPair).stats;
+                    statsVec.push_back(stats.at(metric));
+                }
             }
+            stats[id][metric] = HyperStats<Time>(statsVec);
         }
-        stats[id] = std::make_pair(HyperStats(accessStatsVec), HyperStats(gapStatsVec));
+
+        // Get stats on risesets unioned over each receiver
+        aggregateRisesetStats[id] = RiseSetStats(risesets);
     }
 }
 

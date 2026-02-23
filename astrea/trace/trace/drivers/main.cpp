@@ -199,10 +199,12 @@ int iceye_test()
     std::filesystem::path accessOutfile         = base / "risesets.csv";
     std::filesystem::path risesetMetricsOutfile = base / "riseset_metrics.csv";
     std::filesystem::path accessMetricsOutfile  = base / "access_metrics.csv";
+    std::filesystem::path nFoldsOutfile         = base / "n_folds.csv";
 
     save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
     save_riseset_metrics_to_file(accesses, risesetMetricsOutfile, iceyeConstel, grid);
     save_access_metrics_to_file(accesses, accessMetricsOutfile, iceyeConstel, grid);
+    save_number_of_folds_to_file(accesses, nFoldsOutfile, iceyeConstel, grid, seconds(60.0), days(0.0), days(30.0));
 
     // Call plotter
     // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +

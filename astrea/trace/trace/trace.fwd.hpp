@@ -36,6 +36,7 @@ class Viewer;
 
 struct AccessInfo;
 
+template <class T>
 struct Stats;
 struct RiseSetStats;
 struct AccessStats;

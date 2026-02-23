@@ -248,6 +248,13 @@ Time RiseSetArray::calculate_statistic(const StatType& stat, const Unitless& per
 }
 
 
+bool RiseSetArray::has_access(const Time& time) const
+{
+    const auto lower = std::lower_bound(_risesets.begin(), _risesets.end(), time);
+    return (std::distance(_risesets.begin(), lower) % 2);
+}
+
+
 std::ostream& operator<<(std::ostream& os, const RiseSetArray& risesets)
 {
     const auto& values = risesets._risesets;

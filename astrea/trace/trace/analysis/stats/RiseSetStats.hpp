@@ -25,44 +25,41 @@
 
 #include <units/units.hpp>
 
+#include <trace/analysis/stats/Stats.hpp>
 #include <trace/trace.fwd.hpp>
 #include <trace/types/enums.hpp>
 
 namespace astrea {
 namespace trace {
 
-
-struct Stats {
-
-    Stats() = default;
-
-    Stats(const RiseSetArray& risesets, const RiseSetMetric& metric);
-
-    Stats(std::vector<Time> values);
-
-    std::vector<std::string> to_string_vector() const;
-
-    Time min;
-    Time max;
-    Time avg;
-    std::vector<Time> percentiles;
-
-    std::vector<Unitless> defaultPercentiles{ 1, 5, 10, 25, 50, 75, 90, 95, 99 };
-};
-
-
+/**
+ * @brief The RiseSetStats struct represents statistics for rise and set times based on a RiseSetArray and a RiseSetMetric.
+ *
+ * It contains a map of RiseSetMetric to Stats<Time>, which holds the calculated statistics for each metric (GAP and ACCESS_TIME).
+ */
 struct RiseSetStats {
 
+    /**
+     * @brief Default constructor for RiseSetStats.
+     */
     RiseSetStats() = default;
 
-    RiseSetStats(const std::size_t sender, const std::size_t receiver, const RiseSetArray& risesets);
+    /**
+     * @brief Constructs a RiseSetStats object from a RiseSetArray and a RiseSetMetric.
+     *
+     * @param risesets The RiseSetArray containing the rise and set times to calculate statistics for.
+     * @throws std::runtime_error If the RiseSetMetric is unrecognized.
+     */
+    RiseSetStats(const RiseSetArray& risesets);
 
+    /**
+     * @brief Converts the statistics to a vector of strings for output.
+     *
+     * @return std::vector<std::string> A vector of strings representing the statistics for each metric.
+     */
     std::vector<std::string> to_string_vector() const;
 
-    std::size_t sender;
-    std::size_t receiver;
-
-    gtl::btree_map<RiseSetMetric, Stats> stats;
+    gtl::btree_map<RiseSetMetric, Stats<Time>> stats; //!< Map of RiseSetMetric to Stats<Time> containing the calculated statistics for each metric.
 };
 
 } // namespace trace

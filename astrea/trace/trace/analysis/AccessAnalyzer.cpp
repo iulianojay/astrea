@@ -161,7 +161,6 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
         _positionCache.clear();
         _positionCache.reserve(nViewers, nTimesteps);
     }
-
     ViewerRefVec viewers = cache_viewers(constel);
 
     // Pre-filter impossible pairs using geometric tests
@@ -186,6 +185,7 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
             viewer1->add_access(id2, satAccess);
             viewer2->add_access(id1, satAccess);
             allAccesses[id1, id2] = satAccess;
+            allAccesses[id2, id1] = satAccess;
         }
         progressBar();
     }
@@ -220,9 +220,9 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
         auto& groundStation = groundStations[iGround];
 
         // If the ground station has Sensors, treat it as a SensorPlatform, otherwise, treat it as a GroundPoint
-        const RiseSetArray satAccess = groundStation->get_payloads().size() > 0 ?
-                                           find_platform_to_platform_accesses(viewer, groundStation) :
-                                           find_platform_to_ground_point_accesses(viewer, groundStation);
+        const bool groundHasSensors  = (groundStation->get_payloads().size() > 0);
+        const RiseSetArray satAccess = groundHasSensors ? find_platform_to_platform_accesses(viewer, groundStation) :
+                                                          find_platform_to_ground_point_accesses(viewer, groundStation);
 
         if (satAccess.size() > 0) {
             const std::size_t viewerId = viewer->get_id();
@@ -231,6 +231,7 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
             viewer->add_access(groundId, satAccess);
             groundStation->add_access(viewerId, satAccess);
             allAccesses[viewerId, groundId] = satAccess;
+            if (groundHasSensors) { allAccesses[groundId, viewerId] = satAccess; }
         }
         progressBar();
     }
@@ -318,21 +319,21 @@ RiseSetArray
     }
 
     // Determine access sensor by sensor
-    RiseSetArray access;
+    RiseSetArray platformToPlatformAccesses;
     for (auto& sensor1 : platform1->get_payloads()) {
         for (auto& sensor2 : platform2->get_payloads()) {
             const RiseSetArray sensorAccess = find_sensor_to_sensor_accesses(accessInfo, sensor1, sensor2, twoWay);
 
             // Store
             if (sensorAccess.size() > 0) {
-                access = (access | sensorAccess);
+                platformToPlatformAccesses |= sensorAccess;
                 sensor1.add_access(sensor2.get_id(), sensorAccess);
                 sensor2.add_access(sensor1.get_id(), sensorAccess);
             }
         }
     }
 
-    return access;
+    return platformToPlatformAccesses;
 }
 
 RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_ptr<SensorPlatform> platform, const std::shared_ptr<GroundPoint> groundPoint)
@@ -356,19 +357,19 @@ RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_
     }
 
     // Determine access sensor by sensor
-    RiseSetArray access;
+    RiseSetArray platformToGroundAccesses;
     for (auto& sensor : platform->get_payloads()) {
         const RiseSetArray sensorAccess = find_sensor_to_ground_point_accesses(accessInfo, sensor, *groundPoint);
 
         // Store
         if (sensorAccess.size() > 0) {
-            access = (access | sensorAccess);
+            platformToGroundAccesses |= sensorAccess;
             sensor.add_access(groundPoint->get_id(), sensorAccess);
             groundPoint->add_access(sensor.get_id(), sensorAccess);
         }
     }
 
-    return access;
+    return platformToGroundAccesses;
 }
 
 RiseSetArray

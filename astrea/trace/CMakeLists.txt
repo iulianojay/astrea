@@ -24,8 +24,10 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
     ${TRACE_BASE}/analysis/PositionCache.cpp
     ${TRACE_BASE}/analysis/SpatialIndex.cpp
+
     ${TRACE_BASE}/analysis/stats/RiseSetStats.cpp
     ${TRACE_BASE}/analysis/stats/AccessStats.cpp
+    ${TRACE_BASE}/analysis/stats/FoldsOfCoverage.cpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.cpp
     ${TRACE_BASE}/platforms/sensors/Sensor.cpp
@@ -46,12 +48,18 @@ set(TRACE_SOURCES
 # Headers
 set(TRACE_HEADERS
     ${TRACE_BASE}/trace.hpp
+    ${TRACE_BASE}/trace.fwd.hpp
+    ${TRACE_BASE}/trace.macros.hpp
 
     ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
     ${TRACE_BASE}/analysis/PositionCache.hpp
     ${TRACE_BASE}/analysis/SpatialIndex.hpp
+
     ${TRACE_BASE}/analysis/stats/RiseSetStats.hpp
     ${TRACE_BASE}/analysis/stats/AccessStats.hpp
+    ${TRACE_BASE}/analysis/stats/FoldsOfCoverage.hpp
+    ${TRACE_BASE}/analysis/stats/Stats.hpp
+    ${TRACE_BASE}/analysis/stats/HyperStats.hpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
