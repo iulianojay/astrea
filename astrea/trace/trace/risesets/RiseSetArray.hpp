@@ -209,7 +209,7 @@ class RiseSetArray {
      * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated gap based on the specified statistic.
      */
-    Time gap(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
+    Time gap(const StatType& stat = StatType::AVG, const Unitless percentile = 0.5) const;
 
     /**
      * @brief Get a vector of gap durations for this rise-set array
@@ -225,7 +225,7 @@ class RiseSetArray {
      * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated access time based on the specified statistic.
      */
-    Time access_time(const StatType& stat = StatType::MEAN, const Unitless percentile = 0.5) const;
+    Time access_time(const StatType& stat = StatType::AVG, const Unitless percentile = 0.5) const;
 
     /**
      * @brief Get a vector of access durations for this rise-set array
@@ -234,7 +234,44 @@ class RiseSetArray {
      */
     std::vector<Time> get_access_times() const;
 
+    /**
+     * @brief Checks if the given time occurs during an access window
+     *
+     * @param time Time to check for access
+     * @return true if time occurs during an access windows
+     * @return false if time occurs during a gap
+     */
     bool has_access(const Time& time) const;
+
+    /**
+     * @brief Calculates the average daily visibility time based on the rise and set times.
+     *
+     * @return Time The calculated average daily visibility time.
+     */
+    Time average_daily_vis_time() const;
+
+    /**
+     * @brief Calculates the mean time to access (MTTA) for this RiseSetArray.
+     *
+     * @return Time The calculated mean time to access based on the rise and set times.
+     *
+     * @note
+     * access: |<--gap-->|<--access-->|<-gap->|<--access-->|...
+     *         |         |            |       |            |...
+     * tta:    |\        |            |       |            |...
+     *         |+\       |            |       |            |...
+     *         |++\      |            |\      |            |...
+     *         |+++\     |            |+\     |            |...
+     *         |++++\    |            |++\    |            |...
+     *         |+++++\   |            |+++\   |            |...
+     *         |++++++\  |            |++++\  |            |...
+     *         |+++++++\ |            |+++++\ |            |...
+     *         |++++++++\|____________|++++++\|____________|...
+     *
+     * MMTA is the mean time to access, or the mean height of the shaded regions
+     * MMTA = 0.5 * sqrt(gap0^2 + gap1^2 + ...)
+     */
+    Time mean_time_to_access() const;
 
     /**
      * @brief Iterator type for the RiseSetArray.

@@ -55,11 +55,71 @@ struct AccessStats {
      */
     AccessStats(const AccessArray& accesses);
 
-    gtl::btree_map<std::size_t, RiseSetArray> aggregateRisesets; //!< Union of all risesets to a single receiver
-    gtl::btree_map<std::size_t, RiseSetStats> aggregateRisesetStats; //!< Stats of union of all risesets to a single receiver
+    /**
+     * @brief Converts the statistics to a vector of strings for output.
+     *
+     * @return std::vector<std::string> A vector of strings representing the statistics for each receiver ID and metric.
+     */
+    std::vector<std::string> to_string_vector() const;
 
-    gtl::btree_map<IdPair, RiseSetStats> risesetStats; //!< Single viewer/target riseset stats
-    gtl::btree_map<std::size_t, gtl::btree_map<RiseSetMetric, HyperStats<Time>>> stats; //!< Hyper stats on single viewer/target riseset stats
+    /**
+     * @brief Accesses the rise/set statistics for all receivers.
+     *
+     * @return const RiseSetStats& A reference to the RiseSetStats object containing the statistics for the given receiver ID.
+     */
+    const auto& get_riseset_statistics() const { return _stats; }
+
+    /**
+     * @brief Accesses the rise/set statistics for a given receiver ID.
+     *
+     * @param receiverId The ID of the receiver to access statistics for.
+     * @return const RiseSetStats& A reference to the RiseSetStats object containing the statistics for the given receiver ID.
+     */
+    const auto& get_riseset_statistics(std::size_t receiverId) const { return _stats.at(receiverId); }
+
+    /**
+     * @brief Accesses the access statistics for a given receiver ID and AccessMetric.
+     *
+     * @param receiverId The ID of the receiver to access statistics for.
+     * @param metric The AccessMetric to access statistics for.
+     * @return const Time& A reference to the Time object containing the statistic for the given receiver ID and metric.
+     */
+    const auto& get_access_metric(std::size_t receiverId, const AccessMetric& metric) const
+    {
+        return _accessMetrics.at(receiverId).at(metric);
+    }
+
+    /**
+     * @brief Accesses the rise/set statistics for a given receiver ID.
+     *
+     * @param receiverId The ID of the receiver to access statistics for.
+     * @return const RiseSetStats& A reference to the RiseSetStats object containing the statistics for the given receiver ID.
+     */
+    const auto& get_access_statistics(const AccessMetric& metric) const { return _accessStats.at(metric); }
+
+    /**
+     * @brief Accesses the statistics for a given RiseSetMetric.
+     *
+     * @param metric The RiseSetMetric to access statistics for.
+     * @return const Stats<Time>& A reference to the Stats<Time> object containing the statistics for the given metric.
+     */
+    const auto& get_hyper_statistics(const RiseSetMetric& metric) const { return _hyperStats.at(metric); }
+
+    /**
+     * @brief Accesses the statistics for a given RiseSetMetric.
+     *
+     * @param metric The RiseSetMetric to access statistics for.
+     * @return Stats<Time>& A reference to the Stats<Time> object containing the statistics for the given metric.
+     */
+    auto& get_hyper_statistics(const RiseSetMetric& metric) { return _hyperStats[metric]; }
+
+  private:
+    gtl::btree_map<std::size_t, RiseSetArray> _risesets;         //!< Union of all risesets to any single receiver
+    gtl::btree_map<std::size_t, RiseSetStats> _stats;            //!< Stats on risesets
+    gtl::btree_map<RiseSetMetric, HyperStats<Time>> _hyperStats; //!< Statistics on riseset stats
+
+    gtl::btree_map<std::size_t, gtl::btree_map<AccessMetric, Time>> _accessMetrics; //!< Access metric values
+    gtl::btree_map<AccessMetric, Stats<Time>> _accessStats;                         //!< Access stats
 };
 
 } // namespace trace

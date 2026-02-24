@@ -121,7 +121,7 @@ TEST_F(RiseSetArrayTest, Gap)
     auto arr = arr1 | arr2;
     arr.append(t4 + 1.0 * mp_units::si::unit_symbols::s, t4 + 2.0 * mp_units::si::unit_symbols::s);
     ASSERT_EQ(arr.gap(StatType::MIN), t3 - t2);
-    ASSERT_EQ(arr.gap(StatType::MEAN), t3 - t2);
+    ASSERT_EQ(arr.gap(StatType::AVG), t3 - t2);
     ASSERT_EQ(arr.gap(StatType::MAX), t3 - t2);
 }
 
@@ -129,7 +129,7 @@ TEST_F(RiseSetArrayTest, Access)
 {
     const auto arr = arr1 | arr2;
     ASSERT_EQ(arr.access_time(StatType::MIN), t2 - t1);
-    ASSERT_EQ(arr.access_time(StatType::MEAN), t2 - t1);
+    ASSERT_EQ(arr.access_time(StatType::AVG), t2 - t1);
     ASSERT_EQ(arr.access_time(StatType::MAX), t2 - t1);
 }
 

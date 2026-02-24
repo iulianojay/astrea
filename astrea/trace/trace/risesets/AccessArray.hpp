@@ -89,6 +89,22 @@ class AccessArray {
     std::size_t size() const;
 
     /**
+     * @brief Retrieves the RiseSetArray for all accesses to a specific receiver.
+     *
+     * @param receiverId The ID of the receiver.
+     * @return RiseSetArray The RiseSetArray containing all accesses to the specified receiver.
+     */
+    RiseSetArray get_all_accesses_to_receiver(const std::size_t& receiverId) const;
+
+    /**
+     * @brief Retrieves the RiseSetArray for all accesses from a specific sender.
+     *
+     * @param senderId The ID of the sender.
+     * @return RiseSetArray The RiseSetArray containing all accesses from the specified sender.
+     */
+    RiseSetArray get_all_accesses_from_sender(const std::size_t& senderId) const;
+
+    /**
      * @brief Union operator for AccessArray.
      *
      * @param other The AccessArray to union with.

@@ -35,6 +35,24 @@ void AccessArray::erase(const std::size_t& senderId, const std::size_t& receiver
 
 std::size_t AccessArray::size() const { return _accesses.size(); }
 
+RiseSetArray AccessArray::get_all_accesses_to_receiver(const std::size_t& receiverId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.receiver == receiverId) { result | risesets; }
+    }
+    return result;
+}
+
+RiseSetArray AccessArray::get_all_accesses_from_sender(const std::size_t& senderId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.sender == senderId) { result | risesets; }
+    }
+    return result;
+}
+
 AccessArray& AccessArray::operator|(const AccessArray& other)
 {
     for (const auto& [ids, risesets] : other) {

@@ -26,17 +26,18 @@ namespace trace {
 
 RiseSetStats::RiseSetStats(const RiseSetArray& risesets)
 {
-    stats[RiseSetMetric::ACCESS_TIME] = Stats(risesets, RiseSetMetric::ACCESS_TIME);
-    stats[RiseSetMetric::GAP]         = Stats(risesets, RiseSetMetric::GAP);
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        _stats[metric] = Stats(risesets, metric);
+    }
 }
 
 std::vector<std::string> RiseSetStats::to_string_vector() const
 {
     std::vector<std::string> retval;
-    retval.reserve(stats.size() * (DEFAULT_PERCENTILES.size() + 3));
+    retval.reserve(ALL_RISE_SET_METRICS.size() * Stats<Time>::size());
 
-    for (const auto& [metric, stat] : stats) {
-        const auto statStringVec = stat.to_string_vector();
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        const auto statStringVec = _stats.at(metric).to_string_vector();
         retval.insert(retval.end(), statStringVec.begin(), statStringVec.end());
     }
 

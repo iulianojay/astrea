@@ -16,9 +16,12 @@
 #include <limits>
 #include <stdexcept>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/iau.h>
 #include <mp-units/systems/si.h>
 
-using mp_units::one;
+using namespace mp_units;
+using mp_units::non_si::day;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {
@@ -183,6 +186,46 @@ std::vector<Time> RiseSetArray::get_access_times() const
 }
 
 
+Time RiseSetArray::average_daily_vis_time() const
+{
+    // good luck parsing this jumbled mess
+    Time avgDailyVisTime       = 0.0 * s;
+    std::size_t ii             = 0;
+    unsigned iDay              = 0;
+    bool accessCrossesMidnight = false;
+    while (ii < _risesets.size() - 1) {
+        Time dailyVisTime = 0.0 * s;
+        for (; ii < _risesets.size() - 1; ii += 2) {
+            Time start = _risesets[ii];
+            if (accessCrossesMidnight) {
+                start                 = Time(days(iDay - 1));
+                accessCrossesMidnight = false;
+            }
+            Time end = _risesets[ii + 1];
+            if (end > Time(days(iDay))) {
+                end                   = Time(days(iDay));
+                accessCrossesMidnight = true;
+            }
+            dailyVisTime += end - start;
+            if (accessCrossesMidnight) { break; }
+        }
+        avgDailyVisTime += dailyVisTime;
+        ++iDay;
+    }
+    return avgDailyVisTime / (iDay - 1);
+}
+
+
+Time RiseSetArray::mean_time_to_access() const
+{
+    quantity mtta = 0.0 * s * s;
+    for (const auto& gap : get_gap_times()) {
+        mtta += gap * gap;
+    }
+    return sqrt(mtta) * 0.5;
+}
+
+
 Time RiseSetArray::calculate_statistic(const StatType& stat, const Unitless& percentile, const RiseSetMetric metric) const
 {
     // TODO: Is this a good default value? Is it necessarily meaningless or should it be negative or error?
@@ -233,14 +276,14 @@ Time RiseSetArray::calculate_statistic(const StatType& stat, const Unitless& per
                 if (duration > retval) { retval = duration; }
                 break;
             }
-            case (StatType::MEAN): {
+            case (StatType::AVG): {
                 retval += duration;
                 break;
             }
             default: throw std::runtime_error("Unknown access time statistic requested.");
         }
     }
-    if (stat == StatType::MEAN) {
+    if (stat == StatType::AVG) {
         const std::size_t nMetricIntervals = _risesets.size() / 2 - idxOffset;
         retval /= nMetricIntervals;
     }

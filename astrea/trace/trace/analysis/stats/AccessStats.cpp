@@ -23,27 +23,71 @@ AccessStats::AccessStats(const AccessArray& accesses)
 {
     // Aggregate risesets for receivers only
     for (const auto& [idPair, risesets] : accesses) {
-        if (risesets.size() == 0) { continue; }
-        risesetStats[idPair] = RiseSetStats(risesets);
-        aggregateRisesets[idPair.receiver] |= risesets;
+        _risesets[idPair.receiver] |= risesets;
     }
 
-    for (const auto& [id, risesets] : aggregateRisesets) {
-        // Get hyper-statistics for each riseset metric
-        for (const auto& metric : { RiseSetMetric::ACCESS_TIME, RiseSetMetric::GAP }) {
-            std::vector<Stats<Time>> statsVec;
-            for (const auto& [idPair, risesets] : accesses) {
-                if (idPair.sender == id || idPair.receiver == id) {
-                    const auto& stats = risesetStats.at(idPair).stats;
-                    statsVec.push_back(stats.at(metric));
-                }
-            }
-            stats[id][metric] = HyperStats<Time>(statsVec);
+    // Get stats and access metrics for each receiver ID
+    for (const auto& [id, risesets] : _risesets) {
+        _stats[id]                                      = RiseSetStats(risesets);
+        _accessMetrics[id][AccessMetric::AVG_DAILY_VIS] = risesets.average_daily_vis_time();
+        _accessMetrics[id][AccessMetric::MTTA]          = risesets.mean_time_to_access();
+    }
+
+    // Get stats for each access metric
+    for (const auto& metric : ALL_ACCESS_METRICS) {
+        std::vector<Time> metricVec;
+        for (const auto& [id, metricValues] : _accessMetrics) {
+            metricVec.push_back(metricValues.at(metric));
         }
-
-        // Get stats on risesets unioned over each receiver
-        aggregateRisesetStats[id] = RiseSetStats(risesets);
+        _accessStats[metric] = Stats<Time>(metricVec);
     }
+
+    // Get hyper-statistics for each riseset metric
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        std::vector<Stats<Time>> statsVec;
+        for (const auto& [id, risesets] : _risesets) {
+            statsVec.push_back(_stats.at(id).at(metric));
+        }
+        _hyperStats[metric] = HyperStats<Time>(statsVec);
+    }
+}
+
+std::vector<std::string> AccessStats::to_string_vector() const
+{
+    std::vector<std::string> retval;
+    const std::size_t nReceivers      = _stats.size();
+    const std::size_t nStats          = Stats<Time>::size();
+    const std::size_t nHyperStats     = HyperStats<Time>::size();
+    const std::size_t nRiseSetMetrics = ALL_RISE_SET_METRICS.size();
+    const std::size_t nAccessMetrics  = ALL_ACCESS_METRICS.size();
+    retval.reserve(nReceivers * nStats + nHyperStats * nRiseSetMetrics + nReceivers * nAccessMetrics + nAccessMetrics * nStats);
+
+    // TODO: Another weakly enforced order
+    // _stats -> _hyperStats -> _accessMetrics -> _accessStats
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        for (const auto& [id, riseSetStats] : _stats) {
+            const auto statStringVec = riseSetStats.at(metric).to_string_vector();
+            retval.insert(retval.end(), statStringVec.begin(), statStringVec.end());
+        }
+    }
+
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        const auto hyperStatsStrVec = _hyperStats.at(metric).to_string_vector();
+        retval.insert(retval.end(), hyperStatsStrVec.begin(), hyperStatsStrVec.end());
+    }
+
+    for (const auto& metric : ALL_ACCESS_METRICS) {
+        for (const auto& [id, accessMetrics] : _accessMetrics) {
+            retval.push_back(to_formatted_string(accessMetrics.at(metric)));
+        }
+    }
+
+    for (const auto& metric : ALL_ACCESS_METRICS) {
+        const auto accessStatsStrVec = _accessStats.at(metric).to_string_vector();
+        retval.insert(retval.end(), accessStatsStrVec.begin(), accessStatsStrVec.end());
+    }
+
+    return retval;
 }
 
 } // namespace trace

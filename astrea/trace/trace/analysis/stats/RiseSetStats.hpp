@@ -59,7 +59,24 @@ struct RiseSetStats {
      */
     std::vector<std::string> to_string_vector() const;
 
-    gtl::btree_map<RiseSetMetric, Stats<Time>> stats; //!< Map of RiseSetMetric to Stats<Time> containing the calculated statistics for each metric.
+    /**
+     * @brief Accesses the statistics for a given RiseSetMetric.
+     *
+     * @param metric The RiseSetMetric to access statistics for.
+     * @return const Stats<Time>& A reference to the Stats<Time> object containing the statistics for the given metric.
+     */
+    const auto& at(const RiseSetMetric& metric) const { return _stats.at(metric); }
+
+    /**
+     * @brief Accesses the statistics for a given RiseSetMetric.
+     *
+     * @param metric The RiseSetMetric to access statistics for.
+     * @return Stats<Time>& A reference to the Stats<Time> object containing the statistics for the given metric.
+     */
+    auto& operator[](const RiseSetMetric& metric) { return _stats[metric]; }
+
+  private:
+    gtl::btree_map<RiseSetMetric, Stats<Time>> _stats; //!< Map of RiseSetMetric to Stats<Time> containing the calculated statistics for each metric.
 };
 
 } // namespace trace

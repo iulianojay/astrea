@@ -102,12 +102,12 @@ struct HyperStats {
     std::vector<std::string> to_string_vector() const
     {
         std::vector<std::string> retval;
+        retval.reserve(HyperStats<T>::size());
 
         const auto minStrVec = min.to_string_vector();
         const auto avgStrVec = avg.to_string_vector();
         const auto maxStrVec = max.to_string_vector();
 
-        retval.reserve(minStrVec.size() * minStrVec.size());
         retval.insert(retval.end(), minStrVec.begin(), minStrVec.end());
         retval.insert(retval.end(), avgStrVec.begin(), avgStrVec.end());
         retval.insert(retval.end(), maxStrVec.begin(), maxStrVec.end());
@@ -119,6 +119,8 @@ struct HyperStats {
 
         return retval;
     }
+
+    static constexpr std::size_t size() { return Stats<T>::size() * (3 + DEFAULT_PERCENTILES.size()); }
 
     Stats<T> min;                      //!< Statistics for the minimum values across the input Stats<T> vector.
     Stats<T> max;                      //!< Statistics for the maximum values across the input Stats<T> vector.
