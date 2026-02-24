@@ -253,6 +253,9 @@ def plot_number_of_folds(
     results: str, outfile: str
 ) -> None:
 
+    fontSize = 14
+    fontWeight = 'bold'
+
     plt.clf()
     fig = plt.figure(figsize=(12, 9))
     ax = fig.add_subplot(111, facecolor='w', frame_on=False)
@@ -285,17 +288,30 @@ def plot_number_of_folds(
         zorder=3
     )
 
+    parallelSep = 30.0
+    parallels = np.arange(lllat, urlat + parallelSep, parallelSep)
+    parallels[0] += 5
+    parallels[-1] -= 5
     map.drawparallels(
-        np.arange(lllat, urlat, 30.),
+        parallels,
         color = 'black',
         linewidth = 0.5,
-        ax=ax
+        ax=ax,
+        labels=[1,1,0,0],
+        fontsize=fontSize-2
     )
+
+    meridianSep = 60.0
+    meridians = np.arange(lllon, urlon + meridianSep, meridianSep)
+    meridians[0] += 5
+    meridians[-1] -= 5
     map.drawmeridians(
-        np.arange(lllon, urlon, 30.),
+        meridians,
         color = '0.25',
         linewidth = 0.5,
-        ax=ax
+        ax=ax,
+        labels=[0,0,0,1],
+        fontsize=fontSize-2
     )
 
     # Read results
@@ -334,20 +350,22 @@ def plot_number_of_folds(
     # contour plot
     levels = np.arange(0.5, np.ceil(folds.max()) + 1, 1)
     levels = np.insert(levels, 0, 0.)
-    cmapName = 'jet'
+    cmapName = 'turbo_r'
     con = map.contourf(xi, yi, zi, zorder=4, alpha=0.6, cmap=cmapName, ax=ax, levels=levels)
 
     # add colour bar and title
     cbar = plt.colorbar(con, orientation='horizontal', fraction=.057, pad=0.05)
-    cbar.set_label("Folds")
-    cbar_ticks = [np.floor(level + 0.5) for level in levels][:-1]
-    cbar_labels = [str(tick) for tick in cbar_ticks]
+    cbar.set_label("Folds", fontsize=fontSize, fontweight=fontWeight)
+    cbar_ticks = []
+    for ii in range(len(levels) - 1):
+        cbar_ticks.append((levels[ii] + levels[ii + 1]) / 2)
+    cbar_labels = [str(int(np.floor(tick + 0.5))) for tick in cbar_ticks]
     cbar.set_ticks(cbar_ticks)
-    cbar.set_ticklabels(cbar_labels)
+    cbar.set_ticklabels(cbar_labels, fontsize=fontSize, fontweight=fontWeight)
 
-    # fig.suptitle("Average Folds of Coverage", fontsize=16, fontweight='bold')
+    # fig.suptitle("Average Folds of Coverage", fontsize=16, fontweight=fontWeight)
     # fig.savefig(outfile, bbox_inches="tight")
-    plt.title("Average Folds of Coverage", fontsize=16, fontweight='bold')
+    plt.title("Average Folds of Coverage", fontsize=fontSize + 4, fontweight=fontWeight)
     plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
 
 
