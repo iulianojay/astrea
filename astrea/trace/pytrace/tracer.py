@@ -288,20 +288,17 @@ class Tracer:
 
 if __name__ == "__main__":
 
-    # argparser = argparse.ArgumentParser(description="Plot trace results.")
-    # argparser.add_argument("resultsdir", type=str, help="The directory containing the results.")
-    # argparser.add_argument("--outdir", type=str, help="The output directory for the plots.",
-    #                        default=None)
-    # args = argparser.parse_args()
+    argparser = argparse.ArgumentParser(description="Plot trace results.")
+    argparser.add_argument("resultsdir", type=str, help="The directory containing the results.")
+    argparser.add_argument("--outdir", type=str, help="The output directory for the plots.",
+                           default=None)
+    args = argparser.parse_args()
 
-    # resultsDir = os.path.dirname(args.resultsdir)
-    # if (args.outdir is None):
-    #     outDir = os.path.join(resultsDir, 'plots')
-    # else:
-    #     outDir = os.path.dirname(args.outdir)
-
-    resultsDir = os.path.join(ASTREA_ROOT, "astrea", "trace", "trace", "drivers", "results", "iceye-x61")
-    outDir = os.path.join(resultsDir, "plots")
+    resultsDir = args.resultsdir
+    if (args.outdir is None):
+        outDir = os.path.join(resultsDir, 'plots')
+    else:
+        outDir = args.outdir
 
     tracer = Tracer(resultsDir, outDir)
 
@@ -319,6 +316,6 @@ if __name__ == "__main__":
         # '95th PCT',
         # '99th PCT'
     ]
-    # tracer.plot_number_of_folds(metrics=metrics)
+    tracer.plot_number_of_folds(metrics=metrics)
     tracer.plot_avg_daily_vis()
     tracer.plot_mtta()

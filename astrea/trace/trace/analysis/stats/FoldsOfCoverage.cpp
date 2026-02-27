@@ -20,7 +20,7 @@ using mp_units::one;
 namespace astrea {
 namespace trace {
 
-FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& start, const Time& end)
+FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& end)
 {
     // get all receiver ids
     gtl::btree_set<std::size_t> ids;
@@ -29,7 +29,7 @@ FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resoluti
         ids.insert(idPair.receiver);
     }
 
-    const std::size_t nTimes = ((end - start) / resolution).numerical_value_in(one) + 1; // +1 to include end
+    const std::size_t nTimes = (end / resolution).numerical_value_in(one) + 1; // +1 to include end
     for (const auto& id : ids) {
         // collect all risesets for this receiver
         std::vector<RiseSetArray> allRisesets;
@@ -41,7 +41,7 @@ FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resoluti
         // loop over time
         _folds[id] = std::vector<double>(nTimes, 0);
         for (std::size_t iTime = 0; iTime < nTimes; ++iTime) {
-            const Time t = start + iTime * resolution;
+            const Time t = iTime * resolution;
 
             // check every riseset if it has access at this time
             for (const auto& riseset : allRisesets) {

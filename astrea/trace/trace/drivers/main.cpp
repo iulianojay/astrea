@@ -134,19 +134,20 @@ int arcturus_starlink_interference_test()
 
     // Propagate and find access
     const AccessArray accesses = propagate_and_run_access_analysis(allSats, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
+    const AccessStats stats(accesses);
 
     // Save
-    std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
-    std::filesystem::path accessOutfile  = base / "revisit.csv";
-    std::filesystem::path metricsOutfile = base / "metrics.csv";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
 
-    save_accesses_to_file(accesses, accessOutfile, allSats, grounds);
-    save_riseset_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
-    save_receiver_riseset_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
+    save_risesets_to_file(accesses, outdir, allSats, grid);
+    save_riseset_metrics_to_file(accesses, outdir, allSats, grid);
+    save_receiver_riseset_metrics_to_file(stats, outdir, allSats, grid);
+    save_access_metrics_to_file(stats, outdir, allSats, grid);
+    save_number_of_folds_to_file(accesses, outdir, allSats, grid, ACCESS_RESOLUTION, PROP_TIME);
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
-                                     accessOutfile.string() + " --target \"Washington DC\" --main \"ARCTURUS\"";
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outdir.string() +
+                                     " --target \"Washington DC\" --main \"ARCTURUS\"";
     const std::string cmd = "python3 " + plotFile.string();
 
     std::cout << "Plotting results with command: " << cmd << std::endl;
@@ -200,28 +201,19 @@ int iceye_test()
     const AccessStats stats(accesses);
 
     // Save
-    std::filesystem::path base                  = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye-x61";
-    std::filesystem::path accessOutfile         = base / "risesets.csv";
-    std::filesystem::path risesetMetricsOutfile = base / "riseset_metrics.csv";
-    std::filesystem::path receiverRisesetMetricsOutfile = base / "receiver_riseset_metrics.csv";
-    std::filesystem::path accessMetricsOutfile          = base / "access_metrics.csv";
-    std::filesystem::path nFoldsOutfile                 = base / "n_folds.csv";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye-x61";
 
-    save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
-    save_riseset_metrics_to_file(accesses, risesetMetricsOutfile, iceyeConstel, grid);
-    save_receiver_riseset_metrics_to_file(stats, receiverRisesetMetricsOutfile, iceyeConstel, grid);
-    save_access_metrics_to_file(stats, accessMetricsOutfile, iceyeConstel, grid);
-    save_number_of_folds_to_file(accesses, nFoldsOutfile, iceyeConstel, grid, ACCESS_RESOLUTION, days(0.0), PROP_TIME);
+    save_risesets_to_file(accesses, outdir, iceyeConstel, grid);
+    save_riseset_metrics_to_file(accesses, outdir, iceyeConstel, grid);
+    save_receiver_riseset_metrics_to_file(stats, outdir, iceyeConstel, grid);
+    save_access_metrics_to_file(stats, outdir, iceyeConstel, grid);
+    save_number_of_folds_to_file(accesses, outdir, iceyeConstel, grid, ACCESS_RESOLUTION, PROP_TIME);
 
     // Call plotter
-    // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
-    //                                  accessOutfile.string() + " --target \"ICEYE Oy\" --main \"ICEYE-X48\"";
-    // const std::string cmd = "python3 " + plotFile.string();
-
-    // std::cout << "Plotting results with command: " << cmd << std::endl;
-    // return std::system(cmd.c_str());
-
-    return 0;
+    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
+    const std::string cmd          = "python3 " + plotFile.string();
+    std::cout << "Plotting results with command: \n\t" << cmd << std::endl;
+    return std::system(cmd.c_str());
 }
 
 template <typename T, typename U>
@@ -261,7 +253,10 @@ AccessArray propagate_and_run_access_analysis(
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
     if (PRINT_PROGRESS) {
-        std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+        std::cout << std::endl
+                  << std::endl
+                  << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl
+                  << std::endl;
     }
 
     return accesses;

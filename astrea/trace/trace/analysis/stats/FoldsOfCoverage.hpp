@@ -48,10 +48,9 @@ class FoldsOfCoverage {
      *
      * @param access The AccessArray containing the rise sets for each sender-receiver pair.
      * @param resolution The time resolution for calculating folds of coverage.
-     * @param start The start time for calculating folds of coverage.
      * @param end The end time for calculating folds of coverage.
      */
-    FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& start, const Time& end);
+    FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& end);
 
     /**
      * @brief Iterator type for the FoldsOfCoverage.

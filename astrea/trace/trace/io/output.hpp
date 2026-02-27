@@ -66,15 +66,15 @@ std::string get_object_name_from_id(std::size_t id, const astro::Constellation<T
  *
  * @tparam T The type of Spacecraft used in the Constellation.
  * @param accesses The AccessArray containing the access times to be saved.
- * @param outfile The name of the file to save to.
+ * @param outdir The directory to save the file to.
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
-void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::path& outfile, const astro::Constellation<T>& satellites, const U& grounds = U())
+void save_risesets_to_file(const AccessArray& accesses, const std::filesystem::path& outdir, const astro::Constellation<T>& satellites, const U& grounds = U())
 {
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "risesets.csv");
     auto writer = csv::make_csv_writer(ss);
 
     writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
@@ -100,20 +100,20 @@ void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::p
  *
  * @tparam T The type of Spacecraft used in the Constellation.
  * @param accesses The AccessArray containing the access times to be saved.
- * @param outfile The name of the file to save to.
+ * @param outdir The directory to save the file to.
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
 void save_riseset_metrics_to_file(
     const AccessArray& accesses,
-    const std::filesystem::path& outfile,
+    const std::filesystem::path& outdir,
     const astro::Constellation<T>& satellites,
     const U& grounds = U()
 )
 {
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "riseset_metrics.csv");
     auto writer = csv::make_csv_writer(ss);
 
     std::vector<std::string> header = { "Sender", "Receiver" };
@@ -154,20 +154,20 @@ void save_riseset_metrics_to_file(
  *
  * @tparam T The type of Spacecraft used in the Constellation.
  * @param accesses The AccessArray containing the access times to be saved.
- * @param outfile The name of the file to save to.
+ * @param outdir The directory to save the file to.
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
 void save_receiver_riseset_metrics_to_file(
     const AccessStats& stats,
-    const std::filesystem::path& outfile,
+    const std::filesystem::path& outdir,
     const astro::Constellation<T>& satellites,
     const U& grounds = U()
 )
 {
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "receiver_riseset_metrics.csv");
     auto writer = csv::make_csv_writer(ss);
 
     std::vector<std::string> statStrings = { "MIN", "AVG", "MAX" };
@@ -219,20 +219,20 @@ void save_receiver_riseset_metrics_to_file(
  *
  * @tparam T The type of Spacecraft used in the Constellation.
  * @param accesses The AccessArray containing the access times to be saved.
- * @param outfile The name of the file to save to.
+ * @param outdir The directory to save the file to.
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
 void save_access_metrics_to_file(
     const AccessStats& stats,
-    const std::filesystem::path& outfile,
+    const std::filesystem::path& outdir,
     const astro::Constellation<T>& satellites,
     const U& grounds = U()
 )
 {
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "access_metrics.csv");
     auto writer = csv::make_csv_writer(ss);
 
     std::vector<std::string> header = { "Object" };
@@ -260,25 +260,24 @@ void save_access_metrics_to_file(
  *
  * @tparam T The type of Spacecraft used in the Constellation.
  * @param accesses The AccessArray containing the access times to be saved.
- * @param outfile The name of the file to save to.
+ * @param outdir The directory to save the file to.
  * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
 void save_number_of_folds_to_file(
     const AccessArray& accesses,
-    const std::filesystem::path& outfile,
+    const std::filesystem::path& outdir,
     const astro::Constellation<T>& satellites,
     const U& grounds,
     const Time& resolution,
-    const Time& start,
     const Time& end
 )
 {
-    FoldsOfCoverage folds(accesses, resolution, start, end);
+    FoldsOfCoverage folds(accesses, resolution, end);
 
-    std::filesystem::create_directories(outfile.parent_path());
-    std::ofstream ss(outfile);
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "n_folds.csv");
     auto writer = csv::make_csv_writer(ss);
 
     std::vector<std::string> header = { "Object" };

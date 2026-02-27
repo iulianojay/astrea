@@ -69,7 +69,7 @@ void Plotter::plot_number_of_folds(
     auto h = build_figure("Number of Folds");
 
     // Get data
-    FoldsOfCoverage folds(accesses, resolution, start, end);
+    FoldsOfCoverage folds(accesses, resolution, end);
 
     const auto [lats, lons] = extract_lats_lons(grounds);
 
