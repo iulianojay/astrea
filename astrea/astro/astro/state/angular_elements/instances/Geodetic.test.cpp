@@ -59,7 +59,7 @@ TEST_F(GeodeticTest, Stream)
     std::stringstream ss;
     ss << state;
     std::stringstream expected;
-    expected << "[" << latitude << ", " << longitude << ", " << altitude << "] (Geodetic)";
+    expected << "[" << latitude.in(deg) << ", " << longitude.in(deg) << ", " << altitude << "] (Geodetic)";
     ASSERT_EQ(ss.str(), expected.str());
 }
 

@@ -112,6 +112,14 @@ class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
     std::size_t get_id() const;
 
     /**
+     * @brief Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, frames::earth::earth_fixed>
+     */
+    astro::CartesianVector<Distance, astro::frames::earth::earth_fixed> get_position() const;
+
+    /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.

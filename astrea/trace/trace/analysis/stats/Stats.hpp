@@ -97,7 +97,8 @@ struct Stats {
         std::vector<std::string> retval;
         retval.reserve(Stats<T>::size());
 
-        retval.push_back(std::to_string(min)); // TODO: this order is weakly enforced. Hopefully it doesn't break anything
+        // TODO: this order is weakly enforced. Hopefully it doesn't break anything
+        retval.push_back(std::to_string(min));
         retval.push_back(std::to_string(avg));
         retval.push_back(std::to_string(max));
         for (const auto& pct : percentiles) {

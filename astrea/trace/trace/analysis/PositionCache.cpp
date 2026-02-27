@@ -31,29 +31,29 @@ std::size_t PositionCache::add_platform(std::size_t platformId, std::size_t nTim
     return idx;
 }
 
-void PositionCache::set_position(std::size_t platformIdx, std::size_t timeIdx, const EciRadiusVec& position)
+void PositionCache::set_position(std::size_t platformIdx, std::size_t timeIdx, const EcefRadiusVec& position)
 {
     _positions[platformIdx][timeIdx] = position;
 }
 
-const EciRadiusVec& PositionCache::get_position_by_id(std::size_t platformId, std::size_t timeIdx) const
+const EcefRadiusVec& PositionCache::get_position_by_id(std::size_t platformId, std::size_t timeIdx) const
 {
-    return _positions[_idToIndex.at(platformId)][timeIdx];
+    const auto& positions = _positions[_idToIndex.at(platformId)];
+    if (positions.size() == 1) {
+        // If only one timestep, assume fixed position
+        return positions[0];
+    }
+    return positions[timeIdx];
 }
 
-const EciRadiusVec& PositionCache::get_position_by_index(std::size_t platformIdx, std::size_t timeIdx) const
+const EcefRadiusVec& PositionCache::get_position_by_index(std::size_t platformIdx, std::size_t timeIdx) const
 {
-    return _positions[platformIdx][timeIdx];
-}
-
-const std::vector<EciRadiusVec>& PositionCache::get_platform_positions_by_id(std::size_t platformId) const
-{
-    return _positions[_idToIndex.at(platformId)];
-}
-
-const std::vector<EciRadiusVec>& PositionCache::get_platform_positions_by_index(std::size_t platformIdx) const
-{
-    return _positions[platformIdx];
+    const auto& positions = _positions[platformIdx];
+    if (positions.size() == 1) {
+        // If only one timestep, assume fixed position
+        return positions[0];
+    }
+    return positions[timeIdx];
 }
 
 std::size_t PositionCache::get_index(std::size_t platformId) const { return _idToIndex.at(platformId); }

@@ -45,18 +45,25 @@ using namespace sqlite_orm;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-using mp_units::si::unit_symbols::m;
-using mp_units::si::unit_symbols::W;
+static const Time PROP_TIME         = months(6.0);
+static const Time ACCESS_RESOLUTION = minutes(1.0);
+static const bool PRINT_PROGRESS    = true;
 
 int arcturus_starlink_interference_test();
 int iceye_test();
 
-
 template <typename T, typename U>
-AccessArray
-    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys);
+AccessArray propagate_and_run_access_analysis(
+    astro::Constellation<T>& constellation,
+    U& grounds,
+    const Date& startDate,
+    const AstrodynamicsSystem& sys,
+    const Time propTime,
+    const Time accessResolution
+);
 
 int main()
 {
@@ -124,7 +131,7 @@ int arcturus_starlink_interference_test()
     GroundArchitecture grounds({ dc });
 
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_access_analysis(allSats, grounds, startDate, sys);
+    const AccessArray accesses = propagate_and_run_access_analysis(allSats, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
 
     // Save
     std::filesystem::path base           = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
@@ -153,7 +160,8 @@ int iceye_test()
 
     // Query database
     auto snapshot = get_snapshot();
-    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
+    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
+    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
 
     if (iceyeSats.size() == 0) {
         std::cerr << "No ICEYE satellites found in database!" << std::endl;
@@ -164,7 +172,7 @@ int iceye_test()
     Constellation<Viewer> iceyeConstel(iceyeSats, sys);
 
     // Add sensors
-    CircularFieldOfView fovLeo(90.0 * deg);
+    CircularFieldOfView fovLeo(15.0 * deg);
     SensorParameters leoCone(&fovLeo);
 
     for (auto& shell : iceyeConstel.get_shells()) {
@@ -178,24 +186,19 @@ int iceye_test()
 
     // Build out grounds
     GroundStation home(sys.get_central_body().get(), 60.1869 * deg, 24.8201 * deg, 0.0 * km, { "ICEYE Oy" });
-    SensorParameters groundCone(
-        &fovLeo,
-        { 1.0 * m, // Anti-Nadir, units don't matter
-          0.0 * m,
-          0.0 * m }
-    );
+    SensorParameters groundCone(&fovLeo, astro::RADIAL_RIC);
     home.attach_payload(groundCone);
 
+    Angle spacing = 1.0 * deg;
     LatLon corner1{ -90.0 * deg, -180.0 * deg };
-    LatLon corner4{ 90.0 * deg, 180.0 * deg };
-    Angle spacing = 10.0 * deg;
+    LatLon corner4{ 90.0 * deg - spacing, 180.0 * deg - spacing };
     Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
 
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys);
+    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
 
     // Save
-    std::filesystem::path base                  = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
+    std::filesystem::path base                  = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye-x61";
     std::filesystem::path accessOutfile         = base / "risesets.csv";
     std::filesystem::path risesetMetricsOutfile = base / "riseset_metrics.csv";
     std::filesystem::path accessMetricsOutfile  = base / "access_metrics.csv";
@@ -204,7 +207,7 @@ int iceye_test()
     save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
     save_riseset_metrics_to_file(accesses, risesetMetricsOutfile, iceyeConstel, grid);
     save_access_metrics_to_file(accesses, accessMetricsOutfile, iceyeConstel, grid);
-    save_number_of_folds_to_file(accesses, nFoldsOutfile, iceyeConstel, grid, seconds(60.0), days(0.0), days(30.0));
+    save_number_of_folds_to_file(accesses, nFoldsOutfile, iceyeConstel, grid, ACCESS_RESOLUTION, days(0.0), PROP_TIME);
 
     // Call plotter
     // std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
@@ -218,41 +221,44 @@ int iceye_test()
 }
 
 template <typename T, typename U>
-AccessArray propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& startDate, const AstrodynamicsSystem& sys)
+AccessArray propagate_and_run_access_analysis(
+    astro::Constellation<T>& constellation,
+    U& grounds,
+    const Date& startDate,
+    const AstrodynamicsSystem& sys,
+    const Time propTime,
+    const Time accessResolution
+)
 {
-    // Build EoMs
-    J2MeanVop eom;
-
     // Setup integrator
+    J2MeanVop eom;
     Integrator integrator;
-    integrator.set_abs_tol(1.0e-10);
-    integrator.set_rel_tol(1.0e-10);
-
-    Time accessResolution = seconds(60.0);
     integrator.set_timestep(accessResolution);
 
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
-    Time propTime = days(30.0);
-    Date endDate  = startDate + propTime;
+    const Date endDate = startDate + propTime;
     constellation.propagate(endDate, eom, integrator);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << std::endl << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl;
-
+    if (PRINT_PROGRESS) {
+        std::cout << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl << std::endl;
+    }
     start = std::chrono::steady_clock::now();
 
     // Find access
-    AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys, true);
     const auto accesses = analyzer.find_accesses(constellation, grounds, true);
 
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+    if (PRINT_PROGRESS) {
+        std::cout << std::endl << std::endl << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl;
+    }
 
     return accesses;
 }

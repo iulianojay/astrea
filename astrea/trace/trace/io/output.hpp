@@ -41,6 +41,26 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace trace {
 
+template <typename T, typename U>
+std::string get_object_name_from_id(std::size_t id, const astro::Constellation<T>& satellites, const U& grounds = U())
+{
+    std::string name = "Not Found :(";
+    for (const auto& shell : satellites.get_shells()) {
+        for (const auto& plane : shell.get_planes()) {
+            for (const auto& viewer : plane.get_all_spacecraft()) {
+                if (viewer.get_id() == id) { name = viewer.get_name(); }
+            }
+        }
+    }
+    if (grounds.size() != 0) {
+        for (const auto& ground : grounds) {
+            if (ground.get_id() == id) { name = ground.get_name(); }
+        }
+    }
+    return name;
+}
+
+
 /**
  * @brief Saves the AccessArray to a file in a human-readable format.
  *
@@ -62,21 +82,8 @@ void save_accesses_to_file(const AccessArray& accesses, const std::filesystem::p
         if (risesets.size() > 0) {
 
             // Gross
-            std::string sender, receiver;
-            for (const auto& shell : satellites.get_shells()) {
-                for (const auto& plane : shell.get_planes()) {
-                    for (const auto& viewer : plane.get_all_spacecraft()) {
-                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
-                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
-                    }
-                }
-            }
-            if (grounds.size() != 0) {
-                for (const auto& ground : grounds) {
-                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
-                }
-            }
+            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
 
             std::vector<std::string> row{ sender, receiver };
             for (const auto& str : risesets.to_string_vector()) {
@@ -126,21 +133,8 @@ void save_riseset_metrics_to_file(
         if (risesets.size() > 0) {
 
             // Gross
-            std::string sender, receiver;
-            for (const auto& shell : satellites.get_shells()) {
-                for (const auto& plane : shell.get_planes()) {
-                    for (const auto& viewer : plane.get_all_spacecraft()) {
-                        if (viewer.get_id() == idPair.sender) { sender = viewer.get_name(); }
-                        if (viewer.get_id() == idPair.receiver) { receiver = viewer.get_name(); }
-                    }
-                }
-            }
-            if (grounds.size() != 0) {
-                for (const auto& ground : grounds) {
-                    if (ground.get_id() == idPair.sender) { sender = ground.get_name(); }
-                    if (ground.get_id() == idPair.receiver) { receiver = ground.get_name(); }
-                }
-            }
+            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
 
             RiseSetStats stats(risesets);
 
@@ -198,22 +192,10 @@ void save_access_metrics_to_file(
     }
 
     writer << header;
-    for (const auto& [id, statsPair] : stats.stats) {
+    for (const auto& [id, statsPair] : stats.get_riseset_statistics()) {
 
         // Gross
-        std::string object;
-        for (const auto& shell : satellites.get_shells()) {
-            for (const auto& plane : shell.get_planes()) {
-                for (const auto& viewer : plane.get_all_spacecraft()) {
-                    if (viewer.get_id() == id) { object = viewer.get_name(); }
-                }
-            }
-        }
-        if (grounds.size() != 0) {
-            for (const auto& ground : grounds) {
-                if (ground.get_id() == id) { object = ground.get_name(); }
-            }
-        }
+        const std::string object = get_object_name_from_id(id, satellites, grounds);
 
         std::vector<std::string> row{ object };
         for (const auto& str : statsPair.at(RiseSetMetric::ACCESS_TIME).to_string_vector()) {
@@ -262,32 +244,16 @@ void save_number_of_folds_to_file(
         int pctVal = pct.numerical_value_ref_in(pct.unit);
         header.push_back(std::to_string(pctVal) + "th PCT N Folds");
     }
-    header.push_back(std::string("N Folds"));
 
     writer << header;
     for (const auto& [id, foldsVector] : folds) {
 
         // Gross
-        std::string object;
-        for (const auto& shell : satellites.get_shells()) {
-            for (const auto& plane : shell.get_planes()) {
-                for (const auto& viewer : plane.get_all_spacecraft()) {
-                    if (viewer.get_id() == id) { object = viewer.get_name(); }
-                }
-            }
-        }
-        if (grounds.size() != 0) {
-            for (const auto& ground : grounds) {
-                if (ground.get_id() == id) { object = ground.get_name(); }
-            }
-        }
+        const std::string object = get_object_name_from_id(id, satellites, grounds);
 
         std::vector<std::string> row{ object };
         for (const auto& str : folds.get_stats(id).to_string_vector()) {
             row.push_back(str);
-        }
-        for (const auto& nFolds : foldsVector) {
-            row.push_back(std::to_string(nFolds));
         }
         writer << row;
     }

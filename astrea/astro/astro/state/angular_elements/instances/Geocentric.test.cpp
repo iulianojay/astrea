@@ -59,7 +59,7 @@ TEST_F(GeocentricTest, Stream)
     std::stringstream ss;
     ss << state;
     std::stringstream expected;
-    expected << "[" << latitude << ", " << longitude << ", " << altitude << "] (Geocentric)";
+    expected << "[" << latitude.in(deg) << ", " << longitude.in(deg) << ", " << altitude << "] (Geocentric)";
     ASSERT_EQ(ss.str(), expected.str());
 }
 

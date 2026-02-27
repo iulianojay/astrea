@@ -57,6 +57,11 @@ const CelestialBody* GroundPoint::get_parent() const { return _parent; }
 
 std::size_t GroundPoint::get_id() const { return _id; }
 
+astro::CartesianVector<Distance, astro::frames::earth::earth_fixed> GroundPoint::get_position() const
+{
+    return _lla.get_position(_parent);
+}
+
 RadiusVector<frames::earth::icrf> GroundPoint::get_inertial_position(const Date& date) const
 {
     return _lla.get_position(date, _parent);
@@ -87,8 +92,8 @@ std::string GroundPoint::get_name() const
 
 std::size_t GroundPoint::generate_id()
 {
-    static std::size_t idCounter = 0;
-    return idCounter--; // TODO: NOT THIS (but have to for now cause otherwise viewer ids can conflict with ground IDs)
+    static std::size_t idCounter = -1; // UNDERFLOW DEPENDENT BEHAVIOR LETS GOOOOOOO
+    return idCounter--; // TODO: not this (but have to for now cause otherwise viewer ids can conflict with ground IDs)
 }
 
 } // namespace trace

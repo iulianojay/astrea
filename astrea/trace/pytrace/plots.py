@@ -248,153 +248,28 @@ def plot_number_of_accesses(
     fig.savefig(outfile, bbox_inches="tight")
 
 
-
-def plot_number_of_folds(
-    results: str, outfile: str
-) -> None:
-
-    fontSize = 14
-    fontWeight = 'bold'
-
-    plt.clf()
-    fig = plt.figure(figsize=(12, 9))
-    ax = fig.add_subplot(111, facecolor='w', frame_on=False)
-
-    # Set up Basemap instance
-    lllon = -180
-    lllat = -90
-    urlon = 180
-    urlat = 90
-    map = Basemap(
-        projection = 'robin',
-        llcrnrlon = lllon,
-        llcrnrlat = lllat,
-        urcrnrlon = urlon,
-        urcrnrlat = urlat,
-        lat_0 = 0,
-        lon_0 = 0,
-        resolution='h'
-    )
-
-    # draw map details
-    map.drawmapboundary(fill_color='white', ax=ax)
-    map.fillcontinents(color='#C0C0C0', ax=ax)
-    map.drawcountries(
-        linewidth=.75,
-        linestyle='solid',
-        color='#000073',
-        antialiased=True,
-        ax=ax,
-        zorder=3
-    )
-
-    parallelSep = 30.0
-    parallels = np.arange(lllat, urlat + parallelSep, parallelSep)
-    parallels[0] += 5
-    parallels[-1] -= 5
-    map.drawparallels(
-        parallels,
-        color = 'black',
-        linewidth = 0.5,
-        ax=ax,
-        labels=[1,1,0,0],
-        fontsize=fontSize-2
-    )
-
-    meridianSep = 60.0
-    meridians = np.arange(lllon, urlon + meridianSep, meridianSep)
-    meridians[0] += 5
-    meridians[-1] -= 5
-    map.drawmeridians(
-        meridians,
-        color = '0.25',
-        linewidth = 0.5,
-        ax=ax,
-        labels=[0,0,0,1],
-        fontsize=fontSize-2
-    )
-
-    # Read results
-    df = ingest_riseset_csv(results)
-
-    lats = np.array([])
-    lons = np.array([])
-    folds = np.array([])
-    for row in df.itertuples():
-        obj = row[1]
-        if "(Earth)" not in obj:
-            continue
-
-        lat, lon = obj.replace('°','').split('[')[1].split(']')[0].split(",")
-        lats = np.append(lats, float(lat))
-        lons = np.append(lons, float(lon))
-        folds = np.append(folds, float(row[3]))
-
-    # transform lon / lat coordinates to map projection
-    x, y = map(*(lons, lats))
-
-    # grid data
-    numcols, numrows = 1000, 1000
-    xi = np.linspace(x.min(), x.max(), numcols)
-    yi = np.linspace(y.min(), y.max(), numrows)
-    xi, yi = np.meshgrid(xi, yi)
-
-    # interpolate
-    zi = griddata(
-        (x, y),
-        folds,
-        (xi, yi),
-        method='cubic'
-    )
-
-    # contour plot
-    levels = np.arange(0.5, np.ceil(folds.max()) + 1, 1)
-    levels = np.insert(levels, 0, 0.)
-    cmapName = 'turbo_r'
-    con = map.contourf(xi, yi, zi, zorder=4, alpha=0.6, cmap=cmapName, ax=ax, levels=levels)
-
-    # add colour bar and title
-    cbar = plt.colorbar(con, orientation='horizontal', fraction=.057, pad=0.05)
-    cbar.set_label("Folds", fontsize=fontSize, fontweight=fontWeight)
-    cbar_ticks = []
-    for ii in range(len(levels) - 1):
-        cbar_ticks.append((levels[ii] + levels[ii + 1]) / 2)
-    cbar_labels = [str(int(np.floor(tick + 0.5))) for tick in cbar_ticks]
-    cbar.set_ticks(cbar_ticks)
-    cbar.set_ticklabels(cbar_labels, fontsize=fontSize, fontweight=fontWeight)
-
-    # fig.suptitle("Average Folds of Coverage", fontsize=16, fontweight=fontWeight)
-    # fig.savefig(outfile, bbox_inches="tight")
-    plt.title("Average Folds of Coverage", fontsize=fontSize + 4, fontweight=fontWeight)
-    plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
-
-
 if __name__ == "__main__":
 
-    # argparser = argparse.ArgumentParser(description="Plot trace results.")
-    # argparser.add_argument("--outfile", type=str, help="The output file for the plot.",
-    #                        default=os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', "revisit.csv"))
-    # argparser.add_argument("--target", type=str, help="The target ground site.", default="Washington DC")
-    # argparser.add_argument("--main", type=str, help="The main satellite to plot.", default="ARCTURUS")
-    # args = argparser.parse_args()
+    argparser = argparse.ArgumentParser(description="Plot trace results.")
+    argparser.add_argument("--outfile", type=str, help="The output file for the plot.",
+                           default=os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', "revisit.csv"))
+    argparser.add_argument("--target", type=str, help="The target ground site.", default="Washington DC")
+    argparser.add_argument("--main", type=str, help="The main satellite to plot.", default="ARCTURUS")
+    args = argparser.parse_args()
 
-    # results = args.outfile
-    # base = os.path.dirname(args.outfile)
-    # traceOutfile = os.path.join(base, "revisit.png")
-    # countOutfile = os.path.join(base, "trace_count.png")
-    # interfereOutfile = os.path.join(base, "interference_count.png")
-    # foldsOutfile = os.path.join(base, "folds.png")
+    results = args.outfile
+    base = os.path.dirname(args.outfile)
+    traceOutfile = os.path.join(base, "revisit.png")
+    countOutfile = os.path.join(base, "trace_count.png")
+    interfereOutfile = os.path.join(base, "interference_count.png")
+    foldsOutfile = os.path.join(base, "folds.png")
 
-    # target = args.target
-    # main = args.main
-    # colors = {main: "tab:blue"}
+    target = args.target
+    main = args.main
+    colors = {main: "tab:blue"}
 
-    # print(f"Reading trace results from {results}. Targeting {target} with main satellite {main}...")
+    print(f"Reading trace results from {results}. Targeting {target} with main satellite {main}...")
 
-    # plot_trace_bars(results, traceOutfile, main, target, colors)
-    # plot_number_of_accesses(results, countOutfile, target)
-    # plot_number_of_accesses(results, interfereOutfile, target, True)
-
-    results = os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', 'iceye', "n_folds.csv")
-    foldsOutfile = os.path.join(os.path.dirname(__file__), '..', 'trace','drivers','results', 'iceye', 'plots', "folds.png")
-    plot_number_of_folds(results, foldsOutfile)
+    plot_trace_bars(results, traceOutfile, main, target, colors)
+    plot_number_of_accesses(results, countOutfile, target)
+    plot_number_of_accesses(results, interfereOutfile, target, True)

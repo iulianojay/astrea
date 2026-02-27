@@ -32,6 +32,7 @@
 
 #include <trace/analysis/PositionCache.hpp>
 #include <trace/analysis/SpatialIndex.hpp>
+#include <trace/platforms/sensors/Sensor.hpp>
 #include <trace/risesets/AccessArray.hpp>
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/trace.fwd.hpp>
@@ -55,7 +56,8 @@ concept HasSubscriptOperator = requires(T t) {
 template <typename T>
 concept IsPlatformContainer = HasSize<T> && HasSubscriptOperator<T>;
 
-using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
+using EciRadiusVec  = astro::RadiusVector<astro::frames::earth::icrf>;
+using EcefRadiusVec = astro::RadiusVector<astro::frames::earth::earth_fixed>;
 
 /**
  * @brief Type alias for a vector of time values.
@@ -87,12 +89,14 @@ class AccessAnalyzer {
      * @param startDate The start date for the analysis.
      * @param endDate The end date for the analysis.
      * @param sys The astrodynamics system used for calculations.
+     * @param printProgress Flag indicating whether to print progress during calculations.
      */
-    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const astro::AstrodynamicsSystem& sys) :
+    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const astro::AstrodynamicsSystem& sys, const bool printProgress = false) :
         _resolution(resolution),
         _startDate(startDate),
         _endDate(endDate),
-        _sys(&sys)
+        _sys(&sys),
+        _printProgress(printProgress)
     {
         create_date_vector();
     }
@@ -140,10 +144,11 @@ class AccessAnalyzer {
     const astro::AstrodynamicsSystem* _sys; //!< Pointer to the astrodynamics system used for calculations
     DateVector _dates;                      //!< Vector of dates, created from startDate, endDate, and resolution
     PositionCache _positionCache;           //!< Optimized contiguous cache for platform positions
+    bool _printProgress;                    //!< Flag to indicate whether to print progress during calculations
 
     // This isn't doing anything currently, but I'm not convinced it's a terrible idea to speed up the pre-checks by
     // binning the ground points using the spatial index and only checking the corners for very dense grids.
-    SpatialIndex _spatialIndex; //!< Spatial index for ground points
+    // SpatialIndex _spatialIndex; //!< Spatial index for ground points
 
     /**
      * @brief Create a date vector from input start date, end date, and resolution.
@@ -157,10 +162,11 @@ class AccessAnalyzer {
      *
      * @param state1 The first state to check.
      * @param state2 The second state to check.
+     * @param atmosphereBlocks Flag indicating if the atmosphere should be considered as blocking access.
      * @return true If the two states are occulting each other.
      * @return false If the two states are not occulting each other.
      */
-    bool is_earth_occulting(const EciRadiusVec& position1, const EciRadiusVec& position2) const;
+    bool is_central_body_occulting(const EcefRadiusVec& position1, const EcefRadiusVec& position2, const bool atmosphereBlocks) const;
 
     /**
      * @brief Find accesses between two sensor platforms.
@@ -176,7 +182,7 @@ class AccessAnalyzer {
         std::shared_ptr<astro::PayloadPlatform<Sensor>> platform1,
         std::shared_ptr<astro::PayloadPlatform<Sensor>> platform2,
         const bool twoWay = false
-    );
+    ) const;
 
     /**
      * @brief Find accesses between a sensor platform and a ground point.
@@ -186,7 +192,7 @@ class AccessAnalyzer {
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
     RiseSetArray
-        find_platform_to_ground_point_accesses(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform, const std::shared_ptr<GroundPoint> groundPoint);
+        find_platform_to_ground_point_accesses(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform, const std::shared_ptr<GroundPoint> groundPoint) const;
 
     /**
      * @brief Find accesses between a sensor and another sensor.
@@ -197,29 +203,23 @@ class AccessAnalyzer {
      * @param twoWay Flag indicating if the access should be two-way (default is false).
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
-    RiseSetArray
-        find_sensor_to_sensor_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor1, const Sensor& sensor2, const bool twoWay);
-
-    /**
-     * @brief Find accesses between a sensor and a ground point.
-     *
-     * @param accessInfo A vector of AccessInfo objects containing trace information.
-     * @param sensor The sensor for which to find accesses.
-     * @param groundPoint The ground point to check for accesses.
-     * @param epoch The epoch date corresponding to the accessInfo time values.
-     * @return RiseSetArray A collection of rise/set pairs representing the accesses.
-     */
-    RiseSetArray find_sensor_to_ground_point_accesses(const std::vector<AccessInfo>& accessInfo, const Sensor& sensor, const GroundPoint& groundPoint);
+    RiseSetArray find_sensor_accesses(
+        const std::vector<AccessInfo>& accessInfo,
+        const Sensor& sensor1,
+        const std::optional<Sensor> sensor2 = std::nullopt,
+        const bool twoWay                   = false
+    ) const;
 
     /**
      * @brief Check if a satellite can access a ground point based on Earth occulating.
      *
      * @param id1 The id of the first object.
      * @param id2 The id of the second object.
+     * @param atmosphereBlocks Flag indicating if the atmosphere should be considered as blocking access.
      * @return true If the objects can access each other.
      * @return false If the objects never access each other.
      */
-    bool can_objects_ever_access_each_other(const std::size_t& id1, const std::size_t& id2) const;
+    bool can_objects_ever_access_each_other(const std::size_t& id1, const std::size_t& id2, const bool atmosphereBlocks) const;
 
     /**
      * @brief Cache the inertial positions of viewers in a constellation for all time steps.
@@ -247,6 +247,15 @@ class AccessAnalyzer {
     GroundPointRefVec cache_ground_points(Grid& grid);
 
     /**
+     * @brief Build access information for a pair of objects based on their cached positions.
+     *
+     * @param id1 The id of the first object.
+     * @param id2 The id of the second object.
+     * @return std::vector<AccessInfo> A vector of AccessInfo objects containing trace information for the pair of objects.
+     */
+    std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
+
+    /**
      * @brief Filter out impossible viewer-viewer pairs based on Earth occultation.
      *
      * @param viewers The vector of viewer pointers to check.
@@ -265,18 +274,23 @@ class AccessAnalyzer {
         requires requires(T t) { t.get_id(); } && requires(U u) { u.get_id(); }
     PairVec filter_impossible_pairs(const std::vector<std::shared_ptr<T>>& objects1, const std::vector<std::shared_ptr<U>>& objects2) const
     {
-        std::cout << "\tFiltering impossible pairs..." << std::flush;
+        if (_printProgress) { std::cout << "\tFiltering impossible sat-to-ground pairs..." << std::flush; }
+
+        constexpr bool atmosphereBlocks = !(std::is_base_of_v<GroundPoint, T> || std::is_base_of_v<GroundPoint, U>);
         PairVec validPairs;
         for (std::size_t ii = 0; ii < objects1.size(); ++ii) {
             for (std::size_t jj = 0; jj < objects2.size(); ++jj) {
-                if (can_objects_ever_access_each_other(objects1[ii]->get_id(), objects2[jj]->get_id())) {
+                if (can_objects_ever_access_each_other(objects1[ii]->get_id(), objects2[jj]->get_id(), atmosphereBlocks)) {
                     validPairs.emplace_back(ii, jj);
                 }
             }
         }
 
-        std::cout << " kept " << validPairs.size() << " / " << (objects1.size() * objects2.size()) << " pairs ("
-                  << (100.0 * validPairs.size() / (objects1.size() * objects2.size())) << "%)" << std::endl;
+        if (_printProgress) {
+            std::cout << " kept " << validPairs.size() << " / " << (objects1.size() * objects2.size()) << " pairs ("
+                      << (100.0 * validPairs.size() / (objects1.size() * objects2.size())) << "%)" << std::endl;
+        }
+
         return validPairs;
     }
 };
