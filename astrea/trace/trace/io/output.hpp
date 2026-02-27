@@ -117,14 +117,15 @@ void save_riseset_metrics_to_file(
     auto writer = csv::make_csv_writer(ss);
 
     std::vector<std::string> header = { "Sender", "Receiver" };
-    for (const auto& metric : { "Access", "Gap" }) {
-        header.push_back(std::string("MIN ") + metric + " Time (s)");
-        header.push_back(std::string("AVG ") + metric + " Time (s)");
-        header.push_back(std::string("MAX ") + metric + " Time (s)");
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+        header.push_back(std::string("MIN ") + metricStr + " Time (s)");
+        header.push_back(std::string("AVG ") + metricStr + " Time (s)");
+        header.push_back(std::string("MAX ") + metricStr + " Time (s)");
 
         for (const auto& pct : DEFAULT_PERCENTILES) {
             int pctVal = pct.numerical_value_ref_in(pct.unit);
-            header.push_back(std::to_string(pctVal) + "th PCT " + metric + " Time (s)");
+            header.push_back(std::to_string(pctVal) + "th PCT " + metricStr + " Time (s)");
         }
     }
 
@@ -158,15 +159,13 @@ void save_riseset_metrics_to_file(
  * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
  */
 template <typename T, typename U>
-void save_access_metrics_to_file(
-    const AccessArray& accesses,
+void save_receiver_riseset_metrics_to_file(
+    const AccessStats& stats,
     const std::filesystem::path& outfile,
     const astro::Constellation<T>& satellites,
     const U& grounds = U()
 )
 {
-    AccessStats stats(accesses);
-
     std::filesystem::create_directories(outfile.parent_path());
     std::ofstream ss(outfile);
     auto writer = csv::make_csv_writer(ss);
@@ -179,30 +178,77 @@ void save_access_metrics_to_file(
 
     std::vector<std::string> header = { "Object" };
     for (const auto& statStr : statStrings) {
-        for (const auto& metric : { "Access", "Gap" }) {
-            header.push_back(std::string("MIN ") + statStr + " " + metric + " Time (s)");
-            header.push_back(std::string("AVG ") + statStr + " " + metric + " Time (s)");
-            header.push_back(std::string("MAX ") + statStr + " " + metric + " Time (s)");
+        for (const auto& metric : ALL_RISE_SET_METRICS) {
+            const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+            header.push_back(std::string("MIN ") + statStr + " " + metricStr + " Time (s)");
+            header.push_back(std::string("AVG ") + statStr + " " + metricStr + " Time (s)");
+            header.push_back(std::string("MAX ") + statStr + " " + metricStr + " Time (s)");
 
             for (const auto& pct : DEFAULT_PERCENTILES) {
                 int pctVal = pct.numerical_value_ref_in(pct.unit);
-                header.push_back(std::to_string(pctVal) + "th PCT " + statStr + " " + metric + " Time (s)");
+                header.push_back(std::to_string(pctVal) + "th PCT " + statStr + " " + metricStr + " Time (s)");
             }
         }
     }
 
     writer << header;
-    for (const auto& [id, statsPair] : stats.get_riseset_statistics()) {
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        for (const auto& [id, statsMap] : stats.get_riseset_statistics()) {
+
+            // Gross
+            const std::string object = get_object_name_from_id(id, satellites, grounds);
+
+            std::vector<std::string> row{ object };
+            for (const auto& str : statsMap.at(metric).to_string_vector()) {
+                row.push_back(str);
+            }
+
+            const auto hyperStats = stats.get_hyper_statistics(metric);
+            for (const auto& str : hyperStats.to_string_vector()) {
+                row.push_back(str);
+            }
+
+            writer << row;
+        }
+    }
+}
+
+
+/**
+ * @brief Saves the AccessArray to a file in a human-readable format.
+ *
+ * @tparam T The type of Spacecraft used in the Constellation.
+ * @param accesses The AccessArray containing the access times to be saved.
+ * @param outfile The name of the file to save to.
+ * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+ * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+ */
+template <typename T, typename U>
+void save_access_metrics_to_file(
+    const AccessStats& stats,
+    const std::filesystem::path& outfile,
+    const astro::Constellation<T>& satellites,
+    const U& grounds = U()
+)
+{
+    std::filesystem::create_directories(outfile.parent_path());
+    std::ofstream ss(outfile);
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> header = { "Object" };
+    for (const auto& metric : ALL_ACCESS_METRICS) {
+        header.push_back(ACCESS_METRIC_STRINGS.at(metric) + " Time (s)");
+    }
+
+    writer << header;
+    for (const auto& [id, statsMap] : stats.get_access_metrics()) {
 
         // Gross
         const std::string object = get_object_name_from_id(id, satellites, grounds);
 
         std::vector<std::string> row{ object };
-        for (const auto& str : statsPair.at(RiseSetMetric::ACCESS_TIME).to_string_vector()) {
-            row.push_back(str);
-        }
-        for (const auto& str : statsPair.at(RiseSetMetric::GAP).to_string_vector()) {
-            row.push_back(str);
+        for (const auto& metric : ALL_ACCESS_METRICS) {
+            row.push_back(to_formatted_string(statsMap.at(metric)));
         }
         writer << row;
     }

@@ -102,7 +102,19 @@ class Tracer:
             fontsize=self.fontSize-2
         )
 
-    def build_grid(self, lons: np.ndarray, lats: np.ndarray) -> tuple:
+    def build_grid(self, df: pd.DataFrame) -> tuple:
+
+        lats = np.array([])
+        lons = np.array([])
+        for row in df.itertuples():
+            obj = row[1]
+            if "(Earth)" not in obj:
+                continue
+
+            lat, lon = obj.replace('°','').split('[')[1].split(']')[0].split(",")
+            lats = np.append(lats, float(lat))
+            lons = np.append(lons, float(lon))
+
         # transform lon / lat coordinates to map projection
         x, y = self.map(*(lons, lats))
 
@@ -156,19 +168,7 @@ class Tracer:
         # Read results
         foldsFile = os.path.join(self.resultsdir, "n_folds.csv")
         df = self.ingest_csv(foldsFile)
-
-        lats = np.array([])
-        lons = np.array([])
-        for row in df.itertuples():
-            obj = row[1]
-            if "(Earth)" not in obj:
-                continue
-
-            lat, lon = obj.replace('°','').split('[')[1].split(']')[0].split(",")
-            lats = np.append(lats, float(lat))
-            lons = np.append(lons, float(lon))
-
-        grid = self.build_grid(lons, lats)
+        grid = self.build_grid(df)
 
         metricIndexMap = { # boy this is stupid
             'MIN': 2,
@@ -203,9 +203,7 @@ class Tracer:
             self.plot_basemap(ax)
 
             # Set ineterpolation
-            interpolation_method = 'nearest'
-            # if metric in ['AVG', 'MAX', 'MIN']:
-            #     interpolation_method = 'cubic' # cubic doesn't seem to play nice for other metrics
+            interpolation_method = 'linear'
 
             # Build out contour levels and labels
             levels = None
@@ -241,6 +239,53 @@ class Tracer:
             plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
 
 
+    def plot_avg_daily_vis(self) -> None:
+        self.plot_access_metric('AVG_DAILY_VIS', "Average Daily Visibility", "Time (hrs)")
+
+
+    def plot_mtta(self) -> None:
+        self.plot_access_metric('MTTA', "Mean Time To Access", "Time (hrs)")
+
+
+    def plot_access_metric(self, metric: str, title:str, cbar_label: str) -> None:
+
+        # Read results
+        accessFile = os.path.join(self.resultsdir, "access_metrics.csv")
+        df = pd.read_csv(accessFile)
+
+        grid = self.build_grid(df)
+        vals = df[[col for col in df.columns if metric in col][0]].to_numpy() / 3600.0 # convert to hours
+
+        # Build figure
+        plt.clf()
+        fig = plt.figure(figsize=(12, 9))
+        ax = fig.add_subplot(111, facecolor='w', frame_on=False)
+
+        # Get basemap
+        self.plot_basemap(ax)
+
+        # Set ineterpolation
+        interpolation_method = 'cubic'
+        if metric == 'MTTA':
+            self.cmap = 'turbo'
+        else:
+            self.cmap = 'turbo_r'
+
+        # Plot contour
+        self.plot_contourf(
+            ax,
+            grid,
+            vals,
+            interpolation_method,
+            title,
+            cbar_label=cbar_label
+        )
+
+        # Save
+        outfile = os.path.join(self.outdir, "_".join(title.lower().split(" ")) + ".png")
+        plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
+
+
 if __name__ == "__main__":
 
     # argparser = argparse.ArgumentParser(description="Plot trace results.")
@@ -264,14 +309,16 @@ if __name__ == "__main__":
         'MIN',
         'AVG',
         'MAX',
-        '1th PCT',
-        '5th PCT',
-        '10th PCT',
-        '25th PCT',
-        '50th PCT',
-        '75th PCT',
-        '90th PCT',
-        '95th PCT',
-        '99th PCT'
+        # '1th PCT',
+        # '5th PCT',
+        # '10th PCT',
+        # '25th PCT',
+        # '50th PCT',
+        # '75th PCT',
+        # '90th PCT',
+        # '95th PCT',
+        # '99th PCT'
     ]
-    tracer.plot_number_of_folds(metrics=metrics)
+    # tracer.plot_number_of_folds(metrics=metrics)
+    tracer.plot_avg_daily_vis()
+    tracer.plot_mtta()

@@ -51,6 +51,8 @@ using mp_units::si::unit_symbols::s;
 static const Time PROP_TIME         = months(6.0);
 static const Time ACCESS_RESOLUTION = minutes(1.0);
 static const bool PRINT_PROGRESS    = true;
+static const Angle GRID_SPACING     = 5.0 * deg;
+
 
 int arcturus_starlink_interference_test();
 int iceye_test();
@@ -140,7 +142,7 @@ int arcturus_starlink_interference_test()
 
     save_accesses_to_file(accesses, accessOutfile, allSats, grounds);
     save_riseset_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
-    save_access_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
+    save_receiver_riseset_metrics_to_file(accesses, metricsOutfile, allSats, grounds);
 
     // Call plotter
     std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " +
@@ -189,24 +191,26 @@ int iceye_test()
     SensorParameters groundCone(&fovLeo, astro::RADIAL_RIC);
     home.attach_payload(groundCone);
 
-    Angle spacing = 1.0 * deg;
     LatLon corner1{ -90.0 * deg, -180.0 * deg };
-    LatLon corner4{ 90.0 * deg - spacing, 180.0 * deg - spacing };
-    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
+    LatLon corner4{ 90.0 * deg, 180.0 * deg };
+    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, GRID_SPACING);
 
     // Propagate and find access
     const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
+    const AccessStats stats(accesses);
 
     // Save
     std::filesystem::path base                  = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye-x61";
     std::filesystem::path accessOutfile         = base / "risesets.csv";
     std::filesystem::path risesetMetricsOutfile = base / "riseset_metrics.csv";
-    std::filesystem::path accessMetricsOutfile  = base / "access_metrics.csv";
-    std::filesystem::path nFoldsOutfile         = base / "n_folds.csv";
+    std::filesystem::path receiverRisesetMetricsOutfile = base / "receiver_riseset_metrics.csv";
+    std::filesystem::path accessMetricsOutfile          = base / "access_metrics.csv";
+    std::filesystem::path nFoldsOutfile                 = base / "n_folds.csv";
 
     save_accesses_to_file(accesses, accessOutfile, iceyeConstel, grid);
     save_riseset_metrics_to_file(accesses, risesetMetricsOutfile, iceyeConstel, grid);
-    save_access_metrics_to_file(accesses, accessMetricsOutfile, iceyeConstel, grid);
+    save_receiver_riseset_metrics_to_file(stats, receiverRisesetMetricsOutfile, iceyeConstel, grid);
+    save_access_metrics_to_file(stats, accessMetricsOutfile, iceyeConstel, grid);
     save_number_of_folds_to_file(accesses, nFoldsOutfile, iceyeConstel, grid, ACCESS_RESOLUTION, days(0.0), PROP_TIME);
 
     // Call plotter

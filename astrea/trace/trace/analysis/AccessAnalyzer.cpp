@@ -155,13 +155,12 @@ PairVec AccessAnalyzer::filter_impossible_pairs(const ViewerRefVec& viewers) con
 
 AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel, const bool clearPositionCache)
 {
-    const std::size_t nViewers   = constel.size();
-    const std::size_t nTimesteps = _dates.size();
+    const std::size_t nViewers = constel.size();
 
     // Build position cache
     if (clearPositionCache) {
         _positionCache.clear();
-        _positionCache.reserve(nViewers, nTimesteps);
+        _positionCache.reserve(nViewers);
     }
     ViewerRefVec viewers = cache_viewers(constel);
 
@@ -198,13 +197,12 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
 
 AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const bool includeInternalAccesses)
 {
-    const std::size_t nViewers   = constel.size();
-    const std::size_t nGrounds   = grounds.size();
-    const std::size_t nTimesteps = _dates.size();
+    const std::size_t nViewers = constel.size();
+    const std::size_t nGrounds = grounds.size();
 
     // Build position cache
     _positionCache.clear();
-    _positionCache.reserve(nViewers + nGrounds, nTimesteps);
+    _positionCache.reserve(nViewers + nGrounds);
 
     ViewerRefVec viewers               = cache_viewers(constel);
     GroundStationRefVec groundStations = cache_ground_points(grounds);
@@ -233,6 +231,7 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
 
             viewer->add_access(groundId, satAccess);
             groundStation->add_access(viewerId, satAccess);
+
             allAccesses[viewerId, groundId] = satAccess;
             if (groundHasSensors) { allAccesses[groundId, viewerId] = satAccess; }
         }
@@ -244,13 +243,12 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
 
 AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& grid, const bool includeInternalAccesses)
 {
-    const std::size_t nViewers   = constel.size();
-    const std::size_t nGrounds   = grid.size();
-    const std::size_t nTimesteps = _dates.size();
+    const std::size_t nViewers = constel.size();
+    const std::size_t nGrounds = grid.size();
 
     // Build spatial index and position cache
     _positionCache.clear();
-    _positionCache.reserve(nViewers + nGrounds, nTimesteps);
+    _positionCache.reserve(nViewers + nGrounds);
 
     ViewerRefVec viewers           = cache_viewers(constel);
     GroundPointRefVec groundPoints = cache_ground_points(grid);
@@ -296,6 +294,7 @@ std::vector<AccessInfo> AccessAnalyzer::build_access_info(const std::size_t& id1
         info.time       = _dates[ii] - _startDate;
         info.radius1to2 = pos2 - pos1;
         info.isOcculted = is_central_body_occulting(pos1, pos2, true);
+
         accessInfo.push_back(info);
     }
     return accessInfo;

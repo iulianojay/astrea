@@ -16,7 +16,7 @@
 namespace astrea {
 namespace trace {
 
-void PositionCache::reserve(std::size_t nPlatforms, std::size_t nTimesteps)
+void PositionCache::reserve(std::size_t nPlatforms)
 {
     _platformIds.reserve(nPlatforms);
     _positions.reserve(nPlatforms);

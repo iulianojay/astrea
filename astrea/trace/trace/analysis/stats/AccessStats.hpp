@@ -90,6 +90,14 @@ struct AccessStats {
     }
 
     /**
+     * @brief Accesses the access statistics for all receiver IDs and AccessMetrics.
+     *
+     * @return const gtl::btree_map<std::size_t, gtl::btree_map<AccessMetric, Time>>& A reference to the map containing
+     * the access metrics for all receiver IDs and AccessMetrics.
+     */
+    const auto& get_access_metrics() const { return _accessMetrics; }
+
+    /**
      * @brief Accesses the rise/set statistics for a given receiver ID.
      *
      * @param receiverId The ID of the receiver to access statistics for.

@@ -47,9 +47,8 @@ class PositionCache {
      * @brief Reserve space for platforms and timesteps
      *
      * @param nPlatforms Number of platforms to cache
-     * @param nTimesteps Number of timesteps to cache per platform
      */
-    void reserve(std::size_t nPlatforms, std::size_t nTimesteps);
+    void reserve(std::size_t nPlatforms);
 
     /**
      * @brief Add a platform to the cache
