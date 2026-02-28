@@ -22,30 +22,28 @@ using namespace astrea;
 using namespace astro;
 using namespace trace;
 
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::m;
+
 class FieldOfViewTest : public testing::Test {
   public:
     FieldOfViewTest() = default;
+
     void SetUp() override
     {
-        boresight = RadiusVector<frames::earth::icrf>(
-            1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
-        );
-        targetInside = RadiusVector<frames::earth::icrf>(
-            0.9 * mp_units::si::unit_symbols::km, 0.1 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
-        );
-        targetOutside = RadiusVector<frames::earth::icrf>(
-            0.0 * mp_units::si::unit_symbols::km, 1.0 * mp_units::si::unit_symbols::km, 0.0 * mp_units::si::unit_symbols::km
-        );
+        boresight     = RadiusVector<frames::earth::icrf>(1.0 * m, 0.0 * m, 0.0 * m);
+        targetInside  = RadiusVector<frames::earth::icrf>(0.9 * m, 0.1 * m, 0.0 * m);
+        targetOutside = RadiusVector<frames::earth::icrf>(0.0 * m, 1.0 * m, 0.0 * m);
 
-        halfCone = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad;
+        halfCone = std::numbers::pi / 4.0 * rad;
 
         circFov = CircularFieldOfView(halfCone);
 
         for (int ii = 0; ii < 16; ++ii) {
-            Angle angle   = ii / 16.0 * TWO_PI;
+            Angle angle   = ii / 16.0 * 2.0 * std::numbers::pi * rad;
             points[angle] = halfCone;
         }
-        polyFovPoints = PolygonalFieldOfView(points);
+        polyFov = PolygonalFieldOfView(points);
     }
 
     RadiusVector<frames::earth::icrf> boresight;
@@ -55,7 +53,7 @@ class FieldOfViewTest : public testing::Test {
     Angle halfCone;
     CircularFieldOfView circFov;
     gtl::btree_map<Angle, Angle> points;
-    PolygonalFieldOfView polyFovPoints;
+    PolygonalFieldOfView polyFov;
 };
 
 int main(int argc, char** argv)
@@ -85,6 +83,6 @@ TEST_F(FieldOfViewTest, CircularFieldOfViewContains)
 
 TEST_F(FieldOfViewTest, PolygonalFieldOfViewContains)
 {
-    ASSERT_TRUE(polyFovPoints.contains(boresight, targetInside));
-    ASSERT_FALSE(polyFovPoints.contains(boresight, targetOutside));
+    ASSERT_TRUE(polyFov.contains(boresight, targetInside));
+    ASSERT_FALSE(polyFov.contains(boresight, targetOutside));
 }
