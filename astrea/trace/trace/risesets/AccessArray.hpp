@@ -105,11 +105,19 @@ class AccessArray {
     RiseSetArray get_all_accesses_from_sender(const std::size_t& senderId) const;
 
     /**
+     * @brief Equality operator for AccessArray.
+     *
+     * @param other The AccessArray to compare with.
+     * @return true if the AccessArrays are equal, false otherwise.
+     */
+    bool operator==(const AccessArray& other) const;
+
+    /**
      * @brief Union operator for AccessArray.
      *
      * @param other The AccessArray to union with.
      */
-    AccessArray& operator|(const AccessArray& other);
+    AccessArray& operator|=(const AccessArray& other);
 
     /**
      * @brief Const union operator for AccessArray.
@@ -124,7 +132,7 @@ class AccessArray {
      *
      * @param other The AccessArray to intersect with.
      */
-    AccessArray& operator&(const AccessArray& other);
+    AccessArray& operator&=(const AccessArray& other);
 
     /**
      * @brief Const intersection operator for AccessArray.

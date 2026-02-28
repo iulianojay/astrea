@@ -81,14 +81,14 @@ TEST_F(AccessArrayTest, SizeMethod) { ASSERT_EQ(access1.size(), 1); }
 TEST_F(AccessArrayTest, UnionOperator)
 {
     const auto res = access1 | access2;
-    ASSERT_EQ(res.size(), access1.size());
+    ASSERT_EQ(res.size(), access1.size() + access2.size());
     ASSERT_NO_THROW(static_cast<const AccessArray&>(access1) | access2);
 }
 
 TEST_F(AccessArrayTest, IntersectionOperator)
 {
     const auto res = access1 & access2;
-    ASSERT_EQ(res.size(), access1.size());
+    ASSERT_EQ(res, access1);
     ASSERT_NO_THROW(static_cast<const AccessArray&>(access1) & access2);
 }
 
@@ -103,4 +103,16 @@ TEST_F(AccessArrayTest, Stream)
     std::stringstream ss;
     ss << access1;
     ASSERT_FALSE(ss.str().empty());
+}
+
+TEST_F(AccessArrayTest, GetAllAccessesToReceiver)
+{
+    ASSERT_EQ(access1.get_all_accesses_to_receiver(receiverId), arr1);
+    ASSERT_EQ(access1.get_all_accesses_to_receiver(senderId), RiseSetArray());
+}
+
+TEST_F(AccessArrayTest, GetAllAccessesFromSender)
+{
+    ASSERT_EQ(access1.get_all_accesses_from_sender(senderId), arr1);
+    ASSERT_EQ(access1.get_all_accesses_from_sender(receiverId), RiseSetArray());
 }

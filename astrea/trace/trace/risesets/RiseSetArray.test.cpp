@@ -88,6 +88,11 @@ TEST_F(RiseSetArrayTest, AppendPrependInsert)
     arr3.append(t1, t2);
     arr3.append(t3, t4);
     ASSERT_EQ(arr3.size(), 4);
+
+    RiseSetArray arr4;
+    arr2.insert(t1, t3);
+    arr2.append(t2, t4);
+    ASSERT_EQ(arr2.size(), 2);
 }
 
 TEST_F(RiseSetArrayTest, OperatorAccess)
@@ -123,6 +128,7 @@ TEST_F(RiseSetArrayTest, Gap)
     ASSERT_EQ(arr.gap(StatType::MIN), t3 - t2);
     ASSERT_EQ(arr.gap(StatType::AVG), t3 - t2);
     ASSERT_EQ(arr.gap(StatType::MAX), t3 - t2);
+    ASSERT_EQ(arr.gap(StatType::PCT, 0.5), t3 - t2);
 }
 
 TEST_F(RiseSetArrayTest, Access)
@@ -131,12 +137,14 @@ TEST_F(RiseSetArrayTest, Access)
     ASSERT_EQ(arr.access_time(StatType::MIN), t2 - t1);
     ASSERT_EQ(arr.access_time(StatType::AVG), t2 - t1);
     ASSERT_EQ(arr.access_time(StatType::MAX), t2 - t1);
+    ASSERT_EQ(arr.access_time(StatType::PCT, 0.5), t2 - t1);
 }
 
 TEST_F(RiseSetArrayTest, Iterators)
 {
     ASSERT_NO_THROW(for (auto& time : arr1){});
     ASSERT_NO_THROW(for (const auto& time : arr1){});
+    ASSERT_NO_THROW(for (auto it = arr1.cbegin(); it != arr1.cend(); ++it){});
 }
 
 TEST_F(RiseSetArrayTest, ToStringVector) { ASSERT_NO_THROW(arr1.to_string_vector()); }

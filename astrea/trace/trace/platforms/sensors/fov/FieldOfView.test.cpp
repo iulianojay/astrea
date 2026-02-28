@@ -85,6 +85,6 @@ TEST_F(FieldOfViewTest, CircularFieldOfViewContains)
 
 TEST_F(FieldOfViewTest, PolygonalFieldOfViewContains)
 {
-    ASSERT_FALSE(polyFovPoints.contains(boresight, targetInside));
+    ASSERT_TRUE(polyFovPoints.contains(boresight, targetInside));
     ASSERT_FALSE(polyFovPoints.contains(boresight, targetOutside));
 }

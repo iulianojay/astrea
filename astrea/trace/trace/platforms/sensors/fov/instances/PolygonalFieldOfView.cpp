@@ -24,6 +24,9 @@ namespace trace {
 
 using namespace mp_units;
 using namespace mp_units::angular;
+
+using mp_units::angular::unit_symbols::rad;
+
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeAngle, const int& nPoints)
@@ -54,11 +57,11 @@ void PolygonalFieldOfView::find_min_and_max_angles()
 {
     static const auto comparitor = [](const auto& a, const auto& b) { return a.second < b.second; };
 
-    // Max cone is just the largest off-boresight angle
-    _maxHalfAngle = std::max_element(_points.begin(), _points.end(), comparitor)->second;
+    // Just use off-boresight angle as min/max. This assume the boresight is the centroid of the polygon
+    const auto [minIt, maxIt] = std::minmax_element(_points.begin(), _points.end(), comparitor);
 
-    // TODO: Min cone requires harder math. Voronoi diagram might be required. Figure out how to do this
-    _minHalfAngle = 0.0 * astrea::detail::angle_unit;
+    _minHalfAngle = minIt->second;
+    _maxHalfAngle = maxIt->second;
 }
 
 
@@ -73,7 +76,7 @@ bool PolygonalFieldOfView::contains(const EciRadiusVec& boresight, const EciRadi
     }
 
     // Neither less than the smallest angle nor greater than the largest angle, so we have to do
-    // actual math. Build out the polygon of the FoV in the plan normal to the boresight
+    // actual math. Build out the polygon of the FoV in the plane normal to the boresight
     static const std::vector<std::pair<Unitless, Unitless>> polygon = build_polygon();
 
     // Check if the target vector is in the trangle formed by the origin and the two vertices
