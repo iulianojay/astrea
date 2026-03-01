@@ -148,9 +148,10 @@ coverage-html: debug run_tests run_examples
 	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
-	--gcov-ignore-errors=no_working_dir_found && \
+	--gcov-ignore-errors=no_working_dir_found \
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file && \
 	cd ..
 
 .PHONY: coverage
@@ -160,9 +161,10 @@ coverage: debug run_tests run_examples
 	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
 	&& cd ..
 
 .PHONY: build_env

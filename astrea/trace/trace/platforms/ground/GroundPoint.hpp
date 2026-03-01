@@ -18,10 +18,12 @@
  */
 #pragma once
 
-#include <vector>
+#include <string>
 
+#include <astro/astro.fwd.hpp>
+#include <astro/frames/FrameReference.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
-#include <astro/systems/CelestialBody.hpp>
+#include <units/units.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
 #include <trace/types/typedefs.hpp>
@@ -37,7 +39,7 @@ namespace trace {
  * and altitude above sea level. It can be extended to include additional properties
  * or methods as needed for specific applications.
  */
-class GroundPoint : virtual public AccessObject {
+class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
   public:
     /**
      * @brief Constructs a GroundPoint with specified latitude, longitude, and altitude.
@@ -51,13 +53,7 @@ class GroundPoint : virtual public AccessObject {
         const Angle& latitutde             = 0.0 * mp_units::angular::unit_symbols::deg,
         const Angle& longitude             = 0.0 * mp_units::angular::unit_symbols::deg,
         const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km
-    ) :
-        AccessObject(),
-        _parent(parent),
-        _lla(latitutde, longitude, altitude),
-        _id(generate_id())
-    {
-    }
+    );
 
     /**
      * @brief Destructor for the GroundPoint class.
@@ -70,28 +66,35 @@ class GroundPoint : virtual public AccessObject {
      * @param other The other GroundPoint to compare with.
      * @return true if the two GroundPoint objects are equal, false otherwise.
      */
-    bool operator==(const GroundPoint& other) const { return _lla == other._lla; }
+    bool operator==(const GroundPoint& other) const;
+
+    /**
+     * @brief Gets the geodetic coordinates of the ground point.
+     *
+     * @return const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the ground point.
+     */
+    const astro::Geodetic& get_lla() const;
 
     /**
      * @brief Gets the latitude of the ground point.
      *
      * @return Angle The latitude of the ground point.
      */
-    const Angle& get_latitude() const { return _lla.get_latitude(); }
+    const Angle& get_latitude() const;
 
     /**
      * @brief Gets the longitude of the ground point.
      *
      * @return Angle The longitude of the ground point.
      */
-    const Angle& get_longitude() const { return _lla.get_longitude(); }
+    const Angle& get_longitude() const;
 
     /**
      * @brief Gets the altitude of the ground point above sea level.
      *
      * @return Distance The altitude of the ground point.
      */
-    const Distance& get_altitude() const { return _lla.get_altitude(); }
+    const Distance& get_altitude() const;
 
     /**
      * @brief Gets the parent celestial body of the ground point.
@@ -99,14 +102,40 @@ class GroundPoint : virtual public AccessObject {
      * @return const CelestialBody* Pointer to the parent celestial body.
      */
 
-    const astro::CelestialBody* get_parent() const { return _parent; }
+    const astro::CelestialBody* get_parent() const;
 
     /**
      * @brief Get the unique identifier for the ground station.
      *
      * @return std::size_t The unique identifier for the ground station.
      */
-    std::size_t get_id() const { return _id; }
+    std::size_t get_id() const;
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, frames::earth::earth_fixed>
+     */
+    astro::CartesianVector<Distance, astro::frames::earth::earth_fixed> get_position() const;
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, frames::earth::icrf>
+     */
+    astro::CartesianVector<Distance, astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const;
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return CartesianVector<Velocity, frames::earth::icrf>
+     */
+    astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
+
+    std::string get_name() const;
 
   protected:
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
@@ -117,11 +146,7 @@ class GroundPoint : virtual public AccessObject {
      * @brief Generates a unique identifier for the ground station based on its properties.
      * This method is called in the constructor to ensure that each ground station has a unique ID.
      */
-    std::size_t generate_id()
-    {
-        static std::size_t idCounter = 0;
-        return idCounter++;
-    }
+    std::size_t generate_id();
 };
 
 } // namespace trace

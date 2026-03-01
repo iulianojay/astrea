@@ -91,7 +91,7 @@ State StateHistory::get_state_at(const Date& date) const
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 
-    OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
+    const OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
     return State({ interpolatedElements, date, system });
 
     // // Insert if we want this to store

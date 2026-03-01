@@ -418,7 +418,7 @@ class Keplerian {
      * @param other The angle at the second time point.
      * @return Angle The interpolated angle at the target time.
      */
-    Angle interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const;
+    Angle interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const;
 
 
     /**
