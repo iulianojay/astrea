@@ -31,3 +31,14 @@ mjx-math {
   -webkit-mask-image: var(--md-admonition-icon--important);
   mask-image: var(--md-admonition-icon--important);
 }
+
+.md-header__button.md-logo {
+  margin: 0;
+  padding: 1rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 4.5rem;
+  width: 4rem;
+}

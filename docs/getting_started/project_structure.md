@@ -1,7 +1,6 @@
 # Project structure
 
-This chapter provides a high level overview of the project to make it easier to navigate,
-build, and use.
+This chapter provides a high level overview of the project to make it easier to navigate, build, and use.
 
 
 ## CMake projects and dependencies
