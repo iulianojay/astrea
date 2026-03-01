@@ -10,7 +10,7 @@ user experience.
 
     A brief introduction to the library's interfaces and the rationale for
     changes in version 2.0 of **mp-units** were provided in detail by
-    [Mateusz Pusz](https://github.com/mpusz) in the
+    [Mateusz Pusz](https://github.com/iulianojay) in the
     ["The Power of C++ Templates With mp-units: Lessons Learned & a New
     Library Design" talk at the C++ on Sea 2023
     conference](https://www.youtube.com/watch?v=eUdz0WvOMm0).
@@ -19,9 +19,9 @@ user experience.
 ## Open Source
 
 **mp-units** is Free and Open Source under the permissive
-[MIT license](https://github.com/mpusz/mp-units/blob/master/LICENSE.md). Browse the source,
+[MIT license](https://github.com/iulianojay/astrea/blob/master/LICENSE.md). Browse the source,
 ask questions, report bugs, or suggest improvements at
-<https://github.com/mpusz/mp-units>.
+<https://github.com/iulianojay/astrea>.
 
 
 ## With the User's Experience in Mind

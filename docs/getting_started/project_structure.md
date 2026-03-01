@@ -5,7 +5,7 @@ This chapter provides a high level overview of the project to make it easier to 
 
 ## CMake projects and dependencies
 
-The [GitHub repository](https://github.com/mpusz/mp-units) contains three independent
+The [GitHub repository](https://github.com/iulianojay/astrea) contains three independent
 CMake-based projects:
 
 - **_./src_**

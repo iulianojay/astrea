@@ -18,6 +18,7 @@ on:
     branches:
       - master
       - main
+      - feature/16-documentation # just for now
     tags:
       - v*
     paths:
@@ -65,6 +66,7 @@ jobs:
       - name: Installing API reference dependencies
         run: |
           sudo apt update
+          sudo apt install doxygen
           sudo apt install latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
           sudo apt install haskell-stack graphviz nodejs npm ghc cabal-install
           npm install split mathjax-full mathjax-node-sre mathjax-node-cli yargs@16.2.0
