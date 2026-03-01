@@ -1,6 +1,10 @@
+<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable-next-line MD033 -->
+<img align="right" height=135px src="docs/assets/images/astrea-transparent.png" alt="logo">
 
 [![GitHub license](https://img.shields.io/github/license/iulianojay/astrea?cacheSeconds=3600&color=informational&label=License)](./LICENSE.LESSER)
-[![GitHub license](https://img.shields.io/badge/C%2B%2B-23-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp23)
+[![C++ Standard](https://img.shields.io/badge/C%2B%2B-23-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp23)
+
 [![Astrea CI](https://img.shields.io/github/actions/workflow/status/iulianojay/astrea/build-and-test.yml?branch=master&label=Astrea%20CI)](https://github.com/iulianojay/astrea/actions/workflows/build-and-test.yml)
 ![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/iulianojay/238a4a61ca19471caa1e39376158d625/raw/coverage.json)
 
@@ -8,7 +12,7 @@
 
 Astrea is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
 
-This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover ever feature, but we're on our way!
+This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover every feature, but we're on our way!
 
 ## What can it do
 
@@ -60,9 +64,9 @@ Astrea uses strongly typed element sets to allow an easier user interface
 for conversions, and common operators. Currently, there are 3 supported orbital element sets:
 - Classical Orbital Elements (Keplerian)
 - Modified Equinoctial Elements (Equinoctial)
-- State Vectors (Cartesian)
+- Cartesian State Vectors (Cartesian)
 
-but the framework is extensible for user-defined sets as well.
+as well as a host of angular element sets such as geodetic and spherical coordinates.
 
 ```cpp
 // Build out a Cartesian element set using strongly typed, united quantities
@@ -281,7 +285,7 @@ Examples have been built out more completely for the astro tool in Astrea (astre
 - Schedulers
 - High fidelity atmospheric models
 - Transfer optimization utilities
-- A Qt GUI for basic analysis and visualization
+- A GUI for basic analysis and visualization
 
 ## Build and install
 

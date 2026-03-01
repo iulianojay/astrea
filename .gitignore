@@ -15,7 +15,6 @@ results
 # File types
 *.o
 *.so*
-*.png
 *.jpg
 *.zip
 *.pyc
@@ -34,6 +33,10 @@ spacetrack.query-history.json
 **/nasa_6dof_checkcases/checkcases/**/*.csv
 **/nasa_6dof_checkcases/**/*.m
 **/nasa_6dof_checkcases/data/**/*.csv
+
+# cxxdraft-htmlgen
+docs/reference/api_reference/src/source/
+docs/reference/api_reference/gen
 
 # Must include
 !CMakeLists.txt

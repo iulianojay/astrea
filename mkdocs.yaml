@@ -1,0 +1,205 @@
+# Project information
+site_name: "astrea"
+site_description: "An extensible astrodynamics library for C++"
+site_url: https://iulianojay.github.io/astrea
+site_author: "Jay Iuliano"
+
+# Repository
+repo_name: iulianojay/astrea
+repo_url: https://github.com/iulianojay/astrea
+
+# Copyright
+copyright: Copyright &copy; 2025-2026 Jay Iuliano
+
+# Configuration
+theme:
+  name: material
+  logo: assets/images/astrea-transparent.svg
+  favicon: assets/images/astrea-color.svg
+  custom_dir: docs/.overrides
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - navigation.expand
+    - navigation.indexes
+    # - navigation.sections
+    - navigation.tabs
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Customization
+extra:
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/ce_embed.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+# Page tree
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Getting Started: getting_started/index.md
+      - About mp-units: getting_started/about.md
+      - Quick Start: getting_started/quick_start.md
+      - Look and Feel: getting_started/look_and_feel.md
+      - Safety Features: getting_started/safety_features.md
+      - Project Structure: getting_started/project_structure.md
+      - C++ compiler support (API/ABI): getting_started/cpp_compiler_support.md
+      - Installation and Usage: getting_started/installation_and_usage.md
+      - Contributing: getting_started/contributing.md
+      - FAQ: getting_started/faq.md
+  - Tutorials:
+      - Tutorials: tutorials/index.md
+      - "Quick Start":
+          - "Your First Quantities": tutorials/quick_start/first_quantities.md
+          - "Simple Math": tutorials/quick_start/simple_math.md
+          - "Building a Calculator": tutorials/quick_start/building_calculator.md
+      - "Working with Units":
+          - "Unit Conversions": tutorials/working_with_units/unit_conversions.md
+          - "Safe and Unsafe Conversions": tutorials/working_with_units/safe_unsafe_conversions.md
+          - "Extracting Numeric Values": tutorials/working_with_units/extracting_numeric_values.md
+      - "Type Safety":
+          - "Compile-Time Protection": tutorials/type_safety/compile_time_protection.md
+          - "Automatic Dimensional Analysis": tutorials/type_safety/dimensional_analysis.md
+          - "Quantity Specifications": tutorials/type_safety/quantity_specifications.md
+          - "Generic Interfaces": tutorials/type_safety/generic_interfaces.md
+      - "Affine Space":
+          - "Points and Quantities": tutorials/affine_space/points_and_quantities.md
+          - "Point Origins": tutorials/affine_space/point_origins.md
+          - "Temperature Handling": tutorials/affine_space/temperature_handling.md
+          - "Temperature Applications": tutorials/affine_space/temperature_applications.md
+  - User's Guide:
+      - User's Guide: users_guide/index.md
+      - Terms and Definitions: users_guide/terms_and_definitions.md
+      - Framework Basics:
+          - Interface Introduction: users_guide/framework_basics/interface_introduction.md
+          - Design Overview: users_guide/framework_basics/design_overview.md
+          - Systems of Quantities: users_guide/framework_basics/systems_of_quantities.md
+          - Systems of Units: users_guide/framework_basics/systems_of_units.md
+          - Simple and Typed Quantities: users_guide/framework_basics/simple_and_typed_quantities.md
+          - Value Conversions: users_guide/framework_basics/value_conversions.md
+          - Character of a Quantity: users_guide/framework_basics/character_of_a_quantity.md
+          - Dimensionless Quantities: users_guide/framework_basics/dimensionless_quantities.md
+          - Quantity Arithmetics: users_guide/framework_basics/quantity_arithmetics.md
+          - Generic Interfaces: users_guide/framework_basics/generic_interfaces.md
+          - Faster-than-lightspeed Constants: users_guide/framework_basics/faster_than_lightspeed_constants.md
+          - The Affine Space: users_guide/framework_basics/the_affine_space.md
+          - Type Introspection: users_guide/framework_basics/type_introspection.md
+          - Concepts: users_guide/framework_basics/concepts.md
+          - Text Output: users_guide/framework_basics/text_output.md
+      - Systems:
+          - Systems: users_guide/systems/index.md
+          - International System of Quantities (ISQ): users_guide/systems/isq.md
+          - International System of Units (SI): users_guide/systems/si.md
+          - IAU Astronomical Units: users_guide/systems/iau.md
+          - Centimetre-Gram-Second (CGS) System: users_guide/systems/cgs.md
+          - Yard-Pound Systems: users_guide/systems/yard_pound.md
+          - Strong Angular System: users_guide/systems/strong_angular_system.md
+          - High Energy Physics (HEP): users_guide/systems/hep.md
+          - Natural Units: users_guide/systems/natural_units.md
+  - How-to Guides:
+      - How-to Guides: how_to_guides/index.md
+      - Advanced Usage:
+          - Advanced Usage Guides: how_to_guides/advanced_usage/index.md
+          - Pure Dimensional Analysis: how_to_guides/advanced_usage/pure_dimensional_analysis.md
+      - Integration:
+          - Integration Guides: how_to_guides/integration/index.md
+          - Working with Legacy Interfaces: how_to_guides/integration/working_with_legacy_interfaces.md
+          - Using Custom Representation Types: how_to_guides/integration/using_custom_representation_types.md
+          - Interoperability with Other Libraries: how_to_guides/integration/interoperability_with_other_libraries.md
+          - Wide Compatibility: how_to_guides/integration/wide_compatibility.md
+  - Examples:
+      - Examples: examples/index.md
+      - Tags: examples/tags.md
+      - Beginner:
+          - hello_units: examples/hello_units.md
+          - avg_speed: examples/avg_speed.md
+          - si_constants: examples/si_constants.md
+      - Intermediate:
+          - foot_pound_second: examples/foot_pound_second.md
+          - spectroscopy_units: examples/spectroscopy_units.md
+          - storage_tank: examples/storage_tank.md
+          - capacitor_time_curve: examples/capacitor_time_curve.md
+          - hw_voltage: examples/hw_voltage.md
+          - measurement: examples/measurement.md
+          - currency: examples/currency.md
+          - strong_angular_quantities: examples/strong_angular_quantities.md
+          - total_energy: examples/total_energy.md
+      - Advanced:
+          - unmanned_aerial_vehicle: examples/unmanned_aerial_vehicle.md
+          - glide_computer: examples/glide_computer.md
+          - kalman_filter: examples/kalman_filter.md
+  - Release Notes: release_notes.md
