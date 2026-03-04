@@ -27,11 +27,6 @@ namespace astrea::propagation {
     public:
         virtual ~ForceModel() = default;
         
-        virtual auto acceleration(
-            const state::CartesianState<>& state,
-            const time::EpochTT& epoch
-        ) const -> math::Vector3<units::acceleration> = 0;
-        
         virtual auto name() const -> std::string_view = 0;
     };
 }
