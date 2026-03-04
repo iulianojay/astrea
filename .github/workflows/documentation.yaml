@@ -19,6 +19,7 @@ on:
     branches:
       - master
       - dev
+      - feature/16-documentation 
     tags:
       - v*
     paths:
