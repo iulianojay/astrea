@@ -16,7 +16,7 @@ Benchmark data includes actual mission data, NASA published test cases, and comp
 ### 4. Continuous Validation
 Automated testing prevents regression and ensures new features don't break existing functionality.
 
-## Test Categories
+## Test Categories 
 
 ### Unit Tests
 
