@@ -45,11 +45,7 @@ auto julianTime = JulianDateClock::from_system_clock(systemTime);
 
 ### Time Intervals
 
-The `Interval` class represents time spans for propagation analysis:
-
-- Start and end time management
-- Duration calculations
-- Propagation time tracking
+The `Interval` class represents time spans for propagation analysis. It stores a start time and end time (called `propTime` in the implementation). You can calculate durations by taking the difference between these times.
 
 ```cpp
 #include <astro/time/Interval.hpp>
@@ -58,6 +54,7 @@ Time startTime = epoch_to_julian_date("2024-01-01 00:00:00");
 Time endTime = epoch_to_julian_date("2024-01-01 01:30:00");
 
 Interval propagationInterval(startTime, endTime);
+// Calculate duration between start and end times
 Time duration = propagationInterval.propTime - propagationInterval.start;
 ```
 

@@ -8,10 +8,7 @@ Astrea enables safe, high-performance aerospace computations.
 
 ## Open Source
 
-**Astrea** is Free and Open Source under the weak-copyleft
-[LGPL license](https://github.com/iulianojay/astrea/blob/master/LICENSE.LESSER). Browse the source,
-ask questions, report bugs, or suggest improvements at
-<https://github.com/iulianojay/astrea>.
+**Astrea** is is available under the [LGPL license](https://github.com/iulianojay/astrea/blob/master/LICENSE.LESSER). Browse the source, ask questions, report bugs, or suggest improvements at <https://github.com/iulianojay/astrea>.
 
 
 ## Designed for Aerospace Engineering

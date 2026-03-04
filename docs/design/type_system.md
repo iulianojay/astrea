@@ -1,139 +1,320 @@
 # Type System
 
-Astrea's type system is designed to prevent common errors in aerospace calculations through compile-time checking and strong typing. The system leverages modern C++23 features to provide safety without sacrificing performance.
+Astrea's type system provides dimensional safety for astrodynamics calculations through compile-time unit checking using the [mp-units](https://github.com/mpusz/mp-units) library. The system ensures unit consistency while maintaining zero runtime overhead.
 
-## Design Goals
+## Design Philosophy
 
-### 1. Compile-time Safety
-- **Unit Consistency**: Prevent dimensional analysis errors
-- **Frame Correctness**: Eliminate coordinate frame confusion
-- **Time Scale Accuracy**: Ensure proper time system handling
-- **Conversion Safety**: Require explicit intent for potentially lossy operations
+### 1. Unit Safety
+- **Dimensional Analysis**: Prevent unit mismatch errors at compile-time
+- **Natural Expressions**: Code reads like mathematical equations
+- **Zero Cost**: No runtime performance penalty for type safety
+- **Clear Errors**: Helpful compiler messages for unit mismatches
 
-### 2. Zero Overhead
-- **Compile-time Evaluation**: Move checks and conversions to compile-time
-- **Template Optimization**: Enable aggressive compiler optimizations
-- **Memory Efficiency**: No runtime overhead for type safety
+### 2. Practical Design
+- **Standard Units**: Built on SI base units with aerospace-specific extensions
+- **Simple API**: Straightforward type definitions for common quantities
+- **Extensible**: Easy to add new quantity types as needed
 
-### 3. Intuitive Usage
-- **Natural Syntax**: Code reads like mathematical expressions
-- **Clear Errors**: Helpful error messages for type mismatches
-- **Familiar Concepts**: Types mirror aerospace engineering terminology
+## Core Type Definitions
 
-## Core Type Categories
+### Physical Quantities
 
-### Physical Quantities with Units
-
-Astrea extends [mp-units](https://github.com/mpusz/mp-units) with aerospace-specific quantities:
+Astrea defines aerospace-specific quantities as type aliases over mp-units:
 
 ```cpp
-namespace astrea::units {
-    // Length quantities
-    using length = mp_units::quantity<mp_units::isq::length[mp_units::si::metre]>;
-    using distance = length;  // Alias for clarity in astrodynamics context
+namespace astrea {
+    // Basic quantities
+    using Distance = mp_units::quantity<detail::distance_unit>;        // kilometers
+    using Length = mp_units::quantity<detail::minor_distance_unit>;    // meters
+    using Time = mp_units::quantity<detail::time_unit>;               // seconds
+    using Angle = mp_units::quantity<detail::angle_unit>;             // radians
+    using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
+    using Mass = mp_units::quantity<detail::mass_unit>;               // kilograms
+    using Unitless = mp_units::quantity<detail::unitless>;            // dimensionless
     
-    // Time quantities
-    using duration = mp_units::quantity<mp_units::isq::time[mp_units::si::second]>;
-    using epoch_duration = duration;  // Time since reference epoch
+    // Derived astrodynamics quantities
+    using GravParam = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) / 
+                                        mp_units::pow<2>(detail::time_unit)>;
+    using Acceleration = mp_units::quantity<detail::distance_unit / 
+                                           mp_units::pow<2>(detail::time_unit)>;
+    using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
     
-    // Velocity quantities
-    using velocity = mp_units::quantity<mp_units::isq::speed[mp_units::si::metre_per_second]>;
-    
-    // Angular quantities
-    using angle = mp_units::quantity<mp_units::isq::plane_angle[mp_units::si::radian]>;
-    using angular_velocity = mp_units::quantity<mp_units::isq::angular_velocity[mp_units::si::radian_per_second]>;
-    
-    // Aerospace-specific quantities
-    using gravitational_parameter = mp_units::quantity<
-        mp_units::isq::length.pow<3>() / mp_units::isq::time.pow<2>()
-        [mp_units::si::cubic_metre_per_square_second]
-    >;
+    // Specialized quantities
+    using Thrust = mp_units::quantity<detail::mass_unit * detail::distance_unit / 
+                                     mp_units::pow<2>(detail::time_unit)>;
+    using SpecificAngularMomentum = mp_units::quantity<detail::distance_unit * 
+                                                      detail::distance_unit / detail::time_unit>;
 }
 ```
 
-#### Type-Safe Calculations
+### Unit System Details
+
+The underlying unit definitions use mp-units with SI base units optimized for astrodynamics:
+
+```cpp
+namespace astrea::detail {
+    // Base units optimized for aerospace calculations
+    inline constexpr auto time_unit           = mp_units::si::unit_symbols::s;     // seconds
+    inline constexpr auto distance_unit       = mp_units::si::unit_symbols::km;    // kilometers  
+    inline constexpr auto minor_distance_unit = mp_units::si::unit_symbols::m;     // meters
+    inline constexpr auto angle_unit          = mp_units::angular::unit_symbols::rad; // radians
+    inline constexpr auto mass_unit           = mp_units::si::unit_symbols::kg;    // kilograms
+    inline constexpr auto unitless            = mp_units::one;                     // dimensionless
+}
+```
+
+### Type-Safe Calculations
+
+The unit system prevents common astrodynamics errors:
 
 ```cpp
 // This compiles and produces correct results
-auto orbital_velocity(units::length radius, units::gravitational_parameter mu) {
-    return sqrt(mu / radius);  // Returns velocity quantity
+auto orbital_velocity(Distance radius, GravParam mu) {
+    return sqrt(mu / radius);  // Returns Velocity quantity automatically
 }
 
-// This fails to compile - unit mismatch
-auto invalid_calculation(units::length radius, units::duration time) {
-    return radius / time / time;  // ERROR: Cannot divide length by time squared
+// This fails to compile - unit mismatch detected
+auto invalid_calculation(Distance radius, Time time) {
+    return radius + time;  // ERROR: Cannot add distance and time
 }
+
+// Automatic unit conversions where appropriate
+Distance altitude = 400.0 * astrea::detail::distance_unit;  // 400 km
+Length precise_alt = altitude;  // Automatic conversion to meters: 400,000 m
 ```
 
-### Coordinate Frame Types
+## State Representation
 
-Strong typing prevents coordinate frame confusion:
+### Orbital Elements
+
+Astrea provides multiple orbital element representations through a unified interface:
 
 ```cpp
-namespace astrea::frames {
-    // Frame tag types
-    struct ICRF {};     // International Celestial Reference Frame
-    struct ITRF {};     // International Terrestrial Reference Frame
-    struct TOD {};      // True of Date
-    struct MOD {};      // Mean of Date
-    struct LVLH {};     // Local Vertical Local Horizontal
-    struct SEZ {};      // South-East-Zenith (topocentric)
-    
-    // Strongly typed position vectors
-    template<typename Frame>
-    class Position {
-        math::Vector3<units::length> vector_;
-    public:
-        explicit Position(math::Vector3<units::length> vec) : vector_(vec) {}
-        
-        auto vector() const -> const math::Vector3<units::length>& { 
-            return vector_; 
-        }
-        
-        // Explicit conversion required
-        template<typename ToFrame>
-        auto transform_to() const -> Position<ToFrame>;
+namespace astrea::astro {
+    // Base orbital elements interface
+    class OrbitalElements {
+        // Virtual interface for different element types
     };
     
-    using PositionICRF = Position<ICRF>;
-    using PositionITRF = Position<ITRF>;
-    using PositionLVLH = Position<LVLH>;
-}
-```
-
-#### Frame Transformation Safety
-
-```cpp
-// This compiles - explicit frame conversion
-auto transform_example() {
-    auto pos_icrf = frames::PositionICRF{/* ... */};
-    auto pos_itrf = pos_icrf.transform_to<frames::ITRF>();  // Explicit conversion
-    return pos_itrf;
-}
-
-// This fails to compile - implicit frame conversion not allowed
-auto invalid_assignment() {
-    auto pos_icrf = frames::PositionICRF{/* ... */};
-    frames::PositionITRF pos_itrf = pos_icrf;  // ERROR: No implicit conversion
-    return pos_itrf;
-}
-```
-
-### Time System Types
-
-Precise handling of different astronomical time scales:
-
-```cpp
-namespace astrea::time {
-    // Time scale tag types
-    struct UTC {};      // Coordinated Universal Time
-    struct TT {};       // Terrestrial Time
-    struct TAI {};      // International Atomic Time
-    struct GPS {};      // GPS Time
-    struct UT1 {};      // Universal Time 1
+    // Concrete implementations
+    class Keplerian {
+        Distance _semimajor;      // Semi-major axis
+        Unitless _eccentricity;   // Eccentricity
+        Angle _inclination;       // Inclination
+        Angle _rightAscension;    // RAAN
+        Angle _argPerigee;        // Argument of perigee
+        Angle _trueAnomaly;       // True anomaly
+        
+    public:
+        Keplerian(const Distance& a, const Unitless& e, const Angle& i,
+                 const Angle& raan, const Angle& argp, const Angle& nu);
+        
+        // Conversion from other element types
+        Keplerian(const OrbitalElements& elements, const GravParam& mu);
+    };
     
-    // Strongly typed epochs
-    template<typename TimeScale>
-    class Epoch {
-        units::epoch_duration since_j2000_;
-    public:\n        explicit Epoch(units::epoch_duration duration) : since_j2000_(duration) {}\n        \n        auto since_j2000() const -> units::epoch_duration { \n            return since_j2000_; \n        }\n        \n        // Explicit time scale conversion\n        template<typename ToTimeScale>\n        auto convert_to() const -> Epoch<ToTimeScale>;\n        \n        // Arithmetic operations within the same time scale\n        auto operator+(units::duration dt) const -> Epoch<TimeScale> {\n            return Epoch<TimeScale>{since_j2000_ + dt};\n        }\n    };\n    \n    using EpochUTC = Epoch<UTC>;\n    using EpochTT = Epoch<TT>;\n    using EpochTAI = Epoch<TAI>;\n}\n```\n\n#### Time Scale Conversion Safety\n\n```cpp\n// Explicit time scale conversions required\nauto time_conversion_example() {\n    auto utc_epoch = time::EpochUTC{1000.0 * units::julian_day};\n    auto tt_epoch = utc_epoch.convert_to<time::TT>();  // Explicit conversion\n    return tt_epoch;\n}\n\n// Time arithmetic within same scale is allowed\nauto time_arithmetic() {\n    auto epoch1 = time::EpochUTC{1000.0 * units::julian_day};\n    auto epoch2 = epoch1 + 3600.0 * units::second;  // Same time scale\n    return epoch2;\n}\n```\n\n### State Representation Types\n\nType-safe orbital state representations:\n\n```cpp\nnamespace astrea::state {\n    // Element set tag types\n    struct Cartesian {};\n    struct Keplerian {};\n    struct Equinoctial {};\n    struct ModifiedEquinoctial {};\n    \n    // Strongly typed orbital states\n    template<typename ElementSet, typename Frame, typename TimeScale>\n    class State {\n        // Element-specific data storage\n        ElementData<ElementSet> elements_;\n        time::Epoch<TimeScale> epoch_;\n        \n    public:\n        // Type-safe accessors\n        auto elements() const -> const ElementData<ElementSet>&;\n        auto epoch() const -> time::Epoch<TimeScale>;\n        \n        // Explicit conversions\n        template<typename ToElementSet>\n        auto convert_to() const -> State<ToElementSet, Frame, TimeScale>;\n        \n        template<typename ToFrame>\n        auto transform_to() const -> State<ElementSet, ToFrame, TimeScale>;\n    };\n    \n    // Common state type aliases\n    template<typename Frame = frames::ICRF, typename TimeScale = time::TT>\n    using CartesianState = State<Cartesian, Frame, TimeScale>;\n    \n    template<typename Frame = frames::ICRF, typename TimeScale = time::TT>\n    using KeplerianState = State<Keplerian, Frame, TimeScale>;\n}\n```\n\n#### State Conversion Type Safety\n\n```cpp\n// Explicit element set conversions\nauto element_conversion() {\n    auto cartesian = state::CartesianState<>{/* ... */};\n    auto keplerian = cartesian.convert_to<state::Keplerian>();  // Explicit\n    return keplerian;\n}\n\n// Frame and time scale must match for operations\nauto compatible_states() {\n    auto state1 = state::CartesianState<frames::ICRF, time::TT>{/* ... */};\n    auto state2 = state::CartesianState<frames::ICRF, time::TT>{/* ... */};\n    // Operations allowed - same frame and time scale\n    return state1.difference_from(state2);\n}\n```\n\n## Advanced Type System Features\n\n### Concept-Based Constraints\n\n```cpp\n// C++20 concepts for type checking\ntemplate<typename T>\nconcept CoordinateFrame = requires {\n    typename T;  // Must be a complete type\n    // Additional frame-specific requirements\n};\n\ntemplate<typename T>\nconcept TimeScale = requires {\n    typename T;  // Must be a complete type\n    // Additional time scale requirements\n};\n\ntemplate<typename T>\nconcept ElementSet = requires {\n    typename T;\n    // Must have conversion methods\n};\n\n// Function templates with concept constraints\ntemplate<CoordinateFrame FromFrame, CoordinateFrame ToFrame>\nauto transform_position(\n    const frames::Position<FromFrame>& pos,\n    const time::EpochTT& epoch\n) -> frames::Position<ToFrame>;\n```\n\n### SFINAE-Based Type Selection\n\n```cpp\n// Different algorithms based on frame types\ntemplate<typename Frame>\nauto compute_gravity_gradient(const frames::Position<Frame>& pos)\n    -> math::Matrix3<units::acceleration_per_length> {\n    \n    if constexpr (std::is_same_v<Frame, frames::ICRF>) {\n        return compute_inertial_gradient(pos);\n    } else if constexpr (std::is_same_v<Frame, frames::ITRF>) {\n        return compute_earth_fixed_gradient(pos);\n    } else {\n        // Convert to ICRF and compute\n        auto icrf_pos = pos.template transform_to<frames::ICRF>();\n        return compute_inertial_gradient(icrf_pos);\n    }\n}\n```\n\n### Template Metaprogramming for Optimization\n\n```cpp\n// Compile-time selection of transformation algorithms\ntemplate<typename FromFrame, typename ToFrame>\nstruct TransformationStrategy {\n    static constexpr bool is_identity = std::is_same_v<FromFrame, ToFrame>;\n    static constexpr bool is_simple_rotation = /* ... */;\n    static constexpr bool requires_time_dependent = /* ... */;\n    \n    using type = std::conditional_t<\n        is_identity, \n        IdentityTransform,\n        std::conditional_t<\n            is_simple_rotation,\n            SimpleRotationTransform<FromFrame, ToFrame>,\n            ComplexTransform<FromFrame, ToFrame>\n        >\n    >;\n};\n```\n\n## Error Handling and Diagnostics\n\n### Compile-Time Error Messages\n\nCustom error messages for common mistakes:\n\n```cpp\n// Static assertions with helpful messages\ntemplate<typename Frame>\nvoid validate_earth_fixed_frame() {\n    static_assert(\n        std::is_same_v<Frame, frames::ITRF> || std::is_same_v<Frame, frames::TOD>,\n        \"Earth-fixed calculations require ITRF or TOD frame. \"\n        \"Consider using .transform_to<frames::ITRF>() to convert your coordinates.\"\n    );\n}\n\n// SFINAE with clear error guidance\ntemplate<typename FromFrame, typename ToFrame>\nauto invalid_direct_transform() \n    -> std::enable_if_t<\n        !is_direct_transform_supported_v<FromFrame, ToFrame>,\n        frames::Position<ToFrame>\n    > {\n    static_assert(\n        always_false_v<FromFrame>,\n        \"Direct transformation not supported between these frames. \"\n        \"Consider using an intermediate frame like ICRF.\"\n    );\n}\n```\n\n### Runtime Type Information\n\n```cpp\n// Optional runtime type information for debugging\nclass TypeInfo {\npublic:\n    template<typename Frame>\n    static auto frame_name() -> std::string_view {\n        if constexpr (std::is_same_v<Frame, frames::ICRF>) {\n            return \"ICRF\";\n        } else if constexpr (std::is_same_v<Frame, frames::ITRF>) {\n            return \"ITRF\";\n        }\n        // ... other frames\n        return \"Unknown\";\n    }\n    \n    template<typename TimeScale>\n    static auto time_scale_name() -> std::string_view {\n        if constexpr (std::is_same_v<TimeScale, time::UTC>) {\n            return \"UTC\";\n        } else if constexpr (std::is_same_v<TimeScale, time::TT>) {\n            return \"TT\";\n        }\n        // ... other time scales\n        return \"Unknown\";\n    }\n};\n```\n\n## Performance Implications\n\n### Zero-Cost Abstractions\n\n```cpp\n// All type information is compile-time only\nstatic_assert(sizeof(frames::Position<frames::ICRF>) == \n              sizeof(math::Vector3<units::length>));\n              \nstatic_assert(sizeof(time::EpochUTC) == \n              sizeof(units::epoch_duration));\n\n// No virtual function overhead\nstatic_assert(std::is_trivially_copyable_v<frames::Position<frames::ICRF>>);\nstatic_assert(std::is_standard_layout_v<time::EpochUTC>);\n```\n\n### Compile-Time Computation\n\n```cpp\n// Frame transformation matrices computed at compile-time when possible\nconstexpr auto icrf_to_j2000_matrix() {\n    // Small rotation matrix - can be computed at compile-time\n    return math::Matrix3<units::dimensionless>{\n        /* known constant values */\n    };\n}\n\n// Time scale offsets as compile-time constants\nnamespace time_constants {\n    constexpr auto tai_minus_utc = 37.0 * units::second;\n    constexpr auto tt_minus_tai = 32.184 * units::second;\n    constexpr auto tt_minus_utc = tt_minus_tai + tai_minus_utc;\n}\n```\n\n## Type System Evolution\n\n### Future Enhancements\n\n1. **Module System Integration**: Support for C++23 modules\n2. **Reflection Support**: Automatic serialization and introspection\n3. **Contracts**: Use C++ contracts when available for runtime checking\n4. **Pattern Matching**: Leverage pattern matching for type dispatch\n\n### Backward Compatibility\n\n- Strong typing maintained across versions\n- Explicit migration paths for breaking changes\n- Deprecated features clearly marked\n- Type aliases provided for common legacy patterns\n\n---\n\n*Astrea's type system demonstrates how modern C++ can provide both safety and performance for mission-critical aerospace calculations, catching errors at compile-time while maintaining zero runtime overhead.*
+    class Cartesian {
+        // Position and velocity vectors
+    };
+    
+    class Equinoctial {
+        // Modified equinoctial elements for near-circular orbits
+    };
+}
+### State Management
+
+The `State` class combines orbital elements with epoch and system information:
+
+```cpp
+namespace astrea::astro {
+    class State {
+        OrbitalElements _elements;
+        Date _epoch;
+        const AstrodynamicsSystem* _system;
+        
+    public:
+        State(const OrbitalElements& elements, const Date& epoch, 
+              const AstrodynamicsSystem& sys);
+        
+        const OrbitalElements& get_elements() const { return _elements; }
+        const Date& get_epoch() const { return _epoch; }
+        const AstrodynamicsSystem& get_system() const { return *_system; }
+        
+        // Element conversion while preserving epoch and system
+        template<typename ElementType>
+        State convert_to() const;
+    };
+}
+    
+    template<typename Frame = frames::ICRF, typename TimeScale = TT>
+    using KeplerianState = State<Keplerian, Frame, TimeScale>;
+}
+```
+
+## Time Handling
+
+### Date Class
+
+Astrea uses a simplified `Date` class for time management:
+
+```cpp
+namespace astrea::astro {
+    class Date {
+        JulianDate julian_date_;
+        
+    public:
+        Date();  // Defaults to J2000.0 epoch
+        explicit Date(const JulianDate& jd);
+        
+        // Time arithmetic
+        Date operator+(const Time& duration) const;
+        Date operator-(const Time& duration) const;
+        Time operator-(const Date& other) const;
+        
+        // Conversions
+        JulianDate get_julian_date() const { return julian_date_; }
+        std::string to_string(const std::string& format = "%Y-%m-%d %H:%M:%S") const;
+    };
+    
+    // Utility functions
+    JulianDate epoch_to_julian_date(const std::string& epoch, 
+                                   const std::string format = "%Y-%m-%d %H:%M:%S");
+}
+```
+
+## Coordinate Vectors
+
+### Typed Vector System
+
+Astrea provides type-safe vector representations:
+
+```cpp
+namespace astrea::astro {
+    // Template for typed vectors in specific frames
+    template<typename Quantity, typename Frame>
+    class CartesianVector {
+        std::array<Quantity, 3> components_;
+        
+    public:
+        // Component access
+        Quantity x() const { return components_[0]; }
+        Quantity y() const { return components_[1]; }  
+        Quantity z() const { return components_[2]; }
+        
+        // Vector operations
+        auto magnitude() const -> Quantity;
+        auto normalize() const -> CartesianVector<Unitless, Frame>;
+    };
+    
+    // Common vector type aliases
+    template<typename Frame>
+    using RadiusVector = CartesianVector<Distance, Frame>;
+    
+    template<typename Frame>
+    using VelocityVector = CartesianVector<Velocity, Frame>;
+    
+    template<typename Frame>
+    using AccelerationVector = CartesianVector<Acceleration, Frame>;
+    
+    template<typename Frame>
+    using UnitVector = CartesianVector<Unitless, Frame>;
+}
+```
+
+### Frame Instances
+
+The actual frame types implemented in Astrea:
+
+```cpp
+namespace astrea::astro::frames {
+    // Local coordinate frames
+    struct EastNorthUp {};        // East-North-Up topocentric frame
+    struct LocalHorizontal {};    // Local horizontal frame
+    struct RadialInTrackCrossTrack {};  // RIC frame for relative motion
+    struct VelocityNormalBinormal {};   // VNB orbital frame
+    
+    // Inertial frames (body-centered)
+    struct EarthCenteredInertial {};    // ECI frame
+    struct MoonCenteredInertial {};     // Selenocentric inertial
+    
+    // Body-fixed frames
+    struct EarthFixed {};               // ECEF-type frame
+}
+```
+
+## Example Usage
+
+### Complete Orbit Definition
+
+```cpp
+// Create orbital state with type safety
+Distance sma = 7000.0 * astrea::detail::distance_unit;     // 7000 km
+Unitless ecc = 0.1 * astrea::detail::unitless;             // 0.1 eccentricity  
+Angle inc = 45.0 * astrea::detail::angle_unit;             // 45 degrees
+
+auto elements = astrea::astro::Keplerian(
+    sma, ecc, inc, 
+    0.0 * astrea::detail::angle_unit,  // RAAN
+    0.0 * astrea::detail::angle_unit,  // Argument of perigee
+    0.0 * astrea::detail::angle_unit   // True anomaly
+);
+
+auto epoch = astrea::astro::Date();  // J2000.0
+auto system = astrea::astro::AstrodynamicsSystem();  // Earth-Moon system
+auto state = astrea::astro::State(elements, epoch, system);
+
+// Type-safe element conversions
+auto cartesian_elements = astrea::astro::Cartesian(elements, system.get_mu());
+```
+
+### Gravitational Parameter Calculations
+
+```cpp
+// Type-safe orbital mechanics calculations
+auto calculate_orbital_period(Distance semi_major_axis, GravParam mu) -> Time {
+    // Kepler's third law calculation with automatic unit checking
+    auto period_squared = 4.0 * M_PI * M_PI * mp_units::pow<3>(semi_major_axis) / mu;
+    return sqrt(period_squared);
+}
+
+// Usage example
+auto earth_mu = 398600.4418 * mp_units::pow<3>(astrea::detail::distance_unit) / 
+                             mp_units::pow<2>(astrea::detail::time_unit);
+auto period = calculate_orbital_period(sma, earth_mu);  // Returns Time quantity
+```
+
+## Performance Characteristics
+
+### Zero Runtime Overhead
+
+The type system adds no runtime cost:
+
+```cpp
+// Type information is compile-time only
+static_assert(sizeof(Distance) == sizeof(double));
+static_assert(sizeof(astrea::astro::Keplerian) == 6 * sizeof(mp_units::quantity<double>));
+
+// No virtual function overhead in quantity types
+static_assert(std::is_trivially_copyable_v<Distance>);
+static_assert(std::is_trivially_copyable_v<Velocity>);
+```
+
+### Compile-Time Benefits
+
+- **Error Prevention**: Unit mismatches caught at compile-time
+- **Optimization**: Compilers can optimize knowing exact types  
+- **Documentation**: Types serve as self-documenting code
+- **Refactoring Safety**: Type checking prevents breaking changes
+
+## Integration with mp-units
+
+Astrea leverages the mp-units library for its foundation:
+
+- **Standards Compliance**: Based on SI units and ISO standards
+- **Performance**: Zero-runtime-cost with compile-time checking
+- **Extensibility**: Easy to add domain-specific quantities
+- **Interoperability**: Compatible with standard mathematical operations
+
+---
+
+*Astrea's type system provides practical dimensional safety for astrodynamics while maintaining the performance characteristics required for mission-critical applications.*

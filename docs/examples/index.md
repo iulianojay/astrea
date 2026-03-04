@@ -1,8 +1,6 @@
 # Examples
 
-Welcome to the **Astrea** examples collection! These practical, runnable examples demonstrate
-how to use the library for real-world astrodynamics and aerospace engineering scenarios,
-from basic orbital mechanics calculations to advanced mission analysis applications.
+Welcome to the **Astrea** examples collection! These practical, runnable examples demonstrate how to use the library for real-world astrodynamics and aerospace engineering scenarios, from basic orbital mechanics calculations to advanced mission analysis applications.
 
 ## What are Examples?
 

@@ -85,3 +85,10 @@ Astrea requires C++23 and uses CMake for building. Detailed installation instruc
 ## License
 
 Astrea is licensed under the [GNU Lesser General Public License v3.0](LICENSE.LESSER), enabling both open-source and commercial use.
+
+## Outputs Built with Astrea
+<center>
+  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="350"/>
+  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="350"/>
+  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="350"/>
+</center>

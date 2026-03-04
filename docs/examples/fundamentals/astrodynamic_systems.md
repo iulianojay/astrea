@@ -15,10 +15,7 @@ The `AstrodynamicsSystem` class serves as the primary interface for managing ast
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
 // Create Earth-centered system with Moon as secondary body
-AstrodynamicsSystem earthSystem(
-    CelestialBodyId::EARTH, 
-    {CelestialBodyId::MOON}
-);
+AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH);
 
 // Access central body properties
 auto earthGravParam = earthSystem.get_central_body().get_gravitational_parameter();
@@ -60,13 +57,13 @@ The system supports complex gravitational environments:
 
 ```cpp
 // Multi-body system with Earth, Moon, and Sun
-AstrodynamicsSystem solarSystem(
+AstrodynamicsSystem earthMoonSunSystem(
     CelestialBodyId::EARTH,
     {CelestialBodyId::MOON, CelestialBodyId::SUN}
 );
 
 // Access secondary bodies for perturbation calculations
-auto secondaryBodies = solarSystem.get_secondary_bodies();
+auto secondaryBodies = earthMoonSunSystem.get_secondary_bodies();
 for (const auto& body : secondaryBodies) {
     auto gravParam = body.get_gravitational_parameter();
     // Compute perturbation effects
