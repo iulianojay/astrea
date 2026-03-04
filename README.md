@@ -10,7 +10,7 @@
 
 
 # Astrea
-
+ 
 **A Modern C++ Astrodynamics Library**
 
 Astrea is a high-performance, type-safe astrodynamics library designed for mission design, analysis, and aerospace applications. Built with modern C++23 features, Astrea provides a strongly-typed foundation with compile-time unit checking and coordinate frame safety, enabling developers to build robust and efficient astrodynamics software.
