@@ -42,7 +42,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - uses: actions/setup-python@v5
         with:
@@ -55,12 +60,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-
-      - name: Prepare git
-        run: |
-          git config --global user.name github-actions[bot]
-          git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git fetch origin gh-pages --depth=1
 
       - name: Installing Doxygen
         run: |
