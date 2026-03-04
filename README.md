@@ -1,9 +1,3 @@
----
-hide:
-  - navigation
-  - toc
----
-
 <!-- markdownlint-disable MD041 -->
 <!-- markdownlint-disable-next-line MD033 -->
 <img align="right" height=135px src="docs/assets/images/astrea-transparent.png" alt="logo">
