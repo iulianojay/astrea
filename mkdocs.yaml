@@ -165,7 +165,6 @@ nav:
       - Contributing: getting_started/contributing.md
   - Examples:
       - Examples: examples/index.md
-      - Tags: examples/tags.md
       - Fundamentals:
           - Strongly Typed Units: examples/fundamentals/strongly_typed_units.md
           - Strongly Typed Frames: examples/fundamentals/strongly_typed_frames.md
@@ -185,18 +184,13 @@ nav:
       - Advanced:
           - Vehicles: examples/advanced/vehicles.md
           - Platforms and Payloads: examples/advanced/platforms_and_payloads.md
-  - Tutorials:
-      - Tutorials: tutorials/index.md
-  - Validation:
-      - Validation: validation/index.md
-      - Checkcases: validation/checkcases.md
   - Design:
       - Design: design/index.md
       - Type System: design/type_system.md
       - Architecture: design/architecture.md
       - Performance: design/performance.md
       - Extensibility: design/extensibility.md
-      - Testing: design/testing.md
+      - Testing and Validation: design/testing.md
   - API:
       - Astro:
           - 'Links': 'astro/links.md'

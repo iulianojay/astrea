@@ -1,125 +1,100 @@
 # Introduction
 
-**mp-units** is a modern C++ library for compile‑time dimensional analysis and
-unit/quantity manipulation. The earliest versions were inspired by
-[`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration),
-but with each release the interfaces intentionally diverged to provide a better
-user experience.
-
-!!! info
-
-    A brief introduction to the library's interfaces and the rationale for
-    changes in version 2.0 of **mp-units** were provided in detail by
-    [Mateusz Pusz](https://github.com/iulianojay) in the
-    ["The Power of C++ Templates With mp-units: Lessons Learned & a New
-    Library Design" talk at the C++ on Sea 2023
-    conference](https://www.youtube.com/watch?v=eUdz0WvOMm0).
-
+**Astrea** is a modern C++ library for astrodynamics modeling and simulation, and aerospace 
+engineering analysis. It provides the fundamental tools for most common aerospace analysis 
+applications, while also serving as a fast, extensible framework for more complex aerospace 
+projects. Built with strongly typed units, coordinate frames, and orbital mechanics at its core, 
+Astrea enables safe, high-performance aerospace computations.
 
 ## Open Source
 
-**mp-units** is Free and Open Source under the permissive
-[MIT license](https://github.com/iulianojay/astrea/blob/master/LICENSE.md). Browse the source,
+**Astrea** is Free and Open Source under the weak-copyleft
+[LGPL license](https://github.com/iulianojay/astrea/blob/master/LICENSE.LESSER). Browse the source,
 ask questions, report bugs, or suggest improvements at
 <https://github.com/iulianojay/astrea>.
 
 
-## With the User's Experience in Mind
+## Designed for Aerospace Engineering
 
-Most key design decisions aim to deliver the best possible user experience. Many other C++
-physical‑units libraries are "famous" for enormous, hard‑to‑digest error messages.
-**mp-units** strives to invert that reputation: making compile‑time errors concise, readable,
-and actionable.
+**Astrea** is built specifically for astrodynamics and aerospace engineering applications,
+with design decisions focused on the unique requirements of orbital mechanics, spacecraft
+analysis, and mission planning.
 
-To achieve this goal, several techniques are applied:
+Key design principles include:
 
-- [Use of C++20 concepts](../users_guide/framework_basics/concepts.md) to improve
-  compile-time performance and error readability vs traditional SFINAE‑based metaprogramming.
-- [Strong types for framework entities](../users_guide/framework_basics/interface_introduction.md#strong-types-instead-of-aliases)
-  instead of type aliases.
-- [Symbolic expressions](../users_guide/framework_basics/interface_introduction.md#symbolic-expressions)
-  for readable generated types.
-- Minimizing the number of template parameters.
+- **Strongly typed coordinate systems** that prevent common frame transformation errors
+- **Unit-aware calculations** using [mp-units] to catch dimensional analysis errors at compile-time  
+- **Domain-specific abstractions** for orbital elements, spacecraft, and celestial bodies
+- **High-performance propagation** with both analytical and numerical methods
+- **Extensible architecture** allowing custom force models, integrators, reference frames, and more
 
-!!! important "Important: It is all about errors"
+!!! important "Important: It's about safety and accuracy"
 
-    In many generic C++ libraries, compile-time errors do not happen often. It is hard to
-    break `std::string` or `std::vector` in a way that won't compile with a huge error
-    log. Physical quantities and units libraries are different.
-    **Generation of compile-time errors is the main reason to use such a library.**
+    Aerospace calculations involve complex coordinate transformations, unit conversions, and
+    time system handling where small errors can have catastrophic consequences. **Astrea's
+    compile-time safety checks and strong typing are designed to catch these errors before
+    they impact mission-critical calculations.**
+
+[mp-units]: https://github.com/mpusz/mp-units
 
 
 ## Key Features
 
-### Safety
+### Astrodynamics Core
 
-- [The affine space strong types] (`quantity`, `quantity_point`)
-- [Compile-time checked conversions of quantities and units]
-- [Unique support for many quantities of the same kind]
-- [Type-safe equations on scalar, vector, and tensor quantities and their units]
-- [Value-preserving conversions]
+- **Orbital mechanics** with support for multiple element sets (Keplerian, Cartesian, Equinoctial, etc.)
+- **Coordinate frame transformations** with compile-time safety and automatic conversions
+- **Time systems** supporting Julian Date, UTC, TT, and other common aerospace time standards
+- **Celestial body definitions** with built-in models for Earth, Moon, and planets
+- **SPICE integration** with Chebyshev polynomial ephemerides for fast, accurate computations
 
-### Performance
+### Propagation and Analysis
 
-- Compile-time logic via immediate (`consteval`) functions
-- Performance on par with (sometimes better than) fundamental types
-- Zero space overhead for high-level abstractions
+- **Multiple propagation methods** including analytical (Kepler, J2) and numerical integrators
+- **Force model framework** supporting user-defined perturbations and environmental effects
+- **Event detection** during propagation for apogee/perigee, eclipse, and custom events
+- **Access analysis** with link budget calculations and interference modeling
+- **Trajectory optimization** tools for maneuver planning and mission design
 
-### Great User Experience
+### Safety and Performance
 
-- [Optimized for readable compilation errors and great debugging experience]
-- [Efficient and composable way to specify a unit of choice]
-- [Value-based dimension, unit, and quantity equations]
+- **Compile-time unit safety** preventing dimensional analysis errors
+- **Strong typing** for frames to catch tricky coordinate transformation errors
+- **Zero-overhead abstractions** with performance matching hand-optimized code
+- **Memory-efficient** data structures optimized for real-time applications
 
-### Feature Rich
+### Data Integration
 
-- [Systems of Quantities]
-- [Systems of Units]
-- [Scalar, vector, and tensor quantities]
-- [The affine space]
-- [Different models of the universe (e.g. natural units systems)]
-- [Strong dimensionless quantities]
-- [Strong angular system]
-- [Supports any unit's magnitude (huge, small, floating-point)]
-- [Faster-than-lightspeed constants]
-- [Highly adjustable text-output formatting]
+- **Spacetrack.org client** for automated TLE downloads and orbital data management
+- **Standard format support** for CCSDS OEM/OPM, and NASA test data formats
+- **Database integration** for efficient storage and retrieval of orbital data
+- **CSV and JSON I/O** for interoperability with other aerospace tools
 
-### Easy to Extend
+### Extensible Architecture
 
-- [Each entity can be defined with a single line of code]
-- [User can easily extend the systems with custom dimensions, quantities, and units]
+- **Custom spacecraft definitions** with configurable mass, area, and other properties
+- **User-defined force models** following a common interface pattern
+- **Modular integration** supporting both fixed and adaptive step-size methods
 
+### Real-World Validation
 
-### Low Standardization Cost
-
-- Few predefined entities due to high composability
-- No external dependencies (with full C++20 support)
-- Macro-free user interface (aside from portability / standard-compliance helpers)
-- Plausible candidate for [freestanding] standardization
+- **NASA test data comparisons** ensuring accuracy against published 6-DoF benchmarks
+- **High-fidelity SPICE comparisons** validating ephemeris calculations
+- **Comprehensive test suite** covering edge cases and numerical stability
 
 
-[The affine space strong types]: ../users_guide/framework_basics/the_affine_space.md
-[Compile-time checked conversions of quantities and units]: ../users_guide/framework_basics/systems_of_quantities.md#converting-between-quantities
-[Unique support for many quantities of the same kind]: ../users_guide/framework_basics/systems_of_quantities.md#quantities-of-the-same-kind
-[Type-safe equations on scalar, vector, and tensor quantities and their units]: ../users_guide/framework_basics/quantity_arithmetics.md
-[Value-preserving conversions]: ../users_guide/framework_basics/value_conversions.md#value-preserving-conversions
+## Getting Started
 
-[Optimized for readable compilation errors and great debugging experience]: ../users_guide/framework_basics/simple_and_typed_quantities.md#easy-to-understand-compilation-error-messages
-[Efficient and composable way to specify a unit of choice]: ../users_guide/framework_basics/systems_of_units.md#units-compose
-[Value-based dimension, unit, and quantity equations]: ../users_guide/framework_basics/interface_introduction.md#value-based-equations
+Ready to start using Astrea for your aerospace engineering projects? Check out our
+[Quick Start Guide](./quick_start.md) or explore the [Examples](../examples/) to see
+Astrea in action with real-world scenarios.
 
-[Systems of Quantities]: ../users_guide/framework_basics/systems_of_quantities.md
-[Systems of Units]: ../users_guide/framework_basics/systems_of_units.md
-[Scalar, vector, and tensor quantities]: ../users_guide/framework_basics/character_of_a_quantity.md
-[The affine space]: ../users_guide/framework_basics/the_affine_space.md
-[Different models of the universe (e.g. natural units systems)]: ../users_guide/systems/natural_units.md
-[Strong dimensionless quantities]: ../users_guide/framework_basics/dimensionless_quantities.md
-[Strong angular system]: ../users_guide/systems/strong_angular_system.md
-[Supports any unit's magnitude (huge, small, floating-point)]: ../users_guide/framework_basics/systems_of_units.md#scaled-units
-[Faster-than-lightspeed constants]: ../users_guide/framework_basics/faster_than_lightspeed_constants.md
-[Highly adjustable text-output formatting]: ../users_guide/framework_basics/text_output.md
+For detailed API documentation and advanced usage patterns, visit the
+[User's Guide](../users_guide/) which covers everything from basic orbital mechanics
+to custom force model development.
 
-[Each entity can be defined with a single line of code]: ../users_guide/framework_basics/interface_introduction.md#new-style-of-definitions
-[User can easily extend the systems with custom dimensions, quantities, and units]: ../users_guide/systems/index.md
+!!! tip "New to Astrodynamics?"
 
-[freestanding]: https://en.cppreference.com/w/cpp/freestanding
+    If you're new to orbital mechanics or astrodynamics programming, start with our
+    [Examples](../examples/) which demonstrate common aerospace engineering tasks
+    with clear explanations and working code.

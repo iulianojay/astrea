@@ -1,27 +1,28 @@
 # Examples
 
-Welcome to the **mp-units** examples collection! These practical, runnable examples demonstrate
-how to use the library in real-world scenarios, from simple introductory programs to advanced
-domain-specific applications.
+Welcome to the **Astrea** examples collection! These practical, runnable examples demonstrate
+how to use the library for real-world astrodynamics and aerospace engineering scenarios,
+from basic orbital mechanics calculations to advanced mission analysis applications.
 
 ## What are Examples?
 
-Examples bridge the gap between learning and doing, showing complete, working applications
-that you can study and adapt for your own projects.
+Examples bridge the gap between theoretical astrodynamics knowledge and practical implementation,
+showing complete, working aerospace applications that you can study and adapt for your own
+mission analysis and spacecraft engineering projects.
 
 These examples:
 
-- ✅ Show complete, runnable code in real-world scenarios
-- ✅ Demonstrate library features in context
-- ✅ Range from beginner to advanced complexity
-- ✅ Are organized by level, system, feature, and domain
-- ✅ Work with all [supported compilers](../getting_started/cpp_compiler_support.md)
-- ✅ Use [Wide Compatibility](../how_to_guides/integration/wide_compatibility.md) mode for
-  maximum portability
+- ✅ Show complete, runnable code for real aerospace engineering scenarios
+- ✅ Demonstrate astrodynamics concepts with actual implementation
+- ✅ Range from basic orbital mechanics to complex mission analysis
+- ✅ Are organized by complexity level and aerospace domain
+- ✅ Work with all [supported compilers](../getting_started/installation_and_usage.md#prerequisites)
+- ✅ Include validation against known aerospace benchmark data
+- ✅ Use modern C++23 features with compile-time safety checks
 
-**Prerequisites**: Basic familiarity with **mp-units** from [Tutorials](../tutorials/index.md).
-Beginner examples include detailed explanations; intermediate and advanced examples assume
-fundamental knowledge.
+**Prerequisites**: Basic familiarity with **Astrea** from the [Getting Started](../getting_started/introduction.md) guide.
+Beginner examples include detailed explanations of astrodynamics concepts; intermediate and
+advanced examples assume fundamental knowledge of orbital mechanics and aerospace engineering.
 
 ## How to Use This Section?
 
@@ -29,38 +30,43 @@ fundamental knowledge.
 
 Follow examples sequentially by complexity level:
 
-- **Beginner** - Start here if you're new to **mp-units**. Detailed, line-by-line explanations
-  of library fundamentals including code structure, headers, and namespaces.
+- **Beginner** - Start here if you're new to computational astrodynamics. Detailed explanations
+  of fundamental concepts including orbital elements, coordinate frames, time systems, and
+  basic propagation techniques.
 
-- **Intermediate** - Demonstrate specific features in depth. Skip repetitive boilerplate and
-  focus on unique value each example provides.
+- **Intermediate** - Demonstrate specific astrodynamics applications in depth. Focus on
+  mission analysis scenarios like access calculations, maneuver planning, and multi-body
+  dynamics.
 
-- **Advanced** - Complex, real-world applications showing how **mp-units** solves challenging
-  problems in specialized domains.
+- **Advanced** - Complex, real-world aerospace applications showing how **Astrea** solves
+  challenging problems in spacecraft trajectory design, constellation analysis, and
+  interplanetary mission planning.
 
-### Finding Examples by Tags
+### Finding Examples by Category
 
-Browse the [tag index](tags.md) to filter examples by:
+Browse examples by aerospace domain:
 
-- **Level** - Beginner, intermediate, or advanced
-- **System** - SI, CGS, Imperial, Natural, IAU, and more
-- **Feature** - Conversions, affine space, custom units, generic programming, and more
-- **Domain** - Physics, electronics, aerospace, embedded systems, and more
+- **Orbital Mechanics** - Classical and modern orbital element sets, propagation methods
+- **Coordinate Systems** - Frame transformations, topocentric conversions, time systems
+- **Mission Analysis** - Access analysis, coverage calculations, link budgets
+- **Spacecraft Dynamics** - Attitude control, maneuvers, perturbation modeling
+- **Data Processing** - SPICE integration, TLE handling, ephemeris generation
+- **Validation** - Comparison with NASA benchmark data and published test cases
 
 ## When to Use Examples?
 
 Use Examples when you:
 
-- Want to see complete, working applications
-- Need inspiration for your own projects
-- Want to understand how features work together
-- Are looking for patterns to adapt to your use case
-- Need domain-specific implementation examples
+- Want to see complete astrodynamics applications in action
+- Need inspiration for your aerospace engineering projects
+- Want to understand how orbital mechanics concepts translate to code
+- Are looking for mission analysis patterns to adapt to your use case
+- Need domain-specific implementations for spacecraft or satellite applications
+- Want to validate your own astrodynamics calculations against known results
 
 ## Other Resources
 
-- **[Tutorials](../tutorials/index.md)** - Learning-oriented lessons for getting started
-- **[User's Guide](../users_guide/index.md)** - Explanation-oriented understanding of concepts
-- **[How-to Guides](../how_to_guides/index.md)** - Task-oriented solutions to specific problems
-- **[Workshops](../workshops/index.md)** - Practice advanced patterns with hands-on exercises
-- **[Reference](../reference/index.md)** - Information-oriented technical descriptions
+- **[Getting Started](../getting_started/index.md)** - Installation and first steps with Astrea
+- **[User's Guide](../users_guide/index.md)** - Comprehensive understanding of astrodynamics concepts
+- **[API Reference](../api_reference/index.md)** - Detailed technical documentation
+- **[Project Structure](../getting_started/project_structure.md)** - Understanding Astrea's architecture

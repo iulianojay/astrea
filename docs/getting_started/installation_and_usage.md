@@ -1,35 +1,259 @@
 
-Astrea uses a small Python script to build out some files. In order to run this, first install the Astrea's python environment with
+# Installation and Usage
+
+This guide provides comprehensive instructions for installing Astrea and integrating it into your C++ astrodynamics projects. Astrea is designed to be easy to build and deploy across different platforms while maintaining high performance and reliability.
+
+## Prerequisites
+
+Before installing Astrea, ensure your development environment meets the following requirements:
+
+### System Requirements
+
+- **C++ Compiler**: C++23 compatible compiler
+    - GCC 13.0 or later
+- **CMake**: Version 3.20 or later
+- **Python**: Version 3.8 or later (for build scripts and code generation)
+- **Git**: For dependency management and version control
+
+### Platform Support
+
+Astrea is tested and supported on the following platforms:
+
+| Platform               | Status         |
+|------------------------|----------------|
+| Ubuntu 20.04+          | ✅ Supported   |
+| Windows 10/11          | ❌ In Progress |
+| macOS 11.0+            | ❌ In Progress |
+
+## Installation Methods
+
+### Method 1: Quick Install (Recommended)
+
+For most users, the quickest way to get started is using the provided Makefile automation:
+
+#### 1. Setup Python Environment
+
+Astrea uses Python scripts for code generation and build automation. Create the required environment:
+
 ```bash
 make python_env
 ```
 
-Once this is built, activate the environment with
+This command creates a virtual environment in `.venv/` and installs necessary Python packages.
+
+#### 2. Activate Python Environment
+
 ```bash
 source ./.venv/bin/activate
 ```
 
-Once the python is activated, build and install with
+On Windows (PowerShell):
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+#### 3. Build and Install
+
 ```bash
 make install
 ```
 
-Options can be added at either step to update the configuration accordingly.
+This builds Astrea in Release configuration and installs it to the `install/` directory.
+
+### Method 2: Custom Configuration
+
+For advanced users who need specific build configurations:
+
+#### Development Build with Tests and Examples
+
+```bash
+# Build debug configuration with tests and examples
+make debug tests examples build
+
+# Install the debug build
+make debug install
+```
+
+#### Release with Debug Information
+
+```bash
+# Build with optimizations but retain debug symbols
+make relwithdebinfo tests examples build
+make relwithdebinfo install
+```
+
+#### Available Build Configurations
+
+| Configuration     | Optimization | Debug Info | Use Case                    |
+|-------------------|--------------|------------|-----------------------------|
+| `debug`           | None         | Full       | Development and debugging   |
+| `release`         | Full         | None       | Production deployment       |
+| `relwithdebinfo`  | Full         | Partial    | Performance profiling       |
+
+### Method 3: Manual CMake Build
+
+For complete control over the build process, use CMake directly:
+
+```bash
+# Configure the build
+cmake -B build -S . \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=install \
+    -DASTREA_BUILD_TESTS=ON \
+    -DASTREA_BUILD_EXAMPLES=ON
+
+# Build the library
+cmake --build build --config Release --parallel
+
+# Install to the specified directory
+cmake --install build --config Release
+```
+
+## Build Configuration Options
+
+Astrea provides several CMake options to customize the build:
+
+| Option                    | Default | Description                              |
+|--------------------------|---------|------------------------------------------|
+| `ASTREA_BUILD_TESTS`     | `OFF`   | Build unit tests and integration tests  |
+| `ASTREA_BUILD_EXAMPLES`  | `OFF`   | Build example applications              |
+
+Example with custom options:
+```bash
+cmake -B build -S . \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DASTREA_BUILD_TESTS=ON \
+    -DASTREA_BUILD_EXAMPLES=ON 
+```
+
+## Verification
+
+### Running Tests
+
+After building with tests enabled, verify the installation:
+
+```bash
+# Run all unit tests
+make run_tests
+
+# Or manually with CTest
+cd build && ctest --output-on-failure --parallel
+```
+
+### Running Examples
+
+Test your installation with the provided examples:
+
+```bash
+# Run all examples
+make run_examples
+
+# Or run individual examples
+cd <path_to_example> && . ./bin/example_name
+```
+
+### Integration Test
+
+Create a simple test program to verify integration:
+
+```cpp
+#include <astrea/astro/astro.hpp>
+#include <iostream>
+
+using namespace astrea::astro;
+using namespace mp_units;
+
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+using mp_units::angular::unit_symbols::deg;
+
+int main() {
+    // Create a simple Keplerian orbit
+    auto orbit = Keplerian(
+        7000.0 * km, // Semi-major axis
+        0.001 * one, // Eccentricity
+        98.0 * deg,  // Inclination
+        0.0 * deg,   // Right ascension of ascending node
+        0.0 * deg,   // Argument of perigee
+        0.0 * deg    // True anomaly
+    )
+    
+    std::cout << "Astrea integration successful!" << std::endl;
+    std::cout << "Orbit: " << orbit << std::endl;
+    
+    return 0;
+}
+```
+
+## Usage in Your Projects
+
+### CMake Integration
+
+Add Astrea to your CMake project using `find_package`:
+
+```cmake
+cmake_minimum_required(VERSION 3.20)
+project(MyAstrodynamicsProject)
+
+# Find Astrea
+find_package(astrea REQUIRED)
+
+# Create your executable
+add_executable(my_app main.cpp)
+
+# Link against Astrea
+target_link_libraries(my_app PRIVATE astrea::astro)
+
+# Set C++ standard
+target_compile_features(my_app PRIVATE cxx_std_23)
+```
+
+### Using add_subdirectory
+
+If you prefer to include Astrea as a subproject:
+
+```cmake
+# Add Astrea as subdirectory
+add_subdirectory(extern/astrea/astrea)
+
+# Link against the components you need
+target_link_libraries(my_app PRIVATE 
+    astrea::astro
+    astrea::math
+    astrea::trace
+)
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Compiler Version**: Ensure your compiler supports C++23. Use `gcc --version`.
+
+**Python Environment**: If the Python environment fails to activate, try:
+```bash
+make python_env
+```
+
+**Missing Dependencies**: Astrea automatically downloads dependencies via CMake's FetchContent. Ensure you have internet access during the first build.
+
+**Build Failures**: For detailed build output:
+```bash
+make verbose install
+```
+
+### Memory Debugging
+
+For memory issue diagnosis:
+
 ```bash
 make debug install
 ```
-```bash
-make relwithdebinfo tests examples build
-make relwithdebinfo all install
-```
-where `all` can replace `tests examples`.
 
-The build step only needs to be done once per independent bulid configuration.
+## Next Steps
 
-There are also some simple commands to run all the tests and examples.
-```bash
-make run_tests
-make run_examples
-```
+After successful installation:
 
-On build, files should be installed locally in the `install` folder. This process is fully customizable with standard cmake commands if you want a different build process, install location, etc. See the recipes in the Makefile for more details.
+1. Explore the [Examples](../examples/index.md) to understand common usage patterns
+2. Review the [API Documentation](../api_reference/index.md) for detailed interface descriptions
+3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)

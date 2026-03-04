@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 <!-- markdownlint-disable MD041 -->
 <!-- markdownlint-disable-next-line MD033 -->
 <img align="right" height=135px src="docs/assets/images/astrea-transparent.png" alt="logo">
@@ -8,78 +14,80 @@
 [![Astrea CI](https://img.shields.io/github/actions/workflow/status/iulianojay/astrea/build-and-test.yml?branch=master&label=Astrea%20CI)](https://github.com/iulianojay/astrea/actions/workflows/build-and-test.yml)
 ![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/iulianojay/238a4a61ca19471caa1e39376158d625/raw/coverage.json)
 
+
 # Astrea
 
-Astrea is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
+**A Modern C++ Astrodynamics Library**
 
-This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover every feature, but we're on our way!
+Astrea is a high-performance, type-safe astrodynamics library designed for mission design, analysis, and aerospace applications. Built with modern C++23 features, Astrea provides a strongly-typed foundation with compile-time unit checking and coordinate frame safety, enabling developers to build robust and efficient astrodynamics software.
 
-Documentation is available [here](http://iulianojay.github.io/astrea)
+## Overview
 
-## What can it do
-
-- Strongly typed units using mp-units
-    - Allows for custom units, unit extensions, and compile-time unit conversions
-- Strongly typed frames and coordinate transformations
-    - Numerous utilities for automatic frame transformations
-    - Extensible framework for user-defined frames
-    - Dynamic frame support
-- Strongly typed orbital element sets, and orbital data formats
-    - Simple transformations between each
-- Utility classes for automatic conversions to and from Julian Date, UTC, TT, and other common time systems.
-- Clients for pulling Spacetrack data
-- Access analysis (revisit) including link budget, and basic interference calculations
-- Extensible definitions for:
-    - Vehicles, spacecraft, and payloads
-    - Frames, orbital elements, and orbital data formats
-    - Celestial bodies, and system definitions
-    - Custom force models, integrators, equations of motion, event detection, and analytic solvers
-- Custom mathamatics routines that work with mp-units types
-- In house propagation with user-defined event detection
-    - Numerical and analytic propagation methods supported
-    - Framework for user-defined forces, and equations of motion
-- Impulsive and continuous thrust support
-- Partial SPICE integration
-    - Chebyshev polynomials compiled directly for planets and the Moon
-    - Fast ephemris access with SPICE accuracy
-- High-fidelity comparisons using NASA's published 6DoF test data
-
-And it's still growing!
-
-## What's coming?
-
-- User-friendly installation
-    - cmake packaging
-    - compiled deployments
-    - support for different environments and operating systems
-- Real world comparisons using GPS data
-- Speed guarantees using Google Benchmark
-- More complete element set definitions and faster transformations
-- Maneuvers, and full 6-DoF simulation
-    - Strongly typed attitude representations
-    - Control mechanisms such as reaction wheels
-- Cislunar equations of motion, including CR3BP and BC4BM
-- SPG4 and SPG8 propagators
-- Schedulers
-- High fidelity atmospheric models
-- Transfer optimization utilities
-- A GUI for basic analysis and visualization
-
+The library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks. With extensive algorithms for orbit propagation, coordinate transformations, and mission analysis, Astrea serves as both a complete toolkit for aerospace engineers and an extensible platform for custom applications.
 
 ## Contributing
 
-- We welcome contributions to whatever interests you. If you think we're missing something that isn't there, feel free to make a ticket and start working.
-- Please read CONTRIBUTING.md and follow the code of conduct.
+We welcome contributions from the aerospace and software development communities. Please see our [contributing guidelines](getting_started/contributing.md) for information on how to get involved.
 
-## License and acknowledgments
+## Key Features
 
-- License: Astrea is licensed under the GNU Lesser General Public License (LGPL). See LICENSE and LICENSE.LESSER for details.
-- Built using the follwing open-source libraries and tools:
-    * [mp-units](https://github.com/mpusz/mp-units)
-    * [googletest](https://github.com/google/googletest)
-    * [sqlite-orm](https://github.com/fnc12/sqlite_orm.git)
-    * [libcpr](https://github.com/libcpr/cpr.git)
-    * [csv-parser](https://github.com/vincentlaucsb/csv-parserhowar) (header only)
-    * [date](https://github.com/HowardHinnant/date) (header only)
-    * [nlohmann-json](https://github.com/nlohmann/json) (header only)
-    * [parallel_hashmap](https://github.com/greg7mdp/parallel-hashmap) (header only)
+### Type Safety & Units
+- **Strongly-typed units** using mp-units with compile-time dimensional analysis
+- **Custom unit support** with seamless unit conversions and extensions
+- **Coordinate frame safety** preventing common transformation errors
+- **Compile-time unit checking** eliminating runtime unit conversion errors
+
+### Astrodynamics Core
+- **Multiple orbital element sets**: Cartesian, Keplerian, and Modified Equinoctial
+- **Automatic element set conversions** with strongly-typed interfaces
+- **Advanced propagation algorithms** supporting numerical and analytical methods
+- **Custom force models** with extensible equations of motion framework
+- **Event detection** for user-defined conditions during propagation
+
+### Coordinate Systems & Time
+- **Comprehensive frame transformations** with automatic coordinate conversions
+- **Extensible frame definitions** supporting user-defined coordinate systems
+- **Advanced time systems** including Julian Date, UTC, TT, and astronomical time scales
+- **Dynamic frame support** for time-varying coordinate systems
+
+### Mission Analysis
+- **Access analysis** with revisit calculations and link budget modeling
+- **Spacecraft modeling** with vehicles, platforms, and payload definitions
+- **Thrust modeling** supporting both impulsive and continuous maneuvers
+- **Celestial body definitions** with accurate gravitational parameters
+
+### External Integration
+- **SPICE integration** with fast ephemeris access using compiled Chebyshev polynomials
+- **Space-Track data clients** for automated orbital data retrieval
+- **NASA validation** using published 6DoF test datasets
+- **Mathematical utilities** optimized for dimensional analysis
+
+## Installation
+
+Astrea requires C++23 and uses CMake for building. Detailed installation instructions are available in our [Getting Started Guide](getting_started/installation_and_usage.md).
+
+## Documentation
+
+- **[Getting Started](getting_started/)** - Installation and basic usage
+- **[Examples](examples/)** - Comprehensive code examples
+- **[API Reference](api/)** - Detailed API documentation
+- **[Design Documentation](design/)** - Architecture and design principles
+
+## Roadmap
+
+### Near Term
+- **Enhanced Installation**: CMake packaging and cross-platform deployment
+- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
+- **Extended Element Sets**: Additional orbital representations and optimized transformations
+- **Validation**: Real-world comparisons using GPS and tracking data
+
+### Future Development
+- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
+- **Advanced Propagators**: SGP4/SGP8 and specialized cislunar dynamics (CR3BP, BC4BP)
+- **Mission Planning**: Trajectory optimization and automated scheduling tools
+- **Environmental Models**: High-fidelity atmospheric and gravitational field models
+- **Visualization**: GUI interface for analysis and mission visualization
+
+## License
+
+Astrea is licensed under the [GNU Lesser General Public License v3.0](LICENSE.LESSER), enabling both open-source and commercial use.
