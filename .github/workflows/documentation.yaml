@@ -14,30 +14,11 @@
 name: Documentation
 
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true
   push:
     branches:
       - master
       - main
-      - feature/16-documentation # just for now
+      - feature/16-documentation
     tags:
       - v*
     paths:
