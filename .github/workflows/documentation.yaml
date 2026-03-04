@@ -11,7 +11,7 @@
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 #
 
-name: Documentation
+name: Deploy Documentation
 
 on:
   workflow_dispatch:
