@@ -11,14 +11,14 @@
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 #
 
-name: Deploy Documentation
+name: Documentation
 
 on:
   push:
     branches:
       - master
-      - main
-      - feature/16-documentation
+      - dev
+      - feature/16-documentation 
     tags:
       - v*
     paths:
