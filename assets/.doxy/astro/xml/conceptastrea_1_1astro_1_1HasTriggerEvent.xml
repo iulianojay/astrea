@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1HasTriggerEvent" kind="concept">
+    <compoundname>astrea::astro::HasTriggerEvent</compoundname>
+    <includes refid="Event_8hpp" local="no">Event.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1HasTriggerEvent" kindref="compound">astrea::astro::HasTriggerEvent</ref> =  requires(const T event, const Time&amp; time, State&amp; state, Vehicle&amp; vehicle) {
+    { event.trigger_action(time, state, vehicle) } -&gt; std::same_as&lt;void&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept to check if a type has a method to trigger a post-event action. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="65" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1DOP78" kind="namespace" language="C++">
+    <compoundname>astrea::astro::DOP78</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1af7e33d6f9a0d4007f12d3b65d746006a" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>const std::size_t astrea::astro::DOP78::nStages</definition>
+        <argsstring></argsstring>
+        <name>nStages</name>
+        <qualifiedname>astrea::astro::DOP78::nStages</qualifiedname>
+        <initializer>= 13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="112" column="26" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a3d61f5e867119d48cead856076ce4355" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP78::c[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>c</name>
+        <qualifiedname>astrea::astro::DOP78::c</qualifiedname>
+        <initializer>= { 0.0,
+                                  1.0 / 18.0,
+                                  1.0 / 12.0,
+                                  1.0 / 8.0,
+                                  5.0 / 16.0,
+                                  3.0 / 8.0,
+                                  59.0 / 400.0,
+                                  93.0 / 200.0,
+                                  5490023248.0 / 9719169821.0,
+                                  13.0 / 20.0,
+                                  1201146811.0 / 1299019798.0,
+                                  1.0,
+                                  1.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="114" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="114" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1ac5551eda18c7480f4a1f11b4b0ff6a9c" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP78::b[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>b</name>
+        <qualifiedname>astrea::astro::DOP78::b</qualifiedname>
+        <initializer>= { 13451932.0 / 455176623.0,
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  -808719846.0 / 976000145.0,
+                                  1757004468.0 / 5645159321.0,
+                                  656045339.0 / 265891186.0,
+                                  -3867574721.0 / 1518517206.0,
+                                  465885868.0 / 322736535.0,
+                                  53011238.0 / 667516719.0,
+                                  2.0 / 45.0,
+                                  0.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="127" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="127" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a28946925675bbde5d51796d9cd5159e1" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP78::bhat[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>bhat</name>
+        <qualifiedname>astrea::astro::DOP78::bhat</qualifiedname>
+        <initializer>= { 14005451.0 / 335480064.0,
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  -59238493.0 / 1068277825.0,
+                                  181606767.0 / 758867731.0,
+                                  561292985.0 / 797845732.0,
+                                  -1041891430.0 / 1371343529.0,
+                                  760417239.0 / 1151165299.0,
+                                  118820643.0 / 751138087.0,
+                                  -528747749.0 / 2220607170.0,
+                                  1.0 / 4.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="140" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="140" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a457356af89817f58c40a0b21d3da5a3d" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP78::a[13][13]</definition>
+        <argsstring>[13][13]</argsstring>
+        <name>a</name>
+        <qualifiedname>astrea::astro::DOP78::a</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="153" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="153" bodyend="227"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="110" column="1"/>
+  </compounddef>
+</doxygen>

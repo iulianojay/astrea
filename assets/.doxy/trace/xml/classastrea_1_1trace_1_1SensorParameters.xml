@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1SensorParameters" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::SensorParameters</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">astro::PayloadParameters</basecompoundref>
+    <derivedcompoundref refid="classastrea_1_1trace_1_1AntennaParameters" prot="public" virt="non-virtual">astrea::trace::AntennaParameters</derivedcompoundref>
+    <includes refid="Sensor_8hpp" local="no">Sensor.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> *</type>
+        <definition>const FieldOfView* astrea::trace::SensorParameters::_fov</definition>
+        <argsstring></argsstring>
+        <name>_fov</name>
+        <qualifiedname>astrea::trace::SensorParameters::_fov</qualifiedname>
+        <briefdescription>
+<para>Field of view of the sensor, defining its coverage area. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="77" column="23" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SensorParameters_1ae21b87a4b797b515a4b53e8675653a42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::SensorParameters::SensorParameters</definition>
+        <argsstring>(const FieldOfView *fov=nullptr, const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;boresight=astro::NADIR_RIC, const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;attachmentPoint=astro::CENTER)</argsstring>
+        <name>SensorParameters</name>
+        <qualifiedname>astrea::trace::SensorParameters::SensorParameters</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> *</type>
+          <declname>fov</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;</type>
+          <declname>boresight</declname>
+          <defval>astro::NADIR_RIC</defval>
+        </param>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;</type>
+          <declname>attachmentPoint</declname>
+          <defval>astro::CENTER</defval>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Field of View for the sensor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boresight direction in RIC coordinates (default is Nadir). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attachmentPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Attachment point in RIC coordinates (default is Center). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="47" column="5" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="47" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::trace::SensorParameters::~SensorParameters</definition>
+        <argsstring>()=default</argsstring>
+        <name>~SensorParameters</name>
+        <qualifiedname>astrea::trace::SensorParameters::~SensorParameters</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="60" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> *</type>
+        <definition>const FieldOfView * astrea::trace::SensorParameters::get_fov</definition>
+        <argsstring>() const</argsstring>
+        <name>get_fov</name>
+        <qualifiedname>astrea::trace::SensorParameters::get_fov</qualifiedname>
+        <briefdescription>
+<para>Get the field of view of the sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>FieldOfView* Pointer to the field of view object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="67" column="23" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::SensorParameters::set_fov</definition>
+        <argsstring>(FieldOfView *fov)</argsstring>
+        <name>set_fov</name>
+        <qualifiedname>astrea::trace::SensorParameters::set_fov</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> *</type>
+          <declname>fov</declname>
+        </param>
+        <briefdescription>
+<para>Set the field of view of the sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>FieldOfView* Pointer to the field of view object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="74" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for storing and managing sensor parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>astrea::trace::AntennaParameters</label>
+        <link refid="classastrea_1_1trace_1_1AntennaParameters"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::trace::SensorParameters</label>
+        <link refid="classastrea_1_1trace_1_1SensorParameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro::PayloadParameters</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>astrea::trace::FieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
+      </node>
+      <node id="1">
+        <label>astrea::trace::SensorParameters</label>
+        <link refid="classastrea_1_1trace_1_1SensorParameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_fov</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro::PayloadParameters</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="38" column="1" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="38" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" prot="protected" virt="non-virtual"><scope>astrea::trace::SensorParameters</scope><name>_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" prot="public" virt="non-virtual"><scope>astrea::trace::SensorParameters</scope><name>get_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1ae21b87a4b797b515a4b53e8675653a42" prot="public" virt="non-virtual"><scope>astrea::trace::SensorParameters</scope><name>SensorParameters</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" prot="public" virt="non-virtual"><scope>astrea::trace::SensorParameters</scope><name>set_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" prot="public" virt="virtual"><scope>astrea::trace::SensorParameters</scope><name>~SensorParameters</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

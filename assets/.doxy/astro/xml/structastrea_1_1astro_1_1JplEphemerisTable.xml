@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1JplEphemerisTable" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::JplEphemerisTable</compoundname>
+    <includes refid="JplEphemerisTable_8hpp" local="no">JplEphemerisTable.hpp</includes>
+    <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" prot="protected" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <definition>const Date astrea::astro::JplEphemerisTable::START_DATE</definition>
+        <argsstring></argsstring>
+        <name>START_DATE</name>
+        <qualifiedname>astrea::astro::JplEphemerisTable::START_DATE</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>(&quot;1999-12-24 00:00:00&quot;)</initializer>
+        <briefdescription>
+<para>Lower bound on MJD J2K in the TDB time system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="48" column="23" bodyfile="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1JplEphemerisTable_1af0a80679f79d25eea974159273b72ce1" prot="protected" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <definition>const Date astrea::astro::JplEphemerisTable::STOP_DATE</definition>
+        <argsstring></argsstring>
+        <name>STOP_DATE</name>
+        <qualifiedname>astrea::astro::JplEphemerisTable::STOP_DATE</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>(&quot;2100-01-12 00:00:00&quot;)</initializer>
+        <briefdescription>
+<para>Upper bound on MJD J2K in the TDB time system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="51" column="23" bodyfile="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1JplEphemerisTable_1a3d32fed04aaf7fde0ed7dce9fdd83dd9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::JplEphemerisTable::JplEphemerisTable</definition>
+        <argsstring>()=delete</argsstring>
+        <name>JplEphemerisTable</name>
+        <qualifiedname>astrea::astro::JplEphemerisTable::JplEphemerisTable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="34" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1JplEphemerisTable_1adc07e3f138896d7874a1b89ab84a52f5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::JplEphemerisTable::~JplEphemerisTable</definition>
+        <argsstring>()=delete</argsstring>
+        <name>~JplEphemerisTable</name>
+        <qualifiedname>astrea::astro::JplEphemerisTable::~JplEphemerisTable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="35" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1JplEphemerisTable_1a95c63c97a83af59342d9d034581aa3b4" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::astro::JplEphemerisTable::get_index</definition>
+        <argsstring>(const Date &amp;date, const Time &amp;timePerPoly)</argsstring>
+        <name>get_index</name>
+        <qualifiedname>astrea::astro::JplEphemerisTable::get_index</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>timePerPoly</declname>
+        </param>
+        <briefdescription>
+<para>Get the index corresponding to the Chebyshev polynomial coefficients. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for which the index is to be computed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timePerPoly</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Amount of time each set of polynomial coefficients covers</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Table lookup index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="45" column="24" bodyfile="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp" bodystart="25" bodyend="35"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Base class for any JPL <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> table. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Date</label>
+        <link refid="classastrea_1_1astro_1_1Date"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::JplEphemerisTable</label>
+        <link refid="structastrea_1_1astro_1_1JplEphemerisTable"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>START_DATE</edgelabel>
+          <edgelabel>STOP_DATE</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" line="31" column="1" bodyfile="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp" bodystart="31" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1a95c63c97a83af59342d9d034581aa3b4" prot="protected" virt="non-virtual"><scope>astrea::astro::JplEphemerisTable</scope><name>get_index</name></member>
+      <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1a3d32fed04aaf7fde0ed7dce9fdd83dd9" prot="protected" virt="non-virtual"><scope>astrea::astro::JplEphemerisTable</scope><name>JplEphemerisTable</name></member>
+      <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" prot="protected" virt="non-virtual"><scope>astrea::astro::JplEphemerisTable</scope><name>START_DATE</name></member>
+      <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1af0a80679f79d25eea974159273b72ce1" prot="protected" virt="non-virtual"><scope>astrea::astro::JplEphemerisTable</scope><name>STOP_DATE</name></member>
+      <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1adc07e3f138896d7874a1b89ab84a52f5" prot="protected" virt="non-virtual"><scope>astrea::astro::JplEphemerisTable</scope><name>~JplEphemerisTable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

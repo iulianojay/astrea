@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="GroundPoint_8hpp" kind="file" language="C++">
+    <compoundname>GroundPoint.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">astro/astro.fwd.hpp</includes>
+    <includes local="no">astro/frames/FrameReference.hpp</includes>
+    <includes local="no">astro/state/angular_elements/angular_elements.hpp</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes refid="AccessObject_8hpp" local="no">trace/platforms/AccessObject.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">trace/types/typedefs.hpp</includes>
+    <includedby refid="AccessAnalyzer_8cpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.cpp</includedby>
+    <includedby refid="SpatialIndex_8cpp" local="no">astrea/trace/trace/analysis/SpatialIndex.cpp</includedby>
+    <includedby refid="Grid_8hpp" local="no">astrea/trace/trace/platforms/ground/Grid.hpp</includedby>
+    <includedby refid="GroundStation_8hpp" local="no">astrea/trace/trace/platforms/ground/GroundStation.hpp</includedby>
+    <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="19">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>array</label>
+      </node>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="4">
+        <label>astro/frames/FrameReference.hpp</label>
+      </node>
+      <node id="5">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="18">
+        <label>cstdint</label>
+      </node>
+      <node id="20">
+        <label>functional</label>
+      </node>
+      <node id="10">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="8">
+        <label>memory</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="12">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
+        <link refid="GroundArchitecture_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1trace_1_1GroundPoint" prot="public">astrea::trace::GroundPoint</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+<para>Header file for the GroundPoint class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/FrameReference.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/state/angular_elements/angular_elements.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="AccessObject_8hpp" kindref="compound">trace/platforms/AccessObject.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">trace/types/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classastrea_1_1trace_1_1GroundPoint" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref><sp/>:<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>,<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>astro::FrameReference<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>(</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>latitutde<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>longitude<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>altitude<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::km</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classastrea_1_1trace_1_1GroundPoint_1a0a54222408a20490ac625fa97fdca6c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a0a54222408a20490ac625fa97fdca6c2" kindref="member">~GroundPoint</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a5a8f3fc1078ce2ae4e38a7c6dc5c16ba" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Geodetic&amp;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a373a1d0e4a73c73ecc9de7fa94ce64fd" kindref="member">get_lla</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a770bfff89d50617d0bef2f7fc6b7ba97" kindref="member">get_latitude</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1ad1b32b42d255114ba02ff1c76c84a9d5" kindref="member">get_longitude</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a2d75ae8b8013f3118c695ab3912b679e" kindref="member">get_altitude</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a29db4e32af4be47b8f3218ebe5cc9b49" kindref="member">get_parent</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a65ce89540265909ab6e2bc46f7b762b0" kindref="member">get_id</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::earth_fixed&gt;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1ab6282e344b7a996d39e756167972c9f5" kindref="member">get_position</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a97f0eda3e55bd9dbdebc3298c8d74be2" kindref="member">get_inertial_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::CartesianVector&lt;Velocity,<sp/>astro::frames::earth::icrf&gt;<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a0b24f362e2fe44876916946871c6bc38" kindref="member">get_inertial_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>get_name()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="141" refid="classastrea_1_1trace_1_1GroundPoint_1a5ebc95b335d0db4bb9644ef6991aa31d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a5ebc95b335d0db4bb9644ef6991aa31d" kindref="member">_parent</ref>;<sp/></highlight></codeline>
+<codeline lineno="142" refid="classastrea_1_1trace_1_1GroundPoint_1aac57b4a48bb28c5121379b9c06d2a689" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::Geodetic<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1aac57b4a48bb28c5121379b9c06d2a689" kindref="member">_lla</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143" refid="classastrea_1_1trace_1_1GroundPoint_1ac86ef4f2c315a4227d56529641ef32a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1ac86ef4f2c315a4227d56529641ef32a3" kindref="member">_id</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint_1a77de8813bd60fe99ea8e63cbf87fec78" kindref="member">generate_id</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_b2ecf34ed687fe8e79818a2ecae6cd69" kind="dir">
+    <compoundname>astrea/math/math</compoundname>
+    <innerfile refid="chebyshev__util_8cpp">chebyshev_util.cpp</innerfile>
+    <innerfile refid="chebyshev__util_8hpp">chebyshev_util.hpp</innerfile>
+    <innerfile refid="interpolation_8cpp">interpolation.cpp</innerfile>
+    <innerfile refid="interpolation_8hpp">interpolation.hpp</innerfile>
+    <innerfile refid="math_8hpp">math.hpp</innerfile>
+    <innerfile refid="operations_8hpp">operations.hpp</innerfile>
+    <innerfile refid="trig_8hpp">trig.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/math/math/"/>
+  </compounddef>
+</doxygen>

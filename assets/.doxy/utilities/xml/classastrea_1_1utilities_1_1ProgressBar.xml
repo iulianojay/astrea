@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1utilities_1_1ProgressBar" kind="class" language="C++" prot="public">
+    <compoundname>astrea::utilities::ProgressBar</compoundname>
+    <includes refid="ProgressBar_8hpp" local="no">ProgressBar.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::utilities::ProgressBar::_iRecord</definition>
+        <argsstring></argsstring>
+        <name>_iRecord</name>
+        <qualifiedname>astrea::utilities::ProgressBar::_iRecord</qualifiedname>
+        <briefdescription>
+<para>Current record index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="92" column="17" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a556bdc84970272ca4ef9a2d8e4a6a8a7" prot="private" static="no" mutable="no">
+        <type>const std::size_t</type>
+        <definition>const std::size_t astrea::utilities::ProgressBar::_maxRecords</definition>
+        <argsstring></argsstring>
+        <name>_maxRecords</name>
+        <qualifiedname>astrea::utilities::ProgressBar::_maxRecords</qualifiedname>
+        <briefdescription>
+<para>Maximum number of records to process. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="93" column="23" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a384c85f6e35db0c46abd6faf08f5c32a" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string astrea::utilities::ProgressBar::_title</definition>
+        <argsstring></argsstring>
+        <name>_title</name>
+        <qualifiedname>astrea::utilities::ProgressBar::_title</qualifiedname>
+        <briefdescription>
+<para>Title of the progress bar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="94" column="23" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a6cce95a6045ba69bd5bc2ee70d92c862" prot="private" static="no" mutable="no">
+        <type>const std::size_t</type>
+        <definition>const std::size_t astrea::utilities::ProgressBar::_frequency</definition>
+        <argsstring></argsstring>
+        <name>_frequency</name>
+        <qualifiedname>astrea::utilities::ProgressBar::_frequency</qualifiedname>
+        <briefdescription>
+<para>Frequency of updates (in terms of records processed) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="95" column="23" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a8042b6be95e293eca2ca2961cbb1e898" prot="private" static="no" mutable="no">
+        <type>const std::size_t</type>
+        <definition>const std::size_t astrea::utilities::ProgressBar::_barWidth</definition>
+        <argsstring></argsstring>
+        <name>_barWidth</name>
+        <qualifiedname>astrea::utilities::ProgressBar::_barWidth</qualifiedname>
+        <briefdescription>
+<para>Width of the progress bar in characters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="96" column="23" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1ac10c4461855e6cb74e9ba3f0b2d2ca2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::utilities::ProgressBar::ProgressBar</definition>
+        <argsstring>(const std::size_t &amp;maxRecords, const std::string &amp;title=&quot;Progress&quot;, const std::size_t &amp;frequency=0, const std::size_t &amp;barWidth=50)</argsstring>
+        <name>ProgressBar</name>
+        <qualifiedname>astrea::utilities::ProgressBar::ProgressBar</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>maxRecords</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;Progress&quot;</defval>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>frequency</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>barWidth</declname>
+          <defval>50</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1utilities_1_1ProgressBar" kindref="compound">ProgressBar</ref> instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maxRecords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of records to process. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>title</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The title of the progress bar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frequency of updates (in terms of records processed). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>barWidth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the progress bar in characters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="41" column="5" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="41" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1a9a54091a2bee38f6c6e9555457c85cac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::utilities::ProgressBar::~ProgressBar</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ProgressBar</name>
+        <qualifiedname>astrea::utilities::ProgressBar::~ProgressBar</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1utilities_1_1ProgressBar" kindref="compound">ProgressBar</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="53" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1ad251e46f091c9556e6ff52c86fa2f0f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::utilities::ProgressBar::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <qualifiedname>astrea::utilities::ProgressBar::reset</qualifiedname>
+        <briefdescription>
+<para>Resets the progress bar to the initial state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="58" column="17" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1a2877b448dbe830dca1a334ca269ab0ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::utilities::ProgressBar::get_progress</definition>
+        <argsstring>() const</argsstring>
+        <name>get_progress</name>
+        <qualifiedname>astrea::utilities::ProgressBar::get_progress</qualifiedname>
+        <briefdescription>
+<para>Increments the progress by one record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="63" column="24" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1a1bae9d81e9fc865f1b050434cf5ec80e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::utilities::ProgressBar::operator()</definition>
+        <argsstring>()</argsstring>
+        <name>operator()</name>
+        <qualifiedname>astrea::utilities::ProgressBar::operator()</qualifiedname>
+        <briefdescription>
+<para>Updates the progress bar and prints it to the console. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method should be called periodically to update the progress bar. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/ProgressBar.hpp" line="70" column="17" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="70" bodyend="89"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A simple console progress bar utility. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/ProgressBar.hpp" line="31" column="1" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="31" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a8042b6be95e293eca2ca2961cbb1e898" prot="private" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>_barWidth</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a6cce95a6045ba69bd5bc2ee70d92c862" prot="private" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>_frequency</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" prot="private" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>_iRecord</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a556bdc84970272ca4ef9a2d8e4a6a8a7" prot="private" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>_maxRecords</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a384c85f6e35db0c46abd6faf08f5c32a" prot="private" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>_title</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a2877b448dbe830dca1a334ca269ab0ce" prot="public" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>get_progress</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a1bae9d81e9fc865f1b050434cf5ec80e" prot="public" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>operator()</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1ac10c4461855e6cb74e9ba3f0b2d2ca2a" prot="public" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>ProgressBar</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1ad251e46f091c9556e6ff52c86fa2f0f1" prot="public" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>reset</name></member>
+      <member refid="classastrea_1_1utilities_1_1ProgressBar_1a9a54091a2bee38f6c6e9555457c85cac" prot="public" virt="non-virtual"><scope>astrea::utilities::ProgressBar</scope><name>~ProgressBar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

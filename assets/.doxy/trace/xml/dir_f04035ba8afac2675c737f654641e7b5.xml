@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_f04035ba8afac2675c737f654641e7b5" kind="dir">
+    <compoundname>astrea/trace/trace</compoundname>
+    <innerdir refid="dir_46c4498db40ce3dbd9ced60b5dc27dd1">astrea/trace/trace/analysis</innerdir>
+    <innerdir refid="dir_ede4f445fc3b272c23592e211659caf8">astrea/trace/trace/drivers</innerdir>
+    <innerdir refid="dir_31644feff08ff9a8c24064987b494ea5">astrea/trace/trace/io</innerdir>
+    <innerdir refid="dir_4dbda61db413396ce1d3b920f98dbf93">astrea/trace/trace/platforms</innerdir>
+    <innerdir refid="dir_3852194babc4edab798292ba09c53d6d">astrea/trace/trace/risesets</innerdir>
+    <innerdir refid="dir_99d9bc6205d35ba61d9e386839c646c4">astrea/trace/trace/types</innerdir>
+    <innerfile refid="trace_8fwd_8hpp">trace.fwd.hpp</innerfile>
+    <innerfile refid="trace_8hpp">trace.hpp</innerfile>
+    <innerfile refid="trace_8macros_8hpp">trace.macros.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/"/>
+  </compounddef>
+</doxygen>

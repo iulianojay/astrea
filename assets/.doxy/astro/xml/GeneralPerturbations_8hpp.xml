@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="GeneralPerturbations_8hpp" kind="file" language="C++">
+    <compoundname>GeneralPerturbations.hpp</compoundname>
+    <includes local="no">iosfwd</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">string</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includedby refid="Spacecraft_8cpp" local="no">astrea/astro/astro/platforms/vehicles/Spacecraft.cpp</includedby>
+    <includedby refid="GeneralPerturbations_8cpp" local="no">astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp</includedby>
+    <includedby refid="orbital__data__formats_8hpp" local="no">astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+        <link refid="GeneralPerturbations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iosfwd</label>
+      </node>
+      <node id="5">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+        <link refid="GeneralPerturbations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</label>
+        <link refid="orbital__data__formats_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structastrea_1_1astro_1_1GeneralPerturbations" prot="public">astrea::astro::GeneralPerturbations</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>GeneralPerturbations data structure for the astro module. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structastrea_1_1astro_1_1GeneralPerturbations" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>Right<sp/>now,<sp/>units<sp/>are<sp/>implied,<sp/>but<sp/>they<sp/>should<sp/>be<sp/>used<sp/>if<sp/>possible.<sp/>At<sp/>least<sp/>look<sp/>into</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">data</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" kindref="member">~GeneralPerturbations</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d778a4a2c863144ffe362595db888ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d778a4a2c863144ffe362595db888ed" kindref="member">DB_ID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a32d1bdc4c1e4f433d9c08a66fb36a369" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a32d1bdc4c1e4f433d9c08a66fb36a369" kindref="member">APOAPSIS</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="structastrea_1_1astro_1_1GeneralPerturbations_1abd3719cdfaffa92d663d1a4eb7deb86c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1abd3719cdfaffa92d663d1a4eb7deb86c" kindref="member">ARG_OF_PERICENTER</ref>;<sp/></highlight></codeline>
+<codeline lineno="60" refid="structastrea_1_1astro_1_1GeneralPerturbations_1af0ba6c2491aa883cd236214cd6760d8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1af0ba6c2491aa883cd236214cd6760d8a" kindref="member">BSTAR</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2001bf2f9ce6a9ac487d37e0e427d2e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2001bf2f9ce6a9ac487d37e0e427d2e3" kindref="member">CCSDS_OMM_VERS</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe788e947648953d1e4633c315630e36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe788e947648953d1e4633c315630e36" kindref="member">CENTER_NAME</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a6dd576b7a573d0e9e0440c16f79903d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;char&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a6dd576b7a573d0e9e0440c16f79903d8" kindref="member">CLASSIFICATION_TYPE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a9ad2b8a65330f7bf53447e6e16678f5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a9ad2b8a65330f7bf53447e6e16678f5f" kindref="member">COMMENT</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d8233fcfd09deb9d64106cdc5a8ee6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d8233fcfd09deb9d64106cdc5a8ee6d" kindref="member">COUNTRY_CODE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3372e648fccb1f027647a8b0d0e3ab66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3372e648fccb1f027647a8b0d0e3ab66" kindref="member">CREATION_DATE</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a903d0bcafe098f21bf8969b6f001f78b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a903d0bcafe098f21bf8969b6f001f78b" kindref="member">DECAY_DATE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="structastrea_1_1astro_1_1GeneralPerturbations_1aca5625479bf4333bd266e025876131e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1aca5625479bf4333bd266e025876131e4" kindref="member">ECCENTRICITY</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a8f972c04e3aa2c3fe6291ad5f0e6f923" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;short&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a8f972c04e3aa2c3fe6291ad5f0e6f923" kindref="member">ELEMENT_SET_NO</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3dc0473bd8ff0cdbb84b786c435c0a9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;short<sp/>unsigned&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3dc0473bd8ff0cdbb84b786c435c0a9d" kindref="member">EPHEMERIS_TYPE</ref>;<sp/></highlight></codeline>
+<codeline lineno="71" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a137281aa023eeb17ca01288966e0422f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a137281aa023eeb17ca01288966e0422f" kindref="member">EPOCH</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="structastrea_1_1astro_1_1GeneralPerturbations_1acacfb556aa849b2e04c78581fa11534a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>unsigned&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1acacfb556aa849b2e04c78581fa11534a" kindref="member">FILE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3d23f07db9f2eb8d0f720ada097ea605" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3d23f07db9f2eb8d0f720ada097ea605" kindref="member">GP_ID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4c79f0866fcaa38a293806d33b35d674" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4c79f0866fcaa38a293806d33b35d674" kindref="member">INCLINATION</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe7a5444e5f43547ecd3594e0d135e2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe7a5444e5f43547ecd3594e0d135e2a" kindref="member">LAUNCH_DATE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a79ed58c6b771cd460f3cde90a16b1687" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a79ed58c6b771cd460f3cde90a16b1687" kindref="member">MEAN_ANOMALY</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4ad4577b0ed164068068b2dee518b9ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4ad4577b0ed164068068b2dee518b9ad" kindref="member">MEAN_ELEMENT_THEORY</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a12d9756898715165ee239f599437e6ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a12d9756898715165ee239f599437e6ee" kindref="member">MEAN_MOTION</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="structastrea_1_1astro_1_1GeneralPerturbations_1afd3658db1ad3cbd0a7760a0d98471f79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1afd3658db1ad3cbd0a7760a0d98471f79" kindref="member">MEAN_MOTION_DDOT</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a60da67424a19e0856fbd8eabcfbe711f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a60da67424a19e0856fbd8eabcfbe711f" kindref="member">MEAN_MOTION_DOT</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="structastrea_1_1astro_1_1GeneralPerturbations_1aef8e1654cf85a0d3e4a2f3c18d2a3193" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1aef8e1654cf85a0d3e4a2f3c18d2a3193" kindref="member">NORAD_CAT_ID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a5aae640263c2b6d77259ac386b08bba4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a5aae640263c2b6d77259ac386b08bba4" kindref="member">OBJECT_ID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a39b26d99b2492bbdd957abdd6d7b7731" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a39b26d99b2492bbdd957abdd6d7b7731" kindref="member">OBJECT_NAME</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a604292688fe9fc54ce96427f59cb396a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a604292688fe9fc54ce96427f59cb396a" kindref="member">OBJECT_TYPE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="structastrea_1_1astro_1_1GeneralPerturbations_1abcaccf0046ba2dc74cd1e669e9448cef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1abcaccf0046ba2dc74cd1e669e9448cef" kindref="member">ORIGINATOR</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="structastrea_1_1astro_1_1GeneralPerturbations_1af003ddd9da406aefecc39e700b19eb39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1af003ddd9da406aefecc39e700b19eb39" kindref="member">PERIAPSIS</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a42e8ddd753f9719ddca490d1174603b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a42e8ddd753f9719ddca490d1174603b1" kindref="member">PERIOD</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a92d1ebd8240b96037d9f35459355ccbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;long<sp/>double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a92d1ebd8240b96037d9f35459355ccbf" kindref="member">RA_OF_ASC_NODE</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="structastrea_1_1astro_1_1GeneralPerturbations_1af66cb2f295e91993551ab9140abf5901" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1af66cb2f295e91993551ab9140abf5901" kindref="member">RCS_SIZE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a202d10ebae32e2649e8b0f2e7fe0bd19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a202d10ebae32e2649e8b0f2e7fe0bd19" kindref="member">REF_FRAME</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3a230f3e44600835c110c99f62613296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;unsigned&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3a230f3e44600835c110c99f62613296" kindref="member">REV_AT_EPOCH</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="structastrea_1_1astro_1_1GeneralPerturbations_1a666b5675627f4a70c2b07f24d9c68744" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;double&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1a666b5675627f4a70c2b07f24d9c68744" kindref="member">SEMIMAJOR_AXIS</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ac50a5035abc809144269e0552829e902" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ac50a5035abc809144269e0552829e902" kindref="member">SITE</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ad1b1301dfae590ed5881a36230bc4af1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ad1b1301dfae590ed5881a36230bc4af1" kindref="member">TIME_SYSTEM</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="structastrea_1_1astro_1_1GeneralPerturbations_1aa5e18f488198b52940debef981c0aea8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1aa5e18f488198b52940debef981c0aea8" kindref="member">TLE_LINE0</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab82bf148bf233df426b835c4f06c61eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab82bf148bf233df426b835c4f06c61eb" kindref="member">TLE_LINE1</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" kindref="member">TLE_LINE2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gp</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp"/>
+  </compounddef>
+</doxygen>

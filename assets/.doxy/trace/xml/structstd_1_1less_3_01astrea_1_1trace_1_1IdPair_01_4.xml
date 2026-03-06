@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>std::less&lt; astrea::trace::IdPair &gt;</compoundname>
+    <includes refid="IdPair_8hpp" local="no">IdPair.hpp</includes>
+    <templateparamlist>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool std::less&lt; astrea::trace::IdPair &gt;::operator()</definition>
+        <argsstring>(const astrea::trace::IdPair &amp;lhs, const astrea::trace::IdPair &amp;rhs) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>std::less&lt; astrea::trace::IdPair &gt;::operator()</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Compares two IdPairs for ordering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first IdPair to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second IdPair to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if lhs is less than rhs, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="104" column="10" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="104" bodyend="110"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Specialization of std::less for IdPair to allow it to be used in ordered containers. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/types/IdPair.hpp" line="97" column="1" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="97" bodyend="111"/>
+    <listofallmembers>
+      <member refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" prot="public" virt="non-virtual"><scope>std::less&lt; astrea::trace::IdPair &gt;</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

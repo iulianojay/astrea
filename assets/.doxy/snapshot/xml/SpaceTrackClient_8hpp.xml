@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SpaceTrackClient_8hpp" kind="file" language="C++">
+    <compoundname>SpaceTrackClient.hpp</compoundname>
+    <includes local="no">filesystem</includes>
+    <includes local="no">variant</includes>
+    <includes local="no">cpr/cpr.h</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includes local="no">astro/time/Date.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">snapshot/types/typedefs.hpp</includes>
+    <includedby refid="main_8cpp" local="no">astrea/snapshot/snapshot/drivers/main.cpp</includedby>
+    <includedby refid="SpaceTrackClient_8cpp" local="no">astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp</includedby>
+    <includedby refid="snapshot_8hpp" local="no">astrea/snapshot/snapshot/snapshot.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
+        <link refid="SpaceTrackClient_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astro/time/Date.hpp</label>
+      </node>
+      <node id="4">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="2">
+        <label>filesystem</label>
+      </node>
+      <node id="5">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="3">
+        <label>variant</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
+        <link refid="SpaceTrackClient_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1snapshot_1_1SpaceTrackClient" prot="public">astrea::snapshot::SpaceTrackClient</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1snapshot">astrea::snapshot</innernamespace>
+    <briefdescription>
+<para>SpaceTrackClient class for interacting with the SpaceTrack API. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;variant&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cpr/cpr.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/time/Date.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">snapshot/types/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">snapshot<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classastrea_1_1snapshot_1_1SpaceTrackClient" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref><sp/>:<sp/><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kindref="member">BASIC_SPACE_DATA</ref>,<sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>EXPANDED_SPACE_DATA,<sp/>//!&lt;<sp/>USSPACECOM<sp/>SSA<sp/>Sharing<sp/>Agreements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FILE_SHARE,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//!&lt;<sp/>Permission<sp/>Controlled</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>COMBINED_OPS_DATA,<sp/><sp/><sp/>//!&lt;<sp/>Permission<sp/>Controlled</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9aee65898e1768143572a3769c09f55f70" kindref="member">PUBLIC_FILES</ref><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref><sp/>:<sp/><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" kindref="member">QUERY</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca86b3bdfae903c60e282ba0e020114909" kindref="member">MODEL_DEF</ref>,<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" kindref="member">SpaceDataClass</ref><sp/>:<sp/><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa9fe662f80887cbacf6776aab8e00965" kindref="member">ANNOUNCEMENT</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a85297465d0a7714835efa786ad1ef551" kindref="member">BOX_SCORE</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a2e8f52edd2685a9fa0cb5a639d907657" kindref="member">CDM_PUBLIC</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af34d9b416802d4cda3a4ee548619f206" kindref="member">DECAY</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" kindref="member">GP</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a4f81be00af7fbbf1f28d28bde0af06b1" kindref="member">GP_HISTORY</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa80baa3df5d5152d2bf33f80b4c3be03" kindref="member">LAUNCH_SITE</ref>,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942ae0b57cf07d08b87931d73e4c9d18091b" kindref="member">SATCAT</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a544fa2e9669f440be5c6b7b1fd36ee7b" kindref="member">SATCAT_CHANGE</ref>,<sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af7f55159fa92fa3be76ad296b35cc4b4" kindref="member">SATCAT_DEBUT</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a1eab470a6f707b92e15040773251a746" kindref="member">TIP</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" kindref="member">PublicFilesClass</ref><sp/>:<sp/><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a626f59acaeb60dabe79cff6fee9973c7" kindref="member">DIRS</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a631152daefc8201c641fa7a37c397dce" kindref="member">DOWNLOAD</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020ac935a4e21742b5a03a15b05834e2d82c" kindref="member">FILES</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020af770d5ea6dd4a6fe36dd95c7edfae589" kindref="member">LOAD_PUBLIC_DATA</ref><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref><sp/>=<sp/>std::variant&lt;SpaceDataClass,<sp/>PublicFilesClass&gt;;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" kindref="member">SpaceTrackClient</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" kindref="member">~SpaceTrackClient</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kindref="member">login</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kindref="member">query</ref>(</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref>&amp;<sp/>controller<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kindref="member">Controller::BASIC_SPACE_DATA</ref>,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref>&amp;<sp/>action<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" kindref="member">Action::QUERY</ref>,</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref>&amp;<sp/>requestClass<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" kindref="member">SpaceDataClass::GP</ref>,</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;<sp/>predicates<sp/>=<sp/>{}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" kindref="member">retrieve_all</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_base<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;https://www.space-track.org&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Login</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_loginUrl<sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/ajaxauth/login&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Cookies<sp/>_loginCookies;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>valid_cookies()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>check_query_history(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>controller_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref>&amp;<sp/>controller)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>action_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref>&amp;<sp/>action)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref>&amp;<sp/>requestClass)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" kindref="member">SpaceDataClass</ref>&amp;<sp/>requestClass)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" kindref="member">PublicFilesClass</ref>&amp;<sp/>requestClass)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Url<sp/>build_query_url(</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref>&amp;<sp/>controller,</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref>&amp;<sp/>action,</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref>&amp;<sp/>requestClass,</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;<sp/>predicates</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/>query_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,<sp/>cpr::Url<sp/>queryUrl);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>snapshot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp"/>
+  </compounddef>
+</doxygen>

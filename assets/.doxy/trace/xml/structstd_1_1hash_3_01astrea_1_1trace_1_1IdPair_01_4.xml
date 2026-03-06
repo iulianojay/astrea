@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>std::hash&lt; astrea::trace::IdPair &gt;</compoundname>
+    <includes refid="IdPair_8hpp" local="no">IdPair.hpp</includes>
+    <templateparamlist>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t std::hash&lt; astrea::trace::IdPair &gt;::operator()</definition>
+        <argsstring>(const astrea::trace::IdPair &amp;k) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>std::hash&lt; astrea::trace::IdPair &gt;::operator()</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref> &amp;</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Computes a hash value for an IdPair. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The IdPair to hash. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A hash value for the IdPair. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="87" column="17" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="87" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Specialization of std::hash for IdPair to allow it to be used as a key in hash-based containers. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/types/IdPair.hpp" line="81" column="1" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="81" bodyend="91"/>
+    <listofallmembers>
+      <member refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" prot="public" virt="non-virtual"><scope>std::hash&lt; astrea::trace::IdPair &gt;</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

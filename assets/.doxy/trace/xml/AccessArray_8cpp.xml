@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AccessArray_8cpp" kind="file" language="C++">
+    <compoundname>AccessArray.cpp</compoundname>
+    <includes refid="AccessArray_8hpp" local="no">trace/risesets/AccessArray.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/risesets/AccessArray.cpp</label>
+        <link refid="AccessArray_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="14">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>array</label>
+      </node>
+      <node id="13">
+        <label>cstdint</label>
+      </node>
+      <node id="15">
+        <label>functional</label>
+      </node>
+      <node id="3">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="AccessArray_8hpp" kindref="compound">trace/risesets/AccessArray.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">RiseSetArray&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" kindref="member">AccessArray::operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses[IdPair(senderId,<sp/>receiverId)];</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RiseSetArray&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1ab3fd965346bde3aea6c1b96f360e0c44" kindref="member">AccessArray::at</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="25"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.at(IdPair(senderId,<sp/>receiverId));</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" kindref="member">AccessArray::contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>IdPair&amp;<sp/>idPair)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.contains(idPair);<sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1ad5cb315480cbaead4072ed44e71e3a7b" kindref="member">AccessArray::erase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>_accesses.erase(IdPair(senderId,<sp/>receiverId));</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kindref="member">AccessArray::size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.size();<sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">RiseSetArray<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a2cbf08887dd6b6bbc303cf4d38bac2a6" kindref="member">AccessArray::get_all_accesses_to_receiver</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="39"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>RiseSetArray<sp/>result;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[ids,<sp/>risesets]<sp/>:<sp/>_accesses)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ids.receiver<sp/>==<sp/>receiverId)<sp/>{<sp/>result<sp/>|=<sp/>risesets;<sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">RiseSetArray<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5e689020f09f91d688a5d0dc3503ff8a" kindref="member">AccessArray::get_all_accesses_from_sender</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="48"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>RiseSetArray<sp/>result;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[ids,<sp/>risesets]<sp/>:<sp/>_accesses)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ids.sender<sp/>==<sp/>senderId)<sp/>{<sp/>result<sp/>|=<sp/>risesets;<sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" kindref="member">AccessArray::operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses<sp/>==<sp/>other._accesses;<sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">AccessArray&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a0acd9f59dc5fdc6ebfd123779be2f278" kindref="member">AccessArray::operator|=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>other)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[ids,<sp/>risesets]<sp/>:<sp/>other)<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" kindref="member">contains</ref>(ids))<sp/>{<sp/>_accesses[ids]<sp/>|=<sp/>risesets;<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_accesses[ids]<sp/>=<sp/>risesets;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">AccessArray<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" kindref="member">AccessArray::operator|</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="70"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" kindref="member">AccessArray</ref><sp/>result<sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>|=<sp/>other;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">AccessArray&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" kindref="member">AccessArray::operator&amp;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>other)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[ids,<sp/>risesets]<sp/>:<sp/>other)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" kindref="member">contains</ref>(ids))<sp/>{<sp/>_accesses[ids]<sp/>&amp;=<sp/>risesets;<sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">AccessArray<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" kindref="member">AccessArray::operator&amp;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="85"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" kindref="member">AccessArray</ref><sp/>result<sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>&amp;=<sp/>other;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AccessArray&amp;<sp/>accessarray)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[idPair,<sp/>riseSetArray]<sp/>:<sp/>accessarray)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>idPair.sender<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>idPair.receiver<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>-&gt;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>riseSetArray<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/risesets/AccessArray.cpp"/>
+  </compounddef>
+</doxygen>

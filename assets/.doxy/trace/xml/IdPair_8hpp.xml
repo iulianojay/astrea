@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="IdPair_8hpp" kind="file" language="C++">
+    <compoundname>IdPair.hpp</compoundname>
+    <includes local="no">cstdint</includes>
+    <includes local="no">functional</includes>
+    <includedby refid="AccessStats_8hpp" local="no">astrea/trace/trace/analysis/stats/AccessStats.hpp</includedby>
+    <includedby refid="HyperStats_8hpp" local="no">astrea/trace/trace/analysis/stats/HyperStats.hpp</includedby>
+    <includedby refid="AccessArray_8hpp" local="no">astrea/trace/trace/risesets/AccessArray.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>functional</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
+        <link refid="AccessStats_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
+        <link refid="HyperStats_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
+        <link refid="GroundArchitecture_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structastrea_1_1trace_1_1IdPair" prot="public">astrea::trace::IdPair</innerclass>
+    <innerclass refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4" prot="public">std::hash&lt; astrea::trace::IdPair &gt;</innerclass>
+    <innerclass refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4" prot="public">std::less&lt; astrea::trace::IdPair &gt;</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structastrea_1_1trace_1_1IdPair" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref><sp/>{</highlight></codeline>
+<codeline lineno="32" refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>;<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" kindref="member">IdPair</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structastrea_1_1trace_1_1IdPair_1a1dc1669d999bbb7298aeb9be1188fcb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a1dc1669d999bbb7298aeb9be1188fcb9" kindref="member">IdPair</ref>(std::size_t<sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>,<sp/>std::size_t<sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>(<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>),</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>(<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="structastrea_1_1trace_1_1IdPair_1ae0c6b5068a6f11b7dbca8ccd2b9ff27a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1ae0c6b5068a6f11b7dbca8ccd2b9ff27a" kindref="member">IdPair</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>(other.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>(other.<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="structastrea_1_1trace_1_1IdPair_1a5aae8cb65d5ff694762506be1b7a34c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a5aae8cb65d5ff694762506be1b7a34c9" kindref="member">~IdPair</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structastrea_1_1trace_1_1IdPair_1adc252ef4b1b99c344f61ad3187c6406c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair_1adc252ef4b1b99c344f61ad3187c6406c" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref><sp/>==<sp/>other.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref><sp/>&amp;&amp;<sp/><ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref><sp/>==<sp/>other.<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="81" refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">std::hash&lt;astrea::trace::IdPair&gt;<sp/>{</highlight></codeline>
+<codeline lineno="87" refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref>&amp;<sp/>k)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="88"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(std::hash&lt;std::size_t&gt;()(k.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>))<sp/>^<sp/>(std::hash&lt;std::size_t&gt;()(k.<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>));</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="97" refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">std::less&lt;astrea::trace::IdPair&gt;<sp/>{</highlight></codeline>
+<codeline lineno="104" refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref>&amp;<sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">astrea::trace::IdPair</ref>&amp;<sp/>rhs)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="105"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref><sp/>==<sp/>rhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref><sp/>&lt;<sp/>rhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kindref="member">receiver</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref><sp/>&lt;<sp/>rhs.<ref refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kindref="member">sender</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/types/IdPair.hpp"/>
+  </compounddef>
+</doxygen>

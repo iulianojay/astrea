@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kind="class"><name>astrea::snapshot::DatabaseUtilityWrapper</name>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac0986f667088af6520c69455c6065a40" kind="variable"><name>_database</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ace420c8f9c4ca101cfd6f121025d08cb" kind="function"><name>DatabaseUtilityWrapper</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" kind="function"><name>~DatabaseUtilityWrapper</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" kind="function"><name>get_database</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" kind="function"><name>get_all</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8651a3c52201406b31f636b6f8939bdc" kind="function"><name>get_sat_from_norad_id</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ab806e6f862f7c0f4995eb3df9a1ab105" kind="function"><name>get_sats_by_name</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aba2efd4c1114240c4f771ee7e67af999" kind="function"><name>get_sats_in_range</name></member>
+  </compound>
+  <compound refid="classastrea_1_1snapshot_1_1EthzClient" kind="class"><name>astrea::snapshot::EthzClient</name>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1ad637299ae2d34f3f307089e8394606bd" kind="variable"><name>_base</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a5ac0fdd6896b1fac4f8b5cfef5c8f1b0" kind="variable"><name>_satDataUrl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a0a9cf9ce33340b480f397ac551474138" kind="variable"><name>_satUrl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a9c6c72d541dffc78a87a861fb462a401" kind="variable"><name>_frequencySourceUrl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a1c9fa3884e07732942fb8473f78f3bad" kind="variable"><name>_frequencyUrl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a125e32f422c5ff4f8c8164cb70f156c6" kind="variable"><name>_auth</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1aceb54b06f7176cb54f2604daa9edaa50" kind="variable"><name>_minStartDate</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" kind="function"><name>EthzClient</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a45469b824a81deeff9357f387c2ea701" kind="function"><name>~EthzClient</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1aaadb3e6004e8d74c1626440db4a55edf" kind="function"><name>query</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a46279f647a4c00db59e324fcd251207b" kind="function"><name>query</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a35557cfb695fada514f803b632257285" kind="function"><name>query_impl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1EthzClient_1a469fb733a1eef72b2cf205ea432fc52e" kind="function"><name>clean_result</name></member>
+  </compound>
+  <compound refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kind="class"><name>astrea::snapshot::SpaceTrackClient</name>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kind="enum"><name>Controller</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kind="enumvalue"><name>BASIC_SPACE_DATA</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9aee65898e1768143572a3769c09f55f70" kind="enumvalue"><name>PUBLIC_FILES</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kind="enum"><name>Action</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" kind="enumvalue"><name>QUERY</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca86b3bdfae903c60e282ba0e020114909" kind="enumvalue"><name>MODEL_DEF</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" kind="enum"><name>SpaceDataClass</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa9fe662f80887cbacf6776aab8e00965" kind="enumvalue"><name>ANNOUNCEMENT</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a85297465d0a7714835efa786ad1ef551" kind="enumvalue"><name>BOX_SCORE</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a2e8f52edd2685a9fa0cb5a639d907657" kind="enumvalue"><name>CDM_PUBLIC</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af34d9b416802d4cda3a4ee548619f206" kind="enumvalue"><name>DECAY</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" kind="enumvalue"><name>GP</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a4f81be00af7fbbf1f28d28bde0af06b1" kind="enumvalue"><name>GP_HISTORY</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa80baa3df5d5152d2bf33f80b4c3be03" kind="enumvalue"><name>LAUNCH_SITE</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942ae0b57cf07d08b87931d73e4c9d18091b" kind="enumvalue"><name>SATCAT</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a544fa2e9669f440be5c6b7b1fd36ee7b" kind="enumvalue"><name>SATCAT_CHANGE</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af7f55159fa92fa3be76ad296b35cc4b4" kind="enumvalue"><name>SATCAT_DEBUT</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a1eab470a6f707b92e15040773251a746" kind="enumvalue"><name>TIP</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" kind="enum"><name>PublicFilesClass</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a626f59acaeb60dabe79cff6fee9973c7" kind="enumvalue"><name>DIRS</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a631152daefc8201c641fa7a37c397dce" kind="enumvalue"><name>DOWNLOAD</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020ac935a4e21742b5a03a15b05834e2d82c" kind="enumvalue"><name>FILES</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020af770d5ea6dd4a6fe36dd95c7edfae589" kind="enumvalue"><name>LOAD_PUBLIC_DATA</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kind="typedef"><name>RequestClass</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ada93ab76849a6e6f3811db3b41aa8681" kind="variable"><name>_base</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a6c28dfddb667bede20b7ced04b29d3ea" kind="variable"><name>_loginUrl</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7a0a8236e07a72a18a9793bfdced52e1" kind="variable"><name>_loginCookies</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" kind="function"><name>SpaceTrackClient</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" kind="function"><name>~SpaceTrackClient</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kind="function"><name>login</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kind="function"><name>query</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" kind="function"><name>retrieve_all</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3e004173a63396fe72c764a424a0d433" kind="function"><name>valid_cookies</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49538eefc08c7684a3eda73d0fdc4d12" kind="function"><name>check_query_history</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ab52fa5374162f420fd301ad2a3ac97ff" kind="function"><name>controller_to_string</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3c17a37c2251b81231ee2780633bf48c" kind="function"><name>action_to_string</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1aa9e61a657442ae8487e6a810e233d93d" kind="function"><name>class_to_string</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7981302116881d06e2e90fd3a6bdcc1d" kind="function"><name>class_to_string</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4356f5a3090bb09d1169b66f8289c739" kind="function"><name>class_to_string</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1afe12672f9ca02fe35a9831287cb73930" kind="function"><name>build_query_url</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ad142e497ae6a64de8db61608d946286c" kind="function"><name>query_impl</name></member>
+  </compound>
+  <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
+  </compound>
+  <compound refid="namespaceastrea_1_1snapshot" kind="namespace"><name>astrea::snapshot</name>
+    <member refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kind="typedef"><name>EnumType</name></member>
+    <member refid="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" kind="function"><name>make_database</name></member>
+    <member refid="Database_8hpp_1a4b3edf3a977a3468929b6eabf3802ba5" kind="function"><name>get_snapshot</name></member>
+    <member refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" kind="function"><name>make_snapshot_wrapper</name></member>
+  </compound>
+  <compound refid="Database_8hpp" kind="file"><name>Database.hpp</name>
+  </compound>
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="EthzClient_8cpp" kind="file"><name>EthzClient.cpp</name>
+  </compound>
+  <compound refid="EthzClient_8hpp" kind="file"><name>EthzClient.hpp</name>
+  </compound>
+  <compound refid="SpaceTrackClient_8cpp" kind="file"><name>SpaceTrackClient.cpp</name>
+  </compound>
+  <compound refid="SpaceTrackClient_8hpp" kind="file"><name>SpaceTrackClient.hpp</name>
+  </compound>
+  <compound refid="snapshot_8hpp" kind="file"><name>snapshot.hpp</name>
+  </compound>
+  <compound refid="snapshot_8macros_8hpp" kind="file"><name>snapshot.macros.hpp</name>
+    <member refid="snapshot_8macros_8hpp_1a0c8cb98b96340e4d86fb6b1c87e99c06" kind="define"><name>_SNAPSHOT_ROOT_</name></member>
+  </compound>
+  <compound refid="typedefs_8hpp" kind="file"><name>typedefs.hpp</name>
+  </compound>
+  <compound refid="dir_b5324400686b7cece921533bb760c87a" kind="dir"><name>astrea</name>
+  </compound>
+  <compound refid="dir_51ef3faf157d043087a4594bebbd2397" kind="dir"><name>astrea/snapshot/snapshot/database</name>
+  </compound>
+  <compound refid="dir_aa0888f3e9fa4d362dbefaddf806e79b" kind="dir"><name>astrea/snapshot/snapshot/drivers</name>
+  </compound>
+  <compound refid="dir_31d12700b25e15af9e5493b70ce27e08" kind="dir"><name>astrea/snapshot/snapshot/http-queries/ethz</name>
+  </compound>
+  <compound refid="dir_e3fe50636e6aa25df3bf26a0e7917672" kind="dir"><name>astrea/snapshot/snapshot/http-queries</name>
+  </compound>
+  <compound refid="dir_ad01b7a66bf2103e1e551598d7ba094a" kind="dir"><name>astrea/snapshot</name>
+  </compound>
+  <compound refid="dir_d7d302d432d8a6ab561803ec6eec1eed" kind="dir"><name>astrea/snapshot/snapshot</name>
+  </compound>
+  <compound refid="dir_ebf022e0144e875932c7cae0921ab822" kind="dir"><name>astrea/snapshot/snapshot/http-queries/spacetrack</name>
+  </compound>
+  <compound refid="dir_13e0f381fe8815c377e6396c5412a0a3" kind="dir"><name>astrea/snapshot/snapshot/types</name>
+  </compound>
+</doxygenindex>

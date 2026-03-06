@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_81b398d2ba04cf47420d9ac22d356bcf" kind="dir">
+    <compoundname>astrea/astro/astro/types</compoundname>
+    <innerfile refid="enums_8hpp">enums.hpp</innerfile>
+    <innerfile refid="tuple__hash_8hpp">tuple_hash.hpp</innerfile>
+    <innerfile refid="type__traits_8hpp">type_traits.hpp</innerfile>
+    <innerfile refid="typedefs_8hpp">typedefs.hpp</innerfile>
+    <innerfile refid="variant__util_8hpp">variant_util.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/types/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="json__util_8cpp" kind="file" language="C++">
+    <compoundname>json_util.cpp</compoundname>
+    <includes refid="json__util_8hpp" local="no">utilities/json_util.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/utilities/utilities/json_util.cpp</label>
+        <link refid="json__util_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>utilities/json_util.hpp</label>
+        <link refid="json__util_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1utilities">astrea::utilities</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="json__util_8hpp" kindref="compound">utilities/json_util.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">utilities<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">std::string<sp/>clean_entry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/>entry)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>entryStr<sp/>=<sp/>entry.template<sp/>get&lt;std::string&gt;();</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>entryStr.erase(std::remove(entryStr.begin(),<sp/>entryStr.end(),<sp/></highlight><highlight class="charliteral">&apos;&quot;&apos;</highlight><highlight class="normal">),<sp/>entryStr.end());</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>entryStr;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">std::string<sp/>extract_string_from_json(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/>json,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>key)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json.contains(key))<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json[key].empty()<sp/>||<sp/>json[key].is_null())<sp/>{<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Null<sp/>value<sp/>not<sp/>allowed.&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>retval;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::getline(std::stringstream(clean_entry(json[key])),<sp/>retval);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retval;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Key<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>key<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>not<sp/>found.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">std::optional&lt;std::string&gt;<sp/>extract_optional_string_from_json(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/>json,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>key)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!json.contains(key)<sp/>||<sp/>json[key].empty()<sp/>||<sp/>json[key].is_null())<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;<sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>retval;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>std::getline(std::stringstream(clean_entry(json[key])),<sp/>retval);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retval;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>utilities</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/utilities/utilities/json_util.cpp"/>
+  </compounddef>
+</doxygen>

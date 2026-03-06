@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1LegendreCache" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::LegendreCache</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1af453148dcd34966d80bbef7babe59c24" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;Unitless&gt; &gt; astrea::astro::LegendreCache::_normalizingCoefficients</definition>
+        <argsstring></argsstring>
+        <name>_normalizingCoefficients</name>
+        <qualifiedname>astrea::astro::LegendreCache::_normalizingCoefficients</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>Normalizing coefficients for the Legendre polynomials. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="91" column="17" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a96a0195e9444f1907be40b70d5265a4d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;Unitless&gt; &gt; astrea::astro::LegendreCache::_C</definition>
+        <argsstring></argsstring>
+        <name>_C</name>
+        <qualifiedname>astrea::astro::LegendreCache::_C</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>Cosine coefficients for the spherical harmonics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="92" column="17" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a4a2708ffee9037416bca7c605a9208c8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;Unitless&gt; &gt; astrea::astro::LegendreCache::_S</definition>
+        <argsstring></argsstring>
+        <name>_S</name>
+        <qualifiedname>astrea::astro::LegendreCache::_S</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>Sine coefficients for the spherical harmonics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="93" column="17" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a8d1daaeda753a0ef76b935e045eeb5b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::LegendreCache::LegendreCache</definition>
+        <argsstring>()=default</argsstring>
+        <name>LegendreCache</name>
+        <qualifiedname>astrea::astro::LegendreCache::LegendreCache</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="38" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1abe940cd7077c0541a5866f6c8e61e7d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::LegendreCache::~LegendreCache</definition>
+        <argsstring>()=default</argsstring>
+        <name>~LegendreCache</name>
+        <qualifiedname>astrea::astro::LegendreCache::~LegendreCache</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="43" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a44b9acabf8eae953bb26e94a7df5c2cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::LegendreCache::LegendreCache</definition>
+        <argsstring>(const AstrodynamicsSystem &amp;sys, const std::size_t &amp;degree, const std::size_t &amp;order)</argsstring>
+        <name>LegendreCache</name>
+        <qualifiedname>astrea::astro::LegendreCache::LegendreCache</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <declname>sys</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>degree</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Builds the cache for Legendre polynomials and coefficients. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Astrodynamics system containing celestial body data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>order</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="52" column="5" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="57" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a99bd73988a4a82b71545284afc5303de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>Unitless astrea::astro::LegendreCache::get_cosine_coefficient</definition>
+        <argsstring>(const std::size_t &amp;n, const std::size_t &amp;m) const</argsstring>
+        <name>get_cosine_coefficient</name>
+        <qualifiedname>astrea::astro::LegendreCache::get_cosine_coefficient</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Gets the cosine coefficient for given n and m. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The value of the cosine coefficient Cnm </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="61" column="14" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1adca71a24f1c75fde21e29bd9de9ddfa3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>Unitless astrea::astro::LegendreCache::get_sine_coefficient</definition>
+        <argsstring>(const std::size_t &amp;n, const std::size_t &amp;m) const</argsstring>
+        <name>get_sine_coefficient</name>
+        <qualifiedname>astrea::astro::LegendreCache::get_sine_coefficient</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Gets the sine coefficient for given n and m. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The value of the sine coefficient Snm </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="70" column="14" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="227" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a06eb4e5a22d2d8615d40f0d1170e797d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>Unitless astrea::astro::LegendreCache::get_normalizing_coefficient</definition>
+        <argsstring>(const std::size_t &amp;n, const std::size_t &amp;m) const</argsstring>
+        <name>get_normalizing_coefficient</name>
+        <qualifiedname>astrea::astro::LegendreCache::get_normalizing_coefficient</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Gets the normalizing coefficient for given n and m. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the polynomial </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The value of the normalizing coefficient Nnm </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="88" column="14" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="218" bodyend="221"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a92304393c2c9a22e7a5070c1d0bd1963" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::LegendreCache::size_vectors</definition>
+        <argsstring>(const std::size_t &amp;degree, const std::size_t &amp;order)</argsstring>
+        <name>size_vectors</name>
+        <qualifiedname>astrea::astro::LegendreCache::size_vectors</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>degree</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Sets the size of the vectors used for storing oblateness coefficients. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>order</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="101" column="10" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="67" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1aba0e98e41053d91a6badd36736ead5be" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::LegendreCache::ingest_legendre_coefficient_file</definition>
+        <argsstring>(const AstrodynamicsSystem &amp;sys, const std::size_t &amp;degree, const std::size_t &amp;order)</argsstring>
+        <name>ingest_legendre_coefficient_file</name>
+        <qualifiedname>astrea::astro::LegendreCache::ingest_legendre_coefficient_file</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <declname>sys</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>degree</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Ingests the Legendre coefficient file to populate the coefficients. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Astrodynamics system containing celestial body data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Degree of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>order</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="110" column="10" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="80" bodyend="168"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="33" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="33" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a96a0195e9444f1907be40b70d5265a4d" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_C</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1af453148dcd34966d80bbef7babe59c24" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_normalizingCoefficients</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a4a2708ffee9037416bca7c605a9208c8" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_S</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a99bd73988a4a82b71545284afc5303de" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_cosine_coefficient</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a06eb4e5a22d2d8615d40f0d1170e797d" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_normalizing_coefficient</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1adca71a24f1c75fde21e29bd9de9ddfa3" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_sine_coefficient</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1aba0e98e41053d91a6badd36736ead5be" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>ingest_legendre_coefficient_file</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a8d1daaeda753a0ef76b935e045eeb5b2" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>LegendreCache</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a44b9acabf8eae953bb26e94a7df5c2cb" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>LegendreCache</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a92304393c2c9a22e7a5070c1d0bd1963" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>size_vectors</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1abe940cd7077c0541a5866f6c8e61e7d7" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>~LegendreCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

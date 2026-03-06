@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1DOP45" kind="namespace" language="C++">
+    <compoundname>astrea::astro::DOP45</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a336570a3efbc9d29038c7aaf52020b4e" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>const std::size_t astrea::astro::DOP45::nStages</definition>
+        <argsstring></argsstring>
+        <name>nStages</name>
+        <qualifiedname>astrea::astro::DOP45::nStages</qualifiedname>
+        <initializer>= 7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="64" column="26" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a67d8bdc99a84c652646b264eb98f1f31" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP45::c[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>c</name>
+        <qualifiedname>astrea::astro::DOP45::c</qualifiedname>
+        <initializer>= { 0.0, 0.2, 0.3, 0.8, 8.0 / 9.0, 1.0, 1.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="66" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a5779db2f46c7013d0d21813e1ee9ac63" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP45::b[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>b</name>
+        <qualifiedname>astrea::astro::DOP45::b</qualifiedname>
+        <initializer>= { 5179.0 / 57600.0, 0.0,       7571.0 / 16695.0, 393.0 / 640.0, -92097.0 / 339200.0,
+                                187.0 / 2100.0,   1.0 / 40.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="67" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="67" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a96d98c4532d1bc1ea41297acfbd82205" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP45::bhat[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>bhat</name>
+        <qualifiedname>astrea::astro::DOP45::bhat</qualifiedname>
+        <initializer>= { 35.0 / 384.0, 0.0, 500.0 / 1113.0, 125.0 / 192.0, -2187.0 / 6784.0, 11.0 / 84.0, 0.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="69" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="variable" id="butcher__tableau_8hpp_1a20da8822cb0993c5359a8bf8b01cefc6" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::DOP45::a[7][7]</definition>
+        <argsstring>[7][7]</argsstring>
+        <name>a</name>
+        <qualifiedname>astrea::astro::DOP45::a</qualifiedname>
+        <initializer>= { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                                { 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                                { 3.0 / 40.0, 9.0 / 40.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                                { 44.0 / 45.0, -56.0 / 15.0, 32.0 / 9.0, 0.0, 0.0, 0.0, 0.0 },
+                                { 19372.0 / 6561.0, -25360.0 / 2187.0, 64448.0 / 6561.0, -212.0 / 729.0, 0.0, 0.0, 0.0 },
+                                { 9017.0 / 3168.0, -355.0 / 33.0, 46732.0 / 5247.0, 49.0 / 176.0, -5103.0 / 18656.0, 0.0, 0.0 },
+                                { 35.0 / 384.0, 0.0, 500.0 / 1113.0, 125.0 / 192.0, -2187.0 / 6784.0, 11.0 / 84.0, 0.0 } }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="70" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="70" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="62" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SpaceTrackClient_8cpp" kind="file" language="C++">
+    <compoundname>SpaceTrackClient.cpp</compoundname>
+    <includes refid="SpaceTrackClient_8hpp" local="no">snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</includes>
+    <includes local="no">chrono</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">set</includes>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">date/date.h</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includes local="no">utilities/string_util.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp</label>
+        <link refid="SpaceTrackClient_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
+        <link refid="SpaceTrackClient_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/time/Date.hpp</label>
+      </node>
+      <node id="10">
+        <label>chrono</label>
+      </node>
+      <node id="5">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="14">
+        <label>date/date.h</label>
+      </node>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="12">
+        <label>set</label>
+      </node>
+      <node id="13">
+        <label>stdexcept</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+      <node id="15">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="4">
+        <label>variant</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1snapshot">astrea::snapshot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="SpaceTrackClient_8hpp" kindref="compound">snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;date/date.h&gt;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>NOTE:<sp/>This<sp/>is<sp/>standard<sp/>in<sp/>std::chrono<sp/>as<sp/>of<sp/>GNU<sp/>13.2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utilities/string_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">snapshot<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kindref="member">SpaceTrackClient::login</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(username.empty())<sp/>{<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Error:<sp/>No<sp/>username<sp/>provided.&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(password.empty())<sp/>{<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Error:<sp/>No<sp/>password<sp/>provided.&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Payload<sp/>loginParams<sp/><sp/><sp/><sp/>=<sp/>{<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;identity&quot;</highlight><highlight class="normal">,<sp/>username<sp/>},<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;password&quot;</highlight><highlight class="normal">,<sp/>password<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Response<sp/>loginResponse<sp/>=<sp/>cpr::Post(_loginUrl,<sp/>loginParams);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>_loginCookies<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>loginResponse.cookies;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kindref="member">SpaceTrackClient::query</ref>(</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Controller&amp;<sp/>controller,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Action&amp;<sp/>action,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">SpaceTrackClient::RequestClass</ref>&amp;<sp/>requestClass,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;<sp/>predicates</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Url<sp/>queryUrl<sp/>=<sp/>build_query_url(controller,<sp/>action,<sp/>requestClass,<sp/>predicates);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>query_impl(username,<sp/>password,<sp/>queryUrl);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" kindref="member">SpaceTrackClient::retrieve_all</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Url<sp/>queryUrl<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;https://www.space-track.org/&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;basicspacedata/query/class/gp/object_type/payload/decay_date/null-val/epoch/%3Enow-30/orderby/&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;norad_cat_id/format/json&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>query_impl(username,<sp/>password,<sp/>queryUrl);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">std::string<sp/>SpaceTrackClient::controller_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Controller&amp;<sp/>controller)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="61"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(controller)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kindref="member">Controller::BASIC_SPACE_DATA</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;basicspacedata&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9aee65898e1768143572a3769c09f55f70" kindref="member">Controller::PUBLIC_FILES</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;publicfiles&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unregonized<sp/>contoller<sp/>requested.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">std::string<sp/>SpaceTrackClient::action_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Action&amp;<sp/>action)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="74"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(action)<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" kindref="member">Action::QUERY</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;query&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca86b3bdfae903c60e282ba0e020114909" kindref="member">Action::MODEL_DEF</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;modeldef&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unregonized<sp/>action<sp/>requested.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">std::string<sp/>SpaceTrackClient::class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RequestClass&amp;<sp/>requestClass)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="87"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::visit([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x)<sp/>-&gt;<sp/>std::string<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>class_to_string(x);<sp/>},<sp/>requestClass);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">std::string<sp/>SpaceTrackClient::class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SpaceDataClass&amp;<sp/>requestClass)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="92"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(requestClass)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa9fe662f80887cbacf6776aab8e00965" kindref="member">SpaceDataClass::ANNOUNCEMENT</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;announcement&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a85297465d0a7714835efa786ad1ef551" kindref="member">SpaceDataClass::BOX_SCORE</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;boxscore&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a2e8f52edd2685a9fa0cb5a639d907657" kindref="member">SpaceDataClass::CDM_PUBLIC</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;cdm_public&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af34d9b416802d4cda3a4ee548619f206" kindref="member">SpaceDataClass::DECAY</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;decay&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" kindref="member">SpaceDataClass::GP</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;gp&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a4f81be00af7fbbf1f28d28bde0af06b1" kindref="member">SpaceDataClass::GP_HISTORY</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;gp_history&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa80baa3df5d5152d2bf33f80b4c3be03" kindref="member">SpaceDataClass::LAUNCH_SITE</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;launch_site&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942ae0b57cf07d08b87931d73e4c9d18091b" kindref="member">SpaceDataClass::SATCAT</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;satcat&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a544fa2e9669f440be5c6b7b1fd36ee7b" kindref="member">SpaceDataClass::SATCAT_CHANGE</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;satcat_change&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af7f55159fa92fa3be76ad296b35cc4b4" kindref="member">SpaceDataClass::SATCAT_DEBUT</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;satcat_debut&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a1eab470a6f707b92e15040773251a746" kindref="member">SpaceDataClass::TIP</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;tip&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unexpected<sp/>request<sp/>class<sp/>for<sp/>Space<sp/>Data<sp/>controller.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">std::string<sp/>SpaceTrackClient::class_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PublicFilesClass&amp;<sp/>requestClass)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="132"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(requestClass)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a626f59acaeb60dabe79cff6fee9973c7" kindref="member">PublicFilesClass::DIRS</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;dirs&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a631152daefc8201c641fa7a37c397dce" kindref="member">PublicFilesClass::DOWNLOAD</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;download&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020ac935a4e21742b5a03a15b05834e2d82c" kindref="member">PublicFilesClass::FILES</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;files&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020af770d5ea6dd4a6fe36dd95c7edfae589" kindref="member">PublicFilesClass::LOAD_PUBLIC_DATA</ref>):<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;loadpublicdata&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unexpected<sp/>request<sp/>class<sp/>for<sp/>Public<sp/>Files<sp/>controller.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal">cpr::Url<sp/>SpaceTrackClient::build_query_url(</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Controller&amp;<sp/>controller,</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Action&amp;<sp/>action,</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">SpaceTrackClient::RequestClass</ref>&amp;<sp/>requestClass,</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;<sp/>predicates</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="156"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Url<sp/>url<sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>controller_to_string(controller)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>action_to_string(action)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/class/&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>class_to_string(requestClass);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[predicate,<sp/>value]<sp/>:<sp/>predicates)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>url<sp/>+=<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>predicate<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>value;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>url;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SpaceTrackClient::check_query_history(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="166"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Query<sp/>limits<sp/>-<sp/>https://www.space-track.org/documentation#api</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>MAX_QUERIES_PER_MINUTE<sp/>=<sp/>30;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>MAX_QUERIES_PER_HOUR<sp/><sp/><sp/>=<sp/>300;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path<sp/>QUERY_HISTORY_FILE<sp/>=</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;./astrea/snapshot/snapshot/database/spacetrack.query-history.json&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>TIMESTAMP_FORMAT<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;%Y-%m-%d<sp/>%H:%M:%S&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ingest<sp/>query<sp/>history</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/>queryHistory;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::filesystem::exists(QUERY_HISTORY_FILE))<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ifstream<sp/>queryHistroyStream(QUERY_HISTORY_FILE);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queryHistory<sp/>=<sp/>nlohmann::json::parse(queryHistroyStream);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Now</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Time<sp/><sp/><sp/><sp/><sp/>=<sp/>std::chrono::sys_time&lt;std::chrono::milliseconds&gt;;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>now<sp/>=<sp/>std::chrono::time_point_cast&lt;std::chrono::milliseconds&gt;(std::chrono::system_clock::now());</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>query<sp/>frequency</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(queryHistory.contains(username))<sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>oneMinuteAgo<sp/>=<sp/>now<sp/>-<sp/>std::chrono::minutes(1);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>oneHourAgo<sp/><sp/><sp/>=<sp/>now<sp/>-<sp/>std::chrono::hours(1);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>idx<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>nLastHour<sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>nLastMinute<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::set&lt;std::size_t&gt;<sp/>oldQueries;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>timestamp<sp/>:<sp/>queryHistory[username])<sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Stream<sp/>date<sp/>string<sp/>into<sp/>time<sp/>point</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::istringstream<sp/>timestampStream{<sp/>timestamp.template<sp/>get&lt;std::string&gt;()<sp/>};</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Time<sp/>queryTime;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timestampStream<sp/>&gt;&gt;<sp/>date::parse(TIMESTAMP_FORMAT,<sp/>queryTime);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(queryTime<sp/>&lt;<sp/>oneHourAgo)<sp/>{<sp/>oldQueries.insert(idx);<sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++nLastHour;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(queryTime<sp/>&gt;=<sp/>oneMinuteAgo)<sp/>{<sp/>++nLastMinute;<sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++idx;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clean<sp/>old<sp/>queries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>oldQueries.rbegin();<sp/>it<sp/>!=<sp/>oldQueries.rend();<sp/>++it)<sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queryHistory[username].erase(*it);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Throw</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nLastHour<sp/>&gt;=<sp/>MAX_QUERIES_PER_HOUR)<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Error:<sp/>Maximum<sp/>number<sp/>of<sp/>hourly<sp/>queries<sp/>reached<sp/>(300).<sp/>Exiting<sp/>so<sp/>SpaceTrack<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;doesn&apos;t<sp/>ban<sp/>you.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nLastMinute<sp/>&gt;=<sp/>MAX_QUERIES_PER_MINUTE)<sp/>{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Error:<sp/>Maximum<sp/>number<sp/>of<sp/>queries<sp/>per<sp/>minute<sp/>reached<sp/>(30).<sp/>Exiting<sp/>so<sp/>SpaceTrack<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;doesn&apos;t<sp/>ban<sp/>you.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>it<sp/>didn&apos;t<sp/>throw,<sp/>log<sp/>the<sp/>query<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ostringstream<sp/>outStream;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>outStream<sp/>&lt;&lt;<sp/>now;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>queryHistory[username].push_back(outStream.str());</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Save</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ofstream<sp/>outFileStream(QUERY_HISTORY_FILE);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>outFileStream<sp/>&lt;&lt;<sp/>std::setw(4)<sp/>&lt;&lt;<sp/>queryHistory<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SpaceTrackClient::valid_cookies()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="235"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_loginCookies.empty())<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>cookie<sp/>:<sp/>_loginCookies)<sp/>{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>now<sp/>=<sp/>std::chrono::system_clock::now();</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(now<sp/>&gt;=<sp/>cookie.GetExpires())<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal">nlohmann::json<sp/>SpaceTrackClient::query_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,<sp/>cpr::Url<sp/>queryUrl)</highlight></codeline>
+<codeline lineno="245"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Login</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!valid_cookies())<sp/>{<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kindref="member">login</ref>(username,<sp/>password);<sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Make<sp/>sure<sp/>we&apos;re<sp/>not<sp/>violating<sp/>the<sp/>user-agreement</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>check_query_history(username);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Query</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>cpr::Response<sp/>r<sp/>=<sp/>cpr::Get(queryUrl,<sp/>_loginCookies);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>response<sp/>into<sp/>json</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/>response<sp/>=<sp/>nlohmann::json::parse(r.text);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(response.size()<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ostringstream<sp/>errorStream;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Query<sp/>failed.<sp/>No<sp/>data<sp/>matching<sp/>search<sp/>was<sp/>found.\n\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Query<sp/>Data:<sp/>\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Status<sp/>Code:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::to_string(r.status_code)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Text:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.text<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Url:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.url<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.error.message<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Status<sp/>Line:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.status_line<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Reason:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.reason<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>errorStream<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/>Raw<sp/>Header:<sp/>\n\n&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>r.raw_header;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>errorStream.str();</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>response;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>snapshot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp"/>
+  </compounddef>
+</doxygen>

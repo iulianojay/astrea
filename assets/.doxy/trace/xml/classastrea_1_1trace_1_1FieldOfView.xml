@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1FieldOfView" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>astrea::trace::FieldOfView</compoundname>
+    <derivedcompoundref refid="classastrea_1_1trace_1_1CircularFieldOfView" prot="public" virt="non-virtual">astrea::trace::CircularFieldOfView</derivedcompoundref>
+    <derivedcompoundref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" prot="public" virt="non-virtual">astrea::trace::PolygonalFieldOfView</derivedcompoundref>
+    <includes refid="FieldOfView_8hpp" local="no">FieldOfView.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::FieldOfView::FieldOfView</definition>
+        <argsstring>()=default</argsstring>
+        <name>FieldOfView</name>
+        <qualifiedname>astrea::trace::FieldOfView::FieldOfView</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="54" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::FieldOfView::~FieldOfView</definition>
+        <argsstring>()=default</argsstring>
+        <name>~FieldOfView</name>
+        <qualifiedname>astrea::trace::FieldOfView::~FieldOfView</qualifiedname>
+        <briefdescription>
+<para>Virtual destructor for <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ensures proper cleanup of derived classes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="61" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool astrea::trace::FieldOfView::contains</definition>
+        <argsstring>(const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;target) const =0</argsstring>
+        <name>contains</name>
+        <qualifiedname>astrea::trace::FieldOfView::contains</qualifiedname>
+        <reimplementedby refid="classastrea_1_1trace_1_1CircularFieldOfView_1a6653ae918da14811e07ab37e4fd99cc6">contains</reimplementedby>
+        <reimplementedby refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d">contains</reimplementedby>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;</type>
+          <declname>boresight</declname>
+        </param>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a target is within the field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The boresight vector of the sensor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target vector to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the target is within the field of view. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the target is outside the field of view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="71" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Base class for Field of View (FoV) representations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class defines the interface for different types of fields of view. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::trace::CircularFieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1CircularFieldOfView"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::trace::FieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
+      </node>
+      <node id="3">
+        <label>astrea::trace::PolygonalFieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1PolygonalFieldOfView"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="49" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" bodystart="49" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76" prot="public" virt="pure-virtual"><scope>astrea::trace::FieldOfView</scope><name>contains</name></member>
+      <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" virt="non-virtual"><scope>astrea::trace::FieldOfView</scope><name>FieldOfView</name></member>
+      <member refid="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" prot="public" virt="non-virtual"><scope>astrea::trace::FieldOfView</scope><name>~FieldOfView</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

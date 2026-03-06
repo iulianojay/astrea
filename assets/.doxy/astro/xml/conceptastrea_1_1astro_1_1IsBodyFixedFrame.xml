@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsBodyFixedFrame" kind="concept">
+    <compoundname>astrea::astro::IsBodyFixedFrame</compoundname>
+    <includes refid="frame__concepts_8hpp" local="no">frame_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Frame_T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename Frame_T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsBodyFixedFrame" kindref="compound">astrea::astro::IsBodyFixedFrame</ref> =  (Frame_T::get_axis() == FrameAxis::BODY_FIXED)    </initializer>
+    <briefdescription>
+<para>Concept to determine if a frame is body-fixed. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Frame_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the frame is body-fixed, false otherwise. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/frame_concepts.hpp" line="44" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_16a2422c641898ec244ea09da3a664c2" kind="dir">
+    <compoundname>astrea/trace/trace/platforms/sensors/fov/instances</compoundname>
+    <innerfile refid="CircularFieldOfView_8cpp">CircularFieldOfView.cpp</innerfile>
+    <innerfile refid="CircularFieldOfView_8hpp">CircularFieldOfView.hpp</innerfile>
+    <innerfile refid="PolygonalFieldOfView_8cpp">PolygonalFieldOfView.cpp</innerfile>
+    <innerfile refid="PolygonalFieldOfView_8hpp">PolygonalFieldOfView.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/platforms/sensors/fov/instances/"/>
+  </compounddef>
+</doxygen>

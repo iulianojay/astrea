@@ -1,0 +1,973 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Cylindrical" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Cylindrical</compoundname>
+    <includes refid="Cylindrical_8hpp" local="no">Cylindrical.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a76d109295b4eae199957d1a15a9c9b3f" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <definition>Distance astrea::astro::Cylindrical::_range</definition>
+        <argsstring></argsstring>
+        <name>_range</name>
+        <qualifiedname>astrea::astro::Cylindrical::_range</qualifiedname>
+        <briefdescription>
+<para>Range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="275" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a3019e3dafbb1459843c72735d8e431f5" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::Cylindrical::_azimuth</definition>
+        <argsstring></argsstring>
+        <name>_azimuth</name>
+        <qualifiedname>astrea::astro::Cylindrical::_azimuth</qualifiedname>
+        <briefdescription>
+<para>Azimuth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="276" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a85a37d98dd6568a84bc6c1c388ff6823" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <definition>Distance astrea::astro::Cylindrical::_elevation</definition>
+        <argsstring></argsstring>
+        <name>_elevation</name>
+        <qualifiedname>astrea::astro::Cylindrical::_elevation</qualifiedname>
+        <briefdescription>
+<para>Elevation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="277" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="277" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Cylindrical_1a0c0f4e6341bad7815a1e63e92eeb9d82" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;, Cylindrical const &amp;)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <defname>os</defname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <defname>elements</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="44" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="169" bodyend="177"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a0cd2ac389a6ddfbac30816fd17a67a35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>scale</declname>
+          <defval>0.0 *astrea::detail::unitless</defval>
+        </param>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector with zero values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="52" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ab7dc6f1f9b4a522cd4d3dfc6b9d0fdaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(const Distance &amp;range, const Angle &amp;azimuth, const Distance &amp;elevation)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>azimuth</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>elevation</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> with azimuth, elevation, and range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>azimuth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> azimuth </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elevation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Elevation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Range </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="66" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="66" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ab5375ed716cd5c214cee04a4d13f4fc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r, const Date &amp;date, const CelestialBody *parent)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> with position and velocity vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius vector in ECI (position) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="78" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1aa87178ab2da59624c3c8a775c0d06a1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;r, const CelestialBody *parent)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> with position and velocity vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius vector in ECEF (position) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="85" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a4b0d1973c9925eda52ec1849e506c91e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsOrbitalElements</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(const T &amp;elements, const AstrodynamicsSystem &amp;sys, const Date &amp;date)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <declname>sys</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> from orbital elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Orbital elements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Astrodynamics system containing celestial body data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="94" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="94" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a9eb39b192f298af9c83cf5decd6a67e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(const Cylindrical &amp;)</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+<para>Copy constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="107" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="55" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a4c49b147a6056a34a9d4cded1f714630" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::Cylindrical</definition>
+        <argsstring>(Cylindrical &amp;&amp;) noexcept</argsstring>
+        <name>Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;&amp;</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+<para>Move constructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="114" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a8181840f36f700405d020b98cfde21a9" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator=</definition>
+        <argsstring>(Cylindrical &amp;&amp;) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;&amp;</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+<para>Move assignment operator for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&amp; Reference to the current object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="122" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="71" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ae8e64a88d8600579084a28548eadb114" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator=</definition>
+        <argsstring>(const Cylindrical &amp;)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+<para>Copy assignment operator for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&amp; Reference to the current object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="130" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1adb57bbf026b4a84c7dfc2de6e7d4c218" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Cylindrical::~Cylindrical</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Cylindrical</name>
+        <qualifiedname>astrea::astro::Cylindrical::~Cylindrical</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="135" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1aef609faf3de12231badc94f0bcd3ba59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Cylindrical::operator==</definition>
+        <argsstring>(const Cylindrical &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Compares two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects are equal </para>
+</simplesect>
+<simplesect kind="return"><para>false if the two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects are not equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a19236e93bf0d6780377119aac3a9fdcf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Cylindrical::operator!=</definition>
+        <argsstring>(const Cylindrical &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator!=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Compares two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects for inequality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects are not equal </para>
+</simplesect>
+<simplesect kind="return"><para>false if the two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="153" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a12868bc8e29aa4334574e95d22962c85" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref></type>
+        <definition>Cylindrical astrea::astro::Cylindrical::operator+</definition>
+        <argsstring>(const Cylindrical &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Adds two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> sum. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="161" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1abd00abb0d2300723dc6856dcf19cfe01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator+=</definition>
+        <argsstring>(const Cylindrical &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Adds another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object to the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object after addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="169" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="98" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a3a026a26144eefa7ea30f049e39c72c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref></type>
+        <definition>Cylindrical astrea::astro::Cylindrical::operator-</definition>
+        <argsstring>(const Cylindrical &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object from the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> difference. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="177" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1affc45b6bc480b4c0306e5d0d237d445e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator-=</definition>
+        <argsstring>(const Cylindrical &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object from the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object after subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="185" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="110" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a3eed2562d6fa27c19804b1188e683bd3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref></type>
+        <definition>Cylindrical astrea::astro::Cylindrical::operator*</definition>
+        <argsstring>(const Unitless &amp;multiplier) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>multiplier</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>multiplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to multiply with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="193" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a551de3cc9850b592af4ae46996dd674b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator*=</definition>
+        <argsstring>(const Unitless &amp;multiplier)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>multiplier</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>multiplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to multiply with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="201" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="122" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a41dfa4cabc537927cd27f944440030e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::Cylindrical::operator/</definition>
+        <argsstring>(const Cylindrical &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector by another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant vector of unitless values after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="209" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="130" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a25eab40211b7d38d0366c8b1d43d4d90" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref></type>
+        <definition>Cylindrical astrea::astro::Cylindrical::operator/</definition>
+        <argsstring>(const Unitless &amp;divisor) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>divisor</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to divide with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="217" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="135" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a12bc184d0de90b9e5f52b75fa72806c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+        <definition>Cylindrical &amp; astrea::astro::Cylindrical::operator/=</definition>
+        <argsstring>(const Unitless &amp;divisor)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>astrea::astro::Cylindrical::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>divisor</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to divide with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> object after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="225" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="139" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ad08210f37c25c88172bf8286e1542c69" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::Cylindrical::get_position</definition>
+        <argsstring>(const CelestialBody *parent) const</argsstring>
+        <name>get_position</name>
+        <qualifiedname>astrea::astro::Cylindrical::get_position</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="232" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="159" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ae58b83cdb96ab28507b56e3378d79e07" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::icrf &gt; astrea::astro::Cylindrical::get_position</definition>
+        <argsstring>(const Date &amp;date, const CelestialBody *parent) const</argsstring>
+        <name>get_position</name>
+        <qualifiedname>astrea::astro::Cylindrical::get_position</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="239" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a371c12aca077ad3552f647e47248d674" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+        <definition>const Angle &amp; astrea::astro::Cylindrical::get_azimuth</definition>
+        <argsstring>() const</argsstring>
+        <name>get_azimuth</name>
+        <qualifiedname>astrea::astro::Cylindrical::get_azimuth</qualifiedname>
+        <briefdescription>
+<para>Get the azimuth of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Angle&amp; Reference to the azimuth component of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="246" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="246" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a0ce5e05328c57174a06bef6d9f129b6c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+        <definition>const Distance &amp; astrea::astro::Cylindrical::get_elevation</definition>
+        <argsstring>() const</argsstring>
+        <name>get_elevation</name>
+        <qualifiedname>astrea::astro::Cylindrical::get_elevation</qualifiedname>
+        <briefdescription>
+<para>Get the elevation of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Distance&amp; Reference to the elevation component of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="253" column="20" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="253" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a30e47c74d74a5e068e6c1645cabf90ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+        <definition>const Distance &amp; astrea::astro::Cylindrical::get_range</definition>
+        <argsstring>() const</argsstring>
+        <name>get_range</name>
+        <qualifiedname>astrea::astro::Cylindrical::get_range</qualifiedname>
+        <briefdescription>
+<para>Get the range of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Distance&amp; Reference to the range component of the <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="260" column="20" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="260" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a9c4d06c8a86a38a144d60cffe653bc7a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref></type>
+        <definition>Cylindrical astrea::astro::Cylindrical::interpolate</definition>
+        <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Cylindrical &amp;other, const Time &amp;targetTime) const</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>astrea::astro::Cylindrical::interpolate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>thisTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>otherTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>targetTime</declname>
+        </param>
+        <briefdescription>
+<para>Interpolates between two <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> states at a given time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>thisTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of the current state </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of the other state </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Other <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state to interpolate with </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Astrodynamics system containing celestial body data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target time for interpolation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> Interpolated <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state at the target time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="272" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="147" bodyend="157"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state vector in astrodynamics. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class encapsulates the position and velocity of a vehicle in <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> coordinates. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" line="42" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" bodystart="42" bodyend="278"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a3019e3dafbb1459843c72735d8e431f5" prot="private" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>_azimuth</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a85a37d98dd6568a84bc6c1c388ff6823" prot="private" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>_elevation</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a76d109295b4eae199957d1a15a9c9b3f" prot="private" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>_range</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a0cd2ac389a6ddfbac30816fd17a67a35" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1ab7dc6f1f9b4a522cd4d3dfc6b9d0fdaf" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1ab5375ed716cd5c214cee04a4d13f4fc2" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1aa87178ab2da59624c3c8a775c0d06a1b" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a4b0d1973c9925eda52ec1849e506c91e" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a9eb39b192f298af9c83cf5decd6a67e1" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a4c49b147a6056a34a9d4cded1f714630" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>Cylindrical</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a371c12aca077ad3552f647e47248d674" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>get_azimuth</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a0ce5e05328c57174a06bef6d9f129b6c" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>get_elevation</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1ad08210f37c25c88172bf8286e1542c69" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1ae58b83cdb96ab28507b56e3378d79e07" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a30e47c74d74a5e068e6c1645cabf90ca" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>get_range</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a9c4d06c8a86a38a144d60cffe653bc7a" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>interpolate</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a19236e93bf0d6780377119aac3a9fdcf" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator!=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a3eed2562d6fa27c19804b1188e683bd3" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a551de3cc9850b592af4ae46996dd674b" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator*=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a12868bc8e29aa4334574e95d22962c85" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator+</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1abd00abb0d2300723dc6856dcf19cfe01" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator+=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a3a026a26144eefa7ea30f049e39c72c7" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1affc45b6bc480b4c0306e5d0d237d445e" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a41dfa4cabc537927cd27f944440030e1" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a25eab40211b7d38d0366c8b1d43d4d90" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a12bc184d0de90b9e5f52b75fa72806c2" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator/=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a0c0f4e6341bad7815a1e63e92eeb9d82" prot="private" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1a8181840f36f700405d020b98cfde21a9" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1ae8e64a88d8600579084a28548eadb114" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1aef609faf3de12231badc94f0bcd3ba59" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1Cylindrical_1adb57bbf026b4a84c7dfc2de6e7d4c218" prot="public" virt="non-virtual"><scope>astrea::astro::Cylindrical</scope><name>~Cylindrical</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

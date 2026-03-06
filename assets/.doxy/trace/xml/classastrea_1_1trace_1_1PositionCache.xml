@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1PositionCache" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::PositionCache</compoundname>
+    <includes refid="PositionCache_8hpp" local="no">PositionCache.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1PositionCache_1a794469ebdf4dcbbeec58fa8d8e6621d8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt;std::size_t&gt; astrea::trace::PositionCache::_platformIds</definition>
+        <argsstring></argsstring>
+        <name>_platformIds</name>
+        <qualifiedname>astrea::trace::PositionCache::_platformIds</qualifiedname>
+        <briefdescription>
+<para>Platform IDs in order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="125" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1PositionCache_1a5f7b855efa70afe4dc99356589239d20" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; EcefRadiusVec &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;EcefRadiusVec&gt; &gt; astrea::trace::PositionCache::_positions</definition>
+        <argsstring></argsstring>
+        <name>_positions</name>
+        <qualifiedname>astrea::trace::PositionCache::_positions</qualifiedname>
+        <briefdescription>
+<para>[platformIdx][timeIdx] </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="126" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1PositionCache_1a58d31c4bd3d34a124e72257ef15004a2" prot="private" static="no" mutable="no">
+        <type>gtl::btree_map&lt; std::size_t, std::size_t &gt;</type>
+        <definition>gtl::btree_map&lt;std::size_t, std::size_t&gt; astrea::trace::PositionCache::_idToIndex</definition>
+        <argsstring></argsstring>
+        <name>_idToIndex</name>
+        <qualifiedname>astrea::trace::PositionCache::_idToIndex</qualifiedname>
+        <briefdescription>
+<para>Map from platform ID to index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="127" column="20" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="127" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1a9e09c3f9852bb801a4be44257c1ffd03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::PositionCache::PositionCache</definition>
+        <argsstring>()=default</argsstring>
+        <name>PositionCache</name>
+        <qualifiedname>astrea::trace::PositionCache::PositionCache</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="43" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ab5ff39c5618dd9a3a80e5a411f3236bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::PositionCache::~PositionCache</definition>
+        <argsstring>()=default</argsstring>
+        <name>~PositionCache</name>
+        <qualifiedname>astrea::trace::PositionCache::~PositionCache</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="44" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::PositionCache::reserve</definition>
+        <argsstring>(std::size_t nPlatforms)</argsstring>
+        <name>reserve</name>
+        <qualifiedname>astrea::trace::PositionCache::reserve</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>nPlatforms</declname>
+        </param>
+        <briefdescription>
+<para>Reserve space for platforms and timesteps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nPlatforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of platforms to cache </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="51" column="10" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="19" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::PositionCache::add_platform</definition>
+        <argsstring>(std::size_t platformId, std::size_t nTimesteps)</argsstring>
+        <name>add_platform</name>
+        <qualifiedname>astrea::trace::PositionCache::add_platform</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformId</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>nTimesteps</declname>
+        </param>
+        <briefdescription>
+<para>Add a platform to the cache. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unique ID of the platform </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nTimesteps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of timesteps to cache for this platform </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Index of the platform in the cache </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="60" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::PositionCache::set_position</definition>
+        <argsstring>(std::size_t platformIdx, std::size_t timeIdx, const EcefRadiusVec &amp;position)</argsstring>
+        <name>set_position</name>
+        <qualifiedname>astrea::trace::PositionCache::set_position</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformIdx</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>timeIdx</declname>
+        </param>
+        <param>
+          <type>const EcefRadiusVec &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Set position for a platform at a specific timestep. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the platform in the cache </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timeIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the timestep </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECI position vector to cache </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="69" column="10" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const EcefRadiusVec &amp;</type>
+        <definition>const EcefRadiusVec &amp; astrea::trace::PositionCache::get_position_by_id</definition>
+        <argsstring>(std::size_t platformId, std::size_t timeIdx) const</argsstring>
+        <name>get_position_by_id</name>
+        <qualifiedname>astrea::trace::PositionCache::get_position_by_id</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformId</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>timeIdx</declname>
+        </param>
+        <briefdescription>
+<para>Get position by platform ID and time index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unique ID of the platform </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timeIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the timestep </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const EcefRadiusVec&amp; Cached ECI position vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="78" column="25" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="39" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const EcefRadiusVec &amp;</type>
+        <definition>const EcefRadiusVec &amp; astrea::trace::PositionCache::get_position_by_index</definition>
+        <argsstring>(std::size_t platformIdx, std::size_t timeIdx) const</argsstring>
+        <name>get_position_by_index</name>
+        <qualifiedname>astrea::trace::PositionCache::get_position_by_index</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformIdx</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>timeIdx</declname>
+        </param>
+        <briefdescription>
+<para>Get position by platform index and time index (faster) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the platform in the cache </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timeIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the timestep </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const EcefRadiusVec&amp; Cached ECI position vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="87" column="25" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="49" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1aafc2c6f38f36ae18446ed5845aed8f16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::PositionCache::get_index</definition>
+        <argsstring>(std::size_t platformId) const</argsstring>
+        <name>get_index</name>
+        <qualifiedname>astrea::trace::PositionCache::get_index</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformId</declname>
+        </param>
+        <briefdescription>
+<para>Convert platform ID to internal index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unique ID of the platform </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Index of the platform in the cache </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="95" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1abbda32e058f132760cb639bf0926e93c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::PositionCache::get_platform_id</definition>
+        <argsstring>(std::size_t platformIdx) const</argsstring>
+        <name>get_platform_id</name>
+        <qualifiedname>astrea::trace::PositionCache::get_platform_id</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>platformIdx</declname>
+        </param>
+        <briefdescription>
+<para>Get platform ID from internal index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platformIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the platform in the cache </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Unique ID of the platform </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="103" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ac0aa1e01ffcdcca9c0e275b72e7728f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::PositionCache::n_platforms</definition>
+        <argsstring>() const</argsstring>
+        <name>n_platforms</name>
+        <qualifiedname>astrea::trace::PositionCache::n_platforms</qualifiedname>
+        <briefdescription>
+<para>Get number of platforms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t Number of platforms in the cache </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="110" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1a4b9c0067cc666a62f401b5b7c19c8eac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::PositionCache::n_timesteps</definition>
+        <argsstring>() const</argsstring>
+        <name>n_timesteps</name>
+        <qualifiedname>astrea::trace::PositionCache::n_timesteps</qualifiedname>
+        <briefdescription>
+<para>Get number of timesteps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t Number of timesteps cached per platform </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="117" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::PositionCache::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>astrea::trace::PositionCache::clear</qualifiedname>
+        <briefdescription>
+<para>Clear all data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="122" column="10" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="67" bodyend="72"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Contiguous memory cache for platform positions across time. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Uses structure-of-arrays layout for better cache locality and SIMD potential </para>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="41" column="1" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="41" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a58d31c4bd3d34a124e72257ef15004a2" prot="private" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>_idToIndex</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a794469ebdf4dcbbeec58fa8d8e6621d8" prot="private" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>_platformIds</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a5f7b855efa70afe4dc99356589239d20" prot="private" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>_positions</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>add_platform</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>clear</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1aafc2c6f38f36ae18446ed5845aed8f16" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>get_index</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1abbda32e058f132760cb639bf0926e93c" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>get_platform_id</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>get_position_by_id</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>get_position_by_index</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1ac0aa1e01ffcdcca9c0e275b72e7728f0" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>n_platforms</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a4b9c0067cc666a62f401b5b7c19c8eac" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>n_timesteps</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1a9e09c3f9852bb801a4be44257c1ffd03" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>PositionCache</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>reserve</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>set_position</name></member>
+      <member refid="classastrea_1_1trace_1_1PositionCache_1ab5ff39c5618dd9a3a80e5a411f3236bd" prot="public" virt="non-virtual"><scope>astrea::trace::PositionCache</scope><name>~PositionCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="plotting_8hpp" kind="file" language="C++">
+    <compoundname>plotting.hpp</compoundname>
+    <includes local="no">filesystem</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">matplot/matplot.h</includes>
+    <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
+    <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
+    <includedby refid="plotting_8cpp" local="no">astrea/astro/astro/utilities/plotting.cpp</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/utilities/plotting.hpp</label>
+        <link refid="plotting_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>filesystem</label>
+      </node>
+      <node id="5">
+        <label>matplot/matplot.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/utilities/plotting.hpp</label>
+        <link refid="plotting_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1plotting">astrea::astro::plotting</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;matplot/matplot.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="astro_8fwd_8hpp" kindref="compound">astro/astro.fwd.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">plotting<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plot_orbital_elements(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>StateHistory&amp;<sp/>trajectory,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plot_trajectory(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>StateHistory&amp;<sp/>trajectory,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>compare_orbital_elements(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;StateHistory&gt;&amp;<sp/>trajectories,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;&amp;<sp/>labels,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>compare_trajectories(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;StateHistory&gt;&amp;<sp/>trajectories,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;&amp;<sp/>labels,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plot_difference_orbital_elements(</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>StateHistory<sp/>expected,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;StateHistory&gt;&amp;<sp/>trajectories,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;&amp;<sp/>labels,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plot_difference_trajectories(</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>StateHistory<sp/>expected,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;StateHistory&gt;&amp;<sp/>trajectories,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;&amp;<sp/>labels,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>outfile</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>plotting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/utilities/plotting.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Grid_8hpp" kind="file" language="C++">
+    <compoundname>Grid.hpp</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes local="no">astro/systems/CelestialBody.hpp</includes>
+    <includes refid="GroundPoint_8hpp" local="no">trace/platforms/ground/GroundPoint.hpp</includes>
+    <includes refid="enums_8hpp" local="no">trace/types/enums.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">trace/types/typedefs.hpp</includes>
+    <includedby refid="AccessAnalyzer_8cpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.cpp</includedby>
+    <includedby refid="Plotter_8cpp" local="no">astrea/trace/trace/analysis/plots/Plotter.cpp</includedby>
+    <includedby refid="Grid_8cpp" local="no">astrea/trace/trace/platforms/ground/Grid.cpp</includedby>
+    <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
+    <incdepgraph>
+      <node id="10">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="21">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>array</label>
+      </node>
+      <node id="7">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="8">
+        <label>astro/frames/FrameReference.hpp</label>
+      </node>
+      <node id="9">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="4">
+        <label>astro/systems/CelestialBody.hpp</label>
+      </node>
+      <node id="20">
+        <label>cstdint</label>
+      </node>
+      <node id="22">
+        <label>functional</label>
+      </node>
+      <node id="13">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="11">
+        <label>memory</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1trace_1_1Grid" prot="public">astrea::trace::Grid</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+<para>Grid class for managing a grid of ground points. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/CelestialBody.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="GroundPoint_8hpp" kindref="compound">trace/platforms/ground/GroundPoint.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="enums_8hpp" kindref="compound">trace/types/enums.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">trace/types/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classastrea_1_1trace_1_1Grid" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48" refid="classastrea_1_1trace_1_1Grid_1a6baeb81901fda378010da4f7abf6fd96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a6baeb81901fda378010da4f7abf6fd96" kindref="member">Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classastrea_1_1trace_1_1Grid_1a430cf2ce14cb5d1b2a9ece133ca8659c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a430cf2ce14cb5d1b2a9ece133ca8659c" kindref="member">Grid</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;GroundPoint&gt;&amp;<sp/>groundPoints)<sp/>:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(groundPoints),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>::<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kindref="member">MANUAL</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" kindref="member">Grid</ref>(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/>parent,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing<sp/><sp/><sp/>=<sp/>5.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_parent(parent),</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(build_grid(corner1,<sp/>corner4,<sp/>gridType,<sp/>spacing,<sp/>weight)),</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(gridType)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" kindref="member">~Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" kindref="member">get_grid_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_gridType;<sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" kindref="member">get_parent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parent;<sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.size();<sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::iterator;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::const_iterator;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" kindref="member">begin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" kindref="member">end</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="classastrea_1_1trace_1_1Grid_1ad4933278da793b06231e8b61c32e4cdc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1ad4933278da793b06231e8b61c32e4cdc" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" kindref="member">cbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" kindref="member">cend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/>_parent;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GroundPoint&gt;<sp/>_groundPoints;<sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/>_gridType;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GroundPoint&gt;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GroundPoint&gt;<sp/>build_uniform_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GroundPoint&gt;<sp/>build_equal_area_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GroundPoint&gt;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_weighted_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>initialSpacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>create_uniformly_spaced_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>first,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>second,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/platforms/ground/Grid.hpp"/>
+  </compounddef>
+</doxygen>

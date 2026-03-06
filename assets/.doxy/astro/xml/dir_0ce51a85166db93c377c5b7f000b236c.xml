@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_0ce51a85166db93c377c5b7f000b236c" kind="dir">
+    <compoundname>astrea/astro/astro/propagation/force_models</compoundname>
+    <innerfile refid="AtmosphericForce_8cpp">AtmosphericForce.cpp</innerfile>
+    <innerfile refid="AtmosphericForce_8hpp">AtmosphericForce.hpp</innerfile>
+    <innerfile refid="Force_8hpp">Force.hpp</innerfile>
+    <innerfile refid="ForceModel_8cpp">ForceModel.cpp</innerfile>
+    <innerfile refid="ForceModel_8hpp">ForceModel.hpp</innerfile>
+    <innerfile refid="NBodyForce_8cpp">NBodyForce.cpp</innerfile>
+    <innerfile refid="NBodyForce_8hpp">NBodyForce.hpp</innerfile>
+    <innerfile refid="OblatenessForce_8cpp">OblatenessForce.cpp</innerfile>
+    <innerfile refid="OblatenessForce_8hpp">OblatenessForce.hpp</innerfile>
+    <innerfile refid="SolarRadiationPressure_8cpp">SolarRadiationPressure.cpp</innerfile>
+    <innerfile refid="SolarRadiationPressure_8hpp">SolarRadiationPressure.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/"/>
+  </compounddef>
+</doxygen>

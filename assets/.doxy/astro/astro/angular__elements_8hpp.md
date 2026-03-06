@@ -1,0 +1,116 @@
+
+
+# File angular\_elements.hpp
+
+
+
+[**FileList**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**angular\_elements.hpp**](angular__elements_8hpp.md)
+
+[Go to the source code of this file](angular__elements_8hpp_source.md)
+
+_Utility header to include all angular element headers._ [More...](#detailed-description)
+
+* `#include <astro/state/angular_elements/instances/Cylindrical.hpp>`
+* `#include <astro/state/angular_elements/instances/Geocentric.hpp>`
+* `#include <astro/state/angular_elements/instances/Geodetic.hpp>`
+* `#include <astro/state/angular_elements/instances/Spherical.hpp>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Detailed Description
+
+
+
+
+**Author:**
+
+Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com)) 
+
+
+
+
+**Date:**
+
+2025-10-09
+
+
+
+
+**Copyright:**
+
+Copyright (c) 2025 Jay Iuliano
+
+
+The GNU Lesser General Public License (LGPL)
+
+
+This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/). 
+
+
+    
+
+------------------------------
+The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/angular_elements.hpp`
+

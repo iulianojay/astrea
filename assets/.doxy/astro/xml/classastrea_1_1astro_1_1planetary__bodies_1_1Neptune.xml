@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::planetary_bodies::Neptune</compoundname>
+    <basecompoundref refid="classastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody</basecompoundref>
+    <includes refid="Neptune_8hpp" local="no">Neptune.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1ab80668912356f00ced68f788551a2e92" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::planetary_bodies::Neptune::Neptune</definition>
+        <argsstring>()</argsstring>
+        <name>Neptune</name>
+        <qualifiedname>astrea::astro::planetary_bodies::Neptune::Neptune</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> object with predefined physical and orbital parameters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" line="79" column="15" bodyfile="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a2fdbd3227a87757547c58483308c0459" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::planetary_bodies::Neptune::~Neptune</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Neptune</name>
+        <qualifiedname>astrea::astro::planetary_bodies::Neptune::~Neptune</qualifiedname>
+        <briefdescription>
+<para>Default destructor for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" line="87" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a40578d54cf24455865cff1039b9c12ca" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <definition>static constexpr CelestialBodyId astrea::astro::planetary_bodies::Neptune::get_id</definition>
+        <argsstring>()</argsstring>
+        <name>get_id</name>
+        <qualifiedname>astrea::astro::planetary_bodies::Neptune::get_id</qualifiedname>
+        <briefdescription>
+<para>Get the unique identifier for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> celestial body. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>CelestialBodyId The unique identifier for <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" line="94" column="38" bodyfile="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a5fd905c8ebf65d0f6e12337fc3874bf5" prot="private" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" kindref="member">CoefficientPack</ref></type>
+        <definition>constexpr CoefficientPack astrea::astro::planetary_bodies::Neptune::get_linear_expansion_coefficients</definition>
+        <argsstring>() const override</argsstring>
+        <name>get_linear_expansion_coefficients</name>
+        <qualifiedname>astrea::astro::planetary_bodies::Neptune::get_linear_expansion_coefficients</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1CelestialBody_1a81894fd1731a0e827dccb807847f96ed">get_linear_expansion_coefficients</reimplements>
+        <briefdescription>
+<para>Get the coefficients for the linear expansion of <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref>&apos;s orbital elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a tuple containing the coefficients for the linear expansion of <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref>&apos;s orbital elements, which are used to compute the position and velocity of <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> over time.</para>
+<para><simplesect kind="return"><para>CoefficientPack A tuple containing the coefficients for the linear expansion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" line="117" column="31" bodyfile="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" bodystart="117" bodyend="121"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref> celestial body. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides properties and methods specific to <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune" kindref="compound">Neptune</ref>, including its physical and orbital parameters. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::CelestialBody</label>
+        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planetary_bodies::Neptune</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::CelestialBody</label>
+        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_referenceDate</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Date</label>
+        <link refid="classastrea_1_1astro_1_1Date"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planetary_bodies::Neptune</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" line="71" column="1" bodyfile="astrea/astro/astro/systems/planetary_bodies/Neptune/Neptune.hpp" bodystart="71" bodyend="122"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a710d98e8475bec5b9667ccea3146d544" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_axialTilt</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad521026113209b17461963f1775ef240" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_COEFF_ZERO_FACTOR</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a24c39f7fa32fd932bd32e13c5a87377c" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_crashRadius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a956a726da1b323fe69ee636b095bce80" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_eccentricity</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a5b9615beaa171ce19425876a43bbb914" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_eccentricityRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad870d6954dbc3ac296a9ca2006fb090c" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_equitorialRadius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a094119d024b46c5c2a089f2b2b998569" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a369a8915ed4091fe19f52a695e241d0c" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_inclinationRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af14e2255d65c62938dfe492ef58af6a3" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_j2</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a39e402b167e30022456528df5bad92ac" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_j3</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac991d3d38d3c827afbe76c49fdc3c66d" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_longitudeOfPerigee</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1aa3772dcff6cdd5890ba78b87f9c77d53" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_longitudeOfPerigeeRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9d63d625e5c5a65aa55f534c7bed8233" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ae8fed352426d294c1b1ba9fbe5a2537a" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_meanAnomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a28c6357c33c5d0401b675d60cf26cfa4" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_meanLongitude</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab91793e3cffed4b98029d7459f9b9f4f" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_meanLongitudeRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a7b30a6b5560641c2c063c580b67d66" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7bdf0ef895aa21d916e3ad14ccc66d60" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_name</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad5af600b782ff5c044185757598ac89d" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_parent</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2326540b02f8fe398d02aa780788449" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_parentMu</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abd1ecfceb416ae91d8174c28727000bc" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_polarRadius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abbaadd54b412af3280fc0c06bab4ee26" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_referenceDate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abe0f1bce92f8567ae8ffbc77af89517b" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_rightAscension</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9569b8cbfed7c9b34267905af1d07444" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_rightAscensionRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a42b1c1e19c87759154d59c6e87d2b28c" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_rotationRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a813b7984683fb17b9239a290d6577472" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_semimajorAxis</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a83f0b33ff28a4ab913ebd0e788136af6" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_semimajorAxisRate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7bc9f6834e3b8be2be0038b0e87998a8" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_siderealPeriod</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad99ef627ce92656c8c96f65fcdf790a7" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_sphereOfInfluence</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a5c22eb37195d906eca47f50f20bd760e" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_trueAnomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a14ede427a704c0d06a4064134d3e0878" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>_type</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ae5d97a58dd29452c3fc99a7727312e6d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>CelestialBody</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b6942bd0ec0ce55d3d58bf29d51ba5a" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>CelestialBody</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a87589b8ead4d8f6d08dba4e76a48c5" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>CelestialBody</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>CoefficientPack</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1acfc2683c55c0c80d08cc4334b9cceff2" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9266110f7cb52d3e051de504fb997821" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_axial_tilt</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a894d59687465c8a3be71e1f770a204cf" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_chebyshev_table_coefficients</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a98a96ef56b6025558ee4148826509598" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_crash_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a744f4f4aa36431b86b1bec565d7bf645" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_eccentricity</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf1b632c73b028c571486ddf1c70d4a8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_eccentricity_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1aa9ff0662a7cfed2c04b79f2a45e73395" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_equitorial_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a40578d54cf24455865cff1039b9c12ca" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_id</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac1dd5a988080c70622118dee4f3fbc78" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a01321cb9cd10ac47cc41e4ef7d25b003" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_inclination_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaa2c56c6dd43f248d48c24345810b42a" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_j2</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c1289302f2809fac6d034d142af325f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_j3</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a51cb25b1f9d226380e609a9c82ae7b9b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_keplerian_elements_at</name></member>
+      <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a5fd905c8ebf65d0f6e12337fc3874bf5" prot="private" virt="virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_linear_expansion_coefficients</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4793cb0a8d3624feab96309ff2d3665d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_longitude_of_perigee</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2a06b78c0c6f044cc63c59ef4466c20" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_longitude_of_perigee_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a106b73023aee9d171ac9f73d4c64cf47" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0f4787d77b77701820161aa40abe66a8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_mean_anomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a68ef5a02068ae70622a0aa3e10af426f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_mean_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a17b0a9b8913ff254d6d3156fd3ff2fcf" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_mean_longitude_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a107a07661840122a1d4e4d64f7d5b5ac" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a27e7ae51508983539052b15e562b5e78" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_name</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a81b4dd27bcc6ba15c52ae24c2da73f0b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_parent</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad8bccd99ad4ecbbfa41b4c78cc85ac7b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_polar_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a92fa09c2b487be443063080b94e3a4a0" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_position_at</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a8bd6d908cf8e6c9e34d1c5c27aabad5b" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_position_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a6b3f7914b15dc3a2b82fed6bf7f4882d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_right_ascension</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaafb1e997f7cd8645bfa5e0c6206a920" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_right_ascension_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf194dbdddb56552586d93f4a7fa57c8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_rotation_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b75d6af460a338a4f56e5b348fb96e5" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_semimajor</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a333568b35e59c54b0a0e958d41d20da7" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_semimajor_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abbe61575b7f1ff02bd53cc5aaf238d09" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_sidereal_period</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ace9667d4b05a7088ae03348743785e79" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_sphere_of_influence</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a75bce13ee9fcc0a8b529d770764e687f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_true_anomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a22ea1abb7cdd2e5e1be6f713238710" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_type</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2721467967ab58178154c21aabd1f92b" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>get_velocity_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1ab80668912356f00ced68f788551a2e92" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>Neptune</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a27d3b8546ffe435ebc5f9ca3ab21e8aa" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a1032b5b4bb7ea99243af5de630c06ba7" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>~CelestialBody</name></member>
+      <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a2fdbd3227a87757547c58483308c0459" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Neptune</scope><name>~Neptune</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

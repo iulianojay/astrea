@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PolygonalFieldOfView_8cpp" kind="file" language="C++">
+    <compoundname>PolygonalFieldOfView.cpp</compoundname>
+    <includes refid="PolygonalFieldOfView_8hpp" local="no">trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">astro/frames/CartesianVector.hpp</includes>
+    <includes local="no">astro/frames/frames.hpp</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp</label>
+        <link refid="PolygonalFieldOfView_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</label>
+        <link refid="PolygonalFieldOfView_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="13">
+        <label>astro/frames/CartesianVector.hpp</label>
+      </node>
+      <node id="7">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="14">
+        <label>astro/frames/frames.hpp</label>
+      </node>
+      <node id="11">
+        <label>cmath</label>
+      </node>
+      <node id="5">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="3">
+        <label>numbers</label>
+      </node>
+      <node id="12">
+        <label>stdexcept</label>
+      </node>
+      <node id="8">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="10">
+        <label>unordered_map</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/CartesianVector.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">EciRadiusVec<sp/>=<sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kindref="member">PolygonalFieldOfView::PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(Angle<sp/>theta<sp/>=<sp/>0.0<sp/>*<sp/>astrea::detail::angle_unit;<sp/>theta<sp/>&lt;<sp/>TWO_PI;<sp/>theta<sp/>+=<sp/>(TWO_PI<sp/>/<sp/>nPoints))<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_points[theta]<sp/>=<sp/>halfConeAngle;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>find_min_and_max_angles();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kindref="member">PolygonalFieldOfView::PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeWidth,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeHeight,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::logic_error(</highlight><highlight class="stringliteral">&quot;This<sp/>function<sp/>has<sp/>not<sp/>been<sp/>properly<sp/>updated<sp/>and<sp/>is<sp/>not<sp/>currently<sp/>functional.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Angle<sp/>sinw<sp/>=<sp/>sin(halfConeWidth);</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Angle<sp/>sinh<sp/>=<sp/>sin(halfConeHeight);</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"></highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/><sp/><sp/><sp/>for<sp/>(Angle<sp/>theta<sp/>=<sp/>0.0;<sp/>theta<sp/>&lt;<sp/>TWO_PI;<sp/>theta<sp/>+=<sp/>(TWO_PI/nPoints))<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>points[theta]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/>find_min_and_max_angles();</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PolygonalFieldOfView::find_min_and_max_angles()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>comparitor<sp/>=<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>b)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.second<sp/>&lt;<sp/>b.second;<sp/>};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Just<sp/>use<sp/>off-boresight<sp/>angle<sp/>as<sp/>min/max.<sp/>This<sp/>assume<sp/>the<sp/>boresight<sp/>is<sp/>the<sp/>centroid<sp/>of<sp/>the<sp/>polygon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[minIt,<sp/>maxIt]<sp/>=<sp/>std::minmax_element(_points.begin(),<sp/>_points.end(),<sp/>comparitor);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>_minHalfAngle<sp/>=<sp/>minIt-&gt;second;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>_maxHalfAngle<sp/>=<sp/>maxIt-&gt;second;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d" kindref="member">PolygonalFieldOfView::contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EciRadiusVec&amp;<sp/>boresight,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EciRadiusVec&amp;<sp/>target)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="69"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>First<sp/>we<sp/>check<sp/>if<sp/>it&apos;s<sp/>within<sp/>the<sp/>smallest<sp/>enclosing<sp/>cone<sp/>or<sp/>outside<sp/>the<sp/>largest</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>I&apos;m<sp/>hoping<sp/>this<sp/>covers<sp/>most<sp/>cases</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>angleBetween<sp/>=<sp/>calculate_angle_between_vectors(boresight,<sp/>target);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(angleBetween<sp/>&lt;=<sp/>_minHalfAngle)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(angleBetween<sp/>&gt;<sp/>_maxHalfAngle)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Neither<sp/>less<sp/>than<sp/>the<sp/>smallest<sp/>angle<sp/>nor<sp/>greater<sp/>than<sp/>the<sp/>largest<sp/>angle,<sp/>so<sp/>we<sp/>have<sp/>to<sp/>do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>actual<sp/>math.<sp/>Build<sp/>out<sp/>the<sp/>polygon<sp/>of<sp/>the<sp/>FoV<sp/>in<sp/>the<sp/>plane<sp/>normal<sp/>to<sp/>the<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>polygon<sp/>=<sp/>build_polygon();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>target<sp/>vector<sp/>is<sp/>in<sp/>the<sp/>trangle<sp/>formed<sp/>by<sp/>the<sp/>origin<sp/>and<sp/>the<sp/>two<sp/>vertices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NOTE:<sp/>The<sp/>second<sp/>angle<sp/>calculated<sp/>here<sp/>(atan2)<sp/>is<sp/>wrong<sp/>-<sp/>it<sp/>should<sp/>be<sp/>calculated<sp/>from<sp/>the<sp/>plane<sp/>normal<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>the<sp/>boresight<sp/>vector,<sp/>not<sp/>to<sp/>the<sp/>ECI<sp/>x-y<sp/>plane</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Unitless,<sp/>Unitless&gt;&amp;<sp/>point<sp/>=<sp/>{<sp/>sin(angleBetween)<sp/>*<sp/>cos(atan2(target[1],<sp/>target[0])),</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sin(angleBetween)<sp/>*<sp/>sin(atan2(target[1],<sp/>target[0]))<sp/>};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Run<sp/>in<sp/>polygon<sp/>test</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>point_in_polygon(point,<sp/>polygon);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>PolygonalFieldOfView::build_polygon()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="93"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>assumes<sp/>the<sp/>distance<sp/>from<sp/>the<sp/>origin<sp/>to<sp/>the<sp/>points<sp/>is<sp/>1<sp/>unit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>will<sp/>make<sp/>it<sp/>harder<sp/>to<sp/>compute<sp/>the<sp/>intersection<sp/>of<sp/>the<sp/>target<sp/>vector<sp/>with<sp/>the<sp/>polygon<sp/>plane</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>polygon;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>_points.begin();<sp/>it<sp/>!=<sp/>_points.end();<sp/>++it)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Construct<sp/>x,<sp/>y<sp/>from<sp/>angles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>xVertex1<sp/>=<sp/>sin(it-&gt;second)<sp/>*<sp/>cos(it-&gt;first);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>yVertex1<sp/>=<sp/>sin(it-&gt;second)<sp/>*<sp/>sin(it-&gt;first);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>polygon.emplace_back(xVertex1,<sp/>yVertex1);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>polygon;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>point_in_polygon(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Unitless,<sp/>Unitless&gt;&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;&amp;<sp/>polygon)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ray-casting<sp/>algorithm<sp/>for<sp/>point<sp/>in<sp/>polygon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>inside<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>n<sp/><sp/><sp/><sp/>=<sp/>polygon.size();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>x<sp/>=<sp/>point.first;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>y<sp/>=<sp/>point.second;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>ii<sp/>=<sp/>0,<sp/>jj<sp/>=<sp/>n<sp/>-<sp/>1;<sp/>ii<sp/>&lt;<sp/>n;<sp/>jj<sp/>=<sp/>ii++)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>xi<sp/>=<sp/>polygon[ii].first;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>yi<sp/>=<sp/>polygon[ii].second;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>xj<sp/>=<sp/>polygon[jj].first;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>yj<sp/>=<sp/>polygon[jj].second;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>Is<sp/>this<sp/>real<sp/>or<sp/>hallucinated?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(((yi<sp/>&gt;<sp/>y)<sp/>!=<sp/>(yj<sp/>&gt;<sp/>y))<sp/>&amp;&amp;<sp/>(x<sp/>&lt;<sp/>(xj<sp/>-<sp/>xi)<sp/>*<sp/>(y<sp/>-<sp/>yi)<sp/>/<sp/>(yj<sp/>-<sp/>yi)<sp/>+<sp/>xi))<sp/>{<sp/>inside<sp/>=<sp/>!inside;<sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>inside;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp"/>
+  </compounddef>
+</doxygen>

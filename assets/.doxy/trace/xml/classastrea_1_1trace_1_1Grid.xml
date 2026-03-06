@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1Grid" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::Grid</compoundname>
+    <includes refid="Grid_8hpp" local="no">Grid.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;::iterator</type>
+        <definition>using astrea::trace::Grid::iterator =  std::vector&lt;GroundPoint&gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>astrea::trace::Grid::iterator</qualifiedname>
+        <briefdescription>
+<para>Iterator types for the <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="113" column="5" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;::const_iterator</type>
+        <definition>using astrea::trace::Grid::const_iterator =  std::vector&lt;GroundPoint&gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>astrea::trace::Grid::const_iterator</qualifiedname>
+        <briefdescription>
+<para>Constant iterator types for the <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="118" column="5" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1Grid_1a6ed66e2c3180abc0da0a16ed94a70faf" prot="private" static="no" mutable="no">
+        <type>const astro::CelestialBody *</type>
+        <definition>const astro::CelestialBody* astrea::trace::Grid::_parent</definition>
+        <argsstring></argsstring>
+        <name>_parent</name>
+        <qualifiedname>astrea::trace::Grid::_parent</qualifiedname>
+        <briefdescription>
+<para>Pointer to the parent celestial body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="179" column="32" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1Grid_1ac929e78f661ee22d223dfca0198b32dd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+        <definition>std::vector&lt;GroundPoint&gt; astrea::trace::Grid::_groundPoints</definition>
+        <argsstring></argsstring>
+        <name>_groundPoints</name>
+        <qualifiedname>astrea::trace::Grid::_groundPoints</qualifiedname>
+        <briefdescription>
+<para>Vector of ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="180" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1Grid_1a3642af5adbeeed53b5cd30f0938bbfa5" prot="private" static="no" mutable="no">
+        <type><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref></type>
+        <definition>GridType astrea::trace::Grid::_gridType</definition>
+        <argsstring></argsstring>
+        <name>_gridType</name>
+        <qualifiedname>astrea::trace::Grid::_gridType</qualifiedname>
+        <briefdescription>
+<para>Type of grid (uniform, equal area, etc.) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="181" column="14" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="181" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a6baeb81901fda378010da4f7abf6fd96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::Grid::Grid</definition>
+        <argsstring>()=default</argsstring>
+        <name>Grid</name>
+        <qualifiedname>astrea::trace::Grid::Grid</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes an empty grid with no ground points. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="48" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a430cf2ce14cb5d1b2a9ece133ca8659c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::Grid::Grid</definition>
+        <argsstring>(const std::vector&lt; GroundPoint &gt; &amp;groundPoints)</argsstring>
+        <name>Grid</name>
+        <qualifiedname>astrea::trace::Grid::Grid</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt; &amp;</type>
+          <declname>groundPoints</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> with a vector of ground stations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groundPoints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> objects representing the grid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="55" column="5" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="55" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::Grid::Grid</definition>
+        <argsstring>(const astro::CelestialBody *parent, const LatLon &amp;corner1, const LatLon &amp;corner4, const GridType &amp;gridType, const Angle &amp;spacing=5.0 *mp_units::angular::unit_symbols::deg, const Unitless &amp;weight=0.0 *mp_units::one)</argsstring>
+        <name>Grid</name>
+        <qualifiedname>astrea::trace::Grid::Grid</qualifiedname>
+        <param>
+          <type>const astro::CelestialBody *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner4</declname>
+        </param>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref> &amp;</type>
+          <declname>gridType</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>spacing</declname>
+          <defval>5.0 *mp_units::angular::unit_symbols::deg</defval>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>weight</declname>
+          <defval>0.0 *mp_units::one</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> with specified corner points and grid type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corner1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>corner4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fourth corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of grid to create (uniform, equal area, etc.). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between points in the grid (default is 5 degrees). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Weighting factor for the grid (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="70" column="5" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="70" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::trace::Grid::~Grid</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Grid</name>
+        <qualifiedname>astrea::trace::Grid::~Grid</qualifiedname>
+        <briefdescription>
+<para>Default destructor for the <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="87" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref></type>
+        <definition>GridType astrea::trace::Grid::get_grid_type</definition>
+        <argsstring>() const</argsstring>
+        <name>get_grid_type</name>
+        <qualifiedname>astrea::trace::Grid::get_grid_type</qualifiedname>
+        <briefdescription>
+<para>Get the type of grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>GridType The type of grid (uniform, equal area, etc.). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="94" column="14" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const astro::CelestialBody *</type>
+        <definition>const astro::CelestialBody * astrea::trace::Grid::get_parent</definition>
+        <argsstring>() const</argsstring>
+        <name>get_parent</name>
+        <qualifiedname>astrea::trace::Grid::get_parent</qualifiedname>
+        <briefdescription>
+<para>Get the parent celestial body of the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const CelestialBody* Pointer to the parent celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="101" column="32" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::Grid::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::trace::Grid::size</qualifiedname>
+        <briefdescription>
+<para>Get the number of ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The number of ground points in the grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="108" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::trace::Grid::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::Grid::begin</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the beginning of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An iterator to the first ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="125" column="14" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::trace::Grid::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::Grid::end</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the end of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An iterator to one past the last ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="132" column="14" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1ad4933278da793b06231e8b61c32e4cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::Grid::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::Grid::begin</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the beginning of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant iterator to the first ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="139" column="20" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="139" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::Grid::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::Grid::end</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the end of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant iterator to one past the last ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="146" column="20" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::Grid::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>astrea::trace::Grid::cbegin</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the beginning of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant iterator to the first ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="153" column="20" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="153" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::Grid::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>astrea::trace::Grid::cend</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the end of the ground points in the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant iterator to one past the last ground point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="160" column="20" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &amp;</type>
+        <definition>GroundPoint &amp; astrea::trace::Grid::operator[]</definition>
+        <argsstring>(const std::size_t index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::trace::Grid::operator[]</qualifiedname>
+        <param>
+          <type>const std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access ground points in the grid by index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the ground point to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="168" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="168" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &amp;</type>
+        <definition>const GroundPoint &amp; astrea::trace::Grid::operator[]</definition>
+        <argsstring>(const std::size_t index) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::trace::Grid::operator[]</qualifiedname>
+        <param>
+          <type>const std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access ground points in the grid by index (constant version). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the ground point to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Constant reference to the <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="176" column="23" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="176" bodyend="176"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a575835af14f1e71895e571fcda337e8e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+        <definition>std::vector&lt; GroundPoint &gt; astrea::trace::Grid::build_grid</definition>
+        <argsstring>(const LatLon &amp;corner1, const LatLon &amp;corner4, const GridType &amp;gridType, const Angle &amp;spacing, const Unitless &amp;weight) const</argsstring>
+        <name>build_grid</name>
+        <qualifiedname>astrea::trace::Grid::build_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner4</declname>
+        </param>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref> &amp;</type>
+          <declname>gridType</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>spacing</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+<para>Builds a grid of ground points based on the specified parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corner1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>corner4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fourth corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of grid to create (uniform, equal area, etc.). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between points in the grid. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Weighting factor for the grid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector of <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> objects representing the grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="194" column="9" bodyfile="astrea/trace/trace/platforms/ground/Grid.cpp" bodystart="24" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1af5e9d97ab7f231f2e9a4cb3987696ec5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+        <definition>std::vector&lt; GroundPoint &gt; astrea::trace::Grid::build_uniform_grid</definition>
+        <argsstring>(const LatLon &amp;corner1, const LatLon &amp;corner4, const Angle &amp;spacing) const</argsstring>
+        <name>build_uniform_grid</name>
+        <qualifiedname>astrea::trace::Grid::build_uniform_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner4</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>spacing</declname>
+        </param>
+        <briefdescription>
+<para>Builds a grid of ground points based on the specified corner points and spacing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corner1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>corner4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fourth corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between points in the grid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;GroundPoint&gt; A vector of <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> objects representing the grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="204" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.cpp" bodystart="37" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1ae7762041f13cdb30630eb35f9c1c0a2e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+        <definition>std::vector&lt; GroundPoint &gt; astrea::trace::Grid::build_equal_area_grid</definition>
+        <argsstring>(const LatLon &amp;corner1, const LatLon &amp;corner4, const Angle &amp;spacing) const</argsstring>
+        <name>build_equal_area_grid</name>
+        <qualifiedname>astrea::trace::Grid::build_equal_area_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner4</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>spacing</declname>
+        </param>
+        <briefdescription>
+<para>Builds an equal area grid of ground points based on the specified corner points and spacing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corner1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>corner4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fourth corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between points in the grid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;GroundPoint&gt; A vector of <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> objects representing the equal area grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="214" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.cpp" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1aa2f8b5b08aaf9eb1e41f4aa829b82db6" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+        <definition>std::vector&lt; GroundPoint &gt; astrea::trace::Grid::build_weighted_grid</definition>
+        <argsstring>(const LatLon &amp;corner1, const LatLon &amp;corner4, const GridType &amp;gridType, const Angle &amp;initialSpacing, const Unitless &amp;weight) const</argsstring>
+        <name>build_weighted_grid</name>
+        <qualifiedname>astrea::trace::Grid::build_weighted_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref> &amp;</type>
+          <declname>corner4</declname>
+        </param>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref> &amp;</type>
+          <declname>gridType</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>initialSpacing</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+<para>Builds a weighted grid of ground points based on the specified corner points, grid type, spacing, and weight. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corner1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>corner4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fourth corner point of the grid (latitude, longitude). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gridType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of weighted grid to create (North-South or East-West emphasis). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between points in the grid. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Weighting factor for the grid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;GroundPoint&gt; A vector of <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> objects representing the weighted grid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="227" column="9" bodyfile="astrea/trace/trace/platforms/ground/Grid.cpp" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a773e7ee7b145592c61b92ab2cbe0b28e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Angle &gt;</type>
+        <definition>std::vector&lt; Angle &gt; astrea::trace::Grid::create_uniformly_spaced_vector</definition>
+        <argsstring>(const Angle &amp;first, const Angle &amp;second, const Angle &amp;spacing) const</argsstring>
+        <name>create_uniformly_spaced_vector</name>
+        <qualifiedname>astrea::trace::Grid::create_uniformly_spaced_vector</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>second</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>spacing</declname>
+        </param>
+        <briefdescription>
+<para>Creates a uniformly spaced vector of angles between two points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>first</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First angle in the vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>second</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second angle in the vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spacing between the angles. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;Angle&gt; A vector of angles spaced evenly between the first and second angles. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="237" column="17" bodyfile="astrea/trace/trace/platforms/ground/Grid.cpp" bodystart="68" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a grid of ground points. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> class manages a collection of ground points, allowing for various grid configurations such as uniform, equal area, and weighted grids. It provides methods to iterate over the ground stations and access their properties. </para>
+    </detaileddescription>
+    <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="41" column="1" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="41" bodyend="238"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1Grid_1a3642af5adbeeed53b5cd30f0938bbfa5" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>_gridType</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ac929e78f661ee22d223dfca0198b32dd" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>_groundPoints</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a6ed66e2c3180abc0da0a16ed94a70faf" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>_parent</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ad4933278da793b06231e8b61c32e4cdc" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ae7762041f13cdb30630eb35f9c1c0a2e" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>build_equal_area_grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a575835af14f1e71895e571fcda337e8e" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>build_grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1af5e9d97ab7f231f2e9a4cb3987696ec5" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>build_uniform_grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1aa2f8b5b08aaf9eb1e41f4aa829b82db6" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>build_weighted_grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>cbegin</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>cend</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a773e7ee7b145592c61b92ab2cbe0b28e" prot="private" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>create_uniformly_spaced_vector</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>get_grid_type</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>get_parent</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a6baeb81901fda378010da4f7abf6fd96" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a430cf2ce14cb5d1b2a9ece133ca8659c" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>size</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" prot="public" virt="virtual"><scope>astrea::trace::Grid</scope><name>~Grid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,146 @@
+
+
+# File KeplerianVop.cpp
+
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**propagation**](dir_55ae0edd352c6621ebfa1115f28a0fff.md) **>** [**equations\_of\_motion**](dir_0a1395a4617b025941a2198784f446c5.md) **>** [**KeplerianVop.cpp**](KeplerianVop_8cpp.md)
+
+[Go to the documentation of this file](KeplerianVop_8cpp.md)
+
+
+```C++
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
+
+#include <iostream>
+
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+
+namespace astrea {
+namespace astro {
+
+using namespace mp_units;
+using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
+KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
+    forces(&forces),
+    doWarn(doWarn)
+{
+}
+
+OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicle& vehicle) const
+{
+    // Extract
+    const auto mu    = state.get_system().get_mu();
+    const Date& date = state.get_epoch();
+
+    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Distance& a        = elements.get_semimajor();
+    // const Angle& raan = elements.get_right_ascension();
+    const Angle& w     = elements.get_argument_of_perigee();
+    const Angle& theta = elements.get_true_anomaly();
+
+    // Prevents singularities from occuring in the propagation. Will cause
+    // inaccuracies.
+    const Unitless& ecc = (elements.get_eccentricity() < checkTol * one) ? checkTol * one : elements.get_eccentricity();
+    const Angle& inc    = (elements.get_inclination() < checkTol * rad) ? checkTol * rad : elements.get_inclination();
+
+    if (doWarn) { check_degenerate(ecc, inc); }
+
+    // conversions KEPLERIANs to r and v
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+
+    // Function for finding accel caused by perturbations
+    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
+
+    // Calculate R, N, and T
+    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
+
+    const Acceleration& radialPert     = accelRic.get_x();
+    const Acceleration& tangentialPert = accelRic.get_y();
+    const Acceleration& normalPert     = accelRic.get_z();
+
+    // Argument of latitude
+    const Angle u = w + theta;
+
+    // Precalculate
+    const Unitless cosTA = cos(theta);
+    const Unitless sinTA = sin(theta);
+    const Unitless cosU  = cos(u);
+    const Unitless sinU  = sin(u);
+
+    const Distance R                    = r.norm();
+    const SpecificAngularMomentum h     = sqrt(mu * a * (1 - ecc * ecc));
+    const quantity hSquared             = h * h;
+    const UnitlessPerTime hOverRSquared = h / (R * R);
+
+    // Calculate the derivatives of the Keplerian elements
+    const quantity dhdt = R * tangentialPert;
+    const UnitlessPerTime deccdt =
+        h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
+    const Velocity dadt = 2.0 * a * (1.0 / h * dhdt + ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
+    const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const AngularRate dthetadt =
+        (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
+        (isq_angle::cotes_angle);
+    const AngularRate draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
+
+    return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
+}
+
+
+StateTransitionMatrix KeplerianVop::compute_stm(const State& state, const Vehicle& vehicle) const
+{
+    return StateTransitionMatrix(*this, state, vehicle);
+}
+
+void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const
+{
+    if (ecc <= checkTol * one || inc <= checkTol * rad) {
+        std::string title;
+        if (ecc <= checkTol * one && inc <= checkTol * rad) { title = "Eccentricity and inclination"; }
+        else if (ecc <= checkTol * one) {
+            title = "Eccentricity";
+        }
+        else {
+            title = "Inclination";
+        }
+        std::cout << "WARNING: Degenerate case. " << title << " smaller than acceptable tolerance (" << checkTol
+                  << "). Results may be inaccurate." << std::endl
+                  << std::endl;
+    }
+}
+
+} // namespace astro
+} // namespace astrea
+```
+
+

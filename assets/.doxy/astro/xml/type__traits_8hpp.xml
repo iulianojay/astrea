@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="type__traits_8hpp" kind="file" language="C++">
+    <compoundname>type_traits.hpp</compoundname>
+    <includes local="no">cstddef</includes>
+    <includes local="no">initializer_list</includes>
+    <includes local="no">string</includes>
+    <includes local="no">tuple</includes>
+    <includes local="no">type_traits</includes>
+    <includes local="no">utility</includes>
+    <includedby refid="Vehicle_8hpp" local="no">astrea/astro/astro/platforms/Vehicle.hpp</includedby>
+    <includedby refid="OrbitalElements_8hpp" local="no">astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/astro/astro/types/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstddef</label>
+      </node>
+      <node id="3">
+        <label>initializer_list</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>tuple</label>
+      </node>
+      <node id="6">
+        <label>type_traits</label>
+      </node>
+      <node id="7">
+        <label>utility</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
+        <link refid="dynamic__frames_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
+        <link refid="Vehicle_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
+        <link refid="Geocentric_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
+        <link refid="Spherical_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
+        <link refid="orbital__elements_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/types/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Type traits for astrea astro library. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;initializer_list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tuple&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">remove_cv_ref<sp/>=<sp/>std::remove_cv_t&lt;std::remove_reference_t&lt;T&gt;&gt;;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/types/type_traits.hpp"/>
+  </compounddef>
+</doxygen>

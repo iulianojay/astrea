@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_13e0f381fe8815c377e6396c5412a0a3" kind="dir">
+    <compoundname>astrea/snapshot/snapshot/types</compoundname>
+    <innerfile refid="typedefs_8hpp">typedefs.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/snapshot/snapshot/types/"/>
+  </compounddef>
+</doxygen>

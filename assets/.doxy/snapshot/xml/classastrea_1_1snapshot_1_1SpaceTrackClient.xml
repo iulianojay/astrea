@@ -1,0 +1,861 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1snapshot_1_1SpaceTrackClient" kind="class" language="C++" prot="public">
+    <compoundname>astrea::snapshot::SpaceTrackClient</compoundname>
+    <includes refid="SpaceTrackClient_8hpp" local="no">SpaceTrackClient.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" prot="public" static="no" strong="yes">
+        <type><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref></type>
+        <name>Controller</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::Controller</qualifiedname>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" prot="public">
+          <name>BASIC_SPACE_DATA</name>
+          <briefdescription>
+<para>Basic Space Data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9aee65898e1768143572a3769c09f55f70" prot="public">
+          <name>PUBLIC_FILES</name>
+          <briefdescription>
+<para>Public Files. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration for the different controllers available in SpaceTrack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This enumeration defines the various controllers that can be used to access different types of data from the SpaceTrack API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="50" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="50" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="enum" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" prot="public" static="no" strong="yes">
+        <type><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref></type>
+        <name>Action</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::Action</qualifiedname>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" prot="public">
+          <name>QUERY</name>
+          <briefdescription>
+<para>Query action. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca86b3bdfae903c60e282ba0e020114909" prot="public">
+          <name>MODEL_DEF</name>
+          <briefdescription>
+<para>Model definition action. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration for the different actions that can be performed in SpaceTrack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This enumeration defines the various actions that can be performed when querying data from the SpaceTrack API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="63" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="enum" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" prot="public" static="no" strong="yes">
+        <type><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref></type>
+        <name>SpaceDataClass</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::SpaceDataClass</qualifiedname>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa9fe662f80887cbacf6776aab8e00965" prot="public">
+          <name>ANNOUNCEMENT</name>
+          <briefdescription>
+<para>Announcement data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a85297465d0a7714835efa786ad1ef551" prot="public">
+          <name>BOX_SCORE</name>
+          <briefdescription>
+<para>Box score data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a2e8f52edd2685a9fa0cb5a639d907657" prot="public">
+          <name>CDM_PUBLIC</name>
+          <briefdescription>
+<para>Conjunction Data Message (CDM) public data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af34d9b416802d4cda3a4ee548619f206" prot="public">
+          <name>DECAY</name>
+          <briefdescription>
+<para>Decay data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" prot="public">
+          <name>GP</name>
+          <briefdescription>
+<para>General Perturbation (GP) data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a4f81be00af7fbbf1f28d28bde0af06b1" prot="public">
+          <name>GP_HISTORY</name>
+          <briefdescription>
+<para>General Perturbation (GP) history data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aa80baa3df5d5152d2bf33f80b4c3be03" prot="public">
+          <name>LAUNCH_SITE</name>
+          <briefdescription>
+<para>Launch site data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942ae0b57cf07d08b87931d73e4c9d18091b" prot="public">
+          <name>SATCAT</name>
+          <briefdescription>
+<para>Satellite Catalog (SATCAT) data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a544fa2e9669f440be5c6b7b1fd36ee7b" prot="public">
+          <name>SATCAT_CHANGE</name>
+          <briefdescription>
+<para>Satellite Catalog change data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942af7f55159fa92fa3be76ad296b35cc4b4" prot="public">
+          <name>SATCAT_DEBUT</name>
+          <briefdescription>
+<para>Satellite Catalog debut data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942a1eab470a6f707b92e15040773251a746" prot="public">
+          <name>TIP</name>
+          <briefdescription>
+<para>Tracking and Information Processing (TIP) data. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration for the different classes of space data available in SpaceTrack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This enumeration defines the various classes of space data that can be queried from the SpaceTrack API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="73" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="73" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="enum" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" prot="public" static="no" strong="yes">
+        <type><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref></type>
+        <name>PublicFilesClass</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::PublicFilesClass</qualifiedname>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a626f59acaeb60dabe79cff6fee9973c7" prot="public">
+          <name>DIRS</name>
+          <briefdescription>
+<para>Directories of public files. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020a631152daefc8201c641fa7a37c397dce" prot="public">
+          <name>DOWNLOAD</name>
+          <briefdescription>
+<para>Download public files. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020ac935a4e21742b5a03a15b05834e2d82c" prot="public">
+          <name>FILES</name>
+          <briefdescription>
+<para>List of public files. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020af770d5ea6dd4a6fe36dd95c7edfae589" prot="public">
+          <name>LOAD_PUBLIC_DATA</name>
+          <briefdescription>
+<para>Load public data files. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration for the different classes of public files available in SpaceTrack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This enumeration defines the various classes of public files that can be accessed from the SpaceTrack API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="92" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="92" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" prot="public" static="no">
+        <type>std::variant&lt; <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" kindref="member">SpaceDataClass</ref>, <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" kindref="member">PublicFilesClass</ref> &gt;</type>
+        <definition>using astrea::snapshot::SpaceTrackClient::RequestClass =  std::variant&lt;SpaceDataClass, PublicFilesClass&gt;</definition>
+        <argsstring></argsstring>
+        <name>RequestClass</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::RequestClass</qualifiedname>
+        <briefdescription>
+<para>Type alias for the request class, which can be either SpaceDataClass or PublicFilesClass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This type alias allows for a unified way to handle different types of requests in the <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="104" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1ada93ab76849a6e6f3811db3b41aa8681" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::SpaceTrackClient::_base</definition>
+        <argsstring></argsstring>
+        <name>_base</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::_base</qualifiedname>
+        <initializer>= &quot;https://www.space-track.org&quot;</initializer>
+        <briefdescription>
+<para>Base URL for the SpaceTrack API. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="166" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a6c28dfddb667bede20b7ced04b29d3ea" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::SpaceTrackClient::_loginUrl</definition>
+        <argsstring></argsstring>
+        <name>_loginUrl</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::_loginUrl</qualifiedname>
+        <initializer>= _base + &quot;/ajaxauth/login&quot;</initializer>
+        <briefdescription>
+<para>URL for the login endpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="169" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7a0a8236e07a72a18a9793bfdced52e1" prot="private" static="no" mutable="no">
+        <type>cpr::Cookies</type>
+        <definition>cpr::Cookies astrea::snapshot::SpaceTrackClient::_loginCookies</definition>
+        <argsstring></argsstring>
+        <name>_loginCookies</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::_loginCookies</qualifiedname>
+        <briefdescription>
+<para>Cookies for the login session. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="170" column="18" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::snapshot::SpaceTrackClient::SpaceTrackClient</definition>
+        <argsstring>()=default</argsstring>
+        <name>SpaceTrackClient</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::SpaceTrackClient</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref> instance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="111" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::snapshot::SpaceTrackClient::~SpaceTrackClient</definition>
+        <argsstring>()=default</argsstring>
+        <name>~SpaceTrackClient</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::~SpaceTrackClient</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Cleans up the <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref> instance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="118" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::snapshot::SpaceTrackClient::login</definition>
+        <argsstring>(const std::string &amp;username, const std::string &amp;password)</argsstring>
+        <name>login</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::login</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>username</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Logs in to the SpaceTrack API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function authenticates the user with the SpaceTrack API using the provided username and password.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The username for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="129" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::SpaceTrackClient::query</definition>
+        <argsstring>(const std::string &amp;username, const std::string &amp;password, const Controller &amp;controller=Controller::BASIC_SPACE_DATA, const Action &amp;action=Action::QUERY, const RequestClass &amp;requestClass=SpaceDataClass::GP, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; predicates={})</argsstring>
+        <name>query</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::query</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>username</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref> &amp;</type>
+          <declname>controller</declname>
+          <defval><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kindref="member">Controller::BASIC_SPACE_DATA</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref> &amp;</type>
+          <declname>action</declname>
+          <defval><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656ca5662080872eece1e1ceeec5750198283" kindref="member">Action::QUERY</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref> &amp;</type>
+          <declname>requestClass</declname>
+          <defval><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942aad2d8ee7d788dcf41f399818f639cb64" kindref="member">SpaceDataClass::GP</ref></defval>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt;</type>
+          <declname>predicates</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Queries the SpaceTrack API for data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sends a query to the SpaceTrack API using the specified parameters and returns the response as a JSON object.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The username for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller to use for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>action</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The action to perform (e.g., QUERY, MODEL_DEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>requestClass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The class of data to request (e.g., GP, SATCAT). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predicates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional predicates to filter the query results. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the query results. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="145" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="39" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::SpaceTrackClient::retrieve_all</definition>
+        <argsstring>(const std::string &amp;username, const std::string &amp;password)</argsstring>
+        <name>retrieve_all</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::retrieve_all</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>username</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>password</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves all data from the SpaceTrack API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function retrieves all data available in the SpaceTrack API for the specified user.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The username for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing all available data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="163" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="52" bodyend="58"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3e004173a63396fe72c764a424a0d433" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::snapshot::SpaceTrackClient::valid_cookies</definition>
+        <argsstring>() const</argsstring>
+        <name>valid_cookies</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::valid_cookies</qualifiedname>
+        <briefdescription>
+<para>Checks if the login cookies are valid and have not expired. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the cookies are valid, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="177" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="234" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49538eefc08c7684a3eda73d0fdc4d12" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::snapshot::SpaceTrackClient::check_query_history</definition>
+        <argsstring>(const std::string &amp;username) const</argsstring>
+        <name>check_query_history</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::check_query_history</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>username</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the user has exceeded the query limits. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The username for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the user has exceeded the limits, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="185" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="165" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1ab52fa5374162f420fd301ad2a3ac97ff" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::snapshot::SpaceTrackClient::controller_to_string</definition>
+        <argsstring>(const Controller &amp;controller) const</argsstring>
+        <name>controller_to_string</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::controller_to_string</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref> &amp;</type>
+          <declname>controller</declname>
+        </param>
+        <briefdescription>
+<para>Converts a Controller enum value to its string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Controller enum value to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the Controller. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="193" column="17" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="60" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3c17a37c2251b81231ee2780633bf48c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::snapshot::SpaceTrackClient::action_to_string</definition>
+        <argsstring>(const Action &amp;action) const</argsstring>
+        <name>action_to_string</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::action_to_string</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref> &amp;</type>
+          <declname>action</declname>
+        </param>
+        <briefdescription>
+<para>Converts an Action enum value to its string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>action</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Action enum value to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the Action. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="201" column="17" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="73" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1aa9e61a657442ae8487e6a810e233d93d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::snapshot::SpaceTrackClient::class_to_string</definition>
+        <argsstring>(const RequestClass &amp;requestClass) const</argsstring>
+        <name>class_to_string</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::class_to_string</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref> &amp;</type>
+          <declname>requestClass</declname>
+        </param>
+        <briefdescription>
+<para>Converts a RequestClass variant to its string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>requestClass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The RequestClass variant to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the RequestClass. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="209" column="17" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7981302116881d06e2e90fd3a6bdcc1d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::snapshot::SpaceTrackClient::class_to_string</definition>
+        <argsstring>(const SpaceDataClass &amp;requestClass) const</argsstring>
+        <name>class_to_string</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::class_to_string</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" kindref="member">SpaceDataClass</ref> &amp;</type>
+          <declname>requestClass</declname>
+        </param>
+        <briefdescription>
+<para>Converts a SpaceDataClass enum value to its string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>requestClass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SpaceDataClass enum value to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the SpaceDataClass. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="217" column="17" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="91" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4356f5a3090bb09d1169b66f8289c739" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::snapshot::SpaceTrackClient::class_to_string</definition>
+        <argsstring>(const PublicFilesClass &amp;requestClass) const</argsstring>
+        <name>class_to_string</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::class_to_string</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" kindref="member">PublicFilesClass</ref> &amp;</type>
+          <declname>requestClass</declname>
+        </param>
+        <briefdescription>
+<para>Converts a PublicFilesClass enum value to its string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>requestClass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The PublicFilesClass enum value to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the PublicFilesClass. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="225" column="17" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="131" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1afe12672f9ca02fe35a9831287cb73930" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>cpr::Url</type>
+        <definition>cpr::Url astrea::snapshot::SpaceTrackClient::build_query_url</definition>
+        <argsstring>(const Controller &amp;controller, const Action &amp;action, const RequestClass &amp;requestClass, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; predicates) const</argsstring>
+        <name>build_query_url</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::build_query_url</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref> &amp;</type>
+          <declname>controller</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" kindref="member">Action</ref> &amp;</type>
+          <declname>action</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref> &amp;</type>
+          <declname>requestClass</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt;</type>
+          <declname>predicates</declname>
+        </param>
+        <briefdescription>
+<para>Builds the query URL for the SpaceTrack API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function constructs the URL for querying the SpaceTrack API based on the provided parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller to use for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>action</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The action to perform (e.g., QUERY, MODEL_DEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>requestClass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The class of data to request (e.g., GP, SATCAT). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predicates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional predicates to filter the query results. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A cpr::Url object representing the constructed query URL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="238" column="14" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="150" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1SpaceTrackClient_1ad142e497ae6a64de8db61608d946286c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::SpaceTrackClient::query_impl</definition>
+        <argsstring>(const std::string &amp;username, const std::string &amp;password, cpr::Url queryUrl)</argsstring>
+        <name>query_impl</name>
+        <qualifiedname>astrea::snapshot::SpaceTrackClient::query_impl</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>username</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>cpr::Url</type>
+          <declname>queryUrl</declname>
+        </param>
+        <briefdescription>
+<para>Performs the actual query to the SpaceTrack API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sends a request to the SpaceTrack API using the provided username, password, and query URL, and returns the response as a JSON object.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The username for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The password for the SpaceTrack account. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>queryUrl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The URL to query. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the query results. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="256" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp" bodystart="244" bodyend="274"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient" kindref="compound">SpaceTrackClient</ref> class for interacting with the SpaceTrack API. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides methods to login, query data, and retrieve information from the SpaceTrack API. It supports various controllers and actions to access different types of space data. <simplesect kind="note"><para>WARNING: Do NOT use this for automated scripts. I have NOT setup a check to make sure we&apos;re within the automated script limits and you could get your SpaceTrack account banned. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" line="42" column="1" bodyfile="astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp" bodystart="42" bodyend="257"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ada93ab76849a6e6f3811db3b41aa8681" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>_base</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7a0a8236e07a72a18a9793bfdced52e1" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>_loginCookies</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a6c28dfddb667bede20b7ced04b29d3ea" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>_loginUrl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a478be44729d2b38e0065c463b2ce656c" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>Action</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3c17a37c2251b81231ee2780633bf48c" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>action_to_string</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1afe12672f9ca02fe35a9831287cb73930" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>build_query_url</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49538eefc08c7684a3eda73d0fdc4d12" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>check_query_history</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1aa9e61a657442ae8487e6a810e233d93d" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>class_to_string</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7981302116881d06e2e90fd3a6bdcc1d" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>class_to_string</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4356f5a3090bb09d1169b66f8289c739" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>class_to_string</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>Controller</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ab52fa5374162f420fd301ad2a3ac97ff" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>controller_to_string</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>login</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>PublicFilesClass</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>query</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ad142e497ae6a64de8db61608d946286c" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>query_impl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>RequestClass</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>retrieve_all</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1abd8b1d3451fef6133c7f681d02de0942" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>SpaceDataClass</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>SpaceTrackClient</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3e004173a63396fe72c764a424a0d433" prot="private" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>valid_cookies</name></member>
+      <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" prot="public" virt="non-virtual"><scope>astrea::snapshot::SpaceTrackClient</scope><name>~SpaceTrackClient</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

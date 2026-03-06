@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_68b93ce2887c47fc193a24ece16ebbe5" kind="dir">
+    <compoundname>astrea/astro/astro/utilities</compoundname>
+    <innerfile refid="conversions_8cpp">conversions.cpp</innerfile>
+    <innerfile refid="conversions_8hpp">conversions.hpp</innerfile>
+    <innerfile refid="plotting_8cpp">plotting.cpp</innerfile>
+    <innerfile refid="plotting_8hpp">plotting.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/utilities/"/>
+  </compounddef>
+</doxygen>

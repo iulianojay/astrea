@@ -1,0 +1,948 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1AccessAnalyzer" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::AccessAnalyzer</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1adbaf5780cdd95189c2d2b2b48a815e2a" prot="private" static="no" mutable="no">
+        <type>Time</type>
+        <definition>Time astrea::trace::AccessAnalyzer::_resolution</definition>
+        <argsstring></argsstring>
+        <name>_resolution</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_resolution</qualifiedname>
+        <briefdescription>
+<para>Time resolution for access calculations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="141" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1a723c1372f27256aea420a3cfe6489711" prot="private" static="no" mutable="no">
+        <type>astro::Date</type>
+        <definition>astro::Date astrea::trace::AccessAnalyzer::_startDate</definition>
+        <argsstring></argsstring>
+        <name>_startDate</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_startDate</qualifiedname>
+        <briefdescription>
+<para>Start date for access analysis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="142" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1a44ffcc6b137924f0db6f43457212323a" prot="private" static="no" mutable="no">
+        <type>astro::Date</type>
+        <definition>astro::Date astrea::trace::AccessAnalyzer::_endDate</definition>
+        <argsstring></argsstring>
+        <name>_endDate</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_endDate</qualifiedname>
+        <briefdescription>
+<para>End date for access analysis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="143" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1aba75744c65ea4ccc0ed805c342b143a7" prot="private" static="no" mutable="no">
+        <type>const astro::AstrodynamicsSystem *</type>
+        <definition>const astro::AstrodynamicsSystem* astrea::trace::AccessAnalyzer::_sys</definition>
+        <argsstring></argsstring>
+        <name>_sys</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_sys</qualifiedname>
+        <briefdescription>
+<para>Pointer to the astrodynamics system used for calculations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="144" column="38" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1adf86378c31cf85124b4033ff6178d20a" prot="private" static="no" mutable="no">
+        <type><ref refid="AccessAnalyzer_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" kindref="member">DateVector</ref></type>
+        <definition>DateVector astrea::trace::AccessAnalyzer::_dates</definition>
+        <argsstring></argsstring>
+        <name>_dates</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_dates</qualifiedname>
+        <briefdescription>
+<para>Vector of dates, created from startDate, endDate, and resolution. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="145" column="16" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1ab4b659089d8c6e3521e61f7c901ab893" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1trace_1_1PositionCache" kindref="compound">PositionCache</ref></type>
+        <definition>PositionCache astrea::trace::AccessAnalyzer::_positionCache</definition>
+        <argsstring></argsstring>
+        <name>_positionCache</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_positionCache</qualifiedname>
+        <briefdescription>
+<para>Optimized contiguous cache for platform positions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="146" column="19" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessAnalyzer_1a00bcc7905e27b24902356f57c70f3abf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessAnalyzer::_printProgress</definition>
+        <argsstring></argsstring>
+        <name>_printProgress</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::_printProgress</qualifiedname>
+        <briefdescription>
+<para>Flag to indicate whether to print progress during calculations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="147" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a4536ab38908c6203f766910172d440b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AccessAnalyzer::AccessAnalyzer</definition>
+        <argsstring>(const Time &amp;resolution, const astro::Date &amp;startDate, const astro::Date &amp;endDate, const astro::AstrodynamicsSystem &amp;sys, const bool printProgress=false)</argsstring>
+        <name>AccessAnalyzer</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::AccessAnalyzer</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>resolution</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <param>
+          <type>const astro::AstrodynamicsSystem &amp;</type>
+          <declname>sys</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>printProgress</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1trace_1_1AccessAnalyzer" kindref="compound">AccessAnalyzer</ref> with specified resolution and date range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>resolution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time resolution for access calculations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start date for the analysis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end date for the analysis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system used for calculations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>printProgress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to print progress during calculations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="94" column="5" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="94" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a9bfab58340c044170adb8adcc994065e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AccessAnalyzer::~AccessAnalyzer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AccessAnalyzer</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::~AccessAnalyzer</qualifiedname>
+        <briefdescription>
+<para>Destructor for <ref refid="classastrea_1_1trace_1_1AccessAnalyzer" kindref="compound">AccessAnalyzer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="107" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AccessAnalyzer::find_internal_accesses</definition>
+        <argsstring>(ViewerConstellation &amp;constel, const bool clearPositionCache=true)</argsstring>
+        <name>find_internal_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_internal_accesses</qualifiedname>
+        <param>
+          <type><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
+          <declname>constel</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>clearPositionCache</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Find accesses between a constellation of viewers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>constel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The constellation of viewers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system used for calculations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> A collection of accesses between viewers. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="116" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="156" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a90f1f517287816fc208fd0e755c517a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AccessAnalyzer::find_accesses</definition>
+        <argsstring>(ViewerConstellation &amp;constel, GroundArchitecture &amp;grounds, const bool includeInternalAccesses=false)</argsstring>
+        <name>find_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_accesses</qualifiedname>
+        <param>
+          <type><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
+          <declname>constel</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> &amp;</type>
+          <declname>grounds</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>includeInternalAccesses</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find accesses between a constellation of viewers and a ground architecture. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>constel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The constellation of viewers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ground architecture containing ground stations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>resolution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time resolution for access calculations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start date for the analysis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end date for the analysis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system used for calculations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> A collection of accesses between viewers and ground stations. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="129" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="198" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a18f8555480c3eed048bf52ddfe083dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AccessAnalyzer::find_accesses</definition>
+        <argsstring>(ViewerConstellation &amp;constel, Grid &amp;grid, const bool includeInternalAccesses=false)</argsstring>
+        <name>find_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_accesses</qualifiedname>
+        <param>
+          <type><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
+          <declname>constel</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> &amp;</type>
+          <declname>grid</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>includeInternalAccesses</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find accesses between a constellation of viewers and a ground architecture. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>constel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The constellation of viewers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The grid containing ground points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> A collection of accesses between viewers and ground stations. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="138" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="244" bodyend="283"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1aeb047942c3b6de75d54ea3f1e5e927f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AccessAnalyzer::create_date_vector</definition>
+        <argsstring>()</argsstring>
+        <name>create_date_vector</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::create_date_vector</qualifiedname>
+        <briefdescription>
+<para>Create a date vector from input start date, end date, and resolution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>DateVector A vector of dates corresponding to the state history. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="158" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="69" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a61c2291d5ab0311b54080134f08c7891" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessAnalyzer::is_central_body_occulting</definition>
+        <argsstring>(const EcefRadiusVec &amp;position1, const EcefRadiusVec &amp;position2, const bool atmosphereBlocks) const</argsstring>
+        <name>is_central_body_occulting</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::is_central_body_occulting</qualifiedname>
+        <param>
+          <type>const EcefRadiusVec &amp;</type>
+          <declname>position1</declname>
+        </param>
+        <param>
+          <type>const EcefRadiusVec &amp;</type>
+          <declname>position2</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>atmosphereBlocks</declname>
+        </param>
+        <briefdescription>
+<para>Check if two states are occulting each other. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first state to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second state to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>atmosphereBlocks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating if the atmosphere should be considered as blocking access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the two states are occulting each other. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the two states are not occulting each other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="169" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="432" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1ae3858c5242f8375440101b224384e0ac" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::AccessAnalyzer::find_platform_to_platform_accesses</definition>
+        <argsstring>(std::shared_ptr&lt; astro::PayloadPlatform&lt; Sensor &gt; &gt; platform1, std::shared_ptr&lt; astro::PayloadPlatform&lt; Sensor &gt; &gt; platform2, const bool twoWay=false) const</argsstring>
+        <name>find_platform_to_platform_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_platform_to_platform_accesses</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; astro::PayloadPlatform&lt; <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &gt; &gt;</type>
+          <declname>platform1</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; astro::PayloadPlatform&lt; <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &gt; &gt;</type>
+          <declname>platform2</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>twoWay</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find accesses between two sensor platforms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platform1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first sensor platform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>platform2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second sensor platform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dates at which to check for accesses. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system used for calculations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twoWay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating if the access should be two-way (default is false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A collection of rise/set pairs representing the accesses. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="181" column="18" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="304" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a21338f1f7f69e51a1d90f4b39dda0fd7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::AccessAnalyzer::find_platform_to_ground_point_accesses</definition>
+        <argsstring>(std::shared_ptr&lt; astro::PayloadPlatform&lt; Sensor &gt; &gt; platform, const std::shared_ptr&lt; GroundPoint &gt; groundPoint) const</argsstring>
+        <name>find_platform_to_ground_point_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_platform_to_ground_point_accesses</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; astro::PayloadPlatform&lt; <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &gt; &gt;</type>
+          <declname>platform</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref> &gt;</type>
+          <declname>groundPoint</declname>
+        </param>
+        <briefdescription>
+<para>Find accesses between a sensor platform and a ground point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sensor platform for which to find accesses. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groundPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ground point to check for accesses. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A collection of rise/set pairs representing the accesses. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="195" column="9" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="328" bodyend="347"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a65afb6da60cf87ce860b77b3398afdb8" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::AccessAnalyzer::find_sensor_accesses</definition>
+        <argsstring>(const std::vector&lt; AccessInfo &gt; &amp;accessInfo, const Sensor &amp;sensor1, const std::optional&lt; Sensor &gt; sensor2=std::nullopt, const bool twoWay=false) const</argsstring>
+        <name>find_sensor_accesses</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::find_sensor_accesses</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="structastrea_1_1trace_1_1AccessInfo" kindref="compound">AccessInfo</ref> &gt; &amp;</type>
+          <declname>accessInfo</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &amp;</type>
+          <declname>sensor1</declname>
+        </param>
+        <param>
+          <type>const std::optional&lt; <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &gt;</type>
+          <declname>sensor2</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>twoWay</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find accesses between a sensor and another sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accessInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <ref refid="structastrea_1_1trace_1_1AccessInfo" kindref="compound">AccessInfo</ref> objects containing trace information. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sensor1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first sensor for which to find accesses. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sensor2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second sensor to check for accesses. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twoWay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating if the access should be two-way (default is false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A collection of rise/set pairs representing the accesses. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="206" column="18" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="350" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a28f00379eb505451a6cb6a0c1f9d7da0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessAnalyzer::can_objects_ever_access_each_other</definition>
+        <argsstring>(const std::size_t &amp;id1, const std::size_t &amp;id2, const bool atmosphereBlocks) const</argsstring>
+        <name>can_objects_ever_access_each_other</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::can_objects_ever_access_each_other</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>id1</declname>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>atmosphereBlocks</declname>
+        </param>
+        <briefdescription>
+<para>Check if a satellite can access a ground point based on Earth occulating. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>atmosphereBlocks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating if the atmosphere should be considered as blocking access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the objects can access each other. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the objects never access each other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="222" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="421" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1affcfa946c62f719f120d94fa23b0ff2a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ViewerRefVec</type>
+        <definition>ViewerRefVec astrea::trace::AccessAnalyzer::cache_viewers</definition>
+        <argsstring>(ViewerConstellation &amp;constel)</argsstring>
+        <name>cache_viewers</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::cache_viewers</qualifiedname>
+        <param>
+          <type><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
+          <declname>constel</declname>
+        </param>
+        <briefdescription>
+<para>Cache the inertial positions of viewers in a constellation for all time steps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>constel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The constellation of viewers for which to cache positions. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ViewerRefVec A vector of pointers to the viewers in the constellation, in the same order as the position cache entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="230" column="18" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="84" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1af41ff245ce13cec69702978fcef5f721" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroundStationRefVec</type>
+        <definition>GroundStationRefVec astrea::trace::AccessAnalyzer::cache_ground_points</definition>
+        <argsstring>(GroundArchitecture &amp;grounds)</argsstring>
+        <name>cache_ground_points</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::cache_ground_points</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> &amp;</type>
+          <declname>grounds</declname>
+        </param>
+        <briefdescription>
+<para>Cache the inertial positions of ground stations in a ground architecture for all time steps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ground architecture containing the ground stations to cache. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>GroundStationRefVec A vector of pointers to the ground stations in the architecture, in the same order as the position cache entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="239" column="25" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="105" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a9bdfe6f51d85ba63f4b6c135a4195c0e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroundPointRefVec</type>
+        <definition>GroundPointRefVec astrea::trace::AccessAnalyzer::cache_ground_points</definition>
+        <argsstring>(Grid &amp;grid)</argsstring>
+        <name>cache_ground_points</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::cache_ground_points</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref> &amp;</type>
+          <declname>grid</declname>
+        </param>
+        <briefdescription>
+<para>Cache the inertial positions of ground points in a grid for all time steps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>grid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The grid containing the ground points to cache. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>GroundPointRefVec A vector of pointers to the ground points in the grid, in the same order as the position cache entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="247" column="23" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="117" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1a35fed5ffc965812dc852a7e70689748e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structastrea_1_1trace_1_1AccessInfo" kindref="compound">AccessInfo</ref> &gt;</type>
+        <definition>std::vector&lt; AccessInfo &gt; astrea::trace::AccessAnalyzer::build_access_info</definition>
+        <argsstring>(const std::size_t &amp;id1, const std::size_t &amp;id2) const</argsstring>
+        <name>build_access_info</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::build_access_info</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>id1</declname>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Build access information for a pair of objects based on their cached positions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the first object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the second object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;AccessInfo&gt; A vector of <ref refid="structastrea_1_1trace_1_1AccessInfo" kindref="compound">AccessInfo</ref> objects containing trace information for the pair of objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="256" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="285" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1acd09c1ae2d1b89a5975e59d5f44b12dd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PairVec</type>
+        <definition>PairVec astrea::trace::AccessAnalyzer::filter_impossible_pairs</definition>
+        <argsstring>(const ViewerRefVec &amp;viewers) const</argsstring>
+        <name>filter_impossible_pairs</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::filter_impossible_pairs</qualifiedname>
+        <param>
+          <type>const ViewerRefVec &amp;</type>
+          <declname>viewers</declname>
+        </param>
+        <briefdescription>
+<para>Filter out impossible viewer-viewer pairs based on Earth occultation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>viewers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector of viewer pointers to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>PairVec A vector of index pairs (iViewer, iGround) representing possible accesses. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="264" column="13" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="132" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessAnalyzer_1ad196044565191136fb7d324613c6c8c3" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>PairVec</type>
+        <definition>PairVec astrea::trace::AccessAnalyzer::filter_impossible_pairs</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; T &gt; &gt; &amp;objects1, const std::vector&lt; std::shared_ptr&lt; U &gt; &gt; &amp;objects2) const</argsstring>
+        <name>filter_impossible_pairs</name>
+        <qualifiedname>astrea::trace::AccessAnalyzer::filter_impossible_pairs</qualifiedname>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; T &gt; &gt; &amp;</type>
+          <declname>objects1</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; U &gt; &gt; &amp;</type>
+          <declname>objects2</declname>
+        </param>
+    <requiresclause>requires(T t) { t.get_id(); } &amp;&amp; requires(U u) { u.get_id(); }    </requiresclause>
+        <briefdescription>
+<para>Filter out impossible viewer-ground pairs based on Earth occultation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>objects1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector of object shared pointers to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>objects2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector of object shared pointers to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>PairVec A vector of index pairs (iViewer, iGround) representing possible accesses. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="275" column="13" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="275" bodyend="295"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="82" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="82" bodyend="296"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1adf86378c31cf85124b4033ff6178d20a" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_dates</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a44ffcc6b137924f0db6f43457212323a" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_endDate</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ab4b659089d8c6e3521e61f7c901ab893" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_positionCache</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a00bcc7905e27b24902356f57c70f3abf" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_printProgress</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1adbaf5780cdd95189c2d2b2b48a815e2a" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_resolution</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a723c1372f27256aea420a3cfe6489711" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_startDate</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aba75744c65ea4ccc0ed805c342b143a7" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>_sys</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a4536ab38908c6203f766910172d440b0" prot="public" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>AccessAnalyzer</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a35fed5ffc965812dc852a7e70689748e" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>build_access_info</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1af41ff245ce13cec69702978fcef5f721" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>cache_ground_points</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9bdfe6f51d85ba63f4b6c135a4195c0e" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>cache_ground_points</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1affcfa946c62f719f120d94fa23b0ff2a" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>cache_viewers</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a28f00379eb505451a6cb6a0c1f9d7da0" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>can_objects_ever_access_each_other</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aeb047942c3b6de75d54ea3f1e5e927f0" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>create_date_vector</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1acd09c1ae2d1b89a5975e59d5f44b12dd" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>filter_impossible_pairs</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ad196044565191136fb7d324613c6c8c3" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>filter_impossible_pairs</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a90f1f517287816fc208fd0e755c517a4" prot="public" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a18f8555480c3eed048bf52ddfe083dec" prot="public" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" prot="public" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_internal_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a21338f1f7f69e51a1d90f4b39dda0fd7" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_platform_to_ground_point_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ae3858c5242f8375440101b224384e0ac" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_platform_to_platform_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a65afb6da60cf87ce860b77b3398afdb8" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>find_sensor_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a61c2291d5ab0311b54080134f08c7891" prot="private" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>is_central_body_occulting</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9bfab58340c044170adb8adcc994065e" prot="public" virt="non-virtual"><scope>astrea::trace::AccessAnalyzer</scope><name>~AccessAnalyzer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

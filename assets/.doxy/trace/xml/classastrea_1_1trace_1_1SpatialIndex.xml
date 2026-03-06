@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1SpatialIndex" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::SpatialIndex</compoundname>
+    <includes refid="SpatialIndex_8hpp" local="no">SpatialIndex.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1acb60b2ea0841034a727ca09c9e82dd1f" prot="private" static="no" mutable="no">
+        <type>Angle</type>
+        <definition>Angle astrea::trace::SpatialIndex::_binSize</definition>
+        <argsstring></argsstring>
+        <name>_binSize</name>
+        <qualifiedname>astrea::trace::SpatialIndex::_binSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="90" column="11" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::SpatialIndex::_nLatBins</definition>
+        <argsstring></argsstring>
+        <name>_nLatBins</name>
+        <qualifiedname>astrea::trace::SpatialIndex::_nLatBins</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="91" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::SpatialIndex::_nLonBins</definition>
+        <argsstring></argsstring>
+        <name>_nLonBins</name>
+        <qualifiedname>astrea::trace::SpatialIndex::_nLonBins</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="92" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structastrea_1_1trace_1_1GeographicBin" kindref="compound">GeographicBin</ref> &gt;</type>
+        <definition>std::vector&lt;GeographicBin&gt; astrea::trace::SpatialIndex::_bins</definition>
+        <argsstring></argsstring>
+        <name>_bins</name>
+        <qualifiedname>astrea::trace::SpatialIndex::_bins</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="93" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::SpatialIndex::SpatialIndex</definition>
+        <argsstring>(const Angle &amp;binSize=10.0 *mp_units::angular::unit_symbols::deg)</argsstring>
+        <name>SpatialIndex</name>
+        <qualifiedname>astrea::trace::SpatialIndex::SpatialIndex</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>binSize</declname>
+          <defval>10.0 *mp_units::angular::unit_symbols::deg</defval>
+        </param>
+        <briefdescription>
+<para>Construct spatial index with specified bin size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>binSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Angular size of each bin (smaller = more bins, finer resolution) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="56" column="5" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="33" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::SpatialIndex::add_ground_point</definition>
+        <argsstring>(std::size_t groundPointIdx, const Angle &amp;lat, const Angle &amp;lon)</argsstring>
+        <name>add_ground_point</name>
+        <qualifiedname>astrea::trace::SpatialIndex::add_ground_point</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>groundPointIdx</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <briefdescription>
+<para>Add a ground point to the index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>groundPointIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the ground point being added (used for lookup) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Latitude of the ground point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Longitude of the ground point </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="65" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="55" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::unordered_set&lt; std::size_t &gt;</type>
+        <definition>std::unordered_set&lt; std::size_t &gt; astrea::trace::SpatialIndex::get_nearby_ground_points</definition>
+        <argsstring>(const Angle &amp;lat, const Angle &amp;lon, const Angle &amp;radius) const</argsstring>
+        <name>get_nearby_ground_points</name>
+        <qualifiedname>astrea::trace::SpatialIndex::get_nearby_ground_points</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Get ground points within a radius of a lat/lon position. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Latitude of center point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Longitude of center point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Angular radius to search </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Set of ground point indices within radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="75" column="24" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="61" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a6d8e8863c305d152fc236bb4adb11e20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt; std::size_t &gt; astrea::trace::SpatialIndex::get_all_ground_points</definition>
+        <argsstring>() const</argsstring>
+        <name>get_all_ground_points</name>
+        <qualifiedname>astrea::trace::SpatialIndex::get_all_ground_points</qualifiedname>
+        <briefdescription>
+<para>Get all ground point indices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;std::size_t&gt; Vector of all ground point indices in the index </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="82" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="96" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a48e8c8ddf487a01ac26db232de1284fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::SpatialIndex::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>astrea::trace::SpatialIndex::clear</qualifiedname>
+        <briefdescription>
+<para>Clear all ground points from the index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="87" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="107" bodyend="112"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a39415e6c02e1c57b135cbf16d96ad668" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::SpatialIndex::get_lat_bin_index</definition>
+        <argsstring>(const Angle &amp;lat) const</argsstring>
+        <name>get_lat_bin_index</name>
+        <qualifiedname>astrea::trace::SpatialIndex::get_lat_bin_index</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <briefdescription>
+<para>Get latitude bin index for a given latitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Latitude angle </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Index of the latitude bin </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="101" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="114" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a1a4d15781dc2c4b40e6be875b36f0fd2" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::SpatialIndex::get_lon_bin_index</definition>
+        <argsstring>(const Angle &amp;lon) const</argsstring>
+        <name>get_lon_bin_index</name>
+        <qualifiedname>astrea::trace::SpatialIndex::get_lon_bin_index</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <briefdescription>
+<para>Get longitude bin index for a given longitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Longitude angle </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Index of the longitude bin </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="109" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="120" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1ac2edcc809ce65c30790da3bfb249ce64" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::SpatialIndex::get_bin_index</definition>
+        <argsstring>(const Angle &amp;lat, const Angle &amp;lon) const</argsstring>
+        <name>get_bin_index</name>
+        <qualifiedname>astrea::trace::SpatialIndex::get_bin_index</qualifiedname>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>const Angle &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <briefdescription>
+<para>Get overall bin index for given latitude and longitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Latitude angle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Longitude angle </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t Overall index of the geographic bin </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="118" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="126" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Spatial index for efficient ground point queries. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Divides the Earth&apos;s surface into geographic bins to quickly find which ground points are near a satellite&apos;s subsatellite point </para>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="49" column="1" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="49" bodyend="119"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_bins</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1acb60b2ea0841034a727ca09c9e82dd1f" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_binSize</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_nLatBins</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_nLonBins</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>add_ground_point</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a48e8c8ddf487a01ac26db232de1284fa" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>clear</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a6d8e8863c305d152fc236bb4adb11e20" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_all_ground_points</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac2edcc809ce65c30790da3bfb249ce64" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_bin_index</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a39415e6c02e1c57b135cbf16d96ad668" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_lat_bin_index</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a1a4d15781dc2c4b40e6be875b36f0fd2" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_lon_bin_index</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_nearby_ground_points</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>SpatialIndex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

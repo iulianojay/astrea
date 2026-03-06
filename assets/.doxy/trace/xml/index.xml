@@ -1,0 +1,642 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classastrea_1_1trace_1_1AccessAnalyzer" kind="class"><name>astrea::trace::AccessAnalyzer</name>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1adbaf5780cdd95189c2d2b2b48a815e2a" kind="variable"><name>_resolution</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a723c1372f27256aea420a3cfe6489711" kind="variable"><name>_startDate</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a44ffcc6b137924f0db6f43457212323a" kind="variable"><name>_endDate</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aba75744c65ea4ccc0ed805c342b143a7" kind="variable"><name>_sys</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1adf86378c31cf85124b4033ff6178d20a" kind="variable"><name>_dates</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ab4b659089d8c6e3521e61f7c901ab893" kind="variable"><name>_positionCache</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a00bcc7905e27b24902356f57c70f3abf" kind="variable"><name>_printProgress</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a4536ab38908c6203f766910172d440b0" kind="function"><name>AccessAnalyzer</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9bfab58340c044170adb8adcc994065e" kind="function"><name>~AccessAnalyzer</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" kind="function"><name>find_internal_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a90f1f517287816fc208fd0e755c517a4" kind="function"><name>find_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a18f8555480c3eed048bf52ddfe083dec" kind="function"><name>find_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aeb047942c3b6de75d54ea3f1e5e927f0" kind="function"><name>create_date_vector</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a61c2291d5ab0311b54080134f08c7891" kind="function"><name>is_central_body_occulting</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ae3858c5242f8375440101b224384e0ac" kind="function"><name>find_platform_to_platform_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a21338f1f7f69e51a1d90f4b39dda0fd7" kind="function"><name>find_platform_to_ground_point_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a65afb6da60cf87ce860b77b3398afdb8" kind="function"><name>find_sensor_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a28f00379eb505451a6cb6a0c1f9d7da0" kind="function"><name>can_objects_ever_access_each_other</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1affcfa946c62f719f120d94fa23b0ff2a" kind="function"><name>cache_viewers</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1af41ff245ce13cec69702978fcef5f721" kind="function"><name>cache_ground_points</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9bdfe6f51d85ba63f4b6c135a4195c0e" kind="function"><name>cache_ground_points</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a35fed5ffc965812dc852a7e70689748e" kind="function"><name>build_access_info</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1acd09c1ae2d1b89a5975e59d5f44b12dd" kind="function"><name>filter_impossible_pairs</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ad196044565191136fb7d324613c6c8c3" kind="function"><name>filter_impossible_pairs</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1AccessArray" kind="class"><name>astrea::trace::AccessArray</name>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kind="typedef"><name>iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1af2049a79d70b70a4e5c6a8390a4f4521" kind="variable"><name>_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" kind="function"><name>AccessArray</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" kind="function"><name>~AccessArray</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1ab3fd965346bde3aea6c1b96f360e0c44" kind="function"><name>at</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1ad5cb315480cbaead4072ed44e71e3a7b" kind="function"><name>erase</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a2cbf08887dd6b6bbc303cf4d38bac2a6" kind="function"><name>get_all_accesses_to_receiver</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a5e689020f09f91d688a5d0dc3503ff8a" kind="function"><name>get_all_accesses_from_sender</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" kind="function"><name>operator==</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a0acd9f59dc5fdc6ebfd123779be2f278" kind="function"><name>operator|=</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" kind="function"><name>operator|</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" kind="function"><name>operator&amp;=</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" kind="function"><name>operator&amp;</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a50c2e60dee56b8245144e5aecaee750b" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a3452993c5c07824caff18fc48b89a557" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1ad83fdfbd2e1387e178d13851acd26761" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a450716e1f9e23c00acf27b680a39b561" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1aa879481be685f507b4dad223db92ff72" kind="function"><name>cbegin</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a5289b6eaf1b33bb1beb633c1c40650b7" kind="function"><name>cend</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1AccessInfo" kind="struct"><name>astrea::trace::AccessInfo</name>
+    <member refid="structastrea_1_1trace_1_1AccessInfo_1a5b5f93be17a781dee393b042199a558c" kind="variable"><name>time</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessInfo_1a32931a0c03365033cab3938e0afa874e" kind="variable"><name>radius1to2</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessInfo_1a196e58dd538116c3eb71ce3450315b4f" kind="variable"><name>isOcculted</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1AccessObject" kind="class"><name>astrea::trace::AccessObject</name>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1aa3f87ce5ff8c5492e00236e0af29fb0b" kind="variable"><name>_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" kind="function"><name>AccessObject</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" kind="function"><name>~AccessObject</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" kind="function"><name>add_access</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" kind="function"><name>drop_access</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" kind="function"><name>get_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" kind="function"><name>get_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a067983557aa2ab8506d0d863729fde3f" kind="function"><name>get_id</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1AccessStats" kind="struct"><name>astrea::trace::AccessStats</name>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ad677c2b213a49bcfd9f8970255f7bb3a" kind="variable"><name>_risesets</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ab313ab57a170589a264c2056a5e404dc" kind="variable"><name>_stats</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ab0cc233ed5dc681b77fd021d3133d210" kind="variable"><name>_hyperStats</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1afbd3e14c279a074d022848e95d15d5ca" kind="variable"><name>_accessMetrics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ace6ffaa026ce10bd1618a048518e1bcd" kind="variable"><name>_accessStats</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1aa8179f373b8b6160c894c2b0dab7a079" kind="function"><name>AccessStats</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a3262e1e44e8c4065e6a200e3403c1499" kind="function"><name>AccessStats</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a09662481e3678460f6d5f44444576c49" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" kind="function"><name>get_riseset_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" kind="function"><name>get_riseset_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" kind="function"><name>get_access_metric</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" kind="function"><name>get_access_metrics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" kind="function"><name>get_access_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" kind="function"><name>get_hyper_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" kind="function"><name>get_hyper_statistics</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1Antenna" kind="class"><name>astrea::trace::Antenna</name>
+    <member refid="classastrea_1_1trace_1_1Antenna_1adcf98fecc8a061a81663b440c4936b8d" kind="variable"><name>_parameters</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1af56cada8d90b9777886a01aa88745b36" kind="function"><name>Antenna</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a7b8bb43f70b27f8e15035eea85ba23fb" kind="function"><name>carrier_to_noise_ratio</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a873ee85c06d71041371a7b8093da6e9e" kind="function"><name>carrier_to_noise_density</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1ae9663a2353427912cc04e39ea4dce985" kind="function"><name>recieved_power</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" kind="function"><name>free_space_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" kind="function"><name>system_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" kind="function"><name>mispointing_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" kind="function"><name>polarization_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" kind="function"><name>atmospheric_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1ae64ebe2f24a2b7420734dd4f30d50165" kind="function"><name>gain</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a4c22a27c8aa0d1b7f6db8328e2d08261" kind="function"><name>system_noise_temperature</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1ae34dd5d9f6723a78b2d1fba84c2445a0" kind="function"><name>receiver_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1aaea5b02bd4d75caf2f7b3b5781fb42be" kind="function"><name>transmit_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1af67b9e0fa5960f63ec44e82ff957473c" kind="function"><name>set_pattern_approximation</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1a5453bd6f3d500584c2d35e558a7d8a7f" kind="function"><name>bessel_loss_approximation</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1ac54b29bb9036eeee528a5e2df86aa56b" kind="function"><name>sinc_loss_approximation</name></member>
+    <member refid="classastrea_1_1trace_1_1Antenna_1aea90fdd1de1a90725bf45ab58eff08aa" kind="function"><name>mispointing_loss_approximation_argument</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1AntennaParameters" kind="class"><name>astrea::trace::AntennaParameters</name>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a20d58ffec89d0ec13512f41fa9d4640e" kind="variable"><name>_diameter</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a4abdd07ece2194a7d90c442ef2f4999a" kind="variable"><name>_efficiency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a0a8b8414fe0b3b5d52f945f463f43125" kind="variable"><name>_frequency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1aadc7a2075b8245b1abe760c018bd7499" kind="variable"><name>_power</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a11c25d7b53aa3157e1ef84a84f21e08a" kind="variable"><name>_noiseBandwidth</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a6294ac4d9e89a77bf751b83cfd320915" kind="variable"><name>_transmitLoss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a7b98a622d6850735520fa26a28947cb3" kind="variable"><name>_receiverLoss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1af7f9e44f3de1a8323fc40c5e7b0db5f6" kind="variable"><name>_pattern</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a912edd0c5748aed6dfcf83216a5043ca" kind="variable"><name>_wavelength</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a372e70a6375aea144c056af5a6fa7bae" kind="variable"><name>_gain</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1ad8f9cee300c0bccebe0df7e1a9ac02cc" kind="variable"><name>_eirp</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1abd9440902fa6d5ef0e443804ae833579" kind="variable"><name>_sysNoiseTemp</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a93e29b8eff4f6f770fe7689579d9bfa6" kind="function"><name>AntennaParameters</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1af94eb15a5f2e82a322e9bb4029849e59" kind="function"><name>~AntennaParameters</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1af9ffa32c7613f0dc3c22fa372b901413" kind="function"><name>get_diameter</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1aed96fdcd05c48c2b9dba510aec9a595a" kind="function"><name>get_efficiency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a714d29472d9d8ea3bd458bc96549b875" kind="function"><name>get_frequency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a8d99fd00f1d5a40e778afc8994e271c6" kind="function"><name>get_power</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a1d5e5d090a510b4cb66b6a89a3e4db49" kind="function"><name>get_noise_bandwidth</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" kind="function"><name>get_transmit_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1ad11ec5691c0ba52b5a9cb19cc1f35708" kind="function"><name>get_receiver_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1ae883e267fd3690ed17fc8ec59921c112" kind="function"><name>get_pattern</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a77b97f24ebfc0087cab735fcc2614c5f" kind="function"><name>get_gain</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a37fe81bec2314d30623978b03b4005ae" kind="function"><name>get_eirp</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a3efa9a1f05205f36085145f2e0bfd32a" kind="function"><name>get_system_noise_temperature</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" kind="function"><name>get_wavelength</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a9ff3fd943d408373c89dfa6b52c44998" kind="function"><name>set_diameter</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a0d9e4dbdac884982f89f00228eebc3e4" kind="function"><name>set_efficiency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1adb96aa203a8b6340b6e9a6000040b995" kind="function"><name>set_frequency</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a8c0bd7b78c7b1605db7e48b078c0d1d0" kind="function"><name>set_power</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1af49f979fcd57e428db33e5c1561f9a2d" kind="function"><name>set_noise_bandwidth</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1ac1a1d9ccf22b7baf8312c029806cc64f" kind="function"><name>set_transmit_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1aa3451a9b814839ffb0acf71b90d3ecec" kind="function"><name>set_receiver_loss</name></member>
+    <member refid="classastrea_1_1trace_1_1AntennaParameters_1a92289414f4fae2423980157b565eb206" kind="function"><name>set_pattern</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1CircularFieldOfView" kind="class"><name>astrea::trace::CircularFieldOfView</name>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1ae4ba3fd97987e5963a9c1c45537559e3" kind="variable"><name>_halfConeAngle</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" kind="function"><name>CircularFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1af5553e9b512fcf92a1a8c27ce761bc59" kind="function"><name>~CircularFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a6653ae918da14811e07ab37e4fd99cc6" kind="function"><name>contains</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1FieldOfView" kind="class"><name>astrea::trace::FieldOfView</name>
+    <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" kind="function"><name>FieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" kind="function"><name>~FieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76" kind="function"><name>contains</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1FoldsOfCoverage" kind="class"><name>astrea::trace::FoldsOfCoverage</name>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" kind="typedef"><name>iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae7cb76e9cbba59e46a6c08dd9329b053" kind="variable"><name>_folds</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0da4f13b2dc9e586d907f602b3049bc" kind="variable"><name>_stats</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a0e43c94d84b342bb7106cea5cc0fc246" kind="function"><name>FoldsOfCoverage</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a7c9c4fb7e8d3f0b016678274c8e38c9d" kind="function"><name>FoldsOfCoverage</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6f5f8f4e2aa3164b6d27030dd0a823d" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6fba7bcc17f9961016758c177561398" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1aa60d1d1416c581738db9614d75e29563" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0c633f447d3b1e837d8bb5c7b480752" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a500d8a62e18108f15c0d80d19511238d" kind="function"><name>cbegin</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af8cafa272ad6aa077931016ea6df8380" kind="function"><name>cend</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1aff1de2012c2874928d114050b0b8d818" kind="function"><name>get_stats</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1GeographicBin" kind="struct"><name>astrea::trace::GeographicBin</name>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1a3295bcaac610e7573674831b20b803d0" kind="variable"><name>latMin</name></member>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1a09e10fb9255c64f17a09259d6326c9e6" kind="variable"><name>latMax</name></member>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1a3256356059baf464acc89d5521a12c5e" kind="variable"><name>lonMin</name></member>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1a2cb737f1921405ed2deb6ad280317c2f" kind="variable"><name>lonMax</name></member>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1a96f14e937527a8c7abccbe402395f4d1" kind="variable"><name>groundPointIndices</name></member>
+    <member refid="structastrea_1_1trace_1_1GeographicBin_1af32075b648fc0d7955bdcd55e81bb8ef" kind="function"><name>contains</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1Grid" kind="class"><name>astrea::trace::Grid</name>
+    <member refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kind="typedef"><name>iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a6ed66e2c3180abc0da0a16ed94a70faf" kind="variable"><name>_parent</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ac929e78f661ee22d223dfca0198b32dd" kind="variable"><name>_groundPoints</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a3642af5adbeeed53b5cd30f0938bbfa5" kind="variable"><name>_gridType</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a6baeb81901fda378010da4f7abf6fd96" kind="function"><name>Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a430cf2ce14cb5d1b2a9ece133ca8659c" kind="function"><name>Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" kind="function"><name>Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" kind="function"><name>~Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" kind="function"><name>get_grid_type</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" kind="function"><name>get_parent</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ad4933278da793b06231e8b61c32e4cdc" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" kind="function"><name>cbegin</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" kind="function"><name>cend</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a575835af14f1e71895e571fcda337e8e" kind="function"><name>build_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1af5e9d97ab7f231f2e9a4cb3987696ec5" kind="function"><name>build_uniform_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ae7762041f13cdb30630eb35f9c1c0a2e" kind="function"><name>build_equal_area_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1aa2f8b5b08aaf9eb1e41f4aa829b82db6" kind="function"><name>build_weighted_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a773e7ee7b145592c61b92ab2cbe0b28e" kind="function"><name>create_uniformly_spaced_vector</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1GroundArchitecture" kind="class"><name>astrea::trace::GroundArchitecture</name>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a1c04b100342a811a615dea9dcca0d374" kind="typedef"><name>iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a3f7271debe1ac3b2dc92465373c795c1" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a51e60dacdd2f73483b7e7026edbdc8f2" kind="variable"><name>_groundStations</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a7a14b01db48fd2f1c16947c9d5d2fd0d" kind="function"><name>GroundArchitecture</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a3af42b79710b09175249d2b79264b732" kind="function"><name>~GroundArchitecture</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a23010ac739dc64c8fa74e27808d2db8f" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a9395dd8ebf5cebb99742115a4a65c3af" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a52b93ca6fbef199a4a8875d4484d879b" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a77e578794b39dd2be9112a3c6a31483e" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a04636042b4fc7811865feefbe1b2718b" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1adf1fa304cbc6e3bb1d664d5ec9454c37" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a6f00af2d9d8ce86f61619aeb71ef2323" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a59d44976342feb33f65b651bcf50bee8" kind="function"><name>cbegin</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1abc9ef01da5047a20cd8bccddc632adbe" kind="function"><name>cend</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1GroundPoint" kind="class"><name>astrea::trace::GroundPoint</name>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a5ebc95b335d0db4bb9644ef6991aa31d" kind="variable"><name>_parent</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1aac57b4a48bb28c5121379b9c06d2a689" kind="variable"><name>_lla</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1ac86ef4f2c315a4227d56529641ef32a3" kind="variable"><name>_id</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a10cd224e54636d237e71b007462fb959" kind="function"><name>GroundPoint</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a0a54222408a20490ac625fa97fdca6c2" kind="function"><name>~GroundPoint</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a5a8f3fc1078ce2ae4e38a7c6dc5c16ba" kind="function"><name>operator==</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a373a1d0e4a73c73ecc9de7fa94ce64fd" kind="function"><name>get_lla</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a770bfff89d50617d0bef2f7fc6b7ba97" kind="function"><name>get_latitude</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1ad1b32b42d255114ba02ff1c76c84a9d5" kind="function"><name>get_longitude</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a2d75ae8b8013f3118c695ab3912b679e" kind="function"><name>get_altitude</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a29db4e32af4be47b8f3218ebe5cc9b49" kind="function"><name>get_parent</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a65ce89540265909ab6e2bc46f7b762b0" kind="function"><name>get_id</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1ab6282e344b7a996d39e756167972c9f5" kind="function"><name>get_position</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a97f0eda3e55bd9dbdebc3298c8d74be2" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a0b24f362e2fe44876916946871c6bc38" kind="function"><name>get_inertial_velocity</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a4b27c8d7edc3d6d68b9d04f94ad2ab30" kind="function"><name>get_name</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a77de8813bd60fe99ea8e63cbf87fec78" kind="function"><name>generate_id</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1GroundStation" kind="class"><name>astrea::trace::GroundStation</name>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1afe3daa5a1c7ef7f8ba16a5cf7c273706" kind="variable"><name>_name</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1a27c7bb62c1194d82001c02cd08f66dcb" kind="function"><name>GroundStation</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1a916463420d5d8ea28f92efed7b3ccea7" kind="function"><name>~GroundStation</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1a281c8639f3184b6cfc345f04ff7390d3" kind="function"><name>get_id</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1af0c6e309851677792bef276f10bf4641" kind="function"><name>get_name</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1a87216626b835086c153a8dd4c0b620e8" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundStation_1a1554f80d4be1bea7b8a16a7a227fa46d" kind="function"><name>get_inertial_velocity</name></member>
+  </compound>
+  <compound refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct"><name>std::hash&lt; astrea::trace::IdPair &gt;</name>
+    <member refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1HyperStats" kind="struct"><name>astrea::trace::HyperStats</name>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1af069f3c7f363f5c9b8ce4859ed0e38db" kind="variable"><name>min</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1a0303eacb7218c2caaf327c8066640571" kind="variable"><name>max</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1ac6ff34fef00c0eb7d85ac16767475ba4" kind="variable"><name>avg</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1af7a4b53f507220b5c782c3ccb1c0e307" kind="variable"><name>percentiles</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1ac1968225bcde96ea4487e6c951c82ce0" kind="function"><name>HyperStats</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1acd97b41ce7dc20872935c533a6f9a164" kind="function"><name>HyperStats</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1ad293e07355c0981f557cd4a625b05c89" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1ad8c6a68e40dae07a284f92b25ba8b5e4" kind="function"><name>size</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1IdPair" kind="struct"><name>astrea::trace::IdPair</name>
+    <member refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" kind="variable"><name>sender</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" kind="variable"><name>receiver</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" kind="function"><name>IdPair</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1a1dc1669d999bbb7298aeb9be1188fcb9" kind="function"><name>IdPair</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1ae0c6b5068a6f11b7dbca8ccd2b9ff27a" kind="function"><name>IdPair</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1a5aae8cb65d5ff694762506be1b7a34c9" kind="function"><name>~IdPair</name></member>
+    <member refid="structastrea_1_1trace_1_1IdPair_1adc252ef4b1b99c344f61ad3187c6406c" kind="function"><name>operator==</name></member>
+  </compound>
+  <compound refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct"><name>std::less&lt; astrea::trace::IdPair &gt;</name>
+    <member refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1plotting_1_1Plotter" kind="class"><name>astrea::trace::plotting::Plotter</name>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a8997faec015e1c29c5729f9bef388111" kind="variable"><name>_font</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1ac2afac3ece794930b0f4cc78b9906a86" kind="variable"><name>_fontSize</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a7eeea06abc39e00c27e1ae20119a3cfd" kind="variable"><name>_fontWeight</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a776ee82d92f741f4e371dc4dd51bc65e" kind="variable"><name>_figureWidth</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a82041aa50bc4d261394ca5aee466996a" kind="variable"><name>_figureHeight</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1abd9036e1abb8d8a2b46e6d0ace52ee6c" kind="variable"><name>_outputDir</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a8ad6c8810788b47639376cec2bd6dd9c" kind="function"><name>Plotter</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a5618e34080a812301077955d7c15333f" kind="function"><name>plot_access_metrics</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a9c40cac2843a2ad631bff7e3fb166e7b" kind="function"><name>plot_number_of_folds</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1ac096aeb9843092fac366267b94552c54" kind="function"><name>set_output_directory</name></member>
+    <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a72cb6ff5eac85c95c64525b6675db7a2" kind="function"><name>build_figure</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kind="class"><name>astrea::trace::PolygonalFieldOfView</name>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1afa53766d8c14a28a377a761bad989c20" kind="variable"><name>_points</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a8909f8e42b015203296905b475a98479" kind="variable"><name>_minHalfAngle</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ab630f4158139f02aa84bf2255afa99da" kind="variable"><name>_maxHalfAngle</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kind="function"><name>PolygonalFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a398ce6e768a32ffd8c4e497ec2aa1345" kind="function"><name>PolygonalFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae280348db8b693f106bd0c7a91cbde77" kind="function"><name>PolygonalFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae1ad07b56ac0f6c8918df5677eeb3180" kind="function"><name>~PolygonalFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" kind="function"><name>find_min_and_max_angles</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a31473aee8361b7f92306307fdab8a78b" kind="function"><name>build_polygon</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1PositionCache" kind="class"><name>astrea::trace::PositionCache</name>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a794469ebdf4dcbbeec58fa8d8e6621d8" kind="variable"><name>_platformIds</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a5f7b855efa70afe4dc99356589239d20" kind="variable"><name>_positions</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a58d31c4bd3d34a124e72257ef15004a2" kind="variable"><name>_idToIndex</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a9e09c3f9852bb801a4be44257c1ffd03" kind="function"><name>PositionCache</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1ab5ff39c5618dd9a3a80e5a411f3236bd" kind="function"><name>~PositionCache</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" kind="function"><name>reserve</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" kind="function"><name>add_platform</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" kind="function"><name>set_position</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kind="function"><name>get_position_by_id</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" kind="function"><name>get_position_by_index</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1aafc2c6f38f36ae18446ed5845aed8f16" kind="function"><name>get_index</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1abbda32e058f132760cb639bf0926e93c" kind="function"><name>get_platform_id</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1ac0aa1e01ffcdcca9c0e275b72e7728f0" kind="function"><name>n_platforms</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a4b9c0067cc666a62f401b5b7c19c8eac" kind="function"><name>n_timesteps</name></member>
+    <member refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" kind="function"><name>clear</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1RiseSetArray" kind="class"><name>astrea::trace::RiseSetArray</name>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kind="typedef"><name>iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kind="typedef"><name>const_iterator</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" kind="variable"><name>_risesets</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" kind="function"><name>RiseSetArray</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a302d8aa92358259c19ebf6e12a14cf15" kind="function"><name>~RiseSetArray</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a01f93ad1fd7db742d6e4b19ad28c39ef" kind="function"><name>RiseSetArray</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7b0c6cec5c0bd40507291003e95de9c2" kind="function"><name>RiseSetArray</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1abca8db83919fb2d1be1feee361f65266" kind="function"><name>RiseSetArray</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1aee722eec217d90c85d06fd5d7fcc877f" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a918f98fc0869fcab144640b0e5a007c1" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a10bf46e47e4c8254ce0cbdb276f5cd5f" kind="function"><name>append</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8ba466172a3405522dfbbbb55b48c2e9" kind="function"><name>prepend</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a146b49a45e3632b66df3686b1d06be7e" kind="function"><name>insert</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a795066aa5e664a0aad0a32ea1c297b4c" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1c56340dbb5ec8bbd4a4014915c742e6" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a011b5296303c7b0e424dbb70eaa4c2b1" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" kind="function"><name>operator==</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8dc0e7156869bfabacc5c3db742cdeb2" kind="function"><name>operator-</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1754732751f90b7afddaf778af359202" kind="function"><name>operator-=</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8592783de48f50c9ad9e95afdc3a0465" kind="function"><name>operator|</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7373a1fc0953fba58369480f7aac0243" kind="function"><name>operator|=</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7e310770af520d6d6558277cd4894558" kind="function"><name>operator&amp;</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a5c0925ba598ccad14ca8d421873f8797" kind="function"><name>operator&amp;=</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a2973225c531a00add63bafe93585f09a" kind="function"><name>gap</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8d26e20f7a3c1d858198f6e16d726a1b" kind="function"><name>get_gap_times</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab2c58e5cf7f07ae08f1651eaa03c1d60" kind="function"><name>access_time</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a2087e41832275b0a695e55a8b5e59f3d" kind="function"><name>get_access_times</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1aa6a97aa99b6f5934bd8dd6e45652f57b" kind="function"><name>has_access</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a418c7035a51acbd394c19bbe00bfbcad" kind="function"><name>average_daily_vis_time</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a951c07db06592cade8469b830e7e8b4e" kind="function"><name>mean_time_to_access</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a385d7b6199a722bac5334bb23e6f091a" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7f779a5c829d020eaaa548cdff3fdf97" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a68527a3a188ee248cf2ebcc2c222ff72" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1abf6de039fefbe621e11a3f7909322201" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1af4f8e26ecfe036ea157dcde4a0eb1f67" kind="function"><name>cbegin</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1ac39fe449a89dd4eadb677a9729ce5160" kind="function"><name>cend</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1acf7777458d9889df5a8327f3d75cb030" kind="function"><name>to_string_vector</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1aab8137fc92aeec8c952432e76051cea4" kind="function"><name>validate_riseset</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a6005931116a0ba21cb048aacd58d41bd" kind="function"><name>validate_risesets</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1aac1f1cff223599300555e9a15b03df50" kind="function"><name>calculate_statistic</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1RiseSetStats" kind="struct"><name>astrea::trace::RiseSetStats</name>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1aef77100b48ec2b1717c85ba1b9b9e908" kind="variable"><name>_stats</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1ac8de29325379190c1f4bc729aee41f60" kind="function"><name>RiseSetStats</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a43edbefa71467c5ea14fddb4a7f2a53e" kind="function"><name>RiseSetStats</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1ad2fe0fa95fb0f84caca8cc9e223cdfac" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a04f64a3e79b0245295d5268915ddfdae" kind="function"><name>at</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a6356f882db2fb3eefc256b9c64141572" kind="function"><name>operator[]</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1Sensor" kind="class"><name>astrea::trace::Sensor</name>
+    <member refid="classastrea_1_1trace_1_1Sensor_1ae0a78010b9065fafc444c847a6b056ca" kind="variable"><name>Payload&lt; Sensor, SensorParameters &gt;</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" kind="function"><name>Sensor</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1af03c36681b7cce79e9a85f70bd421856" kind="function"><name>~Sensor</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1a8216026c485083cf9c0522ad436b8f48" kind="function"><name>get_id</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1a1405043093a55009d305e9f1ac4557b9" kind="function"><name>generate_id</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1SensorParameters" kind="class"><name>astrea::trace::SensorParameters</name>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" kind="variable"><name>_fov</name></member>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1ae21b87a4b797b515a4b53e8675653a42" kind="function"><name>SensorParameters</name></member>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" kind="function"><name>~SensorParameters</name></member>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" kind="function"><name>get_fov</name></member>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" kind="function"><name>set_fov</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1SpatialIndex" kind="class"><name>astrea::trace::SpatialIndex</name>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1acb60b2ea0841034a727ca09c9e82dd1f" kind="variable"><name>_binSize</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" kind="variable"><name>_nLatBins</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" kind="variable"><name>_nLonBins</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" kind="variable"><name>_bins</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" kind="function"><name>SpatialIndex</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" kind="function"><name>add_ground_point</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" kind="function"><name>get_nearby_ground_points</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a6d8e8863c305d152fc236bb4adb11e20" kind="function"><name>get_all_ground_points</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a48e8c8ddf487a01ac26db232de1284fa" kind="function"><name>clear</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a39415e6c02e1c57b135cbf16d96ad668" kind="function"><name>get_lat_bin_index</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a1a4d15781dc2c4b40e6be875b36f0fd2" kind="function"><name>get_lon_bin_index</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac2edcc809ce65c30790da3bfb249ce64" kind="function"><name>get_bin_index</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1Stats" kind="struct"><name>astrea::trace::Stats</name>
+    <member refid="structastrea_1_1trace_1_1Stats_1a68e0e90d994719f65e2f6be812d997ab" kind="variable"><name>min</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1aed0afb8a9b721a68cfa963a455cb7810" kind="variable"><name>max</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1a4ebc8a5f3926e97b2d2b7154e3cc9e81" kind="variable"><name>avg</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1aced6411794e5119879cd30438a2990bd" kind="variable"><name>percentiles</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1adb482c10bd09c231a623b3be71d6d20c" kind="function"><name>Stats</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1ac7e0a8e2f2b5fbeb6ce6c70aaa67578e" kind="function"><name>Stats</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" kind="function"><name>Stats</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1aaa8a7573c96844e92c56d406cd0c1f45" kind="function"><name>Stats</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1ab29cd3fb1920d42f43d94a0b8e91d367" kind="function"><name>size</name></member>
+  </compound>
+  <compound refid="classastrea_1_1trace_1_1Viewer" kind="class"><name>astrea::trace::Viewer</name>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" kind="function"><name>Viewer</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a4cb486b0908b778360a2ddd8964437a9" kind="function"><name>Viewer</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a3f794b31a184b07044fc1a46e436f92b" kind="function"><name>~Viewer</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" kind="function"><name>get_id</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" kind="function"><name>get_name</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" kind="function"><name>get_inertial_velocity</name></member>
+  </compound>
+  <compound refid="conceptastrea_1_1trace_1_1HasSize" kind="concept"><name>astrea::trace::HasSize</name>
+  </compound>
+  <compound refid="conceptastrea_1_1trace_1_1HasSubscriptOperator" kind="concept"><name>astrea::trace::HasSubscriptOperator</name>
+  </compound>
+  <compound refid="conceptastrea_1_1trace_1_1IsPlatformContainer" kind="concept"><name>astrea::trace::IsPlatformContainer</name>
+  </compound>
+  <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
+  </compound>
+  <compound refid="namespaceastrea_1_1trace" kind="namespace"><name>astrea::trace</name>
+    <member refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" kind="enum"><name>PatternApproximation</name></member>
+    <member refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7a3464761f66a3495e0a87fb89969be605" kind="enumvalue"><name>BESSEL</name></member>
+    <member refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7a7a0b0601504d3ece79f1ca88d2a2cd3c" kind="enumvalue"><name>SINC_SQUARED</name></member>
+    <member refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kind="enum"><name>StatType</name></member>
+    <member refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ace31e2a082d17e038fcc6e3006166653" kind="enumvalue"><name>MIN</name></member>
+    <member refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7afcefd647d6a866603c627b11347c707a" kind="enumvalue"><name>AVG</name></member>
+    <member refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7a26a4b44a837bf97b972628509912b4a5" kind="enumvalue"><name>MAX</name></member>
+    <member refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ac1b9a5bfdcf1b4b586c4953afeff622b" kind="enumvalue"><name>PCT</name></member>
+    <member refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kind="enum"><name>RiseSetMetric</name></member>
+    <member refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae80ae93ca3e3a2f0af277594318d456a" kind="enumvalue"><name>GAP</name></member>
+    <member refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae489ac1dd74f53fb5eccf275114d2555" kind="enumvalue"><name>ACCESS_TIME</name></member>
+    <member refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kind="enum"><name>AccessMetric</name></member>
+    <member refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a7aaede8985c2eb40ea974cfa68dac0dd" kind="enumvalue"><name>MTTA</name></member>
+    <member refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a91cacf54a677b02c34cc232e32b6695a" kind="enumvalue"><name>AVG_DAILY_VIS</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kind="enum"><name>GridType</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa891f35a29c3d51d02ffd42dd6dcc69b2" kind="enumvalue"><name>UNIFORM</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa0859bda1f94ba7c3c98654093c3a9072" kind="enumvalue"><name>EQUAL_AREA</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa9cc6ba9c88824eab6a1726f408bc517e" kind="enumvalue"><name>WEIGHTED_NS</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa6da717095ae1c345cef22912acb622a7" kind="enumvalue"><name>WEIGHTED_EW</name></member>
+    <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kind="enumvalue"><name>MANUAL</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a493336b6b50db8040b47a0a21834fe84" kind="typedef"><name>EciRadiusVec</name></member>
+    <member refid="AccessAnalyzer_8hpp_1ac59daa29795c0d97b4e314d99c8c9a99" kind="typedef"><name>EcefRadiusVec</name></member>
+    <member refid="AccessAnalyzer_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" kind="typedef"><name>DateVector</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kind="typedef"><name>ViewerConstellation</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" kind="typedef"><name>ViewerRefVec</name></member>
+    <member refid="AccessAnalyzer_8hpp_1aeb01a3e445debfa97bce6f597546f9ad" kind="typedef"><name>GroundStationRefVec</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a7d86449b2dae53fcf00b2caf6cc2ebc3" kind="typedef"><name>GroundPointRefVec</name></member>
+    <member refid="AccessAnalyzer_8hpp_1ad15872bf64dbeccb549ccad1986be66d" kind="typedef"><name>PairVec</name></member>
+    <member refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kind="typedef"><name>SensorPlatform</name></member>
+    <member refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kind="typedef"><name>EnumType</name></member>
+    <member refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kind="typedef"><name>LatLon</name></member>
+    <member refid="Stats_8hpp_1aa805cd28f9825ba3b62958800fb83217" kind="variable"><name>DEFAULT_PERCENTILES</name></member>
+    <member refid="enums_8hpp_1a744e83b01257ef3f1e19038d58f195cf" kind="variable"><name>ALL_STAT_TYPES</name></member>
+    <member refid="enums_8hpp_1ab0393099d2e10e6257c44209ac246e3f" kind="variable"><name>STAT_TYPE_STRINGS</name></member>
+    <member refid="enums_8hpp_1ae9c6cc7d631673b7c7324cbd65c6e014" kind="variable"><name>ALL_RISE_SET_METRICS</name></member>
+    <member refid="enums_8hpp_1aafd8d71cf2bbce597278f1819ddd0259" kind="variable"><name>RISE_SET_METRIC_STRINGS</name></member>
+    <member refid="enums_8hpp_1a3a9b134da5390f399f212ebbbc479261" kind="variable"><name>ALL_ACCESS_METRICS</name></member>
+    <member refid="enums_8hpp_1a3b30f82684650156b160cf21d1fd3170" kind="variable"><name>ACCESS_METRIC_STRINGS</name></member>
+    <member refid="enums_8hpp_1ab3e624800826bc5d851135ea3f3285de" kind="variable"><name>ALL_GRID_TYPES</name></member>
+    <member refid="enums_8hpp_1a800996ece0c2acc3aa1cf5c919b2c552" kind="variable"><name>GRID_TYPE_STRINGS</name></member>
+    <member refid="output_8hpp_1ab8f1484c3c3060a93c3bb00c1efb73a1" kind="function"><name>get_object_name_from_id</name></member>
+    <member refid="output_8hpp_1ad472590c8fc6906955b42f3603412d52" kind="function"><name>save_risesets_to_file</name></member>
+    <member refid="output_8hpp_1a848c53ee9c6dc1e1abe1db68c6eac5a3" kind="function"><name>save_riseset_metrics_to_file</name></member>
+    <member refid="output_8hpp_1a4a17638abb723d8d8671a636feac62ed" kind="function"><name>save_receiver_riseset_metrics_to_file</name></member>
+    <member refid="output_8hpp_1ae763d447b84cd28a7ef91c790f9dd733" kind="function"><name>save_access_metrics_to_file</name></member>
+    <member refid="output_8hpp_1a3a69a2cb713f80079ea869911232ffc8" kind="function"><name>save_number_of_folds_to_file</name></member>
+    <member refid="FieldOfView_8cpp_1affa19a9aa828894a4617995076cfcb38" kind="function"><name>calculate_angle_between_vectors</name></member>
+    <member refid="FieldOfView_8hpp_1aab6ab444018491785782f8d25a3fbc07" kind="function"><name>calculate_angle_between_vectors</name></member>
+    <member refid="PolygonalFieldOfView_8cpp_1a9d47cf5db0d02438604f6d4df5736f61" kind="function"><name>point_in_polygon</name></member>
+    <member refid="AccessArray_8cpp_1a15c3b7d207a35f0197b778079a2d1872" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="riseset__utils_8cpp_1a139c897cf0a8242c7db911a25cc3ed91" kind="function"><name>to_formatted_string</name></member>
+    <member refid="riseset__utils_8cpp_1a1434cfe236402da7bba2002a5f23120b" kind="function"><name>riseset_union</name></member>
+    <member refid="riseset__utils_8cpp_1a4d9256918fa8ca855a0038272e1a5820" kind="function"><name>riseset_intersection</name></member>
+    <member refid="riseset__utils_8cpp_1a7cd188aabd3d2dd2bd78b147085e0a87" kind="function"><name>riseset_difference</name></member>
+    <member refid="RiseSetArray_8cpp_1aa789a66bcde8642549ad9900cb43fe6a" kind="function"><name>operator&lt;&lt;</name></member>
+  </compound>
+  <compound refid="namespaceastrea_1_1trace_1_1plotting" kind="namespace"><name>astrea::trace::plotting</name>
+  </compound>
+  <compound refid="namespaceastrea_1_1trace_1_1plotting_1_1_0d2" kind="namespace"><name>astrea::trace::plotting::@2</name>
+  </compound>
+  <compound refid="namespaceastro" kind="namespace"><name>astro</name>
+  </compound>
+  <compound refid="namespaceastro_1_1frames" kind="namespace"><name>astro::frames</name>
+  </compound>
+  <compound refid="namespacematplot" kind="namespace"><name>matplot</name>
+  </compound>
+  <compound refid="namespacemp__units" kind="namespace"><name>mp_units</name>
+  </compound>
+  <compound refid="namespacemp__units_1_1angular" kind="namespace"><name>mp_units::angular</name>
+  </compound>
+  <compound refid="namespacesnapshot" kind="namespace"><name>snapshot</name>
+  </compound>
+  <compound refid="namespacesqlite__orm" kind="namespace"><name>sqlite_orm</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="AccessAnalyzer_8cpp" kind="file"><name>AccessAnalyzer.cpp</name>
+  </compound>
+  <compound refid="AccessAnalyzer_8hpp" kind="file"><name>AccessAnalyzer.hpp</name>
+  </compound>
+  <compound refid="Plotter_8cpp" kind="file"><name>Plotter.cpp</name>
+  </compound>
+  <compound refid="Plotter_8hpp" kind="file"><name>Plotter.hpp</name>
+  </compound>
+  <compound refid="PositionCache_8cpp" kind="file"><name>PositionCache.cpp</name>
+  </compound>
+  <compound refid="PositionCache_8hpp" kind="file"><name>PositionCache.hpp</name>
+  </compound>
+  <compound refid="SpatialIndex_8cpp" kind="file"><name>SpatialIndex.cpp</name>
+  </compound>
+  <compound refid="SpatialIndex_8hpp" kind="file"><name>SpatialIndex.hpp</name>
+  </compound>
+  <compound refid="AccessStats_8cpp" kind="file"><name>AccessStats.cpp</name>
+  </compound>
+  <compound refid="AccessStats_8hpp" kind="file"><name>AccessStats.hpp</name>
+  </compound>
+  <compound refid="FoldsOfCoverage_8cpp" kind="file"><name>FoldsOfCoverage.cpp</name>
+  </compound>
+  <compound refid="FoldsOfCoverage_8hpp" kind="file"><name>FoldsOfCoverage.hpp</name>
+  </compound>
+  <compound refid="HyperStats_8hpp" kind="file"><name>HyperStats.hpp</name>
+  </compound>
+  <compound refid="RiseSetStats_8cpp" kind="file"><name>RiseSetStats.cpp</name>
+  </compound>
+  <compound refid="RiseSetStats_8hpp" kind="file"><name>RiseSetStats.hpp</name>
+  </compound>
+  <compound refid="Stats_8hpp" kind="file"><name>Stats.hpp</name>
+  </compound>
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1a288e8d9fd551fdecc0220a6562b24050" kind="variable"><name>PROP_TIME</name></member>
+    <member refid="main_8cpp_1ac501855b860f4bfd4f4c8c1734064ce7" kind="variable"><name>ACCESS_RESOLUTION</name></member>
+    <member refid="main_8cpp_1ac604c8b7c79f60e54074b42f9ae329e9" kind="variable"><name>PRINT_PROGRESS</name></member>
+    <member refid="main_8cpp_1a5d42acae128662fa8d71fbbf6a80f799" kind="variable"><name>GRID_SPACING</name></member>
+    <member refid="main_8cpp_1a5e73134443d11f3814d1ca5e5f8f8dd5" kind="function"><name>arcturus_starlink_interference_test</name></member>
+    <member refid="main_8cpp_1ad23795832dd80b6bac66a5c3745e0b63" kind="function"><name>iceye_test</name></member>
+    <member refid="main_8cpp_1afddbde9b8f67b89e2d2b7e4c4c41b536" kind="function"><name>propagate_and_run_access_analysis</name></member>
+    <member refid="main_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="output_8hpp" kind="file"><name>output.hpp</name>
+  </compound>
+  <compound refid="AccessObject_8hpp" kind="file"><name>AccessObject.hpp</name>
+  </compound>
+  <compound refid="Grid_8cpp" kind="file"><name>Grid.cpp</name>
+  </compound>
+  <compound refid="Grid_8hpp" kind="file"><name>Grid.hpp</name>
+  </compound>
+  <compound refid="GroundArchitecture_8hpp" kind="file"><name>GroundArchitecture.hpp</name>
+  </compound>
+  <compound refid="GroundPoint_8cpp" kind="file"><name>GroundPoint.cpp</name>
+  </compound>
+  <compound refid="GroundPoint_8hpp" kind="file"><name>GroundPoint.hpp</name>
+  </compound>
+  <compound refid="GroundStation_8cpp" kind="file"><name>GroundStation.cpp</name>
+  </compound>
+  <compound refid="GroundStation_8hpp" kind="file"><name>GroundStation.hpp</name>
+  </compound>
+  <compound refid="Antenna_8cpp" kind="file"><name>Antenna.cpp</name>
+  </compound>
+  <compound refid="Antenna_8hpp" kind="file"><name>Antenna.hpp</name>
+  </compound>
+  <compound refid="FieldOfView_8cpp" kind="file"><name>FieldOfView.cpp</name>
+  </compound>
+  <compound refid="FieldOfView_8hpp" kind="file"><name>FieldOfView.hpp</name>
+  </compound>
+  <compound refid="CircularFieldOfView_8cpp" kind="file"><name>CircularFieldOfView.cpp</name>
+  </compound>
+  <compound refid="CircularFieldOfView_8hpp" kind="file"><name>CircularFieldOfView.hpp</name>
+  </compound>
+  <compound refid="PolygonalFieldOfView_8cpp" kind="file"><name>PolygonalFieldOfView.cpp</name>
+  </compound>
+  <compound refid="PolygonalFieldOfView_8hpp" kind="file"><name>PolygonalFieldOfView.hpp</name>
+  </compound>
+  <compound refid="Sensor_8cpp" kind="file"><name>Sensor.cpp</name>
+  </compound>
+  <compound refid="Sensor_8hpp" kind="file"><name>Sensor.hpp</name>
+  </compound>
+  <compound refid="Viewer_8hpp" kind="file"><name>Viewer.hpp</name>
+  </compound>
+  <compound refid="AccessArray_8cpp" kind="file"><name>AccessArray.cpp</name>
+  </compound>
+  <compound refid="AccessArray_8hpp" kind="file"><name>AccessArray.hpp</name>
+  </compound>
+  <compound refid="riseset__utils_8cpp" kind="file"><name>riseset_utils.cpp</name>
+  </compound>
+  <compound refid="riseset__utils_8hpp" kind="file"><name>riseset_utils.hpp</name>
+  </compound>
+  <compound refid="RiseSetArray_8cpp" kind="file"><name>RiseSetArray.cpp</name>
+  </compound>
+  <compound refid="RiseSetArray_8hpp" kind="file"><name>RiseSetArray.hpp</name>
+  </compound>
+  <compound refid="trace_8fwd_8hpp" kind="file"><name>trace.fwd.hpp</name>
+  </compound>
+  <compound refid="trace_8hpp" kind="file"><name>trace.hpp</name>
+  </compound>
+  <compound refid="trace_8macros_8hpp" kind="file"><name>trace.macros.hpp</name>
+    <member refid="trace_8macros_8hpp_1af1e815bef2a2831baee6fd7f52786391" kind="define"><name>_TRACE_ROOT_</name></member>
+  </compound>
+  <compound refid="enums_8hpp" kind="file"><name>enums.hpp</name>
+  </compound>
+  <compound refid="IdPair_8hpp" kind="file"><name>IdPair.hpp</name>
+  </compound>
+  <compound refid="typedefs_8hpp" kind="file"><name>typedefs.hpp</name>
+  </compound>
+  <compound refid="dir_46c4498db40ce3dbd9ced60b5dc27dd1" kind="dir"><name>astrea/trace/trace/analysis</name>
+  </compound>
+  <compound refid="dir_b5324400686b7cece921533bb760c87a" kind="dir"><name>astrea</name>
+  </compound>
+  <compound refid="dir_ede4f445fc3b272c23592e211659caf8" kind="dir"><name>astrea/trace/trace/drivers</name>
+  </compound>
+  <compound refid="dir_303a66b90134ad3dff734d202c421315" kind="dir"><name>astrea/trace/trace/platforms/sensors/fov</name>
+  </compound>
+  <compound refid="dir_f1cb7431ef00eaab1d7c5caeb9788760" kind="dir"><name>astrea/trace/trace/platforms/ground</name>
+  </compound>
+  <compound refid="dir_16a2422c641898ec244ea09da3a664c2" kind="dir"><name>astrea/trace/trace/platforms/sensors/fov/instances</name>
+  </compound>
+  <compound refid="dir_31644feff08ff9a8c24064987b494ea5" kind="dir"><name>astrea/trace/trace/io</name>
+  </compound>
+  <compound refid="dir_4dbda61db413396ce1d3b920f98dbf93" kind="dir"><name>astrea/trace/trace/platforms</name>
+  </compound>
+  <compound refid="dir_6faad7806a2c60f21e03829ae6b33a05" kind="dir"><name>astrea/trace/trace/analysis/plots</name>
+  </compound>
+  <compound refid="dir_3852194babc4edab798292ba09c53d6d" kind="dir"><name>astrea/trace/trace/risesets</name>
+  </compound>
+  <compound refid="dir_4c34a36d272c54a3547c6d2c18e9dea2" kind="dir"><name>astrea/trace/trace/platforms/sensors</name>
+  </compound>
+  <compound refid="dir_d68b2e53ed12ccd9980273f79a385518" kind="dir"><name>astrea/trace/trace/analysis/stats</name>
+  </compound>
+  <compound refid="dir_e30098dbada9bbfb44888190c04e2af0" kind="dir"><name>astrea/trace</name>
+  </compound>
+  <compound refid="dir_f04035ba8afac2675c737f654641e7b5" kind="dir"><name>astrea/trace/trace</name>
+  </compound>
+  <compound refid="dir_99d9bc6205d35ba61d9e386839c646c4" kind="dir"><name>astrea/trace/trace/types</name>
+  </compound>
+  <compound refid="dir_9708b761f2d3397b5afefec8b7ac12b4" kind="dir"><name>astrea/trace/trace/platforms/vehicles</name>
+  </compound>
+</doxygenindex>

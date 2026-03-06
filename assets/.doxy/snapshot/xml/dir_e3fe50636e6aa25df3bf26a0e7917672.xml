@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_e3fe50636e6aa25df3bf26a0e7917672" kind="dir">
+    <compoundname>astrea/snapshot/snapshot/http-queries</compoundname>
+    <innerdir refid="dir_31d12700b25e15af9e5493b70ce27e08">astrea/snapshot/snapshot/http-queries/ethz</innerdir>
+    <innerdir refid="dir_ebf022e0144e875932c7cae0921ab822">astrea/snapshot/snapshot/http-queries/spacetrack</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/snapshot/snapshot/http-queries/"/>
+  </compounddef>
+</doxygen>

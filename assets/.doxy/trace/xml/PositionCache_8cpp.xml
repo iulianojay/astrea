@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PositionCache_8cpp" kind="file" language="C++">
+    <compoundname>PositionCache.cpp</compoundname>
+    <includes refid="PositionCache_8hpp" local="no">trace/analysis/PositionCache.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/analysis/PositionCache.cpp</label>
+        <link refid="PositionCache_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trace/analysis/PositionCache.hpp</label>
+        <link refid="PositionCache_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astro/frames/CartesianVector.hpp</label>
+      </node>
+      <node id="6">
+        <label>astro/frames/frames.hpp</label>
+      </node>
+      <node id="7">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="9">
+        <label>cstdint</label>
+      </node>
+      <node id="4">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="PositionCache_8hpp" kindref="compound">trace/analysis/PositionCache.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" kindref="member">PositionCache::reserve</ref>(std::size_t<sp/>nPlatforms)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>_platformIds.reserve(nPlatforms);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>_positions.reserve(nPlatforms);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" kindref="member">PositionCache::add_platform</ref>(std::size_t<sp/>platformId,<sp/>std::size_t<sp/>nTimesteps)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>idx<sp/>=<sp/>_platformIds.size();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>_platformIds.push_back(platformId);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>_positions.emplace_back(nTimesteps);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>_idToIndex[platformId]<sp/>=<sp/>idx;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>idx;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" kindref="member">PositionCache::set_position</ref>(std::size_t<sp/>platformIdx,<sp/>std::size_t<sp/>timeIdx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EcefRadiusVec&amp;<sp/>position)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>_positions[platformIdx][timeIdx]<sp/>=<sp/>position;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EcefRadiusVec&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">PositionCache::get_position_by_id</ref>(std::size_t<sp/>platformId,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="40"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positions<sp/>=<sp/>_positions[_idToIndex.at(platformId)];</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(positions.size()<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>only<sp/>one<sp/>timestep,<sp/>assume<sp/>fixed<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positions[0];</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positions[timeIdx];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EcefRadiusVec&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" kindref="member">PositionCache::get_position_by_index</ref>(std::size_t<sp/>platformIdx,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="50"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positions<sp/>=<sp/>_positions[platformIdx];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(positions.size()<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>only<sp/>one<sp/>timestep,<sp/>assume<sp/>fixed<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positions[0];</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positions[timeIdx];</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1aafc2c6f38f36ae18446ed5845aed8f16" kindref="member">PositionCache::get_index</ref>(std::size_t<sp/>platformId)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_idToIndex.at(platformId);<sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1abbda32e058f132760cb639bf0926e93c" kindref="member">PositionCache::get_platform_id</ref>(std::size_t<sp/>platformIdx)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_platformIds[platformIdx];<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ac0aa1e01ffcdcca9c0e275b72e7728f0" kindref="member">PositionCache::n_platforms</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_platformIds.size();<sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">std::size_t<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1a4b9c0067cc666a62f401b5b7c19c8eac" kindref="member">PositionCache::n_timesteps</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_positions.empty()<sp/>?<sp/>0<sp/>:<sp/>_positions[0].size();<sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" kindref="member">PositionCache::clear</ref>()</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>_platformIds.clear();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>_positions.clear();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>_idToIndex.clear();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/analysis/PositionCache.cpp"/>
+  </compounddef>
+</doxygen>

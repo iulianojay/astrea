@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_cf1a4d8122645f8636e977da512a043c" kind="dir">
+    <compoundname>astrea/astro/astro/state</compoundname>
+    <innerdir refid="dir_8f2f7499654791f4fc4240f01fb9baf6">astrea/astro/astro/state/angular_elements</innerdir>
+    <innerdir refid="dir_dce17fbadb9e43f0864b0608daddb5e0">astrea/astro/astro/state/orbital_data_formats</innerdir>
+    <innerdir refid="dir_6eb62f1e639545772a8b9a71f7b1d0b7">astrea/astro/astro/state/orbital_elements</innerdir>
+    <innerfile refid="State_8cpp">State.cpp</innerfile>
+    <innerfile refid="State_8hpp">State.hpp</innerfile>
+    <innerfile refid="StateHistory_8cpp">StateHistory.cpp</innerfile>
+    <innerfile refid="StateHistory_8hpp">StateHistory.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/"/>
+  </compounddef>
+</doxygen>

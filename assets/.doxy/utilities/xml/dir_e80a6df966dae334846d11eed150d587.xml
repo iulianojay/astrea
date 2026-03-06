@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_e80a6df966dae334846d11eed150d587" kind="dir">
+    <compoundname>astrea/utilities/utilities</compoundname>
+    <innerfile refid="json__util_8cpp">json_util.cpp</innerfile>
+    <innerfile refid="json__util_8hpp">json_util.hpp</innerfile>
+    <innerfile refid="ProgressBar_8hpp">ProgressBar.hpp</innerfile>
+    <innerfile refid="string__util_8cpp">string_util.cpp</innerfile>
+    <innerfile refid="string__util_8hpp">string_util.hpp</innerfile>
+    <innerfile refid="utilities_8hpp">utilities.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/"/>
+  </compounddef>
+</doxygen>

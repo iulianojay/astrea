@@ -1,0 +1,899 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1AntennaParameters" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::AntennaParameters</compoundname>
+    <basecompoundref refid="classastrea_1_1trace_1_1SensorParameters" prot="public" virt="non-virtual">astrea::trace::SensorParameters</basecompoundref>
+    <includes refid="Antenna_8hpp" local="no">Antenna.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a20d58ffec89d0ec13512f41fa9d4640e" prot="private" static="no" mutable="no">
+        <type>Length</type>
+        <definition>Length astrea::trace::AntennaParameters::_diameter</definition>
+        <argsstring></argsstring>
+        <name>_diameter</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_diameter</qualifiedname>
+        <briefdescription>
+<para>Reflector diameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="238" column="12" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a4abdd07ece2194a7d90c442ef2f4999a" prot="private" static="no" mutable="no">
+        <type>Unitless</type>
+        <definition>Unitless astrea::trace::AntennaParameters::_efficiency</definition>
+        <argsstring></argsstring>
+        <name>_efficiency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_efficiency</qualifiedname>
+        <briefdescription>
+<para>Aperture illumination efficiency. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="239" column="14" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a0a8b8414fe0b3b5d52f945f463f43125" prot="private" static="no" mutable="no">
+        <type>Frequency</type>
+        <definition>Frequency astrea::trace::AntennaParameters::_frequency</definition>
+        <argsstring></argsstring>
+        <name>_frequency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_frequency</qualifiedname>
+        <briefdescription>
+<para>Carrier frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="240" column="15" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1aadc7a2075b8245b1abe760c018bd7499" prot="private" static="no" mutable="no">
+        <type>Power</type>
+        <definition>Power astrea::trace::AntennaParameters::_power</definition>
+        <argsstring></argsstring>
+        <name>_power</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_power</qualifiedname>
+        <briefdescription>
+<para>Transmit power. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="241" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a11c25d7b53aa3157e1ef84a84f21e08a" prot="private" static="no" mutable="no">
+        <type>Frequency</type>
+        <definition>Frequency astrea::trace::AntennaParameters::_noiseBandwidth</definition>
+        <argsstring></argsstring>
+        <name>_noiseBandwidth</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_noiseBandwidth</qualifiedname>
+        <briefdescription>
+<para>Equivalent noise bandwidth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="242" column="15" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a6294ac4d9e89a77bf751b83cfd320915" prot="private" static="no" mutable="no">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::_transmitLoss</definition>
+        <argsstring></argsstring>
+        <name>_transmitLoss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_transmitLoss</qualifiedname>
+        <briefdescription>
+<para>Transmit loss. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="243" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a7b98a622d6850735520fa26a28947cb3" prot="private" static="no" mutable="no">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::_receiverLoss</definition>
+        <argsstring></argsstring>
+        <name>_receiverLoss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_receiverLoss</qualifiedname>
+        <briefdescription>
+<para>Receiver loss. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="244" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1af7f9e44f3de1a8323fc40c5e7b0db5f6" prot="private" static="no" mutable="no">
+        <type><ref refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" kindref="member">PatternApproximation</ref></type>
+        <definition>PatternApproximation astrea::trace::AntennaParameters::_pattern</definition>
+        <argsstring></argsstring>
+        <name>_pattern</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_pattern</qualifiedname>
+        <briefdescription>
+<para>Pattern approximation method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="245" column="26" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a912edd0c5748aed6dfcf83216a5043ca" prot="private" static="no" mutable="no">
+        <type>Length</type>
+        <definition>Length astrea::trace::AntennaParameters::_wavelength</definition>
+        <argsstring></argsstring>
+        <name>_wavelength</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_wavelength</qualifiedname>
+        <briefdescription>
+<para>Speed of light / frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="246" column="12" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1a372e70a6375aea144c056af5a6fa7bae" prot="private" static="no" mutable="no">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::_gain</definition>
+        <argsstring></argsstring>
+        <name>_gain</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_gain</qualifiedname>
+        <briefdescription>
+<para>Peak isotropic power gain. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="247" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1ad8f9cee300c0bccebe0df7e1a9ac02cc" prot="private" static="no" mutable="no">
+        <type>Power</type>
+        <definition>Power astrea::trace::AntennaParameters::_eirp</definition>
+        <argsstring></argsstring>
+        <name>_eirp</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_eirp</qualifiedname>
+        <briefdescription>
+<para>Equivalent isotropic radiator power. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="248" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AntennaParameters_1abd9440902fa6d5ef0e443804ae833579" prot="private" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::trace::AntennaParameters::_sysNoiseTemp</definition>
+        <argsstring></argsstring>
+        <name>_sysNoiseTemp</name>
+        <qualifiedname>astrea::trace::AntennaParameters::_sysNoiseTemp</qualifiedname>
+        <initializer>= mp_units::point&lt;mp_units::si::unit_symbols::deg_C&gt;(0.0)</initializer>
+        <briefdescription>
+<para>System noise temperature. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="250" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="250" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a93e29b8eff4f6f770fe7689579d9bfa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AntennaParameters::AntennaParameters</definition>
+        <argsstring>(const FieldOfView *fov, const Length &amp;diameter, const Unitless &amp;efficiency, const Frequency &amp;frequency, const Power &amp;power, const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;boresight=astro::NADIR_RIC, const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;attachmentPoint=astro::CENTER, const Frequency &amp;noiseBandwidth=0.0 *mp_units::si::unit_symbols::GHz, const Gain &amp;transmitLoss=1.0 *mp_units::one, const Gain &amp;receiverLoss=1.0 *mp_units::one, const PatternApproximation &amp;pattern=PatternApproximation::BESSEL)</argsstring>
+        <name>AntennaParameters</name>
+        <qualifiedname>astrea::trace::AntennaParameters::AntennaParameters</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> *</type>
+          <declname>fov</declname>
+        </param>
+        <param>
+          <type>const Length &amp;</type>
+          <declname>diameter</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>efficiency</declname>
+        </param>
+        <param>
+          <type>const Frequency &amp;</type>
+          <declname>frequency</declname>
+        </param>
+        <param>
+          <type>const Power &amp;</type>
+          <declname>power</declname>
+        </param>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;</type>
+          <declname>boresight</declname>
+          <defval>astro::NADIR_RIC</defval>
+        </param>
+        <param>
+          <type>const astro::CartesianVector&lt; Distance, astro::frames::dynamic::ric &gt; &amp;</type>
+          <declname>attachmentPoint</declname>
+          <defval>astro::CENTER</defval>
+        </param>
+        <param>
+          <type>const Frequency &amp;</type>
+          <declname>noiseBandwidth</declname>
+          <defval>0.0 *mp_units::si::unit_symbols::GHz</defval>
+        </param>
+        <param>
+          <type>const Gain &amp;</type>
+          <declname>transmitLoss</declname>
+          <defval>1.0 *mp_units::one</defval>
+        </param>
+        <param>
+          <type>const Gain &amp;</type>
+          <declname>receiverLoss</declname>
+          <defval>1.0 *mp_units::one</defval>
+        </param>
+        <param>
+          <type>const <ref refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" kindref="member">PatternApproximation</ref> &amp;</type>
+          <declname>pattern</declname>
+          <defval><ref refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7a3464761f66a3495e0a87fb89969be605" kindref="member">PatternApproximation::BESSEL</ref></defval>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classastrea_1_1trace_1_1Antenna" kindref="compound">Antenna</ref> Parameters object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Field of View for the antenna. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>diameter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reflector diameter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>efficiency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Aperture illumination efficiency. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Carrier frequency. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Transmit power. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boresight direction in RIC coordinates (default is Nadir). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attachmentPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Attachment point in RIC coordinates (default is Center). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>noiseBandwidth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Equivalent noise bandwidth (default is 0.0, ideal). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transmitLoss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Transmit loss (default is 1.0, ideal). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receiverLoss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receiver loss (default is 1.0, ideal). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pattern</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pattern approximation method (default is Bessel). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="63" column="5" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="63" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1af94eb15a5f2e82a322e9bb4029849e59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AntennaParameters::~AntennaParameters</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AntennaParameters</name>
+        <qualifiedname>astrea::trace::AntennaParameters::~AntennaParameters</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1trace_1_1AntennaParameters" kindref="compound">AntennaParameters</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="95" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1af9ffa32c7613f0dc3c22fa372b901413" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Length</type>
+        <definition>Length astrea::trace::AntennaParameters::get_diameter</definition>
+        <argsstring>() const</argsstring>
+        <name>get_diameter</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_diameter</qualifiedname>
+        <briefdescription>
+<para>Get the diameter of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Length Diameter of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="102" column="12" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1aed96fdcd05c48c2b9dba510aec9a595a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::trace::AntennaParameters::get_efficiency</definition>
+        <argsstring>() const</argsstring>
+        <name>get_efficiency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_efficiency</qualifiedname>
+        <briefdescription>
+<para>Get the efficiency of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Unitless Efficiency of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="109" column="14" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a714d29472d9d8ea3bd458bc96549b875" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Frequency</type>
+        <definition>Frequency astrea::trace::AntennaParameters::get_frequency</definition>
+        <argsstring>() const</argsstring>
+        <name>get_frequency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_frequency</qualifiedname>
+        <briefdescription>
+<para>Get the frequency of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Frequency Frequency of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="116" column="15" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a8d99fd00f1d5a40e778afc8994e271c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Power</type>
+        <definition>Power astrea::trace::AntennaParameters::get_power</definition>
+        <argsstring>() const</argsstring>
+        <name>get_power</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_power</qualifiedname>
+        <briefdescription>
+<para>Get the power of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Power Power of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="123" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a1d5e5d090a510b4cb66b6a89a3e4db49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Frequency</type>
+        <definition>Frequency astrea::trace::AntennaParameters::get_noise_bandwidth</definition>
+        <argsstring>() const</argsstring>
+        <name>get_noise_bandwidth</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_noise_bandwidth</qualifiedname>
+        <briefdescription>
+<para>Get the noise bandwidth of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Frequency Noise bandwidth of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="130" column="15" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::get_transmit_loss</definition>
+        <argsstring>() const</argsstring>
+        <name>get_transmit_loss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_transmit_loss</qualifiedname>
+        <briefdescription>
+<para>Get the transmit loss of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Gain Transmit loss of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="137" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1ad11ec5691c0ba52b5a9cb19cc1f35708" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::get_receiver_loss</definition>
+        <argsstring>() const</argsstring>
+        <name>get_receiver_loss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_receiver_loss</qualifiedname>
+        <briefdescription>
+<para>Get the receiver loss of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Gain Receiver loss of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="144" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1ae883e267fd3690ed17fc8ec59921c112" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" kindref="member">PatternApproximation</ref></type>
+        <definition>PatternApproximation astrea::trace::AntennaParameters::get_pattern</definition>
+        <argsstring>() const</argsstring>
+        <name>get_pattern</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_pattern</qualifiedname>
+        <briefdescription>
+<para>Get the pattern approximation method of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>PatternApproximation Pattern approximation method of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="151" column="26" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="151" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a77b97f24ebfc0087cab735fcc2614c5f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Gain</type>
+        <definition>Gain astrea::trace::AntennaParameters::get_gain</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gain</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_gain</qualifiedname>
+        <briefdescription>
+<para>Get the gain of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Gain Gain of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="158" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="158" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a37fe81bec2314d30623978b03b4005ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Power</type>
+        <definition>Power astrea::trace::AntennaParameters::get_eirp</definition>
+        <argsstring>() const</argsstring>
+        <name>get_eirp</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_eirp</qualifiedname>
+        <briefdescription>
+<para>Get the equivalent isotropic radiated power (EIRP) of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Power EIRP of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="165" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="165" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a3efa9a1f05205f36085145f2e0bfd32a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Temperature</type>
+        <definition>Temperature astrea::trace::AntennaParameters::get_system_noise_temperature</definition>
+        <argsstring>() const</argsstring>
+        <name>get_system_noise_temperature</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_system_noise_temperature</qualifiedname>
+        <briefdescription>
+<para>Get the system noise temperature of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Temperature System noise temperature of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="172" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Length</type>
+        <definition>Length astrea::trace::AntennaParameters::get_wavelength</definition>
+        <argsstring>() const</argsstring>
+        <name>get_wavelength</name>
+        <qualifiedname>astrea::trace::AntennaParameters::get_wavelength</qualifiedname>
+        <briefdescription>
+<para>Get the wavelength of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Length Wavelength of the antenna. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="179" column="12" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="179" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a9ff3fd943d408373c89dfa6b52c44998" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_diameter</definition>
+        <argsstring>(const Length &amp;diameter)</argsstring>
+        <name>set_diameter</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_diameter</qualifiedname>
+        <param>
+          <type>const Length &amp;</type>
+          <declname>diameter</declname>
+        </param>
+        <briefdescription>
+<para>Set the diameter of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>diameter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length Diameter of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="186" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="186" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a0d9e4dbdac884982f89f00228eebc3e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_efficiency</definition>
+        <argsstring>(const Unitless &amp;efficiency)</argsstring>
+        <name>set_efficiency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_efficiency</qualifiedname>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>efficiency</declname>
+        </param>
+        <briefdescription>
+<para>Set the efficiency of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>efficiency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unitless Efficiency of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="193" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="193" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1adb96aa203a8b6340b6e9a6000040b995" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_frequency</definition>
+        <argsstring>(const Frequency &amp;frequency)</argsstring>
+        <name>set_frequency</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_frequency</qualifiedname>
+        <param>
+          <type>const Frequency &amp;</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+<para>Set the frequency of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency Frequency of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="200" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="200" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a8c0bd7b78c7b1605db7e48b078c0d1d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_power</definition>
+        <argsstring>(const Power &amp;power)</argsstring>
+        <name>set_power</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_power</qualifiedname>
+        <param>
+          <type>const Power &amp;</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Set the power of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Power Power of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="207" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1af49f979fcd57e428db33e5c1561f9a2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_noise_bandwidth</definition>
+        <argsstring>(const Frequency &amp;noiseBandwidth)</argsstring>
+        <name>set_noise_bandwidth</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_noise_bandwidth</qualifiedname>
+        <param>
+          <type>const Frequency &amp;</type>
+          <declname>noiseBandwidth</declname>
+        </param>
+        <briefdescription>
+<para>Set the noise bandwidth of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>noiseBandwidth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency Noise bandwidth of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="214" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1ac1a1d9ccf22b7baf8312c029806cc64f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_transmit_loss</definition>
+        <argsstring>(const Gain &amp;transmitLoss)</argsstring>
+        <name>set_transmit_loss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_transmit_loss</qualifiedname>
+        <param>
+          <type>const Gain &amp;</type>
+          <declname>transmitLoss</declname>
+        </param>
+        <briefdescription>
+<para>Set the transmit loss of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transmitLoss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Gain Transmit loss of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="221" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="221" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1aa3451a9b814839ffb0acf71b90d3ecec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_receiver_loss</definition>
+        <argsstring>(const Gain &amp;receiverLoss)</argsstring>
+        <name>set_receiver_loss</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_receiver_loss</qualifiedname>
+        <param>
+          <type>const Gain &amp;</type>
+          <declname>receiverLoss</declname>
+        </param>
+        <briefdescription>
+<para>Set the receiver loss of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>receiverLoss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Gain Receiver loss of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="228" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="228" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AntennaParameters_1a92289414f4fae2423980157b565eb206" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AntennaParameters::set_pattern</definition>
+        <argsstring>(const PatternApproximation &amp;pattern)</argsstring>
+        <name>set_pattern</name>
+        <qualifiedname>astrea::trace::AntennaParameters::set_pattern</qualifiedname>
+        <param>
+          <type>const <ref refid="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" kindref="member">PatternApproximation</ref> &amp;</type>
+          <declname>pattern</declname>
+        </param>
+        <briefdescription>
+<para>Set the pattern approximation method of the antenna. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pattern</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PatternApproximation Pattern approximation method of the antenna. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="235" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="235" bodyend="235"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for storing and managing antenna parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::trace::AntennaParameters</label>
+        <link refid="classastrea_1_1trace_1_1AntennaParameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::trace::SensorParameters</label>
+        <link refid="classastrea_1_1trace_1_1SensorParameters"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro::PayloadParameters</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::trace::AntennaParameters</label>
+        <link refid="classastrea_1_1trace_1_1AntennaParameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::trace::FieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
+      </node>
+      <node id="2">
+        <label>astrea::trace::SensorParameters</label>
+        <link refid="classastrea_1_1trace_1_1SensorParameters"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_fov</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro::PayloadParameters</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="46" column="1" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.hpp" bodystart="46" bodyend="251"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a20d58ffec89d0ec13512f41fa9d4640e" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_diameter</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a4abdd07ece2194a7d90c442ef2f4999a" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_efficiency</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1ad8f9cee300c0bccebe0df7e1a9ac02cc" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_eirp</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" prot="protected" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a0a8b8414fe0b3b5d52f945f463f43125" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_frequency</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a372e70a6375aea144c056af5a6fa7bae" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_gain</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a11c25d7b53aa3157e1ef84a84f21e08a" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_noiseBandwidth</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1af7f9e44f3de1a8323fc40c5e7b0db5f6" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_pattern</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1aadc7a2075b8245b1abe760c018bd7499" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_power</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a7b98a622d6850735520fa26a28947cb3" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_receiverLoss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1abd9440902fa6d5ef0e443804ae833579" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_sysNoiseTemp</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a6294ac4d9e89a77bf751b83cfd320915" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_transmitLoss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a912edd0c5748aed6dfcf83216a5043ca" prot="private" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>_wavelength</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a93e29b8eff4f6f770fe7689579d9bfa6" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>AntennaParameters</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1af9ffa32c7613f0dc3c22fa372b901413" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_diameter</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1aed96fdcd05c48c2b9dba510aec9a595a" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_efficiency</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a37fe81bec2314d30623978b03b4005ae" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_eirp</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a714d29472d9d8ea3bd458bc96549b875" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_frequency</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a77b97f24ebfc0087cab735fcc2614c5f" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_gain</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a1d5e5d090a510b4cb66b6a89a3e4db49" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_noise_bandwidth</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1ae883e267fd3690ed17fc8ec59921c112" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_pattern</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a8d99fd00f1d5a40e778afc8994e271c6" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_power</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1ad11ec5691c0ba52b5a9cb19cc1f35708" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_receiver_loss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a3efa9a1f05205f36085145f2e0bfd32a" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_system_noise_temperature</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_transmit_loss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>get_wavelength</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1ae21b87a4b797b515a4b53e8675653a42" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>SensorParameters</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a9ff3fd943d408373c89dfa6b52c44998" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_diameter</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a0d9e4dbdac884982f89f00228eebc3e4" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_efficiency</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_fov</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1adb96aa203a8b6340b6e9a6000040b995" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_frequency</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1af49f979fcd57e428db33e5c1561f9a2d" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_noise_bandwidth</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a92289414f4fae2423980157b565eb206" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_pattern</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1a8c0bd7b78c7b1605db7e48b078c0d1d0" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_power</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1aa3451a9b814839ffb0acf71b90d3ecec" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_receiver_loss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1ac1a1d9ccf22b7baf8312c029806cc64f" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>set_transmit_loss</name></member>
+      <member refid="classastrea_1_1trace_1_1AntennaParameters_1af94eb15a5f2e82a322e9bb4029849e59" prot="public" virt="non-virtual"><scope>astrea::trace::AntennaParameters</scope><name>~AntennaParameters</name></member>
+      <member refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" prot="public" virt="virtual"><scope>astrea::trace::AntennaParameters</scope><name>~SensorParameters</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

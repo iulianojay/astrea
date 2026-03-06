@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1venus" kind="namespace" language="C++">
+    <compoundname>astrea::astro::frames::venus</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1adeb2fc714d0f5387b5f00b19abd6741d" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::VENUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
+        <definition>using astrea::astro::frames::venus::icrf = typedef InertialFrame&lt;CelestialBodyId::VENUS, FrameAxis::ICRF&gt;</definition>
+        <argsstring></argsstring>
+        <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::venus::icrf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="38" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a25160f1621ea4cae5ff89522953e7a2d" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::VENUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
+        <definition>using astrea::astro::frames::venus::j2000 = typedef InertialFrame&lt;CelestialBodyId::VENUS, FrameAxis::J2000&gt;</definition>
+        <argsstring></argsstring>
+        <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::venus::j2000</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="39" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="37" column="1"/>
+  </compounddef>
+</doxygen>

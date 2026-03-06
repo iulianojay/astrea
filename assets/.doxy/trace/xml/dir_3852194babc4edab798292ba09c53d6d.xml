@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_3852194babc4edab798292ba09c53d6d" kind="dir">
+    <compoundname>astrea/trace/trace/risesets</compoundname>
+    <innerfile refid="AccessArray_8cpp">AccessArray.cpp</innerfile>
+    <innerfile refid="AccessArray_8hpp">AccessArray.hpp</innerfile>
+    <innerfile refid="riseset__utils_8cpp">riseset_utils.cpp</innerfile>
+    <innerfile refid="riseset__utils_8hpp">riseset_utils.hpp</innerfile>
+    <innerfile refid="RiseSetArray_8cpp">RiseSetArray.cpp</innerfile>
+    <innerfile refid="RiseSetArray_8hpp">RiseSetArray.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/risesets/"/>
+  </compounddef>
+</doxygen>

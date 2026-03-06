@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="trace_8macros_8hpp" kind="file" language="C++">
+    <compoundname>trace.macros.hpp</compoundname>
+    <includedby refid="main_8cpp" local="no">astrea/trace/trace/drivers/main.cpp</includedby>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="trace_8macros_8hpp_1af1e815bef2a2831baee6fd7f52786391" prot="public" static="no">
+        <name>_TRACE_ROOT_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/trace.macros.hpp" line="23" column="9" bodyfile="astrea/trace/trace/trace.macros.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Macros for the trace module. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_TRACE_ROOT_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_TRACE_ROOT_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;TRACE_ROOT<sp/>environment<sp/>variable<sp/>not<sp/>set<sp/>or<sp/>passed<sp/>to<sp/>compiler.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_TRACE_ROOT_</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/trace.macros.hpp"/>
+  </compounddef>
+</doxygen>

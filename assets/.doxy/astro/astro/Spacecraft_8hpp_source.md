@@ -1,0 +1,125 @@
+
+
+# File Spacecraft.hpp
+
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**platforms**](dir_2552b27872b33d254ad75ac21654b66a.md) **>** [**vehicles**](dir_6209fec1d31cfd277683fcd634983a45.md) **>** [**Spacecraft.hpp**](Spacecraft_8hpp.md)
+
+[Go to the documentation of this file](Spacecraft_8hpp.md)
+
+
+```C++
+
+#pragma once
+
+#include <string>
+
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/platforms/thrusters/Thruster.hpp>
+#include <astro/state/StateHistory.hpp>
+
+namespace astrea {
+namespace astro {
+
+class Spacecraft : public ThrusterPlatform {
+
+  public:
+    Spacecraft() { generate_id(); };
+
+    Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys);
+
+    virtual ~Spacecraft() = default;
+
+    bool operator==(const Spacecraft& other) const;
+
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
+
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
+
+    void set_state_history(const StateHistory& history);
+
+    void store_state(const State& state);
+
+    State& get_initial_state() { return _stateHistory.begin()->second; }
+
+    const State& get_initial_state() const { return _stateHistory.begin()->second; }
+
+    StateHistory& get_state_history();
+
+    const StateHistory& get_state_history() const;
+
+    Mass get_mass() const;
+
+    Unitless get_coefficient_of_drag() const;
+
+    Unitless get_coefficient_of_lift() const;
+
+    Unitless get_coefficient_of_reflectivity() const;
+
+    SurfaceArea get_ram_area() const;
+
+    SurfaceArea get_solar_area() const;
+
+    SurfaceArea get_lift_area() const;
+
+    std::size_t get_id() const { return _id; }
+
+    std::string get_name() const { return _name; }
+
+    void set_mass(const Mass& mass);
+
+    void set_coefficient_of_drag(const Unitless& cd);
+
+    void set_coefficient_of_lift(const Unitless& cl);
+
+    void set_coefficient_of_reflectivity(const Unitless& cr);
+
+    void set_ram_area(const SurfaceArea& ramArea);
+
+    void set_solar_area(const SurfaceArea& solarArea);
+
+    void set_lift_area(const SurfaceArea& liftArea);
+
+    void set_name(const std::string& name);
+
+    // I hate this
+    using PayloadPlatform<Thruster>::attach_payload;
+    using PayloadPlatform<Thruster>::get_payloads;
+
+    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit; // Default mass of the spacecraft
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * astrea::detail::unitless; // Default coefficient of drag
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
+        1.1 * astrea::detail::unitless; // Default coefficient of reflectivity
+    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default ram area
+    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default solar area
+    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default lift area
+
+  protected:
+    std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties
+    std::string _name; // Name of the spacecraft, can be set by the user
+
+    // Spacecraft properties
+    Mass _mass                          = DEFAULT_MASS;                        
+    Unitless _coefficientOfDrag         = DEFAULT_COEFFICIENT_OF_DRAG;         
+    Unitless _coefficientOfLift         = DEFAULT_COEFFICIENT_OF_LIFT;         
+    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY; 
+    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                    
+    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                  
+    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                   
+
+    // State history
+    StateHistory _stateHistory; // History of states for the spacecraft
+
+    void generate_id();
+};
+
+static_assert(IsUserDefinedVehicle<Spacecraft>, "Spacecraft must satisfy the IsVehicle concept");
+
+} // namespace astro
+} // namespace astrea
+```
+
+

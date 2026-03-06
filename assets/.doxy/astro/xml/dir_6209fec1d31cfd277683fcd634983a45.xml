@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_6209fec1d31cfd277683fcd634983a45" kind="dir">
+    <compoundname>astrea/astro/astro/platforms/vehicles</compoundname>
+    <innerfile refid="NullVehicle_8cpp">NullVehicle.cpp</innerfile>
+    <innerfile refid="NullVehicle_8hpp">NullVehicle.hpp</innerfile>
+    <innerfile refid="Spacecraft_8cpp">Spacecraft.cpp</innerfile>
+    <innerfile refid="Spacecraft_8hpp">Spacecraft.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/platforms/vehicles/"/>
+  </compounddef>
+</doxygen>

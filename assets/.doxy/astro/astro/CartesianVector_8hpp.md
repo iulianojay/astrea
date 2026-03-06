@@ -1,0 +1,135 @@
+
+
+# File CartesianVector.hpp
+
+
+
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**CartesianVector.hpp**](CartesianVector_8hpp.md)
+
+[Go to the source code of this file](CartesianVector_8hpp_source.md)
+
+_This file defines the CartesianVector class, which represents a 3D vector in Cartesian coordinates._ [More...](#detailed-description)
+
+* `#include <array>`
+* `#include <typeinfo>`
+* `#include <mp-units/math.h>`
+* `#include <mp-units/systems/angular/math.h>`
+* `#include <units/typedefs.hpp>`
+* `#include <utilities/string_util.hpp>`
+* `#include <astro/astro.fwd.hpp>`
+* `#include <astro/frames/Frame.hpp>`
+* `#include <astro/frames/frame_concepts.hpp>`
+* `#include <astro/frames/transformations.hpp>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Namespaces
+
+| Type | Name |
+| ---: | :--- |
+| namespace | [**astrea**](namespaceastrea.md) <br> |
+| namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+
+
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| class | [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
+| struct | [**is\_specialization**](structastrea_1_1astro_1_1is__specialization.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md), Template&gt;<br> |
+| struct | [**is\_specialization&lt; Template&lt; Args... &gt;, Template &gt;**](structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4.md) &lt;Template, Args&gt;<br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Detailed Description
+
+
+
+
+**Author:**
+
+Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com)) 
+
+
+
+
+**Date:**
+
+2025-08-03
+
+
+
+
+**Copyright:**
+
+Copyright (c) 2025 Jay Iuliano
+
+
+The GNU Lesser General Public License (LGPL)
+
+
+This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/). 
+
+
+    
+
+------------------------------
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/CartesianVector.hpp`
+

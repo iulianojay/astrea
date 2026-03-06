@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_6f58486cdc039e35eca8cf5d1aadadc3" kind="dir">
+    <compoundname>astrea/astro/astro/frames/types</compoundname>
+    <innerfile refid="BodyFixedFrame_8hpp">BodyFixedFrame.hpp</innerfile>
+    <innerfile refid="DirectionCosineMatrix_8hpp">DirectionCosineMatrix.hpp</innerfile>
+    <innerfile refid="DynamicFrame_8hpp">DynamicFrame.hpp</innerfile>
+    <innerfile refid="InertialFrame_8hpp">InertialFrame.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/types/"/>
+  </compounddef>
+</doxygen>

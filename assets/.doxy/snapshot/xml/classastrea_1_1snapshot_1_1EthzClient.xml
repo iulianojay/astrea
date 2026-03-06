@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1snapshot_1_1EthzClient" kind="class" language="C++" prot="public">
+    <compoundname>astrea::snapshot::EthzClient</compoundname>
+    <includes refid="EthzClient_8hpp" local="no">EthzClient.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1ad637299ae2d34f3f307089e8394606bd" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::EthzClient::_base</definition>
+        <argsstring></argsstring>
+        <name>_base</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_base</qualifiedname>
+        <initializer>= &quot;https://satdb.ethz.ch/api&quot;</initializer>
+        <briefdescription>
+<para>Base URL for the ETHZ satellite database API. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="82" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1a5ac0fdd6896b1fac4f8b5cfef5c8f1b0" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::EthzClient::_satDataUrl</definition>
+        <argsstring></argsstring>
+        <name>_satDataUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_satDataUrl</qualifiedname>
+        <initializer>= _base + &quot;/satellitedata&quot;</initializer>
+        <briefdescription>
+<para>URL for satellite data endpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="83" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1a0a9cf9ce33340b480f397ac551474138" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::EthzClient::_satUrl</definition>
+        <argsstring></argsstring>
+        <name>_satUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_satUrl</qualifiedname>
+        <initializer>= _base + &quot;/satellite&quot;</initializer>
+        <briefdescription>
+<para>URL for satellite endpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="84" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1a9c6c72d541dffc78a87a861fb462a401" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::EthzClient::_frequencySourceUrl</definition>
+        <argsstring></argsstring>
+        <name>_frequencySourceUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_frequencySourceUrl</qualifiedname>
+        <initializer>= _base + &quot;/frequencysource&quot;</initializer>
+        <briefdescription>
+<para>URL for frequency source endpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="85" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1a1c9fa3884e07732942fb8473f78f3bad" prot="private" static="no" mutable="no">
+        <type>const cpr::Url</type>
+        <definition>const cpr::Url astrea::snapshot::EthzClient::_frequencyUrl</definition>
+        <argsstring></argsstring>
+        <name>_frequencyUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_frequencyUrl</qualifiedname>
+        <initializer>= _base + &quot;/frequency&quot;</initializer>
+        <briefdescription>
+<para>URL for frequency endpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="86" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1a125e32f422c5ff4f8c8164cb70f156c6" prot="private" static="no" mutable="no">
+        <type>const cpr::Authentication</type>
+        <definition>const cpr::Authentication astrea::snapshot::EthzClient::_auth</definition>
+        <argsstring></argsstring>
+        <name>_auth</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_auth</qualifiedname>
+        <initializer>= { &quot;user&quot;, &quot;pass&quot;, cpr::AuthMode::BASIC }</initializer>
+        <briefdescription>
+<para>Authentication for the ETHZ API. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="87" column="31" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1aceb54b06f7176cb54f2604daa9edaa50" prot="private" static="no" mutable="no">
+        <type>const astro::Date</type>
+        <definition>const astro::Date astrea::snapshot::EthzClient::_minStartDate</definition>
+        <argsstring></argsstring>
+        <name>_minStartDate</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_minStartDate</qualifiedname>
+        <briefdescription>
+<para>Minimum start date for queries (2023-03-10 00:00:00.0) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="89" column="23" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::snapshot::EthzClient::EthzClient</definition>
+        <argsstring>()</argsstring>
+        <name>EthzClient</name>
+        <qualifiedname>astrea::snapshot::EthzClient::EthzClient</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref> with a minimum start date of 2023-03-10 00:00:00.0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="44" column="5" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="44" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a45469b824a81deeff9357f387c2ea701" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::snapshot::EthzClient::~EthzClient</definition>
+        <argsstring>()=default</argsstring>
+        <name>~EthzClient</name>
+        <qualifiedname>astrea::snapshot::EthzClient::~EthzClient</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="50" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1aaadb3e6004e8d74c1626440db4a55edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::EthzClient::query</definition>
+        <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const std::string &amp;name, const bool &amp;includeFrequencyData=false)</argsstring>
+        <name>query</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query</qualifiedname>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>includeFrequencyData</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Queries the ETHZ satellite database for satellite data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sends a request to the ETHZ satellite database API to retrieve satellite data within the specified date range and optionally includes frequency data.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional name of the satellite to filter results. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>noradId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional NORAD ID of the satellite to filter results. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>includeFrequencyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether to include frequency data in the results (default is false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the query results. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="65" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a46279f647a4c00db59e324fcd251207b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::EthzClient::query</definition>
+        <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const unsigned &amp;noradId, const bool &amp;includeFrequencyData=false)</argsstring>
+        <name>query</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query</qualifiedname>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <param>
+          <type>const unsigned &amp;</type>
+          <declname>noradId</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>includeFrequencyData</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Queries the ETHZ satellite database for satellite data by NORAD ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sends a request to the ETHZ satellite database API to retrieve satellite data for a specific NORAD ID within the specified date range and optionally includes frequency data.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>noradId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The NORAD ID of the satellite to filter results. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>includeFrequencyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether to include frequency data in the results (default is false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the query results. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="79" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a35557cfb695fada514f803b632257285" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>nlohmann::json</type>
+        <definition>nlohmann::json astrea::snapshot::EthzClient::query_impl</definition>
+        <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const std::string &amp;name=&quot;&quot;, const unsigned &amp;noradId=0, const bool &amp;includeFrequencyData=false)</argsstring>
+        <name>query_impl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query_impl</qualifiedname>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const unsigned &amp;</type>
+          <declname>noradId</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>includeFrequencyData</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Performs the actual query to the ETHZ satellite database API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sends a request to the ETHZ satellite database API using the provided parameters and returns the response as a JSON object.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end date for the query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional name of the satellite to filter results. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>noradId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional NORAD ID of the satellite to filter results. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>includeFrequencyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether to include frequency data in the results (default is false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the query results. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="104" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="34" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a469fb733a1eef72b2cf205ea432fc52e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::snapshot::EthzClient::clean_result</definition>
+        <argsstring>(nlohmann::json &amp;result)</argsstring>
+        <name>clean_result</name>
+        <qualifiedname>astrea::snapshot::EthzClient::clean_result</qualifiedname>
+        <param>
+          <type>nlohmann::json &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Cleans the result JSON object by removing unnecessary fields. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function processes the JSON result to remove fields that are not needed for further processing.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The JSON object to clean. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="119" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="110" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref> class for interacting with the ETHZ satellite database API. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides methods to query satellite data from the ETHZ satellite database. It supports querying by date range and satellite name or NORAD ID, and can include frequency data if requested. </para>
+    </detaileddescription>
+    <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="37" column="1" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="37" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a125e32f422c5ff4f8c8164cb70f156c6" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_auth</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1ad637299ae2d34f3f307089e8394606bd" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_base</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a9c6c72d541dffc78a87a861fb462a401" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_frequencySourceUrl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a1c9fa3884e07732942fb8473f78f3bad" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_frequencyUrl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1aceb54b06f7176cb54f2604daa9edaa50" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_minStartDate</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a5ac0fdd6896b1fac4f8b5cfef5c8f1b0" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_satDataUrl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a0a9cf9ce33340b480f397ac551474138" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>_satUrl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a469fb733a1eef72b2cf205ea432fc52e" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>clean_result</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" prot="public" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>EthzClient</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1aaadb3e6004e8d74c1626440db4a55edf" prot="public" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>query</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a46279f647a4c00db59e324fcd251207b" prot="public" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>query</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a35557cfb695fada514f803b632257285" prot="private" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>query_impl</name></member>
+      <member refid="classastrea_1_1snapshot_1_1EthzClient_1a45469b824a81deeff9357f387c2ea701" prot="public" virt="non-virtual"><scope>astrea::snapshot::EthzClient</scope><name>~EthzClient</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

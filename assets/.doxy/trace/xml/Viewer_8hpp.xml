@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Viewer_8hpp" kind="file" language="C++">
+    <compoundname>Viewer.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">astro/astro.fwd.hpp</includes>
+    <includes local="no">astro/platforms/vehicles/Spacecraft.hpp</includes>
+    <includes local="no">astro/state/State.hpp</includes>
+    <includes local="no">astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</includes>
+    <includes local="no">astro/time/Date.hpp</includes>
+    <includes local="no">astro/types/typedefs.hpp</includes>
+    <includes refid="AccessObject_8hpp" local="no">trace/platforms/AccessObject.hpp</includes>
+    <includes refid="Sensor_8hpp" local="no">trace/platforms/sensors/Sensor.hpp</includes>
+    <includedby refid="AccessAnalyzer_8cpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.cpp</includedby>
+    <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="22">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>array</label>
+      </node>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="29">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="25">
+        <label>astro/platforms/Payload.hpp</label>
+      </node>
+      <node id="4">
+        <label>astro/platforms/vehicles/Spacecraft.hpp</label>
+      </node>
+      <node id="5">
+        <label>astro/state/State.hpp</label>
+      </node>
+      <node id="6">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+      </node>
+      <node id="7">
+        <label>astro/time/Date.hpp</label>
+      </node>
+      <node id="8">
+        <label>astro/types/typedefs.hpp</label>
+      </node>
+      <node id="21">
+        <label>cstdint</label>
+      </node>
+      <node id="23">
+        <label>functional</label>
+      </node>
+      <node id="12">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="10">
+        <label>memory</label>
+      </node>
+      <node id="27">
+        <label>numbers</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="15">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="28">
+        <label>unordered_map</label>
+      </node>
+      <node id="14">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1trace_1_1Viewer" prot="public">astrea::trace::Viewer</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+<para>Viewer class for managing access and sensors on a spacecraft. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/platforms/vehicles/Spacecraft.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/state/State.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/time/Date.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/types/typedefs.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="AccessObject_8hpp" kindref="compound">trace/platforms/AccessObject.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Sensor_8hpp" kindref="compound">trace/platforms/sensors/Sensor.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classastrea_1_1trace_1_1Viewer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>astro::Spacecraft,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kindref="member">SensorPlatform</ref><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47" refid="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" kindref="member">Viewer</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classastrea_1_1trace_1_1Viewer_1a4cb486b0908b778360a2ddd8964437a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a4cb486b0908b778360a2ddd8964437a9" kindref="member">Viewer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::GeneralPerturbations&amp;<sp/>gp,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::AstrodynamicsSystem&amp;<sp/>system)<sp/>:</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Spacecraft(gp,<sp/>system),</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classastrea_1_1trace_1_1Viewer_1a3f794b31a184b07044fc1a46e436f92b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a3f794b31a184b07044fc1a46e436f92b" kindref="member">~Viewer</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" kindref="member">get_id</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Spacecraft::get_id();<sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" kindref="member">get_name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Spacecraft::get_name();<sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mass<sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" kindref="member">get_mass</ref>()</highlight><highlight class="keyword"><sp/>const<sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Spacecraft::get_mass();<sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;<sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" kindref="member">get_inertial_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="93"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Spacecraft::get_inertial_position(date);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::VelocityVector&lt;astro::frames::earth::icrf&gt;<sp/><ref refid="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" kindref="member">get_inertial_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="104"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Spacecraft::get_inertial_velocity(date);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>so<sp/>stupid.<sp/>Why<sp/>C++<sp/>standards<sp/>committee</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">SensorPlatform::attach_payload;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">SensorPlatform::get_payloads;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Spacecraft::attach_payload;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Spacecraft::get_payloads;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp"/>
+  </compounddef>
+</doxygen>

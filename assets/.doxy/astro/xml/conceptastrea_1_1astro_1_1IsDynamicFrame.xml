@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsDynamicFrame" kind="concept">
+    <compoundname>astrea::astro::IsDynamicFrame</compoundname>
+    <includes refid="frame__concepts_8hpp" local="no">frame_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Frame_T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename Frame_T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsDynamicFrame" kindref="compound">astrea::astro::IsDynamicFrame</ref> = 
+    (Frame_T::get_axis() == FrameAxis::LVLH || Frame_T::get_axis() == FrameAxis::RIC || Frame_T::get_axis() == FrameAxis::VNB)    </initializer>
+    <briefdescription>
+<para>Concept to determine if a frame is dynamic (LVLH, RIC, VNB). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Frame_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the frame is dynamic, false otherwise. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/frame_concepts.hpp" line="63" column="1"/>
+  </compounddef>
+</doxygen>

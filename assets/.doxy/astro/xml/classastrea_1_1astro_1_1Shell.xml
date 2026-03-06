@@ -1,0 +1,874 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Shell" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Shell</compoundname>
+    <includes refid="Shell_8hpp" local="no">Shell.hpp</includes>
+    <innerclass refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" prot="public">astrea::astro::Shell::sat_iterator</innerclass>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref></type>
+        <defval><ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref></defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref></type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::iterator =  sat_iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>astrea::astro::Shell::iterator</qualifiedname>
+        <briefdescription>
+<para>Iterator for iterating over all Planes in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="204" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref></type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::const_iterator =  const sat_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>astrea::astro::Shell::const_iterator</qualifiedname>
+        <briefdescription>
+<para>Const iterator for iterating over all Planes in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="209" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="209" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Shell_1a995fe1462f10f08542f280628a421f2a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref></type>
+        <definition>friend class Constellation&lt; Spacecraft_T &gt;</definition>
+        <argsstring></argsstring>
+        <name>Constellation&lt; Spacecraft_T &gt;</name>
+        <qualifiedname>astrea::astro::Shell::Constellation&lt; Spacecraft_T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Constellation" kindref="compound">Constellation</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="44" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1a68add7b1451464c54634b7658f5a21ca" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::astro::Shell&lt; Spacecraft_T &gt;::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>astrea::astro::Shell::id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="405" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="405" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1a37a71b7c21d05fcf38331b06ad10ea6f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::Shell&lt; Spacecraft_T &gt;::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>astrea::astro::Shell::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="406" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="406" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1ae6a8674fcec35029f4966958fb7fc2e7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;Plane&lt;Spacecraft_T&gt; &gt; astrea::astro::Shell&lt; Spacecraft_T &gt;::planes</definition>
+        <argsstring></argsstring>
+        <name>planes</name>
+        <qualifiedname>astrea::astro::Shell::planes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="407" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="407" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ae253aabd4b187f41ed36899c2ac573b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::Shell</definition>
+        <argsstring>()=default</argsstring>
+        <name>Shell</name>
+        <qualifiedname>astrea::astro::Shell::Shell</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. Initializes an empty shell with no planes or spacecraft. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="53" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1acb0261ed7ca4e66f9d3dd2300f91bdee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::Shell</definition>
+        <argsstring>(std::vector&lt; Plane&lt; Spacecraft_T &gt; &gt; planes)</argsstring>
+        <name>Shell</name>
+        <qualifiedname>astrea::astro::Shell::Shell</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &gt;</type>
+          <declname>planes</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref> with a vector of planes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>planes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> objects containing Spacecraft_T. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="59" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1aac3f987027a5f9f8e40da1eab5bed945" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::Shell</definition>
+        <argsstring>(std::vector&lt; Spacecraft_T &gt; satellites)</argsstring>
+        <name>Shell</name>
+        <qualifiedname>astrea::astro::Shell::Shell</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt;</type>
+          <declname>satellites</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref> with a vector of satellites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of Spacecraft_T objects to be added to the shell. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="65" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ac0967fa7d4d7183e21c1b0a37721f2cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::Shell</definition>
+        <argsstring>(const AstrodynamicsSystem &amp;sys, const Date &amp;epoch, const Distance &amp;semimajor, const Angle &amp;inclination, const std::size_t &amp;T, const std::size_t &amp;P, const double &amp;F, const Angle &amp;anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, const Angle &amp;anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad)</argsstring>
+        <name>Shell</name>
+        <qualifiedname>astrea::astro::Shell::Shell</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <declname>sys</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>epoch</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>semimajor</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>inclination</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &amp;</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>anchorRAAN</declname>
+          <defval>0.0 *mp_units::angular::unit_symbols::rad</defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>anchorAnomaly</declname>
+          <defval>0.0 *mp_units::angular::unit_symbols::rad</defval>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref> with a Walker parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system to which the shell belongs. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The epoch date for the shell&apos;s orbit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>semimajor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The semimajor axis of the shell&apos;s orbit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inclination</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The inclination of the shell&apos;s orbit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of planes in the shell. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of spacecraft per plane. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>F</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spacing factor between spacecraft in the same plane. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>anchorRAAN</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right ascension of ascending node for the shell&apos;s orbit (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>anchorAnomaly</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The argument of perigee for the shell&apos;s orbit (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="79" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1aabb9a60e32dd20f96a6c7ac60ad1b22a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::~Shell</definition>
+        <argsstring>()</argsstring>
+        <name>~Shell</name>
+        <qualifiedname>astrea::astro::Shell::~Shell</qualifiedname>
+        <briefdescription>
+<para>Destructor for <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. Cleans up the shell and its planes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="95" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a4708db6ec2fe3081aa0bc3a7af87e40b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>const std::size_t astrea::astro::Shell&lt; Spacecraft_T &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::astro::Shell::size</qualifiedname>
+        <briefdescription>
+<para>Returns the size of the shell, which is the number of spacecraft it contains. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::size_t The number of spacecraft in the shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="102" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a176afc1ee06c7a22f1cad50ed532e0db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>const std::size_t astrea::astro::Shell&lt; Spacecraft_T &gt;::n_planes</definition>
+        <argsstring>() const</argsstring>
+        <name>n_planes</name>
+        <qualifiedname>astrea::astro::Shell::n_planes</qualifiedname>
+        <briefdescription>
+<para>Returns the number of planes in the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::size_t The number of planes in the shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="109" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a0f5ee5058faa4af2d14070eeffd0aab2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::add_plane</definition>
+        <argsstring>(const Plane&lt; Spacecraft_T &gt; &amp;plane)</argsstring>
+        <name>add_plane</name>
+        <qualifiedname>astrea::astro::Shell::add_plane</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &amp;</type>
+          <declname>plane</declname>
+        </param>
+        <briefdescription>
+<para>Adds a plane to the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>plane</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> object to be added to the shell. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a9c278f282fe389dffc03e1b76075a05f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::add_spacecraft</definition>
+        <argsstring>(const Spacecraft_T &amp;spacecraft, const std::size_t &amp;planeId)</argsstring>
+        <name>add_spacecraft</name>
+        <qualifiedname>astrea::astro::Shell::add_spacecraft</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &amp;</type>
+          <declname>spacecraft</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>planeId</declname>
+        </param>
+        <briefdescription>
+<para>Adds a spacecraft to a specific plane in the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spacecraft</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Spacecraft_T object to be added. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the plane to which the spacecraft will be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="124" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1abb565c5894374e99b5f06a6c38132c6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::add_spacecraft</definition>
+        <argsstring>(const Spacecraft_T &amp;spacecraft)</argsstring>
+        <name>add_spacecraft</name>
+        <qualifiedname>astrea::astro::Shell::add_spacecraft</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &amp;</type>
+          <declname>spacecraft</declname>
+        </param>
+        <briefdescription>
+<para>Adds a spacecraft to the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spacecraft</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Spacecraft_T object to be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a4f4fe24b44643e497b0d4144c02cbd55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &gt; &amp;</type>
+        <definition>std::vector&lt; Plane&lt; Spacecraft_T &gt; &gt; &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::get_planes</definition>
+        <argsstring>()</argsstring>
+        <name>get_planes</name>
+        <qualifiedname>astrea::astro::Shell::get_planes</qualifiedname>
+        <briefdescription>
+<para>Returns a reference to the vector of planes in the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Plane&lt;Spacecraft_T&gt;&gt;&amp; A reference to the vector of planes in the shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="138" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a129a39fd2e5838f9c22de4d63dc0b457" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt; Plane&lt; Spacecraft_T &gt; &gt; &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::get_planes</definition>
+        <argsstring>() const</argsstring>
+        <name>get_planes</name>
+        <qualifiedname>astrea::astro::Shell::get_planes</qualifiedname>
+        <briefdescription>
+<para>Returns a constant reference to the vector of planes in the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::vector&lt;Plane&lt;Spacecraft_T&gt;&gt;&amp; A constant reference to the vector of planes in the shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="145" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a04300f500e57c7e3efce1c80bfdaf82f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt;</type>
+        <definition>const std::vector&lt; Spacecraft_T &gt; astrea::astro::Shell&lt; Spacecraft_T &gt;::get_all_spacecraft</definition>
+        <argsstring>() const</argsstring>
+        <name>get_all_spacecraft</name>
+        <qualifiedname>astrea::astro::Shell::get_all_spacecraft</qualifiedname>
+        <briefdescription>
+<para>Returns a vector of all spacecraft in the shell. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::vector&lt;Spacecraft_T&gt; A vector containing all spacecraft in the shell. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="152" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a50c2584b2ac4830a423a433fba4b3aeb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &gt; &amp;</type>
+        <definition>const Plane&lt; Spacecraft_T &gt; &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::get_plane</definition>
+        <argsstring>(const std::size_t &amp;planeId) const</argsstring>
+        <name>get_plane</name>
+        <qualifiedname>astrea::astro::Shell::get_plane</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>planeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns a reference to a specific plane in the shell by its ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>planeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the plane to retrieve. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane&lt;Spacecraft_T&gt;</ref>&amp; A constant reference to the specified plane. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="160" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ac6551915ea1dff7f683d5a898c063401" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Spacecraft_T</ref> &amp;</type>
+        <definition>const Spacecraft_T &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::get_spacecraft</definition>
+        <argsstring>(const std::size_t &amp;spacecraftId) const</argsstring>
+        <name>get_spacecraft</name>
+        <qualifiedname>astrea::astro::Shell::get_spacecraft</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>spacecraftId</declname>
+        </param>
+        <briefdescription>
+<para>Returns a reference to a specific spacecraft in the shell by its ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spacecraftId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the spacecraft to retrieve. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const Spacecraft_T&amp; A constant reference to the specified spacecraft. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="168" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a93ad9f560282d926df9ac5ec051d9897" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::propagate</definition>
+        <argsstring>(const Time &amp;propTime, const EquationsOfMotion &amp;eom, Integrator &amp;integrator)</argsstring>
+        <name>propagate</name>
+        <qualifiedname>astrea::astro::Shell::propagate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>propTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <declname>eom</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref> &amp;</type>
+          <declname>integrator</declname>
+        </param>
+        <briefdescription>
+<para>Propagates the shell&apos;s spacecraft using the provided equations of motion and integrator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>propTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total propagation time after the initial state epoch. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equations of motion to be used for propagation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>integrator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integrator to be used for numerical integration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="177" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ae9e9032967ecb564892c04aa5ac0fede" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::propagate</definition>
+        <argsstring>(const Date &amp;endEpoch, const EquationsOfMotion &amp;eom, Integrator &amp;integrator)</argsstring>
+        <name>propagate</name>
+        <qualifiedname>astrea::astro::Shell::propagate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>endEpoch</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <declname>eom</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref> &amp;</type>
+          <declname>integrator</declname>
+        </param>
+        <briefdescription>
+<para>Propagates the shell&apos;s spacecraft using the provided equations of motion and integrator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>endEpoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end epoch for propagation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equations of motion to be used for propagation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>integrator</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integrator to be used for numerical integration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="186" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ae4dae64792b9ea1bf53241d922fe1e32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::astro::Shell::begin</qualifiedname>
+        <briefdescription>
+<para>Get an iterator to the beginning of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator pointing to the first <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="215" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="215" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ab9929bed037cebcefa1ca40cfc9a5aa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::astro::Shell::end</qualifiedname>
+        <briefdescription>
+<para>Get an iterator to the end of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator pointing to one past the last <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="221" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="221" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1af7376e5c734f517fe86d44e2c22f7ac2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::astro::Shell::begin</qualifiedname>
+        <briefdescription>
+<para>Get a const iterator to the beginning of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator pointing to the first <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="227" column="20" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="227" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a589fb272a163665655ecba29c25877f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::astro::Shell::end</qualifiedname>
+        <briefdescription>
+<para>Get a const iterator to the end of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator pointing to one past the last <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="233" column="20" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="233" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1af4835abbb69c107267ced8b2d8e19620" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>astrea::astro::Shell::cbegin</qualifiedname>
+        <briefdescription>
+<para>Get a const iterator to the beginning of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator pointing to the first <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="239" column="20" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="239" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a33fc77dd52e7bddecd2fb8879ce2187a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>astrea::astro::Shell::cend</qualifiedname>
+        <briefdescription>
+<para>Get a const iterator to the end of the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator pointing to one past the last <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="245" column="20" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="245" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ad9e9c2f6afa53b8eb0ef7d4525df11de" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>const std::size_t astrea::astro::Shell&lt; Spacecraft_T &gt;::get_id</definition>
+        <argsstring>() const</argsstring>
+        <name>get_id</name>
+        <qualifiedname>astrea::astro::Shell::get_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="402" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="402" bodyend="402"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ab8830e9813c4c2737e1c945fedd9a142" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Shell&lt; Spacecraft_T &gt;::generate_id</definition>
+        <argsstring>()</argsstring>
+        <name>generate_id</name>
+        <qualifiedname>astrea::astro::Shell::generate_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="409" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref> is a collection of planes, each containing a set of <ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref>. It is used to represent sub-constellations of satellites in orbit. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Spacecraft_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of spacecraft contained in the shell, must derive from <ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref>.<itemizedlist>
+<listitem></listitem></itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This class is templated to allow for different types of spacecraft, but it must be derived from the <ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref> base class. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="42" column="1" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="42" bodyend="410"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Shell_1a0f5ee5058faa4af2d14070eeffd0aab2" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>add_plane</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a9c278f282fe389dffc03e1b76075a05f" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>add_spacecraft</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1abb565c5894374e99b5f06a6c38132c6d" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>add_spacecraft</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ae4dae64792b9ea1bf53241d922fe1e32" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>begin</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1af7376e5c734f517fe86d44e2c22f7ac2" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>begin</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1af4835abbb69c107267ced8b2d8e19620" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>cbegin</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a33fc77dd52e7bddecd2fb8879ce2187a" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>cend</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1acac0721bdd5553025a8af2fc10ad7346" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a995fe1462f10f08542f280628a421f2a" prot="private" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Constellation&lt; Spacecraft_T &gt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ab9929bed037cebcefa1ca40cfc9a5aa8" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>end</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a589fb272a163665655ecba29c25877f0" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>end</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ab8830e9813c4c2737e1c945fedd9a142" prot="private" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>generate_id</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a04300f500e57c7e3efce1c80bfdaf82f" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_all_spacecraft</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ad9e9c2f6afa53b8eb0ef7d4525df11de" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_id</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a50c2584b2ac4830a423a433fba4b3aeb" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_plane</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a4f4fe24b44643e497b0d4144c02cbd55" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_planes</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a129a39fd2e5838f9c22de4d63dc0b457" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_planes</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ac6551915ea1dff7f683d5a898c063401" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>get_spacecraft</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a68add7b1451464c54634b7658f5a21ca" prot="private" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>id</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a176afc1ee06c7a22f1cad50ed532e0db" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>n_planes</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a37a71b7c21d05fcf38331b06ad10ea6f" prot="private" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>name</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ae6a8674fcec35029f4966958fb7fc2e7" prot="private" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>planes</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a93ad9f560282d926df9ac5ec051d9897" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>propagate</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ae9e9032967ecb564892c04aa5ac0fede" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>propagate</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ae253aabd4b187f41ed36899c2ac573b9" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1acb0261ed7ca4e66f9d3dd2300f91bdee" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1aac3f987027a5f9f8e40da1eab5bed945" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1ac0967fa7d4d7183e21c1b0a37721f2cf" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a4708db6ec2fe3081aa0bc3a7af87e40b" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1aabb9a60e32dd20f96a6c7ac60ad1b22a" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>~Shell</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

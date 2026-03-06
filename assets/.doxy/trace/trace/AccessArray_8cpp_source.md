@@ -1,0 +1,113 @@
+
+
+# File AccessArray.cpp
+
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**trace**](dir_e30098dbada9bbfb44888190c04e2af0.md) **>** [**trace**](dir_f04035ba8afac2675c737f654641e7b5.md) **>** [**risesets**](dir_3852194babc4edab798292ba09c53d6d.md) **>** [**AccessArray.cpp**](AccessArray_8cpp.md)
+
+[Go to the documentation of this file](AccessArray_8cpp.md)
+
+
+```C++
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <trace/risesets/AccessArray.hpp>
+
+namespace astrea {
+namespace trace {
+
+RiseSetArray& AccessArray::operator[](const std::size_t& senderId, const std::size_t& receiverId)
+{
+    return _accesses[IdPair(senderId, receiverId)];
+}
+
+const RiseSetArray& AccessArray::at(const std::size_t& senderId, const std::size_t& receiverId) const
+{
+    return _accesses.at(IdPair(senderId, receiverId));
+}
+
+bool AccessArray::contains(const IdPair& idPair) const { return _accesses.contains(idPair); }
+
+void AccessArray::erase(const std::size_t& senderId, const std::size_t& receiverId)
+{
+    _accesses.erase(IdPair(senderId, receiverId));
+}
+
+std::size_t AccessArray::size() const { return _accesses.size(); }
+
+RiseSetArray AccessArray::get_all_accesses_to_receiver(const std::size_t& receiverId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.receiver == receiverId) { result |= risesets; }
+    }
+    return result;
+}
+
+RiseSetArray AccessArray::get_all_accesses_from_sender(const std::size_t& senderId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.sender == senderId) { result |= risesets; }
+    }
+    return result;
+}
+
+bool AccessArray::operator==(const AccessArray& other) const { return _accesses == other._accesses; }
+
+AccessArray& AccessArray::operator|=(const AccessArray& other)
+{
+    for (const auto& [ids, risesets] : other) {
+        if (contains(ids)) { _accesses[ids] |= risesets; }
+        else {
+            _accesses[ids] = risesets;
+        }
+    }
+    return *this;
+}
+
+AccessArray AccessArray::operator|(const AccessArray& other) const
+{
+    AccessArray result = *this;
+    result |= other;
+    return result;
+}
+
+AccessArray& AccessArray::operator&=(const AccessArray& other)
+{
+    for (const auto& [ids, risesets] : other) {
+        if (contains(ids)) { _accesses[ids] &= risesets; }
+    }
+    return *this;
+}
+
+AccessArray AccessArray::operator&(const AccessArray& other) const
+{
+    AccessArray result = *this;
+    result &= other;
+    return result;
+}
+
+std::ostream& operator<<(std::ostream& os, const AccessArray& accessarray)
+{
+    for (const auto& [idPair, riseSetArray] : accessarray) {
+        os << "(" << idPair.sender << ", " << idPair.receiver << ") -> " << riseSetArray << "\n";
+    }
+    return os;
+}
+
+} // namespace trace
+} // namespace astrea
+```
+
+

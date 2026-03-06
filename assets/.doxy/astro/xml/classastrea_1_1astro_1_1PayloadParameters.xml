@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1PayloadParameters" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::PayloadParameters</compoundname>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1ThrusterParameters" prot="public" virt="non-virtual">astrea::astro::ThrusterParameters</derivedcompoundref>
+    <includes refid="Payload_8hpp" local="no">Payload.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1PayloadParameters_1a01f3c5598eab8ab44095633b97e73cb7" prot="protected" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt; astrea::astro::PayloadParameters::_boresight</definition>
+        <argsstring></argsstring>
+        <name>_boresight</name>
+        <qualifiedname>astrea::astro::PayloadParameters::_boresight</qualifiedname>
+        <briefdescription>
+<para>Boresight vector of the payload, indicating the direction it is pointing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="101" column="25" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1PayloadParameters_1ac00a6b09f894ff2bc23a3e5c09178201" prot="protected" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt; astrea::astro::PayloadParameters::_attachmentPoint</definition>
+        <argsstring></argsstring>
+        <name>_attachmentPoint</name>
+        <qualifiedname>astrea::astro::PayloadParameters::_attachmentPoint</qualifiedname>
+        <briefdescription>
+<para>Attachment point of the payload on the platform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="102" column="25" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1a6cdfdaee0415ade95ae4f9bbb7cceeb0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::PayloadParameters::PayloadParameters</definition>
+        <argsstring>(const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;boresight=NADIR_RIC, const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;attachmentPoint=CENTER)</argsstring>
+        <name>PayloadParameters</name>
+        <qualifiedname>astrea::astro::PayloadParameters::PayloadParameters</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt; &amp;</type>
+          <declname>boresight</declname>
+          <defval>NADIR_RIC</defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt; &amp;</type>
+          <declname>attachmentPoint</declname>
+          <defval>CENTER</defval>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1PayloadParameters" kindref="compound">PayloadParameters</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boresight direction in RIC coordinates (default is Nadir). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attachmentPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Attachment point in RIC coordinates (default is Center). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="54" column="5" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="54" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1a3123c3e9d7db97d339e3331f1946b4fc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::astro::PayloadParameters::~PayloadParameters</definition>
+        <argsstring>()=default</argsstring>
+        <name>~PayloadParameters</name>
+        <qualifiedname>astrea::astro::PayloadParameters::~PayloadParameters</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1PayloadParameters" kindref="compound">PayloadParameters</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="66" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1adb2efe447028f38405929aba635a7637" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; astrea::astro::PayloadParameters::get_boresight</definition>
+        <argsstring>() const</argsstring>
+        <name>get_boresight</name>
+        <qualifiedname>astrea::astro::PayloadParameters::get_boresight</qualifiedname>
+        <briefdescription>
+<para>Get the boresight direction of the payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Boresight direction of the payload. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="74" column="25" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1a8bc6a03189cc9f57c91df26393ec278b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; astrea::astro::PayloadParameters::get_attachment_point</definition>
+        <argsstring>() const</argsstring>
+        <name>get_attachment_point</name>
+        <qualifiedname>astrea::astro::PayloadParameters::get_attachment_point</qualifiedname>
+        <briefdescription>
+<para>Get the attachment point of the payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Attachment point of the payload. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="81" column="25" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1af7dbb7cf61c73e53934794bfd880dbc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::PayloadParameters::set_boresight</definition>
+        <argsstring>(const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;boresight)</argsstring>
+        <name>set_boresight</name>
+        <qualifiedname>astrea::astro::PayloadParameters::set_boresight</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt; &amp;</type>
+          <declname>boresight</declname>
+        </param>
+        <briefdescription>
+<para>Set the boresight direction of the payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Boresight direction of the payload. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="88" column="10" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1af3d2af7af17eef0cb4e036bd7f0609cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::PayloadParameters::set_attachment_point</definition>
+        <argsstring>(const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;attachmentPoint)</argsstring>
+        <name>set_attachment_point</name>
+        <qualifiedname>astrea::astro::PayloadParameters::set_attachment_point</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt; &amp;</type>
+          <declname>attachmentPoint</declname>
+        </param>
+        <briefdescription>
+<para>Set the attachment point of the payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attachmentPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Attachment point of the payload. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="95" column="10" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="95" bodyend="98"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for storing and managing payload parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::PayloadParameters</label>
+        <link refid="classastrea_1_1astro_1_1PayloadParameters"/>
+      </node>
+      <node id="2">
+        <label>astrea::astro::ThrusterParameters</label>
+        <link refid="classastrea_1_1astro_1_1ThrusterParameters"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>astrea::astro::CartesianVector&lt; astrea::astro::InertialFrame &gt;</label>
+        <link refid="classastrea_1_1astro_1_1CartesianVector"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>dot</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::CartesianVector&lt; astrea::astro::frames::RadialInTrackCrossTrack &gt;</label>
+        <link refid="classastrea_1_1astro_1_1CartesianVector"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dot</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</label>
+        <link refid="classastrea_1_1astro_1_1DynamicFrame"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>_position</edgelabel>
+          <edgelabel>_velocity</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::Frame&lt; CelestialBodyId::CUSTOM, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="9">
+        <label>astrea::astro::Frame&lt; origin, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="6">
+        <label>astrea::astro::FrameReference</label>
+        <link refid="classastrea_1_1astro_1_1FrameReference"/>
+      </node>
+      <node id="8">
+        <label>astrea::astro::InertialFrame&lt; origin, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1InertialFrame"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::PayloadParameters</label>
+        <link refid="classastrea_1_1astro_1_1PayloadParameters"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>_attachmentPoint</edgelabel>
+          <edgelabel>_boresight</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::frames::RadialInTrackCrossTrack</label>
+        <link refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/platforms/Payload.hpp" line="46" column="1" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="46" bodyend="105"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1ac00a6b09f894ff2bc23a3e5c09178201" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>_attachmentPoint</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1a01f3c5598eab8ab44095633b97e73cb7" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>_boresight</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1a8bc6a03189cc9f57c91df26393ec278b" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>get_attachment_point</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1adb2efe447028f38405929aba635a7637" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>get_boresight</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1a6cdfdaee0415ade95ae4f9bbb7cceeb0" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>PayloadParameters</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1af3d2af7af17eef0cb4e036bd7f0609cf" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>set_attachment_point</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1af7dbb7cf61c73e53934794bfd880dbc5" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadParameters</scope><name>set_boresight</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1a3123c3e9d7db97d339e3331f1946b4fc" prot="protected" virt="virtual"><scope>astrea::astro::PayloadParameters</scope><name>~PayloadParameters</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

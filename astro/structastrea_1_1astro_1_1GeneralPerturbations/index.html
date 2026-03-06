@@ -1,0 +1,6845 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An extensible astrodynamics library for C++">
+      
+      
+        <meta name="author" content="Jay Iuliano">
+      
+      
+        <link rel="canonical" href="https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1GeneralPerturbations/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>Struct astrea::astro::GeneralPerturbations - ASTREA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#struct-astreaastrogeneralperturbations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+You're not viewing the latest version.
+<a href="../../..">
+  <strong>Click here to go to latest.</strong>
+</a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ASTREA" class="md-header__button md-logo" aria-label="ASTREA" data-md-component="logo">
+      
+  <img src="../../assets/images/astrea-transparent-crop.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ASTREA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Struct astrea::astro::GeneralPerturbations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/iulianojay/astrea" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iulianojay/astrea
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting_started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../links/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../release_notes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Release Notes
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ASTREA" class="md-nav__button md-logo" aria-label="ASTREA" data-md-component="logo">
+      
+  <img src="../../assets/images/astrea-transparent-crop.png" alt="logo">
+
+    </a>
+    ASTREA
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/iulianojay/astrea" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iulianojay/astrea
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting_started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Astrea
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/project_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../examples/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/strongly_typed_units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strongly Typed Units
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strongly Typed Frames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/state_representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Representations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Astrodynamic Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Propagation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Propagation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/propagation/numerical_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/propagation/lambert_solutions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambert Solutions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/propagation/equations_of_motion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equations of Motion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/propagation/force_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Force Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/propagation/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frames
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frames
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strongly Typed Frames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/frames/frame_transformations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Transformations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/fundamentals/frames/cartesian_vectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cartesian Vectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/advanced/platforms_and_payloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platforms and Payloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/type_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/extensibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extensibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/nasa_6dof_report/nasa_6dof_report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparison to NASA 6DoF Checkcases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Astro
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Astro
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_2" id="__nav_5_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_3" id="__nav_5_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snapshot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Snapshot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trace
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trace
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_3" id="__nav_5_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Units
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Units
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_2" id="__nav_5_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trace/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Utilities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_2" id="__nav_5_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/class_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/class_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/class_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/class_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/class_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_3" id="__nav_5_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Namespaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespace_members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespace_member_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespace_member_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Typedefs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/namespace_member_enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespace Member Enumerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/iulianojay/astrea/edit/master/docs/astro/structastrea_1_1astro_1_1GeneralPerturbations.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/iulianojay/astrea/raw/master/docs/astro/structastrea_1_1astro_1_1GeneralPerturbations.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="struct-astreaastrogeneralperturbations">Struct astrea::astro::GeneralPerturbations<a class="headerlink" href="#struct-astreaastrogeneralperturbations" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>GeneralPerturbations</strong></a></p>
+<p><a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>structure representing a Ground Position (GP) object from SpaceTrack.</em><a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;GeneralPerturbations.hpp&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-apoapsis"><strong>APOAPSIS</strong></a>  <br><em>Apoapsis altitude in kilometers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-arg_of_pericenter"><strong>ARG_OF_PERICENTER</strong></a>  <br><em>Argument of pericenter in degrees.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-bstar"><strong>BSTAR</strong></a>  <br><em>B* drag term (BSTAR) in inverse Earth radii.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-ccsds_omm_vers"><strong>CCSDS_OMM_VERS</strong></a>  <br><em>CCSDS OMM version.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-center_name"><strong>CENTER_NAME</strong></a>  <br><em>Name of the center.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>char</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-classification_type"><strong>CLASSIFICATION_TYPE</strong></a>  <br><em>Classification type.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-comment"><strong>COMMENT</strong></a>  <br><em>Comment.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-country_code"><strong>COUNTRY_CODE</strong></a>  <br><em>Country code.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-creation_date"><strong>CREATION_DATE</strong></a>  <br><em>Creation date.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-db_id"><strong>DB_ID</strong></a>  <br><em>Database ID for the GP object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-decay_date"><strong>DECAY_DATE</strong></a>  <br><em>Decay date.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-eccentricity"><strong>ECCENTRICITY</strong></a>  <br><em>Eccentricity.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>short</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-element_set_no"><strong>ELEMENT_SET_NO</strong></a>  <br><em>Element set number.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>short</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>unsigned</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-ephemeris_type"><strong>EPHEMERIS_TYPE</strong></a>  <br><em>Ephemeris type.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-epoch"><strong>EPOCH</strong></a>  <br><em>Epoch.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>unsigned</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-file"><strong>FILE</strong></a>  <br><em>File number.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>unsigned</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gp_id"><strong>GP_ID</strong></a>  <br><em>General Perturbations ID.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-inclination"><strong>INCLINATION</strong></a>  <br><em>Inclination in degrees.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-launch_date"><strong>LAUNCH_DATE</strong></a>  <br><em>Launch date.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mean_anomaly"><strong>MEAN_ANOMALY</strong></a>  <br><em>Mean anomaly in degrees.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-mean_element_theory"><strong>MEAN_ELEMENT_THEORY</strong></a>  <br><em>Mean element theory.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mean_motion"><strong>MEAN_MOTION</strong></a>  <br><em>Mean motion in revolutions per day.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mean_motion_ddot"><strong>MEAN_MOTION_DDOT</strong></a>  <br><em>Mean motion derivative in revolutions per day squared.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mean_motion_dot"><strong>MEAN_MOTION_DOT</strong></a>  <br><em>Mean motion second derivative in revolutions per day cubed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>unsigned</strong></a></td>
+<td style="text-align: left;"><a href="#variable-norad_cat_id"><strong>NORAD_CAT_ID</strong></a>  <br><em>NORAD catalog ID.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-object_id"><strong>OBJECT_ID</strong></a>  <br><em>Object ID.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-object_name"><strong>OBJECT_NAME</strong></a>  <br><em>Object name.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-object_type"><strong>OBJECT_TYPE</strong></a>  <br><em>Object type.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-originator"><strong>ORIGINATOR</strong></a>  <br><em>Originator of the data.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-periapsis"><strong>PERIAPSIS</strong></a>  <br><em>Periapsis altitude in kilometers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-period"><strong>PERIOD</strong></a>  <br><em>Orbital period in minutes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>long</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-ra_of_asc_node"><strong>RA_OF_ASC_NODE</strong></a>  <br><em>Right ascension of ascending node in degrees.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-rcs_size"><strong>RCS_SIZE</strong></a>  <br><em>Radar cross-section size.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-ref_frame"><strong>REF_FRAME</strong></a>  <br><em>Reference frame.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>unsigned</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-rev_at_epoch"><strong>REV_AT_EPOCH</strong></a>  <br><em>Revolution number at epoch.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-semimajor_axis"><strong>SEMIMAJOR_AXIS</strong></a>  <br><em>Semimajor axis in kilometers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-site"><strong>SITE</strong></a>  <br><em>Site of the GP object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#variable-time_system"><strong>TIME_SYSTEM</strong></a>  <br><em>Time system used for the GP object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-tle_line0"><strong>TLE_LINE0</strong></a>  <br><em>TLE line 0 (usually the satellite name)</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-tle_line1"><strong>TLE_LINE1</strong></a>  <br><em>TLE line 1 (first line of TLE data)</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#variable-tle_line2"><strong>TLE_LINE2</strong></a>  <br><em>TLE line 2 (second line of TLE data)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-generalperturbations-12"><strong>GeneralPerturbations</strong></a> () = default<br><em>Default constructor for</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-generalperturbations-22"><strong>GeneralPerturbations</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> nlohmann::json &amp; data) <br><em>Constructor that initializes</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>from a JSON object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-generalperturbations"><strong>~GeneralPerturbations</strong></a> () = default<br><em>Default destructor for</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>This structure is used to hold data retrieved from the SpaceTrack API, specifically for GP objects. It includes various attributes such as APOAPSIS, ECCENTRICITY, and others, which are relevant to satellite tracking and orbital mechanics.
+* </p>
+<dl>
+<dt><strong>Note:</strong></dt>
+<dd>
+<p>definition can be found here <a href="https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html">https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html</a> </p>
+</dd>
+</dl>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-apoapsis">variable APOAPSIS<a class="headerlink" href="#variable-apoapsis" title="Permanent link">&para;</a></h3>
+<p><em>Apoapsis altitude in kilometers.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">APOAPSIS</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-arg_of_pericenter">variable ARG_OF_PERICENTER<a class="headerlink" href="#variable-arg_of_pericenter" title="Permanent link">&para;</a></h3>
+<p><em>Argument of pericenter in degrees.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">ARG_OF_PERICENTER</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-bstar">variable BSTAR<a class="headerlink" href="#variable-bstar" title="Permanent link">&para;</a></h3>
+<p><em>B* drag term (BSTAR) in inverse Earth radii.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">BSTAR</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-ccsds_omm_vers">variable CCSDS_OMM_VERS<a class="headerlink" href="#variable-ccsds_omm_vers" title="Permanent link">&para;</a></h3>
+<p><em>CCSDS OMM version.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">CCSDS_OMM_VERS</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-center_name">variable CENTER_NAME<a class="headerlink" href="#variable-center_name" title="Permanent link">&para;</a></h3>
+<p><em>Name of the center.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">CENTER_NAME</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-classification_type">variable CLASSIFICATION_TYPE<a class="headerlink" href="#variable-classification_type" title="Permanent link">&para;</a></h3>
+<p><em>Classification type.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">CLASSIFICATION_TYPE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-comment">variable COMMENT<a class="headerlink" href="#variable-comment" title="Permanent link">&para;</a></h3>
+<p><em>Comment.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">COMMENT</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-country_code">variable COUNTRY_CODE<a class="headerlink" href="#variable-country_code" title="Permanent link">&para;</a></h3>
+<p><em>Country code.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">COUNTRY_CODE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-creation_date">variable CREATION_DATE<a class="headerlink" href="#variable-creation_date" title="Permanent link">&para;</a></h3>
+<p><em>Creation date.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">CREATION_DATE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-db_id">variable DB_ID<a class="headerlink" href="#variable-db_id" title="Permanent link">&para;</a></h3>
+<p><em>Database ID for the GP object.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">DB_ID</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-decay_date">variable DECAY_DATE<a class="headerlink" href="#variable-decay_date" title="Permanent link">&para;</a></h3>
+<p><em>Decay date.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">DECAY_DATE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-eccentricity">variable ECCENTRICITY<a class="headerlink" href="#variable-eccentricity" title="Permanent link">&para;</a></h3>
+<p><em>Eccentricity.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">ECCENTRICITY</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-element_set_no">variable ELEMENT_SET_NO<a class="headerlink" href="#variable-element_set_no" title="Permanent link">&para;</a></h3>
+<p><em>Element set number.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">ELEMENT_SET_NO</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-ephemeris_type">variable EPHEMERIS_TYPE<a class="headerlink" href="#variable-ephemeris_type" title="Permanent link">&para;</a></h3>
+<p><em>Ephemeris type.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">short</span><span class="w"> </span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">EPHEMERIS_TYPE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-epoch">variable EPOCH<a class="headerlink" href="#variable-epoch" title="Permanent link">&para;</a></h3>
+<p><em>Epoch.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">EPOCH</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-file">variable FILE<a class="headerlink" href="#variable-file" title="Permanent link">&para;</a></h3>
+<p><em>File number.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="kt">FILE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-gp_id">variable GP_ID<a class="headerlink" href="#variable-gp_id" title="Permanent link">&para;</a></h3>
+<p><em>General Perturbations ID.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">GP_ID</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-inclination">variable INCLINATION<a class="headerlink" href="#variable-inclination" title="Permanent link">&para;</a></h3>
+<p><em>Inclination in degrees.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">INCLINATION</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-launch_date">variable LAUNCH_DATE<a class="headerlink" href="#variable-launch_date" title="Permanent link">&para;</a></h3>
+<p><em>Launch date.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">LAUNCH_DATE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-mean_anomaly">variable MEAN_ANOMALY<a class="headerlink" href="#variable-mean_anomaly" title="Permanent link">&para;</a></h3>
+<p><em>Mean anomaly in degrees.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">MEAN_ANOMALY</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-mean_element_theory">variable MEAN_ELEMENT_THEORY<a class="headerlink" href="#variable-mean_element_theory" title="Permanent link">&para;</a></h3>
+<p><em>Mean element theory.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">MEAN_ELEMENT_THEORY</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-mean_motion">variable MEAN_MOTION<a class="headerlink" href="#variable-mean_motion" title="Permanent link">&para;</a></h3>
+<p><em>Mean motion in revolutions per day.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">MEAN_MOTION</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-mean_motion_ddot">variable MEAN_MOTION_DDOT<a class="headerlink" href="#variable-mean_motion_ddot" title="Permanent link">&para;</a></h3>
+<p><em>Mean motion derivative in revolutions per day squared.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">MEAN_MOTION_DDOT</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-mean_motion_dot">variable MEAN_MOTION_DOT<a class="headerlink" href="#variable-mean_motion_dot" title="Permanent link">&para;</a></h3>
+<p><em>Mean motion second derivative in revolutions per day cubed.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">MEAN_MOTION_DOT</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-norad_cat_id">variable NORAD_CAT_ID<a class="headerlink" href="#variable-norad_cat_id" title="Permanent link">&para;</a></h3>
+<p><em>NORAD catalog ID.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">NORAD_CAT_ID</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-object_id">variable OBJECT_ID<a class="headerlink" href="#variable-object_id" title="Permanent link">&para;</a></h3>
+<p><em>Object ID.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">OBJECT_ID</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-object_name">variable OBJECT_NAME<a class="headerlink" href="#variable-object_name" title="Permanent link">&para;</a></h3>
+<p><em>Object name.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">OBJECT_NAME</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-object_type">variable OBJECT_TYPE<a class="headerlink" href="#variable-object_type" title="Permanent link">&para;</a></h3>
+<p><em>Object type.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">OBJECT_TYPE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-originator">variable ORIGINATOR<a class="headerlink" href="#variable-originator" title="Permanent link">&para;</a></h3>
+<p><em>Originator of the data.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">ORIGINATOR</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-periapsis">variable PERIAPSIS<a class="headerlink" href="#variable-periapsis" title="Permanent link">&para;</a></h3>
+<p><em>Periapsis altitude in kilometers.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">PERIAPSIS</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-period">variable PERIOD<a class="headerlink" href="#variable-period" title="Permanent link">&para;</a></h3>
+<p><em>Orbital period in minutes.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">PERIOD</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-ra_of_asc_node">variable RA_OF_ASC_NODE<a class="headerlink" href="#variable-ra_of_asc_node" title="Permanent link">&para;</a></h3>
+<p><em>Right ascension of ascending node in degrees.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">RA_OF_ASC_NODE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-rcs_size">variable RCS_SIZE<a class="headerlink" href="#variable-rcs_size" title="Permanent link">&para;</a></h3>
+<p><em>Radar cross-section size.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">RCS_SIZE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-ref_frame">variable REF_FRAME<a class="headerlink" href="#variable-ref_frame" title="Permanent link">&para;</a></h3>
+<p><em>Reference frame.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">REF_FRAME</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-rev_at_epoch">variable REV_AT_EPOCH<a class="headerlink" href="#variable-rev_at_epoch" title="Permanent link">&para;</a></h3>
+<p><em>Revolution number at epoch.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">REV_AT_EPOCH</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-semimajor_axis">variable SEMIMAJOR_AXIS<a class="headerlink" href="#variable-semimajor_axis" title="Permanent link">&para;</a></h3>
+<p><em>Semimajor axis in kilometers.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">SEMIMAJOR_AXIS</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-site">variable SITE<a class="headerlink" href="#variable-site" title="Permanent link">&para;</a></h3>
+<p><em>Site of the GP object.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">SITE</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-time_system">variable TIME_SYSTEM<a class="headerlink" href="#variable-time_system" title="Permanent link">&para;</a></h3>
+<p><em>Time system used for the GP object.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">TIME_SYSTEM</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-tle_line0">variable TLE_LINE0<a class="headerlink" href="#variable-tle_line0" title="Permanent link">&para;</a></h3>
+<p><em>TLE line 0 (usually the satellite name)</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">TLE_LINE0</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-tle_line1">variable TLE_LINE1<a class="headerlink" href="#variable-tle_line1" title="Permanent link">&para;</a></h3>
+<p><em>TLE line 1 (first line of TLE data)</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">TLE_LINE1</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="variable-tle_line2">variable TLE_LINE2<a class="headerlink" href="#variable-tle_line2" title="Permanent link">&para;</a></h3>
+<p><em>TLE line 2 (second line of TLE data)</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">TLE_LINE2</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-generalperturbations-12">function GeneralPerturbations [1/2]<a class="headerlink" href="#function-generalperturbations-12" title="Permanent link">&para;</a></h3>
+<p><em>Default constructor for</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="function-generalperturbations-22">function GeneralPerturbations [2/2]<a class="headerlink" href="#function-generalperturbations-22" title="Permanent link">&para;</a></h3>
+<p><em>Constructor that initializes</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>from a JSON object.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>data</code> The JSON object containing the GP data. </li>
+</ul>
+<hr>
+
+<h3 id="function-generalperturbations">function ~GeneralPerturbations<a class="headerlink" href="#function-generalperturbations" title="Permanent link">&para;</a></h3>
+<p><em>Default destructor for</em> <a href="./"><em><strong>GeneralPerturbations</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">GeneralPerturbations</span><span class="o">::~</span><span class="n">GeneralPerturbations</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+</span></code></pre></div></p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025-2026 Jay Iuliano
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/ce_embed.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

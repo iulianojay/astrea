@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_0abd23a91674297917c73da93ecec0fe" kind="dir">
+    <compoundname>astrea/astro/astro/time</compoundname>
+    <innerfile refid="Date_8cpp">Date.cpp</innerfile>
+    <innerfile refid="Date_8hpp">Date.hpp</innerfile>
+    <innerfile refid="Interval_8hpp">Interval.hpp</innerfile>
+    <innerfile refid="JulianDateClock_8hpp">JulianDateClock.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/time/"/>
+  </compounddef>
+</doxygen>

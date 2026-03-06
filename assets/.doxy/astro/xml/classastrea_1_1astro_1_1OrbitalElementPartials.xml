@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1OrbitalElementPartials" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::OrbitalElementPartials</compoundname>
+    <includes refid="OrbitalElements_8hpp" local="no">OrbitalElements.hpp</includes>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1OrbitalElementPartials_1aa59e7e2b4e8866c521b67fd641d89ffc" prot="private" static="no">
+        <type>std::variant&lt; <ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref>, <ref refid="classastrea_1_1astro_1_1KeplerianPartial" kindref="compound">KeplerianPartial</ref>, <ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref> &gt;</type>
+        <definition>using astrea::astro::OrbitalElementPartials::PartialVariant =  std::variant&lt;CartesianPartial, KeplerianPartial, EquinoctialPartial&gt;</definition>
+        <argsstring></argsstring>
+        <name>PartialVariant</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::PartialVariant</qualifiedname>
+        <briefdescription>
+<para>Variant type to hold different partial element types. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="431" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="431" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a1bda43991b805c9360a5ed43211b084d" prot="private" static="no" mutable="no">
+        <type>PartialVariant</type>
+        <definition>PartialVariant astrea::astro::OrbitalElementPartials::_elements</definition>
+        <argsstring></argsstring>
+        <name>_elements</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::_elements</qualifiedname>
+        <briefdescription>
+<para>Variant holding the orbital element partials (<ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref>, <ref refid="classastrea_1_1astro_1_1KeplerianPartial" kindref="compound">KeplerianPartial</ref>, <ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref>) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="512" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="512" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1OrbitalElementPartials_1ab0869a2c904a2a25a8fa18cc9a7f5b0f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const OrbitalElementPartials &amp;state)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="433" column="12" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="190" bodyend="194"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1ac7690f7cd6c7103c9967505286cf7099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</definition>
+        <argsstring>()</argsstring>
+        <name>OrbitalElementPartials</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</qualifiedname>
+        <briefdescription>
+<para>Default constructor initializing to <ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref> elements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="439" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="439" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1adec213af7bb4538674195898dd574346" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</definition>
+        <argsstring>(CartesianPartial elements)</argsstring>
+        <name>OrbitalElementPartials</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref></type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+<para>Constructor initializing with <ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref> elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orbital element partials to initialize with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="449" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="449" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a7da6f2547f4af3cb6ec67f929eff4529" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</definition>
+        <argsstring>(KeplerianPartial elements)</argsstring>
+        <name>OrbitalElementPartials</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1KeplerianPartial" kindref="compound">KeplerianPartial</ref></type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+<para>Constructor initializing with <ref refid="classastrea_1_1astro_1_1KeplerianPartial" kindref="compound">KeplerianPartial</ref> elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orbital element partials to initialize with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="459" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="459" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a3ae3440cc3e2558974603acf67d4761e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</definition>
+        <argsstring>(EquinoctialPartial elements)</argsstring>
+        <name>OrbitalElementPartials</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::OrbitalElementPartials</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref></type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+<para>Constructor initializing with <ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref> elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orbital element partials to initialize with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="469" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="469" bodyend="472"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a63d9c9cd37f8cd957eb1269299de6fed" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
+        <definition>OrbitalElements astrea::astro::OrbitalElementPartials::operator*</definition>
+        <argsstring>(const Time &amp;time) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Converts the current orbital element partials to a specific type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to convert to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gravitational parameter to use for the conversion. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the current orbital element partials after conversion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="481" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="185" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1aa6cf08e6705405c2a1bedaff4a8b3618" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> PartialVariant &amp;</type>
+        <definition>const OrbitalElementPartials::PartialVariant &amp; astrea::astro::OrbitalElementPartials::extract</definition>
+        <argsstring>() const</argsstring>
+        <name>extract</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::extract</qualifiedname>
+        <briefdescription>
+<para>Extracts the underlying orbital element partials as a variant. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const PartialVariant&amp; Reference to the underlying orbital element partials variant. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="488" column="26" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="196" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a32cb8a0c765bb585bf2a841d56e7e3fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PartialVariant &amp;</type>
+        <definition>OrbitalElementPartials::PartialVariant &amp; astrea::astro::OrbitalElementPartials::extract</definition>
+        <argsstring>()</argsstring>
+        <name>extract</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::extract</qualifiedname>
+        <briefdescription>
+<para>Extracts the underlying orbital element partials as a variant. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>PartialVariant&amp; Reference to the underlying orbital element partials variant. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="495" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1a52fb4e855bd49e8006c6a50321f426f2" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> std::size_t</type>
+        <definition>constexpr std::size_t astrea::astro::OrbitalElementPartials::index</definition>
+        <argsstring>() const</argsstring>
+        <name>index</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::index</qualifiedname>
+        <briefdescription>
+<para>Returns the index of the current orbital element partials in the variant. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The index of the current orbital element partials in the variant. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="502" column="27" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="502" bodyend="502"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1ae95395ce01f850814828acebbdb080f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::OrbitalElementPartials::force_to_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::force_to_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> to a vector of Unitless values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Unitless&gt; Vector containing the orbital elements as unitless values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="509" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="200" bodyend="203"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElementPartials_1ad7f9018d59599a9dde695b534233ffcd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::OrbitalElementPartials::same_underlying_type</definition>
+        <argsstring>(const OrbitalElementPartials &amp;other) const</argsstring>
+        <name>same_underlying_type</name>
+        <qualifiedname>astrea::astro::OrbitalElementPartials::same_underlying_type</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the underlying types of two <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> objects are the same. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> object to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the underlying types are not the same. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="520" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing partial derivatives of orbital elements. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class encapsulates the partial derivatives of orbital elements, allowing for operations such as multiplication by time to obtain <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vectors. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="426" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="426" bodyend="521"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a1bda43991b805c9360a5ed43211b084d" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>_elements</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1aa6cf08e6705405c2a1bedaff4a8b3618" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>extract</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a32cb8a0c765bb585bf2a841d56e7e3fe" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>extract</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ae95395ce01f850814828acebbdb080f4" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a52fb4e855bd49e8006c6a50321f426f2" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>index</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a63d9c9cd37f8cd957eb1269299de6fed" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ab0869a2c904a2a25a8fa18cc9a7f5b0f" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ac7690f7cd6c7103c9967505286cf7099" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>OrbitalElementPartials</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1adec213af7bb4538674195898dd574346" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>OrbitalElementPartials</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a7da6f2547f4af3cb6ec67f929eff4529" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>OrbitalElementPartials</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a3ae3440cc3e2558974603acf67d4761e" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>OrbitalElementPartials</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1aa59e7e2b4e8866c521b67fd641d89ffc" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>PartialVariant</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ad7f9018d59599a9dde695b534233ffcd" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElementPartials</scope><name>same_underlying_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

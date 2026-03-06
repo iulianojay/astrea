@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_262a2d2e73be89b2c0c48090ebaaa7f9" kind="dir">
+    <compoundname>astrea/astro/astro/systems/planetary_bodies/Mars</compoundname>
+    <innerfile refid="Deimos_8hpp">Deimos.hpp</innerfile>
+    <innerfile refid="Mars_8cpp">Mars.cpp</innerfile>
+    <innerfile refid="Mars_8hpp">Mars.hpp</innerfile>
+    <innerfile refid="Phobos_8hpp">Phobos.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/planetary_bodies/Mars/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AccessArray_8hpp" kind="file" language="C++">
+    <compoundname>AccessArray.hpp</compoundname>
+    <includes local="no">gtl/btree.hpp</includes>
+    <includes refid="RiseSetArray_8hpp" local="no">trace/risesets/RiseSetArray.hpp</includes>
+    <includes refid="IdPair_8hpp" local="no">trace/types/IdPair.hpp</includes>
+    <includedby refid="AccessAnalyzer_8hpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.hpp</includedby>
+    <includedby refid="Plotter_8cpp" local="no">astrea/trace/trace/analysis/plots/Plotter.cpp</includedby>
+    <includedby refid="AccessStats_8cpp" local="no">astrea/trace/trace/analysis/stats/AccessStats.cpp</includedby>
+    <includedby refid="FoldsOfCoverage_8cpp" local="no">astrea/trace/trace/analysis/stats/FoldsOfCoverage.cpp</includedby>
+    <includedby refid="output_8hpp" local="no">astrea/trace/trace/io/output.hpp</includedby>
+    <includedby refid="AccessObject_8hpp" local="no">astrea/trace/trace/platforms/AccessObject.hpp</includedby>
+    <includedby refid="Sensor_8hpp" local="no">astrea/trace/trace/platforms/sensors/Sensor.hpp</includedby>
+    <includedby refid="AccessArray_8cpp" local="no">astrea/trace/trace/risesets/AccessArray.cpp</includedby>
+    <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="13">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>array</label>
+      </node>
+      <node id="12">
+        <label>cstdint</label>
+      </node>
+      <node id="14">
+        <label>functional</label>
+      </node>
+      <node id="2">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
+        <link refid="GroundArchitecture_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1trace_1_1AccessArray" prot="public">astrea::trace::AccessArray</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+<para>Contains the AccessArray class, which is a collection of RiseSetArrays indexed by sender and receiver IDs, and provides methods for manipulating and querying access times. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtl/btree.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="RiseSetArray_8hpp" kindref="compound">trace/risesets/RiseSetArray.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;trace/types/IdPair.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classastrea_1_1trace_1_1AccessArray" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>accessarray);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43" refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" kindref="member">AccessArray</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" kindref="member">~AccessArray</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1ab3fd965346bde3aea6c1b96f360e0c44" kindref="member">at</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" kindref="member">contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>&amp;<sp/>idPair)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1ad5cb315480cbaead4072ed44e71e3a7b" kindref="member">erase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a2cbf08887dd6b6bbc303cf4d38bac2a6" kindref="member">get_all_accesses_to_receiver</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>receiverId)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5e689020f09f91d688a5d0dc3503ff8a" kindref="member">get_all_accesses_from_sender</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>senderId)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a0acd9f59dc5fdc6ebfd123779be2f278" kindref="member">operator|=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" kindref="member">operator|</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" kindref="member">operator&amp;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" kindref="member">operator&amp;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref><sp/>=<sp/>gtl::btree_map&lt;IdPair,<sp/>RiseSetArray&gt;::iterator;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref><sp/>=<sp/>gtl::btree_map&lt;IdPair,<sp/>RiseSetArray&gt;::const_iterator;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classastrea_1_1trace_1_1AccessArray_1a50c2e60dee56b8245144e5aecaee750b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a50c2e60dee56b8245144e5aecaee750b" kindref="member">begin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.begin();<sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classastrea_1_1trace_1_1AccessArray_1a3452993c5c07824caff18fc48b89a557" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a3452993c5c07824caff18fc48b89a557" kindref="member">end</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.end();<sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="classastrea_1_1trace_1_1AccessArray_1ad83fdfbd2e1387e178d13851acd26761" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1ad83fdfbd2e1387e178d13851acd26761" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.begin();<sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181" refid="classastrea_1_1trace_1_1AccessArray_1a450716e1f9e23c00acf27b680a39b561" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a450716e1f9e23c00acf27b680a39b561" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.end();<sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="classastrea_1_1trace_1_1AccessArray_1aa879481be685f507b4dad223db92ff72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1aa879481be685f507b4dad223db92ff72" kindref="member">cbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.cbegin();<sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195" refid="classastrea_1_1trace_1_1AccessArray_1a5289b6eaf1b33bb1beb633c1c40650b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1AccessArray_1a5289b6eaf1b33bb1beb633c1c40650b7" kindref="member">cend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accesses.cend();<sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>gtl::btree_map&lt;IdPair,<sp/>RiseSetArray&gt;<sp/>_accesses;<sp/></highlight></codeline>
+<codeline lineno="199"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/risesets/AccessArray.hpp"/>
+  </compounddef>
+</doxygen>

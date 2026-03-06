@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interpolation_8cpp" kind="file" language="C++">
+    <compoundname>interpolation.cpp</compoundname>
+    <includes refid="interpolation_8hpp" local="no">math/interpolation.hpp</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">stdexcept</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/math/math/interpolation.cpp</label>
+        <link refid="interpolation_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>math/interpolation.hpp</label>
+        <link refid="interpolation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
+      <node id="6">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>stdexcept</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1math">astrea::math</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="interpolation_8hpp" kindref="compound">math/interpolation.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Cubic<sp/>Spline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/><sp/><sp/><sp/>x<sp/>is<sp/>the<sp/>input<sp/>knot<sp/>vector<sp/>with<sp/>corresponding<sp/>points<sp/>y</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/><sp/><sp/><sp/>sx<sp/>is<sp/>the<sp/>desired<sp/>output<sp/>vector<sp/>to<sp/>interpolate<sp/>to</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>std::vector&lt;double&gt;<sp/>cubic_spline(const<sp/>std::vector&lt;double&gt;&amp;<sp/>x,<sp/>const<sp/>std::vector&lt;double&gt;&amp;<sp/>y,<sp/>const<sp/>std::vector&lt;double&gt;&amp;<sp/>sx)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>Sizes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>const<sp/>size_t<sp/>n<sp/>=<sp/>x.size();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>const<sp/>size_t<sp/>m<sp/>=<sp/>sx.size();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>Catch<sp/>spline<sp/>x<sp/>values<sp/>outside<sp/>the<sp/>knots</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>m;<sp/>++ii)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(sx[ii]<sp/>&lt;<sp/>x[0]<sp/>||<sp/>sx[ii]<sp/>&gt;<sp/>x[n<sp/>-<sp/>1])<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::runtime_error(&quot;Error:<sp/>Requested<sp/>spline<sp/>values<sp/>outside<sp/>of<sp/>input<sp/>knots.<sp/>Exiting.&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>Build<sp/>arrays</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>double<sp/>h[n<sp/>-<sp/>1];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>double<sp/>b[n<sp/>-<sp/>1];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>double<sp/>u[n];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>double<sp/>v[n];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>double<sp/>z[n<sp/>+<sp/>1];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>sy;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>sy.resize(m);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>Solve<sp/>for<sp/>spline<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>n<sp/>-<sp/>1;<sp/>++ii)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>h[ii]<sp/>=<sp/>x[ii<sp/>+<sp/>1]<sp/>-<sp/>x[ii];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b[ii]<sp/>=<sp/>6<sp/>*<sp/>(y[ii<sp/>+<sp/>1]<sp/>-<sp/>y[ii])<sp/>/<sp/>h[ii];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>u[1]<sp/>=<sp/>2<sp/>*<sp/>(h[0]<sp/>+<sp/>h[1]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>v[1]<sp/>=<sp/>b[1]<sp/>-<sp/>b[0];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>ii<sp/>=<sp/>1;<sp/>ii<sp/>&lt;<sp/>n<sp/>-<sp/>1;<sp/>++ii)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u[ii<sp/>+<sp/>1]<sp/>=<sp/>2<sp/>*<sp/>(h[ii<sp/>+<sp/>1]<sp/>+<sp/>h[ii])<sp/>-<sp/>h[ii]<sp/>*<sp/>h[ii]<sp/>/<sp/>u[ii];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v[ii<sp/>+<sp/>1]<sp/>=<sp/>b[ii<sp/>+<sp/>1]<sp/>-<sp/>b[ii]<sp/>-<sp/>h[ii]<sp/>*<sp/>v[ii]<sp/>/<sp/>u[ii];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>for<sp/>(int<sp/>ii<sp/>=<sp/>n<sp/>-<sp/>2;<sp/>ii<sp/>&gt;=<sp/>0;<sp/>--ii)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>z[ii<sp/>+<sp/>1]<sp/>=<sp/>(v[ii<sp/>+<sp/>1]<sp/>-<sp/>h[ii<sp/>+<sp/>1]<sp/>*<sp/>z[ii<sp/>+<sp/>2])<sp/>/<sp/>u[ii<sp/>+<sp/>1];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>//<sp/>Create<sp/>spline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>m;<sp/>++ii)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Find<sp/>nearest<sp/>knot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/>jj<sp/><sp/><sp/>=<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>double<sp/>xRef<sp/>=<sp/>x[0];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>kk<sp/>=<sp/>1;<sp/>kk<sp/>&lt;<sp/>n;<sp/>++kk)<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(abs(sx[ii]<sp/>-<sp/>x[kk])<sp/>&lt;<sp/>abs(sx[ii]<sp/>-<sp/>xRef)<sp/>&amp;&amp;<sp/>x[kk]<sp/>&lt;<sp/>sx[ii])<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jj<sp/><sp/><sp/>=<sp/>kk;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xRef<sp/>=<sp/>x[kk];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Precalculate<sp/>repeated<sp/>calcs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>double<sp/>dx<sp/><sp/><sp/>=<sp/>sx[ii]<sp/>-<sp/>x[jj];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>double<sp/>dxp1<sp/>=<sp/>x[jj<sp/>+<sp/>1]<sp/>-<sp/>sx[ii];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>double<sp/>zDiv6<sp/><sp/><sp/>=<sp/>z[jj]<sp/>/<sp/>6.0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>double<sp/>zp1Div6<sp/>=<sp/>z[jj<sp/>+<sp/>1]<sp/>/<sp/>6.0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>double<sp/>h2<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>h[jj]<sp/>*<sp/>h[jj];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Spline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sy[ii]<sp/>=<sp/>(zDiv6<sp/>*<sp/>std::pow(dxp1,<sp/>3)<sp/>+<sp/>zp1Div6<sp/>*<sp/>std::pow(dx,<sp/>3)<sp/>+<sp/>(y[jj<sp/>+<sp/>1]<sp/>-<sp/>zp1Div6<sp/>*<sp/>h2)<sp/>*<sp/>dx<sp/>+</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(y[jj]<sp/>-<sp/>h2<sp/>*<sp/>zDiv6)<sp/>*<sp/>dxp1)<sp/>/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>h[jj];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>return<sp/>sy;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/math/math/interpolation.cpp"/>
+  </compounddef>
+</doxygen>

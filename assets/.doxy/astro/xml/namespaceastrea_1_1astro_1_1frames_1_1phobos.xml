@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1phobos" kind="namespace" language="C++">
+    <compoundname>astrea::astro::frames::phobos</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1aa409975ad3d455f6e8776ede4ab16842" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::PHOBOS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
+        <definition>using astrea::astro::frames::phobos::icrf = typedef InertialFrame&lt;CelestialBodyId::PHOBOS, FrameAxis::ICRF&gt;</definition>
+        <argsstring></argsstring>
+        <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::phobos::icrf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="58" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1af5647e8b9df5b75419b0490be68c31b6" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::PHOBOS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
+        <definition>using astrea::astro::frames::phobos::j2000 = typedef InertialFrame&lt;CelestialBodyId::PHOBOS, FrameAxis::J2000&gt;</definition>
+        <argsstring></argsstring>
+        <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::phobos::j2000</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="59" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="57" column="1"/>
+  </compounddef>
+</doxygen>

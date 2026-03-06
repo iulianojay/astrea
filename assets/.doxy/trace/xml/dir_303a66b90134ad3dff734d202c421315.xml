@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_303a66b90134ad3dff734d202c421315" kind="dir">
+    <compoundname>astrea/trace/trace/platforms/sensors/fov</compoundname>
+    <innerdir refid="dir_16a2422c641898ec244ea09da3a664c2">astrea/trace/trace/platforms/sensors/fov/instances</innerdir>
+    <innerfile refid="FieldOfView_8cpp">FieldOfView.cpp</innerfile>
+    <innerfile refid="FieldOfView_8hpp">FieldOfView.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/platforms/sensors/fov/"/>
+  </compounddef>
+</doxygen>

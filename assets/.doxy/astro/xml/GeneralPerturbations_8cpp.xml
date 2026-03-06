@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="GeneralPerturbations_8cpp" kind="file" language="C++">
+    <compoundname>GeneralPerturbations.cpp</compoundname>
+    <includes refid="GeneralPerturbations_8hpp" local="no">astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">utilities/json_util.hpp</includes>
+    <includes local="no">utilities/string_util.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp</label>
+        <link refid="GeneralPerturbations_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+        <link refid="GeneralPerturbations_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>iosfwd</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>utilities/json_util.hpp</label>
+      </node>
+      <node id="9">
+        <label>utilities/string_util.hpp</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="GeneralPerturbations_8hpp" kindref="compound">astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utilities/json_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utilities/string_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_from_json;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_optional_from_json;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_optional_string_from_json;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_string_from_json;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;T&gt;&amp;<sp/>opt)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>opt<sp/>?<sp/>os<sp/>&lt;&lt;<sp/>opt.value()<sp/>:<sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Unassigned&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations::GeneralPerturbations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/>data)<sp/>:</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>DB_ID(-1),</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>APOAPSIS(extract_optional_from_json&lt;double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;APOAPSIS&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>ARG_OF_PERICENTER(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;ARG_OF_PERICENTER&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>BSTAR(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;BSTAR&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>CCSDS_OMM_VERS(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;CCSDS_OMM_VERS&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>CENTER_NAME(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;CENTER_NAME&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>CLASSIFICATION_TYPE(extract_optional_from_json&lt;char&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;CLASSIFICATION_TYPE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>COMMENT(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;COMMENT&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>COUNTRY_CODE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;COUNTRY_CODE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>CREATION_DATE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;CREATION_DATE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>DECAY_DATE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;DECAY_DATE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>ECCENTRICITY(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;ECCENTRICITY&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>ELEMENT_SET_NO(extract_optional_from_json&lt;short&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;ELEMENT_SET_NO&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>EPHEMERIS_TYPE(extract_optional_from_json&lt;short<sp/>unsigned&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;EPHEMERIS_TYPE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>EPOCH(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;EPOCH&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE(extract_optional_from_json&lt;long<sp/>unsigned&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;FILE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>GP_ID(extract_from_json&lt;unsigned&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;GP_ID&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>INCLINATION(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;INCLINATION&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>LAUNCH_DATE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;LAUNCH_DATE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>MEAN_ANOMALY(extract_optional_from_json&lt;double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;MEAN_ANOMALY&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>MEAN_ELEMENT_THEORY(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;MEAN_ELEMENT_THEORY&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>MEAN_MOTION(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>MEAN_MOTION_DDOT(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION_DDOT&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>MEAN_MOTION_DOT(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION_DOT&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>NORAD_CAT_ID(extract_from_json&lt;unsigned&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;NORAD_CAT_ID&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>OBJECT_ID(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_ID&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>OBJECT_NAME(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_NAME&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>OBJECT_TYPE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_TYPE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>ORIGINATOR(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;ORIGINATOR&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>PERIAPSIS(extract_optional_from_json&lt;double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;PERIAPSIS&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>PERIOD(extract_optional_from_json&lt;double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;PERIOD&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>RA_OF_ASC_NODE(extract_optional_from_json&lt;long<sp/>double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;RA_OF_ASC_NODE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>RCS_SIZE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;RCS_SIZE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>REF_FRAME(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;REF_FRAME&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>REV_AT_EPOCH(extract_optional_from_json&lt;unsigned&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;REV_AT_EPOCH&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>SEMIMAJOR_AXIS(extract_optional_from_json&lt;double&gt;(data,<sp/></highlight><highlight class="stringliteral">&quot;SEMIMAJOR_AXIS&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>SITE(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;SITE&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>TIME_SYSTEM(extract_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;TIME_SYSTEM&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>TLE_LINE0(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE0&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>TLE_LINE1(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE1&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>TLE_LINE2(extract_optional_string_from_json(data,<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE2&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GeneralPerturbations&amp;<sp/>gp)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;DB_ID:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.DB_ID<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;APOAPSIS:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.APOAPSIS<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;ARG_OF_PERICENTER:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.ARG_OF_PERICENTER<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;BSTAR:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.BSTAR<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;CCSDS_OMM_VERS:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.CCSDS_OMM_VERS<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;CENTER_NAME:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.CENTER_NAME<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;CLASSIFICATION_TYPE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.CLASSIFICATION_TYPE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;COMMENT:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.COMMENT<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;COUNTRY_CODE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.COUNTRY_CODE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;CREATION_DATE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.CREATION_DATE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;DECAY_DATE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.DECAY_DATE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;ECCENTRICITY:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.ECCENTRICITY<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;ELEMENT_SET_NO:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.ELEMENT_SET_NO<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;EPHEMERIS_TYPE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.EPHEMERIS_TYPE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;EPOCH:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.EPOCH<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;FILE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.FILE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;GP_ID:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.GP_ID<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;INCLINATION:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.INCLINATION<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LAUNCH_DATE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.LAUNCH_DATE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;MEAN_ANOMALY:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.MEAN_ANOMALY<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;MEAN_ELEMENT_THEORY:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.MEAN_ELEMENT_THEORY<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.MEAN_MOTION<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION_DDOT:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.MEAN_MOTION_DDOT<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;MEAN_MOTION_DOT:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.MEAN_MOTION_DOT<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;NORAD_CAT_ID:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.NORAD_CAT_ID<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_ID:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.OBJECT_ID<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_NAME:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.OBJECT_NAME<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;OBJECT_TYPE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.OBJECT_TYPE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;ORIGINATOR:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.ORIGINATOR<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;PERIAPSIS:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.PERIAPSIS<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;PERIOD:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.PERIOD<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;RA_OF_ASC_NODE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.RA_OF_ASC_NODE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;RCS_SIZE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.RCS_SIZE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;REF_FRAME:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.REF_FRAME<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;REV_AT_EPOCH:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.REV_AT_EPOCH<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SEMIMAJOR_AXIS:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.SEMIMAJOR_AXIS<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SITE:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.SITE<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TIME_SYSTEM:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.TIME_SYSTEM<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE0:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.TLE_LINE0<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE1:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.TLE_LINE1<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TLE_LINE2:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.TLE_LINE2<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp"/>
+  </compounddef>
+</doxygen>

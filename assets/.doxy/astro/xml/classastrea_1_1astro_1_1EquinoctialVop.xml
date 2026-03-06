@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1EquinoctialVop" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::EquinoctialVop</compoundname>
+    <basecompoundref refid="classastrea_1_1astro_1_1EquationsOfMotion" prot="public" virt="non-virtual">astrea::astro::EquationsOfMotion</basecompoundref>
+    <includes refid="EquinoctialVop_8hpp" local="no">EquinoctialVop.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialVop_1a3d592a71a7e6407e9e058984543dc64c" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>const Unitless astrea::astro::EquinoctialVop::checkTol</definition>
+        <argsstring></argsstring>
+        <name>checkTol</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::checkTol</qualifiedname>
+        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e</ref>-10 * mp_units::one</initializer>
+        <briefdescription>
+<para>Tolerance for checking conditions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="77" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialVop_1a7e030768dba78ba056671122d710d745" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> *</type>
+        <definition>const ForceModel* astrea::astro::EquinoctialVop::forces</definition>
+        <argsstring></argsstring>
+        <name>forces</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::forces</qualifiedname>
+        <briefdescription>
+<para>The force model used in the equations of motion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="78" column="22" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a84a7175e292f8590c9b462b2258d4703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EquinoctialVop::EquinoctialVop</definition>
+        <argsstring>(const ForceModel &amp;forces)</argsstring>
+        <name>EquinoctialVop</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::EquinoctialVop</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
+          <declname>forces</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>forces</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The force model to be used in the equations of motion. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1aa94667f60c270e8a1a5a43ef63dbeea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EquinoctialVop::~EquinoctialVop</definition>
+        <argsstring>()=default</argsstring>
+        <name>~EquinoctialVop</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::~EquinoctialVop</qualifiedname>
+        <briefdescription>
+<para>Destructor for the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="47" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a6654b1fc66fc7e99aad46c021ad4fc1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref></type>
+        <definition>OrbitalElementPartials astrea::astro::EquinoctialVop::operator()</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
+        <name>operator()</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::operator()</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a69b14a7cd2c2c8f90dea29e3b8b765ea">operator()</reimplements>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the partial derivatives of the orbital elements using the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vehicle for which the equations of motion are being computed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> The computed partial derivatives of the orbital elements.</para>
+</simplesect>
+<ulink url="https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source">https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source</ulink>%20Docs/EquinoctalElements-modified.pdf </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="58" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="45" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a402e5fdb1d2991c6fbfc491fe2cf998e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref></type>
+        <definition>StateTransitionMatrix astrea::astro::EquinoctialVop::compute_stm</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
+        <name>compute_stm</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::compute_stm</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9148920410e5d4988cc065f44a4ed93b">compute_stm</reimplements>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the state transition matrix (STM) using Cowell&apos;s method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vehicle for which the STM is being computed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref> The computed state transition matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="67" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="100" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a83b671e8cbcc944ede70026e9788c152" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> std::size_t</type>
+        <definition>constexpr std::size_t astrea::astro::EquinoctialVop::get_expected_set_id</definition>
+        <argsstring>() const override</argsstring>
+        <name>get_expected_set_id</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::get_expected_set_id</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4ee1d978dd765bbc2cccbcc3e015a22f">get_expected_set_id</reimplements>
+        <briefdescription>
+<para>Returns the expected set of orbital elements for this equations of motion class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The expected set id of orbital elements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="74" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class implementing the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP equations of motion. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::EquinoctialVop</label>
+        <link refid="classastrea_1_1astro_1_1EquinoctialVop"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::EquinoctialVop</label>
+        <link refid="classastrea_1_1astro_1_1EquinoctialVop"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="34" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a3d592a71a7e6407e9e058984543dc64c" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>checkTol</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a402e5fdb1d2991c6fbfc491fe2cf998e" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>compute_stm</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>EquationsOfMotion</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a84a7175e292f8590c9b462b2258d4703" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>EquinoctialVop</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a7e030768dba78ba056671122d710d745" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a83b671e8cbcc944ede70026e9788c152" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>get_expected_set_id</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a6654b1fc66fc7e99aad46c021ad4fc1a" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>operator()</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad66256a4c474903ebdb258eb9c2b94dc" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>~EquationsOfMotion</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1aa94667f60c270e8a1a5a43ef63dbeea5" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>~EquinoctialVop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

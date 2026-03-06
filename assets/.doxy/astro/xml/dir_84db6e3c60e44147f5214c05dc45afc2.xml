@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_84db6e3c60e44147f5214c05dc45afc2" kind="dir">
+    <compoundname>astrea/astro/astro</compoundname>
+    <innerdir refid="dir_45ba6462728f0c3fdeb841915d341ea3">astrea/astro/astro/frames</innerdir>
+    <innerdir refid="dir_2552b27872b33d254ad75ac21654b66a">astrea/astro/astro/platforms</innerdir>
+    <innerdir refid="dir_55ae0edd352c6621ebfa1115f28a0fff">astrea/astro/astro/propagation</innerdir>
+    <innerdir refid="dir_cf1a4d8122645f8636e977da512a043c">astrea/astro/astro/state</innerdir>
+    <innerdir refid="dir_a5d35e082abd602943cf6d70fa2a6872">astrea/astro/astro/systems</innerdir>
+    <innerdir refid="dir_0abd23a91674297917c73da93ecec0fe">astrea/astro/astro/time</innerdir>
+    <innerdir refid="dir_81b398d2ba04cf47420d9ac22d356bcf">astrea/astro/astro/types</innerdir>
+    <innerdir refid="dir_68b93ce2887c47fc193a24ece16ebbe5">astrea/astro/astro/utilities</innerdir>
+    <innerfile refid="astro_8fwd_8hpp">astro.fwd.hpp</innerfile>
+    <innerfile refid="astro_8hpp">astro.hpp</innerfile>
+    <innerfile refid="astro_8macros_8hpp">astro.macros.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/"/>
+  </compounddef>
+</doxygen>

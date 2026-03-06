@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PolygonalFieldOfView_8hpp" kind="file" language="C++">
+    <compoundname>PolygonalFieldOfView.hpp</compoundname>
+    <includes local="no">numbers</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">gtl/btree.hpp</includes>
+    <includes local="no">astro/astro.fwd.hpp</includes>
+    <includes local="no">astro/frames/dynamic_frames.hpp</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes refid="FieldOfView_8hpp" local="no">trace/platforms/sensors/fov/FieldOfView.hpp</includes>
+    <includedby refid="PolygonalFieldOfView_8cpp" local="no">astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp</includedby>
+    <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</label>
+        <link refid="PolygonalFieldOfView_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="6">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="4">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="2">
+        <label>numbers</label>
+      </node>
+      <node id="7">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="9">
+        <label>unordered_map</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</label>
+        <link refid="PolygonalFieldOfView_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1trace_1_1PolygonalFieldOfView" prot="public">astrea::trace::PolygonalFieldOfView</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1trace">astrea::trace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numbers&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtl/btree.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="FieldOfView_8hpp" kindref="compound">trace/platforms/sensors/fov/FieldOfView.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classastrea_1_1trace_1_1PolygonalFieldOfView" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle<sp/>=<sp/>std::numbers::pi<sp/>/<sp/>4.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeWidth,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeHeight,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae280348db8b693f106bd0c7a91cbde77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae280348db8b693f106bd0c7a91cbde77" kindref="member">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>gtl::btree_map&lt;Angle,<sp/>Angle&gt;&amp;<sp/>points)<sp/>:</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_points(points)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>find_min_and_max_angles();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae1ad07b56ac0f6c8918df5677eeb3180" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae1ad07b56ac0f6c8918df5677eeb3180" kindref="member">~PolygonalFieldOfView</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d" kindref="member">contains</ref>(</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;&amp;<sp/>boresight,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;&amp;<sp/>target</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>These<sp/>angle<sp/>are<sp/>actually<sp/>defined<sp/>w.r.t<sp/>a<sp/>frame<sp/>so<sp/>we<sp/>need<sp/>to<sp/>figure<sp/>out<sp/>what<sp/>that</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>is<sp/>and<sp/>how<sp/>to<sp/>define<sp/>it<sp/>meaningfully.<sp/>It<sp/>might<sp/>have<sp/>to<sp/>come<sp/>from<sp/>a<sp/>FrameReference<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Probably<sp/>will<sp/>be<sp/>some<sp/>body-fixed<sp/>frame<sp/>aligned<sp/>with<sp/>the<sp/>sensor<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>key<sp/>angle<sp/>is<sp/>the<sp/>azimuthal<sp/>angle<sp/>around<sp/>the<sp/>boresight,<sp/>and<sp/>the<sp/>value<sp/>angle<sp/>is<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>off-boresight<sp/>angle<sp/>at<sp/>that<sp/>azimuth</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>gtl::btree_map&lt;Angle,<sp/>Angle&gt;<sp/>_points;<sp/></highlight><highlight class="comment">//&lt;!<sp/>Map<sp/>of<sp/>angles<sp/>defining<sp/>the<sp/>polygonal<sp/>field<sp/>of<sp/>view</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_minHalfAngle<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad;<sp/></highlight><highlight class="comment">//&lt;!<sp/>Minimum<sp/>off-boresight<sp/>half<sp/>angle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_maxHalfAngle<sp/>=<sp/>std::numeric_limits&lt;Angle&gt;::infinity();<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//&lt;!<sp/>Maximum<sp/>off-boresight<sp/>half<sp/>angle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>find_min_and_max_angles();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>build_polygon()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>point_in_polygon(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Unitless,<sp/>Unitless&gt;&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;&amp;<sp/>polygon);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp"/>
+  </compounddef>
+</doxygen>

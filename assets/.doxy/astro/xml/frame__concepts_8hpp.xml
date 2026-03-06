@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="frame__concepts_8hpp" kind="file" language="C++">
+    <compoundname>frame_concepts.hpp</compoundname>
+    <includes local="no">concepts</includes>
+    <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
+    <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
+    <includedby refid="CartesianVector_8hpp" local="no">astrea/astro/astro/frames/CartesianVector.hpp</includedby>
+    <includedby refid="Frame_8hpp" local="no">astrea/astro/astro/frames/Frame.hpp</includedby>
+    <includedby refid="transformations_8hpp" local="no">astrea/astro/astro/frames/transformations.hpp</includedby>
+    <includedby refid="DirectionCosineMatrix_8hpp" local="no">astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/frames/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>concepts</label>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/frames/CartesianVector.hpp</label>
+        <link refid="CartesianVector_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea/astro/astro/frames/Frame.hpp</label>
+        <link refid="Frame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
+        <link refid="dynamic__frames_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/frames/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp</label>
+        <link refid="LocalHorizontalLocalVertical_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp</label>
+        <link refid="RadialInTrackCrossTrack_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp</label>
+        <link refid="VelocityNormalBinormal_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astrea/astro/astro/frames/instances/defined_rotations.hpp</label>
+        <link refid="defined__rotations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astrea/astro/astro/frames/transformations.hpp</label>
+        <link refid="transformations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astrea/astro/astro/frames/types/BodyFixedFrame.hpp</label>
+        <link refid="BodyFixedFrame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/frames/types/DynamicFrame.hpp</label>
+        <link refid="DynamicFrame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astrea/astro/astro/frames/types/InertialFrame.hpp</label>
+        <link refid="InertialFrame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
+        <link refid="Vehicle_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
+        <link refid="LambertSolver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
+        <link refid="Geocentric_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
+        <link refid="Spherical_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
+        <link refid="orbital__elements_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Definitions for frame concepts and other compile-time utilities. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-10-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;concepts&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="astro_8fwd_8hpp" kindref="compound">astro/astro.fwd.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T&gt;</highlight></codeline>
+<codeline lineno="35" refid="conceptastrea_1_1astro_1_1IsInertialFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsInertialFrame" kindref="compound">IsInertialFrame</ref><sp/>=<sp/>(Frame_T::get_axis()<sp/>==<sp/>FrameAxis::ICRF<sp/>||<sp/>Frame_T::get_axis()<sp/>==<sp/>FrameAxis::J2000);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T&gt;</highlight></codeline>
+<codeline lineno="44" refid="conceptastrea_1_1astro_1_1IsBodyFixedFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsBodyFixedFrame" kindref="compound">IsBodyFixedFrame</ref><sp/>=<sp/>(Frame_T::get_axis()<sp/>==<sp/>FrameAxis::BODY_FIXED);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T&gt;</highlight></codeline>
+<codeline lineno="53" refid="conceptastrea_1_1astro_1_1IsStaticFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsStaticFrame" kindref="compound">IsStaticFrame</ref><sp/>=</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>(Frame_T::get_axis()<sp/>==<sp/>FrameAxis::ICRF<sp/>||<sp/>Frame_T::get_axis()<sp/>==<sp/>FrameAxis::J2000<sp/>||<sp/>Frame_T::get_axis()<sp/>==<sp/>FrameAxis::BODY_FIXED);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T&gt;</highlight></codeline>
+<codeline lineno="63" refid="conceptastrea_1_1astro_1_1IsDynamicFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsDynamicFrame" kindref="compound">IsDynamicFrame</ref><sp/>=</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>(Frame_T::get_axis()<sp/>==<sp/>FrameAxis::LVLH<sp/>||<sp/>Frame_T::get_axis()<sp/>==<sp/>FrameAxis::RIC<sp/>||<sp/>Frame_T::get_axis()<sp/>==<sp/>FrameAxis::VNB);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
+<codeline lineno="74" refid="conceptastrea_1_1astro_1_1HasSameOrigin" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1HasSameOrigin" kindref="compound">HasSameOrigin</ref><sp/>=<sp/>(Frame_T::get_origin()<sp/>==<sp/>Frame_U::get_origin());</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
+<codeline lineno="84" refid="conceptastrea_1_1astro_1_1HasSameAxis" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1HasSameAxis" kindref="compound">HasSameAxis</ref><sp/>=<sp/>(Frame_T::get_axis()<sp/>==<sp/>Frame_U::get_axis());</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
+<codeline lineno="94" refid="conceptastrea_1_1astro_1_1IsSameFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsSameFrame" kindref="compound">IsSameFrame</ref><sp/>=<sp/><ref refid="conceptastrea_1_1astro_1_1HasSameOrigin" kindref="compound">HasSameOrigin&lt;Frame_T, Frame_U&gt;</ref><sp/>&amp;&amp;<sp/><ref refid="conceptastrea_1_1astro_1_1HasSameAxis" kindref="compound">HasSameAxis&lt;Frame_T, Frame_U&gt;</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
+<codeline lineno="105" refid="conceptastrea_1_1astro_1_1HasDcm" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1HasDcm" kindref="compound">HasDcm</ref><sp/>=<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)<sp/>{<sp/>get_dcm&lt;Frame_T,<sp/>Frame_U&gt;(date);<sp/>};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
+<codeline lineno="117" refid="conceptastrea_1_1astro_1_1HasDcmMethod" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1HasDcmMethod" kindref="compound">HasDcmMethod</ref><sp/>=</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Frame_T&amp;<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)<sp/>{<sp/>frame.template<sp/>get_dcm&lt;Frame_T,<sp/>Frame_U&gt;(date);<sp/>};</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/frames/frame_concepts.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_8ace873b55bc88b2d1a73a241bbdd96b" kind="dir">
+    <compoundname>astrea/units/units</compoundname>
+    <innerfile refid="constants_8hpp">constants.hpp</innerfile>
+    <innerfile refid="custom_8hpp">custom.hpp</innerfile>
+    <innerfile refid="detail_8hpp">detail.hpp</innerfile>
+    <innerfile refid="hash_8hpp">hash.hpp</innerfile>
+    <innerfile refid="time_8hpp">time.hpp</innerfile>
+    <innerfile refid="typedefs_8hpp">typedefs.hpp</innerfile>
+    <innerfile refid="units_8hpp">units.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/units/units/"/>
+  </compounddef>
+</doxygen>

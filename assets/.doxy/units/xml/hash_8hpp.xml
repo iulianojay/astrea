@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="hash_8hpp" kind="file" language="C++">
+    <compoundname>hash.hpp</compoundname>
+    <includes local="no">functional</includes>
+    <includes refid="typedefs_8hpp" local="no">units/typedefs.hpp</includes>
+    <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>units/custom.hpp</label>
+        <link refid="custom_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>units/detail.hpp</label>
+        <link refid="detail_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/units/units/hash.hpp</label>
+        <link refid="hash_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>array</label>
+      </node>
+      <node id="2">
+        <label>functional</label>
+      </node>
+      <node id="6">
+        <label>mp-units/ext/format.h</label>
+      </node>
+      <node id="8">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="9">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="10">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/units/units/hash.hpp</label>
+        <link refid="hash_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4" prot="public">std::hash&lt; mp_units::quantity&lt; R, Rep &gt; &gt;</innerclass>
+    <briefdescription>
+<para>Hash functions for astrea units. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">units/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="26" refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">std::hash&lt;mp_units::quantity&lt;R,<sp/>Rep&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>operator()(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="28"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(std::hash&lt;Rep&gt;()(q.numerical_value_ref_in(q.unit)));</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="astrea/units/units/hash.hpp"/>
+  </compounddef>
+</doxygen>

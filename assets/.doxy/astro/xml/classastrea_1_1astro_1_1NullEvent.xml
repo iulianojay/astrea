@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1NullEvent" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::NullEvent</compoundname>
+    <includes refid="NullEvent_8hpp" local="no">NullEvent.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NullEvent_1a5354d6a27f5297469bcf91c474d8f64d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::NullEvent::get_name</definition>
+        <argsstring>() const</argsstring>
+        <name>get_name</name>
+        <qualifiedname>astrea::astro::NullEvent::get_name</qualifiedname>
+        <briefdescription>
+<para>Gets the name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string The name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="40" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>Unitless astrea::astro::NullEvent::measure_event</definition>
+        <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
+        <name>measure_event</name>
+        <qualifiedname>astrea::astro::NullEvent::measure_event</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Detects if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by a <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="49" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NullEvent_1a5058196ba1fa464c9be14e8e2d0031d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::NullEvent::is_terminal</definition>
+        <argsstring>() const</argsstring>
+        <name>is_terminal</name>
+        <qualifiedname>astrea::astro::NullEvent::is_terminal</qualifiedname>
+        <briefdescription>
+<para>Checks if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="60" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class representing a null <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="32" column="1" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="32" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1NullEvent_1a5354d6a27f5297469bcf91c474d8f64d" prot="public" virt="non-virtual"><scope>astrea::astro::NullEvent</scope><name>get_name</name></member>
+      <member refid="classastrea_1_1astro_1_1NullEvent_1a5058196ba1fa464c9be14e8e2d0031d8" prot="public" virt="non-virtual"><scope>astrea::astro::NullEvent</scope><name>is_terminal</name></member>
+      <member refid="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" prot="public" virt="non-virtual"><scope>astrea::astro::NullEvent</scope><name>measure_event</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

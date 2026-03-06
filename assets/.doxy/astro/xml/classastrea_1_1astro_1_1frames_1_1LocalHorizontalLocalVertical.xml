@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::frames::LocalHorizontalLocalVertical</compoundname>
+    <basecompoundref refid="classastrea_1_1astro_1_1DynamicFrame" prot="public" virt="non-virtual">astrea::astro::DynamicFrame&lt; LocalHorizontalLocalVertical, FrameAxis::LVLH &gt;</basecompoundref>
+    <includes refid="LocalHorizontalLocalVertical_8hpp" local="no">LocalHorizontalLocalVertical.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a9b9215b21ea6e397e231cef8a6fb203e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</definition>
+        <argsstring>()=delete</argsstring>
+        <name>LocalHorizontalLocalVertical</name>
+        <qualifiedname>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</qualifiedname>
+        <briefdescription>
+<para>Default constructor is deleted to prevent instantiation without a parent frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="40" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ad28a6db6556337154f0ad4e3b2a09ef4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</definition>
+        <argsstring>(const FrameReference *parent)</argsstring>
+        <name>LocalHorizontalLocalVertical</name>
+        <qualifiedname>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1FrameReference" kindref="compound">FrameReference</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" kindref="compound">LocalHorizontalLocalVertical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the ECEF frame with a name and origin. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="47" column="5" bodyfile="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a79a4873a7cce87626133282183ed8c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::frames::LocalHorizontalLocalVertical::~LocalHorizontalLocalVertical</definition>
+        <argsstring>()=default</argsstring>
+        <name>~LocalHorizontalLocalVertical</name>
+        <qualifiedname>astrea::astro::frames::LocalHorizontalLocalVertical::~LocalHorizontalLocalVertical</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" kindref="compound">LocalHorizontalLocalVertical</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="55" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1aaa1860cf1a8f3ee0d93d379cf2c160b0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref>, <ref refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" kindref="compound">LocalHorizontalLocalVertical</ref> &gt;</type>
+        <definition>DirectionCosineMatrix&lt; frames::earth::icrf, LocalHorizontalLocalVertical &gt; astrea::astro::frames::LocalHorizontalLocalVertical::get_dcm</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
+        <name>get_dcm</name>
+        <qualifiedname>astrea::astro::frames::LocalHorizontalLocalVertical::get_dcm</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which the DCM is computed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>DirectionCosineMatrix&lt;frames::earth::icrf, LocalHorizontalLocalVertical&gt; The DCM from ECI to LVLH. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="63" column="27" bodyfile="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" bodystart="63" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ac70f9fb1061400f21101710ea52ef4e6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;position, const VelocityVector&lt; frames::earth::icrf &gt; &amp;velocity)</argsstring>
+        <name>LocalHorizontalLocalVertical</name>
+        <qualifiedname>astrea::astro::frames::LocalHorizontalLocalVertical::LocalHorizontalLocalVertical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for instantaneous dynamic state/frames. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position vector in the ECI frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The velocity vector in the ECI frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="79" column="5" bodyfile="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing the Local Horizontal, Local Vertical (LVLH) frame. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::DynamicFrame&lt; LocalHorizontalLocalVertical, FrameAxis::LVLH &gt;</label>
+        <link refid="classastrea_1_1astro_1_1DynamicFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; CelestialBodyId::CUSTOM, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::LocalHorizontalLocalVertical</label>
+        <link refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>astrea::astro::CartesianVector&lt; astrea::astro::InertialFrame &gt;</label>
+        <link refid="classastrea_1_1astro_1_1CartesianVector"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>dot</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::DynamicFrame&lt; LocalHorizontalLocalVertical, FrameAxis::LVLH &gt;</label>
+        <link refid="classastrea_1_1astro_1_1DynamicFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_position</edgelabel>
+          <edgelabel>_velocity</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; CelestialBodyId::CUSTOM, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="7">
+        <label>astrea::astro::Frame&lt; origin, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="4">
+        <label>astrea::astro::FrameReference</label>
+        <link refid="classastrea_1_1astro_1_1FrameReference"/>
+      </node>
+      <node id="6">
+        <label>astrea::astro::InertialFrame&lt; origin, axis &gt;</label>
+        <link refid="structastrea_1_1astro_1_1InertialFrame"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::LocalHorizontalLocalVertical</label>
+        <link refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="35" column="1" bodyfile="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" bodystart="35" bodyend="83"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_axis</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1c8eacbadcd25586efc61c34757d1e5f" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_isInstantaneous</name></member>
+      <member refid="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_origin</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a8afe2f84f404b8f7d8a419844b62c6ce" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_parent</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a97d3da0ca251644582a7fb9931e3c233" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_position</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ae53c1a26f3f7d6eb6a54cec4bd924cdf" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a2b620f405561623064b90d0c35cba7e0" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>convert_from_this_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9594c4c717376a458812bd91e387bd52" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>convert_to_this_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ad9e4316f0d9a4eaab030d401bafd5d73" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>DynamicFrame</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9fc2d092458f32a2522b66b88e2b0562" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>DynamicFrame</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1940a20d6f007d09c71d9770ca308801" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>get_axis</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1aaa1860cf1a8f3ee0d93d379cf2c160b0" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>get_dcm</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a023f5a77912b617e603310885aa7afd0" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>get_inertial_position</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ab14a87ab5c9503f9bf902886e4f3f12d" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>get_inertial_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a0dcd8fb9b7adf3bffc04bb9c912ff5a1" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>get_origin</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a7e7ecc2379c5b4d537f226a3c17fdfe3" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>instantaneous</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a9b9215b21ea6e397e231cef8a6fb203e" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>LocalHorizontalLocalVertical</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ad28a6db6556337154f0ad4e3b2a09ef4" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>LocalHorizontalLocalVertical</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ac70f9fb1061400f21101710ea52ef4e6" prot="private" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>LocalHorizontalLocalVertical</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1abb924642481230e32684bb98b039ff6c" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>rotate_into_this_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a6cd9953d79b967960dbdd785877cd736" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>rotate_out_of_this_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1Frame_1a848c466e1381fee54639d5ef1cd2a11b" prot="protected" virt="virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>~Frame</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a79a4873a7cce87626133282183ed8c2b" prot="public" virt="non-virtual"><scope>astrea::astro::frames::LocalHorizontalLocalVertical</scope><name>~LocalHorizontalLocalVertical</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

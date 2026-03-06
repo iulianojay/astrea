@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="JplEphemerisTable_8cpp" kind="file" language="C++">
+    <compoundname>JplEphemerisTable.cpp</compoundname>
+    <includes refid="JplEphemerisTable_8hpp" local="no">astro/systems/planetary_bodies/JplEphemerisTable.hpp</includes>
+    <includes local="no">stdexcept</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp</label>
+        <link refid="JplEphemerisTable_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro/systems/planetary_bodies/JplEphemerisTable.hpp</label>
+        <link refid="JplEphemerisTable_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>chrono</label>
+      </node>
+      <node id="4">
+        <label>iosfwd</label>
+      </node>
+      <node id="6">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="10">
+        <label>stdexcept</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>units/units.hpp</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/planetary_bodies/JplEphemerisTable.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Standard<sp/>Library<sp/>Includes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" kindref="member">JplEphemerisTable::START_DATE</ref><sp/>=<sp/>Date(</highlight><highlight class="stringliteral">&quot;1999-12-24<sp/>00:00:00&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1af0a80679f79d25eea974159273b72ce1" kindref="member">JplEphemerisTable::STOP_DATE</ref><sp/><sp/>=<sp/>Date(</highlight><highlight class="stringliteral">&quot;2100-01-12<sp/>00:00:00&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">std::size_t<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1a95c63c97a83af59342d9d034581aa3b4" kindref="member">JplEphemerisTable::get_index</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>timePerPoly)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(date<sp/>&lt;<sp/>START_DATE<sp/>||<sp/>date<sp/>&gt;<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1af0a80679f79d25eea974159273b72ce1" kindref="member">STOP_DATE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::out_of_range(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;JplEphemerisTable::get_index()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>date<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>valid<sp/>range<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;for<sp/>the<sp/>Chebyshev<sp/>polynomial<sp/>coefficients.<sp/>Valid<sp/>range:<sp/>1/1/2000<sp/>12:00:00<sp/>to<sp/>1/1/2100<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;12:00:00.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">std::size_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(((date<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" kindref="member">START_DATE</ref>)<sp/>/<sp/>timePerPoly).numerical_value_in(mp_units::one));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp"/>
+  </compounddef>
+</doxygen>

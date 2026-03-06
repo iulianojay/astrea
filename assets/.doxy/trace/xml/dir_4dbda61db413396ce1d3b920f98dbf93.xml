@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_4dbda61db413396ce1d3b920f98dbf93" kind="dir">
+    <compoundname>astrea/trace/trace/platforms</compoundname>
+    <innerdir refid="dir_f1cb7431ef00eaab1d7c5caeb9788760">astrea/trace/trace/platforms/ground</innerdir>
+    <innerdir refid="dir_4c34a36d272c54a3547c6d2c18e9dea2">astrea/trace/trace/platforms/sensors</innerdir>
+    <innerdir refid="dir_9708b761f2d3397b5afefec8b7ac12b4">astrea/trace/trace/platforms/vehicles</innerdir>
+    <innerfile refid="AccessObject_8hpp">AccessObject.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/platforms/"/>
+  </compounddef>
+</doxygen>

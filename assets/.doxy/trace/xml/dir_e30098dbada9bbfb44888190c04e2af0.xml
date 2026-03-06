@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_e30098dbada9bbfb44888190c04e2af0" kind="dir">
+    <compoundname>astrea/trace</compoundname>
+    <innerdir refid="dir_f04035ba8afac2675c737f654641e7b5">astrea/trace/trace</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/"/>
+  </compounddef>
+</doxygen>

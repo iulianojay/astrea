@@ -1,0 +1,954 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="TwoLineElements_8cpp" kind="file" language="C++">
+    <compoundname>TwoLineElements.cpp</compoundname>
+    <includes refid="TwoLineElements_8hpp" local="no">astro/state/orbital_data_formats/instances/TwoLineElements.hpp</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">mp-units/math.h</includes>
+    <includes local="no">mp-units/systems/angular/math.h</includes>
+    <includes local="no">mp-units/systems/si.h</includes>
+    <includes local="no">mp-units/systems/si/math.h</includes>
+    <includes local="no">math/interpolation.hpp</includes>
+    <includes local="no">utilities/string_util.hpp</includes>
+    <includes refid="Equinoctial_8hpp" local="no">astro/state/orbital_elements/instances/Equinoctial.hpp</includes>
+    <includes refid="Keplerian_8hpp" local="no">astro/state/orbital_elements/instances/Keplerian.hpp</includes>
+    <includes refid="AstrodynamicsSystem_8hpp" local="no">astro/systems/AstrodynamicsSystem.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">astro/types/typedefs.hpp</includes>
+    <includes refid="conversions_8hpp" local="no">astro/utilities/conversions.hpp</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astro/frames/frames.hpp</label>
+        <link refid="frames_8hpp_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp</label>
+        <link refid="TwoLineElements_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro/state/orbital_data_formats/instances/TwoLineElements.hpp</label>
+        <link refid="TwoLineElements_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astro/state/orbital_elements/instances/Equinoctial.hpp</label>
+        <link refid="Equinoctial_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/state/orbital_elements/instances/Keplerian.hpp</label>
+        <link refid="Keplerian_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astro/systems/AstrodynamicsSystem.hpp</label>
+        <link refid="AstrodynamicsSystem_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astro/systems/CelestialBody.hpp</label>
+        <link refid="CelestialBody_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astro/systems/planetary_bodies/Earth/Earth.hpp</label>
+        <link refid="Earth_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
+        <link refid="Moon_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
+        <link refid="Callisto_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
+        <link refid="Europa_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
+        <link refid="Ganymede_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
+        <link refid="Io_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
+        <link refid="Jupiter_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
+        <link refid="Deimos_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
+        <link refid="Mars_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
+        <link refid="Phobos_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
+        <link refid="Mercury_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
+        <link refid="Neptune_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
+        <link refid="Triton_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
+        <link refid="Iapetus_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
+        <link refid="Rhea_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
+        <link refid="Saturn_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
+        <link refid="Titan_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
+        <link refid="Sun_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
+        <link refid="Oberon_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
+        <link refid="Titania_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
+        <link refid="Uranus_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
+        <link refid="Venus_8hpp"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astro/systems/planetary_bodies/planetary_bodies.hpp</label>
+        <link refid="planetary__bodies_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
+      <node id="15">
+        <label>chrono</label>
+      </node>
+      <node id="16">
+        <label>cmath</label>
+      </node>
+      <node id="17">
+        <label>iomanip</label>
+      </node>
+      <node id="10">
+        <label>iosfwd</label>
+      </node>
+      <node id="18">
+        <label>iostream</label>
+      </node>
+      <node id="31">
+        <label>math/chebyshev_util.hpp</label>
+      </node>
+      <node id="23">
+        <label>math/interpolation.hpp</label>
+      </node>
+      <node id="27">
+        <label>memory</label>
+      </node>
+      <node id="19">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="39">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="20">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="40">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="21">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="13">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="22">
+        <label>mp-units/systems/si/math.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="28">
+        <label>unordered_set</label>
+      </node>
+      <node id="24">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="29">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/>You<sp/>should</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="TwoLineElements_8hpp" kindref="compound">astro/state/orbital_data_formats/instances/TwoLineElements.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>mp-units</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math/interpolation.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utilities/string_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Equinoctial_8hpp" kindref="compound">astro/state/orbital_elements/instances/Equinoctial.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Keplerian_8hpp" kindref="compound">astro/state/orbital_elements/instances/Keplerian.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="AstrodynamicsSystem_8hpp" kindref="compound">astro/systems/AstrodynamicsSystem.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">astro/types/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="conversions_8hpp" kindref="compound">astro/utilities/conversions.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::non_si;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">angular::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements::TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>3&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AstrodynamicsSystem&amp;<sp/>sys)<sp/>:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>_rawTLE({<sp/>rawTle[1],<sp/>rawTle[2]<sp/>})</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>ctor_impl({<sp/>rawTle[1],<sp/>rawTle[2]<sp/>},<sp/>sys);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>_name<sp/>=<sp/>utilities::trim(rawTle[0]);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">TwoLineElements::TwoLineElements(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AstrodynamicsSystem&amp;<sp/>sys)<sp/>:</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>_rawTLE(rawTle)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>ctor_impl(rawTle,<sp/>sys);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Unnamed&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TwoLineElements::ctor_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AstrodynamicsSystem&amp;<sp/>sys)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parse<sp/>the<sp/>TLE<sp/>lines</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rawTle[0].size()<sp/>!=<sp/>69)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;TLE<sp/>lines<sp/>must<sp/>be<sp/>exactly<sp/>69<sp/>characters<sp/>long.<sp/>First<sp/>line<sp/>was<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(rawTle[0].size())<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>characters.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rawTle[1].size()<sp/>!=<sp/>69)<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;TLE<sp/>lines<sp/>must<sp/>be<sp/>exactly<sp/>69<sp/>characters<sp/>long.<sp/>Second<sp/>line<sp/>was<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(rawTle[1].size())<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>characters.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Line<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>_catalogueNumber<sp/>=<sp/>std::stoi(rawTle[0].substr(2,<sp/>5));</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>_classification<sp/><sp/>=<sp/>utilities::trim(rawTle[0].substr(7,<sp/>1));</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchYear<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>utilities::trim(rawTle[0].substr(9,<sp/>2));</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchNumber<sp/><sp/><sp/><sp/>=<sp/>utilities::trim(rawTle[0].substr(11,<sp/>3));</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchPiece<sp/><sp/><sp/><sp/><sp/>=<sp/>utilities::trim(rawTle[0].substr(14,<sp/>3));</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>yearInt<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stoi(rawTle[0].substr(18,<sp/>2));</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>epochYear<sp/>=<sp/>yearInt<sp/>&lt;<sp/>50<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;20&quot;</highlight><highlight class="normal"><sp/>+<sp/>rawTle[0].substr(18,<sp/>2)<sp/>:<sp/></highlight><highlight class="stringliteral">&quot;19&quot;</highlight><highlight class="normal"><sp/>+<sp/>rawTle[0].substr(18,<sp/>2);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epochDay<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stod(rawTle[0].substr(20,<sp/>12));</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epochHour<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(epochDay<sp/>-<sp/>std::floor(epochDay))<sp/>*<sp/>24.0;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epochMinute<sp/><sp/><sp/><sp/>=<sp/>(epochHour<sp/>-<sp/>std::floor(epochHour))<sp/>*<sp/>60.0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epochSecond<sp/><sp/><sp/><sp/>=<sp/>(epochMinute<sp/>-<sp/>std::floor(epochMinute))<sp/>*<sp/>60.0;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>epochStr<sp/><sp/>=<sp/>epochYear<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;-&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::floor(epochDay)))<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::to_string(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::floor(epochHour)))<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::to_string(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::floor(epochMinute)))<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::to_string(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::floor(epochSecond)));</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>_epoch<sp/>=<sp/>Date(epochStr,<sp/></highlight><highlight class="stringliteral">&quot;%Y-%j<sp/>%H:%M:%S&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion1st<sp/>=<sp/>std::stod(rawTle[0].substr(33,<sp/>10))<sp/>*<sp/>one<sp/>/<sp/>pow&lt;2&gt;(si::day);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>meanMotion2ndStr<sp/>=<sp/>rawTle[0].substr(44,<sp/>8);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nDecimalPlaces<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stoi(meanMotion2ndStr.substr(6))<sp/>-<sp/>5;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion2nd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stod(meanMotion2ndStr)<sp/>*<sp/>std::pow(10.0,<sp/>nDecimalPlaces)<sp/>*<sp/>one<sp/>/<sp/>pow&lt;3&gt;(si::day);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>ballisticCoefficientStr<sp/>=<sp/>rawTle[0].substr(53,<sp/>8);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>nDecimalPlaces<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stoi(ballisticCoefficientStr.substr(6))<sp/>-<sp/>5;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>_ballisticCoefficient<sp/>=<sp/>std::stod(ballisticCoefficientStr.substr(0,<sp/>6))<sp/>*<sp/>std::pow(10.0,<sp/>nDecimalPlaces)<sp/>*<sp/>one<sp/>/<sp/>EarthRadii;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>_ephemerisType<sp/>=<sp/>std::stoi(rawTle[0].substr(62,<sp/>1));</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>_elementSetNo<sp/><sp/>=<sp/>std::stoi(rawTle[0].substr(64,<sp/>4));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum1<sp/><sp/><sp/><sp/><sp/>=<sp/>std::stoi(rawTle[0].substr(68,<sp/>1));</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Line<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion<sp/>=<sp/>std::stod(rawTle[1].substr(52,<sp/>11))<sp/>*<sp/>one<sp/>/<sp/>si::day;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>_revNumber<sp/><sp/>=<sp/>std::stoi(rawTle[1].substr(63,<sp/>5));</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum2<sp/><sp/>=<sp/>std::stoi(rawTle[1].substr(68,<sp/>1));</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance<sp/>semimajor<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>pow&lt;1,<sp/>3&gt;(sys.get_mu()<sp/>/<sp/>(_meanMotion.in(one<sp/>/<sp/>s)<sp/>*<sp/>_meanMotion.in(one<sp/>/<sp/>s)));</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>inclination<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stod(rawTle[1].substr(8,<sp/>8))<sp/>*<sp/>deg;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>rightAscension<sp/><sp/><sp/><sp/>=<sp/>std::stod(rawTle[1].substr(17,<sp/>8))<sp/>*<sp/>deg;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>eccentricity<sp/><sp/><sp/>=<sp/>std::stod(</highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal"><sp/>+<sp/>rawTle[1].substr(26,<sp/>7))<sp/>*<sp/>one;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>argumentOfPerigee<sp/>=<sp/>std::stod(rawTle[1].substr(34,<sp/>8))<sp/>*<sp/>deg;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>meanAnomaly<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::stod(rawTle[1].substr(43,<sp/>8))<sp/>*<sp/>deg;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>trueAnomaly<sp/>=<sp/>convert_mean_anomaly_to_true_anomaly(meanAnomaly,<sp/>eccentricity);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>_elements<sp/>=<sp/>Keplerian(semimajor,<sp/>eccentricity,<sp/>inclination,<sp/>rightAscension,<sp/>argumentOfPerigee,<sp/>trueAnomaly);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copy<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">TwoLineElements::TwoLineElements(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TwoLineElements&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>_rawTLE(other._rawTLE),</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>_catalogueNumber(other._catalogueNumber),</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>_classification(other._classification),</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchYear(other._launchYear),</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchNumber(other._launchNumber),</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchPiece(other._launchPiece),</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>_epoch(other._epoch),</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion(other._meanMotion),</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion1st(other._meanMotion1st),</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion2nd(other._meanMotion2nd),</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>_ballisticCoefficient(other._ballisticCoefficient),</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>_ephemerisType(other._ephemerisType),</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum1(other._checkSum1),</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>_revNumber(other._revNumber),</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum2(other._checkSum2),</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>_elements(other._elements)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Move<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal">TwoLineElements::TwoLineElements(TwoLineElements&amp;&amp;<sp/>other)<sp/>noexcept<sp/>:</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>_rawTLE(std::move(other._rawTLE)),</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>_catalogueNumber(std::move(other._catalogueNumber)),</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>_classification(std::move(other._classification)),</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchYear(std::move(other._launchYear)),</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchNumber(std::move(other._launchNumber)),</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>_launchPiece(std::move(other._launchPiece)),</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>_epoch(std::move(other._epoch)),</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion(std::move(other._meanMotion)),</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion1st(std::move(other._meanMotion1st)),</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>_meanMotion2nd(std::move(other._meanMotion2nd)),</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>_ballisticCoefficient(std::move(other._ballisticCoefficient)),</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>_ephemerisType(std::move(other._ephemerisType)),</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum1(std::move(other._checkSum1)),</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>_revNumber(std::move(other._revNumber)),</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>_checkSum2(std::move(other._checkSum2)),</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>_elements(std::move(other._elements))</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Move<sp/>assignment<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal">TwoLineElements&amp;<sp/>TwoLineElements::operator=(TwoLineElements&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;other)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_rawTLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._rawTLE);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_catalogueNumber<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._catalogueNumber);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_classification<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._classification);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_launchYear<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._launchYear);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_launchNumber<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._launchNumber);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_launchPiece<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._launchPiece);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_epoch<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._epoch);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_meanMotion<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._meanMotion);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_meanMotion1st<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._meanMotion1st);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_meanMotion2nd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._meanMotion2nd);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ballisticCoefficient<sp/>=<sp/>std::move(other._ballisticCoefficient);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ephemerisType<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._ephemerisType);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_checkSum1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._checkSum1);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_revNumber<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._revNumber);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_checkSum2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._checkSum2);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_elements<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._elements);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copy<sp/>assignment<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal">TwoLineElements&amp;<sp/>TwoLineElements::operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TwoLineElements&amp;<sp/>other)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>TwoLineElements(other);<sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Comparitors<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TwoLineElements::operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TwoLineElements&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="196"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_catalogueNumber<sp/>==<sp/>other._catalogueNumber<sp/>&amp;&amp;<sp/>_classification<sp/>==<sp/>other._classification<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_launchYear<sp/>==<sp/>other._launchYear<sp/>&amp;&amp;<sp/>_launchNumber<sp/>==<sp/>other._launchNumber<sp/>&amp;&amp;<sp/>_launchPiece<sp/>==<sp/>other._launchPiece<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_epoch<sp/>==<sp/>other._epoch<sp/>&amp;&amp;<sp/>_meanMotion<sp/>==<sp/>other._meanMotion<sp/>&amp;&amp;<sp/>_meanMotion1st<sp/>==<sp/>other._meanMotion1st<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_meanMotion2nd<sp/>==<sp/>other._meanMotion2nd<sp/>&amp;&amp;<sp/>_ballisticCoefficient<sp/>==<sp/>other._ballisticCoefficient<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ephemerisType<sp/>==<sp/>other._ephemerisType<sp/>&amp;&amp;<sp/>_checkSum1<sp/>==<sp/>other._checkSum1<sp/>&amp;&amp;<sp/>_revNumber<sp/>==<sp/>other._revNumber<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_checkSum2<sp/>==<sp/>other._checkSum2<sp/>&amp;&amp;<sp/>_elements<sp/>==<sp/>other._elements;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TwoLineElements::operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TwoLineElements&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>==<sp/>other);<sp/>}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/>TwoLineElements<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>elements)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>elements.get_1st_line()<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>elements.get_2nd_line();</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]<sp/>(Tle)&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp"/>
+  </compounddef>
+</doxygen>

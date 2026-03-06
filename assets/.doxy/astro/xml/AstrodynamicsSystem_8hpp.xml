@@ -1,0 +1,1290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AstrodynamicsSystem_8hpp" kind="file" language="C++">
+    <compoundname>AstrodynamicsSystem.hpp</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">unordered_set</includes>
+    <includes local="no">vector</includes>
+    <includes refid="CelestialBody_8hpp" local="no">astro/systems/CelestialBody.hpp</includes>
+    <includes refid="planetary__bodies_8hpp" local="no">astro/systems/planetary_bodies/planetary_bodies.hpp</includes>
+    <includes refid="Date_8hpp" local="no">astro/time/Date.hpp</includes>
+    <includes refid="enums_8hpp" local="no">astro/types/enums.hpp</includes>
+    <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
+    <includedby refid="transformations_8hpp" local="no">astrea/astro/astro/frames/transformations.hpp</includedby>
+    <includedby refid="EquationsOfMotion_8hpp" local="no">astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp</includedby>
+    <includedby refid="J2MeanVop_8cpp" local="no">astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.cpp</includedby>
+    <includedby refid="AtmosphericForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/AtmosphericForce.cpp</includedby>
+    <includedby refid="NBodyForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/NBodyForce.cpp</includedby>
+    <includedby refid="OblatenessForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/OblatenessForce.cpp</includedby>
+    <includedby refid="SolarRadiationPressure_8cpp" local="no">astrea/astro/astro/propagation/force_models/SolarRadiationPressure.cpp</includedby>
+    <includedby refid="State_8hpp" local="no">astrea/astro/astro/state/State.hpp</includedby>
+    <includedby refid="Cylindrical_8cpp" local="no">astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp</includedby>
+    <includedby refid="Cylindrical_8hpp" local="no">astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</includedby>
+    <includedby refid="Geocentric_8cpp" local="no">astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp</includedby>
+    <includedby refid="Geocentric_8hpp" local="no">astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</includedby>
+    <includedby refid="Geodetic_8cpp" local="no">astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp</includedby>
+    <includedby refid="Geodetic_8hpp" local="no">astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</includedby>
+    <includedby refid="Spherical_8cpp" local="no">astrea/astro/astro/state/angular_elements/instances/Spherical.cpp</includedby>
+    <includedby refid="Spherical_8hpp" local="no">astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</includedby>
+    <includedby refid="TwoLineElements_8cpp" local="no">astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp</includedby>
+    <includedby refid="Cartesian_8cpp" local="no">astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp</includedby>
+    <includedby refid="Equinoctial_8cpp" local="no">astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp</includedby>
+    <includedby refid="AstrodynamicsSystem_8cpp" local="no">astrea/astro/astro/systems/AstrodynamicsSystem.cpp</includedby>
+    <includedby refid="CelestialBody_8cpp" local="no">astrea/astro/astro/systems/CelestialBody.cpp</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/frames/frames.hpp</label>
+        <link refid="frames_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/systems/AstrodynamicsSystem.hpp</label>
+        <link refid="AstrodynamicsSystem_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astro/systems/CelestialBody.hpp</label>
+        <link refid="CelestialBody_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astro/systems/planetary_bodies/Earth/Earth.hpp</label>
+        <link refid="Earth_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
+        <link refid="Moon_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
+        <link refid="Callisto_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
+        <link refid="Europa_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
+        <link refid="Ganymede_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
+        <link refid="Io_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
+        <link refid="Jupiter_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
+        <link refid="Deimos_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
+        <link refid="Mars_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
+        <link refid="Phobos_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
+        <link refid="Mercury_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
+        <link refid="Neptune_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
+        <link refid="Triton_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
+        <link refid="Iapetus_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
+        <link refid="Rhea_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
+        <link refid="Saturn_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
+        <link refid="Titan_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
+        <link refid="Sun_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
+        <link refid="Oberon_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
+        <link refid="Titania_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
+        <link refid="Uranus_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
+        <link refid="Venus_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astro/systems/planetary_bodies/planetary_bodies.hpp</label>
+        <link refid="planetary__bodies_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>chrono</label>
+      </node>
+      <node id="17">
+        <label>iosfwd</label>
+      </node>
+      <node id="7">
+        <label>math/chebyshev_util.hpp</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+      <node id="22">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="25">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="26">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="27">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="18">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="11">
+        <label>stdint.h</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="3">
+        <label>unordered_set</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/frames/CartesianVector.hpp</label>
+        <link refid="CartesianVector_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
+        <link refid="dynamic__frames_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp</label>
+        <link refid="LocalHorizontalLocalVertical_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp</label>
+        <link refid="RadialInTrackCrossTrack_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp</label>
+        <link refid="VelocityNormalBinormal_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/frames/transformations.hpp</label>
+        <link refid="transformations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/frames/types/DynamicFrame.hpp</label>
+        <link refid="DynamicFrame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
+        <link refid="Vehicle_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
+        <link refid="LambertSolver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp</label>
+        <link refid="EquationsOfMotion_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
+        <link refid="Geocentric_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
+        <link refid="Spherical_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
+        <link refid="orbital__elements_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/systems/AstrodynamicsSystem.hpp</label>
+        <link refid="AstrodynamicsSystem_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1astro_1_1AstrodynamicsSystem" prot="public">astrea::astro::AstrodynamicsSystem</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Header file for the AstrodynamicsSystem class, which manages celestial bodies and their interactions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="CelestialBody_8hpp" kindref="compound">astro/systems/CelestialBody.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="planetary__bodies_8hpp" kindref="compound">astro/systems/planetary_bodies/planetary_bodies.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Date_8hpp" kindref="compound">astro/time/Date.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="enums_8hpp" kindref="compound">astro/types/enums.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classastrea_1_1astro_1_1AstrodynamicsSystem" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a394297f4a62aa759a495f0290a387c86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a394297f4a62aa759a495f0290a387c86" kindref="member">AstrodynamicsSystem</ref>(</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>CelestialBodyId::EARTH,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unordered_set&lt;CelestialBodyId&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref><sp/>=<sp/>{}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centerType(<ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref>::CENTRAL_BODY),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centralBody(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a30432a2907d4ed0c30a0085e916bb432" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a30432a2907d4ed0c30a0085e916bb432" kindref="member">AstrodynamicsSystem</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unordered_set&lt;CelestialBodyId&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref><sp/>=<sp/>{})<sp/>:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centerType(<ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref>::CENTRAL_BODY),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centralBody(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>.get_id())</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a57038b9913cfbb8486517325bce48727" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a57038b9913cfbb8486517325bce48727" kindref="member">AstrodynamicsSystem</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unordered_set&lt;CelestialBody&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref><sp/>=<sp/>{})<sp/>:</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centerType(<ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref>::CENTRAL_BODY),</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_centralBody(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>.get_id())</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">centralBody</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">secondaryBodies</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a55cdaf36a8e1cd734a4c8b2a4c781ee5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a55cdaf36a8e1cd734a4c8b2a4c781ee5" kindref="member">~AstrodynamicsSystem</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1adc1becc2cb5c9f9ad84707f6715d6ae5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1adc1becc2cb5c9f9ad84707f6715d6ae5" kindref="member">AstrodynamicsSystem</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a40fa40ed84e93f6f77c8c65531bcb224" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a40fa40ed84e93f6f77c8c65531bcb224" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a10b7d814db91fff02a8643440195db76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a10b7d814db91fff02a8643440195db76" kindref="member">AstrodynamicsSystem</ref>(<ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aad2901dc21347ed3264fcdce06a6cf29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aad2901dc21347ed3264fcdce06a6cf29" kindref="member">operator=</ref>(<ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a1c7da43beb4ae84d7368a268c322fba7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a1c7da43beb4ae84d7368a268c322fba7" kindref="member">EarthMoon</ref>()</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>(CelestialBodyId::EARTH,<sp/>{<sp/>CelestialBodyId::MOON<sp/>});</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ce4fcea44e46e2942622467ec68abb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ce4fcea44e46e2942622467ec68abb4" kindref="member">get_center_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_centerType;<sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac16ac3ae92e94ea55a641cc4187fe611" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac16ac3ae92e94ea55a641cc4187fe611" kindref="member">get_central_body_id</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_centralBody;<sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" kindref="member">get_central_body</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="148"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_centerType)<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>SystemCenter::CENTRAL_BODY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(_centralBody);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>SystemCenter::BARYCENTER:</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Barycenteric<sp/>systems<sp/>have<sp/>no<sp/>central<sp/>body.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="163"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_bodies.count(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>&gt;<sp/>0)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies.at(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::out_of_range(</highlight><highlight class="stringliteral">&quot;Input<sp/>gravitational<sp/>body<sp/>not<sp/>found.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref>,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref>&gt;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_base_of&lt;CelestialBody,<sp/>T&gt;::value)</highlight></codeline>
+<codeline lineno="182" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref>&amp;&amp;...<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">args</ref>)</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>T::get_id();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_bodies.count(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref><sp/>=<sp/>std::make_unique&lt;T&gt;(std::forward&lt;Args&gt;(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">args</ref>)...);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bodies.emplace(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>std::move(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>));</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_activeBodies.insert(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_root<sp/>=<sp/>find_common_root(_activeBodies);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a519af07fcf38260d6abe1081eb5196bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a519af07fcf38260d6abe1081eb5196bb" kindref="member">add_body</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_bodies.count(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bodies.emplace(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>create_impl(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_activeBodies.insert(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_root<sp/>=<sp/>find_common_root(_activeBodies);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae33b967985c46f19f25654c8cae5c0eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae33b967985c46f19f25654c8cae5c0eb" kindref="member">add_body</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>.get_id();</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_bodies.count(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bodies.emplace(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>std::make_unique&lt;CelestialBody&gt;(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">body</ref>));</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_activeBodies.insert(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_root<sp/>=<sp/>find_common_root(_activeBodies);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a56e76cd7b3ee4855c828eeb88daa5bab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a56e76cd7b3ee4855c828eeb88daa5bab" kindref="member">add_body</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>create_impl(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a89d7fae56574503ba714e66c4fc0f231" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a89d7fae56574503ba714e66c4fc0f231" kindref="member">get_all_bodies</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies;<sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ddfea046b0f23c10057c277c26ae22d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ddfea046b0f23c10057c277c26ae22d" kindref="member">get_system_root</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_root;<sp/>}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae4b7f68ae5043fd936513f0a0843359c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae4b7f68ae5043fd936513f0a0843359c" kindref="member">get_mu</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="258"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_centerType)<sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>SystemCenter::CENTRAL_BODY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" kindref="member">get_central_body</ref>()-&gt;get_mu();</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>SystemCenter::BARYCENTER:</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Barycenteric<sp/>systems<sp/>have<sp/>not<sp/>been<sp/>implemented<sp/>yet.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;AstrodynamicsSystem::get_mu:<sp/>Unknown<sp/>system<sp/>center<sp/>type.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7a7a59b59a0f3f337a8dd5bad28ac9b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7a7a59b59a0f3f337a8dd5bad28ac9b9" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies.size();<sp/>}</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa6f398d68f0c39404c0fbc54da5392c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa6f398d68f0c39404c0fbc54da5392c9" kindref="member">clear</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies.clear();<sp/>}</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Distance, frames::solar_system_barycenter::icrf&gt;</ref></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7b8a897a798b9a019e76ce26cdb44232" kindref="member">get_relative_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">id1</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">id2</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9b970c65733894f0f83b8d3c2d1de532" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9b970c65733894f0f83b8d3c2d1de532" kindref="member">iterator</ref><sp/>=<sp/>std::unordered_map&lt;CelestialBodyId,<sp/>CelestialBodyUniquePtr&gt;::iterator;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4f811b3ff6df15c49fe2ca0d7ea9b50e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4f811b3ff6df15c49fe2ca0d7ea9b50e" kindref="member">const_iterator</ref><sp/>=<sp/>std::unordered_map&lt;CelestialBodyId,<sp/>CelestialBodyUniquePtr&gt;::const_iterator;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a22ffa28a2f232e5bc713e874e79f98fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a22ffa28a2f232e5bc713e874e79f98fd" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies.begin();<sp/>}</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312" refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa403652acda1419a84034eac53510b3d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa403652acda1419a84034eac53510b3d" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_bodies.end();<sp/>}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref><sp/>_centerType;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/>_centralBody;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unordered_set&lt;CelestialBodyId&gt;<sp/>_activeBodies;<sp/></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/>_root;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unordered_map&lt;CelestialBodyId,<sp/>CelestialBodyUniquePtr&gt;<sp/>_bodies;<sp/></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/>find_common_root(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unordered_set&lt;CelestialBodyId&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bodies</ref>)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>there&apos;s<sp/>only<sp/>one<sp/>body,<sp/>it<sp/>is<sp/>the<sp/>root</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bodies</ref>.size()<sp/>==<sp/>1)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bodies</ref>.begin());<sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Count<sp/>total<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CelestialBodyId<sp/>root;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>planetCount<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>:<sp/>bodies)<sp/>{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>body<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kindref="member">get_body</ref>(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(body-&gt;get_type()<sp/>==<sp/>CelestialBodyType::PLANET)<sp/>{</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetCount++;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>root<sp/>=<sp/>id;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>other<sp/>bodies<sp/>are<sp/>children<sp/>of<sp/>only<sp/>planet<sp/>-</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assumes<sp/>the<sp/>common<sp/>root<sp/>cannot<sp/>be<sp/>a<sp/>satellite</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetCount<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>:<sp/>bodies)<sp/>{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref><sp/>parentId<sp/>=<sp/>id;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(parentId<sp/>!=<sp/>CelestialBodyId::SUN<sp/>&amp;&amp;<sp/>parentId<sp/>!=<sp/>_root)<sp/>{</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Don&apos;t<sp/>add<sp/>parent<sp/>to<sp/>active<sp/>bodies<sp/>if<sp/>it&apos;s<sp/>not<sp/>already<sp/>there</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parentId<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kindref="member">add_body</ref>(parentId)-&gt;get_parent();</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>any<sp/>object<sp/>not<sp/>in<sp/>same<sp/>planetary<sp/>system,<sp/>the<sp/>common<sp/>root</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>must<sp/>be<sp/>the<sp/>Sun</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(parentId<sp/>==<sp/>CelestialBodyId::SUN)<sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>root<sp/>=<sp/>CelestialBodyId::SUN;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>only<sp/>common<sp/>root<sp/>for<sp/>multiple<sp/>planets<sp/>is<sp/>the<sp/>Sun</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>root<sp/>=<sp/>CelestialBodyId::SUN;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>root;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref><sp/>create_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CelestialBodyId&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="378"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">planetary_bodies;</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::SUN):<sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Sun&gt;();</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::MERCURY):<sp/>{</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Mercury&gt;();</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::VENUS):<sp/>{</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Venus&gt;();</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::EARTH):<sp/>{</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Earth&gt;();</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::MOON):<sp/>{</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Moon&gt;();</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::MARS):<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Mars&gt;();</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::PHOBOS):<sp/>{</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Phobos&gt;();</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::DEIMOS):<sp/>{</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Deimos&gt;();</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::JUPITER):<sp/>{</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Jupiter&gt;();</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::GANYMEDE):<sp/>{</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Ganymede&gt;();</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::CALLISTO):<sp/>{</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Callisto&gt;();</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::IO):<sp/>{</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Io&gt;();</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::EUROPA):<sp/>{</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Europa&gt;();</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::SATURN):<sp/>{</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Saturn&gt;();</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::TITAN):<sp/>{</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Titan&gt;();</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::RHEA):<sp/>{</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Rhea&gt;();</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::IAPETUS):<sp/>{</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Iapetus&gt;();</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::URANUS):<sp/>{</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Uranus&gt;();</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::TITANIA):<sp/>{</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Titania&gt;();</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::OBERON):<sp/>{</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Oberon&gt;();</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::NEPTUNE):<sp/>{</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Neptune&gt;();</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(CelestialBodyId::TRITON):<sp/>{</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;Triton&gt;();</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Error:<sp/>Celestial<sp/>body<sp/>not<sp/>implemented<sp/>in<sp/>factory.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="450"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"></highlight></codeline>
+<codeline lineno="452"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp"/>
+  </compounddef>
+</doxygen>

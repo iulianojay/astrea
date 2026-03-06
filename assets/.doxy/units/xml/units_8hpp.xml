@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="units_8hpp" kind="file" language="C++">
+    <compoundname>units.hpp</compoundname>
+    <includes refid="constants_8hpp" local="no">units/constants.hpp</includes>
+    <includes refid="custom_8hpp" local="no">units/custom.hpp</includes>
+    <includes refid="detail_8hpp" local="no">units/detail.hpp</includes>
+    <includes refid="hash_8hpp" local="no">units/hash.hpp</includes>
+    <includes refid="time_8hpp" local="no">units/time.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">units/typedefs.hpp</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>units/constants.hpp</label>
+        <link refid="constants_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>units/custom.hpp</label>
+        <link refid="custom_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>units/detail.hpp</label>
+        <link refid="detail_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>units/hash.hpp</label>
+        <link refid="hash_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>units/time.hpp</label>
+        <link refid="time_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>array</label>
+      </node>
+      <node id="16">
+        <label>chrono</label>
+      </node>
+      <node id="14">
+        <label>functional</label>
+      </node>
+      <node id="11">
+        <label>mp-units/ext/format.h</label>
+      </node>
+      <node id="3">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="8">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="4">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="10">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+<para>Header file for astrea units. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&lt;units/avro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="constants_8hpp" kindref="compound">units/constants.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="custom_8hpp" kindref="compound">units/custom.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="detail_8hpp" kindref="compound">units/detail.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="hash_8hpp" kindref="compound">units/hash.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="time_8hpp" kindref="compound">units/time.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">units/typedefs.hpp</ref>&gt;</highlight></codeline>
+    </programlisting>
+    <location file="astrea/units/units/units.hpp"/>
+  </compounddef>
+</doxygen>

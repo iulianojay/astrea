@@ -1,0 +1,259 @@
+
+
+# File output.hpp
+
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**trace**](dir_e30098dbada9bbfb44888190c04e2af0.md) **>** [**trace**](dir_f04035ba8afac2675c737f654641e7b5.md) **>** [**io**](dir_31644feff08ff9a8c24064987b494ea5.md) **>** [**output.hpp**](output_8hpp.md)
+
+[Go to the documentation of this file](output_8hpp.md)
+
+
+```C++
+
+#pragma once
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <optional>
+
+#include <csv.hpp>
+#include <mp-units/systems/si/units.h>
+
+#include <astro/platforms/space/Constellation.hpp>
+
+#include <trace/analysis/stats/AccessStats.hpp>
+#include <trace/analysis/stats/FoldsOfCoverage.hpp>
+#include <trace/analysis/stats/RiseSetStats.hpp>
+#include <trace/platforms/ground/GroundArchitecture.hpp>
+#include <trace/risesets/AccessArray.hpp>
+#include <trace/risesets/RiseSetArray.hpp>
+#include <trace/risesets/riseset_utils.hpp>
+
+using mp_units::si::unit_symbols::s;
+
+namespace astrea {
+namespace trace {
+
+template <typename T, typename U>
+std::string get_object_name_from_id(std::size_t id, const astro::Constellation<T>& satellites, const U& grounds = U())
+{
+    std::string name = "Not Found :(";
+    for (const auto& shell : satellites.get_shells()) {
+        for (const auto& plane : shell.get_planes()) {
+            for (const auto& viewer : plane.get_all_spacecraft()) {
+                if (viewer.get_id() == id) { name = viewer.get_name(); }
+            }
+        }
+    }
+    if (grounds.size() != 0) {
+        for (const auto& ground : grounds) {
+            if (ground.get_id() == id) { name = ground.get_name(); }
+        }
+    }
+    return name;
+}
+
+
+template <typename T, typename U>
+void save_risesets_to_file(const AccessArray& accesses, const std::filesystem::path& outdir, const astro::Constellation<T>& satellites, const U& grounds = U())
+{
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "risesets.csv");
+    auto writer = csv::make_csv_writer(ss);
+
+    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
+    for (const auto& [idPair, risesets] : accesses) {
+        if (risesets.size() > 0) {
+
+            // Gross
+            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
+
+            std::vector<std::string> row{ sender, receiver };
+            for (const auto& str : risesets.to_string_vector()) {
+                row.push_back(str);
+            }
+            writer << row;
+        }
+    }
+}
+
+
+template <typename T, typename U>
+void save_riseset_metrics_to_file(
+    const AccessArray& accesses,
+    const std::filesystem::path& outdir,
+    const astro::Constellation<T>& satellites,
+    const U& grounds = U()
+)
+{
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "riseset_metrics.csv");
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> header = { "Sender", "Receiver" };
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+        header.push_back(std::string("MIN ") + metricStr + " Time (s)");
+        header.push_back(std::string("AVG ") + metricStr + " Time (s)");
+        header.push_back(std::string("MAX ") + metricStr + " Time (s)");
+
+        for (const auto& pct : DEFAULT_PERCENTILES) {
+            int pctVal = pct.numerical_value_ref_in(pct.unit);
+            header.push_back(std::to_string(pctVal) + "th PCT " + metricStr + " Time (s)");
+        }
+    }
+
+    writer << header;
+    for (const auto& [idPair, risesets] : accesses) {
+        if (risesets.size() > 0) {
+
+            // Gross
+            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
+
+            RiseSetStats stats(risesets);
+
+            std::vector<std::string> row{ sender, receiver };
+            for (const auto& str : stats.to_string_vector()) {
+                row.push_back(str);
+            }
+            writer << row;
+        }
+    }
+}
+
+
+template <typename T, typename U>
+void save_receiver_riseset_metrics_to_file(
+    const AccessStats& stats,
+    const std::filesystem::path& outdir,
+    const astro::Constellation<T>& satellites,
+    const U& grounds = U()
+)
+{
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "receiver_riseset_metrics.csv");
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> statStrings = { "MIN", "AVG", "MAX" };
+    for (const auto& pct : DEFAULT_PERCENTILES) {
+        int pctVal = pct.numerical_value_ref_in(pct.unit);
+        statStrings.push_back(std::to_string(pctVal) + "th PCT");
+    }
+
+    std::vector<std::string> header = { "Object" };
+    for (const auto& statStr : statStrings) {
+        for (const auto& metric : ALL_RISE_SET_METRICS) {
+            const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+            header.push_back(std::string("MIN ") + statStr + " " + metricStr + " Time (s)");
+            header.push_back(std::string("AVG ") + statStr + " " + metricStr + " Time (s)");
+            header.push_back(std::string("MAX ") + statStr + " " + metricStr + " Time (s)");
+
+            for (const auto& pct : DEFAULT_PERCENTILES) {
+                int pctVal = pct.numerical_value_ref_in(pct.unit);
+                header.push_back(std::to_string(pctVal) + "th PCT " + statStr + " " + metricStr + " Time (s)");
+            }
+        }
+    }
+
+    writer << header;
+    for (const auto& metric : ALL_RISE_SET_METRICS) {
+        for (const auto& [id, statsMap] : stats.get_riseset_statistics()) {
+
+            // Gross
+            const std::string object = get_object_name_from_id(id, satellites, grounds);
+
+            std::vector<std::string> row{ object };
+            for (const auto& str : statsMap.at(metric).to_string_vector()) {
+                row.push_back(str);
+            }
+
+            const auto hyperStats = stats.get_hyper_statistics(metric);
+            for (const auto& str : hyperStats.to_string_vector()) {
+                row.push_back(str);
+            }
+
+            writer << row;
+        }
+    }
+}
+
+
+template <typename T, typename U>
+void save_access_metrics_to_file(
+    const AccessStats& stats,
+    const std::filesystem::path& outdir,
+    const astro::Constellation<T>& satellites,
+    const U& grounds = U()
+)
+{
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "access_metrics.csv");
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> header = { "Object" };
+    for (const auto& metric : ALL_ACCESS_METRICS) {
+        header.push_back(ACCESS_METRIC_STRINGS.at(metric) + " Time (s)");
+    }
+
+    writer << header;
+    for (const auto& [id, statsMap] : stats.get_access_metrics()) {
+
+        // Gross
+        const std::string object = get_object_name_from_id(id, satellites, grounds);
+
+        std::vector<std::string> row{ object };
+        for (const auto& metric : ALL_ACCESS_METRICS) {
+            row.push_back(to_formatted_string(statsMap.at(metric)));
+        }
+        writer << row;
+    }
+}
+
+
+template <typename T, typename U>
+void save_number_of_folds_to_file(
+    const AccessArray& accesses,
+    const std::filesystem::path& outdir,
+    const astro::Constellation<T>& satellites,
+    const U& grounds,
+    const Time& resolution,
+    const Time& end
+)
+{
+    FoldsOfCoverage folds(accesses, resolution, end);
+
+    std::filesystem::create_directories(outdir);
+    std::ofstream ss(outdir / "n_folds.csv");
+    auto writer = csv::make_csv_writer(ss);
+
+    std::vector<std::string> header = { "Object" };
+    header.push_back(std::string("MIN N Folds"));
+    header.push_back(std::string("AVG N Folds"));
+    header.push_back(std::string("MAX N Folds"));
+
+    for (const auto& pct : DEFAULT_PERCENTILES) {
+        int pctVal = pct.numerical_value_ref_in(pct.unit);
+        header.push_back(std::to_string(pctVal) + "th PCT N Folds");
+    }
+
+    writer << header;
+    for (const auto& [id, foldsVector] : folds) {
+
+        // Gross
+        const std::string object = get_object_name_from_id(id, satellites, grounds);
+
+        std::vector<std::string> row{ object };
+        for (const auto& str : folds.get_stats(id).to_string_vector()) {
+            row.push_back(str);
+        }
+        writer << row;
+    }
+}
+
+} // namespace trace
+} // namespace astrea
+```
+
+

@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kind="struct" language="C++" prot="public" abstract="yes">
+    <compoundname>astrea::astro::detail::EventInnerBase</compoundname>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1detail_1_1EventInner" prot="public" virt="non-virtual">astrea::astro::detail::EventInner&lt; T &gt;</derivedcompoundref>
+    <includes refid="Event_8hpp" local="no">Event.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2074297d6a199d408d9626b9354c2781" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::astro::detail::EventInnerBase::~EventInnerBase</definition>
+        <argsstring>()</argsstring>
+        <name>~EventInnerBase</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::~EventInnerBase</qualifiedname>
+        <briefdescription>
+<para>Destructor for <ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kindref="compound">EventInnerBase</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="97" column="13" bodyfile="astrea/astro/astro/propagation/event_detection/Event.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a11d819b696b5a04c18f07d56f4c9fab3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string astrea::astro::detail::EventInnerBase::get_name</definition>
+        <argsstring>() const =0</argsstring>
+        <name>get_name</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::get_name</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30">get_name</reimplementedby>
+        <briefdescription>
+<para>Gets the name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string The name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="104" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>virtual Unitless astrea::astro::detail::EventInnerBase::measure_event</definition>
+        <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const =0</argsstring>
+        <name>measure_event</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::measure_event</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673">measure_event</reimplementedby>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Detects if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by a <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current time in the integration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="115" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>virtual bool astrea::astro::detail::EventInnerBase::is_terminal</definition>
+        <argsstring>() const =0</argsstring>
+        <name>is_terminal</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::is_terminal</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39">is_terminal</reimplementedby>
+        <briefdescription>
+<para>Checks if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="123" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>virtual void astrea::astro::detail::EventInnerBase::trigger_action</definition>
+        <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const =0</argsstring>
+        <name>trigger_action</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::trigger_action</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247">trigger_action</reimplementedby>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Triggers the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> for a <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current time in the integration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> to trigger the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> after the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> has been triggered. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="133" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a5c254c74f4d2e78faef761e71e51b301" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::unique_ptr&lt; <ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kindref="compound">EventInnerBase</ref> &gt;</type>
+        <definition>virtual std::unique_ptr&lt; EventInnerBase &gt; astrea::astro::detail::EventInnerBase::clone</definition>
+        <argsstring>() const =0</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::clone</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a">clone</reimplementedby>
+        <briefdescription>
+<para>Clones the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> inner implementation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;EventInnerBase&gt; A unique pointer to the cloned <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> inner implementation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="140" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1af7a151a79bfdbaf5537fb9fbfce698c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref> *</type>
+        <definition>virtual const void * astrea::astro::detail::EventInnerBase::get_ptr</definition>
+        <argsstring>() const =0</argsstring>
+        <name>get_ptr</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::get_ptr</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b">get_ptr</reimplementedby>
+        <briefdescription>
+<para>Gets a pointer to the internal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const void* A pointer to the internal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="147" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a80949139a9947bdb9cc1a61d412398b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref> *</type>
+        <definition>virtual void * astrea::astro::detail::EventInnerBase::get_ptr</definition>
+        <argsstring>()=0</argsstring>
+        <name>get_ptr</name>
+        <qualifiedname>astrea::astro::detail::EventInnerBase::get_ptr</qualifiedname>
+        <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9">get_ptr</reimplementedby>
+        <briefdescription>
+<para>Gets a pointer to the internal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void* A pointer to the internal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="154" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Pure virtual base class for <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> inner implementations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::detail::EventInner&lt; T &gt;</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1EventInner"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::detail::EventInnerBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase"/>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="92" column="1" bodyfile="astrea/astro/astro/propagation/event_detection/Event.hpp" bodystart="92" bodyend="155"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a5c254c74f4d2e78faef761e71e51b301" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>clone</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a11d819b696b5a04c18f07d56f4c9fab3" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>get_name</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1af7a151a79bfdbaf5537fb9fbfce698c9" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>get_ptr</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a80949139a9947bdb9cc1a61d412398b2" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>get_ptr</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>is_terminal</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>measure_event</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" prot="public" virt="pure-virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>trigger_action</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2074297d6a199d408d9626b9354c2781" prot="public" virt="virtual"><scope>astrea::astro::detail::EventInnerBase</scope><name>~EventInnerBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1Sensor" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::Sensor</compoundname>
+    <basecompoundref refid="classastrea_1_1trace_1_1AccessObject" prot="public" virt="non-virtual">astrea::trace::AccessObject</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">astro::Payload&lt; Sensor, SensorParameters &gt;</basecompoundref>
+    <derivedcompoundref refid="classastrea_1_1trace_1_1Antenna" prot="public" virt="non-virtual">astrea::trace::Antenna</derivedcompoundref>
+    <includes refid="Sensor_8hpp" local="no">Sensor.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1Sensor_1ae0a78010b9065fafc444c847a6b056ca" prot="private" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend astrea::trace::Sensor::Payload&lt; Sensor, SensorParameters &gt;</definition>
+        <argsstring></argsstring>
+        <name>Payload&lt; Sensor, SensorParameters &gt;</name>
+        <qualifiedname>astrea::trace::Sensor::Payload&lt; Sensor, SensorParameters &gt;</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="88" column="5" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Parent_T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::trace::Sensor::Sensor</definition>
+        <argsstring>(const Parent_T &amp;parent, const SensorParameters &amp;parameters)</argsstring>
+        <name>Sensor</name>
+        <qualifiedname>astrea::trace::Sensor::Sensor</qualifiedname>
+        <param>
+          <type>const Parent_T &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref> &amp;</type>
+          <declname>parameters</declname>
+        </param>
+    <requiresclause>(std::is_base_of_v&lt;astro::FrameReference, Parent_T&gt;)    </requiresclause>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> from a <ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent platform to which the sensor is attached. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Field of view object defining the sensor&apos;s coverage area. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>boresight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The boresight vector of the sensor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attachmentPoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point on the platform where the sensor is attached. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="101" column="5" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="101" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Sensor_1af03c36681b7cce79e9a85f70bd421856" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::trace::Sensor::~Sensor</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Sensor</name>
+        <qualifiedname>astrea::trace::Sensor::~Sensor</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="110" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Sensor_1a8216026c485083cf9c0522ad436b8f48" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::Sensor::get_id</definition>
+        <argsstring>() const</argsstring>
+        <name>get_id</name>
+        <qualifiedname>astrea::trace::Sensor::get_id</qualifiedname>
+        <reimplements refid="classastrea_1_1trace_1_1AccessObject_1a067983557aa2ab8506d0d863729fde3f">get_id</reimplements>
+        <briefdescription>
+<para>Get the ID of the sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t ID of the sensor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="117" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::Sensor::contains</definition>
+        <argsstring>(const astro::RadiusVector&lt; astro::frames::earth::icrf &gt; &amp;sensor2target, const astro::Date &amp;date) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>astrea::trace::Sensor::contains</qualifiedname>
+        <param>
+          <type>const astro::RadiusVector&lt; astro::frames::earth::icrf &gt; &amp;</type>
+          <declname>sensor2target</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Check if the sensor can see a target given the boresight vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sensor2target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector from the sensor to the target. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which the visibility is checked. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the target is within the sensor&apos;s field of view. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the target is outside the sensor&apos;s field of view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="127" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.cpp" bodystart="24" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Sensor_1a1405043093a55009d305e9f1ac4557b9" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::Sensor::generate_id</definition>
+        <argsstring>() const</argsstring>
+        <name>generate_id</name>
+        <qualifiedname>astrea::trace::Sensor::generate_id</qualifiedname>
+        <briefdescription>
+<para>Generate a hash for the sensor ID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="133" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="133" bodyend="137"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> class representing a sensor on a platform. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class inherits from <ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref> and provides functionality for sensors, including field of view and access management. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
+      </node>
+      <node id="4">
+        <label>astrea::trace::Antenna</label>
+        <link refid="classastrea_1_1trace_1_1Antenna"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::trace::Sensor</label>
+        <link refid="classastrea_1_1trace_1_1Sensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro::Payload&lt; Sensor, SensorParameters &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
+      </node>
+      <node id="1">
+        <label>astrea::trace::Sensor</label>
+        <link refid="classastrea_1_1trace_1_1Sensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro::Payload&lt; Sensor, SensorParameters &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/platforms/sensors/Sensor.hpp" line="86" column="1" bodyfile="astrea/trace/trace/platforms/sensors/Sensor.hpp" bodystart="86" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" prot="protected" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>AccessObject</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>add_access</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>contains</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>drop_access</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1a1405043093a55009d305e9f1ac4557b9" prot="private" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>generate_id</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1a8216026c485083cf9c0522ad436b8f48" prot="public" virt="virtual"><scope>astrea::trace::Sensor</scope><name>get_id</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1ae0a78010b9065fafc444c847a6b056ca" prot="private" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>Payload&lt; Sensor, SensorParameters &gt;</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" prot="public" virt="non-virtual"><scope>astrea::trace::Sensor</scope><name>Sensor</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" prot="protected" virt="virtual"><scope>astrea::trace::Sensor</scope><name>~AccessObject</name></member>
+      <member refid="classastrea_1_1trace_1_1Sensor_1af03c36681b7cce79e9a85f70bd421856" prot="public" virt="virtual"><scope>astrea::trace::Sensor</scope><name>~Sensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

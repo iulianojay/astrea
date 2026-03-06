@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="math_8hpp" kind="file" language="C++">
+    <compoundname>math.hpp</compoundname>
+    <includes refid="chebyshev__util_8hpp" local="no">math/chebyshev_util.hpp</includes>
+    <includes refid="interpolation_8hpp" local="no">math/interpolation.hpp</includes>
+    <includes refid="operations_8hpp" local="no">math/operations.hpp</includes>
+    <includes refid="trig_8hpp" local="no">math/trig.hpp</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>math/chebyshev_util.hpp</label>
+        <link refid="chebyshev__util_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>math/interpolation.hpp</label>
+        <link refid="interpolation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/math/math/math.hpp</label>
+        <link refid="math_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>math/operations.hpp</label>
+        <link refid="operations_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>math/trig.hpp</label>
+        <link refid="trig_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
+      <node id="8">
+        <label>cmath</label>
+      </node>
+      <node id="9">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="10">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="4">
+        <label>stdexcept</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+<para>Single header to include all math functions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math/chebyshev_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="interpolation_8hpp" kindref="compound">math/interpolation.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="operations_8hpp" kindref="compound">math/operations.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="trig_8hpp" kindref="compound">math/trig.hpp</ref>&gt;</highlight></codeline>
+    </programlisting>
+    <location file="astrea/math/math/math.hpp"/>
+  </compounddef>
+</doxygen>

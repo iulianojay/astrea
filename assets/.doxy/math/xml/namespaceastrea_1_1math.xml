@@ -1,0 +1,1256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1math" kind="namespace" language="C++">
+    <compoundname>astrea::math</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="chebyshev__util_8cpp_1adb42d1a1a90d1ad5b89756a63d0a77b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double astrea::math::transform_from_chebyshev_range</definition>
+        <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub)</argsstring>
+        <name>transform_from_chebyshev_range</name>
+        <qualifiedname>astrea::math::transform_from_chebyshev_range</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>lb</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ub</declname>
+        </param>
+        <briefdescription>
+<para>Transform variable from the Chebyshev range of [-1, 1] to the range [lb, ub]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 186, Eq. 5.8.10</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Variable in the Chebyshev range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of the function range</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Variable in the range [lb, ub] </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.cpp" line="19" column="8" bodyfile="astrea/math/math/chebyshev_util.cpp" bodystart="19" bodyend="22" declfile="astrea/math/math/chebyshev_util.hpp" declline="39" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="chebyshev__util_8cpp_1a208a3cc00e488950b86d68df6cb335ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double astrea::math::transform_to_chebyshev_range</definition>
+        <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub)</argsstring>
+        <name>transform_to_chebyshev_range</name>
+        <qualifiedname>astrea::math::transform_to_chebyshev_range</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>lb</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ub</declname>
+        </param>
+        <briefdescription>
+<para>Transform variable from the range [lb, ub] to the Chebyshev range of [-1, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 186, Eq. 5.8.10</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Variable in the range [lb, ub] </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of the function range</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Variable in the Chebyshev range [-1, 1] </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.cpp" line="24" column="8" bodyfile="astrea/math/math/chebyshev_util.cpp" bodystart="24" bodyend="27" declfile="astrea/math/math/chebyshev_util.hpp" declline="52" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="chebyshev__util_8hpp_1a3b6ccd571167e37d5c26fc48f09acbca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double astrea::math::evaluate_chebyshev_polynomial</definition>
+        <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub, const std::array&lt; double, N &gt; &amp;coeff, const double &amp;coeffZeroFactor=0.5, const double &amp;extrapolationTol=1.0e-6)</argsstring>
+        <name>evaluate_chebyshev_polynomial</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_polynomial</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>lb</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ub</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, N &gt; &amp;</type>
+          <declname>coeff</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>coeffZeroFactor</declname>
+          <defval>0.5</defval>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>extrapolationTol</declname>
+          <defval>1.0e-6</defval>
+        </param>
+        <briefdescription>
+<para>Evaluate the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw&apos;s recurrence formula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 187-188, Routine chebev</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at which the Chebyshev polynomial is to be evaluated at </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Chebyshev coefficients evaluated using chebyshev_coefficients function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffZeroFactor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Factor to multiply coeff[0] by. Numerical Recipes has this at 0.5, but for CSpice the coeff[0] has already been multiplied by 0.5, so set factor to 1.0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extrapolationTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tolerance for the maximum distance x can be outside of [lb, ub] range before exception is thrown.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding Chebyshev coefficient values</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If coeff has less than one value, or if extrapolation occurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.hpp" line="75" column="8" bodyfile="astrea/math/math/chebyshev_util.hpp" bodystart="75" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="chebyshev__util_8hpp_1a6f8cc99d0d1c06c4edd92ba2e76b9e13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double astrea::math::evaluate_chebyshev_polynomial</definition>
+        <argsstring>(const double &amp;x, const std::array&lt; double, N &gt; &amp;boundsCoeff, const double &amp;coeffZeroFactor=0.5, const double &amp;extrapolationTol=1.0e-6)</argsstring>
+        <name>evaluate_chebyshev_polynomial</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_polynomial</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, N &gt; &amp;</type>
+          <declname>boundsCoeff</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>coeffZeroFactor</declname>
+          <defval>0.5</defval>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>extrapolationTol</declname>
+          <defval>1.0e-6</defval>
+        </param>
+        <briefdescription>
+<para>Evaluate the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw&apos;s recurrence formula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The lb, ub, and Chebyshev coefficients are stored in the same array here, which is used for planetary coefficients from CSpice</para>
+</simplesect>
+Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 187-188, Routine chebev</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at which the Chebyshev polynomial is to be evaluated at </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>boundsCoeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array containing lb, ub, and Chebyshev coefficients evaluated using chebyshev_coefficients function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffZeroFactor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Factor to multiply coeff[0] by. Numerical Recipes has this at 0.5, but for CSpice the coeff[0] has already been multiplied by 0.5, so set factor to 1.0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extrapolationTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tolerance for the maximum distance x can be outside of [lb, ub] range before exception is thrown.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding Chebyshev coefficient values</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If coeff has less than one value, or if extrapolation occurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.hpp" line="140" column="8" bodyfile="astrea/math/math/chebyshev_util.hpp" bodystart="140" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="chebyshev__util_8hpp_1a44cbb86b2b6565d4f7642e74a47d5544" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double astrea::math::evaluate_chebyshev_derivative</definition>
+        <argsstring>(double x, double lb, double ub, const std::array&lt; double, N &gt; &amp;coeff, double extrapolationTol=1.0e-6)</argsstring>
+        <name>evaluate_chebyshev_derivative</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_derivative</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lb</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ub</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, N &gt; &amp;</type>
+          <declname>coeff</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>extrapolationTol</declname>
+          <defval>1.0e-6</defval>
+        </param>
+        <briefdescription>
+<para>Evaluate the derivative of the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw&apos;s recurrence formula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Routine chder</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at which the Chebyshev polynomial is to be evaluated at </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of the function range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Chebyshev coefficients evaluated using chebyshev_coefficients function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extrapolationTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tolerance for the maximum distance x can be outside of [lb, ub] range before exception is thrown.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding Chebyshev coefficient values</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If coeff has less than one value, or if extrapolation occurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.hpp" line="174" column="8" bodyfile="astrea/math/math/chebyshev_util.hpp" bodystart="174" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="chebyshev__util_8hpp_1a7324c7f63605c578c5920e6cb1b8dfdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double astrea::math::evaluate_chebyshev_derivative</definition>
+        <argsstring>(double x, const std::array&lt; double, N &gt; &amp;boundsCoeff, double extrapolationTol=1.0e-6)</argsstring>
+        <name>evaluate_chebyshev_derivative</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_derivative</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, N &gt; &amp;</type>
+          <declname>boundsCoeff</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>extrapolationTol</declname>
+          <defval>1.0e-6</defval>
+        </param>
+        <briefdescription>
+<para>Evaluate the derivative of the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw&apos;s recurrence formula. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The lb, ub, and Chebyshev coefficients are stored in the same array here, which is used for planetary coefficients from CSpice</para>
+</simplesect>
+Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Routine chder</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at which the Chebyshev polynomial is to be evaluated at </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>boundsCoeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector containing lb, ub, and Chebyshev coefficients evaluated using chebyshev_coefficients function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extrapolationTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tolerance for the maximum distance x can be outside of [lb, ub] range before exception is thrown.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding Chebyshev coefficient values</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If coeff has less than one value, or if extrapolation occurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/chebyshev_util.hpp" line="235" column="8" bodyfile="astrea/math/math/chebyshev_util.hpp" bodystart="235" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="interpolation_8hpp_1af6eaced75303a49434ca76f7ad1b7e5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+          <param>
+            <type>typename Y</type>
+          </param>
+        </templateparamlist>
+        <type>Y</type>
+        <definition>Y astrea::math::interpolate</definition>
+        <argsstring>(const std::vector&lt; X &gt; &amp;x, const std::vector&lt; Y &gt; &amp;y, const X &amp;sx)</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>astrea::math::interpolate</qualifiedname>
+        <param>
+          <type>const std::vector&lt; X &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; Y &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const X &amp;</type>
+          <declname>sx</declname>
+        </param>
+        <briefdescription>
+<para>Linear interpolation for a single point, with bounds checking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>X</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the x values (e.g. time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the y values (e.g. distance, angle). Must support arithmetic operations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of x values corresponding to the y values. Must be in ascending order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of y values corresponding to the x values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x value to interpolate at. Must be between x[0] and x.back(). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Y The interpolated y value at sx. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if sx is outside the bounds of x. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/interpolation.hpp" line="41" column="10" bodyfile="astrea/math/math/interpolation.hpp" bodystart="41" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="interpolation_8hpp_1af3c9b6602f67f818cf234c9c6938b1e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+          <param>
+            <type>typename Y</type>
+          </param>
+        </templateparamlist>
+        <type>Y</type>
+        <definition>Y astrea::math::fast_interpolate</definition>
+        <argsstring>(const std::array&lt; X, 2 &gt; &amp;x, const std::array&lt; Y, 2 &gt; &amp;y, const X &amp;sx)</argsstring>
+        <name>fast_interpolate</name>
+        <qualifiedname>astrea::math::fast_interpolate</qualifiedname>
+        <param>
+          <type>const std::array&lt; X, 2 &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; Y, 2 &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const X &amp;</type>
+          <declname>sx</declname>
+        </param>
+        <briefdescription>
+<para>Fast linear interpolation for two points, with bounds checking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>X</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the x values (e.g. time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the y values (e.g. distance, angle). Must support arithmetic operations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Two x values corresponding to the y values. Must be in ascending order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Two y values corresponding to the x values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x value to interpolate at. Must be between x[0] and x[1]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Y The interpolated y value at sx. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if sx is outside the bounds of x. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/interpolation.hpp" line="75" column="10" bodyfile="astrea/math/math/interpolation.hpp" bodystart="75" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R1</declname>
+            <defname>R1</defname>
+          </param>
+          <param>
+            <type>auto</type>
+            <declname>R2</declname>
+            <defname>R2</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool astrea::math::nearly_equal</definition>
+        <argsstring>(const mp_units::quantity&lt; R1, Rep &gt; &amp;x, const mp_units::quantity&lt; R2, Rep &gt; &amp;y, const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;relTol=0.0 *mp_units::one, const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;absTol=0.0 *mp_units::one) noexcept</argsstring>
+        <name>nearly_equal</name>
+        <qualifiedname>astrea::math::nearly_equal</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R1, Rep &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R2, Rep &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;</type>
+          <declname>relTol</declname>
+          <defval>0.0 *mp_units::one</defval>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;</type>
+          <declname>absTol</declname>
+          <defval>0.0 *mp_units::one</defval>
+        </param>
+        <briefdescription>
+<para>Check if two quantities of the same unit are nearly equal within a relative tolerance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (e.g., distance, time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>relTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Relative tolerance for comparison. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two quantities are nearly equal within the specified tolerance. </para>
+</simplesect>
+<simplesect kind="return"><para>false if they are not nearly equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="43" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="43" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::max</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
+        <name>max</name>
+        <qualifiedname>astrea::math::max</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q1</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q2</declname>
+        </param>
+    <requiresclause>requires(Rep v) { max(v, v); } || requires(Rep v) { std::max(v, v); }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="71" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="71" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::min</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
+        <name>min</name>
+        <qualifiedname>astrea::math::min</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q1</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q2</declname>
+        </param>
+    <requiresclause>requires(Rep v) { min(v, v); } || requires(Rep v) { std::min(v, v); }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="79" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="79" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1adc9044b1a14396423314549f7a14a144" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; mp_units::one, Rep &gt; astrea::math::pow</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q, const mp_units::quantity&lt; R, Rep &gt; &amp;n) noexcept</argsstring>
+        <name>pow</name>
+        <qualifiedname>astrea::math::pow</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>n</declname>
+        </param>
+    <requiresclause>requires(Rep v) { pow(v, v); } || requires(Rep v) { std::pow(v, v); }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="88" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="88" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a19cc70ec319a907c374f8ac988b4db4b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::sinc</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>sinc</name>
+        <qualifiedname>astrea::math::sinc</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { sin(v); } || requires(Rep v) { std::sin(v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the sinc function for a given angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The sinc function is defined as sin(x)/x, where x is in radians. This function handles both integral and floating-point types.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference type for the angle (e.g., radian). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double, float). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the sinc function at the given angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="43" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="43" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a3b85c702df84b8462a853006fdd76d0c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::cosh</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>cosh</name>
+        <qualifiedname>astrea::math::cosh</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { cosh(v); } || requires(Rep v) { std::cosh(v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the hyperbolic cosine of a given angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference type for the angle (e.g., radian). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double, float). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the hyperbolic cosine at the given angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="71" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="71" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a3e370c308e3a6e00e61243ff4b4f80bb" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::sinh</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>sinh</name>
+        <qualifiedname>astrea::math::sinh</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { sinh(v); } || requires(Rep v) { std::sinh(v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the hyperbolic sine of a given angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference type for the angle (e.g., radian). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double, float). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the hyperbolic sine at the given angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="95" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="95" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a7441ac3de7e390dd6ca1960e63c01eee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt; astrea::math::cyl_bessel_j</definition>
+        <argsstring>(const Rep &amp;nu, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>cyl_bessel_j</name>
+        <qualifiedname>astrea::math::cyl_bessel_j</qualifiedname>
+        <param>
+          <type>const Rep &amp;</type>
+          <declname>nu</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { std::cyl_bessel_j(static_cast&lt;Rep&gt;(0.0), v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the Bessel function of the first kind of order zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J_0(x) = (1/π) ∫_0^π cos(x sin(θ)) dθ.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference type for the input value (e.g., dimensionless). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double, float). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the Bessel function of the first kind of order zero at the given input. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="122" column="31" bodyfile="astrea/math/math/trig.hpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a15e82cd47191247ee10408c938e42a60" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt; astrea::math::assoc_legendre</definition>
+        <argsstring>(const unsigned int &amp;n, const unsigned int &amp;m, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>assoc_legendre</name>
+        <qualifiedname>astrea::math::assoc_legendre</qualifiedname>
+        <param>
+          <type>const unsigned int &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const unsigned int &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { std::assoc_legendre(0, 0, v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the associated Legendre function of the first kind. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function computes the associated Legendre function P_n^m(x) for given n, m, and x. It is defined as P_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P_m^n(x).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reference type for the input value (e.g., dimensionless). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double, float). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The degree of the polynomial. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The order of the polynomial. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the associated Legendre function at the given input. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="144" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="144" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1afb4d7a968d43b5c732112833f4133b80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T astrea::math::atan3</definition>
+        <argsstring>(T y, T x)</argsstring>
+        <name>atan3</name>
+        <qualifiedname>astrea::math::atan3</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="152" column="3" bodyfile="astrea/math/math/trig.hpp" bodystart="152" bodyend="172"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/math/math/chebyshev_util.cpp" line="17" column="1"/>
+  </compounddef>
+</doxygen>

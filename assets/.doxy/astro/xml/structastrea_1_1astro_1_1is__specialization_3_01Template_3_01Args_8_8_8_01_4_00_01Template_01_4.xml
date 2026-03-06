@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::true_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">template</ref>&lt; class... &gt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref></type>
+        <declname>Template</declname>
+        <defname>Template</defname>
+      </param>
+      <param>
+        <type>class...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</label>
+        <link refid="structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</label>
+        <link refid="structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/CartesianVector.hpp" line="46" column="1" bodyfile="astrea/astro/astro/frames/CartesianVector.hpp" bodystart="46" bodyend="46"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

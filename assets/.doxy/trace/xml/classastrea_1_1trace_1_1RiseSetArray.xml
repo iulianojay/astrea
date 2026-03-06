@@ -1,0 +1,1301 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1RiseSetArray" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::RiseSetArray</compoundname>
+    <includes refid="RiseSetArray_8hpp" local="no">RiseSetArray.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" prot="public" static="no">
+        <type>std::vector&lt; Time &gt;::iterator</type>
+        <definition>using astrea::trace::RiseSetArray::iterator =  std::vector&lt;Time&gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>astrea::trace::RiseSetArray::iterator</qualifiedname>
+        <briefdescription>
+<para>Iterator type for the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="279" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" prot="public" static="no">
+        <type>std::vector&lt; Time &gt;::const_iterator</type>
+        <definition>using astrea::trace::RiseSetArray::const_iterator =  std::vector&lt;Time&gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>astrea::trace::RiseSetArray::const_iterator</qualifiedname>
+        <briefdescription>
+<para>Constant iterator type for the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="284" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="284" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Time &gt;</type>
+        <definition>std::vector&lt;Time&gt; astrea::trace::RiseSetArray::_risesets</definition>
+        <argsstring></argsstring>
+        <name>_risesets</name>
+        <qualifiedname>astrea::trace::RiseSetArray::_risesets</qualifiedname>
+        <briefdescription>
+<para>Vector to store rise and set times. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="336" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="336" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const RiseSetArray &amp;risesets)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>risesets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="40" column="12" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="301" bodyend="310"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
+        <argsstring>()=default</argsstring>
+        <name>RiseSetArray</name>
+        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes an empty <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="48" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a302d8aa92358259c19ebf6e12a14cf15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::RiseSetArray::~RiseSetArray</definition>
+        <argsstring>()=default</argsstring>
+        <name>~RiseSetArray</name>
+        <qualifiedname>astrea::trace::RiseSetArray::~RiseSetArray</qualifiedname>
+        <briefdescription>
+<para>Destructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="53" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a01f93ad1fd7db742d6e4b19ad28c39ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
+        <argsstring>(const std::vector&lt; Time &gt; &amp;risesets)</argsstring>
+        <name>RiseSetArray</name>
+        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Time &gt; &amp;</type>
+          <declname>risesets</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> from a vector of Time objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>risesets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of Time objects representing rise and set times. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="60" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="30" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7b0c6cec5c0bd40507291003e95de9c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
+        <argsstring>(const RiseSetArray &amp;other)</argsstring>
+        <name>RiseSetArray</name>
+        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="67" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1abca8db83919fb2d1be1feee361f65266" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
+        <argsstring>(RiseSetArray &amp;&amp;other) noexcept</argsstring>
+        <name>RiseSetArray</name>
+        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Move constructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to move from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="74" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aee722eec217d90c85d06fd5d7fcc877f" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator=</definition>
+        <argsstring>(RiseSetArray &amp;&amp;other) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Move assignment operator for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to move from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; Reference to this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> after the move. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="82" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="47" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a918f98fc0869fcab144640b0e5a007c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator=</definition>
+        <argsstring>(const RiseSetArray &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy assignment operator for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; Reference to this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> after the copy. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="90" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a10bf46e47e4c8254ce0cbdb276f5cd5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::RiseSetArray::append</definition>
+        <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
+        <name>append</name>
+        <qualifiedname>astrea::trace::RiseSetArray::append</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>rise</declname>
+        </param>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>set</declname>
+        </param>
+        <briefdescription>
+<para>Appends a rise and set time to the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rise time to append. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The set time to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise time is not before the set time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not in chronological order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="101" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="113" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8ba466172a3405522dfbbbb55b48c2e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::RiseSetArray::prepend</definition>
+        <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
+        <name>prepend</name>
+        <qualifiedname>astrea::trace::RiseSetArray::prepend</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>rise</declname>
+        </param>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>set</declname>
+        </param>
+        <briefdescription>
+<para>Prepends a rise and set time to the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rise time to prepend. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The set time to prepend. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise time is not before the set time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not in chronological order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="112" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="125" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a146b49a45e3632b66df3686b1d06be7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::RiseSetArray::insert</definition>
+        <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
+        <name>insert</name>
+        <qualifiedname>astrea::trace::RiseSetArray::insert</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>rise</declname>
+        </param>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>set</declname>
+        </param>
+        <briefdescription>
+<para>Inserts a rise and set time at the end of the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rise time to insert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The set time to insert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise time is not before the set time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not in chronological order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="123" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="137" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a795066aa5e664a0aad0a32ea1c297b4c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::RiseSetArray::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::trace::RiseSetArray::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of rise/set pairs in the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The number of rise/set pairs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="130" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a1c56340dbb5ec8bbd4a4014915c742e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Time &amp;</type>
+        <definition>Time &amp; astrea::trace::RiseSetArray::operator[]</definition>
+        <argsstring>(const std::size_t &amp;ind)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator[]</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>ind</declname>
+        </param>
+        <briefdescription>
+<para>Returns a reference to the rise/set pair at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the rise/set pair to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Time&amp; A reference to the rise/set pair at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="138" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a011b5296303c7b0e424dbb70eaa4c2b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Time &amp;</type>
+        <definition>const Time &amp; astrea::trace::RiseSetArray::operator[]</definition>
+        <argsstring>(const std::size_t &amp;ind) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator[]</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>ind</declname>
+        </param>
+        <briefdescription>
+<para>Returns a const reference to the rise/set pair at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the rise/set pair to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const Time&amp; A const reference to the rise/set pair at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="146" column="16" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::RiseSetArray::operator==</definition>
+        <argsstring>(const RiseSetArray &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator to compare two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to compare against. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects are equal. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects are not equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="155" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="53" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8dc0e7156869bfabacc5c3db742cdeb2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::RiseSetArray::operator-</definition>
+        <argsstring>(const RiseSetArray &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator-</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Difference operator to subtract one <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> from another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to subtract from this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A new <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> containing the result of the subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="163" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a1754732751f90b7afddaf778af359202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator-=</definition>
+        <argsstring>(const RiseSetArray &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator-=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>In-place difference operator to subtract one <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> from another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to subtract from this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; Reference to this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> after the subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="171" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="83" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8592783de48f50c9ad9e95afdc3a0465" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::RiseSetArray::operator|</definition>
+        <argsstring>(const RiseSetArray &amp;other) const</argsstring>
+        <name>operator|</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator|</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Union operator to combine two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to combine with this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A new <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> containing the union of the two. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="179" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7373a1fc0953fba58369480f7aac0243" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator|=</definition>
+        <argsstring>(const RiseSetArray &amp;other)</argsstring>
+        <name>operator|=</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator|=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>In-place union operator to combine two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to combine with this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; Reference to this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> after the union. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="187" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7e310770af520d6d6558277cd4894558" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::RiseSetArray::operator&amp;</definition>
+        <argsstring>(const RiseSetArray &amp;other) const</argsstring>
+        <name>operator&amp;</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator&amp;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Intersection operator to find common rise/set pairs between two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to intersect with this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> A new <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> containing the intersection of the two. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="195" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a5c0925ba598ccad14ca8d421873f8797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator&amp;=</definition>
+        <argsstring>(const RiseSetArray &amp;other)</argsstring>
+        <name>operator&amp;=</name>
+        <qualifiedname>astrea::trace::RiseSetArray::operator&amp;=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>In-place intersection operator to find common rise/set pairs between two <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to intersect with this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; Reference to this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> after the intersection. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="203" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a2973225c531a00add63bafe93585f09a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::trace::RiseSetArray::gap</definition>
+        <argsstring>(const StatType &amp;stat=StatType::AVG, const Unitless percentile=0.5) const</argsstring>
+        <name>gap</name>
+        <qualifiedname>astrea::trace::RiseSetArray::gap</qualifiedname>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
+          <declname>stat</declname>
+          <defval><ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7afcefd647d6a866603c627b11347c707a" kindref="member">StatType::AVG</ref></defval>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>percentile</declname>
+          <defval>0.5</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the gap between rise and set times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The statistical measure to calculate (MIN, MEAN, MAX, PCT). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>percentile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The percentile to calculate if stat is PCT (between 0 and 1). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Time The calculated gap based on the specified statistic. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="212" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="155" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8d26e20f7a3c1d858198f6e16d726a1b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Time &gt;</type>
+        <definition>std::vector&lt; Time &gt; astrea::trace::RiseSetArray::get_gap_times</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gap_times</name>
+        <qualifiedname>astrea::trace::RiseSetArray::get_gap_times</qualifiedname>
+        <briefdescription>
+<para>Get a vector of gap durations for this rise-set array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Time&gt; Vector of gap durations in the order that they appear </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="219" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="161" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ab2c58e5cf7f07ae08f1651eaa03c1d60" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::trace::RiseSetArray::access_time</definition>
+        <argsstring>(const StatType &amp;stat=StatType::AVG, const Unitless percentile=0.5) const</argsstring>
+        <name>access_time</name>
+        <qualifiedname>astrea::trace::RiseSetArray::access_time</qualifiedname>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
+          <declname>stat</declname>
+          <defval><ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7afcefd647d6a866603c627b11347c707a" kindref="member">StatType::AVG</ref></defval>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>percentile</declname>
+          <defval>0.5</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the access time based on rise and set times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The statistical measure to calculate (MIN, MEAN, MAX, PCT). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>percentile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The percentile to calculate if stat is PCT (between 0 and 1). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Time The calculated access time based on the specified statistic. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="228" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="172" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a2087e41832275b0a695e55a8b5e59f3d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Time &gt;</type>
+        <definition>std::vector&lt; Time &gt; astrea::trace::RiseSetArray::get_access_times</definition>
+        <argsstring>() const</argsstring>
+        <name>get_access_times</name>
+        <qualifiedname>astrea::trace::RiseSetArray::get_access_times</qualifiedname>
+        <briefdescription>
+<para>Get a vector of access durations for this rise-set array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Time&gt; Vector of access durations in the order that they appear </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="235" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="178" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aa6a97aa99b6f5934bd8dd6e45652f57b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::RiseSetArray::has_access</definition>
+        <argsstring>(const Time &amp;time) const</argsstring>
+        <name>has_access</name>
+        <qualifiedname>astrea::trace::RiseSetArray::has_access</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the given time occurs during an access window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time to check for access </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if time occurs during an access windows </para>
+</simplesect>
+<simplesect kind="return"><para>false if time occurs during a gap </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="244" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="294" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a418c7035a51acbd394c19bbe00bfbcad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::trace::RiseSetArray::average_daily_vis_time</definition>
+        <argsstring>() const</argsstring>
+        <name>average_daily_vis_time</name>
+        <qualifiedname>astrea::trace::RiseSetArray::average_daily_vis_time</qualifiedname>
+        <briefdescription>
+<para>Calculates the average daily visibility time based on the rise and set times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Time The calculated average daily visibility time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="251" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="189" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a951c07db06592cade8469b830e7e8b4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::trace::RiseSetArray::mean_time_to_access</definition>
+        <argsstring>() const</argsstring>
+        <name>mean_time_to_access</name>
+        <qualifiedname>astrea::trace::RiseSetArray::mean_time_to_access</qualifiedname>
+        <briefdescription>
+<para>Calculates the mean time to access (MTTA) for this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Time The calculated mean time to access based on the rise and set times.</para>
+</simplesect>
+<simplesect kind="note"><para>access: |&lt;<ndash/>gap--&gt;|&lt;<ndash/>access--&gt;|&lt;-gap-&gt;|&lt;<ndash/>access--&gt;|... | | | | |... tta: |\ | | | |... |+\ | | | |... |++\ | |\ | |... |+++\ | |+\ | |... |++++\ | |++\ | |... |+++++\ | |+++\ | |... |++++++\ | |++++\ | |... |+++++++\ | |+++++\ | |... |++++++++|____________|++++++|____________|...</para>
+</simplesect>
+MMTA is the mean time to access, or the mean height of the shaded regions MMTA = 0.5 * sqrt(gap0^2 + gap1^2 + ...) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="274" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="219" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a385d7b6199a722bac5334bb23e6f091a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kindref="member">iterator</ref></type>
+        <definition>RiseSetArray::iterator astrea::trace::RiseSetArray::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::RiseSetArray::begin</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="291" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7f779a5c829d020eaaa548cdff3fdf97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kindref="member">iterator</ref></type>
+        <definition>RiseSetArray::iterator astrea::trace::RiseSetArray::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::RiseSetArray::end</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="298" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a68527a3a188ee248cf2ebcc2c222ff72" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
+        <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::RiseSetArray::begin</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="305" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1abf6de039fefbe621e11a3f7909322201" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
+        <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::RiseSetArray::end</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="312" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1af4f8e26ecfe036ea157dcde4a0eb1f67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
+        <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>astrea::trace::RiseSetArray::cbegin</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="319" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ac39fe449a89dd4eadb677a9729ce5160" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
+        <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>astrea::trace::RiseSetArray::cend</qualifiedname>
+        <briefdescription>
+<para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="326" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1acf7777458d9889df5a8327f3d75cb030" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; astrea::trace::RiseSetArray::to_string_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>to_string_vector</name>
+        <qualifiedname>astrea::trace::RiseSetArray::to_string_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to a vector of formatted strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;std::string&gt; A vector of formatted strings representing the rise and set times. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="333" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="144" bodyend="152"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aab8137fc92aeec8c952432e76051cea4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::RiseSetArray::validate_riseset</definition>
+        <argsstring>(const Time &amp;rise, const Time &amp;set) const</argsstring>
+        <name>validate_riseset</name>
+        <qualifiedname>astrea::trace::RiseSetArray::validate_riseset</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>rise</declname>
+        </param>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>set</declname>
+        </param>
+        <briefdescription>
+<para>Validates a rise/set pair. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rise time to validate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The set time to validate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise time is not before the set time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not in chronological order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="347" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="105" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a6005931116a0ba21cb048aacd58d41bd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::RiseSetArray::validate_risesets</definition>
+        <argsstring>(const std::vector&lt; Time &gt; &amp;risesets) const</argsstring>
+        <name>validate_risesets</name>
+        <qualifiedname>astrea::trace::RiseSetArray::validate_risesets</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Time &gt; &amp;</type>
+          <declname>risesets</declname>
+        </param>
+        <briefdescription>
+<para>Validates a vector of rise/set pairs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>risesets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector of Time objects to validate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not in chronological order. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the rise and set times are not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="356" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="94" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aac1f1cff223599300555e9a15b03df50" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::trace::RiseSetArray::calculate_statistic</definition>
+        <argsstring>(const StatType &amp;stat, const Unitless &amp;percentile, const RiseSetMetric metric) const</argsstring>
+        <name>calculate_statistic</name>
+        <qualifiedname>astrea::trace::RiseSetArray::calculate_statistic</qualifiedname>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
+          <declname>stat</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>percentile</declname>
+        </param>
+        <param>
+          <type>const <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref></type>
+          <declname>metric</declname>
+        </param>
+        <briefdescription>
+<para>Calculates a specified statistic (MIN, MEAN, MAX, PCT) for the rise/set pairs based on the specified metric (GAP or ACCESS_TIME). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The statistical measure to calculate (MIN, MEAN, MAX, PCT). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>percentile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The percentile to calculate if stat is PCT (between 0 and 1). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>metric</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The metric to calculate the statistic for (GAP or ACCESS_TIME). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Time The calculated statistic based on the specified metric and statistic type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="366" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="229" bodyend="291"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents an array of rise and set times. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides functionality to manage and manipulate an array of rise and set times, including operations like addition, subtraction, intersection, and union of rise/set pairs. </para>
+    </detaileddescription>
+    <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="38" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="38" bodyend="367"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>_risesets</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab2c58e5cf7f07ae08f1651eaa03c1d60" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>access_time</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a10bf46e47e4c8254ce0cbdb276f5cd5f" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>append</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a418c7035a51acbd394c19bbe00bfbcad" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>average_daily_vis_time</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a385d7b6199a722bac5334bb23e6f091a" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a68527a3a188ee248cf2ebcc2c222ff72" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1aac1f1cff223599300555e9a15b03df50" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>calculate_statistic</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1af4f8e26ecfe036ea157dcde4a0eb1f67" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>cbegin</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1ac39fe449a89dd4eadb677a9729ce5160" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>cend</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7f779a5c829d020eaaa548cdff3fdf97" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1abf6de039fefbe621e11a3f7909322201" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a2973225c531a00add63bafe93585f09a" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>gap</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a2087e41832275b0a695e55a8b5e59f3d" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>get_access_times</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8d26e20f7a3c1d858198f6e16d726a1b" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>get_gap_times</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1aa6a97aa99b6f5934bd8dd6e45652f57b" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>has_access</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a146b49a45e3632b66df3686b1d06be7e" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>insert</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a951c07db06592cade8469b830e7e8b4e" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>mean_time_to_access</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7e310770af520d6d6558277cd4894558" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&amp;</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a5c0925ba598ccad14ca8d421873f8797" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&amp;=</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8dc0e7156869bfabacc5c3db742cdeb2" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1754732751f90b7afddaf778af359202" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1aee722eec217d90c85d06fd5d7fcc877f" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a918f98fc0869fcab144640b0e5a007c1" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1c56340dbb5ec8bbd4a4014915c742e6" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a011b5296303c7b0e424dbb70eaa4c2b1" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8592783de48f50c9ad9e95afdc3a0465" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator|</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7373a1fc0953fba58369480f7aac0243" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator|=</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8ba466172a3405522dfbbbb55b48c2e9" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>prepend</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>RiseSetArray</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a01f93ad1fd7db742d6e4b19ad28c39ef" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>RiseSetArray</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7b0c6cec5c0bd40507291003e95de9c2" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>RiseSetArray</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1abca8db83919fb2d1be1feee361f65266" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>RiseSetArray</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a795066aa5e664a0aad0a32ea1c297b4c" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>size</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1acf7777458d9889df5a8327f3d75cb030" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>to_string_vector</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1aab8137fc92aeec8c952432e76051cea4" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>validate_riseset</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a6005931116a0ba21cb048aacd58d41bd" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>validate_risesets</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a302d8aa92358259c19ebf6e12a14cf15" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>~RiseSetArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

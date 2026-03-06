@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1oberon" kind="namespace" language="C++">
+    <compoundname>astrea::astro::frames::oberon</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a994ee2d15703853553512b9a388a9700" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::OBERON, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
+        <definition>using astrea::astro::frames::oberon::icrf = typedef InertialFrame&lt;CelestialBodyId::OBERON, FrameAxis::ICRF&gt;</definition>
+        <argsstring></argsstring>
+        <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::oberon::icrf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="123" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1af868cb4a12feb10efe1b49c779a83f2b" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::OBERON, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
+        <definition>using astrea::astro::frames::oberon::j2000 = typedef InertialFrame&lt;CelestialBodyId::OBERON, FrameAxis::J2000&gt;</definition>
+        <argsstring></argsstring>
+        <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::oberon::j2000</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="124" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="122" column="1"/>
+  </compounddef>
+</doxygen>

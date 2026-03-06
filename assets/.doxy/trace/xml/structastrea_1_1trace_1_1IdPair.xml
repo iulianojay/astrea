@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1IdPair" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::IdPair</compoundname>
+    <includes refid="IdPair_8hpp" local="no">IdPair.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::IdPair::sender</definition>
+        <argsstring></argsstring>
+        <name>sender</name>
+        <qualifiedname>astrea::trace::IdPair::sender</qualifiedname>
+        <briefdescription>
+<para>&lt; The ID of the sender. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="32" column="17" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::IdPair::receiver</definition>
+        <argsstring></argsstring>
+        <name>receiver</name>
+        <qualifiedname>astrea::trace::IdPair::receiver</qualifiedname>
+        <briefdescription>
+<para>The ID of the receiver. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="33" column="17" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::IdPair::IdPair</definition>
+        <argsstring>()=default</argsstring>
+        <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="38" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1a1dc1669d999bbb7298aeb9be1188fcb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::IdPair::IdPair</definition>
+        <argsstring>(std::size_t sender, std::size_t receiver)</argsstring>
+        <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>receiver</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> with specified sender and receiver IDs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sender</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the sender. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receiver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the receiver. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="45" column="5" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="45" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1ae0c6b5068a6f11b7dbca8ccd2b9ff27a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::IdPair::IdPair</definition>
+        <argsstring>(const IdPair &amp;other)</argsstring>
+        <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="55" column="5" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="55" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1a5aae8cb65d5ff694762506be1b7a34c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::IdPair::~IdPair</definition>
+        <argsstring>()=default</argsstring>
+        <name>~IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::~IdPair</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="64" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1adc252ef4b1b99c344f61ad3187c6406c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::IdPair::operator==</definition>
+        <argsstring>(const IdPair &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::trace::IdPair::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if both sender and receiver IDs are equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/IdPair.hpp" line="71" column="10" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a pair of IDs for sender and receiver. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/types/IdPair.hpp" line="31" column="1" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="31" bodyend="72"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>IdPair</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1a1dc1669d999bbb7298aeb9be1188fcb9" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>IdPair</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1ae0c6b5068a6f11b7dbca8ccd2b9ff27a" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>IdPair</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1adc252ef4b1b99c344f61ad3187c6406c" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>operator==</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1a6c5354645c660e681ef73636fd7b02e9" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>receiver</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>sender</name></member>
+      <member refid="structastrea_1_1trace_1_1IdPair_1a5aae8cb65d5ff694762506be1b7a34c9" prot="public" virt="non-virtual"><scope>astrea::trace::IdPair</scope><name>~IdPair</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

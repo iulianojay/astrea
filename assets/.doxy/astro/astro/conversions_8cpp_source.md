@@ -1,0 +1,79 @@
+
+
+# File conversions.cpp
+
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**utilities**](dir_68b93ce2887c47fc193a24ece16ebbe5.md) **>** [**conversions.cpp**](conversions_8cpp.md)
+
+[Go to the documentation of this file](conversions_8cpp.md)
+
+
+```C++
+/*
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2025 Jay Iuliano
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <astro/utilities/conversions.hpp>
+
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
+
+#include <units/units.hpp>
+
+using namespace mp_units;
+using namespace mp_units::angular;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
+
+namespace astrea {
+namespace astro {
+
+Angle convert_mean_anomaly_to_true_anomaly(const Angle& ma, const Unitless ecc)
+{
+    return ma + ((2.0 * ecc - 0.25 * pow<3>(ecc)) * sin(ma) + 1.25 * pow<2>(ecc) * sin(2.0 * ma) +
+                 13.0 / 12.0 * pow<3>(ecc) * sin(3.0 * ma)) *
+                    (isq_angle::cotes_angle);
+}
+
+Angle convert_true_anomaly_to_mean_anomaly(const Angle& ta, const Unitless ecc)
+{
+    return ta + (-2.0 * ecc * sin(ta) + (0.75 * pow<2>(ecc) + 0.125 * pow<4>(ecc)) * sin(2.0 * ta) -
+                 1.0 / 3.0 * pow<3>(ecc) * sin(3.0 * ta) + 5.0 / 32.0 * pow<4>(ecc) * sin(4.0 * ta)) *
+                    isq_angle::cotes_angle;
+}
+
+Angle convert_eccentric_anomaly_to_mean_anomaly(const Angle& ea, const Unitless ecc)
+{
+    return ea - ecc * sin(ea) * isq_angle::cotes_angle;
+}
+
+Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless ecc)
+{
+    Angle ea        = ma - ecc * sin(ma) * isq_angle::cotes_angle;
+    const Angle tol = 1.0e-10 * rad;
+    unsigned iter   = 0;
+    Angle deltaE    = 1.0 * rad;
+    while (iter < 1e2 && abs(deltaE) > tol) {
+        deltaE = ma - (ea - ecc * sin(ea) * isq_angle::cotes_angle) / (1.0 * one - ecc * cos(ea));
+        ea += deltaE;
+        ++iter;
+    }
+    return ea;
+}
+
+
+} // namespace astro
+} // namespace astrea
+```
+
+

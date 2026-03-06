@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PayloadPlatform_8hpp" kind="file" language="C++">
+    <compoundname>PayloadPlatform.hpp</compoundname>
+    <includes local="no">vector</includes>
+    <includes refid="FrameReference_8hpp" local="no">astro/frames/FrameReference.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">astro/types/typedefs.hpp</includes>
+    <includedby refid="Payload_8hpp" local="no">astrea/astro/astro/platforms/Payload.hpp</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro/frames/FrameReference.hpp</label>
+        <link refid="FrameReference_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/platforms/PayloadPlatform.hpp</label>
+        <link refid="PayloadPlatform_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/platforms/PayloadPlatform.hpp</label>
+        <link refid="PayloadPlatform_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1astro_1_1PayloadPlatform" prot="public">astrea::astro::PayloadPlatform</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>This file defines the PayloadPlatform class, which represents a platform that can have payloads attached to it. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="FrameReference_8hpp" kindref="compound">astro/frames/FrameReference.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">astro/types/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Payload_T&gt;</highlight></codeline>
+<codeline lineno="35" refid="classastrea_1_1astro_1_1PayloadPlatform" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref><sp/>:<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1FrameReference" kindref="compound">FrameReference</ref><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">PayloadParameters_T<sp/>=<sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(std::declval&lt;Payload_T&gt;().get_parameters());</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43" refid="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" kindref="member">PayloadPlatform</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" kindref="member">~PayloadPlatform</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" kindref="member">PayloadPlatform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>._payloads;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" kindref="member">PayloadPlatform</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>._payloads);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>._payloads;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" kindref="member">operator=</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>._payloads);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="108" refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" kindref="member">get_id</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" kindref="member">get_mass</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::kg;<sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PayloadParameters_T&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameters</ref>)<sp/>{<sp/>_payloads.emplace_back(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Payload_T</ref>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameters</ref>));<sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" kindref="member">attach_payloads</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;PayloadParameters_T&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameterPack</ref>)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameters</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameterPack</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">parameters</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Payload_T&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" kindref="member">get_payloads</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_payloads;<sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Payload_T&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" kindref="member">get_payloads</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_payloads;<sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Payload_T&gt;<sp/>_payloads;<sp/></highlight><highlight class="comment">//<sp/>List<sp/>of<sp/>payloads<sp/>attached<sp/>to<sp/>the<sp/>platform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>()</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">payload</ref><sp/>:<sp/>_payloads)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">payload</ref>.set_parent(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="EthzClient_8hpp" kind="file" language="C++">
+    <compoundname>EthzClient.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">cpr/cpr.h</includes>
+    <includes local="no">nlohmann/json.hpp</includes>
+    <includes local="no">astro/time/Date.hpp</includes>
+    <includedby refid="EthzClient_8cpp" local="no">astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp</includedby>
+    <includedby refid="snapshot_8hpp" local="no">astrea/snapshot/snapshot/snapshot.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp</label>
+        <link refid="EthzClient_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astro/time/Date.hpp</label>
+      </node>
+      <node id="3">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="4">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp</label>
+        <link refid="EthzClient_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1snapshot_1_1EthzClient" prot="public">astrea::snapshot::EthzClient</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1snapshot">astrea::snapshot</innernamespace>
+    <briefdescription>
+<para>EthzClient class for interacting with the ETHZ satellite database API. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-03</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cpr/cpr.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nlohmann/json.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/time/Date.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">snapshot<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classastrea_1_1snapshot_1_1EthzClient" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44" refid="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" kindref="member">EthzClient</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_minStartDate(</highlight><highlight class="stringliteral">&quot;2023-03-10<sp/>00:00:00.0&quot;</highlight><highlight class="normal">)<sp/>{};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="classastrea_1_1snapshot_1_1EthzClient_1a45469b824a81deeff9357f387c2ea701" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1EthzClient_1a45469b824a81deeff9357f387c2ea701" kindref="member">~EthzClient</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1EthzClient_1aaadb3e6004e8d74c1626440db4a55edf" kindref="member">query</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>startDate,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>endDate,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>includeFrequencyData<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1EthzClient_1aaadb3e6004e8d74c1626440db4a55edf" kindref="member">query</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>startDate,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>endDate,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">&amp;<sp/>noradId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>includeFrequencyData<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_base<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;https://satdb.ethz.ch/api&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_satDataUrl<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/satellitedata&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_satUrl<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/satellite&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_frequencySourceUrl<sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/frequencysource&quot;</highlight><highlight class="normal">;<sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Url<sp/>_frequencyUrl<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>_base<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/frequency&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cpr::Authentication<sp/>_auth<sp/><sp/><sp/><sp/>=<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;user&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;pass&quot;</highlight><highlight class="normal">,<sp/>cpr::AuthMode::BASIC<sp/>};<sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date<sp/>_minStartDate;<sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/>query_impl(</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>startDate,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>endDate,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">&amp;<sp/>noradId<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>includeFrequencyData<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clean_result(nlohmann::json&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>snapshot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp"/>
+  </compounddef>
+</doxygen>

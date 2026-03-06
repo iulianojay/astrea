@@ -1,0 +1,662 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1AccessArray" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::AccessArray</compoundname>
+    <includes refid="AccessArray_8hpp" local="no">AccessArray.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" prot="public" static="no">
+        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::iterator</type>
+        <definition>using astrea::trace::AccessArray::iterator =  gtl::btree_map&lt;IdPair, RiseSetArray&gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>astrea::trace::AccessArray::iterator</qualifiedname>
+        <briefdescription>
+<para>Iterator type for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="148" column="5" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" prot="public" static="no">
+        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::const_iterator</type>
+        <definition>using astrea::trace::AccessArray::const_iterator =  gtl::btree_map&lt;IdPair, RiseSetArray&gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>astrea::trace::AccessArray::const_iterator</qualifiedname>
+        <briefdescription>
+<para>Const iterator type for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="153" column="5" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessArray_1af2049a79d70b70a4e5c6a8390a4f4521" prot="private" static="no" mutable="no">
+        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;</type>
+        <definition>gtl::btree_map&lt;IdPair, RiseSetArray&gt; astrea::trace::AccessArray::_accesses</definition>
+        <argsstring></argsstring>
+        <name>_accesses</name>
+        <qualifiedname>astrea::trace::AccessArray::_accesses</qualifiedname>
+        <briefdescription>
+<para>A map that associates IdPairs with their corresponding RiseSetArrays. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="198" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="198" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const AccessArray &amp;accessarray)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::trace::AccessArray::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>accessarray</declname>
+        </param>
+        <briefdescription>
+<para>Overloads the output stream operator for the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accessarray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to output. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::ostream&amp; The output stream. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="36" column="12" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="98" bodyend="104"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AccessArray::AccessArray</definition>
+        <argsstring>()=default</argsstring>
+        <name>AccessArray</name>
+        <qualifiedname>astrea::trace::AccessArray::AccessArray</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. Initializes an empty <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="43" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AccessArray::~AccessArray</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AccessArray</name>
+        <qualifiedname>astrea::trace::AccessArray::~AccessArray</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="48" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>RiseSetArray &amp; astrea::trace::AccessArray::operator[]</definition>
+        <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::trace::AccessArray::operator[]</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>senderId</declname>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>receiverId</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for a given sender and receiver ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>senderId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the sender. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receiverId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the receiver. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for the specified sender and receiver. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="57" column="18" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="19" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1ab3fd965346bde3aea6c1b96f360e0c44" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
+        <definition>const RiseSetArray &amp; astrea::trace::AccessArray::at</definition>
+        <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId) const</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::trace::AccessArray::at</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>senderId</declname>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>receiverId</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for a given <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>senderId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the sender. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receiverId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the receiver. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>&amp; The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for the specified sender and receiver. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="66" column="24" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessArray::contains</definition>
+        <argsstring>(const IdPair &amp;idPair) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>astrea::trace::AccessArray::contains</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
+          <declname>idPair</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> contains a <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for the specified <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idPair</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> contains the <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="74" column="10" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1ad5cb315480cbaead4072ed44e71e3a7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::AccessArray::erase</definition>
+        <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId)</argsstring>
+        <name>erase</name>
+        <qualifiedname>astrea::trace::AccessArray::erase</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>senderId</declname>
+        </param>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>receiverId</declname>
+        </param>
+        <briefdescription>
+<para>Erases the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for a given sender and receiver ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>senderId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the sender. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receiverId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the receiver. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="82" column="10" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::AccessArray::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::trace::AccessArray::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of RiseSetArrays in the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The number of RiseSetArrays. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="89" column="17" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a2cbf08887dd6b6bbc303cf4d38bac2a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::AccessArray::get_all_accesses_to_receiver</definition>
+        <argsstring>(const std::size_t &amp;receiverId) const</argsstring>
+        <name>get_all_accesses_to_receiver</name>
+        <qualifiedname>astrea::trace::AccessArray::get_all_accesses_to_receiver</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>receiverId</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for all accesses to a specific receiver. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>receiverId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the receiver. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> containing all accesses to the specified receiver. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="97" column="18" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="38" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a5e689020f09f91d688a5d0dc3503ff8a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::AccessArray::get_all_accesses_from_sender</definition>
+        <argsstring>(const std::size_t &amp;senderId) const</argsstring>
+        <name>get_all_accesses_from_sender</name>
+        <qualifiedname>astrea::trace::AccessArray::get_all_accesses_from_sender</qualifiedname>
+        <param>
+          <type>const std::size_t &amp;</type>
+          <declname>senderId</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> for all accesses from a specific sender. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>senderId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the sender. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> The <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> containing all accesses from the specified sender. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="105" column="18" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="47" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessArray::operator==</definition>
+        <argsstring>(const AccessArray &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::trace::AccessArray::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the AccessArrays are equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="113" column="10" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a0acd9f59dc5fdc6ebfd123779be2f278" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+        <definition>AccessArray &amp; astrea::trace::AccessArray::operator|=</definition>
+        <argsstring>(const AccessArray &amp;other)</argsstring>
+        <name>operator|=</name>
+        <qualifiedname>astrea::trace::AccessArray::operator|=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Union operator for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to union with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="120" column="17" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="58" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AccessArray::operator|</definition>
+        <argsstring>(const AccessArray &amp;other) const</argsstring>
+        <name>operator|</name>
+        <qualifiedname>astrea::trace::AccessArray::operator|</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Const union operator for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to union with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> The resulting <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> after the union operation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="128" column="17" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="69" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+        <definition>AccessArray &amp; astrea::trace::AccessArray::operator&amp;=</definition>
+        <argsstring>(const AccessArray &amp;other)</argsstring>
+        <name>operator&amp;=</name>
+        <qualifiedname>astrea::trace::AccessArray::operator&amp;=</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Intersection operator for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to intersect with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="135" column="17" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="76" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AccessArray::operator&amp;</definition>
+        <argsstring>(const AccessArray &amp;other) const</argsstring>
+        <name>operator&amp;</name>
+        <qualifiedname>astrea::trace::AccessArray::operator&amp;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Const intersection operator for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to intersect with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> The resulting <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> after the intersection operation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="143" column="17" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="84" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a50c2e60dee56b8245144e5aecaee750b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::trace::AccessArray::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::AccessArray::begin</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the beginning. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="160" column="14" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a3452993c5c07824caff18fc48b89a557" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref></type>
+        <definition>iterator astrea::trace::AccessArray::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::AccessArray::end</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the end. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="167" column="14" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="167" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1ad83fdfbd2e1387e178d13851acd26761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::AccessArray::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::trace::AccessArray::begin</qualifiedname>
+        <briefdescription>
+<para>Returns a const iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator to the beginning. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="174" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a450716e1f9e23c00acf27b680a39b561" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::AccessArray::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::trace::AccessArray::end</qualifiedname>
+        <briefdescription>
+<para>Returns a const iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator to the end. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="181" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="181" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1aa879481be685f507b4dad223db92ff72" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::AccessArray::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>astrea::trace::AccessArray::cbegin</qualifiedname>
+        <briefdescription>
+<para>Returns a const iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator to the beginning. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="188" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="188" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1a5289b6eaf1b33bb1beb633c1c40650b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator astrea::trace::AccessArray::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>astrea::trace::AccessArray::cend</qualifiedname>
+        <briefdescription>
+<para>Returns a const iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const_iterator A const iterator to the end. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="195" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="195" bodyend="195"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a collection of access times indexed by sender and receiver IDs. This class provides methods to manipulate and query access times for different sender-receiver pairs. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="34" column="1" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="34" bodyend="199"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1af2049a79d70b70a4e5c6a8390a4f4521" prot="private" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>AccessArray</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1ab3fd965346bde3aea6c1b96f360e0c44" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>at</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a50c2e60dee56b8245144e5aecaee750b" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1ad83fdfbd2e1387e178d13851acd26761" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>begin</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1aa879481be685f507b4dad223db92ff72" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>cbegin</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a5289b6eaf1b33bb1beb633c1c40650b7" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>cend</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a45b22f7f513d0e7504ab067437833c80" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>contains</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a3452993c5c07824caff18fc48b89a557" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a450716e1f9e23c00acf27b680a39b561" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>end</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1ad5cb315480cbaead4072ed44e71e3a7b" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>erase</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a5e689020f09f91d688a5d0dc3503ff8a" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>get_all_accesses_from_sender</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a2cbf08887dd6b6bbc303cf4d38bac2a6" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>get_all_accesses_to_receiver</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&amp;</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&amp;=</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" prot="private" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator|</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a0acd9f59dc5fdc6ebfd123779be2f278" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator|=</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>size</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>~AccessArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

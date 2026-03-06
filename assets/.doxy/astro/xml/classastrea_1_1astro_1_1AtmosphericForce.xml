@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1AtmosphericForce" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::AtmosphericForce</compoundname>
+    <basecompoundref refid="classastrea_1_1astro_1_1Force" prot="public" virt="non-virtual">astrea::astro::Force</basecompoundref>
+    <includes refid="AtmosphericForce_8hpp" local="no">AtmosphericForce.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AtmosphericForce_1a2615651c9d90877d4ac10f7f806ced05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AtmosphericForce::AtmosphericForce</definition>
+        <argsstring>()=default</argsstring>
+        <name>AtmosphericForce</name>
+        <qualifiedname>astrea::astro::AtmosphericForce::AtmosphericForce</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1AtmosphericForce" kindref="compound">AtmosphericForce</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" line="43" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AtmosphericForce_1a0770799f7b4cebe06e0d16596f19ff1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AtmosphericForce::~AtmosphericForce</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AtmosphericForce</name>
+        <qualifiedname>astrea::astro::AtmosphericForce::~AtmosphericForce</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1AtmosphericForce" kindref="compound">AtmosphericForce</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" line="48" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AtmosphericForce_1a18dcc8a9bf4d6b1341fc867b0cb3b782" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <definition>AccelerationVector&lt; frames::earth::icrf &gt; astrea::astro::AtmosphericForce::compute_force</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
+        <name>compute_force</name>
+        <qualifiedname>astrea::astro::AtmosphericForce::compute_force</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1Force_1abb04e6a7469b5e7e208b997b85a90155">compute_force</reimplements>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the atmospheric force on a vehicle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> of the vehicle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> object representing the spacecraft </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="typedefs_8hpp_1a4f20af7d8563fe9e30bbb8d55c3871b1" kindref="member">AccelerationVector&lt;frames::earth::icrf&gt;</ref> The computed acceleration vector due to atmospheric force. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" line="57" column="21" bodyfile="astrea/astro/astro/propagation/force_models/AtmosphericForce.cpp" bodystart="52" bodyend="96"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AtmosphericForce_1a7d5fbe0a29bc8e34306ac8bb9be6a4b7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Density</ref></type>
+        <definition>const Density astrea::astro::AtmosphericForce::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state, const std::unique_ptr&lt; CelestialBody &gt; &amp;center) const</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::AtmosphericForce::find_atmospheric_density</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &gt; &amp;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Finds the atmospheric density at a given altitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector of the vehicle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Celestial body around which the vehicle is orbiting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the given altitude. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" line="67" column="19" bodyfile="astrea/astro/astro/propagation/force_models/AtmosphericForce.cpp" bodystart="99" bodyend="107"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class to compute the atmospheric force on a vehicle. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class computes the atmospheric force on a vehicle based on its state and the celestial body&apos;s atmosphere. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::AtmosphericForce</label>
+        <link refid="classastrea_1_1astro_1_1AtmosphericForce"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Force</label>
+        <link refid="classastrea_1_1astro_1_1Force"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::AtmosphericForce</label>
+        <link refid="classastrea_1_1astro_1_1AtmosphericForce"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Force</label>
+        <link refid="classastrea_1_1astro_1_1Force"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" line="37" column="1" bodyfile="astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp" bodystart="37" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a2615651c9d90877d4ac10f7f806ced05" prot="public" virt="non-virtual"><scope>astrea::astro::AtmosphericForce</scope><name>AtmosphericForce</name></member>
+      <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a18dcc8a9bf4d6b1341fc867b0cb3b782" prot="public" virt="virtual"><scope>astrea::astro::AtmosphericForce</scope><name>compute_force</name></member>
+      <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a7d5fbe0a29bc8e34306ac8bb9be6a4b7" prot="private" virt="non-virtual"><scope>astrea::astro::AtmosphericForce</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1Force_1a35ce93a85f35484f4bb999917bd56b21" prot="public" virt="non-virtual"><scope>astrea::astro::AtmosphericForce</scope><name>Force</name></member>
+      <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a0770799f7b4cebe06e0d16596f19ff1e" prot="public" virt="non-virtual"><scope>astrea::astro::AtmosphericForce</scope><name>~AtmosphericForce</name></member>
+      <member refid="classastrea_1_1astro_1_1Force_1a44eb34fbd2be08409120a1fccd35da30" prot="public" virt="virtual"><scope>astrea::astro::AtmosphericForce</scope><name>~Force</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

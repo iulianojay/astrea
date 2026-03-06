@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_99d9bc6205d35ba61d9e386839c646c4" kind="dir">
+    <compoundname>astrea/trace/trace/types</compoundname>
+    <innerfile refid="enums_8hpp">enums.hpp</innerfile>
+    <innerfile refid="IdPair_8hpp">IdPair.hpp</innerfile>
+    <innerfile refid="typedefs_8hpp">typedefs.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/types/"/>
+  </compounddef>
+</doxygen>

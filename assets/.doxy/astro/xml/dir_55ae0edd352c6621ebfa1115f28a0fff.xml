@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_55ae0edd352c6621ebfa1115f28a0fff" kind="dir">
+    <compoundname>astrea/astro/astro/propagation</compoundname>
+    <innerdir refid="dir_0032edd3690e3836975e7dd677ed5fa8">astrea/astro/astro/propagation/analytic</innerdir>
+    <innerdir refid="dir_0a1395a4617b025941a2198784f446c5">astrea/astro/astro/propagation/equations_of_motion</innerdir>
+    <innerdir refid="dir_283e5a6c8e70b5075f630fb83b6454d7">astrea/astro/astro/propagation/event_detection</innerdir>
+    <innerdir refid="dir_0ce51a85166db93c377c5b7f000b236c">astrea/astro/astro/propagation/force_models</innerdir>
+    <innerdir refid="dir_89452d20321c19f5539a283cd906a79c">astrea/astro/astro/propagation/numerical</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/"/>
+  </compounddef>
+</doxygen>

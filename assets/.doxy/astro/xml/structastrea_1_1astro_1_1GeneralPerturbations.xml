@@ -1,0 +1,743 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1GeneralPerturbations" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::GeneralPerturbations</compoundname>
+    <includes refid="GeneralPerturbations_8hpp" local="no">GeneralPerturbations.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a2d778a4a2c863144ffe362595db888ed" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">int</ref></type>
+        <definition>int astrea::astro::GeneralPerturbations::DB_ID</definition>
+        <argsstring></argsstring>
+        <name>DB_ID</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::DB_ID</qualifiedname>
+        <briefdescription>
+<para>Database ID for the GP object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="57" column="9" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a32d1bdc4c1e4f433d9c08a66fb36a369" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::APOAPSIS</definition>
+        <argsstring></argsstring>
+        <name>APOAPSIS</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::APOAPSIS</qualifiedname>
+        <briefdescription>
+<para>Apoapsis altitude in kilometers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="58" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1abd3719cdfaffa92d663d1a4eb7deb86c" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::ARG_OF_PERICENTER</definition>
+        <argsstring></argsstring>
+        <name>ARG_OF_PERICENTER</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::ARG_OF_PERICENTER</qualifiedname>
+        <briefdescription>
+<para>Argument of pericenter in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="59" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1af0ba6c2491aa883cd236214cd6760d8a" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::BSTAR</definition>
+        <argsstring></argsstring>
+        <name>BSTAR</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::BSTAR</qualifiedname>
+        <briefdescription>
+<para>B* drag term (BSTAR) in inverse Earth radii. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="60" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a2001bf2f9ce6a9ac487d37e0e427d2e3" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::CCSDS_OMM_VERS</definition>
+        <argsstring></argsstring>
+        <name>CCSDS_OMM_VERS</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::CCSDS_OMM_VERS</qualifiedname>
+        <briefdescription>
+<para>CCSDS OMM version. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="61" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1abe788e947648953d1e4633c315630e36" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::CENTER_NAME</definition>
+        <argsstring></argsstring>
+        <name>CENTER_NAME</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::CENTER_NAME</qualifiedname>
+        <briefdescription>
+<para>Name of the center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="62" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a6dd576b7a573d0e9e0440c16f79903d8" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">char</ref> &gt;</type>
+        <definition>std::optional&lt;char&gt; astrea::astro::GeneralPerturbations::CLASSIFICATION_TYPE</definition>
+        <argsstring></argsstring>
+        <name>CLASSIFICATION_TYPE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::CLASSIFICATION_TYPE</qualifiedname>
+        <briefdescription>
+<para>Classification type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="63" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a9ad2b8a65330f7bf53447e6e16678f5f" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::COMMENT</definition>
+        <argsstring></argsstring>
+        <name>COMMENT</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::COMMENT</qualifiedname>
+        <briefdescription>
+<para>Comment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="64" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a2d8233fcfd09deb9d64106cdc5a8ee6d" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::COUNTRY_CODE</definition>
+        <argsstring></argsstring>
+        <name>COUNTRY_CODE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::COUNTRY_CODE</qualifiedname>
+        <briefdescription>
+<para>Country code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="65" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3372e648fccb1f027647a8b0d0e3ab66" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::CREATION_DATE</definition>
+        <argsstring></argsstring>
+        <name>CREATION_DATE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::CREATION_DATE</qualifiedname>
+        <briefdescription>
+<para>Creation date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="66" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a903d0bcafe098f21bf8969b6f001f78b" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::DECAY_DATE</definition>
+        <argsstring></argsstring>
+        <name>DECAY_DATE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::DECAY_DATE</qualifiedname>
+        <briefdescription>
+<para>Decay date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="67" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1aca5625479bf4333bd266e025876131e4" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::ECCENTRICITY</definition>
+        <argsstring></argsstring>
+        <name>ECCENTRICITY</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::ECCENTRICITY</qualifiedname>
+        <briefdescription>
+<para>Eccentricity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="68" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a8f972c04e3aa2c3fe6291ad5f0e6f923" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">short</ref> &gt;</type>
+        <definition>std::optional&lt;short&gt; astrea::astro::GeneralPerturbations::ELEMENT_SET_NO</definition>
+        <argsstring></argsstring>
+        <name>ELEMENT_SET_NO</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::ELEMENT_SET_NO</qualifiedname>
+        <briefdescription>
+<para>Element set number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="69" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3dc0473bd8ff0cdbb84b786c435c0a9d" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">short</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref> &gt;</type>
+        <definition>std::optional&lt;short unsigned&gt; astrea::astro::GeneralPerturbations::EPHEMERIS_TYPE</definition>
+        <argsstring></argsstring>
+        <name>EPHEMERIS_TYPE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::EPHEMERIS_TYPE</qualifiedname>
+        <briefdescription>
+<para>Ephemeris type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="70" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a137281aa023eeb17ca01288966e0422f" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::EPOCH</definition>
+        <argsstring></argsstring>
+        <name>EPOCH</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::EPOCH</qualifiedname>
+        <briefdescription>
+<para>Epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="71" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1acacfb556aa849b2e04c78581fa11534a" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref> &gt;</type>
+        <definition>std::optional&lt;long unsigned&gt; astrea::astro::GeneralPerturbations::FILE</definition>
+        <argsstring></argsstring>
+        <name>FILE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::FILE</qualifiedname>
+        <briefdescription>
+<para>File number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="72" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3d23f07db9f2eb8d0f720ada097ea605" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <definition>unsigned astrea::astro::GeneralPerturbations::GP_ID</definition>
+        <argsstring></argsstring>
+        <name>GP_ID</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::GP_ID</qualifiedname>
+        <briefdescription>
+<para>General Perturbations ID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="73" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a4c79f0866fcaa38a293806d33b35d674" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::INCLINATION</definition>
+        <argsstring></argsstring>
+        <name>INCLINATION</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::INCLINATION</qualifiedname>
+        <briefdescription>
+<para>Inclination in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="74" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1abe7a5444e5f43547ecd3594e0d135e2a" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::LAUNCH_DATE</definition>
+        <argsstring></argsstring>
+        <name>LAUNCH_DATE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::LAUNCH_DATE</qualifiedname>
+        <briefdescription>
+<para>Launch date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="75" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a79ed58c6b771cd460f3cde90a16b1687" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::MEAN_ANOMALY</definition>
+        <argsstring></argsstring>
+        <name>MEAN_ANOMALY</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::MEAN_ANOMALY</qualifiedname>
+        <briefdescription>
+<para>Mean anomaly in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="76" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a4ad4577b0ed164068068b2dee518b9ad" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::MEAN_ELEMENT_THEORY</definition>
+        <argsstring></argsstring>
+        <name>MEAN_ELEMENT_THEORY</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::MEAN_ELEMENT_THEORY</qualifiedname>
+        <briefdescription>
+<para>Mean element theory. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="77" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a12d9756898715165ee239f599437e6ee" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION</definition>
+        <argsstring></argsstring>
+        <name>MEAN_MOTION</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::MEAN_MOTION</qualifiedname>
+        <briefdescription>
+<para>Mean motion in revolutions per day. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="78" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1afd3658db1ad3cbd0a7760a0d98471f79" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION_DDOT</definition>
+        <argsstring></argsstring>
+        <name>MEAN_MOTION_DDOT</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::MEAN_MOTION_DDOT</qualifiedname>
+        <briefdescription>
+<para>Mean motion derivative in revolutions per day squared. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="79" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a60da67424a19e0856fbd8eabcfbe711f" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION_DOT</definition>
+        <argsstring></argsstring>
+        <name>MEAN_MOTION_DOT</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::MEAN_MOTION_DOT</qualifiedname>
+        <briefdescription>
+<para>Mean motion second derivative in revolutions per day cubed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="80" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1aef8e1654cf85a0d3e4a2f3c18d2a3193" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <definition>unsigned astrea::astro::GeneralPerturbations::NORAD_CAT_ID</definition>
+        <argsstring></argsstring>
+        <name>NORAD_CAT_ID</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::NORAD_CAT_ID</qualifiedname>
+        <briefdescription>
+<para>NORAD catalog ID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="81" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a5aae640263c2b6d77259ac386b08bba4" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::OBJECT_ID</definition>
+        <argsstring></argsstring>
+        <name>OBJECT_ID</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::OBJECT_ID</qualifiedname>
+        <briefdescription>
+<para>Object ID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="82" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a39b26d99b2492bbdd957abdd6d7b7731" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::OBJECT_NAME</definition>
+        <argsstring></argsstring>
+        <name>OBJECT_NAME</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::OBJECT_NAME</qualifiedname>
+        <briefdescription>
+<para>Object name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="83" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a604292688fe9fc54ce96427f59cb396a" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::OBJECT_TYPE</definition>
+        <argsstring></argsstring>
+        <name>OBJECT_TYPE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::OBJECT_TYPE</qualifiedname>
+        <briefdescription>
+<para>Object type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="84" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1abcaccf0046ba2dc74cd1e669e9448cef" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::ORIGINATOR</definition>
+        <argsstring></argsstring>
+        <name>ORIGINATOR</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::ORIGINATOR</qualifiedname>
+        <briefdescription>
+<para>Originator of the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="85" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1af003ddd9da406aefecc39e700b19eb39" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::PERIAPSIS</definition>
+        <argsstring></argsstring>
+        <name>PERIAPSIS</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::PERIAPSIS</qualifiedname>
+        <briefdescription>
+<para>Periapsis altitude in kilometers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="86" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a42e8ddd753f9719ddca490d1174603b1" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::PERIOD</definition>
+        <argsstring></argsstring>
+        <name>PERIOD</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::PERIOD</qualifiedname>
+        <briefdescription>
+<para>Orbital period in minutes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="87" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a92d1ebd8240b96037d9f35459355ccbf" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::RA_OF_ASC_NODE</definition>
+        <argsstring></argsstring>
+        <name>RA_OF_ASC_NODE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::RA_OF_ASC_NODE</qualifiedname>
+        <briefdescription>
+<para>Right ascension of ascending node in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="88" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1af66cb2f295e91993551ab9140abf5901" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::RCS_SIZE</definition>
+        <argsstring></argsstring>
+        <name>RCS_SIZE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::RCS_SIZE</qualifiedname>
+        <briefdescription>
+<para>Radar cross-section size. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="89" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a202d10ebae32e2649e8b0f2e7fe0bd19" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::REF_FRAME</definition>
+        <argsstring></argsstring>
+        <name>REF_FRAME</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::REF_FRAME</qualifiedname>
+        <briefdescription>
+<para>Reference frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="90" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3a230f3e44600835c110c99f62613296" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref> &gt;</type>
+        <definition>std::optional&lt;unsigned&gt; astrea::astro::GeneralPerturbations::REV_AT_EPOCH</definition>
+        <argsstring></argsstring>
+        <name>REV_AT_EPOCH</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::REV_AT_EPOCH</qualifiedname>
+        <briefdescription>
+<para>Revolution number at epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="91" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a666b5675627f4a70c2b07f24d9c68744" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref> &gt;</type>
+        <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::SEMIMAJOR_AXIS</definition>
+        <argsstring></argsstring>
+        <name>SEMIMAJOR_AXIS</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::SEMIMAJOR_AXIS</qualifiedname>
+        <briefdescription>
+<para>Semimajor axis in kilometers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="92" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1ac50a5035abc809144269e0552829e902" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::SITE</definition>
+        <argsstring></argsstring>
+        <name>SITE</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::SITE</qualifiedname>
+        <briefdescription>
+<para>Site of the GP object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="93" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1ad1b1301dfae590ed5881a36230bc4af1" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::GeneralPerturbations::TIME_SYSTEM</definition>
+        <argsstring></argsstring>
+        <name>TIME_SYSTEM</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::TIME_SYSTEM</qualifiedname>
+        <briefdescription>
+<para>Time system used for the GP object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="94" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1aa5e18f488198b52940debef981c0aea8" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::TLE_LINE0</definition>
+        <argsstring></argsstring>
+        <name>TLE_LINE0</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::TLE_LINE0</qualifiedname>
+        <briefdescription>
+<para>TLE line 0 (usually the satellite name) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="95" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1ab82bf148bf233df426b835c4f06c61eb" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::TLE_LINE1</definition>
+        <argsstring></argsstring>
+        <name>TLE_LINE1</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::TLE_LINE1</qualifiedname>
+        <briefdescription>
+<para>TLE line 1 (first line of TLE data) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="96" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::string &gt;</type>
+        <definition>std::optional&lt;std::string&gt; astrea::astro::GeneralPerturbations::TLE_LINE2</definition>
+        <argsstring></argsstring>
+        <name>TLE_LINE2</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::TLE_LINE2</qualifiedname>
+        <briefdescription>
+<para>TLE line 2 (second line of TLE data) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="97" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::GeneralPerturbations::GeneralPerturbations</definition>
+        <argsstring>()=default</argsstring>
+        <name>GeneralPerturbations</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::GeneralPerturbations</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="43" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1GeneralPerturbations_1ab9c0499023cce0cd5103ce062d0ce9e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::GeneralPerturbations::GeneralPerturbations</definition>
+        <argsstring>(const nlohmann::json &amp;data)</argsstring>
+        <name>GeneralPerturbations</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::GeneralPerturbations</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> nlohmann::json &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Constructor that initializes <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref> from a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The JSON object containing the GP data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="50" column="5" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp" bodystart="44" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::GeneralPerturbations::~GeneralPerturbations</definition>
+        <argsstring>()=default</argsstring>
+        <name>~GeneralPerturbations</name>
+        <qualifiedname>astrea::astro::GeneralPerturbations::~GeneralPerturbations</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="55" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref> structure representing a Ground Position (GP) object from SpaceTrack. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This structure is used to hold data retrieved from the SpaceTrack API, specifically for GP objects. It includes various attributes such as APOAPSIS, ECCENTRICITY, and others, which are relevant to satellite tracking and orbital mechanics.<itemizedlist>
+<listitem><para><simplesect kind="note"><para>: definition can be found here <ulink url="https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html">https://www.space-track.org/basicspacedata/modeldef/class/gp/format/html</ulink> </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" line="38" column="1" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" bodystart="38" bodyend="98"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a32d1bdc4c1e4f433d9c08a66fb36a369" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>APOAPSIS</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1abd3719cdfaffa92d663d1a4eb7deb86c" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>ARG_OF_PERICENTER</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1af0ba6c2491aa883cd236214cd6760d8a" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>BSTAR</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2001bf2f9ce6a9ac487d37e0e427d2e3" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>CCSDS_OMM_VERS</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe788e947648953d1e4633c315630e36" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>CENTER_NAME</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a6dd576b7a573d0e9e0440c16f79903d8" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>CLASSIFICATION_TYPE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a9ad2b8a65330f7bf53447e6e16678f5f" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>COMMENT</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d8233fcfd09deb9d64106cdc5a8ee6d" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>COUNTRY_CODE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3372e648fccb1f027647a8b0d0e3ab66" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>CREATION_DATE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a2d778a4a2c863144ffe362595db888ed" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>DB_ID</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a903d0bcafe098f21bf8969b6f001f78b" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>DECAY_DATE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1aca5625479bf4333bd266e025876131e4" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>ECCENTRICITY</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a8f972c04e3aa2c3fe6291ad5f0e6f923" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>ELEMENT_SET_NO</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3dc0473bd8ff0cdbb84b786c435c0a9d" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>EPHEMERIS_TYPE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a137281aa023eeb17ca01288966e0422f" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>EPOCH</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1acacfb556aa849b2e04c78581fa11534a" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>FILE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>GeneralPerturbations</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab9c0499023cce0cd5103ce062d0ce9e1" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>GeneralPerturbations</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3d23f07db9f2eb8d0f720ada097ea605" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>GP_ID</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4c79f0866fcaa38a293806d33b35d674" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>INCLINATION</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1abe7a5444e5f43547ecd3594e0d135e2a" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>LAUNCH_DATE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a79ed58c6b771cd460f3cde90a16b1687" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>MEAN_ANOMALY</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a4ad4577b0ed164068068b2dee518b9ad" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>MEAN_ELEMENT_THEORY</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a12d9756898715165ee239f599437e6ee" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>MEAN_MOTION</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1afd3658db1ad3cbd0a7760a0d98471f79" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>MEAN_MOTION_DDOT</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a60da67424a19e0856fbd8eabcfbe711f" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>MEAN_MOTION_DOT</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1aef8e1654cf85a0d3e4a2f3c18d2a3193" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>NORAD_CAT_ID</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a5aae640263c2b6d77259ac386b08bba4" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>OBJECT_ID</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a39b26d99b2492bbdd957abdd6d7b7731" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>OBJECT_NAME</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a604292688fe9fc54ce96427f59cb396a" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>OBJECT_TYPE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1abcaccf0046ba2dc74cd1e669e9448cef" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>ORIGINATOR</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1af003ddd9da406aefecc39e700b19eb39" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>PERIAPSIS</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a42e8ddd753f9719ddca490d1174603b1" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>PERIOD</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a92d1ebd8240b96037d9f35459355ccbf" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>RA_OF_ASC_NODE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1af66cb2f295e91993551ab9140abf5901" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>RCS_SIZE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a202d10ebae32e2649e8b0f2e7fe0bd19" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>REF_FRAME</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a3a230f3e44600835c110c99f62613296" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>REV_AT_EPOCH</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1a666b5675627f4a70c2b07f24d9c68744" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>SEMIMAJOR_AXIS</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ac50a5035abc809144269e0552829e902" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>SITE</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ad1b1301dfae590ed5881a36230bc4af1" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>TIME_SYSTEM</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1aa5e18f488198b52940debef981c0aea8" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>TLE_LINE0</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab82bf148bf233df426b835c4f06c61eb" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>TLE_LINE1</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>TLE_LINE2</name></member>
+      <member refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" prot="public" virt="non-virtual"><scope>astrea::astro::GeneralPerturbations</scope><name>~GeneralPerturbations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

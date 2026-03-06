@@ -1,0 +1,910 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1AstrodynamicsSystem" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::AstrodynamicsSystem</compoundname>
+    <includes refid="AstrodynamicsSystem_8hpp" local="no">AstrodynamicsSystem.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9b970c65733894f0f83b8d3c2d1de532" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>, <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &gt;::iterator</type>
+        <definition>using astrea::astro::AstrodynamicsSystem::iterator =  std::unordered_map&lt;CelestialBodyId, CelestialBodyUniquePtr&gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::iterator</qualifiedname>
+        <briefdescription>
+<para>Iterator type for iterating over celestial bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="293" column="5" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4f811b3ff6df15c49fe2ca0d7ea9b50e" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>, <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &gt;::const_iterator</type>
+        <definition>using astrea::astro::AstrodynamicsSystem::const_iterator =  std::unordered_map&lt;CelestialBodyId, CelestialBodyUniquePtr&gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::const_iterator</qualifiedname>
+        <briefdescription>
+<para>Constant iterator type for iterating over celestial bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="298" column="5" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="298" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7fda920dbc195e8e5c4b5bc8d8e2569a" prot="private" static="no" mutable="no">
+        <type><ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref></type>
+        <definition>SystemCenter astrea::astro::AstrodynamicsSystem::_centerType</definition>
+        <argsstring></argsstring>
+        <name>_centerType</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::_centerType</qualifiedname>
+        <briefdescription>
+<para>System center type, either &quot;CENTRAL_BODY&quot; or &quot;BARYCENTER&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="315" column="18" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1aff2474ab5a9272a9b73460e303b52528" prot="private" static="no" mutable="no">
+        <type><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <definition>CelestialBodyId astrea::astro::AstrodynamicsSystem::_centralBody</definition>
+        <argsstring></argsstring>
+        <name>_centralBody</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::_centralBody</qualifiedname>
+        <briefdescription>
+<para>The id of the central body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="316" column="21" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="316" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1af369fde25873b72c5b29bf872050c4e5" prot="private" static="no" mutable="no">
+        <type>std::unordered_set&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &gt;</type>
+        <definition>std::unordered_set&lt;CelestialBodyId&gt; astrea::astro::AstrodynamicsSystem::_activeBodies</definition>
+        <argsstring></argsstring>
+        <name>_activeBodies</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::_activeBodies</qualifiedname>
+        <briefdescription>
+<para>Set of names of all celestial bodies in the system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="317" column="24" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="317" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac4c9bf2eec3dbc6924935f35f07bbf45" prot="private" static="no" mutable="no">
+        <type><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <definition>CelestialBodyId astrea::astro::AstrodynamicsSystem::_root</definition>
+        <argsstring></argsstring>
+        <name>_root</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::_root</qualifiedname>
+        <briefdescription>
+<para>The root celestial body (first common lineage). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="318" column="21" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a494b8bd09745c014e348b06f6a07827f" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref>, <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &gt;</type>
+        <definition>std::unordered_map&lt;CelestialBodyId, CelestialBodyUniquePtr&gt; astrea::astro::AstrodynamicsSystem::_bodies</definition>
+        <argsstring></argsstring>
+        <name>_bodies</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::_bodies</qualifiedname>
+        <briefdescription>
+<para>Map of celestial bodies by enum. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="319" column="24" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="319" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a394297f4a62aa759a495f0290a387c86" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</definition>
+        <argsstring>(const CelestialBodyId &amp;centralBody=CelestialBodyId::EARTH, const std::unordered_set&lt; CelestialBodyId &gt; &amp;secondaryBodies={})</argsstring>
+        <name>AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+          <declname>centralBody</declname>
+          <defval>CelestialBodyId::EARTH</defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unordered_set&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &gt; &amp;</type>
+          <declname>secondaryBodies</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> with a specified central body, and the set of all other bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>centralBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the central celestial body (default is &quot;Earth&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allBodies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of names of all secondary celestial bodies in the system (default is none). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="48" column="15" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="48" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a30432a2907d4ed0c30a0085e916bb432" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</definition>
+        <argsstring>(const CelestialBody &amp;centralBody, const std::unordered_set&lt; CelestialBodyId &gt; &amp;secondaryBodies={})</argsstring>
+        <name>AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
+          <declname>centralBody</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unordered_set&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &gt; &amp;</type>
+          <declname>secondaryBodies</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> with a specified central body, and the set of all other bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>centralBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The central celestial body. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allBodies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of all secondary celestial bodies in the system (default is none). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="67" column="15" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="67" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a57038b9913cfbb8486517325bce48727" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</definition>
+        <argsstring>(const CelestialBody &amp;centralBody, const std::unordered_set&lt; CelestialBody &gt; &amp;secondaryBodies={})</argsstring>
+        <name>AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
+          <declname>centralBody</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unordered_set&lt; <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &gt; &amp;</type>
+          <declname>secondaryBodies</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> with a specified central body, and the set of all other bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>centralBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The central celestial body. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>allBodies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of all secondary celestial bodies in the system (default is none). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="83" column="15" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="83" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a55cdaf36a8e1cd734a4c8b2a4c781ee5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AstrodynamicsSystem::~AstrodynamicsSystem</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::~AstrodynamicsSystem</qualifiedname>
+        <briefdescription>
+<para>Default destructor for the <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="96" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1adc1becc2cb5c9f9ad84707f6715d6ae5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</definition>
+        <argsstring>(const AstrodynamicsSystem &amp;)=delete</argsstring>
+        <name>AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted copy constructor for the <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="101" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a40fa40ed84e93f6f77c8c65531bcb224" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+        <definition>AstrodynamicsSystem &amp; astrea::astro::AstrodynamicsSystem::operator=</definition>
+        <argsstring>(const AstrodynamicsSystem &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted assignment operator for the <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="106" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a10b7d814db91fff02a8643440195db76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</definition>
+        <argsstring>(AstrodynamicsSystem &amp;&amp;)=default</argsstring>
+        <name>AstrodynamicsSystem</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::AstrodynamicsSystem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Default move constructor for the <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="111" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1aad2901dc21347ed3264fcdce06a6cf29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+        <definition>AstrodynamicsSystem &amp; astrea::astro::AstrodynamicsSystem::operator=</definition>
+        <argsstring>(AstrodynamicsSystem &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Default move assignment operator for the <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="116" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ce4fcea44e46e2942622467ec68abb4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" kindref="member">SystemCenter</ref> &amp;</type>
+        <definition>constexpr const SystemCenter &amp; astrea::astro::AstrodynamicsSystem::get_center_type</definition>
+        <argsstring>() const</argsstring>
+        <name>get_center_type</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_center_type</qualifiedname>
+        <briefdescription>
+<para>Returns the central celestial body of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const SystemCenter&amp; The name of the central celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="133" column="34" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac16ac3ae92e94ea55a641cc4187fe611" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyId &amp; astrea::astro::AstrodynamicsSystem::get_central_body_id</definition>
+        <argsstring>() const</argsstring>
+        <name>get_central_body_id</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_central_body_id</qualifiedname>
+        <briefdescription>
+<para>Returns the central celestial body ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const CelestialBodyId&amp; The ID of the central celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="140" column="37" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyUniquePtr &amp; astrea::astro::AstrodynamicsSystem::get_central_body</definition>
+        <argsstring>() const</argsstring>
+        <name>get_central_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_central_body</qualifiedname>
+        <briefdescription>
+<para>Returns the central celestial body as a CelestialBodyUniquePtr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const CelestialBodyUniquePtr&amp; A pointer to the central celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="147" column="44" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="147" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyUniquePtr &amp; astrea::astro::AstrodynamicsSystem::get_body</definition>
+        <argsstring>(const CelestialBodyId &amp;id) const</argsstring>
+        <name>get_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_body</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Return a specific celestial body by ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the celestial body to retrieve. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const CelestialBodyUniquePtr&amp; A pointer to the celestial body with the specified ID. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="162" column="44" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="162" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref></type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyUniquePtr &amp; astrea::astro::AstrodynamicsSystem::add_body</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>add_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::add_body</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+    <requiresclause>(std::is_base_of&lt;CelestialBody, T&gt;::value)    </requiresclause>
+        <briefdescription>
+<para>Creates a celestial body of a specific type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows for the creation of celestial bodies of derived types, such as specific planets or moons. The created body is assigned to the provided astrodynamics system.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of celestial body to create, must be derived from <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The types of arguments to pass to the constructor of T. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The arguments to pass to the constructor of T. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>system</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system to which the body belongs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A unique pointer to the created <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> of type T. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="182" column="44" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="182" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a519af07fcf38260d6abe1081eb5196bb" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyUniquePtr &amp; astrea::astro::AstrodynamicsSystem::add_body</definition>
+        <argsstring>(const CelestialBodyId &amp;id)</argsstring>
+        <name>add_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::add_body</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Create a celestial body by id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the celestial body to create. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>system</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system to which the body belongs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const CelestialBodyUniquePtr&amp; A pointer to the created celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="201" column="44" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="201" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae33b967985c46f19f25654c8cae5c0eb" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyUniquePtr &amp; astrea::astro::AstrodynamicsSystem::add_body</definition>
+        <argsstring>(const CelestialBody &amp;body)</argsstring>
+        <name>add_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::add_body</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
+          <declname>body</declname>
+        </param>
+        <briefdescription>
+<para>Store manually generated celestial body. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the celestial body to create. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>system</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The astrodynamics system to which the body belongs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const CelestialBodyUniquePtr&amp; A pointer to the created celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="219" column="44" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="219" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a56e76cd7b3ee4855c828eeb88daa5bab" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref></type>
+        <definition>constexpr CelestialBodyUniquePtr astrea::astro::AstrodynamicsSystem::add_body</definition>
+        <argsstring>(const CelestialBodyId &amp;id) const</argsstring>
+        <name>add_body</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::add_body</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Create a celestial body by id (const version). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the celestial body to create. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const CelestialBodyUniquePtr&amp; A pointer to the created celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="236" column="38" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a89d7fae56574503ba714e66c4fc0f231" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">auto</ref> &amp;</type>
+        <definition>constexpr const auto &amp; astrea::astro::AstrodynamicsSystem::get_all_bodies</definition>
+        <argsstring>() const</argsstring>
+        <name>get_all_bodies</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_all_bodies</qualifiedname>
+        <briefdescription>
+<para>Returns a vector of all celestial bodies in the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::vector&lt;CelestialBodyUniquePtr&gt;&amp; A vector containing pointers to all celestial bodies in the system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="243" column="26" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="243" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ddfea046b0f23c10057c277c26ae22d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyId &amp; astrea::astro::AstrodynamicsSystem::get_system_root</definition>
+        <argsstring>() const</argsstring>
+        <name>get_system_root</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_system_root</qualifiedname>
+        <briefdescription>
+<para>Get the root object of the celestial body hierarchy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const CelestialBodyId&amp; The name of the root celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="250" column="37" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="250" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae4b7f68ae5043fd936513f0a0843359c" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref></type>
+        <definition>constexpr GravParam astrea::astro::AstrodynamicsSystem::get_mu</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mu</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_mu</qualifiedname>
+        <briefdescription>
+<para>Get the gravitational parameter (mu) of the central body. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>GravParam The gravitational parameter of the central body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="257" column="25" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="257" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7a7a59b59a0f3f337a8dd5bad28ac9b9" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <definition>constexpr const std::size_t astrea::astro::AstrodynamicsSystem::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of celestial bodies managed by this factory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::size_t The number of celestial bodies. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="272" column="33" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="272" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa6f398d68f0c39404c0fbc54da5392c9" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>constexpr void astrea::astro::AstrodynamicsSystem::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::clear</qualifiedname>
+        <briefdescription>
+<para>Clears all celestial bodies managed by this factory. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="277" column="20" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="277" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7b8a897a798b9a019e76ce26cdb44232" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">frames::solar_system_barycenter::icrf</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::solar_system_barycenter::icrf &gt; astrea::astro::AstrodynamicsSystem::get_relative_position</definition>
+        <argsstring>(const Date &amp;date, const CelestialBodyId id1, const CelestialBodyId id2) const</argsstring>
+        <name>get_relative_position</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::get_relative_position</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+          <declname>id1</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+<para>Get the relative position between two celestial bodies at a specific date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to get the relative position. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the first celestial body. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the second celestial body. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Distance, frames::solar_system_barycenter::icrf&gt; The relative position vector from id2 to id1. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="288" column="9" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.cpp" bodystart="23" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a22ffa28a2f232e5bc713e874e79f98fd" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::AstrodynamicsSystem::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::begin</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the beginning of the celestial bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the first celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="305" column="20" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="305" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa403652acda1419a84034eac53510b3d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::AstrodynamicsSystem::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::end</qualifiedname>
+        <briefdescription>
+<para>Returns an iterator to the end of the celestial bodies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>iterator An iterator to the end of the celestial bodies. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="312" column="20" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="312" bodyend="312"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a1c7da43beb4ae84d7368a268c322fba7" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref></type>
+        <definition>static constexpr AstrodynamicsSystem astrea::astro::AstrodynamicsSystem::EarthMoon</definition>
+        <argsstring>()</argsstring>
+        <name>EarthMoon</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::EarthMoon</qualifiedname>
+        <briefdescription>
+<para>Creates a default <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A default <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="123" column="42" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="123" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1a43af225a1ec84351e68a34f37bb17897" prot="private" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <definition>constexpr CelestialBodyId astrea::astro::AstrodynamicsSystem::find_common_root</definition>
+        <argsstring>(const std::unordered_set&lt; CelestialBodyId &gt; &amp;bodies)</argsstring>
+        <name>find_common_root</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::find_common_root</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unordered_set&lt; <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &gt; &amp;</type>
+          <declname>bodies</declname>
+        </param>
+        <briefdescription>
+<para>Finds the root celestial body in the hierarchy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bodies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A set of celestial body IDs to consider. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CelestialBodyId The ID of the root celestial body. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="327" column="31" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="327" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AstrodynamicsSystem_1acfebb5f95623e46c63ea7b4889b627c0" prot="private" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" kindref="member">CelestialBodyUniquePtr</ref></type>
+        <definition>constexpr CelestialBodyUniquePtr astrea::astro::AstrodynamicsSystem::create_impl</definition>
+        <argsstring>(const CelestialBodyId &amp;id) const</argsstring>
+        <name>create_impl</name>
+        <qualifiedname>astrea::astro::AstrodynamicsSystem::create_impl</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Implementation function to create a celestial body by id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id of the celestial body to create. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CelestialBodyUniquePtr A unique pointer to the created celestial body. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the celestial body ID is not implemented in the factory. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Dont judge me. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="377" column="38" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="377" bodyend="449"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a system of celestial bodies and their interactions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class manages celestial bodies, their properties, and provides methods to access them. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" line="40" column="1" bodyfile="astrea/astro/astro/systems/AstrodynamicsSystem.hpp" bodystart="40" bodyend="450"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1af369fde25873b72c5b29bf872050c4e5" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>_activeBodies</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a494b8bd09745c014e348b06f6a07827f" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>_bodies</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7fda920dbc195e8e5c4b5bc8d8e2569a" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>_centerType</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aff2474ab5a9272a9b73460e303b52528" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>_centralBody</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac4c9bf2eec3dbc6924935f35f07bbf45" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>_root</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>add_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a519af07fcf38260d6abe1081eb5196bb" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>add_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae33b967985c46f19f25654c8cae5c0eb" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>add_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a56e76cd7b3ee4855c828eeb88daa5bab" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>add_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a394297f4a62aa759a495f0290a387c86" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>AstrodynamicsSystem</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a30432a2907d4ed0c30a0085e916bb432" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>AstrodynamicsSystem</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a57038b9913cfbb8486517325bce48727" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>AstrodynamicsSystem</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1adc1becc2cb5c9f9ad84707f6715d6ae5" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>AstrodynamicsSystem</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a10b7d814db91fff02a8643440195db76" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>AstrodynamicsSystem</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a22ffa28a2f232e5bc713e874e79f98fd" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>begin</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa6f398d68f0c39404c0fbc54da5392c9" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>clear</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4f811b3ff6df15c49fe2ca0d7ea9b50e" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1acfebb5f95623e46c63ea7b4889b627c0" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>create_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a1c7da43beb4ae84d7368a268c322fba7" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>EarthMoon</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa403652acda1419a84034eac53510b3d" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>end</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a43af225a1ec84351e68a34f37bb17897" prot="private" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>find_common_root</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a89d7fae56574503ba714e66c4fc0f231" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_all_bodies</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ce4fcea44e46e2942622467ec68abb4" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_center_type</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_central_body</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac16ac3ae92e94ea55a641cc4187fe611" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_central_body_id</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae4b7f68ae5043fd936513f0a0843359c" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7b8a897a798b9a019e76ce26cdb44232" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_relative_position</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ddfea046b0f23c10057c277c26ae22d" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>get_system_root</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9b970c65733894f0f83b8d3c2d1de532" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a40fa40ed84e93f6f77c8c65531bcb224" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aad2901dc21347ed3264fcdce06a6cf29" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7a7a59b59a0f3f337a8dd5bad28ac9b9" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a55cdaf36a8e1cd734a4c8b2a4c781ee5" prot="public" virt="non-virtual"><scope>astrea::astro::AstrodynamicsSystem</scope><name>~AstrodynamicsSystem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

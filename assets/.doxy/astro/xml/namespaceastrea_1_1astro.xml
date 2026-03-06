@@ -1,0 +1,2618 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro" kind="namespace" language="C++">
+    <compoundname>astrea::astro</compoundname>
+    <innerclass refid="classastrea_1_1astro_1_1AstrodynamicsSystem" prot="public">astrea::astro::AstrodynamicsSystem</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1AtmosphericForce" prot="public">astrea::astro::AtmosphericForce</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public">astrea::astro::BodyFixedFrame</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Cartesian" prot="public">astrea::astro::Cartesian</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1CartesianPartial" prot="public">astrea::astro::CartesianPartial</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1CartesianVector" prot="public">astrea::astro::CartesianVector</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1CelestialBody" prot="public">astrea::astro::CelestialBody</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1CelestialBodyParameters" prot="public">astrea::astro::CelestialBodyParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Constellation" prot="public">astrea::astro::Constellation</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1CowellsMethod" prot="public">astrea::astro::CowellsMethod</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Cylindrical" prot="public">astrea::astro::Cylindrical</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Date" prot="public">astrea::astro::Date</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1DirectionCosineMatrix" prot="public">astrea::astro::DirectionCosineMatrix</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1DynamicFrame" prot="public">astrea::astro::DynamicFrame</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1EquationsOfMotion" prot="public">astrea::astro::EquationsOfMotion</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Equinoctial" prot="public">astrea::astro::Equinoctial</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1EquinoctialPartial" prot="public">astrea::astro::EquinoctialPartial</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1EquinoctialVop" prot="public">astrea::astro::EquinoctialVop</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Event" prot="public">astrea::astro::Event</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1EventDetector" prot="public">astrea::astro::EventDetector</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Force" prot="public">astrea::astro::Force</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1ForceModel" prot="public">astrea::astro::ForceModel</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1Frame" prot="public">astrea::astro::Frame</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1FrameReference" prot="public">astrea::astro::FrameReference</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1GeneralPerturbations" prot="public">astrea::astro::GeneralPerturbations</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Geocentric" prot="public">astrea::astro::Geocentric</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Geodetic" prot="public">astrea::astro::Geodetic</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1ImpulsiveBurn" prot="public">astrea::astro::ImpulsiveBurn</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1InertialFrame" prot="public">astrea::astro::InertialFrame</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Integrator" prot="public">astrea::astro::Integrator</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Interval" prot="public">astrea::astro::Interval</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1is__specialization" prot="public">astrea::astro::is_specialization</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4" prot="public">astrea::astro::is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1J2MeanVop" prot="public">astrea::astro::J2MeanVop</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1JplEphemerisTable" prot="public">astrea::astro::JplEphemerisTable</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1JulianDateClock" prot="public">astrea::astro::JulianDateClock</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Keplerian" prot="public">astrea::astro::Keplerian</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1KeplerianPartial" prot="public">astrea::astro::KeplerianPartial</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1KeplerianVop" prot="public">astrea::astro::KeplerianVop</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1LambertSolver" prot="public">astrea::astro::LambertSolver</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1LegendreCache" prot="public">astrea::astro::LegendreCache</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1NBodyForce" prot="public">astrea::astro::NBodyForce</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1NullEvent" prot="public">astrea::astro::NullEvent</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1NullVehicle" prot="public">astrea::astro::NullVehicle</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1OblatenessForce" prot="public">astrea::astro::OblatenessForce</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1OrbitalElementPartials" prot="public">astrea::astro::OrbitalElementPartials</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1OrbitalElements" prot="public">astrea::astro::OrbitalElements</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Payload" prot="public">astrea::astro::Payload</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1PayloadParameters" prot="public">astrea::astro::PayloadParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1PayloadPlatform" prot="public">astrea::astro::PayloadPlatform</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Plane" prot="public">astrea::astro::Plane</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Shell" prot="public">astrea::astro::Shell</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1SolarRadiationPressure" prot="public">astrea::astro::SolarRadiationPressure</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Spacecraft" prot="public">astrea::astro::Spacecraft</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Spherical" prot="public">astrea::astro::Spherical</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1State" prot="public">astrea::astro::State</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1StateHistory" prot="public">astrea::astro::StateHistory</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1StatePartial" prot="public">astrea::astro::StatePartial</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1StateTransitionMatrix" prot="public">astrea::astro::StateTransitionMatrix</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Thruster" prot="public">astrea::astro::Thruster</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1ThrusterParameters" prot="public">astrea::astro::ThrusterParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1TwoBody" prot="public">astrea::astro::TwoBody</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1TwoLineElements" prot="public">astrea::astro::TwoLineElements</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Vehicle" prot="public">astrea::astro::Vehicle</innerclass>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1detail">astrea::astro::detail</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1DOP45">astrea::astro::DOP45</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1DOP78">astrea::astro::DOP78</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames">astrea::astro::frames</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1planetary__bodies">astrea::astro::planetary_bodies</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1plotting">astrea::astro::plotting</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1RK45">astrea::astro::RK45</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1RKF45">astrea::astro::RKF45</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1RKF78">astrea::astro::RKF78</innernamespace>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" prot="public" static="no" strong="yes">
+        <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
+        <name>CelestialBodyId</name>
+        <qualifiedname>astrea::astro::CelestialBodyId</qualifiedname>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa666a87025ab0d8965e221050c8948001" prot="public">
+          <name>UNSET</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa9034a19b67bd4853d7cba104d62e0828" prot="public">
+          <name>SUN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfaa37a86c493a31ccfabadb9adc5571763" prot="public">
+          <name>MERCURY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa918eb3ec334b4715d1da9371341f1077" prot="public">
+          <name>VENUS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfab6f13830e914e2068be5c1008a124857" prot="public">
+          <name>EARTH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbface1fd186d59d80609f430b2769e7c3d6" prot="public">
+          <name>MOON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa64ccb53b02b677fb5ef0161407dcae5d" prot="public">
+          <name>MARS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfaa86a309bcf0761a1ed524826b680a0d8" prot="public">
+          <name>PHOBOS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfac5a7729c9decb8168a1fd142862f9d50" prot="public">
+          <name>DEIMOS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa9addb0a7ad564b27bee117bfc75b23cb" prot="public">
+          <name>JUPITER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa5876a2e68e78e501af08c10e65045ec5" prot="public">
+          <name>GANYMEDE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa9ea3a06a127e6556639f76d215981325" prot="public">
+          <name>CALLISTO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfacf3882f1c43ab22bff0bd9d82d83251b" prot="public">
+          <name>IO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa5b4e25fc2a0b3e751bb90310706b21bb" prot="public">
+          <name>EUROPA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa6348a2fa6ef4beea63a4d72567dc0b6f" prot="public">
+          <name>SATURN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa8084428b194f0b50108f88a36ef2db74" prot="public">
+          <name>TITAN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa51e093de8dd3840fb6415e640e758a95" prot="public">
+          <name>RHEA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa04fc32224976d17331ad28bb561b27e1" prot="public">
+          <name>IAPETUS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa7d10d97178e7bbd241a6561c570deb9d" prot="public">
+          <name>URANUS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa5c551a897bfd9d597b18a68cf5d9b71e" prot="public">
+          <name>TITANIA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa4eb757f0b57c1ec1f5ef3e7739646d1d" prot="public">
+          <name>OBERON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa9baf2ee639a37d753fec5707bd21f38a" prot="public">
+          <name>NEPTUNE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa91515d053dff929294cc54898c9c8e11" prot="public">
+          <name>TRITON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa80ae037ea9d85361e27ecbcecc247e87" prot="public">
+          <name>SOLAR_SYSTEM_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfad0351d50576a84474377af5f0a7747af" prot="public">
+          <name>MERCURY_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa8f8534a53e3211395269b9b39b702732" prot="public">
+          <name>VENUS_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa15c636029ab6dfa56a3244896bebc700" prot="public">
+          <name>EARTH_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfab696b7fec8fe62276007ca8077e5252c" prot="public">
+          <name>MARS_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfaa87ba4c2f81efb794a8e7cece6683c3b" prot="public">
+          <name>JUPITER_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa6e2fb0d62078fbbe71df7350c754396c" prot="public">
+          <name>SATURN_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfaf472195d8fb07b2f7e4447c1e18a5c46" prot="public">
+          <name>URANUS_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfac2a71793ab2ac5d4753f51e73a46b65a" prot="public">
+          <name>NEPTUNE_BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a02b1cc514e8933794539416f426a4bbfa72baef04098f035e8a320b03ad197818" prot="public">
+          <name>CUSTOM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Celestial body identifiers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/enums.hpp" line="35" column="1" bodyfile="astrea/astro/astro/types/enums.hpp" bodystart="35" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="enum" id="enums_8hpp_1aa3ba1b26155401c3153326d100e84790" prot="public" static="no" strong="yes">
+        <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
+        <name>CelestialBodyType</name>
+        <qualifiedname>astrea::astro::CelestialBodyType</qualifiedname>
+        <enumvalue id="enums_8hpp_1aa3ba1b26155401c3153326d100e84790a666a87025ab0d8965e221050c8948001" prot="public">
+          <name>UNSET</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1aa3ba1b26155401c3153326d100e84790a8ab2630ada18b94a005a0c5399d9d483" prot="public">
+          <name>STAR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1aa3ba1b26155401c3153326d100e84790a9c1da5846bffd73cec6d67eca13185d0" prot="public">
+          <name>PLANET</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1aa3ba1b26155401c3153326d100e84790ace1fd186d59d80609f430b2769e7c3d6" prot="public">
+          <name>MOON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Celestial body types. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/enums.hpp" line="80" column="1" bodyfile="astrea/astro/astro/types/enums.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="enum" id="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045d" prot="public" static="no" strong="yes">
+        <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
+        <name>SystemCenter</name>
+        <qualifiedname>astrea::astro::SystemCenter</qualifiedname>
+        <enumvalue id="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045dad7a0a0d900312e43d46757f9078951c4" prot="public">
+          <name>CENTRAL_BODY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a1a886b34cdb9dd8de76c9fe5a206045da5048c06746425e685fc00ca1600f1f77" prot="public">
+          <name>BARYCENTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>System center types. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/enums.hpp" line="85" column="1" bodyfile="astrea/astro/astro/types/enums.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="enum" id="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" prot="public" static="no" strong="yes">
+        <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
+        <name>FrameAxis</name>
+        <qualifiedname>astrea::astro::FrameAxis</qualifiedname>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" prot="public">
+          <name>ICRF</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>International Celestial Reference <ref refid="structastrea_1_1astro_1_1Frame" kindref="compound">Frame</ref> </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" prot="public">
+          <name>J2000</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mean equinox of standard epoch J2000 </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732aca186565e3fe2791d9ede6c145b53b22de" prot="public">
+          <name>BODY_FIXED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Body-fixed frame </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732acacdfe4a5ed313c123b78c17d455cfa94f" prot="public">
+          <name>LVLH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Local vertical/local horizontal frame </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732aca9421539b960fe6c40130e16792b2db90" prot="public">
+          <name>RIC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Radial/Along-track/Cross-track frame </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732aca8b46e67cff0b17fa4be90b23f1c80829" prot="public">
+          <name>VNB</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Velocity/Normal/Body frame </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="enums_8hpp_1a25307e069d9511f92f571e379d0732aca392b810f865591aa5ec210e849ae769f" prot="public">
+          <name>ENU</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Earth-North-Up frame </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Reference frames axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/enums.hpp" line="90" column="1" bodyfile="astrea/astro/astro/types/enums.hpp" bodystart="90" bodyend="105"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="DirectionCosineMatrix_8hpp_1a9f96fae9e12ee72d5f8ab49a6bc60f60" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename In_Frame_T</type>
+          </param>
+          <param>
+            <type>typename Out_Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
+        <definition>using astrea::astro::DCM = typedef DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</definition>
+        <argsstring></argsstring>
+        <name>DCM</name>
+        <qualifiedname>astrea::astro::DCM</qualifiedname>
+        <briefdescription>
+<para>Alias for <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref> with a specific output frame type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This alias simplifies the usage of <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref> by allowing the user to specify the output frame type.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Out_Frame_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to which the DCM applies. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="200" column="1" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Thruster_8hpp_1a97d4ba9efd9a45f9a91839f64383e857" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&lt; <ref refid="classastrea_1_1astro_1_1Thruster" kindref="compound">Thruster</ref> &gt;</type>
+        <definition>using astrea::astro::ThrusterPlatform = typedef PayloadPlatform&lt;Thruster&gt;</definition>
+        <argsstring></argsstring>
+        <name>ThrusterPlatform</name>
+        <qualifiedname>astrea::astro::ThrusterPlatform</qualifiedname>
+        <briefdescription>
+<para><ref refid="classastrea_1_1astro_1_1Thruster" kindref="compound">Thruster</ref> platform type definition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="122" column="1" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="CelestialBody_8hpp_1a5cf9b7aecddab4e40944aef4787144bf" prot="public" static="no">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &gt;</type>
+        <definition>using astrea::astro::CelestialBodyUniquePtr = typedef std::unique_ptr&lt;CelestialBody&gt;</definition>
+        <argsstring></argsstring>
+        <name>CelestialBodyUniquePtr</name>
+        <qualifiedname>astrea::astro::CelestialBodyUniquePtr</qualifiedname>
+        <briefdescription>
+<para>Unique pointer type for <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="479" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="479" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="JulianDateClock_8hpp_1a9cd2c18af82d89f0ac24f11106b7ccce" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="structastrea_1_1astro_1_1JulianDateClock" kindref="compound">JulianDateClock</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Duration</ref> &gt;</type>
+        <definition>using astrea::astro::JulianDateTime = typedef std::chrono::time_point&lt;JulianDateClock, Duration&gt;</definition>
+        <argsstring></argsstring>
+        <name>JulianDateTime</name>
+        <qualifiedname>astrea::astro::JulianDateTime</qualifiedname>
+        <briefdescription>
+<para>A time point type for Julian Dates, using the <ref refid="structastrea_1_1astro_1_1JulianDateClock" kindref="compound">JulianDateClock</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration type to use for the time point. This should be a duration type that is compatible with <ref refid="structastrea_1_1astro_1_1JulianDateClock" kindref="compound">JulianDateClock</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="36" column="1" bodyfile="astrea/astro/astro/time/JulianDateClock.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" prot="public" static="no">
+        <type><ref refid="structastrea_1_1astro_1_1JulianDateClock_1a9c2e49b361263c5df6adaa92e343f5cf" kindref="member">JulianDateClock::time_point</ref></type>
+        <definition>using astrea::astro::JulianDate = typedef JulianDateClock::time_point</definition>
+        <argsstring></argsstring>
+        <name>JulianDate</name>
+        <qualifiedname>astrea::astro::JulianDate</qualifiedname>
+        <briefdescription>
+<para>A type alias for Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> time points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a convenience type alias for Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> time points using the <ref refid="structastrea_1_1astro_1_1JulianDateClock" kindref="compound">JulianDateClock</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="108" column="1" bodyfile="astrea/astro/astro/time/JulianDateClock.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">uint32_t</ref></type>
+        <definition>using astrea::astro::EnumType = typedef uint32_t</definition>
+        <argsstring></argsstring>
+        <name>EnumType</name>
+        <qualifiedname>astrea::astro::EnumType</qualifiedname>
+        <briefdescription>
+<para>Type definition for enumeration types. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/enums.hpp" line="30" column="1" bodyfile="astrea/astro/astro/types/enums.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="type__traits_8hpp_1a4a1a1fabf17bbff5c1c09b527479fced" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::remove_cv_t&lt; std::remove_reference_t&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref> &gt; &gt;</type>
+        <definition>using astrea::astro::remove_cv_ref = typedef std::remove_cv_t&lt;std::remove_reference_t&lt;T&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>remove_cv_ref</name>
+        <qualifiedname>astrea::astro::remove_cv_ref</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/type_traits.hpp" line="32" column="1" bodyfile="astrea/astro/astro/types/type_traits.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>using astrea::astro::RadiusVector = typedef CartesianVector&lt;Distance, Frame_T&gt;</definition>
+        <argsstring></argsstring>
+        <name>RadiusVector</name>
+        <qualifiedname>astrea::astro::RadiusVector</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector representing a radius in 3D space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/typedefs.hpp" line="32" column="1" bodyfile="astrea/astro/astro/types/typedefs.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>using astrea::astro::VelocityVector = typedef CartesianVector&lt;Velocity, Frame_T&gt;</definition>
+        <argsstring></argsstring>
+        <name>VelocityVector</name>
+        <qualifiedname>astrea::astro::VelocityVector</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector representing velocity in 3D space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/typedefs.hpp" line="38" column="1" bodyfile="astrea/astro/astro/types/typedefs.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a4f20af7d8563fe9e30bbb8d55c3871b1" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>using astrea::astro::AccelerationVector = typedef CartesianVector&lt;Acceleration, Frame_T&gt;</definition>
+        <argsstring></argsstring>
+        <name>AccelerationVector</name>
+        <qualifiedname>astrea::astro::AccelerationVector</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector representing acceleration in 3D space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/typedefs.hpp" line="44" column="1" bodyfile="astrea/astro/astro/types/typedefs.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a41a0f1cb76a59a81b626ec2be640c910" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>using astrea::astro::UnitVector = typedef CartesianVector&lt;Unitless, Frame_T&gt;</definition>
+        <argsstring></argsstring>
+        <name>UnitVector</name>
+        <qualifiedname>astrea::astro::UnitVector</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector representing unit vectors in 3D space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is used for direction vectors that do not have units of distance, velocity, or acceleration. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/typedefs.hpp" line="52" column="1" bodyfile="astrea/astro/astro/types/typedefs.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="Payload_8hpp_1a67d3e88926ab9aa11bde4d8a69cfab31" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>const astro::RadiusVector&lt;astro::frames::dynamic::ric&gt; astrea::astro::NADIR_RIC</definition>
+        <argsstring></argsstring>
+        <name>NADIR_RIC</name>
+        <qualifiedname>astrea::astro::NADIR_RIC</qualifiedname>
+        <initializer>= { -1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="33" column="34" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="Payload_8hpp_1aaf89d96c281d5b0c828b4ed23b7f72f4" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>const astro::RadiusVector&lt;astro::frames::dynamic::ric&gt; astrea::astro::RADIAL_RIC</definition>
+        <argsstring></argsstring>
+        <name>RADIAL_RIC</name>
+        <qualifiedname>astrea::astro::RADIAL_RIC</qualifiedname>
+        <initializer>= { 1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="36" column="34" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="Payload_8hpp_1aa7f4f52f9bb2fa383a7507e4ca4097ab" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">astro::RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">astro::frames::dynamic::ric</ref> &gt;</type>
+        <definition>const astro::RadiusVector&lt;astro::frames::dynamic::ric&gt; astrea::astro::CENTER</definition>
+        <argsstring></argsstring>
+        <name>CENTER</name>
+        <qualifiedname>astrea::astro::CENTER</qualifiedname>
+        <initializer>= { 0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/Payload.hpp" line="39" column="34" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="JulianDateClock_8hpp_1a7c9a0c3832d6418dea196fe9dea63276" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> mp_units::quantity_point</type>
+        <definition>constexpr mp_units::quantity_point astrea::astro::J2K</definition>
+        <argsstring></argsstring>
+        <name>J2K</name>
+        <qualifiedname>astrea::astro::J2K</qualifiedname>
+        <initializer>= J2000</initializer>
+        <briefdescription>
+<para>A constant representing the J2000 epoch in Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> format, used as a reference point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the same as J2000 but is defined for clarity in contexts where a reference point is needed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="122" column="43" bodyfile="astrea/astro/astro/time/JulianDateClock.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="JulianDateClock_8hpp_1a8469f8bc6bd99d38771cb677ad9f90f5" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> mp_units::quantity_point</type>
+        <definition>constexpr mp_units::quantity_point astrea::astro::MJDStart</definition>
+        <argsstring></argsstring>
+        <name>MJDStart</name>
+        <qualifiedname>astrea::astro::MJDStart</qualifiedname>
+        <initializer>= MJD0</initializer>
+        <briefdescription>
+<para>A constant representing the start of the Modified Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is used as a reference point for Modified Julian Dates. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="136" column="43" bodyfile="astrea/astro/astro/time/JulianDateClock.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Value_T</type>
+          </param>
+          <param>
+            <type>class Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const CartesianVector&lt; Value_T, Frame_T &gt; &amp;state)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt; &amp;</type>
+          <declname>state</declname>
+        </param>
+    <requiresclause>(std::is_constructible&lt;Frame_T&gt;::value)    </requiresclause>
+        <briefdescription>
+<para>Overload the output stream operator for <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Frame_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to output. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The output stream. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/CartesianVector.hpp" line="465" column="1" bodyfile="astrea/astro/astro/frames/CartesianVector.hpp" bodystart="465" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="CartesianVector_8hpp_1a5c256756c16cdfbabf064991a3aa0e85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Value_T</type>
+          </param>
+          <param>
+            <type>class Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const CartesianVector&lt; Value_T, Frame_T &gt; &amp;state)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt; &amp;</type>
+          <declname>state</declname>
+        </param>
+    <requiresclause>(!std::is_constructible&lt;Frame_T&gt;::value)    </requiresclause>
+        <briefdescription>
+<para>Overload the output stream operator for <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Frame_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to output. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The output stream. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/CartesianVector.hpp" line="483" column="1" bodyfile="astrea/astro/astro/frames/CartesianVector.hpp" bodystart="483" bodyend="488"/>
+      </memberdef>
+      <memberdef kind="function" id="CartesianVector_8hpp_1adfb052a6511ec4abe6c0a17c3a098cff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Value_T</type>
+          </param>
+          <param>
+            <type>typename Value_U</type>
+          </param>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_U</ref>{}), <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>CartesianVector&lt; decltype(Value_T{} *Value_U{}), Frame_T &gt; astrea::astro::operator*</definition>
+        <argsstring>(const Value_U &amp;scalar, const CartesianVector&lt; Value_T, Frame_T &gt; &amp;vec)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+    <requiresclause>(!is_specialization&lt;Value_U, CartesianVector&gt;::value)    </requiresclause>
+        <briefdescription>
+<para>Scalar multiplication operator for <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the scalar to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to multiply. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(Value_T{} * Value_U{}), Frame_T&gt; A new <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the product of the scalar and the vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/CartesianVector.hpp" line="502" column="5" bodyfile="astrea/astro/astro/frames/CartesianVector.hpp" bodystart="502" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="CartesianVector_8hpp_1aa1735905c02a235892eca5b94e8c396e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Value_T</type>
+          </param>
+          <param>
+            <type>typename Value_U</type>
+          </param>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_U</ref>{}), <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
+        <definition>CartesianVector&lt; decltype(Value_T{} *Value_U{}), Frame_T &gt; astrea::astro::operator/</definition>
+        <argsstring>(const Value_U &amp;scalar, const CartesianVector&lt; Value_T, Frame_T &gt; &amp;vec)</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+    <requiresclause>(!is_specialization&lt;Value_U, CartesianVector&gt;::value)    </requiresclause>
+        <briefdescription>
+<para>Scalar division operator for <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the scalar to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to divide. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(Value_T{} * Value_U{}), Frame_T&gt; A new <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the quotient of the scalar and the vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/CartesianVector.hpp" line="519" column="5" bodyfile="astrea/astro/astro/frames/CartesianVector.hpp" bodystart="519" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="defined__rotations_8hpp_1adf6d85b8f4e10fd757511a437fc1e7d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+          <param>
+            <type>typename Frame_U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="DirectionCosineMatrix_8hpp_1a9f96fae9e12ee72d5f8ab49a6bc60f60" kindref="member">DCM</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_U</ref> &gt;</type>
+        <definition>DCM&lt; Frame_T, Frame_U &gt; astrea::astro::get_dcm</definition>
+        <argsstring>(const Date &amp;date)</argsstring>
+        <name>get_dcm</name>
+        <qualifiedname>astrea::astro::get_dcm</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+    <requiresclause>(Frame_T::get_axis() == FrameAxis::J2000 &amp;&amp; Frame_U::get_axis() == FrameAxis::ICRF &amp;&amp; HasSameOrigin&lt;Frame_T, Frame_U&gt;)    </requiresclause>
+        <briefdescription>
+<para>Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which to get the DCM. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>DirectionCosineMatrix&lt;Frame_T, Frame_U&gt; The DCM from Frame_U to Frame_T. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/defined_rotations.hpp" line="39" column="12" bodyfile="astrea/astro/astro/frames/instances/defined_rotations.hpp" bodystart="39" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="defined__rotations_8hpp_1a71e05c7f4e6a4924681e3bac129c6a56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref>, <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>DirectionCosineMatrix&lt; frames::earth::icrf, frames::earth::earth_fixed &gt; astrea::astro::get_dcm&lt; frames::earth::icrf, frames::earth::earth_fixed &gt;</definition>
+        <argsstring>(const Date &amp;date)</argsstring>
+        <name>get_dcm&lt; frames::earth::icrf, frames::earth::earth_fixed &gt;</name>
+        <qualifiedname>astrea::astro::get_dcm&lt; frames::earth::icrf, frames::earth::earth_fixed &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Get the Direction Cosine Matrix (DCM) for the ECEF frame at a given date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which to get the DCM. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>DirectionCosineMatrix&lt;frames::earth::icrf, frames::earth::earth_fixed&gt; The DCM from ECI to ECEF. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/instances/defined_rotations.hpp" line="39" column="12" bodyfile="astrea/astro/astro/frames/instances/defined_rotations.hpp" bodystart="59" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="DirectionCosineMatrix_8hpp_1adcee8d7b79b552689ba218860650f2e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Frame_T</type>
+          </param>
+          <param>
+            <type>typename Frame_U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="DirectionCosineMatrix_8hpp_1a9f96fae9e12ee72d5f8ab49a6bc60f60" kindref="member">DCM</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_U</ref> &gt;</type>
+        <definition>DCM&lt; Frame_T, Frame_U &gt; astrea::astro::get_dcm</definition>
+        <argsstring>(const Date &amp;date)=delete</argsstring>
+        <name>get_dcm</name>
+        <qualifiedname>astrea::astro::get_dcm</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which to get the DCM. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>DirectionCosineMatrix&lt;Frame_T, Frame_U&gt; The DCM from Frame_U to Frame_T. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="204" column="12" bodyfile="astrea/astro/astro/frames/instances/defined_rotations.hpp" bodystart="39" bodyend="49" declfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" declline="204" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Cylindrical_8cpp_1a7bb1bdbc9aeab176e9abef9477794660" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Cylindrical const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" line="169" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="169" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="Cylindrical_8cpp_1a342bcddb6e30be1223ded32829a83a81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &gt;</type>
+        <definition>std::tuple&lt; Distance, Angle, Distance &gt; astrea::astro::convert_earth_fixed_to_cylindrical</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;rEcef)</argsstring>
+        <name>convert_earth_fixed_to_cylindrical</name>
+        <qualifiedname>astrea::astro::convert_earth_fixed_to_cylindrical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <declname>rEcef</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rEcef</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius vector in ECEF coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The range, azimuth, and elevation as a tuple. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" line="180" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="180" bodyend="187" declfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" declline="287" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Cylindrical_8cpp_1a2cbda059351ba0b9d4985236f981bf78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::convert_cylindrical_to_earth_fixed</definition>
+        <argsstring>(const Distance &amp;range, const Angle &amp;azimuth, const Distance &amp;elevation)</argsstring>
+        <name>convert_cylindrical_to_earth_fixed</name>
+        <qualifiedname>astrea::astro::convert_cylindrical_to_earth_fixed</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>azimuth</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>elevation</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The range in meters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>azimuth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The azimuth in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elevation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The elevation in meters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The radius vector in ECEF coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" line="191" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.cpp" bodystart="191" bodyend="197" declfile="astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp" declline="299" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Geocentric_8cpp_1a081b362bf8354aafd7116c2fb0a9fc89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Geocentric const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" line="171" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="171" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="Geocentric_8cpp_1a9a0484d664a211bbc1b34db418eabb95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <definition>Distance astrea::astro::calculate_geocentric_radius</definition>
+        <argsstring>(const Angle &amp;lat, const Distance &amp;rEquitorial, const Distance &amp;rPolar)</argsstring>
+        <name>calculate_geocentric_radius</name>
+        <qualifiedname>astrea::astro::calculate_geocentric_radius</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rEquitorial</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rPolar</declname>
+        </param>
+        <briefdescription>
+<para>Calculate the geocentric radius given latitude and Earth&apos;s radii. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The latitude in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rEquitorial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equatorial radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rPolar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The polar radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The geocentric radius. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" line="181" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="181" bodyend="188" declfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" declline="288" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="Geocentric_8cpp_1a85da99a0c6255e5ad3efde804f3b8fe5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &gt;</type>
+        <definition>std::tuple&lt; Angle, Angle, Distance &gt; astrea::astro::convert_earth_fixed_to_geocentric</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;rEcef, const Distance &amp;rEquitorial, const Distance &amp;rPolar)</argsstring>
+        <name>convert_earth_fixed_to_geocentric</name>
+        <qualifiedname>astrea::astro::convert_earth_fixed_to_geocentric</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <declname>rEcef</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rEquitorial</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rPolar</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rEcef</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius vector in ECEF coordinates. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rEquitorial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equatorial radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rPolar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The polar radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The latitude, longitude, and altitude as a tuple. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" line="191" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="191" bodyend="207" declfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" declline="299" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Geocentric_8cpp_1afeea603ae1ec315756b4bbeb1132b350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::convert_geocentric_to_earth_fixed</definition>
+        <argsstring>(const Angle &amp;lat, const Angle &amp;lon, const Distance &amp;alt, const Distance &amp;rEquitorial, const Distance &amp;rPolar)</argsstring>
+        <name>convert_geocentric_to_earth_fixed</name>
+        <qualifiedname>astrea::astro::convert_geocentric_to_earth_fixed</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rEquitorial</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rPolar</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The latitude in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The longitude in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The altitude in meters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rEquitorial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equatorial radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rPolar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The polar radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The radius vector in ECEF coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" line="210" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="210" bodyend="217" declfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" declline="313" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Geodetic_8cpp_1aca7165379aad6cad5145a069ea939a70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Geodetic const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" line="171" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="171" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="Geodetic_8cpp_1af3dfdead8febca65ef7e4e9825747a37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &gt;</type>
+        <definition>std::tuple&lt; Angle, Angle, Distance &gt; astrea::astro::convert_earth_fixed_to_geodetic</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;rEcef, const Distance &amp;rEquitorial, const Distance &amp;rPolar)</argsstring>
+        <name>convert_earth_fixed_to_geodetic</name>
+        <qualifiedname>astrea::astro::convert_earth_fixed_to_geodetic</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <declname>rEcef</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rEquitorial</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rPolar</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rEcef</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius vector in ECEF coordinates. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rEquitorial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equatorial radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rPolar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The polar radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The latitude, longitude, and altitude as a tuple. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" line="182" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="182" bodyend="216" declfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" declline="290" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Geodetic_8cpp_1aac41db5b3a35d3c42edc500fe0b8a21b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::convert_geodetic_to_earth_fixed</definition>
+        <argsstring>(const Angle &amp;lat, const Angle &amp;lon, const Distance &amp;alt, const Distance &amp;rEquitorial, const Distance &amp;rPolar)</argsstring>
+        <name>convert_geodetic_to_earth_fixed</name>
+        <qualifiedname>astrea::astro::convert_geodetic_to_earth_fixed</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rEquitorial</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>rPolar</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The latitude in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The longitude in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The altitude in meters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rEquitorial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The equatorial radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rPolar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The polar radius of the Earth. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The radius vector in ECEF coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" line="219" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="219" bodyend="230" declfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" declline="304" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Spherical_8cpp_1adb619072cd4e58fc387c5e79759543db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Spherical const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" line="169" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="169" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="Spherical_8cpp_1a6f082e1950a39da64f8e5af73114552e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &gt;</type>
+        <definition>std::tuple&lt; Distance, Angle, Angle &gt; astrea::astro::convert_earth_fixed_to_spherical</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;rEcef)</argsstring>
+        <name>convert_earth_fixed_to_spherical</name>
+        <qualifiedname>astrea::astro::convert_earth_fixed_to_spherical</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <declname>rEcef</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rEcef</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius vector in ECEF coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The range, inclination, and azimuth as a tuple. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" line="180" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="180" bodyend="195" declfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" declline="287" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Spherical_8cpp_1a014d0f1578377ccf6bf5a8d1f8bdb890" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::convert_spherical_to_earth_fixed</definition>
+        <argsstring>(const Distance &amp;range, const Angle &amp;inclination, const Angle &amp;azimuth)</argsstring>
+        <name>convert_spherical_to_earth_fixed</name>
+        <qualifiedname>astrea::astro::convert_spherical_to_earth_fixed</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>inclination</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>azimuth</declname>
+        </param>
+        <briefdescription>
+<para>Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>azimuth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The azimuth in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inclination</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The inclination in radians. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The range in meters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The radius vector in ECEF coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" line="199" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="199" bodyend="205" declfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" declline="299" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="GeneralPerturbations_8cpp_1a34eb7ef792918b19b041d937a97cc359" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const std::optional&lt; T &gt; &amp;opt)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::optional&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref> &gt; &amp;</type>
+          <declname>opt</declname>
+        </param>
+        <briefdescription>
+<para>Overloaded output stream operator for an optional type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows printing the contents of an optional type to an output stream.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream to write to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>opt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional object to print. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The output stream after writing the optional data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp" line="39" column="1" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="GeneralPerturbations_8cpp_1afea1a131a15e5b8e16df34cfc801ac3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const GeneralPerturbations &amp;gp)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref> &amp;</type>
+          <declname>gp</declname>
+        </param>
+        <briefdescription>
+<para>Overloaded output stream operator for <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows printing the contents of a <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref> object to an output stream.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream to write to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref> object to print. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The output stream after writing the GP data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp" line="89" column="1" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp" bodystart="89" bodyend="134" declfile="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp" declline="109" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="TwoLineElements_8cpp_1a6ba6e133babad2f6070720bce372b3dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, TwoLineElements const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" line="208" column="1" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" bodystart="208" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="Cartesian_8cpp_1ae6897a698d61757913d0d99c4910d430" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Cartesian const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" line="302" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="302" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="Cartesian_8cpp_1ae9b3db85eb4638b787dc85acd3ef71b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, CartesianPartial const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" line="315" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="315" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="Equinoctial_8cpp_1ab0bb790832c72b5d0965acb864cf711a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Equinoctial const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" line="258" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="258" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="Equinoctial_8cpp_1a68be1581f0fb298064f30f6e6e47bfd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, EquinoctialPartial const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" line="271" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="271" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="Keplerian_8cpp_1afb114bcb7bd88b0d4741f4bd65f8d428" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, Keplerian const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" line="446" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="446" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="Keplerian_8cpp_1aecda095911c22b1e94277f5af37ce4f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, KeplerianPartial const &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1KeplerianPartial" kindref="compound">KeplerianPartial</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" line="459" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="459" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="OrbitalElements_8cpp_1a9193d2edd2ee163b7d939e9bfec9dfae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const OrbitalElements &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="31" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="31" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="OrbitalElements_8cpp_1abafb887785006751955c44098d9bd487" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const OrbitalElementPartials &amp;elements)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="190" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="190" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="OrbitalElements_8cpp_1acc7df027f9a87c1883ed238640219f74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::throw_mismatched_types</definition>
+        <argsstring>()</argsstring>
+        <name>throw_mismatched_types</name>
+        <qualifiedname>astrea::astro::throw_mismatched_types</qualifiedname>
+        <briefdescription>
+<para>Throws an exception for mismatched types in orbital elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to throw an exception when the types of two orbital elements do not match. <parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>with a message indicating the mismatch. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="205" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="205" bodyend="209" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="529" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="OrbitalElements_8cpp_1a908c910aefb5f75c1d4a1ceefd492789" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::nearly_equal</definition>
+        <argsstring>(const OrbitalElements &amp;first, const OrbitalElements &amp;second, bool ignoreFastVariable=false, Unitless relTol=1.0e-5 *astrea::detail::unitless)</argsstring>
+        <name>nearly_equal</name>
+        <qualifiedname>astrea::astro::nearly_equal</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <declname>second</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+          <declname>ignoreFastVariable</declname>
+          <defval><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>relTol</declname>
+          <defval>1.0e-5 *astrea::detail::unitless</defval>
+        </param>
+        <briefdescription>
+<para>Checks if two <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> objects are nearly equal. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function compares two <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> objects for equality within a specified tolerance.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>first</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> object to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>second</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> object to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreFastVariable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, ignores fast-changing variables in the comparison. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>relTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Relative tolerance for the comparison. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> objects are nearly equal </para>
+</simplesect>
+<simplesect kind="return"><para>false if the two <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> objects are not nearly equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="212" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="212" bodyend="222" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="543" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="OrbitalElements_8cpp_1ad0b2a7e642202f29c7d4da4d68c4b4f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::nearly_equal</definition>
+        <argsstring>(const OrbitalElementPartials &amp;first, const OrbitalElementPartials &amp;second, bool ignoreFastVariable=false, Unitless relTol=1.0e-5 *astrea::detail::unitless)</argsstring>
+        <name>nearly_equal</name>
+        <qualifiedname>astrea::astro::nearly_equal</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <declname>second</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+          <declname>ignoreFastVariable</declname>
+          <defval><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>relTol</declname>
+          <defval>1.0e-5 *astrea::detail::unitless</defval>
+        </param>
+        <briefdescription>
+<para>Checks if two <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> objects are nearly equal. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function compares two <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> objects for equality within a specified tolerance.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>first</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> object to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>second</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> object to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreFastVariable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, ignores fast-changing variables in the comparison. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>relTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Relative tolerance for the comparison. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> objects are nearly equal </para>
+</simplesect>
+<simplesect kind="return"><para>false if the two <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> objects are not nearly equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="224" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="224" bodyend="236" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="557" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="State_8cpp_1a6264365e7fca8e49a15cc62e3ae378e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const State &amp;state)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.cpp" line="23" column="1" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="23" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="Date_8cpp_1a63056b5050868b2f8dcdbe89bd4ed872" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; astrea::astro::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Date &amp;obj)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.cpp" line="34" column="1" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="Date_8cpp_1a5244bfb04dac3f4898fed19b9b15ef41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref></type>
+        <definition>JulianDate astrea::astro::epoch_to_julian_date</definition>
+        <argsstring>(const std::string &amp;epoch, const std::string format=&quot;%Y-%m-%d %H:%M:%S&quot;)</argsstring>
+        <name>epoch_to_julian_date</name>
+        <qualifiedname>astrea::astro::epoch_to_julian_date</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::string &amp;</type>
+          <declname>epoch</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::string</type>
+          <declname>format</declname>
+          <defval>&quot;%Y-%m-%<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">d</ref> %<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">H:</ref>%<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">M:</ref>%<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">S&quot;</ref></defval>
+        </param>
+        <briefdescription>
+<para>Convert a string representation of a date to a JulianDate object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date string to convert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The format of the date string, default is &quot;%Y-%m-%d %H:%M:%S&quot;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>JulianDate The JulianDate representation of the input date. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.cpp" line="80" column="12" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="80" bodyend="91" declfile="astrea/astro/astro/time/Date.hpp" declline="42" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Date_8cpp_1a340203ee85c903564b934f035fd71104" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::julian_date_to_sidereal_time</definition>
+        <argsstring>(const JulianDate &amp;date)</argsstring>
+        <name>julian_date_to_sidereal_time</name>
+        <qualifiedname>astrea::astro::julian_date_to_sidereal_time</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Convert a JulianDate to a string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The JulianDate to convert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The format of the output string, default is &quot;%Y-%m-%d %H:%M:%S&quot;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The string representation of the JulianDate.</para>
+</simplesect>
+<simplesect kind="note"><para>: This function uses an expantion that only works for Earth-centric sideral times. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.cpp" line="97" column="7" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="97" bodyend="123" declfile="astrea/astro/astro/time/Date.hpp" declline="53" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="JulianDateClock_8hpp_1a7689091e6acbf4fcbdd2c69022c822fd" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref></type>
+        <definition>static constexpr JulianDate astrea::astro::J2000</definition>
+        <argsstring>(JulianDateClock::duration{ 2451545.0 })</argsstring>
+        <name>J2000</name>
+        <qualifiedname>astrea::astro::J2000</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>{ 2451545.0 }</type>
+        </param>
+        <briefdescription>
+<para>A constant representing the J2000 epoch in Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a commonly used epoch in astronomy, representing January 1, 2000, at 12:00 TT. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="115" column="29" declfile="astrea/astro/astro/time/JulianDateClock.hpp" declline="115" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="JulianDateClock_8hpp_1a7d9c27f61ad00f8246715dbaa289a3ad" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref></type>
+        <definition>static constexpr JulianDate astrea::astro::MJD0</definition>
+        <argsstring>(JulianDateClock::duration{ 2400000.5 })</argsstring>
+        <name>MJD0</name>
+        <qualifiedname>astrea::astro::MJD0</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>{ 2400000.5 }</type>
+        </param>
+        <briefdescription>
+<para>A constant representing the Modified Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> epoch in Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is used as a reference point for Modified Julian Dates. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/JulianDateClock.hpp" line="129" column="29" declfile="astrea/astro/astro/time/JulianDateClock.hpp" declline="129" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="variant__util_8hpp_1aa38abfa35ca406c322cd7faa9df214bf" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename VariantType</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t</type>
+            <declname>index</declname>
+            <defname>index</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> std::size_t</type>
+        <definition>constexpr std::size_t astrea::astro::get_variant_index</definition>
+        <argsstring>()</argsstring>
+        <name>get_variant_index</name>
+        <qualifiedname>astrea::astro::get_variant_index</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/types/variant_util.hpp" line="29" column="23" bodyfile="astrea/astro/astro/types/variant_util.hpp" bodystart="29" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="conversions_8cpp_1ac80b0a4d0bacce9eb1ac886684388534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::convert_mean_anomaly_to_true_anomaly</definition>
+        <argsstring>(const Angle &amp;ma, const Unitless ecc)</argsstring>
+        <name>convert_mean_anomaly_to_true_anomaly</name>
+        <qualifiedname>astrea::astro::convert_mean_anomaly_to_true_anomaly</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>ma</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>ecc</declname>
+        </param>
+        <briefdescription>
+<para>Convert the mean anomaly to the true anomaly. Accurate to O(e^4). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The mean anomaly. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The eccentricity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The true anomaly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/conversions.cpp" line="31" column="7" bodyfile="astrea/astro/astro/utilities/conversions.cpp" bodystart="31" bodyend="36" declfile="astrea/astro/astro/utilities/conversions.hpp" declline="37" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="conversions_8cpp_1a79dc81181b4000c8d3b46f2bdf7dd8a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::convert_true_anomaly_to_mean_anomaly</definition>
+        <argsstring>(const Angle &amp;ta, const Unitless ecc)</argsstring>
+        <name>convert_true_anomaly_to_mean_anomaly</name>
+        <qualifiedname>astrea::astro::convert_true_anomaly_to_mean_anomaly</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>ta</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>ecc</declname>
+        </param>
+        <briefdescription>
+<para>Convert the true anomaly to the mean anomaly. Accurate to O(e^5). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true anomaly. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The eccentricity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Angle The mean anomaly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/conversions.cpp" line="38" column="7" bodyfile="astrea/astro/astro/utilities/conversions.cpp" bodystart="38" bodyend="43" declfile="astrea/astro/astro/utilities/conversions.hpp" declline="46" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="conversions_8cpp_1a3257ff758d137d323e4f3265aed57f16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::convert_eccentric_anomaly_to_mean_anomaly</definition>
+        <argsstring>(const Angle &amp;ea, const Unitless ecc)</argsstring>
+        <name>convert_eccentric_anomaly_to_mean_anomaly</name>
+        <qualifiedname>astrea::astro::convert_eccentric_anomaly_to_mean_anomaly</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>ea</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>ecc</declname>
+        </param>
+        <briefdescription>
+<para>Convert the eccentric anomaly to the mean anomaly. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ea</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The eccentric anomaly. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The eccentricity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mean anomaly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/conversions.cpp" line="45" column="7" bodyfile="astrea/astro/astro/utilities/conversions.cpp" bodystart="45" bodyend="48" declfile="astrea/astro/astro/utilities/conversions.hpp" declline="55" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="conversions_8cpp_1a5c4739e3dee4cbf738b3b51a0744b086" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::convert_mean_anomaly_to_eccentric_anomaly</definition>
+        <argsstring>(const Angle &amp;ma, const Unitless ecc)</argsstring>
+        <name>convert_mean_anomaly_to_eccentric_anomaly</name>
+        <qualifiedname>astrea::astro::convert_mean_anomaly_to_eccentric_anomaly</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>ma</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <declname>ecc</declname>
+        </param>
+        <briefdescription>
+<para>Convert the mean anomaly to the eccentric anomaly using Newton&apos;s method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The mean anomaly. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The eccentricity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The eccentric anomaly. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/conversions.cpp" line="50" column="7" bodyfile="astrea/astro/astro/utilities/conversions.cpp" bodystart="50" bodyend="62" declfile="astrea/astro/astro/utilities/conversions.hpp" declline="64" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="conversions_8hpp_1ab18e7fb3eef1e17d28e9b6ad61b18247" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <definition>constexpr Angle astrea::astro::wrap_angle</definition>
+        <argsstring>(const Angle &amp;angle)</argsstring>
+        <name>wrap_angle</name>
+        <qualifiedname>astrea::astro::wrap_angle</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+<para>Sanitize an angle to ensure it is within the range [0, 2π). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ang</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle to sanitize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The sanitized angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/conversions.hpp" line="72" column="17" bodyfile="astrea/astro/astro/utilities/conversions.hpp" bodystart="72" bodyend="79"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/astro.fwd.hpp" line="24" column="1"/>
+  </compounddef>
+</doxygen>

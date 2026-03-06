@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classastrea_1_1utilities_1_1ProgressBar" kind="class"><name>astrea::utilities::ProgressBar</name>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" kind="variable"><name>_iRecord</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a556bdc84970272ca4ef9a2d8e4a6a8a7" kind="variable"><name>_maxRecords</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a384c85f6e35db0c46abd6faf08f5c32a" kind="variable"><name>_title</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a6cce95a6045ba69bd5bc2ee70d92c862" kind="variable"><name>_frequency</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a8042b6be95e293eca2ca2961cbb1e898" kind="variable"><name>_barWidth</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1ac10c4461855e6cb74e9ba3f0b2d2ca2a" kind="function"><name>ProgressBar</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a9a54091a2bee38f6c6e9555457c85cac" kind="function"><name>~ProgressBar</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1ad251e46f091c9556e6ff52c86fa2f0f1" kind="function"><name>reset</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a2877b448dbe830dca1a334ca269ab0ce" kind="function"><name>get_progress</name></member>
+    <member refid="classastrea_1_1utilities_1_1ProgressBar_1a1bae9d81e9fc865f1b050434cf5ec80e" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
+  </compound>
+  <compound refid="namespaceastrea_1_1utilities" kind="namespace"><name>astrea::utilities</name>
+    <member refid="json__util_8cpp_1a06454dd252d0f1c19b78af3a093339e1" kind="function"><name>clean_entry</name></member>
+    <member refid="json__util_8cpp_1a47b5ce4b93047917ed631bdb8fdc0d58" kind="function"><name>extract_string_from_json</name></member>
+    <member refid="json__util_8cpp_1a6fcb83cb6fecbeddaeb69ac43a4cd844" kind="function"><name>extract_optional_string_from_json</name></member>
+    <member refid="json__util_8hpp_1a4f73a8c26db65fa6db072a0d31d17006" kind="function"><name>extract_from_json</name></member>
+    <member refid="json__util_8hpp_1a82d9f58dce61694efbdeedaec890eddf" kind="function"><name>extract_optional_from_json</name></member>
+    <member refid="string__util_8cpp_1a455229793d7b30219c70666cdb047d1d" kind="function"><name>trim</name></member>
+    <member refid="string__util_8cpp_1af336411da30b885e2d9c0bb75e020108" kind="function"><name>replace_all</name></member>
+    <member refid="string__util_8cpp_1a3011ed6748a7ac802536103c65071708" kind="function"><name>split</name></member>
+    <member refid="string__util_8hpp_1a6c60e71575b555b414c005ce01ad7e85" kind="function"><name>get_type_name</name></member>
+  </compound>
+  <compound refid="json__util_8cpp" kind="file"><name>json_util.cpp</name>
+  </compound>
+  <compound refid="json__util_8hpp" kind="file"><name>json_util.hpp</name>
+  </compound>
+  <compound refid="ProgressBar_8hpp" kind="file"><name>ProgressBar.hpp</name>
+  </compound>
+  <compound refid="string__util_8cpp" kind="file"><name>string_util.cpp</name>
+  </compound>
+  <compound refid="string__util_8hpp" kind="file"><name>string_util.hpp</name>
+  </compound>
+  <compound refid="utilities_8hpp" kind="file"><name>utilities.hpp</name>
+  </compound>
+  <compound refid="dir_b5324400686b7cece921533bb760c87a" kind="dir"><name>astrea</name>
+  </compound>
+  <compound refid="dir_bc3eec91113c7b4aa38cf4b314cc4587" kind="dir"><name>astrea/utilities</name>
+  </compound>
+  <compound refid="dir_e80a6df966dae334846d11eed150d587" kind="dir"><name>astrea/utilities/utilities</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1LambertSolver" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::LambertSolver</compoundname>
+    <includes refid="LambertSolver_8hpp" local="no">LambertSolver.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" prot="public" static="no" strong="yes">
+        <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
+        <name>OrbitDirection</name>
+        <qualifiedname>astrea::astro::LambertSolver::OrbitDirection</qualifiedname>
+        <enumvalue id="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2a1ee0f30979e2366505675979781ffc7e" prot="public">
+          <name>PROGRADE</name>
+          <briefdescription>
+<para>Prograde orbit. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2a7f3084031d29e0b3e503b044f9550eba" prot="public">
+          <name>RETROGRADE</name>
+          <briefdescription>
+<para>Retrograde orbit. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enum class for orbit direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="56" column="5" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="56" bodyend="59"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LambertSolver_1a60ab768e95219097a1d8e20875edfc6c" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <definition>constexpr unsigned astrea::astro::LambertSolver::ITER_MAX</definition>
+        <argsstring></argsstring>
+        <name>ITER_MAX</name>
+        <qualifiedname>astrea::astro::LambertSolver::ITER_MAX</qualifiedname>
+        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e4</ref></initializer>
+        <briefdescription>
+<para>Maximum number of iterations for the solver. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="90" column="31" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LambertSolver_1af1ade25f3c7902709aa8c4b274a23f39" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <definition>constexpr Unitless astrea::astro::LambertSolver::TOL</definition>
+        <argsstring></argsstring>
+        <name>TOL</name>
+        <qualifiedname>astrea::astro::LambertSolver::TOL</qualifiedname>
+        <initializer>= 1.0e-12 * mp_units::one</initializer>
+        <briefdescription>
+<para>Tolerance for convergence. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="91" column="31" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a2cc5b21875510ad2e64140ae8f14f048" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::LambertSolver::LambertSolver</definition>
+        <argsstring>()=delete</argsstring>
+        <name>LambertSolver</name>
+        <qualifiedname>astrea::astro::LambertSolver::LambertSolver</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor for <ref refid="classastrea_1_1astro_1_1LambertSolver" kindref="compound">LambertSolver</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor is deleted to prevent instantiation of the <ref refid="classastrea_1_1astro_1_1LambertSolver" kindref="compound">LambertSolver</ref> class. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="44" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1adb680ebdd451338df34a9b79fcd988d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::LambertSolver::~LambertSolver</definition>
+        <argsstring>()=delete</argsstring>
+        <name>~LambertSolver</name>
+        <qualifiedname>astrea::astro::LambertSolver::~LambertSolver</qualifiedname>
+        <briefdescription>
+<para>Deleted destructor for <ref refid="classastrea_1_1astro_1_1LambertSolver" kindref="compound">LambertSolver</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This destructor is deleted to prevent destruction of the <ref refid="classastrea_1_1astro_1_1LambertSolver" kindref="compound">LambertSolver</ref> class. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="51" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a32dca7a4f6e4f33bbefae9e7fb89fa38" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref></type>
+        <definition>Cartesian astrea::astro::LambertSolver::solve</definition>
+        <argsstring>(const Cartesian &amp;state0, const Time &amp;dt, const GravParam &amp;mu)</argsstring>
+        <name>solve</name>
+        <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <declname>state0</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <declname>mu</declname>
+        </param>
+        <briefdescription>
+<para>Solve Lambert&apos;s problem for a given initial and final state. Returns the minimum energy solution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial state (position and velocity) of the spacecraft. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time of flight. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gravitational parameter of the central body. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The final state (position and velocity) of the spacecraft. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="69" column="22" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.cpp" bodystart="41" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1adece1a5ccca241b61a7547ef07175f06" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;, <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &gt;</type>
+        <definition>std::pair&lt; VelocityVector&lt; frames::earth::icrf &gt;, VelocityVector&lt; frames::earth::icrf &gt; &gt; astrea::astro::LambertSolver::solve</definition>
+        <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r0, const RadiusVector&lt; frames::earth::icrf &gt; &amp;rf, const Time &amp;dt, const GravParam &amp;mu, const OrbitDirection &amp;direction)</argsstring>
+        <name>solve</name>
+        <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>r0</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>rf</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>Solve Lambert&apos;s problem for a given initial and final state. Returns the minimum energy solution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial position of the spacecraft. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The final position of the spacecraft. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time of flight. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gravitational parameter of the central body. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The direction of the orbit (prograde or retrograde). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pair of velocity vectors (initial and final) for the spacecraft. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="81" column="22" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.cpp" bodystart="105" bodyend="172"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1adb96de44ab62d2db76ca643990253cfe" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::pair&lt; Unitless, Unitless &gt; astrea::astro::LambertSolver::evaluate_stumpff</definition>
+        <argsstring>(const Unitless &amp;z)</argsstring>
+        <name>evaluate_stumpff</name>
+        <qualifiedname>astrea::astro::LambertSolver::evaluate_stumpff</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Evaluate the Stumpff functions for a given input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pair of Stumpff function values (Cz, Sz). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="99" column="22" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.cpp" bodystart="174" bodyend="193"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for solving Lambert&apos;s problem. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides methods for solving Lambert&apos;s problem, which involves finding the orbital trajectory between two points in space given certain initial conditions. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="37" column="1" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="37" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1adb96de44ab62d2db76ca643990253cfe" prot="private" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>evaluate_stumpff</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1a60ab768e95219097a1d8e20875edfc6c" prot="private" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>ITER_MAX</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1a2cc5b21875510ad2e64140ae8f14f048" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>LambertSolver</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>OrbitDirection</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1a32dca7a4f6e4f33bbefae9e7fb89fa38" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>solve</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1adece1a5ccca241b61a7547ef07175f06" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>solve</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1af1ade25f3c7902709aa8c4b274a23f39" prot="private" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>TOL</name></member>
+      <member refid="classastrea_1_1astro_1_1LambertSolver_1adb680ebdd451338df34a9b79fcd988d0" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver</scope><name>~LambertSolver</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

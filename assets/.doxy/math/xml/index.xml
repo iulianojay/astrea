@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
+  </compound>
+  <compound refid="namespaceastrea_1_1math" kind="namespace"><name>astrea::math</name>
+    <member refid="chebyshev__util_8cpp_1adb42d1a1a90d1ad5b89756a63d0a77b8" kind="function"><name>transform_from_chebyshev_range</name></member>
+    <member refid="chebyshev__util_8cpp_1a208a3cc00e488950b86d68df6cb335ff" kind="function"><name>transform_to_chebyshev_range</name></member>
+    <member refid="chebyshev__util_8hpp_1a3b6ccd571167e37d5c26fc48f09acbca" kind="function"><name>evaluate_chebyshev_polynomial</name></member>
+    <member refid="chebyshev__util_8hpp_1a6f8cc99d0d1c06c4edd92ba2e76b9e13" kind="function"><name>evaluate_chebyshev_polynomial</name></member>
+    <member refid="chebyshev__util_8hpp_1a44cbb86b2b6565d4f7642e74a47d5544" kind="function"><name>evaluate_chebyshev_derivative</name></member>
+    <member refid="chebyshev__util_8hpp_1a7324c7f63605c578c5920e6cb1b8dfdf" kind="function"><name>evaluate_chebyshev_derivative</name></member>
+    <member refid="interpolation_8hpp_1af6eaced75303a49434ca76f7ad1b7e5e" kind="function"><name>interpolate</name></member>
+    <member refid="interpolation_8hpp_1af3c9b6602f67f818cf234c9c6938b1e1" kind="function"><name>fast_interpolate</name></member>
+    <member refid="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" kind="function"><name>nearly_equal</name></member>
+    <member refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" kind="function"><name>max</name></member>
+    <member refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kind="function"><name>min</name></member>
+    <member refid="operations_8hpp_1adc9044b1a14396423314549f7a14a144" kind="function"><name>pow</name></member>
+    <member refid="trig_8hpp_1a19cc70ec319a907c374f8ac988b4db4b" kind="function"><name>sinc</name></member>
+    <member refid="trig_8hpp_1a3b85c702df84b8462a853006fdd76d0c" kind="function"><name>cosh</name></member>
+    <member refid="trig_8hpp_1a3e370c308e3a6e00e61243ff4b4f80bb" kind="function"><name>sinh</name></member>
+    <member refid="trig_8hpp_1a7441ac3de7e390dd6ca1960e63c01eee" kind="function"><name>cyl_bessel_j</name></member>
+    <member refid="trig_8hpp_1a15e82cd47191247ee10408c938e42a60" kind="function"><name>assoc_legendre</name></member>
+    <member refid="trig_8hpp_1afb4d7a968d43b5c732112833f4133b80" kind="function"><name>atan3</name></member>
+  </compound>
+  <compound refid="chebyshev__util_8cpp" kind="file"><name>chebyshev_util.cpp</name>
+  </compound>
+  <compound refid="chebyshev__util_8hpp" kind="file"><name>chebyshev_util.hpp</name>
+  </compound>
+  <compound refid="interpolation_8cpp" kind="file"><name>interpolation.cpp</name>
+  </compound>
+  <compound refid="interpolation_8hpp" kind="file"><name>interpolation.hpp</name>
+  </compound>
+  <compound refid="math_8hpp" kind="file"><name>math.hpp</name>
+  </compound>
+  <compound refid="operations_8hpp" kind="file"><name>operations.hpp</name>
+  </compound>
+  <compound refid="trig_8hpp" kind="file"><name>trig.hpp</name>
+  </compound>
+  <compound refid="dir_b5324400686b7cece921533bb760c87a" kind="dir"><name>astrea</name>
+  </compound>
+  <compound refid="dir_450de47f4bf9646ba641743528a4ea64" kind="dir"><name>astrea/math</name>
+  </compound>
+  <compound refid="dir_b2ecf34ed687fe8e79818a2ecae6cd69" kind="dir"><name>astrea/math/math</name>
+  </compound>
+</doxygenindex>

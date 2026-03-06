@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_1a50007be9f0149ab221abcea88ff37f" kind="dir">
+    <compoundname>astrea/astro/astro/state/angular_elements/instances</compoundname>
+    <innerfile refid="Cylindrical_8cpp">Cylindrical.cpp</innerfile>
+    <innerfile refid="Cylindrical_8hpp">Cylindrical.hpp</innerfile>
+    <innerfile refid="Geocentric_8cpp">Geocentric.cpp</innerfile>
+    <innerfile refid="Geocentric_8hpp">Geocentric.hpp</innerfile>
+    <innerfile refid="Geodetic_8cpp">Geodetic.cpp</innerfile>
+    <innerfile refid="Geodetic_8hpp">Geodetic.hpp</innerfile>
+    <innerfile refid="Spherical_8cpp">Spherical.cpp</innerfile>
+    <innerfile refid="Spherical_8hpp">Spherical.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/angular_elements/instances/"/>
+  </compounddef>
+</doxygen>

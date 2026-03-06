@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</compoundname>
+    <includes refid="Date_8hpp" local="no">Date.hpp</includes>
+    <templateparamlist>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a37460f6e699a2ebf960e5e4defec8b21" prot="public" static="no">
+        <type>long double</type>
+        <definition>using mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::rep =  long double</definition>
+        <argsstring></argsstring>
+        <name>rep</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::rep</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="273" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="273" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a7a725b8168c2eb0a1a34f087af28b594" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::reference</qualifiedname>
+        <initializer>= non_si::day</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="269" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a9277da33ffd3f9a933cfe354c651faef" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::point_origin</definition>
+        <argsstring></argsstring>
+        <name>point_origin</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::point_origin</qualifiedname>
+        <initializer>= astrea::astro::J2K</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="270" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a5e2ef30d470b76eedb4397ba807edef0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::explicit_import</definition>
+        <argsstring></argsstring>
+        <name>explicit_import</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::explicit_import</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="271" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="271" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ac8f6709955f4c2d800da02402cf588de" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::explicit_export</definition>
+        <argsstring></argsstring>
+        <name>explicit_export</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::explicit_export</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="272" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="272" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a2c7255fa40dacf84e342ddf065eb738e" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr rep</type>
+        <definition>static constexpr rep mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::to_numerical_value</definition>
+        <argsstring>(astrea::astro::Date date)</argsstring>
+        <name>to_numerical_value</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::to_numerical_value</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">astrea::astro::Date</ref></type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="274" column="26" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="274" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ade3f8b426d278abbbeaec5a8a733974a" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">astrea::astro::Date</ref></type>
+        <definition>static constexpr astrea::astro::Date mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::from_numerical_value</definition>
+        <argsstring>(rep v)</argsstring>
+        <name>from_numerical_value</name>
+        <qualifiedname>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;::from_numerical_value</qualifiedname>
+        <param>
+          <type>rep</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="275" column="42" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="275" bodyend="280"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Specialization of mp_units::quantity_point_like_traits for the Date class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This specialization provides the necessary traits for using Date with mp-units. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/time/Date.hpp" line="268" column="1" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="268" bodyend="281"/>
+    <listofallmembers>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ac8f6709955f4c2d800da02402cf588de" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>explicit_export</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a5e2ef30d470b76eedb4397ba807edef0" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>explicit_import</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ade3f8b426d278abbbeaec5a8a733974a" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>from_numerical_value</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a9277da33ffd3f9a933cfe354c651faef" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>point_origin</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a7a725b8168c2eb0a1a34f087af28b594" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>reference</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a37460f6e699a2ebf960e5e4defec8b21" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>rep</name></member>
+      <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a2c7255fa40dacf84e342ddf065eb738e" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>to_numerical_value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,128 @@
+
+
+# File Equinoctial.hpp
+
+
+
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Equinoctial.hpp**](Equinoctial_8hpp.md)
+
+[Go to the source code of this file](Equinoctial_8hpp_source.md)
+
+_This file defines the Equinoctial class and its associated methods._ [More...](#detailed-description)
+
+* `#include <iosfwd>`
+* `#include <units/units.hpp>`
+* `#include <astro/astro.fwd.hpp>`
+* `#include <astro/types/typedefs.hpp>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Namespaces
+
+| Type | Name |
+| ---: | :--- |
+| namespace | [**astrea**](namespaceastrea.md) <br> |
+| namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+
+
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| class | [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) <br>_The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represents the equinoctial orbital elements._ |
+| class | [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) <br>_Class representing a partial derivative of an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Detailed Description
+
+
+
+
+**Author:**
+
+Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com)) 
+
+
+
+
+**Date:**
+
+2025-08-02
+
+
+
+
+**Copyright:**
+
+Copyright (c) 2025 Jay Iuliano
+
+
+The GNU Lesser General Public License (LGPL)
+
+
+This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/). 
+
+
+    
+
+------------------------------
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp`
+

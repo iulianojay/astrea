@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1ForceModel" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::ForceModel</compoundname>
+    <includes refid="ForceModel_8hpp" local="no">ForceModel.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1ForceModel_1a527ebe7d86a8c6bd86ce41e8ed5e8ccb" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1Force" kindref="compound">Force</ref> &gt; &gt;</type>
+        <definition>std::unordered_map&lt;std::string, std::unique_ptr&lt;Force&gt; &gt; astrea::astro::ForceModel::forces</definition>
+        <argsstring></argsstring>
+        <name>forces</name>
+        <qualifiedname>astrea::astro::ForceModel::forces</qualifiedname>
+        <briefdescription>
+<para>Map of force models by name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="106" column="24" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::ForceModel::ForceModel</definition>
+        <argsstring>()=default</argsstring>
+        <name>ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="45" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::ForceModel::~ForceModel</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::~ForceModel</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="50" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::astro::ForceModel::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::astro::ForceModel::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of forces added to the <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t Number of forces. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="57" column="17" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ab50906c010cf935cf3b91e8576b45e2c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref></type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1Force" kindref="compound">Force</ref> &gt; &amp;</type>
+        <definition>const std::unique_ptr&lt; Force &gt; &amp; astrea::astro::ForceModel::add</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>add</name>
+        <qualifiedname>astrea::astro::ForceModel::add</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref> &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Adds a force model of type T with the given arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the force model to add </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Types of the arguments for the constructor of T </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Arguments to pass to the constructor of T </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const std::unique_ptr&lt;Force&gt;&amp; Reference to the added force model </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="68" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="68" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a8a05a25b8a2bdb32e878f3bd6b939b26" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <definition>AccelerationVector&lt; frames::earth::icrf &gt; astrea::astro::ForceModel::compute_forces</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
+        <name>compute_forces</name>
+        <qualifiedname>astrea::astro::ForceModel::compute_forces</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the total force on a vehicle by summing the forces from all added force models. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector of the vehicle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> object representing the spacecraft </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="typedefs_8hpp_1a4f20af7d8563fe9e30bbb8d55c3871b1" kindref="member">AccelerationVector&lt;frames::earth::icrf&gt;</ref> The total computed acceleration vector from all force models. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="82" column="21" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="28" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a1c5a5c5ffa70cce6f6f0cb426085084c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1Force" kindref="compound">Force</ref> &gt; &amp;</type>
+        <definition>const std::unique_ptr&lt; Force &gt; &amp; astrea::astro::ForceModel::at</definition>
+        <argsstring>(const std::string &amp;name) const</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::astro::ForceModel::at</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a force model by name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the force model to retrieve </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const std::unique_ptr&lt;Force&gt;&amp; Reference to the force model with the given name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="90" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a10686ea1957a62218636ef3b377e94b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1Force" kindref="compound">Force</ref> &gt; &amp;</type>
+        <definition>const std::unique_ptr&lt; Force &gt; &amp; astrea::astro::ForceModel::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <qualifiedname>astrea::astro::ForceModel::get</qualifiedname>
+        <briefdescription>
+<para>Retrieves a force model by type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the force model to retrieve </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const std::unique_ptr&lt;Force&gt;&amp; Reference to the force model of type T. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="99" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="99" bodyend="103"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class to manage multiple force models and compute the total force on a vehicle. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class allows adding different force models, computing the total force on a vehicle, and retrieving specific force models by name or type. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="40" column="1" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="40" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1ab50906c010cf935cf3b91e8576b45e2c" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>add</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a1c5a5c5ffa70cce6f6f0cb426085084c" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>at</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a8a05a25b8a2bdb32e878f3bd6b939b26" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>compute_forces</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a527ebe7d86a8c6bd86ce41e8ed5e8ccb" prot="private" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a10686ea1957a62218636ef3b377e94b8" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>get</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>~ForceModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

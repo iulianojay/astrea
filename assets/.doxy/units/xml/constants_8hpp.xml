@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="constants_8hpp" kind="file" language="C++">
+    <compoundname>constants.hpp</compoundname>
+    <includes local="no">mp-units/systems/angular.h</includes>
+    <includes local="no">mp-units/systems/si.h</includes>
+    <includes refid="detail_8hpp" local="no">units/detail.hpp</includes>
+    <includes refid="typedefs_8hpp" local="no">units/typedefs.hpp</includes>
+    <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/units/units/constants.hpp</label>
+        <link refid="constants_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>units/custom.hpp</label>
+        <link refid="custom_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>units/detail.hpp</label>
+        <link refid="detail_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>array</label>
+      </node>
+      <node id="10">
+        <label>mp-units/ext/format.h</label>
+      </node>
+      <node id="2">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="6">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="3">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/units/units/constants.hpp</label>
+        <link refid="constants_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <briefdescription>
+<para>Contains definitions for constant values used in astrea. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="detail_8hpp" kindref="compound">units/detail.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="typedefs_8hpp" kindref="compound">units/typedefs.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kindref="member">Velocity</ref><sp/>speed_of_light_in_vacuum<sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::speed_of_light_in_vacuum;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>boltzmann_constant<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::boltzmann_constant;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>PI<sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>TWO_PI<sp/>=<sp/>2.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit&gt;<sp/>n_pi(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mag<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;detail::unitless&gt;<sp/>n_pi_mag(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mag<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::unitless);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/units/units/constants.hpp"/>
+  </compounddef>
+</doxygen>

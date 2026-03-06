@@ -1,0 +1,779 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea" kind="namespace" language="C++">
+    <compoundname>astrea</compoundname>
+    <innerclass refid="structastrea_1_1EarthRadii" prot="public">astrea::EarthRadii</innerclass>
+    <innerclass refid="structastrea_1_1JulianCentury" prot="public">astrea::JulianCentury</innerclass>
+    <innernamespace refid="namespaceastrea_1_1detail">astrea::detail</innernamespace>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="time_8hpp_1a0d37b40890ae4cdb604d24c5ebc0f369" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::nano &gt;</type>
+        <definition>using astrea::nanoseconds = typedef std::chrono::duration&lt;double, std::nano&gt;</definition>
+        <argsstring></argsstring>
+        <name>nanoseconds</name>
+        <qualifiedname>astrea::nanoseconds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="26" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1af257e36981f50afc08a8477da7393aff" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::micro &gt;</type>
+        <definition>using astrea::microseconds = typedef std::chrono::duration&lt;double, std::micro&gt;</definition>
+        <argsstring></argsstring>
+        <name>microseconds</name>
+        <qualifiedname>astrea::microseconds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="29" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1a78c82c98686748f9ec1e49930557f75c" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::milli &gt;</type>
+        <definition>using astrea::milliseconds = typedef std::chrono::duration&lt;double, std::milli&gt;</definition>
+        <argsstring></argsstring>
+        <name>milliseconds</name>
+        <qualifiedname>astrea::milliseconds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="32" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1aba7af4c5cebd5c230888eb04f9d609de" prot="public" static="no">
+        <type>std::chrono::duration&lt; double &gt;</type>
+        <definition>using astrea::seconds = typedef std::chrono::duration&lt;double&gt;</definition>
+        <argsstring></argsstring>
+        <name>seconds</name>
+        <qualifiedname>astrea::seconds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="35" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1a7a86a50c1b2259b6cde821a6b87cd359" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 60 &gt; &gt;</type>
+        <definition>using astrea::minutes = typedef std::chrono::duration&lt;double, std::ratio&lt;60&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>minutes</name>
+        <qualifiedname>astrea::minutes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="38" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1a4d7522d4aef314be5fff1574fbaeae9c" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 3600 &gt; &gt;</type>
+        <definition>using astrea::hours = typedef std::chrono::duration&lt;double, std::ratio&lt;3600&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>hours</name>
+        <qualifiedname>astrea::hours</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="41" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1a3489500b71118d4dd3c263ad6a9748ad" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 86400 &gt; &gt;</type>
+        <definition>using astrea::days = typedef std::chrono::duration&lt;double, std::ratio&lt;86400&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>days</name>
+        <qualifiedname>astrea::days</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="44" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1af782e5059767701614e4a77eb89ad86c" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 604800 &gt; &gt;</type>
+        <definition>using astrea::weeks = typedef std::chrono::duration&lt;double, std::ratio&lt;604800&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>weeks</name>
+        <qualifiedname>astrea::weeks</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="47" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1a2d34af24e4f8a522ada1eec5f4d88739" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 2629746 &gt; &gt;</type>
+        <definition>using astrea::months = typedef std::chrono::duration&lt;double, std::ratio&lt;2629746&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>months</name>
+        <qualifiedname>astrea::months</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="50" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="time_8hpp_1acffad12990452bf56a7321374347f301" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::ratio&lt; 31556952 &gt; &gt;</type>
+        <definition>using astrea::years = typedef std::chrono::duration&lt;double, std::ratio&lt;31556952&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>years</name>
+        <qualifiedname>astrea::years</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/time.hpp" line="53" column="1" bodyfile="astrea/units/units/time.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a83dc69de0788f82a8e7bb522aa4cffc8" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit &gt;</type>
+        <definition>using astrea::Distance = typedef mp_units::quantity&lt;detail::distance_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Distance</name>
+        <qualifiedname>astrea::Distance</qualifiedname>
+        <briefdescription>
+<para>Definition for a distance quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="34" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::angle_unit &gt;</type>
+        <definition>using astrea::Angle = typedef mp_units::quantity&lt;detail::angle_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Angle</name>
+        <qualifiedname>astrea::Angle</qualifiedname>
+        <briefdescription>
+<para>Definition for an angle quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="39" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a80ad3651d734badc1e6eabbb50920ee6" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless &gt;</type>
+        <definition>using astrea::Unitless = typedef mp_units::quantity&lt;detail::unitless&gt;</definition>
+        <argsstring></argsstring>
+        <name>Unitless</name>
+        <qualifiedname>astrea::Unitless</qualifiedname>
+        <briefdescription>
+<para>Definition for a unitless quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="44" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a226a4fe21c911c15a3ef55b516bd844b" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::mass_unit &gt;</type>
+        <definition>using astrea::Mass = typedef mp_units::quantity&lt;detail::mass_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Mass</name>
+        <qualifiedname>astrea::Mass</qualifiedname>
+        <briefdescription>
+<para>Definition for a mass quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="49" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1adf54634ce27335f274cb7964a9acc29a" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::time_unit &gt;</type>
+        <definition>using astrea::Time = typedef mp_units::quantity&lt;detail::time_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Time</name>
+        <qualifiedname>astrea::Time</qualifiedname>
+        <briefdescription>
+<para>Definition for a time quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="54" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1af58a833f041d25ea6255a02051a0f5d6" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::minor_distance_unit &gt;</type>
+        <definition>using astrea::Length = typedef mp_units::quantity&lt;detail::minor_distance_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Length</name>
+        <qualifiedname>astrea::Length</qualifiedname>
+        <briefdescription>
+<para>Definition for a length quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="59" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit/detail::time_unit &gt;</type>
+        <definition>using astrea::Velocity = typedef mp_units::quantity&lt;detail::distance_unit / detail::time_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Velocity</name>
+        <qualifiedname>astrea::Velocity</qualifiedname>
+        <briefdescription>
+<para>Definition for a velocity quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="64" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1add26e42ea0d4ab93db2165d32c27507b" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::mass_unit *detail::distance_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
+        <definition>using astrea::Thrust = typedef mp_units::quantity&lt;detail::mass_unit * detail::distance_unit / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Thrust</name>
+        <qualifiedname>astrea::Thrust</qualifiedname>
+        <briefdescription>
+<para>Definition for a thrust quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="69" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit *detail::distance_unit/detail::time_unit &gt;</type>
+        <definition>using astrea::SpecificAngularMomentum = typedef mp_units::quantity&lt;detail::distance_unit * detail::distance_unit / detail::time_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>SpecificAngularMomentum</name>
+        <qualifiedname>astrea::SpecificAngularMomentum</qualifiedname>
+        <briefdescription>
+<para>Definition for a specific angular momentum quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="74" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless/detail::time_unit &gt;</type>
+        <definition>using astrea::UnitlessPerTime = typedef mp_units::quantity&lt;detail::unitless / detail::time_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>UnitlessPerTime</name>
+        <qualifiedname>astrea::UnitlessPerTime</qualifiedname>
+        <briefdescription>
+<para>Definition for a unitless per time quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="79" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ad24b50d5093d22d03e87f24ab6fec82e" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::angle_unit/detail::time_unit &gt;</type>
+        <definition>using astrea::AngularRate = typedef mp_units::quantity&lt;detail::angle_unit / detail::time_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>AngularRate</name>
+        <qualifiedname>astrea::AngularRate</qualifiedname>
+        <briefdescription>
+<para>Definition for an angular rate quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="84" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au &gt;</type>
+        <definition>using astrea::InterplanetaryDistance = typedef mp_units::quantity&lt;mp_units::iau::unit_symbols::au&gt;</definition>
+        <argsstring></argsstring>
+        <name>InterplanetaryDistance</name>
+        <qualifiedname>astrea::InterplanetaryDistance</qualifiedname>
+        <briefdescription>
+<para>Definition for a interplanetary distance quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="89" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
+        <definition>using astrea::InterplanetaryVelocity = typedef mp_units::quantity&lt;mp_units::iau::unit_symbols::au / JulianCentury&gt;</definition>
+        <argsstring></argsstring>
+        <name>InterplanetaryVelocity</name>
+        <qualifiedname>astrea::InterplanetaryVelocity</qualifiedname>
+        <briefdescription>
+<para>Definition for a body-related velocity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="94" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
+        <definition>using astrea::BodyUnitlessPerTime = typedef mp_units::quantity&lt;detail::unitless / JulianCentury&gt;</definition>
+        <argsstring></argsstring>
+        <name>BodyUnitlessPerTime</name>
+        <qualifiedname>astrea::BodyUnitlessPerTime</qualifiedname>
+        <briefdescription>
+<para>Definition for a body-related unitless per time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="99" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ae8e9482d3995212c0b8fa98fcb734f97" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::angle_unit/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
+        <definition>using astrea::BodyAngularRate = typedef mp_units::quantity&lt;detail::angle_unit / JulianCentury&gt;</definition>
+        <argsstring></argsstring>
+        <name>BodyAngularRate</name>
+        <qualifiedname>astrea::BodyAngularRate</qualifiedname>
+        <briefdescription>
+<para>Definition for a body-related angular rate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="104" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
+        <definition>using astrea::Acceleration = typedef mp_units::quantity&lt;detail::distance_unit / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Acceleration</name>
+        <qualifiedname>astrea::Acceleration</qualifiedname>
+        <briefdescription>
+<para>Definition for an acceleration quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="109" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a49c0f81b5fe521da1e62e403bdf2a2f0" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::pow&lt; 2 &gt;(detail::minor_distance_unit)&gt;</type>
+        <definition>using astrea::SurfaceArea = typedef mp_units::quantity&lt;mp_units::pow&lt;2&gt;(detail::minor_distance_unit)&gt;</definition>
+        <argsstring></argsstring>
+        <name>SurfaceArea</name>
+        <qualifiedname>astrea::SurfaceArea</qualifiedname>
+        <briefdescription>
+<para>Definition for a surface area quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="114" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::pow&lt; 3 &gt;(detail::distance_unit)/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
+        <definition>using astrea::GravParam = typedef mp_units::quantity&lt;mp_units::pow&lt;3&gt;(detail::distance_unit) / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+        <argsstring></argsstring>
+        <name>GravParam</name>
+        <qualifiedname>astrea::GravParam</qualifiedname>
+        <briefdescription>
+<para>Definition for a gravitational parameter quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="119" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/mp_units::non_si::day &gt;</type>
+        <definition>using astrea::MeanMotion = typedef mp_units::quantity&lt;mp_units::one / mp_units::non_si::day&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeanMotion</name>
+        <qualifiedname>astrea::MeanMotion</qualifiedname>
+        <briefdescription>
+<para>Definition for a mean motion quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="124" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 2 &gt;(mp_units::non_si::day)&gt;</type>
+        <definition>using astrea::MeanMotion1stDer = typedef mp_units::quantity&lt;mp_units::one / mp_units::pow&lt;2&gt;(mp_units::non_si::day)&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeanMotion1stDer</name>
+        <qualifiedname>astrea::MeanMotion1stDer</qualifiedname>
+        <briefdescription>
+<para>Definition for a mean motion 1st derivative quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="129" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 3 &gt;(mp_units::non_si::day)&gt;</type>
+        <definition>using astrea::MeanMotion2ndDer = typedef mp_units::quantity&lt;mp_units::one / mp_units::pow&lt;3&gt;(mp_units::non_si::day)&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeanMotion2ndDer</name>
+        <qualifiedname>astrea::MeanMotion2ndDer</qualifiedname>
+        <briefdescription>
+<para>Definition for a mean motion 2nd derivative quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="134" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/<ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref> &gt;</type>
+        <definition>using astrea::BallisticCoefficient = typedef mp_units::quantity&lt;mp_units::one / EarthRadii&gt;</definition>
+        <argsstring></argsstring>
+        <name>BallisticCoefficient</name>
+        <qualifiedname>astrea::BallisticCoefficient</qualifiedname>
+        <briefdescription>
+<para>Definition for a ballistic coefficient quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="139" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1adeb1e00b883988fa442d91794120d4d4" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::mass_unit/(mp_units::pow&lt; 3 &gt;(detail::minor_distance_unit))&gt;</type>
+        <definition>using astrea::Density = typedef mp_units::quantity&lt;detail::mass_unit / (mp_units::pow&lt;3&gt;(detail::minor_distance_unit))&gt;</definition>
+        <argsstring></argsstring>
+        <name>Density</name>
+        <qualifiedname>astrea::Density</qualifiedname>
+        <briefdescription>
+<para>Definition for a density quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="144" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit &gt;</type>
+        <definition>using astrea::Altitude = typedef mp_units::quantity&lt;detail::distance_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Altitude</name>
+        <qualifiedname>astrea::Altitude</qualifiedname>
+        <briefdescription>
+<para>Definition for an altitude quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="149" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless &gt;</type>
+        <definition>using astrea::Gain = typedef mp_units::quantity&lt;detail::unitless&gt;</definition>
+        <argsstring></argsstring>
+        <name>Gain</name>
+        <qualifiedname>astrea::Gain</qualifiedname>
+        <briefdescription>
+<para>Definition for a gain quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="154" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless &gt;</type>
+        <definition>using astrea::SNR = typedef mp_units::quantity&lt;detail::unitless&gt;</definition>
+        <argsstring></argsstring>
+        <name>SNR</name>
+        <qualifiedname>astrea::SNR</qualifiedname>
+        <briefdescription>
+<para>Definition for a signal-to-noise ratio quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="159" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless &gt;</type>
+        <definition>using astrea::CNR = typedef mp_units::quantity&lt;detail::unitless&gt;</definition>
+        <argsstring></argsstring>
+        <name>CNR</name>
+        <qualifiedname>astrea::CNR</qualifiedname>
+        <briefdescription>
+<para>Definition for a carrier-to-noise ratio quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="164" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a01cc8d7d30ac9c26daab314649c3da6b" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::frequency_unit &gt;</type>
+        <definition>using astrea::Frequency = typedef mp_units::quantity&lt;detail::frequency_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Frequency</name>
+        <qualifiedname>astrea::Frequency</qualifiedname>
+        <briefdescription>
+<para>Definition for a frequency quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="169" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::power_unit &gt;</type>
+        <definition>using astrea::Power = typedef mp_units::quantity&lt;detail::power_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Power</name>
+        <qualifiedname>astrea::Power</qualifiedname>
+        <briefdescription>
+<para>Definition for a power quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="174" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1af99fa3aadb99aaca6b321fb00bd335ae" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::power_unit/mp_units::pow&lt; 2 &gt;(detail::minor_distance_unit)&gt;</type>
+        <definition>using astrea::PowerFluxDensity = typedef mp_units::quantity&lt;detail::power_unit / mp_units::pow&lt;2&gt;(detail::minor_distance_unit)&gt;</definition>
+        <argsstring></argsstring>
+        <name>PowerFluxDensity</name>
+        <qualifiedname>astrea::PowerFluxDensity</qualifiedname>
+        <briefdescription>
+<para>Definition for a power flux density quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="179" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" prot="public" static="no">
+        <type>mp_units::quantity_point&lt; detail::temperature_unit &gt;</type>
+        <definition>using astrea::Temperature = typedef mp_units::quantity_point&lt;detail::temperature_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Temperature</name>
+        <qualifiedname>astrea::Temperature</qualifiedname>
+        <briefdescription>
+<para>Definition for a temperature quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="184" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::pressure_unit &gt;</type>
+        <definition>using astrea::Pressure = typedef mp_units::quantity&lt;detail::pressure_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Pressure</name>
+        <qualifiedname>astrea::Pressure</qualifiedname>
+        <briefdescription>
+<para>Definition for a pressure quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="189" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a69094a31176660b3d043a59db85d06c3" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::force_unit *detail::minor_distance_unit &gt;</type>
+        <definition>using astrea::Moment = typedef mp_units::quantity&lt;detail::force_unit * detail::minor_distance_unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>Moment</name>
+        <qualifiedname>astrea::Moment</qualifiedname>
+        <briefdescription>
+<para>Definition for a moment quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/typedefs.hpp" line="194" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="194" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="constants_8hpp_1ae2529f1aa430f2dbfd071a8511a78310" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kindref="member">Velocity</ref></type>
+        <definition>constexpr Velocity astrea::speed_of_light_in_vacuum</definition>
+        <argsstring></argsstring>
+        <name>speed_of_light_in_vacuum</name>
+        <qualifiedname>astrea::speed_of_light_in_vacuum</qualifiedname>
+        <initializer>= 1.0 * mp_units::si::si2019::speed_of_light_in_vacuum</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="29" column="20" bodyfile="astrea/units/units/constants.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8hpp_1a8abc18858e1a30c20ea4e3f484dbbc22" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::boltzmann_constant</definition>
+        <argsstring></argsstring>
+        <name>boltzmann_constant</name>
+        <qualifiedname>astrea::boltzmann_constant</qualifiedname>
+        <initializer>= 1.0 * mp_units::si::si2019::boltzmann_constant</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="30" column="16" bodyfile="astrea/units/units/constants.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
+        <definition>constexpr Angle astrea::PI</definition>
+        <argsstring></argsstring>
+        <name>PI</name>
+        <qualifiedname>astrea::PI</qualifiedname>
+        <initializer>= 1.0 * (mp_units::mag&lt;mp_units::pi&gt; * detail::angle_unit)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="32" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
+        <definition>constexpr Angle astrea::TWO_PI</definition>
+        <argsstring></argsstring>
+        <name>TWO_PI</name>
+        <qualifiedname>astrea::TWO_PI</qualifiedname>
+        <initializer>= 2.0 * (mp_units::mag&lt;mp_units::pi&gt; * detail::angle_unit)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="33" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1a1db3e4744ff3357fcbf011bceea7edc3" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1JulianCentury" kindref="compound">astrea::JulianCentury</ref></type>
+        <definition>astrea::JulianCentury astrea::JulianCentury</definition>
+        <argsstring></argsstring>
+        <name>JulianCentury</name>
+        <qualifiedname>astrea::JulianCentury</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="32" column="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1a3765810844841cc68bb66ec2f0f9d61b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1EarthRadii" kindref="compound">astrea::EarthRadii</ref></type>
+        <definition>astrea::EarthRadii astrea::EarthRadii</definition>
+        <argsstring></argsstring>
+        <name>EarthRadii</name>
+        <qualifiedname>astrea::EarthRadii</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="39" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr mp_units::quantity&lt; mp_units::mag&lt; mp_units::pi &gt; *detail::angle_unit &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; mp_units::mag&lt; mp_units::pi &gt; *detail::angle_unit &gt; astrea::n_pi</definition>
+        <argsstring>(const double &amp;mag)</argsstring>
+        <name>n_pi</name>
+        <qualifiedname>astrea::n_pi</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="35" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr mp_units::quantity&lt; detail::unitless &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; detail::unitless &gt; astrea::n_pi_mag</definition>
+        <argsstring>(const double &amp;mag)</argsstring>
+        <name>n_pi_mag</name>
+        <qualifiedname>astrea::n_pi_mag</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/constants.hpp" line="40" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="40" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/units/units/constants.hpp" line="27" column="1"/>
+  </compounddef>
+</doxygen>

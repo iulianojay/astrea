@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="typedefs_8hpp" kind="file" language="C++">
+    <compoundname>typedefs.hpp</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">mp-units/ext/format.h</includes>
+    <includes refid="custom_8hpp" local="no">units/custom.hpp</includes>
+    <includes refid="detail_8hpp" local="no">units/detail.hpp</includes>
+    <includedby refid="constants_8hpp" local="no">astrea/units/units/constants.hpp</includedby>
+    <includedby refid="hash_8hpp" local="no">astrea/units/units/hash.hpp</includedby>
+    <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>units/custom.hpp</label>
+        <link refid="custom_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>units/detail.hpp</label>
+        <link refid="detail_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/units/units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+      <node id="4">
+        <label>mp-units/ext/format.h</label>
+      </node>
+      <node id="6">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="8">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="9">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>astrea/units/units/constants.hpp</label>
+        <link refid="constants_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/units/units/hash.hpp</label>
+        <link refid="hash_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/units/units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <briefdescription>
+<para>Type definitions for astrea units. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/ext/format.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="custom_8hpp" kindref="compound">units/custom.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="detail_8hpp" kindref="compound">units/detail.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="typedefs_8hpp_1a83dc69de0788f82a8e7bb522aa4cffc8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a83dc69de0788f82a8e7bb522aa4cffc8" kindref="member">Distance</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit&gt;;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>=<sp/>mp_units::quantity&lt;detail::angle_unit&gt;;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="typedefs_8hpp_1a80ad3651d734badc1e6eabbb50920ee6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a80ad3651d734badc1e6eabbb50920ee6" kindref="member">Unitless</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless&gt;;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="typedefs_8hpp_1a226a4fe21c911c15a3ef55b516bd844b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a226a4fe21c911c15a3ef55b516bd844b" kindref="member">Mass</ref><sp/>=<sp/>mp_units::quantity&lt;detail::mass_unit&gt;;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="typedefs_8hpp_1adf54634ce27335f274cb7964a9acc29a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1adf54634ce27335f274cb7964a9acc29a" kindref="member">Time</ref><sp/>=<sp/>mp_units::quantity&lt;detail::time_unit&gt;;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="typedefs_8hpp_1af58a833f041d25ea6255a02051a0f5d6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1af58a833f041d25ea6255a02051a0f5d6" kindref="member">Length</ref><sp/>=<sp/>mp_units::quantity&lt;detail::minor_distance_unit&gt;;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kindref="member">Velocity</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit<sp/>/<sp/>detail::time_unit&gt;;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="typedefs_8hpp_1add26e42ea0d4ab93db2165d32c27507b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1add26e42ea0d4ab93db2165d32c27507b" kindref="member">Thrust</ref><sp/>=<sp/>mp_units::quantity&lt;detail::mass_unit<sp/>*<sp/>detail::distance_unit<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::time_unit)&gt;;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" kindref="member">SpecificAngularMomentum</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit<sp/>*<sp/>detail::distance_unit<sp/>/<sp/>detail::time_unit&gt;;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" kindref="member">UnitlessPerTime</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless<sp/>/<sp/>detail::time_unit&gt;;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="typedefs_8hpp_1ad24b50d5093d22d03e87f24ab6fec82e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ad24b50d5093d22d03e87f24ab6fec82e" kindref="member">AngularRate</ref><sp/>=<sp/>mp_units::quantity&lt;detail::angle_unit<sp/>/<sp/>detail::time_unit&gt;;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" kindref="member">InterplanetaryDistance</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::iau::unit_symbols::au&gt;;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" kindref="member">InterplanetaryVelocity</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::iau::unit_symbols::au<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" kindref="member">BodyUnitlessPerTime</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="typedefs_8hpp_1ae8e9482d3995212c0b8fa98fcb734f97" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ae8e9482d3995212c0b8fa98fcb734f97" kindref="member">BodyAngularRate</ref><sp/>=<sp/>mp_units::quantity&lt;detail::angle_unit<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" kindref="member">Acceleration</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::time_unit)&gt;;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="typedefs_8hpp_1a49c0f81b5fe521da1e62e403bdf2a2f0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a49c0f81b5fe521da1e62e403bdf2a2f0" kindref="member">SurfaceArea</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::pow&lt;2&gt;(detail::minor_distance_unit)&gt;;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" kindref="member">GravParam</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::pow&lt;3&gt;(detail::distance_unit)<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::time_unit)&gt;;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" kindref="member">MeanMotion</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>mp_units::non_si::day&gt;;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" kindref="member">MeanMotion1stDer</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>mp_units::pow&lt;2&gt;(mp_units::non_si::day)&gt;;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" kindref="member">MeanMotion2ndDer</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>mp_units::pow&lt;3&gt;(mp_units::non_si::day)&gt;;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" kindref="member">BallisticCoefficient</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref>&gt;;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="typedefs_8hpp_1adeb1e00b883988fa442d91794120d4d4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1adeb1e00b883988fa442d91794120d4d4" kindref="member">Density</ref><sp/>=<sp/>mp_units::quantity&lt;detail::mass_unit<sp/>/<sp/>(mp_units::pow&lt;3&gt;(detail::minor_distance_unit))&gt;;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" kindref="member">Altitude</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit&gt;;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154" refid="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" kindref="member">Gain</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless&gt;;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" kindref="member">SNR</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless&gt;;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" kindref="member">CNR</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless&gt;;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="typedefs_8hpp_1a01cc8d7d30ac9c26daab314649c3da6b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a01cc8d7d30ac9c26daab314649c3da6b" kindref="member">Frequency</ref><sp/>=<sp/>mp_units::quantity&lt;detail::frequency_unit&gt;;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" kindref="member">Power</ref><sp/>=<sp/>mp_units::quantity&lt;detail::power_unit&gt;;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="typedefs_8hpp_1af99fa3aadb99aaca6b321fb00bd335ae" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1af99fa3aadb99aaca6b321fb00bd335ae" kindref="member">PowerFluxDensity</ref><sp/>=<sp/>mp_units::quantity&lt;detail::power_unit<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::minor_distance_unit)&gt;;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" kindref="member">Temperature</ref><sp/>=<sp/>mp_units::quantity_point&lt;detail::temperature_unit&gt;;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" kindref="member">Pressure</ref><sp/>=<sp/>mp_units::quantity&lt;detail::pressure_unit&gt;;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="typedefs_8hpp_1a69094a31176660b3d043a59db85d06c3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a69094a31176660b3d043a59db85d06c3" kindref="member">Moment</ref><sp/>=<sp/>mp_units::quantity&lt;detail::force_unit<sp/>*<sp/>detail::minor_distance_unit&gt;;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/units/units/typedefs.hpp"/>
+  </compounddef>
+</doxygen>

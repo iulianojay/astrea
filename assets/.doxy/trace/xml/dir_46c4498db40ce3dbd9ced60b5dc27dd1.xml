@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_46c4498db40ce3dbd9ced60b5dc27dd1" kind="dir">
+    <compoundname>astrea/trace/trace/analysis</compoundname>
+    <innerdir refid="dir_6faad7806a2c60f21e03829ae6b33a05">astrea/trace/trace/analysis/plots</innerdir>
+    <innerdir refid="dir_d68b2e53ed12ccd9980273f79a385518">astrea/trace/trace/analysis/stats</innerdir>
+    <innerfile refid="AccessAnalyzer_8cpp">AccessAnalyzer.cpp</innerfile>
+    <innerfile refid="AccessAnalyzer_8hpp">AccessAnalyzer.hpp</innerfile>
+    <innerfile refid="PositionCache_8cpp">PositionCache.cpp</innerfile>
+    <innerfile refid="PositionCache_8hpp">PositionCache.hpp</innerfile>
+    <innerfile refid="SpatialIndex_8cpp">SpatialIndex.cpp</innerfile>
+    <innerfile refid="SpatialIndex_8hpp">SpatialIndex.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_d7d302d432d8a6ab561803ec6eec1eed" kind="dir">
+    <compoundname>astrea/snapshot/snapshot</compoundname>
+    <innerdir refid="dir_51ef3faf157d043087a4594bebbd2397">astrea/snapshot/snapshot/database</innerdir>
+    <innerdir refid="dir_aa0888f3e9fa4d362dbefaddf806e79b">astrea/snapshot/snapshot/drivers</innerdir>
+    <innerdir refid="dir_e3fe50636e6aa25df3bf26a0e7917672">astrea/snapshot/snapshot/http-queries</innerdir>
+    <innerdir refid="dir_13e0f381fe8815c377e6396c5412a0a3">astrea/snapshot/snapshot/types</innerdir>
+    <innerfile refid="snapshot_8hpp">snapshot.hpp</innerfile>
+    <innerfile refid="snapshot_8macros_8hpp">snapshot.macros.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/snapshot/snapshot/"/>
+  </compounddef>
+</doxygen>

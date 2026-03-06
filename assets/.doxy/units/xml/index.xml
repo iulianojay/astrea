@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="structastrea_1_1EarthRadii" kind="struct"><name>astrea::EarthRadii</name>
+  </compound>
+  <compound refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4" kind="struct"><name>std::hash&lt; mp_units::quantity&lt; R, Rep &gt; &gt;</name>
+    <member refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4_1a7b343438f202d35cda910fb6ba60567e" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structastrea_1_1JulianCentury" kind="struct"><name>astrea::JulianCentury</name>
+  </compound>
+  <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
+    <member refid="time_8hpp_1a0d37b40890ae4cdb604d24c5ebc0f369" kind="typedef"><name>nanoseconds</name></member>
+    <member refid="time_8hpp_1af257e36981f50afc08a8477da7393aff" kind="typedef"><name>microseconds</name></member>
+    <member refid="time_8hpp_1a78c82c98686748f9ec1e49930557f75c" kind="typedef"><name>milliseconds</name></member>
+    <member refid="time_8hpp_1aba7af4c5cebd5c230888eb04f9d609de" kind="typedef"><name>seconds</name></member>
+    <member refid="time_8hpp_1a7a86a50c1b2259b6cde821a6b87cd359" kind="typedef"><name>minutes</name></member>
+    <member refid="time_8hpp_1a4d7522d4aef314be5fff1574fbaeae9c" kind="typedef"><name>hours</name></member>
+    <member refid="time_8hpp_1a3489500b71118d4dd3c263ad6a9748ad" kind="typedef"><name>days</name></member>
+    <member refid="time_8hpp_1af782e5059767701614e4a77eb89ad86c" kind="typedef"><name>weeks</name></member>
+    <member refid="time_8hpp_1a2d34af24e4f8a522ada1eec5f4d88739" kind="typedef"><name>months</name></member>
+    <member refid="time_8hpp_1acffad12990452bf56a7321374347f301" kind="typedef"><name>years</name></member>
+    <member refid="typedefs_8hpp_1a83dc69de0788f82a8e7bb522aa4cffc8" kind="typedef"><name>Distance</name></member>
+    <member refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kind="typedef"><name>Angle</name></member>
+    <member refid="typedefs_8hpp_1a80ad3651d734badc1e6eabbb50920ee6" kind="typedef"><name>Unitless</name></member>
+    <member refid="typedefs_8hpp_1a226a4fe21c911c15a3ef55b516bd844b" kind="typedef"><name>Mass</name></member>
+    <member refid="typedefs_8hpp_1adf54634ce27335f274cb7964a9acc29a" kind="typedef"><name>Time</name></member>
+    <member refid="typedefs_8hpp_1af58a833f041d25ea6255a02051a0f5d6" kind="typedef"><name>Length</name></member>
+    <member refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kind="typedef"><name>Velocity</name></member>
+    <member refid="typedefs_8hpp_1add26e42ea0d4ab93db2165d32c27507b" kind="typedef"><name>Thrust</name></member>
+    <member refid="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" kind="typedef"><name>SpecificAngularMomentum</name></member>
+    <member refid="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" kind="typedef"><name>UnitlessPerTime</name></member>
+    <member refid="typedefs_8hpp_1ad24b50d5093d22d03e87f24ab6fec82e" kind="typedef"><name>AngularRate</name></member>
+    <member refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" kind="typedef"><name>InterplanetaryDistance</name></member>
+    <member refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" kind="typedef"><name>InterplanetaryVelocity</name></member>
+    <member refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" kind="typedef"><name>BodyUnitlessPerTime</name></member>
+    <member refid="typedefs_8hpp_1ae8e9482d3995212c0b8fa98fcb734f97" kind="typedef"><name>BodyAngularRate</name></member>
+    <member refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" kind="typedef"><name>Acceleration</name></member>
+    <member refid="typedefs_8hpp_1a49c0f81b5fe521da1e62e403bdf2a2f0" kind="typedef"><name>SurfaceArea</name></member>
+    <member refid="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" kind="typedef"><name>GravParam</name></member>
+    <member refid="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" kind="typedef"><name>MeanMotion</name></member>
+    <member refid="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" kind="typedef"><name>MeanMotion1stDer</name></member>
+    <member refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" kind="typedef"><name>MeanMotion2ndDer</name></member>
+    <member refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" kind="typedef"><name>BallisticCoefficient</name></member>
+    <member refid="typedefs_8hpp_1adeb1e00b883988fa442d91794120d4d4" kind="typedef"><name>Density</name></member>
+    <member refid="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" kind="typedef"><name>Altitude</name></member>
+    <member refid="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" kind="typedef"><name>Gain</name></member>
+    <member refid="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" kind="typedef"><name>SNR</name></member>
+    <member refid="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" kind="typedef"><name>CNR</name></member>
+    <member refid="typedefs_8hpp_1a01cc8d7d30ac9c26daab314649c3da6b" kind="typedef"><name>Frequency</name></member>
+    <member refid="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" kind="typedef"><name>Power</name></member>
+    <member refid="typedefs_8hpp_1af99fa3aadb99aaca6b321fb00bd335ae" kind="typedef"><name>PowerFluxDensity</name></member>
+    <member refid="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" kind="typedef"><name>Temperature</name></member>
+    <member refid="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" kind="typedef"><name>Pressure</name></member>
+    <member refid="typedefs_8hpp_1a69094a31176660b3d043a59db85d06c3" kind="typedef"><name>Moment</name></member>
+    <member refid="constants_8hpp_1ae2529f1aa430f2dbfd071a8511a78310" kind="variable"><name>speed_of_light_in_vacuum</name></member>
+    <member refid="constants_8hpp_1a8abc18858e1a30c20ea4e3f484dbbc22" kind="variable"><name>boltzmann_constant</name></member>
+    <member refid="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" kind="variable"><name>PI</name></member>
+    <member refid="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" kind="variable"><name>TWO_PI</name></member>
+    <member refid="custom_8hpp_1a1db3e4744ff3357fcbf011bceea7edc3" kind="variable"><name>JulianCentury</name></member>
+    <member refid="custom_8hpp_1a3765810844841cc68bb66ec2f0f9d61b" kind="variable"><name>EarthRadii</name></member>
+    <member refid="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" kind="function"><name>n_pi</name></member>
+    <member refid="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" kind="function"><name>n_pi_mag</name></member>
+  </compound>
+  <compound refid="namespaceastrea_1_1detail" kind="namespace"><name>astrea::detail</name>
+    <member refid="detail_8hpp_1a2ce65f5df709391fd0f27f5dac5a2a0c" kind="variable"><name>time_unit</name></member>
+    <member refid="detail_8hpp_1af9e85dbf6ea8b2d7eea371ebc82dc03e" kind="variable"><name>distance_unit</name></member>
+    <member refid="detail_8hpp_1a0b63bcd484a8fc903300356605e4d0bc" kind="variable"><name>minor_distance_unit</name></member>
+    <member refid="detail_8hpp_1ab7a236fdfbd27a0ff06c2d3371443c61" kind="variable"><name>angle_unit</name></member>
+    <member refid="detail_8hpp_1af4d95065a5d7f98d7b612741d489da41" kind="variable"><name>mass_unit</name></member>
+    <member refid="detail_8hpp_1ad1a9390502c4bdf63981fca270fc9216" kind="variable"><name>unitless</name></member>
+    <member refid="detail_8hpp_1acae49779c0dd2e12a76deb5dab5cceec" kind="variable"><name>power_unit</name></member>
+    <member refid="detail_8hpp_1aeef7b4bcd211fd8743db04b6a68fa53e" kind="variable"><name>frequency_unit</name></member>
+    <member refid="detail_8hpp_1a9919691090d2172bb25de9ecf39a922b" kind="variable"><name>temperature_unit</name></member>
+    <member refid="detail_8hpp_1acd0e3762b1144aaf30d5b8f84a962ede" kind="variable"><name>pressure_unit</name></member>
+    <member refid="detail_8hpp_1a186a9501654682b48e7e0f982000f640" kind="variable"><name>force_unit</name></member>
+  </compound>
+  <compound refid="namespacemp__units" kind="namespace"><name>mp_units</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="constants_8hpp" kind="file"><name>constants.hpp</name>
+  </compound>
+  <compound refid="custom_8hpp" kind="file"><name>custom.hpp</name>
+  </compound>
+  <compound refid="detail_8hpp" kind="file"><name>detail.hpp</name>
+  </compound>
+  <compound refid="hash_8hpp" kind="file"><name>hash.hpp</name>
+  </compound>
+  <compound refid="time_8hpp" kind="file"><name>time.hpp</name>
+  </compound>
+  <compound refid="typedefs_8hpp" kind="file"><name>typedefs.hpp</name>
+  </compound>
+  <compound refid="units_8hpp" kind="file"><name>units.hpp</name>
+  </compound>
+  <compound refid="dir_b5324400686b7cece921533bb760c87a" kind="dir"><name>astrea</name>
+  </compound>
+  <compound refid="dir_69ee7df8d286dff8402d348058eb58eb" kind="dir"><name>astrea/units</name>
+  </compound>
+  <compound refid="dir_8ace873b55bc88b2d1a73a241bbdd96b" kind="dir"><name>astrea/units/units</name>
+  </compound>
+</doxygenindex>

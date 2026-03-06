@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_dce17fbadb9e43f0864b0608daddb5e0" kind="dir">
+    <compoundname>astrea/astro/astro/state/orbital_data_formats</compoundname>
+    <innerdir refid="dir_8b2b76eceb189c78e8c8535df8f613d6">astrea/astro/astro/state/orbital_data_formats/instances</innerdir>
+    <innerfile refid="orbital__data__formats_8hpp">orbital_data_formats.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/orbital_data_formats/"/>
+  </compounddef>
+</doxygen>

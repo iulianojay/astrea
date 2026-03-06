@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="chebyshev__util_8hpp" kind="file" language="C++">
+    <compoundname>chebyshev_util.hpp</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">stdexcept</includes>
+    <includedby refid="chebyshev__util_8cpp" local="no">astrea/math/math/chebyshev_util.cpp</includedby>
+    <includedby refid="math_8hpp" local="no">astrea/math/math/math.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/math/math/chebyshev_util.hpp</label>
+        <link refid="chebyshev__util_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+      <node id="3">
+        <label>stdexcept</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/math/math/chebyshev_util.hpp</label>
+        <link refid="chebyshev__util_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/math/math/math.hpp</label>
+        <link refid="math_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1math">astrea::math</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>transform_from_chebyshev_range(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>lb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>ub);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>transform_to_chebyshev_range(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>lb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>ub);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_polynomial(</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>lb,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>ub,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>coeff,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>coeffZeroFactor<sp/><sp/>=<sp/>0.5,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>extrapolationTol<sp/>=<sp/>1.0e-6</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>vector<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&lt;<sp/>lb<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>lb)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>lower<sp/>bound<sp/>for<sp/>the<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;interpolant.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&gt;<sp/>ub<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>ub)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>upper<sp/>bound<sp/>for<sp/>the<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;interpolant.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>order<sp/>or<sp/>degree<sp/>of<sp/>the<sp/>Chebyshev<sp/>polynomial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>order<sp/>=<sp/>N<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>change<sp/>of<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/><sp/>=<sp/>transform_to_chebyshev_range(x,<sp/>lb,<sp/>ub);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2<sp/>=<sp/>2.0<sp/>*<sp/>y;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>Clenshaw&apos;s<sp/>recurrence<sp/>formula<sp/>in<sp/>reverse<sp/>to<sp/>preserve<sp/>small<sp/>numbers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d<sp/>=<sp/>0.0,<sp/>dd<sp/>=<sp/>0.0,<sp/>sv<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>k<sp/>=<sp/>order;<sp/>k<sp/>&gt;=<sp/>1;<sp/>k--)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sv<sp/>=<sp/>d;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/><sp/>=<sp/>y2<sp/>*<sp/>d<sp/>-<sp/>dd<sp/>+<sp/>coeff[k];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dd<sp/>=<sp/>sv;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>be<sp/>compatible<sp/>with<sp/>CSpice,<sp/>don&apos;t<sp/>multiply<sp/>coeff[0]<sp/>by<sp/>0.5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>y<sp/>*<sp/>d<sp/>-<sp/>dd<sp/>+<sp/>coeffZeroFactor<sp/>*<sp/>coeff[0];</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_polynomial(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>boundsCoeff,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>coeffZeroFactor<sp/>=<sp/>0.5,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>Checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>lb,<sp/>ub,<sp/>and<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>N<sp/>-<sp/>2&gt;<sp/>coeff;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>N<sp/>-<sp/>2;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff[k]<sp/>=<sp/>boundsCoeff[k<sp/>+<sp/>2];</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Evaluate<sp/>the<sp/>Chebyshev<sp/>polynomial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>evaluate_chebyshev_polynomial(x,<sp/>boundsCoeff[0],<sp/>boundsCoeff[1],<sp/>coeff,<sp/>coeffZeroFactor,<sp/>extrapolationTol);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_derivative(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lb,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ub,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>coeff,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&lt;<sp/>lb<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>lb)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>lower<sp/>bound<sp/>for<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;the<sp/>interpolant.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&gt;<sp/>ub<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>ub)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>upper<sp/>bound<sp/>for<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;the<sp/>interpolant.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>change<sp/>of<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/><sp/>=<sp/>transform_to_chebyshev_range(x,<sp/>lb,<sp/>ub);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2<sp/>=<sp/>2.0<sp/>*<sp/>y;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>Clenshaw&apos;s<sp/>recurrence<sp/>formula<sp/>in<sp/>reverse<sp/>to<sp/>preserve<sp/>small<sp/>numbers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d<sp/>=<sp/>0.0,<sp/>dd<sp/>=<sp/>0.0,<sp/>sv<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dp<sp/>=<sp/>0.0,<sp/>ddp<sp/>=<sp/>0.0,<sp/>svp<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>k<sp/>=<sp/>N<sp/>-<sp/>1;<sp/>k<sp/>&gt;=<sp/>1;<sp/>k--)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>derivative<sp/>coefficient<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>svp<sp/>=<sp/>dp;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dp<sp/><sp/>=<sp/>y2<sp/>*<sp/>dp<sp/>-<sp/>ddp<sp/>+<sp/>2.0<sp/>*<sp/>d;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ddp<sp/>=<sp/>svp;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>coefficient<sp/>values,<sp/>which<sp/>are<sp/>required<sp/>by<sp/>the<sp/>derivative</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sv<sp/>=<sp/>d;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/><sp/>=<sp/>y2<sp/>*<sp/>d<sp/>-<sp/>dd<sp/>+<sp/>coeff[k];</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dd<sp/>=<sp/>sv;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Normalize<sp/>to<sp/>the<sp/>interval<sp/>ub<sp/>-<sp/>lb</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2.0<sp/>/<sp/>(ub<sp/>-<sp/>lb)<sp/>*<sp/>(y<sp/>*<sp/>dp<sp/>-<sp/>ddp<sp/>+<sp/>d);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_derivative(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>boundsCoeff,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>Checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>lb,<sp/>ub,<sp/>and<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>N<sp/>-<sp/>2&gt;<sp/>coeff;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>N<sp/>-<sp/>2;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff[k]<sp/>=<sp/>boundsCoeff[k<sp/>+<sp/>2];</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Evaluate<sp/>the<sp/>Chebyshev<sp/>polynomial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>evaluate_chebyshev_derivative(x,<sp/>boundsCoeff[0],<sp/>boundsCoeff[1],<sp/>coeff,<sp/>extrapolationTol);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="astrea/math/math/chebyshev_util.hpp"/>
+  </compounddef>
+</doxygen>
