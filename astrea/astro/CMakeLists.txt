@@ -157,6 +157,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
+    ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp

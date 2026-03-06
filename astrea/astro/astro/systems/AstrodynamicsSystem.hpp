@@ -43,7 +43,7 @@ class AstrodynamicsSystem {
      * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
      *
      * @param centralBody The name of the central celestial body (default is "Earth").
-     * @param allBodies A set of names of all secondary celestial bodies in the system (default is the "Moon").
+     * @param allBodies A set of names of all secondary celestial bodies in the system (default is none).
      */
     constexpr AstrodynamicsSystem(
         const CelestialBodyId& centralBody                         = CelestialBodyId::EARTH,
@@ -51,6 +51,38 @@ class AstrodynamicsSystem {
     ) :
         _centerType(SystemCenter::CENTRAL_BODY),
         _centralBody(centralBody)
+    {
+        add_body(centralBody);
+        for (const auto& body : secondaryBodies) {
+            add_body(body);
+        }
+    }
+
+    /**
+     * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
+     *
+     * @param centralBody The central celestial body.
+     * @param allBodies A set of all secondary celestial bodies in the system (default is none).
+     */
+    constexpr AstrodynamicsSystem(const CelestialBody& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies = {}) :
+        _centerType(SystemCenter::CENTRAL_BODY),
+        _centralBody(centralBody.get_id())
+    {
+        add_body(centralBody);
+        for (const auto& body : secondaryBodies) {
+            add_body(body);
+        }
+    }
+
+    /**
+     * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
+     *
+     * @param centralBody The central celestial body.
+     * @param allBodies A set of all secondary celestial bodies in the system (default is none).
+     */
+    constexpr AstrodynamicsSystem(const CelestialBody& centralBody, const std::unordered_set<CelestialBody>& secondaryBodies = {}) :
+        _centerType(SystemCenter::CENTRAL_BODY),
+        _centralBody(centralBody.get_id())
     {
         add_body(centralBody);
         for (const auto& body : secondaryBodies) {
@@ -71,7 +103,17 @@ class AstrodynamicsSystem {
     /**
      * @brief Deleted assignment operator for the AstrodynamicsSystem class.
      */
-    AstrodynamicsSystem operator=(const AstrodynamicsSystem&) = delete;
+    AstrodynamicsSystem& operator=(const AstrodynamicsSystem&) = delete;
+
+    /**
+     * @brief Default move constructor for the AstrodynamicsSystem class.
+     */
+    AstrodynamicsSystem(AstrodynamicsSystem&&) = default;
+
+    /**
+     * @brief Default move assignment operator for the AstrodynamicsSystem class.
+     */
+    AstrodynamicsSystem& operator=(AstrodynamicsSystem&&) = default;
 
     /**
      * @brief Creates a default AstrodynamicsSystem.
@@ -164,6 +206,24 @@ class AstrodynamicsSystem {
             _root = find_common_root(_activeBodies);
         }
 
+        return get_body(id);
+    }
+
+    /**
+     * @brief Store manually generated celestial body.
+     *
+     * @param id The id of the celestial body to create.
+     * @param system The astrodynamics system to which the body belongs.
+     * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
+     */
+    constexpr const CelestialBodyUniquePtr& add_body(const CelestialBody& body)
+    {
+        const CelestialBodyId id = body.get_id();
+        if (_bodies.count(id) == 0) {
+            _bodies.emplace(id, std::make_unique<CelestialBody>(body));
+            _activeBodies.insert(id);
+            _root = find_common_root(_activeBodies);
+        }
         return get_body(id);
     }
 

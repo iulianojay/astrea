@@ -32,6 +32,36 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+static const CelestialBodyParameters DEFAULT_NEPTUNE_PARAMS{
+    .name          = "Neptune",
+    .parent        = CelestialBodyId::SUN,
+    .type          = CelestialBodyType::PLANET,
+    .referenceDate = Date("1950-01-01 00:00:00"),
+    .mu = GravParam(6836529.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
+    .mass               = Mass(102.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius   = Distance(24764.0 * mp_units::si::unit_symbols::km),
+    .polarRadius        = Distance(24341.0 * mp_units::si::unit_symbols::km),
+    .crashRadius        = Distance(24764.0 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence  = Distance(8.651147189326089 * mp_units::iau::unit_symbols::au),
+    .j2                 = Unitless(3411e-6 * mp_units::one),
+    .j3                 = Unitless(0.0 * mp_units::one),
+    .axialTilt          = Angle(28.32 * mp_units::angular::unit_symbols::deg),
+    .rotationRate       = AngularRate(536.3128491620112 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod     = Time(60189 * mp_units::non_si::day),
+    .semimajorAxis      = Distance(30.06992276 * mp_units::iau::unit_symbols::au),
+    .eccentricity       = Unitless(0.00859048 * mp_units::one),
+    .inclination        = Angle(1.77004347 * mp_units::angular::unit_symbols::deg),
+    .rightAscension     = Angle(131.78422574 * mp_units::angular::unit_symbols::deg),
+    .longitudeOfPerigee = Angle(44.96476227 * mp_units::angular::unit_symbols::deg),
+    .meanLongitude      = Angle(-55.12002969 * mp_units::angular::unit_symbols::deg),
+    .semimajorAxisRate  = InterplanetaryVelocity(0.00026291 * mp_units::iau::unit_symbols::au / JulianCentury),
+    .eccentricityRate   = BodyUnitlessPerTime(0.00005105 * mp_units::one / JulianCentury),
+    .inclinationRate    = BodyAngularRate(0.00035372 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate = BodyAngularRate(-0.00508664 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularRate(-0.32241464 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularRate(218.45945325 * mp_units::angular::unit_symbols::deg / JulianCentury)
+};
+
 /**
  * @class Neptune
  * @brief Represents the Neptune celestial body.
@@ -47,35 +77,7 @@ class Neptune : public CelestialBody {
      * Initializes the Neptune object with predefined physical and orbital parameters.
      */
     constexpr Neptune() :
-        CelestialBody(
-            "Neptune",                   //!< Name
-            CelestialBodyId::SUN,        //!< Parent celestial body
-            CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
-            GravParam(6836529.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
-            Mass(102.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(24764.0 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
-            Distance(24341.0 * mp_units::si::unit_symbols::km),                           //!< Polar radius
-            Distance(24764.0 * mp_units::si::unit_symbols::km),                           //!< Crash radius
-            Distance(8.651147189326089 * mp_units::iau::unit_symbols::au), //!< Semi-major axis of the orbit around the parent body
-            Unitless(3411e-6 * mp_units::one),                             //!< J2 gravitational coefficient
-            Unitless(0.0 * mp_units::one),                                 //!< J3 gravitational coefficient
-            Angle(28.32 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
-            AngularRate(536.3128491620112 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Mean motion
-            Time(60189 * mp_units::non_si::day),                        //!< Orbital period
-            Distance(30.06992276 * mp_units::iau::unit_symbols::au),    //!< Semi-major axis of the orbit
-            Unitless(0.00859048 * mp_units::one),                       //!< Eccentricity of the orbit
-            Angle(1.77004347 * mp_units::angular::unit_symbols::deg),   //!< Inclination of the orbit
-            Angle(131.78422574 * mp_units::angular::unit_symbols::deg), //!< Longitude of the ascending node
-            Angle(44.96476227 * mp_units::angular::unit_symbols::deg),  //!< Longitude of perihelion
-            Angle(-55.12002969 * mp_units::angular::unit_symbols::deg), //!< Mean longitude
-            InterplanetaryVelocity(0.00026291 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semi-major axis
-            BodyUnitlessPerTime(0.00005105 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(0.00035372 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(-0.00508664 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
-            BodyAngularRate(-0.32241464 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
-            BodyAngularRate(218.45945325 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
-        )
+        CelestialBody(DEFAULT_NEPTUNE_PARAMS)
     {
     }
 

@@ -45,6 +45,7 @@
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -75,9 +76,9 @@ enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_
 enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
 enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
+
 class Orbital6DofTest : public testing::Test {
 
-    // TODO: Make NASA 6DoF Tests generate a report file. Add this output to CI.
     // TODO: Finish implementing all force models in the tests. This includes more atmosphere models, and different
     //       SRP models. It may also include closing down any errors further.
 
@@ -86,7 +87,6 @@ class Orbital6DofTest : public testing::Test {
 
   public:
     Orbital6DofTest() :
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::SUN }),
         mu(sys.get_mu()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
@@ -99,6 +99,11 @@ class Orbital6DofTest : public testing::Test {
         ),
         propTime(28800.0 * s)
     {
+        CelestialBodyParameters nasaEarthData = planetary_bodies::DEFAULT_EARTH_PARAMS;
+        nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s);
+
+        sys = AstrodynamicsSystem(CelestialBody(nasaEarthData), { CelestialBodyId::SUN });
+
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
         integrator.set_abs_tol(1.0e-13);

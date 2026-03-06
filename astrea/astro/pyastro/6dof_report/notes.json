@@ -2,7 +2,7 @@
     "Orbit_02": "This test validates the basic orbital propagation with no perturbations.",
     "Orbit_03A": "This test validates 4x4 oblateness models in propagation.",
     "Orbit_03B": "This test validates 8x8 oblateness models in propagation.",
-    "Orbit_04": "This test validates n-body perturbations from the Moon and Sun.",
+    "Orbit_04": "This test validates n-body perturbations from the Sun.",
     "Orbit_05A": "This test validates srp perturbations at solar min.",
     "Orbit_05B": "This test validates srp perturbations at solar mean.",
     "Orbit_06A": "This test validates atmospheric perturbations with a fixed sphere.",
