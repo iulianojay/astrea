@@ -191,6 +191,7 @@ nav:
       - Performance: design/performance.md
       - Extensibility: design/extensibility.md
       - Testing and Validation: design/testing.md
+      - Comparison to NASA 6DoF Checkcases: design/nasa_6dof_report/nasa_6dof_report.md
   - API:
       - Astro:
           - 'Links': 'astro/links.md'

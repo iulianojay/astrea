@@ -74,3 +74,8 @@ protected:
 ### Benchmark Validation Tests
 
 None yet.
+
+
+## NASA 6DOF Checkcases
+
+An automatically generate report can be found [here](nasa_6dof_report/nasa_6dof_report.md)

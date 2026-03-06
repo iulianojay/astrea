@@ -17,10 +17,9 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
-import base64
 import argparse
 import json
-import webbrowser
+import shutil
 
 try:
     import matplotlib.pyplot as plt
@@ -30,22 +29,28 @@ except ImportError:
     MATPLOTLIB_AVAILABLE = False
     print("Warning: matplotlib not available. Some plotting features may be limited.")
 
+# This is so stupid
+OUTPUT_BASE = Path(__file__).parent.parent.parent.parent.parent / "docs" / "design" / "nasa_6dof_report"
 
 class NASA6DOFReportGenerator:
     """Class for generating comprehensive reports from NASA 6DOF orbital test results."""
     
-    def __init__(self, results_dir: str = None):
+    def __init__(self, custom_introduction: str = None):
         """
         Initialize the report generator.
         
         Args:
             results_dir: Path to the orbital results directory
+            custom_introduction: Custom introduction text for the report
         """
-        if results_dir is None:
-            # Default to the standard location
-            self.results_dir = Path(__file__).parent.parent.parent / "tests" / "nasa_6dof_checkcases" / "orbital" / "results"
-        else:
-            self.results_dir = Path(results_dir)
+        # Default to the standard location
+        actual_results_dir = Path(__file__).parent.parent.parent / "tests" / "nasa_6dof_checkcases" / "orbital" / "results"
+
+        self.results_dir = Path(OUTPUT_BASE / "results")
+        os.makedirs(self.results_dir, exist_ok=True)
+        shutil.copytree(actual_results_dir, self.results_dir, dirs_exist_ok=True)
+        
+        self.custom_introduction = custom_introduction
             
         if not self.results_dir.exists():
             raise FileNotFoundError(f"Results directory not found: {self.results_dir}")
@@ -148,269 +153,190 @@ class NASA6DOFReportGenerator:
         Analyze performance metrics from summary data.
         
         Args:
-            summary_data: DataFrame containing test results
+            summary_data: DataFrame with test results
             
         Returns:
             Dictionary with analysis results
         """
         if summary_data is None or summary_data.empty:
             return {}
-                
-        analysis = {
-            'propagation_methods': [],
-            'checkcases': [],
-            'position_error_stats': {},
-            'velocity_error_stats': {},
-            'best_performing_method': None,
-            'worst_performing_method': None
-        }
-        
-        # Check for required columns
-        required_columns = ['Propagation', 'Checkcase', 'Mean Position Error', 'Mean Velocity Error']
-        missing_columns = [col for col in required_columns if col not in summary_data.columns]
-        
-        if missing_columns:
-            print(f"Warning: Missing required columns: {missing_columns}")
-            return analysis
+            
+        analysis = {}
         
         try:
-            analysis['propagation_methods'] = summary_data['Propagation'].unique().tolist()
-            analysis['checkcases'] = summary_data['Checkcase'].unique().tolist()
-            
-            # Convert error strings to numeric values (remove units)
-            def extract_numeric(series, unit_suffix):
-                if series.dtype == 'object':
-                    return pd.to_numeric(series.str.replace(unit_suffix, '').str.replace('e-', 'e-'), errors='coerce')
-                return series
-            
-            # Extract numeric values for analysis
-            mean_pos_error = extract_numeric(summary_data['Mean Position Error'], ' m')
-            mean_vel_error = extract_numeric(summary_data['Mean Velocity Error'], ' cm/s')
-            
-            # Position error statistics
-            if not mean_pos_error.isna().all():
-                analysis['position_error_stats'] = {
-                    'overall_mean': mean_pos_error.mean(),
-                    'overall_std': mean_pos_error.std(),
-                    'min': mean_pos_error.min(),
-                    'max': mean_pos_error.max(),
-                    'by_method': mean_pos_error.groupby(summary_data['Propagation']).agg(['mean', 'std']).to_dict()
+            # Position RMS error analysis
+            if 'Position RMS Error (m)' in summary_data.columns:
+                pos_errors = summary_data['Position RMS Error (m)']
+                best_pos_idx = pos_errors.idxmin()
+                worst_pos_idx = pos_errors.idxmax()
+                
+                analysis['best_position_rms'] = {
+                    'value': pos_errors[best_pos_idx],
+                    'propagation': summary_data.loc[best_pos_idx, 'Propagation']
+                }
+                analysis['worst_position_rms'] = {
+                    'value': pos_errors[worst_pos_idx],
+                    'propagation': summary_data.loc[worst_pos_idx, 'Propagation']
                 }
                 
-            # Velocity error statistics  
-            if not mean_vel_error.isna().all():
-                analysis['velocity_error_stats'] = {
-                    'overall_mean': mean_vel_error.mean(),
-                    'overall_std': mean_vel_error.std(),
-                    'min': mean_vel_error.min(),
-                    'max': mean_vel_error.max(),
-                    'by_method': mean_vel_error.groupby(summary_data['Propagation']).agg(['mean', 'std']).to_dict()
+            # Velocity RMS error analysis
+            if 'Velocity RMS Error (m/s)' in summary_data.columns:
+                vel_errors = summary_data['Velocity RMS Error (m/s)']
+                best_vel_idx = vel_errors.idxmin()
+                worst_vel_idx = vel_errors.idxmax()
+                
+                analysis['best_velocity_rms'] = {
+                    'value': vel_errors[best_vel_idx],
+                    'propagation': summary_data.loc[best_vel_idx, 'Propagation']
+                }
+                analysis['worst_velocity_rms'] = {
+                    'value': vel_errors[worst_vel_idx],
+                    'propagation': summary_data.loc[worst_vel_idx, 'Propagation']
                 }
                 
-            # Find best and worst performing methods based on mean position error
-            if not mean_pos_error.isna().all():
-                method_performance = mean_pos_error.groupby(summary_data['Propagation']).mean().sort_values()
-                if len(method_performance) > 0:
-                    analysis['best_performing_method'] = method_performance.index[0]
-                    analysis['worst_performing_method'] = method_performance.index[-1]
-        
         except Exception as e:
-            print(f"Warning: Error during performance analysis: {e}")
+            print(f"Warning: Error analyzing performance metrics: {e}")
             
         return analysis
     
-    def generate_orbit_section(self, orbit_data: Dict, manual_notes: str = "") -> str:
+    def _generate_markdown_header(self) -> str:
+        """Generate Markdown header with frontmatter."""
+        current_time = datetime.now().strftime("%B %d, %Y at %H:%M:%S")
+        return f'''---
+title: "Comparison to NASA 6DoF Checkcases"
+description: "Validation report comparing ASTREA orbital propagation results against NASA 6DoF reference checkcases"
+---
+
+# Comparison to NASA 6DoF Checkcases
+
+This report presents a comprehensive comparison of ASTREA's orbital propagation capabilities against NASA's 6 Degree of Freedom (6DoF) reference checkcases. The validation demonstrates ASTREA's accuracy and reliability for astrodynamics computations by comparing trajectory propagation results across multiple orbital scenarios and numerical integration methods.
+
+*Report generated on {current_time}*
+
+'''
+
+    def generate_orbit_section_markdown(self, orbit_data: Dict, manual_notes: str = "") -> str:
         """
-        Generate a report section for a single orbit test.
+        Generate a report section for a single orbit test in Markdown format.
         
         Args:
             orbit_data: Dictionary containing orbit test data
             manual_notes: Optional manual notes to include
             
         Returns:
-            HTML string for the orbit section
+            Markdown string for the orbit section
         """
-        html = f"""
-        <div class="orbit-section">
-            <h2>{orbit_data['orbit_name']}</h2>
-            
-            <div class="manual-notes">
-                <h3>Test Notes</h3>
-                <p>{manual_notes if manual_notes else 'No manual notes provided.'}</p>
-            </div>
-        """
+        markdown = f"\n## {orbit_data['orbit_name']}\n\n"
+        
+        # Add test notes
+        if manual_notes:
+            markdown += "### Test Notes\n\n"
+            markdown += f"{manual_notes}\n\n"
         
         # Add summary analysis if available
         if orbit_data['summary_data'] is not None:
             analysis = self.analyze_performance_metrics(orbit_data['summary_data'])
-            html += self._generate_analysis_html(analysis)
-            html += self._generate_summary_table_html(orbit_data['summary_data'])
+            markdown += self._generate_analysis_markdown(analysis)
+            markdown += self._generate_summary_table_markdown(orbit_data['summary_data'])
             
         # Add main comparison images
-        html += self._generate_images_html(orbit_data['images'], "Main Comparisons")
+        markdown += self._generate_images_markdown(orbit_data['images'], "Main Comparisons")
         
         # Add checkcase details
         if orbit_data['checkcases']:
-            html += "<h3>Checkcase Details</h3>"
+            markdown += "### Checkcase Details\n\n"
             for checkcase_name, checkcase_data in orbit_data['checkcases'].items():
-                html += self._generate_checkcase_html(checkcase_name, checkcase_data)
+                markdown += self._generate_checkcase_markdown(checkcase_name, checkcase_data)
                 
-        html += "</div>"
-        return html
-    
-    def _generate_analysis_html(self, analysis: Dict) -> str:
-        """Generate HTML for performance analysis."""
+        return markdown
+
+    def _generate_analysis_markdown(self, analysis: Dict) -> str:
+        """Generate Markdown for performance analysis."""
         if not analysis:
             return ""
             
-        html = """
-        <div class="performance-analysis">
-            <h3>Performance Analysis</h3>
-            <div class="analysis-grid">
-        """
+        markdown = "### Performance Analysis\n\n"
         
-        if analysis.get('best_performing_method'):
-            html += f"""
-            <div class="metric-box best">
-                <h4>Best Performing Method</h4>
-                <p>{analysis['best_performing_method']}</p>
-            </div>
-            """
+        # Position error analysis
+        if 'best_position_rms' in analysis:
+            best_pos = analysis['best_position_rms']
+            worst_pos = analysis['worst_position_rms']
             
-        if analysis.get('worst_performing_method'):
-            html += f"""
-            <div class="metric-box worst">
-                <h4>Worst Performing Method</h4>
-                <p>{analysis['worst_performing_method']}</p>
-            </div>
-            """
+            markdown += "!!! success \"Position Accuracy\"\n"
+            markdown += f"    **Best RMS Position Error**: {best_pos['value']:.3e} km ({best_pos['propagation']})\n\n"
             
-        # Position error stats
-        pos_stats = analysis.get('position_error_stats', {})
-        if pos_stats:
-            html += f"""
-            <div class="metric-box">
-                <h4>Position Error Statistics</h4>
-                <p>Mean: {pos_stats.get('overall_mean', 'N/A'):.6f} m</p>
-                <p>Std Dev: {pos_stats.get('overall_std', 'N/A'):.6f} m</p>
-                <p>Range: {pos_stats.get('min', 'N/A'):.6e} - {pos_stats.get('max', 'N/A'):.6f} m</p>
-            </div>
-            """
+            markdown += "!!! warning \"Position Accuracy\"\n"
+            markdown += f"    **Worst RMS Position Error**: {worst_pos['value']:.3e} km ({worst_pos['propagation']})\n\n"
+        
+        # Velocity error analysis
+        if 'best_velocity_rms' in analysis:
+            best_vel = analysis['best_velocity_rms']
+            worst_vel = analysis['worst_velocity_rms']
             
-        # Velocity error stats
-        vel_stats = analysis.get('velocity_error_stats', {})
-        if vel_stats:
-            html += f"""
-            <div class="metric-box">
-                <h4>Velocity Error Statistics</h4>
-                <p>Mean: {vel_stats.get('overall_mean', 'N/A'):.6f} cm/s</p>
-                <p>Std Dev: {vel_stats.get('overall_std', 'N/A'):.6f} cm/s</p>
-                <p>Range: {vel_stats.get('min', 'N/A'):.6e} - {vel_stats.get('max', 'N/A'):.6f} cm/s</p>
-            </div>
-            """
+            markdown += "!!! success \"Velocity Accuracy\"\n"
+            markdown += f"    **Best RMS Velocity Error**: {best_vel['value']:.3e} km/s ({best_vel['propagation']})\n\n"
             
-        html += """
-            </div>
-        </div>
-        """
-        return html
-    
-    def _generate_summary_table_html(self, summary_data: pd.DataFrame) -> str:
-        """Generate HTML table from summary data."""
+            markdown += "!!! warning \"Velocity Accuracy\"\n"
+            markdown += f"    **Worst RMS Velocity Error**: {worst_vel['value']:.3e} km/s ({worst_vel['propagation']})\n\n"
+        
+        return markdown
+
+    def _generate_summary_table_markdown(self, summary_data: pd.DataFrame) -> str:
+        """Generate Markdown table from summary data."""
         if summary_data is None or summary_data.empty:
             return ""
             
-        html = """
-        <div class="summary-table">
-            <h3>Detailed Results</h3>
-            <div class="table-container">
-        """
+        markdown = "### Detailed Results\n\n"
         
-        # Convert DataFrame to HTML table with custom styling
-        table_html = summary_data.to_html(
-            classes=['results-table'], 
-            table_id='summary-table',
-            index=False,
-            escape=False
-        )
+        # Convert DataFrame to markdown table
+        markdown += summary_data.to_markdown(index=False, tablefmt="pipe")
+        markdown += "\n\n"
         
-        html += table_html
-        html += """
-            </div>
-        </div>
-        """
-        return html
-        
-    def _generate_images_html(self, images: Dict, section_title: str) -> str:
-        """Generate HTML for displaying images."""
+        return markdown
+
+    def _generate_images_markdown(self, images: Dict, section_title: str) -> str:
+        """Generate Markdown for displaying images."""
         if not images:
             return ""
             
-        html = f"""
-        <div class="images-section">
-            <h3>{section_title}</h3>
-            <div class="images-grid">
-        """
+        markdown = f"### {section_title}\n\n"
         
         for img_name, img_path in images.items():
             if img_path.exists():
-                # Convert image to base64 for embedding
-                img_b64 = self._image_to_base64(img_path)
-                html += f"""
-                <div class="image-container">
-                    <h4>{img_name.replace('_', ' ').replace('.png', '').title()}</h4>
-                    <img src="data:image/png;base64,{img_b64}" alt="{img_name}">
-                </div>
-                """
+                # Convert path to relative path from docs directory 
+                rel_path = os.path.relpath(img_path, start=Path("../../../../docs/design/nasa_6dof_report").resolve())
+                img_title = img_name.replace('_', ' ').replace('.png', '').title()
                 
-        html += """
-            </div>
-        </div>
-        """
-        return html
-    
-    def _generate_checkcase_html(self, checkcase_name: str, checkcase_data: Dict) -> str:
-        """Generate HTML for a checkcase section."""
-        html = f"""
-        <div class="checkcase-section">
-            <h4>{checkcase_name}</h4>
-            <div class="checkcase-content">
-        """
+                markdown += f"#### {img_title}\n\n"
+                markdown += f"![{img_title}]({rel_path})\n\n"
+                
+        return markdown
+
+    def _generate_checkcase_markdown(self, checkcase_name: str, checkcase_data: Dict) -> str:
+        """Generate Markdown for a checkcase section."""
+        markdown = f"#### {checkcase_name}\n\n"
         
         # Add propagation methods info
         if checkcase_data['propagation_methods']:
             methods_str = ", ".join(checkcase_data['propagation_methods'])
-            html += f"<p><strong>Propagation Methods:</strong> {methods_str}</p>"
+            markdown += f"**Propagation Methods:** {methods_str}\n\n"
             
         # Add checkcase images if available
         if checkcase_data['images']:
-            html += self._generate_images_html(checkcase_data['images'], f"{checkcase_name} Comparisons")
+            markdown += self._generate_images_markdown(checkcase_data['images'], f"{checkcase_name} Comparisons")
             
-        html += """
-            </div>
-        </div>
-        """
-        return html
-    
-    def _image_to_base64(self, img_path: Path) -> str:
-        """Convert image file to base64 string."""
-        try:
-            with open(img_path, "rb") as img_file:
-                return base64.b64encode(img_file.read()).decode()
-        except Exception as e:
-            print(f"Warning: Could not encode image {img_path}: {e}")
-            return ""
-    
+        return markdown
+
     def generate_full_report(self, output_path: str = None, manual_notes: Dict[str, str] = None) -> str:
         """
-        Generate a complete HTML report for all orbit tests.
+        Generate a complete Markdown report for all orbit tests.
         
         Args:
             output_path: Path to save the report (optional)
             manual_notes: Dictionary mapping orbit names to manual notes
             
         Returns:
-            HTML string of the complete report
+            Markdown string of the complete report
         """
         if manual_notes is None:
             manual_notes = {}
@@ -424,201 +350,33 @@ class NASA6DOFReportGenerator:
                 print(f"Warning: Could not load data for {orbit_name}: {e}")
                 continue
                 
-        # Generate report HTML
-        html = self._generate_html_header()
+        # Generate report Markdown
+        markdown = self._generate_markdown_header()
+        
+        # Add custom introduction if provided
+        if self.custom_introduction:
+            markdown += f"\n{self.custom_introduction}\n\n"
         
         # Add executive summary
-        html += self._generate_executive_summary(all_orbit_data)
+        markdown += self._generate_executive_summary_markdown(all_orbit_data)
         
         # Add individual orbit sections
         for orbit_name, orbit_data in all_orbit_data.items():
             notes = manual_notes.get(orbit_name, "")
-            html += self.generate_orbit_section(orbit_data, notes)
+            markdown += self.generate_orbit_section_markdown(orbit_data, notes)
             
-        html += self._generate_html_footer()
-        
         # Save to file if requested
         if output_path:
             output_file = Path(output_path)
             output_file.parent.mkdir(parents=True, exist_ok=True)
             with open(output_file, 'w') as f:
-                f.write(html)
+                f.write(markdown)
             print(f"Report saved to: {output_file.absolute()}")
             
-        return html
-    
-    def _generate_html_header(self) -> str:
-        """Generate HTML header with styling."""
-        return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA 6DOF Orbital Test Results Report</title>
-    <style>
-        body {{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }}
-        
-        .header {{
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }}
-        
-        .orbit-section {{
-            background: white;
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }}
-        
-        .performance-analysis {{
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #007bff;
-        }}
-        
-        .analysis-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }}
-        
-        .metric-box {{
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-        }}
-        
-        .metric-box.best {{
-            border-left: 5px solid #28a745;
-        }}
-        
-        .metric-box.worst {{
-            border-left: 5px solid #dc3545;
-        }}
-        
-        .images-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }}
-        
-        .image-container {{
-            text-align: center;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }}
-        
-        .image-container img {{
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }}
-        
-        .table-container {{
-            overflow-x: auto;
-            margin-top: 15px;
-        }}
-        
-        .results-table {{
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }}
-        
-        .results-table th, .results-table td {{
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #dee2e6;
-        }}
-        
-        .results-table th {{
-            background-color: #f8f9fa;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-        }}
-        
-        .results-table tr:hover {{
-            background-color: #f5f5f5;
-        }}
-        
-        .checkcase-section {{
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }}
-        
-        .manual-notes {{
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 5px solid #2196f3;
-            margin-bottom: 20px;
-        }}
-        
-        h1, h2, h3, h4 {{
-            color: #2c3e50;
-        }}
-        
-        h2 {{
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }}
-        
-        .summary-stats {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }}
-        
-        .stat-card {{
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }}
-        
-        .stat-number {{
-            font-size: 2em;
-            font-weight: bold;
-            color: #3498db;
-        }}
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>NASA 6DOF Orbital Test Results Report</h1>
-        <p>Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-    </div>
-"""
-    
-    def _generate_executive_summary(self, all_orbit_data: Dict) -> str:
-        """Generate an executive summary of all tests."""
+        return markdown
+
+    def _generate_executive_summary_markdown(self, all_orbit_data: Dict) -> str:
+        """Generate an executive summary of all tests in Markdown format."""
         total_tests = len(all_orbit_data)
         total_checkcases = sum(len(data['checkcases']) for data in all_orbit_data.values())
         
@@ -628,76 +386,45 @@ class NASA6DOFReportGenerator:
             if orbit_data['summary_data'] is not None:
                 all_methods.update(orbit_data['summary_data']['Propagation'].unique())
         
-        html = f"""
-        <div class="orbit-section">
-            <h2>Executive Summary</h2>
-            
-            <div class="summary-stats">
-                <div class="stat-card">
-                    <div class="stat-number">{total_tests}</div>
-                    <div>Orbit Tests</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">{total_checkcases}</div>
-                    <div>Total Checkcases</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">{len(all_methods)}</div>
-                    <div>Propagation Methods</div>
-                </div>
-            </div>
-            
-            <h3>Tested Propagation Methods</h3>
-            <ul>
-        """
+        markdown = f'''## Executive Summary
+
+This validation study encompasses **{total_tests} orbital test cases** with **{total_checkcases} total checkcases**, evaluating **{len(all_methods)} distinct propagation methods**. The tests validate ASTREA's orbital mechanics implementation against established NASA reference solutions.
+
+!!! info "Test Coverage"
+    - **{total_tests}** Orbit Tests
+    - **{total_checkcases}** Total Checkcases  
+    - **{len(all_methods)}** Propagation Methods
+
+### Tested Propagation Methods
+
+The following numerical integration methods were evaluated:
+
+'''
         
         for method in sorted(all_methods):
-            html += f"<li>{method}</li>"
+            markdown += f"- **{method}**\n"
             
-        html += """
-            </ul>
-            
-            <h3>Available Orbit Tests</h3>
-            <ul>
-        """
+        markdown += "\n### Available Orbit Tests\n\n"
         
         for orbit_name in sorted(all_orbit_data.keys()):
             checkcase_count = len(all_orbit_data[orbit_name]['checkcases'])
-            html += f"<li><strong>{orbit_name}</strong> - {checkcase_count} checkcases</li>"
+            markdown += f"- **{orbit_name}** - {checkcase_count} checkcases\n"
             
-        html += """
-            </ul>
-        </div>
-        """
-        
-        return html
-    
-    def _generate_html_footer(self) -> str:
-        """Generate HTML footer."""
-        return """
-    <div class="orbit-section">
-        <h2>Report Notes</h2>
-        <p>This report was automatically generated from the NASA 6DOF orbital checkcase test results.</p>
-        <p>All performance metrics are compared against reference solutions from NASA validation cases.</p>
-        <p><strong>Position errors</strong> are reported in meters, <strong>velocity errors</strong> in cm/s.</p>
-    </div>
-</body>
-</html>
-"""
+        markdown += "\n"
+        return markdown
+
 
 def main():
     """CLI interface for the report generator."""
-    parser = argparse.ArgumentParser(description='Generate NASA 6DOF orbital test reports')
-    parser.add_argument('--results-dir', type=str, help='Path to results directory')
-    parser.add_argument('--output', '-o', type=str, default='nasa_6dof_report.html', 
-                       help='Output HTML file path')
+    parser = argparse.ArgumentParser(description='Generate NASA 6DOF orbital test reports in Markdown format')
     parser.add_argument('--notes-file', type=str, help='Path to JSON file with manual notes')
+    parser.add_argument('--introduction', type=str, help='Custom introduction text for the report')
     
     args = parser.parse_args()
     
     try:
         # Initialize report generator
-        generator = NASA6DOFReportGenerator(args.results_dir)
+        generator = NASA6DOFReportGenerator(args.introduction)
         
         # Load manual notes if provided
         manual_notes = {}
@@ -706,26 +433,24 @@ def main():
                 manual_notes = json.load(f)
         else:
             default_notes_file = os.path.join(os.path.dirname(__file__), 'notes.json')
-            with open(default_notes_file, 'r') as f:
-                manual_notes = json.load(f)
+            if os.path.exists(default_notes_file):
+                with open(default_notes_file, 'r') as f:
+                    manual_notes = json.load(f)
+
+        output_path = Path(OUTPUT_BASE / 'nasa_6dof_report.md')
         
         # Generate report
         print("Generating NASA 6DOF orbital test report...")
-        html_report = generator.generate_full_report(args.output, manual_notes)
+        markdown_report = generator.generate_full_report(output_path, manual_notes)
         
         print(f"✓ Report generated successfully!")
         print(f"✓ Found {len(generator.orbit_tests)} orbit test(s): {', '.join(generator.orbit_tests)}")
-        
-        # Open in browser if possible
-        try:
-            webbrowser.open(f"file://{Path(args.output).absolute()}")
-            print(f"✓ Report opened in browser")
-        except:
-            print(f"✓ View report at: {Path(args.output).absolute()}")
+        print(f"✓ Markdown report saved to: {output_path.absolute()}")
             
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
+        
 
 if __name__ == "__main__":
     main()
