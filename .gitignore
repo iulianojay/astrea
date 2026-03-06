@@ -19,6 +19,7 @@ site
 *.jpg
 *.zip
 *.pyc
+*.html
 
 # Specific files
 build.txt

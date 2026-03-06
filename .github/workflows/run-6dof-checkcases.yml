@@ -1,0 +1,117 @@
+#
+# The GNU Lesser General Public License (LGPL)
+#
+# Copyright (c) 2026 Jay Iuliano
+#
+# This file is part of Astrea.
+# Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+# have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+#
+
+name: NASA 6DOF Checkcases
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "dev" ]
+
+jobs:
+  Build-and-Test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea:dev
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+    - name: https://github.com/actions/checkout/issues/1720
+      run: |
+        chmod -R u+rwX .
+
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
+
+    - name: Mark repository as safe
+      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+    - name: Fetch tags
+      run: git fetch --prune --unshallow --tags
+
+    - name: Setup
+      run: |
+        make python_env
+
+    - name: Build and Install Checkcases
+      run: |
+        . .venv/bin/activate && make release checkcases all install
+
+    - name: Run Checkcases && Build Report
+      run: |
+        . .venv/bin/activate && make build_report
+
+  Coverage:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iulianojay/astrea:dev
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+    - name: https://github.com/actions/checkout/issues/1720
+      run: |
+        chmod -R u+rwX .
+
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
+
+    - name: Mark repository as safe
+      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+    - name: Fetch tags
+      run: git fetch --prune --unshallow --tags
+
+    - name: Setup
+      run: |
+        make python_env
+
+    - name: Build and Install Debug
+      run: |
+        . .venv/bin/activate && make debug all install
+
+    - name: Run Coverage
+      run: |
+        mkdir .gcovr
+        touch .gcovr/coverage.xml
+        . .venv/bin/activate && make coverage
+
+    - name: Extract Coverage Percentage
+      run: |
+        touch coverage.txt
+        bash ./scripts/extract_coverage_pct.sh
+        echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
+
+    - name: Create Coverage Badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: 238a4a61ca19471caa1e39376158d625
+        filename: coverage.json
+        label: Coverage
+        message: ${{ env.COVERAGE_PCT }}%
+        valColorRange: ${{ env.COVERAGE_PCT }}
+        maxColorRange: 100
+        minColorRange: 60

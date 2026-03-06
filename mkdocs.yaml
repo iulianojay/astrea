@@ -177,12 +177,12 @@ nav:
             - Equations of Motion: examples/fundamentals/propagation/equations_of_motion.md
             - Force Models: examples/fundamentals/propagation/force_models.md
             - Events: examples/fundamentals/propagation/events.md
+            - Vehicles: examples/fundamentals/vehicles.md
           - Frames:
             - Strongly Typed Frames: examples/fundamentals/frames/strongly_typed_frames.md
             - Frame Transformations: examples/fundamentals/frames/frame_transformations.md
             - Cartesian Vectors: examples/fundamentals/frames/cartesian_vectors.md
       - Advanced:
-          - Vehicles: examples/advanced/vehicles.md
           - Platforms and Payloads: examples/advanced/platforms_and_payloads.md
   - Design:
       - Design: design/index.md

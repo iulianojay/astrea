@@ -117,6 +117,14 @@ rerun_tests:
 run_examples:
 	sh ./scripts/run_examples.sh
 
+.PHONY: run_checkcases
+run_checkcases:
+	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase* --gtest_catch_exceptions=0
+
+.PHONY: build_report
+build_report: run_checkcases
+	cd astrea/astro/pyastro/6dof_report && python3 nasa_6dof_report.py
+
 .PHONY: docker
 docker:
 	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile . --build-arg USER=$(username)

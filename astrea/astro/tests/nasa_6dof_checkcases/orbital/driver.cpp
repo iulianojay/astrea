@@ -244,7 +244,11 @@ class Orbital6DofTest : public testing::Test {
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
     {
-        const auto checkcases = get_checkcases(pattern);
+        auto checkcases = get_checkcases(pattern);
+        std::sort(checkcases.begin(), checkcases.end(), [](const auto& a, const auto& b) {
+            if (a.checkcase_num != b.checkcase_num) { return a.checkcase_num < b.checkcase_num; }
+            return a.sim_num < b.sim_num;
+        });
 
         std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto& checkcase : checkcases) {
@@ -377,10 +381,10 @@ class Orbital6DofTest : public testing::Test {
 
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
-        summaryFile << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
+            << std::endl;
         for (std::size_t i = 0; i < checkcaseHistories.size(); ++i) {
             const auto& checkcaseLabel = checkcaseHistories[i].second;
             for (std::size_t j = 0; j < propHistories.size(); ++j) {
@@ -404,10 +408,10 @@ class Orbital6DofTest : public testing::Test {
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
 
-        summaryFile << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
+            << std::endl;
         for (std::size_t ii = 0; ii < propHistories.size(); ++ii) {
             summaryFile << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
         }
